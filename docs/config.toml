@@ -55,7 +55,7 @@ enableRobotsTXT = true
   # (Optional, default none) Enable 'Edit page' links. Requires 'geekdocRepo' param
   # and the path must point to the parent directory of the 'content' folder.
   # You can also specify this parameter per page in front matter.
-  geekdocEditPath = "docs/"
+  geekdocEditPath = "/tree/main/docs/"
 
   # (Optional, default true) Enables search function with flexsearch.
   # Index is built on the fly and might slow down your website.
