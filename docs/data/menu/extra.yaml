@@ -1,0 +1,6 @@
+---
+header:
+  - name: GitHub
+    ref: https://github.com/Azure/Azure-Verified-Modules
+    icon: gdoc_github
+    external: true
