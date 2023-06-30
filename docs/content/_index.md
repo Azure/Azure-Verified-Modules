@@ -8,7 +8,7 @@ geekdocAnchor: true
 {{< hint type=important >}}
 **This initiative is still in early phases of development!**
 
-Please review and leave issues on things you find, via [GitHub Issues](https://github.com/Azure/Azure-Verified-Modules) 👍
+Please review and leave issues on things you find, via [GitHub Issues](https://github.com/Azure/Azure-Verified-Modules/issues) 👍
 {{< /hint >}}
 
 Azure Verified Modules (AVM) is an initiative to consolidate and set the standards for what a good Infrastructure-as-Code module looks like.
