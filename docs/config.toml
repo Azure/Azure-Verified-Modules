@@ -68,11 +68,11 @@ enableRobotsTXT = true
 
   # (Optional, default none) Add a link to your Legal Notice page to the site footer.
   # It can be either a remote url or a local file path relative to your content directory.
-  geekdocLegalNotice = "https://blog.example.com/legal"
+  # geekdocLegalNotice = "https://blog.example.com/legal"
 
   # (Optional, default none) Add a link to your Privacy Policy page to the site footer.
   # It can be either a remote url or a local file path relative to your content directory.
-  geekdocPrivacyPolicy = "/privacy"
+  # geekdocPrivacyPolicy = "/privacy"
 
   # (Optional, default true) Add an anchor link to headlines.
   geekdocAnchor = true
@@ -113,6 +113,6 @@ enableRobotsTXT = true
 
   # (Optional, default none) Adds a "Content licensed under <license>" line to the footer.
   # Could be used if you want to define a default license for your content.
-  [params.geekdocContentLicense]
-    name = "CC BY-SA 4.0"
-    link = "https://creativecommons.org/licenses/by-sa/4.0/"
+  # [params.geekdocContentLicense]
+  #   name = "CC BY-SA 4.0"
+  #   link = "https://creativecommons.org/licenses/by-sa/4.0/"

@@ -4,3 +4,8 @@ header:
     ref: https://github.com/Azure/Azure-Verified-Modules
     icon: gdoc_github
     external: true
+
+  - name: GitHub Issues
+    ref: https://github.com/Azure/Azure-Verified-Modules/issues
+    icon: gdoc_error_outline
+    external: true
