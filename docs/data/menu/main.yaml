@@ -9,6 +9,10 @@ main:
   - name: Concepts
     sub:
       - name: What is an Azure Verified Module?
+  - name: Specification
+    sub:
+      - name: Bicep Specific Specificaiton
+      - name: Terraform Specific Specificaiton
   - name: Help & Support
     sub:
       - name: GitHub Issues
@@ -17,10 +21,8 @@ main:
         icon: gdoc_error_outline
   - name: Contributing
     sub:
-      - name: Azure Verified Modules
-        sub:
-          - name: Bicep
-          - name: Terraform
+      - name: Bicep Modules
+      - name: Terraform Modules
       - name: This Website
       - name: Code of Conduct
         ref: 'https://opensource.microsoft.com/codeofconduct/'
