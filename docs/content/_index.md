@@ -3,7 +3,6 @@ title: Welcome to Azure Verified Modules
 geekdocNav: true
 geekdocAlign: center
 geekdocAnchor: true
-
 ---
 
 {{< hint type=important >}}
