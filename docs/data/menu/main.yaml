@@ -28,5 +28,7 @@ main:
       - name: Code of Conduct
         ref: "https://opensource.microsoft.com/codeofconduct/"
         external: true
+  - name: FAQs
+    ref: "/faq"
   - name: Glossary
     ref: "/glossary"
