@@ -7,7 +7,7 @@
       "pattern": "^(https:\\/\\/)?([www.]?)+(microsoft.com\\/)+[\\w\\-\\._~:/?#[\\]@!\\$&'\\(\\)\\*\\+,;=.]+$"
     },
     {
-      "pattern": "/img/"
+      "pattern": "img/"
     },
     {
       "pattern": "/shortcodes/code/"
