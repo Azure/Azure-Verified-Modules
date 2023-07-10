@@ -34,7 +34,7 @@
             VALIDATE_YAML: true
             VALIDATE_BASH: true
             VALIDATE_EDITORCONFIG: true
-            FILTER_REGEX_EXCLUDE: ".*docs/themes/ace-documentation/.*"
+            FILTER_REGEX_EXCLUDE: ".*docs/themes/hugo-geekdoc/.*"
 
     markdown-link-check:
       name: Markdown Link Check
@@ -49,6 +49,6 @@
         - name: Check links in markdown files
           uses: gaurav-nelson/github-action-markdown-link-check@1.0.15
           with:
-            config-file: ".github/actions-config/mlc_config.json"
+            config-file: ".github/linters/mlc_config.json"
             use-verbose-mode: "yes"
             use-quiet-mode: "yes"

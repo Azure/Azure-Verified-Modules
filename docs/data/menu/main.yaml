@@ -1,30 +1,43 @@
 ---
 main:
   - name: Home
-    ref: '/'
+    ref: "/"
   - name: Module Indexes
     sub:
       - name: Bicep
+        ref: 'indexes/bicep'
       - name: Terraform
+        ref: 'indexes/terraform'
   - name: Concepts
     sub:
-      - name: What is an Azure Verified Module?
-  - name: Specification
+      - name: What, Why, How
+        ref: 'concepts/what-why-how'
+  - name: Specifications
     sub:
+      - name: AVM Shared Specificaiton
+        ref: 'specs/shared'
       - name: Bicep Specific Specificaiton
+        ref: 'specs/bicep'
       - name: Terraform Specific Specificaiton
+        ref: 'specs/terraform'
   - name: Help & Support
     sub:
       - name: GitHub Issues
-        ref: 'https://github.com/Azure/Azure-Verified-Modules/issues'
+        ref: "https://github.com/Azure/Azure-Verified-Modules/issues"
         external: true
         icon: gdoc_error_outline
   - name: Contributing
     sub:
       - name: Bicep Modules
+        ref: '/contributing/bicep'
       - name: Terraform Modules
+        ref: '/contributing/terraform'
       - name: This Website
+        ref: '/contributing/website'
       - name: Code of Conduct
         ref: 'https://opensource.microsoft.com/codeofconduct/'
         external: true
-
+  - name: FAQs
+    ref: '/faq'
+  - name: Glossary
+    ref: '/glossary'
