@@ -5,15 +5,21 @@ main:
   - name: Module Indexes
     sub:
       - name: Bicep
+        ref: 'indexes/bicep'
       - name: Terraform
+        ref: 'indexes/terraform'
   - name: Concepts
     sub:
       - name: What, Why, How
         ref: 'concepts/what-why-how'
   - name: Specifications
     sub:
+      - name: AVM Shared Specificaiton
+        ref: 'specs/shared'
       - name: Bicep Specific Specificaiton
+        ref: 'specs/bicep'
       - name: Terraform Specific Specificaiton
+        ref: 'specs/terraform'
   - name: Help & Support
     sub:
       - name: GitHub Issues
@@ -23,12 +29,15 @@ main:
   - name: Contributing
     sub:
       - name: Bicep Modules
+        ref: '/contributing/bicep'
       - name: Terraform Modules
+        ref: '/contributing/terraform'
       - name: This Website
+        ref: '/contributing/website'
       - name: Code of Conduct
-        ref: "https://opensource.microsoft.com/codeofconduct/"
+        ref: 'https://opensource.microsoft.com/codeofconduct/'
         external: true
   - name: FAQs
-    ref: "/faq"
+    ref: '/faq'
   - name: Glossary
-    ref: "/glossary"
+    ref: '/glossary'
