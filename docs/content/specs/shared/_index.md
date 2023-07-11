@@ -5,8 +5,9 @@ geekdocAlign: left
 geekdocAnchor: true
 ---
 
-{{< hint type=note >}}
+{{< hint type=tip >}}
 
-*Coming soon*
+Make sure to checkout the [Module Classification Definitions](module-classifications) first before reading further so you understand the difference between a Resource and Pattern Module in AVM.
 
 {{< /hint >}}
+
