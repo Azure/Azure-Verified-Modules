@@ -14,11 +14,10 @@ main:
         ref: 'concepts/what-why-how'
   - name: Specifications
     sub:
+      - name: 'AVM Module Classification Definitions'
+        ref: 'specs/shared/module-classifications'
       - name: AVM Shared Specificaiton
         ref: 'specs/shared'
-        sub:
-          - name: 'Module Classification Definitions'
-            ref: 'specs/shared/module-classifications'
       - name: Bicep Specific Specificaiton
         ref: 'specs/bicep'
       - name: Terraform Specific Specificaiton
