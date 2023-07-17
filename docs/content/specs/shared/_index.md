@@ -60,7 +60,9 @@ Modules **MUST** use semantic versioning (aka semver) for their versions and rel
 
 #### ID: SNFR8 - Category: Contribution/Support
 
-A module **MUST** have an owner that is defined and managed by a GitHub Team in the Azure GitHub organization
+A module **MUST** have an owner that is defined and managed by a GitHub Team in the Azure GitHub organization.
+
+Today this is only Microsoft FTEs, but everyone is welcome to contribute. The module just **MUST** be owned by a Microsoft FTE (today) so we can enforce and provide the long-term support required by this initiative.
 
 #### ID: SNFR9 - Category: Contribution/Support
 
