@@ -12,8 +12,10 @@ main:
     sub:
       - name: What, Why, How
         ref: 'concepts/what-why-how'
-  - name: Specifications
+  - name: Specifications & Definitions
     sub:
+      - name: 'Team Definitions & RACI'
+        ref: 'specs/shared/team-definitions'
       - name: 'AVM Module Classification Definitions'
         ref: 'specs/shared/module-classifications'
       - name: AVM Shared Specificaiton
