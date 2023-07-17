@@ -120,6 +120,14 @@ Modules **MUST** be published to their respective language public registries.
 
 Modules **MUST** implement idempotency end-to-end (deployment) testing. E.g. deploying the module twice over the top of itself.
 
+#### ID: SNFR19 - Category: Support
+
+Only the latest released version of a module **MUST** be supported.
+
+For example, if an AVM Resource Module is used in an AVM Pattern Module that was working but now is not. The first step by the AVM Pattern Module owner should be to upgrade to the latest version of the AVM Resource Module test and then if not fixed, troubleshoot and fix forward from the that latest version of the AVM Resource Module onwards.
+
+This avoids AVM Module owners from having to maintain multiple major release versions.
+
 ## Resource Module Requirements
 
 Listed below are both functional and non-functional requirements for [AVM Resource Modules](module-classifications).
