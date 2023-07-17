@@ -149,7 +149,7 @@ Another example for where RPs contain some of their name within a property, leav
 
 Modules **MUST** support the following optional features/extension resources, if supported by the primary resource. The top-level variable/parameter names **MUST** be:
 
-| Optional Feature/Extension Resource         | Bicep Parameter Name  | Terraform Variable Name |
+| Optional Features/Extension Resources       | Bicep Parameter Name  | Terraform Variable Name |
 | ------------------------------------------- | --------------------- | ----------------------- |
 | Diagnostic Settings                         | `diagnosticSettings`  | `diagnostic_settings`   |
 | Role Assignments                            | `roleAssignments`     | `role_assignments`      |
@@ -164,7 +164,7 @@ Module owners **MAY** choose to utilize cross repo dependencies for these "add-o
 
 #### ID: RMFR6 - Category: Composition
 
-Modules **SHOULD** implement a common interface for the optional features/extension resources:
+Modules **SHOULD** implement a common interface, e.g. the input's data structures and properties within them (objects/arrays/dictionaries/maps), for the optional features/extension resources:
 
 See:
 
