@@ -106,7 +106,15 @@ An examples directory **MUST** exist to provide named scenarios for module deplo
 
 Modules **MUST** be published to their respective language public registries.
 
-#### ID: SNFR17 - Category: Testing
+- Terraform = [HashiCorp Terraform Registry](https://registry.terraform.io/)
+- Bicep = [Bicep Public Module Registry](https://github.com/Azure/bicep-registry-modules/tree/main)
+  - Within the `avm` directory
+
+#### ID: SNFR17 - Category: Publishing
+
+Modules **MUST** be published to their respective language public registries.
+
+#### ID: SNFR18 - Category: Testing
 
 Modules **MUST** implement idempotency end-to-end (deployment) testing. E.g. deploying the module twice over the top of itself.
 
