@@ -4,7 +4,9 @@ geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
 ---
+{{< toc >}}
 
+## Teams
 In AVM there will be multiple different teams involved throughout the initiatives lifecycle and ongoing long-term support. These teams will be listed below alongside their definitions.
 
 {{< hint type=important >}}
@@ -13,9 +15,9 @@ Individuals can be members of multiple teams, at once, that are defined below.
 
 {{< /hint >}}
 
-## AVM Core Team
+### AVM Core Team
 
-GitHub Team: `@Azure/avm-core-team`
+GitHub Team: [`@Azure/avm-core-team`](https://github.com/orgs/Azure/teams/avm-core-team)
 
 The AVM core team are responsible for:
 
@@ -32,7 +34,7 @@ The AVM core team are responsible for:
 
 The team is made up of both technical and non-technical team members that are all Microsoft FTEs.
 
-## Module Owners
+### Module Owners
 
 {{< hint type=important >}}
 
@@ -49,7 +51,7 @@ Module owners are responsible for:
 - Managing Module Contributors
 
 Ideally there **SHOULD** be at least 2 module owners per module and **MUST** be in a [GitHub Team in the `Azure` organization.](https://github.com/orgs/Azure/teams/)
-## Module Contributors
+### Module Contributors
 
 {{< hint type=important >}}
 
@@ -63,7 +65,12 @@ Module Contributors are responsible for:
 
 Module Contributors **MUST** be in a separate [GitHub Team in the `Azure` organization](https://github.com/orgs/Azure/teams/), that the Module Owners manage and are maintainers of.
 
-## Product Groups
+### Product Groups
+
+GitHub Teams:
+
+ - [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Azure Terraform PG
+ - `TBC` = Bicep PG team
 
 The Azure Bicep & Terraform Product Groups are responsible for:
 
