@@ -1,4 +1,4 @@
-baseURL = "http://localhost"
+baseURL = "https://azure.github.io/Azure-Verified-Modules"
 title = "Azure Verified Modules"
 theme = "hugo-geekdoc"
 
