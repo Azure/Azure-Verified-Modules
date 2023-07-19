@@ -48,7 +48,7 @@ Module owners are responsible for:
 - Module Feature Request Triage & Additions
 - Managing Module Contributors
 
-Ideally there **SHOULD** be at least 2 module owners per module and **MUST** be in a GitHub Team in the `Azure` organization.
+Ideally there **SHOULD** be at least 2 module owners per module and **MUST** be in a [GitHub Team in the `Azure` organization.](https://github.com/orgs/Azure/teams/)
 ## Module Contributors
 
 {{< hint type=important >}}
@@ -61,11 +61,21 @@ Module Contributors are responsible for:
 
 - Assisting the Module Owners with their responsibilities
 
-Module Contributors **MUST** be in a separate GitHub Team in the `Azure` organization, that the Module Owners manage and are maintainers of.
+Module Contributors **MUST** be in a separate [GitHub Team in the `Azure` organization](https://github.com/orgs/Azure/teams/), that the Module Owners manage and are maintainers of.
 
 ## Product Groups
 
-TBC
+The Azure Bicep & Terraform Product Groups are responsible for:
+
+- Backup/Additional support for orphaned modules to the AVM Core Team
+- Providing inputs and feedback on AVM
+- Taking on feedback and feature requests on their products, Bicep & Terraform, from AVM usage
+
+{{< hint type=note >}}
+
+We are investigating working with all Azure Product Groups as a future investment area that they take on ownership, or contribute to, the AVM modules for their service/product.
+
+{{< /hint >}}
 
 ## RACI
 
