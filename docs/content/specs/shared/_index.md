@@ -68,9 +68,9 @@ Today this is only Microsoft FTEs, but everyone is welcome to contribute. The mo
 
 A module **MUST** make the following GitHub Teams in the Azure GitHub organization admins on its GitHub repo:
 
- - [`@Azure/avm-core-team`](https://github.com/orgs/Azure/teams/avm-core-team/members?query=membership:child-team) = AVM Core Team
- - [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Terraform PG
- - `TBC` = Bicep PG team
+- [`@Azure/avm-core-team`](https://github.com/orgs/Azure/teams/avm-core-team/members?query=membership:child-team) = AVM Core Team
+- [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Terraform PG
+- `TBC` = Bicep PG team
 
 #### ID: SNFR10 - Category: Contribution/Support
 
@@ -180,14 +180,14 @@ Modules **SHOULD** implement a common interface, e.g. the input's data structure
 
 See:
 
-- [Diagnostic Settings Interface]()
-- [Role Assignments Interface]()
-- [Resource Locks Interface]()
-- [Tags Interface]()
-- [Alerts Interface]()
-- [Private Endpoints Interface]()
-- [Customer Managed Keys Interface]()
-- [Managed Identities Interface]()
+- [Diagnostic Settings Interface](/specs/shared/)
+- [Role Assignments Interface](/specs/shared/)
+- [Resource Locks Interface](/specs/shared/)
+- [Tags Interface](/specs/shared/)
+- [Alerts Interface](/specs/shared/)
+- [Private Endpoints Interface](/specs/shared/)
+- [Customer Managed Keys Interface](/specs/shared/)
+- [Managed Identities Interface](/specs/shared/)
 
 #### ID: RMFR6 - Category: Inputs
 
