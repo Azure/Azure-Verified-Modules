@@ -69,8 +69,8 @@ Module Contributors **MUST** be in a separate [GitHub Team in the `Azure` organi
 
 GitHub Teams:
 
- - [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Azure Terraform PG
- - `TBC` = Bicep PG team
+- [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Azure Terraform PG
+- `TBC` = Bicep PG team
 
 The Azure Bicep & Terraform Product Groups are responsible for:
 
