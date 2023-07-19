@@ -5,7 +5,7 @@ geekdocAlign: left
 geekdocAnchor: true
 ---
 
-As mentioned in the [What, Why, How](/concepts/what-why-how) page, we understand that long-term support from Microsoft in an initiative like AVM is critical to its adoption by consumers and therefore the success of AVM. Therefore we have aligned and provide the below support statement/process for AVM modules.
+As mentioned in the [What, Why, How](/Azure-Verified-Modules/concepts//what-why-how) page, we understand that long-term support from Microsoft in an initiative like AVM is critical to its adoption by consumers and therefore the success of AVM. Therefore we have aligned and provide the below support statement/process for AVM modules.
 
 {{< hint type=important >}}
 
@@ -15,7 +15,7 @@ Issues with and AVM module should be raised on the repo they are hosted on, not 
 
 {{< /hint >}}
 
-Azure Verified Modules are supported by the AVM teams, as defined [here](/specs/shared/team-definitions/), using GitHub issues in the following order of precedence:
+Azure Verified Modules are supported by the AVM teams, as defined [here](/Azure-Verified-Modules/specs/shared/team-definitions/), using GitHub issues in the following order of precedence:
 
 1. Module owners/contributors
 2. If there is no response within 3 business days, then the AVM core team will step in by:
@@ -25,7 +25,7 @@ Azure Verified Modules are supported by the AVM teams, as defined [here](/specs/
 
 All of this will be automated via the use of the [Resource Management GitHub Policy Service](https://microsoft.github.io/GitOps/policies/resource-management.html) configuration and GitHub Actions, where possible and appropriate.
 
-Modules that have to have the AVM core team or Product Groups step in due to the module owners/contributors not responding, the AVM module will become "orphaned"; see [Module Lifecycle](/specs/shared/module-lifecycle/) for more info.
+Modules that have to have the AVM core team or Product Groups step in due to the module owners/contributors not responding, the AVM module will become "orphaned"; see [Module Lifecycle](/Azure-Verified-Modules/specs/shared/module-lifecycle/) for more info.
 
 {{< hint type=important >}}
 

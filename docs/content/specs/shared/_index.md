@@ -7,7 +7,7 @@ geekdocAnchor: true
 
 {{< hint type=tip >}}
 
-Make sure to checkout the [Module Classification Definitions](/specs/shared/module-classifications/) first before reading further so you understand the difference between a Resource and Pattern Module in AVM.
+Make sure to checkout the [Module Classification Definitions](/Azure-Verified-Modules/specs/shared/module-classifications/) first before reading further so you understand the difference between a Resource and Pattern Module in AVM.
 
 {{< /hint >}}
 
@@ -132,7 +132,7 @@ Modules **MUST** be published to their respective language public registries.
 
 ## Resource Module Requirements
 
-Listed below are both functional and non-functional requirements for [AVM Resource Modules](/specs/shared/module-classifications/).
+Listed below are both functional and non-functional requirements for [AVM Resource Modules](/Azure-Verified-Modules/specs/shared/module-classifications/).
 
 ### Functional Requirements
 
@@ -180,14 +180,14 @@ Modules **SHOULD** implement a common interface, e.g. the input's data structure
 
 See:
 
-- [Diagnostic Settings Interface](/specs/shared/)
-- [Role Assignments Interface](/specs/shared/)
-- [Resource Locks Interface](/specs/shared/)
-- [Tags Interface](/specs/shared/)
-- [Alerts Interface](/specs/shared/)
-- [Private Endpoints Interface](/specs/shared/)
-- [Customer Managed Keys Interface](/specs/shared/)
-- [Managed Identities Interface](/specs/shared/)
+- [Diagnostic Settings Interface](/Azure-Verified-Modules/specs/shared/)
+- [Role Assignments Interface](/Azure-Verified-Modules/specs/shared/)
+- [Resource Locks Interface](/Azure-Verified-Modules/specs/shared/)
+- [Tags Interface](/Azure-Verified-Modules/specs/shared/)
+- [Alerts Interface](/Azure-Verified-Modules/specs/shared/)
+- [Private Endpoints Interface](/Azure-Verified-Modules/specs/shared/)
+- [Customer Managed Keys Interface](/Azure-Verified-Modules/specs/shared/)
+- [Managed Identities Interface](/Azure-Verified-Modules/specs/shared/)
 
 #### ID: RMFR6 - Category: Inputs
 
@@ -233,7 +233,7 @@ A module **SHOULD** use the following standard inputs:
 
 ## Pattern Module Requirements
 
-Listed below are both functional and non-functional requirements for [AVM Pattern Modules](/specs/shared/module-classifications/).
+Listed below are both functional and non-functional requirements for [AVM Pattern Modules](/Azure-Verified-Modules/specs/shared/module-classifications/).
 
 ### Functional Requirements
 
