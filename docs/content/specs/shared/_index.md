@@ -54,9 +54,9 @@ Modules **SHOULD** implement upgrade testing to ensure new features are implemen
 
 Modules **MUST** use static analysis, e.g., linting, security scanning.
 
-#### ID: SNFR7 - Category: Release
+#### ID: SNFR7 - Category: Testing
 
-Modules **MUST** use semantic versioning (aka semver) for their versions and releases in accordance with: [Semantic Versioning 2.0.0](https://semver.org/)
+Modules **MUST** implement idempotency end-to-end (deployment) testing. E.g. deploying the module twice over the top of itself.
 
 #### ID: SNFR8 - Category: Contribution/Support
 
@@ -72,21 +72,25 @@ A module **MUST** make the following GitHub Teams in the Azure GitHub organizati
  - [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Terraform PG
  - `TBC` = Bicep PG team
 
-#### ID: SNFR10 - Category: Release
-
-A module **SHOULD** avoid breaking changes, e.g., deprecating inputs vs. removing.
-
-#### ID: SNFR11 - Category: Contribution
+#### ID: SNFR10 - Category: Contribution/Support
 
 A module **MUST** be published with the MIT License in the Azure GitHub organization.
 
-#### ID: SNFR12 - Category: Forking
-
-A module **MUST** also function within a private module registry, internal Git repo.
-
-#### ID: SNFR13 - Category: Support
+#### ID: SNFR11 - Category: Contribution/Support
 
 A module owner **MUST** respond to logged issues within 3 business days.
+
+#### ID: SNFR12 - Category: Contribution/Support
+
+Only the latest released version of a module **MUST** be supported.
+
+For example, if an AVM Resource Module is used in an AVM Pattern Module that was working but now is not. The first step by the AVM Pattern Module owner should be to upgrade to the latest version of the AVM Resource Module test and then if not fixed, troubleshoot and fix forward from the that latest version of the AVM Resource Module onwards.
+
+This avoids AVM Module owners from having to maintain multiple major release versions.
+
+#### ID: SNFR13 - Category: Forking
+
+A module **MUST** also function within a private module registry, internal Git repo.
 
 #### ID: SNFR14 - Category: Inputs
 
@@ -100,11 +104,20 @@ Complex data types (objects, arrays, maps) when the schema is defined and suppor
 
 README documentation **MUST** be automatically/programmatically generated. **MUST** include inputs, outputs, resources deployed.
 
-#### ID: SNFR15 - Category: Documentation
+#### ID: SNFR16 - Category: Documentation
 
 An examples directory **MUST** exist to provide named scenarios for module deployment.
 
-#### ID: SNFR16 - Category: Publishing
+#### ID: SNFR17 - Category: Release
+
+Modules **MUST** use semantic versioning (aka semver) for their versions and releases in accordance with: [Semantic Versioning 2.0.0](https://semver.org/)
+
+
+#### ID: SNFR18 - Category: Release
+
+A module **SHOULD** avoid breaking changes, e.g., deprecating inputs vs. removing.
+
+#### ID: SNFR19 - Category: Publishing
 
 Modules **MUST** be published to their respective language public registries.
 
@@ -112,21 +125,10 @@ Modules **MUST** be published to their respective language public registries.
 - Bicep = [Bicep Public Module Registry](https://github.com/Azure/bicep-registry-modules/tree/main)
   - Within the `avm` directory
 
-#### ID: SNFR17 - Category: Publishing
+#### ID: SNFR20 - Category: Publishing
 
 Modules **MUST** be published to their respective language public registries.
 
-#### ID: SNFR18 - Category: Testing
-
-Modules **MUST** implement idempotency end-to-end (deployment) testing. E.g. deploying the module twice over the top of itself.
-
-#### ID: SNFR19 - Category: Support
-
-Only the latest released version of a module **MUST** be supported.
-
-For example, if an AVM Resource Module is used in an AVM Pattern Module that was working but now is not. The first step by the AVM Pattern Module owner should be to upgrade to the latest version of the AVM Resource Module test and then if not fixed, troubleshoot and fix forward from the that latest version of the AVM Resource Module onwards.
-
-This avoids AVM Module owners from having to maintain multiple major release versions.
 
 ## Resource Module Requirements
 
@@ -155,15 +157,7 @@ In the case that a Resource Group is required, a module **MUST** have an input (
 
 Scopes will be covered further in the respective language specific specifications.
 
-#### ID: RMFR4 - Category: Inputs
-
-Parameters/variables that pertain to the primary resource **MUST NOT** use the resource type in the name.
-
-e.g., use `sku`, vs. `virtualMachineSku`/`virtualmachine_sku`
-
-Another example for where RPs contain some of their name within a property, leave the property unchanged. E.g. Key Vault has a property called `keySize`, it is fine to leave as this and not remove the `key` part from the property/parameter name.
-
-#### ID: RMFR5 - Category: Composition
+#### ID: RMFR4 - Category: Composition
 
 Modules **MUST** support the following optional features/extension resources, if supported by the primary resource. The top-level variable/parameter names **MUST** be:
 
@@ -180,7 +174,7 @@ Modules **MUST** support the following optional features/extension resources, if
 
 Module owners **MAY** choose to utilize cross repo dependencies for these "add-on" resources, or **MAY** chose to implement the code directly in their own repo/module. So long as the implementation and outputs are as per the specifications requirements, then this is acceptable.
 
-#### ID: RMFR6 - Category: Composition
+#### ID: RMFR5 - Category: Composition
 
 Modules **SHOULD** implement a common interface, e.g. the input's data structures and properties within them (objects/arrays/dictionaries/maps), for the optional features/extension resources:
 
@@ -194,6 +188,14 @@ See:
 - [Private Endpoints Interface]()
 - [Customer Managed Keys Interface]()
 - [Managed Identities Interface]()
+
+#### ID: RMFR6 - Category: Inputs
+
+Parameters/variables that pertain to the primary resource **MUST NOT** use the resource type in the name.
+
+e.g., use `sku`, vs. `virtualMachineSku`/`virtualmachine_sku`
+
+Another example for where RPs contain some of their name within a property, leave the property unchanged. E.g. Key Vault has a property called `keySize`, it is fine to leave as this and not remove the `key` part from the property/parameter name.
 
 #### ID: RMFR7 - Category: Availability
 
