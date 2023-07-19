@@ -7,7 +7,7 @@ geekdocAnchor: true
 
 {{< hint type=tip >}}
 
-Make sure to checkout the [Module Classification Definitions](module-classifications) first before reading further so you understand the difference between a Resource and Pattern Module in AVM.
+Make sure to checkout the [Module Classification Definitions](/specs/shared/module-classifications/) first before reading further so you understand the difference between a Resource and Pattern Module in AVM.
 
 {{< /hint >}}
 
@@ -132,7 +132,7 @@ Modules **MUST** be published to their respective language public registries.
 
 ## Resource Module Requirements
 
-Listed below are both functional and non-functional requirements for [AVM Resource Modules](module-classifications).
+Listed below are both functional and non-functional requirements for [AVM Resource Modules](/specs/shared/module-classifications/).
 
 ### Functional Requirements
 
@@ -233,7 +233,7 @@ A module **SHOULD** use the following standard inputs:
 
 ## Pattern Module Requirements
 
-Listed below are both functional and non-functional requirements for [AVM Pattern Modules](module-classifications).
+Listed below are both functional and non-functional requirements for [AVM Pattern Modules](/specs/shared/module-classifications/).
 
 ### Functional Requirements
 
