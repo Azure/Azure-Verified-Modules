@@ -7,6 +7,14 @@ geekdocAnchor: true
 
 As mentioned in the [What, Why, How](/concepts/what-why-how) page, we understand that long-term support from Microsoft in an initiative like AVM is critical to its adoption by consumers and therefore the success of AVM. Therefore we have aligned and provide the below support statement/process for AVM modules.
 
+{{< hint type=important >}}
+
+Issues with and AVM module should be raised on the repo they are hosted on, not the AVM Central (`Azure/Azure-Verified-Modules`) repo!
+
+*Not an issue if you raise in the wrong place, we will transfer it to it's correct home 👍*
+
+{{< /hint >}}
+
 Azure Verified Modules are supported by the AVM teams, as defined [here](/specs/shared/team-definitions/), using GitHub issues in the following order of precedence:
 
 1. Module owners/contributors
