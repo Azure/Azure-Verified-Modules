@@ -1,47 +1,51 @@
 ---
 main:
-  - name: Home
+  - name: 'Home'
     ref: "/"
-  - name: Module Indexes
+  - name: 'Module Indexes'
     sub:
-      - name: Bicep
+      - name: 'Bicep'
         ref: 'indexes/bicep'
-      - name: Terraform
+      - name: 'Terraform'
         ref: 'indexes/terraform'
-  - name: Concepts
+  - name: 'Concepts'
     sub:
-      - name: What, Why, How
+      - name: 'What, Why, How'
         ref: 'concepts/what-why-how'
-  - name: Specifications & Definitions
+  - name: 'Specifications & Definitions'
     sub:
       - name: 'Team Definitions & RACI'
         ref: 'specs/shared/team-definitions'
-      - name: 'AVM Module Classification Definitions'
+      - name: 'Module Classification Definitions'
         ref: 'specs/shared/module-classifications'
-      - name: AVM Shared Specificaiton
+      - name: 'Module Lifecycle'
+        ref: 'specs/shared/module-lifecycle'
+      - name: 'AVM Shared Specificaiton'
         ref: 'specs/shared'
-      - name: Bicep Specific Specificaiton
+      - name: 'Bicep Specific Specificaiton'
         ref: 'specs/bicep'
-      - name: Terraform Specific Specificaiton
+      - name: 'Terraform Specific Specificaiton'
         ref: 'specs/terraform'
-  - name: Help & Support
+  - name: 'Help & Support'
     sub:
-      - name: GitHub Issues
+      - name: 'Module Support'
+        ref: '/help-support/module-support'
+      - name: 'GitHub Issues'
         ref: "https://github.com/Azure/Azure-Verified-Modules/issues"
         external: true
-        icon: gdoc_error_outline
-  - name: Contributing
+        icon: 'gdoc_error_outline'
+  - name: 'Contributing'
     sub:
-      - name: Bicep Modules
+      - name: 'Bicep Modules'
         ref: '/contributing/bicep'
-      - name: Terraform Modules
+      - name: 'Terraform Modules'
         ref: '/contributing/terraform'
-      - name: This Website
+      - name: 'This Website'
         ref: '/contributing/website'
-      - name: Code of Conduct
+      - name: 'Code of Conduct'
         ref: 'https://opensource.microsoft.com/codeofconduct/'
         external: true
-  - name: FAQs
+  - name: 'FAQs'
     ref: '/faq'
-  - name: Glossary
+  - name: 'Glossary'
     ref: '/glossary'

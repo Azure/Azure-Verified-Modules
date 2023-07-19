@@ -1,5 +1,5 @@
 ---
-title: AVM Module Classification Definitions
+title: Module Classification Definitions
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
