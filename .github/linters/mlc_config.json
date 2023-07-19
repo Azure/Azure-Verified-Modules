@@ -11,6 +11,9 @@
     },
     {
       "pattern": "/shortcodes/code/"
+    },
+    {
+      "pattern": "/"
     }
   ],
   "httpHeaders": [
