@@ -5,12 +5,6 @@ geekdocAlign: left
 geekdocAnchor: true
 ---
 
-{{< hint type=note >}}
-
-*Coming soon*
-
-{{< /hint >}}
-
 ## Recommended Learning
 
 Before you start contributing to the AVM, it is **highly recommended** that you complete the following Microsoft Learn paths, modules & courses:
