@@ -1,0 +1,80 @@
+name: New AVM Module Proposal 📝
+description: Want a new AVM Module to exist? Let us know
+title: "[Module Proposal]: "
+labels: ["module-proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for your proposing a new AVM module.
+
+        Please ensure you have checked the [AVM Module Classification Definitions](https://azure.github.io/Azure-Verified-Modules/specs/shared/module-classifications/) & the [AVM Shared Specification](https://azure.github.io/Azure-Verified-Modules/specs/shared/)
+  - type: checkboxes
+    id: existing-checks
+    attributes:
+      label: Check for previous/existing GitHub issues/module proposals
+      description: By submitting this issue, you confirm that you have [searched for previous/existing GitHub issues/module proposals](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue+sort%3Aupdated-desc+) to avoid creating a duplicate.
+      options:
+        - label: I have checked for previous/existing GitHub issues/module proposals
+          required: true
+  - type: dropdown
+    id: tf-bicep
+    attributes:
+      label: Terraform or Bicep?
+      description: What language are you proposing the module for?
+      options:
+        - Bicep
+        - Terraform
+        - Both
+    validations:
+      required: true
+  - type: dropdown
+    id: res-or-ptn
+    attributes:
+      label: Resource or Pattern Module?
+      description: Will this be a Resource or Pattern Module, as per [AVM Module Classification Definitions](https://azure.github.io/Azure-Verified-Modules/specs/shared/module-classifications/)?
+      options:
+        - Resource Module
+        - Pattern Module
+    validations:
+      required: true
+  - type: input
+    id: module-name
+    attributes:
+      label: Module Name
+      description: What would be the name of the module following the [naming pattern](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming)
+      placeholder: avm-res-<rp>-<armresourcename>
+    validations:
+      required: true
+  - type: textarea
+    id: module-details
+    attributes:
+      label: Module Details
+      description: Let us know some info about the module you are proposing
+    validations:
+      required: true
+  - type: checkboxes
+    id: owner-check
+    attributes:
+      label: Do you want to be the owner of this module?
+      description: By checking this box, you confirm that you want to be the owner of this module and are a Microsoft FTE or have a Microsoft FTE as a co-owner.
+      options:
+        - label: I have checked for previous/existing GitHub issues/module proposals
+          required: true
+  - type: dropdown
+    id: owner-check
+    attributes:
+      label: Do you want to be the owner of this module?
+      description: By selecting Yes, you confirm that you want to be the owner of this module and are a Microsoft FTE or have a Microsoft FTE as a co-owner. And you/they can commit to the [Module Support statement](https://azure.github.io/Azure-Verified-Modules/help-support/module-support/) for this module.
+      options:
+        - Yes
+        - No
+    validations:
+      required: true
+  - type: input
+    id: owner-gh-un
+    attributes:
+      label: Module Owner's GitHub Username
+      description: Please provide the proposed module owners GitHub username
+    validations:
+      required: true
