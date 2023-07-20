@@ -12,8 +12,12 @@ This page is still a work in progress
 
 ## Request/Propose a New AVM Resource or Pattern Module
 
-TBC
+{{< hint type=note >}}
 
+We are still getting ready to actually create code but we are willing to take module proposals from Microsoft FTEs!
+
+Fill in the form [here](https://github.com/Azure/Azure-Verified-Modules/issues/new?assignees=&labels=module-proposal&projects=&template=module_proposal.yml&title=[Module+Proposal]:+) 📄
+{{< /hint >}}
 
 ## Orphaned AVM Modules
 
