@@ -53,14 +53,6 @@ body:
       description: Let us know some info about the module you are proposing
     validations:
       required: true
-  - type: checkboxes
-    id: owner-check
-    attributes:
-      label: Do you want to be the owner of this module?
-      description: By checking this box, you confirm that you want to be the owner of this module and are a Microsoft FTE or have a Microsoft FTE as a co-owner.
-      options:
-        - label: I have checked for previous/existing GitHub issues/module proposals
-          required: true
   - type: dropdown
     id: owner-check
     attributes:
