@@ -37,8 +37,6 @@ To contribute to this project the following tooling is required:
   - [Bicep extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
   - [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 
-![Bicep Logo](media/bicep-vs-code.png)
-
 ### Recommended Tooling
 
 The following tooling/extensions are recommended to assist you developing for the project:
