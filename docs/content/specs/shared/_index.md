@@ -70,7 +70,7 @@ A module **MUST** make the following GitHub Teams in the Azure GitHub organizati
 
 - [`@Azure/avm-core-team`](https://github.com/orgs/Azure/teams/avm-core-team/members?query=membership:child-team) = AVM Core Team
 - [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Terraform PG
-- `TBC` = Bicep PG team
+- [`@Azure/bicep-admins`](https://github.com/orgs/Azure/teams/bicep-admins) = Bicep PG team
 
 #### ID: SNFR10 - Category: Contribution/Support
 
