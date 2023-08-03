@@ -168,20 +168,29 @@ Scopes will be covered further in the respective language specific specification
 
 #### ID: RMFR4 - Category: Composition
 
-Modules **MUST** support the following optional features/extension resources, if supported by the primary resource. The top-level variable/parameter names **MUST** be:
+Modules support the following optional features/extension resources, as specified, if supported by the primary resource. The top-level variable/parameter names **MUST** be:
 
-| Optional Features/Extension Resources       | Bicep Parameter Name  | Terraform Variable Name |
-| ------------------------------------------- | --------------------- | ----------------------- |
-| Diagnostic Settings                         | `diagnosticSettings`  | `diagnostic_settings`   |
-| Role Assignments                            | `roleAssignments`     | `role_assignments`      |
-| Resource Locks                              | `locks`               | `locks`                 |
-| Tags                                        | `tags`                | `tags`                  |
-| Azure Monitor Alerts                        | `alerts`              | `alerts`                |
-| Private Endpoints                           | `privateEndpoints`    | `private_endpoints`     |
-| Customer Managed Keys                       | `customerManagedKeys` | `customer_managed_keys` |
-| Managed Identities (System / User Assigned) | `managedIdentites`    | `managed_identites`     |
+| Optional Features/Extension Resources       | Bicep Parameter Name  | Terraform Variable Name | MUST/SHOULD |
+| ------------------------------------------- | --------------------- | ----------------------- | ----------- |
+| Diagnostic Settings                         | `diagnosticSettings`  | `diagnostic_settings`   | MUST        |
+| Role Assignments                            | `roleAssignments`     | `role_assignments`      | MUST        |
+| Resource Locks                              | `locks`               | `locks`                 | MUST        |
+| Tags                                        | `tags`                | `tags`                  | MUST        |
+| Managed Identities (System / User Assigned) | `managedIdentites`    | `managed_identites`     | MUST        |
+| Private Endpoints                           | `privateEndpoints`    | `private_endpoints`     | MUST        |
+| Customer Managed Keys                       | `customerManagedKeys` | `customer_managed_keys` | SHOULD      |
+| Azure Monitor Alerts                        | `alerts`              | `alerts`                | SHOULD      |
 
 Module owners **MAY** choose to utilize cross repo dependencies for these "add-on" resources, or **MAY** chose to implement the code directly in their own repo/module. So long as the implementation and outputs are as per the specifications requirements, then this is acceptable.
+
+{{< hint type=tip >}}
+
+Make sure to checkout the language specific specifications for more info on this:
+
+- [Bicep](/Azure-Verified-Modules/specs/bicep#id-bcpnfr1---category-composition---cross-referencing-modules)
+- [Terraform](/Azure-Verified-Modules/specs/terraform#id-tfnfr1---category-composition---cross-referencing-modules)
+
+{{< /hint >}}
 
 #### ID: RMFR5 - Category: Composition
 
