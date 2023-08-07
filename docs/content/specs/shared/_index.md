@@ -28,6 +28,19 @@ Listed below are both functional and non-functional requirements for both classi
 
 Modules **MAY** create/adopt public preview services and features at their discretion.
 
+Preview API versions **MAY** be used when:
+
+- The resource/service/feature is GA but the only API version available for the GA resource/service/feature is a preview version
+  - For example, Diagnostic Settings (`Microsoft.Insights/diagnosticSettings`) the latest version of the API available with GA features, like Category Groups etc., is `2021-05-01-preview`
+  - Otherwise the latest "non-preview" version of the API **SHOULD** be used
+
+Preview services and features, **SHOULD NOT** be promoted and exposed, unless they are supported by the respective PG, and it's documented publicly.
+
+However, they **MAY** be exposed at the module owners discretion, but the following rules **MUST** be followed:
+
+- The description of each of the parameters/variables used for the preview service/feature **MUST** start with:
+  -  *"THIS IS A <PARAMETER/VARIABLE> USED FOR A PREVIEW SERVICE/FEATURE, MICROSOFT MAY NOT PROVIDE SUPPORT FOR THIS, PLEASE CHECK THE PRODUCT DOCS FOR CLARIFICATION"*
+
 ### Non-Functional Requirements
 
 #### ID: SNFR1 - Category: Testing
@@ -178,7 +191,7 @@ Modules support the following optional features/extension resources, as specifie
 | Tags                                        | `tags`                | `tags`                  | MUST        |
 | Managed Identities (System / User Assigned) | `managedIdentites`    | `managed_identites`     | MUST        |
 | Private Endpoints                           | `privateEndpoints`    | `private_endpoints`     | MUST        |
-| Customer Managed Keys                       | `customerManagedKeys` | `customer_managed_keys` | SHOULD      |
+| Customer Managed Keys                       | `customerManagedKeys` | `customer_managed_keys` | MUST        |
 | Azure Monitor Alerts                        | `alerts`              | `alerts`                | SHOULD      |
 
 Module owners **MAY** choose to utilize cross repo dependencies for these "add-on" resources, or **MAY** chose to implement the code directly in their own repo/module. So long as the implementation and outputs are as per the specifications requirements, then this is acceptable.
