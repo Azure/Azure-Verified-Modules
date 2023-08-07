@@ -24,7 +24,7 @@ Listed below are both functional and non-functional requirements for both classi
 
 ### Functional Requirements
 
-#### ID: SFR1 - Category: Composition
+#### ID: SFR1 - Category: Composition - Preview Services
 
 Modules **MAY** create/adopt public preview services and features at their discretion.
 
@@ -43,41 +43,41 @@ However, they **MAY** be exposed at the module owners discretion, but the follow
 
 ### Non-Functional Requirements
 
-#### ID: SNFR1 - Category: Testing
+#### ID: SNFR1 - Category: Testing - Prescribed Tests
 
 Modules **MUST** use the prescribed tooling and testing frameworks defined in the language specific specs.
 
-#### ID: SNFR2 - Category: Testing
+#### ID: SNFR2 - Category: Testing - E2E Testing
 
 Modules **MUST** implement end-to-end (deployment) testing.
 
-#### ID: SNFR3 - Category: Testing
+#### ID: SNFR3 - Category: Testing - AVM Unit Tests
 
 Modules **MUST** implement implement AVM unit tests that ensure compliance to AVM specifications.
 
-#### ID: SNFR4 - Category: Testing
+#### ID: SNFR4 - Category: Testing - Additional Unit Tests
 
 Modules **SHOULD** implement unit testing to ensure logic and conditions within variables/locals are performing correctly.
 
-#### ID: SNFR5 - Category: Testing
+#### ID: SNFR5 - Category: Testing - Upgrade Tests
 
 Modules **SHOULD** implement upgrade testing to ensure new features are implemented in a non-breaking fashion on mom-major releases.
 
-#### ID: SNFR6 - Category: Testing
+#### ID: SNFR6 - Category: Testing - Static Analysis/Linting Tests
 
 Modules **MUST** use static analysis, e.g., linting, security scanning.
 
-#### ID: SNFR7 - Category: Testing
+#### ID: SNFR7 - Category: Testing - Idempotency Tests
 
 Modules **MUST** implement idempotency end-to-end (deployment) testing. E.g. deploying the module twice over the top of itself.
 
-#### ID: SNFR8 - Category: Contribution/Support
+#### ID: SNFR8 - Category: Contribution/Support - Module Owner/s GitHub
 
 A module **MUST** have an owner that is defined and managed by a GitHub Team in the Azure GitHub organization.
 
 Today this is only Microsoft FTEs, but everyone is welcome to contribute. The module just **MUST** be owned by a Microsoft FTE (today) so we can enforce and provide the long-term support required by this initiative.
 
-#### ID: SNFR9 - Category: Contribution/Support
+#### ID: SNFR9 - Category: Contribution/Support - AVM & PG Teams GitHub Repo Permissions
 
 A module **MUST** make the following GitHub Teams in the Azure GitHub organization admins on its GitHub repo:
 
@@ -85,15 +85,15 @@ A module **MUST** make the following GitHub Teams in the Azure GitHub organizati
 - [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Terraform PG
 - [`@Azure/bicep-admins`](https://github.com/orgs/Azure/teams/bicep-admins) = Bicep PG team
 
-#### ID: SNFR10 - Category: Contribution/Support
+#### ID: SNFR10 - Category: Contribution/Support - MIT Licensing
 
 A module **MUST** be published with the MIT License in the Azure GitHub organization.
 
-#### ID: SNFR11 - Category: Contribution/Support
+#### ID: SNFR11 - Category: Contribution/Support - Issues Response Times
 
-A module owner **MUST** respond to logged issues within 3 business days.
+A module owner **MUST** respond to logged issues within 3 business days. See [Module Support](/Azure-Verified-Modules/help-support/module-support/) for more information
 
-#### ID: SNFR12 - Category: Contribution/Support
+#### ID: SNFR12 - Category: Contribution/Support - Versions Supported
 
 Only the latest released version of a module **MUST** be supported.
 
@@ -101,11 +101,11 @@ For example, if an AVM Resource Module is used in an AVM Pattern Module that was
 
 This avoids AVM Module owners from having to maintain multiple major release versions.
 
-#### ID: SNFR13 - Category: Forking
+#### ID: SNFR13 - Category: Forking - Private Module Registry Support
 
 A module **MUST** also function within a private module registry, internal Git repo.
 
-#### ID: SNFR14 - Category: Inputs
+#### ID: SNFR14 - Category: Inputs - Data Types
 
 A module **SHOULD** use either: simple data types. e.g., string, int, bool.
 
@@ -113,15 +113,15 @@ OR
 
 Complex data types (objects, arrays, maps) when the schema is defined and supported by the IDE.
 
-#### ID: SNFR15 - Category: Documentation
+#### ID: SNFR15 - Category: Documentation - Automatic Documentation Generation
 
 README documentation **MUST** be automatically/programmatically generated. **MUST** include inputs, outputs, resources deployed.
 
-#### ID: SNFR16 - Category: Documentation
+#### ID: SNFR16 - Category: Documentation - Examples
 
 An examples directory **MUST** exist to provide named scenarios for module deployment.
 
-#### ID: SNFR17 - Category: Release
+#### ID: SNFR17 - Category: Release - Semantic Versioning
 
 Modules **MUST** use semantic versioning (aka semver) for their versions and releases in accordance with: [Semantic Versioning 2.0.0](https://semver.org/)
 
@@ -135,11 +135,11 @@ Initially modules should be released as `v0.1.0` and incremented via Minor and P
 
 > Releasing as `v0.1.0` initially and only incrementing Minor and Patch versions allows the module owner to make breaking changes more easily and frequently as it's still not an official Major/Stable release 👍
 
-#### ID: SNFR18 - Category: Release
+#### ID: SNFR18 - Category: Release - Breaking Changes
 
 A module **SHOULD** avoid breaking changes, e.g., deprecating inputs vs. removing.
 
-#### ID: SNFR19 - Category: Publishing
+#### ID: SNFR19 - Category: Publishing - Registries Targeted
 
 Modules **MUST** be published to their respective language public registries.
 
@@ -147,28 +147,23 @@ Modules **MUST** be published to their respective language public registries.
 - Bicep = [Bicep Public Module Registry](https://github.com/Azure/bicep-registry-modules/tree/main)
   - Within the `avm` directory
 
-#### ID: SNFR20 - Category: Publishing
-
-Modules **MUST** be published to their respective language public registries.
-
-
 ## Resource Module Requirements
 
 Listed below are both functional and non-functional requirements for [AVM Resource Modules](/Azure-Verified-Modules/specs/shared/module-classifications/).
 
 ### Functional Requirements
 
-#### ID: RMFR1 - Category: Composition
+#### ID: RMFR1 - Category: Composition - Single Resource Only
 
 A module **MUST** only deploy a single instance of the primary resource, e.g., one virtual machine per instance.
 
 Multiple instances of the module **MUST** be used to scale out.
 
-#### ID: RMFR2 - Category: Composition
+#### ID: RMFR2 - Category: Composition - No Resource Wrapper Modules
 
 A module **MUST** add value by including additional features on top of the primary resource. For example a module to create a Resource Group adds little value and therefore should not be created as a Resource Module as explained in RMFR3
 
-#### ID: RMFR3 - Category: Composition
+#### ID: RMFR3 - Category: Composition - Resource Groups
 
 A module **MUST NOT** create a Resource Group **for resources that require them.**
 
@@ -179,7 +174,7 @@ In the case that a Resource Group is required, a module **MUST** have an input (
 
 Scopes will be covered further in the respective language specific specifications.
 
-#### ID: RMFR4 - Category: Composition
+#### ID: RMFR4 - Category: Composition - AVM Consistent Feature & Extension Resources Value Add
 
 Modules support the following optional features/extension resources, as specified, if supported by the primary resource. The top-level variable/parameter names **MUST** be:
 
@@ -205,7 +200,7 @@ Make sure to checkout the language specific specifications for more info on this
 
 {{< /hint >}}
 
-#### ID: RMFR5 - Category: Composition
+#### ID: RMFR5 - Category: Composition - AVM Consistent Feature & Extension Resources Value Add Interfaces/Schemas
 
 Modules **SHOULD** implement a common interface, e.g. the input's data structures and properties within them (objects/arrays/dictionaries/maps), for the optional features/extension resources:
 
@@ -215,12 +210,12 @@ See:
 - [Role Assignments Interface](/Azure-Verified-Modules/specs/shared/)
 - [Resource Locks Interface](/Azure-Verified-Modules/specs/shared/)
 - [Tags Interface](/Azure-Verified-Modules/specs/shared/)
-- [Alerts Interface](/Azure-Verified-Modules/specs/shared/)
+- [Managed Identities Interface](/Azure-Verified-Modules/specs/shared/)
 - [Private Endpoints Interface](/Azure-Verified-Modules/specs/shared/)
 - [Customer Managed Keys Interface](/Azure-Verified-Modules/specs/shared/)
-- [Managed Identities Interface](/Azure-Verified-Modules/specs/shared/)
+- [Alerts Interface](/Azure-Verified-Modules/specs/shared/)
 
-#### ID: RMFR6 - Category: Inputs
+#### ID: RMFR6 - Category: Inputs - Parameter/Variable Naming
 
 Parameters/variables that pertain to the primary resource **MUST NOT** use the resource type in the name.
 
@@ -228,13 +223,13 @@ e.g., use `sku`, vs. `virtualMachineSku`/`virtualmachine_sku`
 
 Another example for where RPs contain some of their name within a property, leave the property unchanged. E.g. Key Vault has a property called `keySize`, it is fine to leave as this and not remove the `key` part from the property/parameter name.
 
-#### ID: RMFR7 - Category: Availability
+#### ID: RMFR7 - Category: Availability - AZs
 
-Modules SHOULD use Availability Zones by default.
+Modules **SHOULD** use Availability Zones by default.
 
 ### Non-Functional Requirements
 
-#### ID: RMNFR1 - Category: Naming
+#### ID: RMNFR1 - Category: Naming - Module Naming
 
 Module names **MUST** follow the following pattern (all lower case):
 
@@ -255,7 +250,7 @@ This will be updated quarterly, or ad-hoc as new RPs/ Resources are created and 
 
 {{< /hint >}}
 
-#### ID: RMNFR2 - Category: Inputs
+#### ID: RMNFR2 - Category: Inputs - Parameter/Variable Naming
 
 A module **SHOULD** use the following standard inputs:
 
@@ -268,13 +263,13 @@ Listed below are both functional and non-functional requirements for [AVM Patter
 
 ### Functional Requirements
 
-#### ID: PMFR1 - Category: Composition
+#### ID: PMFR1 - Category: Composition - Resource Group Creation
 
 A module **MAY** create Resource Group(s).
 
 ### Non-Functional Requirements
 
-#### ID: PMNFR1 - Category: Naming
+#### ID: PMNFR1 - Category: Naming - Module Naming
 
 Module names **MUST** follow the following pattern (all lower case):
 
@@ -286,15 +281,15 @@ Example: `avm-ptn-apptiervmss`
 - `<patternmodulename>` is a term describing the module’s function, e.g., `apptiervmss` = Application Tier VMSS
 - `ptn` defines this as a pattern module
 
-#### ID: PMNFR2 - Category: Composition
+#### ID: PMNFR2 - Category: Composition - Use Resource Modules to Build a Pattern Module
 
 A module **SHOULD** be built from the required AVM Resources Modules
 
-#### ID: PMNFR3 - Category: Composition
+#### ID: PMNFR3 - Category: Composition - Use other Pattern Modules to Build a Pattern Module
 
 A module **MAY** contain and be built using other AVM Pattern Modules
 
-#### ID: PMNFR4 - Category: Hygiene
+#### ID: PMNFR4 - Category: Hygiene - Missing Resource Module/s
 
 An item **MUST** be logged onto as an issue on the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/issues) if a Resource Module does not exist for resources deployed by the pattern module.
 
@@ -304,6 +299,6 @@ If the Resource Module adds no value, see Resource Module functional requirement
 
 {{< /hint >}}
 
-#### ID: PMNFR5 - Category: Inputs
+#### ID: PMNFR5 - Category: Inputs - Parameter/Variable Naming
 
 Parameter/variable input names **SHOULD** contain the resource to which they pertain. E.g., `virtualMachineSku`/`virtualmachine_sku`
