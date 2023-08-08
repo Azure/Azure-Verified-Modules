@@ -41,6 +41,20 @@ However, they **MAY** be exposed at the module owners discretion, but the follow
 - The description of each of the parameters/variables used for the preview service/feature **MUST** start with:
   -  *"THIS IS A <PARAMETER/VARIABLE> USED FOR A PREVIEW SERVICE/FEATURE, MICROSOFT MAY NOT PROVIDE SUPPORT FOR THIS, PLEASE CHECK THE PRODUCT DOCS FOR CLARIFICATION"*
 
+#### ID: SFR2 - Category: Composition - WAF Aligned
+
+Modules **SHOUDLD** align to Well-Architected Framework (WAF) pillar recommendations, alongside Microsoft Cloud Security Benchmark (MCSB) and Microsoft Defender for Cloud (MDFC), where appropriate and applicable.
+
+They **SHOULD NOT** align to these recommendations when it requires an external dependency/resource to be deployed and configured and then associated to the resources in the module.
+
+Alignment **SHOULD** prioritize best-practices and security over cost optimization, but **MUST** allow for these to be overridden by a module consumer easily, if desired.
+
+{{< hint type=tip >}}
+
+Read the FAQ of [What does AVM mean by “WAF Aligned”?](/Azure-Verified-Modules/faq/#what-does-avm-mean-by-waf-aligned) for more information and examples.
+
+{{< /hint >}}
+
 ### Non-Functional Requirements
 
 #### ID: SNFR1 - Category: Testing - Prescribed Tests
@@ -295,7 +309,7 @@ An item **MUST** be logged onto as an issue on the [AVM Central Repo (`Azure/Azu
 
 {{< hint type=important title=Exception >}}
 
-If the Resource Module adds no value, see Resource Module functional requirement [ID: RMFR2](#id-rmfr2---category-composition)
+If the Resource Module adds no value, see Resource Module functional requirement [ID: RMFR2](#id-rmfr2---category-composition---no-resource-wrapper-modules)
 
 {{< /hint >}}
 

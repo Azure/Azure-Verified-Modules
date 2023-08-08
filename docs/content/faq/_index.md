@@ -49,7 +49,7 @@ WAF == [Well-Architected Framework](https://learn.microsoft.com/azure/well-archi
 
 {{< /hint >}}
 
-At a high-level "WAF Aligned" means, where possible and appropriate, AVM Modules will align to recommendations and default input parameter/variables to values that algin to WAF recommendations across all of it's pillars.
+At a high-level "WAF Aligned" means, where possible and appropriate, AVM Modules will align to recommendations and default input parameter/variables to values that algin to WAF recommendations across all of it's pillars. For the security pillar we will also use the Microsoft Cloud Security Benchmark (MCSB) and Microsoft Defender for Cloud (MDFC) to align input parameter/variables values to these.
 
 AVM will use the following sources to set it's "WAF Aligned" defaults:
 
