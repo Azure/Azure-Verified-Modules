@@ -23,6 +23,15 @@ Our mission is to deliver a comprehensive Azure Verified Modules library in mult
 
 {{< /hint >}}
 
+### Definition of "Verified" Summary
+
+- The modules are supported by Microsoft, across it's many internal organizations, as described in [Module Support](/Azure-Verified-Modules/help-support/module-support/)
+- Modules are aligned to clear specifications that enforces consistency between all AVM modules. *See the 'Specifications & Definitions' section in the menu*
+- Modules will continue to stay up-to-date with product/service roadmaps owned by the module owners and contributors
+- Modules will align to WAF recommendations. *See ['What does AVM mean by "WAF Aligned"?'](/Azure-Verified-Modules/faq/#what-does-avm-mean-by-waf-aligned)*
+- Modules will provide clear documentation alongside examples to promote self-service consumption
+- Modules will be tested to ensure they comply with the specifications for AVM and their examples deploy as intended
+
 ## Why Azure Verified Modules?
 
 This effort to create Azure Verified Modules, with a strategy and definition, is required based on the sheer number of existing attempts from all areas across Microsoft to try and address this same area for our customers and partners. Across Microsoft there are many initiatives, projects and repositories that host and provide IaC modules in several languages, for example Bicep and Terraform. Each of these come with differing code styling and standards, consumption methods and approaches, testing frameworks, target personas, contribution guidelines, module definitions and most importantly support statements from their owners and maintainers.
