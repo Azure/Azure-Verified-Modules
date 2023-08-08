@@ -39,7 +39,7 @@ Preview services and features, **SHOULD NOT** be promoted and exposed, unless th
 However, they **MAY** be exposed at the module owners discretion, but the following rules **MUST** be followed:
 
 - The description of each of the parameters/variables used for the preview service/feature **MUST** start with:
-  -  *"THIS IS A <PARAMETER/VARIABLE> USED FOR A PREVIEW SERVICE/FEATURE, MICROSOFT MAY NOT PROVIDE SUPPORT FOR THIS, PLEASE CHECK THE PRODUCT DOCS FOR CLARIFICATION"*
+  - *"THIS IS A <PARAMETER/VARIABLE> USED FOR A PREVIEW SERVICE/FEATURE, MICROSOFT MAY NOT PROVIDE SUPPORT FOR THIS, PLEASE CHECK THE PRODUCT DOCS FOR CLARIFICATION"*
 
 #### ID: SFR2 - Category: Composition - WAF Aligned
 
