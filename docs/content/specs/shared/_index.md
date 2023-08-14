@@ -55,6 +55,39 @@ Read the FAQ of [What does AVM mean by “WAF Aligned”?](/Azure-Verified-Modul
 
 {{< /hint >}}
 
+#### ID: SFR3 - Category: Telemetry - Deployment/Usage Telemetry
+
+Modules **MUST** provide the capability to collect deployment/usage telemetry, via the [Azure customer usage attribution](https://learn.microsoft.com/partner-center/marketplace/azure-partner-customer-usage-attribution) method.
+
+The ARM deployment name used for the telemetry **MUST** following the pattern and **MUST** be no longer than 64 characters in length: `<AVM 8 chars (alphanumeric)>.<res/ptn>.<module name>.<version>.<uniqueness>`
+
+- `<AVM 8 chars (alphanumeric)>` == `46d3xgp5`
+- `<res/ptn>` == AVM Resource or Pattern Module
+- `<module name>` == The AVM Module's name without;
+  - The prefixes: `avm-res-` or `terraform-<provider>-avm-res-` - See [RMNFR1](#id-rmnfr1---category-naming---module-naming) for AVM Resource Module Naming
+  - The prefixes: `avm-ptn-` or `terraform-<provider>-avm-ptn-` - See [PMNFR1](#id-pmnfr1---category-naming---module-naming) for AVM Pattern Module Naming
+- `<version>` == The AVM Module's version with `.` (periods) replaced with `-` (hyphens), to allow simpler splitting of the ARM deployment name
+- `<uniqueness>` == This section of the ARM deployment name is to be used to ensure uniqueness of the deployment name.
+  - This is to cater for the following scenarios:
+    - The module is deployed multiple times to the same:
+      - Location/Region
+      - Scope (Tenant, Management Group,Subscription, Resource Group)
+
+An example deployment name for the AVM Virtual Machine Resource Module would be: `46d3xgp5.res.compute-virtualmachine.v1-2-3.eum3favlpwuyg`
+
+{{< hint type=tip >}}
+
+See the language specific specifications for detailed guidance and sample code to use in AVM modules to achieve this requirement.
+
+{{< /hint >}}
+
+#### ID: SFR4 - Category: Telemetry - Telemetry Enablement Flexibility
+
+The telemetry enablement **MUST** be on/enabled by default, however this **MUST** be able to be disabled by a module consumer by setting the below parameter/variable value to `true`:
+
+- Bicep: `disableTelemetry`
+- Terraform: `disable_telemetry`
+
 ### Non-Functional Requirements
 
 #### ID: SNFR1 - Category: Testing - Prescribed Tests
