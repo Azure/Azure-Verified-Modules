@@ -77,7 +77,7 @@ An example deployment name for the AVM Virtual Machine Resource Module would be:
 
 {{< hint type=tip >}}
 
-See the language specific specifications for detailed guidance and sample code to use in AVM modules to achieve this requirement.
+See the language specific specifications and contribution guides for detailed guidance and sample code to use in AVM modules to achieve this requirement.
 
 {{< /hint >}}
 

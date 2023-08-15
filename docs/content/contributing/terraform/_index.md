@@ -5,6 +5,8 @@ geekdocAlign: left
 geekdocAnchor: true
 ---
 
+{{< toc >}}
+
 ## Recommended Learning
 
 Before you start contributing to the AVM, it is **highly recommended** that you complete the following Microsoft Learn paths, modules & courses:
@@ -39,3 +41,9 @@ The following tooling/extensions are recommended to assist you developing for th
 - [Go extenstion for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=golang.go)
 - For visibility of Bracket Pairs:
   - Inside Visual Studio Code, add `editor.bracketPairColorization.enabled`: true to your `settings.json`, to enable bracket pair colorization.
+
+## Telemetry Enablement
+
+To meet [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) & [SFR4](/Azure-Verified-Modules/specs/shared/#id-sfr4---category-telemetry---telemetry-enablement-flexibility) you can use the below code sample in your AVM Modules to achieve this.
+
+{{< include file="/static/includes/sample.telem.tf" language="terraform" options="linenos=false" >}}
