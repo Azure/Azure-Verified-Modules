@@ -77,7 +77,10 @@ An example deployment name for the AVM Virtual Machine Resource Module would be:
 
 {{< hint type=tip >}}
 
-See the language specific specifications and contribution guides for detailed guidance and sample code to use in AVM modules to achieve this requirement.
+See the language specific contribution guides for detailed guidance and sample code to use in AVM modules to achieve this requirement.
+
+- [Terraform](/Azure-Verified-Modules/contributing/terraform/)
+- [Bicep](/Azure-Verified-Modules/contributing/bicep/)
 
 {{< /hint >}}
 
@@ -193,6 +196,15 @@ Modules **MUST** be published to their respective language public registries.
 - Terraform = [HashiCorp Terraform Registry](https://registry.terraform.io/)
 - Bicep = [Bicep Public Module Registry](https://github.com/Azure/bicep-registry-modules/tree/main)
   - Within the `avm` directory
+
+{{< hint type=tip >}}
+
+See the language specific contribution guides for detailed guidance and sample code to use in AVM modules to achieve this requirement.
+
+- [Terraform](/Azure-Verified-Modules/contributing/terraform/)
+- [Bicep](/Azure-Verified-Modules/contributing/bicep/)
+
+{{< /hint >}}
 
 ## Resource Module Requirements
 
