@@ -45,7 +45,6 @@ The following tooling/extensions are recommended to assist you developing for th
 - For visibility of Bracket Pairs:
   - Inside Visual Studio Code, add `editor.bracketPairColorization.enabled`: true to your `settings.json`, to enable bracket pair colorization.
 
-
 ## Repositories
 
 For Bicep, both Resource and Pattern, AVM Modules will be homed in the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and live within an `avm` directory that will be located at the root of the repository; as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
@@ -56,9 +55,9 @@ It is expected that module owners will fork the [`Azure/bicep-registry-modules`]
 
 Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository in the `avm` directory will have the following directories and files:
 
-- `tests/` - (for unit tests and additional e2e/integration if required - e.g. pester etc.)
+- `tests/` - (for unit tests and additional E2E/integration if required - e.g. Pester etc.)
 - `modules/` - (for sub-modules only if used and NOT children of the primary resource. e.g. RBAC role assignments)
-- `examples/` - (all examples must deploy successfully and delete successfully - these are customer facing)
+- `examples/` - (all examples must deploy successfully - these are customer facing)
 - `/...` - (Module files that live in the root of module directory)
   - `main.bicep` (AVM Module main `.bicep` file and entry point/orchestration module)
   - `main.json` (auto generated and what is published to the MCR via BRM)
@@ -68,7 +67,7 @@ Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](htt
 ### Example Directory and File Structure within `Azure/bicep-registry-modules` Repository
 
 ```txt
-Root of Azure/bicep-registry-modules
+/ Root of Azure/bicep-registry-modules
 │
 ├───avm
 │   ├───ptn
