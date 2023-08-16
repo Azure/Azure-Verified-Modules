@@ -91,6 +91,32 @@ The telemetry enablement **MUST** be on/enabled by default, however this **MUST*
 - Bicep: `disableTelemetry`
 - Terraform: `disable_telemetry`
 
+#### ID: SFR5 - Category: Composition - Availability Zones
+
+Modules that deploy ***zone-redundant*** resources **MUST** enable the spanning across as many zones as possible by default, typically all 3.
+
+Modules that deploy ***zonal*** resources **MUST** provide the ability to specify a zone for the resources to be deployed/pinned to. However, they **MUST NOT** default to a particular zone by default, e.g. `1` in an effort to make the consumer aware of the zone they are selecting to suit their architecture requirements.
+
+For both scenarios the modules **MUST** expose these configuration options via configurable parameters/variables.
+
+{{< hint type=note >}}
+
+For information on the differences between zonal and zone-redundant services, see [Availability zone service and regional support](https://learn.microsoft.com/azure/reliability/availability-zones-service-support#azure-services-with-availability-zone-support)
+
+{{< /hint >}}
+
+#### ID: SFR6 - Category: Composition - Data Redundancy
+
+Modules that deploy resources or patterns that support data redundancy **SHOULD** enable this to the highest possible value by default, e.g. `RA-GZRS`. When a resource or pattern doesn't provide the ability to specify data redundancy as a simple property, e.g. `GRS` etc., then the modules **MUST** provide the ability to enable data redundancy for the resources or pattern via parameters/variables.
+
+For example, a Storage Account module can simply set the `sku.name` property to `Standard_RAGZRS`. Whereas a SQL DB or Cosmos DB module will need to expose more properties, via parameters/variables, to allow the specification of the regions to replicate data to as per the consumers requirements.
+
+{{< hint type=note >}}
+
+For information on the data redundancy options in Azure, see [Cross-region replication in Azure](https://learn.microsoft.com/azure/reliability/cross-region-replication-azure)
+
+{{< /hint >}}
+
 ### Non-Functional Requirements
 
 #### ID: SNFR1 - Category: Testing - Prescribed Tests
@@ -281,10 +307,6 @@ Parameters/variables that pertain to the primary resource **MUST NOT** use the r
 e.g., use `sku`, vs. `virtualMachineSku`/`virtualmachine_sku`
 
 Another example for where RPs contain some of their name within a property, leave the property unchanged. E.g. Key Vault has a property called `keySize`, it is fine to leave as this and not remove the `key` part from the property/parameter name.
-
-#### ID: RMFR7 - Category: Availability - AZs
-
-Modules **SHOULD** use Availability Zones by default.
 
 ### Non-Functional Requirements
 
