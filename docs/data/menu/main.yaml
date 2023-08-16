@@ -30,6 +30,8 @@ main:
     sub:
       - name: 'Module Support'
         ref: '/help-support/module-support'
+      - name: 'Telemetry'
+        ref: '/help-support/telemetry'
       - name: 'GitHub Issues'
         ref: "https://github.com/Azure/Azure-Verified-Modules/issues"
         external: true
