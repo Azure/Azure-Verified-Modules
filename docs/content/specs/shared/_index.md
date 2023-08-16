@@ -59,7 +59,7 @@ Read the FAQ of [What does AVM mean by “WAF Aligned”?](/Azure-Verified-Modul
 
 Modules **MUST** provide the capability to collect deployment/usage telemetry, via the [Azure customer usage attribution](https://learn.microsoft.com/partner-center/marketplace/azure-partner-customer-usage-attribution) method.
 
-The ARM deployment name used for the telemetry **MUST** following the pattern and **MUST** be no longer than 64 characters in length: `<AVM 8 chars (alphanumeric)>.<res/ptn>.<module name>.<version>.<uniqueness>`
+The ARM deployment name used for the telemetry **MUST** follow the pattern and **MUST** be no longer than 64 characters in length: `<AVM 8 chars (alphanumeric)>.<res/ptn>.<module name>.<version>.<uniqueness>`
 
 - `<AVM 8 chars (alphanumeric)>` == `46d3xgp5`
 - `<res/ptn>` == AVM Resource or Pattern Module
