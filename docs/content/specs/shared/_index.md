@@ -43,7 +43,7 @@ However, they **MAY** be exposed at the module owners discretion, but the follow
 
 #### ID: SFR2 - Category: Composition - WAF Aligned
 
-Modules **SHOUDLD** align to Well-Architected Framework (WAF) pillar recommendations, alongside Microsoft Cloud Security Benchmark (MCSB) and Microsoft Defender for Cloud (MDFC), where appropriate and applicable.
+Modules **SHOULD** align to Well-Architected Framework (WAF) pillar recommendations, alongside Microsoft Cloud Security Benchmark (MCSB) and Microsoft Defender for Cloud (MDFC), where appropriate and applicable.
 
 They **SHOULD NOT** align to these recommendations when it requires an external dependency/resource to be deployed and configured and then associated to the resources in the module.
 
@@ -63,9 +63,15 @@ The ARM deployment name used for the telemetry **MUST** follow the pattern and *
 
 - `<AVM 8 chars (alphanumeric)>` == `46d3xgp5`
 - `<res/ptn>` == AVM Resource or Pattern Module
-- `<module name>` == The AVM Module's name without;
+- `<module name>` == The AVM Module's name **without**;
   - The prefixes: `avm-res-` or `terraform-<provider>-avm-res-` - See [RMNFR1](#id-rmnfr1---category-naming---module-naming) for AVM Resource Module Naming
   - The prefixes: `avm-ptn-` or `terraform-<provider>-avm-ptn-` - See [PMNFR1](#id-pmnfr1---category-naming---module-naming) for AVM Pattern Module Naming
+    {{< hint type=note >}}
+
+Due to the 64-character length limit of Azure deployment names, the `<module name>` segment has a length limit of 30 characters, so if the module name is longer than that, it **MUST** be truncated to 30 characters. If any of the semantic version's segments are longer than 1 character, it further restricts the number of characters that can be used for naming the module.
+
+    {{< /hint >}}
+
 - `<version>` == The AVM Module's version with `.` (periods) replaced with `-` (hyphens), to allow simpler splitting of the ARM deployment name
 - `<uniqueness>` == This section of the ARM deployment name is to be used to ensure uniqueness of the deployment name.
   - This is to cater for the following scenarios:
@@ -73,7 +79,8 @@ The ARM deployment name used for the telemetry **MUST** follow the pattern and *
       - Location/Region
       - Scope (Tenant, Management Group,Subscription, Resource Group)
 
-An example deployment name for the AVM Virtual Machine Resource Module would be: `46d3xgp5.res.compute-virtualmachine.v1-2-3.eum3favlpwuyg`
+An example deployment name for the AVM Virtual Machine Resource Module would be: 
+- `46d3xgp5.res.compute-virtualmachine.v1-2-3.eum3favlpwuyg`
 
 {{< hint type=tip >}}
 
@@ -86,10 +93,10 @@ See the language specific contribution guides for detailed guidance and sample c
 
 #### ID: SFR4 - Category: Telemetry - Telemetry Enablement Flexibility
 
-The telemetry enablement **MUST** be on/enabled by default, however this **MUST** be able to be disabled by a module consumer by setting the below parameter/variable value to `true`:
+The telemetry enablement **MUST** be on/enabled by default, however this **MUST** be able to be disabled by a module consumer by setting the below parameter/variable value to `false`:
 
-- Bicep: `disableTelemetry`
-- Terraform: `disable_telemetry`
+- Bicep: `enableDefaultTelemetry`
+- Terraform: `enable_default_telemetry`
 
 #### ID: SFR5 - Category: Composition - Availability Zones
 

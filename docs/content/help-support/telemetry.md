@@ -27,10 +27,10 @@ Albeit telemetry described in this section is optional, the implementation follo
 
 This resource enables the AVM core team to query the number of deployments of a given module from Azure - and as such, get insights into its adoption.
 
-To opt out you can set the parameters/variables listed below to `true` in the AVM module:
+To opt out you can set the parameters/variables listed below to `false` in the AVM module:
 
-- Bicep: `disableTelemetry`
-- Terraform: `disable_telemetry`
+- Bicep: `enableDefaultTelemetry`
+- Terraform: `enable_default_telemetry`
 
 ## Telemetry vs Customer Usage Attribution
 
