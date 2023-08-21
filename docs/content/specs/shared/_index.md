@@ -79,7 +79,7 @@ Due to the 64-character length limit of Azure deployment names, the `<module nam
       - Location/Region
       - Scope (Tenant, Management Group,Subscription, Resource Group)
 
-An example deployment name for the AVM Virtual Machine Resource Module would be: 
+An example deployment name for the AVM Virtual Machine Resource Module would be:
 - `46d3xgp5.res.compute-virtualmachine.v1-2-3.eum3favlpwuyg`
 
 {{< hint type=tip >}}
@@ -160,6 +160,12 @@ A module **MUST** have an owner that is defined and managed by a GitHub Team in 
 
 Today this is only Microsoft FTEs, but everyone is welcome to contribute. The module just **MUST** be owned by a Microsoft FTE (today) so we can enforce and provide the long-term support required by this initiative.
 
+#### ID: SNFR20 - Category: Contribution/Support - GitHub Teams Only
+
+All GitHub repositories that AVM module are published from and hosted withing **MUST** only assign GitHub repository permissions to GitHub teams only.
+
+They **MUST NOT** assign any GitHub repository permissions to individual users.
+
 #### ID: SNFR9 - Category: Contribution/Support - AVM & PG Teams GitHub Repo Permissions
 
 A module **MUST** make the following GitHub Teams in the Azure GitHub organization admins on its GitHub repo:
@@ -238,6 +244,10 @@ See the language specific contribution guides for detailed guidance and sample c
 - [Bicep](/Azure-Verified-Modules/contributing/bicep/)
 
 {{< /hint >}}
+
+#### ID: SNFR21 - Category: Publishing - Cross Language Collaboration
+
+When the module owners of the same Resource or Pattern AVM module are not the same individual or team for all languages, each languages team **SHOULD** collaborate with their sibling language team for the same module to ensure consistency where possible.
 
 ## Resource Module Requirements
 
