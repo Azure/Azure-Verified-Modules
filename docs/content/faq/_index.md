@@ -74,3 +74,11 @@ In these scenarios the AVM modules will not enforce the additional resources to 
 | Key Vault should use RBAC instead of access policies for authorization | **Yes**, as string/boolean value |
 | Container registries should use private link | **No**, as requires additional Private Endpoint and DNS configuration as well as, potentially, additional costs |
 | API Management services should use a virtual network | **No**, as requires additional Virtual Network and Subnet configuration as well as, potentially, additional costs |
+
+### Aren't AVM resource modules too complex for people less skilled in IaC technologies?
+
+ **TLDR**: Resource modules have complexity inside, so they can be flexibly used from the outside.
+
+Resource modules are written in a flexible way; therefore, you don't need to modify them from project to project, use case to use case, as they aim to cover most of the functionality that a given resource type can provide, in a way that you can interact with any module just by using the required parameters - i.e., you don't have to know how the template of the particular module works inside, just take a look at the `README.md` file of the given module to learn how to leverage it.
+
+Resource modules are multi-purpose; therefore, they contain a lot of dynamic expressions (functions, variables, etc.), so there's no need to maintain multiple instances for different use cases. They can be deployed in different configurations just by changing the input parameters. They should be perceived by the **user** as black boxes, where they don't have to worry about the internal complexity of the code, as they only interact with them by their parameters.
