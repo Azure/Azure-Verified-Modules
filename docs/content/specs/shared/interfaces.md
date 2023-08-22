@@ -11,93 +11,111 @@ Below are the interfaces/schemas for the AVM Resource Modules features/extension
 
 ## Diagnostic Settings
 
-### Bicep
+{{< hint type=important >}}
 
-#### Schema
+Allowed values for logs and metric categories or category groups **MUST NOT** be specified to keep the module implementation evergreen for any new categories or category groups added by RPs, without module owners having to update a list of allowed values and cut a new release of their module.
 
-{{< include file="/static/includes/interfaces/int.diag.schema.bicep.json" language="json" options="linenos=false" >}}
+{{< /hint >}}
 
-#### Input Example with Values
-
-{{< include file="/static/includes/interfaces/int.diag.input.bicep" language="bicep" options="linenos=false" >}}
-
-### Terraform
-
-{{< include file="/static/includes/interfaces/int.diag.tf" language="terraform" options="linenos=false" >}}
-
-### Notes
-
-TBC
+{{< tabs "diag-settings" >}}
+  {{< tab "Bicep Schema" >}}
+  {{< include file="/static/includes/interfaces/int.diag.schema.bicep.json" language="json" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Bicep Input Example with Values" >}}
+  {{< include file="/static/includes/interfaces/int.diag.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Terraform Schema" >}}
+  {{< include file="/static/includes/interfaces/int.diag.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Terraform Input Example with Values" >}}
+  {{< include file="/static/includes/interfaces/int.diag.input.tf" language="terraform" options="linenos=false" >}}
+  {{< /tab >}}
+{{< /tabs >}}
 
 ## Role Assignments
 
-### Bicep
-
-{{< include file="/static/includes/interfaces/int.rbac.bicep" language="bicep" options="linenos=false" >}}
-
-### Terraform
-
-{{< include file="/static/includes/interfaces/int.rbac.tf" language="terraform" options="linenos=false" >}}
-
-### Notes
-
-TBC
+{{< tabs "role-assignments" >}}
+  {{< tab "Bicep Schema" >}}
+  {{< include file="/static/includes/interfaces/int.diag.schema.bicep.json" language="json" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Bicep Input Example with Values" >}}
+  {{< include file="/static/includes/interfaces/int.diag.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Terraform Schema" >}}
+  {{< include file="/static/includes/interfaces/int.diag.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Terraform Input Example with Values" >}}
+  {{< include file="/static/includes/interfaces/int.diag.input.tf" language="terraform" options="linenos=false" >}}
+  {{< /tab >}}
+{{< /tabs >}}
 
 ## Tags
 
-### Bicep
-
-{{< include file="/static/includes/interfaces/int.tags.bicep" language="bicep" options="linenos=false" >}}
-
-### Terraform
-
-{{< include file="/static/includes/interfaces/int.tags.tf" language="terraform" options="linenos=false" >}}
-
-### Notes
-
-TBC
+{{< tabs "tags" >}}
+  {{< tab "Bicep Schema" >}}
+  {{< include file="/static/includes/interfaces/int.diag.schema.bicep.json" language="json" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Bicep Input Example with Values" >}}
+  {{< include file="/static/includes/interfaces/int.diag.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Terraform Schema" >}}
+  {{< include file="/static/includes/interfaces/int.diag.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Terraform Input Example with Values" >}}
+  {{< include file="/static/includes/interfaces/int.diag.input.tf" language="terraform" options="linenos=false" >}}
+  {{< /tab >}}
+{{< /tabs >}}
 
 ## Managed Identities
 
-### Bicep
-
-{{< include file="/static/includes/interfaces/int.mi.bicep" language="bicep" options="linenos=false" >}}
-
-### Terraform
-
-{{< include file="/static/includes/interfaces/int.mi.tf" language="terraform" options="linenos=false" >}}
-
-### Notes
-
-There is a difference in the User Assigned Managed Identity data types between Bicep and Terraform as we have simplified the consumer input for Bicep. However, in Terraform a map/object is a better data type to handle for_each loop ordering etc.
+{{< tabs "managed-identities" >}}
+  {{< tab "Bicep Schema" >}}
+  {{< include file="/static/includes/interfaces/int.diag.schema.bicep.json" language="json" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Bicep Input Example with Values" >}}
+  {{< include file="/static/includes/interfaces/int.diag.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Terraform Schema" >}}
+  {{< include file="/static/includes/interfaces/int.diag.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Terraform Input Example with Values" >}}
+  {{< include file="/static/includes/interfaces/int.diag.input.tf" language="terraform" options="linenos=false" >}}
+  {{< /tab >}}
+{{< /tabs >}}
 
 ## Private Endpoints
 
-### Bicep
-
-{{< include file="/static/includes/interfaces/int.pe.bicep" language="bicep" options="linenos=false" >}}
-
-### Terraform
-
-{{< include file="/static/includes/interfaces/int.pe.tf" language="terraform" options="linenos=false" >}}
-
-### Notes
-
-TBC
+{{< tabs "private-endpoints" >}}
+  {{< tab "Bicep Schema" >}}
+  {{< include file="/static/includes/interfaces/int.diag.schema.bicep.json" language="json" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Bicep Input Example with Values" >}}
+  {{< include file="/static/includes/interfaces/int.diag.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Terraform Schema" >}}
+  {{< include file="/static/includes/interfaces/int.diag.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Terraform Input Example with Values" >}}
+  {{< include file="/static/includes/interfaces/int.diag.input.tf" language="terraform" options="linenos=false" >}}
+  {{< /tab >}}
+{{< /tabs >}}
 
 ## Customer Managed Keys
 
-### Bicep
-
-{{< include file="/static/includes/interfaces/int.cmk.bicep" language="bicep" options="linenos=false" >}}
-
-### Terraform
-
-{{< include file="/static/includes/interfaces/int.cmk.tf" language="terraform" options="linenos=false" >}}
-
-### Notes
-
-TBC
+{{< tabs "cmk" >}}
+  {{< tab "Bicep Schema" >}}
+  {{< include file="/static/includes/interfaces/int.diag.schema.bicep.json" language="json" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Bicep Input Example with Values" >}}
+  {{< include file="/static/includes/interfaces/int.diag.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Terraform Schema" >}}
+  {{< include file="/static/includes/interfaces/int.diag.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Terraform Input Example with Values" >}}
+  {{< include file="/static/includes/interfaces/int.diag.input.tf" language="terraform" options="linenos=false" >}}
+  {{< /tab >}}
+{{< /tabs >}}
 
 ## Azure Monitor Alerts
 
