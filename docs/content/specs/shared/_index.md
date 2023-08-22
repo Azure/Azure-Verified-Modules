@@ -284,9 +284,9 @@ Modules support the following optional features/extension resources, as specifie
 | ------------------------------------------- | -------------------- | ----------------------- | ----------- |
 | Diagnostic Settings                         | `diagnosticSettings` | `diagnostic_settings`   | MUST        |
 | Role Assignments                            | `roleAssignments`    | `role_assignments`      | MUST        |
-| Resource Locks                              | `locks`              | `locks`                 | MUST        |
+| Resource Locks                              | `lock`               | `lock`                  | MUST        |
 | Tags                                        | `tags`               | `tags`                  | MUST        |
-| Managed Identities (System / User Assigned) | `managedIdentites`   | `managed_identites`     | MUST        |
+| Managed Identities (System / User Assigned) | `managedIdentities`  | `managed_identities`    | MUST        |
 | Private Endpoints                           | `privateEndpoints`   | `private_endpoints`     | MUST        |
 | Customer Managed Keys                       | `customerManagedKey` | `customer_managed_key`  | MUST        |
 | Azure Monitor Alerts                        | `alerts`             | `alerts`                | SHOULD      |
