@@ -68,12 +68,12 @@ In these scenarios the AVM modules will not enforce the additional resources to 
 
 #### Some examples
 
-| Recommendation | Will Be Set By Default in AVM Modules? |
-| -------------- | -------------------------------------- |
-| TLS version should always be set the latest/highest version TLS 1.3 | **Yes**, as string value |
-| Key Vault should use RBAC instead of access policies for authorization | **Yes**, as string/boolean value |
-| Container registries should use private link | **No**, as requires additional Private Endpoint and DNS configuration as well as, potentially, additional costs |
-| API Management services should use a virtual network | **No**, as requires additional Virtual Network and Subnet configuration as well as, potentially, additional costs |
+| Recommendation                                                         | Will Be Set By Default in AVM Modules?                                                                            |
+| ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| TLS version should always be set the latest/highest version TLS 1.3    | **Yes**, as string value                                                                                          |
+| Key Vault should use RBAC instead of access policies for authorization | **Yes**, as string/boolean value                                                                                  |
+| Container registries should use private link                           | **No**, as requires additional Private Endpoint and DNS configuration as well as, potentially, additional costs   |
+| API Management services should use a virtual network                   | **No**, as requires additional Virtual Network and Subnet configuration as well as, potentially, additional costs |
 
 ### Aren't AVM resource modules too complex for people less skilled in IaC technologies?
 
