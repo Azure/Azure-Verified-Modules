@@ -304,7 +304,7 @@ Make sure to checkout the language specific specifications for more info on this
 
 #### ID: RMFR5 - Category: Composition - AVM Consistent Feature & Extension Resources Value Add Interfaces/Schemas
 
-Modules **SHOULD** implement a common interface, e.g. the input's data structures and properties within them (objects/arrays/dictionaries/maps), for the optional features/extension resources:
+Modules **MUST** implement a common interface, e.g. the input's data structures and properties within them (objects/arrays/dictionaries/maps), for the optional features/extension resources:
 
 See:
 
@@ -312,7 +312,7 @@ See:
 - [Role Assignments Interface](/Azure-Verified-Modules/specs/shared/)
 - [Resource Locks Interface](/Azure-Verified-Modules/specs/shared/)
 - [Tags Interface](/Azure-Verified-Modules/specs/shared/)
-- [Managed Identities Interface](/Azure-Verified-Modules/specs/shared/)
+- [Managed Identities Interface](/Azure-Verified-Modules/specs/shared/interfaces/#managed-identities)
 - [Private Endpoints Interface](/Azure-Verified-Modules/specs/shared/)
 - [Customer Managed Keys Interface](/Azure-Verified-Modules/specs/shared/)
 - [Alerts Interface](/Azure-Verified-Modules/specs/shared/)

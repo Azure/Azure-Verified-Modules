@@ -22,6 +22,9 @@ main:
         ref: 'specs/shared/module-lifecycle'
       - name: 'AVM Shared Specification'
         ref: 'specs/shared'
+        sub:
+          - name: 'Feature/Extension Interfaces'
+            ref: 'specs/shared/interfaces'
       - name: 'Bicep Specific Specification'
         ref: 'specs/bicep'
       - name: 'Terraform Specific Specification'
