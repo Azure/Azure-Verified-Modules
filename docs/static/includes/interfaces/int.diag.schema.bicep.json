@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Diagnostic Settings Interface Definition for Bicep",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "retentionInDays": {
+        "type": "integer",
+        "default": 30
+      },
+      "logCategoriesAndGroups": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "allLogs"
+        ]
+      },
+      "metricCategories": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "AllMetrics"
+        ]
+      },
+      "logAnalyticsDestinationType": {
+        "type": "string",
+        "default": "Dedicated",
+        "enum": [
+          "Dedicated",
+          "AzureDiagnostics",
+          null
+        ]
+      },
+      "workspaceId": {
+        "type": "string"
+      },
+      "storageAccountId": {
+        "type": "string"
+      },
+      "eventHubAuthorizationRuleId": {
+        "type": "string"
+      },
+      "eventHubName": {
+        "type": "string"
+      },
+      "marketplacePartnerId": {
+        "type": "string"
+      }
+    }
+  }
+}
