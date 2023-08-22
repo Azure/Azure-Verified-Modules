@@ -36,16 +36,16 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
 
 {{< tabs "role-assignments" >}}
   {{< tab "Bicep Schema" >}}
-  {{< include file="/static/includes/interfaces/int.diag.schema.bicep.json" language="json" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.rbac.schema.bicep.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.diag.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.rbac.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Schema" >}}
-  {{< include file="/static/includes/interfaces/int.diag.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.rbac.schema.tf.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.diag.input.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.rbac.input.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -53,16 +53,16 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
 
 {{< tabs "tags" >}}
   {{< tab "Bicep Schema" >}}
-  {{< include file="/static/includes/interfaces/int.diag.schema.bicep.json" language="json" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.tags.schema.bicep.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.diag.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.tags.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Schema" >}}
-  {{< include file="/static/includes/interfaces/int.diag.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.tags.schema.tf.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.diag.input.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.tags.input.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -70,16 +70,16 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
 
 {{< tabs "managed-identities" >}}
   {{< tab "Bicep Schema" >}}
-  {{< include file="/static/includes/interfaces/int.diag.schema.bicep.json" language="json" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.mi.schema.bicep.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.diag.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.mi.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Schema" >}}
-  {{< include file="/static/includes/interfaces/int.diag.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.mi.schema.tf.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.diag.input.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.mi.input.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -87,16 +87,16 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
 
 {{< tabs "private-endpoints" >}}
   {{< tab "Bicep Schema" >}}
-  {{< include file="/static/includes/interfaces/int.diag.schema.bicep.json" language="json" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.pe.schema.bicep.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.diag.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.pe.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Schema" >}}
-  {{< include file="/static/includes/interfaces/int.diag.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.pe.schema.tf.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.diag.input.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.pe.input.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -104,16 +104,16 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
 
 {{< tabs "cmk" >}}
   {{< tab "Bicep Schema" >}}
-  {{< include file="/static/includes/interfaces/int.diag.schema.bicep.json" language="json" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.cmk.schema.bicep.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.diag.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.cmk.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Schema" >}}
-  {{< include file="/static/includes/interfaces/int.diag.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.cmk.schema.tf.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.diag.input.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/int.cmk.input.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 

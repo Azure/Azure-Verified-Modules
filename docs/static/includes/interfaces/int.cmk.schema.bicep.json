@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Customer Managed Keys Interface Definition for Bicep",
+  "type": "object",
+  "properties": {
+    "keyVaultResourceId": {
+      "type": "string"
+    },
+    "keyName": {
+      "type": "string"
+    },
+    "keyVersion": {
+      "type": "string"
+    },
+    "userAssignedIdentityResourceId": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "keyVaultResourceId",
+    "keyName",
+    "userAssignedIdentityResourceId"
+  ]
+}

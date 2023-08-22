@@ -1,4 +1,4 @@
-diagnostic_settings: [
+diagnostic_settings = [
   {
     retention_in_days: 30
     log_categories_and_groups: ["allLogs"]
