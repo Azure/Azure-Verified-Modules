@@ -21,9 +21,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## Functional Requirements
 
-## Non-Functional Requirements
-
-### ID: TFNFR1 - Category: Composition - Cross-Referencing Modules
+### ID: TFFR1 - Category: Composition - Cross-Referencing Modules
 
 Module owners **MAY** cross-references other modules to build either Resource or Pattern modules. However, they **MUST** be referenced only by a HashiCorp Terraform registry reference to a pinned version e.g.
 
@@ -50,5 +48,29 @@ module "other-module" {
 
 > See [Module Sources](https://developer.hashicorp.com/terraform/language/modules/sources) for more information
 
+## Non-Functional Requirements
 
+### ID: TFNFR1 - Category: Documentation - Parameter Input Examples
 
+Terraform modules **MUST** provide variable input examples for each variable using the HEREDOC format and embedded markdown.
+
+Example:
+
+{{< include file="/static/includes/sample.var_example.tf" language="terraform" options="linenos=false" >}}
+
+### ID: TFNFR2 - Category: Documentation - Module Documentation Generation
+
+Terraform modules documentation **MUST** be automatically generated via [Terraform Docs](https://github.com/terraform-docs/terraform-docs)
+
+### ID: TFNFR3 - Category: Documentation - Module README Layout
+
+Terraform modules **MUST** follow the below order for their docs layout for Terraform Docs:
+
+- Header
+- Requirements
+- Providers
+- Resources
+- Inputs
+- Outputs
+- Modules
+- Footer

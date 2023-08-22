@@ -21,9 +21,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## Functional Requirements
 
-## Non-Functional Requirements
-
-### ID: BCPNFR1 - Category: Composition - Cross-Referencing Modules
+### ID: BCPFR1 - Category: Composition - Cross-Referencing Modules
 
 Module owners **MAY** cross-references other modules to build either Resource or Pattern modules.
 
@@ -31,7 +29,9 @@ However, they **MUST** be referenced only by a public registry reference to a pi
 
 Although, child modules, that are children of the primary resources being deployed by the AVM Resource Module, **MAY** be specified via local child path e.g. `child/resource.bicep`.
 
-### ID: BCPNFR2 - Category: Inputs - Data Types
+## Non-Functional Requirements
+
+### ID: BCPNFR1 - Category: Inputs - Data Types
 
 To simplify the consumption experience for module consumers when interacting with complex data types input parameters, mainly objects and arrays, the Bicep feature of [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types) **MUST** be used and declared.
 
@@ -52,3 +52,40 @@ A early goal for AVM is to complete the [evolution/migration of CARML](/Azure-Ve
 Therefore it has been decided by the AVM core team that CARML modules initial migrations to AVM will **NOT** mandate and enforce the addition of using and defining [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types). However, all CARML migrated modules to AVM **MUST** add [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types) prior to their next release of a version of the module.
 
 {{< /hint >}}
+
+### ID: BCPNFR2 - Category: Documentation - Module Documentation Generation
+
+{{< hint type=note >}}
+
+This script/tool is currently being developed by the AVM team and will be made available very soon.
+
+{{< /hint >}}
+
+Bicep modules documentation **MUST** be automatically generated via the provided script/tooling from the AVM team.
+
+### ID: BCPNFR3 - Category: Documentation - Parameter Files
+
+Bicep modules **MUST** provide parameter files in the following formats:
+
+- JSON / ARM Template Parameter Files - `.json`
+- Bicep file (orchestration module style) - `.bicep`
+
+{{< hint type=note >}}
+
+Bicep Parameter Files (`.bicepparam`) are being reviewed and considered by the AVM team for the usability and features at this time and will likely be added in the future.
+
+{{< /hint >}}
+
+### ID: BCPNFR4 - Category: Documentation - Parameter Input Examples
+
+Bicep modules **MUST** provide parameter input examples for each parameter using the `metadata.example` property via the `@metadata()` decorator.
+
+Example:
+
+```bicep
+@metadata({
+  example: 'uksouth'
+})
+@description('Optional. Location for all resources.')
+param location string = resourceGroup().location
+```
