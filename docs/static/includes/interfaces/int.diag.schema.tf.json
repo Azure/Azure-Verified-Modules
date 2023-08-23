@@ -36,19 +36,19 @@
           null
         ]
       },
-      "workspace_id": {
+      "workspace_resource_id": {
         "type": "string"
       },
-      "storage_account_id": {
+      "storage_account_resource_id": {
         "type": "string"
       },
-      "event_hub_authorization_rule_id": {
+      "event_hub_authorization_rule_resource_id": {
         "type": "string"
       },
       "event_hub_name": {
         "type": "string"
       },
-      "marketplace_partner_id": {
+      "marketplace_partner_resource_id": {
         "type": "string"
       }
     }

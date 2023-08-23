@@ -36,19 +36,19 @@
           null
         ]
       },
-      "workspaceId": {
+      "workspaceResourceId": {
         "type": "string"
       },
-      "storageAccountId": {
+      "storageAccountResourceId": {
         "type": "string"
       },
-      "eventHubAuthorizationRuleId": {
+      "eventHubAuthorizationRuleResourceId": {
         "type": "string"
       },
       "eventHubName": {
         "type": "string"
       },
-      "marketplacePartnerId": {
+      "marketplacePartnerResourceId": {
         "type": "string"
       }
     }
