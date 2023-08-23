@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Managed Identities Interface Definition for Terraform",
+  "type": "object",
+  "properties": {
+    "system_assigned": {
+      "type": "boolean"
+    },
+    "user_assigned_resource_ids": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    }
+  }
+}

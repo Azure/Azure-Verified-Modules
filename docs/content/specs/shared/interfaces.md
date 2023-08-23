@@ -111,6 +111,13 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
   {{< /tab >}}
 {{< /tabs >}}
 
+**Reason for differences in User Assigned data type in languages:**
+
+- We do not forsee the Managed Identity Resource Provider team to ever add additional properties within the empty object (`{}`) value required on the input of a User Assigned Managed Identity.
+- In Bicep we therefore have removed the need for this to be declared and just converted it to a simple array of Resource IDs
+- However, in Terraform we have left it as a object/map as this simplifies `for_each` and other loop mechanisms and provides more consistency in plan, apply, destroy operations
+  - Especially when adding, removing or changing the order of the User Assigned Managed Identities as they are declared
+
 ## Private Endpoints
 
 {{< tabs "private-endpoints" >}}
