@@ -369,6 +369,12 @@ A module **SHOULD** use the following standard inputs:
 - `name` (no default)
 - `location` (use Resource Group location, if resource supports Resource Groups, otherwise no default)
 
+#### ID: RMNFR3 - Category: Composition - RP Collaboration
+
+Module owners (Microsoft FTEs) **SHOULD** reach out to the respective Resource Provider teams to build a partnership and collaboration on the modules creation, existence and long term maintenance.
+
+Review this [wiki page (TBC)]() for more information.
+
 ## Pattern Module Requirements
 
 Listed below are both functional and non-functional requirements for [AVM Pattern Modules](/Azure-Verified-Modules/specs/shared/module-classifications/).
