@@ -5,6 +5,7 @@
   "enum": [
     "CanNotDelete",
     "ReadOnly",
+    "None",
     ""
   ]
 }

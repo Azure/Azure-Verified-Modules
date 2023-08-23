@@ -66,6 +66,17 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
   {{< /tab >}}
 {{< /tabs >}}
 
+**Details on child and extension resources:**
+
+- Locks **SHOULD** be able to be set for child resources of the primary resource in resource modules
+
+**Details on cross-referenced resources:**
+
+- Locks **MUST** be automatically applied to cross-referenced resources if the primary resource has a lock applied.
+  - This **MUST** also be able to be turned off for each of the cross-referenced resources by the module consumer via a parameter/variable if they desire
+
+An example of this is a Key Vault module that has a Private Endpoints enabled. If a lock is applied to the Key Vault via the `lock` parameter/variable then the lock should also be applied to the Private Endpoint automatically, unless the `privateEndpointLock/private_endpoint_lock` (example name) parameter/variable is set to `None`
+
 ## Tags
 
 {{< tabs "tags" >}}

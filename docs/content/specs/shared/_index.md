@@ -322,14 +322,14 @@ Modules **MUST** implement a common interface, e.g. the input's data structures 
 
 See:
 
-- [Diagnostic Settings Interface](/Azure-Verified-Modules/specs/shared/)
-- [Role Assignments Interface](/Azure-Verified-Modules/specs/shared/)
-- [Resource Locks Interface](/Azure-Verified-Modules/specs/shared/)
-- [Tags Interface](/Azure-Verified-Modules/specs/shared/)
+- [Diagnostic Settings Interface](/Azure-Verified-Modules/specs/shared/interfaces/#diagnostic-settings)
+- [Role Assignments Interface](/Azure-Verified-Modules/specs/shared/interfaces/#role-assignments)
+- [Resource Locks Interface](/Azure-Verified-Modules/specs/shared/interfaces/#resource-locks)
+- [Tags Interface](/Azure-Verified-Modules/specs/shared/interfaces/#tags)
 - [Managed Identities Interface](/Azure-Verified-Modules/specs/shared/interfaces/#managed-identities)
-- [Private Endpoints Interface](/Azure-Verified-Modules/specs/shared/)
-- [Customer Managed Keys Interface](/Azure-Verified-Modules/specs/shared/)
-- [Alerts Interface](/Azure-Verified-Modules/specs/shared/)
+- [Private Endpoints Interface](/Azure-Verified-Modules/specs/shared/interfaces/#private-endpoints)
+- [Customer Managed Keys Interface](/Azure-Verified-Modules/specs/shared/interfaces/#customer-managed-keys)
+- [Alerts Interface](/Azure-Verified-Modules/specs/shared/interfaces/#azure-monitor-alerts)
 
 #### ID: RMFR6 - Category: Inputs - Parameter/Variable Naming
 
