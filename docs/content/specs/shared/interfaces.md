@@ -94,6 +94,13 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
   {{< /tab >}}
 {{< /tabs >}}
 
+**Details on child, extension and cross-referenced resources:**
+
+- Tags **MUST** be automatically applied to child, extension and cross-referenced resources, if tags are applied to the primary resource.
+  - By default, all tags set for the primary resource will automatically be passed down to child, extension and cross-referenced resources.
+  - This **MUST** be able to be overridden by the module consumer so they can specify alternate tags for child, extension and cross-referenced resources, if they desire via a parameter/variable
+    - If overridden by the module consumer, no merge/union of tags will take place from the primary resource and only the tags specified for the child, extension and cross-referenced resources will be applied
+
 ## Managed Identities
 
 {{< tabs "managed-identities" >}}
