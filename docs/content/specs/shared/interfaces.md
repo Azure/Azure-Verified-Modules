@@ -49,6 +49,23 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
   {{< /tab >}}
 {{< /tabs >}}
 
+## Resource Locks
+
+{{< tabs "locks" >}}
+  {{< tab "Bicep Schema" >}}
+  {{< include file="/static/includes/interfaces/int.locks.schema.bicep.json" language="json" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Bicep Input Example with Values" >}}
+  {{< include file="/static/includes/interfaces/int.locks.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Terraform Schema" >}}
+  {{< include file="/static/includes/interfaces/int.locks.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Terraform Input Example with Values" >}}
+  {{< include file="/static/includes/interfaces/int.locks.input.tf" language="terraform" options="linenos=false" >}}
+  {{< /tab >}}
+{{< /tabs >}}
+
 ## Tags
 
 {{< tabs "tags" >}}
