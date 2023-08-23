@@ -202,6 +202,14 @@ OR
 
 Complex data types (objects, arrays, maps) when the schema is defined and supported by the IDE.
 
+#### ID: SNFR22 - Category: Inputs - Parameters/Variables for Resource IDs
+
+A module parameter/variable that requires a full Azure Resource ID as an input value, e.g. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{keyVaultName}`, **MUST** contain `ResourceId/resource_id` in it's parameter/variable name to assist users in knowing what value to provide at a glance of the parameter/variable name.
+
+Example for the property `workspaceId` for the Diagnostic Settings resource. In Bicep it's parameter name should be `workspaceResourceId` and the variable name in Terraform should be `workspace_resource_id`.
+
+`workspaceId` is not descriptive enough and is ambiguous as to which ID is required to be input.
+
 #### ID: SNFR15 - Category: Documentation - Automatic Documentation Generation
 
 README documentation **MUST** be automatically/programmatically generated. **MUST** include inputs, outputs, resources deployed.
