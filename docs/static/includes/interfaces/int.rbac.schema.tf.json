@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Role Assignments Interface Definition for Terraform",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "properties": {
+      "role_definition_id_or_name": {
+        "type": "string"
+      },
+      "principal_id": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "skip_service_principal_aad_check": {
+        "type": "boolean",
+        "default": true
+      },
+      "condition": {
+        "type": "string"
+      },
+      "condition_version": {
+        "type": "string",
+        "default": "2.0"
+      },
+      "delegated_managed_identity_resource_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "role_definition_id_or_name",
+      "principal_id",
+      "skip_service_principal_aad_check"
+    ]
+  }
+}

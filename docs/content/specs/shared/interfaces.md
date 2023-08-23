@@ -49,6 +49,10 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
   {{< /tab >}}
 {{< /tabs >}}
 
+**Details on child, extension and cross-referenced resources:**
+
+- Modules **MUST** support Role Assignments on child, extension and cross-referenced resources as well as the primary resource via parameters/variables
+
 ## Resource Locks
 
 {{< tabs "locks" >}}
