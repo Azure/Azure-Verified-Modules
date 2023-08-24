@@ -69,8 +69,8 @@ Module Contributors **MUST** be in a separate [GitHub Team in the `Azure` organi
 
 GitHub Teams:
 
-- [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Azure Terraform PG
 - [`@Azure/bicep-admins`](https://github.com/orgs/Azure/teams/bicep-admins) = Bicep PG team
+- [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Azure Terraform PG
 
 The Azure Bicep & Terraform Product Groups are responsible for:
 
@@ -103,8 +103,8 @@ The below table defines a RACI that is proposed to be adopted by AVM and all par
 | Action/Task/Responsibility                                                                       | Module Owners | Module Contributors | AVM Core Team | Product Groups | Notes |
 | ------------------------------------------------------------------------------------------------ | ------------- | ------------------- | ------------- | -------------- | ----- |
 | Build/Construct an AVM Module                                                                    | R, A          | R, C                | C, I          | I              |       |
-| Publish a Terraform AVM Module to the Terraform Registry                                         | R, A          | C, I                | C, I          | I              |       |
 | Publish a Bicep AVM Module to the Bicep Public Registry                                          | R, A          | C, I                | C, I          | I              |       |
+| Publish a Terraform AVM Module to the Terraform Registry                                         | R, A          | C, I                | C, I          | I              |       |
 | Manage and maintain tooling/testing frameworks pertaining to module quality                      | C, I          | C, I                | R, A          | C, I           |       |
 | Manage/run the AVM central backlog (module proposals, orphaned modules, test enhancements, etc.) | C, I          | C, I                | R, A          | C, I           |       |
 | Provide day-to-day (BAU) module support                                                          | R, A          | R, C                | I             | I              |       |
