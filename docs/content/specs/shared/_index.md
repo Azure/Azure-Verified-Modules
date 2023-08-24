@@ -86,8 +86,9 @@ An example deployment name for the AVM Virtual Machine Resource Module would be:
 
 See the language specific contribution guides for detailed guidance and sample code to use in AVM modules to achieve this requirement.
 
-- [Terraform](/Azure-Verified-Modules/contributing/terraform/)
 - [Bicep](/Azure-Verified-Modules/contributing/bicep/)
+- [Terraform](/Azure-Verified-Modules/contributing/terraform/)
+
 
 {{< /hint >}}
 
@@ -171,8 +172,8 @@ They **MUST NOT** assign any GitHub repository permissions to individual users.
 A module **MUST** make the following GitHub Teams in the Azure GitHub organization admins on its GitHub repo:
 
 - [`@Azure/avm-core-team`](https://github.com/orgs/Azure/teams/avm-core-team/members?query=membership:child-team) = AVM Core Team
-- [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Terraform PG
 - [`@Azure/bicep-admins`](https://github.com/orgs/Azure/teams/bicep-admins) = Bicep PG team
+- [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Terraform PG
 
 #### ID: SNFR10 - Category: Contribution/Support - MIT Licensing
 
@@ -240,16 +241,16 @@ A module **SHOULD** avoid breaking changes, e.g., deprecating inputs vs. removin
 
 Modules **MUST** be published to their respective language public registries.
 
-- Terraform = [HashiCorp Terraform Registry](https://registry.terraform.io/)
 - Bicep = [Bicep Public Module Registry](https://github.com/Azure/bicep-registry-modules/tree/main)
   - Within the `avm` directory
+- Terraform = [HashiCorp Terraform Registry](https://registry.terraform.io/)
 
 {{< hint type=tip >}}
 
 See the language specific contribution guides for detailed guidance and sample code to use in AVM modules to achieve this requirement.
 
-- [Terraform](/Azure-Verified-Modules/contributing/terraform/)
 - [Bicep](/Azure-Verified-Modules/contributing/bicep/)
+- [Terraform](/Azure-Verified-Modules/contributing/terraform/)
 
 {{< /hint >}}
 
@@ -343,16 +344,17 @@ Another example for where RPs contain some of their name within a property, leav
 
 #### ID: RMNFR1 - Category: Naming - Module Naming
 
-Module names **MUST** follow the following pattern (all lower case):
+Module names **MUST** follow the below pattern (all lower case):
 
-- Terraform: `terraform-<provider>-avm-res-<rp>-<armresourcename>`
 - Bicep: `avm-res-<rp>-<armresourcename>` (to support registry hosting)
+- Terraform: `terraform-<provider>-avm-res-<rp>-<armresourcename>`
 
 Example: `avm-res-compute-virtualmachine`
 
 - `<armresourcename>` is the singular version of the word after the resource provider, e.g., `Microsoft.Compute/virtualMachines` = `virtualmachine`
-- `<rp>` is the provider’s name after the `Microsoft` part, e.g., `Microsoft.Compute` = `compute`.
+- `<rp>` is the resource provider’s name after the `Microsoft` part, e.g., `Microsoft.Compute` = `compute`.
 - `res` defines this is a resource module
+- `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` or `azuread` for resource modules.
 
 {{< hint type=note >}}
 
@@ -389,10 +391,11 @@ A module **MAY** create Resource Group(s).
 
 #### ID: PMNFR1 - Category: Naming - Module Naming
 
-Module names **MUST** follow the following pattern (all lower case):
+Module names **MUST** follow the below pattern (all lower case):
 
-- Terraform: `terraform-<provider>-avm-ptn-<patternmodulename>`
 - Bicep: `avm-ptn-<patternmodulename>`
+- Terraform: `terraform-<provider>-avm-ptn-<patternmodulename>`
+  - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` for pattern modules.
 
 Example: `avm-ptn-apptiervmss`
 
