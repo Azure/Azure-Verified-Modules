@@ -80,7 +80,7 @@ Due to the 64-character length limit of Azure deployment names, the `<module nam
       - Scope (Tenant, Management Group,Subscription, Resource Group)
 
 An example deployment name for the AVM Virtual Machine Resource Module would be:
-- `46d3xgp5.res.compute-virtualmachine.v1-2-3.eum3favlpwuyg`
+- `46d3xgp5.res.compute-virtualmachine.v1-2-3.eum3`
 
 {{< hint type=tip >}}
 
