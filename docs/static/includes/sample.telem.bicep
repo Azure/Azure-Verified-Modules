@@ -8,7 +8,7 @@ param enableDefaultTelemetry bool = true
 var moduleVersion = 'v1.0.0'
 
 resource avmTelemetry 'Microsoft.Resources/deployments@2022-09-01' = if (enableDefaultTelemetry) {
-  name: '46d3xgp5.res.compute-virtualmachine.${replace(moduleVersion, '.', '-')}.${substring(uniqueString(deployment().name, location), 0 ,4)}'
+  name: '46d3xbcp.res.compute-virtualmachine.${replace(moduleVersion, '.', '-')}.${substring(uniqueString(deployment().name, location), 0 ,4)}'
   properties: {
     mode: 'Incremental'
     template: {

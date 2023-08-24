@@ -61,7 +61,9 @@ Modules **MUST** provide the capability to collect deployment/usage telemetry, v
 
 The ARM deployment name used for the telemetry **MUST** follow the pattern and **MUST** be no longer than 64 characters in length: `<AVM 8 chars (alphanumeric)>.<res/ptn>.<module name>.<version>.<uniqueness>`
 
-- `<AVM 8 chars (alphanumeric)>` == `46d3xgp5`
+- `<AVM 8 chars (alphanumeric)>`
+  - Bicep == `46d3xbcp`
+  - Terraform == `46d3xgtf`
 - `<res/ptn>` == AVM Resource or Pattern Module
 - `<module name>` == The AVM Module's name **without**;
   - The prefixes: `avm-res-` or `terraform-<provider>-avm-res-` - See [RMNFR1](#id-rmnfr1---category-naming---module-naming) for AVM Resource Module Naming
@@ -80,7 +82,8 @@ Due to the 64-character length limit of Azure deployment names, the `<module nam
       - Scope (Tenant, Management Group,Subscription, Resource Group)
 
 An example deployment name for the AVM Virtual Machine Resource Module would be:
-- `46d3xgp5.res.compute-virtualmachine.v1-2-3.eum3`
+- Bicep == `46d3xbcp.res.compute-virtualmachine.v1-2-3.eum3`
+- Terraform == `46d3xtf.res.compute-virtualmachine.v1-2-3.eum3`
 
 {{< hint type=tip >}}
 
