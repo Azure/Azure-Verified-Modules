@@ -111,3 +111,9 @@ This will require the alias on the MCR to be different than the directory path, 
 To meet [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) & [SFR4](/Azure-Verified-Modules/specs/shared/#id-sfr4---category-telemetry---telemetry-enablement-flexibility) you can use the below code sample in your AVM Modules to achieve this.
 
 {{< include file="/static/includes/sample.telem.bicep" language="bicep" options="linenos=false" >}}
+
+## RBAC Role Definition Name Mapping
+
+To meet [BCPFR2](/Azure-Verified-Modules/specs/bicep/#id-bcpfr2---category-composition---role-assignments-role-definition-mapping), [BCPNFR5](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr5---category-composition---role-assignments-role-definition-mapping-limits) and [BCPNFR6](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr6---category-composition---role-assignments-role-definition-mapping-compulsory-roles) you can use the below code sample in your AVM Modules to achieve this.
+
+{{< include file="/static/includes/sample.rbacMapping.bicep" language="bicep" options="linenos=false" >}}

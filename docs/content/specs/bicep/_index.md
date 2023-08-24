@@ -29,6 +29,24 @@ However, they **MUST** be referenced only by a public registry reference to a pi
 
 Although, child modules, that are children of the primary resources being deployed by the AVM Resource Module, **MAY** be specified via local child path e.g. `child/resource.bicep`.
 
+### ID: BCPFR2 - Category: Composition - Role Assignments Role Definition Mapping
+
+Module owners **MAY** define common RBAC Role Definition names and IDs within a variable to allow consumers to define a RBAC Role Definition by their name rather than their ID, this should be self contained within the module themselves.
+
+However, the **MUST** use only the official RBAC Role Definition name within the variable and nothing else.
+
+See also:
+
+- [BCPNFR5](#id-bcpnfr5---category-composition---role-assignments-role-definition-mapping-limits)
+- [BCPNFR6](#id-bcpnfr6---category-composition---role-assignments-role-definition-mapping-compulsory-roles)
+
+{{< hint type=tip >}}
+
+Review the [Bicep Contribution Guide's 'RBAC Role Definition Name Mapping' section](/Azure-Verified-Modules/contributing/bicep/#rbac-role-definition-name-mapping) for a code sample to achieve this requirement.
+
+{{< /hint >}}
+
+
 ## Non-Functional Requirements
 
 ### ID: BCPNFR1 - Category: Inputs - Data Types
@@ -89,3 +107,40 @@ Example:
 @description('Optional. Location for all resources.')
 param location string = resourceGroup().location
 ```
+
+### ID: BCPNFR5 - Category: Composition - Role Assignments Role Definition Mapping Limits
+
+As per [BCPFR2](#id-bcpfr2---category-composition---role-assignments-role-definition-mapping), module owners **MAY** define common RBAC Role Definition names and IDs within a variable to allow consumers to define a RBAC Role Definition by their name rather than their ID.
+
+Module owners **SHOULD NOT** map every RBAC Role Definition within this variable as it can cause the module to bloat in size and cause consumption issues later when stitched together with other modules due to the 4MB ARM Template size limit.
+
+Therefore modules owners **SHOULD** only map the most applicable and common RBAC Role Definition names for their module and **SHOULD NOT** exceed 15 RBAC Role Definitions in the variable.
+
+{{< hint type=important >}}
+
+Remember if the RBAC Role Definition name is not included in the variable this does not mean it cannot be declared, used and assigned to an identity via an RBAC Role Assignment as part of a module, as any RBAC Role Definition can be specified via its ID without being in the variable.
+
+{{< /hint >}}
+
+{{< hint type=tip >}}
+
+Review the [Bicep Contribution Guide's 'RBAC Role Definition Name Mapping' section](/Azure-Verified-Modules/contributing/bicep/#rbac-role-definition-name-mapping) for a code sample to achieve this requirement.
+
+{{< /hint >}}
+
+
+### ID: BCPNFR6 - Category: Composition - Role Assignments Role Definition Mapping Compulsory Roles
+
+Module owners **MUST** include the following roles in the variable for RBAC Role Definition names:
+
+- Owner - ID: `8e3af657-a8ff-443c-a75c-2fe8c4bcb635`
+- Contributor - ID: `b24988ac-6180-42a0-ab88-20f7382dd24c`
+- Reader - ID: `acdd72a7-3385-48ef-bd42-f606fba81ae7`
+- User Access Administrator - ID: `18d7d88d-d35e-4fb5-a5c3-7773c20a72d9`
+- Role Based Access Control Administrator (Preview) - ID: `f58310d9-a9f6-439a-9e8d-f62e7b41a168`
+
+{{< hint type=tip >}}
+
+Review the [Bicep Contribution Guide's 'RBAC Role Definition Name Mapping' section](/Azure-Verified-Modules/contributing/bicep/#rbac-role-definition-name-mapping) for a code sample to achieve this requirement.
+
+{{< /hint >}}
