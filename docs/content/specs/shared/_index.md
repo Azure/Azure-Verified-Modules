@@ -380,7 +380,7 @@ A module **SHOULD** use the following standard inputs:
 
 Module owners (Microsoft FTEs) **SHOULD** reach out to the respective Resource Provider teams to build a partnership and collaboration on the modules creation, existence and long term maintenance.
 
-Review this [wiki page (TBC)]() for more information.
+Review this [wiki page (TBC)](/Azure-Verified-Modules/specs/shared/#id-rmnfr3---category-composition---rp-collaboration) for more information.
 
 ## Pattern Module Requirements
 
