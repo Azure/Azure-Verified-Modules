@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "RoleAssignmentsInterfaceDefinitionForBicep",
   "type": "array",
-  "additionalProperties": {
+  "items": {
     "type": "object",
     "properties": {
       "roleDefinitionIdOrName": {
