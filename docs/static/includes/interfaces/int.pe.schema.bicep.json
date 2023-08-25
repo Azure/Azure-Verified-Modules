@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Private Endpoints Interface Definition for Terraform",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "diagnosticSettings": {
+        "type": "array",
+        "$ref": "https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#diagnostic-settings"
+      },
+      "roleAssignments": {
+        "type": "array",
+        "$ref": "https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#role-assignments"
+      },
+      "lock": {
+        "type": "string",
+        "$ref": "https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#resource-locks"
+      },
+      "tags": {
+        "type": "object",
+        "$ref": "https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#tags"
+      },
+      "subnetResourceId": {
+        "type": "string"
+      },
+      "privateDnsZoneResourceIds": {
+        "type": "array"
+      },
+      "applicationSecurityGroupResourceIds": {
+        "type": "array"
+      },
+      "customDnsConfigs": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "fqdn": {
+              "type": "string"
+            },
+            "ipAddresses": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "customNetworkInterfaceName": {
+        "type": "string"
+      },
+      "ipConfigurations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "groupId": {
+              "type": "string"
+            },
+            "memberName": {
+              "type": "string"
+            },
+            "privateIpAddress": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
