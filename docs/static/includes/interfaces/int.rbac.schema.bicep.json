@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RoleAssignmentsInterfaceDefinitionForBicep",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "roleDefinitionIdOrName": {
+        "type": "string"
+      },
+      "principalId": {
+        "type": "string"
+      },
+      "principalType": {
+        "type": "string",
+        "enum": [
+          "User",
+          "Group",
+          "ServicePrincipal",
+          "ForeignGroup",
+          "Device",
+          ""
+        ]
+      },
+      "description": {
+        "type": "string"
+      },
+      "condition": {
+        "type": "string"
+      },
+      "conditionVersion": {
+        "type": "string",
+        "default": "2.0"
+      },
+      "delegatedManagedIdentityResourceId": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "roleDefinitionIdOrName",
+      "principalId"
+    ]
+  }
+}

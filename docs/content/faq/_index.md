@@ -17,9 +17,11 @@ Got an unanswered question? Create a [GitHub Issue](https://github.com/Azure/Azu
 
 The AVM initiative has been working closely with the teams behind the following initiatives:
 
-- [CARML](https://github.com/Azure/ResourceModules)
-- [TFVM](https://github.com/Azure/terraform-azure-modules)
-- [BRM (Bicep Registry Modules)](https://github.com/Azure/bicep-registry-modules)
+- [CARML (Common Azure Resource Modules Library)](https://github.com/Azure/ResourceModules)
+- [TFVM (Terraform Verified Modules)](https://github.com/Azure/terraform-azure-modules)
+- [BRM (Bicep Registry Modules)](https://github.com/Azure/bicep-registry-modules) - this is where the AVM Bicep modules will be published.
+
+AVM is a straight-line evolution of CARML & TFVM.
 
 ### CARML Evolution
 
@@ -40,3 +42,45 @@ At this stage the revamped module can be published to the Bicep Registry under t
 It may also be decided, for speed of delivery reasons, that a CARML module can be taken as is, with minimal AVM gaps addressed, and just rebranded to AVM and published to the Bicep Registry. However, this is ideally discouraged as it is creating technical debt from day 1.
 
 Publishing both CARML and AVM to the Bicep Registry is wasted effort and will lead to confusion as they will overlap for 80% of their code and will leave consumers in an "analysis paralysis" scenario, which we must avoid.
+
+## What does AVM mean by "WAF Aligned"?
+
+{{< hint type=tip >}}
+
+WAF == [Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/) (as per our [glossary](/Azure-Verified-Modules/glossary/))
+
+{{< /hint >}}
+
+At a high-level "WAF Aligned" means, where possible and appropriate, AVM Modules will align to recommendations and default input parameter/variables to values that algin to WAF recommendations across all of it's pillars. For the security pillar we will also use the Microsoft Cloud Security Benchmark (MCSB) and Microsoft Defender for Cloud (MDFC) to align input parameter/variables values to these.
+
+AVM will use the following sources to set it's "WAF Aligned" defaults:
+
+- [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/)
+- [Azure Proactive Resiliency Library](https://azure.github.io/Azure-Proactive-Resiliency-Library/)
+- [Introduction to the Microsoft cloud security benchmark](https://learn.microsoft.com/security/benchmark/azure/introduction)
+- [Security recommendations - Microsoft cloud security benchmark](https://learn.microsoft.com/azure/defender-for-cloud/recommendations-reference)
+
+### Will all AVM modules be 100% "WAF Aligned" out of the box and good to go?
+
+Not quite, but they'll certainly be on the right path.
+
+To understand this further you first must understand that some of the "WAF Aligned" recommendations, from the sources above are more than just setting a string or boolean value to something particular to meet the recommendation; some will require additional resources to be created and exist and then linked together to help satisfy the recommendation.
+
+In these scenarios the AVM modules will not enforce the additional resources to be deployed and configured, but will provide sufficient flexibility via their input parameters/variables to be able to support the configuration, if so desired by the module consumer.
+
+#### Some examples
+
+| Recommendation                                                         | Will Be Set By Default in AVM Modules?                                                                            |
+| ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| TLS version should always be set the latest/highest version TLS 1.3    | **Yes**, as string value                                                                                          |
+| Key Vault should use RBAC instead of access policies for authorization | **Yes**, as string/boolean value                                                                                  |
+| Container registries should use private link                           | **No**, as requires additional Private Endpoint and DNS configuration as well as, potentially, additional costs   |
+| API Management services should use a virtual network                   | **No**, as requires additional Virtual Network and Subnet configuration as well as, potentially, additional costs |
+
+### Aren't AVM resource modules too complex for people less skilled in IaC technologies?
+
+ **TLDR**: Resource modules have complexity inside, so they can be flexibly used from the outside.
+
+Resource modules are written in a flexible way; therefore, you don't need to modify them from project to project, use case to use case, as they aim to cover most of the functionality that a given resource type can provide, in a way that you can interact with any module just by using the required parameters - i.e., you don't have to know how the template of the particular module works inside, just take a look at the `README.md` file of the given module to learn how to leverage it.
+
+Resource modules are multi-purpose; therefore, they contain a lot of dynamic expressions (functions, variables, etc.), so there's no need to maintain multiple instances for different use cases. They can be deployed in different configurations just by changing the input parameters. They should be perceived by the **user** as black boxes, where they don't have to worry about the internal complexity of the code, as they only interact with them by their parameters.

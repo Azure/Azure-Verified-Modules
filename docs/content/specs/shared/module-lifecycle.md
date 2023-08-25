@@ -17,6 +17,7 @@ This page is still a work in progress
 We are still getting ready to actually create code but we are willing to take module proposals from Microsoft FTEs!
 
 Fill in the form [here](https://github.com/Azure/Azure-Verified-Modules/issues/new?assignees=&labels=module-proposal&projects=&template=module_proposal.yml&title=[Module+Proposal]:+) 📄
+
 {{< /hint >}}
 
 ## Orphaned AVM Modules
@@ -26,8 +27,8 @@ It is critical to the consumers experience that modules continue to be maintaine
 1. The module owner is responsible for finding a replacement owner and providing a handover.
 2. If no replacement can be found or the module owner leaves Microsoft without giving warning to the AVM core team, the AVM core team will provide essential maintenance (critical bug and security fixes), as per the [Module Support page](/Azure-Verified-Modules/help-support/module-support/)
 3. The AVM core team will continue to try and re-assign the module ownership.
-   1. Whilst a module is in an orphaned state, only security and bug fixes **MUST** be made, no new feature development will be worked on until a new owner is found that can then lead this effort for the module.
-   2. An issue will be created on the central AVM repo (`Azure/Azure-Verified-Modules`) to track the finding of a new owner for a module
+4. Whilst a module is in an orphaned state, only security and bug fixes **MUST** be made, no new feature development will be worked on until a new owner is found that can then lead this effort for the module.
+5. An issue will be created on the central AVM repo (`Azure/Azure-Verified-Modules`) to track the finding of a new owner for a module
 
 ### Notification of a Module Becoming Orphaned
 

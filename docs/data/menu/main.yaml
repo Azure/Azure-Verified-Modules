@@ -22,6 +22,9 @@ main:
         ref: 'specs/shared/module-lifecycle'
       - name: 'AVM Shared Specification'
         ref: 'specs/shared'
+        sub:
+          - name: 'Feature/Extension Interfaces'
+            ref: 'specs/shared/interfaces'
       - name: 'Bicep Specific Specification'
         ref: 'specs/bicep'
       - name: 'Terraform Specific Specification'
@@ -30,6 +33,8 @@ main:
     sub:
       - name: 'Module Support'
         ref: '/help-support/module-support'
+      - name: 'Telemetry'
+        ref: '/help-support/telemetry'
       - name: 'GitHub Issues'
         ref: "https://github.com/Azure/Azure-Verified-Modules/issues"
         external: true

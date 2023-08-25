@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Diagnostic Settings Interface Definition for Terraform",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "properties": {
+      "retention_in_days": {
+        "type": "integer",
+        "default": 30
+      },
+      "log_categories_and_groups": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "allLogs"
+        ]
+      },
+      "metric_categories": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "AllMetrics"
+        ]
+      },
+      "log_analytics_destination_type": {
+        "type": "string",
+        "default": "Dedicated",
+        "enum": [
+          "Dedicated",
+          "AzureDiagnostics",
+          null
+        ]
+      },
+      "workspace_resource_id": {
+        "type": "string"
+      },
+      "storage_account_resource_id": {
+        "type": "string"
+      },
+      "event_hub_authorization_rule_resource_id": {
+        "type": "string"
+      },
+      "event_hub_name": {
+        "type": "string"
+      },
+      "marketplace_partner_resource_id": {
+        "type": "string"
+      }
+    }
+  }
+}

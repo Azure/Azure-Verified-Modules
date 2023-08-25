@@ -9,7 +9,7 @@ As mentioned in the [What, Why, How](/Azure-Verified-Modules/concepts//what-why-
 
 {{< hint type=important >}}
 
-Issues with and AVM module should be raised on the repo they are hosted on, not the AVM Central (`Azure/Azure-Verified-Modules`) repo!
+Issues with an AVM module should be raised on the repo they are hosted on, not the AVM Central (`Azure/Azure-Verified-Modules`) repo!
 
 *Not an issue if you raise in the wrong place, we will transfer it to it's correct home 👍*
 
@@ -19,9 +19,15 @@ Azure Verified Modules are supported by the AVM teams, as defined [here](/Azure-
 
 1. Module owners/contributors
 2. If there is no response within 3 business days, then the AVM core team will step in by:
-   1. First attempting to contact the module owners/contributors to prompt them to act.
-   2. If there is no response within a further 24 hours (on business days), the AVM core team will take ownership, triage, and provide a response within a further 2 business days.
-3. In the event of a security issue being unresolved after 5 days, escalation to the product group (Bicep/Terraform) to assist the AVM core team, will occur to provide additional support towards resolution; if required.
+3. First attempting to contact the module owners/contributors to prompt them to act.
+4. If there is no response within a further 24 hours (on business days), the AVM core team will take ownership, triage, and provide a response within a further 2 business days.
+5. In the event of a security issue being unresolved after 5 days, escalation to the product group (Bicep/Terraform) to assist the AVM core team, will occur to provide additional support towards resolution; if required.
+
+{{< hint type=note >}}
+
+Please note that the durations stated above are for a reasonable and useful response towards resolution of the issue raised, if possible, and **not** for a fix within these durations; although if possible this will of course happen.
+
+{{< /hint >}}
 
 All of this will be automated via the use of the [Resource Management GitHub Policy Service](https://microsoft.github.io/GitOps/policies/resource-management.html) configuration and GitHub Actions, where possible and appropriate.
 

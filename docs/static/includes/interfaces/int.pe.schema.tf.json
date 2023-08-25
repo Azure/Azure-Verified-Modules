@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Private Endpoints Interface Definition for Terraform",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "properties": {
+      "diagnostic_settings ": {
+        "type": "object",
+        "$ref": "https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#diagnostic-settings"
+      },
+      "role_assignments": {
+        "type": "object",
+        "$ref": "https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#role-assignments"
+      },
+      "lock": {
+        "type": "string",
+        "$ref": "https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#resource-locks"
+      },
+      "tags": {
+        "type": "object",
+        "$ref": "https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#tags"
+      },
+      "subnet_resource_id": {
+        "type": "string"
+      },
+      "private_dns_zone_resource_ids": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "resource_id": {
+            "type": "string"
+          }
+        }
+      },
+      "application_security_group_resource_ids": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "resource_id": {
+            "type": "string"
+          }
+        }
+      },
+      "custom_dns_configs": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "fqdn": {
+            "type": "string"
+          },
+          "ip_addresses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "custom_network_interface_name": {
+        "type": "string"
+      },
+      "ip_configurations": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "group_id": {
+            "type": "string"
+          },
+          "member_name": {
+            "type": "string"
+          },
+          "private_ip_address": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
