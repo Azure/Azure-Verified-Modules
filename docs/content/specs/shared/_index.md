@@ -350,7 +350,9 @@ Another example for where RPs contain some of their name within a property, leav
 Module names **MUST** follow the below pattern (all lower case):
 
 - Bicep: `avm-res-<rp>-<armresourcename>` (to support registry hosting)
-- Terraform: `terraform-<provider>-avm-res-<rp>-<armresourcename>`
+- Terraform:
+  - `avm-res-<rp>-<armresourcename>` (Module name for registry)
+  - `terraform-<provider>-avm-res-<rp>-<armresourcename>` (GitHub repository name to meet registry naming requirements)
 
 Example: `avm-res-compute-virtualmachine`
 
