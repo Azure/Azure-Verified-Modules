@@ -51,6 +51,7 @@ This repo will be created by the Module Owners and the AVM Core team collaborati
 ## Directory and File Structure
 
 Below is the directory and file structure expected for each AVM Terraform repository/module.
+See template repo [here](https://github.com/Azure/terraform-azurerm-avm-template).
 
 - `tests/` - (for unit tests and additional E2E/integration if required - e.g. tflint etc.)
 - `modules/` - (for sub-modules only if used)
@@ -99,6 +100,23 @@ This will require the alias on the MCR to be different than the directory path, 
 
 ## Telemetry Enablement
 
-To meet [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) & [SFR4](/Azure-Verified-Modules/specs/shared/#id-sfr4---category-telemetry---telemetry-enablement-flexibility) you can use the below code sample in your AVM Modules to achieve this.
+To meet [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) & [SFR4](/Azure-Verified-Modules/specs/shared/#id-sfr4---category-telemetry---telemetry-enablement-flexibility).
+We have provided the sample code below, however it is already included in the [template-repo](https://github.com/Azure/terraform-azurerm-avm-template).
 
 {{< include file="/static/includes/sample.telem.tf" language="terraform" options="linenos=false" >}}
+
+In addition, you should use a `locals.version.tf.json` file to store the module version in a machine readable format:
+
+{{< hint type=important >}}
+
+Do not include the `v` prefix in the `module_version` value.
+
+{{< /hint >}}
+
+```json
+{
+  "locals": {
+    "module_version": "1.0.0"
+  }
+}
+```

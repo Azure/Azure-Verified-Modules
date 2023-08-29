@@ -1,10 +1,10 @@
 private_endpoints = {
   pe1 = {
-    diagnostic_settings = {...}
-    role_assignments  = {...}
-    lock = "CanNotDelete"
-    tags = {...}
-    subnet_resource_id = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}"
+    diagnostic_settings = {} # see interfaces/diagnostic settings
+    role_assignments    = {} # see interfaces/role assignments
+    lock                = "CanNotDelete"
+    tags                = {} # see interfaces/tags
+    subnet_resource_id  = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}"
     private_dns_zone_resource_ids = {
       pnds1 = {
         resource_id = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{dnsZoneName}"
