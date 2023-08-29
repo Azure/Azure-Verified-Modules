@@ -20,7 +20,7 @@ locals {
   "outputs": {
     "telemetry": {
       "type": "String",
-      "value": "For more information, see https://aka.ms/avm/telemetry"
+      "value": "For more information, see https://azure.github.io/Azure-Verified-Modules/help-support/telemetry/"
     }
   }
 }
