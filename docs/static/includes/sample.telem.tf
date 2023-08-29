@@ -27,7 +27,7 @@ TEMPLATE
   # We shouldn't ever hit the 64 character limit but use substr just in case.
   telem_arm_deployment_name = substr(
     format(
-      "%s.%s.%s.%s",
+      "%s.%s.v%s.%s",
       local.telem_puid,
       substr(local.module_name, 0, 30),
       replace(local.module_version, ".", "-"),
