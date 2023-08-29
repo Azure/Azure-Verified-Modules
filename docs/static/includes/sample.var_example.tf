@@ -8,6 +8,5 @@ Example Input:
 ```terraform
 var_location = "uksouth"
 ```
-
 DESCRIPTION
 }

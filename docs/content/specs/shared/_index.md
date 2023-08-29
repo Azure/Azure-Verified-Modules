@@ -18,6 +18,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 {{< /hint >}}
 
 {{< toc >}}
+
 ## Shared Requirements
 
 Listed below are both functional and non-functional requirements for both classifications of AVM modules (Resource and Pattern)
@@ -82,6 +83,7 @@ Due to the 64-character length limit of Azure deployment names, the `<module nam
       - Scope (Tenant, Management Group,Subscription, Resource Group)
 
 An example deployment name for the AVM Virtual Machine Resource Module would be:
+
 - Bicep == `46d3xbcp.res.compute-virtualmachine.v1-2-3.eum3`
 - Terraform == `46d3xtf.res.compute-virtualmachine.v1-2-3.eum3`
 
@@ -92,15 +94,14 @@ See the language specific contribution guides for detailed guidance and sample c
 - [Bicep](/Azure-Verified-Modules/contributing/bicep/)
 - [Terraform](/Azure-Verified-Modules/contributing/terraform/)
 
-
 {{< /hint >}}
 
 #### ID: SFR4 - Category: Telemetry - Telemetry Enablement Flexibility
 
 The telemetry enablement **MUST** be on/enabled by default, however this **MUST** be able to be disabled by a module consumer by setting the below parameter/variable value to `false`:
 
-- Bicep: `enableDefaultTelemetry`
-- Terraform: `enable_default_telemetry`
+- Bicep: `enableTelemetry`
+- Terraform: `enable_telemetry`
 
 #### ID: SFR5 - Category: Composition - Availability Zones
 
