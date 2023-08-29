@@ -45,6 +45,8 @@ main:
         ref: '/contributing/bicep'
       - name: 'Terraform Modules'
         ref: '/contributing/terraform'
+      - name: 'Contribution Q&A'
+        ref: '/contributing/q-and-a'
       - name: 'This Website'
         ref: '/contributing/website'
       - name: 'Code of Conduct'
