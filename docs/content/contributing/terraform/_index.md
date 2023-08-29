@@ -100,7 +100,8 @@ This will require the alias on the MCR to be different than the directory path, 
 
 ## Telemetry Enablement
 
-To meet [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) & [SFR4](/Azure-Verified-Modules/specs/shared/#id-sfr4---category-telemetry---telemetry-enablement-flexibility) you **SHOULD**use the below code sample in your AVM Modules to achieve this:
+To meet [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) & [SFR4](/Azure-Verified-Modules/specs/shared/#id-sfr4---category-telemetry---telemetry-enablement-flexibility).
+We have provided the sample code below, however it is already included in the [template-repo](https://github.com/Azure/terraform-azurerm-avm-template).
 
 {{< include file="/static/includes/sample.telem.tf" language="terraform" options="linenos=false" >}}
 
