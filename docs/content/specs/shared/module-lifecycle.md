@@ -16,7 +16,7 @@ This page is still a work in progress
 
 We are still getting ready to actually create code but we are willing to take module proposals from Microsoft FTEs!
 
-Fill in the form [here](https://github.com/Azure/Azure-Verified-Modules/issues/new?assignees=&labels=module-proposal&projects=&template=module_proposal.yml&title=[Module+Proposal]:+) 📄
+Fill in the form [here](https://aka.ms/AVM/ModuleProposal) 📄
 
 {{< /hint >}}
 
