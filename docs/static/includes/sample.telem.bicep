@@ -1,7 +1,7 @@
 @description('Optional. Location for all resources.')
 param location string = resourceGroup().location
 
-@description('Optional. Disable usage telemetry for module.')
+@description('Optional. Enable/Disable usage telemetry for module.')
 param enableTelemetry bool = true
 
 @description('The current released version of the module. Used for telemetry.')
