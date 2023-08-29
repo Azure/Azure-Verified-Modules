@@ -48,6 +48,14 @@ Each Terraform AVM module will have its own GitHub Repository in the [`Azure` Gi
 
 This repo will be created by the Module Owners and the AVM Core team collaboratively, including the configuration of permissions as per [SNFR9](/Azure-Verified-Modules/specs/shared/#id-snfr9---category-contributionsupport---avm--pg-teams-github-repo-permissions)
 
+## Template Repository
+
+We have created a [template repository](https://github.com/Azure/terraform-azurerm-avm-template) to help you get started.
+Please click the `use this template` and create a copy of the repo in the Azure organization.
+
+You will then have to complete the One Engineering System (1ES) process to retain access to the repo.
+See [this link (internal only)](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/274/1es).
+
 ## Directory and File Structure
 
 Below is the directory and file structure expected for each AVM Terraform repository/module.
