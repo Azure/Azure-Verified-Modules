@@ -16,29 +16,34 @@ main:
     sub:
       - name: 'Team Definitions & RACI'
         ref: 'specs/shared/team-definitions'
-      - name: 'Module Classification Definitions'
+      - name: 'Module Classifications'
         ref: 'specs/shared/module-classifications'
       - name: 'Module Lifecycle'
         ref: 'specs/shared/module-lifecycle'
-      - name: 'AVM Shared Specification'
-        ref: 'specs/shared'
+      - name: 'Module Specifications'
+        ref: 'specs'
         sub:
-          - name: 'Feature/Extension Interfaces'
-            ref: 'specs/shared/interfaces'
-      - name: 'Bicep Specific Specification'
-        ref: 'specs/bicep'
-      - name: 'Terraform Specific Specification'
-        ref: 'specs/terraform'
+          - name: 'Shared'
+            ref: 'specs/shared'
+            sub:
+              - name: 'Interfaces'
+                ref: 'specs/shared/interfaces'
+          - name: 'Bicep Specific'
+            ref: 'specs/bicep'
+          - name: 'Terraform Specific'
+            ref: 'specs/terraform'
   - name: 'Help & Support'
     sub:
       - name: 'Module Support'
         ref: '/help-support/module-support'
       - name: 'Telemetry'
         ref: '/help-support/telemetry'
-      - name: 'GitHub Issues'
+      - name: 'Create GitHub Issue'
         ref: "https://github.com/Azure/Azure-Verified-Modules/issues"
         external: true
-        icon: 'gdoc_error_outline'
+      - name: 'Propose New Modules'
+        ref: "https://aka.ms/AVM/ModuleProposal"
+        external: true
   - name: 'Contributing'
     sub:
       - name: 'Bicep Modules'
