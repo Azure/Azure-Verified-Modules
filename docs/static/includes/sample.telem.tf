@@ -1,4 +1,14 @@
 locals {
+  # This is the unique id for the module that is supplied by the AVM team.
+  # TODO: change this to the PUID for the module. See https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry
+  telem_puid = "00000000"
+
+  # TODO: change this to the name of the module. See https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry
+  module_name = "CHANGEME"
+
+  # Should be either `res` or `ptn`
+  module_type = "res"
+
   # This is an empty ARM deployment template.
   telem_arm_template_content = <<TEMPLATE
 {
@@ -15,16 +25,6 @@ locals {
   }
 }
 TEMPLATE
-
-  # This is the unique id for the module that is supplied by the AVM team.
-  # TODO: change this to the PUID for the module. See https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry
-  telem_puid = "00000000"
-
-  # TODO: change this to the name of the module. See https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry
-  module_name = "CHANGEME"
-
-  # Should be either `res` or `ptn`
-  module_type = "res"
 
   # This constructs the ARM deployment name that is used for the telemetry.
   # We shouldn't ever hit the 64 character limit but use substr just in case.
