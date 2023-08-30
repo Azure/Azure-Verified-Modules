@@ -1,7 +1,7 @@
 name: General Question/Feedback ❔
 description: Just got a question or some general feedback? Let us know
 title: "[Question/Feedback]: "
-labels: ["question"]
+labels: ["Type: Question/Feedback :raising_hand:"]
 body:
   - type: markdown
     attributes:
