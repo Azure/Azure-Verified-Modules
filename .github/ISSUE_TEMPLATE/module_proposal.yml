@@ -1,7 +1,7 @@
 name: New AVM Module Proposal 📝
 description: Want a new AVM Module to exist? Let us know
 title: "[Module Proposal]: "
-labels: ["module-proposal"]
+labels: ["Type: New Module Proposal :bulb:"]
 body:
   - type: markdown
     attributes:
