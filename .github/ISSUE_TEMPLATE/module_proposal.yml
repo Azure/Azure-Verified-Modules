@@ -67,6 +67,6 @@ body:
     id: owner-gh-un
     attributes:
       label: Module Owner's GitHub Username
-      description: Please provide the proposed module owners GitHub username
+      description: Please provide the proposed module owners GitHub username, leave blank if unknown
     validations:
-      required: true
+      required: false
