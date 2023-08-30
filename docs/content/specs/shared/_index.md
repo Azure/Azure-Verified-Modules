@@ -1,4 +1,4 @@
-i---
+---
 title: Shared Specification
 geekdocNav: true
 geekdocAlign: left
