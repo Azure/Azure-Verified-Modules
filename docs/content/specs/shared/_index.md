@@ -1,4 +1,4 @@
----
+i---
 title: Shared Specification
 geekdocNav: true
 geekdocAlign: left
@@ -287,8 +287,6 @@ See the language specific contribution guides for detailed guidance and sample c
 #### ID: SNFR21 - Category: Publishing - Cross Language Collaboration
 
 When the module owners of the same Resource or Pattern AVM module are not the same individual or team for all languages, each languages team **SHOULD** collaborate with their sibling language team for the same module to ensure consistency where possible.
-
-
 
 ## Resource Module Requirements
 
