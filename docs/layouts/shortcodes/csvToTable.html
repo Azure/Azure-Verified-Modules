@@ -7,7 +7,7 @@
   {{ if $useHeaderRow }}
     {{ $headerRow := index $rows 0 }}
     {{ $rows = after 1 $rows }}
-   <thead> <tr> {{ range $headerRow }} <th>{{ . }}</th> {{ end }} </tr> </thead>
+    <thead> <tr> {{ range $headerRow }} <th>{{ . }}</th> {{ end }} </tr> </thead>
   {{ end }}
   {{ range $rows }}
     <tr>
