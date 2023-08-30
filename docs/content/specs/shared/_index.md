@@ -194,6 +194,33 @@ For example, if an AVM Resource Module is used in an AVM Pattern Module that was
 
 This avoids AVM Module owners from having to maintain multiple major release versions.
 
+#### ID: SNFR23 - Category: Contribution/Support - GitHub Repo Labels
+
+GitHub repositories where modules are held **MUST** use the below labels:
+
+{{< expand "AVM Standard GitHub Labels" "expand/collapse" >}}
+
+These labels are available in a CSV file from [here](/Azure-Verified-Modules/governance/avm-standard-github-labels.csv)
+
+{{< csvToTable header=true csv="/static/governance/avm-standard-github-labels.csv" removeColumns="Color Sample" >}}
+
+{{< /expand >}}
+
+To help apply these to a module GitHub repository you can use the below PowerShell script:
+
+{{< expand "Set-AvmGitHubLabels.ps1" "expand/collapse" >}}
+
+For most scenario this is the command you'll need to call the below PowerShell script with, replacing the value for `RepositoryName`:
+
+```powershell
+Set-AvmGitHubLabels.ps1 -RepositoryName "Org/MyGitHubRepo" -CreateCsvLabelExports $false
+```
+
+Full Script:
+
+{{< include file="/static/scripts/Set-AvmGitHubLabels.ps1" language="powershell" options="linenos=false" >}}
+
+{{< /expand >}}
 #### ID: SNFR13 - Category: Forking - Private Module Registry Support
 
 A module **MUST** also function within a private module registry, internal Git repo.
@@ -260,6 +287,8 @@ See the language specific contribution guides for detailed guidance and sample c
 #### ID: SNFR21 - Category: Publishing - Cross Language Collaboration
 
 When the module owners of the same Resource or Pattern AVM module are not the same individual or team for all languages, each languages team **SHOULD** collaborate with their sibling language team for the same module to ensure consistency where possible.
+
+
 
 ## Resource Module Requirements
 
