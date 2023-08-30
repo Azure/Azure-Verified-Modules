@@ -1,3 +1,5 @@
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingWriteHost", "", Justification = "Coloured output required in this script")]
+
 <#
 .SYNOPSIS
   This script can be used to create the Azure Verified Modules (AVM) standard GitHub labels to a GitHub repository.
