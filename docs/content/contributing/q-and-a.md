@@ -23,6 +23,7 @@ Module catalog is to be published soon.
 Each AVM module requires a [module owner][ModuleOwners] and **MAY** have additional [module contributors][ModuleContributors].
 
 Essentially, you have 3 options:
+
 1. You sign up to be a module owner (and optionally, you can find additional contributors to help you).
 2. You find / request someone else to be the module owner (and optionally, you can be a contributor).
 3. You propose a module and wait until the AVM core team finds a module owner for you (who then can optionally leverage the help of additional contributors).
@@ -35,7 +36,7 @@ You can propose a new module [here][ModuleProposal].
 
 To propose a new module, simply create an issue [here][ModuleProposal].
 
-### Can I just propose / create ANY module? 
+### Can I just propose / create ANY module?
 
 **For example, can I propose one for managed disks or NICs or diagnostic settings? What about patterns?**
 
@@ -52,7 +53,7 @@ Below, we provide some guidance on what modules you can / cannot propose.
     - Diagnostic settings: these are too low-level "sub resources", and highly dependent on their "primary resource's" RP defined as "interfaces" and therefore **MUST** be used as part of a resource module holding a primary resource - see [Diagnostic Settings][DiagnosticSettings] documentation about the correct implementation.
 
 - **Pattern modules**: In case of pattern modules, ideally you should start from architectural patterns, published in the [Azure Architecture Center][AzureArchitectureCenter], and build your pattern module by leveraging resource modules that are required to implement the pattern. AVM does not provide architectural guidance on how you should design your pattern, but you **MUST** follow the module specifications and your modules **SHOULD** be [WAF aligned][WAFAligned].
-  - Good examples: 
+  - Good examples:
     - Landing zone accelerators for N-tier web application; AKS cluster; SAP: there are numerous examples for these architectures in Azure Architecture Center that already have baked in guidance / smart defaults that are WAF Aligned, therefore these are good candidates for pattern modules. Modules owners should leverage resource modules to implement the pattern.
     - Hub and spoke topology: it's a common pattern that is used by many customers and there are great examples available through Azure Architecture Center, as well as [Azure Landing Zones][ALZ]. Also a good candidate for a pattern module.
   - Bad examples:
@@ -61,10 +62,9 @@ Below, we provide some guidance on what modules you can / cannot propose.
 
 ### How long will it take for someone to respond and a module to be created/updated and published?
 
-Whilst there are SLAs defined for providing [support][ModuleSupport] for existing modules, there are currently no SLAs in place for the creation of new modules. The AVM core team is a small team and is currently working on automating the module creation process to make it as easy as possible for module owners to create and publish modules on their own. 
+Whilst there are SLAs defined for providing [support][ModuleSupport] for existing modules, there are currently no SLAs in place for the creation of new modules. The AVM core team is a small team and is currently working on automating the module creation process to make it as easy as possible for module owners to create and publish modules on their own.
 
 Beside of providing program level governance, the [AVM core team][AVMCoreTeam] is mainly responsible for defining the module specifications, providing tooling (such as test frameworks and pipelines), guidance and support to module owners, as well as facilitating the creation of new modules by maintaining the module catalog and identifying volunteers for owning the modules. However, modules will be created and maintained by a broader community of [module owners][ModuleOwners].
-
 
 ### How do I let the AVM team know I really need an AVM module to unblock me / my project / my company?
 
@@ -76,7 +76,11 @@ The AVM core team will then triage the request and get back to you with next ste
 
 ### How will the central module catalog be updated?
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+The [AVM core team][AVMCoreTeam] will maintain the module catalog and update it as new modules are created and published or existing ones are updated or retired.
+
+{{< hint type=warning title=TBD icon=gdoc_gitea >}}
+Module catalog is to be published soon.
+{{< /hint >}}
 
 <br>
 
@@ -84,23 +88,26 @@ The AVM core team will then triage the request and get back to you with next ste
 
 ### Bicep & Terraform
 
-#### What are the mandatory tags/labels?
+#### What are the mandatory labels to be used while managing issues on GitHub?
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+SNFR23
+
 
 #### How will the support SLAs be automatically enforced?
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+All issues created in a module repo will be automatically be picked up and tracked by the GitHub Policy Service. This service will take the necessary steps when escalation is needed as per the SLAs defined in the [Module Support][ModuleSupport] chapter .
+
+{{< hint type=warning title=TBD icon=gdoc_gitea >}} More details to be added. {{< /hint >}}
 
 #### How should the issue templates and customer tags/labels be used?
 
 {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
 
-#### Where can I test my module during development? 
+#### Where can I test my module during development?
 
 {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
 
-#### Can I run manual tests or can I only use GH actions? 
+#### Can I run manual tests or should I only use GH actions?
 
 {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
 
@@ -132,13 +139,10 @@ The AVM core team will then triage the request and get back to you with next ste
 
 {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
 
-
-
-
-
 <br>
 
 ## Developing the module
+
 ### To start developing the module, which exact documents do I have to hold myself to?
 
 {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
@@ -169,9 +173,10 @@ AVM sub for that. Manual is only for initial - when you first start developing a
 <br>
 
 ## Publishing the module
+
 ### What steps do I need to follow?
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} 
+{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
 
 <!-- 
 - Is everything fully automated? 
@@ -181,6 +186,7 @@ AVM sub for that. Manual is only for initial - when you first start developing a
 <br>
 
 ## Updating a module
+
 ### What if I forget to bump up the version number?
 
 {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
@@ -198,6 +204,7 @@ AVM sub for that. Manual is only for initial - when you first start developing a
 <br>
 
 ## Security/Bugs in a module
+
 ### I have found a security issue with a module or the way it deploys its resources/pattern, what should I do?
 
 {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
@@ -207,6 +214,7 @@ AVM sub for that. Manual is only for initial - when you first start developing a
 <br>
 
 ## Retiring a module
+
 ### What do I need to do to retire the module of and old solution?
 
 {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
@@ -217,20 +225,19 @@ we need to document a step that describes that the status flag of the modules ne
 -->
 
 ### Can modules be deleted from their respective repo (or can their repo be deleted)?
- 
+
 {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
 
  <!-- 
  to this, we concluded earlier that the right approach is to leave one last readme.md file that provides context and points end users to the replacement solution. 
  -->
 ### Will modules ever be deleted from their respective registries?
- 
+
 {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
 
  <!-- 
  on this, we concluded earlier that a module MUST never get deleted from a registry. It can be "abandoned" as part of the retirement flow.  
  -->
-
 
 [AVMCoreTeam]: /Azure-Verified-Modules/specs/shared/team-definitions/#avm-core-team
 [BicepModules]: /Azure-Verified-Modules/indexes/bicep/
