@@ -196,13 +196,13 @@ This avoids AVM Module owners from having to maintain multiple major release ver
 
 #### ID: SNFR23 - Category: Contribution/Support - GitHub Repo Labels
 
-GitHub repositories where modules are held **MUST** use the below labels:
+GitHub repositories where modules are held **MUST** use the below labels and **SHOULD** not use any additional labels:
 
 {{< expand "AVM Standard GitHub Labels" "expand/collapse" >}}
 
 These labels are available in a CSV file from [here](/Azure-Verified-Modules/governance/avm-standard-github-labels.csv)
 
-{{< csvToTable header=true csv="/static/governance/avm-standard-github-labels.csv" removeColumns="Color Sample" >}}
+{{< entireCsvToTable header=true csv="/static/governance/avm-standard-github-labels.csv" >}}
 
 {{< /expand >}}
 
@@ -215,6 +215,8 @@ For most scenario this is the command you'll need to call the below PowerShell s
 ```powershell
 Set-AvmGitHubLabels.ps1 -RepositoryName "Org/MyGitHubRepo" -CreateCsvLabelExports $false
 ```
+
+Be aware this script  by default, will remove all pre-existing labels from the repository, but this can be change by setting the `-RemoveExistingLabels` parameter to `$false`
 
 Full Script:
 
