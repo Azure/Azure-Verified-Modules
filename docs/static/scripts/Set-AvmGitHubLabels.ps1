@@ -98,7 +98,7 @@ param (
   [string]$LabelsToApplyCsvUri = "https://azure.github.io/Azure-Verified-Modules/governance/avm-standard-github-labels.csv",
 
   [Parameter(Mandatory = $false)]
-  [bool]$NoUserPrompts = $true
+  [bool]$NoUserPrompts = $false
 )
 
 # Check if the GitHub CLI is installed
