@@ -38,6 +38,11 @@
 .Parameter LabelsToApplyCsvUri
   The URI to the CSV file containing the labels to apply to the GitHub repository. The default value is https://raw.githubusercontent.com/jtracey93/label-source/main/avm-github-labels.csv.
 
+.Parameter NoUserPrompts
+  If set to $true, the default value, the script will not prompt the user to confirm they want to remove all pre-existing labels from the repository specified in -RepositoryName before applying the AVM labels. If set to $false, the script will prompt the user to confirm they want to remove all pre-existing labels from the repository specified in -RepositoryName before applying the AVM labels.
+
+  This is useful for running the script in automation workflows
+
 .EXAMPLE
   Create the AVM labels in the repository Org/MyGitHubRepo and remove all pre-existing labels.
 
@@ -90,7 +95,10 @@ param (
   [int]$GitHubCliLimit = 999,
 
   [Parameter(Mandatory = $false)]
-  [string]$LabelsToApplyCsvUri = "https://azure.github.io/Azure-Verified-Modules/governance/avm-standard-github-labels.csv"
+  [string]$LabelsToApplyCsvUri = "https://azure.github.io/Azure-Verified-Modules/governance/avm-standard-github-labels.csv",
+
+  [Parameter(Mandatory = $false)]
+  [bool]$NoUserPrompts = $true
 )
 
 # Check if the GitHub CLI is installed
@@ -133,9 +141,9 @@ if ($CreateCsvLabelExports -eq $true) {
 }
 
 # Remove all pre-existing labels if -RemoveExistingLabels is set to $true and user confirms they want to remove all pre-existing labels
-$GitHubRepositoryLabelsJson = $GitHubRepositoryLabels | ConvertFrom-Json
 if ($null -ne $GitHubRepositoryLabels) {
-  if ($RemoveExistingLabels -eq $true) {
+  $GitHubRepositoryLabelsJson = $GitHubRepositoryLabels | ConvertFrom-Json
+  if ($RemoveExistingLabels -eq $true -and $NoUserPrompts -eq $false) {
     $RemoveExistingLabelsConfirmation = Read-Host "Are you sure you want to remove all $($GitHubRepositoryLabelsJson.Count) pre-existing labels from $($RepositoryName)? (Y/N)"
     if ($RemoveExistingLabelsConfirmation -eq "Y") {
       Write-Host "Removing all pre-existing labels from $RepositoryName..." -ForegroundColor Yellow
@@ -143,6 +151,13 @@ if ($null -ne $GitHubRepositoryLabels) {
         Write-Host "Removing label $($_.name) from $RepositoryName..." -ForegroundColor DarkRed
         gh label delete -R $RepositoryName $_.name --yes
       }
+    }
+  }
+  if ($RemoveExistingLabels -eq $true -and $NoUserPrompts -eq $true) {
+    Write-Host "Removing all pre-existing labels from $RepositoryName..." -ForegroundColor Yellow
+    $GitHubRepositoryLabels | ConvertFrom-Json | ForEach-Object {
+      Write-Host "Removing label $($_.name) from $RepositoryName..." -ForegroundColor DarkRed
+      gh label delete -R $RepositoryName $_.name --yes
     }
   }
 }
@@ -191,7 +206,7 @@ if ($CreateCsvLabelExports -eq $true) {
 }
 
 # If -RemoveExistingLabels is set to $true and user confirms they want to remove all pre-existing labels check that only the avm labels exist in the repository
-if ($RemoveExistingLabels -eq $true -and $RemoveExistingLabelsConfirmation -eq "Y") {
+if ($RemoveExistingLabels -eq $true -and ($RemoveExistingLabelsConfirmation -eq "Y" -or $NoUserPrompts -eq $true)) {
   Write-Host "Checking that only the AVM labels exist in $RepositoryName..." -ForegroundColor Yellow
   $GitHubRepositoryLabels = gh label list -R $RepositoryName -L $GitHubCliLimit --json name,description,color
   $GitHubRepositoryLabels | ConvertFrom-Json | ForEach-Object {

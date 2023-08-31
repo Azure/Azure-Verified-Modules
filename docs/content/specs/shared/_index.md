@@ -214,7 +214,7 @@ To help apply these to a module GitHub repository you can use the below PowerShe
 For most scenario this is the command you'll need to call the below PowerShell script with, replacing the value for `RepositoryName`:
 
 ```powershell
-Set-AvmGitHubLabels.ps1 -RepositoryName "Org/MyGitHubRepo" -CreateCsvLabelExports $false
+Set-AvmGitHubLabels.ps1 -RepositoryName "Org/MyGitHubRepo" -CreateCsvLabelExports $false -NoUserPrompts $true
 ```
 
 Be aware this script  by default, will remove all pre-existing labels from the repository, but this can be changed by setting the `-RemoveExistingLabels` parameter to `$false`
