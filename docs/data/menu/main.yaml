@@ -23,7 +23,7 @@ main:
       - name: 'Module Specifications'
         ref: 'specs'
         sub:
-          - name: 'Shared'
+          - name: 'Shared (Bicep & Terraform)'
             ref: 'specs/shared'
             sub:
               - name: 'Interfaces'

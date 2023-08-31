@@ -1,5 +1,5 @@
 ---
-title: Welcome to Azure Verified Modules
+title: Azure Verified Modules
 geekdocNav: true
 geekdocAlign: center
 geekdocAnchor: true

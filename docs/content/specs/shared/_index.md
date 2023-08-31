@@ -1,5 +1,5 @@
 ---
-title: Shared Specification
+title: Shared Specification (Bicep & Terraform)
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
@@ -18,7 +18,8 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 {{< /hint >}}
 
 {{< toc >}}
-## Shared Requirements
+
+## Shared Requirements (Resource & Pattern Modules)
 
 Listed below are both functional and non-functional requirements for both classifications of AVM modules (Resource and Pattern)
 
