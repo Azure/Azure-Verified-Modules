@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for your proposing a new AVM module.
+        Thank you for proposing a new AVM module.
 
         Please ensure you have checked the [AVM Module Classification Definitions](https://azure.github.io/Azure-Verified-Modules/specs/shared/module-classifications/) & the [AVM Shared Specification](https://azure.github.io/Azure-Verified-Modules/specs/shared/)
   - type: checkboxes
@@ -31,11 +31,12 @@ body:
   - type: dropdown
     id: res-or-ptn
     attributes:
-      label: Resource or Pattern Module?
+      label: Module Classification?
       description: Will this be a Resource or Pattern Module, as per [AVM Module Classification Definitions](https://azure.github.io/Azure-Verified-Modules/specs/shared/module-classifications/)?
       options:
         - Resource Module
         - Pattern Module
+        - I'm not sure, please advise
     validations:
       required: true
   - type: input
