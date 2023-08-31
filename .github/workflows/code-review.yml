@@ -2,9 +2,7 @@
   name: Code Review - Linting & Link Checks
 
   on:
-    pull_request:
-      branches:
-        - main
+    pull_request: {}
     workflow_dispatch: {}
 
   jobs:

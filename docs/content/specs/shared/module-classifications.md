@@ -1,5 +1,5 @@
 ---
-title: Module Classification Definitions
+title: Module Classifications
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

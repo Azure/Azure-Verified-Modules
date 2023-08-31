@@ -1,0 +1,26 @@
+Name,Description,HEX
+Needs: Attention :wave:,"Reply has been added to issue, maintainer to review",E99695
+Needs: Author Feedback :ear:,Awaiting feedback from the issue/PR author,F18A07
+Needs: External Changes :hammer_and_pick:,When an issue/PR requires changes that are outside of the control of the module. e.g. to an RP.,DE389D
+Needs: More Evidence :balance_scale:,We are looking for more evidence to make a decision on this,F64872
+Needs: Triage :mag:,Maintainers need to triage still,FBCA04
+Status: Awaiting Release To Be Cut :scissors:,"This is fixed in the main branch but not in the latest release, will be fixed with next release cut",800080
+Status: Do Not Merge :no_entry:,Do not merge PRs with this label attached as they are not ready or aligned to future direction etc.,8b4513
+Status: External Contribution :earth_africa:,This is being worked on by someone outside of the AVM module owners/contributors or AVM core team,D8FA2C
+Status: Fixed :white_check_mark:,Auto label applied when issue fixed by merged PR,90ee90
+Status: Help Wanted :sos:,Extra attention is needed,ff4500
+Status: In PR :point_right:,This is when an issue is due to be fixed in an open PR,ededed
+Status: Invalid :x:,This doesn't seem right,e4e669
+Status: Long Term :hourglass_flowing_sand:,"We will do it, but will take a longer amount of time due to complexity/priorities",B60205
+Status: No Recent Activity :zzz:,When an issue/PR has not been modified for X amount of days,808080
+Status: Wont Fix :-1:,This will not be worked on,ffffff
+Type: Bug :bug:,Something isn't working,d73a4a
+Type: Documentation :page_facing_up:,Improvements or additions to documentation,0075ca
+Type: Duplicate :palms_up_together:,This issue or pull request already exists,cfd3d7
+Type: Feature Request :heavy_plus_sign:,New feature or request,a2eeef
+Type: Hygiene :broom:,"things related to testing, issue triage etc.",17016A
+Type: New Module Proposal :bulb:,A new module for AVM is being proposed,add8e6
+Type: Question/Feedback :raising_hand:,Further information is requested or just some feedback,CB6BA2
+Type: Security Bug :lock:,This is a security bug,ffff00
+Status: Module Orphaned :eyes:,The module has no owner and is therefore orphaned at this time,f4a460
+Type: AVM :a: :v: :m:,This is an AVM related issue,f0ffff

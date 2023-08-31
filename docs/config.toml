@@ -46,7 +46,7 @@ enableRobotsTXT = true
 
   # (Optional, default true) Show a breadcrumb navigation bar at the top of each docs page.
   # You can also specify this parameter per page in front matter.
-  geekdocBreadcrumb = false
+  geekdocBreadcrumb = true
 
   # (Optional, default none) Set source repository location. Used for 'Edit page' links.
   # You can also specify this parameter per page in front matter.

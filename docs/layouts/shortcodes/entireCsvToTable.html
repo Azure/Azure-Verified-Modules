@@ -1,0 +1,19 @@
+{{ $useHeaderRow := .Get "header" }}
+{{ $csv := .Get "csv" }}
+{{ $file := readFile $csv }}
+{{ $rows := $file | transform.Unmarshal }}
+
+<table>
+  {{ if $useHeaderRow }}
+    {{ $headerRow := index $rows 0 }}
+    {{ $rows = after 1 $rows }}
+    <thead> <tr> {{ range $headerRow }} <th>{{ . }}</th> {{ end }} </tr> </thead>
+  {{ end }}
+  {{ range $rows }}
+    <tr>
+      {{ range . }}
+        <td>{{ emojify . }}</td>
+      {{ end }}
+    </tr>
+  {{ end }}
+</table>

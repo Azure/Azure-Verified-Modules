@@ -19,9 +19,11 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 {{< toc >}}
 
-## Functional Requirements
+## Shared Requirements (Resource & Pattern Modules)
 
-### ID: BCPFR1 - Category: Composition - Cross-Referencing Modules
+### Functional Requirements
+
+#### ID: BCPFR1 - Category: Composition - Cross-Referencing Modules
 
 Module owners **MAY** cross-references other modules to build either Resource or Pattern modules.
 
@@ -29,7 +31,7 @@ However, they **MUST** be referenced only by a public registry reference to a pi
 
 Although, child modules, that are children of the primary resources being deployed by the AVM Resource Module, **MAY** be specified via local child path e.g. `child/resource.bicep`.
 
-### ID: BCPFR2 - Category: Composition - Role Assignments Role Definition Mapping
+#### ID: BCPFR2 - Category: Composition - Role Assignments Role Definition Mapping
 
 Module owners **MAY** define common RBAC Role Definition names and IDs within a variable to allow consumers to define a RBAC Role Definition by their name rather than their ID, this should be self contained within the module themselves.
 
@@ -46,10 +48,9 @@ Review the [Bicep Contribution Guide's 'RBAC Role Definition Name Mapping' secti
 
 {{< /hint >}}
 
+### Non-Functional Requirements
 
-## Non-Functional Requirements
-
-### ID: BCPNFR1 - Category: Inputs - Data Types
+#### ID: BCPNFR1 - Category: Inputs - Data Types
 
 To simplify the consumption experience for module consumers when interacting with complex data types input parameters, mainly objects and arrays, the Bicep feature of [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types) **MUST** be used and declared.
 
@@ -71,7 +72,7 @@ Therefore it has been decided by the AVM core team that CARML modules initial mi
 
 {{< /hint >}}
 
-### ID: BCPNFR2 - Category: Documentation - Module Documentation Generation
+#### ID: BCPNFR2 - Category: Documentation - Module Documentation Generation
 
 {{< hint type=note >}}
 
@@ -81,7 +82,7 @@ This script/tool is currently being developed by the AVM team and will be made a
 
 Bicep modules documentation **MUST** be automatically generated via the provided script/tooling from the AVM team.
 
-### ID: BCPNFR3 - Category: Documentation - Parameter Files
+#### ID: BCPNFR3 - Category: Documentation - Parameter Files
 
 Bicep modules **MUST** provide parameter files in the following formats:
 
@@ -94,7 +95,7 @@ Bicep Parameter Files (`.bicepparam`) are being reviewed and considered by the A
 
 {{< /hint >}}
 
-### ID: BCPNFR4 - Category: Documentation - Parameter Input Examples
+#### ID: BCPNFR4 - Category: Documentation - Parameter Input Examples
 
 Bicep modules **MUST** provide parameter input examples for each parameter using the `metadata.example` property via the `@metadata()` decorator.
 
@@ -108,7 +109,7 @@ Example:
 param location string = resourceGroup().location
 ```
 
-### ID: BCPNFR5 - Category: Composition - Role Assignments Role Definition Mapping Limits
+#### ID: BCPNFR5 - Category: Composition - Role Assignments Role Definition Mapping Limits
 
 As per [BCPFR2](#id-bcpfr2---category-composition---role-assignments-role-definition-mapping), module owners **MAY** define common RBAC Role Definition names and IDs within a variable to allow consumers to define a RBAC Role Definition by their name rather than their ID.
 
@@ -129,7 +130,7 @@ Review the [Bicep Contribution Guide's 'RBAC Role Definition Name Mapping' secti
 {{< /hint >}}
 
 
-### ID: BCPNFR6 - Category: Composition - Role Assignments Role Definition Mapping Compulsory Roles
+#### ID: BCPNFR6 - Category: Composition - Role Assignments Role Definition Mapping Compulsory Roles
 
 Module owners **MUST** include the following roles in the variable for RBAC Role Definition names:
 

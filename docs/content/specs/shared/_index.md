@@ -1,5 +1,5 @@
 ---
-title: Shared Specification
+title: Shared Specification (Bicep & Terraform)
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
@@ -19,7 +19,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 {{< toc >}}
 
-## Shared Requirements
+## Shared Requirements (Resource & Pattern Modules)
 
 Listed below are both functional and non-functional requirements for both classifications of AVM modules (Resource and Pattern)
 
@@ -195,6 +195,35 @@ For example, if an AVM Resource Module is used in an AVM Pattern Module that was
 
 This avoids AVM Module owners from having to maintain multiple major release versions.
 
+#### ID: SNFR23 - Category: Contribution/Support - GitHub Repo Labels
+
+GitHub repositories where modules are held **MUST** use the below labels and **SHOULD** not use any additional labels:
+
+{{< expand "AVM Standard GitHub Labels" "expand/collapse" >}}
+
+These labels are available in a CSV file from [here](/Azure-Verified-Modules/governance/avm-standard-github-labels.csv)
+
+{{< entireCsvToTable header=true csv="/static/governance/avm-standard-github-labels.csv" >}}
+
+{{< /expand >}}
+
+To help apply these to a module GitHub repository you can use the below PowerShell script:
+
+{{< expand "Set-AvmGitHubLabels.ps1" "expand/collapse" >}}
+
+For most scenario this is the command you'll need to call the below PowerShell script with, replacing the value for `RepositoryName`:
+
+```powershell
+Set-AvmGitHubLabels.ps1 -RepositoryName "Org/MyGitHubRepo" -CreateCsvLabelExports $false -NoUserPrompts $true
+```
+
+Be aware this script  by default, will remove all pre-existing labels from the repository, but this can be changed by setting the `-RemoveExistingLabels` parameter to `$false`
+
+Full Script:
+
+{{< include file="/static/scripts/Set-AvmGitHubLabels.ps1" language="powershell" options="linenos=false" >}}
+
+{{< /expand >}}
 #### ID: SNFR13 - Category: Forking - Private Module Registry Support
 
 A module **MUST** also function within a private module registry, internal Git repo.
