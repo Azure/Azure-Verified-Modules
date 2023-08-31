@@ -216,7 +216,7 @@ For most scenario this is the command you'll need to call the below PowerShell s
 Set-AvmGitHubLabels.ps1 -RepositoryName "Org/MyGitHubRepo" -CreateCsvLabelExports $false
 ```
 
-Be aware this script  by default, will remove all pre-existing labels from the repository, but this can be change by setting the `-RemoveExistingLabels` parameter to `$false`
+Be aware this script  by default, will remove all pre-existing labels from the repository, but this can be changed by setting the `-RemoveExistingLabels` parameter to `$false`
 
 Full Script:
 
