@@ -217,9 +217,11 @@ For most scenario this is the command you'll need to call the below PowerShell s
 Set-AvmGitHubLabels.ps1 -RepositoryName "Org/MyGitHubRepo" -CreateCsvLabelExports $false -NoUserPrompts $true
 ```
 
-Be aware this script  by default, will remove all pre-existing labels from the repository, but this can be changed by setting the `-RemoveExistingLabels` parameter to `$false`
+By default this script will only update and append labels on the repository specified. However, this can be changed by setting the parameter `-UpdateAndAddLabelsOnly` to `$false`, which will remove all the labels from the repository first and then apply the AVM labels from the CSV only.
 
 Full Script:
+
+These `Set-AvmGitHubLabels.ps1` can be downloaded from <a href="/Azure-Verified-Modules/scripts/Set-AvmGitHubLabels.ps1" download>here</a>.
 
 {{< include file="/static/scripts/Set-AvmGitHubLabels.ps1" language="powershell" options="linenos=false" >}}
 
