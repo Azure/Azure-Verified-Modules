@@ -26,6 +26,9 @@
 .Parameter RemoveExistingLabels
   If set to $true, the default value, the script will remove all pre-existing labels from the repository specified in -RepositoryName before applying the AVM labels. If set to $false, the script will not remove any pre-existing labels.
 
+.Parameter UpdateAndAddLabelsOnly
+  If set to $true, the default value, the script will only update and add labels to the repository specified in -RepositoryName. If set to $false, the script will remove all pre-existing labels from the repository specified in -RepositoryName before applying the AVM labels.
+
 .Parameter OutputDirectory
   The directory to output the pre-existing and post-existing labels to in a CSV file. The default value is the current directory.
 
@@ -86,6 +89,9 @@ param (
   [bool]$RemoveExistingLabels = $true,
 
   [Parameter(Mandatory = $false)]
+  [bool]$UpdateAndAddLabelsOnly = $true,
+
+  [Parameter(Mandatory = $false)]
   [bool]$CreateCsvLabelExports = $true,
 
   [Parameter(Mandatory = $false)]
@@ -129,7 +135,7 @@ if ($null -eq $GitHubRepository) {
 Write-Host "The GitHub repository $RepositoryName exists..." -ForegroundColor Green
 
 # PRE - Get the current GitHub repository labels and export to a CSV file in the current directory or where -OutputDirectory specifies if set to a valid directory path and the directory exists or can be created if it does not exist already
-if ($CreateCsvLabelExports -eq $true) {
+if ($RemoveExistingLabels -or $UpdateAndAddLabelsOnly) {
   Write-Host "Getting the current GitHub repository (pre) labels for $RepositoryName..." -ForegroundColor Yellow
   $GitHubRepositoryLabels = gh label list -R $RepositoryName -L $GitHubCliLimit --json name,description,color
 
@@ -143,7 +149,7 @@ if ($CreateCsvLabelExports -eq $true) {
 # Remove all pre-existing labels if -RemoveExistingLabels is set to $true and user confirms they want to remove all pre-existing labels
 if ($null -ne $GitHubRepositoryLabels) {
   $GitHubRepositoryLabelsJson = $GitHubRepositoryLabels | ConvertFrom-Json
-  if ($RemoveExistingLabels -eq $true -and $NoUserPrompts -eq $false) {
+  if ($RemoveExistingLabels -eq $true -and $NoUserPrompts -eq $false -and $UpdateAndAddLabelsOnly -eq $false) {
     $RemoveExistingLabelsConfirmation = Read-Host "Are you sure you want to remove all $($GitHubRepositoryLabelsJson.Count) pre-existing labels from $($RepositoryName)? (Y/N)"
     if ($RemoveExistingLabelsConfirmation -eq "Y") {
       Write-Host "Removing all pre-existing labels from $RepositoryName..." -ForegroundColor Yellow
@@ -153,7 +159,7 @@ if ($null -ne $GitHubRepositoryLabels) {
       }
     }
   }
-  if ($RemoveExistingLabels -eq $true -and $NoUserPrompts -eq $true) {
+  if ($RemoveExistingLabels -eq $true -and $NoUserPrompts -eq $true -and $UpdateAndAddLabelsOnly -eq $false) {
     Write-Host "Removing all pre-existing labels from $RepositoryName..." -ForegroundColor Yellow
     $GitHubRepositoryLabels | ConvertFrom-Json | ForEach-Object {
       Write-Host "Removing label $($_.name) from $RepositoryName..." -ForegroundColor DarkRed
@@ -162,11 +168,10 @@ if ($null -ne $GitHubRepositoryLabels) {
   }
 }
 if ($null -eq $GitHubRepositoryLabels) {
-  Write-Host "No pre-existing labels to remove from $RepositoryName..." -ForegroundColor Magenta
+  Write-Host "No pre-existing labels to remove or not selected to be removed from $RepositoryName..." -ForegroundColor Magenta
 }
 
 # Check LabelsToApplyCsvUri is valid and contains a CSV content
-
 Write-Host "Checking $LabelsToApplyCsvUri is valid..." -ForegroundColor Yellow
 $LabelsToApplyCsvUriValid = $LabelsToApplyCsvUri -match "^https?://"
 if ($false -eq $LabelsToApplyCsvUriValid) {
@@ -185,12 +190,17 @@ if ($false -eq $avmLabelsCsvColumnsValid) {
 }
 Write-Host "The labels CSV file contains the required columns: Name, Description, HEX" -ForegroundColor Green
 
-
 # Create the AVM labels in the GitHub repository
-Write-Host "Creating the $($avmLabelsCsv.Count) AVM labels in $RepositoryName..." -ForegroundColor Yellow
+Write-Host "Creating/Updating the $($avmLabelsCsv.Count) AVM labels in $RepositoryName..." -ForegroundColor Yellow
 $avmLabelsCsv | ForEach-Object {
-  Write-Host "Creating label $($_.name) in $RepositoryName..." -ForegroundColor Cyan
-  gh label create -R $RepositoryName "$($_.Name)" -c $_.HEX -d $($_.Description) --force
+  if ($GitHubRepositoryLabelsJson.name -contains $_.name) {
+    Write-Host "The label $($_.name) already exists in $RepositoryName. Updating the label to ensure description and color are consitent..." -ForegroundColor Magenta
+    gh label create -R $RepositoryName "$($_.name)" -c $_.HEX -d $($_.Description) --force
+  }
+  else {
+    Write-Host "The label $($_.name) does not exist in $RepositoryName. Creating label $($_.name) in $RepositoryName..." -ForegroundColor Cyan
+    gh label create -R $RepositoryName "$($_.Name)" -c $_.HEX -d $($_.Description) --force
+  }
 }
 
 # POST - Get the current GitHub repository labels and export to a CSV file in the current directory or where -OutputDirectory specifies if set to a valid directory path and the directory exists or can be created if it does not exist already
@@ -206,7 +216,7 @@ if ($CreateCsvLabelExports -eq $true) {
 }
 
 # If -RemoveExistingLabels is set to $true and user confirms they want to remove all pre-existing labels check that only the avm labels exist in the repository
-if ($RemoveExistingLabels -eq $true -and ($RemoveExistingLabelsConfirmation -eq "Y" -or $NoUserPrompts -eq $true)) {
+if ($RemoveExistingLabels -eq $true -and ($RemoveExistingLabelsConfirmation -eq "Y" -or $NoUserPrompts -eq $true) -and $UpdateAndAddLabelsOnly -eq $false) {
   Write-Host "Checking that only the AVM labels exist in $RepositoryName..." -ForegroundColor Yellow
   $GitHubRepositoryLabels = gh label list -R $RepositoryName -L $GitHubCliLimit --json name,description,color
   $GitHubRepositoryLabels | ConvertFrom-Json | ForEach-Object {
@@ -217,4 +227,4 @@ if ($RemoveExistingLabels -eq $true -and ($RemoveExistingLabelsConfirmation -eq 
   Write-Host "Only the CSV labels exist in $RepositoryName..." -ForegroundColor Green
 }
 
-Write-Host "The CSV labels have been created in $RepositoryName..." -ForegroundColor Green
+Write-Host "The CSV labels have been created/updated in $RepositoryName..." -ForegroundColor Green
