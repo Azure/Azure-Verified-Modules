@@ -337,7 +337,7 @@ Modules support the following optional features/extension resources, as specifie
 
 {{< hint type=note >}}
 
-Please note that the implementation of Customer Managed Keys from an ARM API perspective is different across various RPs that implement Customer Managed Keys in their service. For that reason you may not differences between modules on how Customer Managed Keys are handled and implemented, but functionality will be as expected.
+Please note that the implementation of Customer Managed Keys from an ARM API perspective is different across various RPs that implement Customer Managed Keys in their service. For that reason you may see differences between modules on how Customer Managed Keys are handled and implemented, but functionality will be as expected.
 
 {{< /hint >}}
 
