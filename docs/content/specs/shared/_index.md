@@ -169,7 +169,7 @@ Today this is only Microsoft FTEs, but everyone is welcome to contribute. The mo
 
 All GitHub repositories that AVM module are published from and hosted within **MUST** only assign GitHub repository permissions to GitHub teams only.
 
-Each module **MUST** have a separate GitHub Teams assigned for module owners **AND** module contributors respectively. 
+Each module **MUST** have separate GitHub Teams assigned for module owners **AND** module contributors respectively. 
 
 There **MUST NOT** be any GitHub repository permissions assigned to individual users.
 
