@@ -1,6 +1,5 @@
 diagnosticSettings: [
   {
-    retentionInDays: 30
     logCategoriesAndGroups: ['allLogs']
     metricCategories: ['AllMetrics']
     logAnalyticsDestinationType: 'Dedicated'
