@@ -415,7 +415,7 @@ Example: `avm-res-compute-virtualmachine`
 
 {{< hint type=note >}}
 
-We will maintain a JSON file in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/issues) with the correct singular names for all resource types to enable checks to utilize this list to ensure repos are named correctly.
+We will maintain a CSV file in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/issues) with the correct singular names for all resource types to enable checks to utilize this list to ensure repos are named correctly.
 
 This will be updated quarterly, or ad-hoc as new RPs/ Resources are created and highlighted via a check failure.
 
