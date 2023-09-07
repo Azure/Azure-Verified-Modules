@@ -155,11 +155,11 @@ All issues created in a module repo will be automatically be picked up and track
 
 ### What are the guardrails/quality gates I need to be aware of/leverage/be compliant with?
 
-<!-- (i.e., where's the CI environment with the automated tests that I need to use and comply with)? -->
+<!-- ( CI environment with the ai.e., where's theutomated tests that I need to use and comply with)? -->
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
-### Will I get any level of code review from the AVM core team to make sure my work is up to the standards?
+<!-- ### Will I get any level of code review from the AVM core team to make sure my work is up to the standards? -->
 
 {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
 
