@@ -10,32 +10,9 @@ geekdocToC: 1
 
 ## Proposing a module
 
-### Where do I need to go to make sure the module I'd like to propose is not already in the works?
-
-The [AVM core team][AVMCoreTeam] maintains the list of [Bicep][BicepModules] and [Terraform][TFModules] modules and tracks the status of each module. Based on this module catalog, you can check if the module you'd like to build is already in the works (e.g., it's being worked on in a feature branch but hasn't been published yet).
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}}
-Module catalog is to be published soon.
-{{< /hint >}}
-
-### I need a new module but I cannot own/author it for various reasons, what should I do?
-
-Each AVM module requires a [module owner][ModuleOwners] and **MAY** have additional [module contributors][ModuleContributors].
-
-Essentially, you have 3 options:
-
-1. You sign up to be a module owner (and optionally, you can find additional contributors to help you).
-2. You find / request someone else to be the module owner (and optionally, you can be a contributor).
-3. You propose a module and wait until the AVM core team finds a module owner for you (who then can optionally leverage the help of additional contributors).
-
-As these options are increasingly more time consuming, we recommend you to start with considering option 1 and only if you cannot own the module, should you move to option 2 and then 3.
-
-You can propose a new module [here][ModuleProposal].
-
 ### Where can I submit a new module proposal / request?
 
 To propose a new module, simply create an issue [here][ModuleProposal].
-
 ### Can I just propose / create ANY module?
 
 **For example, can I propose one for managed disks or NICs or diagnostic settings? What about patterns?**
@@ -59,6 +36,29 @@ Below, we provide some guidance on what modules you can / cannot propose.
   - Bad examples:
     - A pair of Virtual machines: being a simple wrapper, this solution wouldn't bring any extra value as it doesn't provide a complete solution.
     - Key Vault that deploys automatically generated secrets: this is aligned with the definition of a resource modules, therefore it should be categorized as such.
+
+### Where do I need to go to make sure the module I'd like to propose is not already in the works?
+
+The [AVM core team][AVMCoreTeam] maintains the list of [Bicep][BicepModules] and [Terraform][TFModules] modules and tracks the status of each module. Based on this module catalog, you can check if the module you'd like to build is already in the works (e.g., it's being worked on in a feature branch but hasn't been published yet).
+
+{{< hint type=warning title=TBD icon=gdoc_gitea >}}
+Module catalog is to be published soon.
+{{< /hint >}}
+
+### I need a new module but I cannot own/author it for various reasons, what should I do?
+
+Each AVM module requires a [module owner][ModuleOwners] and **MAY** have additional [module contributors][ModuleContributors].
+
+Essentially, you have 3 options:
+
+1. You sign up to be a module owner (and optionally, you can find additional contributors to help you).
+2. You find / request someone else to be the module owner (and optionally, you can be a contributor).
+3. You propose a module and wait until the AVM core team finds a module owner for you (who then can optionally leverage the help of additional contributors).
+
+As these options are increasingly more time consuming, we recommend you to start with considering option 1 and only if you cannot own the module, should you move to option 2 and then 3.
+
+You can propose a new module [here][ModuleProposal].
+
 
 ### How long will it take for someone to respond and a module to be created/updated and published?
 
@@ -84,7 +84,7 @@ Module catalog is to be published soon.
 
 <br>
 
-## Preparing the environment for a new module
+<!-- ## Preparing the environment for a new module
 
 ### Bicep & Terraform
 
@@ -233,7 +233,7 @@ we need to document a step that describes that the status flag of the modules ne
  -->
 ### Will modules ever be deleted from their respective registries?
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
  <!-- 
  on this, we concluded earlier that a module MUST never get deleted from a registry. It can be "abandoned" as part of the retirement flow.  
