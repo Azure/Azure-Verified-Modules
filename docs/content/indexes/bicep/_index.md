@@ -1,12 +1,15 @@
 ---
 title: Bicep AVM Modules Index
-geekdocNav: true
+geekdocNav: false
 geekdocAlign: left
 geekdocAnchor: true
 ---
 
-{{< hint type=note >}}
+{{< hint type=tip >}}
 
-*Coming soon*
+**Use the breadcrumb menu** above to navigate back to the main page!
 
 {{< /hint >}}
+
+
+{{< moduleIndexCsvToTable header=true csv="/static/module-indexes/BicepResourceModules.csv" >}}
