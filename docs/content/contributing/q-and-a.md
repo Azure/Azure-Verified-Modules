@@ -17,7 +17,7 @@ To propose a new module, simply create an issue [here][ModuleProposal].
 
 **For example, can I propose one for managed disks or NICs or diagnostic settings? What about patterns?**
 
-**TLDR**: No, you cannot propose or create just any module. You can only propose modules that are aligned with requirements documented in the [module specifications][ModuleSpecifications] section.
+No, you cannot propose or create just any module. You can only propose modules that are aligned with requirements documented in the [module specifications][ModuleSpecifications] section.
 
 Below, we provide some guidance on what modules you can / cannot propose.
 
