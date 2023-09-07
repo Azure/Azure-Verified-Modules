@@ -167,9 +167,29 @@ Today this is only Microsoft FTEs, but everyone is welcome to contribute. The mo
 
 #### ID: SNFR20 - Category: Contribution/Support - GitHub Teams Only
 
-All GitHub repositories that AVM module are published from and hosted withing **MUST** only assign GitHub repository permissions to GitHub teams only.
+All GitHub repositories that AVM module are published from and hosted within **MUST** only assign GitHub repository permissions to GitHub teams only.
 
-They **MUST NOT** assign any GitHub repository permissions to individual users.
+Each module **MUST** have separate GitHub Teams assigned for module owners **AND** module contributors respectively.
+
+There **MUST NOT** be any GitHub repository permissions assigned to individual users.
+
+The naming convention for the GitHub Teams **MUST** follow the below pattern:
+- `@azure/<module name>-module-owners-<bicep/tf>` - to be assigned as the GitHub repository's `Module Owners` team
+- `@azure/<module name>-module-contributors-<bicep/tf>` - to be assigned as the GitHub repository's `Module Contributors` team
+
+Segments:
+
+- `@azure` == the GitHub organization the AVM repository exists in
+- `<module name>` == the AVM Module's name
+  - See [RMNFR1](#id-rmnfr1---category-naming---module-naming) for AVM Resource Module Naming
+  - See [PMNFR1](#id-pmnfr1---category-naming---module-naming) for AVM Pattern Module Naming
+- `module-owners` or `module-contributors` == the role the GitHub Team is assigned to
+- `<bicep/tf>` == the language the module is written in
+
+Examples:
+
+- `@azure/avm-res-compute-virtualmachine-module-owners-bicep`
+- `@azure/avm-res-compute-virtualmachine-module-contributors-tf`
 
 #### ID: SNFR9 - Category: Contribution/Support - AVM & PG Teams GitHub Repo Permissions
 
@@ -337,7 +357,7 @@ Modules support the following optional features/extension resources, as specifie
 
 {{< hint type=note >}}
 
-Please note that the implementation of Customer Managed Keys from an ARM API perspective is different across various RPs that implement Customer Managed Keys in their service. For that reason you may not differences between modules on how Customer Managed Keys are handled and implemented, but functionality will be as expected.
+Please note that the implementation of Customer Managed Keys from an ARM API perspective is different across various RPs that implement Customer Managed Keys in their service. For that reason you may see differences between modules on how Customer Managed Keys are handled and implemented, but functionality will be as expected.
 
 {{< /hint >}}
 

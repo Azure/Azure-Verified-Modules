@@ -24,3 +24,8 @@ Type: Question/Feedback :raising_hand:,Further information is requested or just 
 Type: Security Bug :lock:,This is a security bug,ffff00
 Status: Module Orphaned :eyes:,The module has no owner and is therefore orphaned at this time,f4a460
 Type: AVM :a: :v: :m:,This is an AVM related issue,f0ffff
+Language: Terraform :globe_with_meridians:,This is related to the Terraform IaC language,7740b6
+Language: Bicep :muscle:,This is related to the Bicep IaC language,1d73b3
+Status: Migrate from CARML :articulated_lorry:,This item is related to a module migration from CARML,00796F
+Status: Migrate from TFVM :articulated_lorry:,This item is related to a module migration from TFVM,00796F
+Status: Owners Identified :metal:,This module has its owners identified,FBEF2A
