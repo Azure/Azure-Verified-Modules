@@ -32,10 +32,12 @@ jobs:
           fetch-depth: 0
 
       - name: Wait for Hugo Website to Build and Deploy
+        if: github.event_name != 'workflow_dispatch'
         run: |
           Start-Sleep -Seconds 120
 
       - name: Sync Labels
         run: |
           docs/static/scripts/Set-AvmGitHubLabels.ps1 -RepositoryName "Azure/Azure-Verified-Modules" -CreateCsvLabelExports $false -NoUserPrompts $true
-
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
