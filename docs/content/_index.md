@@ -13,6 +13,12 @@ Please review and leave issues on things you find, via [GitHub Issues](https://g
 
 {{< /hint >}}
 
+{{< hint type=tip >}}
+
+Before submitting a new [module proposal](https://aka.ms/avm/moduleproposal) for either Bicep or Terraform, please review the FAQ section on ["CARML/TFVM to AVM Evolution Details"](/Azure-Verified-Modules/faq/#carmltfvm-to-avm-evolution-details)
+
+{{< /hint >}}
+
 Azure Verified Modules (AVM) is an initiative to consolidate and set the standards for what a good Infrastructure-as-Code module looks like.
 
 Modules will then align to these standards, across languages (Bicep, Terraform etc.) and will then be classified as AVMs and available from their respective language specific registries.
