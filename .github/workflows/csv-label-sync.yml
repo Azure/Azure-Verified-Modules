@@ -1,0 +1,41 @@
+# Workflow for syncing CSV labels to GitHub Labels
+name: Sync AVM Labels from CSV to GitHub Labels
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/static/governance/avm-standard-github-labels.csv'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch: {}
+
+# Allow one concurrent deployment
+concurrency:
+  group: "labels"
+  cancel-in-progress: true
+
+# Default to bash
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  sync-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Wait for Hugo Website to Build and Deploy
+        run: |
+          Start-Sleep -Seconds 120
+
+      - name: Sync Labels
+        run: |
+          docs/static/scripts/Set-AvmGitHubLabels.ps1 -RepositoryName "Azure/Azure-Verified-Modules" -CreateCsvLabelExports $false -NoUserPrompts $true
+
