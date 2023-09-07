@@ -24,6 +24,21 @@ The AVM initiative has been working closely with the teams behind the following 
 
 AVM is a straight-line evolution of CARML & TFVM.
 
+### CARML/TFVM to AVM Evolution Details
+
+While AVM Module contributions and ownership will shortly be opened to all Microsoft FTEs and the public (as contributors), the content of previously existing libraries such as TFVM & CARML will be migrated to AVM. The relevant teams are working out the details of the migration process as you read this.
+
+In the case of CARML (Bicep), this will include:
+
+- A new release making CARML conform with the Bicep Registry
+- Tests automation alignment
+- Module features added where applicable and aligned with AVM specifications
+
+Aspiring Bicep-based AVM modules contributors/owners, please check the CARML library first to see if the module you want to propose already exists as a CARML module.
+
+- If you wish to own it in the future (once migrated by the AVM/CARML/TFVM teams), please go ahead and submit your Module Proposal using the form today and just let us know in the details
+- If you don't plan to be the owner but do want to contribute, please hold off from contributing until it's migrated from CARML/TFVM
+
 ### CARML Evolution
 
 CARML is an existing IaC module library effort, written in Bicep (only), that was started by ISD and has been contributed to by many across Microsoft and has also had some external contributions.
