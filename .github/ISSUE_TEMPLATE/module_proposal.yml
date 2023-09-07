@@ -1,7 +1,7 @@
 name: New AVM Module Proposal 📝
 description: Want a new AVM Module to exist? Let us know
-title: "[Module Proposal]: "
-labels: ["Type: New Module Proposal :bulb:"]
+title: "[Module Proposal]: REPLACE ME WITH MODULE BEING PROPOSED"
+labels: ["Type: New Module Proposal :bulb:", "Needs: Triage :mag:"]
 body:
   - type: markdown
     attributes:
@@ -17,15 +17,22 @@ body:
       options:
         - label: I have checked for previous/existing GitHub issues/module proposals
           required: true
+  - type: checkboxes
+    id: existing-module-from-elsewhere
+    attributes:
+      label: Check this module doesn't already exist in another project that is being evolved into AVM
+      description: By submitting this issue, you confirm that you have checked [CARML (for Bicep)](https://aka.ms/carml) or [Terraform Verified Modules - TFVM (for Terraform)](https://github.com/Azure/terraform-azure-modules) for the module you are proposing to ensure it is not already in these projects and therefore will be evolved into AVM.
+      options:
+        - label: I have checked for that this module doesn't already exist in CARML or TFVM
+          required: true
   - type: dropdown
     id: tf-bicep
     attributes:
       label: Terraform or Bicep?
-      description: What language are you proposing the module for?
+      description: What language are you proposing the module for? (Please create a separate proposal for each language!)
       options:
         - Bicep
         - Terraform
-        - Both
     validations:
       required: true
   - type: dropdown
