@@ -78,9 +78,7 @@ The AVM core team will then triage the request and get back to you with next ste
 
 The [AVM core team][AVMCoreTeam] will maintain the module catalog and update it as new modules are created and published or existing ones are updated or retired.
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}}
-Module catalog is to be published soon.
-{{< /hint >}}
+
 
 <br>
 
@@ -149,11 +147,11 @@ All issues created in a module repo will be automatically be picked up and track
 
 <!-- (please don't just point me to the root of the docs page 😊) -->
 
-### Where are examples to follow / first sample modules to get inspiration from?
+<!-- ### Where are examples to follow / first sample modules to get inspiration from? -->
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
-### What are the guardrails/quality gates I need to be aware of/leverage/be compliant with?
+<!-- ### What are the guardrails/quality gates I need to be aware of/leverage/be compliant with? -->
 
 <!-- ( CI environment with the ai.e., where's theutomated tests that I need to use and comply with)? -->
 
@@ -161,7 +159,7 @@ All issues created in a module repo will be automatically be picked up and track
 
 <!-- ### Will I get any level of code review from the AVM core team to make sure my work is up to the standards? -->
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
 <!-- 
 module owners are supposed to start development locally, using their own subscriptions, and getting closer to publication, the AVM (central) test environment will have to be leveraged through pipelines/SPNs.
@@ -171,12 +169,12 @@ some recurring tests to ensure we can catch failures after things like API chang
 AVM sub for that. Manual is only for initial - when you first start developing a new module -->
 
 <br>
-
+<!-- 
 ## Publishing the module
 
-### What steps do I need to follow?
+<!-- ### What steps do I need to follow?
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} --> 
 
 <!-- 
 - Is everything fully automated? 
@@ -185,19 +183,19 @@ AVM sub for that. Manual is only for initial - when you first start developing a
 
 <br>
 
-## Updating a module
+<!-- ## Updating a module -->
 
-### What if I forget to bump up the version number?
+<!-- ### What if I forget to bump up the version number? -->
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
 
-### How will it impact the publication flow? Will it mess up the telemetry reporting?
+### How will it impact the publication flow? Will it mess up the telemetry reporting? -->
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
 <!-- to avoid the latter, we should probably consider using a moduleVersion param instead of a variable - or implement some tests that guarantee that this gets updated every time there's was an update to the module -->
 
-### I'm already using a module today, but its missing a feature, what should I do?
+<!-- ### I'm already using a module today, but its missing a feature, what should I do?
 
 {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
 
@@ -205,35 +203,33 @@ AVM sub for that. Manual is only for initial - when you first start developing a
 
 ## Security/Bugs in a module
 
-### I have found a security issue with a module or the way it deploys its resources/pattern, what should I do?
+### I have found a security issue with a module or the way it deploys its resources/pattern, what should I do? -->
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
 <!-- - Covered in SECURITY.md? -->
 
 <br>
-
+<!-- 
 ## Retiring a module
-
 ### What do I need to do to retire the module of and old solution?
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
 <!-- 
 A new Azure resource or resource provider got released that supersedes an existing module. Now that I've had the replacement module published for 2 years, what do I need to do to retire the old solution? 
 we need to document a step that describes that the status flag of the modules needs to be changed to retired in the module index 
 -->
 
-### Can modules be deleted from their respective repo (or can their repo be deleted)?
+<!-- ### Can modules be deleted from their respective repo (or can their repo be deleted)? -->
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
  <!-- 
  to this, we concluded earlier that the right approach is to leave one last readme.md file that provides context and points end users to the replacement solution. 
  -->
-### Will modules ever be deleted from their respective registries?
+<!-- ### Will modules ever be deleted from their respective registries? -->
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
+<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} --> 
 
  <!-- 
  on this, we concluded earlier that a module MUST never get deleted from a registry. It can be "abandoned" as part of the retirement flow.  
