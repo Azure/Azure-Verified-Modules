@@ -5,10 +5,6 @@
   "additionalProperties": {
     "type": "object",
     "properties": {
-      "retention_in_days": {
-        "type": "integer",
-        "default": 30
-      },
       "log_categories_and_groups": {
         "type": "array",
         "items": {
