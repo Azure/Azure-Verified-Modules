@@ -41,11 +41,9 @@ Below, we provide some guidance on what modules you can / cannot propose.
 
 ### Where do I need to go to make sure the module I'd like to propose is not already in the works?
 
-The [AVM core team][AVMCoreTeam] maintains the list of [Bicep][BicepModules] and [Terraform][TFModules] modules and tracks the status of each module. Based on this module catalog, you can check if the module you'd like to build is already in the works (e.g., it's being worked on in a feature branch but hasn't been published yet).
+The [AVM core team][AVMCoreTeam] maintains the list of [Bicep][BicepModules] and [Terraform][TFModules] modules and tracks the status of each module. Based on this lists, you can check if the module you'd like to build is already in the works (e.g., it's being worked on in a feature branch but hasn't been published yet).
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}}
-Module catalog is to be published soon.
-{{< /hint >}}
+<!-- Click here to [Module indexes][ModuleIndexes]  -->
 
 ### I need a new module but I cannot own/author it for various reasons, what should I do?
 
@@ -240,3 +238,4 @@ on this, we concluded earlier that a module MUST never get deleted from a regist
 [DiagnosticSettings]: /Azure-Verified-Modules/specs/shared/interfaces/#diagnostic-settings
 [AzureArchitectureCenter]: https://learn.microsoft.com/en-us/azure/architecture/browse/
 [ALZ]: https://aka.ms/alz
+[ModuleIndexes]: /Azure-Verified-Modules/indexes/
