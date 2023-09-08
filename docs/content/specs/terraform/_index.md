@@ -52,9 +52,9 @@ module "other-module" {
 
 ### Non-Functional Requirements
 
-#### ID: TFNFR1 - Category: Documentation - Parameter Input Examples
+#### ID: TFNFR1 - Category: Documentation - Descriptions
 
-Terraform modules **MUST** provide variable input examples for each variable using the HEREDOC format and embedded markdown.
+Where descriptions for variables and outputs spans multiple lines. The description **MUST** provide variable input examples for each variable using the HEREDOC format and embedded markdown.
 
 Example:
 
@@ -62,17 +62,8 @@ Example:
 
 #### ID: TFNFR2 - Category: Documentation - Module Documentation Generation
 
-Terraform modules documentation **MUST** be automatically generated via [Terraform Docs](https://github.com/terraform-docs/terraform-docs)
+Terraform modules documentation **MUST** be automatically generated via [Terraform Docs](https://github.com/terraform-docs/terraform-docs).
 
-#### ID: TFNFR3 - Category: Documentation - Module README Layout
+A file called `.terraform-docs.yml` **MUST** be present in the root of the module and have the following content:
 
-Terraform modules **MUST** follow the below order for their docs layout for Terraform Docs:
-
-- Header
-- Requirements
-- Providers
-- Resources
-- Inputs
-- Outputs
-- Modules
-- Footer
+{{< include file="/static/includes/terraform-docs.yml" language="yaml" options="linenos=false" >}}
