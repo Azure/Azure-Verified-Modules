@@ -11,15 +11,6 @@ private_endpoints = {
     application_security_group_resource_ids = [
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationSecurityGroups/{asgName}"
     ]
-    # custom_dns_configs = {
-    #   fqdn1 = {
-    #     fqdn = "fqdn1.example.com"
-    #     ip_addresses = [
-    #       "10.0.0.1",
-    #       "10.0.0.2"
-    #     ]
-    #   }
-    # }
     network_interface_name = "nic1"
     ip_configurations = {
       ipconfig1 = {

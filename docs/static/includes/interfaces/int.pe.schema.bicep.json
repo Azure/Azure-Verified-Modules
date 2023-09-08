@@ -33,23 +33,6 @@
       "applicationSecurityGroupResourceIds": {
         "type": "array"
       },
-      "customDnsConfigs": { // this is an output in TF, check here please
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "fqdn": {
-              "type": "string"
-            },
-            "ipAddresses": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        }
-      },
       "networkInterfaceName": {
         "type": "string"
       },

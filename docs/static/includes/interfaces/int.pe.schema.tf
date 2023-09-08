@@ -8,11 +8,7 @@ variable "private_endpoints" {
     private_dns_zone_group_name             = optional(string, null)
     private_dns_zone_resource_ids           = optional(set(string), [])
     application_security_group_resource_ids = optional(set(string), [])
-    # custom_dns_configs = optional(map(object({
-    #   fqdn         = string
-    #   ip_addresses = set(string)
-    # })), {})
-    network_interface_name = optional(string, null)
+    network_interface_name                  = optional(string, null)
     ip_configurations = optional(map(object({
       name               = string
       group_id           = optional(string, null)
@@ -24,6 +20,7 @@ variable "private_endpoints" {
 }
 
 # Be sure to export the custom dns configs for the private endpoints you create.
+# Replace the resource symbolic name (azurerm_private_endpoint.this) with your own.
 output "custom_dns_configs" {
   value = var.private_endpoints == {} ? {} : {
     for k, v in var.private_endpoints : k => azurerm_private_endpoint.this[k].custom_dns_configs
