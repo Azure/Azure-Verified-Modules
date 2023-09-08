@@ -14,6 +14,7 @@ geekdocToC: 1
 ### Where can I submit a new module proposal / request?
 
 To propose a new module, simply create an issue [here][ModuleProposal].
+
 ### Can I just propose / create ANY module?
 
 **For example, can I propose one for managed disks or NICs or diagnostic settings? What about patterns?**
@@ -60,7 +61,6 @@ As these options are increasingly more time consuming, we recommend you to start
 
 You can propose a new module [here][ModuleProposal].
 
-
 ### How long will it take for someone to respond and a module to be created/updated and published?
 
 Whilst there are SLAs defined for providing [support][ModuleSupport] for existing modules, there are currently no SLAs in place for the creation of new modules. The AVM core team is a small team and is currently working on automating the module creation process to make it as easy as possible for module owners to create and publish modules on their own.
@@ -79,10 +79,6 @@ The AVM core team will then triage the request and get back to you with next ste
 
 The [AVM core team][AVMCoreTeam] will maintain the module catalog and update it as new modules are created and published or existing ones are updated or retired.
 
-
-
-<br>
-
 <!-- ## Preparing the environment for a new module
 
 ### Bicep & Terraform
@@ -90,7 +86,6 @@ The [AVM core team][AVMCoreTeam] will maintain the module catalog and update it 
 #### What are the mandatory labels to be used while managing issues on GitHub?
 
 SNFR23
-
 
 #### How will the support SLAs be automatically enforced?
 
@@ -169,7 +164,6 @@ some recurring tests to ensure we can catch failures after things like API chang
 
 AVM sub for that. Manual is only for initial - when you first start developing a new module -->
 
-<br>
 <!--
 ## Publishing the module
 
@@ -181,8 +175,6 @@ AVM sub for that. Manual is only for initial - when you first start developing a
 - Is everything fully automated?
 - Do I need to talk to someone to publish my module in the registry or can I do it on my own?
 -->
-
-<br>
 
 <!-- ## Updating a module -->
 
@@ -210,7 +202,6 @@ AVM sub for that. Manual is only for initial - when you first start developing a
 
 <!-- - Covered in SECURITY.md? -->
 
-<br>
 <!--
 ## Retiring a module
 ### What do I need to do to retire the module of and old solution?
