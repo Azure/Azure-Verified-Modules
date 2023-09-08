@@ -30,6 +30,13 @@ Before you start contributing to the AVM, it is **highly recommended** that you 
 
 ### Required Tooling
 
+{{< hint type=tip >}}
+
+We **strongly** recommend you use Linux or MacOS for your development environment.
+You can use Windows Subsystem for Linux (WSL) if you are using Windows.
+
+{{< /hint >}}
+
 To contribute to this project the following tooling is required:
 
 - [Git](https://git-scm.com/downloads)
