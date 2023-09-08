@@ -17,7 +17,7 @@ main:
           - name: 'Resource Modules'
             ref: 'indexes/terraform/tf-resource-modules'
           - name: 'Pattern Modules'
-            ref: 'indexes/terraform/tf-pattern-modules'        
+            ref: 'indexes/terraform/tf-pattern-modules'
   - name: 'Concepts'
     sub:
       - name: 'What, Why, How'

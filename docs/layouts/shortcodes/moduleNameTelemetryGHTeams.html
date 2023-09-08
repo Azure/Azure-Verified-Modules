@@ -4,26 +4,26 @@
 {{ $rows := $file | transform.Unmarshal (dict "delimiter" ",") }}
 <table>
   {{ if $useHeaderRow }}
-    {{ $headerRow := index $rows 0 }}
-    {{ $rows = after 1 $rows }}
-    <thead> 
-      <tr> 
-        <th>Module Name</th>
-        <th>Telemetry ID prefix</th>
-        <th>GitHub Teams for Module Owners and Contributors</th>
-      </tr>
-    </thead>
+  {{ $headerRow := index $rows 0 }}
+  {{ $rows = after 1 $rows }}
+  <thead>
+    <tr>
+      <th>Module Name</th>
+      <th>Telemetry ID prefix</th>
+      <th>GitHub Teams for Module Owners and Contributors</th>
+    </tr>
+  </thead>
   {{ end }}
   {{ range $row, $rows }}
-    <tr>
-      <td>{{ index $row 3 }}</td>
-      <td><code>{{ index $row 7 }}</code></td>
-      <td>
-        <code>{{ index $row 10 }}</code>
-        <br>
-        <code>{{ index $row 11 }}</code>
-      </td>
-      <td></td>
-    </tr>
+  <tr>
+    <td>{{ index $row 3 }}</td>
+    <td><code>{{ index $row 7 }}</code></td>
+    <td>
+      <code>{{ index $row 10 }}</code>
+      <br>
+      <code>{{ index $row 11 }}</code>
+    </td>
+    <td></td>
+  </tr>
   {{ end }}
 </table>
