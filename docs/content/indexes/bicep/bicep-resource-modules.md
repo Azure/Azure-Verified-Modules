@@ -15,7 +15,7 @@ geekdocAnchor: true
 
 This page contains various views of the module index (catalog) for **Bicep Resource Modules**. To see these views, **click on the expandable sections** below.
 
-To see the **full, unfiltered module index**, click [here](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/bicep/BicepResourceModules.csv).
+To see the **full, unfiltered module index**, click [here](/Azure-Verified-Modules/module-indexes/BicepResourceModules.csv).
 
 {{< /hint >}}
 
