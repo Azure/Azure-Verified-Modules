@@ -19,7 +19,7 @@ geekdocAnchor: true
 
 {{< hint type=note >}}
 
-This page contains various views of the module index (catalog) for **Terraform Resource Modules**. To see the various views, **click on the expandable sections** below.
+This page contains various views of the module index (catalog) for **Terraform Resource Modules**. To see these views, **click on the expandable sections** below.
 
 To see the **full, unfiltered module index**, click [here](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/terraform/TerraformResourceModules.csv).
 
