@@ -93,6 +93,11 @@ See the language specific contribution guides for detailed guidance and sample c
 - [Bicep](/Azure-Verified-Modules/contributing/bicep/)
 - [Terraform](/Azure-Verified-Modules/contributing/terraform/)
 
+{{< /hint >}}
+
+{{< hint type=note >}}
+
+We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) with the required TelemetryId prefixes to enable checks to utilize this list to ensure the correct IDs are used. To see the formatted content of these CSV files with additional information, please visit the [AVM Module Indexes](/Azure-Verified-Modules/indexes) page.
 
 {{< /hint >}}
 
@@ -415,7 +420,7 @@ Example: `avm-res-compute-virtualmachine`
 
 {{< hint type=note >}}
 
-We will maintain a JSON file in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/issues) with the correct singular names for all resource types to enable checks to utilize this list to ensure repos are named correctly.
+We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) with the correct singular names for all resource types to enable checks to utilize this list to ensure repos are named correctly. To see the formatted content of these CSV files with additional information, please visit the [AVM Module Indexes](/Azure-Verified-Modules/indexes) page.
 
 This will be updated quarterly, or ad-hoc as new RPs/ Resources are created and highlighted via a check failure.
 
