@@ -162,7 +162,7 @@ All issues created in a module repo will be automatically be picked up and track
 
 <!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
-<!-- 
+<!--
 module owners are supposed to start development locally, using their own subscriptions, and getting closer to publication, the AVM (central) test environment will have to be leveraged through pipelines/SPNs.
 
 some recurring tests to ensure we can catch failures after things like API changes.
@@ -170,16 +170,16 @@ some recurring tests to ensure we can catch failures after things like API chang
 AVM sub for that. Manual is only for initial - when you first start developing a new module -->
 
 <br>
-<!-- 
+<!--
 ## Publishing the module
 
 <!-- ### What steps do I need to follow?
 
 {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
-<!-- 
-- Is everything fully automated? 
-- Do I need to talk to someone to publish my module in the registry or can I do it on my own? 
+<!--
+- Is everything fully automated?
+- Do I need to talk to someone to publish my module in the registry or can I do it on my own?
 -->
 
 <br>
@@ -211,29 +211,29 @@ AVM sub for that. Manual is only for initial - when you first start developing a
 <!-- - Covered in SECURITY.md? -->
 
 <br>
-<!-- 
+<!--
 ## Retiring a module
 ### What do I need to do to retire the module of and old solution?
 {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
-<!-- 
-A new Azure resource or resource provider got released that supersedes an existing module. Now that I've had the replacement module published for 2 years, what do I need to do to retire the old solution? 
-we need to document a step that describes that the status flag of the modules needs to be changed to retired in the module index 
+<!--
+A new Azure resource or resource provider got released that supersedes an existing module. Now that I've had the replacement module published for 2 years, what do I need to do to retire the old solution?
+we need to document a step that describes that the status flag of the modules needs to be changed to retired in the module index
 -->
 
 <!-- ### Can modules be deleted from their respective repo (or can their repo be deleted)? -->
 
 <!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
- <!-- 
- to this, we concluded earlier that the right approach is to leave one last readme.md file that provides context and points end users to the replacement solution. 
- -->
+ <!--
+ to this, we concluded earlier that the right approach is to leave one last readme.md file that provides context and points end users to the replacement solution.
+-->
 <!-- ### Will modules ever be deleted from their respective registries? -->
 
 <!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
- <!-- 
- on this, we concluded earlier that a module MUST never get deleted from a registry. It can be "abandoned" as part of the retirement flow.  
+ <!--
+on this, we concluded earlier that a module MUST never get deleted from a registry. It can be "abandoned" as part of the retirement flow. 
  -->
 
 [AVMCoreTeam]: /Azure-Verified-Modules/specs/shared/team-definitions/#avm-core-team
