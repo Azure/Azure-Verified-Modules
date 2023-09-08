@@ -24,8 +24,8 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
   {{< tab "Bicep Input Example with Values" >}}
   {{< include file="/static/includes/interfaces/int.diag.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
-  {{< tab "Terraform Schema" >}}
-  {{< include file="/static/includes/interfaces/int.diag.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< tab "Terraform Variable Declaration" >}}
+  {{< include file="/static/includes/interfaces/int.diag.schema.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
   {{< include file="/static/includes/interfaces/int.diag.input.tf" language="terraform" options="linenos=false" >}}
@@ -41,8 +41,8 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
   {{< tab "Bicep Input Example with Values" >}}
   {{< include file="/static/includes/interfaces/int.rbac.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
-  {{< tab "Terraform Schema" >}}
-  {{< include file="/static/includes/interfaces/int.rbac.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< tab "Terraform Variable Declaration" >}}
+  {{< include file="/static/includes/interfaces/int.rbac.schema.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
   {{< include file="/static/includes/interfaces/int.rbac.input.tf" language="terraform" options="linenos=false" >}}
@@ -62,8 +62,8 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
   {{< tab "Bicep Input Example with Values" >}}
   {{< include file="/static/includes/interfaces/int.locks.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
-  {{< tab "Terraform Schema" >}}
-  {{< include file="/static/includes/interfaces/int.locks.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< tab "Terraform Variable Declaration" >}}
+  {{< include file="/static/includes/interfaces/int.locks.schema.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
   {{< include file="/static/includes/interfaces/int.locks.input.tf" language="terraform" options="linenos=false" >}}
@@ -81,6 +81,12 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
 
 An example of this is a Key Vault module that has a Private Endpoints enabled. If a lock is applied to the Key Vault via the `lock` parameter/variable then the lock should also be applied to the Private Endpoint automatically, unless the `privateEndpointLock/private_endpoint_lock` (example name) parameter/variable is set to `None`
 
+{{< hint type=important >}}
+
+In Terraform, locks become part of the resource graph and suitable `depends_on` values should be set. Note that, during a `destroy` operation, Terraform will remove the locks before removing the resource itself, reducing the usefulness of the lock somewhat. Also note, due to eventual consistency in Azure, use of locks can cause destroy operations to fail as the lock may not have been fully removed by the time the destroy operation is executed.
+
+{{< /hint >}}
+
 ## Tags
 
 {{< tabs "tags" >}}
@@ -90,8 +96,8 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
   {{< tab "Bicep Input Example with Values" >}}
   {{< include file="/static/includes/interfaces/int.tags.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
-  {{< tab "Terraform Schema" >}}
-  {{< include file="/static/includes/interfaces/int.tags.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< tab "Terraform Variable Declaration" >}}
+  {{< include file="/static/includes/interfaces/int.tags.schema.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
   {{< include file="/static/includes/interfaces/int.tags.input.tf" language="terraform" options="linenos=false" >}}
@@ -114,8 +120,8 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
   {{< tab "Bicep Input Example with Values" >}}
   {{< include file="/static/includes/interfaces/int.mi.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
-  {{< tab "Terraform Schema" >}}
-  {{< include file="/static/includes/interfaces/int.mi.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< tab "Terraform Variable Declaration" >}}
+  {{< include file="/static/includes/interfaces/int.mi.schema.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
   {{< include file="/static/includes/interfaces/int.mi.input.tf" language="terraform" options="linenos=false" >}}
@@ -138,8 +144,8 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
   {{< tab "Bicep Input Example with Values" >}}
   {{< include file="/static/includes/interfaces/int.pe.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
-  {{< tab "Terraform Schema" >}}
-  {{< include file="/static/includes/interfaces/int.pe.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< tab "Terraform Variable Declaration" >}}
+  {{< include file="/static/includes/interfaces/int.pe.schema.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
   {{< include file="/static/includes/interfaces/int.pe.input.tf" language="terraform" options="linenos=false" >}}
@@ -164,8 +170,8 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
   {{< tab "Bicep Input Example with Values" >}}
   {{< include file="/static/includes/interfaces/int.cmk.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
-  {{< tab "Terraform Schema" >}}
-  {{< include file="/static/includes/interfaces/int.cmk.schema.tf.json" language="json" options="linenos=false" >}}
+  {{< tab "Terraform Variable Declaration" >}}
+  {{< include file="/static/includes/interfaces/int.cmk.schema.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
   {{< include file="/static/includes/interfaces/int.cmk.input.tf" language="terraform" options="linenos=false" >}}

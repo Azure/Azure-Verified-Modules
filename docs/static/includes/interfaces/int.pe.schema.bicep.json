@@ -24,13 +24,16 @@
       "subnetResourceId": {
         "type": "string"
       },
+      "privateDnsZoneGroupName": {
+        "type": "string"
+      },
       "privateDnsZoneResourceIds": {
         "type": "array"
       },
       "applicationSecurityGroupResourceIds": {
         "type": "array"
       },
-      "customDnsConfigs": {
+      "customDnsConfigs": { // this is an output in TF, check here please
         "type": "array",
         "items": {
           "type": "object",
@@ -47,7 +50,7 @@
           }
         }
       },
-      "customNetworkInterfaceName": {
+      "networkInterfaceName": {
         "type": "string"
       },
       "ipConfigurations": {
