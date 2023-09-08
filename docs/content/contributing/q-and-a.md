@@ -14,6 +14,7 @@ geekdocToC: 1
 ### Where can I submit a new module proposal / request?
 
 To propose a new module, simply create an issue [here][ModuleProposal].
+
 ### Can I just propose / create ANY module?
 
 **For example, can I propose one for managed disks or NICs or diagnostic settings? What about patterns?**
@@ -40,11 +41,9 @@ Below, we provide some guidance on what modules you can / cannot propose.
 
 ### Where do I need to go to make sure the module I'd like to propose is not already in the works?
 
-The [AVM core team][AVMCoreTeam] maintains the list of [Bicep][BicepModules] and [Terraform][TFModules] modules and tracks the status of each module. Based on this module catalog, you can check if the module you'd like to build is already in the works (e.g., it's being worked on in a feature branch but hasn't been published yet).
+The [AVM core team][AVMCoreTeam] maintains the list of [Bicep][BicepModules] and [Terraform][TFModules] modules and tracks the status of each module. Based on this lists, you can check if the module you'd like to build is already in the works (e.g., it's being worked on in a feature branch but hasn't been published yet).
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}}
-Module catalog is to be published soon.
-{{< /hint >}}
+<!-- Click here to [Module indexes][ModuleIndexes]  -->
 
 ### I need a new module but I cannot own/author it for various reasons, what should I do?
 
@@ -59,7 +58,6 @@ Essentially, you have 3 options:
 As these options are increasingly more time consuming, we recommend you to start with considering option 1 and only if you cannot own the module, should you move to option 2 and then 3.
 
 You can propose a new module [here][ModuleProposal].
-
 
 ### How long will it take for someone to respond and a module to be created/updated and published?
 
@@ -79,10 +77,6 @@ The AVM core team will then triage the request and get back to you with next ste
 
 The [AVM core team][AVMCoreTeam] will maintain the module catalog and update it as new modules are created and published or existing ones are updated or retired.
 
-
-
-<br>
-
 <!-- ## Preparing the environment for a new module
 
 ### Bicep & Terraform
@@ -90,7 +84,6 @@ The [AVM core team][AVMCoreTeam] will maintain the module catalog and update it 
 #### What are the mandatory labels to be used while managing issues on GitHub?
 
 SNFR23
-
 
 #### How will the support SLAs be automatically enforced?
 
@@ -169,7 +162,6 @@ some recurring tests to ensure we can catch failures after things like API chang
 
 AVM sub for that. Manual is only for initial - when you first start developing a new module -->
 
-<br>
 <!--
 ## Publishing the module
 
@@ -181,8 +173,6 @@ AVM sub for that. Manual is only for initial - when you first start developing a
 - Is everything fully automated?
 - Do I need to talk to someone to publish my module in the registry or can I do it on my own?
 -->
-
-<br>
 
 <!-- ## Updating a module -->
 
@@ -210,7 +200,6 @@ AVM sub for that. Manual is only for initial - when you first start developing a
 
 <!-- - Covered in SECURITY.md? -->
 
-<br>
 <!--
 ## Retiring a module
 ### What do I need to do to retire the module of and old solution?
@@ -249,3 +238,4 @@ on this, we concluded earlier that a module MUST never get deleted from a regist
 [DiagnosticSettings]: /Azure-Verified-Modules/specs/shared/interfaces/#diagnostic-settings
 [AzureArchitectureCenter]: https://learn.microsoft.com/en-us/azure/architecture/browse/
 [ALZ]: https://aka.ms/alz
+[ModuleIndexes]: /Azure-Verified-Modules/indexes/
