@@ -23,7 +23,7 @@ No, you cannot propose or create just any module. You can only propose modules t
 
 Below, we provide some guidance on what modules you can / cannot propose.
 
-- **Resource modules**: resource modules have bring extra value to the end user (can't just be simple wrappers) and **MUST** mapped 1:1 to RPs (resource providers) and top level resources. You **MUST** follow the module specifications and your modules **SHOULD** be [WAF aligned][WAFAligned].
+- **Resource modules**: resource modules have bring extra value to the end user (can't just be simple wrappers) and **MUST** mapped 1:1 to RPs (resource providers) and top level resources. You **MUST** follow the [module specifications][ModuleSpecifications] and your modules **SHOULD** be [WAF aligned][WAFAligned].
   - Good examples:
     - Virtual machine: the VM module is highly complex and therefore, it brings extra value to the end user by providing a wide variety of features (e.g., diagnostics, RBAC, domain join, disk encryption, backup and more).
     - Storage account: even though, this module is mainly built around one RP, it brings extra value by providing easy access to its child resources, such as file/table/queue services, as well as additional standard interfaces (e.g., diagnostics, RBAC, encryption, firewall, etc.).
@@ -41,11 +41,11 @@ Below, we provide some guidance on what modules you can / cannot propose.
 
 ### Where do I need to go to make sure the module I'd like to propose is not already in the works?
 
-The [AVM core team][AVMCoreTeam] maintains the list of [Bicep][BicepModules] and [Terraform][TFModules] modules and tracks the status of each module. Based on this lists, you can check if the module you'd like to build is already in the works (e.g., it's being worked on in a feature branch but hasn't been published yet).
+The [AVM core team][AVMCoreTeam] maintains the list of [Bicep][BicepModules] and [Terraform][TFModules] modules and tracks the status of each module. Based on this list, you can check if the module you'd like to build is already in the works (e.g., it's being worked on in a feature branch but hasn't been published yet).
 
-<!-- Click here to [Module indexes][ModuleIndexes]  -->
+To see the formatted lists with additional information, please visit the [AVM Module Indexes][ModuleIndexes] page.
 
-### I need a new module but I cannot own/author it for various reasons, what should I do?
+ ### I need a new module but I cannot own/author it for various reasons, what should I do?
 
 Each AVM module requires a [module owner][ModuleOwners] and **MAY** have additional [module contributors][ModuleContributors].
 
@@ -73,15 +73,17 @@ Beside of providing program level governance, the [AVM core team][AVMCoreTeam] i
 
 The AVM core team will then triage the request and get back to you with next steps. You can accelerate the process of creating the module by volunteering to be a [module owner][ModuleOwners].
 
-### How will the central module catalog be updated?
+<!-- ### How will the central module catalog be updated?
 
-The [AVM core team][AVMCoreTeam] will maintain the module catalog and update it as new modules are created and published or existing ones are updated or retired.
-
-<!-- ## Preparing the environment for a new module
+The [AVM core team][AVMCoreTeam] will maintain the module catalog and update it as new modules are created and published or existing ones are updated or retired. -->
+<!--
+## Preparing the environment for a new module
 
 ### Bicep & Terraform
 
 #### What are the mandatory labels to be used while managing issues on GitHub?
+
+There is a list of 
 
 SNFR23
 
