@@ -17,7 +17,7 @@
   {{ end }}
   {{ range $row, $rows }}
   <tr>
-    <td>{{ index $row 3 }}</td>
+    <td><a href="{{ index $row 5 }}">{{ index $row 3 }}</a></td>
     <td>{{ index $row 2 }}</td>
     <td>{{ emojify (index $row 4) }}</td>
     <td>{{ index $row 8 }} {{ if and (ne (index $row 8) "") (ne (index $row 9) "") }} ({{ index $row 9 }}){{ end }}</td>
