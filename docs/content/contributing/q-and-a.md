@@ -225,16 +225,16 @@ we need to document a step that describes that the status flag of the modules ne
 
 <!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
- <!--
- to this, we concluded earlier that the right approach is to leave one last readme.md file that provides context and points end users to the replacement solution.
+<!--
+to this, we concluded earlier that the right approach is to leave one last readme.md file that provides context and points end users to the replacement solution.
 -->
 <!-- ### Will modules ever be deleted from their respective registries? -->
 
 <!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
- <!--
-on this, we concluded earlier that a module MUST never get deleted from a registry. It can be "abandoned" as part of the retirement flow. 
- -->
+<!--
+on this, we concluded earlier that a module MUST never get deleted from a registry. It can be "abandoned" as part of the retirement flow.
+-->
 
 [AVMCoreTeam]: /Azure-Verified-Modules/specs/shared/team-definitions/#avm-core-team
 [BicepModules]: /Azure-Verified-Modules/indexes/bicep/
