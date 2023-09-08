@@ -154,7 +154,7 @@ All issues created in a module repo will be automatically be picked up and track
 
 <!-- ### What are the guardrails/quality gates I need to be aware of/leverage/be compliant with? -->
 
-<!-- ( CI environment with the ai.e., where's theutomated tests that I need to use and comply with)? -->
+<!-- ( CI environment with the ai.e., where's the automated tests that I need to use and comply with)? -->
 
 <!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
@@ -175,7 +175,7 @@ AVM sub for that. Manual is only for initial - when you first start developing a
 
 <!-- ### What steps do I need to follow?
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} --> 
+{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
 <!-- 
 - Is everything fully automated? 
@@ -230,7 +230,7 @@ we need to document a step that describes that the status flag of the modules ne
  -->
 <!-- ### Will modules ever be deleted from their respective registries? -->
 
-<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} --> 
+<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
  <!-- 
  on this, we concluded earlier that a module MUST never get deleted from a registry. It can be "abandoned" as part of the retirement flow.  
@@ -245,7 +245,7 @@ we need to document a step that describes that the status flag of the modules ne
 [ModuleProposal]: https://aka.ms/AVM/ModuleProposal
 [ModuleSupport]: /Azure-Verified-Modules/help-support/module-support/
 [AVMChannel]: https://aka.ms/AVM/channel
-[ModuleSpecifications]: Azure-Verified-Modules/specs/
+[ModuleSpecifications]: /Azure-Verified-Modules/specs/
 [DiagnosticSettings]: /Azure-Verified-Modules/specs/shared/interfaces/#diagnostic-settings
 [AzureArchitectureCenter]: https://learn.microsoft.com/en-us/azure/architecture/browse/
 [ALZ]: https://aka.ms/alz
