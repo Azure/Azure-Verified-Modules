@@ -24,30 +24,16 @@
       "subnetResourceId": {
         "type": "string"
       },
+      "privateDnsZoneGroupName": {
+        "type": "string"
+      },
       "privateDnsZoneResourceIds": {
         "type": "array"
       },
       "applicationSecurityGroupResourceIds": {
         "type": "array"
       },
-      "customDnsConfigs": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "fqdn": {
-              "type": "string"
-            },
-            "ipAddresses": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        }
-      },
-      "customNetworkInterfaceName": {
+      "networkInterfaceName": {
         "type": "string"
       },
       "ipConfigurations": {
