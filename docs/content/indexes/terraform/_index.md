@@ -1,5 +1,5 @@
 ---
-title: Terraform AVM Modules Index
+title: Terraform Modules
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
