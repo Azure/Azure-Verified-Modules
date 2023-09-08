@@ -45,7 +45,7 @@ The [AVM core team][AVMCoreTeam] maintains the list of [Bicep][BicepModules] and
 
 To see the formatted lists with additional information, please visit the [AVM Module Indexes][ModuleIndexes] page.
 
- ### I need a new module but I cannot own/author it for various reasons, what should I do?
+### I need a new module but I cannot own/author it for various reasons, what should I do?
 
 Each AVM module requires a [module owner][ModuleOwners] and **MAY** have additional [module contributors][ModuleContributors].
 
@@ -83,7 +83,7 @@ The [AVM core team][AVMCoreTeam] will maintain the module catalog and update it 
 
 #### What are the mandatory labels to be used while managing issues on GitHub?
 
-There is a list of 
+There is a list of
 
 SNFR23
 
