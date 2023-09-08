@@ -6,8 +6,18 @@ main:
     sub:
       - name: 'Bicep'
         ref: 'indexes/bicep'
+        sub:
+          - name: 'Resource Modules'
+            ref: 'indexes/bicep/bicep-resource-modules'
+          - name: 'Pattern Modules'
+            ref: 'indexes/bicep/bicep-pattern-modules'
       - name: 'Terraform'
         ref: 'indexes/terraform'
+        sub:
+          - name: 'Resource Modules'
+            ref: 'indexes/terraform/tf-resource-modules'
+          - name: 'Pattern Modules'
+            ref: 'indexes/terraform/tf-pattern-modules'        
   - name: 'Concepts'
     sub:
       - name: 'What, Why, How'
