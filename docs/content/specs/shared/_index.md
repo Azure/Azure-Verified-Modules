@@ -409,9 +409,16 @@ Module owners **MUST** output the following outputs as a minimum in their module
 | ---------------------------------------------------------------------- | ------------------------------------------ | ----------------------------------------------- |
 | Resource Name                                                          | `name`                                     | `name`                                          |
 | Resource ID                                                            | `resourceId`                               | `resource_id`                                   |
-| Location/Region                                                        | `location`                                 | `location`                                      |
 | System Assigned Managed Identity Principal ID (if supported by module) | `systemAssignedMIPrincipalId` | `system_assigned_mi_prinicpal_id` |
 
+{{< hint type=tip >}}
+
+Module owners **MAY** also have to provide additional outputs depending on the IaC language, please check the language specific specs:
+
+- [Bicep](/Azure-Verified-Modules/specs/bicep/)
+- [Terraform](/Azure-Verified-Modules/specs/terraform/)
+
+{{< /hint >}}
 
 ### Non-Functional Requirements
 
