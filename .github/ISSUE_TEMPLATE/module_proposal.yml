@@ -2,6 +2,7 @@ name: New AVM Module Proposal 📝
 description: Want a new AVM Module to exist? Let us know
 title: "[Module Proposal]: REPLACE ME WITH MODULE BEING PROPOSED"
 labels: ["Type: New Module Proposal :bulb:", "Needs: Triage :mag:"]
+projects: ["Azure/529"]
 body:
   - type: markdown
     attributes:

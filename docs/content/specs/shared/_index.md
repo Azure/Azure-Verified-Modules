@@ -401,6 +401,18 @@ e.g., use `sku`, vs. `virtualMachineSku`/`virtualmachine_sku`
 
 Another example for where RPs contain some of their name within a property, leave the property unchanged. E.g. Key Vault has a property called `keySize`, it is fine to leave as this and not remove the `key` part from the property/parameter name.
 
+#### ID: RMFR7 - Category: Outputs - Minimum Required Outputs
+
+Module owners **MUST** output the following outputs as a minimum in their modules:
+
+| Output                                                                 | Bicep Output Name                          | Terraform Output Name                           |
+| ---------------------------------------------------------------------- | ------------------------------------------ | ----------------------------------------------- |
+| Resource Name                                                          | `name`                                     | `name`                                          |
+| Resource ID                                                            | `resourceId`                               | `resource_id`                                   |
+| Location/Region                                                        | `location`                                 | `location`                                      |
+| System Assigned Managed Identity Principal ID (if supported by module) | `systemAssignedMIPrincipalId` | `system_assigned_mi_prinicpal_id` |
+
+
 ### Non-Functional Requirements
 
 #### ID: RMNFR1 - Category: Naming - Module Naming
