@@ -104,3 +104,9 @@ Resource modules are multi-purpose; therefore, they contain a lot of dynamic exp
 ## What is a "Primary Resource" in the context of AVM?
 
 The definition of a Primary Resource is detailed in the [glossary](/Azure-Verified-Modules/glossary/).
+
+## Will existing Landing Zone Accelerators (Platform & Application) be migrated to become AVM pattern modules and/or built from AVM resource modules?
+
+In short, no. Existing Landing Zone Accelerators ([Platform](https://aka.ms/alz/aac#platform) & [Application](https://aka.ms/alz/aac#application)) will not be made or forced to convert their existing code bases, if available in either language, to AVM or to use AVM.
+
+However, over time if new features or functionality are required by a Landing Zone Accelerator, that team **SHOULD** consider migrating that part of their code base to be constructed with the relevant AVM module if available. If the relevant AVM module isn't available to use to assist the Landing Zone Accelerator, then a new [AVM module proposal](https://aka.ms/avm/moduleproposal) should be made, and if desired, the Landing Zone Accelerator team may decide to own this proposed module 👍
