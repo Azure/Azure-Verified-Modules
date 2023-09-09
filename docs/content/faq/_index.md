@@ -59,6 +59,7 @@ It may also be decided, for speed of delivery reasons, that a CARML module can b
 
 Publishing both CARML and AVM to the Bicep Registry is wasted effort and will lead to confusion as they will overlap for 80% of their code and will leave consumers in an "analysis paralysis" scenario, which we must avoid.
 
+---
 ## What does AVM mean by "WAF Aligned"?
 
 {{< hint type=tip >}}
@@ -101,6 +102,16 @@ Resource modules are written in a flexible way; therefore, you don't need to mod
 
 Resource modules are multi-purpose; therefore, they contain a lot of dynamic expressions (functions, variables, etc.), so there's no need to maintain multiple instances for different use cases. They can be deployed in different configurations just by changing the input parameters. They should be perceived by the **user** as black boxes, where they don't have to worry about the internal complexity of the code, as they only interact with them by their parameters.
 
+---
 ## What is a "Primary Resource" in the context of AVM?
 
 The definition of a Primary Resource is detailed in the [glossary](/Azure-Verified-Modules/glossary/).
+
+---
+## Will existing Landing Zone Accelerators (Platform & Application) be migrated to become AVM pattern modules and/or built from AVM resource modules?
+
+In short, no. Existing Landing Zone Accelerators ([Platform](https://aka.ms/alz/aac#platform) & [Application](https://aka.ms/alz/aac#application)) will not be made or forced to convert their existing code bases, if available in either language, to AVM or to use AVM.
+
+However, over time if new features or functionality are required by Landing Zone Accelerators, that team **SHOULD** consider migrating/refactoring that part of their code base to be constructed with the relevant AVM module if available.
+
+If the relevant AVM module isn't available to use to assist the Landing Zone Accelerator, then a new [AVM module proposal](https://aka.ms/avm/moduleproposal) should be made, and if desired, the Landing Zone Accelerator team may decide to own this proposed module 👍
