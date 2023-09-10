@@ -127,9 +127,39 @@ Before jumping on implementing your contribution, please review the AVM Module s
 
 ### Code Styling
 
+This section points to conventions to be followed when developing a Bicep template.
+
+#### Input Parameters and Variables
+
+Make sure to review all specifications of `Category: Inputs` within both the [Shared](https://azure.github.io/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](https://azure.github.io/Azure-Verified-Modules/specs/bicep/) pages.
+
+> Examples are specifications [SNFR14](/Azure-Verified-Modules/specs/shared/#id-snfr14---category-inputs---data-types) and [BCPNFR1](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr1---category-inputs---data-types).
+
+#### Resources
+
+Resources are primarily leveraged by resource modules to declare the primary resource of the main resource type deployed by the AVM module.
+
+Make sure to review all specifications covering resource properties and usage.
+
+> Examples are specifications [SFR1](/Azure-Verified-Modules/specs/shared/#id-sfr1---category-composition---preview-services) and [RMFR1](/Azure-Verified-Modules/specs/shared/#id-rmfr1---category-composition---single-resource-only).
+
+#### Modules
+
+Modules enable you to reuse code from a Bicep file in other Bicep files. As such, for resource modules they're normally leveraged for deploying child resources (e.g., file services in a storage account), cross referenced resources (e.g., network interface in a virtual machine) or extension resources (e.g., role assignments in a key vault). Pattern modules, normally reuse resource modules combined together.
+
+Make sure to review all specifications covering module properties and usage.
+
+> Examples are specifications [BCPFR1](/Azure-Verified-Modules/specs/bicep/#id-bcpfr1---category-composition---cross-referencing-modules) for resource modules and [PMNFR2](//Azure-Verified-Modules/specs/shared/#id-pmnfr2---category-composition---use-resource-modules-to-build-a-pattern-module) for pattern modules.
+
+#### Outputs
+
+Make sure to review all specifications of `Category: Outputs` within both the [Shared](https://azure.github.io/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](https://azure.github.io/Azure-Verified-Modules/specs/bicep/) pages.
+
+> One example is specification [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs).
+
 ### Interfaces
 
-{{< hint type=important >}}
+{{< hint type=note >}}
 
 This section is only relevant for contributions to resource modules.
 
