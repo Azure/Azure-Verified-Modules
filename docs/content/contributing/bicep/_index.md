@@ -34,9 +34,9 @@ Before you start contributing to the AVM, it is **highly recommended** that you 
 To contribute to this project the following tooling is required:
 
 - [Git](https://git-scm.com/downloads)
-    
+
   If just installed, don't forget to set both your git username & password
-    
+
     ```PowerShell
     git config --global user.name "John Doe"
     git config --global user.email "johndoe@example.com"
@@ -119,7 +119,11 @@ Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](htt
 
 ## Composition
 
-### RBAC Role Definition Name Mapping
+### Code Styling
+
+### Interfaces
+
+#### RBAC Role Definition Name Mapping
 
 To meet [BCPFR2](/Azure-Verified-Modules/specs/bicep/#id-bcpfr2---category-composition---role-assignments-role-definition-mapping), [BCPNFR5](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr5---category-composition---role-assignments-role-definition-mapping-limits) and [BCPNFR6](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr6---category-composition---role-assignments-role-definition-mapping-compulsory-roles) you can use the below code sample in your AVM Modules to achieve this.
 
@@ -130,6 +134,21 @@ To meet [BCPFR2](/Azure-Verified-Modules/specs/bicep/#id-bcpfr2---category-compo
 To meet [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) & [SFR4](/Azure-Verified-Modules/specs/shared/#id-sfr4---category-telemetry---telemetry-enablement-flexibility) you can use the below code sample in your AVM Modules to achieve this.
 
 {{< include file="/static/includes/sample.telem.bicep" language="bicep" options="linenos=false" >}}
+
+### Versioning
+
+To meet [SNFR16](/Azure-Verified-Modules/specs/shared/#id-snfr16---category-documentation---examples) and depending on the changes you make, you may need to bump the version in the `version.json` file.
+
+{{< include file="/static/includes/sample.bicep.version.json" language="json" options="linenos=false" >}}
+
+The `version` value is in the form of `MAJOR.MINOR`. The PATCH version will be incremented by the CI automatically when publishing the module to the Public Bicep Registry once the corresponding pull request is merged. Therefore, contributions that would only require an update of the patch version, can keep the `version.json` file intact.
+
+For example, the `version` value should be:
+- `0.1` for new modules, so that they can be released as `v0.1.0`.
+- `1.0` once the module owner signes off the module is stable enough for it’s first Major release of `v1.0.0`.
+- `0.x` for all feature updates between the first release `v0.1.0` and the first Major release of `v1.0.0`.
+
+
 
 ## Testing
 
