@@ -34,10 +34,24 @@ Before you start contributing to the AVM, it is **highly recommended** that you 
 To contribute to this project the following tooling is required:
 
 - [Git](https://git-scm.com/downloads)
+    
+  If just installed, don't forget to set both your git username & password
+    
+    ```PowerShell
+    git config --global user.name "John Doe"
+    git config --global user.email "johndoe@example.com"
+    ```
+
 - [Bicep](https://learn.microsoft.com/azure/azure-resource-manager/bicep/install#install-manually)
+
+  {{< hint type=note >}}
+
+  Must be manually kept up-to-date.
+
+  {{< /hint >}}
+
 - [Visual Studio Code](https://code.visualstudio.com/download)
   - [Bicep extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
-  - [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 
 ### Recommended Tooling
 
@@ -51,13 +65,15 @@ The following tooling/extensions are recommended to assist you developing for th
 - For visibility of Bracket Pairs:
   - Inside Visual Studio Code, add `editor.bracketPairColorization.enabled`: true to your `settings.json`, to enable bracket pair colorization.
 
-## Repositories
+## Lay of the land
+
+### Repositories
 
 For Bicep, both Resource and Pattern, AVM Modules will be homed in the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and live within an `avm` directory that will be located at the root of the repository; as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
 
 It is expected that module owners will fork the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repositories `main` branch.
 
-## Directory and File Structure
+### Directory and File Structure
 
 Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository in the `avm` directory will have the following directories and files:
 
@@ -70,7 +86,7 @@ Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](htt
   - `version.json` (BRM requirement)
   - `README.md` (auto generated AVM Module documentation)
 
-### Example Directory and File Structure within `Azure/bicep-registry-modules` Repository
+#### Example Directory and File Structure within `Azure/bicep-registry-modules` Repository
 
 ```txt
 / Root of Azure/bicep-registry-modules
@@ -101,7 +117,23 @@ Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](htt
 └───other repo files...
 ```
 
-## Module Publishing
+## Composition
+
+### RBAC Role Definition Name Mapping
+
+To meet [BCPFR2](/Azure-Verified-Modules/specs/bicep/#id-bcpfr2---category-composition---role-assignments-role-definition-mapping), [BCPNFR5](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr5---category-composition---role-assignments-role-definition-mapping-limits) and [BCPNFR6](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr6---category-composition---role-assignments-role-definition-mapping-compulsory-roles) you can use the below code sample in your AVM Modules to achieve this.
+
+{{< include file="/static/includes/sample.rbacMapping.bicep" language="bicep" options="linenos=false" >}}
+
+### Telemetry Enablement
+
+To meet [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) & [SFR4](/Azure-Verified-Modules/specs/shared/#id-sfr4---category-telemetry---telemetry-enablement-flexibility) you can use the below code sample in your AVM Modules to achieve this.
+
+{{< include file="/static/includes/sample.telem.bicep" language="bicep" options="linenos=false" >}}
+
+## Testing
+
+## Publishing to the Registry
 
 When the AVM Modules are published to the Bicep Public Registry they **MUST** follow the below requirements:
 
@@ -112,14 +144,3 @@ This will require the alias on the MCR to be different than the directory path, 
 
 ***Guidance will be provided below on how to do this, when available.***
 
-## Telemetry Enablement
-
-To meet [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) & [SFR4](/Azure-Verified-Modules/specs/shared/#id-sfr4---category-telemetry---telemetry-enablement-flexibility) you can use the below code sample in your AVM Modules to achieve this.
-
-{{< include file="/static/includes/sample.telem.bicep" language="bicep" options="linenos=false" >}}
-
-## RBAC Role Definition Name Mapping
-
-To meet [BCPFR2](/Azure-Verified-Modules/specs/bicep/#id-bcpfr2---category-composition---role-assignments-role-definition-mapping), [BCPNFR5](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr5---category-composition---role-assignments-role-definition-mapping-limits) and [BCPNFR6](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr6---category-composition---role-assignments-role-definition-mapping-compulsory-roles) you can use the below code sample in your AVM Modules to achieve this.
-
-{{< include file="/static/includes/sample.rbacMapping.bicep" language="bicep" options="linenos=false" >}}
