@@ -127,12 +127,22 @@ Before jumping on implementing your contribution, please review the AVM Module s
 
 ### Code Styling
 
-
-
 ### Interfaces
 
+{{< hint type=important >}}
 
-#### RBAC Role Definition Name Mapping
+This section is only relevant for contributions to resource modules.
+
+{{< /hint >}}
+
+To meet [RMFR4](/Azure-Verified-Modules/specs/shared/#id-rmfr4---category-composition---avm-consistent-feature--extension-resources-value-add) and [RMFR5](/Azure-Verified-Modules/specs/shared/#id-rmfr5---category-composition---avm-consistent-feature--extension-resources-value-add-interfacesschemas) AVM resource modules must leverage consistent interfaces for all the optional features/extension resources supported by the AVM module primary resource.
+
+Please refer to the [Shared Interfaces](Azure-Verified-Modules/specs/shared/interfaces/) page.
+If the primary resource of the AVM resource module you are developing supports any of the listed features/extension resources, please follow the corresponding provided Bicep schema to develop them.
+
+The next paragraph provides an example for the Role assignments extension.
+
+#### Example: RBAC Role Definition Name Mapping
 
 To meet [BCPFR2](/Azure-Verified-Modules/specs/bicep/#id-bcpfr2---category-composition---role-assignments-role-definition-mapping), [BCPNFR5](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr5---category-composition---role-assignments-role-definition-mapping-limits) and [BCPNFR6](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr6---category-composition---role-assignments-role-definition-mapping-compulsory-roles) you can use the below code sample in your AVM Modules to achieve this.
 
