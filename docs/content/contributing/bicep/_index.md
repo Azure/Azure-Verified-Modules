@@ -119,9 +119,18 @@ Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](htt
 
 ## Composition
 
+{{< hint type=important >}}
+
+Before jumping on implementing your contribution, please review the AVM Module specifications, in particular the [Shared](https://azure.github.io/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](https://azure.github.io/Azure-Verified-Modules/specs/bicep/) pages, to make sure your contribution complies with the AVM module's design and principles.
+
+{{< /hint >}}
+
 ### Code Styling
 
+
+
 ### Interfaces
+
 
 #### RBAC Role Definition Name Mapping
 
@@ -148,9 +157,17 @@ For example, the `version` value should be:
 - `1.0` once the module owner signes off the module is stable enough for it’s first Major release of `v1.0.0`.
 - `0.x` for all feature updates between the first release `v0.1.0` and the first Major release of `v1.0.0`.
 
-
-
 ## Testing
+
+{{< hint type=note >}}
+
+The AVM core team is working to provide a CI environment used for testing the AVM Bicep modules in the Public Bicep Registry. Until the automation is ready, we kindly ask contributors to proceed with local and manual testing from their fork.
+
+{{< /hint >}}
+
+Before opening a Pull Request to the Bicep Public Registry, ensure your module is ready for publishing, by validating that it meets all the Testing Specifications as per [SNFR1](/Azure-Verified-Modules/specs/shared/#id-snfr1---category-testing---prescribed-tests), [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing), [SNFR3](/Azure-Verified-Modules/specs/shared/#id-snfr3---category-testing---avm-unit-tests), [SNFR4](/Azure-Verified-Modules/specs/shared/#id-snfr4---category-testing---additional-unit-tests), [SNFR5](/Azure-Verified-Modules/specs/shared/#id-snfr5---category-testing---upgrade-tests), [SNFR6](/Azure-Verified-Modules/specs/shared/#id-snfr6---category-testing---static-analysislinting-tests), [SNFR7](/Azure-Verified-Modules/specs/shared/#id-snfr7---category-testing---idempotency-tests).
+
+For example, to meet [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing), ensure the updated module is deployable against a testing Azure subscription and compliant with the intended configuration.
 
 ## Publishing to the Registry
 
