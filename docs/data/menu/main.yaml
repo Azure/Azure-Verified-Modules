@@ -69,7 +69,7 @@ main:
         ref: '/contributing/terraform'
       - name: 'Contribution Q&A'
         ref: '/contributing/q-and-a'
-      - name: 'This Website'
+      - name: 'Website'
         ref: '/contributing/website'
       - name: 'Code of Conduct'
         ref: 'https://opensource.microsoft.com/codeofconduct/'

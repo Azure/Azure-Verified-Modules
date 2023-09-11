@@ -1,5 +1,5 @@
 ---
-title: Bicep AVM Modules Contribution Guide
+title: Bicep Contribution Guide
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

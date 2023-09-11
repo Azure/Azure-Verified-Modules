@@ -1,5 +1,5 @@
 ---
-title: Terraform AVM Modules Contribution Guide
+title: Terraform Contribution Guide
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

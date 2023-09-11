@@ -10,8 +10,8 @@ This section lists all contribution guidance available to module owners and cont
 - [Process Overview](/Azure-Verified-Modules/contributing/process/)
 - [Bicep Contribution Guide](/Azure-Verified-Modules/contributing/bicep/)
 - [Terraform Contribution Guide](/Azure-Verified-Modules/contributing/terraform/)
-- [Contribution Q & A](/Azure-Verified-Modules/contributing/q-and-a/)
-- [This Website](/Azure-Verified-Modules/contributing/website/)
+- [Contribution Q&A](/Azure-Verified-Modules/contributing/q-and-a/)
+- [Website Contribution Guide](/Azure-Verified-Modules/contributing/website/)
 - [Code of Conduct](https://opensource.microsoft.com/codeofconduct/)
 
 {{< hint type=important >}}
