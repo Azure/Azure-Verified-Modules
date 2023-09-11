@@ -19,6 +19,9 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
 
 {{< tabs "diag-settings" >}}
   {{< tab "Bicep Schema" >}}
+  {{< hint type=note >}}
+  The JSON schema below will be replaced shortly with the [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types) definition for this interface. The AVM core team are working on these currently.
+  {{< /hint >}}
   {{< include file="/static/includes/interfaces/int.diag.schema.bicep.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
@@ -36,6 +39,9 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
 
 {{< tabs "role-assignments" >}}
   {{< tab "Bicep Schema" >}}
+  {{< hint type=note >}}
+  The JSON schema below will be replaced shortly with the [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types) definition for this interface. The AVM core team are working on these currently.
+  {{< /hint >}}
   {{< include file="/static/includes/interfaces/int.rbac.schema.bicep.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
@@ -57,6 +63,9 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
 
 {{< tabs "locks" >}}
   {{< tab "Bicep Schema" >}}
+  {{< hint type=note >}}
+  The JSON schema below will be replaced shortly with the [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types) definition for this interface. The AVM core team are working on these currently.
+  {{< /hint >}}
   {{< include file="/static/includes/interfaces/int.locks.schema.bicep.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
@@ -91,6 +100,9 @@ In Terraform, locks become part of the resource graph and suitable `depends_on` 
 
 {{< tabs "tags" >}}
   {{< tab "Bicep Schema" >}}
+  {{< hint type=note >}}
+  The JSON schema below will be replaced shortly with the [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types) definition for this interface. The AVM core team are working on these currently.
+  {{< /hint >}}
   {{< include file="/static/includes/interfaces/int.tags.schema.bicep.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
@@ -115,6 +127,9 @@ In Terraform, locks become part of the resource graph and suitable `depends_on` 
 
 {{< tabs "managed-identities" >}}
   {{< tab "Bicep Schema" >}}
+  {{< hint type=note >}}
+  The JSON schema below will be replaced shortly with the [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types) definition for this interface. The AVM core team are working on these currently.
+  {{< /hint >}}
   {{< include file="/static/includes/interfaces/int.mi.schema.bicep.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
@@ -139,6 +154,9 @@ In Terraform, locks become part of the resource graph and suitable `depends_on` 
 
 {{< tabs "private-endpoints" >}}
   {{< tab "Bicep Schema" >}}
+  {{< hint type=note >}}
+  The JSON schema below will be replaced shortly with the [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types) definition for this interface. The AVM core team are working on these currently.
+  {{< /hint >}}
   {{< include file="/static/includes/interfaces/int.pe.schema.bicep.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
@@ -165,6 +183,9 @@ In Terraform, locks become part of the resource graph and suitable `depends_on` 
 
 {{< tabs "cmk" >}}
   {{< tab "Bicep Schema" >}}
+  {{< hint type=note >}}
+  The JSON schema below will be replaced shortly with the [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types) definition for this interface. The AVM core team are working on these currently.
+  {{< /hint >}}
   {{< include file="/static/includes/interfaces/int.cmk.schema.bicep.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
