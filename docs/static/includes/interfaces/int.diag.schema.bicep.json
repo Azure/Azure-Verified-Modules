@@ -5,6 +5,9 @@
   "items": {
     "type": "object",
     "properties": {
+      "name": {
+        "type": "string"
+      },
       "logCategoriesAndGroups": {
         "type": "array",
         "items": {

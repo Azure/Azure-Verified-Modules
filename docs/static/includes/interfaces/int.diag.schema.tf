@@ -1,5 +1,6 @@
 variable "diagnostic_settings" {
   type = map(object({
+    name                                     = optional(string, null)
     log_categories_and_groups                = optional(set(string), ["allLogs"])
     metric_categories                        = optional(set(string), ["AllMetrics"])
     log_analytics_destination_type           = optional(string, "Dedicated")
