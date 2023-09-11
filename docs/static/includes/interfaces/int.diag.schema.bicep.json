@@ -5,6 +5,10 @@
   "items": {
     "type": "object",
     "properties": {
+      "name": {
+        "type": "string",
+        "default": "${resourceName}-diagnosticSettings"
+      },
       "logCategoriesAndGroups": {
         "type": "array",
         "items": {
