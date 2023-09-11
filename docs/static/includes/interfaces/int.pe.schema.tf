@@ -4,6 +4,7 @@ variable "private_endpoints" {
     role_assignments                        = map(object({}))        # see https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#role-assignments
     lock                                    = object({})             # see https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#resource-locks
     tags                                    = optional(map(any), {}) # see https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#tags
+    service                                 = string
     subnet_resource_id                      = string
     private_dns_zone_group_name             = optional(string, null)
     private_dns_zone_resource_ids           = optional(set(string), [])
