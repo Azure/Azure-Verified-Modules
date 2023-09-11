@@ -85,7 +85,7 @@ Due to the 64-character length limit of Azure deployment names, the `<module nam
 An example deployment name for the AVM Virtual Machine Resource Module would be:
 
 - Bicep == `46d3xbcp.res.compute-virtualmachine.v1-2-3.eum3`
-- Terraform == `46d3xtf.res.compute-virtualmachine.v1-2-3.eum3`
+- Terraform == `46d3xgtf.res.compute-virtualmachine.v1-2-3.eum3`
 
 {{< hint type=tip >}}
 
@@ -179,6 +179,12 @@ The names for the GitHub Teams for each module are already defined in the respec
 
 #### ID: SNFR20 - Category: Contribution/Support - GitHub Teams Only
 
+{{< hint type=note >}}
+
+The names for the GitHub Teams for each module are already defined in the respective [Module Indexes](/Azure-Verified-Modules/indexes/) that **MUST** be used and created for each module.
+
+{{< /hint >}}
+
 All GitHub repositories that AVM module are published from and hosted within **MUST** only assign GitHub repository permissions to GitHub teams only.
 
 Each module **MUST** have separate GitHub Teams assigned for module owners **AND** module contributors respectively.
@@ -202,12 +208,6 @@ Examples:
 
 - `@azure/avm-res-compute-virtualmachine-module-owners-bicep`
 - `@azure/avm-res-compute-virtualmachine-module-contributors-tf`
-
-{{< hint type=note >}}
-
-The names for the GitHub Teams for each module are already defined in the respective [Module Indexes](/Azure-Verified-Modules/indexes/) that **MUST** be used and created for each module.
-
-{{< /hint >}}
 
 #### ID: SNFR9 - Category: Contribution/Support - AVM & PG Teams GitHub Repo Permissions
 
@@ -437,6 +437,14 @@ Module owners **MAY** also have to provide additional outputs depending on the I
 
 #### ID: RMNFR1 - Category: Naming - Module Naming
 
+{{< hint type=note >}}
+
+We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) with the correct singular names for all resource types to enable checks to utilize this list to ensure repos are named correctly. To see the formatted content of these CSV files with additional information, please visit the [AVM Module Indexes](/Azure-Verified-Modules/indexes) page.
+
+This will be updated quarterly, or ad-hoc as new RPs/ Resources are created and highlighted via a check failure.
+
+{{< /hint >}}
+
 Module names **MUST** follow the below pattern (all lower case):
 
 - Bicep: `avm-res-<rp>-<armresourcename>` (to support registry hosting)
@@ -450,14 +458,6 @@ Example: `avm-res-compute-virtualmachine`
 - `<rp>` is the resource provider’s name after the `Microsoft` part, e.g., `Microsoft.Compute` = `compute`.
 - `res` defines this is a resource module
 - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` or `azuread` for resource modules.
-
-{{< hint type=note >}}
-
-We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) with the correct singular names for all resource types to enable checks to utilize this list to ensure repos are named correctly. To see the formatted content of these CSV files with additional information, please visit the [AVM Module Indexes](/Azure-Verified-Modules/indexes) page.
-
-This will be updated quarterly, or ad-hoc as new RPs/ Resources are created and highlighted via a check failure.
-
-{{< /hint >}}
 
 #### ID: RMNFR2 - Category: Inputs - Parameter/Variable Naming
 

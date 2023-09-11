@@ -42,7 +42,7 @@ During the AVM Core Team Triage step, the following will be checked, completed a
 1. Check module proposal issue/form has been filled out correctly
    - If not, they will comment back on the issue to the requestor to clarify
 2. Apply relevant additional labels
-3. Check module is correct as per specifications - naming, classification (resource/pattern) etc.
+3. Check module is correct as per specifications - [naming](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming), [classification](/Azure-Verified-Modules/specs/shared/module-classifications/) (resource/pattern) etc.
 4. Check module isn't to be [migrated from an existing initiative](/Azure-Verified-Modules/faq/#what-is-happening-to-existing-initiatives-like-carml-and-tfvm)
 5. Check module isn't a duplicate in development already
 6. Add the relevant "Language ..." label to the issue

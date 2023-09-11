@@ -59,6 +59,7 @@ main:
         ref: "https://aka.ms/AVM/ModuleTriage"
         external: true
   - name: 'Contributing'
+    ref: 'contributing'
     sub:
       - name: 'Process Overview'
         ref: '/contributing/process'
