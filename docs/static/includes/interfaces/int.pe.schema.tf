@@ -1,6 +1,5 @@
 variable "private_endpoints" {
   type = map(object({
-    diagnostic_settings                     = map(object({}))        # see https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#diagnostic-settings
     role_assignments                        = map(object({}))        # see https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#role-assignments
     lock                                    = object({})             # see https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#resource-locks
     tags                                    = optional(map(any), {}) # see https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#tags

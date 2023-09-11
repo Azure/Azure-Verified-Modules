@@ -1,6 +1,5 @@
 privateEndpoints: {
   {
-    diagnosticSettings: [...]
     roleAssignments : [...]
     lock: 'CanNotDelete'
     tags: {...}

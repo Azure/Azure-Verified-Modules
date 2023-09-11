@@ -5,10 +5,6 @@
   "items": {
     "type": "object",
     "properties": {
-      "diagnosticSettings": {
-        "type": "array",
-        "$ref": "https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#diagnostic-settings"
-      },
       "roleAssignments": {
         "type": "array",
         "$ref": "https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#role-assignments"

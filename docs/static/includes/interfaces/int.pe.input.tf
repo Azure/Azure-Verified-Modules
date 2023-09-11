@@ -1,6 +1,5 @@
 private_endpoints = {
   pe1 = {
-    diagnostic_settings = {} # see interfaces/diagnostic settings
     role_assignments    = {} # see interfaces/role assignments
     lock                = {} # see interfaces/resource locks
     tags                = {} # see interfaces/tags
