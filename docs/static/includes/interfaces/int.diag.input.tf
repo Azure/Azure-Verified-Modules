@@ -1,5 +1,6 @@
 diagnostic_settings = {
   diag_setting_1 = {
+    name = 'customSettings'
     log_categories_and_groups = ["allLogs"]
     metric_categories = ["AllMetrics"]
     log_analytics_destination_type = "Dedicated"
