@@ -171,6 +171,12 @@ A module **MUST** have an owner that is defined and managed by a GitHub Team in 
 
 Today this is only Microsoft FTEs, but everyone is welcome to contribute. The module just **MUST** be owned by a Microsoft FTE (today) so we can enforce and provide the long-term support required by this initiative.
 
+{{< hint type=note >}}
+
+The names for the GitHub Teams for each module are already defined in the respective [Module Indexes](/Azure-Verified-Modules/indexes/) that **MUST** be used and created for each module.
+
+{{< /hint >}}
+
 #### ID: SNFR20 - Category: Contribution/Support - GitHub Teams Only
 
 All GitHub repositories that AVM module are published from and hosted within **MUST** only assign GitHub repository permissions to GitHub teams only.
@@ -196,6 +202,12 @@ Examples:
 
 - `@azure/avm-res-compute-virtualmachine-module-owners-bicep`
 - `@azure/avm-res-compute-virtualmachine-module-contributors-tf`
+
+{{< hint type=note >}}
+
+The names for the GitHub Teams for each module are already defined in the respective [Module Indexes](/Azure-Verified-Modules/indexes/) that **MUST** be used and created for each module.
+
+{{< /hint >}}
 
 #### ID: SNFR9 - Category: Contribution/Support - AVM & PG Teams GitHub Repo Permissions
 

@@ -3,6 +3,7 @@ main:
   - name: 'Home'
     ref: "/"
   - name: 'Module Indexes'
+    ref: 'indexes'
     sub:
       - name: 'Bicep'
         ref: 'indexes/bicep'
