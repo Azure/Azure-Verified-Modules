@@ -54,6 +54,12 @@ Review the [Bicep Contribution Guide's 'RBAC Role Definition Name Mapping' secti
 
 To simplify the consumption experience for module consumers when interacting with complex data types input parameters, mainly objects and arrays, the Bicep feature of [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types) **MUST** be used and declared.
 
+{{< hint type=tip >}}
+
+User-Defined Types are GA in Bicep as of version v0.21.1, please ensure you have this version installed as a minimum. 
+
+{{< /hint >}}
+
 [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types) allow intellisense support in supported IDEs (e.g. Visual Studio Code) for complex input parameters using arrays and objects.
 
 {{< hint type=important title="CARML Migration Exemption" >}}
