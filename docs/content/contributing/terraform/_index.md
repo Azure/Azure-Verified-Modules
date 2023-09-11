@@ -90,6 +90,10 @@ See template repo [here](https://github.com/Azure/terraform-azurerm-avm-template
   - `main.resource1.tf` (If a larger module you may chose to use dot notation for each resource)
   - `locals.resource1.tf`
 
+## Casing
+
+snake_casing is to be used as per [TFNFR3](/Azure-Verified-Modules/specs/terraform/#id-tfnfr4---category-composition---code-styling---lower-snake_casing)
+
 ## Module Publishing
 
 When the AVM Modules are published to the Hashicorp  Registry they **MUST** follow the below requirements:

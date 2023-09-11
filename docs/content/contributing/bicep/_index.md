@@ -129,6 +129,10 @@ Before jumping on implementing your contribution, please review the AVM Module s
 
 This section points to conventions to be followed when developing a Bicep template.
 
+### Casing
+
+camelCasing is to be used as per [BCPNFR6](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr6---category-composition---code-styling---lower-camelcasing)
+
 #### Input Parameters and Variables
 
 Make sure to review all specifications of `Category: Inputs` within both the [Shared](https://azure.github.io/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](https://azure.github.io/Azure-Verified-Modules/specs/bicep/) pages.
