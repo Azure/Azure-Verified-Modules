@@ -108,21 +108,27 @@ There is also [PowerShell script][MandatoryLabels] The [AVM core team][AVMCoreTe
 [AVM specification][ModuleSpecifications] covers all naming conventions. As example:
   [Module naming specification][ModuleNaming]
 
+<!-- ### Where are examples to follow / first sample modules to get inspiration from? -->
+
 ### Where module will live? Do i need to create separate repo or to place it in specific folder?
 
-Bicep
+#### Bicep
 
 For Bicep, both Resource and Pattern, AVM Modules will be homed in the Azure/bicep-registry-modules repository and live within an avm directory that will be located at the root of the repository.
 
 If you are module owner, it is expected that you will fork the Azure/bicep-registry-modules repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the Azure/bicep-registry-modules repositories main branch. In Bice contribution guide, you can discover [Directory and File structure that will be used and examples][BicepDir].
 
-Terraform
+#### Terraform
 
 Each Terraform AVM module will have its own GitHub Repository in the Azure GitHub Organization.
 This repo will be created by the Module Owners and the AVM Core team collaboratively, including the configuration of permissions.
 To read more about how to start, navigate to [Terraform AVM contribution guide.][TerraformDir]
 
-## Updating a module
+### Where can I test my module during development?
+
+During initial module development module owners/developers need to use your own environment (Azure subscriptions) to test module. In later phase, during publishing process, we will conduct automated test that will use AVM dedicated environment.
+
+## Updating and managing a module
 
 ### I'm already using a module today, but its missing a feature, what should I do?
 
@@ -132,36 +138,9 @@ You should use GitHub issues to propose changes or improvements for specific mod
 
 [AVM core team][AVMCoreTeam] will work to assign owner for every module, but it can happen during a time that there are modules without owner. If you would like to own that module, feel free to ask to take ownership. At this moment, only Microsoft FTEs can be module owners.  
 
-<!-- ## Security/Bugs in a module -->
+### How will the support SLAs be automatically enforced?
 
-<!-- ### I have found a security issue with a module or the way it deploys its resources/pattern, what should I do? -->
-
-<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
-
-<!-- - Covered in SECURITY.md? -->
-
-<!-- ## Retiring a module
-### What do I need to do to retire the module of and old solution? -->
-
-<!--
-A new Azure resource or resource provider got released that supersedes an existing module. Now that I've had the replacement module published for 2 years, what do I need to do to retire the old solution?
-we need to document a step that describes that the status flag of the modules needs to be changed to retired in the module index
--->
-
-<!-- ### Can modules be deleted from their respective repo (or can their repo be deleted)? -->
-
-<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
-
-<!--
-to this, we concluded earlier that the right approach is to leave one last readme.md file that provides context and points end users to the replacement solution.
--->
- <!-- ### Will modules ever be deleted from their respective registries? --> -->
-
-<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
-
-<!--
-on this, we concluded earlier that a module MUST never get deleted from a registry. It can be "abandoned" as part of the retirement flow.
--->
+All issues created in a module repo will be automatically be picked up and tracked by the GitHub Policy Service. This service will take the necessary steps when escalation is needed as per the SLAs defined in the [Module Support][ModuleSupport] chapter .
 
 [AVMCoreTeam]: /Azure-Verified-Modules/specs/shared/team-definitions/#avm-core-team
 [BicepModules]: /Azure-Verified-Modules/indexes/bicep/
@@ -183,105 +162,3 @@ on this, we concluded earlier that a module MUST never get deleted from a regist
 [BicepContributios]: /Azure-Verified-Modules/contributing/bicep/
 [TerrafromContribution]: /Azure-Verified-Modules/contributing/terraform/
 [ModuleNaming]: /Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming
-
-<!--
-#### How will the support SLAs be automatically enforced?
-
-All issues created in a module repo will be automatically be picked up and tracked by the GitHub Policy Service. This service will take the necessary steps when escalation is needed as per the SLAs defined in the [Module Support][ModuleSupport] chapter .
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} More details to be added. {{< /hint >}}
-
-#### How should the issue templates and customer tags/labels be used?
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-#### Where can I test my module during development?
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-#### Can I run manual tests or should I only use GH actions?
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-<br>
-
-### Bicep
--->
-
-<!-- ### What if I forget to bump up the version number? -->
-
-<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-### How will it impact the publication flow? Will it mess up the telemetry reporting? -->
-
-<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
-
-<!-- to avoid the latter, we should probably consider using a moduleVersion param instead of a variable - or implement some tests that guarantee that this gets updated every time there's was an update to the module -->
-
-<!--
-Who checks if the naming convention was followed?
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-#### Who will change CODEOWNERS file?
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-<br>
-
-### Terraform
-
-#### How will the new repo be created? What will the repo be called? Who checks if the naming convention was followed?
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-#### What are the mandatory .md files for the root of the repo (readme; security; support; etc.)
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-#### Do I need to use/create custom issue types/templates?
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-<br>
-
-## Developing the module
-
-### To start developing the module, which exact documents do I have to hold myself to?
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-<!-- (please don't just point me to the root of the docs page 😊) -->
-
-<!-- ### Where are examples to follow / first sample modules to get inspiration from? -->
-
-<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
-
-<!-- ### What are the guardrails/quality gates I need to be aware of/leverage/be compliant with? -->
-
-<!-- ( CI environment with the ai.e., where's the automated tests that I need to use and comply with)? -->
-
-<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
-
-<!-- ### Will I get any level of code review from the AVM core team to make sure my work is up to the standards? -->
-
-<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
-
-<!--
-module owners are supposed to start development locally, using their own subscriptions, and getting closer to publication, the AVM (central) test environment will have to be leveraged through pipelines/SPNs.
-
-some recurring tests to ensure we can catch failures after things like API changes.
-
-AVM sub for that. Manual is only for initial - when you first start developing a new module -->
-
-<!--
-## Publishing the module
-
-<!-- ### What steps do I need to follow?
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
-
-<!--
-- Is everything fully automated?
-- Do I need to talk to someone to publish my module in the registry or can I do it on my own?
--->
