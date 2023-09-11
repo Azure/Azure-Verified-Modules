@@ -56,7 +56,7 @@ To simplify the consumption experience for module consumers when interacting wit
 
 {{< hint type=tip >}}
 
-User-Defined Types are GA in Bicep as of version v0.21.1, please ensure you have this version installed as a minimum. 
+User-Defined Types are GA in Bicep as of version v0.21.1, please ensure you have this version installed as a minimum.
 
 {{< /hint >}}
 
