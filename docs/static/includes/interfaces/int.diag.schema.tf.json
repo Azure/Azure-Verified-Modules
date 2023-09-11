@@ -5,6 +5,10 @@
   "additionalProperties": {
     "type": "object",
     "properties": {
+      "name": {
+        "type": "string",
+        "default":: "${name}-diagnosticSettings"
+      },
       "log_categories_and_groups": {
         "type": "array",
         "items": {
