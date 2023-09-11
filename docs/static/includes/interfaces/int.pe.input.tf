@@ -4,6 +4,7 @@ private_endpoints = {
     role_assignments    = {} # see interfaces/role assignments
     lock                = {} # see interfaces/resource locks
     tags                = {} # see interfaces/tags
+    service             = "vault"
     subnet_resource_id  = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}"
     private_dns_zone_resource_ids = [
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{dnsZoneName}"
