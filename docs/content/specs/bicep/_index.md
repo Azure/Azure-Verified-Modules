@@ -54,11 +54,9 @@ Review the [Bicep Contribution Guide's 'RBAC Role Definition Name Mapping' secti
 
 To simplify the consumption experience for module consumers when interacting with complex data types input parameters, mainly objects and arrays, the Bicep feature of [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types) **MUST** be used and declared.
 
-{{< hint type=note >}}
+{{< hint type=tip >}}
 
-The AVM team are aware that to use [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types) at this time, August 2023, you must [enable the preview feature via the `bicepconfig.json`](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types#enable-the-preview-feature).
-
-This is only planned to be temporary and will be made part of the default features enabled in a upcoming release of Bicep very soon.
+User-Defined Types are GA in Bicep as of version v0.21.1, please ensure you have this version installed as a minimum.
 
 {{< /hint >}}
 
