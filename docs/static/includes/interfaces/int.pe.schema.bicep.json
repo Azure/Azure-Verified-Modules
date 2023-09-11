@@ -24,6 +24,9 @@
       "subnetResourceId": {
         "type": "string"
       },
+      "service": {
+        "type": "string"
+      },
       "privateDnsZoneResourceIds": {
         "type": "array"
       },
