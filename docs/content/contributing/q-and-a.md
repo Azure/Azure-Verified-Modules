@@ -76,40 +76,38 @@ The AVM core team will then triage the request and get back to you with next ste
 <!-- ### How will the central module catalog be updated?
 
 The [AVM core team][AVMCoreTeam] will maintain the module catalog and update it as new modules are created and published or existing ones are updated or retired. -->
-<!--
+
 ## Preparing the environment for a new module
 
-### Bicep & Terraform
+<!-- ### Bicep & Terraform -->
 
-#### What are the mandatory labels to be used while managing issues on GitHub?
+### What are the mandatory labels that needs to be used while managing issues, pull requests and discussions on GitHub repositories where module are held?
 
-There is a list of
+<!--
+You can manage your work on GitHub by creating labels to categorize issues, pull requests, and discussions. You can apply labels in the repository the label was created in. Once a label exists, you can use the label on any issue, pull request, or discussion within that repository.
+-->
+To get list of labels that MUST be created on gitHub repositories where modules are held navigate to [Shared non-functional requirement 23 (SNFR23)][MandatoryLabels].
+You SHOULD not use any additional labels.
 
-SNFR23
+There is also [PowerShell script][MandatoryLabels] The [AVM core team][AVMCoreTeam] created that can help to apply those labels to module GiHub repository.
 
-#### How will the support SLAs be automatically enforced?
 
-All issues created in a module repo will be automatically be picked up and tracked by the GitHub Policy Service. This service will take the necessary steps when escalation is needed as per the SLAs defined in the [Module Support][ModuleSupport] chapter .
+### Where module will live? Do i need to create separate repo or to place it in specific folder?
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} More details to be added. {{< /hint >}}
+**Bicep**
 
-#### How should the issue templates and customer tags/labels be used?
+For Bicep, both Resource and Pattern, AVM Modules will be homed in the Azure/bicep-registry-modules repository and live within an avm directory that will be located at the root of the repository.
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+If you are module owner, it is expected that you will fork the Azure/bicep-registry-modules repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the Azure/bicep-registry-modules repositories main branch. In Bice contribution guide, you can discover [Directory and File structure that will be used and examples][BicepDir]. 
 
-#### Where can I test my module during development?
+**Terraform**
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+Each Terraform AVM module will have its own GitHub Repository in the Azure GitHub Organization.
+This repo will be created by the Module Owners and the AVM Core team collaboratively, including the configuration of permissions.
+To read more about how to start, navigate to [Terraform AVM contribution guide.][TerraformDir]
 
-#### Can I run manual tests or should I only use GH actions?
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-<br>
-
-### Bicep
-
-#### What folder do I need to create the module in? Who checks if the naming convention was followed?
+<!--
+Who checks if the naming convention was followed?
 
 {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
 
@@ -176,7 +174,7 @@ AVM sub for that. Manual is only for initial - when you first start developing a
 - Do I need to talk to someone to publish my module in the registry or can I do it on my own?
 -->
 
-<!-- ## Updating a module -->
+## Updating a module
 
 <!-- ### What if I forget to bump up the version number? -->
 
@@ -188,15 +186,15 @@ AVM sub for that. Manual is only for initial - when you first start developing a
 
 <!-- to avoid the latter, we should probably consider using a moduleVersion param instead of a variable - or implement some tests that guarantee that this gets updated every time there's was an update to the module -->
 
-<!-- ### I'm already using a module today, but its missing a feature, what should I do?
+### I'm already using a module today, but its missing a feature, what should I do?
 
 {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
 
 <br>
 
-## Security/Bugs in a module
+<!-- ## Security/Bugs in a module -->
 
-### I have found a security issue with a module or the way it deploys its resources/pattern, what should I do? -->
+### I have found a security issue with a module or the way it deploys its resources/pattern, what should I do? 
 
 <!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
 
@@ -241,3 +239,31 @@ on this, we concluded earlier that a module MUST never get deleted from a regist
 [AzureArchitectureCenter]: https://learn.microsoft.com/en-us/azure/architecture/browse/
 [ALZ]: https://aka.ms/alz
 [ModuleIndexes]: /Azure-Verified-Modules/indexes/
+[MandatoryLabels]: /Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels
+[BicepDir]: /Azure-Verified-Modules/contributing/bicep/#directory-and-file-structure
+[TerraformDir]: /Azure-Verified-Modules/contributing/terraform/#repositories
+
+
+<!--
+#### How will the support SLAs be automatically enforced?
+
+All issues created in a module repo will be automatically be picked up and tracked by the GitHub Policy Service. This service will take the necessary steps when escalation is needed as per the SLAs defined in the [Module Support][ModuleSupport] chapter .
+
+{{< hint type=warning title=TBD icon=gdoc_gitea >}} More details to be added. {{< /hint >}}
+
+#### How should the issue templates and customer tags/labels be used?
+
+{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+
+#### Where can I test my module during development?
+
+{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+
+#### Can I run manual tests or should I only use GH actions?
+
+{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+
+<br>
+
+### Bicep
+-->
