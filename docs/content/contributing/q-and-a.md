@@ -136,7 +136,7 @@ You should use GitHub issues to propose changes or improvements for specific mod
 
 ### I am using module without owner. What will happened if i need update?
 
-[AVM core team][AVMCoreTeam] will work to assign owner for every module, but it can happen during a time that there are modules without owner. If you would like to own that module, feel free to ask to take ownership. At this moment, only Microsoft FTEs can be module owners.  
+[AVM core team][AVMCoreTeam] will work to assign owner for every module, but it can happen during a time that there are modules without owner. If you would like to own that module, feel free to ask to take ownership. At this moment, only Microsoft FTEs can be module owners.
 
 ### How will the support SLAs be automatically enforced?
 
