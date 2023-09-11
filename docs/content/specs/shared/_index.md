@@ -83,6 +83,7 @@ Due to the 64-character length limit of Azure deployment names, the `<module nam
       - Scope (Tenant, Management Group,Subscription, Resource Group)
 
 An example deployment name for the AVM Virtual Machine Resource Module would be:
+
 - Bicep == `46d3xbcp.res.compute-virtualmachine.v1-2-3.eum3`
 - Terraform == `46d3xtf.res.compute-virtualmachine.v1-2-3.eum3`
 
@@ -105,8 +106,8 @@ We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verif
 
 The telemetry enablement **MUST** be on/enabled by default, however this **MUST** be able to be disabled by a module consumer by setting the below parameter/variable value to `false`:
 
-- Bicep: `enableDefaultTelemetry`
-- Terraform: `enable_default_telemetry`
+- Bicep: `enableTelemetry`
+- Terraform: `enable_telemetry`
 
 #### ID: SFR5 - Category: Composition - Availability Zones
 
@@ -251,6 +252,7 @@ These `Set-AvmGitHubLabels.ps1` can be downloaded from <a href="/Azure-Verified-
 {{< include file="/static/scripts/Set-AvmGitHubLabels.ps1" language="powershell" options="linenos=false" >}}
 
 {{< /expand >}}
+
 #### ID: SNFR13 - Category: Forking - Private Module Registry Support
 
 A module **MUST** also function within a private module registry, internal Git repo.
@@ -275,9 +277,9 @@ Example for the property `workspaceId` for the Diagnostic Settings resource. In 
 
 README documentation **MUST** be automatically/programmatically generated. **MUST** include inputs, outputs, resources deployed.
 
-#### ID: SNFR16 - Category: Documentation - Examples
+#### ID: SNFR16 - Category: Documentation - Examples/E2E
 
-An examples directory **MUST** exist to provide named scenarios for module deployment.
+An examples/e2e directory **MUST** exist to provide named scenarios for module deployment.
 
 #### ID: SNFR17 - Category: Release - Semantic Versioning
 

@@ -16,6 +16,7 @@ This page is still a work in progress
 
 We are still getting ready to actually create code but we are willing to take module proposals from Microsoft FTEs!
 
+
 Fill in the form [here](https://aka.ms/avm/moduleproposal) 📄
 
 {{< /hint >}}
@@ -23,6 +24,7 @@ Fill in the form [here](https://aka.ms/avm/moduleproposal) 📄
 {{< hint type=tip >}}
 
 Before submitting a new [module proposal](https://aka.ms/avm/moduleproposal) for either Bicep or Terraform, please review the FAQ section on ["CARML/TFVM to AVM Evolution Details"](/Azure-Verified-Modules/faq/#carmltfvm-to-avm-evolution-details)
+
 
 {{< /hint >}}
 

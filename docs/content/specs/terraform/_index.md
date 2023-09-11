@@ -52,9 +52,9 @@ module "other-module" {
 
 ### Non-Functional Requirements
 
-#### ID: TFNFR1 - Category: Documentation - Parameter Input Examples
+#### ID: TFNFR1 - Category: Documentation - Descriptions
 
-Terraform modules **MUST** provide variable input examples for each variable using the HEREDOC format and embedded markdown.
+Where descriptions for variables and outputs spans multiple lines. The description **MUST** provide variable input examples for each variable using the HEREDOC format and embedded markdown.
 
 Example:
 
@@ -62,17 +62,28 @@ Example:
 
 #### ID: TFNFR2 - Category: Documentation - Module Documentation Generation
 
-Terraform modules documentation **MUST** be automatically generated via [Terraform Docs](https://github.com/terraform-docs/terraform-docs)
+Terraform modules documentation **MUST** be automatically generated via [Terraform Docs](https://github.com/terraform-docs/terraform-docs).
 
-#### ID: TFNFR3 - Category: Documentation - Module README Layout
+A file called `.terraform-docs.yml` **MUST** be present in the root of the module and have the following content:
 
-Terraform modules **MUST** follow the below order for their docs layout for Terraform Docs:
+{{< include file="/static/includes/terraform-docs.yml" language="yaml" options="linenos=false" >}}
 
-- Header
-- Requirements
-- Providers
-- Resources
-- Inputs
-- Outputs
-- Modules
-- Footer
+#### ID: TFNFR3 - Category: Contribution/Support - GitHub Repo Branch Protection
+
+Module owners **MUST** set a branch protection policy on their GitHub Repositories for AVM modules against their default branch, typically `main`, to do the following:
+
+1. Requires a Pull Request before merging
+2. Require approval of the most recent reviewable push
+3. Dismiss stale pull request approvals when new commits are pushed
+4. Require linear history
+5. Prevents force pushes
+6. Not allow deletions
+7. Require CODEOWNERS review
+8. Do not allow bypassing the above settings
+9. Above settings **MUST** also be enforced to administrators
+
+{{< hint type=tip >}}
+
+If you use the [template repository](/Azure-Verified-Modules/contributing/terraform/#template-repository) as mentioned in the contribution guide, the above will automatically be set.
+
+{{< /hint >}}

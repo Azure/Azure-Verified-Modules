@@ -1,5 +1,6 @@
 diagnosticSettings: [
   {
+    name: 'diagSetting1'
     logCategoriesAndGroups: ['allLogs']
     metricCategories: ['AllMetrics']
     logAnalyticsDestinationType: 'Dedicated'

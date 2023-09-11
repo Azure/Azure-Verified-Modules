@@ -12,7 +12,7 @@ privateEndpoints: {
     applicationSecurityGroupResourceIds: [
       '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationSecurityGroups/{asgName}'
     ]
-    customDnsConfigs: [
+    customDnsConfigs: [ // this is an output in TF, check please
       {
         fqdn: 'fqdn1.example.com'
         ipAddresses: [
@@ -21,7 +21,7 @@ privateEndpoints: {
         ]
       }
     ]
-    customNetworkInterfaceName: 'nic1'
+    networkInterfaceName: 'nic1'
     ipConfigurations: [
       {
         name: 'ipconfig1'
