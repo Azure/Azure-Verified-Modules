@@ -7,7 +7,7 @@
     "properties": {
       "name": {
         "type": "string",
-        "default":: "${name}-diagnosticSettings"
+        "default": "${resourceName}-diagnosticSettings"
       },
       "log_categories_and_groups": {
         "type": "array",
