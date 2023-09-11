@@ -52,8 +52,11 @@ main:
       - name: 'Create GitHub Issue'
         ref: "https://github.com/Azure/Azure-Verified-Modules/issues"
         external: true
-      - name: 'Propose New Modules'
+      - name: 'Propose a New Module'
         ref: "https://aka.ms/AVM/ModuleProposal"
+        external: true
+      - name: 'Module Triage GitHub Project'
+        ref: "https://aka.ms/AVM/ModuleTriage"
         external: true
   - name: 'Contributing'
     sub:
