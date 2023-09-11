@@ -4,6 +4,7 @@ privateEndpoints: {
     roleAssignments : [...]
     lock: 'CanNotDelete'
     tags: {...}
+    service: 'vault'
     subnetResourceId: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}'
     privateDnsZoneResourceIds: [
       '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{dnsZoneName}'
