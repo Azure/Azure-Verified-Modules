@@ -5,10 +5,6 @@
   "items": {
     "type": "object",
     "properties": {
-      "diagnosticSettings": {
-        "type": "array",
-        "$ref": "https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#diagnostic-settings"
-      },
       "roleAssignments": {
         "type": "array",
         "$ref": "https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#role-assignments"
@@ -24,30 +20,19 @@
       "subnetResourceId": {
         "type": "string"
       },
+      "service": {
+        "type": "string"
+      },
+      "privateDnsZoneGroupName": {
+        "type": "string"
+      },
       "privateDnsZoneResourceIds": {
         "type": "array"
       },
       "applicationSecurityGroupResourceIds": {
         "type": "array"
       },
-      "customDnsConfigs": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "fqdn": {
-              "type": "string"
-            },
-            "ipAddresses": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        }
-      },
-      "customNetworkInterfaceName": {
+      "networkInterfaceName": {
         "type": "string"
       },
       "ipConfigurations": {

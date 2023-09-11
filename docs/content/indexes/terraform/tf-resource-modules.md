@@ -5,12 +5,6 @@ geekdocAlign: left
 geekdocAnchor: true
 ---
 
-{{< hint type=warning >}}
-
-**This page is under development.** If you can't see any modules in the tables below, it means that **there are no modules available/planned in this category yet**.
-
-{{< /hint >}}
-
 {{< hint type=tip >}}
 
 **Use the breadcrumb menu** above to navigate back to the main page!

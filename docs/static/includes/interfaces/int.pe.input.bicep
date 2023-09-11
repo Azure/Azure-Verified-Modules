@@ -1,9 +1,9 @@
 privateEndpoints: {
   {
-    diagnosticSettings: [...]
     roleAssignments : [...]
     lock: 'CanNotDelete'
     tags: {...}
+    service: 'vault'
     subnetResourceId: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}'
     privateDnsZoneResourceIds: [
       '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{dnsZoneName}'
@@ -11,7 +11,7 @@ privateEndpoints: {
     applicationSecurityGroupResourceIds: [
       '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationSecurityGroups/{asgName}'
     ]
-    customDnsConfigs: [
+    customDnsConfigs: [ // this is an output in TF, check please
       {
         fqdn: 'fqdn1.example.com'
         ipAddresses: [
@@ -20,7 +20,7 @@ privateEndpoints: {
         ]
       }
     ]
-    customNetworkInterfaceName: 'nic1'
+    networkInterfaceName: 'nic1'
     ipConfigurations: [
       {
         name: 'ipconfig1'

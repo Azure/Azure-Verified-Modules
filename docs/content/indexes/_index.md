@@ -5,12 +5,6 @@ geekdocAlign: left
 geekdocAnchor: true
 ---
 
-{{< hint type=tip >}}
-
-**Use the breadcrumb menu** above to navigate back to the main page!
-
-{{< /hint >}}
-
 This section lists all Azure Verified Modules that are available or planned in **Bicep and/or Terraform languages**.
 
 - [Bicep](/Azure-Verified-Modules/indexes/bicep)

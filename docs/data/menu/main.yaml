@@ -3,6 +3,7 @@ main:
   - name: 'Home'
     ref: "/"
   - name: 'Module Indexes'
+    ref: 'indexes'
     sub:
       - name: 'Bicep'
         ref: 'indexes/bicep'
@@ -51,16 +52,24 @@ main:
       - name: 'Create GitHub Issue'
         ref: "https://github.com/Azure/Azure-Verified-Modules/issues"
         external: true
-      - name: 'Propose New Modules'
+      - name: 'Propose a New Module'
         ref: "https://aka.ms/AVM/ModuleProposal"
         external: true
+      - name: 'Module Triage GitHub Project'
+        ref: "https://aka.ms/AVM/ModuleTriage"
+        external: true
   - name: 'Contributing'
+    ref: 'contributing'
     sub:
+      - name: 'Process Overview'
+        ref: '/contributing/process'
       - name: 'Bicep Modules'
         ref: '/contributing/bicep'
       - name: 'Terraform Modules'
         ref: '/contributing/terraform'
-      - name: 'This Website'
+      - name: 'Contribution Q&A'
+        ref: '/contributing/q-and-a'
+      - name: 'Website'
         ref: '/contributing/website'
       - name: 'Code of Conduct'
         ref: 'https://opensource.microsoft.com/codeofconduct/'

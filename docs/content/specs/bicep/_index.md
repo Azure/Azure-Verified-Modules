@@ -70,6 +70,17 @@ Therefore it has been decided by the AVM core team that CARML modules initial mi
 
 {{< /hint >}}
 
+#### ID: BCPNFR7 - Category: Inputs - Parameter Requirement Types
+
+Modules will have lots of parameters that will differ in their requirement type (required, optional, etc.). To help consumers understand what each parameters requirement type is, modules owners **MUST** add the requirement type to the beginning of each parameter's description. Below are the requirement types with a definition and example for the description decorator:
+
+| Parameter Requirement Type | Definition | Example Description Decorator |
+| -------------------------- | ---------- | ----------------------------- |
+| Required | The parameter value must be provided. The parameter does not have a default value and hence the module expects and requires an input. | `@description('Required. <PARAMETER DESCRIPTION HERE...>')` |
+| Conditional | The parameter value can be optional or required based on a condition, mostly based on the value provided to other parameters. | `@description('Conditional. <PARAMETER DESCRIPTION HERE...>')` |
+| Optional | The parameter value is not mandatory. The module provides a default value for the parameter. | `@description('Optional. <PARAMETER DESCRIPTION HERE...>')` |
+| Generated | The parameter value is generated within the module and should not be specified as input in most cases. A common example of this is the `utcNow()` function that is only supported as the input for a parameter value, and not inside a variable. | `@description('Generated. <PARAMETER DESCRIPTION HERE...>')` |
+
 #### ID: BCPNFR2 - Category: Documentation - Module Documentation Generation
 
 {{< hint type=note >}}
@@ -143,3 +154,16 @@ Module owners **MUST** include the following roles in the variable for RBAC Role
 Review the [Bicep Contribution Guide's 'RBAC Role Definition Name Mapping' section](/Azure-Verified-Modules/contributing/bicep/#rbac-role-definition-name-mapping) for a code sample to achieve this requirement.
 
 {{< /hint >}}
+
+#### ID: BCPNFR6 - Category: Composition - Code Styling - lower camelCasing
+
+Module owners **MUST** use [lower camelCasing](https://wikipedia.org/wiki/Camel_case) for naming the following:
+
+- Parameters
+- Variables
+- Outputs
+- User Defined Types
+- Resources (symbolic names)
+- Modules (symbolic names)
+
+For example: `camelCasingExample` (lowercase first word (entirely), with capital of first letter of all other words and rest of word in lowercase)

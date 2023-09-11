@@ -83,8 +83,9 @@ Due to the 64-character length limit of Azure deployment names, the `<module nam
       - Scope (Tenant, Management Group,Subscription, Resource Group)
 
 An example deployment name for the AVM Virtual Machine Resource Module would be:
+
 - Bicep == `46d3xbcp.res.compute-virtualmachine.v1-2-3.eum3`
-- Terraform == `46d3xtf.res.compute-virtualmachine.v1-2-3.eum3`
+- Terraform == `46d3xgtf.res.compute-virtualmachine.v1-2-3.eum3`
 
 {{< hint type=tip >}}
 
@@ -105,8 +106,8 @@ We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verif
 
 The telemetry enablement **MUST** be on/enabled by default, however this **MUST** be able to be disabled by a module consumer by setting the below parameter/variable value to `false`:
 
-- Bicep: `enableDefaultTelemetry`
-- Terraform: `enable_default_telemetry`
+- Bicep: `enableTelemetry`
+- Terraform: `enable_telemetry`
 
 #### ID: SFR5 - Category: Composition - Availability Zones
 
@@ -170,7 +171,19 @@ A module **MUST** have an owner that is defined and managed by a GitHub Team in 
 
 Today this is only Microsoft FTEs, but everyone is welcome to contribute. The module just **MUST** be owned by a Microsoft FTE (today) so we can enforce and provide the long-term support required by this initiative.
 
+{{< hint type=note >}}
+
+The names for the GitHub Teams for each module are already defined in the respective [Module Indexes](/Azure-Verified-Modules/indexes/) that **MUST** be used and created for each module.
+
+{{< /hint >}}
+
 #### ID: SNFR20 - Category: Contribution/Support - GitHub Teams Only
+
+{{< hint type=note >}}
+
+The names for the GitHub Teams for each module are already defined in the respective [Module Indexes](/Azure-Verified-Modules/indexes/) that **MUST** be used and created for each module.
+
+{{< /hint >}}
 
 All GitHub repositories that AVM module are published from and hosted within **MUST** only assign GitHub repository permissions to GitHub teams only.
 
@@ -251,6 +264,7 @@ These `Set-AvmGitHubLabels.ps1` can be downloaded from <a href="/Azure-Verified-
 {{< include file="/static/scripts/Set-AvmGitHubLabels.ps1" language="powershell" options="linenos=false" >}}
 
 {{< /expand >}}
+
 #### ID: SNFR13 - Category: Forking - Private Module Registry Support
 
 A module **MUST** also function within a private module registry, internal Git repo.
@@ -275,9 +289,9 @@ Example for the property `workspaceId` for the Diagnostic Settings resource. In 
 
 README documentation **MUST** be automatically/programmatically generated. **MUST** include inputs, outputs, resources deployed.
 
-#### ID: SNFR16 - Category: Documentation - Examples
+#### ID: SNFR16 - Category: Documentation - Examples/E2E
 
-An examples directory **MUST** exist to provide named scenarios for module deployment.
+An examples/e2e directory **MUST** exist to provide named scenarios for module deployment.
 
 #### ID: SNFR17 - Category: Release - Semantic Versioning
 
@@ -423,6 +437,14 @@ Module owners **MAY** also have to provide additional outputs depending on the I
 
 #### ID: RMNFR1 - Category: Naming - Module Naming
 
+{{< hint type=note >}}
+
+We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) with the correct singular names for all resource types to enable checks to utilize this list to ensure repos are named correctly. To see the formatted content of these CSV files with additional information, please visit the [AVM Module Indexes](/Azure-Verified-Modules/indexes) page.
+
+This will be updated quarterly, or ad-hoc as new RPs/ Resources are created and highlighted via a check failure.
+
+{{< /hint >}}
+
 Module names **MUST** follow the below pattern (all lower case):
 
 - Bicep: `avm-res-<rp>-<armresourcename>` (to support registry hosting)
@@ -436,14 +458,6 @@ Example: `avm-res-compute-virtualmachine`
 - `<rp>` is the resource provider’s name after the `Microsoft` part, e.g., `Microsoft.Compute` = `compute`.
 - `res` defines this is a resource module
 - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` or `azuread` for resource modules.
-
-{{< hint type=note >}}
-
-We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) with the correct singular names for all resource types to enable checks to utilize this list to ensure repos are named correctly. To see the formatted content of these CSV files with additional information, please visit the [AVM Module Indexes](/Azure-Verified-Modules/indexes) page.
-
-This will be updated quarterly, or ad-hoc as new RPs/ Resources are created and highlighted via a check failure.
-
-{{< /hint >}}
 
 #### ID: RMNFR2 - Category: Inputs - Parameter/Variable Naming
 
