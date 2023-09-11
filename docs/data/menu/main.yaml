@@ -57,6 +57,8 @@ main:
         external: true
   - name: 'Contributing'
     sub:
+      - name: 'Process Overview'
+        ref: '/contributing/process'
       - name: 'Bicep Modules'
         ref: '/contributing/bicep'
       - name: 'Terraform Modules'
