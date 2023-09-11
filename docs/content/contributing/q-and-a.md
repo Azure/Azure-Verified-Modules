@@ -14,9 +14,10 @@ geekdocToC: 1
 ### Who can propose a new module and where can I submit a new module proposal / request?
 
 **Everyone can propose a module**
-To propose a new module, simply create an issue [here][ModuleProposal].
 
-### Can I just propose / create ANY module?
+To propose a new module, simply create an issue/complete the form [here][ModuleProposal].
+
+### Can I just propose / create any module?
 
 **For example, can I propose one for managed disks or NICs or diagnostic settings? What about patterns?**
 
@@ -34,7 +35,7 @@ Below, we provide some guidance on what modules you can / cannot propose.
 
 - **Pattern modules**: In case of pattern modules, ideally you should start from architectural patterns, published in the [Azure Architecture Center][AzureArchitectureCenter], and build your pattern module by leveraging resource modules that are required to implement the pattern. AVM does not provide architectural guidance on how you should design your pattern, but you **MUST** follow the module specifications and your modules **SHOULD** be [WAF aligned][WAFAligned].
   - Good examples:
-    - Landing zone accelerators for N-tier web application; AKS cluster; SAP: there are numerous examples for these architectures in Azure Architecture Center that already have baked in guidance / smart defaults that are WAF Aligned, therefore these are good candidates for pattern modules. Modules owners should leverage resource modules to implement the pattern.
+    - Landing zone accelerators for N-tier web application; AKS cluster; SAP: there are numerous examples for these architectures in Azure Architecture Center that already have baked in guidance / smart defaults that are WAF Aligned, therefore these are good candidates for pattern modules. Modules owners **MAY** leverage resource modules to implement the pattern.
     - Hub and spoke topology: it's a common pattern that is used by many customers and there are great examples available through Azure Architecture Center, as well as [Azure Landing Zones][ALZ]. Also a good candidate for a pattern module.
   - Bad examples:
     - A pair of Virtual machines: being a simple wrapper, this solution wouldn't bring any extra value as it doesn't provide a complete solution.
@@ -87,7 +88,7 @@ If you want to join a team and to contribute on specific module, please contact 
 
 At this moment, only Microsoft FTEs can be module owners.
 
-### What i need so i can start developing a module?
+### What I need so I can start developing a module?
 
 We suggest that you review [module specification][ModuleSpecifications] and [contribution guides][ModuleContributors]:
 
@@ -98,8 +99,9 @@ Feel free to reach to [AVMCore team][AVMCoreTeam] in case that additional help i
 
 ### What are the mandatory labels that needs to be used while managing issues, pull requests and discussions on GitHub repositories where module are held?
 
-To get list of labels that MUST be created on gitHub repositories where modules are held navigate to [Shared non-functional requirement 23 (SNFR23)][MandatoryLabels].
-You SHOULD not use any additional labels.
+To get list of labels that **MUST** be created on gitHub repositories where modules are held navigate to [Shared non-functional requirement 23 (SNFR23)][MandatoryLabels].
+
+You **SHOULD NOT** use any additional labels.
 
 There is also [PowerShell script][MandatoryLabels] The [AVM core team][AVMCoreTeam] created that can help to apply those labels to module GiHub repository.
 
@@ -110,7 +112,7 @@ There is also [PowerShell script][MandatoryLabels] The [AVM core team][AVMCoreTe
 
 <!-- ### Where are examples to follow / first sample modules to get inspiration from? -->
 
-### Where module will live? Do i need to create separate repo or to place it in specific folder?
+### Where module will live? Do I need to create separate repo or to place it in specific folder?
 
 #### Bicep
 
@@ -132,9 +134,9 @@ During initial module development module owners/developers need to use your own 
 
 ### I'm already using a module today, but its missing a feature, what should I do?
 
-You should use GitHub issues to propose changes or improvements for specific module. Issue request will be router to module owner that MUST respond to logged issues within 3 business days. In case that module currently don't have owner, [AVM Core Team][AVMCoreTeam] will handle request.
+You should use GitHub issues to propose changes or improvements for specific module. Issue request will be router to module owner that **MUST** respond to logged issues within 3 business days. In case that module currently don't have owner, [AVM Core Team][AVMCoreTeam] will handle request.
 
-### I am using module without owner. What will happened if i need update?
+### I am using module without owner. What will happened if I need update?
 
 [AVM core team][AVMCoreTeam] will work to assign owner for every module, but it can happen during a time that there are modules without owner. If you would like to own that module, feel free to ask to take ownership. At this moment, only Microsoft FTEs can be module owners.
 
@@ -153,7 +155,7 @@ All issues created in a module repo will be automatically be picked up and track
 [AVMChannel]: https://aka.ms/AVM/channel
 [ModuleSpecifications]: /Azure-Verified-Modules/specs/
 [DiagnosticSettings]: /Azure-Verified-Modules/specs/shared/interfaces/#diagnostic-settings
-[AzureArchitectureCenter]: https://learn.microsoft.com/en-us/azure/architecture/browse/
+[AzureArchitectureCenter]: https://learn.microsoft.com/azure/architecture/browse/
 [ALZ]: https://aka.ms/alz
 [ModuleIndexes]: /Azure-Verified-Modules/indexes/
 [MandatoryLabels]: /Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels
