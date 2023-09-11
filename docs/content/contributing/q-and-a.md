@@ -11,8 +11,9 @@ geekdocToC: 1
 
 ## Proposing a module
 
-### Where can I submit a new module proposal / request?
+### Who can propose a new module and where can I submit a new module proposal / request?
 
+**Everyone can propose a module**
 To propose a new module, simply create an issue [here][ModuleProposal].
 
 ### Can I just propose / create ANY module?
@@ -76,156 +77,70 @@ The AVM core team will then triage the request and get back to you with next ste
 <!-- ### How will the central module catalog be updated?
 
 The [AVM core team][AVMCoreTeam] will maintain the module catalog and update it as new modules are created and published or existing ones are updated or retired. -->
-<!--
-## Preparing the environment for a new module
 
-### Bicep & Terraform
+## Developing a module
 
-#### What are the mandatory labels to be used while managing issues on GitHub?
+### Who is developing a modules?
 
-There is a list of
+Every module has an owner that is responsible for module development and maintenance. One owner can own one or multiple modules. An owner can develop modules alone or lead a team that will develop a module.
+If you want to join a team and to contribute on specific module, please contact module owner.
 
-SNFR23
+At this moment, only Microsoft FTEs can be module owners.
 
-#### How will the support SLAs be automatically enforced?
+### What i need so i can start developing a module?
 
-All issues created in a module repo will be automatically be picked up and tracked by the GitHub Policy Service. This service will take the necessary steps when escalation is needed as per the SLAs defined in the [Module Support][ModuleSupport] chapter .
+We suggest that you review [module specification][ModuleSpecifications] and [contribution guides][ModuleContributors]:
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} More details to be added. {{< /hint >}}
+- [Bicep contribution guide][BicepContributios]
+- [Terraform contribution guide][TerrafromContribution]
 
-#### How should the issue templates and customer tags/labels be used?
+Feel free to reach to [AVMCore team][AVMCoreTeam] in case that additional help is needed.
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+### What are the mandatory labels that needs to be used while managing issues, pull requests and discussions on GitHub repositories where module are held?
 
-#### Where can I test my module during development?
+To get list of labels that MUST be created on gitHub repositories where modules are held navigate to [Shared non-functional requirement 23 (SNFR23)][MandatoryLabels].
+You SHOULD not use any additional labels.
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
+There is also [PowerShell script][MandatoryLabels] The [AVM core team][AVMCoreTeam] created that can help to apply those labels to module GiHub repository.
 
-#### Can I run manual tests or should I only use GH actions?
+### Is there any naming convention for modules name, repository name, variables, parameters.... ?
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-<br>
-
-### Bicep
-
-#### What folder do I need to create the module in? Who checks if the naming convention was followed?
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-#### Who will change CODEOWNERS file?
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-<br>
-
-### Terraform
-
-#### How will the new repo be created? What will the repo be called? Who checks if the naming convention was followed?
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-#### What are the mandatory .md files for the root of the repo (readme; security; support; etc.)
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-#### Do I need to use/create custom issue types/templates?
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-<br>
-
-## Developing the module
-
-### To start developing the module, which exact documents do I have to hold myself to?
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-<!-- (please don't just point me to the root of the docs page 😊) -->
+[AVM specification][ModuleSpecifications] covers all naming conventions. As example:
+  [Module naming specification][ModuleNaming]
 
 <!-- ### Where are examples to follow / first sample modules to get inspiration from? -->
 
-<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
+### Where module will live? Do i need to create separate repo or to place it in specific folder?
 
-<!-- ### What are the guardrails/quality gates I need to be aware of/leverage/be compliant with? -->
+#### Bicep
 
-<!-- ( CI environment with the ai.e., where's the automated tests that I need to use and comply with)? -->
+For Bicep, both Resource and Pattern, AVM Modules will be homed in the Azure/bicep-registry-modules repository and live within an avm directory that will be located at the root of the repository.
 
-<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
+If you are module owner, it is expected that you will fork the Azure/bicep-registry-modules repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the Azure/bicep-registry-modules repositories main branch. In Bice contribution guide, you can discover [Directory and File structure that will be used and examples][BicepDir].
 
-<!-- ### Will I get any level of code review from the AVM core team to make sure my work is up to the standards? -->
+#### Terraform
 
-<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
+Each Terraform AVM module will have its own GitHub Repository in the Azure GitHub Organization.
+This repo will be created by the Module Owners and the AVM Core team collaboratively, including the configuration of permissions.
+To read more about how to start, navigate to [Terraform AVM contribution guide.][TerraformDir]
 
-<!--
-module owners are supposed to start development locally, using their own subscriptions, and getting closer to publication, the AVM (central) test environment will have to be leveraged through pipelines/SPNs.
+### Where can I test my module during development?
 
-some recurring tests to ensure we can catch failures after things like API changes.
+During initial module development module owners/developers need to use your own environment (Azure subscriptions) to test module. In later phase, during publishing process, we will conduct automated test that will use AVM dedicated environment.
 
-AVM sub for that. Manual is only for initial - when you first start developing a new module -->
+## Updating and managing a module
 
-<!--
-## Publishing the module
+### I'm already using a module today, but its missing a feature, what should I do?
 
-<!-- ### What steps do I need to follow?
+You should use GitHub issues to propose changes or improvements for specific module. Issue request will be router to module owner that MUST respond to logged issues within 3 business days. In case that module currently don't have owner, [AVM Core Team][AVMCoreTeam] will handle request.
 
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
+### I am using module without owner. What will happened if i need update?
 
-<!--
-- Is everything fully automated?
-- Do I need to talk to someone to publish my module in the registry or can I do it on my own?
--->
+[AVM core team][AVMCoreTeam] will work to assign owner for every module, but it can happen during a time that there are modules without owner. If you would like to own that module, feel free to ask to take ownership. At this moment, only Microsoft FTEs can be module owners.
 
-<!-- ## Updating a module -->
+### How will the support SLAs be automatically enforced?
 
-<!-- ### What if I forget to bump up the version number? -->
-
-<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-### How will it impact the publication flow? Will it mess up the telemetry reporting? -->
-
-<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
-
-<!-- to avoid the latter, we should probably consider using a moduleVersion param instead of a variable - or implement some tests that guarantee that this gets updated every time there's was an update to the module -->
-
-<!-- ### I'm already using a module today, but its missing a feature, what should I do?
-
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}}
-
-<br>
-
-## Security/Bugs in a module
-
-### I have found a security issue with a module or the way it deploys its resources/pattern, what should I do? -->
-
-<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
-
-<!-- - Covered in SECURITY.md? -->
-
-<!--
-## Retiring a module
-### What do I need to do to retire the module of and old solution?
-{{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
-
-<!--
-A new Azure resource or resource provider got released that supersedes an existing module. Now that I've had the replacement module published for 2 years, what do I need to do to retire the old solution?
-we need to document a step that describes that the status flag of the modules needs to be changed to retired in the module index
--->
-
-<!-- ### Can modules be deleted from their respective repo (or can their repo be deleted)? -->
-
-<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
-
-<!--
-to this, we concluded earlier that the right approach is to leave one last readme.md file that provides context and points end users to the replacement solution.
--->
-<!-- ### Will modules ever be deleted from their respective registries? -->
-
-<!-- {{< hint type=warning title=TBD icon=gdoc_gitea >}} {{< /hint >}} -->
-
-<!--
-on this, we concluded earlier that a module MUST never get deleted from a registry. It can be "abandoned" as part of the retirement flow.
--->
+All issues created in a module repo will be automatically be picked up and tracked by the GitHub Policy Service. This service will take the necessary steps when escalation is needed as per the SLAs defined in the [Module Support][ModuleSupport] chapter .
 
 [AVMCoreTeam]: /Azure-Verified-Modules/specs/shared/team-definitions/#avm-core-team
 [BicepModules]: /Azure-Verified-Modules/indexes/bicep/
@@ -241,3 +156,9 @@ on this, we concluded earlier that a module MUST never get deleted from a regist
 [AzureArchitectureCenter]: https://learn.microsoft.com/en-us/azure/architecture/browse/
 [ALZ]: https://aka.ms/alz
 [ModuleIndexes]: /Azure-Verified-Modules/indexes/
+[MandatoryLabels]: /Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels
+[BicepDir]: /Azure-Verified-Modules/contributing/bicep/#directory-and-file-structure
+[TerraformDir]: /Azure-Verified-Modules/contributing/terraform/#repositories
+[BicepContributios]: /Azure-Verified-Modules/contributing/bicep/
+[TerrafromContribution]: /Azure-Verified-Modules/contributing/terraform/
+[ModuleNaming]: /Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming
