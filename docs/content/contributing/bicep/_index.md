@@ -78,8 +78,8 @@ It is expected that module owners will fork the [`Azure/bicep-registry-modules`]
 Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository in the `avm` directory will have the following directories and files:
 
 - `tests/` - (for unit tests and additional E2E/integration if required - e.g. Pester etc.)
+  - `e2e/` - (all examples must deploy successfully - these will be used to automatically generate the examples in the README.md for the module)
 - `modules/` - (for sub-modules only if used and NOT children of the primary resource. e.g. RBAC role assignments)
-- `examples/` - (all examples must deploy successfully - these are customer facing)
 - `/...` - (Module files that live in the root of module directory)
   - `main.bicep` (AVM Module main `.bicep` file and entry point/orchestration module)
   - `main.json` (auto generated and what is published to the MCR via BRM)
@@ -99,9 +99,9 @@ Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](htt
 │   │       │   README.md
 │   │       │   version.json
 │   │       │
-│   │       ├───examples
 │   │       ├───modules
 │   │       └───tests
+│   │           └───e2e
 │   └───res
 │       └───compute
 │           └───virtual-machine
@@ -110,9 +110,9 @@ Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](htt
 │               │   README.md
 │               │   version.json
 │               │
-│               ├───examples
 │               ├───modules
 │               └───tests
+│                   └───e2e
 ├───other repo dirs...
 └───other repo files...
 ```

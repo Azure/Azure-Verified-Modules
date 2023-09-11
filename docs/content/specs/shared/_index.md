@@ -277,9 +277,9 @@ Example for the property `workspaceId` for the Diagnostic Settings resource. In 
 
 README documentation **MUST** be automatically/programmatically generated. **MUST** include inputs, outputs, resources deployed.
 
-#### ID: SNFR16 - Category: Documentation - Examples
+#### ID: SNFR16 - Category: Documentation - Examples/E2E
 
-An examples directory **MUST** exist to provide named scenarios for module deployment.
+An examples/e2e directory **MUST** exist to provide named scenarios for module deployment.
 
 #### ID: SNFR17 - Category: Release - Semantic Versioning
 
