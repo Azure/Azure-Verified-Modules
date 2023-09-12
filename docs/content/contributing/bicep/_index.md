@@ -266,4 +266,3 @@ When the AVM Modules are published to the Bicep Public Registry they **MUST** fo
 This will require the alias on the MCR to be different than the directory path, which is the default for BRM today.
 
 ***Guidance will be provided below on how to do this, when available.***
-
