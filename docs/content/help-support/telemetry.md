@@ -17,9 +17,13 @@ See [View deployment history with Azure Resource Manager](https://learn.microsof
 
 {{< /hint >}}
 
+<br>
+
 ## Technical Details
 
 As detailed in [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) each AVM module contains a `avmTelemetry` deployment, which creates a deployment such as: `6d3xgp5.res.compute-virtualmachine.v1-2-3.eum3favlpwuyg`.
+
+<br>
 
 ## Opting Out
 
@@ -31,6 +35,8 @@ To opt out you can set the parameters/variables listed below to `false` in the A
 
 - Bicep: `enableTelemetry`
 - Terraform: `enable_telemetry`
+
+<br>
 
 ## Telemetry vs Customer Usage Attribution
 

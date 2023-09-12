@@ -10,6 +10,8 @@ This page is still a work in progress
 
 {{< /hint >}}
 
+<br>
+
 ## Request/Propose a New AVM Resource or Pattern Module
 
 {{< hint type=note >}}
@@ -25,6 +27,8 @@ Fill in the form [here](https://aka.ms/avm/moduleproposal) 📄
 Before submitting a new [module proposal](https://aka.ms/avm/moduleproposal) for either Bicep or Terraform, please review the FAQ section on ["CARML/TFVM to AVM Evolution Details"](/Azure-Verified-Modules/faq/#carmltfvm-to-avm-evolution-details)
 
 {{< /hint >}}
+
+<br>
 
 ## Orphaned AVM Modules
 

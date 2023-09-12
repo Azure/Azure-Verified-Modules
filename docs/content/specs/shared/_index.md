@@ -17,13 +17,40 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 {{< /hint >}}
 
+<br>
+
+This page contains the shared **requirements for both Bicep and Terraform** AVM modules (**Resource and Pattern modules**) that ALL AVM modules **MUST** meet. In addition to these, requirements specific to each language, defined in their respective specifications also **MUST** be met. See [Bicep](/Azure-Verified-Modules/specs/bicep/) and [Terraform](/Azure-Verified-Modules/specs/terraform/) specific requirements for more information.
+
+The following table summarizes the category identification codes used in this specification:
+
+| Scope                                            | Functional requirements               | Non-functional requirements                 |
+|--------------------------------------------------|---------------------------------------|---------------------------------------------|
+| Shared requirements (resource & pattern modules) | [SFR](#functional-requirements-sfr)   | [SNFR](#non-functional-requirements-snfr)   |
+| Resource module level requirements               | [RMFR](#functional-requirements-rmfr) | [RMNFR](#non-functional-requirements-rmnfr) |
+| Pattern module level requirements                | [PMFR](#functional-requirements-pmfr) | [PMNFR](#non-functional-requirements-pmnfr) |
+
+<br>
+
 {{< toc >}}
+
+
+<br>
 
 ## Shared Requirements (Resource & Pattern Modules)
 
-Listed below are both functional and non-functional requirements for both classifications of AVM modules (Resource and Pattern)
+Listed below are both functional and non-functional requirements for both classifications of AVM modules (Resource and Pattern).
 
-### Functional Requirements
+<br>
+
+### Functional Requirements (SFR)
+
+{{< hint type=note >}}
+This section includes **shared, functional requirements (SFR)** for Bicep an Terraform AVM modules (Resource and Pattern).
+{{< /hint >}}
+
+---
+
+<br>
 
 #### ID: SFR1 - Category: Composition - Preview Services
 
@@ -42,6 +69,12 @@ However, they **MAY** be exposed at the module owners discretion, but the follow
 - The description of each of the parameters/variables used for the preview service/feature **MUST** start with:
   - *"THIS IS A <PARAMETER/VARIABLE> USED FOR A PREVIEW SERVICE/FEATURE, MICROSOFT MAY NOT PROVIDE SUPPORT FOR THIS, PLEASE CHECK THE PRODUCT DOCS FOR CLARIFICATION"*
 
+<br>
+
+---
+
+<br>
+
 #### ID: SFR2 - Category: Composition - WAF Aligned
 
 Modules **SHOULD** align to Well-Architected Framework (WAF) pillar recommendations, alongside Microsoft Cloud Security Benchmark (MCSB) and Microsoft Defender for Cloud (MDFC), where appropriate and applicable.
@@ -55,6 +88,12 @@ Alignment **SHOULD** prioritize best-practices and security over cost optimizati
 Read the FAQ of [What does AVM mean by “WAF Aligned”?](/Azure-Verified-Modules/faq/#what-does-avm-mean-by-waf-aligned) for more information and examples.
 
 {{< /hint >}}
+
+<br>
+
+---
+
+<br>
 
 #### ID: SFR3 - Category: Telemetry - Deployment/Usage Telemetry
 
@@ -102,12 +141,24 @@ We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verif
 
 {{< /hint >}}
 
+<br>
+
+---
+
+<br>
+
 #### ID: SFR4 - Category: Telemetry - Telemetry Enablement Flexibility
 
 The telemetry enablement **MUST** be on/enabled by default, however this **MUST** be able to be disabled by a module consumer by setting the below parameter/variable value to `false`:
 
 - Bicep: `enableTelemetry`
 - Terraform: `enable_telemetry`
+
+<br>
+
+---
+
+<br>
 
 #### ID: SFR5 - Category: Composition - Availability Zones
 
@@ -123,6 +174,12 @@ For information on the differences between zonal and zone-redundant services, se
 
 {{< /hint >}}
 
+<br>
+
+---
+
+<br>
+
 #### ID: SFR6 - Category: Composition - Data Redundancy
 
 Modules that deploy resources or patterns that support data redundancy **SHOULD** enable this to the highest possible value by default, e.g. `RA-GZRS`. When a resource or pattern doesn't provide the ability to specify data redundancy as a simple property, e.g. `GRS` etc., then the modules **MUST** provide the ability to enable data redundancy for the resources or pattern via parameters/variables.
@@ -135,35 +192,91 @@ For information on the data redundancy options in Azure, see [Cross-region repli
 
 {{< /hint >}}
 
-### Non-Functional Requirements
+<br>
+
+---
+
+<br>
+
+### Non-Functional Requirements (SNFR)
+
+{{< hint type=note >}}
+This section includes **shared, non-functional requirements (SNFR)** for Bicep an Terraform AVM modules (Resource and Pattern).
+{{< /hint >}}
+
+---
+
+<br>
 
 #### ID: SNFR1 - Category: Testing - Prescribed Tests
 
 Modules **MUST** use the prescribed tooling and testing frameworks defined in the language specific specs.
 
+<br>
+
+---
+
+<br>
+
 #### ID: SNFR2 - Category: Testing - E2E Testing
 
 Modules **MUST** implement end-to-end (deployment) testing.
+
+<br>
+
+---
+
+<br>
 
 #### ID: SNFR3 - Category: Testing - AVM Unit Tests
 
 Modules **MUST** implement implement AVM unit tests that ensure compliance to AVM specifications.
 
+<br>
+
+---
+
+<br>
+
 #### ID: SNFR4 - Category: Testing - Additional Unit Tests
 
 Modules **SHOULD** implement unit testing to ensure logic and conditions within variables/locals are performing correctly.
+
+<br>
+
+---
+
+<br>
 
 #### ID: SNFR5 - Category: Testing - Upgrade Tests
 
 Modules **SHOULD** implement upgrade testing to ensure new features are implemented in a non-breaking fashion on mom-major releases.
 
+<br>
+
+---
+
+<br>
+
 #### ID: SNFR6 - Category: Testing - Static Analysis/Linting Tests
 
 Modules **MUST** use static analysis, e.g., linting, security scanning.
 
+<br>
+
+---
+
+<br>
+
 #### ID: SNFR7 - Category: Testing - Idempotency Tests
 
 Modules **MUST** implement idempotency end-to-end (deployment) testing. E.g. deploying the module twice over the top of itself.
+
+<br>
+
+---
+
+<br>
 
 #### ID: SNFR8 - Category: Contribution/Support - Module Owner/s GitHub
 
@@ -173,15 +286,21 @@ Today this is only Microsoft FTEs, but everyone is welcome to contribute. The mo
 
 {{< hint type=note >}}
 
-The names for the GitHub Teams for each module are already defined in the respective [Module Indexes](/Azure-Verified-Modules/indexes/) that **MUST** be used and created for each module.
+The names for the GitHub Teams for each approved module are already defined in the respective [Module Indexes](/Azure-Verified-Modules/indexes/). These teams **MUST** be created (and used) for each module.
 
 {{< /hint >}}
+
+<br>
+
+---
+
+<br>
 
 #### ID: SNFR20 - Category: Contribution/Support - GitHub Teams Only
 
 {{< hint type=note >}}
 
-The names for the GitHub Teams for each module are already defined in the respective [Module Indexes](/Azure-Verified-Modules/indexes/) that **MUST** be used and created for each module.
+The names for the GitHub Teams for each approved module are already defined in the respective [Module Indexes](/Azure-Verified-Modules/indexes/). These teams **MUST** be created (and used) for each module.
 
 {{< /hint >}}
 
@@ -209,6 +328,12 @@ Examples:
 - `@azure/avm-res-compute-virtualmachine-module-owners-bicep`
 - `@azure/avm-res-compute-virtualmachine-module-contributors-tf`
 
+<br>
+
+---
+
+<br>
+
 #### ID: SNFR9 - Category: Contribution/Support - AVM & PG Teams GitHub Repo Permissions
 
 A module **MUST** make the following GitHub Teams in the Azure GitHub organization admins on its GitHub repo:
@@ -217,13 +342,31 @@ A module **MUST** make the following GitHub Teams in the Azure GitHub organizati
 - [`@Azure/bicep-admins`](https://github.com/orgs/Azure/teams/bicep-admins) = Bicep PG team
 - [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Terraform PG
 
+<br>
+
+---
+
+<br>
+
 #### ID: SNFR10 - Category: Contribution/Support - MIT Licensing
 
 A module **MUST** be published with the MIT License in the Azure GitHub organization.
 
+<br>
+
+---
+
+<br>
+
 #### ID: SNFR11 - Category: Contribution/Support - Issues Response Times
 
 A module owner **MUST** respond to logged issues within 3 business days. See [Module Support](/Azure-Verified-Modules/help-support/module-support/) for more information
+
+<br>
+
+---
+
+<br>
 
 #### ID: SNFR12 - Category: Contribution/Support - Versions Supported
 
@@ -232,6 +375,12 @@ Only the latest released version of a module **MUST** be supported.
 For example, if an AVM Resource Module is used in an AVM Pattern Module that was working but now is not. The first step by the AVM Pattern Module owner should be to upgrade to the latest version of the AVM Resource Module test and then if not fixed, troubleshoot and fix forward from the that latest version of the AVM Resource Module onwards.
 
 This avoids AVM Module owners from having to maintain multiple major release versions.
+
+<br>
+
+---
+
+<br>
 
 #### ID: SNFR23 - Category: Contribution/Support - GitHub Repo Labels
 
@@ -265,9 +414,21 @@ These `Set-AvmGitHubLabels.ps1` can be downloaded from <a href="/Azure-Verified-
 
 {{< /expand >}}
 
+<br>
+
+---
+
+<br>
+
 #### ID: SNFR13 - Category: Forking - Private Module Registry Support
 
 A module **MUST** also function within a private module registry, internal Git repo.
+
+<br>
+
+---
+
+<br>
 
 #### ID: SNFR14 - Category: Inputs - Data Types
 
@@ -277,6 +438,12 @@ OR
 
 Complex data types (objects, arrays, maps) when the schema is defined and supported by the IDE.
 
+<br>
+
+---
+
+<br>
+
 #### ID: SNFR22 - Category: Inputs - Parameters/Variables for Resource IDs
 
 A module parameter/variable that requires a full Azure Resource ID as an input value, e.g. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{keyVaultName}`, **MUST** contain `ResourceId/resource_id` in it's parameter/variable name to assist users in knowing what value to provide at a glance of the parameter/variable name.
@@ -285,13 +452,31 @@ Example for the property `workspaceId` for the Diagnostic Settings resource. In 
 
 `workspaceId` is not descriptive enough and is ambiguous as to which ID is required to be input.
 
+<br>
+
+---
+
+<br>
+
 #### ID: SNFR15 - Category: Documentation - Automatic Documentation Generation
 
 README documentation **MUST** be automatically/programmatically generated. **MUST** include inputs, outputs, resources deployed.
 
+<br>
+
+---
+
+<br>
+
 #### ID: SNFR16 - Category: Documentation - Examples/E2E
 
 An examples/e2e directory **MUST** exist to provide named scenarios for module deployment.
+
+<br>
+
+---
+
+<br>
 
 #### ID: SNFR17 - Category: Release - Semantic Versioning
 
@@ -307,9 +492,21 @@ Initially modules should be released as `v0.1.0` and incremented via Minor and P
 
 > Releasing as `v0.1.0` initially and only incrementing Minor and Patch versions allows the module owner to make breaking changes more easily and frequently as it's still not an official Major/Stable release 👍
 
+<br>
+
+---
+
+<br>
+
 #### ID: SNFR18 - Category: Release - Breaking Changes
 
 A module **SHOULD** avoid breaking changes, e.g., deprecating inputs vs. removing.
+
+<br>
+
+---
+
+<br>
 
 #### ID: SNFR19 - Category: Publishing - Registries Targeted
 
@@ -328,15 +525,38 @@ See the language specific contribution guides for detailed guidance and sample c
 
 {{< /hint >}}
 
+<br>
+
+---
+
+<br>
+
 #### ID: SNFR21 - Category: Publishing - Cross Language Collaboration
 
 When the module owners of the same Resource or Pattern AVM module are not the same individual or team for all languages, each languages team **SHOULD** collaborate with their sibling language team for the same module to ensure consistency where possible.
+
+<br>
+
+---
+
+<br>
+<br>
 
 ## Resource Module Requirements
 
 Listed below are both functional and non-functional requirements for [AVM Resource Modules](/Azure-Verified-Modules/specs/shared/module-classifications/).
 
-### Functional Requirements
+<br>
+
+### Functional Requirements (RMFR)
+
+{{< hint type=note >}}
+This section includes **resource module level, functional requirements (RMFR)** for Bicep an Terraform.
+{{< /hint >}}
+
+---
+
+<br>
 
 #### ID: RMFR1 - Category: Composition - Single Resource Only
 
@@ -344,9 +564,21 @@ A module **MUST** only deploy a single instance of the primary resource, e.g., o
 
 Multiple instances of the module **MUST** be used to scale out.
 
+<br>
+
+---
+
+<br>
+
 #### ID: RMFR2 - Category: Composition - No Resource Wrapper Modules
 
 A module **MUST** add value by including additional features on top of the primary resource. For example a module to create a Resource Group adds little value and therefore should not be created as a Resource Module as explained in RMFR3
+
+<br>
+
+---
+
+<br>
 
 #### ID: RMFR3 - Category: Composition - Resource Groups
 
@@ -359,12 +591,18 @@ In the case that a Resource Group is required, a module **MUST** have an input (
 
 Scopes will be covered further in the respective language specific specifications.
 
+<br>
+
+---
+
+<br>
+
 #### ID: RMFR4 - Category: Composition - AVM Consistent Feature & Extension Resources Value Add
 
 Modules support the following optional features/extension resources, as specified, if supported by the primary resource. The top-level variable/parameter names **MUST** be:
 
 | Optional Features/Extension Resources       | Bicep Parameter Name | Terraform Variable Name | MUST/SHOULD |
-| ------------------------------------------- | -------------------- | ----------------------- | ----------- |
+|---------------------------------------------|----------------------|-------------------------|-------------|
 | Diagnostic Settings                         | `diagnosticSettings` | `diagnostic_settings`   | MUST        |
 | Role Assignments                            | `roleAssignments`    | `role_assignments`      | MUST        |
 | Resource Locks                              | `lock`               | `lock`                  | MUST        |
@@ -391,6 +629,12 @@ Make sure to checkout the language specific specifications for more info on this
 
 {{< /hint >}}
 
+<br>
+
+---
+
+<br>
+
 #### ID: RMFR5 - Category: Composition - AVM Consistent Feature & Extension Resources Value Add Interfaces/Schemas
 
 Modules **MUST** implement a common interface, e.g. the input's data structures and properties within them (objects/arrays/dictionaries/maps), for the optional features/extension resources:
@@ -406,6 +650,12 @@ See:
 - [Customer Managed Keys Interface](/Azure-Verified-Modules/specs/shared/interfaces/#customer-managed-keys)
 - [Alerts Interface](/Azure-Verified-Modules/specs/shared/interfaces/#azure-monitor-alerts)
 
+<br>
+
+---
+
+<br>
+
 #### ID: RMFR6 - Category: Inputs - Parameter/Variable Naming
 
 Parameters/variables that pertain to the primary resource **MUST NOT** use the resource type in the name.
@@ -414,14 +664,20 @@ e.g., use `sku`, vs. `virtualMachineSku`/`virtualmachine_sku`
 
 Another example for where RPs contain some of their name within a property, leave the property unchanged. E.g. Key Vault has a property called `keySize`, it is fine to leave as this and not remove the `key` part from the property/parameter name.
 
+<br>
+
+---
+
+<br>
+
 #### ID: RMFR7 - Category: Outputs - Minimum Required Outputs
 
 Module owners **MUST** output the following outputs as a minimum in their modules:
 
-| Output                                                                 | Bicep Output Name                          | Terraform Output Name                           |
-| ---------------------------------------------------------------------- | ------------------------------------------ | ----------------------------------------------- |
-| Resource Name                                                          | `name`                                     | `name`                                          |
-| Resource ID                                                            | `resourceId`                               | `resource_id`                                   |
+| Output                                                                 | Bicep Output Name             | Terraform Output Name             |
+|------------------------------------------------------------------------|-------------------------------|-----------------------------------|
+| Resource Name                                                          | `name`                        | `name`                            |
+| Resource ID                                                            | `resourceId`                  | `resource_id`                     |
 | System Assigned Managed Identity Principal ID (if supported by module) | `systemAssignedMIPrincipalId` | `system_assigned_mi_prinicpal_id` |
 
 {{< hint type=tip >}}
@@ -433,7 +689,22 @@ Module owners **MAY** also have to provide additional outputs depending on the I
 
 {{< /hint >}}
 
-### Non-Functional Requirements
+<br>
+
+---
+
+<br>
+
+
+### Non-Functional Requirements (RMNFR)
+
+{{< hint type=note >}}
+This section includes **resource module level, non-functional requirements (RMNFR)** for Bicep an Terraform.
+{{< /hint >}}
+
+---
+
+<br>
 
 #### ID: RMNFR1 - Category: Naming - Module Naming
 
@@ -459,6 +730,12 @@ Example: `avm-res-compute-virtualmachine`
 - `res` defines this is a resource module
 - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` or `azuread` for resource modules.
 
+<br>
+
+---
+
+<br>
+
 #### ID: RMNFR2 - Category: Inputs - Parameter/Variable Naming
 
 A module **SHOULD** use the following standard inputs:
@@ -466,23 +743,60 @@ A module **SHOULD** use the following standard inputs:
 - `name` (no default)
 - `location` (use Resource Group location, if resource supports Resource Groups, otherwise no default)
 
+<br>
+
+---
+
+<br>
+
 #### ID: RMNFR3 - Category: Composition - RP Collaboration
 
 Module owners (Microsoft FTEs) **SHOULD** reach out to the respective Resource Provider teams to build a partnership and collaboration on the modules creation, existence and long term maintenance.
 
 Review this [wiki page (TBC)](/Azure-Verified-Modules/specs/shared/#id-rmnfr3---category-composition---rp-collaboration) for more information.
 
+<br>
+
+---
+
+<br>
+<br>
+
 ## Pattern Module Requirements
 
 Listed below are both functional and non-functional requirements for [AVM Pattern Modules](/Azure-Verified-Modules/specs/shared/module-classifications/).
 
-### Functional Requirements
+<br>
+
+### Functional Requirements (PMFR)
+
+{{< hint type=note >}}
+This section includes **pattern module level, functional requirements (PMFR)** for Bicep an Terraform.
+{{< /hint >}}
+
+---
+
+<br>
 
 #### ID: PMFR1 - Category: Composition - Resource Group Creation
 
 A module **MAY** create Resource Group(s).
 
-### Non-Functional Requirements
+<br>
+
+---
+
+<br>
+
+### Non-Functional Requirements (PMNFR)
+
+{{< hint type=note >}}
+This section includes **pattern module level, non-functional requirements (PMNFR)** for Bicep an Terraform.
+{{< /hint >}}
+
+---
+
+<br>
 
 #### ID: PMNFR1 - Category: Naming - Module Naming
 
@@ -497,15 +811,33 @@ Example: `avm-ptn-apptiervmss`
 - `<patternmodulename>` is a term describing the module’s function, e.g., `apptiervmss` = Application Tier VMSS
 - `ptn` defines this as a pattern module
 
+<br>
+
+---
+
+<br>
+
 #### ID: PMNFR2 - Category: Composition - Use Resource Modules to Build a Pattern Module
 
 A module **SHOULD** be built from the required AVM Resources Modules
+
+<br>
+
+---
+
+<br>
 
 #### ID: PMNFR3 - Category: Composition - Use other Pattern Modules to Build a Pattern Module
 
 A module **MAY** contain and be built using other AVM Pattern Modules
 
-#### ID: PMNFR4 - Category: Hygiene - Missing Resource Module/s
+<br>
+
+---
+
+<br>
+
+#### ID: PMNFR4 - Category: Hygiene - Missing Resource Module(s)
 
 An item **MUST** be logged onto as an issue on the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/issues) if a Resource Module does not exist for resources deployed by the pattern module.
 
@@ -515,6 +847,18 @@ If the Resource Module adds no value, see Resource Module functional requirement
 
 {{< /hint >}}
 
+<br>
+
+---
+
+<br>
+
 #### ID: PMNFR5 - Category: Inputs - Parameter/Variable Naming
 
 Parameter/variable input names **SHOULD** contain the resource to which they pertain. E.g., `virtualMachineSku`/`virtualmachine_sku`
+
+<br>
+
+---
+
+<br>

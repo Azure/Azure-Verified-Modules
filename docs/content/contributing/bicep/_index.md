@@ -131,7 +131,7 @@ This section points to conventions to be followed when developing a Bicep templa
 
 ### Casing
 
-camelCasing is to be used as per [BCPNFR6](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr6---category-composition---code-styling---lower-camelcasing)
+camelCasing is to be used as per [BCPNFR8](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr8---category-composition---code-styling---lower-camelcasing)
 
 #### Input Parameters and Variables
 
@@ -198,7 +198,7 @@ The `version` value is in the form of `MAJOR.MINOR`. The PATCH version will be i
 
 For example, the `version` value should be:
 - `0.1` for new modules, so that they can be released as `v0.1.0`.
-- `1.0` once the module owner signes off the module is stable enough for it’s first Major release of `v1.0.0`.
+- `1.0` once the module owner signs off the module is stable enough for it’s first Major release of `v1.0.0`.
 - `0.x` for all feature updates between the first release `v0.1.0` and the first Major release of `v1.0.0`.
 
 ## Testing
