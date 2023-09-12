@@ -33,7 +33,7 @@ Review the [Shared Specification](/Azure-Verified-Modules/specs/shared/)
 
 Review the [FAQ](/Azure-Verified-Modules/faq/)
 
-Learn how to [contribute to AVM](/Azure-Verified-Modules/contribute/)
+Learn how to [contribute to AVM](/Azure-Verified-Modules/contributing/)
 
 <img src="img/avm_logo.png" width=40%>
 
