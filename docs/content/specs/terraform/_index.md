@@ -77,9 +77,7 @@ module "other-module" {
 ```
 
 {{< hint type=tip >}}
-
-See [Module Sources](https://developer.hashicorp.com/terraform/language/modules/sources) for more information
-
+See [Module Sources](https://developer.hashicorp.com/terraform/language/modules/sources) for more information.
 {{< /hint >}}
 
 <br>
