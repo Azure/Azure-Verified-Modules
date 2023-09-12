@@ -21,7 +21,7 @@ See [View deployment history with Azure Resource Manager](https://learn.microsof
 
 ## Technical Details
 
-As detailed in [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) each AVM module contains a `avmTelemetry` deployment, which creates a deployment such as: `6d3xgp5.res.compute-virtualmachine.v1-2-3.eum3favlpwuyg`.
+As detailed in [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) each AVM module contains a `avmTelemetry` deployment, which creates a deployment such as `46d3xbcp.res.compute-virtualmachine.v1-2-3.eum3` (fir Bicep) or `46d3xgtf.res.compute-virtualmachine.v1-2-3.eum3` (for Terraform).
 
 <br>
 
