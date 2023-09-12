@@ -13,6 +13,8 @@ Before submitting a new [module proposal](https://aka.ms/avm/moduleproposal) for
 
 {{< /hint >}}
 
+<br>
+
 ## Recommended Learning
 
 Before you start contributing to the AVM, it is **highly recommended** that you complete the following Microsoft Learn paths, modules & courses:
@@ -25,6 +27,8 @@ Before you start contributing to the AVM, it is **highly recommended** that you 
 ### Git
 
 - [Introduction to version control with Git](https://learn.microsoft.com/learn/paths/intro-to-vc-git/)
+
+<br>
 
 ## Tooling
 
@@ -55,11 +59,15 @@ The following tooling/extensions are recommended to assist you developing for th
 - For visibility of Bracket Pairs:
   - Inside Visual Studio Code, add `editor.bracketPairColorization.enabled`: true to your `settings.json`, to enable bracket pair colorization.
 
+<br>
+
 ## Repositories
 
 Each Terraform AVM module will have its own GitHub Repository in the [`Azure` GitHub Organization](https://github.com/Azure); as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
 
 This repo will be created by the Module Owners and the AVM Core team collaboratively, including the configuration of permissions as per [SNFR9](/Azure-Verified-Modules/specs/shared/#id-snfr9---category-contributionsupport---avm--pg-teams-github-repo-permissions)
+
+<br>
 
 ## Template Repository
 
@@ -68,6 +76,8 @@ Please click the `use this template` and create a copy of the repo in the Azure 
 
 You will then have to complete the One Engineering System (1ES) process to retain access to the repo.
 See [this link (internal only)](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/274/1es).
+
+<br>
 
 ## Directory and File Structure
 
@@ -90,9 +100,13 @@ See template repo [here](https://github.com/Azure/terraform-azurerm-avm-template
   - `main.resource1.tf` (If a larger module you may chose to use dot notation for each resource)
   - `locals.resource1.tf`
 
+<br>
+
 ## Casing
 
-snake_casing is to be used as per [TFNFR3](/Azure-Verified-Modules/specs/terraform/#id-tfnfr4---category-composition---code-styling---lower-snake_casing)
+Use `snake_casing` as per [TFNFR3](/Azure-Verified-Modules/specs/terraform/#id-tfnfr4---category-composition---code-styling---lower-snake_casing).
+
+<br>
 
 ## Module Publishing
 
@@ -111,6 +125,8 @@ When the AVM Modules are published to the Hashicorp  Registry they **MUST** foll
 1. Sign in to the [Hashicorp Registry](https://registry.terraform.io/) using GitHub
 1. Publish a module by selecting the `Publish` button in the top right corner, then `Module`
 1. Select the repo and accept the terms
+
+<br>
 
 ## Telemetry
 

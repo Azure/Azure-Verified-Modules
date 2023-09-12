@@ -94,7 +94,9 @@ In these scenarios the AVM modules will not enforce the additional resources to 
 | Container registries should use private link                           | **No**, as requires additional Private Endpoint and DNS configuration as well as, potentially, additional costs   |
 | API Management services should use a virtual network                   | **No**, as requires additional Virtual Network and Subnet configuration as well as, potentially, additional costs |
 
-### Aren't AVM resource modules too complex for people less skilled in IaC technologies?
+---
+
+## Aren't AVM resource modules too complex for people less skilled in IaC technologies?
 
  **TLDR**: Resource modules have complexity inside, so they can be flexibly used from the outside.
 
@@ -103,11 +105,13 @@ Resource modules are written in a flexible way; therefore, you don't need to mod
 Resource modules are multi-purpose; therefore, they contain a lot of dynamic expressions (functions, variables, etc.), so there's no need to maintain multiple instances for different use cases. They can be deployed in different configurations just by changing the input parameters. They should be perceived by the **user** as black boxes, where they don't have to worry about the internal complexity of the code, as they only interact with them by their parameters.
 
 ---
+
 ## What is a "Primary Resource" in the context of AVM?
 
 The definition of a Primary Resource is detailed in the [glossary](/Azure-Verified-Modules/glossary/).
 
 ---
+
 ## Will existing Landing Zone Accelerators (Platform & Application) be migrated to become AVM pattern modules and/or built from AVM resource modules?
 
 In short, no. Existing Landing Zone Accelerators ([Platform](https://aka.ms/alz/aac#platform) & [Application](https://aka.ms/alz/aac#application)) will not be made or forced to convert their existing code bases, if available in either language, to AVM or to use AVM.

@@ -17,15 +17,43 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 {{< /hint >}}
 
+<br>
+
+This page contains the **Terraform specific requirements** for AVM modules (**Resource and Pattern modules**) that ALL Terraform AVM modules **MUST** meet. These requirements are in addition to the [Shared Specification](/Azure-Verified-Modules/specs/shared/) requirements that ALL AVM modules **MUST** meet.
+
+The following table summarizes the category identification codes used in this specification:
+
+| Scope                                            | Functional requirements               | Non-functional requirements                 |
+|--------------------------------------------------|---------------------------------------|---------------------------------------------|
+| Shared requirements (resource & pattern modules) | [TFFR](#functional-requirements-tffr) | [TFNFR](#non-functional-requirements-tfnfr) |
+| Resource module level requirements               | *N/A*                                 | *N/A*                                       |
+| Pattern module level requirements                | *N/A*                                 | *N/A*                                       |
+
+<br>
+
 {{< toc >}}
+
+<br>
 
 ## Shared Requirements (Resource & Pattern Modules)
 
-### Functional Requirements
+Listed below are both functional and non-functional requirements for Terraform AVM modules (Resource and Pattern).
+
+<br>
+
+### Functional Requirements (TFFR)
+
+{{< hint type=note >}}
+This section includes **Terraform specific, functional requirements (TFFR)** for AVM modules (Resource and Pattern).
+{{< /hint >}}
+
+---
+
+<br>
 
 #### ID: TFFR1 - Category: Composition - Cross-Referencing Modules
 
-Module owners **MAY** cross-references other modules to build either Resource or Pattern modules. However, they **MUST** be referenced only by a HashiCorp Terraform registry reference to a pinned version e.g.
+Module owners **MAY** cross-references other modules to build either Resource or Pattern modules. However, they **MUST** be referenced only by a HashiCorp Terraform registry reference to a pinned version e.g.,
 
 ```terraform
 module "other-module" {
@@ -48,9 +76,25 @@ module "other-module" {
 }
 ```
 
-> See [Module Sources](https://developer.hashicorp.com/terraform/language/modules/sources) for more information
+{{< hint type=tip >}}
+See [Module Sources](https://developer.hashicorp.com/terraform/language/modules/sources) for more information.
+{{< /hint >}}
 
-### Non-Functional Requirements
+<br>
+
+---
+
+<br>
+
+### Non-Functional Requirements (TFNFR)
+
+{{< hint type=note >}}
+This section includes **Terraform specific, non-functional requirements (TFNFR)** for AVM modules (Resource and Pattern).
+{{< /hint >}}
+
+---
+
+<br>
 
 #### ID: TFNFR1 - Category: Documentation - Descriptions
 
@@ -60,6 +104,12 @@ Example:
 
 {{< include file="/static/includes/sample.var_example.tf" language="terraform" options="linenos=false" >}}
 
+<br>
+
+---
+
+<br>
+
 #### ID: TFNFR2 - Category: Documentation - Module Documentation Generation
 
 Terraform modules documentation **MUST** be automatically generated via [Terraform Docs](https://github.com/terraform-docs/terraform-docs).
@@ -67,6 +117,12 @@ Terraform modules documentation **MUST** be automatically generated via [Terrafo
 A file called `.terraform-docs.yml` **MUST** be present in the root of the module and have the following content:
 
 {{< include file="/static/includes/terraform-docs.yml" language="yaml" options="linenos=false" >}}
+
+<br>
+
+---
+
+<br>
 
 #### ID: TFNFR3 - Category: Contribution/Support - GitHub Repo Branch Protection
 
@@ -88,6 +144,12 @@ If you use the [template repository](/Azure-Verified-Modules/contributing/terraf
 
 {{< /hint >}}
 
+<br>
+
+---
+
+<br>
+
 #### ID: TFNFR4 - Category: Composition - Code Styling - lower snake_casing
 
 Module owners **MUST** use [lower snake_casing](https://wikipedia.org/wiki/Snake_case) for naming the following:
@@ -99,3 +161,8 @@ Module owners **MUST** use [lower snake_casing](https://wikipedia.org/wiki/Snake
 - Modules (symbolic names)
 
 For example: `snake_casing_example` (every word in lowercase, with each word separated by an underscore `_`)
+
+<br>
+
+---
+

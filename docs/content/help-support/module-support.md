@@ -15,6 +15,8 @@ Issues with an AVM module should be raised on the repo they are hosted on, not t
 
 {{< /hint >}}
 
+<br>
+
 Azure Verified Modules are supported by the AVM teams, as defined [here](/Azure-Verified-Modules/specs/shared/team-definitions/), using GitHub issues in the following order of precedence:
 
 1. Module owners/contributors
@@ -28,6 +30,8 @@ Azure Verified Modules are supported by the AVM teams, as defined [here](/Azure-
 Please note that the durations stated above are for a reasonable and useful response towards resolution of the issue raised, if possible, and **not** for a fix within these durations; although if possible this will of course happen.
 
 {{< /hint >}}
+
+<br>
 
 All of this will be automated via the use of the [Resource Management GitHub Policy Service](https://microsoft.github.io/GitOps/policies/resource-management.html) configuration and GitHub Actions, where possible and appropriate.
 

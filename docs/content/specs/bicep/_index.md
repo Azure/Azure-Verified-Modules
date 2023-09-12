@@ -17,11 +17,40 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 {{< /hint >}}
 
+<br>
+
+This page contains the **Bicep specific requirements** for AVM modules (**Resource and Pattern modules**) that ALL Bicep AVM modules **MUST** meet. These requirements are in addition to the [Shared Specification](/Azure-Verified-Modules/specs/shared/) requirements that ALL AVM modules **MUST** meet.
+
+The following table summarizes the category identification codes used in this specification:
+
+| Scope                                            | Functional requirements                 | Non-functional requirements                   |
+|--------------------------------------------------|-----------------------------------------|-----------------------------------------------|
+| Shared requirements (resource & pattern modules) | [BCPFR](#functional-requirements-bcpfr) | [BCPNFR](#non-functional-requirements-bcpnfr) |
+| Resource module level requirements               | *N/A*                                   | *N/A*                                         |
+| Pattern module level requirements                | *N/A*                                   | *N/A*                                         |
+
+<br>
+
 {{< toc >}}
+
+<br>
 
 ## Shared Requirements (Resource & Pattern Modules)
 
-### Functional Requirements
+Listed below are both functional and non-functional requirements for Bicep AVM modules (Resource and Pattern).
+
+<br>
+
+### Functional Requirements (BCPFR)
+
+{{< hint type=note >}}
+This section includes **Bicep specific, functional requirements (BCPFR)** for AVM modules (Resource and Pattern).
+{{< /hint >}}
+
+---
+
+<br>
+
 
 #### ID: BCPFR1 - Category: Composition - Cross-Referencing Modules
 
@@ -30,6 +59,12 @@ Module owners **MAY** cross-references other modules to build either Resource or
 However, they **MUST** be referenced only by a public registry reference to a pinned version e.g. `br/public:avm/xxx/yyy:1.2.3`. They **MUST NOT** use local parent path references to a module e.g. `../../xxx/yyy.bicep`.
 
 Although, child modules, that are children of the primary resources being deployed by the AVM Resource Module, **MAY** be specified via local child path e.g. `child/resource.bicep`.
+
+<br>
+
+---
+
+<br>
 
 #### ID: BCPFR2 - Category: Composition - Role Assignments Role Definition Mapping
 
@@ -48,7 +83,21 @@ Review the [Bicep Contribution Guide's 'RBAC Role Definition Name Mapping' secti
 
 {{< /hint >}}
 
-### Non-Functional Requirements
+<br>
+
+---
+
+<br>
+
+### Non-Functional Requirements (BCPNFR)
+
+{{< hint type=note >}}
+This section includes **Bicep specific, non-functional requirements (BCPNFR)** for AVM modules (Resource and Pattern).
+{{< /hint >}}
+
+---
+
+<br>
 
 #### ID: BCPNFR1 - Category: Inputs - Data Types
 
@@ -70,6 +119,12 @@ Therefore it has been decided by the AVM core team that CARML modules initial mi
 
 {{< /hint >}}
 
+<br>
+
+---
+
+<br>
+
 #### ID: BCPNFR7 - Category: Inputs - Parameter Requirement Types
 
 Modules will have lots of parameters that will differ in their requirement type (required, optional, etc.). To help consumers understand what each parameters requirement type is, modules owners **MUST** add the requirement type to the beginning of each parameter's description. Below are the requirement types with a definition and example for the description decorator:
@@ -81,6 +136,12 @@ Modules will have lots of parameters that will differ in their requirement type 
 | Optional | The parameter value is not mandatory. The module provides a default value for the parameter. | `@description('Optional. <PARAMETER DESCRIPTION HERE...>')` |
 | Generated | The parameter value is generated within the module and should not be specified as input in most cases. A common example of this is the `utcNow()` function that is only supported as the input for a parameter value, and not inside a variable. | `@description('Generated. <PARAMETER DESCRIPTION HERE...>')` |
 
+<br>
+
+---
+
+<br>
+
 #### ID: BCPNFR2 - Category: Documentation - Module Documentation Generation
 
 {{< hint type=note >}}
@@ -90,6 +151,12 @@ This script/tool is currently being developed by the AVM team and will be made a
 {{< /hint >}}
 
 Bicep modules documentation **MUST** be automatically generated via the provided script/tooling from the AVM team.
+
+<br>
+
+---
+
+<br>
 
 #### ID: BCPNFR3 - Category: Documentation - Parameter Files
 
@@ -104,6 +171,12 @@ Bicep Parameter Files (`.bicepparam`) are being reviewed and considered by the A
 
 {{< /hint >}}
 
+<br>
+
+---
+
+<br>
+
 #### ID: BCPNFR4 - Category: Documentation - Parameter Input Examples
 
 Bicep modules **MUST** provide parameter input examples for each parameter using the `metadata.example` property via the `@metadata()` decorator.
@@ -117,6 +190,12 @@ Example:
 @description('Optional. Location for all resources.')
 param location string = resourceGroup().location
 ```
+
+<br>
+
+---
+
+<br>
 
 #### ID: BCPNFR5 - Category: Composition - Role Assignments Role Definition Mapping Limits
 
@@ -138,6 +217,11 @@ Review the [Bicep Contribution Guide's 'RBAC Role Definition Name Mapping' secti
 
 {{< /hint >}}
 
+<br>
+
+---
+
+<br>
 
 #### ID: BCPNFR6 - Category: Composition - Role Assignments Role Definition Mapping Compulsory Roles
 
@@ -155,7 +239,13 @@ Review the [Bicep Contribution Guide's 'RBAC Role Definition Name Mapping' secti
 
 {{< /hint >}}
 
-#### ID: BCPNFR6 - Category: Composition - Code Styling - lower camelCasing
+<br>
+
+---
+
+<br>
+
+#### ID: BCPNFR8 - Category: Composition - Code Styling - lower camelCasing
 
 Module owners **MUST** use [lower camelCasing](https://wikipedia.org/wiki/Camel_case) for naming the following:
 
@@ -167,3 +257,9 @@ Module owners **MUST** use [lower camelCasing](https://wikipedia.org/wiki/Camel_
 - Modules (symbolic names)
 
 For example: `camelCasingExample` (lowercase first word (entirely), with capital of first letter of all other words and rest of word in lowercase)
+
+<br>
+
+---
+
+<br>

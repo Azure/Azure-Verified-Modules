@@ -20,10 +20,12 @@ main:
           - name: 'Pattern Modules'
             ref: 'indexes/terraform/tf-pattern-modules'
   - name: 'Concepts'
+    ref: 'concepts'
     sub:
       - name: 'What, Why, How'
         ref: 'concepts/what-why-how'
   - name: 'Specifications & Definitions'
+    ref: 'specs'
     sub:
       - name: 'Team Definitions & RACI'
         ref: 'specs/shared/team-definitions'
@@ -32,7 +34,7 @@ main:
       - name: 'Module Lifecycle'
         ref: 'specs/shared/module-lifecycle'
       - name: 'Module Specifications'
-        ref: 'specs'
+        ref: 'specs/module-specs'
         sub:
           - name: 'Shared (Bicep & Terraform)'
             ref: 'specs/shared'
@@ -44,6 +46,7 @@ main:
           - name: 'Terraform Specific'
             ref: 'specs/terraform'
   - name: 'Help & Support'
+    ref: 'help-support'
     sub:
       - name: 'Module Support'
         ref: '/help-support/module-support'
@@ -52,12 +55,15 @@ main:
       - name: 'Create GitHub Issue'
         ref: "https://github.com/Azure/Azure-Verified-Modules/issues"
         external: true
+        icon: "gdoc_github"
       - name: 'Propose a New Module'
         ref: "https://aka.ms/AVM/ModuleProposal"
         external: true
-      - name: 'Module Triage GitHub Project'
+        icon: "gdoc_github"
+      - name: 'Module Triage'
         ref: "https://aka.ms/AVM/ModuleTriage"
         external: true
+        icon: "gdoc_github"
   - name: 'Contributing'
     ref: 'contributing'
     sub:
@@ -74,6 +80,7 @@ main:
       - name: 'Code of Conduct'
         ref: 'https://opensource.microsoft.com/codeofconduct/'
         external: true
+        icon: "gdoc_language"
   - name: 'FAQs'
     ref: '/faq'
   - name: 'Glossary'

@@ -3,6 +3,7 @@ title: Bicep Contribution Guide
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+geekdocToC: 2
 ---
 
 {{< toc >}}
@@ -12,6 +13,8 @@ geekdocAnchor: true
 Before submitting a new [module proposal](https://aka.ms/avm/moduleproposal) for either Bicep or Terraform, please review the FAQ section on ["CARML/TFVM to AVM Evolution Details"](/Azure-Verified-Modules/faq/#carmltfvm-to-avm-evolution-details)
 
 {{< /hint >}}
+
+<br>
 
 ## Recommended Learning
 
@@ -26,6 +29,8 @@ Before you start contributing to the AVM, it is **highly recommended** that you 
 ### Git
 
 - [Introduction to version control with Git](https://learn.microsoft.com/learn/paths/intro-to-vc-git/)
+
+<br>
 
 ## Tooling
 
@@ -64,6 +69,8 @@ The following tooling/extensions are recommended to assist you developing for th
 - [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 - For visibility of Bracket Pairs:
   - Inside Visual Studio Code, add `editor.bracketPairColorization.enabled`: true to your `settings.json`, to enable bracket pair colorization.
+
+<br>
 
 ## Lay of the land
 
@@ -117,6 +124,8 @@ Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](htt
 └───other repo files...
 ```
 
+<br>
+
 ## Composition
 
 {{< hint type=important >}}
@@ -125,19 +134,29 @@ Before jumping on implementing your contribution, please review the AVM Module s
 
 {{< /hint >}}
 
+<br>
+
 ### Code Styling
 
 This section points to conventions to be followed when developing a Bicep template.
 
+<br>
+
 ### Casing
 
-camelCasing is to be used as per [BCPNFR6](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr6---category-composition---code-styling---lower-camelcasing)
+Use `camelCasing` as per [BCPNFR8](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr8---category-composition---code-styling---lower-camelcasing).
+
+---
 
 #### Input Parameters and Variables
 
 Make sure to review all specifications of `Category: Inputs` within both the [Shared](https://azure.github.io/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](https://azure.github.io/Azure-Verified-Modules/specs/bicep/) pages.
 
-> Examples are specifications [SNFR14](/Azure-Verified-Modules/specs/shared/#id-snfr14---category-inputs---data-types) and [BCPNFR1](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr1---category-inputs---data-types).
+{{< hint type=tip >}}
+See examples in specifications [SNFR14](/Azure-Verified-Modules/specs/shared/#id-snfr14---category-inputs---data-types) and [BCPNFR1](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr1---category-inputs---data-types).
+{{< /hint >}}
+
+---
 
 #### Resources
 
@@ -145,7 +164,11 @@ Resources are primarily leveraged by resource modules to declare the primary res
 
 Make sure to review all specifications covering resource properties and usage.
 
-> Examples are specifications [SFR1](/Azure-Verified-Modules/specs/shared/#id-sfr1---category-composition---preview-services) and [RMFR1](/Azure-Verified-Modules/specs/shared/#id-rmfr1---category-composition---single-resource-only).
+{{< hint type=tip >}}
+See examples in specifications [SFR1](/Azure-Verified-Modules/specs/shared/#id-sfr1---category-composition---preview-services) and [RMFR1](/Azure-Verified-Modules/specs/shared/#id-rmfr1---category-composition---single-resource-only).
+{{< /hint >}}
+
+---
 
 #### Modules
 
@@ -153,13 +176,25 @@ Modules enable you to reuse code from a Bicep file in other Bicep files. As such
 
 Make sure to review all specifications covering module properties and usage.
 
-> Examples are specifications [BCPFR1](/Azure-Verified-Modules/specs/bicep/#id-bcpfr1---category-composition---cross-referencing-modules) for resource modules and [PMNFR2](//Azure-Verified-Modules/specs/shared/#id-pmnfr2---category-composition---use-resource-modules-to-build-a-pattern-module) for pattern modules.
+{{< hint type=tip >}}
+See examples in specifications [BCPFR1](/Azure-Verified-Modules/specs/bicep/#id-bcpfr1---category-composition---cross-referencing-modules) for resource modules and [PMNFR2](//Azure-Verified-Modules/specs/shared/#id-pmnfr2---category-composition---use-resource-modules-to-build-a-pattern-module) for pattern modules.
+{{< /hint >}}
+
+---
 
 #### Outputs
 
 Make sure to review all specifications of `Category: Outputs` within both the [Shared](https://azure.github.io/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](https://azure.github.io/Azure-Verified-Modules/specs/bicep/) pages.
 
-> One example is specification [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs).
+{{< hint type=tip >}}
+See examples in specification [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs).
+{{< /hint >}}
+
+<br>
+
+---
+
+<br>
 
 ### Interfaces
 
@@ -182,11 +217,15 @@ To meet [BCPFR2](/Azure-Verified-Modules/specs/bicep/#id-bcpfr2---category-compo
 
 {{< include file="/static/includes/sample.rbacMapping.bicep" language="bicep" options="linenos=false" >}}
 
+<br>
+
 ### Telemetry Enablement
 
 To meet [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) & [SFR4](/Azure-Verified-Modules/specs/shared/#id-sfr4---category-telemetry---telemetry-enablement-flexibility) you can use the below code sample in your AVM Modules to achieve this.
 
 {{< include file="/static/includes/sample.telem.bicep" language="bicep" options="linenos=false" >}}
+
+<br>
 
 ### Versioning
 
@@ -198,8 +237,10 @@ The `version` value is in the form of `MAJOR.MINOR`. The PATCH version will be i
 
 For example, the `version` value should be:
 - `0.1` for new modules, so that they can be released as `v0.1.0`.
-- `1.0` once the module owner signes off the module is stable enough for it’s first Major release of `v1.0.0`.
+- `1.0` once the module owner signs off the module is stable enough for it’s first Major release of `v1.0.0`.
 - `0.x` for all feature updates between the first release `v0.1.0` and the first Major release of `v1.0.0`.
+
+<br>
 
 ## Testing
 
@@ -213,6 +254,8 @@ Before opening a Pull Request to the Bicep Public Registry, ensure your module i
 
 For example, to meet [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing), ensure the updated module is deployable against a testing Azure subscription and compliant with the intended configuration.
 
+<br>
+
 ## Publishing to the Registry
 
 When the AVM Modules are published to the Bicep Public Registry they **MUST** follow the below requirements:
@@ -223,4 +266,3 @@ When the AVM Modules are published to the Bicep Public Registry they **MUST** fo
 This will require the alias on the MCR to be different than the directory path, which is the default for BRM today.
 
 ***Guidance will be provided below on how to do this, when available.***
-
