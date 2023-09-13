@@ -14,11 +14,11 @@ This page will provide an overview of the contribution process for AVM modules.
 {{< mermaid class="text-center" >}}
 flowchart TD
     A[Module Proposal Created] -->|GitHub Issue/Form Submitted| B{AVM Core Team Triage}
-    B -->|Module Approved for Creation| C[[Module Owner/s Identified & assigned to GitHub issue/proposal ]]
+    B -->|Module Approved for Creation| C[["Module Owner(s) Identified & assigned to GitHub issue/proposal" ]]
     B -->|Module Rejected| D(Issue closed with reasoning)
-    C -->E[[AVM central CSV/JSON files updated by AVM Core Team]]
+    C -->E[[AVM central CSV files updated by AVM Core Team]]
     E -->E1[[Repo/Directory Created Following Contribution Guide]]
-    E1 -->F(Module Developed by Owner/s & their Contributors)
+    E1 -->F("Module Developed by Owner(s) & their Contributors")
     F -->G[[Self & AVM Module Tests]]
     G -->|Tests Fail|I(Modules/Tests Fixed To Make Them Pass)
     I -->F
@@ -26,7 +26,7 @@ flowchart TD
     J -->K[[Publish to IaC Registry]]
     K -->L(Take Feedback from v0.1.0 Consumers)
     L -->M{Anything to be resolved before v1.0.0 release?}
-    M -->|Yes|FixPreV1(Module Feedback Incorporated by Owner/s & their Contributors)
+    M -->|Yes|FixPreV1("Module Feedback Incorporated by Owner(s) & their Contributors")
     FixPreV1 -->PreV1Tests[[Self & AVM Module Tests]]
     PreV1Tests -->|Tests Fail|PreV1TestsFix(Modules/Tests Fixed To Make Them Pass)
     PreV1TestsFix -->N
@@ -74,18 +74,23 @@ The AVM Core Team
 ```
 {{< /expand >}}
 
-7. Find module owners - if not proposed in module proposal OR original person/s proposed to be module owners, do not wan't or cannot be owners of the module:
+8. Find module owners - if not proposed in module proposal OR original person/s proposed to be module owners, do not wan't or cannot be owners of the module:
    - Move the issue into "Looking for owners" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project
    - Add the "Needs: Module Owner 📣" label to the issue
    - Try to find owner from AVM communities or await a module owner to comment and propose themselves on the proposal issue
      - When a new owner is potentially identified, go back to step 6
-8. Once module owner identified and has confirmed they understand and accept their roles and responsibilities as an AVM module owner
+9. Once module owner identified and has confirmed they understand and accept their roles and responsibilities as an AVM module owner
    - Assign the issue to the confirmed module owner
    - Move the issue into "In development" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project
    - Add the "Status: Owners Identified 🤘" label to the issue
      - Remove the "Needs: Module Owner 📣" label from the issue, if applied
-9. Update the AVM Central Module Indexes CSV/JSON files
-10. Update any Azure RBAC permissions for test tenants/subscription, if required
-11. Bicep Only:
+10. Update the AVM Central Module Indexes CSV files
+11. Use the following values from the module index CSV file(s) explicitly:
+    - `ModuleName`
+    - `TelemetryIdPrefix`
+    - `ModuleOwnersGHTeam` and `ModuleContributorsGHTeam`
+    - Repository name and folder path defined in `RepoURL`
+12. Update any Azure RBAC permissions for test tenants/subscription, if required
+13. Bicep Only:
     - Update `Azure/bicep-registry-modules` [CODEOWNERS file](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS)
-12. Once module is developed and `v0.1.0` has been published to the relevant registry, move the issue into "Done" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project
+14. Once module is developed and `v0.1.0` has been published to the relevant registry, move the issue into "Done" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project

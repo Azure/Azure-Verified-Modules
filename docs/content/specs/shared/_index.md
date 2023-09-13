@@ -278,7 +278,7 @@ Modules **MUST** implement idempotency end-to-end (deployment) testing. E.g. dep
 
 <br>
 
-#### ID: SNFR8 - Category: Contribution/Support - Module Owner/s GitHub
+#### ID: SNFR8 - Category: Contribution/Support - Module Owner(s) GitHub
 
 A module **MUST** have an owner that is defined and managed by a GitHub Team in the Azure GitHub organization.
 
@@ -490,7 +490,9 @@ For example all modules should be released using a semantic version that matches
 
 Initially modules should be released as `v0.1.0` and incremented via Minor and Patch versions only until the module owner is happy the module has been "road tested" and is now stable enough for it's first Major release of `v1.0.0`.
 
-> Releasing as `v0.1.0` initially and only incrementing Minor and Patch versions allows the module owner to make breaking changes more easily and frequently as it's still not an official Major/Stable release 👍
+{{< hint type=note >}}
+Releasing as `v0.1.0` initially and only incrementing Minor and Patch versions allows the module owner to make breaking changes more easily and frequently as it's still not an official Major/Stable release. 👍
+{{< /hint >}}
 
 <br>
 
