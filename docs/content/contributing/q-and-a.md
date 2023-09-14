@@ -87,7 +87,7 @@ Beside of providing program level governance, the [AVM core team][AVMCoreTeam] i
 
 The AVM core team will then triage the request and get back to you with next steps. You can accelerate the process of creating the module by volunteering to be a [module owner][ModuleOwners].
 
-<!-- ### How will the central module catalog be updated?
+<!-- ### How will the AVM module index (catalog) be updated?
 
 The [AVM core team][AVMCoreTeam] will maintain the module catalog and update it as new modules are created and published or existing ones are updated or retired. -->
 
