@@ -390,7 +390,7 @@ GitHub repositories where modules are held **MUST** use the below labels and **S
 
 These labels are available in a CSV file from [here](/Azure-Verified-Modules/governance/avm-standard-github-labels.csv)
 
-{{< entireCsvToTable header=true csv="/static/governance/avm-standard-github-labels.csv" >}}
+{{< ghLabelsCsvToTable header=true csv="/static/governance/avm-standard-github-labels.csv" >}}
 
 {{< /expand >}}
 
