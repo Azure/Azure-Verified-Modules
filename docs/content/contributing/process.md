@@ -16,7 +16,7 @@ flowchart TD
     A[Module Proposal Created] -->|GitHub Issue/Form Submitted| B{AVM Core Team Triage}
     B -->|Module Approved for Creation| C[["Module Owner(s) Identified & assigned to GitHub issue/proposal" ]]
     B -->|Module Rejected| D(Issue closed with reasoning)
-    C -->E[[AVM central CSV files updated by AVM Core Team]]
+    C -->E[[Module index CSV files updated by AVM Core Team]]
     E -->E1[[Repo/Directory Created Following Contribution Guide]]
     E1 -->F("Module Developed by Owner(s) & their Contributors")
     F -->G[[Self & AVM Module Tests]]
@@ -84,7 +84,7 @@ The AVM Core Team
    - Move the issue into "In development" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project
    - Add the "Status: Owners Identified 🤘" label to the issue
      - Remove the "Needs: Module Owner 📣" label from the issue, if applied
-10. Update the AVM Central Module Indexes CSV files
+10. Update the AVM Module Indexes CSV files
 11. Use the following values from the module index CSV file(s) explicitly:
     - `ModuleName`
     - `TelemetryIdPrefix`
