@@ -13,6 +13,12 @@ Before submitting a new [module proposal](https://aka.ms/avm/moduleproposal) for
 
 {{< /hint >}}
 
+{{< hint type=important >}}
+While this page describes and summarizes important aspects of contributing to AVM, it only references *some* of the shared and language specific requirements.
+
+Therefore, this contribution guide **MUST** be used in conjunction with the [Shared Specification](/Azure-Verified-Modules/specs/shared/) and the [Terraform specific](/Azure-Verified-Modules/specs/terraform/) specifications. **ALL AVM modules** (Resource and Pattern modules) **MUST meet the respective requirements described in these  specifications**!
+{{< /hint >}}
+
 <br>
 
 ## Recommended Learning
@@ -110,7 +116,7 @@ Use `snake_casing` as per [TFNFR3](/Azure-Verified-Modules/specs/terraform/#id-t
 
 ## Module Publishing
 
-When the AVM Modules are published to the Hashicorp  Registry they **MUST** follow the below requirements:
+When the AVM Modules are published to the Hashicorp Registry, they **MUST** follow the below requirements:
 
 - Resource Module: `terraform-<provider>-avm-res-<rp>-<armresourcename>` as per [RMNFR1](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming)
 - Pattern Module: `terraform-<provider>-avm-ptn-<patternmodulename>` as per [PMNFR1](/Azure-Verified-Modules/specs/shared/#id-pmnfr1---category-naming---module-naming)

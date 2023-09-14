@@ -14,6 +14,12 @@ Before submitting a new [module proposal](https://aka.ms/avm/moduleproposal) for
 
 {{< /hint >}}
 
+{{< hint type=important >}}
+While this page describes and summarizes important aspects of contributing to AVM, it only references *some* of the shared and language specific requirements.
+
+Therefore, this contribution guide **MUST** be used in conjunction with the [Shared Specification](/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](/Azure-Verified-Modules/specs/bicep/) specifications. **ALL AVM modules** (Resource and Pattern modules) **MUST meet the respective requirements described in these  specifications**!
+{{< /hint >}}
+
 <br>
 
 ## Recommended Learning
@@ -76,9 +82,9 @@ The following tooling/extensions are recommended to assist you developing for th
 
 ### Repositories
 
-For Bicep, both Resource and Pattern, AVM Modules will be homed in the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and live within an `avm` directory that will be located at the root of the repository; as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
+Bicep AVM Modules (both Resource and Pattern modules) will be homed in the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and live within an `avm` directory that will be located at the root of the repository, as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
 
-It is expected that module owners will fork the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repositories `main` branch.
+Module owners are expected to fork the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository's `main` branch.
 
 ### Directory and File Structure
 
@@ -189,8 +195,6 @@ Make sure to review all specifications of `Category: Outputs` within both the [S
 {{< hint type=tip >}}
 See examples in specification [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs).
 {{< /hint >}}
-
-<br>
 
 ---
 
