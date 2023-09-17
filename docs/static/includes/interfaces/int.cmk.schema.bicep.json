@@ -18,7 +18,6 @@
   },
   "required": [
     "keyVaultResourceId",
-    "keyName",
-    "userAssignedIdentityResourceId"
+    "keyName"
   ]
 }
