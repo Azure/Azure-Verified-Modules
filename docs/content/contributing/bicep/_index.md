@@ -115,6 +115,9 @@ Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](htt
 │   │       ├───modules
 │   │       └───tests
 │   │           └───e2e
+│   │               ├───min
+│   │               ├───waf-aligned
+│   │               └───max
 │   └───res
 │       └───compute
 │           └───virtual-machine
@@ -126,6 +129,9 @@ Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](htt
 │               ├───modules
 │               └───tests
 │                   └───e2e
+│                       ├───min
+│                       ├───waf-aligned
+│                       └───max
 ├───other repo dirs...
 └───other repo files...
 ```
@@ -257,6 +263,8 @@ The AVM core team is working to provide a CI environment used for testing the AV
 Before opening a Pull Request to the Bicep Public Registry, ensure your module is ready for publishing, by validating that it meets all the Testing Specifications as per [SNFR1](/Azure-Verified-Modules/specs/shared/#id-snfr1---category-testing---prescribed-tests), [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing), [SNFR3](/Azure-Verified-Modules/specs/shared/#id-snfr3---category-testing---avm-unit-tests), [SNFR4](/Azure-Verified-Modules/specs/shared/#id-snfr4---category-testing---additional-unit-tests), [SNFR5](/Azure-Verified-Modules/specs/shared/#id-snfr5---category-testing---upgrade-tests), [SNFR6](/Azure-Verified-Modules/specs/shared/#id-snfr6---category-testing---static-analysislinting-tests), [SNFR7](/Azure-Verified-Modules/specs/shared/#id-snfr7---category-testing---idempotency-tests).
 
 For example, to meet [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing), ensure the updated module is deployable against a testing Azure subscription and compliant with the intended configuration.
+
+### TBC -
 
 ### Testing Diagnostic Settings
 

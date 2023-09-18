@@ -97,6 +97,10 @@ Below is the directory and file structure expected for each AVM Terraform reposi
 See template repo [here](https://github.com/Azure/terraform-azurerm-avm-template).
 
 - `tests/` - (for unit tests and additional E2E/integration if required - e.g. tflint etc.)
+  - `e2e/`
+    - `min/`
+    - `waf-aligned/`
+    - `max/`
 - `modules/` - (for sub-modules only if used)
 - `examples/` - (all examples must deploy without successfully without requiring input - these are customer facing)
 - `/...` - (Module files that live in the root of module directory)

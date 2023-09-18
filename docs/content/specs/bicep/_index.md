@@ -263,3 +263,19 @@ For example: `camelCasingExample` (lowercase first word (entirely), with capital
 ---
 
 <br>
+
+#### ID: BCPNFR9 - Category: Testing - Test Bicep File Naming
+
+Module owners **MUST** name their test `.bicep` files in the `/tests/e2e/<min/waf-aligned/max/etc.>` directories: `main.test.bicep` as the test framework (CI) relies upon this name.
+
+{{< hint type=tip >}}
+
+See [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing) for additional details.
+
+{{< /hint >}}
+
+<br>
+
+---
+
+<br>
