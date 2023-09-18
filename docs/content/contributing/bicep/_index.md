@@ -258,6 +258,22 @@ Before opening a Pull Request to the Bicep Public Registry, ensure your module i
 
 For example, to meet [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing), ensure the updated module is deployable against a testing Azure subscription and compliant with the intended configuration.
 
+### Testing Diagnostic Settings
+
+To test the numerous diagnostic settings targets (Log Analytics Workspace, Storage Account, Event Hub, etc.) the AVM core team have provided a dependencies `.bicep` file to help create all these pre-requisite targets that will be needed during test runs.
+
+{{< expand "Diagnostic Settings Dependencies - Bicep File" "expand/collapse" >}}
+
+{{< include file="/static/includes/diagnostic.dependencies.bicep" language="bicep" options="linenos=false" >}}
+
+{{< /expand >}}
+
+{{< hint type=note >}}
+
+Also note there are a number of additional scripts and utilities available [here](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/templates/diagnostic.dependencies.bicep) that may be of use to module owners/contributors.
+
+{{< /hint >}}
+
 <br>
 
 ## Publishing to the Registry
