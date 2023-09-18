@@ -94,3 +94,29 @@ The AVM Core Team
 13. Bicep Only:
     - Update `Azure/bicep-registry-modules` [CODEOWNERS file](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS)
 14. Once module is developed and `v0.1.0` has been published to the relevant registry, move the issue into "Done" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project
+
+## Module Owner Has Issue/Is Blocked/Has A Request
+
+In the event that a module owner has an issue or is blocked due to specific AVM missing guidance, test environments, permission requirements, etc. they should follow the below steps:
+
+{{< hint type=tip >}}
+
+Common issues/blockers/asks/request are:
+
+- Subscription level features
+- Resource Provider Registration
+- Preview Services Enablement
+- Entra ID (formerly Azure Active Directory) configuration (SPN creation, etc.)
+
+{{< /hint >}}
+
+1. Create a [GitHub Issue](https://github.com/Azure/Azure-Verified-Modules/issues/new/choose)
+2. Discuss the issue/blocker with the AVM core team
+3. Agree upon action/resolution/closure
+4. Implement agreed upon action/resolution/closure
+
+{{< hint type=note >}}
+
+Please note for module specific issues, these should be logged in the module's source repository, not the AVM repository.
+
+{{< /hint >}}
