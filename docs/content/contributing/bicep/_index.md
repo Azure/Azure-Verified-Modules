@@ -270,7 +270,7 @@ To test the numerous diagnostic settings targets (Log Analytics Workspace, Stora
 
 {{< hint type=note >}}
 
-Also note there are a number of additional scripts and utilities available [here](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/templates/diagnostic.dependencies.bicep) that may be of use to module owners/contributors.
+Also note there are a number of additional scripts and utilities available [here](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/e2e-template-assets/diagnostic.dependencies.bicep) that may be of use to module owners/contributors.
 
 {{< /hint >}}
 
