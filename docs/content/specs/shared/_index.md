@@ -250,7 +250,7 @@ Modules **SHOULD** implement unit testing to ensure logic and conditions within 
 
 #### ID: SNFR5 - Category: Testing - Upgrade Tests
 
-Modules **SHOULD** implement upgrade testing to ensure new features are implemented in a non-breaking fashion on mom-major releases.
+Modules **SHOULD** implement upgrade testing to ensure new features are implemented in a non-breaking fashion on non-major releases.
 
 <br>
 
