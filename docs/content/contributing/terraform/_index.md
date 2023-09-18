@@ -75,6 +75,12 @@ This repo will be created by the Module Owners and the AVM Core team collaborati
 
 <br>
 
+### Repository Labels
+
+As per [SNFR23](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels) the repositories created by module owners **MUST** have and use the pre-defined GitHub labels.
+
+To apply these labels to the repository review the PowerShell script `Set-AvmGitHubLabels.ps1` that is provided in [SNFR23](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels).
+
 ## Template Repository
 
 We have created a [template repository](https://github.com/Azure/terraform-azurerm-avm-template) to help you get started.
