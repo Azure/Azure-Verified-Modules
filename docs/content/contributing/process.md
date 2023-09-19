@@ -21,17 +21,17 @@ flowchart TD
     OrphanedCheck -->|No|ContactOwner[Contact module owner,<br> via GitHub issues on the related <br>repo, to discuss enhancements/<br>bugs/opportunities to contribute etc.]
     OrphanedCheck -->|Yes|OrphanOwnerYes(Locate the <a href='https://aka.ms/avm/orphanedmodules'>related issue</a> <br> and comment on:<br> - A feature/enhancement suggestion <br> - Indicating you wish to become the owner)
     OrphanOwnerYes -->B
-    A[[<a href='https://aka.ms/avm/moduleproposal'>Create Module Proposal</a>]] -->|GitHub Issue/Form Submitted| B{AVM Core Team Triage}
+    A[[<a href='https://aka.ms/avm/moduleproposal'>Create Module Proposal</a>]] -->|GitHub Issue/Form Submitted| B{<a href='/Azure-Verified-Modules/contributing/process/#avm-core-team-triage-explained'>AVM Core Team Triage</a>}
     B -->|Module Approved for Creation| C[["Module Owner(s) Identified  & <br> assigned to GitHub issue/proposal" ]]
     B -->|Module Rejected| D(Issue closed with reasoning)
-    C -->E[[Module index CSV files <br> updated by AVM Core Team]]
-    E -->E1[[Repo/Directory Created <br> Following Contribution Guide]]
+    C -->E[[<a href='/Azure-Verified-Modules/indexes/'>Module index</a> CSV files <br> updated by AVM Core Team]]
+    E -->E1[[Repo/Directory Created <br> Following <a href='/Azure-Verified-Modules/contributing/'>Contribution Guide</a>]]
     E1 -->F("Module Developed by <br> Owner(s) & their Contributors")
-    F -->G[[Self & AVM Module Tests]]
+    F -->G[[Module & AVM Compliance Tests]]
     G -->|Tests Fail|I(Modules/Tests Fixed <br> To Make Them Pass)
     I -->F
     G -->|Tests Pass|J[[Pre-Release v0.1.0 created]]
-    J -->K[[Publish to IaC Registry]]
+    J -->K[[Publish to Bicep/Terraform Registry]]
     K -->L(Take Feedback from v0.1.0 Consumers)
     L -->M{Anything to be resolved <br> before v1.0.0 release?}
     M -->|Yes|FixPreV1("Module Feedback Incorporated by <br> Owner(s) & their Contributors")
@@ -40,7 +40,7 @@ flowchart TD
     PreV1TestsFix -->N
     M -->|No|N[[Publish v1.0.0 Release]]
     N -->O[[Publish to IaC Registry]]
-    O -->P[[Module BAU Starts]]
+    O -->P[[<a href='/Azure-Verified-Modules/help-support/module-support/'>Module BAU Starts</a>]]
 {{< /mermaid >}}
 
 ### "AVM Core Team Triage" Explained
@@ -102,6 +102,7 @@ The AVM Core Team
 13. Bicep Only:
     - Update `Azure/bicep-registry-modules` [CODEOWNERS file](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS)
 14. Once module is developed and `v0.1.0` has been published to the relevant registry, move the issue into "Done" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project
+15. Update the AVM Module Indexes CSV files with the correct `ModuleStatus`
 
 ## Module Owner Has Issue/Is Blocked/Has A Request
 
