@@ -222,6 +222,10 @@ Modules **MUST** use the prescribed tooling and testing frameworks defined in th
 
 Modules **MUST** implement end-to-end (deployment) testing that create actual resources to validate that module deployments work. In Bicep tests are sourced from the directories in `/tests/e2e`. In Terraform, these are in `/examples`.
 
+Each test **MUST** run and complete without user inputs successfully, for automation purposes.
+
+Each test **MUST** also destroy/clean-up its resources and test dependencies following a run.
+
 {{< hint type=important >}}
 
 For more detailed guidance, see the language specific specifications:
