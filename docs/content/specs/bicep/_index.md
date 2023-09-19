@@ -291,3 +291,17 @@ Module owners **MUST** name their test `.bicep` files in the `/tests/e2e/<defaul
 ---
 
 <br>
+
+#### ID: BCPNFR11 - Category: Testing - Test Tooling
+
+Module owners **MUST** use the below tooling for unit/linting/static/security analysis tests. These are also used in the AVM Compliance Tests.
+
+- [PSRule for Azure](https://azure.github.io/PSRule.Rules.Azure/)
+- [Pester](https://pester.dev/)
+  - Some tests are provided as part of the AVM Compliance Tests, but you are free to also use Pester for your own tests.
+
+<br>
+
+---
+
+<br>

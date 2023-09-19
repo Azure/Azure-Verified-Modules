@@ -254,7 +254,7 @@ To see a directory and file structure for a module, see the language specific co
 
 #### ID: SNFR3 - Category: Testing - AVM Compliance Tests
 
-Modules **MUST** implement implement AVM compliance tests that ensure compliance to AVM specifications.
+Modules **MUST** implement implement AVM compliance tests that ensure compliance to AVM specifications. These tests **MUST** pass before a module version can be published.
 
 {{< hint type=note >}}
 
@@ -270,9 +270,9 @@ Please note these are still under development at this time and will be published
 
 #### ID: SNFR4 - Category: Testing - Unit Tests
 
-Modules **SHOULD** implement unit testing to ensure logic and conditions within parameters/variables/locals are performing correctly.
+Modules **SHOULD** implement unit testing to ensure logic and conditions within parameters/variables/locals are performing correctly. These tests **MUST** pass before a module version can be published.
 
-Unit Tests test specific module functionality, without deploying resources. Used on more complex modules. Should live in `tests/unit`
+Unit Tests test specific module functionality, without deploying resources. Used on more complex modules. In Bicep and Terraform these live in `tests/unit`.
 
 <br>
 
@@ -292,7 +292,9 @@ Modules **SHOULD** implement upgrade testing to ensure new features are implemen
 
 #### ID: SNFR6 - Category: Testing - Static Analysis/Linting Tests
 
-Modules **MUST** use static analysis, e.g., linting, security scanning.
+Modules **MUST** use static analysis, e.g., linting, security scanning (PSRule, tflint, etc.). These tests **MUST** pass before a module version can be published.
+
+There may be differences between languages in linting rules standards, but the AVM core team will try to close these and bring them into alignment over time.
 
 <br>
 
