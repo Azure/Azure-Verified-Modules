@@ -222,7 +222,7 @@ Modules **MUST** use the prescribed tooling and testing frameworks defined in th
 
 Modules **MUST** implement end-to-end (deployment) testing.
 
-Module owners **MUST** create the `min`, `max`, `waf-aligned` folders within their `/tests/e2e/` directory in their module source code. Each folder will be used as described for various test cases.
+Module owners **MUST** create the `min`, `waf-aligned` folders within their `/tests/e2e/` directory in their module source code. Each folder will be used as described for various test cases.
 
 {{< hint type=tip >}}
 
