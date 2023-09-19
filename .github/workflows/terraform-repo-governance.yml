@@ -14,7 +14,7 @@ jobs:
     outputs:
       repoarray: ${{ steps.graphql.outputs.repoarray }}
     steps:
-      - name: GH CLI
+      - name: query GitHub graphql API
         id: graphql
         run: |
           RESULT=$(gh api graphql --paginate -f query='query {
