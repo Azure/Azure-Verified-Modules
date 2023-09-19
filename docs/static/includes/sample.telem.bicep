@@ -5,7 +5,7 @@ param location string = resourceGroup().location
 param enableTelemetry bool = true
 
 @description('The current released version of the module. Used for telemetry.')
-var moduleVersion = 'v1.0.0'
+var moduleVersion = '[[moduleVersion]]' // v1.0.0
 
 resource avmTelemetry 'Microsoft.Resources/deployments@2022-09-01' = if (enableTelemetry) {
   name: '46d3xbcp.res.compute-virtualmachine.${replace(moduleVersion, '.', '-')}.${substring(uniqueString(deployment().name, location), 0, 4)}'
