@@ -97,6 +97,7 @@ Below is the directory and file structure expected for each AVM Terraform reposi
 See template repo [here](https://github.com/Azure/terraform-azurerm-avm-template).
 
 - `tests/` - (for unit tests and additional tests if required - e.g. tflint etc.)
+  - `unit/` - (optional, may use further sub-directories if required)
 - `modules/` - (for sub-modules only if used)
 - `examples/` - (all examples must deploy without successfully without requiring input - these are customer facing)
   - `defaults` - (minimum/required parameters/variables only, heavy reliance on the default values for other parameters/variables)

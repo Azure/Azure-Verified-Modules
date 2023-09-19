@@ -114,10 +114,12 @@ Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](htt
 │   │       │
 │   │       ├───modules
 │   │       └───tests
+│   │           ├───unit (optional)
 │   │           └───e2e
 │   │               ├───defaults
 │   │               ├───waf-aligned
 │   │               └───max
+│   │
 │   └───res
 │       └───compute
 │           └───virtual-machine
@@ -128,6 +130,7 @@ Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](htt
 │               │
 │               ├───modules
 │               └───tests
+│                   ├───unit (optional)
 │                   └───e2e
 │                       ├───defaults
 │                       ├───waf-aligned

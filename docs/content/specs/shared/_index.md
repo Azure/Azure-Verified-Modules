@@ -252,9 +252,15 @@ To see a directory and file structure for a module, see the language specific co
 
 <br>
 
-#### ID: SNFR3 - Category: Testing - AVM Unit Tests
+#### ID: SNFR3 - Category: Testing - AVM Compliance Tests
 
-Modules **MUST** implement implement AVM unit tests that ensure compliance to AVM specifications.
+Modules **MUST** implement implement AVM compliance tests that ensure compliance to AVM specifications.
+
+{{< hint type=note >}}
+
+Please note these are still under development at this time and will be published and available soon for module owners.
+
+{{< /hint >}}
 
 <br>
 
@@ -262,9 +268,11 @@ Modules **MUST** implement implement AVM unit tests that ensure compliance to AV
 
 <br>
 
-#### ID: SNFR4 - Category: Testing - Additional Unit Tests
+#### ID: SNFR4 - Category: Testing - Unit Tests
 
-Modules **SHOULD** implement unit testing to ensure logic and conditions within variables/locals are performing correctly.
+Modules **SHOULD** implement unit testing to ensure logic and conditions within parameters/variables/locals are performing correctly.
+
+Unit Tests test specific module functionality, without deploying resources. Used on more complex modules. Should live in `tests/unit`
 
 <br>
 
