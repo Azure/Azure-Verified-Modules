@@ -292,6 +292,10 @@ Modules **MUST** use static analysis, e.g., linting, security scanning.
 
 Modules **MUST** implement idempotency end-to-end (deployment) testing. E.g. deploying the module twice over the top of itself.
 
+Modules **SHOULD** pass the idempotency test, as we are aware that there are some exceptions where they may fail as a false-positive or legitimate cases where a resource cannot be idempotent.
+
+For example, Virtual Machine Image names must be unique on each resource creation/update.
+
 <br>
 
 ---
