@@ -220,9 +220,17 @@ Modules **MUST** use the prescribed tooling and testing frameworks defined in th
 
 #### ID: SNFR2 - Category: Testing - E2E Testing
 
-Modules **MUST** implement end-to-end (deployment) testing.
+Modules **MUST** implement end-to-end (deployment) testing that create actual resources to validate that module deployments work. In Bicep tests are sourced from the directories in `/tests/e2e`. In Terraform, these are in `/examples`.
 
-Module owners **MUST** create the `min`, `waf-aligned` folders within their `/tests/e2e/` directory in their module source code. Each folder will be used as described for various test cases.
+{{< hint type=important >}}
+
+For more detailed guidance, see the language specific specifications:
+
+- [Bicep](/Azure-Verified-Modules/specs/bicep/)
+- [Terraform](/Azure-Verified-Modules/specs/terraform/)
+
+{{< /hint >}}
+
 
 {{< hint type=tip >}}
 
@@ -233,16 +241,6 @@ To see a directory and file structure for a module, see the language specific co
 
 {{< /hint >}}
 
-- **MUST** - `min` == minimum/required parameters/variables only, heavy reliance on the default values for other params/vars
-- **MUST** - `waf-aligned` == showing all parameters/variables for the module to be as WAF compliant as possible
-- **SHOULD** - `max` == all the possible parameters/variables set, some will be mutually exclusive for example
-- **MUST** - If a module can deploy varying styles of the same resource, e.g. VMs can be Linux or Windows, the names above should be used as suffixes in the directory name to denote the style, e.g. for a VM we would expect to see:
-  - `/tests/e2e/min.linux/main.test.<bicep/tf>`
-  - `/tests/e2e/waf-aligned.linux/main.test.<bicep/tf>`
-  - `/tests/e2e/max.linux/main.test.<bicep/tf>`
-  - `/tests/e2e/min.windows/main.test.<bicep/tf>`
-  - `/tests/e2e/waf-aligned.windows/main.test.<bicep/tf>`
-  - `/tests/e2e/max.windows/main.test.<bicep/tf>`
 
 <br>
 

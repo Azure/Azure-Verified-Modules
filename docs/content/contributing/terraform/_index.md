@@ -96,13 +96,11 @@ See [this link (internal only)](https://dev.azure.com/CSUSolEng/Azure%20Verified
 Below is the directory and file structure expected for each AVM Terraform repository/module.
 See template repo [here](https://github.com/Azure/terraform-azurerm-avm-template).
 
-- `tests/` - (for unit tests and additional E2E/integration if required - e.g. tflint etc.)
-  - `e2e/`
-    - `min/`
-    - `waf-aligned/`
-    - `max/`
+- `tests/` - (for unit tests and additional tests if required - e.g. tflint etc.)
 - `modules/` - (for sub-modules only if used)
 - `examples/` - (all examples must deploy without successfully without requiring input - these are customer facing)
+  - `defaults` - (minimum/required parameters/variables only, heavy reliance on the default values for other parameters/variables)
+  - `<other folders for examples as required>`
 - `/...` - (Module files that live in the root of module directory)
   - `_header.md` - (required for documentation generation)
   - `_footer.md` - (required for documentation generation)

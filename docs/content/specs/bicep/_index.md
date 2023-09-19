@@ -264,15 +264,27 @@ For example: `camelCasingExample` (lowercase first word (entirely), with capital
 
 <br>
 
-#### ID: BCPNFR9 - Category: Testing - Test Bicep File Naming
+#### ID: BCPNFR9 - Category: Testing - Expected Test Directories
 
-Module owners **MUST** name their test `.bicep` files in the `/tests/e2e/<min/waf-aligned/max/etc.>` directories: `main.test.bicep` as the test framework (CI) relies upon this name.
+Module owners **MUST** create the `defaults`, `waf-aligned` folders within their `/tests/e2e/` directory in their module source code and `SHOULD` create a `max` folder also. Each folder will be used as described for various test cases.
 
-{{< hint type=tip >}}
+- **MUST** - `defaults` == minimum/required parameters/variables only, heavy reliance on the default values for other parameters/variables
+- **MUST** - `waf-aligned` == showing all parameters/variables for the module to be as WAF compliant as possible
+- **SHOULD** - `<other folders for examples as required>` == all the possible parameters/variables set, some will be mutually exclusive for example. If a module can deploy varying styles of the same resource, e.g. VMs can be Linux or Windows, the names above should be used as suffixes in the directory name to denote the style, e.g. for a VM we would expect to see:
+  - `/tests/e2e/defaults.linux/main.test.bicep`
+  - `/tests/e2e/waf-aligned.linux/main.test.bicep`
+  - `/tests/e2e/defaults.windows/main.test.bicep`
+  - `/tests/e2e/waf-aligned.windows/main.test.bicep`
 
-See [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing) for additional details.
+<br>
 
-{{< /hint >}}
+---
+
+<br>
+
+#### ID: BCPNFR10 - Category: Testing - Test Bicep File Naming
+
+Module owners **MUST** name their test `.bicep` files in the `/tests/e2e/<defaults/waf-aligned/max/etc.>` directories: `main.test.bicep` as the test framework (CI) relies upon this name.
 
 <br>
 
