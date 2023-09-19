@@ -15,6 +15,12 @@ resource avmTelemetry 'Microsoft.Resources/deployments@2022-09-01' = if (enableT
       '$schema': 'https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#'
       contentVersion: '1.0.0.0'
       resources: []
+      outputs: {
+        telemetry: {
+          type: 'String'
+          value: 'For more information, see https://azure.github.io/Azure-Verified-Modules/help-support/telemetry/'
+        }
+      }
     }
   }
 }

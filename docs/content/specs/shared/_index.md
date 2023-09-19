@@ -97,24 +97,33 @@ Read the FAQ of [What does AVM mean by “WAF Aligned”?](/Azure-Verified-Modul
 
 #### ID: SFR3 - Category: Telemetry - Deployment/Usage Telemetry
 
+{{< hint type=important >}}
+
+We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) with the required TelemetryId prefixes to enable checks to utilize this list to ensure the correct IDs are used. To see the formatted content of these CSV files with additional information, please visit the [AVM Module Indexes](/Azure-Verified-Modules/indexes) page.
+
+These will also be provided as a comment on the module proposal, once accepted, from the AVM core team.
+
+{{< /hint >}}
+
 Modules **MUST** provide the capability to collect deployment/usage telemetry, via a blank ARM deployment, as detailed in [Telemetry](/Azure-Verified-Modules/help-support/telemetry/) further.
 
-The ARM deployment name used for the telemetry **MUST** follow the pattern and **MUST** be no longer than 64 characters in length: `<AVM 8 chars (alphanumeric)>.<res/ptn>.<module name>.<version>.<uniqueness>`
+The ARM deployment name used for the telemetry **MUST** follow the pattern and **MUST** be no longer than 64 characters in length: `<AVM 8 chars (alphanumeric)>.<res/ptn>.<(short) module name>.<version>.<uniqueness>`
 
 - `<AVM 8 chars (alphanumeric)>`
   - Bicep == `46d3xbcp`
   - Terraform == `46d3xgtf`
 - `<res/ptn>` == AVM Resource or Pattern Module
-- `<module name>` == The AVM Module's name **without**;
-  - The prefixes: `avm-res-` or `terraform-<provider>-avm-res-` - See [RMNFR1](#id-rmnfr1---category-naming---module-naming) for AVM Resource Module Naming
-  - The prefixes: `avm-ptn-` or `terraform-<provider>-avm-ptn-` - See [PMNFR1](#id-pmnfr1---category-naming---module-naming) for AVM Pattern Module Naming
-    {{< hint type=note >}}
+- `<(short) module name>` == The AVM Module's, possibly shortened, name including the resource provider and the resource type, **without**;
+  - The prefixes: `avm-res-` or `terraform-<provider>-avm-res-`
+  - The prefixes: `avm-ptn-` or `terraform-<provider>-avm-ptn-`
 
-Due to the 64-character length limit of Azure deployment names, the `<module name>` segment has a length limit of 30 characters, so if the module name is longer than that, it **MUST** be truncated to 30 characters. If any of the semantic version's segments are longer than 1 character, it further restricts the number of characters that can be used for naming the module.
+{{< hint type=note >}}
 
-    {{< /hint >}}
+Due to the 64-character length limit of Azure deployment names, the `<(short) module name>` segment has a length limit of 36 characters, so if the module name is longer than that, it **MUST** be truncated to 36 characters. If any of the semantic version's segments are longer than 1 character, it further restricts the number of characters that can be used for naming the module.
 
-- `<version>` == The AVM Module's version with `.` (periods) replaced with `-` (hyphens), to allow simpler splitting of the ARM deployment name
+{{< /hint >}}
+
+- `<version>` == The AVM Module's MAJOR.MINOR version (only) with `.` (periods) replaced with `-` (hyphens), to allow simpler splitting of the ARM deployment name
 - `<uniqueness>` == This section of the ARM deployment name is to be used to ensure uniqueness of the deployment name.
   - This is to cater for the following scenarios:
     - The module is deployed multiple times to the same:
@@ -126,18 +135,17 @@ An example deployment name for the AVM Virtual Machine Resource Module would be:
 - Bicep == `46d3xbcp.res.compute-virtualmachine.v1-2-3.eum3`
 - Terraform == `46d3xgtf.res.compute-virtualmachine.v1-2-3.eum3`
 
+An example deployment name for a shortened module name would be:
+
+- Bicep == `46d3xbcp.res.desktopvirtualization-appgroup.v1-2-3.eum3`
+- Terraform == `46d3xgtf.res.desktopvirtualization-appgroup.v1-2-3.eum3`
+
 {{< hint type=tip >}}
 
 See the language specific contribution guides for detailed guidance and sample code to use in AVM modules to achieve this requirement.
 
 - [Bicep](/Azure-Verified-Modules/contributing/bicep/)
 - [Terraform](/Azure-Verified-Modules/contributing/terraform/)
-
-{{< /hint >}}
-
-{{< hint type=note >}}
-
-We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) with the required TelemetryId prefixes to enable checks to utilize this list to ensure the correct IDs are used. To see the formatted content of these CSV files with additional information, please visit the [AVM Module Indexes](/Azure-Verified-Modules/indexes) page.
 
 {{< /hint >}}
 
