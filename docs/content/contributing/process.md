@@ -13,22 +13,30 @@ This page will provide an overview of the contribution process for AVM modules.
 
 {{< mermaid class="text-center" >}}
 flowchart TD
-    A[Module Proposal Created] -->|GitHub Issue/Form Submitted| B{AVM Core Team Triage}
-    B -->|Module Approved for Creation| C[["Module Owner(s) Identified & assigned to GitHub issue/proposal" ]]
+    ModuleIdea[Consumer has an idea for a new AVM Module] -->CheckIndex(Check <a href='/Azure-Verified-Modules/indexes/'>AVM Module Indexes</a>)
+    CheckIndex -->IndexExistenceCheck{Does the module already <br> exist in an active/orphaned <br> state in respective index?}
+    IndexExistenceCheck -->|No|A
+    IndexExistenceCheck -->|Yes|EndExistenceCheck(Review existing/proposed AVM module)
+    EndExistenceCheck -->OrphanedCheck{Is the module <a href='/Azure-Verified-Modules/specs/shared/module-lifecycle/#orphaned-avm-modules'>orphaned</a>?}
+    OrphanedCheck -->|No|ContactOwner[Contact module owner,<br> via GitHub issues on the related <br>repo, to discuss enhancements/<br>bugs/opportunities to contribute etc.]
+    OrphanedCheck -->|Yes|OrphanOwnerYes(Locate the <a href='https://aka.ms/avm/orphanedmodules'>related issue</a> <br> and comment on:<br> - A feature/enhancement suggestion <br> - Indicating you wish to become the owner)
+    OrphanOwnerYes -->B
+    A[[<a href='https://aka.ms/avm/moduleproposal'>Create Module Proposal</a>]] -->|GitHub Issue/Form Submitted| B{AVM Core Team Triage}
+    B -->|Module Approved for Creation| C[["Module Owner(s) Identified  & <br> assigned to GitHub issue/proposal" ]]
     B -->|Module Rejected| D(Issue closed with reasoning)
-    C -->E[[Module index CSV files updated by AVM Core Team]]
-    E -->E1[[Repo/Directory Created Following Contribution Guide]]
-    E1 -->F("Module Developed by Owner(s) & their Contributors")
+    C -->E[[Module index CSV files <br> updated by AVM Core Team]]
+    E -->E1[[Repo/Directory Created <br> Following Contribution Guide]]
+    E1 -->F("Module Developed by <br> Owner(s) & their Contributors")
     F -->G[[Self & AVM Module Tests]]
-    G -->|Tests Fail|I(Modules/Tests Fixed To Make Them Pass)
+    G -->|Tests Fail|I(Modules/Tests Fixed <br> To Make Them Pass)
     I -->F
     G -->|Tests Pass|J[[Pre-Release v0.1.0 created]]
     J -->K[[Publish to IaC Registry]]
     K -->L(Take Feedback from v0.1.0 Consumers)
-    L -->M{Anything to be resolved before v1.0.0 release?}
-    M -->|Yes|FixPreV1("Module Feedback Incorporated by Owner(s) & their Contributors")
+    L -->M{Anything to be resolved <br> before v1.0.0 release?}
+    M -->|Yes|FixPreV1("Module Feedback Incorporated by <br> Owner(s) & their Contributors")
     FixPreV1 -->PreV1Tests[[Self & AVM Module Tests]]
-    PreV1Tests -->|Tests Fail|PreV1TestsFix(Modules/Tests Fixed To Make Them Pass)
+    PreV1Tests -->|Tests Fail|PreV1TestsFix(Modules/Tests Fixed <br> To Make Them Pass)
     PreV1TestsFix -->N
     M -->|No|N[[Publish v1.0.0 Release]]
     N -->O[[Publish to IaC Registry]]
