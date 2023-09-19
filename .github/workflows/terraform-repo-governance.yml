@@ -57,10 +57,9 @@ jobs:
           }' | jq -e '.data.repository.licenseInfo.name == "MIT License"')
           if [ "$ISMITLICENSE" = "true" ]; then
             echo "MIT License found"
-            exit 1
           else
             echo "MIT License not found"
-            gh issue create --title "MIT License not found" --body "The repository ${{ matrix.repo }} does not have a MIT License"
+            gh issue create --title "MIT License not found: ${{ matrix.repo }}" --body "The repository ${{ matrix.repo }} does not have a MIT License"
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
