@@ -1,4 +1,5 @@
 ---
+name: Terraform repo governance
 on:
   schedule:
     - cron: '43 0 * * 0'
