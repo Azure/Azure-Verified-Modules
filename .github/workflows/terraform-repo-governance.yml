@@ -31,7 +31,7 @@ jobs:
             }')
           NUMREPOS=$(echo $RESULT | jq '.data.search.repositoryCount')
           echo "Number of repos found: $NUMREPOS"
-          REPOARRAY=$(echo $RESULT | jq '.data.search.edges | [.[].node.name]' | sed 's/"/\\"/g'')
+          REPOARRAY=$(echo $RESULT | jq '.data.search.edges | [.[].node.name]' | sed 's/"/\\"/g')
           echo "repoarray=$REPOARRAY" >> "$GITHUB_OUTPUT"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
