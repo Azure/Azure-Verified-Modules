@@ -256,7 +256,7 @@ Review the [Bicep Contribution Guide's 'RBAC Role Definition Name Mapping' secti
 
 #### ID: BCPNFR8 - Category: Composition - Code Styling - lower camelCasing
 
-Module owners **MUST** use [lower camelCasing](https://wikipedia.org/wiki/Camel_case) for naming the following:
+Module owners **SHOULD** use [lower camelCasing](https://wikipedia.org/wiki/Camel_case) for naming the following:
 
 - Parameters
 - Variables
