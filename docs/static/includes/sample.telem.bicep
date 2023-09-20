@@ -18,7 +18,7 @@ resource avmTelemetry 'Microsoft.Resources/deployments@2022-09-01' = if (enableT
       outputs: {
         telemetry: {
           type: 'String'
-          value: 'For more information, see https://azure.github.io/Azure-Verified-Modules/help-support/telemetry/'
+          value: 'For more information, see https://aka.ms/avm/TelemetryInfo'
         }
       }
     }
