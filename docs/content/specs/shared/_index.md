@@ -132,13 +132,13 @@ Due to the 64-character length limit of Azure deployment names, the `<(short) mo
 
 An example deployment name for the AVM Virtual Machine Resource Module would be:
 
-- Bicep == `46d3xbcp.res.compute-virtualmachine.v1-2-3.eum3`
-- Terraform == `46d3xgtf.res.compute-virtualmachine.v1-2-3.eum3`
+- Bicep == `46d3xbcp.res.compute-virtualmachine.1-2-3.eum3`
+- Terraform == `46d3xgtf.res.compute-virtualmachine.1-2-3.eum3`
 
 An example deployment name for a shortened module name would be:
 
-- Bicep == `46d3xbcp.res.desktopvirtualization-appgroup.v1-2-3.eum3`
-- Terraform == `46d3xgtf.res.desktopvirtualization-appgroup.v1-2-3.eum3`
+- Bicep == `46d3xbcp.res.desktopvirtualization-appgroup.1-2-3.eum3`
+- Terraform == `46d3xgtf.res.desktopvirtualization-appgroup.1-2-3.eum3`
 
 {{< hint type=tip >}}
 

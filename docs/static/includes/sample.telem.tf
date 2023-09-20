@@ -1,7 +1,7 @@
 locals {
   # This is the unique id for the module that is supplied by the AVM team.
   # TODO: change this to the PUID for the module. See https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry
-  telem_puid = "46d3xtf"
+  telem_puid = "46d3xgtf"
 
   # TODO: change this to the name of the module. See https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry
   module_name = "CHANGEME"
