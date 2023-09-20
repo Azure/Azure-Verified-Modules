@@ -14,13 +14,7 @@ This page is still a work in progress
 
 ## Request/Propose a New AVM Resource or Pattern Module
 
-{{< hint type=note >}}
-
-We are still getting ready to actually create code but we are willing to take module proposals from Microsoft FTEs!
-
-Fill in the form [here](https://aka.ms/avm/moduleproposal) 📄
-
-{{< /hint >}}
+Please review the [Process Overview](/Azure-Verified-Modules/contributing/process/#new-module-proposal--creation) for guidance on proposing a new AVM module.
 
 {{< hint type=tip >}}
 

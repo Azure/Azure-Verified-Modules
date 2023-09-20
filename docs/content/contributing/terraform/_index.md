@@ -75,6 +75,12 @@ This repo will be created by the Module Owners and the AVM Core team collaborati
 
 <br>
 
+### Repository Labels
+
+As per [SNFR23](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels) the repositories created by module owners **MUST** have and use the pre-defined GitHub labels.
+
+To apply these labels to the repository review the PowerShell script `Set-AvmGitHubLabels.ps1` that is provided in [SNFR23](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels).
+
 ## Template Repository
 
 We have created a [template repository](https://github.com/Azure/terraform-azurerm-avm-template) to help you get started.
@@ -90,9 +96,12 @@ See [this link (internal only)](https://dev.azure.com/CSUSolEng/Azure%20Verified
 Below is the directory and file structure expected for each AVM Terraform repository/module.
 See template repo [here](https://github.com/Azure/terraform-azurerm-avm-template).
 
-- `tests/` - (for unit tests and additional E2E/integration if required - e.g. tflint etc.)
+- `tests/` - (for unit tests and additional tests if required - e.g. tflint etc.)
+  - `unit/` - (optional, may use further sub-directories if required)
 - `modules/` - (for sub-modules only if used)
 - `examples/` - (all examples must deploy without successfully without requiring input - these are customer facing)
+  - `defaults` - (minimum/required parameters/variables only, heavy reliance on the default values for other parameters/variables)
+  - `<other folders for examples as required>`
 - `/...` - (Module files that live in the root of module directory)
   - `_header.md` - (required for documentation generation)
   - `_footer.md` - (required for documentation generation)
@@ -154,5 +163,53 @@ Do not include the `v` prefix in the `module_version` value.
   "locals": {
     "module_version": "1.0.0"
   }
+}
+```
+
+## Eventual Consistency
+
+When creating modules, it is important to understand that the Azure Resource Manager (ARM) API is sometimes eventually consistent.
+This means that when you create a resource, it may not be available immediately.
+A good example of this is data plane role assignments.
+When you create such a role assignment, it may take some time for the role assignment to be available.
+We can use an optional `time_sleep` resource to wait for the role assignment to be available before creating resources that depend on it.
+
+```hcl
+# In variables.tf...
+variable "wait_for_rbac_before_foo_operations" {
+  type = object({
+    create  = optional(string, "30s")
+    destroy = optional(string, "0s")
+  })
+  default     = {}
+  description = <<DESCRIPTION
+This variable controls the amount of time to wait before performing foo operations.
+It only applies when `var.role_assignments` and `var.foo` are both set.
+This is useful when you are creating role assignments on the bar resource and immediately creating foo resources in it.
+The default is 30 seconds for create and 0 seconds for destroy.
+DESCRIPTION
+}
+
+# In main.tf...
+resource "time_sleep" "wait_for_rbac_before_foo_operations" {
+  count = length(var.role_assignments) > 0 && length(var.foo) > 0 ? 1 : 0
+  depends_on = [
+    azurerm_role_assignment.this
+  ]
+  create_duration  = var.wait_for_rbac_before_foo_operations.create
+  destroy_duration = var.wait_for_rbac_before_foo_operations.destroy
+
+  # This ensures that the sleep is re-created when the role assignments change.
+  triggers = {
+    role_assignments = jsonencode(var.role_assignments)
+  }
+}
+
+resource "azurerm_foo" "this" {
+  for_each = var.foo
+  depends_on = [
+    time_sleep.wait_for_rbac_before_foo_operations
+  ]
+  # ...
 }
 ```

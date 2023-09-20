@@ -150,7 +150,16 @@ This script/tool is currently being developed by the AVM team and will be made a
 
 {{< /hint >}}
 
-Bicep modules documentation **MUST** be automatically generated via the provided script/tooling from the AVM team.
+Bicep modules documentation **MUST** be automatically generated via the provided script/tooling from the AVM team, providing the following headings:
+
+- Title
+- Description
+- Navigation
+- Resource Types
+- Usage Examples
+- Parameters
+- Outputs
+- Cross-referenced modules
 
 <br>
 
@@ -247,7 +256,7 @@ Review the [Bicep Contribution Guide's 'RBAC Role Definition Name Mapping' secti
 
 #### ID: BCPNFR8 - Category: Composition - Code Styling - lower camelCasing
 
-Module owners **MUST** use [lower camelCasing](https://wikipedia.org/wiki/Camel_case) for naming the following:
+Module owners **SHOULD** use [lower camelCasing](https://wikipedia.org/wiki/Camel_case) for naming the following:
 
 - Parameters
 - Variables
@@ -257,6 +266,48 @@ Module owners **MUST** use [lower camelCasing](https://wikipedia.org/wiki/Camel_
 - Modules (symbolic names)
 
 For example: `camelCasingExample` (lowercase first word (entirely), with capital of first letter of all other words and rest of word in lowercase)
+
+<br>
+
+---
+
+<br>
+
+#### ID: BCPNFR9 - Category: Testing - Expected Test Directories
+
+Module owners **MUST** create the `defaults`, `waf-aligned` folders within their `/tests/e2e/` directory in their module source code and `SHOULD` create a `max` folder also. Each folder will be used as described for various test cases.
+
+- **MUST** - `defaults` == minimum/required parameters/variables only, heavy reliance on the default values for other parameters/variables
+- **MUST** - `waf-aligned` == showing all parameters/variables for the module to be as WAF compliant as possible
+- **SHOULD** - `<other folders for examples as required>` == all the possible parameters/variables set, some will be mutually exclusive for example. If a module can deploy varying styles of the same resource, e.g. VMs can be Linux or Windows, the names above should be used as suffixes in the directory name to denote the style, e.g. for a VM we would expect to see:
+  - `/tests/e2e/defaults.linux/main.test.bicep`
+  - `/tests/e2e/waf-aligned.linux/main.test.bicep`
+  - `/tests/e2e/defaults.windows/main.test.bicep`
+  - `/tests/e2e/waf-aligned.windows/main.test.bicep`
+
+<br>
+
+---
+
+<br>
+
+#### ID: BCPNFR10 - Category: Testing - Test Bicep File Naming
+
+Module owners **MUST** name their test `.bicep` files in the `/tests/e2e/<defaults/waf-aligned/max/etc.>` directories: `main.test.bicep` as the test framework (CI) relies upon this name.
+
+<br>
+
+---
+
+<br>
+
+#### ID: BCPNFR11 - Category: Testing - Test Tooling
+
+Module owners **MUST** use the below tooling for unit/linting/static/security analysis tests. These are also used in the AVM Compliance Tests.
+
+- [PSRule for Azure](https://azure.github.io/PSRule.Rules.Azure/)
+- [Pester](https://pester.dev/)
+  - Some tests are provided as part of the AVM Compliance Tests, but you are free to also use Pester for your own tests.
 
 <br>
 
