@@ -90,7 +90,7 @@ See [Module Sources](https://developer.hashicorp.com/terraform/language/modules/
 
 Module owners **MUST** output the following additional outputs as a minimum in their modules:
 
-| Output                                                                                  | Terraform Output Name                                 | SHOULD/MUST |
+| Output                                                                                  | Terraform Output Name                                 | MUST/SHOULD |
 | --------------------------------------------------------------------------------------- | ----------------------------------------------------- | ----------- |
 | Full Resource Output Object                                                             | `resource`                                            | MUST        |
 | Full Resource Output (map of) Object/s of child resource/extension/associated resources | `resource_<child/extension/associated resource name>` | SHOULD      |
