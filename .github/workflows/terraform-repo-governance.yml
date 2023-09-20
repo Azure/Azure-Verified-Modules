@@ -1,0 +1,65 @@
+---
+name: Terraform repo governance
+on:
+  schedule:
+    - cron: '43 0 * * 0'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  getrepos:
+    runs-on: ubuntu-latest
+    outputs:
+      repoarray: ${{ steps.graphql.outputs.repoarray }}
+    steps:
+      - name: query GitHub graphql API
+        id: graphql
+        run: |
+          RESULT=$(gh api graphql --paginate -f query='query {
+            search(query: "terraform-azurerm-avm user:azure", type: REPOSITORY, first: 100) {
+                repositoryCount
+                edges {
+                  node {
+                    ... on Repository {
+                      name
+                    }
+                  }
+                }
+              }
+            }')
+          NUMREPOS=$(echo $RESULT | jq '.data.search.repositoryCount')
+          echo "Number of repos found: $NUMREPOS"
+          REPOARRAY=$(echo $RESULT | jq -c '.data.search.edges | [.[].node.name]')
+          echo repoarray="$REPOARRAY"
+          echo repoarray="$REPOARRAY" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  governance:
+    runs-on: ubuntu-latest
+    needs: getrepos
+    strategy:
+      max-parallel: 5
+      matrix:
+        repo: ${{ fromJson(needs.getrepos.outputs.repoarray) }}
+    steps:
+      - name: License check (SNFR10)
+        id: snfr10
+        run: |
+          ISMITLICENSE=$(gh api graphql -f query='query {
+            repository(owner: "azure", name: "'${{ matrix.repo }}'") {
+              licenseInfo {
+                name
+              }
+            }
+          }' | jq -e '.data.repository.licenseInfo.name == "MIT License"')
+          if [ "$ISMITLICENSE" = "true" ]; then
+            echo "MIT License found"
+          else
+            echo "MIT License not found"
+            gh issue create --title "MIT License not found: ${{ matrix.repo }}" --body "The repository ${{ matrix.repo }} does not have a MIT License"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
