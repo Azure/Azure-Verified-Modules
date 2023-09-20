@@ -234,16 +234,6 @@ Each test **MUST** run and complete without user inputs successfully, for automa
 
 Each test **MUST** also destroy/clean-up its resources and test dependencies following a run.
 
-{{< hint type=important >}}
-
-For more detailed guidance, see the language specific specifications:
-
-- [Bicep](/Azure-Verified-Modules/specs/bicep/)
-- [Terraform](/Azure-Verified-Modules/specs/terraform/)
-
-{{< /hint >}}
-
-
 {{< hint type=tip >}}
 
 To see a directory and file structure for a module, see the language specific contribution guide.
@@ -482,7 +472,7 @@ A module **SHOULD** use either: simple data types. e.g., string, int, bool.
 
 OR
 
-Complex data types (objects, arrays, maps) when the schema is defined and supported by the IDE.
+Complex data types (objects, arrays, maps) when the language-compliant schema is defined.
 
 <br>
 
@@ -492,9 +482,9 @@ Complex data types (objects, arrays, maps) when the schema is defined and suppor
 
 #### ID: SNFR22 - Category: Inputs - Parameters/Variables for Resource IDs
 
-A module parameter/variable that requires a full Azure Resource ID as an input value, e.g. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{keyVaultName}`, **MUST** contain `ResourceId/resource_id` in it's parameter/variable name to assist users in knowing what value to provide at a glance of the parameter/variable name.
+A module parameter/variable that requires a full Azure Resource ID as an input value, e.g. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{keyVaultName}`, **MUST** contain `ResourceId/resource_id` in its parameter/variable name to assist users in knowing what value to provide at a glance of the parameter/variable name.
 
-Example for the property `workspaceId` for the Diagnostic Settings resource. In Bicep it's parameter name should be `workspaceResourceId` and the variable name in Terraform should be `workspace_resource_id`.
+Example for the property `workspaceId` for the Diagnostic Settings resource. In Bicep its parameter name should be `workspaceResourceId` and the variable name in Terraform should be `workspace_resource_id`.
 
 `workspaceId` is not descriptive enough and is ambiguous as to which ID is required to be input.
 
@@ -506,7 +496,7 @@ Example for the property `workspaceId` for the Diagnostic Settings resource. In 
 
 #### ID: SNFR15 - Category: Documentation - Automatic Documentation Generation
 
-README documentation **MUST** be automatically/programmatically generated. **MUST** include inputs, outputs, resources deployed.
+README documentation **MUST** be automatically/programmatically generated. **MUST** include the sections as defined in the language specific requirements [BCPNFR2](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr2---category-documentation---module-documentation-generation), [TFNFR2](/Azure-Verified-Modules/specs/terraform/#id-tfnfr2---category-documentation---module-documentation-generation).
 
 <br>
 
