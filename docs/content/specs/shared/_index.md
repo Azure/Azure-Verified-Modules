@@ -132,13 +132,13 @@ Due to the 64-character length limit of Azure deployment names, the `<(short) mo
 
 An example deployment name for the AVM Virtual Machine Resource Module would be:
 
-- Bicep == `46d3xbcp.res.compute-virtualmachine.v1-2-3.eum3`
-- Terraform == `46d3xgtf.res.compute-virtualmachine.v1-2-3.eum3`
+- Bicep == `46d3xbcp.res.compute-virtualmachine.1-2-3.eum3`
+- Terraform == `46d3xgtf.res.compute-virtualmachine.1-2-3.eum3`
 
 An example deployment name for a shortened module name would be:
 
-- Bicep == `46d3xbcp.res.desktopvirtualization-appgroup.v1-2-3.eum3`
-- Terraform == `46d3xgtf.res.desktopvirtualization-appgroup.v1-2-3.eum3`
+- Bicep == `46d3xbcp.res.desktopvirtualization-appgroup.1-2-3.eum3`
+- Terraform == `46d3xgtf.res.desktopvirtualization-appgroup.1-2-3.eum3`
 
 {{< hint type=tip >}}
 
@@ -233,16 +233,6 @@ Modules **MUST** implement end-to-end (deployment) testing that create actual re
 Each test **MUST** run and complete without user inputs successfully, for automation purposes.
 
 Each test **MUST** also destroy/clean-up its resources and test dependencies following a run.
-
-{{< hint type=important >}}
-
-For more detailed guidance, see the language specific specifications:
-
-- [Bicep](/Azure-Verified-Modules/specs/bicep/)
-- [Terraform](/Azure-Verified-Modules/specs/terraform/)
-
-{{< /hint >}}
-
 
 {{< hint type=tip >}}
 
@@ -482,7 +472,7 @@ A module **SHOULD** use either: simple data types. e.g., string, int, bool.
 
 OR
 
-Complex data types (objects, arrays, maps) when the schema is defined and supported by the IDE.
+Complex data types (objects, arrays, maps) when the language-compliant schema is defined.
 
 <br>
 
@@ -492,9 +482,9 @@ Complex data types (objects, arrays, maps) when the schema is defined and suppor
 
 #### ID: SNFR22 - Category: Inputs - Parameters/Variables for Resource IDs
 
-A module parameter/variable that requires a full Azure Resource ID as an input value, e.g. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{keyVaultName}`, **MUST** contain `ResourceId/resource_id` in it's parameter/variable name to assist users in knowing what value to provide at a glance of the parameter/variable name.
+A module parameter/variable that requires a full Azure Resource ID as an input value, e.g. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{keyVaultName}`, **MUST** contain `ResourceId/resource_id` in its parameter/variable name to assist users in knowing what value to provide at a glance of the parameter/variable name.
 
-Example for the property `workspaceId` for the Diagnostic Settings resource. In Bicep it's parameter name should be `workspaceResourceId` and the variable name in Terraform should be `workspace_resource_id`.
+Example for the property `workspaceId` for the Diagnostic Settings resource. In Bicep its parameter name should be `workspaceResourceId` and the variable name in Terraform should be `workspace_resource_id`.
 
 `workspaceId` is not descriptive enough and is ambiguous as to which ID is required to be input.
 
@@ -506,7 +496,7 @@ Example for the property `workspaceId` for the Diagnostic Settings resource. In 
 
 #### ID: SNFR15 - Category: Documentation - Automatic Documentation Generation
 
-README documentation **MUST** be automatically/programmatically generated. **MUST** include inputs, outputs, resources deployed.
+README documentation **MUST** be automatically/programmatically generated. **MUST** include the sections as defined in the language specific requirements [BCPNFR2](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr2---category-documentation---module-documentation-generation), [TFNFR2](/Azure-Verified-Modules/specs/terraform/#id-tfnfr2---category-documentation---module-documentation-generation).
 
 <br>
 
@@ -528,16 +518,16 @@ An examples/e2e directory **MUST** exist to provide named scenarios for module d
 
 Modules **MUST** use semantic versioning (aka semver) for their versions and releases in accordance with: [Semantic Versioning 2.0.0](https://semver.org/)
 
-For example all modules should be released using a semantic version that matches this pattern: `vX.Y.Z`
+For example all modules should be released using a semantic version that matches this pattern: `X.Y.Z`
 
 - `X` == Major Version
 - `Y` == Minor Version
 - `Z` == Patch Version
 
-Initially modules should be released as `v0.1.0` and incremented via Minor and Patch versions only until the module owner is happy the module has been "road tested" and is now stable enough for it's first Major release of `v1.0.0`.
+Initially modules should be released as `0.1.0` and incremented via Minor and Patch versions only until the module owner is happy the module has been "road tested" and is now stable enough for it's first Major release of `1.0.0`.
 
 {{< hint type=note >}}
-Releasing as `v0.1.0` initially and only incrementing Minor and Patch versions allows the module owner to make breaking changes more easily and frequently as it's still not an official Major/Stable release. 👍
+Releasing as `0.1.0` initially and only incrementing Minor and Patch versions allows the module owner to make breaking changes more easily and frequently as it's still not an official Major/Stable release. 👍
 {{< /hint >}}
 
 <br>

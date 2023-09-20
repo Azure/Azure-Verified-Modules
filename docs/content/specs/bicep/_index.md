@@ -150,7 +150,16 @@ This script/tool is currently being developed by the AVM team and will be made a
 
 {{< /hint >}}
 
-Bicep modules documentation **MUST** be automatically generated via the provided script/tooling from the AVM team.
+Bicep modules documentation **MUST** be automatically generated via the provided script/tooling from the AVM team, providing the following headings:
+
+- Title
+- Description
+- Navigation
+- Resource Types
+- Usage Examples
+- Parameters
+- Outputs
+- Cross-referenced modules
 
 <br>
 
