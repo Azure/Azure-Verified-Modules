@@ -165,3 +165,53 @@ Do not include the `v` prefix in the `module_version` value.
   }
 }
 ```
+
+## Eventual Consistency
+
+When creating modules, it is important to understand that the Azure Resource Manager (ARM) API is sometimes eventually consistent.
+This means that when you create a resource, it may not be available immediately.
+A good example of this is data plane role assignments.
+When you create such a role assignment, it may take some time for the role assignment to be available.
+We can use an optional `time_sleep` resource to wait for the role assignment to be available before creating resources that depend on it.
+
+```hcl
+# In variables.tf...
+variable "wait_for_rbac_before_foo_operations" {
+  type = object({
+    create  = optional(string, "30s")
+    destroy = optional(string, "0s")
+  })
+  default     = {}
+  description = <<DESCRIPTION
+This variable controls the amount of time to wait before performing foo operations.
+It only applies when `var.role_assignments` and `var.foo` are both set.
+This is useful when you are creating role assignments on the bar resource and immediately creating foo resources in it.
+The default is 30 seconds for create and 0 seconds for destroy.
+DESCRIPTION
+}
+
+# In main.tf...
+resource "time_sleep" "wait_for_rbac_before_foo_operations" {
+  count = length(var.role_assignments) > 0 && length(var.foo) > 0 ? 1 : 0
+  depends_on = [
+    azurerm_role_assignment.this
+  ]
+  create_duration  = var.wait_for_rbac_before_foo_operations.create
+  destroy_duration = var.wait_for_rbac_before_foo_operations.destroy
+
+  # This ensures that the sleep is re-created when the role assignments change.
+  triggers = {
+    role_assignments = jsonencode(var.role_assignments)
+  }
+}
+
+resource "azurerm_foo" "this" {
+  for_each = var.foo
+  depends_on = [
+    time_sleep.wait_for_rbac_before_foo_operations
+  ]
+  # ...
+}
+```
+
+```
