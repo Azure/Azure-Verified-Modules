@@ -213,5 +213,3 @@ resource "azurerm_foo" "this" {
   # ...
 }
 ```
-
-```
