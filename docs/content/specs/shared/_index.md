@@ -456,16 +456,6 @@ These `Set-AvmGitHubLabels.ps1` can be downloaded from <a href="/Azure-Verified-
 
 <br>
 
-#### ID: SNFR13 - Category: Forking - Private Module Registry Support
-
-A module **MUST** also function within a private module registry, internal Git repo.
-
-<br>
-
----
-
-<br>
-
 #### ID: SNFR14 - Category: Inputs - Data Types
 
 A module **SHOULD** use either: simple data types. e.g., string, int, bool.
@@ -516,6 +506,14 @@ An examples/e2e directory **MUST** exist to provide named scenarios for module d
 
 #### ID: SNFR17 - Category: Release - Semantic Versioning
 
+{{< hint type=important >}}
+
+You cannot specify the patch version for Bicep modules in the public Bicep Registry, as this is automatically incremented by 1 each time a module is published. You can only set the major and minor versions.
+
+See the [Bicep Contribution Guide](/Azure-Verified-Modules/contributing/bicep/) for more information.
+
+{{< /hint >}}
+
 Modules **MUST** use semantic versioning (aka semver) for their versions and releases in accordance with: [Semantic Versioning 2.0.0](https://semver.org/)
 
 For example all modules should be released using a semantic version that matches this pattern: `X.Y.Z`
@@ -524,10 +522,12 @@ For example all modules should be released using a semantic version that matches
 - `Y` == Minor Version
 - `Z` == Patch Version
 
-Initially modules should be released as `0.1.0` and incremented via Minor and Patch versions only until the module owner is happy the module has been "road tested" and is now stable enough for it's first Major release of `1.0.0`.
+Initially modules should be released as version `0.1.0` and incremented via Minor and Patch versions only until the module owner is happy the module has been "road tested" and is now stable enough for it's first Major release of version `1.0.0`.
 
 {{< hint type=note >}}
-Releasing as `0.1.0` initially and only incrementing Minor and Patch versions allows the module owner to make breaking changes more easily and frequently as it's still not an official Major/Stable release. 👍
+
+Releasing as version `0.1.0` initially and only incrementing Minor and Patch versions allows the module owner to make breaking changes more easily and frequently as it's still not an official Major/Stable release. 👍
+
 {{< /hint >}}
 
 <br>

@@ -24,7 +24,7 @@ This page contains the **Terraform specific requirements** for AVM modules (**Re
 The following table summarizes the category identification codes used in this specification:
 
 | Scope                                            | Functional requirements               | Non-functional requirements                 |
-|--------------------------------------------------|---------------------------------------|---------------------------------------------|
+| ------------------------------------------------ | ------------------------------------- | ------------------------------------------- |
 | Shared requirements (resource & pattern modules) | [TFFR](#functional-requirements-tffr) | [TFNFR](#non-functional-requirements-tfnfr) |
 | Resource module level requirements               | *N/A*                                 | *N/A*                                       |
 | Pattern module level requirements                | *N/A*                                 | *N/A*                                       |
@@ -79,6 +79,21 @@ module "other-module" {
 {{< hint type=tip >}}
 See [Module Sources](https://developer.hashicorp.com/terraform/language/modules/sources) for more information.
 {{< /hint >}}
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFFR2 - Category: Outputs - Additional Terraform Outputs
+
+Module owners **MUST** output the following additional outputs as a minimum in their modules:
+
+| Output                                                                                  | Terraform Output Name                                 | SHOULD/MUST |
+| --------------------------------------------------------------------------------------- | ----------------------------------------------------- | ----------- |
+| Full Resource Output Object                                                             | `resource`                                            | MUST        |
+| Full Resource Output (map of) Object/s of child resource/extension/associated resources | `resource_<child/extension/associated resource name>` | SHOULD      |
 
 <br>
 
