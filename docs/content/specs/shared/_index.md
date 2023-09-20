@@ -518,16 +518,16 @@ An examples/e2e directory **MUST** exist to provide named scenarios for module d
 
 Modules **MUST** use semantic versioning (aka semver) for their versions and releases in accordance with: [Semantic Versioning 2.0.0](https://semver.org/)
 
-For example all modules should be released using a semantic version that matches this pattern: `vX.Y.Z`
+For example all modules should be released using a semantic version that matches this pattern: `X.Y.Z`
 
 - `X` == Major Version
 - `Y` == Minor Version
 - `Z` == Patch Version
 
-Initially modules should be released as `v0.1.0` and incremented via Minor and Patch versions only until the module owner is happy the module has been "road tested" and is now stable enough for it's first Major release of `v1.0.0`.
+Initially modules should be released as `0.1.0` and incremented via Minor and Patch versions only until the module owner is happy the module has been "road tested" and is now stable enough for it's first Major release of `1.0.0`.
 
 {{< hint type=note >}}
-Releasing as `v0.1.0` initially and only incrementing Minor and Patch versions allows the module owner to make breaking changes more easily and frequently as it's still not an official Major/Stable release. 👍
+Releasing as `0.1.0` initially and only incrementing Minor and Patch versions allows the module owner to make breaking changes more easily and frequently as it's still not an official Major/Stable release. 👍
 {{< /hint >}}
 
 <br>

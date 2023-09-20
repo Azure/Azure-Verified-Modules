@@ -33,12 +33,12 @@ flowchart TD
     G -->|Tests Pass|J[[Pre-Release v0.1.0 created]]
     J -->K[[Publish to Bicep/Terraform Registry]]
     K -->L(Take Feedback from v0.1.0 Consumers)
-    L -->M{Anything to be resolved <br> before v1.0.0 release?}
+    L -->M{Anything to be resolved <br> before 1.0.0 release?}
     M -->|Yes|FixPreV1("Module Feedback Incorporated by <br> Owner(s) & their Contributors")
     FixPreV1 -->PreV1Tests[[Self & AVM Module Tests]]
     PreV1Tests -->|Tests Fail|PreV1TestsFix(Modules/Tests Fixed <br> To Make Them Pass)
     PreV1TestsFix -->N
-    M -->|No|N[[Publish v1.0.0 Release]]
+    M -->|No|N[[Publish 1.0.0 Release]]
     N -->O[[Publish to IaC Registry]]
     O -->P[[<a href='/Azure-Verified-Modules/help-support/module-support/'>Module BAU Starts</a>]]
 {{< /mermaid >}}
