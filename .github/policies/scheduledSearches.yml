@@ -25,7 +25,7 @@ configuration:
       - mentionUsers:
           mentionees:
               - Azure/avm-core-team
-          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
 
@@ -47,7 +47,7 @@ configuration:
       - mentionUsers:
           mentionees:
               - Azure/avm-core-team
-          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
 
@@ -69,7 +69,7 @@ configuration:
       - mentionUsers:
           mentionees:
               - Azure/avm-core-team
-          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
 
@@ -91,7 +91,7 @@ configuration:
       - mentionUsers:
           mentionees:
               - Azure/avm-core-team
-          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
 
@@ -111,7 +111,7 @@ configuration:
       - mentionUsers:
           mentionees:
               - Azure/avm-core-team
-          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
 
@@ -131,7 +131,7 @@ configuration:
       - mentionUsers:
           mentionees:
               - Azure/avm-core-team
-          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
 
@@ -151,7 +151,7 @@ configuration:
       - mentionUsers:
           mentionees:
               - Azure/avm-core-team
-          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
 
@@ -171,7 +171,7 @@ configuration:
       - mentionUsers:
           mentionees:
               - Azure/avm-core-team
-          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
 
@@ -191,7 +191,7 @@ configuration:
       - mentionUsers:
           mentionees:
               - Azure/avm-core-team
-          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
 
@@ -211,7 +211,7 @@ configuration:
       - mentionUsers:
           mentionees:
               - Azure/avm-core-team
-          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
 
