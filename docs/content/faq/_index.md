@@ -94,6 +94,14 @@ In these scenarios the AVM modules will not enforce the additional resources to 
 | Container registries should use private link                           | **No**, as requires additional Private Endpoint and DNS configuration as well as, potentially, additional costs   |
 | API Management services should use a virtual network                   | **No**, as requires additional Virtual Network and Subnet configuration as well as, potentially, additional costs |
 
+{{< hint type=important >}}
+
+Whilst every Well-Architected Framework pillar's recommendations should equally be considered by the module owners/contributors, within AVM we are taking an approach to prioritize reliability and security over cost optimization. This provides consumers of the AVM modules, by default, more resilient and secure resources and patterns.
+
+However, please note these defaulted values can be altered via input parameter/variables in each of the modules so that you can meet your specific requirements.
+
+{{< /hint >}}
+
 ---
 
 ## Aren't AVM resource modules too complex for people less skilled in IaC technologies?
