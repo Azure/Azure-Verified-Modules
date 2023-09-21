@@ -1,0 +1,30 @@
+{{ $useHeaderRow := .Get "header" }}
+{{ $csv := .Get "csv" }}
+{{ $file := readFile $csv }}
+{{ $rows := $file | transform.Unmarshal (dict "delimiter" ",") }}
+<table>
+  {{ if $useHeaderRow }}
+  {{ $headerRow := index $rows 0 }}
+  {{ $rows = after 1 $rows }}
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>HEX</th>
+    </tr>
+  </thead>
+  {{ end }}
+  {{ range $row := $rows }}
+  <tr>
+    <td>{{ emojify (index $row 0) }}</td>
+    <td>{{ index $row 1 }}</td>
+    <td>
+      <code>
+        <span style='display:inline-block;width:1.6ch;height:1.6ch;border-radius:0.1rem;background-color:{{ printf "#%s" (index $row 2) }};margin-right:5px'></span>
+        <br>
+        {{ index $row 2 }}
+      </code>
+    </td>
+  </tr>
+  {{ end }}
+</table>
