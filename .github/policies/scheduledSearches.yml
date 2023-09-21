@@ -7,7 +7,215 @@ disabled: false
 configuration:
   resourceManagementConfiguration:
     scheduledSearches:
-    - description: Automatically label issues that have been marked as requiring author feedback but have not had any activity for 4 days.
+    - description: ITA01BCP.1 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
+      frequencies:
+      - weekday:
+          day: Monday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Needs: Triage :mag:'
+      - hasLabel:
+          label: 'Type: AVM :a: :v: :m:'
+      - noActivitySince:
+          days: 5
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+      - addLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+
+    - description: ITA01BCP.2 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
+      frequencies:
+      - weekday:
+          day: Tuesday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Needs: Triage :mag:'
+      - hasLabel:
+          label: 'Type: AVM :a: :v: :m:'
+      - noActivitySince:
+          days: 5
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+      - addLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+
+    - description: ITA01BCP.3 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
+      frequencies:
+      - weekday:
+          day: Wednesday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Needs: Triage :mag:'
+      - hasLabel:
+          label: 'Type: AVM :a: :v: :m:'
+      - noActivitySince:
+          days: 5
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+      - addLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+
+    - description: ITA01BCP.4 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
+      frequencies:
+      - weekday:
+          day: Thursday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Needs: Triage :mag:'
+      - hasLabel:
+          label: 'Type: AVM :a: :v: :m:'
+      - noActivitySince:
+          days: 3
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+      - addLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+
+    - description: ITA01BCP.5 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
+      frequencies:
+      - weekday:
+          day: Friday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Needs: Triage :mag:'
+      - noActivitySince:
+          days: 3
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+      - addLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+
+    - description: ITA01TF.1 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
+      frequencies:
+      - weekday:
+          day: Monday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Needs: Triage :mag:'
+      - noActivitySince:
+          days: 5
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+      - addLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+
+    - description: ITA01TF.2 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
+      frequencies:
+      - weekday:
+          day: Tuesday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Needs: Triage :mag:'
+      - noActivitySince:
+          days: 5
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+      - addLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+
+    - description: ITA01TF.3 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
+      frequencies:
+      - weekday:
+          day: Wednesday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Needs: Triage :mag:'
+      - noActivitySince:
+          days: 5
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+      - addLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+
+    - description: ITA01TF.4 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
+      frequencies:
+      - weekday:
+          day: Thursday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Needs: Triage :mag:'
+      - noActivitySince:
+          days: 3
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+      - addLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+
+    - description: ITA01TF.5 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
+      frequencies:
+      - weekday:
+          day: Friday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Needs: Triage :mag:'
+      - noActivitySince:
+          days: 3
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days."
+      - addLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+
+    - description: ITA06 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 4 days.
       frequencies:
       - hourly:
           hour: 3
@@ -26,7 +234,7 @@ configuration:
       - addReply:
           reply: This issue has been automatically marked as stale because it has been marked as requiring author feedback but has not had any activity for **4 days**. It will be closed if no further activity occurs **within 3 days of this comment**.
 
-    - description: Automatically close issues that have been marked as requiring author feedback but have not had any activity for 3 days.
+    - description: ITA07 - Automatically close issues that have been marked as requiring author feedback but have not had any activity for 3 days.
       frequencies:
       - hourly:
           hour: 3

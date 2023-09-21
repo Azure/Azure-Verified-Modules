@@ -20,6 +20,7 @@ Status: Migrate from TFVM :articulated_lorry:,This item is related to a module m
 Status: Owners Identified :metal:,This module has its owners identified,FBEF2A
 Status: Module Available :green_circle:,The module is published,7ED321
 Status: Module Orphaned :eyes:,The module has no owner and is therefore orphaned at this time,f4a460
+Status: Response Overdue :triangular_flag_on_post:,When an issue/PR has not been responded to for X amount of days,FF0000
 Type: Bug :bug:,Something isn't working,d73a4a
 Type: Documentation :page_facing_up:,Improvements or additions to documentation,0075ca
 Type: Duplicate :palms_up_together:,This issue or pull request already exists,cfd3d7
