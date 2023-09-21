@@ -2,6 +2,7 @@
 {{ $csv := .Get "csv" }}
 {{ $file := readFile $csv }}
 {{ $rows := $file | transform.Unmarshal (dict "delimiter" ",") }}
+{{ $useLinks := .Get "useLinks" | default true }}
 <table>
   {{ if $useHeaderRow }}
   {{ $headerRow := index $rows 0 }}
@@ -17,7 +18,7 @@
   {{ end }}
   {{ range $row, $rows }}
   <tr>
-    <td>{{ index $row 3 }}</td>
+    <td>{{ if $useLinks }} {{ if or (eq (index $row 4) "Module Available :green_circle:") (eq (index $row 4) "Module Orphaned :eyes:") }} <a href="{{ index $row 5 }}">{{ index $row 3 }}</a> {{ else }} {{ index $row 3 }} {{ end }} {{else}} {{ index $row 3 }} {{ end }} </td>
     <td>{{ index $row 2 }}</td>
     <td>{{ emojify (index $row 4) }}</td>
     <td>{{ index $row 8 }} {{ if and (ne (index $row 8) "") (ne (index $row 9) "") }} ({{ index $row 9 }}){{ end }}</td>
