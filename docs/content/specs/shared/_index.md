@@ -38,7 +38,13 @@ The following table summarizes the category identification codes used in this sp
 
 ## Shared Requirements (Resource & Pattern Modules)
 
-Listed below are both functional and non-functional requirements for both classifications of AVM modules (Resource and Pattern).
+Listed below are both functional and non-functional requirements for both classifications of AVM modules (Resource and Pattern) and all languages.
+
+{{< hint type=note >}}
+
+Whilst every effort is being made to standardize requirements and implementation details across all languages, it is expected that some of the specifications will be different between their respective languages to ensure we follow the best practices and leverage features of each language.
+
+{{< /hint >}}
 
 <br>
 
