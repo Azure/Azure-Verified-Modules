@@ -1,5 +1,6 @@
 Name,Description,HEX
 Needs: Attention :wave:,"Reply has been added to issue, maintainer to review",E99695
+Needs: Immediate Attention :bangbang:,"Immediate attention of module owner / AVM team is needed",850000
 Needs: Author Feedback :ear:,Awaiting feedback from the issue/PR author,F18A07
 Needs: External Changes :hammer_and_pick:,When an issue/PR requires changes that are outside of the control of the module. e.g. to an RP.,DE389D
 Needs: More Evidence :balance_scale:,We are looking for more evidence to make a decision on this,F64872
