@@ -18,6 +18,7 @@ Status: Wont Fix :-1:,This will not be worked on,ffffff
 Status: Migrate from CARML :articulated_lorry:,This item is related to a module migration from CARML,00796F
 Status: Migrate from TFVM :articulated_lorry:,This item is related to a module migration from TFVM,00796F
 Status: Owners Identified :metal:,This module has its owners identified,FBEF2A
+Status: Module Available :green_circle:,The module is published,7ED321
 Status: Module Orphaned :eyes:,The module has no owner and is therefore orphaned at this time,f4a460
 Type: Bug :bug:,Something isn't working,d73a4a
 Type: Documentation :page_facing_up:,Improvements or additions to documentation,0075ca
