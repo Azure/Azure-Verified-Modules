@@ -19,7 +19,7 @@ Azure Verified Modules (AVM), as "One Microsoft", we want to provide and define 
 
 {{< hint type=tip icon=gdoc_heart title="Mission Statement" >}}
 
-Our mission is to deliver a comprehensive Azure Verified Modules library in multiple IaC languages, serving as the trusted Microsoft source of truth. Supported by Microsoft, AVM will accelerate deployment time for Azure resources and architectural patterns, empowering every person and organization on the planet on their IaC journey.
+Our mission is to deliver a comprehensive Azure Verified Modules library in multiple IaC languages, following the principles of the well-architected framework, serving as the trusted Microsoft source of truth. Supported by Microsoft, AVM will accelerate deployment time for Azure resources and architectural patterns, empowering every person and organization on the planet on their IaC journey.
 
 {{< /hint >}}
 

@@ -97,24 +97,33 @@ Read the FAQ of [What does AVM mean by “WAF Aligned”?](/Azure-Verified-Modul
 
 #### ID: SFR3 - Category: Telemetry - Deployment/Usage Telemetry
 
+{{< hint type=important >}}
+
+We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) with the required TelemetryId prefixes to enable checks to utilize this list to ensure the correct IDs are used. To see the formatted content of these CSV files with additional information, please visit the [AVM Module Indexes](/Azure-Verified-Modules/indexes) page.
+
+These will also be provided as a comment on the module proposal, once accepted, from the AVM core team.
+
+{{< /hint >}}
+
 Modules **MUST** provide the capability to collect deployment/usage telemetry, via a blank ARM deployment, as detailed in [Telemetry](/Azure-Verified-Modules/help-support/telemetry/) further.
 
-The ARM deployment name used for the telemetry **MUST** follow the pattern and **MUST** be no longer than 64 characters in length: `<AVM 8 chars (alphanumeric)>.<res/ptn>.<module name>.<version>.<uniqueness>`
+The ARM deployment name used for the telemetry **MUST** follow the pattern and **MUST** be no longer than 64 characters in length: `<AVM 8 chars (alphanumeric)>.<res/ptn>.<(short) module name>.<version>.<uniqueness>`
 
 - `<AVM 8 chars (alphanumeric)>`
   - Bicep == `46d3xbcp`
   - Terraform == `46d3xgtf`
 - `<res/ptn>` == AVM Resource or Pattern Module
-- `<module name>` == The AVM Module's name **without**;
-  - The prefixes: `avm-res-` or `terraform-<provider>-avm-res-` - See [RMNFR1](#id-rmnfr1---category-naming---module-naming) for AVM Resource Module Naming
-  - The prefixes: `avm-ptn-` or `terraform-<provider>-avm-ptn-` - See [PMNFR1](#id-pmnfr1---category-naming---module-naming) for AVM Pattern Module Naming
-    {{< hint type=note >}}
+- `<(short) module name>` == The AVM Module's, possibly shortened, name including the resource provider and the resource type, **without**;
+  - The prefixes: `avm-res-` or `terraform-<provider>-avm-res-`
+  - The prefixes: `avm-ptn-` or `terraform-<provider>-avm-ptn-`
 
-Due to the 64-character length limit of Azure deployment names, the `<module name>` segment has a length limit of 30 characters, so if the module name is longer than that, it **MUST** be truncated to 30 characters. If any of the semantic version's segments are longer than 1 character, it further restricts the number of characters that can be used for naming the module.
+{{< hint type=note >}}
 
-    {{< /hint >}}
+Due to the 64-character length limit of Azure deployment names, the `<(short) module name>` segment has a length limit of 36 characters, so if the module name is longer than that, it **MUST** be truncated to 36 characters. If any of the semantic version's segments are longer than 1 character, it further restricts the number of characters that can be used for naming the module.
 
-- `<version>` == The AVM Module's version with `.` (periods) replaced with `-` (hyphens), to allow simpler splitting of the ARM deployment name
+{{< /hint >}}
+
+- `<version>` == The AVM Module's MAJOR.MINOR version (only) with `.` (periods) replaced with `-` (hyphens), to allow simpler splitting of the ARM deployment name
 - `<uniqueness>` == This section of the ARM deployment name is to be used to ensure uniqueness of the deployment name.
   - This is to cater for the following scenarios:
     - The module is deployed multiple times to the same:
@@ -123,8 +132,13 @@ Due to the 64-character length limit of Azure deployment names, the `<module nam
 
 An example deployment name for the AVM Virtual Machine Resource Module would be:
 
-- Bicep == `46d3xbcp.res.compute-virtualmachine.v1-2-3.eum3`
-- Terraform == `46d3xgtf.res.compute-virtualmachine.v1-2-3.eum3`
+- Bicep == `46d3xbcp.res.compute-virtualmachine.1-2-3.eum3`
+- Terraform == `46d3xgtf.res.compute-virtualmachine.1-2-3.eum3`
+
+An example deployment name for a shortened module name would be:
+
+- Bicep == `46d3xbcp.res.desktopvirtualization-appgroup.1-2-3.eum3`
+- Terraform == `46d3xgtf.res.desktopvirtualization-appgroup.1-2-3.eum3`
 
 {{< hint type=tip >}}
 
@@ -132,12 +146,6 @@ See the language specific contribution guides for detailed guidance and sample c
 
 - [Bicep](/Azure-Verified-Modules/contributing/bicep/)
 - [Terraform](/Azure-Verified-Modules/contributing/terraform/)
-
-{{< /hint >}}
-
-{{< hint type=note >}}
-
-We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) with the required TelemetryId prefixes to enable checks to utilize this list to ensure the correct IDs are used. To see the formatted content of these CSV files with additional information, please visit the [AVM Module Indexes](/Azure-Verified-Modules/indexes) page.
 
 {{< /hint >}}
 
@@ -220,7 +228,21 @@ Modules **MUST** use the prescribed tooling and testing frameworks defined in th
 
 #### ID: SNFR2 - Category: Testing - E2E Testing
 
-Modules **MUST** implement end-to-end (deployment) testing.
+Modules **MUST** implement end-to-end (deployment) testing that create actual resources to validate that module deployments work. In Bicep tests are sourced from the directories in `/tests/e2e`. In Terraform, these are in `/examples`.
+
+Each test **MUST** run and complete without user inputs successfully, for automation purposes.
+
+Each test **MUST** also destroy/clean-up its resources and test dependencies following a run.
+
+{{< hint type=tip >}}
+
+To see a directory and file structure for a module, see the language specific contribution guide.
+
+- [Bicep](/Azure-Verified-Modules/contributing/bicep#directory-and-file-structure)
+- [Terraform](/Azure-Verified-Modules/contributing/terraform#directory-and-file-structure)
+
+{{< /hint >}}
+
 
 <br>
 
@@ -228,9 +250,15 @@ Modules **MUST** implement end-to-end (deployment) testing.
 
 <br>
 
-#### ID: SNFR3 - Category: Testing - AVM Unit Tests
+#### ID: SNFR3 - Category: Testing - AVM Compliance Tests
 
-Modules **MUST** implement implement AVM unit tests that ensure compliance to AVM specifications.
+Modules **MUST** implement implement AVM compliance tests that ensure compliance to AVM specifications. These tests **MUST** pass before a module version can be published.
+
+{{< hint type=note >}}
+
+Please note these are still under development at this time and will be published and available soon for module owners.
+
+{{< /hint >}}
 
 <br>
 
@@ -238,9 +266,11 @@ Modules **MUST** implement implement AVM unit tests that ensure compliance to AV
 
 <br>
 
-#### ID: SNFR4 - Category: Testing - Additional Unit Tests
+#### ID: SNFR4 - Category: Testing - Unit Tests
 
-Modules **SHOULD** implement unit testing to ensure logic and conditions within variables/locals are performing correctly.
+Modules **SHOULD** implement unit testing to ensure logic and conditions within parameters/variables/locals are performing correctly. These tests **MUST** pass before a module version can be published.
+
+Unit Tests test specific module functionality, without deploying resources. Used on more complex modules. In Bicep and Terraform these live in `tests/unit`.
 
 <br>
 
@@ -250,7 +280,7 @@ Modules **SHOULD** implement unit testing to ensure logic and conditions within 
 
 #### ID: SNFR5 - Category: Testing - Upgrade Tests
 
-Modules **SHOULD** implement upgrade testing to ensure new features are implemented in a non-breaking fashion on mom-major releases.
+Modules **SHOULD** implement upgrade testing to ensure new features are implemented in a non-breaking fashion on non-major releases.
 
 <br>
 
@@ -260,7 +290,9 @@ Modules **SHOULD** implement upgrade testing to ensure new features are implemen
 
 #### ID: SNFR6 - Category: Testing - Static Analysis/Linting Tests
 
-Modules **MUST** use static analysis, e.g., linting, security scanning.
+Modules **MUST** use static analysis, e.g., linting, security scanning (PSRule, tflint, etc.). These tests **MUST** pass before a module version can be published.
+
+There may be differences between languages in linting rules standards, but the AVM core team will try to close these and bring them into alignment over time.
 
 <br>
 
@@ -271,6 +303,10 @@ Modules **MUST** use static analysis, e.g., linting, security scanning.
 #### ID: SNFR7 - Category: Testing - Idempotency Tests
 
 Modules **MUST** implement idempotency end-to-end (deployment) testing. E.g. deploying the module twice over the top of itself.
+
+Modules **SHOULD** pass the idempotency test, as we are aware that there are some exceptions where they may fail as a false-positive or legitimate cases where a resource cannot be idempotent.
+
+For example, Virtual Machine Image names must be unique on each resource creation/update.
 
 <br>
 
@@ -420,23 +456,13 @@ These `Set-AvmGitHubLabels.ps1` can be downloaded from <a href="/Azure-Verified-
 
 <br>
 
-#### ID: SNFR13 - Category: Forking - Private Module Registry Support
-
-A module **MUST** also function within a private module registry, internal Git repo.
-
-<br>
-
----
-
-<br>
-
 #### ID: SNFR14 - Category: Inputs - Data Types
 
 A module **SHOULD** use either: simple data types. e.g., string, int, bool.
 
 OR
 
-Complex data types (objects, arrays, maps) when the schema is defined and supported by the IDE.
+Complex data types (objects, arrays, maps) when the language-compliant schema is defined.
 
 <br>
 
@@ -446,9 +472,9 @@ Complex data types (objects, arrays, maps) when the schema is defined and suppor
 
 #### ID: SNFR22 - Category: Inputs - Parameters/Variables for Resource IDs
 
-A module parameter/variable that requires a full Azure Resource ID as an input value, e.g. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{keyVaultName}`, **MUST** contain `ResourceId/resource_id` in it's parameter/variable name to assist users in knowing what value to provide at a glance of the parameter/variable name.
+A module parameter/variable that requires a full Azure Resource ID as an input value, e.g. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{keyVaultName}`, **MUST** contain `ResourceId/resource_id` in its parameter/variable name to assist users in knowing what value to provide at a glance of the parameter/variable name.
 
-Example for the property `workspaceId` for the Diagnostic Settings resource. In Bicep it's parameter name should be `workspaceResourceId` and the variable name in Terraform should be `workspace_resource_id`.
+Example for the property `workspaceId` for the Diagnostic Settings resource. In Bicep its parameter name should be `workspaceResourceId` and the variable name in Terraform should be `workspace_resource_id`.
 
 `workspaceId` is not descriptive enough and is ambiguous as to which ID is required to be input.
 
@@ -460,7 +486,7 @@ Example for the property `workspaceId` for the Diagnostic Settings resource. In 
 
 #### ID: SNFR15 - Category: Documentation - Automatic Documentation Generation
 
-README documentation **MUST** be automatically/programmatically generated. **MUST** include inputs, outputs, resources deployed.
+README documentation **MUST** be automatically/programmatically generated. **MUST** include the sections as defined in the language specific requirements [BCPNFR2](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr2---category-documentation---module-documentation-generation), [TFNFR2](/Azure-Verified-Modules/specs/terraform/#id-tfnfr2---category-documentation---module-documentation-generation).
 
 <br>
 
@@ -480,18 +506,28 @@ An examples/e2e directory **MUST** exist to provide named scenarios for module d
 
 #### ID: SNFR17 - Category: Release - Semantic Versioning
 
+{{< hint type=important >}}
+
+You cannot specify the patch version for Bicep modules in the public Bicep Registry, as this is automatically incremented by 1 each time a module is published. You can only set the major and minor versions.
+
+See the [Bicep Contribution Guide](/Azure-Verified-Modules/contributing/bicep/) for more information.
+
+{{< /hint >}}
+
 Modules **MUST** use semantic versioning (aka semver) for their versions and releases in accordance with: [Semantic Versioning 2.0.0](https://semver.org/)
 
-For example all modules should be released using a semantic version that matches this pattern: `vX.Y.Z`
+For example all modules should be released using a semantic version that matches this pattern: `X.Y.Z`
 
 - `X` == Major Version
 - `Y` == Minor Version
 - `Z` == Patch Version
 
-Initially modules should be released as `v0.1.0` and incremented via Minor and Patch versions only until the module owner is happy the module has been "road tested" and is now stable enough for it's first Major release of `v1.0.0`.
+Initially modules should be released as version `0.1.0` and incremented via Minor and Patch versions only until the module owner is happy the module has been "road tested" and is now stable enough for it's first Major release of version `1.0.0`.
 
 {{< hint type=note >}}
-Releasing as `v0.1.0` initially and only incrementing Minor and Patch versions allows the module owner to make breaking changes more easily and frequently as it's still not an official Major/Stable release. 👍
+
+Releasing as version `0.1.0` initially and only incrementing Minor and Patch versions allows the module owner to make breaking changes more easily and frequently as it's still not an official Major/Stable release. 👍
+
 {{< /hint >}}
 
 <br>

@@ -1,60 +1,66 @@
 <!DOCTYPE html>
-<html
-  lang="{{ .Site.Language.Lang }}"
-  class="color-toggle-hidden"
-  {{ if default false .Site.Params.geekdocDarkModeCode }}code-theme="dark"{{ end }}
->
-  <head>
-    {{ partial "head/meta" . }}
-    <title>
-      {{- if eq .Kind "home" -}}
-        {{ .Site.Title }}
-      {{- else -}}
-        {{ printf "%s | %s" (partial "utils/title" .) .Site.Title }}
-      {{- end -}}
-    </title>
+<html lang="{{ .Site.Language.Lang }}" class="color-toggle-hidden" {{ if default false .Site.Params.geekdocDarkModeCode
+  }}code-theme="dark" {{ end }}>
 
-    {{ partial "head/favicons" . }}
-    {{ partial "head/rel-me" . }}
-    {{ partial "head/microformats" . }}
-    {{ partial "head/others" . }}
-    {{ partial "head/custom" . }}
-  </head>
+<head>
+  {{ partial "head/meta" . }}
+  <title>
+    {{- if eq .Kind "home" -}}
+    {{ .Site.Title }}
+    {{- else -}}
+    {{ printf "%s | %s" (partial "utils/title" .) .Site.Title }}
+    {{- end -}}
+  </title>
 
-  <body itemscope itemtype="https://schema.org/WebPage">
-    {{ partial "svg-icon-symbols" . }}
+  {{ partial "head/favicons" . }}
+  {{ partial "head/rel-me" . }}
+  {{ partial "head/microformats" . }}
+  {{ partial "head/others" . }}
+  {{ partial "head/custom" . }}
+</head>
 
+<body itemscope itemtype="https://schema.org/WebPage">
+  <script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+  <script>addBackToTop({
+      diameter: 75,
+      backgroundColor: 'rgb(32, 83, 117)',
+      textColor: '#ffffff',
+      cornerOffset: 25,
+      scrollDuration: 300
+    })</script>
 
-    <div
-      class="wrapper {{ if default false .Site.Params.geekdocDarkModeDim }}dark-mode-dim{{ end }}"
-    >
-      <input type="checkbox" class="hidden" id="menu-control" />
-      <input type="checkbox" class="hidden" id="menu-header-control" />
-      {{ $navEnabled := default true .Page.Params.geekdocNav }}
-      {{ partial "site-header" (dict "Root" . "MenuEnabled" $navEnabled) }}
+  {{ partial "svg-icon-symbols" . }}
 
 
-      <main class="container flex flex-even">
-        {{ if $navEnabled }}
-          <aside class="gdoc-nav">
-            {{ partial "menu" . }}
-          </aside>
-        {{ end }}
+  <div class="wrapper {{ if default false .Site.Params.geekdocDarkModeDim }}dark-mode-dim{{ end }}">
+    <input type="checkbox" class="hidden" id="menu-control" />
+    <input type="checkbox" class="hidden" id="menu-header-control" />
+    {{ $navEnabled := default true .Page.Params.geekdocNav }}
+    {{ partial "site-header" (dict "Root" . "MenuEnabled" $navEnabled) }}
 
 
-        <div class="gdoc-page">
-          {{ template "main" . }}
+    <main class="container flex flex-even">
+      {{ if $navEnabled }}
+      <aside class="gdoc-nav">
+        {{ partial "menu" . }}
+      </aside>
+      {{ end }}
 
 
-          <div class="gdoc-page__footer flex flex-wrap justify-between">
-            {{ partial "menu-nextprev" . }}
-          </div>
+      <div class="gdoc-page">
+        {{ template "main" . }}
+
+
+        <div class="gdoc-page__footer flex flex-wrap justify-between">
+          {{ partial "menu-nextprev" . }}
         </div>
-      </main>
+      </div>
+    </main>
 
-      {{ partial "site-footer" . }}
-    </div>
+    {{ partial "site-footer" . }}
+  </div>
 
-    {{ partial "foot" . }}
-  </body>
+  {{ partial "foot" . }}
+</body>
+
 </html>
