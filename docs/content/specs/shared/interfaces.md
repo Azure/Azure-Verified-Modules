@@ -151,6 +151,9 @@ In Terraform, locks become part of the resource graph and suitable `depends_on` 
 
 {{< tabs "private-endpoints" >}}
   {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
+  {{< hint type=note >}}
+  Please note that you will need to ensure that the User-Defined Types for [Role Assignments](#role-assignments) & [Locks](#resource-locks) also are present in your module file for this interface to work correctly.
+  {{< /hint >}}
   {{< include file="/static/includes/interfaces/int.pe.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
