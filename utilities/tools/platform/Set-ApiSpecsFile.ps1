@@ -1,3 +1,4 @@
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingPositionalParameters", "", Justification = "Migration from CARML")]
 <#
 .SYNOPSIS
 Update the API Specs file in the given path

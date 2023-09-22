@@ -130,7 +130,7 @@ Install the given PowerShell modules to configure the agent.
 #>
 function Set-EnvironmentOnAgent {
 
-  [CmdletBinding()]
+  [CmdletBinding(SupportsShouldProcess)]
   param (
       [Parameter(Mandatory = $false)]
       [Hashtable[]] $PSModules = @()
