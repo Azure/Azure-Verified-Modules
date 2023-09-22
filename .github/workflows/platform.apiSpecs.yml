@@ -55,8 +55,8 @@ jobs:
 
       - name: Configure local git
         run: |
-          git config user.name '${{ env.pipelinePrincipalGitUserEmail }}'
-          git config user.email '${{ env.pipelinePrincipalGitUserName }}'
+          git config --global user.name '${{ env.pipelinePrincipalGitUserEmail }}'
+          git config --global user.email '${{ env.pipelinePrincipalGitUserName }}'
 
       - name: Create and checkout branch
         run: |
@@ -114,6 +114,8 @@ jobs:
           git add docs/static/governance/apiSpecsList.json
           git commit -m '${{ env.pr_title }}'
           git push origin ${{ env.branch_name }}
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
 
       - name: Create pull request
         if: steps.git_status.outputs.changes > 0
