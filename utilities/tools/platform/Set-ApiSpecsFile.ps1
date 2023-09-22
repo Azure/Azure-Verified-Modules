@@ -1,4 +1,3 @@
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingPositionalParameters", "", Justification = "Migration from CARML")]
 <#
 .SYNOPSIS
 Update the API Specs file in the given path
@@ -24,7 +23,7 @@ Set-ApiSpecsFile -SpecsFilePath 'C:/dev/ResourceModules/utilities/src/apiSpecsLi
 Update the file in path 'C:/dev/ResourceModules/utilities/src/apiSpecsList.json' with the latest API versions.
 #>
 function Set-ApiSpecsFile {
-
+  [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingPositionalParameters", "", Justification = "Migration from CARML")]
   [CmdletBinding(SupportsShouldProcess = $true)]
   param (
       [Parameter(Mandatory = $false)]
