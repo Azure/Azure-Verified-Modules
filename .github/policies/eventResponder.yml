@@ -7,7 +7,7 @@ disabled: false
 configuration:
   resourceManagementConfiguration:
     eventResponderTasks:
-      - description: ITA09 - If a new issue is opened add the needs triage label
+      - description: ITA06 - If a new issue is opened add the needs triage label
         if:
           - payloadType: Issues
           - and:
@@ -17,7 +17,7 @@ configuration:
           - addLabel:
               label: 'Needs: Triage :mag:'
 
-      - description: ITA10 - If a new pull request is opened add the needs triage label
+      - description: ITA07 - If a new pull request is opened add the needs triage label
         if:
           - payloadType: Pull_Request
           - and:
@@ -26,3 +26,40 @@ configuration:
         then:
           - addLabel:
               label: 'Needs: Triage :mag:'
+
+      # - description: 'ITA08BCP - If "AVM" or "Azure Verified Modules" is mentioned in a new issue, add label of "Type: AVM :a: :v: :m:" on the issue'
+      #   if:
+      #     - payloadType: Issues
+      #     - and:
+      #       - isAction:
+      #           action: Opened
+      #       - or:
+      #         - bodyContains:
+      #             pattern: 'AVM'
+      #         - bodyContains:
+      #             pattern: 'Azure Verified Modules'
+      #         - commentContains:
+      #             pattern: 'AVM'
+      #         - commentContains:
+      #             pattern: 'Azure Verified Modules'
+      #   then:
+      #     - addLabel:
+      #         label: 'Type: AVM :a: :v: :m:'
+
+      - description: 'ITA09 - When #RR is used in an issue, add the label of "Needs: Author Feedback :ear:"'
+        if:
+          - payloadType: Issues
+          - commentContains:
+              pattern: '#RR'
+        then:
+          - addLabel:
+              label: 'Needs: Author Feedback :ear:'
+
+      - description: 'ITA10 - When #wontfix is used in an issue, mark it by using the label of "Status: Won't Fix :broken_heart:"'
+        if:
+          - payloadType: Issues
+          - commentContains:
+              pattern: '#wontfix'
+        then:
+          - addLabel:
+              label: 'Status: Won't Fix :broken_heart:'
