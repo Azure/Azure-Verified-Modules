@@ -14,6 +14,10 @@ env:
     "This is an automated `pull_request` containing updates to the Azure API Specs List that is stored at `docs/static/governance/apiSpecsList.json`.\n
     Please review the 'files changed' tab to review changes."
 
+permissions:
+      id-token: write
+      contents: read
+
 jobs:
   job_update_api_specs_file:
     name: "Update file"
