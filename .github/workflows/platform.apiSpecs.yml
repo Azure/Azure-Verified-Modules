@@ -11,8 +11,7 @@ env:
   branch_name: "update-api-specs"
   pr_title: "Update Azure API Specs List (automated)"
   pr_body:
-    "This is an automated `pull_request` containing updates to the Azure API Specs List that is stored at `docs/static/governance/apiSpecsList.json`.\n
-    Please review the 'files changed' tab to review changes."
+    "This is an automated ``pull_request`` containing updates to the Azure API Specs List that is stored at ``docs/static/governance/apiSpecsList.json``.\nPlease review the ``files changed`` tab to review changes."
 
 permissions:
       id-token: write
@@ -131,8 +130,7 @@ jobs:
             --title "${{ env.pr_title }}" \
             --body "${{ env.pr_body }}" \
             --base "${{ github.ref }}" \
-            --head "${{ env.branch_name }}" \
-            --draft)
+            --head "${{ env.branch_name }}")
             echo "Created new PR: $CHECK_PULL_REQUEST_URL"
           else
             echo "Existing PR found: $CHECK_PULL_REQUEST_URL"
