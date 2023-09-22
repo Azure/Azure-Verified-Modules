@@ -45,9 +45,10 @@ We are also working with Microsoft CSS (Microsoft Customer Services & Support) t
 
 ## Issue/triage Automation
 
-- [x] ITA01TF.1-5 - If a bug/feature/request/general question is not responded to after 3 business days, then the AVM Core team will be tagged in a comment on the issue to reach out to the module owner.
-- [x] ITA01BCP.1-5 - If a bug/feature/request/general question that has the label of "Type: AVM 🅰️ ✌️ ⓜ️" is not responded to after 3 business days, then the AVM Core team will be tagged in a comment on the issue to reach out to the module owner.
-- [ ] ITA02 - If after an additional 3 business days there's still no update to the issue, the AVM core team will be assigned to the issue and a further comment stating module owner is unresponsive.
+- [x] ITA01TF.1-5 - If a bug/feature/request/general question is not responded to after 3 business days, then the AVM Core team will be tagged in a comment on the issue to reach out to the module owner. The AVM core team will also be assigned on the issue.
+- [x] ITA01BCP.1-5 - If a bug/feature/request/general question that has the label of "Type: AVM 🅰️ ✌️ ⓜ️" is not responded to after 3 business days, then the AVM Core team will be tagged in a comment on the issue to reach out to the module owner. The AVM core team will also be assigned on the issue.
+- [x] ITA02BCP.1-5 - If after an additional 3 business days there's still no update to the issue that has the label of "Type: AVM 🅰️ ✌️ ⓜ️", the AVM core team will be assigned to the issue and a further comment stating module owner is unresponsive.
+- [x] ITA02TF.1-5 - If after an additional 3 business days there's still no update to the issue, the AVM core team will be assigned to the issue and a further comment stating module owner is unresponsive.
 - [ ] ITA03 - If a security issue not responded to after 3 business days, then the AVM Core team will be tagged in a comment on the issue to nudge the module owner
 - [ ] ITA04 - If after a further 3 business days and no update to the issue the AVM core team will be assigned to the issue and a further comment stating module owner MIA
 - [ ] ITA05 - If after 5 days (total from start of issue being raised) and no response the respective PGs GitHub Team will be tagged and assigned to the issue to assist
@@ -63,7 +64,8 @@ We are also working with Microsoft CSS (Microsoft Customer Services & Support) t
 |-------------|:-------------:|:--------:|:--------:|
 | ITA01BCP1-5 |               |    x     |          |
 | ITA01TF1-5  |               |          |    x     |
-| ITA02       |               |          |          |
+| ITA02BCP1-5 |               |    x     |          |
+| ITA02TF1-5  |               |          |    x     |
 | ITA03       |               |          |          |
 | ITA04       |               |          |          |
 | ITA05       |               |          |          |

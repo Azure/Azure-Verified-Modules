@@ -28,6 +28,8 @@ configuration:
           replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - assignTo:
+          user: Azure/avm-core-team
 
     - description: ITA01BCP.2 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
       frequencies:
@@ -50,6 +52,8 @@ configuration:
           replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - assignTo:
+          user: Azure/avm-core-team
 
     - description: ITA01BCP.3 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
       frequencies:
@@ -72,6 +76,8 @@ configuration:
           replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - assignTo:
+          user: Azure/avm-core-team
 
     - description: ITA01BCP.4 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
       frequencies:
@@ -94,6 +100,8 @@ configuration:
           replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - assignTo:
+          user: Azure/avm-core-team
 
     - description: ITA01BCP.5 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
       frequencies:
@@ -105,6 +113,8 @@ configuration:
       - isOpen
       - hasLabel:
           label: 'Needs: Triage :mag:'
+      - hasLabel:
+          label: 'Type: AVM :a: :v: :m:'
       - noActivitySince:
           days: 3
       actions:
@@ -114,6 +124,8 @@ configuration:
           replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - assignTo:
+          user: Azure/avm-core-team
 
     - description: ITA01TF.1 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
       frequencies:
@@ -134,6 +146,8 @@ configuration:
           replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - assignTo:
+          user: Azure/avm-core-team
 
     - description: ITA01TF.2 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
       frequencies:
@@ -154,6 +168,8 @@ configuration:
           replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - assignTo:
+          user: Azure/avm-core-team
 
     - description: ITA01TF.3 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
       frequencies:
@@ -174,6 +190,8 @@ configuration:
           replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - assignTo:
+          user: Azure/avm-core-team
 
     - description: ITA01TF.4 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
       frequencies:
@@ -194,6 +212,8 @@ configuration:
           replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - assignTo:
+          user: Azure/avm-core-team
 
     - description: ITA01TF.5 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 3 business days.
       frequencies:
@@ -214,6 +234,8 @@ configuration:
           replyTemplate: "Tagging the AVM Core Team (${mentionees}) due to a module owner or contributor having not responded to this issue within 3 business days. The AVM Core Team will attempt to contact the module owners/contributors directly."
       - addLabel:
           label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - assignTo:
+          user: Azure/avm-core-team
 
     - description: ITA06 - Automatically label issues that have been marked as requiring author feedback but have not had any activity for 4 days.
       frequencies:
@@ -250,4 +272,112 @@ configuration:
       actions:
       - closeIssue
 
+    - description: ITA02BCP.1 - Automatically label issues as Needs Immediate Attention and leave comment if after an additional 3 business days there's still no update to the issue.
+      frequencies:
+      - weekday:
+          day: Monday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - hasLabel:
+          label: 'Type: AVM :a: :v: :m:'
+      - noActivitySince:
+          days: 5
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "This issue requires the AVM Core Team's (${mentionees}) immediate attention as  it hasn't been responded to within 6 business days."
+      - addLabel:
+          label: 'Needs: Immediate Attention :bangbang:'
 
+    - description: ITA02BCP.2 - Automatically label issues as Needs Immediate Attention and leave comment if after an additional 3 business days there's still no update to the issue.
+      frequencies:
+      - weekday:
+          day: Tuesday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - hasLabel:
+          label: 'Type: AVM :a: :v: :m:'
+      - noActivitySince:
+          days: 5
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "This issue requires the AVM Core Team's (${mentionees}) immediate attention as  it hasn't been responded to within 6 business days."
+      - addLabel:
+          label: 'Needs: Immediate Attention :bangbang:'
+
+    - description: ITA02BCP.3 - Automatically label issues as Needs Immediate Attention and leave comment if after an additional 3 business days there's still no update to the issue.
+      frequencies:
+      - weekday:
+          day: Wednesday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - hasLabel:
+          label: 'Type: AVM :a: :v: :m:'
+      - noActivitySince:
+          days: 5
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "This issue requires the AVM Core Team's (${mentionees}) immediate attention as  it hasn't been responded to within 6 business days."
+      - addLabel:
+          label: 'Needs: Immediate Attention :bangbang:'
+
+    - description: ITA02BCP.4 - Automatically label issues as Needs Immediate Attention and leave comment if after an additional 3 business days there's still no update to the issue.
+      frequencies:
+      - weekday:
+          day: Thursday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - hasLabel:
+          label: 'Type: AVM :a: :v: :m:'
+      - noActivitySince:
+          days: 3
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "This issue requires the AVM Core Team's (${mentionees}) immediate attention as  it hasn't been responded to within 6 business days."
+      - addLabel:
+          label: 'Needs: Immediate Attention :bangbang:'
+
+    - description: ITA02BCP.5 - Automatically label issues as Needs Immediate Attention and leave comment if after an additional 3 business days there's still no update to the issue.
+      frequencies:
+      - weekday:
+          day: Friday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - hasLabel:
+          label: 'Type: AVM :a: :v: :m:'
+      - noActivitySince:
+          days: 3
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "This issue requires the AVM Core Team's (${mentionees}) immediate attention as  it hasn't been responded to within 6 business days."
+      - addLabel:
+          label: 'Needs: Immediate Attention :bangbang:'
