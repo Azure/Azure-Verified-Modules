@@ -381,3 +381,103 @@ configuration:
           replyTemplate: "This issue requires the AVM Core Team's (${mentionees}) immediate attention as  it hasn't been responded to within 6 business days."
       - addLabel:
           label: 'Needs: Immediate Attention :bangbang:'
+
+    - description: ITA02TF.1 - Automatically label issues as Needs Immediate Attention and leave comment if after an additional 3 business days there's still no update to the issue.
+      frequencies:
+      - weekday:
+          day: Monday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - noActivitySince:
+          days: 5
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "This issue requires the AVM Core Team's (${mentionees}) immediate attention as  it hasn't been responded to within 6 business days."
+      - addLabel:
+          label: 'Needs: Immediate Attention :bangbang:'
+
+    - description: ITA02TF.2 - Automatically label issues as Needs Immediate Attention and leave comment if after an additional 3 business days there's still no update to the issue.
+      frequencies:
+      - weekday:
+          day: Tuesday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - noActivitySince:
+          days: 5
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "This issue requires the AVM Core Team's (${mentionees}) immediate attention as  it hasn't been responded to within 6 business days."
+      - addLabel:
+          label: 'Needs: Immediate Attention :bangbang:'
+
+    - description: ITA02TF.3 - Automatically label issues as Needs Immediate Attention and leave comment if after an additional 3 business days there's still no update to the issue.
+      frequencies:
+      - weekday:
+          day: Wednesday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - noActivitySince:
+          days: 5
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "This issue requires the AVM Core Team's (${mentionees}) immediate attention as  it hasn't been responded to within 6 business days."
+      - addLabel:
+          label: 'Needs: Immediate Attention :bangbang:'
+
+    - description: ITA02TF.4 - Automatically label issues as Needs Immediate Attention and leave comment if after an additional 3 business days there's still no update to the issue.
+      frequencies:
+      - weekday:
+          day: Thursday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - noActivitySince:
+          days: 3
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "This issue requires the AVM Core Team's (${mentionees}) immediate attention as  it hasn't been responded to within 6 business days."
+      - addLabel:
+          label: 'Needs: Immediate Attention :bangbang:'
+
+    - description: ITA02TF.5 - Automatically label issues as Needs Immediate Attention and leave comment if after an additional 3 business days there's still no update to the issue.
+      frequencies:
+      - weekday:
+          day: Friday
+          time: 12:00
+      filters:
+      - isIssue
+      - isOpen
+      - hasLabel:
+          label: 'Status: Response Overdue :triangular_flag_on_post:'
+      - noActivitySince:
+          days: 3
+      actions:
+      - mentionUsers:
+          mentionees:
+              - Azure/avm-core-team
+          replyTemplate: "This issue requires the AVM Core Team's (${mentionees}) immediate attention as  it hasn't been responded to within 6 business days."
+      - addLabel:
+          label: 'Needs: Immediate Attention :bangbang:'
