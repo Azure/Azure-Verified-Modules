@@ -192,7 +192,6 @@ The above formats are currently automatically taken & generated from the `tests/
 
 {{< /hint >}}
 
-  
 {{< hint type=note >}}
 
 Bicep Parameter Files (`.bicepparam`) are being reviewed and considered by the AVM team for the usability and features at this time and will likely be added in the future.
