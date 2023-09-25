@@ -169,7 +169,7 @@ Bicep modules documentation **MUST** be automatically generated via the provided
 
 #### ID: BCPNFR3 - Category: Documentation - Usage Example formats
 
-Usage examples for Bicep modules **MUST** must be provided in the following formats:
+Usage examples for Bicep modules **MUST** be provided in the following formats:
 
 - Bicep file (orchestration module style) - `.bicep`
   ```bicep
