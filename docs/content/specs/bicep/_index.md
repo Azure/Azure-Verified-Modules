@@ -167,12 +167,30 @@ Bicep modules documentation **MUST** be automatically generated via the provided
 
 <br>
 
-#### ID: BCPNFR3 - Category: Documentation - Parameter Files
+#### ID: BCPNFR3 - Category: Documentation - Usage Example formats
 
-Bicep modules **MUST** provide parameter files in the following formats:
+Usage examples for Bicep modules **MUST** be provided in the following formats:
 
-- JSON / ARM Template Parameter Files - `.json`
 - Bicep file (orchestration module style) - `.bicep`
+  ```bicep
+  module <resourceName> 'br/public:avm-res-<publishedModuleName>:1.0.0' = {
+    name: '${uniqueString(deployment().name, location)}-test-<uniqueIdentifier>'
+    params: { (...) }
+  }
+  ```
+- JSON / ARM Template Parameter Files - `.json`
+  ```json
+  {
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": { (...) }
+  }
+  ```
+{{< hint type=note >}}
+
+The above formats are currently automatically taken & generated from the `tests/e2e` tests. It is enough to run the `Set-ModuleReadMe` or `Set-AVMModule` functions (from the `utilities` folder) to update the usage examples in the readme(s).
+
+{{< /hint >}}
 
 {{< hint type=note >}}
 
