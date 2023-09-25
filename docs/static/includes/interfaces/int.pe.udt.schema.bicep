@@ -66,7 +66,7 @@ module exampleResourcePrivateEndpoint 'br/public:avm-res-network-privateendpoint
     name: privateEndpoint.?name ?? 'pe-${last(split(exampleResource.id, '/'))}-${privateEndpoint.service}-${index}'
     serviceResourceId: exampleResource.id
     subnetResourceId: privateEndpoint.subnetResourceId
-    enableTelemetry: enableTelemetry
+    enableTelemetry: privateEndpoint.?enableTelemetry ?? enableTelemetry
     location: privateEndpoint.?location ?? reference(split(privateEndpoint.subnetResourceId, '/subnets/')[0], '2020-06-01', 'Full').location
     lock: privateEndpoint.?lock ?? lock
     privateDnsZoneResourceIds: privateEndpoint.?privateDnsZoneResourceIds ?? []
