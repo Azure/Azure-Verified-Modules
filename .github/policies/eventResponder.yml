@@ -55,11 +55,11 @@ configuration:
           - addLabel:
               label: 'Needs: Author Feedback :ear:'
 
-      - description: 'ITA10 - When #wontfix is used in an issue, mark it by using the label of "Status: Wont Fix :broken_heart:"'
+      - description: 'ITA10 - When #wontfix is used in an issue, mark it by using the label of "Status: Won''t Fix :broken_heart:"'
         if:
           - payloadType: Issues
           - commentContains:
               pattern: '#wontfix'
         then:
           - addLabel:
-              label: 'Status: Won't Fix :broken_heart:'
+              label: 'Status: Won''t Fix :broken_heart:'
