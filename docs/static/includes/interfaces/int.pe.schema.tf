@@ -29,7 +29,6 @@ output "custom_dns_configs" {
     for k, v in var.private_endpoints : k => azurerm_private_endpoint.this[k].custom_dns_configs
   }
   description = <<DESCRIPTION
-
 A map of the private endpoints created, using the key from var.private_endpoints.
 Value is an object containing the fqdn and list of ip_addresses.
 DESCRIPTION
