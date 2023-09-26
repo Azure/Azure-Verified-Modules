@@ -47,8 +47,8 @@ type privateEndpointType = {
   @description('Optional. Manual PrivateLink Service Connections.')
   manualPrivateLinkServiceConnections: array?
 
-  @description('Optional. Enable telemetry via a Globally Unique Identifier (GUID).')
-  enableDefaultTelemetry: bool?
+  @description('Optional. Enable/Disable usage telemetry for module.')
+  enableTelemetry: bool?
 }[]?
 
 @description('Optional. Configuration details for private endpoints. For security reasons, it is recommended to use private endpoints whenever possible.')
@@ -66,7 +66,7 @@ module exampleResourcePrivateEndpoint 'br/public:avm-res-network-privateendpoint
     name: privateEndpoint.?name ?? 'pe-${last(split(exampleResource.id, '/'))}-${privateEndpoint.service}-${index}'
     serviceResourceId: exampleResource.id
     subnetResourceId: privateEndpoint.subnetResourceId
-    enableDefaultTelemetry: enableReferencedModulesTelemetry
+    enableTelemetry: privateEndpoint.?enableTelemetry ?? enableTelemetry
     location: privateEndpoint.?location ?? reference(split(privateEndpoint.subnetResourceId, '/subnets/')[0], '2020-06-01', 'Full').location
     lock: privateEndpoint.?lock ?? lock
     privateDnsZoneResourceIds: privateEndpoint.?privateDnsZoneResourceIds ?? []

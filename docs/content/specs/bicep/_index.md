@@ -132,7 +132,7 @@ Modules will have lots of parameters that will differ in their requirement type 
 | Parameter Requirement Type | Definition | Example Description Decorator |
 | -------------------------- | ---------- | ----------------------------- |
 | Required | The parameter value must be provided. The parameter does not have a default value and hence the module expects and requires an input. | `@description('Required. <PARAMETER DESCRIPTION HERE...>')` |
-| Conditional | The parameter value can be optional or required based on a condition, mostly based on the value provided to other parameters. | `@description('Conditional. <PARAMETER DESCRIPTION HERE...>')` |
+| Conditional | The parameter value can be optional or required based on a condition, mostly based on the value provided to other parameters. Should contain a sentence starting with 'Required if (...).' to explain the condition. | `@description('Conditional. <PARAMETER DESCRIPTION HERE...>')` |
 | Optional | The parameter value is not mandatory. The module provides a default value for the parameter. | `@description('Optional. <PARAMETER DESCRIPTION HERE...>')` |
 | Generated | The parameter value is generated within the module and should not be specified as input in most cases. A common example of this is the `utcNow()` function that is only supported as the input for a parameter value, and not inside a variable. | `@description('Generated. <PARAMETER DESCRIPTION HERE...>')` |
 
@@ -167,12 +167,30 @@ Bicep modules documentation **MUST** be automatically generated via the provided
 
 <br>
 
-#### ID: BCPNFR3 - Category: Documentation - Parameter Files
+#### ID: BCPNFR3 - Category: Documentation - Usage Example formats
 
-Bicep modules **MUST** provide parameter files in the following formats:
+Usage examples for Bicep modules **MUST** be provided in the following formats:
 
-- JSON / ARM Template Parameter Files - `.json`
 - Bicep file (orchestration module style) - `.bicep`
+  ```bicep
+  module <resourceName> 'br/public:avm-res-<publishedModuleName>:1.0.0' = {
+    name: '${uniqueString(deployment().name, location)}-test-<uniqueIdentifier>'
+    params: { (...) }
+  }
+  ```
+- JSON / ARM Template Parameter Files - `.json`
+  ```json
+  {
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": { (...) }
+  }
+  ```
+{{< hint type=note >}}
+
+The above formats are currently automatically taken & generated from the `tests/e2e` tests. It is enough to run the `Set-ModuleReadMe` or `Set-AVMModule` functions (from the `utilities` folder) to update the usage examples in the readme(s).
+
+{{< /hint >}}
 
 {{< hint type=note >}}
 
@@ -188,7 +206,7 @@ Bicep Parameter Files (`.bicepparam`) are being reviewed and considered by the A
 
 #### ID: BCPNFR4 - Category: Documentation - Parameter Input Examples
 
-Bicep modules **MUST** provide parameter input examples for each parameter using the `metadata.example` property via the `@metadata()` decorator.
+Bicep modules **MAY** provide parameter input examples for parameters using the `metadata.example` property via the `@metadata()` decorator.
 
 Example:
 
@@ -198,7 +216,22 @@ Example:
 })
 @description('Optional. Location for all resources.')
 param location string = resourceGroup().location
+
+@metadata({
+  example: '''
+  {
+    keyName: 'myKey'
+    keyVaultResourceId: '/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/my-rg/providers/Microsoft.KeyVault/vaults/myvault'
+    keyVersion: '6d143c1a0a6a453daffec4001e357de0'
+    userAssignedIdentityResourceId '/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/my-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myIdentity'
+  }
+  '''
+})
+@description('Optional. The customer managed key definition.')
+param customerManagedKey customerManagedKeyType
 ```
+
+It is planned that these examples are automatically added to the module readme's parameter descriptions when running either the `Set-ModuleReadMe` or `Set-AVMModule` scripts (available in the utilities folder).
 
 <br>
 
