@@ -14,8 +14,8 @@ variable "private_endpoints" {
     resource_group_name                     = optional(string, null)
     ip_configurations = optional(map(object({
       name               = string
-      group_id           = optional(string, "vault")
-      member_name        = optional(string, "vault")
+      group_id           = optional(string, "<MYSERVICE>")
+      member_name        = optional(string, "<MYSERVICE>")
       private_ip_address = string
     })), {})
   }))
