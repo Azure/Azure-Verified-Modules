@@ -21,8 +21,8 @@ Azure Verified Modules are supported by the AVM teams, as defined [here](/Azure-
 
 1. Module owners/contributors
 2. If there is no response within 3 business days, then the AVM core team will step in by:
-   - First attempting to contact the module owners/contributors to prompt them to act.
-   - If there is no response within a further 24 hours (on business days), the AVM core team will take ownership, triage, and provide a response within a further 2 business days.
+    - First attempting to contact the module owners/contributors to prompt them to act.
+    - If there is no response within a further 24 hours (on business days), the AVM core team will take ownership, triage, and provide a response within a further 2 business days.
 3. In the event of a security issue being unaddressed after 5 business days, escalation to the product group (Bicep/Terraform) to assist the AVM core team, will occur to provide additional support towards resolution; if required.
 
 {{< hint type=note >}}
