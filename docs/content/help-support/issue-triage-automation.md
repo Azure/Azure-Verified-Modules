@@ -18,18 +18,18 @@ This section details all automation rules that are based on a schedule.
 When calculating the number of business days in the issue/triage automation, the built-in logic considers Monday-Friday as business days. The logic doesn't consider any holidays.
 {{< /hint >}}
 
-### ITA01TF.1-5
+### ITA01TF.1-2
 
 If a bug/feature/request/general question is not responded to after 3 business days, then the AVM Core team will be tagged in a comment on the issue to reach out to the module owner. The AVM core team will also be assigned on the issue.
-### ITA01BCP.1-5
+### ITA01BCP.1-2
 
 If a bug/feature/request/general question that has the label of "Type: AVM 🅰️ ✌️ ⓜ️" is not responded to after 3 business days, then the AVM Core team will be tagged in a comment on the issue to reach out to the module owner. The AVM core team will also be assigned on the issue.
 
-### ITA02BCP.1-5
+### ITA02BCP.1-2
 
 If after an additional 3 business days there's still no update to the issue that has the label of "Type: AVM 🅰️ ✌️ ⓜ️", the AVM core team will be assigned to the issue and a further comment stating module owner is unresponsive.
 
-### ITA02TF.1-5
+### ITA02TF.1-2
 
 If after an additional 3 business days there's still no update to the issue, the AVM core team will be assigned to the issue and a further comment stating module owner is unresponsive.
 
@@ -87,17 +87,17 @@ The below table details which repositories the above rules are applied to.
 
 | ID                          | AVM Core repository | BRM repository | TF repositories |
 |-----------------------------|:-------------------:|:--------------:|:---------------:|
-| [ITA01BCP1-2](#ita01bcp1-5) |                     |       ✔️       |                 |
-| [ITA01TF1-2](#ita01tf1-5)   |                     |                |       ✔️        |
-| [ITA02BCP1-2](#ITA02BCP1-2) |                     |       ✔️       |                 |
-| [ITA02TF1-2](#ITA02TF1-2)   |                     |                |       ✔️        |
-| [ITA03BCP](#ITA03BCP)       |                     |       ✔️       |                 |
-| [ITA03TF](#ITA03TF)         |                     |                |       ✔️        |
-| [ITA04](#ITA04)             |         ✔️          |       ✔️       |       ✔️        |
-| [ITA05](#ITA05)             |         ✔️          |       ✔️       |       ✔️        |
-| [ITA06](#ITA06)             |         ✔️          |       ✔️       |       ✔️        |
-| [ITA07](#ITA07)             |         ✔️          |       ✔️       |       ✔️        |
-| [ITA08BCP](#ITA08BCP)       |                     |       ✔️       |                 |
-| [ITA09](#ITA09)             |         ✔️          |       ✔️       |       ✔️        |
-| [ITA10](#ITA10)             |         ✔️          |       ✔️       |       ✔️        |
-| [ITA11](#ITA11)             |         ✔️          |       ✔️       |       ✔️        |
+| [ITA01BCP1-2](#ita01bcp1-2) |                     |       ✔️       |                 |
+| [ITA01TF1-2](#ita01tf1-2)   |                     |                |       ✔️        |
+| [ITA02BCP1-2](#ita02bcp1-2) |                     |       ✔️       |                 |
+| [ITA02TF1-2](#ita02tf1-2)   |                     |                |       ✔️        |
+| [ITA03BCP](#ita03bcp)       |                     |       ✔️       |                 |
+| [ITA03TF](#ita03tf)         |                     |                |       ✔️        |
+| [ITA04](#ita04)             |         ✔️          |       ✔️       |       ✔️        |
+| [ITA05](#ita05)             |         ✔️          |       ✔️       |       ✔️        |
+| [ITA06](#ita06)             |         ✔️          |       ✔️       |       ✔️        |
+| [ITA07](#ita07)             |         ✔️          |       ✔️       |       ✔️        |
+| [ITA08BCP](#ita08bcp)       |                     |       ✔️       |                 |
+| [ITA09](#ita09)             |         ✔️          |       ✔️       |       ✔️        |
+| [ITA10](#ita10)             |         ✔️          |       ✔️       |       ✔️        |
+| [ITA11](#ita11)             |         ✔️          |       ✔️       |       ✔️        |
