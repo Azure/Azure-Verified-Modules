@@ -7,7 +7,7 @@ private_endpoints = {
     private_dns_zone_resource_ids = [
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{dnsZoneName}"
     ]
-    application_security_group_resource_ids = {
+    application_security_group_associations = {
       asg1 = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationSecurityGroups/{asgName}"
     }
     network_interface_name = "nic1"

@@ -7,9 +7,9 @@ variable "private_endpoints" {
     lock               = optional(object({}), {})      # see https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#resource-locks
     tags               = optional(map(any), null)      # see https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#tags
     subnet_resource_id = string
-    ## You only need to expose this if ther eare multiple underlying services, e.g. storage.
+    ## You only need to expose this if there are multiple underlying services, e.g. storage.
     ## Which has blob, file, etc.
-    ## If there is only one then leave this out.
+    ## If there is only one then leave this out and hardcode the value in the module.
     # subresource_name                        = string
     private_dns_zone_group_name             = optional(string, "default")
     private_dns_zone_resource_ids           = optional(set(string), [])
@@ -58,7 +58,7 @@ resource "azurerm_private_endpoint" "this" {
     name                           = each.value.private_service_connection_name != null ? each.value.private_service_connection_name : "pse-${var.name}"
     private_connection_resource_id = azurerm_key_vault.this.id
     is_manual_connection           = false
-    subresource_names              = ["MYSERVICE"] # map to each.value.subresource_name if there are multiple services
+    subresource_names              = ["MYSERVICE"] # map to each.value.subresource_name if there are multiple services.
   }
 
   dynamic "private_dns_zone_group" {
@@ -75,15 +75,15 @@ resource "azurerm_private_endpoint" "this" {
 
     content {
       name               = ip_configuration.value.name
-      subresource_name   = "MYSERVICE" # map to each.value.subresource_name if there are multiple services
-      member_name        = "MYSERVICE" # map to each.value.subresource_name if there are multiple services
+      subresource_name   = "MYSERVICE" # map to each.value.subresource_name if there are multiple services.
+      member_name        = "MYSERVICE" # map to each.value.subresource_name if there are multiple services.
       private_ip_address = ip_configuration.value.private_ip_address
     }
   }
 }
 
-# Private endpoint application security group associations
-# We merge the nested maps from private endpoints and application security group associations  into a single map
+# Private endpoint application security group associations.
+# We merge the nested maps from private endpoints and application security group associations into a single map.
 locals {
   private_endpoint_application_security_group_associations = { for assoc in flatten([
     for pe_k, pe_v in var.private_endpoints : [
