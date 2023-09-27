@@ -10,7 +10,7 @@
 
 <table style="width:100%" border="0">
   <tr>
-    <td style="width:70%">
+    <td style="width:70%" style='border:none;'>
 Welcome to the Azure Verified Modules (AVM) repository!
 
 <br>
@@ -22,7 +22,7 @@ Azure Verified Modules (AVM), as "One Microsoft", we want to provide and define 
 - How they are to be consumed
 - What they deliver for consumers in terms of resources deployed and configured
 - And where appropriate aligned across IaC languages (e.g. Bicep, Terraform, etc.)</td>
-    <td style="width:30%"><img src="docs/static/img/avm_logo.png" width=100%></td>
+    <td style="width:30%" style='border:none;'><img src="docs/static/img/avm_logo.png" width=100%></td>
   </tr>
 </table>
 
