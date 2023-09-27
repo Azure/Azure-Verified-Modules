@@ -57,21 +57,19 @@ type privateEndpointType = {
 @description('Optional. Configuration details for private endpoints. For security reasons, it is recommended to use private endpoints whenever possible.')
 param privateEndpoints privateEndpointType
 
-@description('Conditional. Subdomain name used for token-based authentication. Required if \'networkAcls\' or \'privateEndpoints\' are set.')
-param customSubDomainName string = ''
-
-module exampleResourcePrivateEndpoint 'br/public:avm-res-network-privateendpoint:X.Y.Z' = [for (privateEndpoint, index) in (privateEndpoints ?? []): {
-  name: '${uniqueString(deployment().name, location)}-exampleResource-PrivateEndpoint-${index}'
+module <exampleResource>PrivateEndpoint 'br/public:avm-res-network-privateendpoint:X.Y.Z' = [for (privateEndpoint, index) in (privateEndpoints ?? []): {
+  name: '${uniqueString(deployment().name, location)}-<exampleResource>-PrivateEndpoint-${index}'
   params: {
     groupIds: [
-      privateEndpoint.service
+        privateEndpoint.?service ?? '<serviceName>'
     ]
-    name: privateEndpoint.?name ?? 'pe-${last(split(exampleResource.id, '/'))}-${privateEndpoint.service}-${index}'
-    serviceResourceId: exampleResource.id
+    name: privateEndpoint.?name ?? 'pe-${last(split(<exampleResource>.id, '/'))}-${privateEndpoint.?service ?? '<serviceName>'}-${index}'
+    serviceResourceId: <exampleResource>.id
     subnetResourceId: privateEndpoint.subnetResourceId
     enableTelemetry: privateEndpoint.?enableTelemetry ?? enableTelemetry
     location: privateEndpoint.?location ?? reference(split(privateEndpoint.subnetResourceId, '/subnets/')[0], '2020-06-01', 'Full').location
     lock: privateEndpoint.?lock ?? lock
+    privateDnsZoneGroupName: privateEndpoint.?privateDnsZoneGroupName ?? 'default'
     privateDnsZoneResourceIds: privateEndpoint.?privateDnsZoneResourceIds ?? []
     roleAssignments: privateEndpoint.?roleAssignments ?? []
     tags: privateEndpoint.?tags ?? {}
@@ -82,3 +80,4 @@ module exampleResourcePrivateEndpoint 'br/public:avm-res-network-privateendpoint
     customNetworkInterfaceName: privateEndpoint.?customNetworkInterfaceName ?? ''
   }
 }]
+
