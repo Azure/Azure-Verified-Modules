@@ -1,4 +1,4 @@
 lock = {
-  name = "lock-{resourcename}"
-  type = "CanNotDelete" # Optional, default is CanNotDelete
+  name = "lock-{resourcename}" # optional
+  type = "CanNotDelete"
 }
