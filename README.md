@@ -1,4 +1,4 @@
-# 📄📄 Please note that all of our documentation is published over at [aka.ms/AVM](https://aka.ms/AVM). Please visit this site for more information and guidance! 📄📄
+<h2> 📄📄 Please note that all of our documentation is published over at <a href="https://aka.ms/AVM">aka.ms/AVM</a>. Please visit this site for more information and guidance! 📄📄 </h2>
 
 > **NOTE**: This repository is used for proposing new modules, tracking issues and feature requests as well as hosting documentation for the Azure Verified Modules (AVM) project. If you are looking for the AVM code repositories, please visit the Bicep and Terraform [module indexes](https://azure.github.io/Azure-Verified-Modules/indexes/) on the AVM portal for references.
 
