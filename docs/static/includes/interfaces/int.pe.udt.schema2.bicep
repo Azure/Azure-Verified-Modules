@@ -61,10 +61,6 @@ param privateEndpoints privateEndpointType
 module <exampleResource>PrivateEndpoint 'br/public:avm-res-network-privateendpoint:X.Y.Z' = [for (privateEndpoint, index) in (privateEndpoints ?? []): {
   name: '${uniqueString(deployment().name, location)}-<exampleResource>-PrivateEndpoint-${index}'
   params: {
-    // Variant 1: A default service can be assumed (i.e., for services that only have one private endpoint type)
-    groupIds: [
-      privateEndpoint.?service ?? '<defaultServiceName>'
-    ]
     // Variant 2: A default service cannot be assumed (i.e., for services that have more than one private endpoint type, like Storage Account)
     groupIds: [
       privateEndpoint.service

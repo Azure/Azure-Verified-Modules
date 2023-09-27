@@ -65,10 +65,6 @@ module <exampleResource>PrivateEndpoint 'br/public:avm-res-network-privateendpoi
     groupIds: [
       privateEndpoint.?service ?? '<defaultServiceName>'
     ]
-    // Variant 2: A default service cannot be assumed (i.e., for services that have more than one private endpoint type, like Storage Account)
-    groupIds: [
-      privateEndpoint.service
-    ]
     name: privateEndpoint.?name ?? 'pe-${last(split(<exampleResource>.id, '/'))}-${privateEndpoint.?service ?? '<defaultServiceName>'}-${index}'
     serviceResourceId: <exampleResource>.id
     subnetResourceId: privateEndpoint.subnetResourceId
