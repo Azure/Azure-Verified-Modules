@@ -61,7 +61,7 @@ module <exampleResource>PrivateEndpoint 'br/public:avm-res-network-privateendpoi
   name: '${uniqueString(deployment().name, location)}-<exampleResource>-PrivateEndpoint-${index}'
   params: {
     groupIds: [
-        privateEndpoint.?service ?? '<serviceName>'
+      privateEndpoint.?service ?? '<serviceName>'
     ]
     name: privateEndpoint.?name ?? 'pe-${last(split(<exampleResource>.id, '/'))}-${privateEndpoint.?service ?? '<serviceName>'}-${index}'
     serviceResourceId: <exampleResource>.id
