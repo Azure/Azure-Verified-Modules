@@ -10,7 +10,8 @@
 
 <img src="docs/static/img/avm_logo.png" width=20% align=right>
 
-Welcome to the Azure Verified Modules (AVM) repository!
+**Welcome to the Azure Verified Modules (AVM) repository!**
+
 <br>
 
 Azure Verified Modules (AVM), as "One Microsoft", we want to provide and define the single definition of what a good IaC module is;
