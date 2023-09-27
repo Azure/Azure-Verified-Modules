@@ -3,19 +3,19 @@ variable "lock" {
     name = optional(string, null)
     kind = optional(string, "None")
   })
-  default = {}
-
+  description = "The lock level to apply to the Key Vault. Possible values are `None`, `CanNotDelete`, and `ReadOnly`."
+  default     = {}
+  nullable    = false
   validation {
-    condition     = contains(["CanNotDelete", "ReadOnly", "None"], var.lock.type)
-    error_message = "Lock type must be one of: CanNotDelete, ReadOnly, None."
+    condition     = contains(["CanNotDelete", "ReadOnly", "None"], var.lock.kind)
+    error_message = "The lock level must be one of: 'None', 'CanNotDelete', or 'ReadOnly'."
   }
 }
 
-# Example declaration of the resource
-
+# Example resource implementation
 resource "azurerm_management_lock" "this" {
   count      = var.lock.kind != "None" ? 1 : 0
   name       = coalesce(var.lock.name, "lock-${var.name}")
-  scope      = # Your resource ID here
+  scope      = azurerm_MY_RESOURCE.this.id
   lock_level = var.lock.kind
 }
