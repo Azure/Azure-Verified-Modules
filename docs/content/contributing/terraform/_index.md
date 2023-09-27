@@ -137,6 +137,7 @@ When the AVM Modules are published to the Hashicorp Registry, they **MUST** foll
     1. All examples are passing
     1. All documentation is generated
     1. There is a release tag in the repo
+1. If you are using Just In Time (JIT) admin access to your repo, visit the internal repos page to elevate your access.
 1. Sign in to the [Hashicorp Registry](https://registry.terraform.io/) using GitHub
 1. Publish a module by selecting the `Publish` button in the top right corner, then `Module`
 1. Select the repo and accept the terms
