@@ -9,7 +9,7 @@ type privateEndpointType = {
   // Variant 1: A default service can be assumed (i.e., for services that only have one private endpoint type)
   @description('Optional. The service (sub-) type to deploy the private endpoint for. For example "vault" or "blob".')
   service: string?
-  // Variant 2: A default service cannot be assumed (i.e., for services that only have more than one private endpoint type, like Storage Account)
+  // Variant 2: A default service cannot be assumed (i.e., for services that have more than one private endpoint type, like Storage Account)
   @description('Required. The service (sub-) type to deploy the private endpoint for. For example "vault" or "blob".')
   service: string
 
@@ -68,7 +68,7 @@ module <exampleResource>PrivateEndpoint 'br/public:avm-res-network-privateendpoi
     groupIds: [
       privateEndpoint.?service ?? '<defaultServiceName>'
     ]
-    // Variant 2: A default service cannot be assumed (i.e., for services that only have more than one private endpoint type, like Storage Account)
+    // Variant 2: A default service cannot be assumed (i.e., for services that have more than one private endpoint type, like Storage Account)
     groupIds: [
       privateEndpoint.service
     ]
