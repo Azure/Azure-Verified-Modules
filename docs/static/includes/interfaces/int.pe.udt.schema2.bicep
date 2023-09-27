@@ -6,8 +6,9 @@ type privateEndpointType = {
   @description('Optional. The location to deploy the private endpoint to.')
   location: string?
 
-  @description('Optional. The service (sub-) type to deploy the private endpoint for. For example "vault" or "blob".')
-  service: string?
+  // Variant 2: A default service cannot be assumed (i.e., for services that have more than one private endpoint type, like Storage Account)
+  @description('Required. The service (sub-) type to deploy the private endpoint for. For example "vault" or "blob".')
+  service: string
 
   @description('Required. Resource ID of the subnet where the endpoint needs to be created.')
   subnetResourceId: string
@@ -57,21 +58,20 @@ type privateEndpointType = {
 @description('Optional. Configuration details for private endpoints. For security reasons, it is recommended to use private endpoints whenever possible.')
 param privateEndpoints privateEndpointType
 
-@description('Conditional. Subdomain name used for token-based authentication. Required if \'networkAcls\' or \'privateEndpoints\' are set.')
-param customSubDomainName string = ''
-
-module exampleResourcePrivateEndpoint 'br/public:avm-res-network-privateendpoint:X.Y.Z' = [for (privateEndpoint, index) in (privateEndpoints ?? []): {
-  name: '${uniqueString(deployment().name, location)}-exampleResource-PrivateEndpoint-${index}'
+module <exampleResource>PrivateEndpoint 'br/public:avm-res-network-privateendpoint:X.Y.Z' = [for (privateEndpoint, index) in (privateEndpoints ?? []): {
+  name: '${uniqueString(deployment().name, location)}-<exampleResource>-PrivateEndpoint-${index}'
   params: {
+    // Variant 2: A default service cannot be assumed (i.e., for services that have more than one private endpoint type, like Storage Account)
     groupIds: [
       privateEndpoint.service
     ]
-    name: privateEndpoint.?name ?? 'pe-${last(split(exampleResource.id, '/'))}-${privateEndpoint.service}-${index}'
-    serviceResourceId: exampleResource.id
+    name: privateEndpoint.?name ?? 'pe-${last(split(<exampleResource>.id, '/'))}-${privateEndpoint.?service ?? '<defaultServiceName>'}-${index}'
+    serviceResourceId: <exampleResource>.id
     subnetResourceId: privateEndpoint.subnetResourceId
     enableTelemetry: privateEndpoint.?enableTelemetry ?? enableTelemetry
     location: privateEndpoint.?location ?? reference(split(privateEndpoint.subnetResourceId, '/subnets/')[0], '2020-06-01', 'Full').location
     lock: privateEndpoint.?lock ?? lock
+    privateDnsZoneGroupName: privateEndpoint.?privateDnsZoneGroupName ?? 'default'
     privateDnsZoneResourceIds: privateEndpoint.?privateDnsZoneResourceIds ?? []
     roleAssignments: privateEndpoint.?roleAssignments ?? []
     tags: privateEndpoint.?tags ?? {}
