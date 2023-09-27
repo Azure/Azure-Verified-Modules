@@ -154,7 +154,12 @@ In Terraform, locks become part of the resource graph and suitable `depends_on` 
   {{< hint type=note >}}
   Please note that you will need to ensure that the User-Defined Types for [Role Assignments](#role-assignments) & [Locks](#resource-locks) also are present in your module file for this interface to work correctly.
   {{< /hint >}}
-  {{< include file="/static/includes/interfaces/int.pe.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< expand "Variant 1: A default service can be assumed (i.e., for services that only have one private endpoint type)" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/int.pe.udt.schema1.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
+  {{< expand "Variant 2: A default service cannot be assumed (i.e., for services that have more than one private endpoint type, like Storage Account)" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/int.pe.udt.schema2.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
   {{< include file="/static/includes/interfaces/int.pe.input.bicep" language="bicep" options="linenos=false" >}}

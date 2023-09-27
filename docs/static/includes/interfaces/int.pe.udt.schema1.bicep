@@ -9,9 +9,6 @@ type privateEndpointType = {
   // Variant 1: A default service can be assumed (i.e., for services that only have one private endpoint type)
   @description('Optional. The service (sub-) type to deploy the private endpoint for. For example "vault" or "blob".')
   service: string?
-  // Variant 2: A default service cannot be assumed (i.e., for services that have more than one private endpoint type, like Storage Account)
-  @description('Required. The service (sub-) type to deploy the private endpoint for. For example "vault" or "blob".')
-  service: string
 
   @description('Required. Resource ID of the subnet where the endpoint needs to be created.')
   subnetResourceId: string
@@ -89,4 +86,3 @@ module <exampleResource>PrivateEndpoint 'br/public:avm-res-network-privateendpoi
     customNetworkInterfaceName: privateEndpoint.?customNetworkInterfaceName ?? ''
   }
 }]
-
