@@ -13,7 +13,7 @@ geekdocAnchor: true
 
 {{< hint type=note >}}
 
-This page contains various views of the module index (catalog) for **Bicep Resource Modules**. To see these views, **click on the expandable sections** below.
+This page contains various views of the module index (catalog) for **Bicep Resource Modules**. To see these views, **click on the expandable sections** with the "➕" sign below.
 
 - {{< icon "gdoc_github" >}} To see the **full, unfiltered module index** on GitHub, click [here](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/BicepResourceModules.csv).
 
@@ -21,8 +21,15 @@ This page contains various views of the module index (catalog) for **Bicep Resou
 
 {{< /hint >}}
 
+{{< hint type=important >}}
+Modules listed below that aren't shown with the status of **`Module Available 🟢`**, are currently in development and are not yet available for use.
+{{< /hint >}}
+
+<br>
+
 ## Module names, status and owners
-{{< expand "Module names, status and owners" "expand/collapse" >}}
+
+{{< expand "➕ Module names, status and owners" "expand/collapse" >}}
 
 {{< moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" >}}
 
@@ -31,7 +38,8 @@ This page contains various views of the module index (catalog) for **Bicep Resou
 <br>
 
 ## Module name, Telemetry ID prefix, GitHub Teams for Owners & Contributors
-{{< expand "Module name, Telemetry ID prefix, GitHub Teams for Owners & Contributors" "expand/collapse" >}}
+
+{{< expand "➕ Module name, Telemetry ID prefix, GitHub Teams for Owners & Contributors" "expand/collapse" >}}
 
 {{< moduleNameTelemetryGHTeams header=true csv="/static/module-indexes/BicepResourceModules.csv" >}}
 

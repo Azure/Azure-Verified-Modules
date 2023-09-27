@@ -12,8 +12,6 @@
 
 **Welcome to the Azure Verified Modules (AVM) repository!**
 
-<br>
-
 Azure Verified Modules (AVM), as "One Microsoft", we want to provide and define the single definition of what a good IaC module is;
 
 - How they should be constructed and built
