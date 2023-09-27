@@ -1,4 +1,4 @@
-## 📄📄 Please note that all of our documentation is published over at [aka.ms/AVM](https://aka.ms/AVM) please visit this site for more information and guidance 📄📄
+## 📄📄 Please note that all of our documentation is published over at [aka.ms/AVM](https://aka.ms/AVM). Please visit this site for more information and guidance! 📄📄
 
 > **NOTE**: This repository is used for proposing new modules, tracking issues and feature requests as well as hosting documentation for the Azure Verified Modules (AVM) project. If you are looking for the AVM code repositories, please visit the Bicep and Terraform [module indexes](https://azure.github.io/Azure-Verified-Modules/indexes/) on the AVM portal for references.
 
@@ -8,11 +8,9 @@
 <!-- [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/azure/azure-verified-modules.svg)](http://isitmaintained.com/project/azure/azure-verified-modules "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/azure/azure-verified-modules.svg)](http://isitmaintained.com/project/azure/azure-verified-modules "Percentage of issues still open") -->
 
-<table style="width:100%" border="0">
-  <tr>
-    <td style="width:70%" style='border:none;'>
-Welcome to the Azure Verified Modules (AVM) repository!
+<img src="docs/static/img/avm_logo.png" width=15% align="right">
 
+Welcome to the Azure Verified Modules (AVM) repository!
 <br>
 
 Azure Verified Modules (AVM), as "One Microsoft", we want to provide and define the single definition of what a good IaC module is;
@@ -22,9 +20,6 @@ Azure Verified Modules (AVM), as "One Microsoft", we want to provide and define 
 - How they are to be consumed
 - What they deliver for consumers in terms of resources deployed and configured
 - And where appropriate aligned across IaC languages (e.g. Bicep, Terraform, etc.)</td>
-    <td style="width:30%" style='border:none;'><img src="docs/static/img/avm_logo.png" width=100%></td>
-  </tr>
-</table>
 
 For more information on AVM, **please visit the [AVM portal (https://aka.ms/AVM)](https://aka.ms/AVM)**.
 
