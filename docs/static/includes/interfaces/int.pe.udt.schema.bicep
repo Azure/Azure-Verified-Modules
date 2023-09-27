@@ -68,7 +68,7 @@ module <exampleResource>PrivateEndpoint 'br/public:avm-res-network-privateendpoi
     groupIds: [
       privateEndpoint.?service ?? '<defaultServiceName>'
     ]
-    // Variant 2: A default service can not be assumed (i.e., for services that only have more than one private endpoint type, like Storage Account)
+    // Variant 2: A default service cannot be assumed (i.e., for services that only have more than one private endpoint type, like Storage Account)
     groupIds: [
       privateEndpoint.service
     ]
