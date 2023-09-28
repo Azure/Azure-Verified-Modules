@@ -61,7 +61,8 @@ The following tooling/extensions are recommended to assist you developing for th
 
 - [CodeTour extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour)
 - [Go (for writing tests)](https://go.dev/doc/install)
-- [Go extenstion for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=golang.go)
+- [Go extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=golang.go)
+- [tfenv](https://github.com/tfutils/tfenv) - useful when working on multiple modules that use different Terraform versions from the same machine
 - For visibility of Bracket Pairs:
   - Inside Visual Studio Code, add `editor.bracketPairColorization.enabled`: true to your `settings.json`, to enable bracket pair colorization.
 
