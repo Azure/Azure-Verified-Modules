@@ -29,7 +29,11 @@ configuration:
 
       # - description: 'ITA08BCP - If "AVM" or "Azure Verified Modules" is mentioned in a new issue, add label of "Type: AVM :a: :v: :m:" on the issue'
       #   if:
-      #     - payloadType: Issues
+      #     - or:
+      #       - payloadType: Issues
+      #       - payloadType: Issue_Comment
+      #       - payloadType: Pull_Request
+      #       - payloadType: Pull_Request_Review_Comment
       #     - and:
       #       - isAction:
       #           action: Opened
@@ -48,7 +52,9 @@ configuration:
 
       - description: 'ITA09 - When #RR is used in an issue, add the label of "Needs: Author Feedback :ear:"'
         if:
-          - payloadType: Issues
+          - or:
+              - payloadType: Pull_Request_Review_Comment
+              - payloadType: Issue_Comment
           - commentContains:
               pattern: '#RR'
         then:
@@ -57,7 +63,9 @@ configuration:
 
       - description: 'ITA10 - When #wontfix is used in an issue, mark it by using the label of "Status: Won''t Fix :broken_heart:"'
         if:
-          - payloadType: Issues
+          - or:
+              - payloadType: Pull_Request_Review_Comment
+              - payloadType: Issue_Comment
           - commentContains:
               pattern: '#wontfix'
         then:
