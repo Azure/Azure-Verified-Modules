@@ -222,6 +222,30 @@ This section includes **shared, non-functional requirements (SNFR)** for Bicep a
 
 <br>
 
+#### ID: SNFR25 - Category: Composition - Resource Naming
+
+Module owners **MUST** set the default resource name prefix for child, extension, and interface resources to the associated abbreviation for the specific resource as documented in the following CAF article [Abbreviation examples for Azure resources](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations), if specified and documented. This reduces the amount of input values a module consumer **MUST** provide by default when using the module.
+
+For example, a Private Endpoint that is being deployed as part of a resource module, via the mandatory interfaces, **MUST** set the Private Endpoints default name to begin with the prefix of `pep-`.
+
+Module owners **MUST** also provide the ability for these default names, including the prefixes, to be overridden by a user input to a parameter/variable if the consumer wishes to.
+
+Furthermore as per [RMNFR2](/Azure-Verified-Modules/specs/shared#id-snfr22---category-inputs---parametersvariables-for-resource-ids), Resource Modules **MUST** not have a default value specified for the primary resource to be deployed's name and therefore the name **MUST** be provided and specified by the module consumer.
+
+The name provided **MAY** be used by the module owner to generate the rest of the default name for child, extension, and interface resources if they wish to. For example for the Private Endpoint mentioned above the full default name for this, that can be overridden by the consumer, **MAY** be `pep-<primary-resource-name>`.
+
+{{< hint type=tip >}}
+
+If the resource does not have a documented abbreviation in [Abbreviation examples for Azure resources](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations) then the module owner is free to use a sensible prefix instead.
+
+{{< /hint >}}
+
+<br>
+
+---
+
+<br>
+
 #### ID: SNFR1 - Category: Testing - Prescribed Tests
 
 Modules **MUST** use the prescribed tooling and testing frameworks defined in the language specific specs.
@@ -844,7 +868,7 @@ Example: `avm-res-compute-virtualmachine`
 
 #### ID: RMNFR2 - Category: Inputs - Parameter/Variable Naming
 
-A module **SHOULD** use the following standard inputs:
+A module **MUST** use the following standard inputs:
 
 - `name` (no default)
 - `location` (use Resource Group location, if resource supports Resource Groups, otherwise no default)
