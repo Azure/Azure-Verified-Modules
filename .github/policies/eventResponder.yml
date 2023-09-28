@@ -68,11 +68,8 @@ configuration:
       - description: 'ITA11 - When a reply from anyone to an issue occurs, remove the "Needs: Author Feedback :ear:" label and label with "Needs: Attention :wave:"'
         if:
           - or:
-              - payloadType: Pull_Request
-              - payloadType: Pull_Request_Review
               - payloadType: Pull_Request_Review_Comment
               - payloadType: Issue_Comment
-              - payloadType: Issues
           - not:
               isAction:
                 action: Closed
