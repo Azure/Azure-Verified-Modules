@@ -309,7 +309,7 @@ resource "azurerm_log_analytics_workspace" "example" {
 
 ```bicep
 resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-12-01-preview' = {
-  name: 'rsg-test-001'
+  name: 'law-test-001'
   location: resourceGroup().location
   properties: {
     sku: {
