@@ -35,15 +35,15 @@ If after an additional 3 business days there's still no update to the issue, the
 
 ### ITA03BCP
 
-If after 5 days (total from start of issue being raised) and no response the Bicep PG GitHub Team will be tagged and assigned to the issue to assist
+If after 5 days (total from start of issue being raised) and no response the Bicep PG GitHub Team will be tagged and assigned to the issue to assist.
 
 ### ITA03TF
 
-If after 5 days (total from start of issue being raised) and no response the Terraform PG GitHub Team will be tagged and assigned to the issue to assist
+If after 5 days (total from start of issue being raised) and no response the Terraform PG GitHub Team will be tagged and assigned to the issue to assist.
 
 ### ITA04
 
-If an issue/PR has been labelled with "Needs: Author Feedback 👂" and hasn't had a response in 4 days, label with "Status: No Recent Activity 💤" and add a comment
+If an issue/PR has been labelled with "Needs: Author Feedback 👂" and hasn't had a response in 4 days, label with "Status: No Recent Activity 💤" and add a comment.
 
 ### ITA05
 
@@ -69,7 +69,7 @@ If AVM or "Azure Verified Modules" is mentioned in an uncategorized issue (i.e.,
 
 ### ITA09
 
-When #RR is used in an issue, add the label of "Needs: Author Feedback 👂"
+When #RR is used in an issue, add the label of "Needs: Author Feedback 👂".
 
 ### ITA10
 
@@ -81,7 +81,7 @@ When a reply from anyone to an issue occurs, remove the "Needs: Author Feedback 
 
 ### ITA12
 
-Clean up e-mail replies to GitHub Issues for readability
+Clean up e-mail replies to GitHub Issues for readability.
 
 <br>
 
