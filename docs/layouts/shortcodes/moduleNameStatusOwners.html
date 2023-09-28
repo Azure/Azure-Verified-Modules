@@ -3,25 +3,66 @@
 {{ $file := readFile $csv }}
 {{ $rows := $file | transform.Unmarshal (dict "delimiter" ",") }}
 {{ $useLinks := .Get "useLinks" | default true }}
+{{ $language := .Get "language" }}
+{{ $moduleType := .Get "moduleType" }}
+{{ $columnOffset := 0 }}
+
+{{ if eq $moduleType "resource" }}
+{{ $columnOffset = 0 }}
+{{ else if eq $moduleType "pattern" }}
+{{ $columnOffset = 2 }}
+{{ else }}
+{{ errorf "The %q shortcode requires a moduleType parameter to bet set to either 'resource' or 'pattern'. See %s" .Name .Position }}
+{{ end }}
+
+{{ if eq $language "Bicep" }}
 <table>
   {{ if $useHeaderRow }}
-  {{ $headerRow := index $rows 0 }}
+  {{/*  {{ $headerRow := index $rows 0 }}  */}}
   {{ $rows = after 1 $rows }}
   <thead>
     <tr>
       <th>Module Name</th>
       <th>Module Display Name</th>
       <th>Module Status</th>
-      <th>Primary Module Owner GitHub Handle and Display Name</th>
+      <th>Primary Module Owner GitHub Handle (and Display Name)</th>
     </tr>
   </thead>
   {{ end }}
   {{ range $row, $rows }}
   <tr>
-    <td>{{ if $useLinks }} {{ if or (eq (index $row 4) "Module Available :green_circle:") (eq (index $row 4) "Module Orphaned :eyes:") }} <a href="{{ index $row 5 }}">{{ index $row 3 }}</a> {{ else }} {{ index $row 3 }} {{ end }} {{else}} {{ index $row 3 }} {{ end }} </td>
-    <td>{{ index $row 2 }}</td>
-    <td>{{ emojify (index $row 4) }}</td>
-    <td>{{ index $row 8 }} {{ if and (ne (index $row 8) "") (ne (index $row 9) "") }} ({{ index $row 9 }}){{ end }}</td>
+    <td>{{ if $useLinks }} {{ if or (eq (index $row (sub 4 $columnOffset)) "Module Available :green_circle:") (eq (index $row (sub 4 $columnOffset)) "Module Orphaned :eyes:") }} <a href="{{ index $row (sub 5 $columnOffset) }}">{{ index $row (sub 3 $columnOffset) }}</a> {{ else }} {{ index $row (sub 3 $columnOffset) }} {{ end }} {{else}} {{ index $row (sub 3 $columnOffset) }} {{ end }} </td>
+    <td>{{ index $row (sub 2 $columnOffset) }}</td>
+    <td>{{ emojify (index $row (sub 4 $columnOffset)) }}</td>
+    <td>{{ index $row (sub 8 $columnOffset) }} {{ if and (ne (index $row (sub 8 $columnOffset)) "") (ne (index $row (sub 9 $columnOffset)) "") }} ({{ index $row (sub 9 $columnOffset) }}){{ end }}</td>
   </tr>
   {{ end }}
 </table>
+{{ else if eq $language "Terraform" }}
+<table>
+  {{ if $useHeaderRow }}
+  {{/*  {{ $headerRow := index $rows 0 }}  */}}
+  {{ $rows = after 1 $rows }}
+  <thead>
+    <tr>
+      <th>Module Name</th>
+      <th>Source Code</th>
+      <th>Module Display Name</th>
+      <th>Module Status</th>
+      <th>Primary Module Owner GitHub Handle (and Display Name)</th>
+    </tr>
+  </thead>
+  {{ end }}
+  {{ range $row, $rows }}
+  <tr>
+    <td>{{ if $useLinks }} {{ if or (eq (index $row (sub 4 $columnOffset)) "Module Available :green_circle:") (eq (index $row (sub 4 $columnOffset)) "Module Orphaned :eyes:") }} <a href="{{ index $row (sub 6 $columnOffset) }}">{{ index $row (sub 3 $columnOffset) }}</a> {{ else }} {{ index $row (sub 3 $columnOffset) }} {{ end }} {{else}} {{ index $row (sub 3 $columnOffset) }} {{ end }} </td>
+    <td>{{ if $useLinks }} {{ if or (eq (index $row (sub 4 $columnOffset)) "Module Available :green_circle:") (eq (index $row (sub 4 $columnOffset)) "Module Orphaned :eyes:") }} <a href="{{ index $row (sub 5 $columnOffset) }}">📄</a> {{ else }} {{ "n/a" }} {{ end }} {{else}} {{ "n/a" }} {{ end }} </td>
+    <td>{{ index $row (sub 2 $columnOffset) }}</td>
+    <td>{{ emojify (index $row (sub 4 $columnOffset)) }}</td>
+    <td>{{ index $row (sub 8 $columnOffset) }} {{ if and (ne (index $row (sub 8 $columnOffset)) "") (ne (index $row (sub 9 $columnOffset)) "") }} ({{ index $row (sub 9 $columnOffset) }}){{ end }}</td>
+  </tr>
+  {{ end }}
+</table>
+{{ else }}
+{{ errorf "The %q shortcode requires a language parameter to be set either 'Bicep' or 'Terraform'. See %s" .Name .Position }}
+{{ end }}

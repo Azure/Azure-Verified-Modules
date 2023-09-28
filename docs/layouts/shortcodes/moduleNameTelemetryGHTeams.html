@@ -2,6 +2,19 @@
 {{ $csv := .Get "csv" }}
 {{ $file := readFile $csv }}
 {{ $rows := $file | transform.Unmarshal (dict "delimiter" ",") }}
+{{ $useLinks := .Get "useLinks" | default true }}
+{{ $language := .Get "language" }}
+{{ $moduleType := .Get "moduleType" }}
+{{ $columnOffset := 0 }}
+
+{{ if eq $moduleType "resource" }}
+{{ $columnOffset = 0 }}
+{{ else if eq $moduleType "pattern" }}
+{{ $columnOffset = 2 }}
+{{ else }}
+{{ errorf "The %q shortcode requires a moduleType parameter to bet set to either 'resource' or 'pattern'. See %s" .Name .Position }}
+{{ end }}
+{{ if eq $language "Bicep" }}
 <table>
   {{ if $useHeaderRow }}
   {{ $headerRow := index $rows 0 }}
@@ -16,14 +29,43 @@
   {{ end }}
   {{ range $row, $rows }}
   <tr>
-    <td>{{ index $row 3 }}</td>
-    <td><code>{{ index $row 7 }}</code></td>
+    <td>{{ if $useLinks }} {{ if or (eq (index $row (sub 4 $columnOffset)) "Module Available :green_circle:") (eq (index $row (sub 4 $columnOffset)) "Module Orphaned :eyes:") }} <a href="{{ index $row (sub 5 $columnOffset) }}">{{ index $row (sub 3 $columnOffset) }}</a> {{ else }} {{ index $row (sub 3 $columnOffset) }} {{ end }} {{else}} {{ index $row (sub 3 $columnOffset) }} {{ end }} </td>
+    <td><code>{{ index $row (sub 7 $columnOffset) }}</code></td>
     <td>
-      <code>{{ index $row 10 }}</code>
+      <code>{{ index $row (sub 10 $columnOffset) }}</code>
       <br>
-      <code>{{ index $row 11 }}</code>
+      <code>{{ index $row (sub 11 $columnOffset) }}</code>
     </td>
     <td></td>
   </tr>
   {{ end }}
 </table>
+{{ else if eq $language "Terraform" }}
+<table>
+  {{ if $useHeaderRow }}
+  {{ $headerRow := index $rows 0 }}
+  {{ $rows = after 1 $rows }}
+  <thead>
+    <tr>
+      <th>Module Name</th>
+      <th>Telemetry ID prefix</th>
+      <th>GitHub Teams for Module Owners and Contributors</th>
+    </tr>
+  </thead>
+  {{ end }}
+  {{ range $row, $rows }}
+  <tr>
+    <td>{{ if $useLinks }} {{ if or (eq (index $row (sub 4 $columnOffset)) "Module Available :green_circle:") (eq (index $row (sub 4 $columnOffset)) "Module Orphaned :eyes:") }} <a href="{{ index $row (sub 6 $columnOffset) }}">{{ index $row (sub 3 $columnOffset) }}</a> {{ else }} {{ index $row (sub 3 $columnOffset) }} {{ end }} {{else}} {{ index $row (sub 3 $columnOffset) }} {{ end }} </td>
+    <td><code>{{ index $row (sub 7 $columnOffset) }}</code></td>
+    <td>
+      <code>{{ index $row (sub 10 $columnOffset) }}</code>
+      <br>
+      <code>{{ index $row (sub 11 $columnOffset) }}</code>
+    </td>
+    <td></td>
+  </tr>
+  {{ end }}
+</table>
+{{ else }}
+{{ errorf "The %q shortcode requires a language parameter to be set either 'Bicep' or 'Terraform'. See %s" .Name .Position }}
+{{ end }}

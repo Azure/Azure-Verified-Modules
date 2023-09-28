@@ -5,11 +5,11 @@ geekdocAlign: left
 geekdocAnchor: true
 ---
 
-{{< hint type=warning >}}
+<!-- {{< hint type=warning >}}
 
 **This page is under development.** If you can't see any modules in the tables below, it means that **there are no modules available/planned in this category yet**.
 
-{{< /hint >}}
+{{< /hint >}} -->
 
 {{< hint type=tip >}}
 
@@ -37,7 +37,7 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{< expand "âž• Module names, status and owners" "expand/collapse" >}}
 
-{{< moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformPatternModules.csv" >}}
+{{< moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformPatternModules.csv" language="Terraform" moduleType="pattern" >}}
 
 {{< /expand >}}
 
@@ -47,6 +47,6 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{< expand "âž• Module name, Telemetry ID prefix, GitHub Teams for Owners & Contributors" "expand/collapse" >}}
 
-{{< moduleNameTelemetryGHTeams header=true csv="/static/module-indexes/TerraformPatternModules.csv" >}}
+{{< moduleNameTelemetryGHTeams header=true csv="/static/module-indexes/TerraformPatternModules.csv" language="Terraform" moduleType="pattern">}}
 
 {{< /expand >}}

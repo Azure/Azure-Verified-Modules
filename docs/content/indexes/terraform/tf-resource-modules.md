@@ -31,7 +31,7 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{< expand "âž• Module names, status and owners" "expand/collapse" >}}
 
-{{< moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformResourceModules.csv" >}}
+{{< moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformResourceModules.csv" language="Terraform" moduleType="resource" >}}
 
 {{< /expand >}}
 
@@ -41,6 +41,6 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{< expand "âž• Module name, Telemetry ID prefix, GitHub Teams for Owners & Contributors" "expand/collapse" >}}
 
-{{< moduleNameTelemetryGHTeams header=true csv="/static/module-indexes/TerraformResourceModules.csv" >}}
+{{< moduleNameTelemetryGHTeams header=true csv="/static/module-indexes/TerraformResourceModules.csv" language="Terraform" moduleType="resource" >}}
 
 {{< /expand >}}
