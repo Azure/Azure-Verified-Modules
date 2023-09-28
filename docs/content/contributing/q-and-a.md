@@ -112,14 +112,24 @@ At this moment, only Microsoft FTEs can be module owners.
 
 ---
 
-### What I need so I can start developing a module?
+### What do I need so I can start developing a module?
 
 We suggest that you review [module specification][ModuleSpecifications] and [contribution guides][ModuleContributors]:
 
 - [Bicep contribution guide][BicepContributios]
 - [Terraform contribution guide][TerrafromContribution]
 
-Feel free to reach to [AVMCore team][AVMCoreTeam] in case that additional help is needed.
+Feel free to reach out to the [AVM Core team][AVMCoreTeam] in case that additional help is needed.
+
+---
+
+### What do I do about existing modules that are available doing a similar thing to my module that I am proposing to develop and release?
+
+We suggest that you first review the FAQ of [What is happening to existing initiatives like CARML and TFVM?][CARMLTFVMEvolution] to understand AVMs intent for existing modules from known Microsoft projects etc.
+
+As part of the [Module Proposal process][ProcessOverview] the AVM core team will work with you to triage your proposal and also ensure there are no existing modules, from known Microsoft projects, to migrate to AVM. If there are not, then great you can proceed with developing your module from scratch once given approval to proceed by the AVM core team. However, if there are existing modules from Microsoft projects we would invite you to help us complete the migration to AVM of this module; this may also entail working with the existing module owner/team.
+
+For existing modules that may not be directly owned and developed by Microsoft or their employees you should first review the license applied to the GitHub repository hosting the module and understand its terms and conditions. More information on GitHub repositories and licenses can be found here in [Licensing a repository][GitHubLicensing]. Most modules will use a license that will allow you to take inspiration and copy all or parts from the module source code however, you should always check the license to confirm and any conditions you may have to meet by doing this.
 
 ---
 
@@ -129,7 +139,7 @@ To get list of labels that **MUST** be created on gitHub repositories where modu
 
 You **SHOULD NOT** use any additional labels.
 
-There is also [PowerShell script][MandatoryLabels] The [AVM core team][AVMCoreTeam] created that can help to apply those labels to module GiHub repository.
+There is also [PowerShell script][MandatoryLabels] that the [AVM core team][AVMCoreTeam] created that can help to apply those labels to module GiHub repository.
 
 ---
 
@@ -204,3 +214,6 @@ All issues created in a module repo will be automatically be picked up and track
 [BicepContributios]: /Azure-Verified-Modules/contributing/bicep/
 [TerrafromContribution]: /Azure-Verified-Modules/contributing/terraform/
 [ModuleNaming]: /Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming
+[CARMLTFVMEvolution]: /Azure-Verified-Modules/faq/#what-is-happening-to-existing-initiatives-like-carml-and-tfvm
+[ProcessOverview]: /Azure-Verified-Modules/contributing/process/
+[GitHubLicensing]: https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository
