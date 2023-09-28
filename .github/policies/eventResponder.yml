@@ -64,3 +64,28 @@ configuration:
           - addLabel:
               label: 'Status: Won''t Fix :broken_heart:'
           - closeIssue
+
+      - description: 'ITA11 - When a reply from anyone to an issue occurs, remove the "Needs: Author Feedback :ear:" label and label with "Needs: Attention :wave:"'
+        if:
+          - or:
+              - payloadType: Pull_Request
+              - payloadType: Pull_Request_Review
+              - payloadType: Pull_Request_Review_Comment
+              - payloadType: Issue_Comment
+              - payloadType: Issues
+          - not:
+              isAction:
+                action: Closed
+          - hasLabel:
+              label: 'Needs: Author Feedback :ear:'
+        then:
+          - removeLabel:
+              label: 'Needs: Author Feedback :ear:'
+          - addLabel:
+              label: 'Needs: Attention :wave:'
+
+      - description: Clean email replies on every comment
+        if:
+          - payloadType: Issue_Comment
+        then:
+          - cleanEmailReply

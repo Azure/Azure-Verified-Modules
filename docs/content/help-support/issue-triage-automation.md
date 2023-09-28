@@ -81,23 +81,30 @@ When a reply from anyone to an issue occurs, remove the "Needs: Author Feedback 
 
 <br>
 
+### ITA12
+
+Clean up e-mail replies to GitHub Issues for readability
+
+<br>
+
 ## Where to apply these rules?
 
 The below table details which repositories the above rules are applied to.
 
 | ID                          | AVM Core repository | BRM repository | TF repositories |
-|-----------------------------|:-------------------:|:--------------:|:---------------:|
-| [ITA01BCP1-2](#ita01bcp1-2) |                     |       ✔️       |                 |
-| [ITA01TF1-2](#ita01tf1-2)   |                     |                |       ✔️        |
-| [ITA02BCP1-2](#ita02bcp1-2) |                     |       ✔️       |                 |
-| [ITA02TF1-2](#ita02tf1-2)   |                     |                |       ✔️        |
-| [ITA03BCP](#ita03bcp)       |                     |       ✔️       |                 |
-| [ITA03TF](#ita03tf)         |                     |                |       ✔️        |
-| [ITA04](#ita04)             |         ✔️          |       ✔️       |       ✔️        |
-| [ITA05](#ita05)             |         ✔️          |       ✔️       |       ✔️        |
-| [ITA06](#ita06)             |         ✔️          |       ✔️       |       ✔️        |
-| [ITA07](#ita07)             |         ✔️          |       ✔️       |       ✔️        |
-| [ITA08BCP](#ita08bcp)       |                     |       ✔️       |                 |
-| [ITA09](#ita09)             |         ✔️          |       ✔️       |       ✔️        |
-| [ITA10](#ita10)             |         ✔️          |       ✔️       |       ✔️        |
-| [ITA11](#ita11)             |         ✔️          |       ✔️       |       ✔️        |
+| --------------------------- | :-----------------: | :------------: | :-------------: |
+| [ITA01BCP1-2](#ita01bcp1-2) |                     |       ✔️        |                 |
+| [ITA01TF1-2](#ita01tf1-2)   |                     |                |        ✔️        |
+| [ITA02BCP1-2](#ita02bcp1-2) |                     |       ✔️        |                 |
+| [ITA02TF1-2](#ita02tf1-2)   |                     |                |        ✔️        |
+| [ITA03BCP](#ita03bcp)       |                     |       ✔️        |                 |
+| [ITA03TF](#ita03tf)         |                     |                |        ✔️        |
+| [ITA04](#ita04)             |          ✔️          |       ✔️        |        ✔️        |
+| [ITA05](#ita05)             |          ✔️          |       ✔️        |        ✔️        |
+| [ITA06](#ita06)             |          ✔️          |       ✔️        |        ✔️        |
+| [ITA07](#ita07)             |          ✔️          |       ✔️        |        ✔️        |
+| [ITA08BCP](#ita08bcp)       |                     |       ✔️        |                 |
+| [ITA09](#ita09)             |          ✔️          |       ✔️        |        ✔️        |
+| [ITA10](#ita10)             |          ✔️          |       ✔️        |        ✔️        |
+| [ITA11](#ita11)             |          ✔️          |       ✔️        |        ✔️        |
+| [ITA12](#ita12)             |          ✔️          |       ✔️        |        ✔️        |
