@@ -249,6 +249,53 @@ To see a directory and file structure for a module, see the language specific co
 
 {{< /hint >}}
 
+##### Required Resources/Dependencies Required for E2E Tests
+
+It is likely that to complete E2E tests a number of resources will be required as dependencies to enable the tests to complete successfully. Some examples:
+
+- When testing the Diagnostic Settings interface for a Resource Module, you will need a Log Analytics Workspace to exist to be able to send the logs to as a destination.
+- When testing the Private Endpoints interface for a Resource Module, you will need a Virtual Network, Subnet and Private DNS Zone to exist to be able to complete the Private Endpoint deployment and configuration.
+
+Module owners **MUST**:
+
+- Create the required resources that their module depends upon in the test file/directory
+  - They **MUST** use simple/native resource declarations/definitions in their respective IaC language
+  - They **MUST NOT** use other modules to deploy these required resources
+
+{{< expand "Terraform & Bicep Log Analytics Workspace examples using simple/native declarations for use in E2E tests" "expand/collapse">}}
+
+###### Terraform:
+
+```terraform
+resource "azurerm_resource_group" "example" {
+  name     = "rsg-test-001"
+  location = "West Europe"
+}
+
+resource "azurerm_log_analytics_workspace" "example" {
+  name                = "law-test-001"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+}
+```
+
+###### Bicep:
+
+```bicep
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-12-01-preview' = {
+  name: 'rsg-test-001'
+  location: resourceGroup().location
+  properties: {
+    sku: {
+      name: 'PerGB2018'
+    }
+    retentionInDays: 30
+  }
+}
+```
+{{< /expand >}}
 
 <br>
 
