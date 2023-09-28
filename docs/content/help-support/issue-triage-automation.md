@@ -77,7 +77,7 @@ When #wontfix is used in an issue, mark it by using the label of "Status: Won't 
 
 ### ITA11
 
-When a reply from anyone to an issue occurs, remove the "Needs: Author Feedback 👂" label and label with "Needs: Attention 👋"
+When a reply from anyone to an issue occurs, remove the "Needs: Author Feedback 👂" label and label with "Needs: Attention 👋".
 
 ### ITA12
 
