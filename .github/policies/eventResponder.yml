@@ -63,3 +63,4 @@ configuration:
         then:
           - addLabel:
               label: 'Status: Won''t Fix :broken_heart:'
+          - closeIssue
