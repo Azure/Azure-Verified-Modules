@@ -41,13 +41,13 @@ Aspiring Bicep-based AVM modules contributors/owners, please check the CARML lib
 
 ### CARML Evolution
 
-CARML is an existing IaC module library effort, written in Bicep (only), that was started by ISD and has been contributed to by many across Microsoft and has also had some external contributions.
+CARML is an existing IaC Bicep module library effort, that was started by ISD and has been contributed to by many across Microsoft and has also had some external contributions.
 
-A lot of CARML's principles and architecture decisions will form the basis for AVM going forward. Most of the CARML modules today are very close to being AVM Resource Modules today already and will only require a small number of changes to become completely aligned.
+A lot of CARML's principles and architecture decisions will form the basis for AVM going forward. Most of the CARML modules today are very close to being AVM Resource Modules already and will only require a small number of changes to become AVM compliant.
 
-CARML never got to the stage of creating, at scale, modules like AVM [Pattern Modules](/Azure-Verified-Modules/specs/shared/module-classifications), but they were on it's long-term roadmap.
+CARML never got to the stage of creating, at scale, modules like AVM [Pattern Modules](/Azure-Verified-Modules/specs/shared/module-classifications), but they were on its long-term roadmap.
 
-In summary, CARML will **evolve** to become the Bicep version of AVM. This means that in the future the CARML repo SHOULD be looked to be archived and in the shorter term there MUST be a notice placed on the repo redirecting them to the AVM central repository as modules are evolved into AVM modules.
+In summary, CARML will **evolve** to become the Bicep version of AVM. A notice will be placed on the CARML repo redirecting users and contributors to the AVM central repository as modules are evolved into AVM modules.​
 
 #### CARML Publishing to Bicep Registry Notes
 
