@@ -827,6 +827,7 @@ Module names **MUST** follow the below pattern (all lower case):
 - Terraform:
   - `avm-res-<rp>-<armresourcename>` (Module name for registry)
   - `terraform-<provider>-avm-res-<rp>-<armresourcename>` (GitHub repository name to meet registry naming requirements)
+    - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is should to be `azurerm` for resource modules.
 
 Example: `avm-res-compute-virtualmachine`
 
@@ -908,8 +909,10 @@ This section includes **pattern module level, non-functional requirements (PMNFR
 Module names **MUST** follow the below pattern (all lower case):
 
 - Bicep: `avm-ptn-<patternmodulename>`
-- Terraform: `terraform-<provider>-avm-ptn-<patternmodulename>`
-  - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` for pattern modules.
+- Terraform:
+  - `avm-ptn-<patternmodulename>` (Module name for registry)
+  - `terraform-<provider>-avm-ptn-<patternmodulename>` (GitHub repository name to meet registry naming requirements)
+    - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` for pattern modules.
 
 Example: `avm-ptn-apptiervmss`
 
