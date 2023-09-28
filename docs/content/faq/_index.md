@@ -14,6 +14,12 @@ Got an unanswered question? Create a [GitHub Issue](https://github.com/Azure/Azu
 
 {{< toc >}}
 
+{{< hint type=tip >}}
+
+Check out the [Contribution Q&A](/Azure-Verified-Modules/contributing/q-and-a/) for more answers to common questions about the contribution process.
+
+{{< /hint >}}
+
 ## What is happening to existing initiatives like CARML and TFVM?
 
 The AVM initiative has been working closely with the teams behind the following initiatives:

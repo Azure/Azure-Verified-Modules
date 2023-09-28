@@ -9,6 +9,12 @@ geekdocToC: 1
 
 {{< toc >}}
 
+{{< hint type=tip >}}
+
+Check out the [FAQ](/Azure-Verified-Modules/faq/) for more answers to common questions about the AVM initiative in general.
+
+{{< /hint >}}
+
 ## Proposing a module
 
 ---
