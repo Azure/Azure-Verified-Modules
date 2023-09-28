@@ -79,8 +79,6 @@ When #wontfix is used in an issue, mark it by using the label of "Status: Won't 
 
 When a reply from anyone to an issue occurs, remove the "Needs: Author Feedback 👂" label and label with "Needs: Attention 👋"
 
-<br>
-
 ### ITA12
 
 Clean up e-mail replies to GitHub Issues for readability
