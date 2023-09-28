@@ -288,7 +288,7 @@ Module owners **MUST**:
 
 {{< expand "Terraform & Bicep Log Analytics Workspace examples using simple/native declarations for use in E2E tests" "expand/collapse">}}
 
-###### Terraform:
+###### Terraform
 
 ```terraform
 resource "azurerm_resource_group" "example" {
@@ -305,7 +305,7 @@ resource "azurerm_log_analytics_workspace" "example" {
 }
 ```
 
-###### Bicep:
+###### Bicep
 
 ```bicep
 resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-12-01-preview' = {
