@@ -132,7 +132,7 @@ As part of the [Module Proposal process][ProcessOverview], the AVM core team wil
 - If there aren't any, then you can proceed with developing your module from scratch once given approval to proceed by the AVM core team.
 - However, if there are existing modules from Microsoft projects we would invite you to help us complete the migration to AVM of this module; this may also entail working with the existing module owner/team.
 
-For existing modules that may not be directly owned and developed by Microsoft or their employees you should first review the license applied to the GitHub repository hosting the module and understand its terms and conditions. More information on GitHub repositories and licenses can be found here in [Licensing a repository][GitHubLicensing]. Most modules will use a license that will allow you to take inspiration and copy all or parts from the module source code however, to confirm, you should always check the license and any conditions you may have to meet by doing this.
+For existing modules that may not be directly owned and developed by Microsoft or their employees you should first review the license applied to the GitHub repository hosting the module and understand its terms and conditions. More information on GitHub repositories and licenses can be found here in [Licensing a repository][GitHubLicensing]. Most modules will use a license that will allow you to take inspiration and copy all or parts from the module source code. However, to confirm, you should always check the license and any conditions you may have to meet by doing this.
 
 ---
 
