@@ -352,7 +352,7 @@ Module owners **MUST** use the below tooling for unit/linting/static/security an
 
 Module owners **MUST** invoke the module in their test using the syntax:
 
-```Bicep
+```bicep
 module testDeployment '../.*main.bicep' = {
 ```
 
