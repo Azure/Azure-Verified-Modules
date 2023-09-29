@@ -370,7 +370,7 @@ module testDeployment '../../../main.bicep' = {
 
 Example 2: Working example using a deployment loop
 
-```Bicep
+```bicep
 @batchSize(1)
 module testDeployment '../../main.bicep' = [for iteration in [ 'init', 'idem' ]: {
   scope: resourceGroup
