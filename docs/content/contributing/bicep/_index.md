@@ -305,5 +305,24 @@ To contribute to the AVM Bicep modules, requires several steps:
 1. [Configure the CI environment](#3-configure-the-ci-environment)
 
 ### 1. Configure your Azure environment
+
+AVM tests the deployments in an Azure subscription. To do so, it requires a service principal with access to it.
+
+In this first step, make sure you
+- Have/create an Azure Active Directory Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
+  - [Create a service principal (Azure Portal)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
+  - [Create a service principal (PowerShell)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
+  - [Find Service Principal object ID](https://cloudsight.zendesk.com/hc/en-us/articles/360016785598-Azure-finding-your-service-principal-object-ID)
+  - [Find managed Identity Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
+- Note down the following pieces of information
+  - Application (Client) ID
+  - Service Principal Object ID (**not** the object ID of the application)
+  - Service Principal Secret (password)
+  - Tenant ID
+  - Subscription ID
+  - Parent Management Group ID
+
+> **Note:** The Service Principal must be able to query its own details in the Azure Active Directory (AAD). To that end, ensure it has at least the (default) role 'Cloud application administrator'.
+
 ### 2. Fork the Public Bicep Registry repository
 ### 3. Configure the CI environment
