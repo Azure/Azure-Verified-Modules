@@ -142,7 +142,7 @@ To get list of labels that **MUST** be created on gitHub repositories where modu
 
 You **SHOULD NOT** use any additional labels.
 
-There is also a [PowerShell script][MandatoryLabels] that the [AVM core team][AVMCoreTeam] created that can help to apply those labels to module GiHub repository.
+There is also a [PowerShell script][MandatoryLabels] that the [AVM core team][AVMCoreTeam] created that can help to apply those labels the GitHub module repository.
 
 ---
 
