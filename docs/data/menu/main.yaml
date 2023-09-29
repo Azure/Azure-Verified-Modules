@@ -77,6 +77,13 @@ main:
         ref: '/contributing/process'
       - name: 'Bicep Modules'
         ref: '/contributing/bicep'
+        sub:
+          - name: 'Prerequisites'
+            ref: '/contributing/bicep/prerequisites'
+          - name: 'Composition'
+            ref: '/contributing/bicep/composition'
+          - name: 'Bicep contribution flow'
+            ref: '/contributing/bicep/bicep-contribution-flow'
       - name: 'Terraform Modules'
         ref: '/contributing/terraform'
       - name: 'Contribution Q&A'
