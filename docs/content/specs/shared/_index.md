@@ -716,7 +716,7 @@ A module **MUST NOT** create a Resource Group **for resources that require them.
 In the case that a Resource Group is required, a module **MUST** have an input (scope or variable):
 
 - In Bicep the `targetScope` **MUST** be set to `resourceGroup` or not specified (which means default to `resourceGroup` scope)
-- In Terraform the `variable` **MUST** be called `resource_group`
+- In Terraform the `variable` **MUST** be called `resource_group_name`
 
 Scopes will be covered further in the respective language specific specifications.
 
@@ -740,6 +740,8 @@ Modules support the following optional features/extension resources, as specifie
 | Private Endpoints                           | `privateEndpoints`   | `private_endpoints`     | MUST        |
 | Customer Managed Keys                       | `customerManagedKey` | `customer_managed_key`  | MUST        |
 | Azure Monitor Alerts                        | `alerts`             | `alerts`                | SHOULD      |
+
+Modules **MUST NOT** deploy required/dependant resources for the optional features/extension resources specified above. For example, for Diagnostic Settings the resource module **MUST NOT** deploy the Log Analytics Workspace, this is expected to be already in existence from the perspective of the resource module deployed via another method/module etc.
 
 {{< hint type=note >}}
 
