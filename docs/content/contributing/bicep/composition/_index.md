@@ -7,6 +7,11 @@ geekdocAnchor: true
 
 {{< toc >}}
 
+<!-- 
+TODO: Should contain
+- Repository composition
+- Module composition
+-->
 
 ## Composition
 

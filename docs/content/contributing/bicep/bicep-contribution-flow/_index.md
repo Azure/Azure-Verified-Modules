@@ -7,6 +7,20 @@ geekdocAnchor: true
 
 {{< toc >}}
 
+<!-- 
+TODO: Should contain
+
+Flow: External contributor
+- Navigating to repo
+- Fork
+- Setting up CI environment
+- Create IP (Module/Pattern)
+- Testing
+- Create Pull request & attach pipeline badge
+
+Flow: Module Owner
+?
+-->
 
 ## Repositories
 
