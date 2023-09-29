@@ -141,9 +141,9 @@ Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](htt
 
 <br>
 
-## Setting up the CI environment
+## Setting up your CI environment
 
-To contribute to the AVM Bicep modules, requires several steps:
+Contributing to the AVM Bicep modules requires several steps:
 
 1. [Configure your Azure environment](#1-configure-your-azure-environment)
 1. [Fork the Public Bicep Registry repository](#2-fork-the-public-bicep-registry-repository)
