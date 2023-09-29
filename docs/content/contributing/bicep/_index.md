@@ -25,5 +25,5 @@ Therefore, this contribution guide **MUST** be used in conjunction with the [Sha
 This section lists AVM's Bicep-specific contribution guidance.
 
 - [Prerequisites](/Azure-Verified-Modules/contributing/bicep/prerequisites/)
-- [Module composition](/Azure-Verified-Modules/contributing/composition/)
+- [Composition](/Azure-Verified-Modules/contributing/composition/)
 - [Bicep contribution flow](/Azure-Verified-Modules/contributing/bicep-contribution-flow/)
