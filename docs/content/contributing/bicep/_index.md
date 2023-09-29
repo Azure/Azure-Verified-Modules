@@ -325,4 +325,8 @@ In this first step, make sure you
 > **Note:** The Service Principal must be able to query its own details in the Azure Active Directory (AAD). To that end, ensure it has at least the (default) role 'Cloud application administrator'.
 
 ### 2. Fork the Public Bicep Registry repository
+
+Next, you'll want to create your own fork of respository. To do so, simply navigate to the [Public Bicep Registry](https://github.com/Azure/bicep-registry-modules) repository, select the `'Fork'` button to the top right of the UI, select where the fork should be created (i.e., the owning organization) and finally click 'Create fork'.
+
+
 ### 3. Configure the CI environment
