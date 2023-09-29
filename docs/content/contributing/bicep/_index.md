@@ -326,7 +326,86 @@ In this first step, make sure you
 
 ### 2. Fork the Public Bicep Registry repository
 
-Next, you'll want to create your own fork of respository. To do so, simply navigate to the [Public Bicep Registry](https://github.com/Azure/bicep-registry-modules) repository, select the `'Fork'` button to the top right of the UI, select where the fork should be created (i.e., the owning organization) and finally click 'Create fork'.
+Next, you'll want to create your own fork of repository. To do so, simply navigate to the [Public Bicep Registry](https://github.com/Azure/bicep-registry-modules) repository, select the `'Fork'` button to the top right of the UI, select where the fork should be created (i.e., the owning organization) and finally click 'Create fork'.
 
 
 ### 3. Configure the CI environment
+
+To configure the CI environment you have to perform several steps:
+- [3.1 Set up secrets](#31-set-up-secrets)
+- [3.2 Enable actions](#32-enable-actions)
+- [3.3 Set R/W Workflow permissions](#33-set-rw-workflow-permissions)
+
+### 3.1 Set up secrets
+
+To use the environment's pipelines you should use the information you gathered during the [Azure setup](#1-configure-your-azure-environment) to set up the following repository secrets:
+
+| Secret Name | Example | Description |
+| - | - | - |
+| `ARM_MGMTGROUP_ID` | `11111111-1111-1111-1111-111111111111` | The group ID of the management group to test-deploy modules in. |
+| `ARM_SUBSCRIPTION_ID` | `22222222-2222-2222-2222-222222222222` | The ID of the subscription to test-deploy modules in. |
+| `ARM_TENANT_ID` | `33333333-3333-3333-3333-333333333333` | The tenant ID of the Azure Active Directory tenant to test-deploy modules in. |
+| `AZURE_CREDENTIALS` | `{"clientId": "44444444-4444-4444-4444-444444444444", "clientSecret": "<placeholder>", "subscriptionId": "22222222-2222-2222-2222-222222222222", "tenantId": "33333333-3333-3333-3333-333333333333" }` | The login credentials of the deployment principal used to log into the target Azure environment to test in. The format is described [here](https://github.com/Azure/login#configure-deployment-credentials). For more information, see the `[Special case: AZURE_CREDENTIALS]` note below. |
+| `PLATFORM_REPO_UPDATE_PAT` | `<placeholder>` | A private access token (PAT) with enough permissions assigned to it to push into the main branch. This PAT is leveraged by pipelines that automatically generate ReadMe files to keep them up to date. |
+| `TOKEN_NAMEPREFIX` | `cntso` | Optional. A short (3-5 character length), unique string that should be included in any deployment to Azure. For more information, see the `[Special case: TOKEN_NAMEPREFIX]` note below. |
+
+<p>
+
+<details>
+<summary><b>How to:</b> Add a repository secret to GitHub</summary>
+
+1. Navigate to the repository's `Settings`.
+
+    <img src="./media/SetupEnvironment/forkSettings.png" alt="Navigate to settings" height="100">
+
+1. In the list of settings, expand `Secrets` and select `Actions`. You can create a new repository secret by selecting `New repository secret` on the top right.
+
+    <img src="./media/SetupEnvironment/forkSettingsSecrets.png" alt="Navigate to secrets" height="600">
+
+1. In the opening view, you can create a secret by providing a secret `Name`, a secret `Value`, followed by a click on the `Add secret` button.
+
+    <img src="./media/SetupEnvironment/forkSettingsSecretAdd.png" alt="Add secret" height="600">
+
+</details>
+
+<p>
+
+> Special case: `AZURE_CREDENTIALS`, </br>
+> This secret represent the service connection to Azure, and its value is a compressed JSON object that must match the following format:
+>
+> ```JSON
+> {"clientId": "<client_id>", "clientSecret": "<client_secret>", "subscriptionId": "<subscriptionId>", "tenantId": "<tenant_id>" }
+> ```
+>
+> **Make sure you create this object as one continuous string as shown above** - using the information you collected during [Step 1](#1-configure-your-azure-environment). Failing to format the secret as above, causes GitHub to consider each line of the JSON object as a separate secret string. If you're interested, you can find more information about this object [here](https://github.com/Azure/login#configure-deployment-credentials).
+
+> Special case: `TOKEN_NAMEPREFIX`, </br>
+> To lower the barrier to entry and allow users to easily define their own naming conventions, we introduced a default `'name prefix'` for all deployed resources.
+>
+>> **Note:** This prefix is only used by the CI environment you validate your modules in, and doesn't affect the naming of any resources you deploy as part of any multi-module solutions (applications/workloads) based on the modules.
+>
+> Each pipeline in AVM deploying resources uses a logic that automatically replaces "tokens" (i.e., placeholders) in any module test file. These tokens are, for example, included in the resources names (e.g. `'name: kvlt-${namePrefix}'`). Tokens are stored as repository secrets to facilitate maintenance.
+
+### 3.2 Enable actions
+
+Finally, 'GitHub Actions' are disabled by default and hence, must be enabled first.
+
+To do so, perform the following steps:
+
+1. Navigate to the `Actions` tab on the top of the repository page.
+
+1. Next, select '`I understand my workflows, go ahead and enable them`'.
+
+    <img src="./media/SetupEnvironment/actionsEnable.png" alt="Enable Actions" height="380">
+
+### 3.3 Set R/W Workflow permissions
+
+To let the workflow engine publish their results into your repository, you have to enable the read / write access for the GitHub actions.
+
+1. Navigate to the `Settings` tab on the top of your repository page.
+
+1. Within the section `Code and automation` click on `Actions` and `General`
+
+1. Make sure to enable `Read and write permissions`
+
+    <img src="./media/SetupEnvironment/workflow_permissions.png" alt="Workflow Permissions">
