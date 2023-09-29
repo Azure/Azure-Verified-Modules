@@ -295,3 +295,15 @@ When the AVM Modules are published to the Bicep Public Registry they **MUST** fo
 This will require the alias on the MCR to be different than the directory path, which is the default for BRM today.
 
 ***Guidance will be provided below on how to do this, when available.***
+
+## Setting up the CI environment in a fork
+
+To contribute to the AVM Bicep modules, requires several steps:
+
+1. [Configure your Azure environment](#1-configure-your-azure-environment)
+1. [Fork the Public Bicep Registry repository](#2-fork-the-public-bicep-registry-repository)
+1. [Configure the CI environment](#3-configure-the-ci-environment)
+
+### 1. Configure your Azure environment
+### 2. Fork the Public Bicep Registry repository
+### 3. Configure the CI environment
