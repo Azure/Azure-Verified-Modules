@@ -125,7 +125,7 @@ Feel free to reach out to the [AVM Core team][AVMCoreTeam] in case that addition
 
 ### What do I do about existing modules that are available doing a similar thing to my module that I am proposing to develop and release?
 
-We suggest that you first review the FAQ of [What is happening to existing initiatives like CARML and TFVM?][CARMLTFVMEvolution] to understand AVMs intent for existing modules from known Microsoft projects etc.
+We suggest that you first review the FAQ of [What is happening to existing initiatives like CARML and TFVM?][CARMLTFVMEvolution] to understand AVM's intent for existing modules from known Microsoft projects etc.
 
 As part of the [Module Proposal process][ProcessOverview], the AVM core team will work with you to triage your proposal and also to ensure there are no existing modules, from known Microsoft projects, to migrate to AVM.
 
