@@ -871,7 +871,7 @@ Example: `avm-res-compute-virtualmachine`
 A module **MUST** use the following standard inputs:
 
 - `name` (no default)
-- `location` (use Resource Group location, if resource supports Resource Groups, otherwise no default)
+- `location` (if supported by the resource and not a global resource, then use Resource Group location, if resource supports Resource Groups, otherwise no default)
 
 <br>
 
