@@ -222,6 +222,30 @@ This section includes **shared, non-functional requirements (SNFR)** for Bicep a
 
 <br>
 
+#### ID: SNFR25 - Category: Composition - Resource Naming
+
+Module owners **MUST** set the default resource name prefix for child, extension, and interface resources to the associated abbreviation for the specific resource as documented in the following CAF article [Abbreviation examples for Azure resources](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations), if specified and documented. This reduces the amount of input values a module consumer **MUST** provide by default when using the module.
+
+For example, a Private Endpoint that is being deployed as part of a resource module, via the mandatory interfaces, **MUST** set the Private Endpoint's default name to begin with the prefix of `pep-`.
+
+Module owners **MUST** also provide the ability for these default names, including the prefixes, to be overridden via a parameter/variable if the consumer wishes to.
+
+Furthermore, as per [RMNFR2](/Azure-Verified-Modules/specs/shared#id-snfr22---category-inputs---parametersvariables-for-resource-ids), Resource Modules **MUST** not have a default value specified for the name of the primary resource and therefore the name **MUST** be provided and specified by the module consumer.
+
+The name provided **MAY** be used by the module owner to generate the rest of the default name for child, extension, and interface resources if they wish to. For example, for the Private Endpoint mentioned above, the full default name that can be overridden by the consumer, **MAY** be `pep-<primary-resource-name>`.
+
+{{< hint type=tip >}}
+
+If the resource does not have a documented abbreviation in [Abbreviation examples for Azure resources](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations), then the module owner is free to use a sensible prefix instead.
+
+{{< /hint >}}
+
+<br>
+
+---
+
+<br>
+
 #### ID: SNFR1 - Category: Testing - Prescribed Tests
 
 Modules **MUST** use the prescribed tooling and testing frameworks defined in the language specific specs.
@@ -249,6 +273,53 @@ To see a directory and file structure for a module, see the language specific co
 
 {{< /hint >}}
 
+##### Required Resources/Dependencies Required for E2E Tests
+
+It is likely that to complete E2E tests, a number of resources will be required as dependencies to enable the tests to pass successfully. Some examples:
+
+- When testing the Diagnostic Settings interface for a Resource Module, you will need an existing Log Analytics Workspace to be able to send the logs to as a destination.
+- When testing the Private Endpoints interface for a Resource Module, you will need an existing Virtual Network, Subnet and Private DNS Zone to be able to complete the Private Endpoint deployment and configuration.
+
+Module owners **MUST**:
+
+- Create the required resources that their module depends upon in the test file/directory
+  - They **MUST** use simple/native resource declarations/definitions in their respective IaC language
+  - They **MUST NOT** use other modules to deploy these required resources
+
+{{< expand "Terraform & Bicep Log Analytics Workspace examples using simple/native declarations for use in E2E tests" "expand/collapse">}}
+
+###### Terraform
+
+```terraform
+resource "azurerm_resource_group" "example" {
+  name     = "rsg-test-001"
+  location = "West Europe"
+}
+
+resource "azurerm_log_analytics_workspace" "example" {
+  name                = "law-test-001"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+}
+```
+
+###### Bicep
+
+```bicep
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-12-01-preview' = {
+  name: 'law-test-001'
+  location: resourceGroup().location
+  properties: {
+    sku: {
+      name: 'PerGB2018'
+    }
+    retentionInDays: 30
+  }
+}
+```
+{{< /expand >}}
 
 <br>
 
@@ -260,9 +331,11 @@ To see a directory and file structure for a module, see the language specific co
 
 Modules **MUST** implement implement AVM compliance tests that ensure compliance to AVM specifications. These tests **MUST** pass before a module version can be published.
 
-{{< hint type=note >}}
+{{< hint type=important >}}
 
 Please note these are still under development at this time and will be published and available soon for module owners.
+
+Module owners **MUST** request a manual GitHub Pull Request review, prior to their first release of version `0.1.0` of their module, from the following GitHub Team: [`@Azure/avm-core-team-technical`](https://github.com/orgs/Azure/teams/avm-core-team-technical/members)
 
 {{< /hint >}}
 
@@ -313,6 +386,18 @@ Modules **MUST** implement idempotency end-to-end (deployment) testing. E.g. dep
 Modules **SHOULD** pass the idempotency test, as we are aware that there are some exceptions where they may fail as a false-positive or legitimate cases where a resource cannot be idempotent.
 
 For example, Virtual Machine Image names must be unique on each resource creation/update.
+
+<br>
+
+---
+
+<br>
+
+#### ID: SNFR24 - Category: Testing - Testing Child, Extension & Interface Resources
+
+Modules owners **MUST** test that child, extension and [interface resources](/Azure-Verified-Modules/specs/shared/interfaces/), that are supported by their modules, are tested in E2E tests as per [SNFR2](/Azure-Verified-Modules/specs/shared#id-snfr2---category-testing---e2e-testing) to ensure they deploy and are configured correctly.
+
+These **MAY** be tested in a separate E2E test and **DO NOT** have to be tested in each E2E test.
 
 <br>
 
@@ -766,6 +851,7 @@ Module names **MUST** follow the below pattern (all lower case):
 - Terraform:
   - `avm-res-<rp>-<armresourcename>` (Module name for registry)
   - `terraform-<provider>-avm-res-<rp>-<armresourcename>` (GitHub repository name to meet registry naming requirements)
+    - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is should to be `azurerm` for resource modules.
 
 Example: `avm-res-compute-virtualmachine`
 
@@ -782,10 +868,10 @@ Example: `avm-res-compute-virtualmachine`
 
 #### ID: RMNFR2 - Category: Inputs - Parameter/Variable Naming
 
-A module **SHOULD** use the following standard inputs:
+A module **MUST** use the following standard inputs:
 
 - `name` (no default)
-- `location` (use Resource Group location, if resource supports Resource Groups, otherwise no default)
+- `location` (if supported by the resource and not a global resource, then use Resource Group location, if resource supports Resource Groups, otherwise no default)
 
 <br>
 
@@ -847,8 +933,10 @@ This section includes **pattern module level, non-functional requirements (PMNFR
 Module names **MUST** follow the below pattern (all lower case):
 
 - Bicep: `avm-ptn-<patternmodulename>`
-- Terraform: `terraform-<provider>-avm-ptn-<patternmodulename>`
-  - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` for pattern modules.
+- Terraform:
+  - `avm-ptn-<patternmodulename>` (Module name for registry)
+  - `terraform-<provider>-avm-ptn-<patternmodulename>` (GitHub repository name to meet registry naming requirements)
+    - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` for pattern modules.
 
 Example: `avm-ptn-apptiervmss`
 
