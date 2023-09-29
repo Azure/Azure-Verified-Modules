@@ -347,3 +347,62 @@ Module owners **MUST** use the below tooling for unit/linting/static/security an
 ---
 
 <br>
+
+#### ID: BCPNFR12 - Category: Testing - Deployment Test Naming
+
+Module owners **MUST** invoke the module in their test using the syntax:
+
+```Bicep
+module testDeployment '../.*main.bicep' = {
+```
+
+Example 1: Working example with a single deployment
+
+```Bicep
+module testDeployment '../../../main.bicep' = {
+  scope: resourceGroup
+  name: '${uniqueString(deployment().name, location)}-test-${serviceShort}'
+  params: {
+    (...)
+  }
+}
+```
+
+Example 2: Working example using a deployment loop
+
+```Bicep
+@batchSize(1)
+module testDeployment '../../main.bicep' = [for iteration in [ 'init', 'idem' ]: {
+  scope: resourceGroup
+  name: '${uniqueString(deployment().name, location)}-test-${serviceShort}-${iteration}'
+  params: {
+    (...)
+  }
+}]
+```
+
+The syntax is used by the ReadMe-generating utility to identify, pull & format usage examples.
+
+<br>
+
+---
+
+#### ID: BCPNFR13 - Category: Testing - Test file metadata
+
+By default, the ReadMe-generating utility will create usage examples headers based on each `e2e` folder's name.
+Module owners **MAY** provide a custom name & description by specfying the metadata blocks `name` & `description` in their `main.test.bicep` test files.
+
+For example:
+```bicep
+metadata name = 'Using Customer-Managed-Keys with System-Assigned identity'
+metadata description = 'This instance deploys the module using Customer-Managed-Keys using a System-Assigned Identity. This required the service to be deployed twice, once as a pre-requisite to create the System-Assigned Identity, and once to use it for accessing the Customer-Managed-Key secret.'
+```
+would lead to a header in the module's `readme.md` file along the lines of
+```markdown
+### Example 1: _Using Customer-Managed-Keys with System-Assigned identity_
+
+This instance deploys the module using Customer-Managed-Keys using a System-Assigned Identity. This required the service to be deployed twice, once as a pre-requisite to create the System-Assigned Identity, and once to use it for accessing the Customer-Managed-Key secret.
+```
+
+<br>
+
