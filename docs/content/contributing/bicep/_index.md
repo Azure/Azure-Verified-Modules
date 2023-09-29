@@ -356,15 +356,15 @@ To use the environment's pipelines you should use the information you gathered d
 
 1. Navigate to the repository's `Settings`.
 
-    <img src="img/bicep-ci/forkSettings.png" alt="Navigate to settings" width=100%>
+    <img src="../../img/bicep-ci/forkSettings.png" alt="Navigate to settings" width=100%>
 
 1. In the list of settings, expand `Secrets` and select `Actions`. You can create a new repository secret by selecting `New repository secret` on the top right.
 
-    <img src="img/bicep-ci/forkSettingsSecrets.png" alt="Navigate to secrets" width=100%>
+    <img src="../../img/bicep-ci/forkSettingsSecrets.png" alt="Navigate to secrets" width=100%>
 
 1. In the opening view, you can create a secret by providing a secret `Name`, a secret `Value`, followed by a click on the `Add secret` button.
 
-    <img src="img/bicep-ci/forkSettingsSecretAdd.png" alt="Add secret" width=100%>
+    <img src="../../img/bicep-ci/forkSettingsSecretAdd.png" alt="Add secret" width=100%>
 
 </details>
 
@@ -396,7 +396,7 @@ To do so, perform the following steps:
 
 1. Next, select '`I understand my workflows, go ahead and enable them`'.
 
-    <img src="img/bicep-ci/actionsEnable.png" alt="Enable Actions" width=100%>
+    <img src="../../img/bicep-ci/actionsEnable.png" alt="Enable Actions" width=100%>
 
 ### 3.3 Set R/W Workflow permissions
 
@@ -408,4 +408,4 @@ To let the workflow engine publish their results into your repository, you have 
 
 1. Make sure to enable `Read and write permissions`
 
-    <img src="img/bicep-ci/workflow_permissions.png" alt="Workflow Permissions" width=100%>
+    <img src="../../img/bicep-ci/workflow_permissions.png" alt="Workflow Permissions" width=100%>
