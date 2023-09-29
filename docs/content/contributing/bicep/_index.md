@@ -141,7 +141,7 @@ Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](htt
 
 <br>
 
-## Setting up the CI environment in a fork
+## Setting up the CI environment
 
 To contribute to the AVM Bicep modules, requires several steps:
 
