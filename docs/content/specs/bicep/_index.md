@@ -358,7 +358,7 @@ module testDeployment '../.*main.bicep' = {
 
 Example 1: Working example with a single deployment
 
-```Bicep
+```bicep
 module testDeployment '../../../main.bicep' = {
   scope: resourceGroup
   name: '${uniqueString(deployment().name, location)}-test-${serviceShort}'
