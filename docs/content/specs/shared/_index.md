@@ -863,10 +863,10 @@ Example: `avm-ptn-apptiervmss`
 
 #### ID: PMNFR2 - Category: Composition - Use Resource Modules to Build a Pattern Module
 
-A module **SHOULD** be built from the required AVM Resources Modules. If a Resource Module does not exist for a resource required by the Pattern Module, then the module **MAY** use "vanilla" code for this resource as a temporary measure. The development of the required Resource Module **SHOULD** be prioritized and the Pattern Module updated to use the Resource Module, as soon as possible.
+A Pattern Module **SHOULD** be built from the required AVM Resources Modules. If a Resource Module does not exist for a resource required by the Pattern Module, then the Pattern Module **MAY** use "vanilla" code for this resource, however, the Pattern Module **SHOULD** be updated to use the Resource Module when the required Resource Module becomes available.
 
 {{< hint type=note >}}
-The intent behind this being a "**SHOULD**" level requirement (and not a **MUST**) is to to cater for those scenarios where most Resource Modules required to develop a given Pattern Module are available, but not all. In this case the AVM team wants to unblock the owner of the new Pattern Module by allowing them to leverage this approach as a **temporary workaround**. This is not meant to be a permanent state or a solution module owners should start with by default when developing new Pattern Modules. Ideally, all required Resource Modules **SHOULD** be developed first, and then leveraged by the Pattern Module.
+The intent behind this being a "**SHOULD**" level requirement (and not a **MUST**) is to to cater for those scenarios where most Resource Modules required to develop a given Pattern Module are available, but not all. In this case, the AVM team wants to unblock the owner of the new Pattern Module by allowing them to leverage this approach as a workaround, until the required Resource Module becomes available. Ideally, all required Resource Modules **SHOULD** be developed first, and then leveraged by the Pattern Module.
 {{< /hint >}}
 
 <br>
