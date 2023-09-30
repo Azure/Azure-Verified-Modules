@@ -142,7 +142,6 @@ To let the workflow engine publish their results into your repository, you have 
 ## 4. Implement your contribution
 
 TODO: Fill
-TODO: Point out the `Set-AVM-Module` utility to be used for new modules as well as updates of existing ones
 
 {{< hint type=tip >}}
 
