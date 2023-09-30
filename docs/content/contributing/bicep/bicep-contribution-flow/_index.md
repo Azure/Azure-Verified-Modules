@@ -20,7 +20,7 @@ flowchart TD
   fork["Fork the module source repository"]
   setupCI["Configure the CI environment"]
   implement["Implement your contribution"]
-  test["(Update &) Run test suite"]
+  test["Create/Update & run test suite"]
   pr["Create pull request to upstream"]
 
   startOwner --> setupAzure
