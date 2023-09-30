@@ -165,9 +165,15 @@ In case your contribution involves changes to a module, you can also optionally 
 
 {{< /hint >}}
 
-TODO: Reference local test script
+### Creating `e2e` tests
 
-### Testing Diagnostic Settings
+TODO: Add general guidelines
+
+#### Reusable assets
+
+There are a number of additional scripts and utilities available [here](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/e2e-template-assets) that may be of use to module owners/contributors. These contain both scripts and Bicep templates that you can re-use in your test files (e.g., to deploy standadized dependencies, or to generate keys using deployment scripts).
+
+<u><b>Example:</b> Diagnostic Settings dependencies</u>
 
 To test the numerous diagnostic settings targets (Log Analytics Workspace, Storage Account, Event Hub, etc.) the AVM core team have provided a dependencies `.bicep` file to help create all these pre-requisite targets that will be needed during test runs.
 
@@ -176,12 +182,6 @@ To test the numerous diagnostic settings targets (Log Analytics Workspace, Stora
 {{< include file="/static/includes/diagnostic.dependencies.bicep" language="bicep" options="linenos=false" >}}
 
 {{< /expand >}}
-
-{{< hint type=note >}}
-
-Also note there are a number of additional scripts and utilities available [here](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/e2e-template-assets/templates/diagnostic.dependencies.bicep) that may be of use to module owners/contributors.
-
-{{< /hint >}}
 
 <br>
 
