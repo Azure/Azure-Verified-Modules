@@ -84,6 +84,9 @@ main:
             ref: '/contributing/bicep/composition'
           - name: 'Bicep contribution flow'
             ref: '/contributing/bicep/bicep-contribution-flow'
+            sub:
+            - name: 'Validate module locally'
+              ref: '/contributing/bicep/bicep-contribution-flow/validate-module-locally'
       - name: 'Terraform Modules'
         ref: '/contributing/terraform'
       - name: 'Contribution Q&A'

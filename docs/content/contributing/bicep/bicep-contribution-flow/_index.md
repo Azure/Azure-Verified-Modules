@@ -7,22 +7,6 @@ geekdocAnchor: true
 
 {{< toc >}}
 
-<!--
-TODO: Should contain
-
-Flow: External contributor
-- Navigating to repo
-- Fork
-- Setup Azure environment
-- Setting up CI environment
-- Create IP (Module/Pattern)
-- Testing
-- Create Pull request & attach pipeline badge
-
-Flow: Module Owner
-?
--->
-
 ## General flow
 
 To implement your contribution, you can use the following flow. Note that some steps can be ignored if you have done them before (e.g., fork the repository):
@@ -157,17 +141,32 @@ To let the workflow engine publish their results into your repository, you have 
 
 ## 4. Implement your contribution
 
-## 5. (Update &) Run test suite
+TODO: Fill
+TODO: Point out the `Set-AVM-Module` utility to be used for new modules as well as updates of existing ones
 
-{{< hint type=note >}}
+{{< hint type=tip >}}
 
-The AVM core team is working to provide a CI environment used for testing the AVM Bicep modules in the Public Bicep Registry. Until the automation is ready, we kindly ask contributors to proceed with local and manual testing from their fork.
+After any change to a module and before running tests, we highly recommend running the [Set-AVMModule](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files) utility to update all module files that are auto-generated (e.g., the `main.json` & `readme.md` files).
 
 {{< /hint >}}
+
+## 5. (Update &) Run test suite
 
 Before opening a Pull Request to the Bicep Public Registry, ensure your module is ready for publishing, by validating that it meets all the Testing Specifications as per [SNFR1](/Azure-Verified-Modules/specs/shared/#id-snfr1---category-testing---prescribed-tests), [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing), [SNFR3](/Azure-Verified-Modules/specs/shared/#id-snfr3---category-testing---avm-unit-tests), [SNFR4](/Azure-Verified-Modules/specs/shared/#id-snfr4---category-testing---additional-unit-tests), [SNFR5](/Azure-Verified-Modules/specs/shared/#id-snfr5---category-testing---upgrade-tests), [SNFR6](/Azure-Verified-Modules/specs/shared/#id-snfr6---category-testing---static-analysislinting-tests), [SNFR7](/Azure-Verified-Modules/specs/shared/#id-snfr7---category-testing---idempotency-tests).
 
 For example, to meet [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing), ensure the updated module is deployable against a testing Azure subscription and compliant with the intended configuration.
+
+Depending on the type of contribution you implemented (for example, a new module feature) we would kindly ask you to also update the `e2e` test run by the pipeline. For a new parameter this could mean to either to either add its usage to an existing test file, or to add an entirely new test as per [BCPNFR9](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr9---category-testing---expected-test-directories).
+
+Once the contribution is implemented and the changes are pushed to your forked repository, we kindly ask you to validate your updates in your own cloud environment before requesting to merge them to the main repo. Test your code leveraging the forked AVM CI environment you configured before
+
+{{< hint type=tip >}}
+
+In case your contribution involves changes to a module, you can also optionally leverage the [Validate module locally](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally) utility to validate the updated module from your local host before validating it through its pipeline.
+
+{{< /hint >}}
+
+TODO: Reference local test script
 
 ### Testing Diagnostic Settings
 
@@ -189,6 +188,8 @@ Also note there are a number of additional scripts and utilities available [here
 
 
 ## 6 Create a Pull Request to the Public Bicep Registry
+
+TODO: Add reference to add pipeline badge to prove correctness
 
 <!--
 ## Publishing to the Registry
