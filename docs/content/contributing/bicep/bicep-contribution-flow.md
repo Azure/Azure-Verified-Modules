@@ -7,7 +7,7 @@ geekdocAnchor: true
 
 {{< toc >}}
 
-<!-- 
+<!--
 TODO: Should contain
 
 Flow: External contributor
@@ -28,14 +28,21 @@ Bicep AVM Modules (both Resource and Pattern modules) will be homed in the [`Azu
 
 Module owners are expected to fork the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository's `main` branch.
 
-
 ## Setting up your CI environment
 
 Contributing to the AVM Bicep modules requires several steps:
 
-1. [Configure your Azure environment](#1-configure-your-azure-environment)
-1. [Fork the Public Bicep Registry repository](#2-fork-the-public-bicep-registry-repository)
-1. [Configure the CI environment](#3-configure-the-ci-environment)
+- [Repositories](#repositories)
+- [Setting up your CI environment](#setting-up-your-ci-environment)
+  - [1. Configure your Azure environment](#1-configure-your-azure-environment)
+  - [2. Fork the Public Bicep Registry repository](#2-fork-the-public-bicep-registry-repository)
+  - [3. Configure the CI environment](#3-configure-the-ci-environment)
+  - [3.1 Set up secrets](#31-set-up-secrets)
+  - [3.2 Enable actions](#32-enable-actions)
+  - [3.3 Set R/W Workflow permissions](#33-set-rw-workflow-permissions)
+- [Testing](#testing)
+  - [Testing Diagnostic Settings](#testing-diagnostic-settings)
+- [Publishing to the Registry](#publishing-to-the-registry)
 
 ### 1. Configure your Azure environment
 
@@ -141,6 +148,7 @@ To let the workflow engine publish their results into your repository, you have 
 
     <img src="../../../img/bicep-ci/workflow_permissions.png" alt="Workflow Permissions" width=100%>
 
+<br>
 
 ## Testing
 
@@ -158,7 +166,7 @@ For example, to meet [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---ca
 
 To test the numerous diagnostic settings targets (Log Analytics Workspace, Storage Account, Event Hub, etc.) the AVM core team have provided a dependencies `.bicep` file to help create all these pre-requisite targets that will be needed during test runs.
 
-{{< expand "Diagnostic Settings Dependencies - Bicep File" "expand/collapse" >}}
+{{< expand "➕ Diagnostic Settings Dependencies - Bicep File" "expand/collapse" >}}
 
 {{< include file="/static/includes/diagnostic.dependencies.bicep" language="bicep" options="linenos=false" >}}
 

@@ -58,7 +58,7 @@ During the AVM Core Team Triage step, the following will be checked, completed a
    - Check they are a Microsoft FTE
    - Clarify they understand and accept what "module ownership" means by replying in a comment to the requestor/proposed owner:
 
-{{< expand "Standard AVM Core Team Reply to Proposed Module Owners" "expand/collapse" >}}
+{{< expand "➕ Standard AVM Core Team Reply to Proposed Module Owners" "expand/collapse" >}}
 ```text
 Hi @{requestor/proposed owner's GitHub alias},
 

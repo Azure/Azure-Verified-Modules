@@ -51,6 +51,64 @@ This section includes **Bicep specific, functional requirements (BCPFR)** for AV
 
 <br>
 
+#### ID: BCPFR3 - Category: Composition - Directory and File Structure
+
+Each Bicep AVM module **MUST** live within the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository in the `avm` directory and **MUST** have the following directories and files:
+
+- `tests/` - (for unit tests and additional E2E/integration if required - e.g. Pester etc.)
+  - `e2e/` - (all examples must deploy successfully - these will be used to automatically generate the examples in the README.md for the module)
+- `modules/` - (for sub-modules only if used and NOT children of the primary resource. e.g. RBAC role assignments)
+- `/...` - (Module files that live in the root of module directory)
+  - `main.bicep` (AVM Module main `.bicep` file and entry point/orchestration module)
+  - `main.json` (auto generated and what is published to the MCR via BRM)
+  - `version.json` (BRM requirement)
+  - `README.md` (auto generated AVM Module documentation)
+
+##### Example Directory and File Structure within `Azure/bicep-registry-modules` Repository
+
+```txt
+/ Root of Azure/bicep-registry-modules
+│
+├───avm
+│   ├───ptn
+│   │   └───apptiervmss
+│   │       │   main.bicep
+│   │       │   main.json
+│   │       │   README.md
+│   │       │   version.json
+│   │       │
+│   │       ├───modules
+│   │       └───tests
+│   │           ├───unit (optional)
+│   │           └───e2e
+│   │               ├───defaults
+│   │               ├───waf-aligned
+│   │               └───max
+│   │
+│   └───res
+│       └───compute
+│           └───virtual-machine
+│               │   main.bicep
+│               │   main.json
+│               │   README.md
+│               │   version.json
+│               │
+│               ├───modules
+│               └───tests
+│                   ├───unit (optional)
+│                   └───e2e
+│                       ├───defaults
+│                       ├───waf-aligned
+│                       └───max
+├───other repo dirs...
+└───other repo files...
+```
+
+<br>
+
+---
+
+<br>
 
 #### ID: BCPFR1 - Category: Composition - Cross-Referencing Modules
 
@@ -72,16 +130,21 @@ Module owners **MAY** define common RBAC Role Definition names and IDs within a 
 
 However, the **MUST** use only the official RBAC Role Definition name within the variable and nothing else.
 
-See also:
+To meet the requirements of [BCPFR2](/Azure-Verified-Modules/specs/bicep/#id-bcpfr2---category-composition---role-assignments-role-definition-mapping), [BCPNFR5](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr5---category-composition---role-assignments-role-definition-mapping-limits) and [BCPNFR6](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr6---category-composition---role-assignments-role-definition-mapping-compulsory-roles) you **MUST** use the below code sample in your AVM Modules to achieve this.
 
-- [BCPNFR5](#id-bcpnfr5---category-composition---role-assignments-role-definition-mapping-limits)
-- [BCPNFR6](#id-bcpnfr6---category-composition---role-assignments-role-definition-mapping-compulsory-roles)
+{{< include file="/static/includes/sample.rbacMapping.bicep" language="bicep" options="linenos=false" >}}
 
-{{< hint type=tip >}}
+<br>
 
-Review the [Bicep Contribution Guide's 'RBAC Role Definition Name Mapping' section](/Azure-Verified-Modules/contributing/bicep/#rbac-role-definition-name-mapping) for a code sample to achieve this requirement.
+---
 
-{{< /hint >}}
+<br>
+
+#### ID: BCPFR4 - Category: Composition - Telemetry Enablement
+
+To meet the requirements of [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) & [SFR4](/Azure-Verified-Modules/specs/shared/#id-sfr4---category-telemetry---telemetry-enablement-flexibility) you **MUST** use the below code sample in your AVM Modules to achieve this.
+
+{{< include file="/static/includes/sample.telem.bicep" language="bicep" options="linenos=false" >}}
 
 <br>
 
@@ -303,6 +366,21 @@ For example: `camelCasingExample` (lowercase first word (entirely), with capital
 <br>
 
 ---
+
+<br>
+
+#### ID: BCPNFR14 - Category: Composition - Versioning
+
+To meet [SNFR17](/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning) and depending on the changes you make, you may need to bump the version in the `version.json` file.
+
+{{< include file="/static/includes/sample.bicep.version.json" language="json" options="linenos=false" >}}
+
+The `version` value is in the form of `MAJOR.MINOR`. The PATCH version will be incremented by the CI automatically when publishing the module to the Public Bicep Registry once the corresponding pull request is merged. Therefore, contributions that would only require an update of the patch version, can keep the `version.json` file intact.
+
+For example, the `version` value should be:
+- `0.1` for new modules, so that they can be released as `v0.1.0`.
+- `1.0` once the module owner signs off the module is stable enough for it’s first Major release of `v1.0.0`.
+- `0.x` for all feature updates between the first release `v0.1.0` and the first Major release of `v1.0.0`.
 
 <br>
 
