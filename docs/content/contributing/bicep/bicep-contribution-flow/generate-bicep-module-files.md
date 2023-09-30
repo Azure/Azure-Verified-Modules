@@ -37,4 +37,9 @@ Using the provided template path, the script
 # How to use it
 
 For details on how to use the function, please refer to the script's local documentation.
-> **Note:** The script must be loaded ('*dot-sourced*') before the function can be invoked.
+
+{{< hint type=note >}}
+
+The script must be loaded ('*dot-sourced*') before the function can be invoked.
+
+{{< /hint >}}
