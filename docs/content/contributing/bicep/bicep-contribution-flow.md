@@ -13,6 +13,7 @@ TODO: Should contain
 Flow: External contributor
 - Navigating to repo
 - Fork
+- Setup Azure environment
 - Setting up CI environment
 - Create IP (Module/Pattern)
 - Testing
@@ -22,29 +23,29 @@ Flow: Module Owner
 ?
 -->
 
-## Repositories
+## General flow
 
-Bicep AVM Modules (both Resource and Pattern modules) will be homed in the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and live within an `avm` directory that will be located at the root of the repository, as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
+To implement your contribution, you can use the following flow. Note that some steps can be ignored if you have done them before (e.g., fork the repository):
 
-Module owners are expected to fork the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository's `main` branch.
+{{< mermaid class="text-center" >}}
+flowchart TD
+  startOwner["Start: Module Owner"]
+  startNonOwner["Start: General Contributor"]
 
-## Setting up your CI environment
+  setupAzure["Setup your Azure test environment"]
+  fork["Fork the module source repository"]
+  setupCI["Configure the CI environment"]
+  implement["Implement your contribution"]
+  test["(Update &) Run test suite"]
+  pr["Create pull request to upstream"]
 
-Contributing to the AVM Bicep modules requires several steps:
+  startOwner --> setupAzure
+  startNonOwner --> setupAzure
+  setupAzure --> fork -->  setupCI --> implement --> test --> pr
+{{< /mermaid >}}
 
-- [Repositories](#repositories)
-- [Setting up your CI environment](#setting-up-your-ci-environment)
-  - [1. Configure your Azure environment](#1-configure-your-azure-environment)
-  - [2. Fork the Public Bicep Registry repository](#2-fork-the-public-bicep-registry-repository)
-  - [3. Configure the CI environment](#3-configure-the-ci-environment)
-  - [3.1 Set up secrets](#31-set-up-secrets)
-  - [3.2 Enable actions](#32-enable-actions)
-  - [3.3 Set R/W Workflow permissions](#33-set-rw-workflow-permissions)
-- [Testing](#testing)
-  - [Testing Diagnostic Settings](#testing-diagnostic-settings)
-- [Publishing to the Registry](#publishing-to-the-registry)
 
-### 1. Configure your Azure environment
+## 1. Setup your Azure test environment
 
 AVM tests the deployments in an Azure subscription. To do so, it requires a service principal with access to it.
 
@@ -63,12 +64,16 @@ In this first step, make sure you
   - Parent Management Group ID
 
 > **Note:** The Service Principal must be able to query its own details in the Azure Active Directory (AAD). To that end, ensure it has at least the (default) role 'Cloud application administrator'.
+## 2. Fork the module source repository
 
-### 2. Fork the Public Bicep Registry repository
+Bicep AVM Modules (both Resource and Pattern modules) will be homed in the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and live within an `avm` directory that will be located at the root of the repository, as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
 
-Next, you'll want to create your own fork of repository. To do so, simply navigate to the [Public Bicep Registry](https://github.com/Azure/bicep-registry-modules) repository, select the `'Fork'` button to the top right of the UI, select where the fork should be created (i.e., the owning organization) and finally click 'Create fork'.
+Module owners are expected to fork the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository's `main` branch.
 
-### 3. Configure the CI environment
+To do so, simply navigate to the [Public Bicep Registry](https://github.com/Azure/bicep-registry-modules) repository, select the `'Fork'` button to the top right of the UI, select where the fork should be created (i.e., the owning organization) and finally click 'Create fork'.
+
+
+## 3. Configure the CI environment
 
 To configure the CI environment you have to perform several steps:
 - [3.1 Set up secrets](#31-set-up-secrets)
@@ -150,7 +155,9 @@ To let the workflow engine publish their results into your repository, you have 
 
 <br>
 
-## Testing
+## 4. Implement your contribution
+
+## 5. (Update &) Run test suite
 
 {{< hint type=note >}}
 
@@ -180,6 +187,10 @@ Also note there are a number of additional scripts and utilities available [here
 
 <br>
 
+
+## 6 Create a Pull Request to the Public Bicep Registry
+
+<!--
 ## Publishing to the Registry
 
 When the AVM Modules are published to the Bicep Public Registry they **MUST** follow the below requirements:
@@ -190,3 +201,4 @@ When the AVM Modules are published to the Bicep Public Registry they **MUST** fo
 This will require the alias on the MCR to be different than the directory path, which is the default for BRM today.
 
 ***Guidance will be provided below on how to do this, when available.***
+-->
