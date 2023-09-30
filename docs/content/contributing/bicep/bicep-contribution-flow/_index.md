@@ -147,7 +147,7 @@ To let the workflow engine publish their results into your repository, you have 
 
 ## 4. Implement your contribution
 
-To implement your contribution, we kindly ask you to first review the [Module Specifications](/Azure-Verified-Modules/specs/) in general, and the [shared](/Azure-Verified-Modules/specs/shared/), [Bicep-specific](/Azure-Verified-Modules/specs/bicep/) specification and [composition guidelines](/Azure-Verified-Modules/contributing/bicep/composition/) in particular to make sure your contribution complies with the repository's design and principles.
+To implement your contribution, we kindly ask you to first review the [Module Specifications](/Azure-Verified-Modules/specs/) in general, and the [shared](/Azure-Verified-Modules/specs/shared/), [Bicep-specific](/Azure-Verified-Modules/specs/bicep/) specifications and [composition guidelines](/Azure-Verified-Modules/contributing/bicep/composition/) in particular to make sure your contribution complies with the repository's design and principles.
 
 TODO: Reference that a contributor may need to create the workflow?
 
