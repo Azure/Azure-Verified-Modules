@@ -147,7 +147,10 @@ To let the workflow engine publish their results into your repository, you have 
 
 ## 4. Implement your contribution
 
-TODO: Fill
+To implement your contribution, we kindly ask you to first review the [Module Specifications](/Azure-Verified-Modules/specs/) in general, and the [shared](/Azure-Verified-Modules/specs/shared/), [Bicep-specific](/Azure-Verified-Modules/specs/bicep/) specification and [composition guidelines](/Azure-Verified-Modules/contributing/bicep/composition/) in particular to make sure your contribution complies with the repository's design and principles.
+
+TODO: Add guidelines
+TODO: Reference that a contributor may need to create the workflow?
 
 {{< hint type=tip >}}
 
@@ -231,10 +234,24 @@ To test the numerous diagnostic settings targets (Log Analytics Workspace, Stora
 
 <br>
 
-
 ## 6 Create a Pull Request to the Public Bicep Registry
 
-TODO: Add reference to add pipeline badge to prove correctness
+Finally, once you are satisfied with your contribution and validated it, open a PR for the module owners or core team to review. Make sure you:
+
+- Provide a meaningful title in the following format: `[<Category>] <PR title>`. For `[<Category>]` use one of the following, depending on which one is the primary improvement your PR intends to make:
+  - `[Modules]`: For improvements to the CARML library.
+  - `[Utilities]`: For improvements to the tools in the utilities.
+  - `[Fixes]`: For bug fixes when not specifically related to any of the above categories.
+- Provide a meaningful description.
+- Follow instructions you find in the PR template.
+- If applicable (i.e., a module is created/updated), please reference the badge status of your pipeline run. This badge will show the reviewer that the code changes were successfully validated & tested in your environment. To create a badge, first select the three dots (`...`) at the top right of the pipeline, and then chose the `Create status badge` option.
+
+    <img src="../../../img/contribution/badgeDropdown.png" alt="Badge dropdown" height="200">
+
+  In the opening pop-up, you first need to select your branch and then click on the `Copy status badge Markdown`
+
+    <img src="../../../img/contribution/pipelineBadge.png" alt="Status Badge" height="400">
+
 
 <!--
 ## Publishing to the Registry
