@@ -125,7 +125,7 @@ To do so, perform the following steps:
 
     <img src="../../../img/bicep-ci/actionsEnable.png" alt="Enable Actions" width=100%>
 
-### 3.3 Read/Write Workflow permissions
+### 3.3 Set Read/Write Workflow permissions
 
 To let the workflow engine publish their results into your repository, you have to enable the read / write access for the GitHub actions.
 
