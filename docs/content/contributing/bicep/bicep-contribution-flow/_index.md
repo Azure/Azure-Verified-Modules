@@ -62,7 +62,7 @@ To do so, simply navigate to the [Public Bicep Registry](https://github.com/Azur
 To configure the CI environment you have to perform several steps:
 - [3.1 Set up secrets](#31-set-up-secrets)
 - [3.2 Enable actions](#32-enable-actions)
-- [3.3 Set R/W Workflow permissions](#33-set-rw-workflow-permissions)
+- [3.3 Set Read/Write Workflow permissions](#33-set-readwrite-workflow-permissions)
 
 ### 3.1 Set up secrets
 
@@ -125,7 +125,7 @@ To do so, perform the following steps:
 
     <img src="../../../img/bicep-ci/actionsEnable.png" alt="Enable Actions" width=100%>
 
-### 3.3 Set R/W Workflow permissions
+### 3.3 Read/Write Workflow permissions
 
 To let the workflow engine publish their results into your repository, you have to enable the read / write access for the GitHub actions.
 
