@@ -28,6 +28,7 @@ flowchart TD
   setupAzure --> fork -->  setupCI --> implement --> test --> pr
 {{< /mermaid >}}
 
+<br>
 
 ## 1. Setup your Azure test environment
 
@@ -47,6 +48,8 @@ In this first step, make sure you
   - Subscription ID
   - Parent Management Group ID
 
+<br>
+
 ## 2. Fork the module source repository
 
 Bicep AVM Modules (both Resource and Pattern modules) will be homed in the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and live within an `avm` directory that will be located at the root of the repository, as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
@@ -55,10 +58,11 @@ Module owners are expected to fork the [`Azure/bicep-registry-modules`](https://
 
 To do so, simply navigate to the [Public Bicep Registry](https://github.com/Azure/bicep-registry-modules) repository, select the `'Fork'` button to the top right of the UI, select where the fork should be created (i.e., the owning organization) and finally click 'Create fork'.
 
+<br>
 
 ## 3. Configure the CI environment
 
-To configure the CI environment you have to perform several steps:
+To configure the CI environment in your fork you have to perform several steps:
 - [3.1 Set up secrets](#31-set-up-secrets)
 - [3.2 Enable actions](#32-enable-actions)
 - [3.3 Set Read/Write Workflow permissions](#33-set-readwrite-workflow-permissions)
@@ -161,6 +165,8 @@ After any change to a module and before running tests, we highly recommend runni
 
 {{< /hint >}}
 
+<br>
+
 ## 5. Create/Update and run tests
 
 Before opening a Pull Request to the Bicep Public Registry, ensure your module is ready for publishing, by validating that it meets all the Testing Specifications as per [SNFR1](/Azure-Verified-Modules/specs/shared/#id-snfr1---category-testing---prescribed-tests), [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing), [SNFR3](/Azure-Verified-Modules/specs/shared/#id-snfr3---category-testing---avm-unit-tests), [SNFR4](/Azure-Verified-Modules/specs/shared/#id-snfr4---category-testing---additional-unit-tests), [SNFR5](/Azure-Verified-Modules/specs/shared/#id-snfr5---category-testing---upgrade-tests), [SNFR6](/Azure-Verified-Modules/specs/shared/#id-snfr6---category-testing---static-analysislinting-tests), [SNFR7](/Azure-Verified-Modules/specs/shared/#id-snfr7---category-testing---idempotency-tests).
@@ -219,6 +225,7 @@ Dependency file (`dependencies.bicep`) guidelines:
 
   {{< /hint >}}
 
+<br>
 
 ### Reusable assets
 
