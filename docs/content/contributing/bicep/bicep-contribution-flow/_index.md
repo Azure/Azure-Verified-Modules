@@ -13,9 +13,9 @@ To implement your contribution, you can use the following flow. Note that some s
 
 {{< mermaid class="text-center" >}}
 flowchart TD
+
   startOwner["Start: Module Owner"]
   startNonOwner["Start: General Contributor"]
-
   setupAzure["Setup your Azure test environment"]
   fork["Fork the module source repository"]
   setupCI["Configure the CI environment"]
@@ -25,6 +25,7 @@ flowchart TD
 
   startOwner --> setupAzure
   startNonOwner --> setupAzure
+
   setupAzure --> fork -->  setupCI --> implement --> test --> pr
 {{< /mermaid >}}
 
@@ -62,7 +63,7 @@ To do so, simply navigate to the [Public Bicep Registry](https://github.com/Azur
 
 ## 3. Configure the CI environment
 
-To configure the CI environment in your fork you have to perform several steps:
+To configure the forked CI environment you have to perform several steps:
 - [3.1 Set up secrets](#31-set-up-secrets)
 - [3.2 Enable actions](#32-enable-actions)
 - [3.3 Set Read/Write Workflow permissions](#33-set-readwrite-workflow-permissions)
