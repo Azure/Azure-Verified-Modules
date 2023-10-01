@@ -149,8 +149,13 @@ To let the workflow engine publish their results into your repository, you have 
 
 To implement your contribution, we kindly ask you to first review the [Module Specifications](/Azure-Verified-Modules/specs/) in general, and the [shared](/Azure-Verified-Modules/specs/shared/), [Bicep-specific](/Azure-Verified-Modules/specs/bicep/) specifications and [composition guidelines](/Azure-Verified-Modules/contributing/bicep/composition/) in particular to make sure your contribution complies with the repository's design and principles.
 
-TODO: Reference that a contributor may need to create the workflow?
+If you're working on a new module, we'd also ask you to create its corresponding workflow file. Each module has its own file, but only differs in very few details, such as its triggers and pipeline variables. As a result, you can either copy & update any other module workflow file (starting with `'avm.[res|ptn].'`) or leverage the following template: 
 
+{{< expand "➕ Module workflow template" "expand/collapse" >}}
+
+{{< include file="/static/includes/avm.[res-res].template.pattern.yml" language="yaml" options="linenos=false" >}}
+
+{{< /expand >}}
 {{< hint type=tip >}}
 
 After any change to a module and before running tests, we highly recommend running the [Set-AVMModule](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files) utility to update all module files that are auto-generated (e.g., the `main.json` & `readme.md` files).
