@@ -190,8 +190,8 @@ To get started implementing your test in the `main.test.bicep` file, we recommen
     - For the substring, we recommend to take the first character and subsequent 'first' character from the resource type identifier and combine them into one string. Following you can find a few examples for reference:
       - `db-for-postgre-sql/flexible-server` with a test folder `default` could be: `dfpsfsdef`
       - `storage/storage-account` with a test folder `waf-aligned` could be: `ssawaf`
-      
-      If the combination of the `servicesShort` with the rest of a resource name becomes too long, it may be necessary to bend the above recommendations and shorten the name. 
+
+      💡 If the combination of the `servicesShort` with the rest of a resource name becomes too long, it may be necessary to bend the above recommendations and shorten the name. 
       This can especially happen when deploying resources such as Virtual Machines or Storage Accounts that only allow comparatively short names.
 
   - If the module deploys a resource-group-level resource, the template should further have a `resourceGroupName` parameter and subsequent resource deployment. As a reference for the default name you can use `dep-<namePrefix><providerNamespace>.<resourceType>-${serviceShort}-rg`.
