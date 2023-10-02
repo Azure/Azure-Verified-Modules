@@ -71,14 +71,14 @@ module <exampleResource>PrivateEndpoint 'br/public:avm-res-network-privateendpoi
     enableTelemetry: privateEndpoint.?enableTelemetry ?? enableTelemetry
     location: privateEndpoint.?location ?? reference(split(privateEndpoint.subnetResourceId, '/subnets/')[0], '2020-06-01', 'Full').location
     lock: privateEndpoint.?lock ?? lock
-    privateDnsZoneGroupName: privateEndpoint.?privateDnsZoneGroupName ?? 'default'
-    privateDnsZoneResourceIds: privateEndpoint.?privateDnsZoneResourceIds ?? []
-    roleAssignments: privateEndpoint.?roleAssignments ?? []
-    tags: privateEndpoint.?tags ?? {}
-    manualPrivateLinkServiceConnections: privateEndpoint.?manualPrivateLinkServiceConnections ?? []
-    customDnsConfigs: privateEndpoint.?customDnsConfigs ?? []
-    ipConfigurations: privateEndpoint.?ipConfigurations ?? []
-    applicationSecurityGroupResourceIds: privateEndpoint.?applicationSecurityGroupResourceIds ?? []
-    customNetworkInterfaceName: privateEndpoint.?customNetworkInterfaceName ?? ''
+    privateDnsZoneGroupName: privateEndpoint.?privateDnsZoneGroupName
+    privateDnsZoneResourceIds: privateEndpoint.?privateDnsZoneResourceIds
+    roleAssignments: privateEndpoint.?roleAssignments
+    tags: privateEndpoint.?tags
+    manualPrivateLinkServiceConnections: privateEndpoint.?manualPrivateLinkServiceConnections
+    customDnsConfigs: privateEndpoint.?customDnsConfigs
+    ipConfigurations: privateEndpoint.?ipConfigurations
+    applicationSecurityGroupResourceIds: privateEndpoint.?applicationSecurityGroupResourceIds
+    customNetworkInterfaceName: privateEndpoint.?customNetworkInterfaceName
   }
 }]
