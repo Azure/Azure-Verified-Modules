@@ -27,7 +27,7 @@ Before you start contributing to the AVM, it is **highly recommended** that you 
 
 ### Terraform
 
-- [Hashicorp Terraform Docs](https://developer.hashicorp.com/terraform/docs)
+- [HashiCorp Terraform Docs](https://developer.hashicorp.com/terraform/docs)
 - [Terraform associate exam prep](https://developer.hashicorp.com/terraform/tutorials/certification-003?product_intent=terraform)
 
 ### Git
@@ -61,7 +61,8 @@ The following tooling/extensions are recommended to assist you developing for th
 
 - [CodeTour extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour)
 - [Go (for writing tests)](https://go.dev/doc/install)
-- [Go extenstion for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=golang.go)
+- [Go extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=golang.go)
+- [tfenv](https://github.com/tfutils/tfenv) - useful when working on multiple modules that use different Terraform versions from the same machine
 - For visibility of Bracket Pairs:
   - Inside Visual Studio Code, add `editor.bracketPairColorization.enabled`: true to your `settings.json`, to enable bracket pair colorization.
 
@@ -125,7 +126,7 @@ Use `snake_casing` as per [TFNFR3](/Azure-Verified-Modules/specs/terraform/#id-t
 
 ## Module Publishing
 
-When the AVM Modules are published to the Hashicorp Registry, they **MUST** follow the below requirements:
+When the AVM Modules are published to the HashiCorp Registry, they **MUST** follow the below requirements:
 
 - Resource Module: `terraform-<provider>-avm-res-<rp>-<armresourcename>` as per [RMNFR1](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming)
 - Pattern Module: `terraform-<provider>-avm-ptn-<patternmodulename>` as per [PMNFR1](/Azure-Verified-Modules/specs/shared/#id-pmnfr1---category-naming---module-naming)
@@ -134,13 +135,14 @@ When the AVM Modules are published to the Hashicorp Registry, they **MUST** foll
 
 1. Ensure your module is ready for publishing:
     1. All tests are passing
-    1. All examples are passing
-    1. All documentation is generated
-    1. There is a release tag in the repo
-1. If you are using Just In Time (JIT) admin access to your repo, visit the internal repos page to elevate your access.
-1. Sign in to the [Hashicorp Registry](https://registry.terraform.io/) using GitHub
-1. Publish a module by selecting the `Publish` button in the top right corner, then `Module`
-1. Select the repo and accept the terms
+    2. All examples are passing
+    3. All documentation is generated
+    4. A pull request approval from a member of the [`@Azure/avm-core-team-technical`](https://github.com/orgs/Azure/teams/avm-core-team-technical/members)
+    5. There is a release tag in the repo
+2. If you are using Just In Time (JIT) admin access to your repo, visit the internal repos page to elevate your access.
+3. Sign in to the [HashiCorp Registry](https://registry.terraform.io/) using GitHub
+4. Publish a module by selecting the `Publish` button in the top right corner, then `Module`
+5. Select the repo and accept the terms
 
 <br>
 

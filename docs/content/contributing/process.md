@@ -27,7 +27,7 @@ flowchart TD
     C -->E[[<a href='/Azure-Verified-Modules/indexes/'>Module index</a> CSV files <br> updated by AVM Core Team]]
     E -->E1[[Repo/Directory Created <br> Following <a href='/Azure-Verified-Modules/contributing/'>Contribution Guide</a>]]
     E1 -->F("Module Developed by <br> Owner(s) & their Contributors")
-    F -->G[[Module & AVM Compliance Tests]]
+    F -->G[[Module & <a href='https://aka.ms/avm/snfr3'>AVM Compliance Tests</a>]]
     G -->|Tests Fail|I(Modules/Tests Fixed <br> To Make Them Pass)
     I -->F
     G -->|Tests Pass|J[[Pre-Release v0.1.0 created]]

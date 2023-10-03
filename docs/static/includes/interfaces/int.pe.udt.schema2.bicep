@@ -40,10 +40,10 @@ type privateEndpointType = {
   customNetworkInterfaceName: string?
 
   @description('Optional. Specify the type of lock.')
-  lock: lockType?
+  lock: lockType
 
   @description('Optional. Array of role assignment objects that contain the \'roleDefinitionIdOrName\' and \'principalId\' to define RBAC role assignments on this resource. In the roleDefinitionIdOrName attribute, you can provide either the display name of the role definition, or its fully qualified ID in the following format: \'/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11\'.')
-  roleAssignments: roleAssignmentType?
+  roleAssignments: roleAssignmentType
 
   @description('Optional. Tags to be applied on all resources/resource groups in this deployment.')
   tags: object?
@@ -65,20 +65,20 @@ module <exampleResource>PrivateEndpoint 'br/public:avm-res-network-privateendpoi
     groupIds: [
       privateEndpoint.service
     ]
-    name: privateEndpoint.?name ?? 'pe-${last(split(<exampleResource>.id, '/'))}-${privateEndpoint.?service ?? '<defaultServiceName>'}-${index}'
+    name: privateEndpoint.?name ?? 'pep-${last(split(<exampleResource>.id, '/'))}-${privateEndpoint.?service ?? '<defaultServiceName>'}-${index}'
     serviceResourceId: <exampleResource>.id
     subnetResourceId: privateEndpoint.subnetResourceId
     enableTelemetry: privateEndpoint.?enableTelemetry ?? enableTelemetry
     location: privateEndpoint.?location ?? reference(split(privateEndpoint.subnetResourceId, '/subnets/')[0], '2020-06-01', 'Full').location
     lock: privateEndpoint.?lock ?? lock
-    privateDnsZoneGroupName: privateEndpoint.?privateDnsZoneGroupName ?? 'default'
-    privateDnsZoneResourceIds: privateEndpoint.?privateDnsZoneResourceIds ?? []
-    roleAssignments: privateEndpoint.?roleAssignments ?? []
-    tags: privateEndpoint.?tags ?? {}
-    manualPrivateLinkServiceConnections: privateEndpoint.?manualPrivateLinkServiceConnections ?? []
-    customDnsConfigs: privateEndpoint.?customDnsConfigs ?? []
-    ipConfigurations: privateEndpoint.?ipConfigurations ?? []
-    applicationSecurityGroupResourceIds: privateEndpoint.?applicationSecurityGroupResourceIds ?? []
-    customNetworkInterfaceName: privateEndpoint.?customNetworkInterfaceName ?? ''
+    privateDnsZoneGroupName: privateEndpoint.?privateDnsZoneGroupName
+    privateDnsZoneResourceIds: privateEndpoint.?privateDnsZoneResourceIds
+    roleAssignments: privateEndpoint.?roleAssignments
+    tags: privateEndpoint.?tags ?? tags
+    manualPrivateLinkServiceConnections: privateEndpoint.?manualPrivateLinkServiceConnections
+    customDnsConfigs: privateEndpoint.?customDnsConfigs
+    ipConfigurations: privateEndpoint.?ipConfigurations
+    applicationSecurityGroupResourceIds: privateEndpoint.?applicationSecurityGroupResourceIds
+    customNetworkInterfaceName: privateEndpoint.?customNetworkInterfaceName
   }
 }]
