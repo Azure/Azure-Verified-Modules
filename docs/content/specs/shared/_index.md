@@ -867,8 +867,10 @@ A Pattern Module **SHOULD** be built from the required AVM Resources Modules. If
 
 A Pattern Module **MAY** be exempt of this requirement if using Resource Modules would result in hitting scaling limitations and/or would reduce the capabilities of the Pattern Module due to the limitations of Azure Resource Manager. In this scenario, a Pattern Module **MAY** use "vanilla" code for those resources where it's necessary.
 
-{{< hint type=note >}}
+{{< hint type=note >}}``
 The intent behind this being a "**SHOULD**" level requirement (and not a **MUST**) is to cater for those scenarios where most Resource Modules required to develop a given Pattern Module are available, but not all. In this case, the AVM team wants to unblock the owner of the new Pattern Module by allowing them to leverage this approach as a workaround, until the required Resource Module becomes available. Ideally, all required Resource Modules **SHOULD** be developed first, and then leveraged by the Pattern Module.
+
+Not adhering to this guidance would result in accumulating technical debt, as the Pattern Module would need to be retrospectively updated to use the Resource Module once it becomes available.
 {{< /hint >}}
 
 <br>
