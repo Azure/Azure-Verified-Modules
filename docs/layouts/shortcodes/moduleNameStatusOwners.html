@@ -5,14 +5,57 @@
 {{ $useLinks := .Get "useLinks" | default true }}
 {{ $language := .Get "language" }}
 {{ $moduleType := .Get "moduleType" }}
-{{ $columnOffset := 0 }}
+{{ $ProviderNamespace := 0 }}
+{{ $ResourceType := 0 }}
+{{ $ModuleDisplayName := 0 }}
+{{ $ModuleName := 0 }}
+{{ $ModuleStatus := 0 }}
+{{ $RepoURL := 0 }}
+{{ $PublicRegistryReference := 0 }}
+{{ $TelemetryIdPrefix := 0 }}
+{{ $PrimaryModuleOwnerGHHandle := 0 }}
+{{ $PrimaryModuleOwnerDisplayName := 0 }}
+{{ $SecondaryModuleOwnerGHHandle := 0 }}
+{{ $SecondaryModuleOwnerDisplayName := 0 }}
+{{ $ModuleOwnersGHTeam := 0 }}
+{{ $ModuleContributorsGHTeam := 0 }}
+{{ $Description := 0 }}
+{{ $Comments := 0 }}
 
 {{ if eq $moduleType "resource" }}
-{{ $columnOffset = 0 }}
+  {{ $ProviderNamespace = 0 }}
+  {{ $ResourceType = 1 }}
+  {{ $ModuleDisplayName = 2 }}
+  {{ $ModuleName = 3 }}
+  {{ $ModuleStatus = 4 }}
+  {{ $RepoURL = 5 }}
+  {{ $PublicRegistryReference = 6 }}
+  {{ $TelemetryIdPrefix = 7 }}
+  {{ $PrimaryModuleOwnerGHHandle = 8 }}
+  {{ $PrimaryModuleOwnerDisplayName = 9 }}
+  {{ $SecondaryModuleOwnerGHHandle = 10 }}
+  {{ $SecondaryModuleOwnerDisplayName = 11 }}
+  {{ $ModuleOwnersGHTeam = 12 }}
+  {{ $ModuleContributorsGHTeam = 13 }}
+  {{ $Description = 14 }}
+  {{ $Comments = 15 }}
 {{ else if eq $moduleType "pattern" }}
-{{ $columnOffset = 2 }}
+  {{ $ModuleDisplayName = 0 }}
+  {{ $ModuleName = 1 }}
+  {{ $ModuleStatus = 2 }}
+  {{ $RepoURL = 3 }}
+  {{ $PublicRegistryReference = 4 }}
+  {{ $TelemetryIdPrefix = 5 }}
+  {{ $PrimaryModuleOwnerGHHandle = 6 }}
+  {{ $PrimaryModuleOwnerDisplayName = 7 }}
+  {{ $SecondaryModuleOwnerGHHandle = 8 }}
+  {{ $SecondaryModuleOwnerDisplayName = 9 }}
+  {{ $ModuleOwnersGHTeam = 10 }}
+  {{ $ModuleContributorsGHTeam = 11 }}
+  {{ $Description = 12 }}
+  {{ $Comments = 13 }}
 {{ else }}
-{{ errorf "The %q shortcode requires a moduleType parameter to bet set to either 'resource' or 'pattern'. See %s" .Name .Position }}
+  {{ errorf "The %q shortcode requires a moduleType parameter to bet set to either 'resource' or 'pattern'. See %s" .Name .Position }}
 {{ end }}
 
 {{ if eq $language "Bicep" }}
@@ -31,10 +74,10 @@
   {{ end }}
   {{ range $row, $rows }}
   <tr>
-    <td>{{ if $useLinks }} {{ if or (eq (index $row (sub 4 $columnOffset)) "Module Available :green_circle:") (eq (index $row (sub 4 $columnOffset)) "Module Orphaned :eyes:") }} <a href="{{ index $row (sub 5 $columnOffset) }}">{{ index $row (sub 3 $columnOffset) }}</a> {{ else }} {{ index $row (sub 3 $columnOffset) }} {{ end }} {{else}} {{ index $row (sub 3 $columnOffset) }} {{ end }} </td>
-    <td>{{ index $row (sub 2 $columnOffset) }}</td>
-    <td>{{ emojify (index $row (sub 4 $columnOffset)) }}</td>
-    <td>{{ index $row (sub 8 $columnOffset) }} {{ if and (ne (index $row (sub 8 $columnOffset)) "") (ne (index $row (sub 9 $columnOffset)) "") }} ({{ index $row (sub 9 $columnOffset) }}){{ end }}</td>
+    <td>{{ if $useLinks }} {{ if or (eq (index $row $ModuleStatus) "Module Available :green_circle:") (eq (index $row $ModuleStatus) "Module Orphaned :eyes:") }} <a href="{{ index $row $RepoURL }}">{{ index $row $ModuleName }}</a> {{ else }} {{ index $row $ModuleName }} {{ end }} {{else}} {{ index $row $ModuleName }} {{ end }} </td>
+    <td>{{ index $row $ModuleDisplayName }}</td>
+    <td>{{ emojify (index $row $ModuleStatus) }}</td>
+    <td>{{ index $row $PrimaryModuleOwnerGHHandle }} {{ if and (ne (index $row $PrimaryModuleOwnerGHHandle) "") (ne (index $row $PrimaryModuleOwnerDisplayName) "") }} ({{ index $row $PrimaryModuleOwnerDisplayName }}){{ end }}</td>
   </tr>
   {{ end }}
 </table>
@@ -54,15 +97,17 @@
   </thead>
   {{ end }}
   {{ range $row, $rows }}
+  {{ if or (eq (index $row $ModuleStatus) "Module Available :green_circle:") (eq (index $row $ModuleStatus) "Module Orphaned :eyes:") }}
   <tr>
-    <td>{{ if $useLinks }} {{ if or (eq (index $row (sub 4 $columnOffset)) "Module Available :green_circle:") (eq (index $row (sub 4 $columnOffset)) "Module Orphaned :eyes:") }} <a href="{{ index $row (sub 6 $columnOffset) }}">{{ index $row (sub 3 $columnOffset) }}</a> {{ else }} {{ index $row (sub 3 $columnOffset) }} {{ end }} {{else}} {{ index $row (sub 3 $columnOffset) }} {{ end }} </td>
-    <td>{{ if $useLinks }} {{ if or (eq (index $row (sub 4 $columnOffset)) "Module Available :green_circle:") (eq (index $row (sub 4 $columnOffset)) "Module Orphaned :eyes:") }} <a href="{{ index $row (sub 5 $columnOffset) }}">📄</a> {{ else }} {{ "n/a" }} {{ end }} {{else}} {{ "n/a" }} {{ end }} </td>
-    <td>{{ index $row (sub 2 $columnOffset) }}</td>
-    <td>{{ emojify (index $row (sub 4 $columnOffset)) }}</td>
-    <td>{{ index $row (sub 8 $columnOffset) }} {{ if and (ne (index $row (sub 8 $columnOffset)) "") (ne (index $row (sub 9 $columnOffset)) "") }} ({{ index $row (sub 9 $columnOffset) }}){{ end }}</td>
+    <td>{{ if $useLinks }} {{ if or (eq (index $row $ModuleStatus) "Module Available :green_circle:") (eq (index $row $ModuleStatus) "Module Orphaned :eyes:") }} <a href="{{ index $row $PublicRegistryReference }}">{{ index $row $ModuleName }}</a> {{ else }} {{ index $row $ModuleName }} {{ end }} {{else}} {{ index $row $ModuleName }} {{ end }} </td>
+    <td>{{ if $useLinks }} {{ if or (eq (index $row $ModuleStatus) "Module Available :green_circle:") (eq (index $row $ModuleStatus) "Module Orphaned :eyes:") }} <a href="{{ index $row $RepoURL }}">📄</a> {{ else }} {{ "n/a" }} {{ end }} {{else}} {{ "n/a" }} {{ end }} </td>
+    <td>{{ index $row $ModuleDisplayName }}</td>
+    <td>{{ emojify (index $row $ModuleStatus) }}</td>
+    <td>{{ index $row $PrimaryModuleOwnerGHHandle }} {{ if and (ne (index $row $PrimaryModuleOwnerGHHandle) "") (ne (index $row $PrimaryModuleOwnerDisplayName) "") }} ({{ index $row $PrimaryModuleOwnerDisplayName }}){{ end }}</td>
   </tr>
+  {{ end }}
   {{ end }}
 </table>
 {{ else }}
-{{ errorf "The %q shortcode requires a language parameter to be set either 'Bicep' or 'Terraform'. See %s" .Name .Position }}
+  {{ errorf "The %q shortcode requires a language parameter to be set either 'Bicep' or 'Terraform'. See %s" .Name .Position }}
 {{ end }}
