@@ -31,7 +31,11 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 ### Available modules
 
+{{< expand "âž• Available Modules - Module names, status and owners" "expand/collapse" "open" >}}
+
 {{< moduleNameStatusOwners header=true csv="/static/module-indexes/BicepPatternModules.csv" language="Bicep" moduleType="pattern" exclude="New Module :new:,Migrate From CARML :rocket:" >}}
+
+{{< /expand >}}
 
 <br>
 

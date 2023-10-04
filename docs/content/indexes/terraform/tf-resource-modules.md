@@ -33,7 +33,11 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 ### Available modules
 
+{{< expand "âž• Available Modules - Module names, status and owners" "expand/collapse" "open" >}}
+
 {{< moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformResourceModules.csv" language="Terraform" moduleType="resource" exclude="New Module :new:,Migrate From TFVM :rocket:" >}}
+
+{{< /expand >}}
 
 <br>
 
