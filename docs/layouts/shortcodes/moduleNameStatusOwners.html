@@ -80,7 +80,7 @@
     <td>{{ if $useLinks }} {{ if or (eq (index $row $ModuleStatus) "Module Available :green_circle:") (eq (index $row $ModuleStatus) "Module Orphaned :eyes:") }} <a href="{{ index $row $RepoURL }}">{{ index $row $ModuleName }}</a> {{ else }} {{ index $row $ModuleName }} {{ end }} {{else}} {{ index $row $ModuleName }} {{ end }} </td>
     <td>{{ index $row $ModuleDisplayName }}</td>
     <td>{{ emojify (index $row $ModuleStatus) }}</td>
-    <td>{{ index $row $PrimaryModuleOwnerGHHandle }} {{ if and (ne (index $row $PrimaryModuleOwnerGHHandle) "") (ne (index $row $PrimaryModuleOwnerDisplayName) "") }} <br> ({{ index $row $PrimaryModuleOwnerDisplayName }}){{ end }}</td>
+    {{ if ne (index $row $PrimaryModuleOwnerGHHandle) ""}}<td><a href="https://github.com/{{ index $row $PrimaryModuleOwnerGHHandle }}">{{ index $row $PrimaryModuleOwnerGHHandle }}</a> {{ if and (ne (index $row $PrimaryModuleOwnerGHHandle) "") (ne (index $row $PrimaryModuleOwnerDisplayName) "") }} <br> ({{ index $row $PrimaryModuleOwnerDisplayName }}){{ end }}</td>{{ end}}
   </tr>
   {{ $hasModulesAvailable = true }}
   {{ end }}
@@ -116,7 +116,7 @@
     <td>{{ if $useLinks }} {{ if or (eq (index $row $ModuleStatus) "Module Available :green_circle:") (eq (index $row $ModuleStatus) "Module Orphaned :eyes:") }} <a href="{{ index $row $RepoURL }}">📄</a> {{ else }} {{ "n/a" }} {{ end }} {{else}} {{ "n/a" }} {{ end }} </td>
     <td>{{ index $row $ModuleDisplayName }}</td>
     <td>{{ emojify (index $row $ModuleStatus) }}</td>
-    <td>{{ index $row $PrimaryModuleOwnerGHHandle }} {{ if and (ne (index $row $PrimaryModuleOwnerGHHandle) "") (ne (index $row $PrimaryModuleOwnerDisplayName) "") }} <br> ({{ index $row $PrimaryModuleOwnerDisplayName }}){{ end }}</td>
+    {{ if ne (index $row $PrimaryModuleOwnerGHHandle) ""}}<td><a href="https://github.com/{{ index $row $PrimaryModuleOwnerGHHandle }}">{{ index $row $PrimaryModuleOwnerGHHandle }}</a> {{ if and (ne (index $row $PrimaryModuleOwnerGHHandle) "") (ne (index $row $PrimaryModuleOwnerDisplayName) "") }} <br> ({{ index $row $PrimaryModuleOwnerDisplayName }}){{ end }}</td>{{ end}}
   </tr>
   {{ $hasModulesAvailable = true }}
   {{ end }}
