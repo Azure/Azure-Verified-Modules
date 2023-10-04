@@ -35,7 +35,25 @@ Modules listed below that aren't shown with the status of **`Module Available �
 
 ## Module names, status and owners
 
-{{< expand "➕ Module names, status and owners" "expand/collapse" >}}
+### Available modules
+
+{{< moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformPatternModules.csv" language="Terraform" moduleType="pattern" exclude="New Module :new:,Migrate From TFVM :rocket:" >}}
+
+<br>
+
+### Planned modules
+
+{{< expand "➕ Planned Modules - Module names, status and owners" "expand/collapse" >}}
+
+{{< moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformPatternModules.csv" language="Terraform" moduleType="pattern" exclude="Module Available :green_circle:,Module Orphaned :eyes:" >}}
+
+{{< /expand >}}
+
+<br>
+
+### All modules
+
+{{< expand "➕ All Modules - Module names, status and owners" "expand/collapse" >}}
 
 {{< moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformPatternModules.csv" language="Terraform" moduleType="pattern" >}}
 
@@ -44,6 +62,12 @@ Modules listed below that aren't shown with the status of **`Module Available �
 <br>
 
 ## Module name, Telemetry ID prefix, GitHub Teams for Owners & Contributors
+
+{{< hint type=note >}}
+
+This section is mainly intended for module owners and contributors as it contains information important for module development, such as telemetry ID prefix, and GitHub Teams for Owners & Contributors.
+
+{{< /hint >}}
 
 {{< expand "➕ Module name, Telemetry ID prefix, GitHub Teams for Owners & Contributors" "expand/collapse" >}}
 
