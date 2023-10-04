@@ -5,6 +5,7 @@
 {{ $useLinks := .Get "useLinks" | default true }}
 {{ $language := .Get "language" }}
 {{ $moduleType := .Get "moduleType" }}
+{{ $exclude := .Get "exclude" }}
 {{ $ProviderNamespace := 0 }}
 {{ $ResourceType := 0 }}
 {{ $ModuleDisplayName := 0 }}
@@ -21,6 +22,7 @@
 {{ $ModuleContributorsGHTeam := 0 }}
 {{ $Description := 0 }}
 {{ $Comments := 0 }}
+{{ $hasModulesAvailable := false }}
 
 {{ if eq $moduleType "resource" }}
   {{ $ProviderNamespace = 0 }}
@@ -68,16 +70,27 @@
       <th>Module Name</th>
       <th>Module Display Name</th>
       <th>Module Status</th>
-      <th>Primary Module Owner GitHub Handle (and Display Name)</th>
+      <th>Primary Module Owner<br>GitHub Handle<br>(& Display Name)</th>
     </tr>
   </thead>
   {{ end }}
   {{ range $row, $rows }}
+  {{ if not ( in $exclude (index $row $ModuleStatus) ) }}
   <tr>
     <td>{{ if $useLinks }} {{ if or (eq (index $row $ModuleStatus) "Module Available :green_circle:") (eq (index $row $ModuleStatus) "Module Orphaned :eyes:") }} <a href="{{ index $row $RepoURL }}">{{ index $row $ModuleName }}</a> {{ else }} {{ index $row $ModuleName }} {{ end }} {{else}} {{ index $row $ModuleName }} {{ end }} </td>
     <td>{{ index $row $ModuleDisplayName }}</td>
     <td>{{ emojify (index $row $ModuleStatus) }}</td>
-    <td>{{ index $row $PrimaryModuleOwnerGHHandle }} {{ if and (ne (index $row $PrimaryModuleOwnerGHHandle) "") (ne (index $row $PrimaryModuleOwnerDisplayName) "") }} ({{ index $row $PrimaryModuleOwnerDisplayName }}){{ end }}</td>
+    <td>{{ index $row $PrimaryModuleOwnerGHHandle }} {{ if and (ne (index $row $PrimaryModuleOwnerGHHandle) "") (ne (index $row $PrimaryModuleOwnerDisplayName) "") }} <br> ({{ index $row $PrimaryModuleOwnerDisplayName }}){{ end }}</td>
+  </tr>
+  {{ $hasModulesAvailable = true }}
+  {{ end }}
+  {{ end }}
+  {{ if not $hasModulesAvailable }}
+  <tr>
+    <td>❌ No modules here yet.</td>
+    <td>❌ No modules here yet.</td>
+    <td>❌ No modules here yet.</td>
+    <td>❌ No modules here yet.</td>
   </tr>
   {{ end }}
 </table>
@@ -92,20 +105,30 @@
       <th>Source Code</th>
       <th>Module Display Name</th>
       <th>Module Status</th>
-      <th>Primary Module Owner GitHub Handle (and Display Name)</th>
+      <th>Primary Module Owner<br>GitHub Handle<br>(& Display Name)</th>
     </tr>
   </thead>
   {{ end }}
   {{ range $row, $rows }}
-  {{ if or (eq (index $row $ModuleStatus) "Module Available :green_circle:") (eq (index $row $ModuleStatus) "Module Orphaned :eyes:") }}
+  {{ if not ( in $exclude (index $row $ModuleStatus) ) }}
   <tr>
     <td>{{ if $useLinks }} {{ if or (eq (index $row $ModuleStatus) "Module Available :green_circle:") (eq (index $row $ModuleStatus) "Module Orphaned :eyes:") }} <a href="{{ index $row $PublicRegistryReference }}">{{ index $row $ModuleName }}</a> {{ else }} {{ index $row $ModuleName }} {{ end }} {{else}} {{ index $row $ModuleName }} {{ end }} </td>
     <td>{{ if $useLinks }} {{ if or (eq (index $row $ModuleStatus) "Module Available :green_circle:") (eq (index $row $ModuleStatus) "Module Orphaned :eyes:") }} <a href="{{ index $row $RepoURL }}">📄</a> {{ else }} {{ "n/a" }} {{ end }} {{else}} {{ "n/a" }} {{ end }} </td>
     <td>{{ index $row $ModuleDisplayName }}</td>
     <td>{{ emojify (index $row $ModuleStatus) }}</td>
-    <td>{{ index $row $PrimaryModuleOwnerGHHandle }} {{ if and (ne (index $row $PrimaryModuleOwnerGHHandle) "") (ne (index $row $PrimaryModuleOwnerDisplayName) "") }} ({{ index $row $PrimaryModuleOwnerDisplayName }}){{ end }}</td>
+    <td>{{ index $row $PrimaryModuleOwnerGHHandle }} {{ if and (ne (index $row $PrimaryModuleOwnerGHHandle) "") (ne (index $row $PrimaryModuleOwnerDisplayName) "") }} <br> ({{ index $row $PrimaryModuleOwnerDisplayName }}){{ end }}</td>
   </tr>
+  {{ $hasModulesAvailable = true }}
   {{ end }}
+  {{ end }}
+  {{ if not $hasModulesAvailable }}
+  <tr>
+    <td>❌ No modules here yet.</td>
+    <td>❌ No modules here yet.</td>
+    <td>❌ No modules here yet.</td>
+    <td>❌ No modules here yet.</td>
+    <td>❌ No modules here yet.</td>
+  </tr>
   {{ end }}
 </table>
 {{ else }}
