@@ -14,6 +14,9 @@
     },
     {
       "pattern": "/Azure-Verified-Modules/"
+    },
+    {
+      "pattern": "^https://drone.thegeeklab.de"
     }
   ],
   "httpHeaders": [
