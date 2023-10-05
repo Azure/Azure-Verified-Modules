@@ -52,29 +52,31 @@ During the AVM Core Team Triage step, the following will be checked, completed a
 An issue is considered to be a module proposal if it was opened through the [module proposal template](https://aka.ms/avm/moduleproposal), and has the labels "Needs: Triage 🔍" and "Type: New Module Proposal 💡" applied to them.
 
 1. Add label of "Status: In Triage 🔍" to indicate you're in the process of triaging the issue.
-1. Check module proposal issue/form
+2. Check module proposal issue/form:
    - Check the [Bicep](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/) or [Terraform](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/) module indexes for the proposed module to make sure it is not already available or being worked on.
    - Make sure the module's details are correct as per specifications - [naming](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming), [classification](/Azure-Verified-Modules/specs/shared/module-classifications/) (resource/pattern) etc.
    - Check if the requestor is a Microsoft FTE
-   - If there's any additional clarification needed, contact the requestor through comments (using their GH handle) or internal channels - for Microsoft FTEs only - (looking them up by their name). Either way, make sure you capture any decisions regarding the module in the comments section.
+   - If there's any additional clarification needed, contact the requestor through comments (using their GH handle) or internal channels - for Microsoft FTEs only! - (looking them up by their name). Either way, make sure you capture any decisions regarding the module in the comments section.
    - Make adjustments to the module's name/classification as needed.
-2. Apply relevant additional labels
-    - Language: "" or ""
-    - Module type (resource/pattern): "" or ""
+3. Apply relevant additional labels
+    - Module language: "Language: Bicep 💪" or "Language: Terraform 🌐"
+    - Module classification (resource/pattern): "Class: Resource Module 📦" or "Class: Pattern Module 📦"
 
-##### Requestor doesn't want to / can't be module owner
+##### Scenario 1: Requestor doesn't want to / can't be module owner
 
-- If the requester didn't indicate they want to / can't become a module owner, assign the label of "Status: Looking for owners"
-- If requestor is interested in becoming a module owner, but is not a Microsoft FTE, the AVM core team will try to find a Microsoft FTE to be the module owner whom the requester can collaborate with.
+{{< hint type=note >}}
+If requestor is interested in becoming a module owner, but is not a Microsoft FTE, the AVM core team will try to find a Microsoft FTE to be the module owner whom the requester can collaborate with.
+{{< /hint >}}
 
-1. Move the issue to the "Looking for owners" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) project board.
+1. If the requester didn't indicate they want to / can't become a module owner, assign the label of "Status: Looking for owners"
+2. Move the issue to the "Looking for owners" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub project board.
 2. Find module owners - if not proposed in module proposal OR original person/s proposed to be module owners, do not wan't or cannot be owners of the module:
    - Move the issue into "Looking for owners" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project
    - Add the "Needs: Module Owner 📣" label to the issue
    - Try to find owner from AVM communities or await a module owner to comment and propose themselves on the proposal issue
      - When a new owner is potentially identified, continue with the steps described [below](#requestor-wants-to-become-module-owner)
 
-##### Requestor wants to become module owner
+##### Scenario 2: Requestor wants to become module owner
 
 If the requestor indicated they want to become an owner, don't assign the "Status: Owners Identified" label yet as first you need to confirm that they understand the implications of becoming the owner.
 
@@ -82,6 +84,7 @@ If the requestor indicated they want to become an owner, don't assign the "Statu
    - Clarify they understand and accept what "module ownership" means by replying in a comment to the requestor/proposed owner:
 
 {{< expand "➕ Standard AVM Core Team Reply to Proposed Module Owners" "expand/collapse" >}}
+
 ```text
 Hi @{requestor/proposed owner's GitHub alias},
 
@@ -103,6 +106,7 @@ Thanks
 
 The AVM Core Team
 ```
+
 {{< /expand >}}
 
 9. Once module owner identified and has confirmed they understand and accept their roles and responsibilities as an AVM module owner
@@ -114,6 +118,7 @@ The AVM Core Team
 11. Use the following text for approving module development
 
 {{< expand "➕ Final Confirmation for Proposed Module Owners" "expand/collapse" >}}
+
 ```text
 Hi @{requestor/proposed owner's GitHub alias},
 
@@ -136,7 +141,9 @@ Thanks
 
 The AVM Core Team
 ```
+
 {{< /expand >}}
+
 12. Move the issue to the "In development" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) project board.
 16. Remove the label of "Status: In Triage 🔍" to indicate you're done with triaging the issue.
 
