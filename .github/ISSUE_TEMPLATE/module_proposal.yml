@@ -22,7 +22,7 @@ body:
     id: existing-module-from-elsewhere
     attributes:
       label: Check this module doesn't already exist in another project that is being evolved into AVM
-      description: By submitting this issue, you confirm that you have checked [CARML (for Bicep)](https://aka.ms/carml) or [Terraform Verified Modules - TFVM (for Terraform)](https://github.com/Azure/terraform-azure-modules) for the module you are proposing to ensure it is not already in these projects and therefore will be evolved into AVM.
+      description: By submitting this issue, you confirm that you have checked the [Bicep](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/) or [Terraform](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/) module indexes for the module you are proposing to ensure it is not already available or being worked on.
       options:
         - label: I have checked for that this module doesn't already exist in CARML or TFVM
           required: true
