@@ -7,7 +7,7 @@ geekdocAnchor: true
 
 {{< toc >}}
 
-This page will provide an overview of the contribution process for AVM modules.
+This page provides an overview of the contribution process for AVM modules.
 
 ## New Module Proposal & Creation
 
@@ -47,18 +47,41 @@ flowchart TD
 
 During the AVM Core Team Triage step, the following will be checked, completed and actioned by the AVM Core Team during their triage calls (which are currently twice per week):
 
-1. Check module proposal issue/form has been filled out correctly
-   - If not, they will comment back on the issue to the requestor to clarify
+#### Module Proposal triage
+
+An issue is considered to be a module proposal if it was opened through the [module proposal template](https://aka.ms/avm/moduleproposal), and has the labels "Needs: Triage 🔍" and "Type: New Module Proposal 💡" applied to them.
+
+1. Add label of "Status: In Triage 🔍" to indicate you're in the process of triaging the issue.
+1. Check module proposal issue/form
+   - Check the [Bicep](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/) or [Terraform](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/) module indexes for the proposed module to make sure it is not already available or being worked on.
+   - Make sure the module's details are correct as per specifications - [naming](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming), [classification](/Azure-Verified-Modules/specs/shared/module-classifications/) (resource/pattern) etc.
+   - Check if the requestor is a Microsoft FTE
+   - If there's any additional clarification needed, contact the requestor through comments (using their GH handle) or internal channels - for Microsoft FTEs only - (looking them up by their name). Either way, make sure you capture any decisions regarding the module in the comments section.
+   - Make adjustments to the module's name/classification as needed.
 2. Apply relevant additional labels
-3. Check module is correct as per specifications - [naming](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming), [classification](/Azure-Verified-Modules/specs/shared/module-classifications/) (resource/pattern) etc.
-4. Check module isn't to be [migrated from an existing initiative](/Azure-Verified-Modules/faq/#what-is-happening-to-existing-initiatives-like-carml-and-tfvm)
-5. Check module isn't a duplicate in development already
-6. Add the relevant "Language ..." label to the issue
-7. Clarify module owners roles and responsibilities - if proposed in module proposal:
-   - Check they are a Microsoft FTE
+    - Language: "" or ""
+    - Module type (resource/pattern): "" or ""
+
+##### Requestor doesn't want to / can't be module owner
+
+- If the requester didn't indicate they want to / can't become a module owner, assign the label of "Status: Looking for owners"
+- If requestor is interested in becoming a module owner, but is not a Microsoft FTE, the AVM core team will try to find a Microsoft FTE to be the module owner whom the requester can collaborate with.
+
+1. Move the issue to the "Looking for owners" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) project board.
+2. Find module owners - if not proposed in module proposal OR original person/s proposed to be module owners, do not wan't or cannot be owners of the module:
+   - Move the issue into "Looking for owners" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project
+   - Add the "Needs: Module Owner 📣" label to the issue
+   - Try to find owner from AVM communities or await a module owner to comment and propose themselves on the proposal issue
+     - When a new owner is potentially identified, continue with the steps described [below](#requestor-wants-to-become-module-owner)
+
+##### Requestor wants to become module owner
+
+If the requestor indicated they want to become an owner, don't assign the "Status: Owners Identified" label yet as first you need to confirm that they understand the implications of becoming the owner.
+
+1. Clarify module owners roles and responsibilities - if proposed in module proposal:
    - Clarify they understand and accept what "module ownership" means by replying in a comment to the requestor/proposed owner:
 
-{{< expand "Standard AVM Core Team Reply to Proposed Module Owners" "expand/collapse" >}}
+{{< expand "➕ Standard AVM Core Team Reply to Proposed Module Owners" "expand/collapse" >}}
 ```text
 Hi @{requestor/proposed owner's GitHub alias},
 
@@ -82,22 +105,43 @@ The AVM Core Team
 ```
 {{< /expand >}}
 
-8. Find module owners - if not proposed in module proposal OR original person/s proposed to be module owners, do not wan't or cannot be owners of the module:
-   - Move the issue into "Looking for owners" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project
-   - Add the "Needs: Module Owner 📣" label to the issue
-   - Try to find owner from AVM communities or await a module owner to comment and propose themselves on the proposal issue
-     - When a new owner is potentially identified, go back to step 6
 9. Once module owner identified and has confirmed they understand and accept their roles and responsibilities as an AVM module owner
    - Assign the issue to the confirmed module owner
    - Move the issue into "In development" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project
    - Add the "Status: Owners Identified 🤘" label to the issue
      - Remove the "Needs: Module Owner 📣" label from the issue, if applied
-10. Update the AVM Module Indexes CSV files
-11. Use the following values from the module index CSV file(s) explicitly:
-    - `ModuleName`
-    - `TelemetryIdPrefix`
-    - `ModuleOwnersGHTeam` and `ModuleContributorsGHTeam`
-    - Repository name and folder path defined in `RepoURL`
+10. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
+11. Use the following text for approving module development
+
+{{< expand "➕ Final Confirmation for Proposed Module Owners" "expand/collapse" >}}
+```text
+Hi @{requestor/proposed owner's GitHub alias},
+
+Thanks for confirming that you wish to own this AVM module and understand the related requirements and responsibilities.
+
+We just want to confirm and double check a few important things:
+
+- The name of the module will be `<INSERT THE MODULE'S APPROVED NAME HERE>`.
+- Please visit the related [module index](https://azure.github.io/Azure-Verified-Modules/indexes/) page and use the following values explicitly:
+  - `ModuleName`
+  - `TelemetryIdPrefix`
+  - `ModuleOwnersGHTeam` and `ModuleContributorsGHTeam`
+  - Repository name and folder path defined in `RepoURL`
+
+You can now start the development of this module! Happy coding! 🎉
+
+Any further questions or clarifications needed, let us know.
+
+Thanks
+
+The AVM Core Team
+```
+{{< /expand >}}
+12. Move the issue to the "In development" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) project board.
+16. Remove the label of "Status: In Triage 🔍" to indicate you're done with triaging the issue.
+
+## Enabling development
+
 12. Update any Azure RBAC permissions for test tenants/subscription, if required
 13. Bicep Only:
     - Update `Azure/bicep-registry-modules` [CODEOWNERS file](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS)
