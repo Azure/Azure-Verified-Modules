@@ -11,6 +11,7 @@ Status: Do Not Merge :no_entry:,Do not merge PRs with this label attached as the
 Status: External Contribution :earth_africa:,This is being worked on by someone outside of the AVM module owners/contributors or AVM core team,D8FA2C
 Status: Fixed :white_check_mark:,Auto label applied when issue fixed by merged PR,90EE90
 Status: Help Wanted :sos:,Extra attention is needed,FF4500
+Status: In Triage :mag:,Picked up for triaging by an AVM core team member,D4AF37
 Status: In PR :point_right:,This is when an issue is due to be fixed in an open PR,EDEDED
 Status: Invalid :x:,This doesn't seem right,E4E669
 Status: Long Term :hourglass_flowing_sand:,"We will do it, but will take a longer amount of time due to complexity/priorities",B60205
@@ -33,3 +34,5 @@ Type: Security Bug :lock:,This is a security bug,FFFF00
 Type: AVM :a: :v: :m:,This is an AVM related issue,F0FFFF
 Language: Terraform :globe_with_meridians:,This is related to the Terraform IaC language,7740B6
 Language: Bicep :muscle:,This is related to the Bicep IaC language,1D73B3
+Classification: Resource Module :package:,This is a resource module,D3D3D3
+Classification: Pattern Module :package:,This is a pattern module,A9A9A9
