@@ -329,7 +329,7 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-12
 
 #### ID: SNFR3 - Category: Testing - AVM Compliance Tests
 
-Modules **MUST** implement implement AVM compliance tests that ensure compliance to AVM specifications. These tests **MUST** pass before a module version can be published.
+Modules **MUST** pass all tests that ensure compliance to AVM specifications. These tests **MUST** pass before a module version can be published.
 
 {{< hint type=important >}}
 
