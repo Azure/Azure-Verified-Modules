@@ -7,30 +7,6 @@ geekdocAnchor: true
 
 {{< toc >}}
 
-## General flow
-
-To implement your contribution, you can use the following flow. Note that some steps can be ignored if you have done them before (e.g., fork the repository):
-
-{{< mermaid class="text-center" >}}
-flowchart TD
-
-  startOwner["Start: Module Owner"]
-  startNonOwner["Start: General Contributor"]
-  setupAzure["Setup your Azure test environment"]
-  fork["Fork the module source repository"]
-  setupCI["Configure the CI environment"]
-  implement["Implement your contribution"]
-  test["Create/Update & run test suite"]
-  pr["Create pull request to upstream"]
-
-  startOwner --> setupAzure
-  startNonOwner --> setupAzure
-
-  setupAzure --> fork -->  setupCI --> implement --> test --> pr
-{{< /mermaid >}}
-
-<br>
-
 ## 1. Setup your Azure test environment
 
 AVM tests the deployments in an Azure subscription. To do so, it requires a service principal with access to it.
@@ -61,14 +37,14 @@ To do so, simply navigate to the [Public Bicep Registry](https://github.com/Azur
 
 <br>
 
-## 3. Configure the CI environment
+## 3. Configure your CI environment
 
 To configure the forked CI environment you have to perform several steps:
 - [3.1 Set up secrets](#31-set-up-secrets)
 - [3.2 Enable actions](#32-enable-actions)
 - [3.3 Set Read/Write Workflow permissions](#33-set-readwrite-workflow-permissions)
 
-### 3.1 Set up secrets
+### 3.1. Set up secrets
 
 To use the environment's pipelines you should use the information you gathered during the [Azure setup](#1-configure-your-azure-environment) to set up the following repository secrets:
 
@@ -82,8 +58,7 @@ To use the environment's pipelines you should use the information you gathered d
 
 <p>
 
-<details>
-<summary><b>How to:</b> Add a repository secret to GitHub</summary>
+{{< expand "➕ How to: Add a repository secret to GitHub" "expand/collapse" >}}
 
 1. Navigate to the repository's `Settings`.
 
@@ -97,7 +72,7 @@ To use the environment's pipelines you should use the information you gathered d
 
     <img src="../../../img/bicep-ci/forkSettingsSecretAdd.png" alt="Add secret" width=100%>
 
-</details>
+{{< /expand >}}
 
 <p>
 
@@ -123,7 +98,7 @@ Each pipeline in AVM deploying resources uses a logic that automatically replace
 
 {{< /hint >}}
 
-### 3.2 Enable actions
+### 3.2. Enable actions
 
 Finally, 'GitHub Actions' are disabled by default and hence, must be enabled first.
 
@@ -135,7 +110,7 @@ To do so, perform the following steps:
 
     <img src="../../../img/bicep-ci/actionsEnable.png" alt="Enable Actions" width=100%>
 
-### 3.3 Set Read/Write Workflow permissions
+### 3.3. Set Read/Write Workflow permissions
 
 To let the workflow engine publish their results into your repository, you have to enable the read / write access for the GitHub actions.
 
@@ -151,7 +126,7 @@ To let the workflow engine publish their results into your repository, you have 
 
 ## 4. Implement your contribution
 
-To implement your contribution, we kindly ask you to first review the [Module Specifications](/Azure-Verified-Modules/specs/) in general, and the [shared](/Azure-Verified-Modules/specs/shared/), [Bicep-specific](/Azure-Verified-Modules/specs/bicep/) specifications and [composition guidelines](/Azure-Verified-Modules/contributing/bicep/composition/) in particular to make sure your contribution complies with the repository's design and principles.
+To implement your contribution, we kindly ask you to first review the [shared](/Azure-Verified-Modules/specs/shared/) & [Bicep-specific](/Azure-Verified-Modules/specs/bicep/) specifications and [composition guidelines](/Azure-Verified-Modules/contributing/bicep/composition/) in particular to make sure your contribution complies with the repository's design and principles.
 
 If you're working on a new module, we'd also ask you to create its corresponding workflow file. Each module has its own file, but only differs in very few details, such as its triggers and pipeline variables. As a result, you can either copy & update any other module workflow file (starting with `'avm.[res|ptn].'`) or leverage the following template: 
 
@@ -160,6 +135,7 @@ If you're working on a new module, we'd also ask you to create its corresponding
 {{< include file="/static/includes/avm.[res-res].template.pattern.yml" language="yaml" options="linenos=false" >}}
 
 {{< /expand >}}
+
 {{< hint type=tip >}}
 
 After any change to a module and before running tests, we highly recommend running the [Set-AVMModule](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files) utility to update all module files that are auto-generated (e.g., the `main.json` & `readme.md` files).
@@ -248,23 +224,23 @@ To test the numerous diagnostic settings targets (Log Analytics Workspace, Stora
 
 <br>
 
-## 6 Create a Pull Request to the Public Bicep Registry
+## 6. Create a Pull Request to the Public Bicep Registry
 
 Finally, once you are satisfied with your contribution and validated it, open a PR for the module owners or core team to review. Make sure you:
 
-- Provide a meaningful title in the following format: `[<Category>] <PR title>`. For `[<Category>]` use one of the following, depending on which one is the primary improvement your PR intends to make:
-  - `[Modules]`: For improvements to the CARML library.
-  - `[Utilities]`: For improvements to the tools in the utilities.
-  - `[Fixes]`: For bug fixes when not specifically related to any of the above categories.
-- Provide a meaningful description.
-- Follow instructions you find in the PR template.
-- If applicable (i.e., a module is created/updated), please reference the badge status of your pipeline run. This badge will show the reviewer that the code changes were successfully validated & tested in your environment. To create a badge, first select the three dots (`...`) at the top right of the pipeline, and then chose the `Create status badge` option.
+1. Provide a meaningful title in the following format: `[<Category>] <PR title>`. For `[<Category>]` use one of the following, depending on which one is the primary improvement your PR intends to make:
+   - `[Modules]`: For improvements to the CARML library.
+   - `[Utilities]`: For improvements to the tools in the utilities.
+   - `[Fixes]`: For bug fixes when not specifically related to any of the above categories.
+1. Provide a meaningful description.
+1. Follow instructions you find in the PR template.
+1. If applicable (i.e., a module is created/updated), please reference the badge status of your pipeline run. This badge will show the reviewer that the code changes were successfully validated & tested in your environment. To create a badge, first select the three dots (`...`) at the top right of the pipeline, and then chose the `Create status badge` option.
 
-    <img src="../../../img/contribution/badgeDropdown.png" alt="Badge dropdown" height="200">
+   <img src="../../../img/contribution/badgeDropdown.png" alt="Badge dropdown" height="200">
 
-  In the opening pop-up, you first need to select your branch and then click on the `Copy status badge Markdown`
+   In the opening pop-up, you first need to select your branch and then click on the `Copy status badge Markdown`
 
-    <img src="../../../img/contribution/pipelineBadge.png" alt="Status Badge" height="400">
+   <img src="../../../img/contribution/pipelineBadge.png" alt="Status Badge" height="400">
 
 
 <!--
