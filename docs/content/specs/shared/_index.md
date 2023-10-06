@@ -953,7 +953,7 @@ Example: `avm-ptn-apptiervmss`
 
 #### ID: PMNFR2 - Category: Composition - Use Resource Modules to Build a Pattern Module
 
-A Pattern Module **SHOULD** be built from the required AVM Resources Modules. If a Resource Module does not exist for a resource required by the Pattern Module, then the Pattern Module **MAY** use "vanilla" code for this resource, however, the Pattern Module **SHOULD** be updated to use the Resource Module when the required Resource Module becomes available.
+A Pattern Module **SHOULD** be built from AVM Resources Modules to establish a standardized code base & improve maintainability. If a Resource Module does not exist for a resource required by the Pattern Module, then the Pattern Module **MAY** use "vanilla" code for this resource, however, the Pattern Module **SHOULD** be updated to use the Resource Module when the required Resource Module becomes available.
 
 A Pattern Module **MAY** be exempt of this requirement if using Resource Modules would result in hitting scaling limitations and/or would reduce the capabilities of the Pattern Module due to the limitations of Azure Resource Manager. In this scenario, a Pattern Module **MAY** use "vanilla" code for those resources where it's necessary.
 
