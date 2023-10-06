@@ -190,7 +190,7 @@ To get started implementing your test in the `main.test.bicep` file, we recommen
 - Further, for any test file (including the `dependencies.bicep` file), the usage of variables should be reduced to the absolute minimum. In other words: You should only use variables if you must use them in more than one place. The idea is to keep the test files as simple as possible
 - References to dependencies should be implemented using resource references in combination with outputs. In other words: You should not hardcode any references into the module template's deployment. Instead use references such as `nestedDependencies.outputs.managedIdentityPrincipalId`
 
-  {{< hint type=important }}
+  {{< hint type=important >}}
 
   As per [BCPNFR12](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr12---category-testing---deployment-test-naming) you must use the header `module testDeployment '../.*main.bicep' =` when invoking the module's template.
 
@@ -241,10 +241,7 @@ To test the numerous diagnostic settings targets (Log Analytics Workspace, Stora
 
 Finally, once you are satisfied with your contribution and validated it, open a PR for the module owners or core team to review. Make sure you:
 
-1. Provide a meaningful title in the following format: `[<Category>] <PR title>`. For `[<Category>]` use one of the following, depending on which one is the primary improvement your PR intends to make:
-   - `[Modules]`: For improvements to the CARML library.
-   - `[Utilities]`: For improvements to the tools in the utilities.
-   - `[Fixes]`: For bug fixes when not specifically related to any of the above categories.
+1. Provide a meaningful title 
 1. Provide a meaningful description.
 1. Follow instructions you find in the PR template.
 1. If applicable (i.e., a module is created/updated), please reference the badge status of your pipeline run. This badge will show the reviewer that the code changes were successfully validated & tested in your environment. To create a badge, first select the three dots (`...`) at the top right of the pipeline, and then chose the `Create status badge` option.
