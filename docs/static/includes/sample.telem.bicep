@@ -4,11 +4,8 @@ param location string = resourceGroup().location
 @description('Optional. Enable/Disable usage telemetry for module.')
 param enableTelemetry bool = true
 
-@description('The current released version of the module. Used for telemetry.')
-var moduleVersion = '#_moduleVersion_#' // AUTOMATED, DO NOT CHANGE
-
 resource avmTelemetry 'Microsoft.Resources/deployments@2023-07-01' = if (enableTelemetry) {
-  name: take('46d3xbcp.res.compute-virtualmachine.${replace(moduleVersion, '.', '-')}.${substring(uniqueString(deployment().name, location), 0, 4)}', 64)
+  name: take('46d3xbcp.res.compute-virtualmachine.${replace('-..---..-', '.', '-')}.${substring(uniqueString(deployment().name, location), 0, 4)}', 64)
   properties: {
     mode: 'Incremental'
     template: {
