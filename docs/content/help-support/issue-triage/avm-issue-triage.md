@@ -3,6 +3,7 @@ title: AVM Issue Triage
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+geekdocToC: 1
 ---
 
 {{< toc >}}
@@ -19,7 +20,7 @@ Every module needs a module proposal to be created in the AVM repository This ap
 
 <br>
 
-### Module Proposal triage
+## Module Proposal triage
 
 An issue is considered to be a module proposal if it was opened through the [module proposal template](https://aka.ms/avm/moduleproposal), and has the labels of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" and "<mark style="background-color:#ADD8E6;">Type: New Module Proposal 💡</mark>" applied to them.
 
@@ -40,7 +41,7 @@ Follow these steps to triage a module proposal:
     - Module classification (resource/pattern): "<mark style="background-color:#D3D3D3;">Class: Resource Module 📦</mark>" or "<mark style="background-color:#A9A9A9;">Class: Pattern Module 📦</mark>"
     - If it's a module that will be migrated from CARML/TFVM, add the related "<mark style="background-color:#00796F;color:white;">Status: Migrate from CARML 🚛</mark>" or the "<mark style="background-color:#00796F;color:white;">Status: Migrate from TFVM 🚛</mark>" label.
 
-#### Scenario 1: Requestor doesn't want to / can't be module owner
+### Scenario 1: Requestor doesn't want to / can't be module owner
 
 {{< hint type=note >}}
 If requestor is interested in becoming a module owner, but is not a Microsoft FTE, the AVM core team will try to find a Microsoft FTE to be the module owner whom the requestor can collaborate with.
@@ -52,7 +53,7 @@ If requestor is interested in becoming a module owner, but is not a Microsoft FT
    - Try to find an owner from the AVM communities or await a module owner to comment and propose themselves on the proposal issue.
 4. When a new owner is potentially identified, continue with the steps described [as follows](#scenario-2-requestor-wants-to-and-can-become-module-owner).
 
-#### Scenario 2: Requestor wants to and can become module owner
+### Scenario 2: Requestor wants to and can become module owner
 
 If the requestor indicated they want to become an owner (and is a Microsoft FTE), do **not** assign the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label yet, as first you need to confirm that they understand the implications of becoming the owner.
 
@@ -135,7 +136,7 @@ Although, it's not directly part of the module proposal triage process, to begin
 
 <br>
 
-### Post-Development issue management
+## Post-Development issue management
 
 Once module is developed and `v0.1.0` has been published to the relevant registry
 
@@ -145,7 +146,7 @@ Once module is developed and `v0.1.0` has been published to the relevant registr
 
 <br>
 
-### Orphaned modules
+## Orphaned modules
 
 If a module meets the criteria described in the "[Orphaned AVM Modules](/Azure-Verified-Modules/specs/shared/module-lifecycle/#orphaned-avm-modules)" chapter, the original Module Proposal issue that represents it, must be marked orphaned:
 
@@ -195,7 +196,7 @@ The AVM Core Team
 
 <br>
 
-### General feedback/question and other standard issues
+## General feedback/question and other standard issues
 
 An issue is a general question/feedback if it was opened through the ["General Question/Feedback ❔"](https://github.com/Azure/Azure-Verified-Modules/issues/new?assignees=&labels=Type%3A+Question%2FFeedback+%3Araising_hand%3A&projects=&template=question_feedback.yml&title=%5BQuestion%2FFeedback%5D%3A+) issue template, and has the labels of "<mark style="background-color:#CB6BA2;color:white;">Type: Question/Feedback 🙋‍♀️</mark>" and "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" applied to them.
 
