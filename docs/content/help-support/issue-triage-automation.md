@@ -23,11 +23,11 @@ When calculating the number of business days in the issue/triage automation, the
 If a bug/feature/request/general question is not responded to after 3 business days, then the AVM Core team will be tagged in a comment on the issue to reach out to the module owner. The AVM core team will also be assigned on the issue.
 ### ITA01BCP.1-2
 
-If a bug/feature/request/general question that has the label of "Type: AVM 🅰️ ✌️ ⓜ️" is not responded to after 3 business days, then the AVM Core team will be tagged in a comment on the issue to reach out to the module owner. The AVM core team will also be assigned on the issue.
+If a bug/feature/request/general question that has the label of "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>" is not responded to after 3 business days, then the AVM Core team will be tagged in a comment on the issue to reach out to the module owner. The AVM core team will also be assigned on the issue.
 
 ### ITA02BCP.1-2
 
-If after an additional 3 business days there's still no update to the issue that has the label of "Type: AVM 🅰️ ✌️ ⓜ️", the AVM core team will be assigned to the issue and a further comment stating module owner is unresponsive.
+If after an additional 3 business days there's still no update to the issue that has the label of "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>", the AVM core team will be assigned to the issue and a further comment stating module owner is unresponsive.
 
 ### ITA02TF.1-2
 
@@ -43,11 +43,11 @@ If after 5 days (total from start of issue being raised) and no response the Ter
 
 ### ITA04
 
-If an issue/PR has been labelled with "Needs: Author Feedback 👂" and hasn't had a response in 4 days, label with "Status: No Recent Activity 💤" and add a comment.
+If an issue/PR has been labelled with "<mark style="background-color:#CB6BA2;color:white;">Needs: Author Feedback 👂</mark>" and hasn't had a response in 4 days, label with "<mark style="background-color:#808080;color:white;">Status: No Recent Activity 💤</mark>" and add a comment.
 
 ### ITA05
 
-If an issue/PR has been labelled with "Status: No Recent Activity 💤" and hasn't had any update in 3 days from that point, automatically close it and comment, unless the issue/PR has a "Status: long-term ⏳" - in which case, do not close it.
+If an issue/PR has been labelled with "<mark style="background-color:#808080;color:white;">Status: No Recent Activity 💤</mark>" and hasn't had any update in 3 days from that point, automatically close it and comment, unless the issue/PR has a "<mark style="background-color:#B60205;color:white;">Status: long-term ⏳</mark>" - in which case, do not close it.
 
 <br>
 
@@ -57,27 +57,27 @@ This chapter details all automation rules that are based on an event.
 
 ### ITA06
 
-When a new issue of any type is created add the "Needs: Triage 🔍" label.
+When a new issue of any type is created add the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label.
 
 ### ITA07
 
-When a new PR of any type is created add the "Needs: Triage 🔍" label.
+When a new PR of any type is created add the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label.
 
 ### ITA08BCP
 
-If AVM or "Azure Verified Modules" is mentioned in an uncategorized issue (i.e., one not using any template), apply the label of "Type: AVM 🅰️ ✌️ ⓜ️" on the issue.
+If AVM or "Azure Verified Modules" is mentioned in an uncategorized issue (i.e., one not using any template), apply the label of "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>" on the issue.
 
 ### ITA09
 
-When #RR is used in an issue, add the label of "Needs: Author Feedback 👂".
+When #RR is used in an issue, add the label of "<mark style="background-color:#CB6BA2;color:white;">Needs: Author Feedback 👂</mark>".
 
 ### ITA10
 
-When #wontfix is used in an issue, mark it by using the label of "Status: Won't Fix 💔" and close it as not planned.
+When #wontfix is used in an issue, mark it by using the label of "<mark style="background-color:#FFFFFF;">Status: Won't Fix 💔</mark>" and close it as not planned.
 
 ### ITA11
 
-When a reply from anyone to an issue occurs, remove the "Needs: Author Feedback 👂" label and label with "Needs: Attention 👋".
+When a reply from anyone to an issue occurs, remove the "<mark style="background-color:#CB6BA2;color:white;">Needs: Author Feedback 👂</mark>" label and label with "<mark style="background-color:#E99695;color:white;">Needs: Attention 👋</mark>".
 
 ### ITA12
 
