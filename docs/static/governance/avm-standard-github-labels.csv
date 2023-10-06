@@ -20,7 +20,7 @@ Status: Won't Fix :broken_heart:,This will not be worked on,FFFFFF
 Status: Migrate from CARML :articulated_lorry:,This item is related to a module migration from CARML,00796F
 Status: Migrate from TFVM :articulated_lorry:,This item is related to a module migration from TFVM,00796F
 Status: Owners Identified :metal:,This module has its owners identified,FBEF2A
-Status: Module Available :green_circle:,The module is published,7ED321
+Status: Module Available :green_circle:,The module is published,C8E6C9
 Status: Module Orphaned :eyes:,The module has no owner and is therefore orphaned at this time,F4A460
 Status: Response Overdue :triangular_flag_on_post:,When an issue/PR has not been responded to for X amount of days,FF0000
 Type: Bug :bug:,Something isn't working,D73A4A
