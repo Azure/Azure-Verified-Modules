@@ -73,7 +73,7 @@ In Q4 of 2023, the AVM core team is planning to:
 - Release the first version of the CI environment used for testing and publishing Bicep modules.
 - Work out the details of and start delivering on a phased migration process.
 
-Members of the CARML key contributors have already volunteered to become module owners (see the module index of [Bicep resource modules](/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/)), and will be working with the AVM core team to migrate the existing CARML modules to AVM.
+Members of the CARML team have already volunteered to become module owners (see the module index of [Bicep resource modules](/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/)), and will be working with the AVM core team to migrate the existing CARML modules to AVM.
 
 This will be done in a phased approach, as follows:
 
