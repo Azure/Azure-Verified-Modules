@@ -73,11 +73,17 @@ In Q4 of 2023, the AVM core team is planning to:
 - Release the first version of the CI environment used for testing and publishing Bicep modules.
 - Work out the details of and start delivering on a phased migration process.
 
-Members of the CARML have already volunteered to become module owners (see the module index of [Bicep resource modules](/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/)), and will be working with the AVM core team to migrate the existing CARML modules to AVM. This will be done in a phased approach, with the first phase including those CARML modules that other modules depend on, e.g., Public IP, NIC, Private Endpoint, etc.
+Members of the CARML key contributors have already volunteered to become module owners (see the module index of [Bicep resource modules](/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/)), and will be working with the AVM core team to migrate the existing CARML modules to AVM.
 
-These will be followed by those modules that already have module owners associated, which will be migrated in a prioritized order based customer demand, using telemetry.
+This will be done in a phased approach, as follows:
 
-The AVM core team plans to have migrated the majority of the CARML modules to AVM by the end of 2023. Modules that won't have a module owner associated with them after they have been migrated to AVM will be marked as "[orphaned](/Azure-Verified-Modules/specs/shared/module-lifecycle/#orphaned-avm-modules)" and will be available for any Microsoft FTEs to pick up and become the module owner.
+- The first phase including those CARML modules that other modules depend on, e.g., Public IP, NIC and Private Endpoint.
+- A second phase including those modules that already have module owners associated, which will be migrated in a prioritized order based on customer demand, using telemetry.
+- A third phase including the remaining of the CARML modules, not yet having a module owner associated.
+
+Modules that won't have a module owner associated with them after they have been migrated to AVM will be marked as "[orphaned](/Azure-Verified-Modules/specs/shared/module-lifecycle/#orphaned-avm-modules)" and will be available for any Microsoft FTEs to pick up and become the module owner.
+
+The AVM core team plans to have migrated the majority of the CARML modules to AVM by the end of 2023.
 
 ---
 ## What does AVM mean by "WAF Aligned"?
