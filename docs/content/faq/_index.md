@@ -65,6 +65,20 @@ It may also be decided, for speed of delivery reasons, that a CARML module can b
 
 Publishing both CARML and AVM to the Bicep Registry is wasted effort and will lead to confusion as they will overlap for 80% of their code and will leave consumers in an "analysis paralysis" scenario, which we must avoid.
 
+#### Timeline and approach
+
+In Q4 of 2023, the AVM core team is planning to:
+
+- Provide a detailed contribution guide for Bicep modules.
+- Release the first version of the CI environment used for testing and publishing Bicep modules.
+- Work out the details of and start delivering on a phased migration process.
+
+Members of the CARML have already volunteered to become module owners (see the module index of [Bicep resource modules](/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/)), and will be working with the AVM core team to migrate the existing CARML modules to AVM. This will be done in a phased approach, with the first phase including those CARML modules that other modules depend on, e.g., Public IP, NIC, Private Endpoint, etc.
+
+These will be followed by those modules that already have module owners associated, which will be migrated in a prioritized order based customer demand, using telemetry.
+
+The AVM core team plans to have migrated the majority of the CARML modules to AVM by the end of 2023. Modules that won't have a module owner associated with them after they have been migrated to AVM will be marked as "[orphaned](/Azure-Verified-Modules/specs/shared/module-lifecycle/#orphaned-avm-modules)" and will be available for any Microsoft FTEs to pick up and become the module owner.
+
 ---
 ## What does AVM mean by "WAF Aligned"?
 
