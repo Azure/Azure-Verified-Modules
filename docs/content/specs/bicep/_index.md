@@ -431,7 +431,7 @@ Module owners **MUST** use the below tooling for unit/linting/static/security an
 Module owners **MUST** invoke the module in their test using the syntax:
 
 ```bicep
-module testDeployment '../.*main.bicep' = {
+module testDeployment '../../../main.bicep' =
 ```
 
 Example 1: Working example with a single deployment

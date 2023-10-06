@@ -7,6 +7,12 @@ geekdocAnchor: true
 
 {{< toc >}}
 
+{{< hint type=note >}} 
+
+Each time in the following sections we refer to 'your xzy', it is an indicator that you have to change something in your own environment.
+
+{{< /hint >}}
+
 ## 1. Setup your Azure test environment
 
 AVM tests the deployments in an Azure subscription. To do so, it requires a service principal with access to it.
@@ -166,6 +172,7 @@ As per [BCPNFR9](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr9---category-test
 
 To get started implementing your test in the `main.test.bicep` file, we recommend the following guidelines:
 
+- As per [BCPNFR13](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr13---category-testing---test-file-metadata), each `main.test.bicep` file should implement metadata to render the test more meaningful in the documentation
 - The `main.test.bicep` file should deploy any immediate dependencies (e.g., a resource group, if required) and invoke the module's main template while providing all parameters for a given test scenario.
 - Parameters
   - Each file should define a parameter `serviceShort`. This parameter should be unique to this file (i.e, no two test files should share the same) as it is injected into all resource deployments, making them unique too and account for corresponding requirements.
@@ -182,6 +189,12 @@ To get started implementing your test in the `main.test.bicep` file, we recommen
 - It is recommended to define all major resource names in the `main.test.bicep` file as it makes later maintenance easier. To implement this, make sure to pass all resource names to any referenced module (including any resource deployed in the `dependencies.bicep`).
 - Further, for any test file (including the `dependencies.bicep` file), the usage of variables should be reduced to the absolute minimum. In other words: You should only use variables if you must use them in more than one place. The idea is to keep the test files as simple as possible
 - References to dependencies should be implemented using resource references in combination with outputs. In other words: You should not hardcode any references into the module template's deployment. Instead use references such as `nestedDependencies.outputs.managedIdentityPrincipalId`
+
+  {{< hint type=important }}
+
+  As per [BCPNFR12](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr12---category-testing---deployment-test-naming) you must use the header `module testDeployment '../.*main.bicep' =` when invoking the module's template.
+
+  {{< /hint >}}
 
   {{< hint type=tip >}}
 
