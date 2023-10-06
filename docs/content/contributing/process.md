@@ -53,6 +53,8 @@ This section provides guidance for members of the AVM Core Team on how to triage
 Every module needs a module proposal to be created in the AVM repository This applies to both net new modules, as well as modules that are to be migrated from CARML/TFVM!
 {{< /hint >}}
 
+<br>
+
 ### Module Proposal triage
 
 An issue is considered to be a module proposal if it was opened through the [module proposal template](https://aka.ms/avm/moduleproposal), and has the labels of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" and "<mark style="background-color:#ADD8E6;">Type: New Module Proposal 💡</mark>" applied to them.
@@ -77,16 +79,16 @@ Follow these steps to triage a module proposal:
 #### Scenario 1: Requestor doesn't want to / can't be module owner
 
 {{< hint type=note >}}
-If requestor is interested in becoming a module owner, but is not a Microsoft FTE, the AVM core team will try to find a Microsoft FTE to be the module owner whom the requester can collaborate with.
+If requestor is interested in becoming a module owner, but is not a Microsoft FTE, the AVM core team will try to find a Microsoft FTE to be the module owner whom the requestor can collaborate with.
 {{< /hint >}}
 
-1. If the requester didn't indicate they want to or can't become a module owner (or is not a Microsoft FTE), assign the label of "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" to the issue.
+1. If the requestor didn't indicate they want to or can't become a module owner (or is not a Microsoft FTE), assign the label of "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" to the issue.
 2. Move the issue to the "`Looking for owners`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub project board.
-3. Find module owners - if not proposed in module proposal OR original person/s proposed to be module owners, do not want or cannot be owners of the module:
-4. Try to find owner from AVM communities or await a module owner to comment and propose themselves on the proposal issue
-5. When a new owner is potentially identified, continue with the steps described [below](#scenario-2-requestor-wants-to-become-module-owner)
+3. Find module owners - if the requestor didn't volunteer in the module proposal OR the requestor does not want or cannot be owner of the module:
+   - Try to find an owner from the AVM communities or await a module owner to comment and propose themselves on the proposal issue.
+4. When a new owner is potentially identified, continue with the steps described [as follows](#scenario-2-requestor-wants-to-and-can-become-module-owner).
 
-#### Scenario 2: Requestor wants to become module owner
+#### Scenario 2: Requestor wants to and can become module owner
 
 If the requestor indicated they want to become an owner (and is a Microsoft FTE), do **not** assign the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label yet, as first you need to confirm that they understand the implications of becoming the owner.
 
@@ -119,7 +121,7 @@ The AVM Core Team
 
 {{< /expand >}}
 
-2. Once module owner identified and has confirmed they understand and accept their roles and responsibilities as an AVM module owner
+2. Once module owner identified has confirmed they understand and accept their roles and responsibilities as an AVM module owner
    - Assign the issue to the confirmed module owner.
    - Move the issue into the "`In development`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
    - Add the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label to the issue.
@@ -167,7 +169,9 @@ Although, it's not directly part of the module proposal triage process, to begin
 
 {{< /hint >}}
 
-### Post-Development
+<br>
+
+### Post-Development issue management
 
 Once module is developed and `v0.1.0` has been published to the relevant registry
 
@@ -175,25 +179,79 @@ Once module is developed and `v0.1.0` has been published to the relevant registr
 2. Move the issue into "`Done`" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project.
 3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
 
+<br>
+
 ### Orphaned modules
 
-{{< hint type=important >}}
+If a module meets the criteria described in the "[Orphaned AVM Modules](/Azure-Verified-Modules/specs/shared/module-lifecycle/#orphaned-avm-modules)" chapter, the original Module Proposal issue that represents it, must be marked orphaned:
 
-Content to be added.
+1. Remove the "<mark style="background-color:#C8E6C9;">Status: Module Available 🟢</mark>" and  the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" labels from the issue.
+2. Add the "<mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark>" and the "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" labels to the issue.
+3. Move the issue into the "`Orphaned`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
+4. Try to find a new owner using the AVM communities or await a new module owner to comment and propose themselves on the issue.
+5. When a new owner is potentially identified, clarify the roles and responsibilities of the module owner:
+   - Clarify they understand and accept what "module ownership" means by replying in a comment to the requestor/proposed owner:
+
+{{< expand "➕ Standard AVM Core Team Reply to Proposed Module Owners" "expand/collapse" >}}
+
+```text
+Hi @{requestor/proposed owner's GitHub alias},
+
+Thanks for requesting/proposing to be an AVM module owner.
+
+We just want to confirm you agree to the below pages that define what module ownership means:
+
+- https://azure.github.io/Azure-Verified-Modules/specs/shared/team-definitions
+- https://azure.github.io/Azure-Verified-Modules/specs/shared
+- https://azure.github.io/Azure-Verified-Modules/help-support/module-support
+
+Any questions or clarifications needed, let us know.
+
+If you agree please just reply to this issue with the exact sentence below (as this helps with our automation 👍):
+
+"I CONFIRM I WISH TO OWN THIS AVM MODULE AND UNDERSTAND THE REQUIREMENTS AND DEFINITION OF A MODULE OWNER"
+
+Thanks,
+
+The AVM Core Team
+```
+
+{{< /expand >}}
+
+6. Once module owner identified has confirmed they understand and accept their roles and responsibilities as an AVM module owner
+   - Assign the issue to the confirmed module owner.
+   - Add the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label to the issue.
+   - Remove the "<mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark>" and the "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" labels from the issue.
+   - If the module was already marked as **available** when it became orphaned
+     - Add the "<mark style="background-color:#C8E6C9;">Status: Module Available 🟢</mark>" label to the issue.
+     - Move the issue back into the "`Done`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
+   - If the module was **in development** before it became orphaned
+     - Move the issue back into the "`In development`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
+7. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
+
+<br>
+
+### General feedback/question and other standard issues
+
+An issue is a general question/feedback if it was opened through the ["General Question/Feedback ❔"](https://github.com/Azure/Azure-Verified-Modules/issues/new?assignees=&labels=Type%3A+Question%2FFeedback+%3Araising_hand%3A&projects=&template=question_feedback.yml&title=%5BQuestion%2FFeedback%5D%3A+) issue template, and has the labels of "<mark style="background-color:#CB6BA2;color:white;">Type: Question/Feedback 🙋‍♀️</mark>" and "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" applied to them.
+
+An issue is considered to be a "standard issue" or "blank issue" if it was opened without using an issue template, and hence it does **NOT** have any labels assigned, OR only has the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label assigned.
+
+When triaging the issue, consider adding one of the following labels as fits:
+- <mark style="background-color:#0075CA;color:white;">Type: Documentation 📄</mark>
+- <mark style="background-color:#A2EEEF;">Type: Feature Request ➕</mark>
+- <mark style="background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>
+- <mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>
+
+To see the full list of available labels, please refer to the [GitHub Repo Labels](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels) section.
+
+{{< hint type=note >}}
+
+If an intended module proposal was mistakenly opened as a "General Question/Feedback ❔" or other standard issue, and hence, it doesn't have the "<mark style="background-color:#ADD8E6;">Type: New Module Proposal 💡</mark>" label associated to it, a new issue **MUST** be created using the "New AVM Module Proposal 📝" [issue template](https://aka.ms/avm/moduleproposal). The mistakenly created "General Question/Feedback ❔" or other standard issue **MUST** be closed.
 
 {{< /hint >}}
 
-remove the "<mark style="background-color:#C8E6C9;">Status: Module Available 🟢</mark>" label
-
-add the "<mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark>" label
-
-### Standard Issue triage
-
-{{< hint type=important >}}
-
-Content to be added.
-
-{{< /hint >}}
+<br>
 
 ## Module Owner Has Issue/Is Blocked/Has A Request
 
