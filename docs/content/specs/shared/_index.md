@@ -960,7 +960,7 @@ A Pattern Module **MAY** not follow this guidance if using Resource Modules woul
 {{< hint type=note >}}
 The intent behind this being a "**SHOULD**" level requirement (and not a **MUST**) is to cater for those scenarios where most Resource Modules required to develop a given Pattern Module are available, but not all. In this case, the AVM team wants to unblock the owner of the new Pattern Module by allowing them to leverage this approach as a workaround, until the required Resource Module becomes available. Ideally, all required Resource Modules **SHOULD** be developed first, and then leveraged by the Pattern Module.
 
-Not adhering to this guidance would result in accumulating technical debt, as the Pattern Module **SHOULD**  be retrospectively updated to use the Resource Module once it becomes available.
+Not adhering to this guidance would result in accumulating technical debt, as the Pattern Module **SHOULD** be retrospectively updated to use Resource Modules as they become available.
 {{< /hint >}}
 
 <br>
