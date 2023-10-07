@@ -97,15 +97,13 @@ configuration:
 
       - description: 'ITA13 - If the language is set to Bicep in the Module proposal, assign the "Language: Bicep :muscle:" label on the issue'
         if:
-          - or:
-            - payloadType: Issues
+          - payloadType: Issues
           - and:
             - isAction:
                 action: Opened
-            - or:
-              - bodyContains:
-                  pattern: '/### Terraform or Bicep\?\n\n\s+Bicep/'
-                  isRegex: true
+            - bodyContains:
+                pattern: '/### Terraform or Bicep\?\n\n\s+Bicep/'
+                isRegex: true
         then:
           - addLabel:
               label: 'Language: Bicep :muscle:'
@@ -116,10 +114,9 @@ configuration:
           - and:
             - isAction:
                 action: Opened
-            - or:
-              - bodyContains:
-                  pattern: '/### Terraform or Bicep\?\n\n\s+Terraform/'
-                  isRegex: true
+            - bodyContains:
+                pattern: '/### Terraform or Bicep\?\n\n\s+Terraform/'
+                isRegex: true
         then:
           - addLabel:
               label: 'Language: Terraform :globe_with_meridians:'
@@ -148,15 +145,13 @@ configuration:
                 label: 'Type: AVM :a: :v: :m:'
           - isAction:
               action: Opened
-
         then:
           - removeLabel:
               label: 'Needs: Triage :mag:'
 
       - description: 'ITA16 - Add the "Status: Owners Identified :metal:" label when someone is assigned to a Module Proposal'
         if:
-          - or:
-            - payloadType: Issues
+          - payloadType: Issues
           - not:
               isAction:
                 action: Closed
