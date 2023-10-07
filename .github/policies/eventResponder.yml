@@ -94,3 +94,75 @@ configuration:
           - payloadType: Issue_Comment
         then:
           - cleanEmailReply
+
+      - description: 'ITA13 - If the language is set to Bicep in the Module proposal, assign the "Language: Bicep :muscle:" label on the issue'
+        if:
+          - or:
+            - payloadType: Issues
+          - and:
+            - isAction:
+                action: Opened
+            - or:
+              - bodyContains:
+                  pattern: '/### Terraform or Bicep\?\n\n\s+Bicep/'
+                  isRegex: true
+        then:
+          - addLabel:
+              label: 'Language: Bicep :muscle:'
+
+      - description: 'ITA14 - If the language is set to Terraform in the Module proposal, assign the "Language: Terraform :globe_with_meridians:" label on the issue'
+        if:
+          - payloadType: Issues
+          - and:
+            - isAction:
+                action: Opened
+            - or:
+              - bodyContains:
+                  pattern: '/### Terraform or Bicep\?\n\n\s+Terraform/'
+                  isRegex: true
+        then:
+          - addLabel:
+              label: 'Language: Terraform :globe_with_meridians:'
+
+      - description: 'ITA15 - remove the "Needs: Triage" label from a PR, if it already has a "Type: XYZ" label assigned at the time of creating it.'
+        if:
+          - payloadType: Pull_Request
+          - and:
+            - isAction:
+                action: Opened
+            - or:
+              -hasLabel:
+                label: 'Type: Bug :bug:'
+              -hasLabel:
+                label: 'Type: Documentation :page_facing_up:'
+              -hasLabel:
+                label: 'Type: Duplicate :palms_up_together:'
+              -hasLabel:
+                label: 'Type: Feature Request :heavy_plus_sign:'
+              -hasLabel:
+                label: 'Type: Hygiene :broom:'
+              -hasLabel:
+                label: 'Type: New Module Proposal :bulb:'
+              -hasLabel:
+                label: 'Type: Question/Feedback :raising_hand:'
+              -hasLabel:
+                label: 'Type: Security Bug :lock:'
+              -hasLabel:
+                label: 'Type: AVM :a: :v: :m:'
+        then:
+          - removeLabel:
+              label: 'Needs: Triage :mag:'
+
+      - description: 'ITA16 - Add the "Status: Owners Identified :metal:" label when someone is assigned to a Module Proposal'
+        if:
+          - or:
+            - payloadType: Issues
+          - not:
+              isAction:
+                action: Closed
+          - hasLabel:
+              label: 'Type: New Module Proposal :bulb:'
+          - isAssignedToSomeone
+        then:
+          - addLabel:
+              label: 'Status: Owners Identified :metal:'

@@ -21,6 +21,7 @@ When calculating the number of business days in the issue/triage automation, the
 ### ITA01TF.1-2
 
 If a bug/feature/request/general question is not responded to after 3 business days, then the AVM Core team will be tagged in a comment on the issue to reach out to the module owner. The AVM core team will also be assigned on the issue.
+
 ### ITA01BCP.1-2
 
 If a bug/feature/request/general question that has the label of "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>" is not responded to after 3 business days, then the AVM Core team will be tagged in a comment on the issue to reach out to the module owner. The AVM core team will also be assigned on the issue.
@@ -83,6 +84,22 @@ When a reply from anyone to an issue occurs, remove the "<mark style="background
 
 Clean up e-mail replies to GitHub Issues for readability.
 
+### ITA13
+
+If the language is set to Bicep in the Module proposal, assign the "<mark style="background-color:#1D73B3;color:white;">Language: Bicep 💪</mark>" label on the issue.
+
+### ITA14
+
+If the language is set to Terraform in the Module proposal, assign the "<mark style="background-color:#7740B6;color:white;">Language: Terraform 🌐</mark>" label on the issue.
+
+### ITA15
+
+Remove the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label from a PR, if it already has a "<mark>Type: *XYZ*</mark>" label assigned at the time of creating it.
+
+### ITA16
+
+Add the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label when someone is assigned to a Module Proposal.
+
 <br>
 
 ## Where to apply these rules?
@@ -90,19 +107,23 @@ Clean up e-mail replies to GitHub Issues for readability.
 The below table details which repositories the above rules are applied to.
 
 | ID                          | AVM Core repository | BRM repository | TF repositories |
-| --------------------------- | :-----------------: | :------------: | :-------------: |
-| [ITA01BCP1-2](#ita01bcp1-2) |                     |       ✔️        |                 |
-| [ITA01TF1-2](#ita01tf1-2)   |                     |                |        ✔️        |
-| [ITA02BCP1-2](#ita02bcp1-2) |                     |       ✔️        |                 |
-| [ITA02TF1-2](#ita02tf1-2)   |                     |                |        ✔️        |
-| [ITA03BCP](#ita03bcp)       |                     |       ✔️        |                 |
-| [ITA03TF](#ita03tf)         |                     |                |        ✔️        |
-| [ITA04](#ita04)             |          ✔️          |       ✔️        |        ✔️        |
-| [ITA05](#ita05)             |          ✔️          |       ✔️        |        ✔️        |
-| [ITA06](#ita06)             |          ✔️          |       ✔️        |        ✔️        |
-| [ITA07](#ita07)             |          ✔️          |       ✔️        |        ✔️        |
-| [ITA08BCP](#ita08bcp)       |                     |       ✔️        |                 |
-| [ITA09](#ita09)             |          ✔️          |       ✔️        |        ✔️        |
-| [ITA10](#ita10)             |          ✔️          |       ✔️        |        ✔️        |
-| [ITA11](#ita11)             |          ✔️          |       ✔️        |        ✔️        |
-| [ITA12](#ita12)             |          ✔️          |       ✔️        |        ✔️        |
+|-----------------------------|:-------------------:|:--------------:|:---------------:|
+| [ITA01BCP1-2](#ita01bcp1-2) |                     |       ✔️       |                 |
+| [ITA01TF1-2](#ita01tf1-2)   |                     |                |       ✔️        |
+| [ITA02BCP1-2](#ita02bcp1-2) |                     |       ✔️       |                 |
+| [ITA02TF1-2](#ita02tf1-2)   |                     |                |       ✔️        |
+| [ITA03BCP](#ita03bcp)       |                     |       ✔️       |                 |
+| [ITA03TF](#ita03tf)         |                     |                |       ✔️        |
+| [ITA04](#ita04)             |         ✔️          |       ✔️       |       ✔️        |
+| [ITA05](#ita05)             |         ✔️          |       ✔️       |       ✔️        |
+| [ITA06](#ita06)             |         ✔️          |       ✔️       |       ✔️        |
+| [ITA07](#ita07)             |         ✔️          |       ✔️       |       ✔️        |
+| [ITA08BCP](#ita08bcp)       |                     |       ✔️       |                 |
+| [ITA09](#ita09)             |         ✔️          |       ✔️       |       ✔️        |
+| [ITA10](#ita10)             |         ✔️          |       ✔️       |       ✔️        |
+| [ITA11](#ita11)             |         ✔️          |       ✔️       |       ✔️        |
+| [ITA12](#ita12)             |         ✔️          |       ✔️       |       ✔️        |
+| [ITA13](#ita13)             |         ✔️          |                |                 |
+| [ITA14](#ita14)             |         ✔️          |                |                 |
+| [ITA15](#ita15)             |         ✔️          |       ✔️       |       ✔️        |
+| [ITA16](#ita16)             |         ✔️          |                |                 |
