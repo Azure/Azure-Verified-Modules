@@ -21,10 +21,10 @@ body:
   - type: checkboxes
     id: existing-module-from-elsewhere
     attributes:
-      label: Check this module doesn't already exist in another project that is being evolved into AVM
+      label: Check this module doesn't already exist in the module indexes
       description: By submitting this issue, you confirm that you have checked the [Bicep](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/) or [Terraform](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/) module indexes for the module you are proposing to ensure it is not already available or being worked on.
       options:
-        - label: I have checked for that this module doesn't already exist in CARML or TFVM
+        - label: I have checked for that this module doesn't already exist in the module indexes
           required: true
   - type: dropdown
     id: tf-bicep
