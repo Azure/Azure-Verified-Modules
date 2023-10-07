@@ -127,7 +127,7 @@ configuration:
       - description: 'ITA15 - remove the "Needs: Triage" label from a PR, if it already has a "Type: XYZ" label assigned at the time of creating it.'
         if:
           - payloadType: Pull_Request
-          -or:
+          - or:
             - hasLabel:
                 label: 'Type: Bug :bug:'
             - hasLabel:
