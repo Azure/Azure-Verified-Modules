@@ -27,15 +27,15 @@ An issue is considered to be a module proposal if it was opened through the [mod
 Follow these steps to triage a module proposal:
 1. Add label of "<mark style="background-color:#E4E669;">Status: In Triage 🔍</mark>" to indicate you're in the process of triaging the issue.
 2. Check module proposal issue/form:
-   - Check the [Bicep](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/) or [Terraform](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/) module indexes for the proposed module to make sure it is not already available or being worked on.
-   - Ensure the module's details are correct as per specifications - [naming](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming), [classification](/Azure-Verified-Modules/specs/shared/module-classifications/) (resource/pattern) etc.
-   - Check if the module is added to the "`Proposed`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub project board.
-   - Check if the requestor is a Microsoft FTE
-   - If there's any additional clarification needed, contact the requestor through comments (using their GH handle) or internal channels - for Microsoft FTEs only! - (looking them up by their name). Make sure you capture any decisions regarding the module in the comments section.
-   - Make adjustments to the module's name/classification as needed.
-   - Change the name of the issue so that reflect the module's classification and language, e.g.,
-     - if it's a Bicep resource module, add "(res) (bcp)" to the end of the issue's name;
-     - if it's a Terraform pattern module, add "(ptn) (tf)" to the end of the issue's name.
+    - Check the [Bicep](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/) or [Terraform](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/) module indexes for the proposed module to make sure it is not already available or being worked on.
+    - Ensure the module's details are correct as per specifications - [naming](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming), [classification](/Azure-Verified-Modules/specs/shared/module-classifications/) (resource/pattern) etc.
+    - Check if the module is added to the "`Proposed`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub project board.
+    - Check if the requestor is a Microsoft FTE
+    - If there's any additional clarification needed, contact the requestor through comments (using their GH handle) or internal channels - for Microsoft FTEs only! - (looking them up by their name). Make sure you capture any decisions regarding the module in the comments section.
+    - Make adjustments to the module's name/classification as needed.
+    - Change the name of the issue so that reflect the module's classification and language, e.g.,
+      - if it's a Bicep resource module, add "(res) (bcp)" to the end of the issue's name;
+      - if it's a Terraform pattern module, add "(ptn) (tf)" to the end of the issue's name.
 3. Apply relevant labels
     - Module language: "<mark style="background-color:#1D73B3;color:white;">Language: Bicep 💪</mark>" or "<mark style="background-color:#7740B6;color:white;">Language: Terraform 🌐</mark>"
     - Module classification (resource/pattern): "<mark style="background-color:#D3D3D3;">Class: Resource Module 📦</mark>" or "<mark style="background-color:#A9A9A9;">Class: Pattern Module 📦</mark>"
@@ -50,7 +50,7 @@ If requestor is interested in becoming a module owner, but is not a Microsoft FT
 1. If the requestor didn't indicate they want to or can't become a module owner (or is not a Microsoft FTE), assign the label of "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" to the issue.
 2. Move the issue to the "`Looking for owners`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub project board.
 3. Find module owners - if the requestor didn't volunteer in the module proposal OR the requestor does not want or cannot be owner of the module:
-   - Try to find an owner from the AVM communities or await a module owner to comment and propose themselves on the proposal issue.
+    - Try to find an owner from the AVM communities or await a module owner to comment and propose themselves on the proposal issue.
 4. When a new owner is potentially identified, continue with the steps described [as follows](#scenario-2-requestor-wants-to-and-can-become-module-owner).
 
 ### Scenario 2: Requestor wants to and can become module owner
@@ -58,7 +58,7 @@ If requestor is interested in becoming a module owner, but is not a Microsoft FT
 If the requestor indicated they want to become an owner (and is a Microsoft FTE), do **not** assign the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label yet, as first you need to confirm that they understand the implications of becoming the owner.
 
 1. Clarify the roles and responsibilities of the module owner:
-   - Clarify they understand and accept what "module ownership" means by replying in a comment to the requestor/proposed owner:
+    - Clarify they understand and accept what "module ownership" means by replying in a comment to the requestor/proposed owner:
 
 {{< expand "➕ Standard AVM Core Team Reply to Proposed Module Owners" "expand/collapse" >}}
 
@@ -87,11 +87,11 @@ The AVM Core Team
 {{< /expand >}}
 
 2. Once module owner identified has confirmed they understand and accept their roles and responsibilities as an AVM module owner
-   - Assign the issue to the confirmed module owner.
-   - Move the issue into the "`In development`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
-   - Add the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label to the issue.
-     - Remove the "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" label from the issue, if applied
-   - Remove the labels of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" and "<mark style="background-color:#E4E669;">Status: In Triage 🔍</mark>" to indicate you're done with triaging the issue.
+    - Assign the issue to the confirmed module owner.
+    - Move the issue into the "`In development`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
+    - Add the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label to the issue.
+      - Remove the "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" label from the issue, if applied
+    - Remove the labels of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" and "<mark style="background-color:#E4E669;">Status: In Triage 🔍</mark>" to indicate you're done with triaging the issue.
 3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
 4. Use the following text to approve module development
 
@@ -155,7 +155,7 @@ If a module meets the criteria described in the "[Orphaned AVM Modules](/Azure-V
 3. Move the issue into the "`Orphaned`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
 4. Try to find a new owner using the AVM communities or await a new module owner to comment and propose themselves on the issue.
 5. When a new owner is potentially identified, clarify the roles and responsibilities of the module owner:
-   - Clarify they understand and accept what "module ownership" means by replying in a comment to the requestor/proposed owner:
+    - Clarify they understand and accept what "module ownership" means by replying in a comment to the requestor/proposed owner:
 
 {{< expand "➕ Standard AVM Core Team Reply to Proposed Module Owners" "expand/collapse" >}}
 
@@ -184,14 +184,14 @@ The AVM Core Team
 {{< /expand >}}
 
 6. Once module owner identified has confirmed they understand and accept their roles and responsibilities as an AVM module owner
-   - Assign the issue to the confirmed module owner.
-   - Add the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label to the issue.
-   - Remove the "<mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark>" and the "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" labels from the issue.
-   - If the module was already marked as **available** when it became orphaned
-     - Add the "<mark style="background-color:#C8E6C9;">Status: Module Available 🟢</mark>" label to the issue.
-     - Move the issue back into the "`Done`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
-   - If the module was **in development** before it became orphaned
-     - Move the issue back into the "`In development`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
+    - Assign the issue to the confirmed module owner.
+    - Add the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label to the issue.
+    - Remove the "<mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark>" and the "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" labels from the issue.
+    - If the module was already marked as **available** when it became orphaned
+      - Add the "<mark style="background-color:#C8E6C9;">Status: Module Available 🟢</mark>" label to the issue.
+      - Move the issue back into the "`Done`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
+    - If the module was **in development** before it became orphaned
+      - Move the issue back into the "`In development`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
 7. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
 
 <br>
