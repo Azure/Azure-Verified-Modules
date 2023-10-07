@@ -128,15 +128,15 @@ configuration:
         if:
           - payloadType: Pull_Request
           - hasLabel:
-            label: 'Type: Bug :bug:'
-            label: 'Type: Documentation :page_facing_up:'
-            label: 'Type: Duplicate :palms_up_together:'
-            label: 'Type: Feature Request :heavy_plus_sign:'
-            label: 'Type: Hygiene :broom:'
-            label: 'Type: New Module Proposal :bulb:'
-            label: 'Type: Question/Feedback :raising_hand:'
-            label: 'Type: Security Bug :lock:'
-            label: 'Type: AVM :a: :v: :m:'
+              label: 'Type: Bug :bug:'
+              label: 'Type: Documentation :page_facing_up:'
+              label: 'Type: Duplicate :palms_up_together:'
+              label: 'Type: Feature Request :heavy_plus_sign:'
+              label: 'Type: Hygiene :broom:'
+              label: 'Type: New Module Proposal :bulb:'
+              label: 'Type: Question/Feedback :raising_hand:'
+              label: 'Type: Security Bug :lock:'
+              label: 'Type: AVM :a: :v: :m:'
           - isAction:
               action: Opened
 
