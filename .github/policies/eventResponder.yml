@@ -89,7 +89,7 @@ configuration:
           - addLabel:
               label: 'Needs: Attention :wave:'
 
-      - description: Clean email replies on every comment
+      - description: 'ITA12 - Clean email replies on every comment'
         if:
           - payloadType: Issue_Comment
         then:
