@@ -135,19 +135,12 @@ configuration:
                 label: 'Type: Bug :bug:'
               -hasLabel:
                 label: 'Type: Documentation :page_facing_up:'
-              -hasLabel:
                 label: 'Type: Duplicate :palms_up_together:'
-              -hasLabel:
                 label: 'Type: Feature Request :heavy_plus_sign:'
-              -hasLabel:
                 label: 'Type: Hygiene :broom:'
-              -hasLabel:
                 label: 'Type: New Module Proposal :bulb:'
-              -hasLabel:
                 label: 'Type: Question/Feedback :raising_hand:'
-              -hasLabel:
                 label: 'Type: Security Bug :lock:'
-              -hasLabel:
                 label: 'Type: AVM :a: :v: :m:'
         then:
           - removeLabel:
