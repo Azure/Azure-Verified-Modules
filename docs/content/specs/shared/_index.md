@@ -487,7 +487,7 @@ A module **MUST** be published with the MIT License in the Azure GitHub organiza
 
 #### ID: SNFR11 - Category: Contribution/Support - Issues Response Times
 
-A module owner **MUST** respond to logged issues within 3 business days. See [Module Support](/Azure-Verified-Modules/help-support/module-support/) for more information
+A module owner **MUST** respond to logged issues within 3 business days. See [Module Support](/Azure-Verified-Modules/help-support/module-support/) for more information.
 
 <br>
 
@@ -689,7 +689,7 @@ This section includes **resource module level, functional requirements (RMFR)** 
 
 #### ID: RMFR1 - Category: Composition - Single Resource Only
 
-A module **MUST** only deploy a single instance of the primary resource, e.g., one virtual machine per instance.
+A resource module **MUST** only deploy a single instance of the primary resource, e.g., one virtual machine per instance.
 
 Multiple instances of the module **MUST** be used to scale out.
 
@@ -701,7 +701,7 @@ Multiple instances of the module **MUST** be used to scale out.
 
 #### ID: RMFR2 - Category: Composition - No Resource Wrapper Modules
 
-A module **MUST** add value by including additional features on top of the primary resource. For example a module to create a Resource Group adds little value and therefore should not be created as a Resource Module as explained in RMFR3
+A resource module **MUST** add value by including additional features on top of the primary resource. For example a module to create a Resource Group adds little value and therefore should not be created as a Resource Module as explained in RMFR3.
 
 <br>
 
@@ -711,7 +711,7 @@ A module **MUST** add value by including additional features on top of the prima
 
 #### ID: RMFR3 - Category: Composition - Resource Groups
 
-A module **MUST NOT** create a Resource Group **for resources that require them.**
+A resource module **MUST NOT** create a Resource Group **for resources that require them.**
 
 In the case that a Resource Group is required, a module **MUST** have an input (scope or variable):
 
@@ -728,7 +728,7 @@ Scopes will be covered further in the respective language specific specification
 
 #### ID: RMFR4 - Category: Composition - AVM Consistent Feature & Extension Resources Value Add
 
-Modules support the following optional features/extension resources, as specified, if supported by the primary resource. The top-level variable/parameter names **MUST** be:
+Resource modules support the following optional features/extension resources, as specified, if supported by the primary resource. The top-level variable/parameter names **MUST** be:
 
 | Optional Features/Extension Resources       | Bicep Parameter Name | Terraform Variable Name | MUST/SHOULD |
 |---------------------------------------------|----------------------|-------------------------|-------------|
@@ -741,7 +741,7 @@ Modules support the following optional features/extension resources, as specifie
 | Customer Managed Keys                       | `customerManagedKey` | `customer_managed_key`  | MUST        |
 | Azure Monitor Alerts                        | `alerts`             | `alerts`                | SHOULD      |
 
-Modules **MUST NOT** deploy required/dependant resources for the optional features/extension resources specified above. For example, for Diagnostic Settings the resource module **MUST NOT** deploy the Log Analytics Workspace, this is expected to be already in existence from the perspective of the resource module deployed via another method/module etc.
+Resource modules **MUST NOT** deploy required/dependant resources for the optional features/extension resources specified above. For example, for Diagnostic Settings the resource module **MUST NOT** deploy the Log Analytics Workspace, this is expected to be already in existence from the perspective of the resource module deployed via another method/module etc.
 
 {{< hint type=note >}}
 
@@ -768,7 +768,7 @@ Make sure to checkout the language specific specifications for more info on this
 
 #### ID: RMFR5 - Category: Composition - AVM Consistent Feature & Extension Resources Value Add Interfaces/Schemas
 
-Modules **MUST** implement a common interface, e.g. the input's data structures and properties within them (objects/arrays/dictionaries/maps), for the optional features/extension resources:
+Resource modules **MUST** implement a common interface, e.g. the input's data structures and properties within them (objects/arrays/dictionaries/maps), for the optional features/extension resources:
 
 See:
 
@@ -780,6 +780,16 @@ See:
 - [Private Endpoints Interface](/Azure-Verified-Modules/specs/shared/interfaces/#private-endpoints)
 - [Customer Managed Keys Interface](/Azure-Verified-Modules/specs/shared/interfaces/#customer-managed-keys)
 - [Alerts Interface](/Azure-Verified-Modules/specs/shared/interfaces/#azure-monitor-alerts)
+
+<br>
+
+---
+
+<br>
+
+#### ID: RMFR8 - Category: Composition - Dependency on child and other resources
+
+A resource module **MAY** contain references to other resource modules, however **MUST NOT** contain references to non-AVM modules nor AVM pattern modules.
 
 <br>
 
@@ -826,7 +836,6 @@ Module owners **MAY** also have to provide additional outputs depending on the I
 
 <br>
 
-
 ### Non-Functional Requirements (RMNFR)
 
 {{< hint type=note >}}
@@ -847,7 +856,7 @@ This will be updated quarterly, or ad-hoc as new RPs/ Resources are created and 
 
 {{< /hint >}}
 
-Module names **MUST** follow the below pattern (all lower case):
+Resource modules **MUST** follow the below naming conventions (all lower case):
 
 - Bicep: `avm-res-<rp>-<armresourcename>` (to support registry hosting)
 - Terraform:
@@ -870,7 +879,7 @@ Example: `avm-res-compute-virtualmachine`
 
 #### ID: RMNFR2 - Category: Inputs - Parameter/Variable Naming
 
-A module **MUST** use the following standard inputs:
+A resource module **MUST** use the following standard inputs:
 
 - `name` (no default)
 - `location` (if supported by the resource and not a global resource, then use Resource Group location, if resource supports Resource Groups, otherwise no default)
@@ -912,7 +921,7 @@ This section includes **pattern module level, functional requirements (PMFR)** f
 
 #### ID: PMFR1 - Category: Composition - Resource Group Creation
 
-A module **MAY** create Resource Group(s).
+A Pattern Module **MAY** create Resource Group(s).
 
 <br>
 
@@ -932,7 +941,7 @@ This section includes **pattern module level, non-functional requirements (PMNFR
 
 #### ID: PMNFR1 - Category: Naming - Module Naming
 
-Module names **MUST** follow the below pattern (all lower case):
+Pattern Modules **MUST** follow the below naming conventions (all lower case):
 
 - Bicep: `avm-ptn-<patternmodulename>`
 - Terraform:
@@ -953,14 +962,15 @@ Example: `avm-ptn-apptiervmss`
 
 #### ID: PMNFR2 - Category: Composition - Use Resource Modules to Build a Pattern Module
 
-A Pattern Module **SHOULD** be built from AVM Resources Modules to establish a standardized code base & improve maintainability. If a Resource Module does not exist for a resource required by the Pattern Module, then the Pattern Module **MAY** use "vanilla" code for this resource, however, the Pattern Module **SHOULD** be updated to use the Resource Module when the required Resource Module becomes available.
+A Pattern Module **SHOULD** be built from AVM Resources Modules to establish a standardized code base and improve maintainability. If a valid reason exists, a pattern module **MAY** contain native resources ("vanilla" code) where it's necessary. A Pattern Module **MUST NOT** contain references to non-AVM modules.
 
-A Pattern Module **MAY** not follow this guidance if using Resource Modules would result in hitting scaling limitations and/or would reduce the capabilities of the Pattern Module due to the limitations of Azure Resource Manager. In this scenario, a Pattern Module **MAY** use "vanilla" code for those resources where it's necessary.
+Valid reasons for not using a Resource Module for a resource required by a Pattern Module include but are not limited to:
+
+- When using a Resource Module would result in hitting scaling limitations and/or would reduce the capabilities of the Pattern Module due to the limitations of Azure Resource Manager.
+- Developing a Pattern Module under time constraint, without having all required Resource Modules readily available.
 
 {{< hint type=note >}}
-The intent behind this being a "**SHOULD**" level requirement (and not a **MUST**) is to cater for those scenarios where most Resource Modules required to develop a given Pattern Module are available, but not all. In this case, the AVM team wants to unblock the owner of the new Pattern Module by allowing them to leverage this approach as a workaround, until the required Resource Module becomes available. Ideally, all required Resource Modules **SHOULD** be developed first, and then leveraged by the Pattern Module.
-
-Not adhering to this guidance would result in accumulating technical debt, as the Pattern Module **SHOULD** be retrospectively updated to use Resource Modules as they become available.
+In the latter case, the Pattern Module **SHOULD** be updated to use the Resource Module when the required Resource Module becomes available, to avoid accumulating technical debt. Ideally, all required Resource Modules **SHOULD** be developed first, and then leveraged by the Pattern Module.
 {{< /hint >}}
 
 <br>
@@ -971,7 +981,7 @@ Not adhering to this guidance would result in accumulating technical debt, as th
 
 #### ID: PMNFR3 - Category: Composition - Use other Pattern Modules to Build a Pattern Module
 
-A module **MAY** contain and be built using other AVM Pattern Modules
+A Pattern Module **MAY** contain and be built using other AVM Pattern Modules. A Pattern Module **MUST NOT** contain references to non-AVM modules.
 
 <br>
 
@@ -985,7 +995,7 @@ An item **MUST** be logged onto as an issue on the [AVM Central Repo (`Azure/Azu
 
 {{< hint type=important title=Exception >}}
 
-If the Resource Module adds no value, see Resource Module functional requirement [ID: RMFR2](#id-rmfr2---category-composition---no-resource-wrapper-modules)
+If the Resource Module adds no value, see Resource Module functional requirement [ID: RMFR2](#id-rmfr2---category-composition---no-resource-wrapper-modules).
 
 {{< /hint >}}
 
