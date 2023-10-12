@@ -51,7 +51,6 @@ This section includes **Bicep specific, functional requirements (BCPFR)** for AV
 
 <br>
 
-
 #### ID: BCPFR1 - Category: Composition - Cross-Referencing Modules
 
 Module owners **MAY** cross-references other modules to build either Resource or Pattern modules.
@@ -59,6 +58,8 @@ Module owners **MAY** cross-references other modules to build either Resource or
 However, they **MUST** be referenced only by a public registry reference to a pinned version e.g. `br/public:avm/xxx/yyy:1.2.3`. They **MUST NOT** use local parent path references to a module e.g. `../../xxx/yyy.bicep`.
 
 Although, child modules, that are children of the primary resources being deployed by the AVM Resource Module, **MAY** be specified via local child path e.g. `child/resource.bicep`.
+
+Modules **MUST NOT** contain references to non-AVM modules.
 
 <br>
 
