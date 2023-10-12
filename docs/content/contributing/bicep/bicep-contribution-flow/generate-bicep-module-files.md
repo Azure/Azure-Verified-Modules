@@ -20,7 +20,7 @@ To ease maintenance, you can run the utility with a `Recurse` flag from the root
 ---
 # Location
 
-You can find the script under [`avm/utilities/tools/Set-ModuleReadMe.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1)
+You can find the script under [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1)
 
 # How it works
 
