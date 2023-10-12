@@ -19,7 +19,7 @@ If the switch for Pester tests (`-PesterTest`) is provided the script will
 1. Invoke the module test for the provided template file path and run all tests for it.
 
 If the switch for either the validation test (`-ValidationTest`) or deployment test (`-DeploymentTest`) is provided alongside a HashTable for the token replacement (`-ValidateOrDeployParameters`), the script will
-1. Either fetch all module test files of the module's `.test` folder (default) or you can specify a single module test file by leveraging the `ModuleTestFilePath` parameter instead.
+1. Either fetch all module test files of the module's `.test` folder (default) or you can specify a single module test file by leveraging the `-ModuleTestFilePath` parameter instead.
 1. Create a dictionary to replace all tokens in these module test files with actual values. This dictionary will consist
    - of the subscriptionID & managementGroupID of the provided `ValidateOrDeployParameters` object,
    - add all key-value pairs of the `-AdditionalTokens` object to it,
