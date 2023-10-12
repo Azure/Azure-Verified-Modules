@@ -31,7 +31,7 @@ Follow these steps to triage a module proposal:
     - Ensure the module's details are correct as per specifications - [naming](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming), [classification](/Azure-Verified-Modules/specs/shared/module-classifications/) (resource/pattern) etc.
     - Check if the module is added to the "`Proposed`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub project board.
     - Check if the requestor is a Microsoft FTE
-    - If there's any additional clarification needed, contact the requestor through comments (using their GH handle) or internal channels - for Microsoft FTEs only! - (looking them up by their name). Make sure you capture any decisions regarding the module in the comments section.
+    - If there's any additional clarification needed, contact the requestor through comments (using their GH handle) or internal channels - for Microsoft FTEs only! You can look them up by their name or using the Microsoft internal "[1ES Open Source Assistant Browser Extension](https://docs.opensource.microsoft.com/tools/browser/)". Make sure you capture any decisions regarding the module in the comments section.
     - Make adjustments to the module's name/classification as needed.
     - Change the name of the issue so that reflect the module's classification and language, e.g.,
       - if it's a Bicep resource module, add "(res) (bcp)" to the end of the issue's name;
@@ -144,6 +144,14 @@ Once module is developed and `v0.1.0` has been published to the relevant registr
 2. Move the issue into "`Done`" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project.
 3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
 4. Close the issue.
+
+{{< hint type=important >}}
+
+The module proposal issue **MUST remain open** until the module is fully developed, tested and published to the relevant registry.
+
+Do NOT close the issue before the successful publication is confirmed!
+
+{{< /hint >}}
 
 <br>
 
