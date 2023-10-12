@@ -43,7 +43,7 @@ body:
     id: module-details
     attributes:
       label: Module Details
-      description: Please provide any relevant details about the orphaned modules
+      description: Please provide any relevant details about the orphaned modules!
     validations:
       required: false
   - type: dropdown

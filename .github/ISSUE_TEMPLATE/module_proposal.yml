@@ -16,15 +16,15 @@ body:
       label: Check for previous/existing GitHub issues/module proposals
       description: By submitting this issue, you confirm that you have [searched for previous/existing GitHub issues/module proposals](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue+sort%3Aupdated-desc+) to avoid creating a duplicate.
       options:
-        - label: I have checked for previous/existing GitHub issues/module proposals
+        - label: I have checked for previous/existing GitHub issues/module proposals.
           required: true
   - type: checkboxes
     id: existing-module-from-elsewhere
     attributes:
       label: Check this module doesn't already exist in the module indexes
-      description: By submitting this issue, you confirm that you have checked the [Bicep](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/) or [Terraform](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/) module indexes for the module you are proposing to ensure it is not already available or being worked on.
+      description: By submitting this issue, you confirm that you have checked the [Bicep](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/) or [Terraform](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/) module indexes for the module you are proposing to ensure it is not already available/being worked on; or you're proposing the module to be migrated from [CARML](https://aka.ms/CARML)/[TFVM](https://aka.ms/TFVM).
       options:
-        - label: I have checked for that this module doesn't already exist in the module indexes
+        - label: I have checked for that this module doesn't already exist in the module indexes; or I'm proposing the module to be migrated from CARML/TFVM.
           required: true
   - type: dropdown
     id: tf-bicep
