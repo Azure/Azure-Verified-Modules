@@ -18,6 +18,10 @@ During the AVM Core Team Triage step, the following will be checked, completed a
 Every module needs a module proposal to be created in the AVM repository This applies to both net new modules, as well as modules that are to be migrated from CARML/TFVM!
 {{< /hint >}}
 
+{{< hint type=tip >}}
+To look for items that need triaging, click on the following link to use this saved query ➡️ <a href="https://aka.ms/AVM/NeedsTriage"><mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark></a> ⬅️.
+{{< /hint >}}
+
 <br>
 
 ## Module Proposal triage
@@ -62,27 +66,7 @@ If the requestor indicated they want to become an owner (and is a Microsoft FTE)
 
 {{< expand "➕ Standard AVM Core Team Reply to Proposed Module Owners" "expand/collapse" >}}
 
-```text
-Hi @{requestor/proposed owner's GitHub alias},
-
-Thanks for requesting/proposing to be an AVM module owner.
-
-We just want to confirm you agree to the below pages that define what module ownership means:
-
-- https://azure.github.io/Azure-Verified-Modules/specs/shared/team-definitions
-- https://azure.github.io/Azure-Verified-Modules/specs/shared
-- https://azure.github.io/Azure-Verified-Modules/help-support/module-support
-
-Any questions or clarifications needed, let us know.
-
-If you agree please just reply to this issue with the exact sentence below (as this helps with our automation 👍):
-
-"I CONFIRM I WISH TO OWN THIS AVM MODULE AND UNDERSTAND THE REQUIREMENTS AND DEFINITION OF A MODULE OWNER"
-
-Thanks,
-
-The AVM Core Team
-```
+{{< include file="static/includes/msg-std-reply-new-prop-mod-owners.md" >}}
 
 {{< /expand >}}
 
@@ -97,30 +81,7 @@ The AVM Core Team
 
 {{< expand "➕ Final Confirmation for Proposed Module Owners" "expand/collapse" >}}
 
-```text
-Hi @{requestor/proposed owner's GitHub alias},
-
-Thanks for confirming that you wish to own this AVM module and understand the related requirements and responsibilities.
-
-We just want to ask you to double check a few important things before you start the development.
-
-Please visit the [module index](https://azure.github.io/Azure-Verified-Modules/indexes/) page of your module and use the following values explicitly as provided there:
-
-- `ModuleName`
-- `TelemetryIdPrefix`
-- `ModuleOwnersGHTeam` and `ModuleContributorsGHTeam`
-- Repository name and folder path defined in `RepoURL`
-
-You can now start the development of this module! Happy coding! 🎉
-
-Please respond to this comment, once your module is ready to be published!
-
-Any further questions or clarifications needed, let us know.
-
-Thanks,
-
-The AVM Core Team
-```
+{{< include file="static/includes/msg-final-conf-new-prop-mod-owners.md" >}}
 
 {{< /expand >}}
 
@@ -147,15 +108,21 @@ Once module is developed and `v0.1.0` has been published to the relevant registr
 
 {{< hint type=important >}}
 
-The module proposal issue **MUST remain open** until the module is fully developed, tested and published to the relevant registry.
-
-Do NOT close the issue before the successful publication is confirmed!
+- The Module Proposal issue **MUST remain open** until the module is fully developed, tested and published to the relevant registry.
+- Do NOT close the issue before the successful publication is confirmed!
+- Once the module is fully developed, tested and published to the relevant registry, and the Module Proposal issue was closed, it **MUST remain closed**.
 
 {{< /hint >}}
 
 <br>
 
 ## Orphaned modules
+
+{{< hint type=tip >}}
+To look for Orphaned Modules:
+- Click on the following link to use this saved query ➡️ <a href="hhttps://aka.ms/avm/OrphanedModules"><mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark></a> ⬅️.
+- Check the `Orphaned` swim lane on the [Module Triage board](https://aka.ms/avm/moduletriage).
+{{< /hint >}}
 
 If a module meets the criteria described in the "[Orphaned AVM Modules](/Azure-Verified-Modules/specs/shared/module-lifecycle/#orphaned-avm-modules)" chapter, the original Module Proposal issue that represents it, must be marked orphaned:
 
@@ -166,29 +133,9 @@ If a module meets the criteria described in the "[Orphaned AVM Modules](/Azure-V
 5. When a new owner is potentially identified, clarify the roles and responsibilities of the module owner:
     - Clarify they understand and accept what "module ownership" means by replying in a comment to the requestor/proposed owner:
 
-{{< expand "➕ Standard AVM Core Team Reply to Proposed Module Owners" "expand/collapse" >}}
+{{< expand "➕ Standard AVM Core Team Reply to New Owners of an Orphaned Module" "expand/collapse" >}}
 
-```text
-Hi @{requestor/proposed owner's GitHub alias},
-
-Thanks for requesting/proposing to be an AVM module owner.
-
-We just want to confirm you agree to the below pages that define what module ownership means:
-
-- https://azure.github.io/Azure-Verified-Modules/specs/shared/team-definitions
-- https://azure.github.io/Azure-Verified-Modules/specs/shared
-- https://azure.github.io/Azure-Verified-Modules/help-support/module-support
-
-Any questions or clarifications needed, let us know.
-
-If you agree please just reply to this issue with the exact sentence below (as this helps with our automation 👍):
-
-"I CONFIRM I WISH TO OWN THIS AVM MODULE AND UNDERSTAND THE REQUIREMENTS AND DEFINITION OF A MODULE OWNER"
-
-Thanks,
-
-The AVM Core Team
-```
+{{< include file="static/includes/msg-std-reply-new-orph-mod-owners.md" >}}
 
 {{< /expand >}}
 
@@ -203,6 +150,14 @@ The AVM Core Team
       - Move the issue back into the "`In development`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
 7. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
 
+Use the following text to confirm the new ownership of an orphaned module:
+
+{{< expand "➕ Final Confirmation for New Owners of an Orphaned Module" "expand/collapse" >}}
+
+{{< include file="static/includes/msg-std-reply-new-orph-mod-owners.md" >}}
+
+{{< /expand >}}
+
 <br>
 
 ## General feedback/question and other standard issues
@@ -212,6 +167,7 @@ An issue is a general question/feedback if it was opened through the ["General Q
 An issue is considered to be a "standard issue" or "blank issue" if it was opened without using an issue template, and hence it does **NOT** have any labels assigned, OR only has the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label assigned.
 
 When triaging the issue, consider adding one of the following labels as fits:
+
 - <mark style="background-color:#0075CA;color:white;">Type: Documentation 📄</mark>
 - <mark style="background-color:#A2EEEF;">Type: Feature Request ➕</mark>
 - <mark style="background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>
