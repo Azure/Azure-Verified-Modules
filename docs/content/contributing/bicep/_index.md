@@ -82,13 +82,13 @@ The following tooling/extensions are recommended to assist you developing for th
 
 ### Repositories
 
-Bicep AVM Modules (both Resource and Pattern modules) will be homed in the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and live within an `avm` directory that will be located at the root of the repository, as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
+Bicep AVM Modules (both Resource and Pattern modules) will be homed in the [`Azure/bicep-registry-modules`](https://aka.ms/BRM) repository and live within an `avm` directory that will be located at the root of the repository, as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
 
-Module owners are expected to fork the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository's `main` branch.
+Module owners are expected to fork the [`Azure/bicep-registry-modules`](https://aka.ms/BRM) repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the [`Azure/bicep-registry-modules`](https://aka.ms/BRM) repository's `main` branch.
 
 ### Directory and File Structure
 
-Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository in the `avm` directory will have the following directories and files:
+Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](https://aka.ms/BRM) repository in the `avm` directory will have the following directories and files:
 
 - `tests/` - (for unit tests and additional E2E/integration if required - e.g. Pester etc.)
   - `e2e/` - (all examples must deploy successfully - these will be used to automatically generate the examples in the README.md for the module)

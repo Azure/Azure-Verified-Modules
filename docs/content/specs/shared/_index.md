@@ -641,7 +641,7 @@ A module **SHOULD** avoid breaking changes, e.g., deprecating inputs vs. removin
 
 Modules **MUST** be published to their respective language public registries.
 
-- Bicep = [Bicep Public Module Registry](https://github.com/Azure/bicep-registry-modules/tree/main)
+- Bicep = [Bicep Public Module Registry](https://aka.ms/BRM)
   - Within the `avm` directory
 - Terraform = [HashiCorp Terraform Registry](https://registry.terraform.io/)
 
