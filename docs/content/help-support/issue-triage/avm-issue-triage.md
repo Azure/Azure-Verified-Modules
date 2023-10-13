@@ -153,7 +153,7 @@ please comment on the issue [here](<ADD LINK TO AVM REPO ISSUE>)!
 
 {{< hint type=tip >}}
 To look for Orphaned Modules:
-- Click on the following link to use this saved query ➡️ <a href="hhttps://aka.ms/avm/OrphanedModules"><mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark></a> ⬅️.
+- Click on the following link to use this saved query ➡️ <a href="https://aka.ms/avm/OrphanedModules"><mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark></a> ⬅️.
 - Check the `Orphaned` swim lane on the [Module Triage board](https://aka.ms/avm/moduletriage).
 {{< /hint >}}
 
