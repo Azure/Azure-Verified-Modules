@@ -11,6 +11,12 @@ This page provides an overview of the contribution process for AVM modules.
 
 ## New Module Proposal & Creation
 
+{{< hint type=important >}}
+
+Each AVM module **MUST** have a [Module Proposal](https://aka.ms/AVM/ModuleProposal) issue created and approved by the AVM core team before it can be created/migrated!
+
+{{< /hint >}}
+
 {{< mermaid class="text-center" >}}
 flowchart TD
     ModuleIdea[Consumer has an idea for a new AVM Module] -->CheckIndex(Check <a href='/Azure-Verified-Modules/indexes/'>AVM Module Indexes</a>)

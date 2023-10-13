@@ -205,5 +205,3 @@ To see the full list of available labels, please refer to the [GitHub Repo Label
 If an intended module proposal was mistakenly opened as a "General Question/Feedback ❔" or other standard issue, and hence, it doesn't have the "<mark style="background-color:#ADD8E6;">Type: New Module Proposal 💡</mark>" label associated to it, a new issue **MUST** be created using the "New AVM Module Proposal 📝" [issue template](https://aka.ms/avm/moduleproposal). The mistakenly created "General Question/Feedback ❔" or other standard issue **MUST** be closed.
 
 {{< /hint >}}
-
-<br>
