@@ -29,6 +29,61 @@ Before jumping on implementing your contribution, please review the AVM Module s
 
 <br>
 
+### Directory and File Structure
+
+Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository in the `avm` directory will have the following directories and files:
+
+- `tests/` - (for unit tests and additional E2E/integration if required - e.g. Pester etc.)
+  - `e2e/` - (all examples must deploy successfully - these will be used to automatically generate the examples in the README.md for the module)
+- `modules/` - (for sub-modules only if used and NOT children of the primary resource. e.g. RBAC role assignments)
+- `/...` - (Module files that live in the root of module directory)
+  - `main.bicep` (AVM Module main `.bicep` file and entry point/orchestration module)
+  - `main.json` (auto generated and what is published to the MCR via BRM)
+  - `version.json` (BRM requirement)
+  - `README.md` (auto generated AVM Module documentation)
+
+#### Example Directory and File Structure within `Azure/bicep-registry-modules` Repository
+
+```txt
+/ Root of Azure/bicep-registry-modules
+│
+├───avm
+│   ├───ptn
+│   │   └───apptiervmss
+│   │       │   main.bicep
+│   │       │   main.json
+│   │       │   README.md
+│   │       │   version.json
+│   │       │
+│   │       ├───modules
+│   │       └───tests
+│   │           ├───unit (optional)
+│   │           └───e2e
+│   │               ├───defaults
+│   │               ├───waf-aligned
+│   │               └───max
+│   │
+│   └───res
+│       └───compute
+│           └───virtual-machine
+│               │   main.bicep
+│               │   main.json
+│               │   README.md
+│               │   version.json
+│               │
+│               ├───modules
+│               └───tests
+│                   ├───unit (optional)
+│                   └───e2e
+│                       ├───defaults
+│                       ├───waf-aligned
+│                       └───max
+├───other repo dirs...
+└───other repo files...
+```
+
+<br>
+
 ### Code Styling
 
 This section points to conventions to be followed when developing a Bicep template.
