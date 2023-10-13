@@ -73,16 +73,21 @@ Module owners **MAY** define common RBAC Role Definition names and IDs within a 
 
 However, the **MUST** use only the official RBAC Role Definition name within the variable and nothing else.
 
-See also:
+To meet the requirements of [BCPFR2](/Azure-Verified-Modules/specs/bicep/#id-bcpfr2---category-composition---role-assignments-role-definition-mapping), [BCPNFR5](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr5---category-composition---role-assignments-role-definition-mapping-limits) and [BCPNFR6](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr6---category-composition---role-assignments-role-definition-mapping-compulsory-roles) you **MUST** use the below code sample in your AVM Modules to achieve this.
 
-- [BCPNFR5](#id-bcpnfr5---category-composition---role-assignments-role-definition-mapping-limits)
-- [BCPNFR6](#id-bcpnfr6---category-composition---role-assignments-role-definition-mapping-compulsory-roles)
+{{< include file="/static/includes/sample.rbacMapping.bicep" language="bicep" options="linenos=false" >}}
 
-{{< hint type=tip >}}
+<br>
 
-Review the [Bicep Contribution Guide's 'RBAC Role Definition Name Mapping' section](/Azure-Verified-Modules/contributing/bicep/#rbac-role-definition-name-mapping) for a code sample to achieve this requirement.
+---
 
-{{< /hint >}}
+<br>
+
+#### ID: BCPFR4 - Category: Composition - Telemetry Enablement
+
+To meet the requirements of [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) & [SFR4](/Azure-Verified-Modules/specs/shared/#id-sfr4---category-telemetry---telemetry-enablement-flexibility) you **MUST** use the below code sample in your AVM Modules to achieve this.
+
+{{< include file="/static/includes/sample.telem.bicep" language="bicep" options="linenos=false" >}}
 
 <br>
 
@@ -307,6 +312,21 @@ For example: `camelCasingExample` (lowercase first word (entirely), with capital
 
 <br>
 
+#### ID: BCPNFR14 - Category: Composition - Versioning
+
+To meet [SNFR17](/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning) and depending on the changes you make, you may need to bump the version in the `version.json` file.
+
+{{< include file="/static/includes/sample.bicep.version.json" language="json" options="linenos=false" >}}
+
+The `version` value is in the form of `MAJOR.MINOR`. The PATCH version will be incremented by the CI automatically when publishing the module to the Public Bicep Registry once the corresponding pull request is merged. Therefore, contributions that would only require an update of the patch version, can keep the `version.json` file intact.
+
+For example, the `version` value should be:
+- `0.1` for new modules, so that they can be released as `v0.1.0`.
+- `1.0` once the module owner signs off the module is stable enough for it’s first Major release of `v1.0.0`.
+- `0.x` for all feature updates between the first release `v0.1.0` and the first Major release of `v1.0.0`.
+
+<br>
+
 #### ID: BCPNFR9 - Category: Testing - Expected Test Directories
 
 Module owners **MUST** create the `defaults`, `waf-aligned` folders within their `/tests/e2e/` directory in their module source code and `SHOULD` create a `max` folder also. Each folder will be used as described for various test cases.
@@ -354,7 +374,7 @@ Module owners **MUST** use the below tooling for unit/linting/static/security an
 Module owners **MUST** invoke the module in their test using the syntax:
 
 ```bicep
-module testDeployment '../.*main.bicep' = {
+module testDeployment '../../../main.bicep' =
 ```
 
 Example 1: Working example with a single deployment
