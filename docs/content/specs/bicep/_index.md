@@ -51,65 +51,6 @@ This section includes **Bicep specific, functional requirements (BCPFR)** for AV
 
 <br>
 
-#### ID: BCPFR3 - Category: Composition - Directory and File Structure
-
-Each Bicep AVM module **MUST** live within the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository in the `avm` directory and **MUST** have the following directories and files:
-
-- `tests/` - (for unit tests and additional E2E/integration if required - e.g. Pester etc.)
-  - `e2e/` - (all examples must deploy successfully - these will be used to automatically generate the examples in the README.md for the module)
-- `modules/` - (for sub-modules only if used and NOT children of the primary resource. e.g. RBAC role assignments)
-- `/...` - (Module files that live in the root of module directory)
-  - `main.bicep` (AVM Module main `.bicep` file and entry point/orchestration module)
-  - `main.json` (auto generated and what is published to the MCR via BRM)
-  - `version.json` (BRM requirement)
-  - `README.md` (auto generated AVM Module documentation)
-
-##### Example Directory and File Structure within `Azure/bicep-registry-modules` Repository
-
-```txt
-/ Root of Azure/bicep-registry-modules
-│
-├───avm
-│   ├───ptn
-│   │   └───apptiervmss
-│   │       │   main.bicep
-│   │       │   main.json
-│   │       │   README.md
-│   │       │   version.json
-│   │       │
-│   │       ├───modules
-│   │       └───tests
-│   │           ├───unit (optional)
-│   │           └───e2e
-│   │               ├───defaults
-│   │               ├───waf-aligned
-│   │               └───max
-│   │
-│   └───res
-│       └───compute
-│           └───virtual-machine
-│               │   main.bicep
-│               │   main.json
-│               │   README.md
-│               │   version.json
-│               │
-│               ├───modules
-│               └───tests
-│                   ├───unit (optional)
-│                   └───e2e
-│                       ├───defaults
-│                       ├───waf-aligned
-│                       └───max
-├───other repo dirs...
-└───other repo files...
-```
-
-<br>
-
----
-
-<br>
-
 #### ID: BCPFR1 - Category: Composition - Cross-Referencing Modules
 
 Module owners **MAY** cross-references other modules to build either Resource or Pattern modules.
@@ -117,6 +58,8 @@ Module owners **MAY** cross-references other modules to build either Resource or
 However, they **MUST** be referenced only by a public registry reference to a pinned version e.g. `br/public:avm/xxx/yyy:1.2.3`. They **MUST NOT** use local parent path references to a module e.g. `../../xxx/yyy.bicep`.
 
 Although, child modules, that are children of the primary resources being deployed by the AVM Resource Module, **MAY** be specified via local child path e.g. `child/resource.bicep`.
+
+Modules **MUST NOT** contain references to non-AVM modules.
 
 <br>
 

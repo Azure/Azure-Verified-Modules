@@ -7,7 +7,7 @@ geekdocAnchor: true
 
 {{< toc >}}
 
-This page will provide an overview of the contribution process for AVM modules.
+This page provides an overview of the contribution process for AVM modules.
 
 ## New Module Proposal & Creation
 

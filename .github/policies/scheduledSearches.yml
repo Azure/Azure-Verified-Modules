@@ -149,6 +149,8 @@ configuration:
           label: 'Status: No Recent Activity :zzz:'
       - isNotLabeledWith:
           label: 'Status: Long Term :hourglass_flowing_sand:'
+      - isNotLabeledWith:
+          label: 'Needs: Module Owner :mega:'
       - noActivitySince:
           days: 3
       actions:
