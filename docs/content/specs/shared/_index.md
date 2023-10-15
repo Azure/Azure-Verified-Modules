@@ -437,7 +437,12 @@ Each module **MUST** have separate GitHub Teams assigned for module owners **AND
 
 There **MUST NOT** be any GitHub repository permissions assigned to individual users.
 
+<br>
+
+##### Naming Convention
+
 The naming convention for the GitHub Teams **MUST** follow the below pattern:
+
 - `@azure/<module name>-module-owners-<bicep/tf>` - to be assigned as the GitHub repository's `Module Owners` team
 - `@azure/<module name>-module-contributors-<bicep/tf>` - to be assigned as the GitHub repository's `Module Contributors` team
 
@@ -457,17 +462,73 @@ Examples:
 
 <br>
 
+##### Add Team Members
+
+All officially documented module owner(s) **MUST** be added to the `-module-owners-` team. The `-module-owners-` team **MUST NOT** have any other members.
+
+Any additional module contributors whom the module owner(s) agreed to work with **MUST** be added to the `-module-contributors-` team.
+
+Unless explicitly requested and agreed, members of the AVM core team or any PG teams **MUST NOT** be added to the `-module-owners-` or `-module-contributors-` teams as permissions for them are granted through the teams described in [SNFR9](/Azure-Verified-Modules/specs/shared/#id-snfr9---category-contributionsupport---avm--pg-teams-github-repo-permissions).
+
+<br>
+
+##### Grant Permissions - Bicep
+
+| GitHub Team Name                                 | Description                                                                   | Permissions | Where to work?          |
+|--------------------------------------------------|-------------------------------------------------------------------------------|-------------|-------------------------|
+| `@azure/<module name>-module-owners-bicep`       | Modules Owners of the <module name> AVM Bicep <resource/pattern> module       | **Write**   | Need to work in a fork. |
+| `@azure/<module name>-module-contributors-bicep` | Modules Contributors of the <module name> AVM Bicep <resource/pattern> module | **Triage**  | Need to work in a fork. |
+
+{{< hint type=important >}}
+
+The `CODEOWNERS` file **MUST** be updated for every module to be onboarded: the `-module-owners-`team **MUST** be added **to the path of the module**.
+
+{{< /hint >}}
+
+<br>
+
+##### Grant Permissions - Terraform
+
+| GitHub Team Name                              | Description                                                                       | Permissions | Where to work?                                                                                |
+|-----------------------------------------------|-----------------------------------------------------------------------------------|-------------|-----------------------------------------------------------------------------------------------|
+| `@azure/<module name>-module-owners-tf`       | Modules Owners of the <module name> AVM Terraform <resource/pattern> module       | **Admin**   | Module owner can decide whether they want to work in a branch local to the repo or in a fork. |
+| `@azure/<module name>-module-contributors-tf` | Modules Contributors of the <module name> AVM Terraform <resource/pattern> module | **Write**   | Need to work in a fork.                                                                       |
+
+{{< hint type=important >}}
+
+The `CODEOWNERS` file **MUST** be updated for every module to be onboarded: the `-module-owners-`team **MUST** be added **for all code in the repo**.
+
+{{< /hint >}}
+
+<br>
+
 ---
 
 <br>
 
 #### ID: SNFR9 - Category: Contribution/Support - AVM & PG Teams GitHub Repo Permissions
 
-A module **MUST** make the following GitHub Teams in the Azure GitHub organization admins on its GitHub repo:
+A module owner **MUST** make the following GitHub Teams in the Azure GitHub organization admins on the GitHub repo of the module in question:
+
+##### Bicep
 
 - [`@Azure/avm-core-team`](https://github.com/orgs/Azure/teams/avm-core-team/members?query=membership:child-team) = AVM Core Team
 - [`@Azure/bicep-admins`](https://github.com/orgs/Azure/teams/bicep-admins) = Bicep PG team
+
+{{< hint type=note >}}
+These required GitHub Teams are already associated to the [BRM](https://aka.ms/BRM) repository and have the required permissions.
+{{< /hint >}}
+
+##### Terraform
+
+- [`@Azure/avm-core-team`](https://github.com/orgs/Azure/teams/avm-core-team/members?query=membership:child-team) = AVM Core Team
 - [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Terraform PG
+
+{{< hint type=important >}}
+Modules owners **MUST** assign these GitHub Teams as admins on the GitHub repo of the module in question.
+
+For detailed steps, please follow this [guidance](https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/managing-teams-and-people-with-access-to-your-repository#inviting-a-team-or-person).
+{{< /hint >}}
 
 <br>
 

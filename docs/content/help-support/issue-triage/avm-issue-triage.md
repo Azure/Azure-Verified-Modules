@@ -66,7 +66,7 @@ If the requestor indicated they want to become an owner (and is a Microsoft FTE)
 
 {{< expand "➕ Standard AVM Core Team Reply to Proposed Module Owners" "expand/collapse" >}}
 
-{{< include file="static/includes/msg-std-reply-new-prop-mod-owners.md" >}}
+{{< include file="static/includes/msg-std-reply-new-prop-mod-owners.md" language="markdown" options="linenos=false" >}}
 
 {{< /expand >}}
 
@@ -81,7 +81,7 @@ If the requestor indicated they want to become an owner (and is a Microsoft FTE)
 
 {{< expand "➕ Final Confirmation for Proposed Module Owners" "expand/collapse" >}}
 
-{{< include file="static/includes/msg-final-conf-new-prop-mod-owners.md" >}}
+{{< include file="static/includes/msg-final-conf-new-prop-mod-owners.md" language="markdown" options="linenos=false" >}}
 
 {{< /expand >}}
 
@@ -137,12 +137,12 @@ Once the **Orphaned Module issue** was closed, it **MUST remain closed**. If the
 
 {{< expand "➕ Orphaned module notice for module README file" "expand/collapse" open >}}
 
-```text
+```markdown
 ⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️
 
 - Only security and bug fixes are being handled by the AVM core team at present.
 - If interested in becoming a module owner (must be Microsoft FTE) for this orphaned module,
-please comment on the issue [here](<ADD LINK TO AVM REPO ISSUE>)!
+please comment on the issue [here]({ADD LINK TO AVM REPO ISSUE})!
 ```
 
 {{< /expand >}}
@@ -162,22 +162,23 @@ To look for Orphaned Modules:
 
 {{< expand "➕ Standard AVM Core Team Reply to New Owners of an Orphaned Module" "expand/collapse" >}}
 
-{{< include file="static/includes/msg-std-reply-new-orph-mod-owners.md" >}}
+{{< include file="static/includes/msg-std-reply-new-orph-mod-owners.md" language="markdown" options="linenos=false" >}}
 
 {{< /expand >}}
 
-2. Once module owner identified has confirmed they understand and accept their roles and responsibilities as an AVM module owner
+2. Once the new module owner candidate has confirmed they understand and accept their roles and responsibilities as an AVM module owner
     - Assign the issue to the confirmed module owner.
     - Remove the "<mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark>" and the "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" labels from the issue.
     - Add the "<mark style="background-color:#C8E6C9;">Status: Module Available 🟢</mark>" and <mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" labels to the issue.
     - Move the issue into the "`Done`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
 3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
-4. Remove the information notice from the module's root README.md that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.`
-5. Use the following text to confirm the new ownership of an orphaned module:
+4. Get the new owner(s) and any new contributor(s) added to the related `-module-owners-` or `-module-contributors-` teams. See [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) for more details.
+5. Remove the information notice from the module's root README.md that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.`
+6. Use the following text to confirm the new ownership of an orphaned module:
 
 {{< expand "➕ Final Confirmation for New Owners of an Orphaned Module" "expand/collapse" >}}
 
-{{< include file="static/includes/msg-std-reply-new-orph-mod-owners.md" >}}
+{{< include file="static/includes/msg-std-reply-new-orph-mod-owners.md" language="markdown" options="linenos=false" >}}
 
 {{< /expand >}}
 
