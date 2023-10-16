@@ -15,12 +15,12 @@ Before submitting a new [module proposal](https://aka.ms/avm/moduleproposal) for
 {{< /hint >}}
 
 {{< hint type=important >}}
-While this page describes and summarizes important aspects of contributing to AVM, it only references *some* of the shared and language specific requirements.
+While this page describes and summarizes important aspects of contributing to AVM, it may not reference *All* of the shared and language specific requirements.
 
 Therefore, this contribution guide **MUST** be used in conjunction with the [Shared Specification](/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](/Azure-Verified-Modules/specs/bicep/) specifications. **ALL AVM modules** (Resource and Pattern modules) **MUST meet the respective requirements described in these  specifications**!
 {{< /hint >}}
 
-<br>
+This section lists AVM's Bicep-specific contribution guidance.
 
 ## Recommended Learning
 

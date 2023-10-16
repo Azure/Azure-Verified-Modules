@@ -286,7 +286,7 @@ Module owners **MUST**:
   - They **MUST** use simple/native resource declarations/definitions in their respective IaC language
   - They **MUST NOT** use other modules to deploy these required resources
 
-{{< expand "Terraform & Bicep Log Analytics Workspace examples using simple/native declarations for use in E2E tests" "expand/collapse">}}
+{{< expand "➕ Terraform & Bicep Log Analytics Workspace examples using simple/native declarations for use in E2E tests" "expand/collapse">}}
 
 ###### Terraform
 
@@ -329,7 +329,7 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-12
 
 #### ID: SNFR3 - Category: Testing - AVM Compliance Tests
 
-Modules **MUST** implement implement AVM compliance tests that ensure compliance to AVM specifications. These tests **MUST** pass before a module version can be published.
+Modules **MUST** pass all tests that ensure compliance to AVM specifications. These tests **MUST** pass before a module version can be published.
 
 {{< hint type=important >}}
 
@@ -574,7 +574,7 @@ This avoids AVM Module owners from having to maintain multiple major release ver
 
 GitHub repositories where modules are held **MUST** use the below labels and **SHOULD** not use any additional labels:
 
-{{< expand "AVM Standard GitHub Labels" "expand/collapse" >}}
+{{< expand "➕ AVM Standard GitHub Labels" "expand/collapse" >}}
 
 These labels are available in a CSV file from [here](/Azure-Verified-Modules/governance/avm-standard-github-labels.csv)
 
@@ -584,7 +584,7 @@ These labels are available in a CSV file from [here](/Azure-Verified-Modules/gov
 
 To help apply these to a module GitHub repository you can use the below PowerShell script:
 
-{{< expand "Set-AvmGitHubLabels.ps1" "expand/collapse" >}}
+{{< expand "➕ Set-AvmGitHubLabels.ps1" "expand/collapse" >}}
 
 For most scenario this is the command you'll need to call the below PowerShell script with, replacing the value for `RepositoryName`:
 
