@@ -5,6 +5,8 @@ geekdocAlign: left
 geekdocAnchor: true
 ---
 
+{{< csvUpdated csv="/static/module-indexes/BicepResourceModules.csv" >}}
+
 <!-- {{< hint type=tip >}}
 
 **Use the breadcrumb menu** above to navigate back to the main page!

@@ -1,0 +1,4 @@
+{{ $csv := .Get "csv" }}
+{{ $fileInfo := os.Stat $csv }}
+
+<p style="text-align:right;"><i>[Experimental] - This module index was last updated on {{ dateFormat "02 Jan 2006"  $fileInfo.ModTime }}</i>.</p>
