@@ -1,0 +1,72 @@
+name: Orphaned AVM Module 👀
+description: An existing AVM module has just become orphaned and needs a new owner
+title: "[Orphaned Module]: REPLACE ME WITH THE NAME OF THE ORPHANED MODULE"
+labels: ["Status: Module Orphaned :eyes:", "Needs: Module Owner :mega:", "Needs: Triage :mag:"]
+projects: ["Azure/529"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting an orphaned AVM module!
+
+        Please ensure you have checked the [AVM Module Classification Definitions](https://azure.github.io/Azure-Verified-Modules/specs/shared/module-classifications/) & the [AVM Shared Specification](https://azure.github.io/Azure-Verified-Modules/specs/shared/)
+  - type: dropdown
+    id: tf-bicep
+    attributes:
+      label: Terraform or Bicep?
+      description: What language is the orphaned module written in? (Please create a separate "Orphaned AVM Module" issue for each language!)
+      options:
+        - Bicep
+        - Terraform
+    validations:
+      required: true
+  - type: dropdown
+    id: res-or-ptn
+    attributes:
+      label: Module Classification?
+      description: Is this a Resource or Pattern Module?
+      options:
+        - Resource Module
+        - Pattern Module
+        - I'm not sure, please help identify
+    validations:
+      required: true
+  - type: input
+    id: module-name
+    attributes:
+      label: Module Name
+      description: What is the name of the orphaned module?
+      placeholder: avm-res-<rp>-<armresourcename>
+    validations:
+      required: true
+  - type: textarea
+    id: module-details
+    attributes:
+      label: Module Details
+      description: Please provide any relevant details about the orphaned modules!
+    validations:
+      required: false
+  - type: dropdown
+    id: owner-check
+    attributes:
+      label: Do you want to be the new owner of this module?
+      description: By selecting Yes, you confirm that you want to be the owner of this module and are a Microsoft FTE or have a Microsoft FTE as a co-owner. And you/they can commit to the [Module Support statement](https://azure.github.io/Azure-Verified-Modules/help-support/module-support/) for this module.
+      options:
+        - 'Yes'
+        - 'No'
+    validations:
+      required: true
+  - type: input
+    id: owner-gh-un
+    attributes:
+      label: Module Owner's GitHub Username (handle)
+      description: Please provide the proposed module owner's GitHub username, leave blank if unknown
+    validations:
+      required: false
+  - type: input
+    id: sec-owner-gh-un
+    attributes:
+      label: (Optional) Secondary Module Owner's GitHub Username (handle)
+      description: Please provide the secondary module owner's GitHub username, leave blank if unknown!
+    validations:
+      required: false

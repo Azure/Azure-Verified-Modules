@@ -24,9 +24,9 @@ Check out the [Contribution Q&A](/Azure-Verified-Modules/contributing/q-and-a/) 
 
 The AVM initiative has been working closely with the teams behind the following initiatives:
 
-- [CARML (Common Azure Resource Modules Library)](https://github.com/Azure/ResourceModules)
-- [TFVM (Terraform Verified Modules)](https://github.com/Azure/terraform-azure-modules)
-- [BRM (Bicep Registry Modules)](https://github.com/Azure/bicep-registry-modules) - this is where the AVM Bicep modules will be published.
+- [CARML (Common Azure Resource Modules Library)](https://aka.ms/CARML)
+- [TFVM (Terraform Verified Modules)](https://aka.ms/TFVM)
+- [BRM (Bicep Registry Modules)](https://aka.ms/BRM) - this is where the AVM Bicep modules will be published.
 
 AVM is a straight-line evolution of CARML & TFVM.
 

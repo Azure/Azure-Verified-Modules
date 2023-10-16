@@ -50,8 +50,13 @@ main:
     sub:
       - name: 'Module Support'
         ref: '/help-support/module-support'
-      - name: 'Issue/Triage Automation'
-        ref: '/help-support/issue-triage-automation'
+      - name: 'Issue Triage'
+        ref: '/help-support/issue-triage'
+        sub:
+        - name: 'AVM Issue Triage'
+          ref: '/help-support/issue-triage/avm-issue-triage'
+        - name: 'Issue Triage Automation'
+          ref: '/help-support/issue-triage/issue-triage-automation'
       - name: 'Telemetry'
         ref: '/help-support/telemetry'
       - name: 'Create GitHub Issue'
