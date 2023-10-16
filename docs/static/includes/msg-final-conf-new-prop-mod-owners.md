@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 Hi @{requestor/proposed owner's GitHub alias},
 
 Thanks for confirming that you wish to own this AVM module and understand the related requirements and responsibilities!
@@ -31,3 +32,4 @@ The AVM Core Team
 >
 > - This Module Proposal issue **MUST remain open** until the module is fully developed, tested and published to the relevant registry. **Do NOT close** the issue before the successful publication is confirmed!
 > - Once the module is fully developed, tested and published to the relevant registry, and the Module Proposal issue was closed, it **MUST remain closed**.
+<!-- markdownlint-restore -->
