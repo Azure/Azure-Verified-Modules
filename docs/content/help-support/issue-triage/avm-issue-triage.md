@@ -133,17 +133,11 @@ Once the **Orphaned Module issue** was closed, it **MUST remain closed**. If the
 1. Create a new issue using the "[Orphaned Module](https://aka.ms/AVM/OrphanedModule)" issue template.
 2. Make sure the "<mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark>", "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" and the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" labels are assigned to the issue.
 3. Move the issue into the "`Orphaned`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
-4. Place an information notice on the module's root README.md that states the following:
+4. Place an information notice file, called `ORPHANED.md` into the module's root, stating the following:
 
 {{< expand "➕ Orphaned module notice for module README file" "expand/collapse" open >}}
 
-```markdown
-⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️
-
-- Only security and bug fixes are being handled by the AVM core team at present.
-- If interested in becoming a module owner (must be Microsoft FTE) for this orphaned module,
-please comment on the issue [here]({ADD LINK TO AVM REPO ISSUE})!
-```
+{{< include file="static/includes/orphaned-module-notice.md" language="markdown" options="linenos=false" >}}
 
 {{< /expand >}}
 
@@ -153,6 +147,7 @@ please comment on the issue [here]({ADD LINK TO AVM REPO ISSUE})!
 
 {{< hint type=tip >}}
 To look for Orphaned Modules:
+
 - Click on the following link to use this saved query ➡️ <a href="https://aka.ms/avm/OrphanedModules"><mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark></a> ⬅️.
 - Check the `Orphaned` swim lane on the [Module Triage board](https://aka.ms/avm/moduletriage).
 {{< /hint >}}
@@ -173,7 +168,7 @@ To look for Orphaned Modules:
     - Move the issue into the "`Done`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
 3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
 4. Get the new owner(s) and any new contributor(s) added to the related `-module-owners-` or `-module-contributors-` teams. See [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) for more details.
-5. Remove the information notice from the module's root README.md that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.`
+5. Delete the `ORPHANED.md` file with the information notice from the module's root (i.e., the file that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.` )
 6. Use the following text to confirm the new ownership of an orphaned module:
 
 {{< expand "➕ Final Confirmation for New Owners of an Orphaned Module" "expand/collapse" >}}
