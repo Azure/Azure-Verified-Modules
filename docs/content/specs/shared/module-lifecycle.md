@@ -37,9 +37,10 @@ It is critical to the consumers experience that modules continue to be maintaine
 ### Notification of a Module Becoming Orphaned
 
 {{< hint type=important  >}}
-When a module becomes orphaned the AVM core team MUST place an information notice on the modules root `README.md` that states the following:
+When a module becomes orphaned, the AVM core team MUST place an information notice in an `ORPHANED.md` file, in the module's root that states the following:
 
-***"This module is currently orphaned. Only security and bug fixes are being handled by the AVM core team at present. If interested in becoming a module owner (must be Microsoft FTE) for this orphaned module please comment on the issue here `<LINK TO AVM REPO ISSUE>`"***
+{{< include file="static/includes/orphaned-module-notice.md" language="markdown" options="linenos=false" >}}
+
 {{< /hint >}}
 
 Also, the AVM core team will amend the issue automation to auto reply stating that the repo is orphaned and only security/bug fixes are being handled until a new module owner is found.
