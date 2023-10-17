@@ -27,7 +27,7 @@ body:
         - label: I have checked for that this module doesn't already exist in the module indexes; or I'm proposing the module to be migrated from CARML/TFVM.
           required: true
   - type: dropdown
-    id: tf-bicep
+    id: language
     attributes:
       label: Bicep or Terraform?
       description: What language are you proposing the module for? (Please create a separate proposal for each language!)

@@ -11,7 +11,7 @@ body:
 
         Please ensure you have checked the [AVM Module Classification Definitions](https://azure.github.io/Azure-Verified-Modules/specs/shared/module-classifications/) & the [AVM Shared Specification](https://azure.github.io/Azure-Verified-Modules/specs/shared/)
   - type: dropdown
-    id: tf-bicep
+    id: language
     attributes:
       label: Bicep or Terraform?
       description: What language is the orphaned module written in? (Please create a separate "Orphaned AVM Module" issue for each language!)
