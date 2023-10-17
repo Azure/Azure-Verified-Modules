@@ -102,7 +102,7 @@ configuration:
             - isAction:
                 action: Opened
             - bodyContains:
-                pattern: '/### Terraform or Bicep\?\n\n\s+Bicep/'
+                pattern: '/### Bicep or Terraform\?\n\s+Bicep/'
                 isRegex: true
         then:
           - addLabel:
@@ -115,7 +115,7 @@ configuration:
             - isAction:
                 action: Opened
             - bodyContains:
-                pattern: '/### Terraform or Bicep\?\n\n\s+Terraform/'
+                pattern: '/### Bicep or Terraform\?\n\s+Terraform/'
                 isRegex: true
         then:
           - addLabel:
