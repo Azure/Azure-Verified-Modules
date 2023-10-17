@@ -13,7 +13,7 @@ body:
   - type: dropdown
     id: tf-bicep
     attributes:
-      label: Terraform or Bicep?
+      label: Bicep or Terraform?
       description: What language is the orphaned module written in? (Please create a separate "Orphaned AVM Module" issue for each language!)
       options:
         - Bicep

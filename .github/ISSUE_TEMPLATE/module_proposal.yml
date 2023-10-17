@@ -29,7 +29,7 @@ body:
   - type: dropdown
     id: tf-bicep
     attributes:
-      label: Terraform or Bicep?
+      label: Bicep or Terraform?
       description: What language are you proposing the module for? (Please create a separate proposal for each language!)
       options:
         - Bicep
