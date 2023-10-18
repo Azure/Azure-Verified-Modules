@@ -37,9 +37,12 @@ Follow these steps to triage a module proposal:
     - Check if the requestor is a Microsoft FTE
     - If there's any additional clarification needed, contact the requestor through comments (using their GH handle) or internal channels - for Microsoft FTEs only! You can look them up by their name or using the Microsoft internal "[1ES Open Source Assistant Browser Extension](https://docs.opensource.microsoft.com/tools/browser/)". Make sure you capture any decisions regarding the module in the comments section.
     - Make adjustments to the module's name/classification as needed.
-    - Change the name of the issue so that reflect the module's classification and language, e.g.,
-      - if it's a Bicep resource module, add "(res) (bcp)" to the end of the issue's name;
-      - if it's a Terraform pattern module, add "(ptn) (tf)" to the end of the issue's name.
+    - Change the name of the issue to reflect the module's name and language, i.e.,
+      - After the "[Module Proposal]:" prefix, change the issues name to the module's approved name between backticks, i.e., \` and \`, e.g., `avm-res-sql-managedinstance`
+      - If it's a Bicep module, add "(bicep)" to the end of the issue's name; if it's a Terraform module, add "(tf)" to the end of the issue's name
+      - Example:
+        - "[Module Proposal]: `avm-res-sql-managedinstance` (bicep)"
+        - "[Module Proposal]: `avm-res-compute-virtualmachine` (tf)"
 3. Apply relevant labels
     - Module language: "<mark style="background-color:#1D73B3;color:white;">Language: Bicep 💪</mark>" or "<mark style="background-color:#7740B6;color:white;">Language: Terraform 🌐</mark>"
     - Module classification (resource/pattern): "<mark style="background-color:#D3D3D3;">Class: Resource Module 📦</mark>" or "<mark style="background-color:#A9A9A9;">Class: Pattern Module 📦</mark>"
@@ -85,13 +88,16 @@ If the requestor indicated they want to become an owner (and is a Microsoft FTE)
 
 {{< /expand >}}
 
-{{< hint type=tip >}}
+{{< hint type=important >}}
 
-Although, it's not directly part of the module proposal triage process, to begin development, module owners and contributors might need additional help from the AVM core team, such as:
+Although, it's not directly part of the module proposal triage process, to begin development, module owners and contributors will need additional help from the AVM core team, such as:
 
 1. Update any Azure RBAC permissions for test tenants/subscription, if required
-2. Bicep Only:
-    - Update `Azure/bicep-registry-modules` [CODEOWNERS file](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS)
+2. In case of **Bicep modules** only:
+    - Look for the module owners confirmation on the related `[Module Proposal]` issue that they have created the required `-module-owners-` and `-module-owners-` GitHub teams.
+    - Grant the necessary permissions to the `-module-owners-` and `-module-owners-` teams on the [BRM repo](https://aka.ms/BRM) as described [here](https://azure.github.io/Azure-Verified-Modules/specs/shared/#grant-permissions---bicep).
+    - Update [`CODEOWNERS`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) file in the [BRM repo](https://aka.ms/BRM).
+    - When ready, on the related issue, confirm that you have granted the necessary permissions to the GitHub teams and updated the `CODEOWNERS` file.
 
 {{< /hint >}}
 
@@ -133,7 +139,11 @@ Once the **Orphaned Module issue** was closed, it **MUST remain closed**. If the
 1. Create a new issue using the "[Orphaned Module](https://aka.ms/AVM/OrphanedModule)" issue template.
 2. Make sure the "<mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark>", "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" and the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" labels are assigned to the issue.
 3. Move the issue into the "`Orphaned`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
-4. Place an information notice file, called `ORPHANED.md` into the module's root, stating the following:
+4. Place an information notice as per the below guidelines:
+    - In case of a Bicep module, place the information notice in an `ORPHANED.md` file, in the module's root.
+    - In case of a Terraform module, place the information notice in the `README.md` file, in the module's root.
+
+Include the following text in the information notice:
 
 {{< expand "➕ Orphaned module notice for module README file" "expand/collapse" open >}}
 
@@ -168,7 +178,9 @@ To look for Orphaned Modules:
     - Move the issue into the "`Done`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
 3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
 4. Get the new owner(s) and any new contributor(s) added to the related `-module-owners-` or `-module-contributors-` teams. See [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) for more details.
-5. Delete the `ORPHANED.md` file with the information notice from the module's root (i.e., the file that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.` )
+5. Remove the information notice (i.e., the file that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.` ):
+    - In case of a Bicep module, delete the `ORPHANED.md` file from the module's root.
+    - In case of a Terraform module, remove the information notice from the `README.md` file in the module's root.
 6. Use the following text to confirm the new ownership of an orphaned module:
 
 {{< expand "➕ Final Confirmation for New Owners of an Orphaned Module" "expand/collapse" >}}
@@ -177,7 +189,7 @@ To look for Orphaned Modules:
 
 {{< /expand >}}
 
-6. Close the Orphaned Module issue.
+7. Close the Orphaned Module issue.
 
 <br>
 

@@ -474,6 +474,14 @@ Unless explicitly requested and agreed, members of the AVM core team or any PG t
 
 ##### Grant Permissions - Bicep
 
+{{< hint type=note >}}
+
+Only the AVM core team can grant permissions to the [BRM](https://aka.ms/BRM) repository (the repo of the Bicep Registry) and modify the `CODEOWNERS` file.
+
+{{< /hint >}}
+
+Module owners **MUST** notify the AVM core team, when the `-module-owners-` and `-module-owners-` teams are created, so the AVM core team can grant permissions to the BRM repo and make the necessary changes to the `CODEOWNERS` file.
+
 | GitHub Team Name                                 | Description                                                                   | Permissions | Where to work?          |
 |--------------------------------------------------|-------------------------------------------------------------------------------|-------------|-------------------------|
 | `@azure/<module name>-module-owners-bicep`       | Modules Owners of the <module name> AVM Bicep <resource/pattern> module       | **Write**   | Need to work in a fork. |
@@ -489,6 +497,8 @@ The `CODEOWNERS` file **MUST** be updated for every module to be onboarded: the 
 
 ##### Grant Permissions - Terraform
 
+Module owners **MUST** assign the `-module-owners-`and `-module-owners-` teams the necessary permissions on their Terraform module repository and edit the `CODEOWNERS` file as per the guidance below.
+
 | GitHub Team Name                              | Description                                                                       | Permissions | Where to work?                                                                                |
 |-----------------------------------------------|-----------------------------------------------------------------------------------|-------------|-----------------------------------------------------------------------------------------------|
 | `@azure/<module name>-module-owners-tf`       | Modules Owners of the <module name> AVM Terraform <resource/pattern> module       | **Admin**   | Module owner can decide whether they want to work in a branch local to the repo or in a fork. |
@@ -497,6 +507,8 @@ The `CODEOWNERS` file **MUST** be updated for every module to be onboarded: the 
 {{< hint type=important >}}
 
 The `CODEOWNERS` file **MUST** be updated for every module to be onboarded: the `-module-owners-`team **MUST** be added **for all code in the repo**.
+
+For more details on how to modify the `CODEOWNERS` file, please see the [documentation on Github](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners).
 
 {{< /hint >}}
 
