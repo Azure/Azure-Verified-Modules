@@ -178,7 +178,9 @@ To look for Orphaned Modules:
     - Move the issue into the "`Done`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
 3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
 4. Get the new owner(s) and any new contributor(s) added to the related `-module-owners-` or `-module-contributors-` teams. See [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) for more details.
-5. Delete the `ORPHANED.md` file with the information notice from the module's root (i.e., the file that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.` )
+5. Remove the information notice (i.e., the file that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.` ):
+    - In case of a Bicep module, delete the `ORPHANED.md` file from the module's root.
+    - In case of a Terraform module, remove the information notice from the `README.md` file in the module's root.
 6. Use the following text to confirm the new ownership of an orphaned module:
 
 {{< expand "➕ Final Confirmation for New Owners of an Orphaned Module" "expand/collapse" >}}
@@ -187,7 +189,7 @@ To look for Orphaned Modules:
 
 {{< /expand >}}
 
-6. Close the Orphaned Module issue.
+7. Close the Orphaned Module issue.
 
 <br>
 
