@@ -85,13 +85,16 @@ If the requestor indicated they want to become an owner (and is a Microsoft FTE)
 
 {{< /expand >}}
 
-{{< hint type=tip >}}
+{{< hint type=important >}}
 
-Although, it's not directly part of the module proposal triage process, to begin development, module owners and contributors might need additional help from the AVM core team, such as:
+Although, it's not directly part of the module proposal triage process, to begin development, module owners and contributors will need additional help from the AVM core team, such as:
 
 1. Update any Azure RBAC permissions for test tenants/subscription, if required
-2. Bicep Only:
-    - Update `Azure/bicep-registry-modules` [CODEOWNERS file](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS)
+2. In case of **Bicep modules** only:
+    - Look for the module owners confirmation on the related `[Module Proposal]` issue that they have created the required `-module-owners-` and `-module-owners-` GitHub teams.
+    - Grant the necessary permissions to the `-module-owners-` and `-module-owners-` teams on the [BRM repo](https://aka.ms/BRM) as described [here](https://azure.github.io/Azure-Verified-Modules/specs/shared/#grant-permissions---bicep).
+    - Update [`CODEOWNERS`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) file in the [BRM repo](https://aka.ms/BRM).
+    - When ready, on the related issue, confirm that you have granted the necessary permissions to the GitHub teams and updated the `CODEOWNERS` file.
 
 {{< /hint >}}
 
@@ -133,7 +136,11 @@ Once the **Orphaned Module issue** was closed, it **MUST remain closed**. If the
 1. Create a new issue using the "[Orphaned Module](https://aka.ms/AVM/OrphanedModule)" issue template.
 2. Make sure the "<mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark>", "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" and the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" labels are assigned to the issue.
 3. Move the issue into the "`Orphaned`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
-4. Place an information notice file, called `ORPHANED.md` into the module's root, stating the following:
+4. Place an information notice as per the below guidelines:
+    - In case of a Bicep module, place the information notice in an `ORPHANED.md` file, in the module's root.
+    - In case of a Terraform module, place the information notice in the `README.md` file, in the module's root.
+
+Include the following text in the information notice:
 
 {{< expand "➕ Orphaned module notice for module README file" "expand/collapse" open >}}
 
