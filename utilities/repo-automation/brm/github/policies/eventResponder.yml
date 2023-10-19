@@ -1,0 +1,163 @@
+id: avmEventResponder
+name: AVM Event Responder
+description: AVM Event Responder
+resource: repository
+disabled: false
+
+configuration:
+  resourceManagementConfiguration:
+    eventResponderTasks:
+      - description: ITA06 - If a new issue is opened add the needs triage label
+        if:
+          - payloadType: Issues
+          - and:
+            - isAction:
+                action: Opened
+        then:
+          - addLabel:
+              label: 'Needs: Triage :mag:'
+
+      - description: ITA07 - If a new pull request is opened add the needs triage label
+        if:
+          - payloadType: Pull_Request
+          - and:
+            - isAction:
+                action: Opened
+        then:
+          - addLabel:
+              label: 'Needs: Triage :mag:'
+
+      # - description: 'ITA08BCP - If "AVM" or "Azure Verified Modules" is mentioned in a new issue, add label of "Type: AVM :a: :v: :m:" on the issue'
+      #   if:
+      #     - or:
+      #       - payloadType: Issues
+      #       - payloadType: Issue_Comment
+      #       - payloadType: Pull_Request
+      #       - payloadType: Pull_Request_Review_Comment
+      #     - and:
+      #       - isAction:
+      #           action: Opened
+      #       - or:
+      #         - bodyContains:
+      #             pattern: 'AVM'
+      #         - bodyContains:
+      #             pattern: 'Azure Verified Modules'
+      #         - commentContains:
+      #             pattern: 'AVM'
+      #         - commentContains:
+      #             pattern: 'Azure Verified Modules'
+      #   then:
+      #     - addLabel:
+      #         label: 'Type: AVM :a: :v: :m:'
+
+      - description: 'ITA09 - When #RR is used in an issue, add the label of "Needs: Author Feedback :ear:"'
+        if:
+          - or:
+              - payloadType: Pull_Request_Review_Comment
+              - payloadType: Issue_Comment
+          - commentContains:
+              pattern: '#RR'
+        then:
+          - addLabel:
+              label: 'Needs: Author Feedback :ear:'
+
+      - description: 'ITA10 - When #wontfix is used in an issue, mark it by using the label of "Status: Won''t Fix :broken_heart:"'
+        if:
+          - or:
+              - payloadType: Pull_Request_Review_Comment
+              - payloadType: Issue_Comment
+          - commentContains:
+              pattern: '#wontfix'
+        then:
+          - addLabel:
+              label: 'Status: Won''t Fix :broken_heart:'
+          - closeIssue
+
+      - description: 'ITA11 - When a reply from anyone to an issue occurs, remove the "Needs: Author Feedback :ear:" label and label with "Needs: Attention :wave:"'
+        if:
+          - or:
+              - payloadType: Pull_Request_Review_Comment
+              - payloadType: Issue_Comment
+          - not:
+              isAction:
+                action: Closed
+          - hasLabel:
+              label: 'Needs: Author Feedback :ear:'
+        then:
+          - removeLabel:
+              label: 'Needs: Author Feedback :ear:'
+          - addLabel:
+              label: 'Needs: Attention :wave:'
+
+      - description: 'ITA12 - Clean email replies on every comment'
+        if:
+          - payloadType: Issue_Comment
+        then:
+          - cleanEmailReply
+
+      - description: 'ITA13 - If the language is set to Bicep in the Module proposal, assign the "Language: Bicep :muscle:" label on the issue'
+        if:
+          - payloadType: Issues
+          - and:
+            - isAction:
+                action: Opened
+            - bodyContains:
+                pattern: '/### Bicep or Terraform\?\n\s+Bicep/'
+                isRegex: true
+        then:
+          - addLabel:
+              label: 'Language: Bicep :muscle:'
+
+      - description: 'ITA14 - If the language is set to Terraform in the Module proposal, assign the "Language: Terraform :globe_with_meridians:" label on the issue'
+        if:
+          - payloadType: Issues
+          - and:
+            - isAction:
+                action: Opened
+            - bodyContains:
+                pattern: '/### Bicep or Terraform\?\n\s+Terraform/'
+                isRegex: true
+        then:
+          - addLabel:
+              label: 'Language: Terraform :globe_with_meridians:'
+
+      - description: 'ITA15 - remove the "Needs: Triage" label from a PR, if it already has a "Type: XYZ" label assigned at the time of creating it.'
+        if:
+          - payloadType: Pull_Request
+          - or:
+            - hasLabel:
+                label: 'Type: Bug :bug:'
+            - hasLabel:
+                label: 'Type: Documentation :page_facing_up:'
+            - hasLabel:
+                label: 'Type: Duplicate :palms_up_together:'
+            - hasLabel:
+                label: 'Type: Feature Request :heavy_plus_sign:'
+            - hasLabel:
+                label: 'Type: Hygiene :broom:'
+            - hasLabel:
+                label: 'Type: New Module Proposal :bulb:'
+            - hasLabel:
+                label: 'Type: Question/Feedback :raising_hand:'
+            - hasLabel:
+                label: 'Type: Security Bug :lock:'
+            - hasLabel:
+                label: 'Type: AVM :a: :v: :m:'
+          - isAction:
+              action: Opened
+        then:
+          - removeLabel:
+              label: 'Needs: Triage :mag:'
+
+      - description: 'ITA16 - Add the "Status: Owners Identified :metal:" label when someone is assigned to a Module Proposal'
+        if:
+          - payloadType: Issues
+          - not:
+              isAction:
+                action: Closed
+          - hasLabel:
+              label: 'Type: New Module Proposal :bulb:'
+          - isAssignedToSomeone
+        then:
+          - addLabel:
+              label: 'Status: Owners Identified :metal:'

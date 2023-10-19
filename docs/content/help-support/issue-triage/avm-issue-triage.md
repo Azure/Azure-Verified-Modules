@@ -10,7 +10,7 @@ geekdocToC: 1
 
 ## "AVM Core Team Triage" Explained
 
-This section provides guidance for members of the AVM Core Team on how to triage module proposals and generic issues as well as how to manage issues throughout their lifecycle.
+This section provides guidance for members of the **AVM Core Team** on how to **triage module proposals** and **generic issues** filed in the [AVM repository](https://aka.ms/AVM/repo), as well as how to manage these GitHub issues throughout their lifecycle.
 
 During the AVM Core Team Triage step, the following will be checked, completed and actioned by the AVM Core Team during their triage calls (which are currently twice per week).
 
@@ -19,7 +19,8 @@ Every module needs a module proposal to be created in the AVM repository This ap
 {{< /hint >}}
 
 {{< hint type=tip >}}
-To look for items that need triaging, click on the following link to use this saved query ➡️ <a href="https://aka.ms/AVM/NeedsTriage"><mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark></a> ⬅️.
+- To look for items that **need triaging**, click on the following link to use this saved query ➡️ <a href="https://aka.ms/AVM/NeedsTriage"><mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark></a> ⬅️.
+- To look for items that **need attention**, click on the following link to use this saved query ➡️ <a href="https://aka.ms/AVM/NeedsAttention"><mark style="background-color:#E99695;color:white;">Needs: Attention 👋</mark></a> ⬅️.
 {{< /hint >}}
 
 <br>

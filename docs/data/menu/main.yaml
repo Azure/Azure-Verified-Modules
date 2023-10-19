@@ -53,8 +53,10 @@ main:
       - name: 'Issue Triage'
         ref: '/help-support/issue-triage'
         sub:
-        - name: 'AVM Issue Triage'
+        - name: 'AVM Repository'
           ref: '/help-support/issue-triage/avm-issue-triage'
+        - name: 'BRM Repository'
+          ref: '/help-support/issue-triage/brm-issue-triage'
         - name: 'Issue Triage Automation'
           ref: '/help-support/issue-triage/issue-triage-automation'
       - name: 'Telemetry'

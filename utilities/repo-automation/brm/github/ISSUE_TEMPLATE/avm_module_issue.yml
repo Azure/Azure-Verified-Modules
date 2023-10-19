@@ -1,7 +1,8 @@
-name: General Question/Feedback ❔
-description: Just got a question or some general feedback? Let us know!
-title: "[Question/Feedback]: "
-labels: ["Type: Question/Feedback :raising_hand:", "Needs: Triage :mag:"]
+name: AVM - Module Issue 📝🪲
+description: Want to request a new Module feature or report a bug? Let us know!
+title: "[AVM Module Feature request/Bug]: "
+labels: ["Type: AVM :a: :v: :m:", "Type: Feature Request :heavy_plus_sign", "Needs: Triage :mag:"]
+projects: ["Azure/566"]
 body:
   - type: markdown
     attributes:
