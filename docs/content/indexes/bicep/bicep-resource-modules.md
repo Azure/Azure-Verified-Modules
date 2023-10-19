@@ -5,7 +5,7 @@ geekdocAlign: left
 geekdocAnchor: true
 ---
 
-{{< csvUpdated csv="/static/module-indexes/BicepResourceModules.csv" >}}
+<!-- {{< csvUpdated csv="/static/module-indexes/BicepResourceModules.csv" >}} -->
 
 <!-- {{< hint type=tip >}}
 
