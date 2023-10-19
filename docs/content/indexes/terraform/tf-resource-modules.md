@@ -5,7 +5,7 @@ geekdocAlign: left
 geekdocAnchor: true
 ---
 
-{{< csvUpdated csv="/static/module-indexes/TerraformResourceModules.csv" >}}
+<!-- {{< csvUpdated csv="/static/module-indexes/TerraformResourceModules.csv" >}} -->
 
 <!-- {{< hint type=tip >}}
 
