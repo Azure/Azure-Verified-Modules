@@ -7,50 +7,54 @@ disabled: false
 configuration:
   resourceManagementConfiguration:
     eventResponderTasks:
-      - description: ITA06 - If a new issue is opened add the needs triage label
+      - description: 'ITA06 - If a new issue or PR is opened add the "Needs: Triage :mag:" label'
         if:
-          - payloadType: Issues
-          - and:
-            - isAction:
-                action: Opened
+          - or:
+            - payloadType: Issues
+            - payloadType: Pull_Request
+          - isAction:
+              action: Opened
         then:
           - addLabel:
               label: 'Needs: Triage :mag:'
 
-      - description: ITA07 - If a new pull request is opened add the needs triage label
+      - description: 'ITA08BCP - If "AVM" or "Azure Verified Modules" is mentioned in a new issue, add label of "Type: AVM :a: :v: :m:" on the issue'
         if:
-          - payloadType: Pull_Request
+          - or:
+            - payloadType: Issues
+            - payloadType: Pull_Request
+            - payloadType: Issue_Comment
+            - payloadType: Pull_Request_Review_Comment
           - and:
-            - isAction:
-                action: Opened
+            - or:
+              - isAction:
+                  action: Opened
+              - isAction:
+                  action: Created
+              - isAction:
+                  action: Edited
+            - or:
+              - bodyContains:
+                  pattern: 'AVM'
+              - bodyContains:
+                  pattern: 'avm'
+              - bodyContains:
+                  pattern: 'Azure Verified Modules'
+              - bodyContains:
+                  pattern: 'azure verified modules'
+              - commentContains:
+                  pattern: 'AVM'
+              - commentContains:
+                  pattern: 'avm'
+              - commentContains:
+                  pattern: 'AVM'
+              - commentContains:
+                  pattern: 'azure verified modules'
         then:
           - addLabel:
-              label: 'Needs: Triage :mag:'
+              label: 'Type: AVM :a: :v: :m:'
 
-      # - description: 'ITA08BCP - If "AVM" or "Azure Verified Modules" is mentioned in a new issue, add label of "Type: AVM :a: :v: :m:" on the issue'
-      #   if:
-      #     - or:
-      #       - payloadType: Issues
-      #       - payloadType: Issue_Comment
-      #       - payloadType: Pull_Request
-      #       - payloadType: Pull_Request_Review_Comment
-      #     - and:
-      #       - isAction:
-      #           action: Opened
-      #       - or:
-      #         - bodyContains:
-      #             pattern: 'AVM'
-      #         - bodyContains:
-      #             pattern: 'Azure Verified Modules'
-      #         - commentContains:
-      #             pattern: 'AVM'
-      #         - commentContains:
-      #             pattern: 'Azure Verified Modules'
-      #   then:
-      #     - addLabel:
-      #         label: 'Type: AVM :a: :v: :m:'
-
-      - description: 'ITA09 - When #RR is used in an issue, add the label of "Needs: Author Feedback :ear:"'
+      - description: 'ITA09 - When #RR is used in an issue, add the "Needs: Author Feedback :ear:" label'
         if:
           - or:
               - payloadType: Pull_Request_Review_Comment
@@ -95,32 +99,6 @@ configuration:
         then:
           - cleanEmailReply
 
-      - description: 'ITA13 - If the language is set to Bicep in the Module proposal, assign the "Language: Bicep :muscle:" label on the issue'
-        if:
-          - payloadType: Issues
-          - and:
-            - isAction:
-                action: Opened
-            - bodyContains:
-                pattern: '/### Bicep or Terraform\?\n\s+Bicep/'
-                isRegex: true
-        then:
-          - addLabel:
-              label: 'Language: Bicep :muscle:'
-
-      - description: 'ITA14 - If the language is set to Terraform in the Module proposal, assign the "Language: Terraform :globe_with_meridians:" label on the issue'
-        if:
-          - payloadType: Issues
-          - and:
-            - isAction:
-                action: Opened
-            - bodyContains:
-                pattern: '/### Bicep or Terraform\?\n\s+Terraform/'
-                isRegex: true
-        then:
-          - addLabel:
-              label: 'Language: Terraform :globe_with_meridians:'
-
       - description: 'ITA15 - remove the "Needs: Triage" label from a PR, if it already has a "Type: XYZ" label assigned at the time of creating it.'
         if:
           - payloadType: Pull_Request
@@ -161,3 +139,45 @@ configuration:
         then:
           - addLabel:
               label: 'Status: Owners Identified :metal:'
+
+      - description: 'ITA20 - If the type is feature request, assign the "Type: Feature Request :heavy_plus_sign:" label on the issue'
+        if:
+          - payloadType: Issues
+          - isAction:
+              action: Opened
+          - bodyContains:
+              pattern: |
+                ### Issue Type?
+
+                Feature Request
+        then:
+          - addLabel:
+              label: 'Type: Feature Request :heavy_plus_sign:'
+
+      - description: 'ITA21 - If the type is bug, assign the "Type: Bug :bug:" label on the issue'
+        if:
+          - payloadType: Issues
+          - isAction:
+              action: Opened
+          - bodyContains:
+              pattern: |
+                ### Issue Type?
+
+                Bug
+        then:
+          - addLabel:
+              label: 'Type: Bug :bug:'
+
+      - description: 'ITA22 - If the type is security bug, assign the "Type: Security Bug :lock:" label on the issue'
+        if:
+          - payloadType: Issues
+          - isAction:
+              action: Opened
+          - bodyContains:
+              pattern: |
+                ### Issue Type?
+
+                Security Bug
+        then:
+          - addLabel:
+              label: 'Type: Security Bug :lock:'
