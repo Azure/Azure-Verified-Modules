@@ -18,29 +18,29 @@ This section details all automation rules that are based on a schedule.
 When calculating the number of business days in the issue/triage automation, the built-in logic considers Monday-Friday as business days. The logic doesn't consider any holidays.
 {{< /hint >}}
 
-### ITA01TF.1-2
-
-If a bug/feature/request/general question is not responded to after 3 business days, then the AVM Core team will be tagged in a comment on the issue to reach out to the module owner. The AVM core team will also be assigned on the issue.
-
 ### ITA01BCP.1-2
 
-If a bug/feature/request/general question that has the label of "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>" is not responded to after 3 business days, then the AVM Core team will be tagged in a comment on the issue to reach out to the module owner. The AVM core team will also be assigned on the issue.
+If a bug/feature/request/general question that has the labels of "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>" and "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" is not responded to after 3 business days, then the issue will be marked with the "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" label and the AVM Core team will be tagged in a comment on the issue to reach out to the module owner. The AVM core team will also be assigned on the issue.
+
+### ITA01TF.1-2
+
+If a bug/feature/request/general question that has the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label assigned is not responded to after 3 business days, then the issue will be marked with the "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" label and the AVM Core team will be tagged in a comment on the issue to reach out to the module owner. The AVM core team will also be assigned on the issue.
 
 ### ITA02BCP.1-2
 
-If after an additional 3 business days there's still no update to the issue that has the label of "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>", the AVM core team will be assigned to the issue and a further comment stating module owner is unresponsive.
+If after an additional 3 business days there's still no update to the issue that has the labels of "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>" and "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>", the AVM core team will be assigned to the issue and a further comment stating module owner is unresponsive. The "<mark style="background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>" label will also be assigned.
 
 ### ITA02TF.1-2
 
-If after an additional 3 business days there's still no update to the issue, the AVM core team will be assigned to the issue and a further comment stating module owner is unresponsive.
+If after an additional 3 business days there's still no update to the issue that has the "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" label assigned, the AVM core team will be assigned to the issue and a further comment stating module owner is unresponsive. The "<mark style="background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>" label will also be assigned.
 
 ### ITA03BCP
 
-If after 5 days (total from start of issue being raised) and no response the Bicep PG GitHub Team will be tagged and assigned to the issue to assist.
+If there's still no response after 5 days (total from start of issue being raised) on an issue that has the labels of "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>", "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>", "<mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>" and "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>", the Bicep PG GitHub Team will be tagged and assigned to the issue to assist. The "<mark style="background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>" label will also be assigned.
 
 ### ITA03TF
 
-If after 5 days (total from start of issue being raised) and no response the Terraform PG GitHub Team will be tagged and assigned to the issue to assist.
+If there's still no response after 5 days (total from start of issue being raised) on an issue that has the labels of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>", "<mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>" and "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>", the Terraform PG GitHub Team will be tagged and assigned to the issue to assist. The "<mark style="background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>" label will also be assigned.
 
 ### ITA04
 
@@ -58,11 +58,7 @@ This chapter details all automation rules that are based on an event.
 
 ### ITA06
 
-When a new issue of any type is created add the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label.
-
-### ITA07
-
-When a new PR of any type is created add the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label.
+When a new issue or PR of any type is created add the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label.
 
 ### ITA08BCP
 
@@ -100,6 +96,51 @@ Remove the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" l
 
 Add the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label when someone is assigned to a Module Proposal.
 
+### ITA17
+
+If the issue author says they want to be the module owner, assign the issue to the author and respond to them.
+
+```markdown
+@${issueAuthor}, thanks for volunteering to be a module owner!
+
+**Please don't start the development just yet!**
+
+The AVM core team will review this module proposal and respond to you first. Thank you!
+```
+
+### ITA18
+
+Send automatic response to the issue author if they don't want to be module owner and don't have any candidate in mind. Assign the "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" label.
+
+```markdown
+@${issueAuthor}, thanks for submitting this module proposal!
+The AVM core team will review it and will try to find a module owner.
+```
+
+### ITA19
+
+Send automatic response to the issue author if they don't want to be module owner but have a candidate in mind. Assign the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label.
+
+```markdown
+@${issueAuthor}, thanks for submitting this module proposal with a module owner in mind!
+
+**Please don't start the development just yet!**
+
+The AVM core team will review this module proposal and respond to you and/or the module owner first. Thank you!
+```
+
+### ITA20
+
+If the issue type is feature request, assign the "<mark style="background-color:#A2EEEF;">Type: Feature Request ➕</mark>" label on the issue.
+
+### ITA21
+
+If the issue type is bug, assign the "<mark style="background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>" label on the issue.
+
+### ITA22
+
+If the issue type is security bug, assign the "<mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>" label on the issue.
+
 <br>
 
 ## Where to apply these rules?
@@ -117,7 +158,6 @@ The below table details which repositories the above rules are applied to.
 | [ITA04](#ita04)             |         ✔️          |       ✔️       |       ✔️        |
 | [ITA05](#ita05)             |         ✔️          |       ✔️       |       ✔️        |
 | [ITA06](#ita06)             |         ✔️          |       ✔️       |       ✔️        |
-| [ITA07](#ita07)             |         ✔️          |       ✔️       |       ✔️        |
 | [ITA08BCP](#ita08bcp)       |                     |       ✔️       |                 |
 | [ITA09](#ita09)             |         ✔️          |       ✔️       |       ✔️        |
 | [ITA10](#ita10)             |         ✔️          |       ✔️       |       ✔️        |
@@ -127,3 +167,9 @@ The below table details which repositories the above rules are applied to.
 | [ITA14](#ita14)             |         ✔️          |                |                 |
 | [ITA15](#ita15)             |         ✔️          |       ✔️       |       ✔️        |
 | [ITA16](#ita16)             |         ✔️          |                |                 |
+| [ITA17](#ita17)             |         ✔️          |                |                 |
+| [ITA18](#ita18)             |         ✔️          |                |                 |
+| [ITA19](#ita19)             |         ✔️          |                |                 |
+| [ITA20](#ita20)             |                     |       ✔️       |                 |
+| [ITA21](#ita21)             |                     |       ✔️       |                 |
+| [ITA22](#ita22)             |                     |       ✔️       |                 |
