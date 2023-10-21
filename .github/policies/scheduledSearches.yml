@@ -24,7 +24,8 @@ configuration:
       - addLabel:
           label: 'Status: No Recent Activity :zzz:'
       - addReply:
-          reply: @${issueAuthor}, this issue has been automatically marked as stale because it has been marked as requiring author feedback but has not had any activity for **4 days**. It will be closed if no further activity occurs **within 3 days of this comment**.
+          reply: |
+            @${issueAuthor}, this issue has been automatically marked as stale because it has been marked as requiring author feedback but has not had any activity for **4 days**. It will be closed if no further activity occurs **within 3 days of this comment**.
 
     - description: ITA05 - Close issues that have been marked as requiring author feedback but have not had any activity for 3 days.
       frequencies:
@@ -45,5 +46,6 @@ configuration:
           days: 3
       actions:
       - addReply:
-          reply: @${issueAuthor}, this issue will now be closed, as it has been marked as requiring author feedback but has not had any activity for **7 days**.
+          reply: |
+            @${issueAuthor}, this issue will now be closed, as it has been marked as requiring author feedback but has not had any activity for **7 days**.
       - closeIssue
