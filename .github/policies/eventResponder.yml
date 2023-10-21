@@ -7,50 +7,18 @@ disabled: false
 configuration:
   resourceManagementConfiguration:
     eventResponderTasks:
-      - description: ITA06 - If a new issue is opened add the needs triage label
+      - description: 'ITA06 - If a new issue or PR is opened add the "Needs: Triage :mag:" label'
         if:
-          - payloadType: Issues
-          - and:
-            - isAction:
-                action: Opened
+          - or:
+            - payloadType: Issues
+            - payloadType: Pull_Request
+          - isAction:
+              action: Opened
         then:
           - addLabel:
               label: 'Needs: Triage :mag:'
 
-      - description: ITA07 - If a new pull request is opened add the needs triage label
-        if:
-          - payloadType: Pull_Request
-          - and:
-            - isAction:
-                action: Opened
-        then:
-          - addLabel:
-              label: 'Needs: Triage :mag:'
-
-      # - description: 'ITA08BCP - If "AVM" or "Azure Verified Modules" is mentioned in a new issue, add label of "Type: AVM :a: :v: :m:" on the issue'
-      #   if:
-      #     - or:
-      #       - payloadType: Issues
-      #       - payloadType: Issue_Comment
-      #       - payloadType: Pull_Request
-      #       - payloadType: Pull_Request_Review_Comment
-      #     - and:
-      #       - isAction:
-      #           action: Opened
-      #       - or:
-      #         - bodyContains:
-      #             pattern: 'AVM'
-      #         - bodyContains:
-      #             pattern: 'Azure Verified Modules'
-      #         - commentContains:
-      #             pattern: 'AVM'
-      #         - commentContains:
-      #             pattern: 'Azure Verified Modules'
-      #   then:
-      #     - addLabel:
-      #         label: 'Type: AVM :a: :v: :m:'
-
-      - description: 'ITA09 - When #RR is used in an issue, add the label of "Needs: Author Feedback :ear:"'
+      - description: 'ITA09 - When #RR is used in an issue, add the "Needs: Author Feedback :ear:" label'
         if:
           - or:
               - payloadType: Pull_Request_Review_Comment
@@ -98,12 +66,13 @@ configuration:
       - description: 'ITA13 - If the language is set to Bicep in the Module proposal, assign the "Language: Bicep :muscle:" label on the issue'
         if:
           - payloadType: Issues
-          - and:
-            - isAction:
-                action: Opened
-            - bodyContains:
-                pattern: '/### Bicep or Terraform\?\n\s+Bicep/'
-                isRegex: true
+          - isAction:
+              action: Opened
+          - bodyContains:
+              pattern: |
+                ### Bicep or Terraform?
+
+                Bicep
         then:
           - addLabel:
               label: 'Language: Bicep :muscle:'
@@ -111,12 +80,13 @@ configuration:
       - description: 'ITA14 - If the language is set to Terraform in the Module proposal, assign the "Language: Terraform :globe_with_meridians:" label on the issue'
         if:
           - payloadType: Issues
-          - and:
-            - isAction:
-                action: Opened
-            - bodyContains:
-                pattern: '/### Bicep or Terraform\?\n\s+Terraform/'
-                isRegex: true
+          - isAction:
+              action: Opened
+          - bodyContains:
+              pattern: |
+                ### Bicep or Terraform?
+
+                Terraform
         then:
           - addLabel:
               label: 'Language: Terraform :globe_with_meridians:'
@@ -161,3 +131,74 @@ configuration:
         then:
           - addLabel:
               label: 'Status: Owners Identified :metal:'
+
+      - description: 'ITA17 - If the issue author says they want to be the module owner, assign the issue to the author and respond to them.'
+        if:
+          - payloadType: Issues
+          - isAction:
+              action: Opened
+          - bodyContains:
+              pattern: |
+                ### Do you want to be the owner of this module?
+
+                Yes
+        then:
+          - assignTo:
+              author: true
+          - addReply:
+              reply: |
+                @${issueAuthor}, thanks for volunteering to be a module owner!
+
+                **Please don't start the development just yet!**
+
+                The AVM core team will review this module proposal and respond to you first. Thank you!
+
+      - description: 'ITA18 - Send automatic response to the issue author if they don''t want to be module owner and don''t have any candidate in mind. Assign the "Needs: Module Owner :mega:" label.'
+        if:
+          - payloadType: Issues
+          - isAction:
+              action: Opened
+          - bodyContains:
+              pattern: |
+                ### Do you want to be the owner of this module?
+
+                No
+
+                ### Module Owner's GitHub Username (handle)
+
+                _No response_
+        then:
+          - addLabel:
+              label: 'Needs: Module Owner :mega:'
+          - addReply:
+              reply: |
+                @${issueAuthor}, thanks for submitting this module proposal!
+
+                The AVM core team will review it and will try to find a module owner.
+
+      - description: 'ITA19 - Send automatic response to the issue author if they don''t want to be module owner but have a candidate in mind. Assign the "Status: Owners Identified :metal:" label.'
+        if:
+          - payloadType: Issues
+          - isAction:
+              action: Opened
+          - bodyContains:
+              pattern: |
+                ### Do you want to be the owner of this module?
+
+                No
+          - not:
+              bodyContains:
+                pattern: |
+                  ### Module Owner's GitHub Username (handle)
+
+                  _No response_
+        then:
+          - addLabel:
+              label: 'Status: Owners Identified :metal:'
+          - addReply:
+              reply: |
+                @${issueAuthor}, thanks for submitting this module proposal with a module owner in mind!
+
+                **Please don't start the development just yet!**
+
+                The AVM core team will review this module proposal and respond to you and/or the module owner first. Thank you!
