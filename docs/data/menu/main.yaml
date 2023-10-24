@@ -73,6 +73,10 @@ main:
         ref: "https://aka.ms/AVM/ModuleTriage"
         external: true
         icon: "gdoc_github"
+      - name: 'Module Issues (Project)'
+        ref: "https://aka.ms/AVM/ModuleIssues"
+        external: true
+        icon: "gdoc_github"
       - name: 'Issue Triage (Project)'
         ref: "https://aka.ms/AVM/IssueTriage"
         external: true
