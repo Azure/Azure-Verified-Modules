@@ -151,8 +151,12 @@ Once the **Orphaned Module issue** was closed, it **MUST remain closed**. If the
 2. Make sure the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>", "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>", and the "<mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark>" labels are assigned to the issue.
 3. Move the issue into the "`Orphaned`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
 4. Place an information notice as per the below guidelines:
-    - In case of a Bicep module, place the information notice in an `ORPHANED.md` file, in the module's root.
-    - In case of a Terraform module, place the information notice in the `README.md` file, in the module's root.
+    - In case of a Bicep module:
+      - Place the information notice - with the text below - in an `ORPHANED.md` file, in the module's root.
+      - Run the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) utility. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header.
+      - Make sure the content of the `ORPHANED.md` file is displayed in the `README.md` in its header (right after the title).
+    - In case of a Terraform module, place the information notice - with the text below - in the `README.md` file, in the module's root.
+    - Once the information notice is placed, submit a Pull Request.
 
 Include the following text in the information notice:
 
@@ -190,8 +194,12 @@ To look for Orphaned Modules:
 3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
 4. Get the new owner(s) and any new contributor(s) added to the related `-module-owners-` or `-module-contributors-` teams. See [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) for more details.
 5. Remove the information notice (i.e., the file that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.` ):
-    - In case of a Bicep module, delete the `ORPHANED.md` file from the module's root.
+    - In case of a Bicep module:
+      - Delete the `ORPHANED.md` file from the module's root.
+      - Run the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) utility. This removed the re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header.
+      - Make sure the the `README.md` file no longer has the information notice in its header (right after the title).
     - In case of a Terraform module, remove the information notice from the `README.md` file in the module's root.
+    - Once the information notice is removed, submit a Pull Request.
 6. Use the following text to confirm the new ownership of an orphaned module:
 
 {{< expand "➕ Final Confirmation for New Owners of an Orphaned Module" "expand/collapse" >}}
