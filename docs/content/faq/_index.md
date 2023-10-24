@@ -205,3 +205,29 @@ If you're not a Microsoft FTE or don't want to be a module owner, you can still 
 - You can propose a [new module](https://aka.ms/AVM/ModuleProposal) and provide as much context as possible under the "Module Details" section (e.g., why do you need the module, what's the business impact of not having it, etc.). The AVM core team will try to find a Microsoft FTE to be the module owner whom you can collaborate with.
 - You can contact the current owner of any existing module and offer to contribute to it. You can find the current owners of all AVM modules in the [module indexes](/Azure-Verified-Modules/indexes/).
 - You can look for [orphaned modules](https://aka.ms/AVM/OrphanedModules) and use the comment section to indicate that you'd be interested in contributing to this module, once a new owner is found.
+
+## How can I use Bicep modules through the Public Registry?
+
+Use the [Bicep Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) to author your Bicep template and explore modules published in the Bicep Public Registry. For more details, see the the below example steps.
+
+{{< hint type=note >}}
+The Bicep VSCode extension is reading metadata through [this JSON file](https://live-data.bicep.azure.com/module-index). All modules are added to this file, as part of the publication process.
+{{< /hint >}}
+
+1. When authoring a new Bicep file, use the [VS Code extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) to explore the modules published in the Bicep Public Registry.
+<img src="../img/faq/use-bicep-module-01.png" width=100%>
+
+2. Expanding on this you can see the AVM modules that are published.
+<img src="../img/faq/use-bicep-module-02.png" width=100%>
+
+3. Selecting the module expands on the current available versions.
+<img src="../img/faq/use-bicep-module-03.png" width=100%>
+
+4. Setting required properties exposes what is required on the module.
+<img src="../img/faq/use-bicep-module-04.png" width=100%>
+
+5. Hovering over the `myTestModule` name exposes the module's documentation URL.
+<img src="../img/faq/use-bicep-module-05.png" width=100%>
+
+6. Clicking on the link opens up the Bicep Registry Repo for the AVM module's source code, where you can find the documentation detailing all the module's functionality, input parameters and outputs, while providing various examples.
+<img src="../img/faq/use-bicep-module-06.png" width=100%>
