@@ -40,6 +40,13 @@ body:
       placeholder: avm-res-<rp>-<armresourcename>
     validations:
       required: true
+  - type: input
+    id: module-version
+    attributes:
+      label: (Optional) Module Version
+      description: Please provide which version(s) of the module does this issue apply to.
+    validations:
+      required: false
   - type: textarea
     id: question-feedback-text
     attributes:

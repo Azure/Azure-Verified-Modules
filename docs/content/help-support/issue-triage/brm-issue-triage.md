@@ -27,6 +27,8 @@ Do **NOT** file the following types of issues in the **BRM repository**, as they
 Every module needs a module proposal to be created in the AVM repository. This applies to both net new modules, as well as modules that are to be migrated from CARML/TFVM!
 {{< /hint >}}
 
+<br>
+
 ## Module Owner Responsibilities
 
 During the triage process, module owners are expected to check, complete and follow up on the items described in the sections below.
@@ -48,35 +50,59 @@ The [BRM repository](https://aka.ms/BRM) includes other, non-AVM modules and rel
 
 ## Module Issue
 
-An issue is considered to be an AVM module issue if it was opened through the **\[[AVM Module Issue](https://aka.ms/BRM/AVMModuleIssue)]** template in the BRM repository, and has the labels of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" and "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>" applied to it.
+An issue is considered to be an "AVM module issue" if
+
+- it was opened through the **\[[AVM Module Issue](https://aka.ms/BRM/AVMModuleIssue)]** template in the [BRM repository](https://aka.ms/BRM),
+- it has the labels of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" and "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>" applied to it, and
+- it is assigned to the "[AVM - Module Issues](https://github.com/orgs/Azure/projects/566)" GitHub project.
 
 {{< hint type=note >}}
 Module issues can only be opened for existing AVM modules. Module issues **MUST NOT** be used to file a module proposal.
 
-If the issue was opened as a misplaced module proposal, mention the `@Azure/AVM-core-team` in the comment section to have the issue moved to the AVM repository.
+If the issue was opened as a misplaced module proposal, mention the `@Azure/AVM-core-team` in the comment section and ask them to move the issue to the AVM repository.
 {{< /hint >}}
 
 1. Add the "<mark style="background-color:#E4E669;">Status: In Triage 🔍</mark>" label to indicate you're in the process of triaging the issue.
-- make sure the issue has the "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>" applied to it
-
-- make sure the issue is categorized using one of the following type labels:
-  - "<mark style="background-color:#A2EEEF;">Type: Feature Request ➕</mark>"
-  - "<mark style="background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>"
-  - "<mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>"
-
-- the module to which the issue applies must be identified
-  - if the issue applies to a specific version of the module, make sure to include the version number in the issue title
-  - if the issue applies to all versions of the module, make sure to include the module name in the issue title
-  - if the issue applies to multiple modules, make sure to include the module names in the issue title
-- use the AVM module indexes to identify the module owner(s)
-- assign the issue to the module owner(s)
-- if the module is orphaned (has no owner), make sure there's an orphaned module issue in the AVM repository
-- Apply relevant labels
+2. Check the Module issue:
+    - Make sure the issue has the "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>" applied to it.
+    - Use the AVM module indexes to identify the module owner(s).
+    - Assign the issue to the module owner(s).
+    - If the module is orphaned (has no owner), make sure there's an orphaned module issue in the AVM repository
+    - Make sure the module's details are captured correctly in the description - i.e., name, classification (resource/pattern), language (Bicep/Terraform), etc.
+    - Make sure the issue is categorized using one of the following type labels:
+      - "<mark style="background-color:#A2EEEF;">Type: Feature Request ➕</mark>"
+      - "<mark style="background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>"
+      - "<mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>"
+3. Apply relevant labels
     - Module language: "<mark style="background-color:#1D73B3;color:white;">Language: Bicep 💪</mark>" or "<mark style="background-color:#7740B6;color:white;">Language: Terraform 🌐</mark>"
     - Module classification (resource/pattern): "<mark style="background-color:#D3D3D3;">Class: Resource Module 📦</mark>" or "<mark style="background-color:#A9A9A9;">Class: Pattern Module 📦</mark>"
+4. Communicate next steps to the requestor (issue author).
+5. When plans are available, communicate expected timeline for the update/fix to the requestor (issue author).
+6. Only close the issue, once the next version of the module was fully developed, tested and published.
 
-if the module w
+<br>
 
-## General Question/Feedback
+## General Question/Feedback and other standard issues
 
-An issue is considered to be an AVM Question/Feedback if it was opened through the **\[[AVM Question/Feedback](https://aka.ms/BRM/AVMQuestionFeedback)]** template in the BRM repository, and has the labels of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>", "<mark style="background-color:#CB6BA2;">Type: Question/Feedback 🙋‍♀️</mark>" and "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>" applied to it.
+An issue is considered to be an "AVM Question/Feedback" if
+
+- it was opened through the **\[[AVM Question/Feedback](https://aka.ms/BRM/AVMQuestionFeedback)]** template in the [BRM repository](https://aka.ms/BRM),
+- it has the labels of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>", "<mark style="background-color:#CB6BA2;">Type: Question/Feedback 🙋‍♀️</mark>" and "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>" applied to it, and
+- it is assigned to the "[AVM - Issue Triage](https://github.com/orgs/Azure/projects/538)" GitHub project.
+
+An issue is considered to be a "standard issue" or "blank issue" if it was opened without using an issue template, and hence it does **NOT** have any labels assigned, OR only has the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label assigned.
+
+When triaging the issue, consider adding one of the following labels as fits:
+
+- <mark style="background-color:#0075CA;color:white;">Type: Documentation 📄</mark>
+- <mark style="background-color:#A2EEEF;">Type: Feature Request ➕</mark>
+- <mark style="background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>
+- <mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>
+
+To see the full list of available labels, please refer to the [GitHub Repo Labels](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels) section.
+
+{{< hint type=note >}}
+
+If an intended module proposal was mistakenly opened as a "AVM Question/Feedback ❔" or other standard issue, a new issue **MUST** be created in the [AVM repo](https://aka.ms/AVM/repo) using the "New AVM Module Proposal 📝" [issue template](https://aka.ms/avm/moduleproposal). The mistakenly created "AVM Question/Feedback ❔" or other standard issue **MUST** be closed.
+
+{{< /hint >}}

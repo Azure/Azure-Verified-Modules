@@ -27,7 +27,11 @@ Every module needs a module proposal to be created in the AVM repository. This a
 
 ## Module Proposal triage
 
-An issue is considered to be a module proposal if it was opened through the "[New AVM Module Proposal 📝](https://aka.ms/avm/moduleproposal)" template, and has the labels of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" and "<mark style="background-color:#ADD8E6;">Type: New Module Proposal 💡</mark>" applied to it.
+An issue is considered to be a module proposal if
+
+- it was opened through the "[New AVM Module Proposal 📝](https://aka.ms/avm/moduleproposal)" template,
+- it has the labels of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" and "<mark style="background-color:#ADD8E6;">Type: New Module Proposal 💡</mark>" applied to it, and
+- it is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project.
 
 Follow these steps to triage a module proposal:
 1. Add the "<mark style="background-color:#E4E669;">Status: In Triage 🔍</mark>" label to indicate you're in the process of triaging the issue.
@@ -129,6 +133,12 @@ Once module is developed and `v0.1.0` has been published to the relevant registr
 
 If a module meets the criteria described in the "[Orphaned AVM Modules](/Azure-Verified-Modules/specs/shared/module-lifecycle/#orphaned-avm-modules)" chapter, the modules is considered to be orphaned and the below steps must be performed.
 
+An issue is considered to be an orphaned module if
+
+- it was opened through the "[Orphaned AVM Module 👀](https://aka.ms/avm/OrphanedModule)" template,
+- it has the labels of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>", "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" and the "<mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark>" applied to it, and
+- it is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project.
+
 {{< hint type=note >}}
 The original **Module Proposal issue** related to the module in question **MUST remain closed and intact**.
 
@@ -138,7 +148,7 @@ Once the **Orphaned Module issue** was closed, it **MUST remain closed**. If the
 {{< /hint >}}
 
 1. Create a new issue using the "[Orphaned AVM Module 👀](https://aka.ms/AVM/OrphanedModule)" issue template.
-2. Make sure the "<mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark>", "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" and the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" labels are assigned to the issue.
+2. Make sure the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>", "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>", and the "<mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark>" labels are assigned to the issue.
 3. Move the issue into the "`Orphaned`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
 4. Place an information notice as per the below guidelines:
     - In case of a Bicep module, place the information notice in an `ORPHANED.md` file, in the module's root.
