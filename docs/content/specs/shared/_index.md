@@ -113,6 +113,18 @@ These will also be provided as a comment on the module proposal, once accepted, 
 
 Modules **MUST** provide the capability to collect deployment/usage telemetry, via a blank ARM deployment, as detailed in [Telemetry](/Azure-Verified-Modules/help-support/telemetry/) further.
 
+To highlight that AVM modules use telemetry, an information notice **MUST** be included in the footer of each module's `README.md` file with the below content. (See more details on this requirement, [here](https://docs.opensource.microsoft.com/releasing/general-guidance/telemetry/).)
+
+{{< expand "➕ Telemetry Information Notice" "expand/collapse" >}}
+
+{{< hint type=note >}}
+The following information notice is automatically at the bottom of the `README.md` file of the module when using the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) tool
+{{< /hint >}}
+
+{{< include file="static/includes/telemetry-information-notice.md" language="markdown" options="linenos=false" >}}
+
+{{< /expand >}}
+
 The ARM deployment name used for the telemetry **MUST** follow the pattern and **MUST** be no longer than 64 characters in length: `<AVM 8 chars (alphanumeric)>.<res/ptn>.<(short) module name>.<version>.<uniqueness>`
 
 - `<AVM 8 chars (alphanumeric)>`
