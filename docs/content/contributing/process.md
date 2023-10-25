@@ -39,7 +39,7 @@ flowchart TD
     G -->|Tests Pass|J[[Pre-Release v0.1.0 created]]
     J -->K[[Publish to Bicep/Terraform Registry]]
     K -->L(Take Feedback from v0.1.0 Consumers)
-    L -->M{Anything to be resolved <br> before 1.0.0 release?}
+    L -->M{Anything to be resolved <br> before 1.0.0 release? <br> <br> ! Read the <mark style="background-color:#FBCA04;"><b><a href='/Azure-Verified-Modules/contributing/process/#avm-preview-notice'>AVM preview notice</a></b></mark> !}
     M -->|Yes|FixPreV1("Module Feedback Incorporated by <br> Owner(s) & their Contributors")
     FixPreV1 -->PreV1Tests[[Self & AVM Module Tests]]
     PreV1Tests -->|Tests Fail|PreV1TestsFix(Modules/Tests Fixed <br> To Make Them Pass)
@@ -48,6 +48,16 @@ flowchart TD
     N -->O[[Publish to IaC Registry]]
     O -->P[[<a href='/Azure-Verified-Modules/help-support/module-support/'>Module BAU Starts</a>]]
 {{< /mermaid >}}
+
+## AVM Preview Notice
+
+{{< hint type=important >}}
+
+As the overall AVM framework is not GA (generally available) yet - the CI framework and test automation is not (fully) functional, breaking changes are expected, and additional customer feedback is yet to be gathered and incorporated - modules **MUST NOT** be published at version 1.0.0 or higher at this time.
+
+All module **MUST** be published as a pre-release version (e.g., 0.1.0, 0.1.1, 0.2.0, etc.) until the AVM framework becomes GA.
+
+{{< /hint >}}
 
 ## Module Owner Has Issue/Is Blocked/Has A Request
 
