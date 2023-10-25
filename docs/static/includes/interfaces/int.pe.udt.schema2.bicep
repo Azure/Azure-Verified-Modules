@@ -65,7 +65,7 @@ module <exampleResource>PrivateEndpoint 'br/public:avm-res-network-privateendpoi
     groupIds: [
       privateEndpoint.service
     ]
-    name: privateEndpoint.?name ?? 'pep-${last(split(<exampleResource>.id, '/'))}-${privateEndpoint.?service ?? '<defaultServiceName>'}-${index}'
+    name: privateEndpoint.?name ?? 'pep-${last(split(<exampleResourceSymbolicName>.id, '/'))}-${privateEndpoint.?service ?? privateEndpoint.service}-${index}'
     serviceResourceId: <exampleResource>.id
     subnetResourceId: privateEndpoint.subnetResourceId
     enableTelemetry: privateEndpoint.?enableTelemetry ?? enableTelemetry
