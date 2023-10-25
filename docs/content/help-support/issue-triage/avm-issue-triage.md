@@ -10,23 +10,28 @@ geekdocToC: 1
 
 ## "AVM Core Team Triage" Explained
 
-This section provides guidance for members of the AVM Core Team on how to triage module proposals and generic issues as well as how to manage issues throughout their lifecycle.
+This page provides guidance for members of the **AVM Core Team** on how to **triage module proposals** and **generic issues** filed in the [AVM repository](https://aka.ms/AVM/repo), as well as how to manage these GitHub issues throughout their lifecycle.
 
 During the AVM Core Team Triage step, the following will be checked, completed and actioned by the AVM Core Team during their triage calls (which are currently twice per week).
 
 {{< hint type=note >}}
-Every module needs a module proposal to be created in the AVM repository This applies to both net new modules, as well as modules that are to be migrated from CARML/TFVM!
+Every module needs a module proposal to be created in the AVM repository. This applies to both net new modules, as well as modules that are to be migrated from CARML/TFVM!
 {{< /hint >}}
 
 {{< hint type=tip >}}
-To look for items that need triaging, click on the following link to use this saved query ➡️ <a href="https://aka.ms/AVM/NeedsTriage"><mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark></a> ⬅️.
+- To look for items that **need triaging**, click on the following link to use this saved query ➡️ <a href="https://aka.ms/AVM/NeedsTriage"><mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark></a> ⬅️.
+- To look for items that **need attention**, click on the following link to use this saved query ➡️ <a href="https://aka.ms/AVM/NeedsAttention"><mark style="background-color:#E99695;color:white;">Needs: Attention 👋</mark></a> ⬅️.
 {{< /hint >}}
 
 <br>
 
 ## Module Proposal triage
 
-An issue is considered to be a module proposal if it was opened through the [module proposal template](https://aka.ms/avm/moduleproposal), and has the labels of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" and "<mark style="background-color:#ADD8E6;">Type: New Module Proposal 💡</mark>" applied to them.
+An issue is considered to be a module proposal if
+
+- it was opened through the "[New AVM Module Proposal 📝](https://aka.ms/avm/moduleproposal)" template,
+- it has the labels of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" and "<mark style="background-color:#ADD8E6;">Type: New Module Proposal 💡</mark>" applied to it, and
+- it is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project.
 
 Follow these steps to triage a module proposal:
 1. Add the "<mark style="background-color:#E4E669;">Status: In Triage 🔍</mark>" label to indicate you're in the process of triaging the issue.
@@ -128,6 +133,12 @@ Once module is developed and `v0.1.0` has been published to the relevant registr
 
 If a module meets the criteria described in the "[Orphaned AVM Modules](/Azure-Verified-Modules/specs/shared/module-lifecycle/#orphaned-avm-modules)" chapter, the modules is considered to be orphaned and the below steps must be performed.
 
+An issue is considered to be an orphaned module if
+
+- it was opened through the "[Orphaned AVM Module 👀](https://aka.ms/avm/OrphanedModule)" template,
+- it has the labels of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>", "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" and the "<mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark>" applied to it, and
+- it is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project.
+
 {{< hint type=note >}}
 The original **Module Proposal issue** related to the module in question **MUST remain closed and intact**.
 
@@ -136,12 +147,16 @@ Instead, a **new Orphaned Module issue** must be opened that **MUST remain open*
 Once the **Orphaned Module issue** was closed, it **MUST remain closed**. If the module will subsequently become orphaned again, a new Orphaned Module issue must be opened.
 {{< /hint >}}
 
-1. Create a new issue using the "[Orphaned Module](https://aka.ms/AVM/OrphanedModule)" issue template.
-2. Make sure the "<mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark>", "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" and the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" labels are assigned to the issue.
+1. Create a new issue using the "[Orphaned AVM Module 👀](https://aka.ms/AVM/OrphanedModule)" issue template.
+2. Make sure the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>", "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>", and the "<mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark>" labels are assigned to the issue.
 3. Move the issue into the "`Orphaned`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
 4. Place an information notice as per the below guidelines:
-    - In case of a Bicep module, place the information notice in an `ORPHANED.md` file, in the module's root.
-    - In case of a Terraform module, place the information notice in the `README.md` file, in the module's root.
+    - In case of a Bicep module:
+      - Place the information notice - with the text below - in an `ORPHANED.md` file, in the module's root.
+      - Run the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header.
+      - Make sure the content of the `ORPHANED.md` file is displayed in the `README.md` in its header (right after the title).
+    - In case of a Terraform module, place the information notice - with the text below - in the `README.md` file, in the module's root.
+    - Once the information notice is placed, submit a Pull Request.
 
 Include the following text in the information notice:
 
@@ -179,8 +194,12 @@ To look for Orphaned Modules:
 3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
 4. Get the new owner(s) and any new contributor(s) added to the related `-module-owners-` or `-module-contributors-` teams. See [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) for more details.
 5. Remove the information notice (i.e., the file that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.` ):
-    - In case of a Bicep module, delete the `ORPHANED.md` file from the module's root.
+    - In case of a Bicep module:
+      - Delete the `ORPHANED.md` file from the module's root.
+      - Run the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This removed the re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header.
+      - Make sure the the `README.md` file no longer has the information notice in its header (right after the title).
     - In case of a Terraform module, remove the information notice from the `README.md` file in the module's root.
+    - Once the information notice is removed, submit a Pull Request.
 6. Use the following text to confirm the new ownership of an orphaned module:
 
 {{< expand "➕ Final Confirmation for New Owners of an Orphaned Module" "expand/collapse" >}}
@@ -195,7 +214,7 @@ To look for Orphaned Modules:
 
 ## General feedback/question and other standard issues
 
-An issue is a general question/feedback if it was opened through the ["General Question/Feedback ❔"](https://github.com/Azure/Azure-Verified-Modules/issues/new?assignees=&labels=Type%3A+Question%2FFeedback+%3Araising_hand%3A&projects=&template=question_feedback.yml&title=%5BQuestion%2FFeedback%5D%3A+) issue template, and has the labels of "<mark style="background-color:#CB6BA2;color:white;">Type: Question/Feedback 🙋‍♀️</mark>" and "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" applied to them.
+An issue is a "General Question/Feedback ❔" if it was opened through the ["General Question/Feedback ❔"](https://github.com/Azure/Azure-Verified-Modules/issues/new?assignees=&labels=Type%3A+Question%2FFeedback+%3Araising_hand%3A&projects=&template=question_feedback.yml&title=%5BQuestion%2FFeedback%5D%3A+) issue template, and has the labels of "<mark style="background-color:#CB6BA2;color:white;">Type: Question/Feedback 🙋‍♀️</mark>" and "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" applied to it.
 
 An issue is considered to be a "standard issue" or "blank issue" if it was opened without using an issue template, and hence it does **NOT** have any labels assigned, OR only has the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label assigned.
 

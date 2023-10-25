@@ -39,8 +39,8 @@ It is critical to the consumers experience that modules continue to be maintaine
 {{< hint type=important  >}}
 When a module becomes orphaned, the AVM core team will communicate this through an information notice to be placed as follows.
 
-- In case of a Bicep module, the information notice will be placed in an `ORPHANED.md` file, in the module's root.
-- In case of a Terraform module, the information notice will be placed in the `README.md` file, in the module's root.
+- In case of a Bicep module, the information notice will be placed in an `ORPHANED.md` file and in the header of the module's `README.md` - both residing in the module's root.
+- In case of a Terraform module, the information notice will be placed in the header of the `README.md` file, in the module's root.
 
 The information notice will include the following statement:
 

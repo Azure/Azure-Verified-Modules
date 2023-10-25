@@ -1,6 +1,6 @@
 Name,Description,HEX
 Needs: Attention :wave:,"Reply has been added to issue, maintainer to review",E99695
-Needs: Immediate Attention :bangbang:,"Immediate attention of module owner / AVM team is needed",850000
+Needs: Immediate Attention :bangbang:,"Immediate attention of module owner / AVM team is needed",FF0000
 Needs: Author Feedback :ear:,Awaiting feedback from the issue/PR author,F18A07
 Needs: External Changes :hammer_and_pick:,When an issue/PR requires changes that are outside of the control of the module. e.g. to an RP.,DE389D
 Needs: More Evidence :balance_scale:,We are looking for more evidence to make a decision on this,F64872
@@ -22,7 +22,7 @@ Status: Migrate from TFVM :articulated_lorry:,This item is related to a module m
 Status: Owners Identified :metal:,This module has its owners identified,FBEF2A
 Status: Module Available :green_circle:,The module is published,C8E6C9
 Status: Module Orphaned :eyes:,The module has no owner and is therefore orphaned at this time,F4A460
-Status: Response Overdue :triangular_flag_on_post:,When an issue/PR has not been responded to for X amount of days,FF0000
+Status: Response Overdue :triangular_flag_on_post:,When an issue/PR has not been responded to for X amount of days,850000
 Type: Bug :bug:,Something isn't working,D73A4A
 Type: Documentation :page_facing_up:,Improvements or additions to documentation,0075CA
 Type: Duplicate :palms_up_together:,This issue or pull request already exists,CFD3D7
