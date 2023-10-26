@@ -20,7 +20,7 @@ Grant the right level of permissions for  the AVM core team and PG teams on your
 
 You can now start the development of this module! ✅ Happy coding! 🎉
 
-**Please respond to this comment, once your module is ready to be published!** 🙏
+**Please respond to this comment and request a review from the AVM core team once your module is ready to be published!** Please include a link pointing to your PR if available. 🙏
 
 Any further questions or clarifications needed, let us know!
 
