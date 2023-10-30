@@ -34,6 +34,12 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
   {{< /tab >}}
 {{< /tabs >}}
 
+{{< hint type=note >}}
+
+The resource example above for Diagnostic Settings enables both logs and metrics for assiociated resource, some resources may not support the use of both diagnostic setting catagories and the resource definition should be altered to address the issue.
+
+{{< /hint >}}
+
 <br>
 
 ## Role Assignments
