@@ -94,7 +94,7 @@ The AVM core team plans to have migrated the majority of the CARML modules to AV
 
 ### Terraform Timeline and Approach
 
-As the [AVM core team](Azure-Verified-Modules/specs/shared/team-definitions/#avm-core-team) is not directly responsible for the development of the modules (that's the responsibility of the [module owners](/Azure-Verified-Modules/specs/shared/team-definitions/#module-owners)), there's no specific timeline available for when the first Terraform modules will be published.
+As the [AVM core team](Azure-Verified-Modules/specs/shared/team-definitions/#avm-core-team) is not directly responsible for the development of the modules (that's the responsibility of the [module owners](/Azure-Verified-Modules/specs/shared/team-definitions/#module-owners)), there's no specific timeline available for the publication of Terraform modules.
 
 However, the AVM core team is focused on the following activities to facilitate and optimize the development process:
 
