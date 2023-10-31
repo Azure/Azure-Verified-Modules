@@ -72,7 +72,7 @@ It may also be decided, for speed of delivery reasons, that a CARML module can b
 
 Publishing both CARML and AVM to the Bicep Registry is wasted effort and will lead to confusion as they will overlap for 80% of their code and will leave consumers in an "analysis paralysis" scenario, which we must avoid.
 
-#### Timeline and approach
+#### Bicep Timeline and Approach
 
 In Q4 of 2023, the AVM core team is planning to:
 
@@ -91,6 +91,16 @@ This will be done in a phased approach, as follows:
 Modules that won't have a module owner associated with them after they have been migrated to AVM will be marked as "[orphaned](/Azure-Verified-Modules/specs/shared/module-lifecycle/#orphaned-avm-modules)" and will be available for any Microsoft FTEs to pick up and become the module owner.
 
 The AVM core team plans to have migrated the majority of the CARML modules to AVM by the end of 2023.
+
+### Terraform Timeline and Approach
+
+As the [AVM core team](Azure-Verified-Modules/specs/shared/team-definitions/#avm-core-team) is not directly responsible for the development of the modules (that's the responsibility of the [module owners](/Azure-Verified-Modules/specs/shared/team-definitions/#module-owners)), there's no specific timeline available for the publication of Terraform modules.
+
+However, the AVM core team is focused on the following activities to facilitate and optimize the development process:
+
+- Leveraging customer demand, telemetry and learnings from CARML to prioritize the development of Terraform modules.
+- Providing automated tools and processes (CI environment and automated tests).
+- Accelerating the build-out of the Terraform module owners' community.
 
 ---
 
@@ -206,6 +216,8 @@ If you're not a Microsoft FTE or don't want to be a module owner, you can still 
 - You can contact the current owner of any existing module and offer to contribute to it. You can find the current owners of all AVM modules in the [module indexes](/Azure-Verified-Modules/indexes/).
 - You can look for [orphaned modules](https://aka.ms/AVM/OrphanedModules) and use the comment section to indicate that you'd be interested in contributing to this module, once a new owner is found.
 
+---
+
 ## How can I use Bicep modules through the Public Registry?
 
 Use the [Bicep Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) to author your Bicep template and explore modules published in the Bicep Public Registry. For more details, see the the below example steps.
@@ -231,3 +243,17 @@ The Bicep VSCode extension is reading metadata through [this JSON file](https://
 
 6. Clicking on the link opens up the Bicep Registry Repo for the AVM module's source code, where you can find the documentation detailing all the module's functionality, input parameters and outputs, while providing various examples.
 <img src="../img/faq/use-bicep-module-06.png" width=100%>
+
+---
+
+## Will the ALZ Bicep/Terraform solution be rebased on AVM?
+
+It is not currently planned to revamp the ALZ Terraform module to use AVM modules. When the required resource and pattern modules for both Bicep and Terraform will be available in AVM, this option will be assessed and considered.
+
+---
+
+## Should pattern modules leverage resource modules? What if (some of) the required resource modules are not available?
+
+The initial focus of development and migration from CARML/TFVM is mainly on resource modules. Once the most important resource modules are published, pattern modules can start leveraging them as and where needed. This however doesn't mean that the development of pattern modules is blocked in any way, since they may use native resources ("vanilla code"). If you're about to develop a pattern module and would need a resource modules that doesn't exist today, please consider building the resource module first, so that others can leverage it for their pattern modules as well.
+
+Please see [PMNFR2](/Azure-Verified-Modules/specs/shared/#id-pmnfr2---category-composition---use-resource-modules-to-build-a-pattern-module) for more details.
