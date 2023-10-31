@@ -36,7 +36,7 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
 
 {{< hint type=note >}}
 
-In the provided example for Diagnostic Settings, both logs and metrics are enabled for the associated resource. However, it is IMPORTANT to note that certain resources may not support both diagnostic setting categories. In such cases, the resource configuration MUST be modified accordingly to ensure proper functionality and compliance with system requirements.
+In the provided example for Diagnostic Settings, both logs and metrics are enabled for the associated resource. However, it is **IMPORTANT** to note that certain resources may not support both diagnostic setting categories. In such cases, the resource configuration MUST be modified accordingly to ensure proper functionality and compliance with system requirements.
 
 {{< /hint >}}
 
