@@ -102,6 +102,8 @@ However, the AVM core team is focused on the following activities to facilitate 
 - Providing automated tools and processes (CI environment and automated tests).
 - Accelerating the build-out of the Terraform module owners' community.
 
+---
+
 ## What is the difference between the Bicep Registry and AVM? (How) Do they come together?
 
 The Public Bicep Registry (backed by the [BRM repository](https://aka.ms/BRM)) is Microsoft's official Bicep Registry for 1st party-supported Bicep modules. It has existed for a while now and has seen quite some contributions.
