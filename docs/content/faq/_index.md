@@ -98,7 +98,7 @@ As the [AVM core team](Azure-Verified-Modules/specs/shared/team-definitions/#avm
 
 However, the AVM core team is focused on the following activities to facilitate and optimize the development process:
 
-- Leveraging telemetry and learnings from CARML to prioritize the development of Terraform modules.
+- Leveraging customer demand, telemetry and learnings from CARML to prioritize the development of Terraform modules.
 - Providing automated tools and processes (CI environment and automated tests).
 - Accelerating the build-out of the Terraform module owners' community.
 
