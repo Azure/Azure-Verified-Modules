@@ -244,9 +244,9 @@ The Bicep VSCode extension is reading metadata through [this JSON file](https://
 
 ---
 
-## Will the ALZ Bicep/Terraform solution to be rebased on AVM?
+## Will the ALZ Bicep/Terraform solution be rebased on AVM?
 
-It is not currently planned to revamp the ALZ terraform module to use AVM modules. When the required resource and pattern modules for both Bicep and Terraform will be available in AVM, this option will be assessed and considered.
+It is not currently planned to revamp the ALZ Terraform module to use AVM modules. When the required resource and pattern modules for both Bicep and Terraform will be available in AVM, this option will be assessed and considered.
 
 ---
 
