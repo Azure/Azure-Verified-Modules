@@ -36,10 +36,14 @@ resource exampleResoruce 'Example.Resource/example@2023-01-31' = {
     encryption: !empty(customerManagedKey) ? {
       keySource: 'Microsoft.KeyVault'
       keyVaultProperties: {
-        identityClientId: !empty(customerManagedKey.?userAssignedIdentityResourceId ?? '') ? cMKUserAssignedIdentity.properties.clientId : null
         keyVaultUri: cMKKeyVault.properties.vaultUri
         keyName: customerManagedKey!.keyName
         keyVersion: !empty(customerManagedKey.?keyVersion ?? '') ? customerManagedKey!.keyVersion : last(split(cMKKeyVault::cMKKey.properties.keyUriWithVersion, '/'))
+        keyIdentifier: !empty(customerManagedKey.?keyVersion ?? '') ? '${cMKKeyVault::cMKKey.properties.keyUri}/${customerManagedKey!.keyVersion}' : cMKKeyVault::cMKKey.properties.keyUriWithVersion
+        identityClientId: !empty(customerManagedKey.?userAssignedIdentityResourceId ?? '') ? cMKUserAssignedIdentity.properties.clientId : null
+        identity: !empty(customerManagedKey.?userAssignedIdentityResourceId) ? {
+          userAssignedIdentity: cMKUserAssignedIdentity.id
+        } : null
       }
     } : null
   }
