@@ -17,6 +17,9 @@
     },
     {
       "pattern": "^https://drone.thegeeklab.de"
+    },
+    {
+      "pattern": "^https://aka.ms/opensource/security/"
     }
   ],
   "httpHeaders": [

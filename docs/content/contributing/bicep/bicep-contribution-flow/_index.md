@@ -7,7 +7,7 @@ geekdocAnchor: true
 
 {{< toc >}}
 
-{{< hint type=note >}} 
+{{< hint type=note >}}
 
 Each time in the following sections we refer to 'your xzy', it is an indicator that you have to change something in your own environment.
 
@@ -19,10 +19,10 @@ AVM tests the deployments in an Azure subscription. To do so, it requires a serv
 
 In this first step, make sure you
 - Have/create an Azure Active Directory Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
-  - [Create a service principal (Azure Portal)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
-  - [Create a service principal (PowerShell)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
-  - [Find Service Principal object ID](https://cloudsight.zendesk.com/hc/en-us/articles/360016785598-Azure-finding-your-service-principal-object-ID)
-  - [Find managed Identity Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
+  - [Create a service principal (Azure Portal)](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal)
+  - [Create a service principal (PowerShell)](https://learn.microsoft.com/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
+  - [Find Service Principal object ID](https://learn.microsoft.com/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
+  - [Find managed Identity Service Principal](https://learn.microsoft.com/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
 - Note down the following pieces of information
   - Application (Client) ID
   - Service Principal Object ID (**not** the object ID of the application)
@@ -52,15 +52,15 @@ To configure the forked CI environment you have to perform several steps:
 
 ### 3.1. Set up secrets
 
-To use the environment's pipelines you should use the information you gathered during the [Azure setup](#1-configure-your-azure-environment) to set up the following repository secrets:
+To use the environment's pipelines you should use the information you gathered during the [Azure setup](#1-setup-your-azure-test-environment) to set up the following repository secrets:
 
-| Secret Name | Example | Description |
-| - | - | - |
-| `ARM_MGMTGROUP_ID` | `11111111-1111-1111-1111-111111111111` | The group ID of the management group to test-deploy modules in. |
-| `ARM_SUBSCRIPTION_ID` | `22222222-2222-2222-2222-222222222222` | The ID of the subscription to test-deploy modules in. |
-| `ARM_TENANT_ID` | `33333333-3333-3333-3333-333333333333` | The tenant ID of the Azure Active Directory tenant to test-deploy modules in. |
-| `AZURE_CREDENTIALS` | `{"clientId": "44444444-4444-4444-4444-444444444444", "clientSecret": "<placeholder>", "subscriptionId": "22222222-2222-2222-2222-222222222222", "tenantId": "33333333-3333-3333-3333-333333333333" }` | The login credentials of the deployment principal used to log into the target Azure environment to test in. The format is described [here](https://github.com/Azure/login#configure-deployment-credentials). For more information, see the `[Special case: AZURE_CREDENTIALS]` note below. |
-| `TOKEN_NAMEPREFIX` | `cntso` | Optional. A short (3-5 character length), unique string that should be included in any deployment to Azure. For more information, see the `[Special case: TOKEN_NAMEPREFIX]` note below. |
+| Secret Name           | Example                                                                                                                                                                                                | Description                                                                                                                                                                                                                                                                                |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ARM_MGMTGROUP_ID`    | `11111111-1111-1111-1111-111111111111`                                                                                                                                                                 | The group ID of the management group to test-deploy modules in.                                                                                                                                                                                                                            |
+| `ARM_SUBSCRIPTION_ID` | `22222222-2222-2222-2222-222222222222`                                                                                                                                                                 | The ID of the subscription to test-deploy modules in.                                                                                                                                                                                                                                      |
+| `ARM_TENANT_ID`       | `33333333-3333-3333-3333-333333333333`                                                                                                                                                                 | The tenant ID of the Azure Active Directory tenant to test-deploy modules in.                                                                                                                                                                                                              |
+| `AZURE_CREDENTIALS`   | `{"clientId": "44444444-4444-4444-4444-444444444444", "clientSecret": "<placeholder>", "subscriptionId": "22222222-2222-2222-2222-222222222222", "tenantId": "33333333-3333-3333-3333-333333333333" }` | The login credentials of the deployment principal used to log into the target Azure environment to test in. The format is described [here](https://github.com/Azure/login#configure-deployment-credentials). For more information, see the `[Special case: AZURE_CREDENTIALS]` note below. |
+| `TOKEN_NAMEPREFIX`    | `cntso`                                                                                                                                                                                                | Optional. A short (3-5 character length), unique string that should be included in any deployment to Azure. For more information, see the `[Special case: TOKEN_NAMEPREFIX]` note below.                                                                                                   |
 
 <p>
 
@@ -70,11 +70,11 @@ To use the environment's pipelines you should use the information you gathered d
 
     <img src="../../../img/bicep-ci/forkSettings.png" alt="Navigate to settings" width=100%>
 
-1. In the list of settings, expand `Secrets` and select `Actions`. You can create a new repository secret by selecting `New repository secret` on the top right.
+2. In the list of settings, expand `Secrets` and select `Actions`. You can create a new repository secret by selecting `New repository secret` on the top right.
 
     <img src="../../../img/bicep-ci/forkSettingsSecrets.png" alt="Navigate to secrets" width=100%>
 
-1. In the opening view, you can create a secret by providing a secret `Name`, a secret `Value`, followed by a click on the `Add secret` button.
+3. In the opening view, you can create a secret by providing a secret `Name`, a secret `Value`, followed by a click on the `Add secret` button.
 
     <img src="../../../img/bicep-ci/forkSettingsSecretAdd.png" alt="Add secret" width=100%>
 
@@ -84,17 +84,17 @@ To use the environment's pipelines you should use the information you gathered d
 
 {{< hint type=important title="Special case: AZURE_CREDENTIALS">}}
 
-This secret represent the service connection to Azure, and its value is a compressed JSON object that must match the following format: 
+This secret represent the service connection to Azure, and its value is a compressed JSON object that must match the following format:
 
 ```JSON
-{"clientId": "<client_id>", "clientSecret": "<client_secret>", "subscriptionId": "<subscriptionId>", "tenantId": "<tenant_id>" } 
-``` 
+{"clientId": "<client_id>", "clientSecret": "<client_secret>", "subscriptionId": "<subscriptionId>", "tenantId": "<tenant_id>" }
+```
 
-**Make sure you create this object as one continuous string as shown above** - using the information you collected during [Step 1](#1-configure-your-azure-environment). Failing to format the secret as above, causes GitHub to consider each line of the JSON object as a separate secret string. If you're interested, you can find more information about this object [here](https://github.com/Azure/login#configure-deployment-credentials).
+**Make sure you create this object as one continuous string as shown above** - using the information you collected during [Step 1](#1-setup-your-azure-test-environment). Failing to format the secret as above, causes GitHub to consider each line of the JSON object as a separate secret string. If you're interested, you can find more information about this object [here](https://github.com/Azure/login#configure-deployment-credentials).
 
 {{< /hint >}}
 
-{{< hint type=note title-="Special case: TOKEN_NAMEPREFIX">}} 
+{{< hint type=note title-="Special case: TOKEN_NAMEPREFIX">}}
 
 To lower the barrier to entry and allow users to easily define their own naming conventions, we introduced a default 'name prefix' for all deployed resources.
 
@@ -134,7 +134,7 @@ To let the workflow engine publish their results into your repository, you have 
 
 To implement your contribution, we kindly ask you to first review the [shared](/Azure-Verified-Modules/specs/shared/) & [Bicep-specific](/Azure-Verified-Modules/specs/bicep/) specifications and [composition guidelines](/Azure-Verified-Modules/contributing/bicep/composition/) in particular to make sure your contribution complies with the repository's design and principles.
 
-If you're working on a new module, we'd also ask you to create its corresponding workflow file. Each module has its own file, but only differs in very few details, such as its triggers and pipeline variables. As a result, you can either copy & update any other module workflow file (starting with `'avm.[res|ptn].'`) or leverage the following template: 
+If you're working on a new module, we'd also ask you to create its corresponding workflow file. Each module has its own file, but only differs in very few details, such as its triggers and pipeline variables. As a result, you can either copy & update any other module workflow file (starting with `'avm.[res|ptn].'`) or leverage the following template:
 
 {{< expand "➕ Module workflow template" "expand/collapse" >}}
 
@@ -181,7 +181,7 @@ To get started implementing your test in the `main.test.bicep` file, we recommen
       - `db-for-postgre-sql/flexible-server` with a test folder `default` could be: `dfpsfsdef`
       - `storage/storage-account` with a test folder `waf-aligned` could be: `ssawaf`
 
-      💡 If the combination of the `servicesShort` with the rest of a resource name becomes too long, it may be necessary to bend the above recommendations and shorten the name. 
+      💡 If the combination of the `servicesShort` with the rest of a resource name becomes too long, it may be necessary to bend the above recommendations and shorten the name.
       This can especially happen when deploying resources such as Virtual Machines or Storage Accounts that only allow comparatively short names.
 
   - If the module deploys a resource-group-level resource, the template should further have a `resourceGroupName` parameter and subsequent resource deployment. As a reference for the default name you can use `dep-<namePrefix><providerNamespace>.<resourceType>-${serviceShort}-rg`.
@@ -241,17 +241,16 @@ To test the numerous diagnostic settings targets (Log Analytics Workspace, Stora
 
 Finally, once you are satisfied with your contribution and validated it, open a PR for the module owners or core team to review. Make sure you:
 
-1. Provide a meaningful title 
+1. Provide a meaningful title
 1. Provide a meaningful description.
 1. Follow instructions you find in the PR template.
 1. If applicable (i.e., a module is created/updated), please reference the badge status of your pipeline run. This badge will show the reviewer that the code changes were successfully validated & tested in your environment. To create a badge, first select the three dots (`...`) at the top right of the pipeline, and then chose the `Create status badge` option.
 
-   <img src="../../../img/contribution/badgeDropdown.png" alt="Badge dropdown" height="200">
+<img src="../../../img/contribution/badgeDropdown.png" alt="Badge dropdown" height="200">
 
-   In the opening pop-up, you first need to select your branch and then click on the `Copy status badge Markdown`
+In the opening pop-up, you first need to select your branch and then click on the `Copy status badge Markdown`
 
-   <img src="../../../img/contribution/pipelineBadge.png" alt="Status Badge" height="400">
-
+<img src="../../../img/contribution/pipelineBadge.png" alt="Status Badge" height="400">
 
 <!--
 ## Publishing to the Registry
