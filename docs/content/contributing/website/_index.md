@@ -80,7 +80,7 @@ Below are links to a number of useful resources to have when contributing to APR
 
 Run the following commands in your terminal of choice from the directory where you fork of the repo is located:
 
-```
+```text
 git checkout main
 git pull
 git fetch -p
