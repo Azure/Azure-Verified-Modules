@@ -31,7 +31,7 @@ A "ready state" means you have a forked copy of the [`Azure/Azure-Verified-Modul
 
 When in VS Code you should be able to open a terminal and run the below commands to access a copy of the AVM website from a local web server, provided by Hugo, using the following address [`http://localhost:1313/Azure-Verified-Modules/`](http://localhost:1313/Azure-Verified-Modules/):
 
-```
+```text
 cd docs
 hugo server -D
 ```
