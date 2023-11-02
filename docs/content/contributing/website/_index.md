@@ -55,7 +55,7 @@ You can use `winget` to install all the pre-requisites easily for you. See the [
 
 To install `winget` follow the [install instructions here.](https://learn.microsoft.com/windows/package-manager/winget/#install-winget)
 
-```
+```text
 winget install --id 'Git.Git'
 winget install --id 'Microsoft.VisualStudioCode'
 winget install --id 'Hugo.Hugo.Extended'
