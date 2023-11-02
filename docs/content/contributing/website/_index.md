@@ -91,7 +91,7 @@ git push
 
 Doing this will ensure you have the latest changes from the upstream repo and you are ready to now create a new branch from `main` by running the below commands:
 
-```
+```text
 git checkout main
 git checkout -b <YOUR-DESIRED-BRANCH-NAME-HERE>
 ```
