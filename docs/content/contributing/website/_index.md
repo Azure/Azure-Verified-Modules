@@ -98,6 +98,6 @@ git checkout -b <YOUR-DESIRED-BRANCH-NAME-HERE>
 
 ## Top Tips
 
-### Sometimes the local version of the website may show some inconsistencies that don't reflect the content you have created.
+### Sometimes the local version of the website may show some inconsistencies that don't reflect the content you have created
 
 If this happens, simply kill the Hugo local web server by pressing <kbd>CTRL</kbd>+<kbd>C</kbd> and then restart the Hugo web server by running `hugo server -D` from the `docs/` directory
