@@ -52,7 +52,7 @@ body:
     attributes:
       label: Module Name
       description: What would be the name of the module following the [naming pattern](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming)?
-      placeholder: avm-res-<rp>-<armresourcename>
+      placeholder: 'Bicep: avm/res/<rp>-<armresourcename (in singular form)>; TF: avm-res-<rp>-<armresourcename (in singular form)>'
     validations:
       required: true
   - type: textarea
