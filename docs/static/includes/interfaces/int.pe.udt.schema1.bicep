@@ -58,7 +58,7 @@ type privateEndpointType = {
 @description('Optional. Configuration details for private endpoints. For security reasons, it is recommended to use private endpoints whenever possible.')
 param privateEndpoints privateEndpointType
 
-module <exampleResource>PrivateEndpoint 'br/public:avm-res-network-privateendpoint:X.Y.Z' = [for (privateEndpoint, index) in (privateEndpoints ?? []): {
+module <exampleResource>PrivateEndpoint 'br/public:avm/res/network/private-endpoint:X.Y.Z' = [for (privateEndpoint, index) in (privateEndpoints ?? []): {
   name: '${uniqueString(deployment().name, location)}-<exampleResource>-PrivateEndpoint-${index}'
   params: {
     // Variant 1: A default service can be assumed (i.e., for services that only have one private endpoint type)
