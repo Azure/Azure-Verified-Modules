@@ -455,13 +455,13 @@ There **MUST NOT** be any GitHub repository permissions assigned to individual u
 
 The naming convention for the GitHub Teams **MUST** follow the below pattern:
 
-- `@azure/<module name>-module-owners-<bicep/tf>` - to be assigned as the GitHub repository's `Module Owners` team
-- `@azure/<module name>-module-contributors-<bicep/tf>` - to be assigned as the GitHub repository's `Module Contributors` team
+- `@azure/<dashed module name>-module-owners-<bicep/tf>` - to be assigned as the GitHub repository's `Module Owners` team
+- `@azure/<dashed module name>-module-contributors-<bicep/tf>` - to be assigned as the GitHub repository's `Module Contributors` team
 
 Segments:
 
 - `@azure` == the GitHub organization the AVM repository exists in
-- `<module name>` == the AVM Module's name
+- `<dashed module name>` == the AVM Module's name, with its segments separated by dashes, i.e., `avm-res-<resource provider>-<ARM resource type>`
   - See [RMNFR1](#id-rmnfr1---category-naming---module-naming) for AVM Resource Module Naming
   - See [PMNFR1](#id-pmnfr1---category-naming---module-naming) for AVM Pattern Module Naming
 - `module-owners` or `module-contributors` == the role the GitHub Team is assigned to
@@ -494,10 +494,10 @@ Only the AVM core team can grant permissions to the [BRM](https://aka.ms/BRM) re
 
 Module owners **MUST** notify the AVM core team, when the `-module-owners-` and `-module-owners-` teams are created, so the AVM core team can grant permissions to the BRM repo and make the necessary changes to the `CODEOWNERS` file.
 
-| GitHub Team Name                                 | Description                                                                   | Permissions | Where to work?          |
-|--------------------------------------------------|-------------------------------------------------------------------------------|-------------|-------------------------|
-| `@azure/<module name>-module-owners-bicep`       | Modules Owners of the <module name> AVM Bicep <resource/pattern> module       | **Write**   | Need to work in a fork. |
-| `@azure/<module name>-module-contributors-bicep` | Modules Contributors of the <module name> AVM Bicep <resource/pattern> module | **Triage**  | Need to work in a fork. |
+| GitHub Team Name                                        | Description                                                                   | Permissions | Where to work?          |
+|---------------------------------------------------------|-------------------------------------------------------------------------------|-------------|-------------------------|
+| `@azure/<dashed module name>-module-owners-bicep`       | Modules Owners of the <module name> AVM Bicep <resource/pattern> module       | **Write**   | Need to work in a fork. |
+| `@azure/<dashed module name>-module-contributors-bicep` | Modules Contributors of the <module name> AVM Bicep <resource/pattern> module | **Triage**  | Need to work in a fork. |
 
 {{< hint type=important >}}
 
@@ -945,18 +945,26 @@ This will be updated quarterly, or ad-hoc as new RPs/ Resources are created and 
 
 Resource modules **MUST** follow the below naming conventions (all lower case):
 
-- Bicep: `avm-res-<rp>-<armresourcename>` (to support registry hosting)
-- Terraform:
-  - `avm-res-<rp>-<armresourcename>` (Module name for registry)
-  - `terraform-<provider>-avm-res-<rp>-<armresourcename>` (GitHub repository name to meet registry naming requirements)
-    - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is should to be `azurerm` for resource modules.
+##### Bicep Resource Module Naming
 
-Example: `avm-res-compute-virtualmachine`
+- Naming convention: `avm/res/<dashed resource provider name>/<dashed ARM resource type>` (mofule name for registry)
+- Example: `avm/res/compute/virtual-machine`, `avm/res/managed-identity/user-assigned-identity`
+- Segments:
+  - `res` defines this is a resource module
+  - `<dashed resource provider name>` is the resource provider’s name after the `Microsoft` part, with each word separated by dashes, e.g., `Microsoft.Compute` = `compute`, `Microsoft.ManagedIdentity` = `managed-identity`.
+  - `<dashed ARM resource type>` is the **singular** version of the word after the resource provider, with each word separated by dashes, e.g., `Microsoft.Compute/virtualMachines` = `virtual-machine`.
 
-- `<armresourcename>` is the singular version of the word after the resource provider, e.g., `Microsoft.Compute/virtualMachines` = `virtualmachine`
-- `<rp>` is the resource provider’s name after the `Microsoft` part, e.g., `Microsoft.Compute` = `compute`.
-- `res` defines this is a resource module
-- `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` or `azuread` for resource modules.
+##### Terraform Resource Module Naming
+
+- Naming convention:
+  - `avm-res-<resource provider>-<ARM resource type>` (module name for registry)
+  - `terraform-<provider>-avm-res-<resource provider>-<ARM resource type>` (GitHub repository name to meet registry naming requirements)
+- Example: `avm-res-compute-virtualmachine`, `avm-res-managedidentity-userassignedidentity`
+- Segments:
+  - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` or `azuread` for resource modules.
+  - `res` defines this is a resource module
+  - `<resource provider>` is the resource provider’s name after the `Microsoft` part, e.g., `Microsoft.Compute` = `compute`.
+  - `<ARM resource type>` is the **singular** version of the word after the resource provider, e.g., `Microsoft.Compute/virtualMachines` = `virtualmachine`
 
 <br>
 
@@ -1030,16 +1038,24 @@ This section includes **pattern module level, non-functional requirements (PMNFR
 
 Pattern Modules **MUST** follow the below naming conventions (all lower case):
 
-- Bicep: `avm-ptn-<patternmodulename>`
-- Terraform:
-  - `avm-ptn-<patternmodulename>` (Module name for registry)
-  - `terraform-<provider>-avm-ptn-<patternmodulename>` (GitHub repository name to meet registry naming requirements)
-    - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` for pattern modules.
+##### Bicep Pattern Module Naming
 
-Example: `avm-ptn-apptiervmss`
+- Naming convention: `avm/ptn/<dashed pattern module name>`
+- Example: `avm/ptn/app-tier-vmss`, `avm/ptn/avd-lza/management-plane`
+- Segments:
+  - `ptn` defines this as a pattern module
+  - `<dashed pattern module name>` is a term describing the module’s function, with its segments separated by dashes, e.g., `app-tier-vmss` = Application Tier VMSS; `avd-lza/management-plane` = Azure Virtual Desktop Landing Zone Accelerator Management Plane
 
-- `<patternmodulename>` is a term describing the module’s function, e.g., `apptiervmss` = Application Tier VMSS
-- `ptn` defines this as a pattern module
+##### Terraform Pattern Module Naming
+
+- Naming convention:
+  - `avm-ptn-<pattern module name>` (Module name for registry)
+  - `terraform-<provider>-avm-ptn-<pattern module name>` (GitHub repository name to meet registry naming requirements)
+- Example: `avm-ptn-apptiervmss`, `avm-ptn-avd-lza-managementplane`
+- Segments:
+  - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` or `azuread` for resource modules.
+  - `ptn` defines this as a pattern module
+  - `<pattern module name>` is a term describing the module’s function, e.g., `apptiervmss` = Application Tier VMSS; `avd-lza-managementplane` = Azure Virtual Desktop Landing Zone Accelerator Management Plane
 
 <br>
 

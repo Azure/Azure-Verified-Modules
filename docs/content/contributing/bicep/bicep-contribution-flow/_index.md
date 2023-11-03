@@ -7,7 +7,7 @@ geekdocAnchor: true
 
 {{< toc >}}
 
-{{< hint type=note >}} 
+{{< hint type=note >}}
 
 Each time in the following sections we refer to 'your xzy', it is an indicator that you have to change something in your own environment.
 
@@ -84,17 +84,17 @@ To use the environment's pipelines you should use the information you gathered d
 
 {{< hint type=important title="Special case: AZURE_CREDENTIALS">}}
 
-This secret represent the service connection to Azure, and its value is a compressed JSON object that must match the following format: 
+This secret represent the service connection to Azure, and its value is a compressed JSON object that must match the following format:
 
 ```JSON
-{"clientId": "<client_id>", "clientSecret": "<client_secret>", "subscriptionId": "<subscriptionId>", "tenantId": "<tenant_id>" } 
-``` 
+{"clientId": "<client_id>", "clientSecret": "<client_secret>", "subscriptionId": "<subscriptionId>", "tenantId": "<tenant_id>" }
+```
 
 **Make sure you create this object as one continuous string as shown above** - using the information you collected during [Step 1](#1-configure-your-azure-environment). Failing to format the secret as above, causes GitHub to consider each line of the JSON object as a separate secret string. If you're interested, you can find more information about this object [here](https://github.com/Azure/login#configure-deployment-credentials).
 
 {{< /hint >}}
 
-{{< hint type=note title-="Special case: TOKEN_NAMEPREFIX">}} 
+{{< hint type=note title-="Special case: TOKEN_NAMEPREFIX">}}
 
 To lower the barrier to entry and allow users to easily define their own naming conventions, we introduced a default 'name prefix' for all deployed resources.
 
@@ -134,7 +134,7 @@ To let the workflow engine publish their results into your repository, you have 
 
 To implement your contribution, we kindly ask you to first review the [shared](/Azure-Verified-Modules/specs/shared/) & [Bicep-specific](/Azure-Verified-Modules/specs/bicep/) specifications and [composition guidelines](/Azure-Verified-Modules/contributing/bicep/composition/) in particular to make sure your contribution complies with the repository's design and principles.
 
-If you're working on a new module, we'd also ask you to create its corresponding workflow file. Each module has its own file, but only differs in very few details, such as its triggers and pipeline variables. As a result, you can either copy & update any other module workflow file (starting with `'avm.[res|ptn].'`) or leverage the following template: 
+If you're working on a new module, we'd also ask you to create its corresponding workflow file. Each module has its own file, but only differs in very few details, such as its triggers and pipeline variables. As a result, you can either copy & update any other module workflow file (starting with `'avm.[res|ptn].'`) or leverage the following template:
 
 {{< expand "➕ Module workflow template" "expand/collapse" >}}
 
@@ -181,7 +181,7 @@ To get started implementing your test in the `main.test.bicep` file, we recommen
       - `db-for-postgre-sql/flexible-server` with a test folder `default` could be: `dfpsfsdef`
       - `storage/storage-account` with a test folder `waf-aligned` could be: `ssawaf`
 
-      💡 If the combination of the `servicesShort` with the rest of a resource name becomes too long, it may be necessary to bend the above recommendations and shorten the name. 
+      💡 If the combination of the `servicesShort` with the rest of a resource name becomes too long, it may be necessary to bend the above recommendations and shorten the name.
       This can especially happen when deploying resources such as Virtual Machines or Storage Accounts that only allow comparatively short names.
 
   - If the module deploys a resource-group-level resource, the template should further have a `resourceGroupName` parameter and subsequent resource deployment. As a reference for the default name you can use `dep-<namePrefix><providerNamespace>.<resourceType>-${serviceShort}-rg`.
@@ -241,7 +241,7 @@ To test the numerous diagnostic settings targets (Log Analytics Workspace, Stora
 
 Finally, once you are satisfied with your contribution and validated it, open a PR for the module owners or core team to review. Make sure you:
 
-1. Provide a meaningful title 
+1. Provide a meaningful title
 1. Provide a meaningful description.
 1. Follow instructions you find in the PR template.
 1. If applicable (i.e., a module is created/updated), please reference the badge status of your pipeline run. This badge will show the reviewer that the code changes were successfully validated & tested in your environment. To create a badge, first select the three dots (`...`) at the top right of the pipeline, and then chose the `Create status badge` option.
@@ -258,8 +258,8 @@ Finally, once you are satisfied with your contribution and validated it, open a 
 
 When the AVM Modules are published to the Bicep Public Registry they **MUST** follow the below requirements:
 
-- Resource Module: `avm-res-<rp>-<armresourcename>` as per [RMNFR1](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming)
-- Pattern Module: `avm-ptn-<patternmodulename>` as per [PMNFR1](/Azure-Verified-Modules/specs/shared/#id-pmnfr1---category-naming---module-naming)
+- Resource Module: `avm/res/<rp>/<resource type>` as per [RMNFR1](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming)
+- Pattern Module: `avm/ptn/<patternmodulename>` as per [PMNFR1](/Azure-Verified-Modules/specs/shared/#id-pmnfr1---category-naming---module-naming)
 
 This will require the alias on the MCR to be different than the directory path, which is the default for BRM today.
 

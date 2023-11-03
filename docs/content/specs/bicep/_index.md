@@ -179,7 +179,7 @@ Usage examples for Bicep modules **MUST** be provided in the following formats:
 
 - Bicep file (orchestration module style) - `.bicep`
   ```bicep
-  module <resourceName> 'br/public:avm-res-<publishedModuleName>:1.0.0' = {
+  module <resourceName> 'br/public:avm/res/<publishedModuleName>:1.0.0' = {
     name: '${uniqueString(deployment().name, location)}-test-<uniqueIdentifier>'
     params: { (...) }
   }

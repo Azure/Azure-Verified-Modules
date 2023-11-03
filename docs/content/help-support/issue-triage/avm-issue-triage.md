@@ -43,10 +43,10 @@ Follow these steps to triage a module proposal:
     - If there's any additional clarification needed, contact the requestor through comments (using their GH handle) or internal channels - for Microsoft FTEs only! You can look them up by their name or using the Microsoft internal "[1ES Open Source Assistant Browser Extension](https://docs.opensource.microsoft.com/tools/browser/)". Make sure you capture any decisions regarding the module in the comments section.
     - Make adjustments to the module's name/classification as needed.
     - Change the name of the issue to reflect the module's name and language, i.e.,
-      - After the "[Module Proposal]:" prefix, change the issues name to the module's approved name between backticks, i.e., \` and \`, e.g., `avm-res-sql-managedinstance`
+      - After the "[Module Proposal]:" prefix, change the issues name to the module's approved name between backticks, i.e., \` and \`, e.g., `avm/res/sql/managed-instance` for a Bicep module, or `avm-res-compute-virtualmachine` for a Terraform module.
       - If it's a Bicep module, add "(bicep)" to the end of the issue's name; if it's a Terraform module, add "(tf)" to the end of the issue's name
       - Example:
-        - "[Module Proposal]: `avm-res-sql-managedinstance` (bicep)"
+        - "[Module Proposal]: `avm/res/sql/managed-instance` (bicep)"
         - "[Module Proposal]: `avm-res-compute-virtualmachine` (tf)"
 3. Apply relevant labels
     - Module language: "<mark style="background-color:#1D73B3;color:white;">Language: Bicep 💪</mark>" or "<mark style="background-color:#7740B6;color:white;">Language: Terraform 🌐</mark>"
