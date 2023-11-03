@@ -461,7 +461,7 @@ The naming convention for the GitHub Teams **MUST** follow the below pattern:
 Segments:
 
 - `@azure` == the GitHub organization the AVM repository exists in
-- `<dashed module name>` == the AVM Module's name, with its segments separated by dashes, i.e., `avm-res-<resource provider>-<ARM resource type>`
+- `<dashed module name>` == the AVM Module's name, with each word separated by dashes, i.e., `avm-res-<resource provider>-<ARM resource type>`
   - See [RMNFR1](#id-rmnfr1---category-naming---module-naming) for AVM Resource Module Naming
   - See [PMNFR1](#id-pmnfr1---category-naming---module-naming) for AVM Pattern Module Naming
 - `module-owners` or `module-contributors` == the role the GitHub Team is assigned to
@@ -948,7 +948,7 @@ Resource modules **MUST** follow the below naming conventions (all lower case):
 ##### Bicep Resource Module Naming
 
 - Naming convention: `avm/res/<dashed resource provider name>/<dashed ARM resource type>` (mofule name for registry)
-- Example: `avm/res/compute/virtual-machine`, `avm/res/managed-identity/user-assigned-identity`
+- Example: `avm/res/compute/virtual-machine` or `avm/res/managed-identity/user-assigned-identity`
 - Segments:
   - `res` defines this is a resource module
   - `<dashed resource provider name>` is the resource provider’s name after the `Microsoft` part, with each word separated by dashes, e.g., `Microsoft.Compute` = `compute`, `Microsoft.ManagedIdentity` = `managed-identity`.
@@ -959,7 +959,7 @@ Resource modules **MUST** follow the below naming conventions (all lower case):
 - Naming convention:
   - `avm-res-<resource provider>-<ARM resource type>` (module name for registry)
   - `terraform-<provider>-avm-res-<resource provider>-<ARM resource type>` (GitHub repository name to meet registry naming requirements)
-- Example: `avm-res-compute-virtualmachine`, `avm-res-managedidentity-userassignedidentity`
+- Example: `avm-res-compute-virtualmachine` or `avm-res-managedidentity-userassignedidentity`
 - Segments:
   - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` or `azuread` for resource modules.
   - `res` defines this is a resource module
@@ -1040,18 +1040,22 @@ Pattern Modules **MUST** follow the below naming conventions (all lower case):
 
 ##### Bicep Pattern Module Naming
 
-- Naming convention: `avm/ptn/<dashed pattern module name>`
-- Example: `avm/ptn/app-tier-vmss`, `avm/ptn/avd-lza/management-plane`
+- Naming convention: `avm/ptn/<dashed grouping/category name>/<dashed pattern module name>`
+- Example: `avm/ptn/compute/app-tier-vmss` or `avm/ptn/avd-lza/management-plane` or `avm/ptn/3-tier/web-app`
 - Segments:
   - `ptn` defines this as a pattern module
-  - `<dashed pattern module name>` is a term describing the module’s function, with its segments separated by dashes, e.g., `app-tier-vmss` = Application Tier VMSS; `avd-lza/management-plane` = Azure Virtual Desktop Landing Zone Accelerator Management Plane
+  - `<dashed grouping/category name>` is a hierarchical grouping of pattern modules by category, with each word separated by dashes, such as:
+    - project name, e.g., `avd-lza`,
+    - primary resource provider, e.g., `compute` or `network`, or
+    - architecture, e.g., `3-tier`
+  - `<dashed pattern module name>` is a term describing the module’s function, with each word separated by dashes, e.g., `app-tier-vmss` = Application Tier VMSS; `management-plane` = Azure Virtual Desktop Landing Zone Accelerator Management Plane
 
 ##### Terraform Pattern Module Naming
 
 - Naming convention:
   - `avm-ptn-<pattern module name>` (Module name for registry)
   - `terraform-<provider>-avm-ptn-<pattern module name>` (GitHub repository name to meet registry naming requirements)
-- Example: `avm-ptn-apptiervmss`, `avm-ptn-avd-lza-managementplane`
+- Example: `avm-ptn-apptiervmss` or `avm-ptn-avd-lza-managementplane`
 - Segments:
   - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` or `azuread` for resource modules.
   - `ptn` defines this as a pattern module
