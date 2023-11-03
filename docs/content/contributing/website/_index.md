@@ -5,7 +5,7 @@ geekdocAlign: left
 geekdocAnchor: true
 ---
 
-Looking to contribute to the AVM Website, well you have made it to the right place/page 👍
+Looking to contribute to the AVM Website, well you have made it to the right place/page. 👍
 
 Follow the below instructions, especially the pre-requisites, to get started contributing to the library.
 
@@ -15,7 +15,7 @@ Before jumping into the pre-requisites and specific section contribution guidanc
 
 This [site](https://aka.ms/avm) is built using [Hugo](https://gohugo.io/), a static site generator, that's source code is stored in the [AVM GitHub repo](https://aka.ms/avm/repo) (link in header of this site too) and is hosted on [GitHub Pages](https://pages.github.com), via the repo.
 
-The reason for the combination of Hugo & GitHub pages is to allow us to present an easy to navigate and consume library, rather than using a native GitHub repo, which is not easy to consume when there are lots of pages and folders. Also Hugo generates the site in such a way that it is also friendly for mobile consumers.
+The reason for the combination of Hugo & GitHub pages is to allow us to present an easy to navigate and consume library, rather than using a native GitHub repo, which is not easy to consume when there are lots of pages and folders. Also, Hugo generates the site in such a way that it is also friendly for mobile consumers.
 
 ### But I don't have any skills in Hugo?
 
@@ -23,7 +23,7 @@ That's okay and you really don't need them. Hugo just needs you to be able to au
 
 ## Pre-Requisites
 
-Read and follow the below sections to leave you in a "ready state" to contribute to APRL.
+Read and follow the below sections to leave you in a "ready state" to contribute to AVM.
 
 A "ready state" means you have a forked copy of the [`Azure/Azure-Verified-Modules` repo](https://aka.ms/avm/repo) cloned to your local machine and open in VS Code.
 
@@ -38,7 +38,7 @@ hugo server -D
 
 ### Software/Applications
 
-To contribute to this website you will need the following installed:
+To contribute to this website, you will need the following installed:
 
 {{< hint type="tip" >}}
 You can use `winget` to install all the pre-requisites easily for you. See the [below section](#winget-install-commands)
@@ -64,12 +64,12 @@ winget install --id 'Hugo.Hugo.Extended'
 ### Other requirements
 
 - [A GitHub profile/account](https://github.com/join)
-- A fork of the [`Azure/Azure-Verified-Modules` repo](https://aka.ms/avm/repo) into your GitHub org/account and cloned locally to your machine
-  - Instructions on forking a repo and then cloning it can be found [here](https://docs.github.com/get-started/quickstart/fork-a-repo)
+- A fork of the [`Azure/Azure-Verified-Modules` repo](https://aka.ms/avm/repo) into your GitHub org/account and cloned locally to your .
+  - Instructions on forking a repo and then cloning it can be found [here](https://docs.github.com/get-started/quickstart/fork-a-repo).
 
 ## Useful Resources
 
-Below are links to a number of useful resources to have when contributing to APRL:
+Below are links to a number of useful resources to have when contributing to AVM:
 
 - [Geekdocs Theme (that we use) - Docs](https://geekdocs.de/usage/getting-started/)
 - [Hugo Quick Start](https://gohugo.io/getting-started/quick-start/)
@@ -89,7 +89,7 @@ git pull upstream main
 git push
 ```
 
-Doing this will ensure you have the latest changes from the upstream repo and you are ready to now create a new branch from `main` by running the below commands:
+Doing this will ensure you have the latest changes from the upstream repo, and you are ready to now create a new branch from `main` by running the below commands:
 
 ```text
 git checkout main
@@ -100,4 +100,4 @@ git checkout -b <YOUR-DESIRED-BRANCH-NAME-HERE>
 
 ### Sometimes the local version of the website may show some inconsistencies that don't reflect the content you have created
 
-If this happens, simply kill the Hugo local web server by pressing <kbd>CTRL</kbd>+<kbd>C</kbd> and then restart the Hugo web server by running `hugo server -D` from the `docs/` directory
+If this happens, simply kill the Hugo local web server by pressing `CTRL` + `C` and then restart the Hugo web server by running `hugo server -D` from the `docs/` directory.
