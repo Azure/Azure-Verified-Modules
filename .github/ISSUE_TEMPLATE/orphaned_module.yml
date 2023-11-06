@@ -36,7 +36,7 @@ body:
     attributes:
       label: Module Name
       description: What is the name of the orphaned module?
-      placeholder: 'Bicep: avm/res/<rp>-<ARM resource type (in singular form)>; TF: avm-res-<rp>-<ARM resource type (in singular form)>'
+      placeholder: 'Bicep: avm/res/<rp>/<ARM resource type (in singular form)>; TF: avm-res-<rp>-<ARM resource type (in singular form)>'
     validations:
       required: true
   - type: textarea
