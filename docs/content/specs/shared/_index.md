@@ -947,7 +947,7 @@ Resource modules **MUST** follow the below naming conventions (all lower case):
 
 ##### Bicep Resource Module Naming
 
-- Naming convention: `avm/res/<dashed resource provider name>/<dashed ARM resource type>` (mofule name for registry)
+- Naming convention: `avm/res/<dashed resource provider name>/<dashed ARM resource type>` (module name for registry)
 - Example: `avm/res/compute/virtual-machine` or `avm/res/managed-identity/user-assigned-identity`
 - Segments:
   - `res` defines this is a resource module
