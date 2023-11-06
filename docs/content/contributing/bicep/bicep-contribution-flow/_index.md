@@ -257,8 +257,8 @@ In the opening pop-up, you first need to select your branch and then click on th
 
 When the AVM Modules are published to the Bicep Public Registry they **MUST** follow the below requirements:
 
-- Resource Module: `avm-res-<rp>-<armresourcename>` as per [RMNFR1](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming)
-- Pattern Module: `avm-ptn-<patternmodulename>` as per [PMNFR1](/Azure-Verified-Modules/specs/shared/#id-pmnfr1---category-naming---module-naming)
+- Resource Module: `avm/res/<rp>/<resource type>` as per [RMNFR1](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming)
+- Pattern Module: `avm/ptn/<patternmodulename>` as per [PMNFR1](/Azure-Verified-Modules/specs/shared/#id-pmnfr1---category-naming---module-naming)
 
 This will require the alias on the MCR to be different than the directory path, which is the default for BRM today.
 

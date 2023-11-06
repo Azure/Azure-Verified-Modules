@@ -128,7 +128,7 @@ Use `snake_casing` as per [TFNFR3](/Azure-Verified-Modules/specs/terraform/#id-t
 
 When the AVM Modules are published to the HashiCorp Registry, they **MUST** follow the below requirements:
 
-- Resource Module: `terraform-<provider>-avm-res-<rp>-<armresourcename>` as per [RMNFR1](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming)
+- Resource Module: `terraform-<provider>-avm-res-<rp>-<ARM resource type>` as per [RMNFR1](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming)
 - Pattern Module: `terraform-<provider>-avm-ptn-<patternmodulename>` as per [PMNFR1](/Azure-Verified-Modules/specs/shared/#id-pmnfr1---category-naming---module-naming)
 
 ### Publishing Process
