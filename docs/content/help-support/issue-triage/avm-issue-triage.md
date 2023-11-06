@@ -204,7 +204,7 @@ To look for Orphaned Modules:
 
 {{< expand "➕ Final Confirmation for New Owners of an Orphaned Module" "expand/collapse" >}}
 
-{{< include file="static/includes/msg-std-reply-new-orph-mod-owners.md" language="markdown" options="linenos=false" >}}
+{{< include file="static/includes/msg-final-conf-new-orph-mod-owners.md" language="markdown" options="linenos=false" >}}
 
 {{< /expand >}}
 
