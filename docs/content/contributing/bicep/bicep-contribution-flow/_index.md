@@ -7,6 +7,47 @@ geekdocAnchor: true
 
 {{< toc >}}
 
+## High-level contribution flow
+
+{{< mermaid class="text-center" >}}
+  flowchart TD
+    A[<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment'>1. Setup your Azure test environment </a>]
+    B(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment'>2. Fork the module source repository</a>)
+    C(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#3-configure-your-ci-environment'>3. Configure CI environment </a> <br> For module tests)
+    D[<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution'>Implementing your contribution </a><br> Refer to Gitflow Diagram below]
+    E{<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests'>Workflow test <br> completed <br> successfully?</a>}
+    F(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry'>Create a pull request to the upstream repository</a>)
+    A --> B
+    A --> C
+    A --> D
+    D --> E
+    E -->|yes|F
+    E -->|no|D
+{{< /mermaid >}}
+
+## GitFlow for contributors
+The GitFlow process outlined here introduces a central anchor branch. This branch should be treated as if it were a protected branch. It serves to synchronize the forked repository with the original upstream repository. The use of the anchor branch is designed to give contributors the flexibility to work on several modules simultaneous.
+{{< mermaid class="text-center" >}}
+  %%{init: { 'logLevel': 'debug', 'gitGraph': {'rotateCommitLabel': false}} }%%
+  gitGraph LR:
+      commit id:"Fork Repo"
+      branch anchor
+      checkout anchor
+      commit id:"Sync Upstream/main" type: HIGHLIGHT
+      branch avm-type-provider-resource-workflow
+      checkout avm-type-provider-resource-workflow
+      commit id:"Add Workflow File for Resource/Pattern"
+      branch avm-type-provider-resource
+      checkout main
+      merge avm-type-provider-resource-workflow id: "merge workflow for GitHub Actions Testing" type: HIGHLIGHT
+      checkout avm-type-provider-resource
+      commit id:"Init"
+      commit id:"Patch 1"
+      commit id:"Patch 2"
+      checkout main
+      merge avm-type-provider-resource
+{{< /mermaid >}}
+
 {{< hint type=note >}}
 
 Each time in the following sections we refer to 'your xzy', it is an indicator that you have to change something in your own environment.
