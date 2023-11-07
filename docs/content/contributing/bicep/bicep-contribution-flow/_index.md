@@ -15,7 +15,7 @@ geekdocAnchor: true
     B(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment'>2. Fork the module source repository</a>)
     C(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#3-configure-your-ci-environment'>3. Configure CI environment </a> <br> For module tests)
     D[<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution'>Implementing your contribution </a><br> Refer to Gitflow Diagram below]
-    E{<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests'>Worfklow test <br> completed <br> succesfully?</a>}
+    E{<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests'>Workflow test <br> completed <br> successfully?</a>}
     F(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry'>Create a pull request to the upstream repository</a>)
     A --> B
     A --> C
