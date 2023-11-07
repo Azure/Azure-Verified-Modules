@@ -87,7 +87,7 @@ To apply these labels to the repository review the PowerShell script `Set-AvmGit
 We have created a [template repository](https://github.com/Azure/terraform-azurerm-avm-template) to help you get started.
 Please click the `use this template` and create a copy of the repo in the Azure organization.
 
-You will then have to complete configuration of your repo and start business review.
+You will then have to complete configuration of your repo and start an internal business review.
 See [this link (internal only)](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review?anchor=conduct-initial-repo-configuration-and-trigger-business-review).
 
 <br>
