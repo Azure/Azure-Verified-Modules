@@ -14,6 +14,12 @@
     },
     {
       "pattern": "/Azure-Verified-Modules/"
+    },
+    {
+      "pattern": "^https://drone.thegeeklab.de"
+    },
+    {
+      "pattern": "^https://aka.ms/opensource/security/"
     }
   ],
   "httpHeaders": [

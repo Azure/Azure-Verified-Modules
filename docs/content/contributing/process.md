@@ -7,9 +7,15 @@ geekdocAnchor: true
 
 {{< toc >}}
 
-This page will provide an overview of the contribution process for AVM modules.
+This page provides an overview of the contribution process for AVM modules.
 
 ## New Module Proposal & Creation
+
+{{< hint type=important >}}
+
+Each AVM module **MUST** have a [Module Proposal](https://aka.ms/AVM/ModuleProposal) issue created and approved by the AVM core team before it can be created/migrated!
+
+{{< /hint >}}
 
 {{< mermaid class="text-center" >}}
 flowchart TD
@@ -21,7 +27,7 @@ flowchart TD
     OrphanedCheck -->|No|ContactOwner[Contact module owner,<br> via GitHub issues on the related <br>repo, to discuss enhancements/<br>bugs/opportunities to contribute etc.]
     OrphanedCheck -->|Yes|OrphanOwnerYes(Locate the <a href='https://aka.ms/avm/orphanedmodules'>related issue</a> <br> and comment on:<br> - A feature/enhancement suggestion <br> - Indicating you wish to become the owner)
     OrphanOwnerYes -->B
-    A[[<a href='https://aka.ms/avm/moduleproposal'>Create Module Proposal</a>]] -->|GitHub Issue/Form Submitted| B{<a href='/Azure-Verified-Modules/contributing/process/#avm-core-team-triage-explained'>AVM Core Team Triage</a>}
+    A[[<a href='https://aka.ms/avm/moduleproposal'>Create Module Proposal</a>]] -->|GitHub Issue/Form Submitted| B{<a href='/Azure-Verified-Modules/help-support/issue-triage/avm-issue-triage/#avm-core-team-triage-explained'>AVM Core Team Triage</a>}
     B -->|Module Approved for Creation| C[["Module Owner(s) Identified  & <br> assigned to GitHub issue/proposal" ]]
     B -->|Module Rejected| D(Issue closed with reasoning)
     C -->E[[<a href='/Azure-Verified-Modules/indexes/'>Module index</a> CSV files <br> updated by AVM Core Team]]
@@ -33,7 +39,7 @@ flowchart TD
     G -->|Tests Pass|J[[Pre-Release v0.1.0 created]]
     J -->K[[Publish to Bicep/Terraform Registry]]
     K -->L(Take Feedback from v0.1.0 Consumers)
-    L -->M{Anything to be resolved <br> before 1.0.0 release?}
+    L -->M{Anything to be resolved <br> before 1.0.0 release? <br> <br> ! Read the <mark style="background-color:#FBCA04;"><b><a href='/Azure-Verified-Modules/contributing/process/#avm-preview-notice'>AVM preview notice</a></b></mark> !}
     M -->|Yes|FixPreV1("Module Feedback Incorporated by <br> Owner(s) & their Contributors")
     FixPreV1 -->PreV1Tests[[Self & AVM Module Tests]]
     PreV1Tests -->|Tests Fail|PreV1TestsFix(Modules/Tests Fixed <br> To Make Them Pass)
@@ -43,66 +49,15 @@ flowchart TD
     O -->P[[<a href='/Azure-Verified-Modules/help-support/module-support/'>Module BAU Starts</a>]]
 {{< /mermaid >}}
 
-### "AVM Core Team Triage" Explained
+## AVM Preview Notice
 
-During the AVM Core Team Triage step, the following will be checked, completed and actioned by the AVM Core Team during their triage calls (which are currently twice per week):
+{{< hint type=important >}}
 
-1. Check module proposal issue/form has been filled out correctly
-   - If not, they will comment back on the issue to the requestor to clarify
-2. Apply relevant additional labels
-3. Check module is correct as per specifications - [naming](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming), [classification](/Azure-Verified-Modules/specs/shared/module-classifications/) (resource/pattern) etc.
-4. Check module isn't to be [migrated from an existing initiative](/Azure-Verified-Modules/faq/#what-is-happening-to-existing-initiatives-like-carml-and-tfvm)
-5. Check module isn't a duplicate in development already
-6. Add the relevant "Language ..." label to the issue
-7. Clarify module owners roles and responsibilities - if proposed in module proposal:
-   - Check they are a Microsoft FTE
-   - Clarify they understand and accept what "module ownership" means by replying in a comment to the requestor/proposed owner:
+As the overall AVM framework is not GA (generally available) yet - the CI framework and test automation is not (fully) functional, breaking changes are expected, and additional customer feedback is yet to be gathered and incorporated - modules **MUST NOT** be published at version 1.0.0 or higher at this time.
 
-{{< expand "Standard AVM Core Team Reply to Proposed Module Owners" "expand/collapse" >}}
-```text
-Hi @{requestor/proposed owner's GitHub alias},
+All module **MUST** be published as a pre-release version (e.g., 0.1.0, 0.1.1, 0.2.0, etc.) until the AVM framework becomes GA.
 
-Thanks for requesting/proposing to be an AVM module owner.
-
-We just want to confirm you agree to the below pages that define what module ownership means:
-
-- https://azure.github.io/Azure-Verified-Modules/specs/shared/team-definitions
-- https://azure.github.io/Azure-Verified-Modules/specs/shared
-- https://azure.github.io/Azure-Verified-Modules/help-support/module-support
-
-Any questions or clarifications needed let us know.
-
-If you agree please just reply to this issue with the exact sentence below (as this helps with our automation 👍):
-
-"I CONFIRM I WISH TO OWN THIS AVM MODULE AND UNDERSTAND THE REQUIREMENTS AND DEFINITION OF A MODULE OWNER"
-
-Thanks
-
-The AVM Core Team
-```
-{{< /expand >}}
-
-8. Find module owners - if not proposed in module proposal OR original person/s proposed to be module owners, do not wan't or cannot be owners of the module:
-   - Move the issue into "Looking for owners" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project
-   - Add the "Needs: Module Owner 📣" label to the issue
-   - Try to find owner from AVM communities or await a module owner to comment and propose themselves on the proposal issue
-     - When a new owner is potentially identified, go back to step 6
-9. Once module owner identified and has confirmed they understand and accept their roles and responsibilities as an AVM module owner
-   - Assign the issue to the confirmed module owner
-   - Move the issue into "In development" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project
-   - Add the "Status: Owners Identified 🤘" label to the issue
-     - Remove the "Needs: Module Owner 📣" label from the issue, if applied
-10. Update the AVM Module Indexes CSV files
-11. Use the following values from the module index CSV file(s) explicitly:
-    - `ModuleName`
-    - `TelemetryIdPrefix`
-    - `ModuleOwnersGHTeam` and `ModuleContributorsGHTeam`
-    - Repository name and folder path defined in `RepoURL`
-12. Update any Azure RBAC permissions for test tenants/subscription, if required
-13. Bicep Only:
-    - Update `Azure/bicep-registry-modules` [CODEOWNERS file](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS)
-14. Once module is developed and `v0.1.0` has been published to the relevant registry, move the issue into "Done" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project
-15. Update the AVM Module Indexes CSV files with the correct `ModuleStatus`
+{{< /hint >}}
 
 ## Module Owner Has Issue/Is Blocked/Has A Request
 

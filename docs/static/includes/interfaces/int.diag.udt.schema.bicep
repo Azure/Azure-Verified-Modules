@@ -18,7 +18,7 @@ type diagnosticSettingType = {
   }[]?
 
   @description('Optional. A string indicating whether the export to Log Analytics should use the default destination type, i.e. AzureDiagnostics, or use a destination type.')
-  logAnalyticsDestinationType: ('Dedicated' | 'AzureDiagnostics' | null)?
+  logAnalyticsDestinationType: ('Dedicated' | 'AzureDiagnostics')?
 
   @description('Optional. Resource ID of the diagnostic log analytics workspace. For security reasons, it is recommended to set diagnostic settings to send data to either storage account, log analytics workspace or event hub.')
   workspaceResourceId: string?
@@ -42,10 +42,10 @@ param diagnosticSettings diagnosticSettingType
 resource exampleResourceDiagnosticSettings 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = [for (diagnosticSetting, index) in (diagnosticSettings ?? []): {
   name: diagnosticSetting.?name ?? '${name}-diagnosticSettings'
   properties: {
-    storageAccountId: diagnosticSetting.?storageAccountResourceId ?? null
-    workspaceId: diagnosticSetting.?workspaceResourceId ?? null
-    eventHubAuthorizationRuleId: diagnosticSetting.?eventHubAuthorizationRuleResourceId ?? null
-    eventHubName: diagnosticSetting.?eventHubName ?? null
+    storageAccountId: diagnosticSetting.?storageAccountResourceId
+    workspaceId: diagnosticSetting.?workspaceResourceId
+    eventHubAuthorizationRuleId: diagnosticSetting.?eventHubAuthorizationRuleResourceId
+    eventHubName: diagnosticSetting.?eventHubName
     metrics: diagnosticSetting.?metricCategories ?? [
       {
         category: 'AllMetrics'
@@ -59,8 +59,8 @@ resource exampleResourceDiagnosticSettings 'Microsoft.Insights/diagnosticSetting
         enabled: true
       }
     ]
-    marketplacePartnerId: diagnosticSetting.?marketplacePartnerResourceId ?? null
-    logAnalyticsDestinationType: diagnosticSetting.?logAnalyticsDestinationType ?? null
+    marketplacePartnerId: diagnosticSetting.?marketplacePartnerResourceId
+    logAnalyticsDestinationType: diagnosticSetting.?logAnalyticsDestinationType
   }
   scope: exampleResource
 }]

@@ -1,5 +1,5 @@
 name: New AVM Module Proposal 📝
-description: Want a new AVM Module to exist? Let us know
+description: Want a new AVM Module to exist? Let us know!
 title: "[Module Proposal]: REPLACE ME WITH MODULE BEING PROPOSED"
 labels: ["Type: New Module Proposal :bulb:", "Needs: Triage :mag:"]
 projects: ["Azure/529"]
@@ -7,29 +7,29 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for proposing a new AVM module.
+        Thank you for proposing a new AVM module!
 
-        Please ensure you have checked the [AVM Module Classification Definitions](https://azure.github.io/Azure-Verified-Modules/specs/shared/module-classifications/) & the [AVM Shared Specification](https://azure.github.io/Azure-Verified-Modules/specs/shared/)
+        Please ensure you have checked the [AVM Module Classification Definitions](https://azure.github.io/Azure-Verified-Modules/specs/shared/module-classifications/) & the [AVM Shared Specifications](https://azure.github.io/Azure-Verified-Modules/specs/shared/).
   - type: checkboxes
     id: existing-checks
     attributes:
       label: Check for previous/existing GitHub issues/module proposals
       description: By submitting this issue, you confirm that you have [searched for previous/existing GitHub issues/module proposals](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue+sort%3Aupdated-desc+) to avoid creating a duplicate.
       options:
-        - label: I have checked for previous/existing GitHub issues/module proposals
+        - label: I have checked for previous/existing GitHub issues/module proposals.
           required: true
   - type: checkboxes
     id: existing-module-from-elsewhere
     attributes:
-      label: Check this module doesn't already exist in another project that is being evolved into AVM
-      description: By submitting this issue, you confirm that you have checked [CARML (for Bicep)](https://aka.ms/carml) or [Terraform Verified Modules - TFVM (for Terraform)](https://github.com/Azure/terraform-azure-modules) for the module you are proposing to ensure it is not already in these projects and therefore will be evolved into AVM.
+      label: Check this module doesn't already exist in the module indexes
+      description: By submitting this issue, you confirm that you have checked the [Bicep](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/) or [Terraform](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/) module indexes for the module you are proposing to ensure it is not already available/being worked on; or you're proposing the module to be migrated from [CARML](https://aka.ms/CARML)/[TFVM](https://aka.ms/TFVM).
       options:
-        - label: I have checked for that this module doesn't already exist in CARML or TFVM
+        - label: I have checked for that this module doesn't already exist in the module indexes; or I'm proposing the module to be migrated from CARML/TFVM.
           required: true
   - type: dropdown
-    id: tf-bicep
+    id: language
     attributes:
-      label: Terraform or Bicep?
+      label: Bicep or Terraform?
       description: What language are you proposing the module for? (Please create a separate proposal for each language!)
       options:
         - Bicep
@@ -51,15 +51,15 @@ body:
     id: module-name
     attributes:
       label: Module Name
-      description: What would be the name of the module following the [naming pattern](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming)
-      placeholder: avm-res-<rp>-<armresourcename>
+      description: What would be the name of the module following the [naming pattern](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming)?
+      placeholder: 'Bicep: avm/res/<rp>/<ARM resource type (in singular form)>; TF: avm-res-<rp>-<ARM resource type (in singular form)>'
     validations:
       required: true
   - type: textarea
     id: module-details
     attributes:
       label: Module Details
-      description: Let us know some info about the module you are proposing
+      description: Let us know some info about the module you are proposing!
     validations:
       required: true
   - type: dropdown
@@ -75,7 +75,14 @@ body:
   - type: input
     id: owner-gh-un
     attributes:
-      label: Module Owner's GitHub Username
-      description: Please provide the proposed module owners GitHub username, leave blank if unknown
+      label: Module Owner's GitHub Username (handle)
+      description: Please provide the proposed module owner's GitHub username, leave blank if unknown!
+    validations:
+      required: false
+  - type: input
+    id: sec-owner-gh-un
+    attributes:
+      label: (Optional) Secondary Module Owner's GitHub Username (handle)
+      description: Please provide the secondary module owner's GitHub username, leave blank if unknown!
     validations:
       required: false

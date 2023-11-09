@@ -82,6 +82,8 @@ module "other-module" {
 }
 ```
 
+Modules **MUST NOT** contain references to non-AVM modules.
+
 {{< hint type=tip >}}
 See [Module Sources](https://developer.hashicorp.com/terraform/language/modules/sources) for more information.
 {{< /hint >}}

@@ -34,6 +34,12 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
   {{< /tab >}}
 {{< /tabs >}}
 
+{{< hint type=note >}}
+
+In the provided example for Diagnostic Settings, both logs and metrics are enabled for the associated resource. However, it is **IMPORTANT** to note that certain resources may not support both diagnostic setting types/categories. In such cases, the resource configuration **MUST** be modified accordingly to ensure proper functionality and compliance with system requirements.
+
+{{< /hint >}}
+
 <br>
 
 ## Role Assignments
@@ -154,10 +160,10 @@ In Terraform, locks become part of the resource graph and suitable `depends_on` 
   {{< hint type=note >}}
   Please note that you will need to ensure that the User-Defined Types for [Role Assignments](#role-assignments) & [Locks](#resource-locks) also are present in your module file for this interface to work correctly.
   {{< /hint >}}
-  {{< expand "Variant 1: A default service (`groupId`) can be assumed - e.g., for services that only have one private endpoint type)" "expand/collapse" >}}
+  {{< expand "➕ Variant 1: A default service (`groupId`) can be assumed - e.g., for services that only have one private endpoint type)" "expand/collapse" >}}
   {{< include file="/static/includes/interfaces/int.pe.udt.schema1.bicep" language="bicep" options="linenos=false" >}}
   {{< /expand >}}
-  {{< expand "Variant 2: A default service (`groupId`) cannot be assumed - e.g., for services that have more than one private endpoint type, like a Storage Account (blob, file, etc.)" "expand/collapse" >}}
+  {{< expand "➕ Variant 2: A default service (`groupId`) cannot be assumed - e.g., for services that have more than one private endpoint type, like a Storage Account (blob, file, etc.)" "expand/collapse" >}}
   {{< include file="/static/includes/interfaces/int.pe.udt.schema2.bicep" language="bicep" options="linenos=false" >}}
   {{< /expand >}}
   {{< /tab >}}
