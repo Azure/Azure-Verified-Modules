@@ -21,6 +21,12 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 This page contains the **Terraform specific requirements** for AVM modules (**Resource and Pattern modules**) that ALL Terraform AVM modules **MUST** meet. These requirements are in addition to the [Shared Specification](/Azure-Verified-Modules/specs/shared/) requirements that ALL AVM modules **MUST** meet.
 
+{{< hint type=important >}}
+
+Any updates to existing or new specifications for Terraform must be submitted as a draft for review by Azure Terraform PG/Engineering(@Azure/terraform-azure) and AVM core team(@Azure/avm-core-team).
+
+{{< /hint >}}
+
 The following table summarizes the category identification codes used in this specification:
 
 | Scope                                            | Functional requirements               | Non-functional requirements                 |
