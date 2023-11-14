@@ -31,6 +31,10 @@ This page contains various views of the module index (catalog) for **Bicep Patte
 Modules listed below that aren't shown with the status of **`Module Available 🟢`**, are currently in development and are not yet available for use. For planned modules, see the [Planned modules](#planned-modules) section below.
 {{< /hint >}}
 
+The following table shows the number of all available, orphaned and planned **Bicep Pattern Modules**.
+
+{{< moduleStats language="Bicep" moduleType="Pattern" showLanguage=false showClassification=false >}}
+
 ### Available modules
 
 {{< expand "➕ Available Modules - Module names, status and owners" "expand/collapse" "open" >}}
