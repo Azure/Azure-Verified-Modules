@@ -13,3 +13,13 @@ This section lists all Azure Verified Modules that are available or planned in *
 - [Terraform](/Azure-Verified-Modules/indexes/terraform)
   - [Resource Modules](/Azure-Verified-Modules/indexes/terraform/tf-resource-modules)
   - [Pattern Modules](/Azure-Verified-Modules/indexes/terraform/tf-pattern-modules)
+
+
+
+---
+
+<br>
+
+The following table shows the number of all available, orphaned and planned **AVM Modules**.
+
+{{< moduleStats language="All" moduleType="All" showLanguage=true showClassification=true >}}

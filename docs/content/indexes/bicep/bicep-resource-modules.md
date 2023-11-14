@@ -31,6 +31,10 @@ This page contains various views of the module index (catalog) for **Bicep Resou
 Modules listed below that aren't shown with the status of **`Module Available 🟢`**, are currently in development and are not yet available for use. For planned modules, see the [Planned modules](#planned-modules) section below.
 {{< /hint >}}
 
+The following table shows the number of all available, orphaned and planned **Bicep Resource Modules**.
+
+{{< moduleStats language="Bicep" moduleType="Resource" showLanguage=false showClassification=false >}}
+
 <br>
 
 ### Available modules
