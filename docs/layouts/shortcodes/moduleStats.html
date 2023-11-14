@@ -37,12 +37,12 @@
   <tr>
     {{ if $showLanguage }}<th>Language</th>{{ end }}
     {{ if $showClassification }}<th>Classification</th>{{ end }}
-    <th>{{ emojify ("Available :green_circle:") }}</th>
-    <th>{{ emojify ("Orphaned :eyes:") }}</th>
-    {{ if in (slice "Bicep" "All") $language }}<th>{{ emojify ("Migrate From CARML :rocket:") }}</th>{{ end }}
-    {{ if in (slice "Terraform" "All") $language }}<th>{{ emojify ("Migrate From TFVM :rocket:") }}</th>{{ end }}
-    <th>{{ emojify ("New Module :new:") }}</th>
-    <th>SUM</th>
+    <th align="right">{{ emojify ("Available :green_circle:") }}</th>
+    <th align="right">{{ emojify ("Orphaned :eyes:") }}</th>
+    {{ if in (slice "Bicep" "All") $language }}<th align="right">{{ emojify ("Migrate From CARML :rocket:") }}</th>{{ end }}
+    {{ if in (slice "Terraform" "All") $language }}<th align="right">{{ emojify ("Migrate From TFVM :rocket:") }}</th>{{ end }}
+    <th align="right">{{ emojify ("New Module :new:") }}</th>
+    <th align="right">SUM</th>
   </tr>
 </thead>
 {{ if in (slice "Bicep" "All") $language }}
@@ -51,12 +51,12 @@
 <tr>
   {{ if $showLanguage }}<td>Bicep</td>{{ end }}
   {{ if $showClassification }}<td>Resource</td>{{ end }}
-  <td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $bicepResRows "Module Available :green_circle:") }}</td>
-  <td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $bicepResRows "Module Orphaned :eyes:") }}</td>
-  {{ if in (slice "Bicep" "All") $language }}<td align="center"> {{ template "countModules" (slice $ModuleStatusColumnId $bicepResRows "Migrate From CARML :rocket:") }}</td>{{ end }}
-  {{ if in (slice "Terraform" "All") $language }}<td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $bicepResRows "Migrate From TFVM :rocket:") }}</td>{{ end }}
-  <td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $bicepResRows "New Module :new:") }}</td>
-  <td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $bicepResRows "All") }}</td>
+  <td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $bicepResRows "Module Available :green_circle:") }}</td>
+  <td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $bicepResRows "Module Orphaned :eyes:") }}</td>
+  {{ if in (slice "Bicep" "All") $language }}<td align="right"> {{ template "countModules" (slice $ModuleStatusColumnId $bicepResRows "Migrate From CARML :rocket:") }}</td>{{ end }}
+  {{ if in (slice "Terraform" "All") $language }}<td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $bicepResRows "Migrate From TFVM :rocket:") }}</td>{{ end }}
+  <td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $bicepResRows "New Module :new:") }}</td>
+  <td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $bicepResRows "All") }}</td>
 </tr>
 {{ end }}
 {{ if in (slice "Pattern" "All") $moduleType }}
@@ -64,12 +64,12 @@
 <tr>
   {{ if $showLanguage }}<td>Bicep</td>{{ end }}
   {{ if $showClassification }}<td>Pattern</td>{{ end }}
-  <td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "Module Available :green_circle:") }}</td>
-  <td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "Module Orphaned :eyes:") }}</td>
-  {{ if in (slice "Bicep" "All") $language }}<td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "Migrate From CARML :rocket:") }}</td>{{ end }}
-  {{ if in (slice "Terraform" "All") $language }}<td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "Migrate From TFVM :rocket:") }}</td>{{ end }}
-  <td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "New Module :new:") }}</td>
-  <td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "All") }}</td>
+  <td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "Module Available :green_circle:") }}</td>
+  <td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "Module Orphaned :eyes:") }}</td>
+  {{ if in (slice "Bicep" "All") $language }}<td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "Migrate From CARML :rocket:") }}</td>{{ end }}
+  {{ if in (slice "Terraform" "All") $language }}<td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "Migrate From TFVM :rocket:") }}</td>{{ end }}
+  <td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "New Module :new:") }}</td>
+  <td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "All") }}</td>
 </tr>
 {{ end }}
 {{ end }}
@@ -79,12 +79,12 @@
 <tr>
   {{ if $showLanguage }}<td>Terraform</td>{{ end }}
   {{ if $showClassification }}<td>Resource</td>{{ end }}
-  <td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $tfResRows "Module Available :green_circle:") }}</td>
-  <td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $tfResRows "Module Orphaned :eyes:") }}</td>
-  {{ if in (slice "Bicep" "All") $language }}<td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $tfResRows "Migrate From CARML :rocket:") }}</td>{{ end }}
-  {{ if in (slice "Terraform" "All") $language }}<td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $tfResRows "Migrate From TFVM :rocket:") }}</td>{{ end }}
-  <td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $tfResRows "New Module :new:") }}</td>
-  <td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $tfResRows "All") }}</td>
+  <td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $tfResRows "Module Available :green_circle:") }}</td>
+  <td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $tfResRows "Module Orphaned :eyes:") }}</td>
+  {{ if in (slice "Bicep" "All") $language }}<td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $tfResRows "Migrate From CARML :rocket:") }}</td>{{ end }}
+  {{ if in (slice "Terraform" "All") $language }}<td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $tfResRows "Migrate From TFVM :rocket:") }}</td>{{ end }}
+  <td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $tfResRows "New Module :new:") }}</td>
+  <td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $tfResRows "All") }}</td>
 </tr>
 {{ end }}
 {{ if in (slice "Pattern" "All") $moduleType }}
@@ -92,12 +92,12 @@
 <tr>
   {{ if $showLanguage }}<td>Terraform</td>{{ end }}
   {{ if $showClassification }}<td>Pattern</td>{{ end }}
-  <td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $tfPtnRows "Module Available :green_circle:") }}</td>
-  <td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $tfPtnRows "Module Orphaned :eyes:") }}</td>
-  {{ if in (slice "Bicep" "All") $language }}<td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $tfPtnRows "Migrate From CARML :rocket:") }}</td>{{ end }}
-  {{ if in (slice "Terraform" "All") $language }}<td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $tfPtnRows "Migrate From TFVM :rocket:") }}</td>{{ end }}
-  <td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $tfPtnRows "New Module :new:") }}</td>
-  <td align="center">{{ template "countModules" (slice $ModuleStatusColumnId $tfPtnRows "All") }}</td>
+  <td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $tfPtnRows "Module Available :green_circle:") }}</td>
+  <td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $tfPtnRows "Module Orphaned :eyes:") }}</td>
+  {{ if in (slice "Bicep" "All") $language }}<td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $tfPtnRows "Migrate From CARML :rocket:") }}</td>{{ end }}
+  {{ if in (slice "Terraform" "All") $language }}<td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $tfPtnRows "Migrate From TFVM :rocket:") }}</td>{{ end }}
+  <td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $tfPtnRows "New Module :new:") }}</td>
+  <td align="right">{{ template "countModules" (slice $ModuleStatusColumnId $tfPtnRows "All") }}</td>
 </tr>
 {{ end }}
 {{ end }}
