@@ -1,4 +1,5 @@
 Name,Description,HEX
+AZD :technologist:,"These modules are requested/used by the AZD team.",E0BFFA
 Needs: Attention :wave:,"Reply has been added to issue, maintainer to review",E99695
 Needs: Immediate Attention :bangbang:,"Immediate attention of module owner / AVM team is needed",FF0000
 Needs: Author Feedback :ear:,Awaiting feedback from the issue/PR author,F18A07
