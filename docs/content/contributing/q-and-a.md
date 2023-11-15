@@ -171,6 +171,14 @@ To read more about how to start, navigate to [Terraform AVM contribution guide.]
 
 ---
 
+### I get the error 'The repository ********** already exists on this account' when I try to create a new repository, what should I do?
+
+If you get this error, it means that the repository already exists in the Azure GitHub Organization. This can happen if someone has already created a repository with the same name in the past and then archived it.
+
+To determine if this is the case you'll need to navigate to the [Microsoft Open Source Management Portal](https://repos.opensource.microsoft.com/orgs/Azure/repos?q=), then search for the repository name you are trying to create. Click on the repository and you will find the owner. Reach out the owner to ask them to transfer the repo to you or delete it. You'll want them to delete it if it was not created from the template.
+
+---
+
 ### Where can I test my module during development?
 
 During initial module development module owners/developers need to use your own environment (Azure subscriptions) to test module. In later phase, during publishing process, we will conduct automated test that will use AVM dedicated environment.
