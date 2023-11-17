@@ -1,7 +1,7 @@
 {{ $geekdocRepo := default (default false .Site.Params.geekdocRepo) .Page.Params.geekdocRepo }}
 {{ $geekdocEditPath := default (default false .Site.Params.geekdocEditPath) .Page.Params.geekdocEditPath }}
 {{ if .File }}
-  {{ $.Scratch.Set "geekdocFilePath" (default (path.Join (default "content" .Site.Params.contentDir) .File.Path) .Page.Params.geekdocFilePath) }}
+  {{ $.Scratch.Set "geekdocFilePath" (default (strings.TrimPrefix hugo.WorkingDir .File.Filename) .Page.Params.geekdocFilePath) }}
 {{ else }}
   {{ $.Scratch.Set "geekdocFilePath" false }}
 {{ end }}
@@ -55,4 +55,3 @@
     </div>
   {{ end }}
 </div>
-<p style="text-align:right;">Last updated: {{ dateFormat "02 Jan 2006" .Page.Lastmod }}</p>
