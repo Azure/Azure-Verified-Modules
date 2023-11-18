@@ -118,7 +118,7 @@ To highlight that AVM modules use telemetry, an information notice **MUST** be i
 {{< expand "➕ Telemetry Information Notice" "expand/collapse" >}}
 
 {{< hint type=note >}}
-The following information notice is automatically at the bottom of the `README.md` file of the module when using the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) tool
+The following information notice with header 'Data Collection' is automatically at the bottom of the `README.md` file of the module when using the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) tool.
 {{< /hint >}}
 
 {{< include file="static/includes/telemetry-information-notice.md" language="markdown" options="linenos=false" >}}
