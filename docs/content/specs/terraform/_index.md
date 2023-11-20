@@ -226,8 +226,6 @@ Module owners **MUST** use the below tooling for unit/linting/static/security an
 
 <br>
 
-#### ID: TFNFR6 - 
-
 ---
 
 <br>
