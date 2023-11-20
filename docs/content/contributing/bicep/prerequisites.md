@@ -69,3 +69,5 @@ The following tooling/extensions are recommended to assist you developing for th
 
 - [GitHub Desktop](https://desktop.github.com/)
   - To enhance streamlined integration during interactions with upstream repositories, GitHub Desktop will automatically configure your local git repository to use the upstream repository as a remote.
+
+<br>
