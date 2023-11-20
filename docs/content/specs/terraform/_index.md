@@ -68,6 +68,17 @@ module "other-module" {
 }
 ```
 
+Module owners **MUST** always specify a `version`, like:
+
+* `"1.2.3"`
+* `"~> 1.2"`
+* `"~> 1"`
+* `">= 1.3.5, < 2.0"`
+
+Module's major version upgrade might contain breaking changes or even cause data loss. Module owners **MUST NOT** specify a `version` constriction that might cross major version, like:
+
+* `">= 1.2.3"`
+
 They **MUST NOT** use git reference to a module.
 
 ```terraform
