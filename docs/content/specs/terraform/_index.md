@@ -75,7 +75,7 @@ Module owners **MUST** always specify a `version`, like:
 * `"~> 1"`
 * `">= 1.3.5, < 2.0"`
 
-Module's major version upgrade might contain breaking changes or even cause data loss. Module owners **MUST NOT** specify a `version` constriction that might cross major version, like:
+Module's major version upgrade might contain breaking changes or even cause data loss. Module owners **MUST NOT** specify a `version` constriction that leads to an unconstrained major version, like:
 
 * `">= 1.2.3"`
 
