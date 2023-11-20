@@ -120,6 +120,16 @@ Module owners **MUST** output the following additional outputs as a minimum in t
 
 <br>
 
+#### ID: TFFR3 - Category: Inputs - No `enabled` or `module_depends_on` variable
+
+Since Terraform 0.13, `count`, `for_each` and `depends_on` are introduced for modules, module development is significantly simplified. Module's owners **MUST NOT** add variables like `enabled` or `module_depends_on`).
+
+<br>
+
+---
+
+<br>
+
 ### Non-Functional Requirements (TFNFR)
 
 {{< hint type=note >}}
@@ -215,6 +225,8 @@ Module owners **MUST** use the below tooling for unit/linting/static/security an
   - Some tests are provided as part of the AVM Compliance Tests, but you are free to also use Go for your own tests.
 
 <br>
+
+#### ID: TFNFR6 - 
 
 ---
 
