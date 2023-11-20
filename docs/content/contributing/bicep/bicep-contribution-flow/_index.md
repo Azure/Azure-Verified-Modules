@@ -11,10 +11,10 @@ geekdocAnchor: true
 
 {{< mermaid class="text-center" >}}
   flowchart TD
-    A[<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment'>1. Setup your Azure test environment </a>]
+    A(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment'>1. Setup your Azure test environment </a>)
     B(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment'>2. Fork the module source repository</a>)
     C(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#3-configure-your-ci-environment'>3. Configure CI environment </a> <br> For module tests)
-    D[<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution'>4. Implementing your contribution </a><br> Refer to Gitflow Diagram below]
+    D(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution'>4. Implementing your contribution </a><br> Refer to Gitflow Diagram below)
     E{<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests'>5. Workflow test <br> completed <br> successfully?</a>}
     F(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry'>6. Create a pull request to the upstream repository</a>)
     A --> B
@@ -49,13 +49,22 @@ The GitFlow process outlined here introduces a central anchor branch. This branc
       merge avm-type-provider-resource
 {{< /mermaid >}}
 
+{{< hint type=tip >}}
+
+When implementing the GitFlow process as described, it is advisable to configure the local clone with a remote for the upstream repository. This will enable the Git CLI and local IDE to merge changes directly from the upstream repository. Using GitHub Desktop, this is configured automatically when cloning the forked repository via the application.
+
+{{< /hint >}}
+
+</br>
+
+## 1. Setup your Azure test environment
+
 {{< hint type=note >}}
 
 Each time in the following sections we refer to 'your xzy', it is an indicator that you have to change something in your own environment.
 
 {{< /hint >}}
 
-## 1. Setup your Azure test environment
 
 AVM tests the deployments in an Azure subscription. To do so, it requires a service principal with access to it.
 
