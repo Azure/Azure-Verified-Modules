@@ -54,6 +54,8 @@ To contribute to this project the following tooling is required:
 
 The following tooling/extensions are recommended to assist you developing for the project:
 
+#### Visual Studio Code Extensions
+
 - [CodeTour extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour)
 - [ARM Tools extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools)
 - [ARM Template Viewer extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=bencoleman.armview)
@@ -62,4 +64,8 @@ The following tooling/extensions are recommended to assist you developing for th
 - For visibility of Bracket Pairs:
   - Inside Visual Studio Code, add `editor.bracketPairColorization.enabled`: true to your `settings.json`, to enable bracket pair colorization.
 
-<br>
+
+#### Desktop Tooling
+
+- [GitHub Desktop](https://desktop.github.com/)
+  - To enhance streamlined integration during interactions with upstream repositories, GitHub Desktop will automatically configure your local git repository to use the upstream repository as a remote.
