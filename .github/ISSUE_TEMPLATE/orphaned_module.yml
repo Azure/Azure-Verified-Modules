@@ -35,7 +35,10 @@ body:
     id: module-name
     attributes:
       label: Module Name
-      description: What is the name of the orphaned module?
+      description: |
+        What would be the name of the module following the [naming pattern](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming)?
+        - Bicep: `avm/res/<rp (hyphenated)>/<resource type (hyphenated, singular form)>`; e.g., `avm/res/virtual-machine-images/image-template`
+        - Terraform: `avm-res-<rp (single word)>-<resource type (single word, singular form)>`; e.g., `avm-res-virtualmachineimages-imagetemplate`
       placeholder: 'Bicep: avm/res/<rp>/<ARM resource type (in singular form)>; TF: avm-res-<rp>-<ARM resource type (in singular form)>'
     validations:
       required: true
