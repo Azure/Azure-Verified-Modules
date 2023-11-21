@@ -250,13 +250,13 @@ resource "azurerm_network_security_group" "this" {
 }
 ```
 
-The module's owners **MUST** use `map(xxx)` or `set(xxx)` as resource's `for_each` collection, the map's key or set's element **MUST** be static literals. 
+The module's owners **MUST** use `map(xxx)` or `set(xxx)` as resource's `for_each` collection, the map's key or set's element **MUST** be static literals.
 
 Good example:
 
 ```hcl
 resource "azurerm_subnet" "pair" {
-  for_each             = var.subnet_map // `map(string)`, when user call this module, it could be: `{ "subnet0": "subnet0" }`, or `{ "subnet0": azurerm_subnet.subnet0.name }` 
+  for_each             = var.subnet_map // `map(string)`, when user call this module, it could be: `{ "subnet0": "subnet0" }`, or `{ "subnet0": azurerm_subnet.subnet0.name }`
   name                 = "${each.value}"-pair
   resource_group_name  = azurerm_resource_group.example.name
   virtual_network_name = azurerm_virtual_network.example.name
@@ -268,7 +268,7 @@ Bad example:
 
 ```hcl
 resource "azurerm_subnet" "pair" {
-  for_each             = var.subnet_name_set // `set(string)`, when user use `toset([azurerm_subnet.subnet0.name])`, it would cause an error. 
+  for_each             = var.subnet_name_set // `set(string)`, when user use `toset([azurerm_subnet.subnet0.name])`, it would cause an error.
   name                 = "${each.value}"-pair
   resource_group_name  = azurerm_resource_group.example.name
   virtual_network_name = azurerm_virtual_network.example.name
