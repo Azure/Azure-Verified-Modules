@@ -150,7 +150,8 @@ Once the **Orphaned Module issue** was closed, it **MUST remain closed**. If the
 1. Create a new issue using the "[Orphaned AVM Module 👀](https://aka.ms/AVM/OrphanedModule)" issue template.
 2. Make sure the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>", "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>", and the "<mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark>" labels are assigned to the issue.
 3. Move the issue into the "`Orphaned`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
-4. Place an information notice as per the below guidelines:
+4. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
+5. Place an information notice as per the below guidelines:
     - In case of a Bicep module:
       - Place the information notice - with the text below - in an `ORPHANED.md` file, in the module's root.
       - Run the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header.
