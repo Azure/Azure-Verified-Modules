@@ -427,55 +427,7 @@ lifecycle {
 
 <br>
 
-#### ID: TFNFR12 - Category: Code Style - For resources have configurable `tags` field, `tags` should be always exposed to module users through `variable` to ensure they are able to set `tags`
-
-Good example:
-
-```hcl
-resource "azurerm_virtual_network" "example" {
-  name                = "example-network"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
-  address_space       = ["10.0.0.0/16"]
-  dns_servers         = ["10.0.0.4", "10.0.0.5"]
-  tags                = var.virtual_network_tags
-}
-```
-
-Bad example:
-
-```hcl
-resource "azurerm_virtual_network" "example" {
-  name                = "example-network"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
-  address_space       = ["10.0.0.0/16"]
-  dns_servers         = ["10.0.0.4", "10.0.0.5"]
-  tags                = {
-    environment = "Production"
-  }
-}
-```
-
-or:
-
-```hcl
-resource "azurerm_virtual_network" "example" {
-  name                = "example-network"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
-  address_space       = ["10.0.0.0/16"]
-  dns_servers         = ["10.0.0.4", "10.0.0.5"]
-}
-```
-
-<br>
-
----
-
-<br>
-
-#### ID: TFNFR13 - Category: Code Style - `null` comparison as creation toogle
+#### ID: TFNFR12 - Category: Code Style - `null` comparison as creation toogle
 
 Sometimes we need to ensure that the resources created compliant to some rules at a minimum extent, for example a `subnet` has to connected to at least one `network_security_group`. The user may pass in a `security_group_id` and ask us to make a connection to an existing `security_group`, or want us to create a new security group.
 
@@ -516,7 +468,7 @@ Please use this technique under this use case only.
 
 <br>
 
-#### ID: TFNFR14 - Category: Code Style - Optional nested object argument should use `dynamic`
+#### ID: TFNFR13 - Category: Code Style - Optional nested object argument should use `dynamic`
 
 An example from the community:
 
@@ -543,23 +495,23 @@ for_each = <condition> ? [<some_item>] : []
 
 ---
 
-#### ID: TFNFR15 - Category: Code Style - Use `coalesce` or `try` when setting default values for nullable expressions
+#### ID: TFNFR14 - Category: Code Style - Use `coalesce` or `try` when setting default values for nullable expressions
 
 The following example shows how to use `"${var.subnet_name}-nsg"` when `var.new_network_security_group_name` is `null` or `""`
 
 Good examples:
 
-```
+```hcl
 coalesce(var.new_network_security_group_name, "${var.subnet_name}-nsg")
 ```
 
-```
+```hcl
 try(coalesce(var.new_network_security_group.name, "${var.subnet_name}-nsg"), "${var.subnet_name}-nsg")
 ```
 
 Bad examples:
 
-```
+```hcl
 var.new_network_security_group_name == null ? "${var.subnet_name}-nsg" : var.new_network_security_group_name)
 ```
 
