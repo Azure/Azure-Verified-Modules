@@ -141,6 +141,10 @@ If the issue type is bug, assign the "<mark style="background-color:#D73A4A;colo
 
 If the issue type is security bug, assign the "<mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>" label on the issue.
 
+### ITA23
+
+Remove the "<mark style="background-color:#EDEDED;">Status: In PR 👉</mark>" label from an issue when it's closed.
+
 <br>
 
 ## Where to apply these rules?
@@ -173,3 +177,4 @@ The below table details which repositories the above rules are applied to.
 | [ITA20](#ita20)             |                     |       ✔️       |                 |
 | [ITA21](#ita21)             |                     |       ✔️       |                 |
 | [ITA22](#ita22)             |                     |       ✔️       |                 |
+| [ITA23](#ita23)             |          ✔️         |                |                 |
