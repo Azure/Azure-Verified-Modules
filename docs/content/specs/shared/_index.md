@@ -407,7 +407,7 @@ For example, Virtual Machine Image names must be unique on each resource creatio
 
 #### ID: SNFR24 - Category: Testing - Testing Child, Extension & Interface Resources
 
-Modules owners **MUST** test that child, extension and [interface resources](/Azure-Verified-Modules/specs/shared/interfaces/), that are supported by their modules, are tested in E2E tests as per [SNFR2](/Azure-Verified-Modules/specs/shared#id-snfr2---category-testing---e2e-testing) to ensure they deploy and are configured correctly.
+Module owners **MUST** test that child, extension and [interface resources](/Azure-Verified-Modules/specs/shared/interfaces/), that are supported by their modules, are tested in E2E tests as per [SNFR2](/Azure-Verified-Modules/specs/shared#id-snfr2---category-testing---e2e-testing) to ensure they deploy and are configured correctly.
 
 These **MAY** be tested in a separate E2E test and **DO NOT** have to be tested in each E2E test.
 
@@ -455,13 +455,13 @@ There **MUST NOT** be any GitHub repository permissions assigned to individual u
 
 The naming convention for the GitHub Teams **MUST** follow the below pattern:
 
-- `@azure/<dashed module name>-module-owners-<bicep/tf>` - to be assigned as the GitHub repository's `Module Owners` team
-- `@azure/<dashed module name>-module-contributors-<bicep/tf>` - to be assigned as the GitHub repository's `Module Contributors` team
+- `@azure/<hyphenated module name>-module-owners-<bicep/tf>` - to be assigned as the GitHub repository's `Module Owners` team
+- `@azure/<hyphenated module name>-module-contributors-<bicep/tf>` - to be assigned as the GitHub repository's `Module Contributors` team
 
 Segments:
 
 - `@azure` == the GitHub organization the AVM repository exists in
-- `<dashed module name>` == the AVM Module's name, with each word separated by dashes, i.e., `avm-res-<resource provider>-<ARM resource type>`
+- `<hyphenated module name>` == the AVM Module's name, with each segment separated by dashes, i.e., `avm-res-<resource provider>-<ARM resource type>`
   - See [RMNFR1](#id-rmnfr1---category-naming---module-naming) for AVM Resource Module Naming
   - See [PMNFR1](#id-pmnfr1---category-naming---module-naming) for AVM Pattern Module Naming
 - `module-owners` or `module-contributors` == the role the GitHub Team is assigned to
@@ -496,8 +496,8 @@ Module owners **MUST** notify the AVM core team, when the `-module-owners-` and 
 
 | GitHub Team Name                                        | Description                                                                   | Permissions | Where to work?          |
 |---------------------------------------------------------|-------------------------------------------------------------------------------|-------------|-------------------------|
-| `@azure/<dashed module name>-module-owners-bicep`       | Modules Owners of the <module name> AVM Bicep <resource/pattern> module       | **Write**   | Need to work in a fork. |
-| `@azure/<dashed module name>-module-contributors-bicep` | Modules Contributors of the <module name> AVM Bicep <resource/pattern> module | **Triage**  | Need to work in a fork. |
+| `@azure/<hyphenated module name>-module-owners-bicep`       | Module Owners of the <module name> AVM Bicep <resource/pattern> module       | **Write**   | Need to work in a fork. |
+| `@azure/<hyphenated module name>-module-contributors-bicep` | Module Contributors of the <module name> AVM Bicep <resource/pattern> module | **Triage**  | Need to work in a fork. |
 
 {{< hint type=important >}}
 
@@ -513,8 +513,8 @@ Module owners **MUST** assign the `-module-owners-`and `-module-owners-` teams t
 
 | GitHub Team Name                              | Description                                                                       | Permissions | Where to work?                                                                                |
 |-----------------------------------------------|-----------------------------------------------------------------------------------|-------------|-----------------------------------------------------------------------------------------------|
-| `@azure/<module name>-module-owners-tf`       | Modules Owners of the <module name> AVM Terraform <resource/pattern> module       | **Admin**   | Module owner can decide whether they want to work in a branch local to the repo or in a fork. |
-| `@azure/<module name>-module-contributors-tf` | Modules Contributors of the <module name> AVM Terraform <resource/pattern> module | **Write**   | Need to work in a fork.                                                                       |
+| `@azure/<module name>-module-owners-tf`       | Module Owners of the <module name> AVM Terraform <resource/pattern> module       | **Admin**   | Module owner can decide whether they want to work in a branch local to the repo or in a fork. |
+| `@azure/<module name>-module-contributors-tf` | Module Contributors of the <module name> AVM Terraform <resource/pattern> module | **Write**   | Need to work in a fork.                                                                       |
 
 {{< hint type=important >}}
 
@@ -549,7 +549,7 @@ These required GitHub Teams are already associated to the [BRM](https://aka.ms/B
 - [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Terraform PG
 
 {{< hint type=important >}}
-Modules owners **MUST** assign these GitHub Teams as admins on the GitHub repo of the module in question.
+Module owners **MUST** assign these GitHub Teams as admins on the GitHub repo of the module in question.
 
 For detailed steps, please follow this [guidance](https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/managing-teams-and-people-with-access-to-your-repository#inviting-a-team-or-person).
 {{< /hint >}}
@@ -947,12 +947,12 @@ Resource modules **MUST** follow the below naming conventions (all lower case):
 
 ##### Bicep Resource Module Naming
 
-- Naming convention: `avm/res/<dashed resource provider name>/<dashed ARM resource type>` (module name for registry)
+- Naming convention: `avm/res/<hyphenated resource provider name>/<hyphenated ARM resource type>` (module name for registry)
 - Example: `avm/res/compute/virtual-machine` or `avm/res/managed-identity/user-assigned-identity`
 - Segments:
   - `res` defines this is a resource module
-  - `<dashed resource provider name>` is the resource provider’s name after the `Microsoft` part, with each word separated by dashes, e.g., `Microsoft.Compute` = `compute`, `Microsoft.ManagedIdentity` = `managed-identity`.
-  - `<dashed ARM resource type>` is the **singular** version of the word after the resource provider, with each word separated by dashes, e.g., `Microsoft.Compute/virtualMachines` = `virtual-machine`.
+  - `<hyphenated resource provider name>` is the resource provider’s name after the `Microsoft` part, with each word starting with a capital letter separated by dashes, e.g., `Microsoft.Compute` = `compute`, `Microsoft.ManagedIdentity` = `managed-identity`.
+  - `<hyphenated ARM resource type>` is the **singular** version of the word after the resource provider, with each word starting with a capital letter separated by dashes, e.g., `Microsoft.Compute/virtualMachines` = `virtual-machine`, **BUT** `Microsoft.Network/trafficmanagerprofiles` = `trafficmanagerprofile` - since `trafficmanagerprofiles` is all lower case as per the ARM API definition.
 
 ##### Terraform Resource Module Naming
 
@@ -1040,15 +1040,15 @@ Pattern Modules **MUST** follow the below naming conventions (all lower case):
 
 ##### Bicep Pattern Module Naming
 
-- Naming convention: `avm/ptn/<dashed grouping/category name>/<dashed pattern module name>`
+- Naming convention: `avm/ptn/<hyphenated grouping/category name>/<hyphenated pattern module name>`
 - Example: `avm/ptn/compute/app-tier-vmss` or `avm/ptn/avd-lza/management-plane` or `avm/ptn/3-tier/web-app`
 - Segments:
   - `ptn` defines this as a pattern module
-  - `<dashed grouping/category name>` is a hierarchical grouping of pattern modules by category, with each word separated by dashes, such as:
+  - `<hyphenated grouping/category name>` is a hierarchical grouping of pattern modules by category, with each word separated by dashes, such as:
     - project name, e.g., `avd-lza`,
     - primary resource provider, e.g., `compute` or `network`, or
     - architecture, e.g., `3-tier`
-  - `<dashed pattern module name>` is a term describing the module’s function, with each word separated by dashes, e.g., `app-tier-vmss` = Application Tier VMSS; `management-plane` = Azure Virtual Desktop Landing Zone Accelerator Management Plane
+  - `<hyphenated pattern module name>` is a term describing the module’s function, with each word separated by dashes, e.g., `app-tier-vmss` = Application Tier VMSS; `management-plane` = Azure Virtual Desktop Landing Zone Accelerator Management Plane
 
 ##### Terraform Pattern Module Naming
 
