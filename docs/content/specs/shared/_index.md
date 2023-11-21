@@ -494,10 +494,10 @@ Only the AVM core team can grant permissions to the [BRM](https://aka.ms/BRM) re
 
 Module owners **MUST** notify the AVM core team, when the `-module-owners-` and `-module-owners-` teams are created, so the AVM core team can grant permissions to the BRM repo and make the necessary changes to the `CODEOWNERS` file.
 
-| GitHub Team Name                                            | Description                                                                  | Permissions | Where to work?          |
-|-------------------------------------------------------------|------------------------------------------------------------------------------|-------------|-------------------------|
-| `@Azure/<hyphenated module name>-module-owners-bicep`       | Module Owners of the <module name> AVM Bicep <resource/pattern> module       | **Write**   | Need to work in a fork. |
-| `@Azure/<hyphenated module name>-module-contributors-bicep` | Module Contributors of the <module name> AVM Bicep <resource/pattern> module | **Triage**  | Need to work in a fork. |
+| GitHub Team Name                                            | Description                                                                  | Permissions | Permissions granted through                                           | Where to work?          |
+|-------------------------------------------------------------|------------------------------------------------------------------------------|-------------|-----------------------------------------------------------------------|-------------------------|
+| `@Azure/<hyphenated module name>-module-owners-bicep`       | Module Owners of the <module name> AVM Bicep <resource/pattern> module       | **Write**   | Assignment to the `@Azure/avm-technical-reviewers-bicep` parent team. | Need to work in a fork. |
+| `@Azure/<hyphenated module name>-module-contributors-bicep` | Module Contributors of the <module name> AVM Bicep <resource/pattern> module | **Triage**  | `@Azure/avm-module-contributors-bicep` parent team.                   | Need to work in a fork. |
 
 {{< hint type=important >}}
 
@@ -511,10 +511,10 @@ The `CODEOWNERS` file **MUST** be updated for every module to be onboarded: the 
 
 Module owners **MUST** assign the `-module-owners-`and `-module-owners-` teams the necessary permissions on their Terraform module repository and edit the `CODEOWNERS` file as per the guidance below.
 
-| GitHub Team Name                              | Description                                                                      | Permissions | Where to work?                                                                                |
-|-----------------------------------------------|----------------------------------------------------------------------------------|-------------|-----------------------------------------------------------------------------------------------|
-| `@Azure/<module name>-module-owners-tf`       | Module Owners of the <module name> AVM Terraform <resource/pattern> module       | **Admin**   | Module owner can decide whether they want to work in a branch local to the repo or in a fork. |
-| `@Azure/<module name>-module-contributors-tf` | Module Contributors of the <module name> AVM Terraform <resource/pattern> module | **Write**   | Need to work in a fork.                                                                       |
+| GitHub Team Name                              | Description                                                                      | Permissions | Permissions granted through | Where to work?                                                                                |
+|-----------------------------------------------|----------------------------------------------------------------------------------|-------------|-----------------------------|-----------------------------------------------------------------------------------------------|
+| `@Azure/<module name>-module-owners-tf`       | Module Owners of the <module name> AVM Terraform <resource/pattern> module       | **Admin**   | Direct assignment to repo   | Module owner can decide whether they want to work in a branch local to the repo or in a fork. |
+| `@Azure/<module name>-module-contributors-tf` | Module Contributors of the <module name> AVM Terraform <resource/pattern> module | **Write**   | Direct assignment to repo   | Need to work in a fork.                                                                       |
 
 {{< hint type=important >}}
 
