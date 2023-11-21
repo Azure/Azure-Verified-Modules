@@ -45,7 +45,7 @@ Below, we provide some guidance on what modules you can / cannot propose.
 
 - **Pattern modules**: In case of pattern modules, ideally you should start from architectural patterns, published in the [Azure Architecture Center][AzureArchitectureCenter], and build your pattern module by leveraging resource modules that are required to implement the pattern. AVM does not provide architectural guidance on how you should design your pattern, but you **MUST** follow the module specifications and your modules **SHOULD** be [WAF aligned][WAFAligned].
   - Good examples:
-    - Landing zone accelerators for N-tier web application; AKS cluster; SAP: there are numerous examples for these architectures in Azure Architecture Center that already have baked in guidance / smart defaults that are WAF Aligned, therefore these are good candidates for pattern modules. Modules owners **MAY** leverage resource modules to implement the pattern.
+    - Landing zone accelerators for N-tier web application; AKS cluster; SAP: there are numerous examples for these architectures in Azure Architecture Center that already have baked in guidance / smart defaults that are WAF Aligned, therefore these are good candidates for pattern modules. Module owners **MAY** leverage resource modules to implement the pattern.
     - Hub and spoke topology: it's a common pattern that is used by many customers and there are great examples available through Azure Architecture Center, as well as [Azure Landing Zones][ALZ]. Also a good candidate for a pattern module.
   - Bad examples:
     - A pair of Virtual machines: being a simple wrapper, this solution wouldn't bring any extra value as it doesn't provide a complete solution.
