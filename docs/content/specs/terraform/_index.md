@@ -474,7 +474,7 @@ resource "azurerm_network_security_group" "foo" {
 module "bar" {
   source = "xxxx"
   ...
-  security_group = { 
+  security_group = {
     id = azurerm_network_security_group.foo.id
   }
 }
