@@ -57,9 +57,8 @@ configuration:
       filters:
       - isIssue
       - isOpen
-      - or:
-        - hasLabel:
-            label: 'Type: New Module Proposal :bulb:'
+      - hasLabel:
+          label: 'Type: New Module Proposal :bulb:'
       - noActivitySince:
           days: 21
       - isNotLabeledWith:
@@ -67,4 +66,4 @@ configuration:
       actions:
       - addReply:
           reply: |
-            @${assignees}, this issue has not had any activity for at least **3 weeks**. Please feel free to reach out to the AVM core team should you have any questions or need any help with the development of this module.
+            @${assignees}, this issue has not had any activity in the last **3 weeks**. Please feel free to reach out to the AVM core team should you have any questions or need any help with the development of this module.
