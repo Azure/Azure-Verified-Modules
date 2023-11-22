@@ -218,29 +218,15 @@ Resources have dependencies should be defined close to each other.
 <br>
 
 ---
-
 <br>
 
-#### ID: TFNFR7 - Category: Code Style - The Definition of `locals` Depending on `resource` or `data` Attributes
+#### ID: TFNFR7 - Category: Code Style - The Use of `count` and `for_each`
 
-For some duplicated or complicated expressions, to increase readability, we encourage authors to extract them out and referenced as independent `locals`.
+We can use `count` and `for_each` to deploy multiple resources, but the improper use of `count` can lead to [anti pattern](https://github.com/Azure/terraform-robust-module-design/tree/main/looping_for_resources_or_modules/count_index_antipattern).
 
-If the expression involves `resource` or `data`, the `local` should be defined right below the most important definition block of the related `resource` or `data`. Under the same `resource` or `data` block, at most one `local` block can exist, all the `local`s defined here should be ranked in alphabetical order. No blank lines between 2 locals.
+You can use `count` to create some kind of resources under certain conditions, for example:
 
-<br>
-
----
-<br>
-
-#### ID: TFNFR8 - Category: Code Style - The Use of `count` and `for_each`
-
-We can use `count` and `for_each` to deploy multiple resources, but the improper use of `count` can lead to [unpredictable behaviors](https://github.com/lonegunmanb/unpredictable_tf_behavior_sample).
-
-`count` can be used only when creating a set of identical or almost identical resources. For example, if we use `count` to iterate through a `list(string)`, there is a great chance that it could be wrong because modifying the elements in the list will lead to a change of resources order, thus causing unpredictable issues.
-
-Another way of using `count` is to create some kind of resources under certain conditions, for example:
-
-```hcl
+```terraform
 resource "azurerm_network_security_group" "this" {
   count               = local.create_new_security_group ? 1 : 0
   name                = coalesce(var.new_network_security_group_name, "${var.subnet_name}-nsg")
@@ -254,7 +240,7 @@ The module's owners **MUST** use `map(xxx)` or `set(xxx)` as resource's `for_eac
 
 Good example:
 
-```hcl
+```terraform
 resource "azurerm_subnet" "pair" {
   for_each             = var.subnet_map // `map(string)`, when user call this module, it could be: `{ "subnet0": "subnet0" }`, or `{ "subnet0": azurerm_subnet.subnet0.name }`
   name                 = "${each.value}"-pair
@@ -266,7 +252,7 @@ resource "azurerm_subnet" "pair" {
 
 Bad example:
 
-```hcl
+```terraform
 resource "azurerm_subnet" "pair" {
   for_each             = var.subnet_name_set // `set(string)`, when user use `toset([azurerm_subnet.subnet0.name])`, it would cause an error.
   name                 = "${each.value}"-pair
@@ -280,7 +266,7 @@ resource "azurerm_subnet" "pair" {
 
 ---
 
-#### ID: TFNFR9 - Category: Code Style - Orders Within `resource` and `data` Blocks
+#### ID: TFNFR8 - Category: Code Style - Orders Within `resource` and `data` Blocks
 
 There are 3 types of assignment statements in a `resource` or `data` block: argument, meta-argument and nested block. The argument assignment statement is a parameter followed by `=`:
 
@@ -373,7 +359,7 @@ PS: You can use [`avmfix`](https://github.com/lonegunmanb/azure-verified-module-
 
 <br>
 
-#### ID: TFNFR10 - Category: Code Style - Order within a `module` block
+#### ID: TFNFR9 - Category: Code Style - Order within a `module` block
 
 The meta-arguments below should be declared on the top of a `module` block with the following order:
 
@@ -399,7 +385,7 @@ Arguments and meta-arguments should be separated by blank lines.
 
 <br>
 
-#### ID: TFNFR11 - Category: Code Style - Values in `ignore_changes` passed to `provider`, `depends_on`, `lifecycle` blocks are not allowed to use double quotations
+#### ID: TFNFR10 - Category: Code Style - Values in `ignore_changes` passed to `provider`, `depends_on`, `lifecycle` blocks are not allowed to use double quotations
 
 Good example:
 
@@ -427,7 +413,7 @@ lifecycle {
 
 <br>
 
-#### ID: TFNFR12 - Category: Code Style - `null` comparison as creation toogle
+#### ID: TFNFR11 - Category: Code Style - `null` comparison as creation toogle
 
 Sometimes we need to ensure that the resources created compliant to some rules at a minimum extent, for example a `subnet` has to connected to at least one `network_security_group`. The user may pass in a `security_group_id` and ask us to make a connection to an existing `security_group`, or want us to create a new security group.
 
@@ -449,6 +435,22 @@ resource "azurerm_network_security_group" "this" {
 
 The disadvantage of this approach is if the user create a security group directly in the root module and use the `id` as a `variable` of the module, the expression which determines the value of `count` will contain an `attribute` from another `resource`, the value of this very `attribute` is "known after apply" at plan stage. Terraform core will not be able to get an exact plan of deployment during the "plan" stage.
 
+You can't do this:
+
+```terraform
+resource "azurerm_network_security_group" "foo" {
+  name                = "example-nsg"
+  resource_group_name = "example-rg"
+  location            = "eastus"
+}
+
+module "bar" {
+  source = "xxxx"
+  ...
+  security_group_id = azurerm_network_security_group.foo.id
+}
+```
+
 For this kind of parameters, wrapping with `object` type is recommended：
 
 ```terraform
@@ -468,7 +470,7 @@ Please use this technique under this use case only.
 
 <br>
 
-#### ID: TFNFR13 - Category: Code Style - Optional nested object argument should use `dynamic`
+#### ID: TFNFR12 - Category: Code Style - Optional nested object argument should use `dynamic`
 
 An example from the community:
 
@@ -495,23 +497,23 @@ for_each = <condition> ? [<some_item>] : []
 
 ---
 
-#### ID: TFNFR14 - Category: Code Style - Use `coalesce` or `try` when setting default values for nullable expressions
+#### ID: TFNFR13 - Category: Code Style - Use `coalesce` or `try` when setting default values for nullable expressions
 
 The following example shows how to use `"${var.subnet_name}-nsg"` when `var.new_network_security_group_name` is `null` or `""`
 
 Good examples:
 
-```hcl
+```terraform
 coalesce(var.new_network_security_group_name, "${var.subnet_name}-nsg")
 ```
 
-```hcl
+```terraform
 try(coalesce(var.new_network_security_group.name, "${var.subnet_name}-nsg"), "${var.subnet_name}-nsg")
 ```
 
 Bad examples:
 
-```hcl
+```terraform
 var.new_network_security_group_name == null ? "${var.subnet_name}-nsg" : var.new_network_security_group_name)
 ```
 
