@@ -462,7 +462,23 @@ variable "security_group" {
 }
 ```
 
-The advantage of doing so is encapsulating the value which is "known after apply" in an object, and the `object` itself can be easily found out if it's `null` or not. Since the `id` of a `resource` cannot be `null`, this approach can avoid the situation we are facing in the first example.
+The advantage of doing so is encapsulating the value which is "known after apply" in an object, and the `object` itself can be easily found out if it's `null` or not. Since the `id` of a `resource` cannot be `null`, this approach can avoid the situation we are facing in the first example, like the following:
+
+```terraform
+resource "azurerm_network_security_group" "foo" {
+  name                = "example-nsg"
+  resource_group_name = "example-rg"
+  location            = "eastus"
+}
+
+module "bar" {
+  source = "xxxx"
+  ...
+  security_group = { 
+    id = azurerm_network_security_group.foo.id
+  }
+}
+```
 
 Please use this technique under this use case only.
 
