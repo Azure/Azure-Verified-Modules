@@ -50,6 +50,10 @@ If an issue/PR has been labelled with "<mark style="background-color:#CB6BA2;col
 
 If an issue/PR has been labelled with "<mark style="background-color:#808080;color:white;">Status: No Recent Activity 💤</mark>" and hasn't had any update in 3 days from that point, automatically close it and comment, unless the issue/PR has a "<mark style="background-color:#B60205;color:white;">Status: long-term ⏳</mark>" - in which case, do not close it.
 
+### ITA24
+
+Remind module owner(s) to start or continue working on this module if there was no activity on the Module Proposal issue for more than 3 weeks.
+
 <br>
 
 ## Event based automation
@@ -178,3 +182,4 @@ The below table details which repositories the above rules are applied to.
 | [ITA21](#ita21)             |                     |       ✔️       |                 |
 | [ITA22](#ita22)             |                     |       ✔️       |                 |
 | [ITA23](#ita23)             |          ✔️         |                |                 |
+| [ITA24](#ita24)             |          ✔️         |                |                 |

@@ -49,3 +49,22 @@ configuration:
           reply: |
             @${issueAuthor}, this issue will now be closed, as it has been marked as requiring author feedback but has not had any activity for **7 days**.
       - closeIssue
+
+    - description: ITA24 - Remind module owner(s) to start or continue working on this module if there was no activity on the Module Proposal issue for more than 3 weeks.
+      frequencies:
+      - hourly:
+          hour: 3
+      filters:
+      - isIssue
+      - isOpen
+      - or:
+        - hasLabel:
+            label: 'Type: New Module Proposal :bulb:'
+      - noActivitySince:
+          days: 21
+      - isNotLabeledWith:
+          label: 'Status: No Recent Activity :zzz:'
+      actions:
+      - addReply:
+          reply: |
+            @${assignees}, this issue has not had any activity for at least **3 weeks**. Please feel free to reach out to the AVM core team should you have any questions or need any help with the development of this module.
