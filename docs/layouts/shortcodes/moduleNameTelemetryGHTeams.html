@@ -2,6 +2,7 @@
 {{ $csv := .Get "csv" }}
 {{ $file := readFile $csv }}
 {{ $rows := $file | transform.Unmarshal (dict "delimiter" ",") }}
+{{ $rows = after 1 $rows }}
 {{ $useLinks := .Get "useLinks" | default true }}
 {{ $language := .Get "language" }}
 {{ $moduleType := .Get "moduleType" }}
@@ -22,6 +23,7 @@
 {{ $DescriptionColumnId := 0 }}
 {{ $CommentsColumnId := 0 }}
 {{ $hasModulesAvailable := false }}
+{{ $maps := slice }}
 
 {{ if eq $moduleType "resource" }}
   {{ $ProviderNamespaceColumnId = 0 }}
@@ -40,6 +42,29 @@
   {{ $ModuleContributorsGHTeamColumnId = 13 }}
   {{ $DescriptionColumnId = 14 }}
   {{ $CommentsColumnId = 15 }}
+
+  {{ range $row, $rows }}
+    {{ $map := dict
+      "ProviderNamespace" (index $row $ProviderNamespaceColumnId)
+      "ResourceType" (index $row $ResourceTypeColumnId)
+      "ModuleDisplayName" (index $row $ModuleDisplayNameColumnId)
+      "ModuleName" (index $row $ModuleNameColumnId)
+      "ModuleStatus" (index $row $ModuleStatusColumnId)
+      "RepoURL" (index $row $RepoURLColumnId)
+      "PublicRegistryReference" (index $row $PublicRegistryReferenceColumnId)
+      "TelemetryIdPrefix" (index $row $TelemetryIdPrefixColumnId)
+      "PrimaryModuleOwnerGHHandle" (index $row $PrimaryModuleOwnerGHHandleColumnId)
+      "PrimaryModuleOwnerDisplayName" (index $row $PrimaryModuleOwnerDisplayNameColumnId)
+      "SecondaryModuleOwnerGHHandle" (index $row $SecondaryModuleOwnerGHHandleColumnId)
+      "SecondaryModuleOwnerDisplayName" (index $row $SecondaryModuleOwnerDisplayNameColumnId)
+      "ModuleOwnersGHTeam" (index $row $ModuleOwnersGHTeamColumnId)
+      "ModuleContributorsGHTeam" (index $row $ModuleContributorsGHTeamColumnId)
+      "Description" (index $row $DescriptionColumnId)
+      "Comments" (index $row $CommentsColumnId)
+    }}
+    {{ $maps = $maps | append $map }}
+  {{ end }}
+
 {{ else if eq $moduleType "pattern" }}
   {{ $ModuleDisplayNameColumnId = 0 }}
   {{ $ModuleNameColumnId = 1 }}
@@ -55,14 +80,35 @@
   {{ $ModuleContributorsGHTeamColumnId = 11 }}
   {{ $DescriptionColumnId = 12 }}
   {{ $CommentsColumnId = 13 }}
+
+  {{ range $row, $rows }}
+    {{ $map := dict
+      "ModuleDisplayName" (index $row $ModuleDisplayNameColumnId)
+      "ModuleName" (index $row $ModuleNameColumnId)
+      "ModuleStatus" (index $row $ModuleStatusColumnId)
+      "RepoURL" (index $row $RepoURLColumnId)
+      "PublicRegistryReference" (index $row $PublicRegistryReferenceColumnId)
+      "TelemetryIdPrefix" (index $row $TelemetryIdPrefixColumnId)
+      "PrimaryModuleOwnerGHHandle" (index $row $PrimaryModuleOwnerGHHandleColumnId)
+      "PrimaryModuleOwnerDisplayName" (index $row $PrimaryModuleOwnerDisplayNameColumnId)
+      "SecondaryModuleOwnerGHHandle" (index $row $SecondaryModuleOwnerGHHandleColumnId)
+      "SecondaryModuleOwnerDisplayName" (index $row $SecondaryModuleOwnerDisplayNameColumnId)
+      "ModuleOwnersGHTeam" (index $row $ModuleOwnersGHTeamColumnId)
+      "ModuleContributorsGHTeam" (index $row $ModuleContributorsGHTeamColumnId)
+      "Description" (index $row $DescriptionColumnId)
+      "Comments" (index $row $CommentsColumnId)
+    }}
+    {{ $maps = $maps | append $map }}
+  {{ end }}
 {{ else }}
-{{ errorf "The %q shortcode requires a moduleType parameter to bet set to either 'resource' or 'pattern'. See %s" .Name .Position }}
+  {{ errorf "The %q shortcode requires a moduleType parameter to bet set to either 'resource' or 'pattern'. See %s" .Name .Position }}
 {{ end }}
+
+{{ $maps = sort $maps "ModuleName" }}
+
 {{ if eq $language "Bicep" }}
 <table>
   {{ if $useHeaderRow }}
-  {{ $headerRow := index $rows 0 }}
-  {{ $rows = after 1 $rows }}
   <thead>
     <tr>
       <th>Module Name</th>
@@ -71,14 +117,14 @@
     </tr>
   </thead>
   {{ end }}
-  {{ range $row, $rows }}
+  {{ range $item, $maps }}
   <tr>
-    <td>{{ if $useLinks }} {{ if or (eq (index $row $ModuleStatusColumnId) "Module Available :green_circle:") (eq (index $row $ModuleStatusColumnId) "Module Orphaned :eyes:") }} <a href="{{ index $row $RepoURLColumnId }}">{{ index $row $ModuleNameColumnId }}</a> {{ else }} {{ index $row $ModuleNameColumnId }} {{ end }} {{else}} {{ index $row $ModuleNameColumnId }} {{ end }} </td>
-    <td><code>{{ index $row $TelemetryIdPrefixColumnId }}</code></td>
+    <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Module Available :green_circle:") (eq $item.ModuleStatus "Module Orphaned :eyes:") }} <a href="{{ $item.RepoURL }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
+    <td><code>{{ $item.TelemetryIdPrefix }}</code></td>
     <td>
-      <code>{{ index $row $ModuleOwnersGHTeamColumnId }}</code>
+      <code>{{ $item.ModuleOwnersGHTeam }}</code>
       <br>
-      <code>{{ index $row $ModuleContributorsGHTeamColumnId }}</code>
+      <code>{{ $item.ModuleContributorsGHTeam }}</code>
     </td>
     <td></td>
   </tr>
@@ -87,8 +133,6 @@
 {{ else if eq $language "Terraform" }}
 <table>
   {{ if $useHeaderRow }}
-  {{ $headerRow := index $rows 0 }}
-  {{ $rows = after 1 $rows }}
   <thead>
     <tr>
       <th>Module Name</th>
@@ -97,19 +141,19 @@
     </tr>
   </thead>
   {{ end }}
-  {{ range $row, $rows }}
+  {{ range $item, $maps }}
   <tr>
-    <td>{{ if $useLinks }} {{ if or (eq (index $row $ModuleStatusColumnId) "Module Available :green_circle:") (eq (index $row $ModuleStatusColumnId) "Module Orphaned :eyes:") }} <a href="{{ index $row $PublicRegistryReferenceColumnId }}">{{ index $row $ModuleNameColumnId }}</a> {{ else }} {{ index $row $ModuleNameColumnId }} {{ end }} {{else}} {{ index $row $ModuleNameColumnId }} {{ end }} </td>
-    <td><code>{{ index $row $TelemetryIdPrefixColumnId }}</code></td>
+    <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Module Available :green_circle:") (eq $item.ModuleStatus "Module Orphaned :eyes:") }} <a href="{{ $item.PublicRegistryReference }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
+    <td><code>{{ $item.TelemetryIdPrefix }}</code></td>
     <td>
-      <code>{{ index $row $ModuleOwnersGHTeamColumnId }}</code>
+      <code>{{ $item.ModuleOwnersGHTeam }}</code>
       <br>
-      <code>{{ index $row $ModuleContributorsGHTeamColumnId }}</code>
+      <code>{{ $item.ModuleContributorsGHTeam }}</code>
     </td>
     <td></td>
   </tr>
   {{ end }}
 </table>
 {{ else }}
-{{ errorf "The %q shortcode requires a language parameter to be set either 'Bicep' or 'Terraform'. See %s" .Name .Position }}
+  {{ errorf "The %q shortcode requires a language parameter to be set either 'Bicep' or 'Terraform'. See %s" .Name .Position }}
 {{ end }}
