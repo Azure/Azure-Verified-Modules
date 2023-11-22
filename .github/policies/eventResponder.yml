@@ -203,3 +203,12 @@ configuration:
                 **Please don't start the development just yet!**
 
                 The AVM core team will review this module proposal and respond to you and/or the module owner first. Thank you!
+
+      - description: 'ITA23 - Remove the "Status: In PR" label from an issue when it''s closed.'
+        if:
+          - payloadType: Issues
+          - isAction:
+              action: Closed
+        then:
+          - removeLabel:
+              label: 'Status: In PR :point_right:'

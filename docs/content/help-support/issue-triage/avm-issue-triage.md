@@ -39,17 +39,17 @@ Follow these steps to triage a module proposal:
     - Check the [Bicep](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/) or [Terraform](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/) module indexes for the proposed module to make sure it is not already available or being worked on.
     - Ensure the module's details are correct as per specifications - [naming](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming), [classification](/Azure-Verified-Modules/specs/shared/module-classifications/) (resource/pattern) etc.
     - Check if the module is added to the "`Proposed`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub project board.
-    - Check if the requestor is a Microsoft FTE
+    - Check if the requestor is a Microsoft FTE.
     - If there's any additional clarification needed, contact the requestor through comments (using their GH handle) or internal channels - for Microsoft FTEs only! You can look them up by their name or using the Microsoft internal "[1ES Open Source Assistant Browser Extension](https://docs.opensource.microsoft.com/tools/browser/)". Make sure you capture any decisions regarding the module in the comments section.
     - Make adjustments to the module's name/classification as needed.
-    - Change the name of the issue to reflect the module's name and language, i.e.,
+    - Change the name of the issue to reflect the module's name, i.e.,
       - After the "[Module Proposal]:" prefix, change the issues name to the module's approved name between backticks, i.e., \` and \`, e.g., `avm/res/sql/managed-instance` for a Bicep module, or `avm-res-compute-virtualmachine` for a Terraform module.
-      - If it's a Bicep module, add "(bicep)" to the end of the issue's name; if it's a Terraform module, add "(tf)" to the end of the issue's name
       - Example:
-        - "[Module Proposal]: `avm/res/sql/managed-instance` (bicep)"
-        - "[Module Proposal]: `avm-res-compute-virtualmachine` (tf)"
+        - "[Module Proposal]: `avm/res/sql/managed-instance`"
+        - "[Module Proposal]: `avm-res-sql-managedinstance`"
+    - Check if the GitHub Policy Service Bot has correctly applied the module language label: "<mark style="background-color:#1D73B3;color:white;">Language: Bicep 💪</mark>" or "<mark style="background-color:#7740B6;color:white;">Language: Terraform 🌐</mark>"
 3. Apply relevant labels
-    - Module language: "<mark style="background-color:#1D73B3;color:white;">Language: Bicep 💪</mark>" or "<mark style="background-color:#7740B6;color:white;">Language: Terraform 🌐</mark>"
+
     - Module classification (resource/pattern): "<mark style="background-color:#D3D3D3;">Class: Resource Module 📦</mark>" or "<mark style="background-color:#A9A9A9;">Class: Pattern Module 📦</mark>"
     - If it's a module that will be migrated from CARML/TFVM, add the related "<mark style="background-color:#00796F;color:white;">Status: Migrate from CARML 🚛</mark>" or the "<mark style="background-color:#00796F;color:white;">Status: Migrate from TFVM 🚛</mark>" label.
 
@@ -59,7 +59,7 @@ Follow these steps to triage a module proposal:
 If requestor is interested in becoming a module owner, but is not a Microsoft FTE, the AVM core team will try to find a Microsoft FTE to be the module owner whom the requestor can collaborate with.
 {{< /hint >}}
 
-1. If the requestor didn't indicate they want to or can't become a module owner (or is not a Microsoft FTE), assign the "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" label to the issue.
+1. If the requestor indicated they didn't want to or can't become a module owner (or is not a Microsoft FTE), make sure the "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" label is assigned to the issue. Note: the GitHub Policy Service Bot should automatically do this, based on how the issue author responded to the related question.
 2. Move the issue to the "`Looking for owners`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub project board.
 3. Find module owners - if the requestor didn't volunteer in the module proposal OR the requestor does not want or cannot be owner of the module:
     - Try to find an owner from the AVM communities or await a module owner to comment and propose themselves on the proposal issue.
@@ -67,9 +67,12 @@ If requestor is interested in becoming a module owner, but is not a Microsoft FT
 
 ### Scenario 2: Requestor wants to and can become module owner
 
-If the requestor indicated they want to become an owner (and is a Microsoft FTE), do **not** assign the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label yet, as first you need to confirm that they understand the implications of becoming the owner.
+If the requestor indicated they want to become the module owner, the GitHub Policy Service Bot will add the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label and will assign the issue to the requestor.
 
-1. Clarify the roles and responsibilities of the module owner:
+You **MUST** still confirm that the requestor is a Microsoft FTE and that they understand the implications of becoming the owner! If any of these conditions aren't met, remove the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label and unassign the issue from the requestor.
+
+1. Make sure the requestor is a Microsoft FTE. You can look them up by their name or using the Microsoft internal "[1ES Open Source Assistant Browser Extension](https://docs.opensource.microsoft.com/tools/browser/)".
+2. Clarify the roles and responsibilities of the module owner:
     - Clarify they understand and accept what "module ownership" means by replying in a comment to the requestor/proposed owner:
 
 {{< expand "➕ Standard AVM Core Team Reply to Proposed Module Owners" "expand/collapse" >}}
@@ -78,14 +81,14 @@ If the requestor indicated they want to become an owner (and is a Microsoft FTE)
 
 {{< /expand >}}
 
-2. Once module owner identified has confirmed they understand and accept their roles and responsibilities as an AVM module owner
-    - Assign the issue to the confirmed module owner.
+3. Once module owner identified has confirmed they understand and accept their roles and responsibilities as an AVM module owner
+    - Make sure the issue is assigned to the confirmed module owner.
     - Move the issue into the "`In development`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
-    - Add the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label to the issue.
-      - If applied, remove the "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" label from the issue.
+    - Make sure the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label is added to the issue.
+      - If applied earlier, remove the "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" label from the issue.
     - Remove the labels of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" and "<mark style="background-color:#E4E669;">Status: In Triage 🔍</mark>" to indicate you're done with triaging the issue.
-3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
-4. Use the following text to approve module development
+4. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
+5. Use the following text to approve module development
 
 {{< expand "➕ Final Confirmation for Proposed Module Owners" "expand/collapse" >}}
 
@@ -97,7 +100,7 @@ If the requestor indicated they want to become an owner (and is a Microsoft FTE)
 
 Although, it's not directly part of the module proposal triage process, to begin development, module owners and contributors will need additional help from the AVM core team, such as:
 
-1. Update any Azure RBAC permissions for test tenants/subscription, if required
+1. Update any Azure RBAC permissions for test tenants/subscription, if needed.
 2. In case of **Bicep modules** only:
     - Look for the module owners confirmation on the related `[Module Proposal]` issue that they have created the required `-module-owners-` and `-module-owners-` GitHub teams.
     - Grant the necessary permissions to the `-module-owners-` and `-module-owners-` teams on the [BRM repo](https://aka.ms/BRM) as described [here](https://azure.github.io/Azure-Verified-Modules/specs/shared/#grant-permissions---bicep).
@@ -150,7 +153,8 @@ Once the **Orphaned Module issue** was closed, it **MUST remain closed**. If the
 1. Create a new issue using the "[Orphaned AVM Module 👀](https://aka.ms/AVM/OrphanedModule)" issue template.
 2. Make sure the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>", "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>", and the "<mark style="background-color:#F4A460;">Status: Module Orphaned 👀</mark>" labels are assigned to the issue.
 3. Move the issue into the "`Orphaned`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
-4. Place an information notice as per the below guidelines:
+4. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
+5. Place an information notice as per the below guidelines:
     - In case of a Bicep module:
       - Place the information notice - with the text below - in an `ORPHANED.md` file, in the module's root.
       - Run the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header.
