@@ -222,6 +222,8 @@ Resources have dependencies should be defined close to each other.
 
 #### ID: TFNFR7 - Category: Code Style - The Use of `count` and `for_each`
 
+<br>
+
 We can use `count` and `for_each` to deploy multiple resources, but the improper use of `count` can lead to [anti pattern](https://github.com/Azure/terraform-robust-module-design/tree/main/looping_for_resources_or_modules/count_index_antipattern).
 
 You can use `count` to create some kind of resources under certain conditions, for example:
@@ -265,6 +267,8 @@ resource "azurerm_subnet" "pair" {
 <br>
 
 ---
+
+<br>
 
 #### ID: TFNFR8 - Category: Code Style - Orders Within `resource` and `data` Blocks
 
@@ -482,6 +486,8 @@ module "bar" {
 
 Please use this technique under this use case only.
 
+<br>
+
 ---
 
 <br>
@@ -511,7 +517,11 @@ Please refer to the coding style in the example. If you just want to declare som
 for_each = <condition> ? [<some_item>] : []
 ```
 
+<br>
+
 ---
+
+<br>
 
 #### ID: TFNFR13 - Category: Code Style - Use `coalesce` or `try` when setting default values for nullable expressions
 
@@ -533,9 +543,23 @@ Bad examples:
 var.new_network_security_group_name == null ? "${var.subnet_name}-nsg" : var.new_network_security_group_name)
 ```
 
+<br>
+
 ---
 
-#### ID: TFNFR14 - Category: Code Style - Order to define `variable`
+<br>
+
+#### ID: TFFR14 - Category: Inputs - No `enabled` or `module_depends_on` variable
+
+Since Terraform 0.13, `count`, `for_each` and `depends_on` are introduced for modules, module development is significantly simplified. Module's owners **MUST NOT** add variables like `enabled` or `module_depends_on`).
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR15 - Category: Code Style - Order to define `variable`
 
 Input variables should follow this order:
 
@@ -544,9 +568,13 @@ Input variables should follow this order:
 
 A `variable` without `default` value is a required field, otherwise it's an optional one.
 
+<br>
+
 ---
 
-#### ID: TFNFR15 - Category: Code Style - Name of a `variable` **MUST** follow rules
+<br>
+
+#### ID: TFNFR16 - Category: Code Style - Name of a `variable` **MUST** follow rules
 
 The naming of a `variable` should follow [HashiCorp's naming rule](https://www.terraform.io/docs/extend/best-practices/naming.html).
 
@@ -554,9 +582,13 @@ The naming of a `variable` should follow [HashiCorp's naming rule](https://www.t
 
 Please use `xxx_enabled` instead of `xxx_disabled` as name of a `variable`.
 
+<br>
+
 ---
 
-#### ID: TFNFR16 - Category: Code Style - Every `variable` **MUST** come with a `description`
+<br>
+
+#### ID: TFNFR17 - Category: Code Style - Every `variable` **MUST** come with a `description`
 
 The target audience of `description` is the module users.
 
@@ -578,9 +610,13 @@ EOT
 }
 ```
 
+<br>
+
 ---
 
-#### ID: TFNFR17 - Category: Code Style - Every `variable` **MUST** have an appropriate `type`
+<br>
+
+#### ID: TFNFR18 - Category: Code Style - Every `variable` **MUST** have an appropriate `type`
 
 `type` **MUST** be defined for every `variable`. `type` should be as precise as possible, `any` can only be defined with adequate reasons.
 
@@ -588,31 +624,55 @@ EOT
 * Use `string` for text
 * Use concrete `object` instead of `map(any)`
 
+<br>
+
 ---
 
-#### ID: TFNFR18 - Category: Code Style - `variable` containing confidential data should be declared as `sensitive = true`
+<br>
+
+#### ID: TFNFR19 - Category: Code Style - `variable` containing confidential data should be declared as `sensitive = true`
 
 If `variable`'s `type` is `object` and contains one or more fields that would be assigned to a `sensitive` argument, then this whole `variable` should be declared as `sensitive = true`, otherwise you should extract sensitive field into separated variable block with `senstive = true`.
 
----
-
-#### ID: TFNFR19 - Category: Code Style - Declare `nullable = false` when it's possible
+<br>
 
 ---
 
-#### ID: TFNFR20 - Category: Code Style - **MUST NOT** declare `nullable = true`
+<br>
+
+#### ID: TFNFR20 - Category: Code Style - Declare `nullable = false` when it's possible
+
+<br>
 
 ---
 
-#### ID: TFNFR21 - Category: Code Style - **MUST NOT** declare `sensitive = false`
+<br>
+
+#### ID: TFNFR21 - Category: Code Style - **MUST NOT** declare `nullable = true`
+
+<br>
 
 ---
 
-#### ID: TFNFR22 - Category: Code Style - `variable` with `sensitive = true` **MUST NOT** have default value unless the default value represents turning off a feature, like `default = null` or `default = []`
+<br>
+
+#### ID: TFNFR22 - Category: Code Style - **MUST NOT** declare `sensitive = false`
+
+<br>
 
 ---
 
-#### ID: TFNFR23 - Category: Code Style - Deal with deprecated `variable`
+<br>
+
+#### ID: TFNFR23 - Category: Code Style - `variable` with `sensitive = true` **MUST NOT** have default value unless the default value represents turning off a feature, like `default = null` or `default = []`
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR24 - Category: Code Style - Deal with deprecated `variable`
 
 Sometimes we will find names for some `variable` are not suitable anymore, or a change should be made to the data type. We want to ensure forward compatibility within a major version, so direct changes are strictly forbidden. The right way to do this is move this `variable` to an independent `deprecated_variables.tf` file, then redefine the new parameter in `variable.tf` and make sure it's compatible everywhere else.
 
@@ -628,9 +688,13 @@ variable "enable_network_security_group" {
 
 A cleanup of `deprecated_variables.tf` can be performed during a major version release.
 
+<br>
+
 ---
 
-#### ID: TFNFR24 - Category: Code Style - All verified modules **MUST** have `version.tf` file
+<br>
+
+#### ID: TFNFR25 - Category: Code Style - All verified modules **MUST** have `version.tf` file
 
 `versions.tf` file can only contain one `terraform` block.
 
@@ -653,9 +717,13 @@ terraform {
 }
 ```
 
+<br>
+
 ---
 
-#### ID: TFNFR25 - Category: Code Style - Provider version constraint **MUST** has a constraint on maximum major version
+<br>
+
+#### ID: TFNFR26 - Category: Code Style - Provider version constraint **MUST** has a constraint on maximum major version
 
 Major version upgrade might brings breaking change, all provider's major version upgrade *MUST* be tested.
 
@@ -718,9 +786,13 @@ terraform {
 }
 ```
 
+<br>
+
 ---
 
-#### ID: TFNFR26 - Category: Code Style - Declaration of a provider in the module
+<br>
+
+#### ID: TFNFR27 - Category: Code Style - Declaration of a provider in the module
 
 [By rules](https://www.terraform.io/docs/language/modules/develop/providers.html), in the module code `provider` cannot be declared. The only exception is when the module indeed need different instances of the same kind of `provider`(Eg. manipulating resources across different `location`s or accounts), you **MUST** declare `configuration_aliases` in `terraform.required_providers`. See details in this [document](https://www.terraform.io/docs/language/providers/configuration.html#alias-multiple-provider-configurations).
 
@@ -774,35 +846,59 @@ provider "azurerm" {
 }
 ```
 
----
-
-#### ID: TFNFR27 - Category: Code Style - `output` **MUST** be arranged alphabetically
+<br>
 
 ---
 
-#### ID: TFNFR28 - Category: Code Style - `output` contains confidential data should declare `sensitive = true`
+<br>
+
+#### ID: TFNFR28 - Category: Code Style - `output` **MUST** be arranged alphabetically
+
+<br>
 
 ---
 
-#### ID: TFNFR29 - Category: Code Style - Dealing with Deprecated `output`s
+<br>
+
+#### ID: TFNFR29 - Category: Code Style - `output` contains confidential data should declare `sensitive = true`
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR30 - Category: Code Style - Dealing with Deprecated `output`s
 
 Sometimes we notice that the name of certain `output` is not appropriate anymore, however, since we have to ensure forward compatibility in the same major version, it's not allowed to change the name directly. We need to move it to an independent `deprecated-outputs.tf` file, then redefine a new output in `output.tf` and make sure it's compatible everywhere else in the module.
 
 A cleanup can be performed to `deprecated-outputs.tf` and other logics related to compatibility during a major version upgrade.
 
+<br>
+
 ---
 
-#### ID: TFNFR30 - Category: Code Style - `locals.tf` **MUST** contain only one `locals` block
+<br>
+
+#### ID: TFNFR31 - Category: Code Style - `locals.tf` **MUST** contain only one `locals` block
 
 All `local` **MUST** be defined in the only `locals` block in `locals.tf` file.
 
----
-
-#### ID: TFNFR31 - Category: Code Style - `local` should be arranged alphabetically
+<br>
 
 ---
 
-#### ID: TFNFR32 - Category: Code Style - `local` should use types as precise as possible
+<br>
+
+#### ID: TFNFR32 - Category: Code Style - `local` should be arranged alphabetically
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR33 - Category: Code Style - `local` should use types as precise as possible
 
 Eg. Type of `object({ name = string, age = number})`:
 
@@ -822,9 +918,13 @@ is better than `map(string)`:
 }
 ```
 
+<br>
+
 ---
 
-#### ID: TFNFR33 - Category: Code Style - Feature toggle **MUST** be used to ensure forward compatibility of versions and avoid unexpected changes caused by upgrades
+<br>
+
+#### ID: TFNFR34 - Category: Code Style - Feature toggle **MUST** be used to ensure forward compatibility of versions and avoid unexpected changes caused by upgrades
 
 E.g., our previous release was `v1.2.1`, now we'd like to submit a pull request which contains such new `resource`:
 
@@ -857,9 +957,13 @@ resource "azurerm_route_table" "this" {
 
 Similarly, when adding a new argument assignment in a `resource` block, we should use the default value provided by the provider's schema or `null`. We should use `dynamic` block with default omitted configuration when adding a new nested block inside a `resource` block.
 
+<br>
+
 ---
 
-#### ID: TFNFR34 - Category: Code Style - Changes that might be breaking change **MUST** be reviewed with caution
+<br>
+
+#### ID: TFNFR35 - Category: Code Style - Changes that might be breaking change **MUST** be reviewed with caution
 
 Potential breaking(surprise) changes introduced by `resource` block
 
@@ -885,13 +989,19 @@ Potential breaking changes introduced by `variable` and `output` blocks
 
 These changes do not necessarily trigger breaking changes, but they are very likely to, they **MUST** be reviewed with caution.
 
+<br>
+
 ---
 
-#### ID: TFNFR35 - Category: Code Style - Example code **MUST** set `prevent_deletion_if_contains_resources` to `false` in `provider` block
+<br>
+
+#### ID: TFNFR36 - Category: Code Style - Example code **MUST** set `prevent_deletion_if_contains_resources` to `false` in `provider` block
 
 From Terraform AzureRM 3.0, the default value of `prevent_deletion_if_contains_resources` in `provider` block is `true`. This will lead to an unstable test(because the test subscription has some policies applied and they will add some extra resources during the run, which can cause failures during destroy of resource groups).
 
 Since we cannot guarantee our testing environment won't be applied some [Azure Policy Remediation Tasks](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources?tabs=azure-portal) in the future, for a robust testing environment, please explicitly set `prevent_deletion_if_contains_resources` to `false`.
+
+<br>
 
 ---
 
