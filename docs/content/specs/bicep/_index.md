@@ -133,7 +133,7 @@ Therefore it has been decided by the AVM core team that CARML modules initial mi
 
 #### ID: BCPNFR7 - Category: Inputs - Parameter Requirement Types
 
-Modules will have lots of parameters that will differ in their requirement type (required, optional, etc.). To help consumers understand what each parameters requirement type is, modules owners **MUST** add the requirement type to the beginning of each parameter's description. Below are the requirement types with a definition and example for the description decorator:
+Modules will have lots of parameters that will differ in their requirement type (required, optional, etc.). To help consumers understand what each parameter's requirement type is, module owners **MUST** add the requirement type to the beginning of each parameter's description. Below are the requirement types with a definition and example for the description decorator:
 
 | Parameter Requirement Type | Definition | Example Description Decorator |
 | -------------------------- | ---------- | ----------------------------- |
@@ -251,7 +251,7 @@ As per [BCPFR2](#id-bcpfr2---category-composition---role-assignments-role-defini
 
 Module owners **SHOULD NOT** map every RBAC Role Definition within this variable as it can cause the module to bloat in size and cause consumption issues later when stitched together with other modules due to the 4MB ARM Template size limit.
 
-Therefore modules owners **SHOULD** only map the most applicable and common RBAC Role Definition names for their module and **SHOULD NOT** exceed 15 RBAC Role Definitions in the variable.
+Therefore module owners **SHOULD** only map the most applicable and common RBAC Role Definition names for their module and **SHOULD NOT** exceed 15 RBAC Role Definitions in the variable.
 
 {{< hint type=important >}}
 

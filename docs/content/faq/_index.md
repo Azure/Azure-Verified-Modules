@@ -47,7 +47,7 @@ In the case of CARML (Bicep), this will include:
 - Tests automation alignment
 - Module features added where applicable and aligned with AVM specifications
 
-Aspiring Bicep-based AVM modules contributors/owners, please check the CARML library first to see if the module you want to propose already exists as a CARML module.
+Aspiring Bicep-based AVM module contributors/owners, please check the CARML library first to see if the module you want to propose already exists as a CARML module.
 
 - If you wish to own it in the future (once migrated by the AVM/CARML/TFVM teams), please go ahead and submit your Module Proposal using the form today and just let us know in the details
 - If you don't plan to be the owner but do want to contribute, please hold off from contributing until it's migrated from CARML/TFVM
