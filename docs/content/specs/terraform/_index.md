@@ -535,7 +535,7 @@ var.new_network_security_group_name == null ? "${var.subnet_name}-nsg" : var.new
 
 ---
 
-#### ID: TFNFR15 - Category: Code Style - Order to define `variable`
+#### ID: TFNFR14 - Category: Code Style - Order to define `variable`
 
 Input variables should follow this order:
 
@@ -546,7 +546,7 @@ A `variable` without `default` value is a required field, otherwise it's an opti
 
 ---
 
-#### ID: TFNFR16 - Category: Code Style - Name of a `variable` **MUST** follow rules
+#### ID: TFNFR15 - Category: Code Style - Name of a `variable` **MUST** follow rules
 
 The naming of a `variable` should follow [HashiCorp's naming rule](https://www.terraform.io/docs/extend/best-practices/naming.html).
 
@@ -556,7 +556,7 @@ Please use `xxx_enabled` instead of `xxx_disabled` as name of a `variable`.
 
 ---
 
-#### ID: TFNFR17 - Category: Code Style - Every `variable` **MUST** come with a `description`
+#### ID: TFNFR16 - Category: Code Style - Every `variable` **MUST** come with a `description`
 
 The target audience of `description` is the module users.
 
@@ -580,7 +580,7 @@ EOT
 
 ---
 
-#### ID: TFNFR18 - Category: Code Style - Every `variable` **MUST** have an appropriate `type`
+#### ID: TFNFR17 - Category: Code Style - Every `variable` **MUST** have an appropriate `type`
 
 `type` **MUST** be defined for every `variable`. `type` should be as precise as possible, `any` can only be defined with adequate reasons.
 
@@ -590,29 +590,29 @@ EOT
 
 ---
 
-#### ID: TFNFR19 - Category: Code Style - `variable` containing confidential data should be declared as `sensitive = true`
+#### ID: TFNFR18 - Category: Code Style - `variable` containing confidential data should be declared as `sensitive = true`
 
 If `variable`'s `type` is `object` and contains one or more fields that would be assigned to a `sensitive` argument, then this whole `variable` should be declared as `sensitive = true`, otherwise you should extract sensitive field into separated variable block with `senstive = true`.
 
 ---
 
-#### ID: TFNFR20 - Category: Code Style - Declare `nullable = false` when it's possible
+#### ID: TFNFR19 - Category: Code Style - Declare `nullable = false` when it's possible
 
 ---
 
-#### ID: TFNFR21 - Category: Code Style - **MUST NOT** declare `nullable = true`
+#### ID: TFNFR20 - Category: Code Style - **MUST NOT** declare `nullable = true`
 
 ---
 
-#### ID: TFNFR22 - Category: Code Style - **MUST NOT** declare `sensitive = false`
+#### ID: TFNFR21 - Category: Code Style - **MUST NOT** declare `sensitive = false`
 
 ---
 
-#### ID: TFNFR23 - Category: Code Style - `variable` with `sensitive = true` **MUST NOT** have default value unless the default value represents turning off a feature, like `default = null` or `default = []`
+#### ID: TFNFR22 - Category: Code Style - `variable` with `sensitive = true` **MUST NOT** have default value unless the default value represents turning off a feature, like `default = null` or `default = []`
 
 ---
 
-#### ID: TFNFR24 - Category: Code Style - Deal with deprecated `variable`
+#### ID: TFNFR23 - Category: Code Style - Deal with deprecated `variable`
 
 Sometimes we will find names for some `variable` are not suitable anymore, or a change should be made to the data type. We want to ensure forward compatibility within a major version, so direct changes are strictly forbidden. The right way to do this is move this `variable` to an independent `deprecated_variables.tf` file, then redefine the new parameter in `variable.tf` and make sure it's compatible everywhere else.
 
@@ -630,7 +630,7 @@ A cleanup of `deprecated_variables.tf` can be performed during a major version r
 
 ---
 
-#### ID: TFNFR25 - Category: Code Style - All verified modules **MUST** have `version.tf` file
+#### ID: TFNFR24 - Category: Code Style - All verified modules **MUST** have `version.tf` file
 
 `versions.tf` file can only contain one `terraform` block.
 
@@ -655,7 +655,7 @@ terraform {
 
 ---
 
-#### ID: TFNFR26 - Category: Code Style - Provider version constraint **MUST** has a constraint on maximum major version
+#### ID: TFNFR25 - Category: Code Style - Provider version constraint **MUST** has a constraint on maximum major version
 
 Major version upgrade might brings breaking change, all provider's major version upgrade *MUST* be tested.
 
