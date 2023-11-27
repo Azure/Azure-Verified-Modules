@@ -1,6 +1,6 @@
 name: New AVM Module Proposal 📝
 description: Want a new AVM Module to exist? Let us know!
-title: "[Module Proposal]: REPLACE ME WITH MODULE BEING PROPOSED"
+title: "[Module Proposal]: `MODULE NAME BETWEEN BACKTICKS`"
 labels: ["Type: New Module Proposal :bulb:", "Needs: Triage :mag:"]
 projects: ["Azure/529"]
 body:
@@ -51,8 +51,11 @@ body:
     id: module-name
     attributes:
       label: Module Name
-      description: What would be the name of the module following the [naming pattern](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming)?
-      placeholder: 'Bicep: avm/res/<rp>/<ARM resource type (in singular form)>; TF: avm-res-<rp>-<ARM resource type (in singular form)>'
+      description: |
+        What would be the name of the module following the [naming pattern](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming)?
+        - Bicep: `avm/res/<rp (hyphenated)>/<resource type (hyphenated, singular form)>`; e.g., `avm/res/virtual-machine-images/image-template`
+        - Terraform: `avm-res-<rp (single word)>-<resource type (single word, singular form)>`; e.g., `avm-res-virtualmachineimages-imagetemplate`
+      placeholder: '<Module name>'
     validations:
       required: true
   - type: textarea
