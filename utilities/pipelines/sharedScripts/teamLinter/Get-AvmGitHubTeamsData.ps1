@@ -7,12 +7,12 @@ Function Get-GitHubTeams {
     )
     # use githubCLI to get all teams in Azure organization
     $rawGhTeams = gh api orgs/Azure/teams --paginate
-    
+
     # Convert JSON to PowerShell Object
     $formattedGhTeams = ConvertFrom-Json $rawGhTeams
-    
+
     # Filter Teams for AVM
-    $filterAvmGhTeams = $formattedGhTeams | Where-Object { $_.name -like '*avm-*' }    
+    $filterAvmGhTeams = $formattedGhTeams | Where-Object { $_.name -like '*avm-*' }
     # Filter Teams for AVM Resource Modules
     $filterAvmResGhTeams = $filterAvmGhTeams | Where-Object { $_.name -like '*res-*' }
     # Filter Teams for AVM Pattern Modules

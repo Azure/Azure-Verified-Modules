@@ -10,8 +10,8 @@ function New-AVMGitHubTeamsIssue {
         [Parameter(Mandatory=$false)]
         [array]$labels
     )
-    
-    gh auth status  
+    # Validate Auth Status
+    gh auth status
     if ($? -eq $false) {
         Write-Error "You are not authenticated to GitHub. Please run 'gh auth login' to authenticate."
         exit 1

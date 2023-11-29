@@ -9,7 +9,7 @@ Function Get-AvmCsv {
     # Retrieve the CSV file
     if ($ModuleIndex -eq 'Bicep-Resource') {
         try {
-            $unfilteredCSV = Invoke-WebRequest -Uri "https://aka.ms/avm/index/bicep/res/csv"   
+            $unfilteredCSV = Invoke-WebRequest -Uri "https://aka.ms/avm/index/bicep/res/csv"
         }
         catch {
             Write-Error "Unable to retrieve CSV file - Check network connection."
@@ -48,7 +48,7 @@ Function Get-AvmCsv {
     $formattedBicepFullCsv = ConvertFrom-CSV $unfilteredCSV.Content
     # Filter the CSV data where the ModuleStatus is 'Module Available :green_circle:'
     $filterCsvAvailableBicepModule = $formattedBicepFullCsv | Where-Object {$_.ModuleStatus -eq 'Module Available :green_circle:'}
-    
+
     # Loop through each item in the filtered data
     foreach ($item in $filterCsvAvailableBicepModule) {
         # Remove '@Azure/' from the ModuleOwnersGHTeam property

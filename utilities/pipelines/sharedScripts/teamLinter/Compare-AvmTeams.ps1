@@ -6,7 +6,7 @@ Compares Azure Verified Modules Module Indexes with existing GitHub Teams config
 Compares Azure Verified Modules Module Indexes with existing GitHub Teams configurations. Issues with GitHub teams can be converted to Github Issues or verbose output.
 
 .PARAMETER ModuleIndex
-Required. Modules Index to use as source, allowed strings are: 
+Required. Modules Index to use as source, allowed strings are:
 'Bicep-Resource', 'Bicep-Pattern', 'Terraform-Resource', 'Terraform-Pattern'
 
 .PARAMETER TeamFilter
@@ -45,7 +45,7 @@ Function Compare-AvmTeams {
         [Parameter(Mandatory)]
         [ValidateSet('Bicep-Resource', 'Bicep-Pattern', 'Terraform-Resource', 'Terraform-Pattern')]
         [string]$ModuleIndex,
-        
+
         [Parameter(Mandatory)]
         [ValidateSet('AllTeams', 'AllResource', 'AllPattern', 'AllBicep', 'AllBicepResource', 'BicepResourceOwners', 'BicepResourceContributors', 'AllBicepPattern', 'BicepPatternOwners', 'BicepPatternContributors', 'AllTerraform', 'AllTerraformResource', 'TerraformResourceOwners', 'TerraformResourceContributors', 'AllTerraformPattern', 'TerraformPatternOwners', 'TerraformPatternContributors' )]
 
@@ -54,7 +54,7 @@ Function Compare-AvmTeams {
         [switch]$ValidateOwnersParent,
 
         [switch]$ValidateContributorsParent,
-        
+
         [switch]$CreateIssues
     )
 
@@ -132,7 +132,7 @@ Function Compare-AvmTeams {
                         Validation     = "@azure/ prefix found."
                         Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
                         GitHubTeamName = $ghTeam.name
-                        Resolution     = "Remove the '@azure/' prefix from the team name."                        
+                        Resolution     = "Remove the '@azure/' prefix from the team name."
                     }
                     # Add the custom object to the array
                     $unmatchedTeams += $unmatchedTeam
@@ -161,7 +161,7 @@ Function Compare-AvmTeams {
                 if ($module.ModuleContributorsGHTeam -eq $ghTeam.name) {
                     # If a match is found, set flag to true and break out of the loop
                     $matchFound = $true
-                    
+
                     # Validate if Parent Team is configured for Contributors Team
                     if ($ValidateContributorsParent) {
                         # Check if Parent Team is configured for Contributors Team
@@ -188,7 +188,7 @@ Function Compare-AvmTeams {
                     }
                     break
                 }
-                
+
                 # Check for match with "@Azure/" prefix
                 # Construct the prefixed team name
                 $prefixedTeamName = "@azure/" + $module.ModuleContributorsGHTeam
@@ -231,9 +231,9 @@ Function Compare-AvmTeams {
     }
     # Check if $unmatchedTeams is empty
     if ($unmatchedTeams.Count -eq 0) {
-        Write-Host "No unmatched teams found."
+        Write-Output "No unmatched teams found."
         $LASTEXITCODE = 0
-    } 
+    }
     else {
         $jsonOutput = $unmatchedTeams | ConvertTo-Json -Depth 3
         $jsonString = $jsonOutput | Out-String
@@ -261,5 +261,5 @@ Function Compare-AvmTeams {
             Write-Output "Unmatched teams found, Github issues Created."
             return $jsonOutput
         }
-    } 
+    }
 }
