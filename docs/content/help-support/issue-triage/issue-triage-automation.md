@@ -52,7 +52,7 @@ If an issue/PR has been labelled with "<mark style="background-color:#808080;col
 
 ### ITA24
 
-Remind module owner(s) to start or continue working on this module if there was no activity on the Module Proposal issue for more than 3 weeks.
+Remind module owner(s) to start or continue working on this module if there was no activity on the Module Proposal issue for more than 3 weeks. Add "<mark style="background-color:#E99695;">Needs: Attention 👋</mark>" label.
 
 <br>
 
