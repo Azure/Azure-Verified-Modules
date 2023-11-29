@@ -1,0 +1,206 @@
+{{ $useHeaderRow := .Get "header" }}
+{{ $csv := .Get "csv" }}
+{{ $file := readFile $csv }}
+{{ $rows := $file | transform.Unmarshal (dict "delimiter" ",") }}
+{{ $rows = after 1 $rows }}
+{{ $useLinks := .Get "useLinks" | default true }}
+{{ $language := .Get "language" }}
+{{ $moduleType := .Get "moduleType" }}
+{{ $exclude := .Get "exclude" }}
+{{ $monthsToShow := .Get "monthsToShow" }}
+{{ $ProviderNamespaceColumnId := 0 }}
+{{ $ResourceTypeColumnId := 0 }}
+{{ $ModuleDisplayNameColumnId := 0 }}
+{{ $ModuleNameColumnId := 0 }}
+{{ $ModuleStatusColumnId := 0 }}
+{{ $RepoURLColumnId := 0 }}
+{{ $PublicRegistryReferenceColumnId := 0 }}
+{{ $TelemetryIdPrefixColumnId := 0 }}
+{{ $PrimaryModuleOwnerGHHandleColumnId := 0 }}
+{{ $PrimaryModuleOwnerDisplayNameColumnId := 0 }}
+{{ $SecondaryModuleOwnerGHHandleColumnId := 0 }}
+{{ $SecondaryModuleOwnerDisplayNameColumnId := 0 }}
+{{ $ModuleOwnersGHTeamColumnId := 0 }}
+{{ $ModuleContributorsGHTeamColumnId := 0 }}
+{{ $DescriptionColumnId := 0 }}
+{{ $CommentsColumnId := 0 }}
+{{ $FirstPublishedInColumnId := 0 }}
+{{ $hasModulesAvailable := false }}
+{{ $modules := slice }}
+{{ $publicationDates := slice }}
+{{ $i := 1 }}
+
+{{ if eq $moduleType "resource" }}
+  {{ $ProviderNamespaceColumnId = 0 }}
+  {{ $ResourceTypeColumnId = 1 }}
+  {{ $ModuleDisplayNameColumnId = 2 }}
+  {{ $ModuleNameColumnId = 3 }}
+  {{ $ModuleStatusColumnId = 4 }}
+  {{ $RepoURLColumnId = 5 }}
+  {{ $PublicRegistryReferenceColumnId = 6 }}
+  {{ $TelemetryIdPrefixColumnId = 7 }}
+  {{ $PrimaryModuleOwnerGHHandleColumnId = 8 }}
+  {{ $PrimaryModuleOwnerDisplayNameColumnId = 9 }}
+  {{ $SecondaryModuleOwnerGHHandleColumnId = 10 }}
+  {{ $SecondaryModuleOwnerDisplayNameColumnId = 11 }}
+  {{ $ModuleOwnersGHTeamColumnId = 12 }}
+  {{ $ModuleContributorsGHTeamColumnId = 13 }}
+  {{ $DescriptionColumnId = 14 }}
+  {{ $CommentsColumnId = 15 }}
+  {{ $FirstPublishedInColumnId = 16 }}
+
+  {{ range $row, $rows }}
+    {{ $module := dict
+      "ProviderNamespace" (index $row $ProviderNamespaceColumnId)
+      "ResourceType" (index $row $ResourceTypeColumnId)
+      "ModuleDisplayName" (index $row $ModuleDisplayNameColumnId)
+      "ModuleName" (index $row $ModuleNameColumnId)
+      "ModuleStatus" (index $row $ModuleStatusColumnId)
+      "RepoURL" (index $row $RepoURLColumnId)
+      "PublicRegistryReference" (index $row $PublicRegistryReferenceColumnId)
+      "TelemetryIdPrefix" (index $row $TelemetryIdPrefixColumnId)
+      "PrimaryModuleOwnerGHHandle" (index $row $PrimaryModuleOwnerGHHandleColumnId)
+      "PrimaryModuleOwnerDisplayName" (index $row $PrimaryModuleOwnerDisplayNameColumnId)
+      "SecondaryModuleOwnerGHHandle" (index $row $SecondaryModuleOwnerGHHandleColumnId)
+      "SecondaryModuleOwnerDisplayName" (index $row $SecondaryModuleOwnerDisplayNameColumnId)
+      "ModuleOwnersGHTeam" (index $row $ModuleOwnersGHTeamColumnId)
+      "ModuleContributorsGHTeam" (index $row $ModuleContributorsGHTeamColumnId)
+      "Description" (index $row $DescriptionColumnId)
+      "Comments" (index $row $CommentsColumnId)
+      "FirstPublishedInColumnId" (index $row $FirstPublishedInColumnId)
+    }}
+    {{ $modules = $modules | append $module }}
+    {{ if and (ne $module.FirstPublishedInColumnId "") (not ( in $publicationDates $module.FirstPublishedInColumnId )) }}
+      {{ $publicationDates = $publicationDates | append $module.FirstPublishedInColumnId }}
+    {{ end }}
+  {{ end }}
+
+{{ else if eq $moduleType "pattern" }}
+  {{ $ModuleDisplayNameColumnId = 0 }}
+  {{ $ModuleNameColumnId = 1 }}
+  {{ $ModuleStatusColumnId = 2 }}
+  {{ $RepoURLColumnId = 3 }}
+  {{ $PublicRegistryReferenceColumnId = 4 }}
+  {{ $TelemetryIdPrefixColumnId = 5 }}
+  {{ $PrimaryModuleOwnerGHHandleColumnId = 6 }}
+  {{ $PrimaryModuleOwnerDisplayNameColumnId = 7 }}
+  {{ $SecondaryModuleOwnerGHHandleColumnId = 8 }}
+  {{ $SecondaryModuleOwnerDisplayNameColumnId = 9 }}
+  {{ $ModuleOwnersGHTeamColumnId = 10 }}
+  {{ $ModuleContributorsGHTeamColumnId = 11 }}
+  {{ $DescriptionColumnId = 12 }}
+  {{ $CommentsColumnId = 13 }}
+  {{ $FirstPublishedInColumnId = 14 }}
+
+  {{ range $row, $rows }}
+    {{ $module := dict
+      "ModuleDisplayName" (index $row $ModuleDisplayNameColumnId)
+      "ModuleName" (index $row $ModuleNameColumnId)
+      "ModuleStatus" (index $row $ModuleStatusColumnId)
+      "RepoURL" (index $row $RepoURLColumnId)
+      "PublicRegistryReference" (index $row $PublicRegistryReferenceColumnId)
+      "TelemetryIdPrefix" (index $row $TelemetryIdPrefixColumnId)
+      "PrimaryModuleOwnerGHHandle" (index $row $PrimaryModuleOwnerGHHandleColumnId)
+      "PrimaryModuleOwnerDisplayName" (index $row $PrimaryModuleOwnerDisplayNameColumnId)
+      "SecondaryModuleOwnerGHHandle" (index $row $SecondaryModuleOwnerGHHandleColumnId)
+      "SecondaryModuleOwnerDisplayName" (index $row $SecondaryModuleOwnerDisplayNameColumnId)
+      "ModuleOwnersGHTeam" (index $row $ModuleOwnersGHTeamColumnId)
+      "ModuleContributorsGHTeam" (index $row $ModuleContributorsGHTeamColumnId)
+      "Description" (index $row $DescriptionColumnId)
+      "Comments" (index $row $CommentsColumnId)
+      "FirstPublishedInColumnId" (index $row $FirstPublishedInColumnId)
+    }}
+    {{ $modules = $modules | append $module }}
+    {{ if and (ne $module.FirstPublishedInColumnId "") (not ( in $publicationDates $module.FirstPublishedInColumnId )) }}
+      {{ $publicationDates = $publicationDates | append $module.FirstPublishedInColumnId }}
+    {{ end }}
+  {{ end }}
+{{ else }}
+  {{ errorf "The %q shortcode requires a moduleType parameter to bet set to either 'resource' or 'pattern'. See %s" .Name .Position }}
+{{ end }}
+
+{{ $publicationDates = sort $publicationDates "value" "desc"  }}
+{{ $publicationDates := first $monthsToShow $publicationDates }}
+{{ $modules = sort $modules "ModuleName" }}
+
+{{ if eq $language "Bicep" }}
+{{ range $publicationDate, $publicationDates }}
+  {{ $i = 1 }}
+  {{ $date := time (printf "%s-01" $publicationDate) }}
+  {{ $formattedDate := $date.Format "January 2006" }}
+  {{ printf "### Modules published in %s" $formattedDate | markdownify }}
+  {{/*  {{ printf "**Modules published in %s**" $formattedDate | markdownify }}  */}}
+<table>
+  {{ if $useHeaderRow }}
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Module Name</th>
+      <th>Module Display Name</th>
+      <th>Module Status</th>
+      <th>Primary Module Owner<br>GitHub Handle<br>(& Display Name)</th>
+    </tr>
+  </thead>
+  {{ end }}
+  {{ range $item, $modules }}
+  {{ if and (eq $item.FirstPublishedInColumnId $publicationDate) (not ( in $exclude $item.ModuleStatus )) }}
+  <tr>
+    <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
+    <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Module Available :green_circle:") (eq $item.ModuleStatus "Module Orphaned :eyes:") }} <a href="{{ $item.RepoURL }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
+    <td>{{ $item.ModuleDisplayName }}</td>
+    <td>{{ emojify $item.ModuleStatus }}</td>
+    <td>{{ if ne $item.PrimaryModuleOwnerGHHandle ""}}<a href="https://github.com/{{ $item.PrimaryModuleOwnerGHHandle }}">{{ $item.PrimaryModuleOwnerGHHandle }}</a> {{ if and (ne $item.PrimaryModuleOwnerGHHandle "") (ne $item.PrimaryModuleOwnerDisplayName "") }} <br> ({{ $item.PrimaryModuleOwnerDisplayName }}) {{ end }} {{ end}}</td>
+  </tr>
+  {{ end }}
+  {{ end }}
+
+</table>
+<br>
+{{ $hasModulesAvailable = true }}
+{{ end }}
+{{ else if eq $language "Terraform" }}
+{{ range $publicationDate, $publicationDates }}
+  {{ $i = 1 }}
+  {{ $date := time (printf "%s-01" $publicationDate) }}
+  {{ $formattedDate := $date.Format "January 2006" }}
+  {{ printf "### Modules published in %s" $formattedDate | markdownify }}
+  {{/*  {{ printf "**Modules published in %s**" $formattedDate | markdownify }}  */}}
+<table>
+  {{ if $useHeaderRow }}
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Module Name</th>
+      <th>Source Code</th>
+      <th>Module Display Name</th>
+      <th>Module Status</th>
+      <th>Primary Module Owner<br>GitHub Handle<br>(& Display Name)</th>
+    </tr>
+  </thead>
+  {{ end }}
+  {{ range $item, $modules }}
+  {{ if and (eq $item.FirstPublishedInColumnId $publicationDate) (not ( in $exclude $item.ModuleStatus )) }}
+  <tr>
+    <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
+    <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Module Available :green_circle:") (eq $item.ModuleStatus "Module Orphaned :eyes:") }} <a href="{{ $item.PublicRegistryReference }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
+    <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Module Available :green_circle:") (eq $item.ModuleStatus "Module Orphaned :eyes:") }} <a href="{{ $item.RepoURL }}">📄</a> {{ else }} {{ "n/a" }} {{ end }} {{else}} {{ "n/a" }} {{ end }} </td>
+    <td>{{ $item.ModuleDisplayName }}</td>
+    <td>{{ emojify $item.ModuleStatus }}</td>
+    <td>{{ if ne $item.PrimaryModuleOwnerGHHandle ""}}<a href="https://github.com/{{ $item.PrimaryModuleOwnerGHHandle }}">{{ $item.PrimaryModuleOwnerGHHandle }}</a> {{ if and (ne $item.PrimaryModuleOwnerGHHandle "") (ne $item.PrimaryModuleOwnerDisplayName "") }} <br> ({{ $item.PrimaryModuleOwnerDisplayName }}) {{ end }} {{ end}}</td>
+
+  </tr>
+  {{ end }}
+  {{ end }}
+
+</table>
+<br>
+{{ $hasModulesAvailable = true }}
+{{ end }}
+{{ else }}
+  {{ errorf "The %q shortcode requires a language parameter to be set either 'Bicep' or 'Terraform'. See %s" .Name .Position }}
+{{ end }}
+
+
+{{ if not $hasModulesAvailable }}
+❌ No module are available yet.
+{{ end }}
