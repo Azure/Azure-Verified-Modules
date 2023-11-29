@@ -37,6 +37,16 @@ The following table shows the number of all available, orphaned and planned **Bi
 
 <br>
 
+### Module Publication History
+
+{{< expand "➕ Module Publication History - Module names, status and owners" "expand/collapse" "closed" >}}
+
+{{< moduleHistory header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" exclude="New Module :new:,Migrate From CARML :rocket:" monthsToShow=9999 >}}
+
+{{< /expand >}}
+
+<br>
+
 ### Available modules
 
 {{< expand "➕ Available Modules - Module names, status and owners" "expand/collapse" "open" >}}

@@ -24,6 +24,7 @@
 {{ $CommentsColumnId := 0 }}
 {{ $hasModulesAvailable := false }}
 {{ $maps := slice }}
+{{ $i := 0 }}
 
 {{ if eq $moduleType "resource" }}
   {{ $ProviderNamespaceColumnId = 0 }}
@@ -105,12 +106,14 @@
 {{ end }}
 
 {{ $maps = sort $maps "ModuleName" }}
+{{ $i = 1 }}
 
 {{ if eq $language "Bicep" }}
 <table>
   {{ if $useHeaderRow }}
   <thead>
     <tr>
+      <th>No.</th>
       <th>Module Name</th>
       <th>Telemetry ID prefix</th>
       <th>GitHub Teams for Module Owners and Contributors</th>
@@ -119,6 +122,7 @@
   {{ end }}
   {{ range $item, $maps }}
   <tr>
+    <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
     <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Module Available :green_circle:") (eq $item.ModuleStatus "Module Orphaned :eyes:") }} <a href="{{ $item.RepoURL }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
     <td><code>{{ $item.TelemetryIdPrefix }}</code></td>
     <td>
@@ -135,6 +139,7 @@
   {{ if $useHeaderRow }}
   <thead>
     <tr>
+      <th>No.</th>
       <th>Module Name</th>
       <th>Telemetry ID prefix</th>
       <th>GitHub Teams for Module Owners and Contributors</th>
@@ -143,6 +148,7 @@
   {{ end }}
   {{ range $item, $maps }}
   <tr>
+    <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
     <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Module Available :green_circle:") (eq $item.ModuleStatus "Module Orphaned :eyes:") }} <a href="{{ $item.PublicRegistryReference }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
     <td><code>{{ $item.TelemetryIdPrefix }}</code></td>
     <td>
