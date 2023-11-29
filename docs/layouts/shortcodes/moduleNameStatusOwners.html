@@ -25,6 +25,7 @@
 {{ $CommentsColumnId := 0 }}
 {{ $hasModulesAvailable := false }}
 {{ $maps := slice }}
+{{ $i := 0 }}
 
 {{ if eq $moduleType "resource" }}
   {{ $ProviderNamespaceColumnId = 0 }}
@@ -106,12 +107,14 @@
 {{ end }}
 
 {{ $maps = sort $maps "ModuleName" }}
+{{ $i = 1 }}
 
 {{ if eq $language "Bicep" }}
 <table>
   {{ if $useHeaderRow }}
   <thead>
     <tr>
+      <th>No.</th>
       <th>Module Name</th>
       <th>Module Display Name</th>
       <th>Module Status</th>
@@ -122,6 +125,7 @@
   {{ range $item, $maps }}
   {{ if not ( in $exclude $item.ModuleStatus ) }}
   <tr>
+    <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
     <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Module Available :green_circle:") (eq $item.ModuleStatus "Module Orphaned :eyes:") }} <a href="{{ $item.RepoURL }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
     <td>{{ $item.ModuleDisplayName }}</td>
     <td>{{ emojify $item.ModuleStatus }}</td>
@@ -132,6 +136,7 @@
   {{ end }}
   {{ if not $hasModulesAvailable }}
   <tr>
+    <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
     <td>❌ None available yet.</td>
     <td>❌ None available yet.</td>
     <td>❌ None available yet.</td>
@@ -144,6 +149,7 @@
   {{ if $useHeaderRow }}
   <thead>
     <tr>
+      <th>No.</th>
       <th>Module Name</th>
       <th>Source Code</th>
       <th>Module Display Name</th>
@@ -155,6 +161,7 @@
   {{ range $item, $maps }}
   {{ if not ( in $exclude $item.ModuleStatus ) }}
   <tr>
+    <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
     <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Module Available :green_circle:") (eq $item.ModuleStatus "Module Orphaned :eyes:") }} <a href="{{ $item.PublicRegistryReference }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
     <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Module Available :green_circle:") (eq $item.ModuleStatus "Module Orphaned :eyes:") }} <a href="{{ $item.RepoURL }}">📄</a> {{ else }} {{ "n/a" }} {{ end }} {{else}} {{ "n/a" }} {{ end }} </td>
     <td>{{ $item.ModuleDisplayName }}</td>
@@ -166,6 +173,7 @@
   {{ end }}
   {{ if not $hasModulesAvailable }}
   <tr>
+    <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
     <td>❌ None available yet.</td>
     <td>❌ None available yet.</td>
     <td>❌ None available yet.</td>
