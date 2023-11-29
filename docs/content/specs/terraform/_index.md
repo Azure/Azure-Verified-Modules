@@ -723,7 +723,7 @@ terraform {
 
 <br>
 
-#### ID: TFNFR26 - Category: Code Style - Provider version constraint **MUST** has a constraint on maximum major version
+#### ID: TFNFR26 - Category: Code Style - Provider version constraint **MUST** have a constraint on maximum major version
 
 Major version upgrade might brings breaking change, all provider's major version upgrade *MUST* be tested.
 
