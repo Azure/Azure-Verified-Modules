@@ -551,7 +551,7 @@ var.new_network_security_group_name == null ? "${var.subnet_name}-nsg" : var.new
 
 #### ID: TFFR14 - Category: Inputs - No `enabled` or `module_depends_on` variable
 
-Since Terraform 0.13, `count`, `for_each` and `depends_on` are introduced for modules, module development is significantly simplified. Module's owners **MUST NOT** add variables like `enabled` or `module_depends_on`).
+Since Terraform 0.13, `count`, `for_each` and `depends_on` are introduced for modules, module development is significantly simplified. Module's owners **MUST NOT** add variables like `enabled` or `module_depends_on` to control the entire module's operation. Boolean feature toggles are acceptable however.
 
 <br>
 
@@ -642,6 +642,8 @@ If `variable`'s `type` is `object` and contains one or more fields that would be
 
 #### ID: TFNFR20 - Category: Code Style - Declare `nullable = false` when it's possible
 
+Nullable SHOULD be set to `false` for collection values (e.g. sets, maps, lists) when using them in loops. However for scalar values like string and number, a null value MAY have a semantic meaning and as such these values are allowed.
+
 <br>
 
 ---
@@ -665,6 +667,8 @@ If `variable`'s `type` is `object` and contains one or more fields that would be
 <br>
 
 #### ID: TFNFR23 - Category: Code Style - `variable` with `sensitive = true` **MUST NOT** have default value unless the default value represents turning off a feature, like `default = null` or `default = []`
+
+Setting a default value for a sensitive input is not permitted, e.g. a default password.
 
 <br>
 
@@ -694,9 +698,9 @@ A cleanup of `deprecated_variables.tf` can be performed during a major version r
 
 <br>
 
-#### ID: TFNFR25 - Category: Code Style - All verified modules **MUST** have `version.tf` file
+#### ID: TFNFR25 - Category: Code Style - All verified modules **MUST** have `terraform.tf` file
 
-`versions.tf` file can only contain one `terraform` block.
+`terraform.tf` file can only contain one `terraform` block.
 
 The first line of this `terraform` block should define like: `required_version = ">= 1.1"`.
 
@@ -882,7 +886,7 @@ A cleanup can be performed to `deprecated_outputs.tf` and other logics related t
 
 #### ID: TFNFR31 - Category: Code Style - `locals.tf` **MUST** contain only one `locals` block
 
-All `local` **MUST** be defined in the only `locals` block in `locals.tf` file.
+In `locals.tf` file we could declare multiple `locals` blocks, but only `locals` blocks are allowed.
 
 <br>
 
@@ -900,7 +904,7 @@ All `local` **MUST** be defined in the only `locals` block in `locals.tf` file.
 
 #### ID: TFNFR33 - Category: Code Style - `local` should use types as precise as possible
 
-Eg. Type of `object({ name = string, age = number})`:
+Good example:
 
 ```terraform
 {
@@ -909,12 +913,12 @@ Eg. Type of `object({ name = string, age = number})`:
 }
 ```
 
-is better than `map(string)`:
+Bad example:
 
 ```terraform
 {
   name = "John"
-  age  = "52"
+  age  = "52" # age should be number
 }
 ```
 
