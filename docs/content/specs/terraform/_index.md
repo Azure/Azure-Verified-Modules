@@ -888,6 +888,8 @@ A cleanup can be performed to `deprecated_outputs.tf` and other logics related t
 
 In `locals.tf` file we could declare multiple `locals` blocks, but only `locals` blocks are allowed.
 
+You **MAY** declare `locals` blocks next to a `resource` block or `data` block for some advanced scenarios, like making a fake module to execute some light-weight tests aimed at the expressions.
+
 <br>
 
 ---
@@ -1004,6 +1006,18 @@ These changes do not necessarily trigger breaking changes, but they are very lik
 From Terraform AzureRM 3.0, the default value of `prevent_deletion_if_contains_resources` in `provider` block is `true`. This will lead to an unstable test(because the test subscription has some policies applied and they will add some extra resources during the run, which can cause failures during destroy of resource groups).
 
 Since we cannot guarantee our testing environment won't be applied some [Azure Policy Remediation Tasks](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources?tabs=azure-portal) in the future, for a robust testing environment, please explicitly set `prevent_deletion_if_contains_resources` to `false`.
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR37 - Category: Code Style - Module owner **MAY** use tools like [`newres`](https://github.com/lonegunmanb/newres)
+
+`newres` is a command-line tool that generates Terraform configuration files for a specified resource type. It automates the process of creating `variables.tf` and `main.tf` files, making it easier to get started with Terraform and reducing the time spent on manual configuration.
+
+Module owners are encouraged to use `newres` when they're trying to add new `resource` block, attribute, or nested block. They may generate the whole block along with the corresponding `variable` blocks in an empty folder, then copy-paste the parts they need with essential refactorings.
 
 <br>
 
