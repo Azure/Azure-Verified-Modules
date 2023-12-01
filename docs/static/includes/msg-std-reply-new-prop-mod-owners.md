@@ -1,5 +1,5 @@
 <!-- markdownlint-disable -->
-Hi @{requestor/proposed owner's GitHub alias},
+Hi @{module_owner},
 
 Thanks for requesting/proposing to be an AVM module owner!
 
