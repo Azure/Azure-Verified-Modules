@@ -20,11 +20,4 @@ Thanks,
 The AVM Core Team
 
 #RR
-
-<br>
-
-> **NOTE**:
->
-> - This Module Proposal issue **MUST remain open** until the module is fully developed, tested and published to the relevant registry. **Do NOT close** the issue before the successful publication is confirmed!
-> - Once the module is fully developed, tested and published to the relevant registry, and the Module Proposal issue was closed, it **MUST remain closed**.
 <!-- markdownlint-restore -->

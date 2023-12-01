@@ -20,11 +20,4 @@ Thanks,
 The AVM Core Team
 
 #RR
-
-<br>
-
-> **NOTE**:
->
-> - This Orphaned Module issue **MUST remain open** until the ownership is fully confirmed!
-> - Once the Orphaned Module issue was closed, it **MUST remain closed**. If the module will subsequently become orphaned again, a new Orphaned Module issue must be opened.
 <!-- markdownlint-restore -->
