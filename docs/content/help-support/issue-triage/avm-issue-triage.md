@@ -98,14 +98,13 @@ You **MUST** still confirm that the requestor is a Microsoft FTE and that they u
 
 {{< hint type=important >}}
 
-Although, it's not directly part of the module proposal triage process, to begin development, module owners and contributors will need additional help from the AVM core team, such as:
+Although, it's not directly part of the module proposal triage process, to begin development, module owners and contributors might need additional help from the AVM core team, such as:
 
 1. Update any Azure RBAC permissions for test tenants/subscription, if needed.
 2. In case of **Bicep modules** only:
     - Look for the module owners confirmation on the related `[Module Proposal]` issue that they have created the required `-module-owners-` and `-module-contributors-` GitHub teams.
-    - Grant the necessary permissions to the `-module-owners-` and `-module-contributors-` teams on the [BRM repo](https://aka.ms/BRM) as described [here](https://azure.github.io/Azure-Verified-Modules/specs/shared/#grant-permissions---bicep).
-    - Update [`CODEOWNERS`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) file in the [BRM repo](https://aka.ms/BRM).
-    - When ready, on the related issue, confirm that you have granted the necessary permissions to the GitHub teams and updated the `CODEOWNERS` file.
+    - Ensure the `-module-owners-` and `-module-contributors-` GitHub teams have been assigned to their respective parent teams as outlined [here](https://azure.github.io/Azure-Verified-Modules/specs/shared/#grant-permissions---bicep).
+    - Ensure the [`CODEOWNERS`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) file in the [BRM repo](https://aka.ms/BRM) has been updated.
 
 {{< /hint >}}
 
