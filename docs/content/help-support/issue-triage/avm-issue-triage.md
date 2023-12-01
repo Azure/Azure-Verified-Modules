@@ -102,8 +102,8 @@ Although, it's not directly part of the module proposal triage process, to begin
 
 1. Update any Azure RBAC permissions for test tenants/subscription, if needed.
 2. In case of **Bicep modules** only:
-    - Look for the module owners confirmation on the related `[Module Proposal]` issue that they have created the required `-module-owners-` and `-module-owners-` GitHub teams.
-    - Grant the necessary permissions to the `-module-owners-` and `-module-owners-` teams on the [BRM repo](https://aka.ms/BRM) as described [here](https://azure.github.io/Azure-Verified-Modules/specs/shared/#grant-permissions---bicep).
+    - Look for the module owners confirmation on the related `[Module Proposal]` issue that they have created the required `-module-owners-` and `-module-contributors-` GitHub teams.
+    - Grant the necessary permissions to the `-module-owners-` and `-module-contributors-` teams on the [BRM repo](https://aka.ms/BRM) as described [here](https://azure.github.io/Azure-Verified-Modules/specs/shared/#grant-permissions---bicep).
     - Update [`CODEOWNERS`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) file in the [BRM repo](https://aka.ms/BRM).
     - When ready, on the related issue, confirm that you have granted the necessary permissions to the GitHub teams and updated the `CODEOWNERS` file.
 
