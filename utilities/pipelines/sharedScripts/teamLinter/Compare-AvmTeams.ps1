@@ -102,9 +102,9 @@ Function Compare-AvmTeams {
                             $unmatchedTeam = [PSCustomObject]@{
                                 TeamName       = $module.ModuleOwnersGHTeam
                                 Validation     = "No parent team assigned."
-                                Owner          = "@me"
+                                Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
                                 GitHubTeamName = $ghTeam.name
-                                Resolution     = "Assign the correct parent team to the team: $($module.ModuleOwnersGHTeam). This can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) "
+                                Resolution     = "Assign the correct parent team to the team: $($module.ModuleOwnersGHTeam). This information can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) "
                             }
                             # Add the custom object to the array
                             $unmatchedTeams += $unmatchedTeam
@@ -132,7 +132,7 @@ Function Compare-AvmTeams {
                         Validation     = "@azure/ prefix found."
                         Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
                         GitHubTeamName = $ghTeam.name
-                        Resolution     = "Remove the '@azure/' prefix from the team name."
+                        Resolution     = "Team names cannot be updated after creation. \n\n Please recreate the team without the `@azure` at the start. This information can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only)"
                     }
                     # Add the custom object to the array
                     $unmatchedTeams += $unmatchedTeam
@@ -175,9 +175,9 @@ Function Compare-AvmTeams {
                             $unmatchedTeam = [PSCustomObject]@{
                                 TeamName       = $module.ModuleContributorsGHTeam
                                 Validation     = "No parent team assigned."
-                                Owner          = "@me"
+                                Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
                                 GitHubTeamName = $ghTeam.name
-                                Resolution     = "Assign the correct parent team to the team: $($module.ModuleContributorsGHTeam). This can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) "
+                                Resolution     = "Assign the correct parent team to the team: $($module.ModuleContributorsGHTeam). This information can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only)"
                             }
                             # Add the custom object to the array
                             $unmatchedTeams += $unmatchedTeam
@@ -202,11 +202,10 @@ Function Compare-AvmTeams {
                         Validation     = "@azure/ prefix found."
                         Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
                         GitHubTeamName = $ghTeam.name
-                        Resolution     = "Remove the '@azure/' prefix from the team name."
+                        Resolution     = "Team names cannot be updated after creation. \n\n Please recreate the team without the `@azure` at the start. This information can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only)"
                     }
                     # Add the custom object to the array
                     $unmatchedTeams += $unmatchedTeam
-                    break
                     break
                 }
             }
