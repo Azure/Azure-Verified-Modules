@@ -222,6 +222,8 @@ Resources have dependencies should be defined close to each other.
 
 #### ID: TFNFR7 - Category: Code Style - The Use of `count` and `for_each`
 
+<br>
+
 We can use `count` and `for_each` to deploy multiple resources, but the improper use of `count` can lead to [anti pattern](https://github.com/Azure/terraform-robust-module-design/tree/main/looping_for_resources_or_modules/count_index_antipattern).
 
 You can use `count` to create some kind of resources under certain conditions, for example:
@@ -265,6 +267,8 @@ resource "azurerm_subnet" "pair" {
 <br>
 
 ---
+
+<br>
 
 #### ID: TFNFR8 - Category: Code Style - Orders Within `resource` and `data` Blocks
 
@@ -482,6 +486,8 @@ module "bar" {
 
 Please use this technique under this use case only.
 
+<br>
+
 ---
 
 <br>
@@ -511,7 +517,11 @@ Please refer to the coding style in the example. If you just want to declare som
 for_each = <condition> ? [<some_item>] : []
 ```
 
+<br>
+
 ---
+
+<br>
 
 #### ID: TFNFR13 - Category: Code Style - Use `coalesce` or `try` when setting default values for nullable expressions
 
@@ -532,6 +542,484 @@ Bad examples:
 ```terraform
 var.new_network_security_group_name == null ? "${var.subnet_name}-nsg" : var.new_network_security_group_name)
 ```
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFFR14 - Category: Inputs - No `enabled` or `module_depends_on` variable
+
+Since Terraform 0.13, `count`, `for_each` and `depends_on` are introduced for modules, module development is significantly simplified. Module's owners **MUST NOT** add variables like `enabled` or `module_depends_on` to control the entire module's operation. Boolean feature toggles are acceptable however.
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR15 - Category: Code Style - Order to define `variable`
+
+Input variables should follow this order:
+
+1. All required fields, in alphabetical order
+2. All optional fields, in alphabetical order
+
+A `variable` without `default` value is a required field, otherwise it's an optional one.
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR16 - Category: Code Style - Name of a `variable` **MUST** follow rules
+
+The naming of a `variable` should follow [HashiCorp's naming rule](https://www.terraform.io/docs/extend/best-practices/naming.html).
+
+`variable` used as feature switches should use positive statement, use `xxx_enabled` instead of `xxx_disabled`. Avoid double negatives like `!xxx_disabled`.
+
+Please use `xxx_enabled` instead of `xxx_disabled` as name of a `variable`.
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR17 - Category: Code Style - Every `variable` **MUST** come with a `description`
+
+The target audience of `description` is the module users.
+
+For a newly created `variable` (Eg. `variable` for switching `dynamic` block on-off), it's `description` should precisely describe the input parameter's purpose and the expected data type. `description` should not contain any information for module developers, this kind of information can only exist in code comments.
+
+For `object` type `variable`, `description` can be composed in HEREDOC format:
+
+```terraform
+variable "kubernetes_cluster_key_management_service" {
+  type = object({
+    key_vault_key_id         = string
+    key_vault_network_access = optional(string)
+  })
+  default     = null
+  description = <<-EOT
+  - `key_vault_key_id` - (Required) Identifier of Azure Key Vault key. See [key identifier format](https://learn.microsoft.com/en-us/azure/key-vault/general/about-keys-secrets-certificates#vault-name-and-object-name) for more details. When Azure Key Vault key management service is enabled, this field is required and must be a valid key identifier. When `enabled` is `false`, leave the field empty.
+  - `key_vault_network_access` - (Optional) Network access of the key vault Network access of key vault. The possible values are `Public` and `Private`. `Public` means the key vault allows public access from all networks. `Private` means the key vault disables public access and enables private link. Defaults to `Public`.
+EOT
+}
+```
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR18 - Category: Code Style - Every `variable` **MUST** have an appropriate `type`
+
+`type` **MUST** be defined for every `variable`. `type` should be as precise as possible, `any` can only be defined with adequate reasons.
+
+* Use `bool` instead of `string` or `number` for `true/false`
+* Use `string` for text
+* Use concrete `object` instead of `map(any)`
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR19 - Category: Code Style - `variable` containing confidential data should be declared as `sensitive = true`
+
+If `variable`'s `type` is `object` and contains one or more fields that would be assigned to a `sensitive` argument, then this whole `variable` should be declared as `sensitive = true`, otherwise you should extract sensitive field into separated variable block with `senstive = true`.
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR20 - Category: Code Style - Declare `nullable = false` when it's possible
+
+Nullable SHOULD be set to `false` for collection values (e.g. sets, maps, lists) when using them in loops. However for scalar values like string and number, a null value MAY have a semantic meaning and as such these values are allowed.
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR21 - Category: Code Style - **MUST NOT** declare `nullable = true`
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR22 - Category: Code Style - **MUST NOT** declare `sensitive = false`
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR23 - Category: Code Style - `variable` with `sensitive = true` **MUST NOT** have default value unless the default value represents turning off a feature, like `default = null` or `default = []`
+
+Setting a default value for a sensitive input is not permitted, e.g. a default password.
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR24 - Category: Code Style - Deal with deprecated `variable`
+
+Sometimes we will find names for some `variable` are not suitable anymore, or a change should be made to the data type. We want to ensure forward compatibility within a major version, so direct changes are strictly forbidden. The right way to do this is move this `variable` to an independent `deprecated_variables.tf` file, then redefine the new parameter in `variable.tf` and make sure it's compatible everywhere else.
+
+Deprecated `variable` must be annotated as `DEPRECATED` at the beginning of the `description`, at the same time the replacement's name should be declared. E.g.
+
+```terraform
+variable "enable_network_security_group" {
+  type        = string
+  default     = null
+  description = "DEPRECATED, use `network_security_group_enabled` instead; Whether to generate a network security group and assign it to the subnet. Changing this forces a new resource to be created."
+}
+```
+
+A cleanup of `deprecated_variables.tf` can be performed during a major version release.
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR25 - Category: Code Style - All verified modules **MUST** have `terraform.tf` file
+
+`terraform.tf` file can only contain one `terraform` block.
+
+The first line of this `terraform` block should define like: `required_version = ">= 1.1"`.
+
+`terraform` block should contain a block called `required_providers`, the content of it is the restrictions for provider's version. Provider's version restriction should be sorted in alphabetical order, same for the assignment statements. `version` restrctions should use `>=` if not specified. No other kinds of restrictions can be used without proper justification.
+
+All the providers used in the module should be defined in `required_providers`. ***Please do not add providers that are not directly required by this module. If submodules are used then each submodule should have its own `versions.tf` file.***
+
+Since a major version upgrade of the provider can lead to a breaking change, a major version upgrade of the provider must come with a major version upgrade of the module itself. Which means, we should almost always declare `azurerm` block like the following example:
+
+```terraform
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 3.11, < 4.0"
+    }
+  }
+}
+```
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR26 - Category: Code Style - Provider version constraint **MUST** have a constraint on maximum major version
+
+Major version upgrade might brings breaking change, all provider's major version upgrade *MUST* be tested.
+
+Good examples:
+
+```terraform
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 3.11, < 4.0"
+    }
+  }
+}
+```
+
+```terraform
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 2.0, < 4.0"
+    }
+  }
+}
+```
+
+```terraform
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 3.0"
+    }
+  }
+}
+```
+
+```terraform
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "3.11"
+    }
+  }
+}
+```
+
+Bad example:
+
+```terraform
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 3.11"
+    }
+  }
+}
+```
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR27 - Category: Code Style - Declaration of a provider in the module
+
+[By rules](https://www.terraform.io/docs/language/modules/develop/providers.html), in the module code `provider` cannot be declared. The only exception is when the module indeed need different instances of the same kind of `provider`(Eg. manipulating resources across different `location`s or accounts), you **MUST** declare `configuration_aliases` in `terraform.required_providers`. See details in this [document](https://www.terraform.io/docs/language/providers/configuration.html#alias-multiple-provider-configurations).
+
+`provider` block declared in the module can only be used to differentiate instances used in  `resource` and `data`. Declaration of fields other than `alias` in `provider` block is strictly forbidden. It could lead to module users unable to utilize `count`, `for_each` or `depends_on`. Configurations of the `provider` instance should be passed in by the module users.
+
+Good examples:
+
+In verified module:
+
+```terraform
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 3.0"
+      configuration_aliases = [ azurerm.alternate ]
+    }
+  }
+}
+```
+
+In the root module where we call this verified module:
+
+````terraform
+provider "azurerm" {
+  features {}
+}
+
+provider "azurerm" {
+  alias = "alternate"
+  features {}
+}
+
+module "foo" {
+  source = "xxx"
+  providers = {
+    azurerm = azurerm
+    azurerm.alternate = azurerm.alternate
+  }
+}
+````
+
+Bad example:
+
+In verified module:
+
+```terraform
+provider "azurerm" {
+  # Configuration options
+  features {}
+}
+```
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR28 - Category: Code Style - `output` **MUST** be arranged alphabetically
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR29 - Category: Code Style - `output` contains confidential data should declare `sensitive = true`
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR30 - Category: Code Style - Dealing with Deprecated `output`s
+
+Sometimes we notice that the name of certain `output` is not appropriate anymore, however, since we have to ensure forward compatibility in the same major version, it's not allowed to change the name directly. We need to move it to an independent `deprecated_outputs.tf` file, then redefine a new output in `output.tf` and make sure it's compatible everywhere else in the module.
+
+A cleanup can be performed to `deprecated_outputs.tf` and other logics related to compatibility during a major version upgrade.
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR31 - Category: Code Style - `locals.tf` **MUST** contain only one `locals` block
+
+In `locals.tf` file we could declare multiple `locals` blocks, but only `locals` blocks are allowed.
+
+You **MAY** declare `locals` blocks next to a `resource` block or `data` block for some advanced scenarios, like making a fake module to execute some light-weight tests aimed at the expressions.
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR32 - Category: Code Style - `local` should be arranged alphabetically
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR33 - Category: Code Style - `local` should use types as precise as possible
+
+Good example:
+
+```terraform
+{
+  name = "John"
+  age  = 52
+}
+```
+
+Bad example:
+
+```terraform
+{
+  name = "John"
+  age  = "52" # age should be number
+}
+```
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR34 - Category: Code Style - Feature toggle **MUST** be used to ensure forward compatibility of versions and avoid unexpected changes caused by upgrades
+
+E.g., our previous release was `v1.2.1`, now we'd like to submit a pull request which contains such new `resource`:
+
+```terraform
+resource "azurerm_route_table" "this" {
+  location            = local.location
+  name                = coalesce(var.new_route_table_name, "${var.subnet_name}-rt")
+  resource_group_name = var.resource_group_name
+}
+```
+
+A user who's just upgraded the module's version would be surprised to see a new resource to be created in a newly generated plan file.
+
+A better approach is adding a feature toggle to be turned off by default:
+
+```terraform
+variable "create_route_table" {
+  type     = bool
+  default  = false
+  nullable = false
+}
+
+resource "azurerm_route_table" "this" {
+  count               = var.create_route_table ? 1 : 0
+  location            = local.location
+  name                = coalesce(var.new_route_table_name, "${var.subnet_name}-rt")
+  resource_group_name = var.resource_group_name
+}
+```
+
+Similarly, when adding a new argument assignment in a `resource` block, we should use the default value provided by the provider's schema or `null`. We should use `dynamic` block with default omitted configuration when adding a new nested block inside a `resource` block.
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR35 - Category: Code Style - Changes that might be breaking change **MUST** be reviewed with caution
+
+Potential breaking(surprise) changes introduced by `resource` block
+
+1. Adding a new `resource` without `count` or `for_each` for conditional creation, or creating by default
+2. Adding a new argument assignment with a value other than the default value provided by the provider's schema
+3. Adding a new nested block without making it `dynamic` or omitting it by default
+4. Renaming a `resource` block without one or more corresponding `moved` blocks
+5. Change `resource`'s `count` to `for_each`, or vice versa
+
+[Terraform `moved` block](https://developer.hashicorp.com/terraform/language/modules/develop/refactoring) could be your cure.
+
+Potential breaking changes introduced by `variable` and `output` blocks
+
+1. Deleting(Renaming) a `variable`
+2. Changing `type` in a `variable` block
+3. Changing the `default` value in a `variable` block
+4. Changing `variable`'s `nullable` to `false`
+5. Changing `variable`'s `sensitive` from `false` to `true`
+6. Adding a new `variable` without `default`
+7. Deleting an `output`
+8. Changing an `output`'s `value`
+9. Changing an `output`'s `sensitive` value
+
+These changes do not necessarily trigger breaking changes, but they are very likely to, they **MUST** be reviewed with caution.
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR36 - Category: Code Style - Example code **MUST** set `prevent_deletion_if_contains_resources` to `false` in `provider` block
+
+From Terraform AzureRM 3.0, the default value of `prevent_deletion_if_contains_resources` in `provider` block is `true`. This will lead to an unstable test(because the test subscription has some policies applied and they will add some extra resources during the run, which can cause failures during destroy of resource groups).
+
+Since we cannot guarantee our testing environment won't be applied some [Azure Policy Remediation Tasks](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources?tabs=azure-portal) in the future, for a robust testing environment, please explicitly set `prevent_deletion_if_contains_resources` to `false`.
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFNFR37 - Category: Code Style - Module owner **MAY** use tools like [`newres`](https://github.com/lonegunmanb/newres)
+
+`newres` is a command-line tool that generates Terraform configuration files for a specified resource type. It automates the process of creating `variables.tf` and `main.tf` files, making it easier to get started with Terraform and reducing the time spent on manual configuration.
+
+Module owners are encouraged to use `newres` when they're trying to add new `resource` block, attribute, or nested block. They may generate the whole block along with the corresponding `variable` blocks in an empty folder, then copy-paste the parts they need with essential refactorings.
+
+<br>
 
 ---
 
