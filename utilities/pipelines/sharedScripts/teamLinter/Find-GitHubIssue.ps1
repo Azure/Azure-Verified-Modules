@@ -1,10 +1,11 @@
 function Find-GithubIssue {
     [CmdletBinding()]
+    [OutputType([System.String])]
     param (
         [Parameter(Mandatory)]
         [string]$title
     )
-    
+
     $issueList = gh issue list --json number,title,assignees,labels,id | ConvertFrom-Json
     $issueDetails = $null
 

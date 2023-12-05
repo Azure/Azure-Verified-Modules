@@ -50,7 +50,7 @@ jobs:
         shell: pwsh
         run: |
           # Load used functions
-          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Compare-AvmTeams.ps1')
+          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Invoke-AvmGitHubTeamLinter.ps1')
 
           $functionInput = @{
             ModuleIndex                       = 'Bicep-Resource'
@@ -66,7 +66,7 @@ jobs:
           Write-Verbose 'Invoke task with' -Verbose
           Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
 
-          Compare-AvmTeams @functionInput -Verbose
+          Invoke-AvmGitHubTeamLinter @functionInput -Verbose
 
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
@@ -77,7 +77,7 @@ jobs:
         shell: pwsh
         run: |
           # Load used functions
-          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Compare-AvmTeams.ps1')
+          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Invoke-AvmGitHubTeamLinter.ps1')
 
           # Branch check so issues are only opened on main
 
@@ -94,7 +94,7 @@ jobs:
           Write-Verbose 'Invoke task with' -Verbose
           Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
 
-          Compare-AvmTeams @functionInput -Verbose
+          Invoke-AvmGitHubTeamLinter @functionInput -Verbose
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
 
@@ -104,7 +104,7 @@ jobs:
         shell: pwsh
         run: |
           # Load used functions
-          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Compare-AvmTeams.ps1')
+          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Invoke-AvmGitHubTeamLinter.ps1')
 
           # Branch check so issues are only opened on main
 
@@ -121,7 +121,7 @@ jobs:
           Write-Verbose 'Invoke task with' -Verbose
           Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
 
-          Compare-AvmTeams @functionInput -Verbose
+          Invoke-AvmGitHubTeamLinter @functionInput -Verbose
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
 
@@ -131,7 +131,7 @@ jobs:
         shell: pwsh
         run: |
           # Load used functions
-          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Compare-AvmTeams.ps1')
+          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Invoke-AvmGitHubTeamLinter.ps1')
 
           $functionInput = @{
             ModuleIndex                      = 'Terraform-Resource'
@@ -146,7 +146,7 @@ jobs:
           Write-Verbose 'Invoke task with' -Verbose
           Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
 
-          Compare-AvmTeams @functionInput -Verbose
+          Invoke-AvmGitHubTeamLinter @functionInput -Verbose
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
 
@@ -156,7 +156,7 @@ jobs:
         shell: pwsh
         run: |
           # Load used functions
-          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Compare-AvmTeams.ps1')
+          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Invoke-AvmGitHubTeamLinter.ps1')
 
           $functionInput = @{
             ModuleIndex                       = 'Terraform-Pattern'
@@ -171,6 +171,6 @@ jobs:
           Write-Verbose 'Invoke task with' -Verbose
           Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
 
-          Compare-AvmTeams @functionInput -Verbose
+          Invoke-AvmGitHubTeamLinter @functionInput -Verbose
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}

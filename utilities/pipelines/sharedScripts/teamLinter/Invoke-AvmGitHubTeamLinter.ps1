@@ -23,22 +23,22 @@ Optional. Validate if correct permissions are configured for Terraform Teams
 Optional. Create GitHub Issues for unmatched teams
 
 .EXAMPLE
-Compare-AvmTeams -ModuleIndex Bicep-Resource -TeamFilter AllBicepResource -ValidateBicepParentConfiguration -Verbose -CreateIssues
+Invoke-AvmGitHubTeamLinter -ModuleIndex Bicep-Resource -TeamFilter AllBicepResource -ValidateBicepParentConfiguration -Verbose -CreateIssues
 
 Compares all bicep resource modules with GitHub Teams and validates if Parent Team is configured for Owners Team. Verbose output is displayed and GitHub Issues are created for unmatched teams.
 
 .EXAMPLE
-Compare-AvmTeams -ModuleIndex Terraform-Resource -TeamFilter AllTerraformResource -ValidateTerraformTeamsPermissons -Verbose -CreateIssues
+Invoke-AvmGitHubTeamLinter -ModuleIndex Terraform-Resource -TeamFilter AllTerraformResource -ValidateTerraformTeamsPermissons -Verbose -CreateIssues
 
 Compares all terraform resource modules with GitHub Teams and validates if Teams have correct permissions on repository. Verbose output is displayed and GitHub Issues are created for unmatched teams.
 
 .EXAMPLE
-Compare-AvmTeams -ModuleIndex Bicep-Pattern -TeamFilter AllBicepPattern -ValidateBicepParentConfiguration -Verbose
+Invoke-AvmGitHubTeamLinter -ModuleIndex Bicep-Pattern -TeamFilter AllBicepPattern -ValidateBicepParentConfiguration -Verbose
 
 Compares all bicep pattern modules with GitHub Teams and validates if Parent Team is configured for Owners Team. Verbose output is displayed, GitHub Issues are not created for unmatched teams.
 #>
 
-Function Compare-AvmTeams {
+Function Invoke-AvmGitHubTeamLinter {
 
   [CmdletBinding()]
   param (
@@ -290,12 +290,11 @@ Function Compare-AvmTeams {
   }
   # Check if $unmatchedTeams is empty
   if ($unmatchedTeams.Count -eq 0) {
-      Write-Host "No unmatched teams found."
+      Write-Output "No unmatched teams found."
       $LASTEXITCODE = 0
   }
   else {
       $jsonOutput = $unmatchedTeams | ConvertTo-Json -Depth 3
-      $jsonString = $jsonOutput | Out-String
       Write-Warning "Unmatched teams found:"
       Write-Warning $jsonOutput | Out-String
 
@@ -312,7 +311,7 @@ Function Compare-AvmTeams {
 
       #Output in JSON for follow on tasks
       if (-not $CreateIssues) {
-          Write-Output "::warning file=Compare-AvmTeams.ps1::Unmatched teams found, Review step warnings for details."
+          Write-Output "::warning file=Invoke-AvmGitHubTeamLinter.ps1::Unmatched teams found, Review step warnings for details."
           Write-Output "## :warning: Unmatched teams found, Review step warnings for details." >> $env.GITHUB_STEP_SUMMARY -Verbose
           $LASTEXITCODE = 1
       }

@@ -1,5 +1,5 @@
 function New-AVMGitHubTeamsIssue {
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory)]
         [string]$title,

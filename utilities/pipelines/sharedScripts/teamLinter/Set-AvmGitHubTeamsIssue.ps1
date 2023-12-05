@@ -29,7 +29,7 @@
 #>
 
 function Set-AvmGitHubTeamsIssue {
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory)]
         [string]$TeamName,
