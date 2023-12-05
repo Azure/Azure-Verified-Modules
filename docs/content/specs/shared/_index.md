@@ -123,6 +123,7 @@ The following information notice is automatically added at the bottom of the `RE
 - **Terraform:** Executing the `make docs` command with the note and header `## Data Collection` being placed in the module's `_footer.md` beforehand
 {{< /hint >}}
 
+`## Data Collection`
 {{< include file="static/includes/telemetry-information-notice.md" language="markdown" options="linenos=false" >}}
 
 {{< /expand >}}
