@@ -118,10 +118,13 @@ To highlight that AVM modules use telemetry, an information notice **MUST** be i
 {{< expand "➕ Telemetry Information Notice" "expand/collapse" >}}
 
 {{< hint type=note >}}
-The following information notice is automatically at the bottom of the `README.md` file of the module when using the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) tool
+The following information notice is automatically added at the bottom of the `README.md` file of the module when
+- **Bicep:** Using the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) utility
+- **Terraform:** Executing the `make docs` command with the note and header `## Data Collection` being placed in the module's `_footer.md` beforehand
 {{< /hint >}}
 
-{{< include file="static/includes/telemetry-information-notice.md" language="markdown" options="linenos=false" >}}
+`## Data Collection`
+{{< include file="static/includes/telemetry-information-notice.txt" language="txt" options="linenos=false" >}}
 
 {{< /expand >}}
 
@@ -854,7 +857,7 @@ Resource modules support the following optional features/extension resources, as
 | Customer Managed Keys                       | `customerManagedKey` | `customer_managed_key`  | MUST        |
 | Azure Monitor Alerts                        | `alerts`             | `alerts`                | SHOULD      |
 
-Resource modules **MUST NOT** deploy required/dependant resources for the optional features/extension resources specified above. For example, for Diagnostic Settings the resource module **MUST NOT** deploy the Log Analytics Workspace, this is expected to be already in existence from the perspective of the resource module deployed via another method/module etc.
+Resource modules **MUST NOT** deploy required/dependent resources for the optional features/extension resources specified above. For example, for Diagnostic Settings the resource module **MUST NOT** deploy the Log Analytics Workspace, this is expected to be already in existence from the perspective of the resource module deployed via another method/module etc.
 
 {{< hint type=note >}}
 
