@@ -63,7 +63,9 @@ function Set-AvmGitHubTeamsIssue {
     if (($issues -like "No match found*") -And $CreateIssues) {
         Write-Output "No issue found for: $($title), Creating new issue."
         try {
+          if ($PSCmdlet.ShouldProcess($TeamName, "Create GitHub Issue")) {
             New-AvmGitHubTeamsIssue -title $title -assignee $Owner -body $body -labels $labels
+          }
         }
         catch {
             Write-Error "Unable to create issue. Check network connection."
