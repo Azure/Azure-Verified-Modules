@@ -124,7 +124,7 @@ The following information notice is automatically added at the bottom of the `RE
 {{< /hint >}}
 
 `## Data Collection`
-{{< include file="static/includes/telemetry-information-notice.md" language="markdown" options="linenos=false" >}}
+{{< include file="static/includes/telemetry-information-notice.md" language="txt" options="linenos=false" >}}
 
 {{< /expand >}}
 
