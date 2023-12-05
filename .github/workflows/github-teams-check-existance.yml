@@ -1,12 +1,13 @@
+---
 name: Github Team - Check Existance
 
 on:
   # Runs on schedule
   schedule:
-    - cron: "0 10 * * 1-5" # At 10:00 AM, Monday through Friday
+    - cron: "0 15 * * 1-5" # At 10:00 AM, Monday through Friday
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch: {}
+  workflow_dispatch: { }
 
 permissions: read-all
 
@@ -52,9 +53,9 @@ jobs:
           . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Compare-AvmTeams.ps1')
 
           $functionInput = @{
-            ModuleIndex                 = 'Bicep-Resource'
-            TeamFilter                  = 'BicepResourceOwners'
-            ValidateOwnersParent        = $true
+            ModuleIndex                       = 'Bicep-Resource'
+            TeamFilter                        = 'BicepResourceOwners'
+            ValidateBicepParentConfiguration  = $true
           }
 
 
@@ -81,9 +82,9 @@ jobs:
           # Branch check so issues are only opened on main
 
           $functionInput = @{
-            ModuleIndex                 = 'Bicep-Resource'
-            TeamFilter                  = 'BicepResourceContributors'
-            ValidateContributorsParent  = $true
+            ModuleIndex                       = 'Bicep-Resource'
+            TeamFilter                        = 'BicepResourceContributors'
+            ValidateBicepParentConfiguration  = $true
           }
 
           if ($env.GITHUB_REF_NAME -eq "main"){
@@ -108,9 +109,9 @@ jobs:
           # Branch check so issues are only opened on main
 
           $functionInput = @{
-            ModuleIndex                 = 'Bicep-Pattern'
-            TeamFilter                  = 'AllBicepPattern'
-            ValidateContributorsParent  = $true
+            ModuleIndex                       = 'Bicep-Pattern'
+            TeamFilter                        = 'AllBicepPattern'
+            ValidateBicepParentConfiguration  = $true
           }
 
           if ($env.GITHUB_REF_NAME -eq "main"){
@@ -132,10 +133,11 @@ jobs:
           # Load used functions
           . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Compare-AvmTeams.ps1')
 
-            $functionInput = @{
-              ModuleIndex                 = 'Terraform-Resource'
-              TeamFilter                  = 'AllTerraformResource'
-            }
+          $functionInput = @{
+            ModuleIndex                      = 'Terraform-Resource'
+            TeamFilter                       = 'AllTerraformResource'
+            ValidateTerraformTeamsPermissons = $true
+          }
 
           if ($env.GITHUB_REF_NAME -eq "main"){
             $functionInput['CreateIssues'] = $true
@@ -156,10 +158,11 @@ jobs:
           # Load used functions
           . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Compare-AvmTeams.ps1')
 
-            $functionInput = @{
-              ModuleIndex                 = 'Terraform-Pattern'
-              TeamFilter                  = 'AllTerraformPattern'
-            }
+          $functionInput = @{
+            ModuleIndex                       = 'Terraform-Pattern'
+            TeamFilter                        = 'AllTerraformPattern'
+            ValidateTerraformTeamsPermissons  = $true
+          }
 
           if ($env.GITHUB_REF_NAME -eq "main"){
             $functionInput['CreateIssues'] = $true
