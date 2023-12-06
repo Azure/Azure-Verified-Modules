@@ -62,7 +62,7 @@ jobs:
           if ($env.GITHUB_REF_NAME -eq "main"){
             $functionInput['CreateIssues'] = $true
           }
-
+          Write-Verbose 'Ref: $($env:GITHUB_REF_NAME)' -Verbose
           Write-Verbose 'Invoke task with' -Verbose
           Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
 
