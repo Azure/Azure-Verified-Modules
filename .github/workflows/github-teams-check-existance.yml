@@ -58,11 +58,12 @@ jobs:
             ValidateBicepParentConfiguration  = $true
           }
 
-
-          if ($env.GITHUB_REF_NAME -eq "main"){
-            $functionInput['CreateIssues'] = $true
+          $branch = git branch --show-current
+          $branchName = $branch.split('/')[-1]
+          if ($branchName -eq "main"){
+              $functionInput['CreateIssues'] = $true
           }
-
+          Write-Verbose "Ref: $($branchName)" -Verbose
           Write-Verbose 'Invoke task with' -Verbose
           Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
 
@@ -87,8 +88,10 @@ jobs:
             ValidateBicepParentConfiguration  = $true
           }
 
-          if ($env.GITHUB_REF_NAME -eq "main"){
-            $functionInput['CreateIssues'] = $true
+          $branch = git branch --show-current
+          $branchName = $branch.split('/')[-1]
+          if ($branchName -eq "main"){
+              $functionInput['CreateIssues'] = $true
           }
 
           Write-Verbose 'Invoke task with' -Verbose
@@ -114,8 +117,10 @@ jobs:
             ValidateBicepParentConfiguration  = $true
           }
 
-          if ($env.GITHUB_REF_NAME -eq "main"){
-            $functionInput['CreateIssues'] = $true
+          $branch = git branch --show-current
+          $branchName = $branch.split('/')[-1]
+          if ($branchName -eq "main"){
+              $functionInput['CreateIssues'] = $true
           }
 
           Write-Verbose 'Invoke task with' -Verbose
@@ -139,8 +144,10 @@ jobs:
             ValidateTerraformTeamsPermissons = $true
           }
 
-          if ($env.GITHUB_REF_NAME -eq "main"){
-            $functionInput['CreateIssues'] = $true
+          $branch = git branch --show-current
+          $branchName = $branch.split('/')[-1]
+          if ($branchName -eq "main"){
+              $functionInput['CreateIssues'] = $true
           }
 
           Write-Verbose 'Invoke task with' -Verbose
@@ -164,8 +171,10 @@ jobs:
             ValidateTerraformTeamsPermissons  = $true
           }
 
-          if ($env.GITHUB_REF_NAME -eq "main"){
-            $functionInput['CreateIssues'] = $true
+          $branch = git branch --show-current
+          $branchName = $branch.split('/')[-1]
+          if ($branchName -eq "main"){
+              $functionInput['CreateIssues'] = $true
           }
 
           Write-Verbose 'Invoke task with' -Verbose
