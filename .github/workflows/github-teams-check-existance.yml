@@ -58,8 +58,8 @@ jobs:
             ValidateBicepParentConfiguration  = $true
           }
 
-
-          $branchName = $GITHUB_REF_NAME -replace 'refs/heads/', ''
+          $branch = git branch --show-current
+          $branchName = $branch.split('/')[-1]
           if ($branchName -eq "main"){
               $functionInput['CreateIssues'] = $true
           }
