@@ -63,7 +63,7 @@ jobs:
           if ($branchName -eq "main"){
               $functionInput['CreateIssues'] = $true
           }
-          Write-Verbose 'Ref: $($env:branchName)' -Verbose
+          Write-Verbose "Ref: $($env:branchName)" -Verbose
           Write-Verbose 'Invoke task with' -Verbose
           Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
 
