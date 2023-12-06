@@ -78,7 +78,7 @@ Function Invoke-AvmGitHubTeamLinter {
   }
 
     # Retrieve the CSV file
-    $sourceData = Get-AvmCsv -ModuleIndex $ModuleIndex
+    $sourceData = Get-AvmCsvData -ModuleIndex $ModuleIndex
     $gitHubTeamsData = Get-AvmGitHubTeamsData -TeamFilter $TeamFilter
     $unmatchedTeams = @()
     # Iterate through each object in $csv
