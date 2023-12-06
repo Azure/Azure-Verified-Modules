@@ -59,7 +59,7 @@ jobs:
           }
 
 
-          $branchName = $env:GITHUB_REF -replace 'refs/heads/', ''
+          $branchName = $env:GITHUB_REF_NAME -replace 'refs/heads/', ''
           if ($branchName -eq "main"){
               $functionInput['CreateIssues'] = $true
           }
