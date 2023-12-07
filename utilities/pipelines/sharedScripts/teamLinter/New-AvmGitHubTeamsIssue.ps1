@@ -17,11 +17,8 @@ function New-AVMGitHubTeamsIssue {
         exit 1
     }
     try {
-        # Build the labels part of the command
-        $joinedLabels = $labels | ForEach-Object { "--label $_" } -join ' '
-
         # Construct the full command
-        gh issue create --title $title --body $body --assignee $assignee $joinedLabels
+        gh issue create --title $title --body $body --assignee $assignee --label "Type: AVM :a: :v: :m:" --label "Needs: Triage :mag:"
     }
     catch {
         Write-Error "Unable to create issue. Check network connection."
