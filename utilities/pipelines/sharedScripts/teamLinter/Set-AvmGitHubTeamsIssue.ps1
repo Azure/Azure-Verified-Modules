@@ -56,7 +56,6 @@ function Set-AvmGitHubTeamsIssue {
     $teamTable = "| Team Name | Owner | Issue |`n| --- | --- | --- |`n| $TeamName | $Owner | $validationError |"
     $resolutionSegment = "# Resolution `n$ResolutionInfo"
     $body = "$teamError`n`n$teamTable`n`n$resolutionSegment`n`n$bodyAutoDisclaimer"
-    $labels = @("Needs: Triage :mag:", "Type: AVM :a: :v: :m:")
 
     $issues = Find-GithubIssue -title $title
 
@@ -64,7 +63,7 @@ function Set-AvmGitHubTeamsIssue {
         Write-Output "No issue found for: $($title), Creating new issue."
         try {
           if ($PSCmdlet.ShouldProcess($TeamName, "Create GitHub Issue")) {
-            New-AvmGitHubTeamsIssue -title $title -assignee $Owner -body $body -labels $labels
+            New-AvmGitHubTeamsIssue -title $title -assignee $Owner -body $body
           }
         }
         catch {

@@ -6,9 +6,7 @@ function New-AVMGitHubTeamsIssue {
         [Parameter(Mandatory)]
         [string]$assignee,
         [Parameter(Mandatory)]
-        [string]$body,
-        [Parameter(Mandatory=$false)]
-        [array]$labels
+        [string]$body
     )
     # Validate Auth Status
     gh auth status
@@ -18,7 +16,9 @@ function New-AVMGitHubTeamsIssue {
     }
     try {
         # Construct the full command
+        if ($PSCmdlet.ShouldProcess($title, "Create New GitHub Issue")) {
         gh issue create --title $title --body $body --assignee $assignee --label "Type: AVM :a: :v: :m:" --label "Needs: Triage :mag:"
+        }
     }
     catch {
         Write-Error "Unable to create issue. Check network connection."
