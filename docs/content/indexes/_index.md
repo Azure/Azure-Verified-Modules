@@ -9,7 +9,7 @@ This section lists all Azure Verified Modules that are available or planned in *
 
 - [Bicep](/Azure-Verified-Modules/indexes/bicep)
   - [Resource Modules](/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules)
-    - [Features Table](/Azure-Verified-Modules/indexes/bicep/bicep-features-table)
+    - [Features](/Azure-Verified-Modules/indexes/bicep/bicep-features-table)
   - [Pattern Modules](/Azure-Verified-Modules/indexes/bicep/bicep-pattern-modules)
 - [Terraform](/Azure-Verified-Modules/indexes/terraform)
   - [Resource Modules](/Azure-Verified-Modules/indexes/terraform/tf-resource-modules)
