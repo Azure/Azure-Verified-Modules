@@ -67,23 +67,20 @@ jobs:
         - name: "Update module outline"
           shell: pwsh
           run: |
-              ls
+            # Load used functions
+            . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'tools' 'platform' 'Set-ModuleFeaturesTable.ps1')
 
-              # # Load used functions
-              # . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'tools' 'platform' 'Set-ModuleFeaturesTable.ps1')
+            $functionInput = @{
+              MarkdownFilePath = Join-Path $env:GITHUB_WORKSPACE 'docs' 'content' 'indexes' 'bicep' 'bicep-features-table.md'
+              ModuleFolderPath = Join-Path $env:GITHUB_WORKSPACE 'bicep-registry-modules' 'avm' 'res'
+              Organization   = ($env:GITHUB_REPOSITORY).split('/')[0]
+              RepositoryName = ($env:GITHUB_REPOSITORY).split('/')[1]
+            }
   
-              # $functionInput = @{
-              #   MarkdownFilePath = Join-Path $env:GITHUB_WORKSPACE 'docs' 'content' 'indexes' 'bicep' 'bicep-features-table.md'
-              #   ModuleFolderPath = Join-Path $env:GITHUB_WORKSPACE 'modules'
-              #   Organization   = ($env:GITHUB_REPOSITORY).split('/')[0]
-              #   RepositoryName = ($env:GITHUB_REPOSITORY).split('/')[1]
-              #   Environment    = 'GitHub'
-              # }
-    
-              # Write-Verbose "Invoke task with" -Verbose
-              # Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
-    
-              # Set-ModuleFeaturesTable @functionInput -Verbose
+            Write-Verbose "Invoke task with" -Verbose
+            Write-Verbose ($functionInput | Co`nvertTo-Json | Out-String) -Verbose
+  
+            Set-ModuleFeaturesTable @functionInput -Verbose
 
         # - name: Check for changes
         #   id: git_status
