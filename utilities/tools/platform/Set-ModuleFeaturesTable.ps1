@@ -39,8 +39,11 @@ function Set-ModuleFeaturesTable {
     . (Join-Path $PSScriptRoot 'helper' 'Get-ModulesFeatureOutline.ps1')
 
     # Logic
+    if(-not (Test-Path -Path $markdownFilePath)) {
+        $null = New-Item -Path $markdownFilePath -ItemType 'File'
+    } 
     $originalContentArray = Get-Content -Path $markdownFilePath
-
+    
     $functionInput = @{
         ModulesFolderPath   = $ModulesFolderPath
         ModulesRepoRootPath = $ModulesRepoRootPath
