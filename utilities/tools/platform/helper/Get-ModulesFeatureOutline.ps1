@@ -208,7 +208,7 @@ function Get-ModulesFeatureOutline {
         $counter = 1
         foreach ($module in ($moduleData | Sort-Object { $_.Module })) {
             $line = '| {0} | {1} |' -f $counter, (($moduleData[0].Keys | ForEach-Object { $module[$_] }) -join ' | ')
-            $line = $line -replace 'True', ':white_check_mark:'
+            $line = $line -replace 'True', '✅'
             $line = $line -replace 'False', ''
             $line = $line -replace '\[\]', ''
             $markdownTable += $line

@@ -9,7 +9,7 @@ main:
         ref: 'indexes/bicep'
         sub:
           - name: 'Features table'
-            ref: 'indexes/bicep/bicep-features-tables'
+            ref: 'indexes/bicep/bicep-features-table'
           - name: 'Resource Modules'
             ref: 'indexes/bicep/bicep-resource-modules'
           - name: 'Pattern Modules'
