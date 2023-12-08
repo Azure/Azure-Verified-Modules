@@ -78,7 +78,7 @@ jobs:
             }
   
             Write-Verbose "Invoke task with" -Verbose
-            Write-Verbose ($functionInput | Co`nvertTo-Json | Out-String) -Verbose
+            Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
   
             Set-ModuleFeaturesTable @functionInput -Verbose
 
