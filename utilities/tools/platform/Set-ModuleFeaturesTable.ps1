@@ -40,7 +40,14 @@ function Set-ModuleFeaturesTable {
 
     # Logic
     if(-not (Test-Path -Path $markdownFilePath)) {
-        $null = New-Item -Path $markdownFilePath -ItemType 'File'
+        $null = New-Item -Path $markdownFilePath -ItemType 'File' -Value @(
+            '---'
+            'title: Bicep Workflows Status'
+            'geekdocNav: false'
+            'geekdocAlign: left'
+            'geekdocAnchor: true'
+            '---'
+        ) 
     } 
     $originalContentArray = Get-Content -Path $markdownFilePath
     
