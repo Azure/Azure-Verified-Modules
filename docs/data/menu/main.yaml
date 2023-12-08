@@ -8,10 +8,11 @@ main:
       - name: 'Bicep'
         ref: 'indexes/bicep'
         sub:
-          - name: 'Features table'
-            ref: 'indexes/bicep/bicep-features-table'
           - name: 'Resource Modules'
             ref: 'indexes/bicep/bicep-resource-modules'
+            sub:
+              - name: 'Features table'
+                ref: 'indexes/bicep/bicep-features-table'
           - name: 'Pattern Modules'
             ref: 'indexes/bicep/bicep-pattern-modules'
       - name: 'Terraform'
