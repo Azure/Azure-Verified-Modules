@@ -3,7 +3,7 @@ name: '.Platform - Update module features table'
 on:
     workflow_dispatch:
     schedule:
-      - cron: "0 10 * * 1" # Weekly Monday Update
+      - cron: "0 1 * * *" # Daily Update at 1 am
 
 env:
     pipelinePrincipalGitUserName: "AVMPipelinePrincipal"
