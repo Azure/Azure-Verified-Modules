@@ -7,8 +7,11 @@ Get a list of objects that outline of all modules features for each module conta
 
 NOTE: Currently only supports modules using the Bicep DSL
 
-.PARAMETER ModuleFolderPath
-Optional. The path to the modules.
+.PARAMETER ModulesFolderPath
+Mandatory. The path to the modules.
+
+.PARAMETER ModulesRepoRootPath
+Mandatory. The path to the root of the repository containing the modules.
 
 .PARAMETER ReturnMarkdown
 Optional. Instead of returning the list of objects, instead format them into a markdown table and return it as a string.
@@ -31,22 +34,22 @@ Optional. The name of the Organization the code resides in. Required if 'AddStat
 .EXAMPLE
 Get-ModulesFeatureOutline
 
-Get an outline of all modules in the default module path.
+Get an outline of all modules in the 'bicep-registry-modules/avm/res' folder path.
 
 .EXAMPLE
-Get-ModulesFeatureOutline -ReturnMarkdown -OnlyTopLevel
+Get-ModulesFeatureOutline -ReturnMarkdown -OnlyTopLevel -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
 
-Get an outline of top-level modules in the default module path, formatted in a markdown table.
-
-.EXAMPLE
-Get-ModulesFeatureOutline -ReturnMarkdown -BreakMarkdownModuleNameAt 2
-
-Get an outline of all modules in the default module path, formatted in a markdown table - with the module name column split after the top-level (i.e., <ProviderNamespace>/<ResourceType)
+Get an outline of top-level modules in the 'bicep-registry-modules/avm/res' folder path, formatted in a markdown table.
 
 .EXAMPLE
-Get-ModulesFeatureOutline -ReturnMarkdown -BreakMarkdownModuleNameAt 2 -AddStatusBadges -RepositoryName 'ResourceModules' -Organization 'Azure'
+Get-ModulesFeatureOutline -ReturnMarkdown -BreakMarkdownModuleNameAt 2 -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
 
-Get an outline of all modules in the default module path, formatted in a markdown table - with the module name column split after the top-level (i.e., <ProviderNamespace>/<ResourceType). Further, include the status badges for GitHub into the table.
+Get an outline of all modules in the 'bicep-registry-modules/avm/res' folder path, formatted in a markdown table - with the module name column split after the top-level (i.e., <ProviderNamespace>/<ResourceType)
+
+.EXAMPLE
+Get-ModulesFeatureOutline -ReturnMarkdown -BreakMarkdownModuleNameAt 2 -AddStatusBadges -RepositoryName 'ResourceModules' -Organization 'Azure' -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
+
+Get an outline of all modules in the 'bicep-registry-modules/avm/res' folder path, formatted in a markdown table - with the module name column split after the top-level (i.e., <ProviderNamespace>/<ResourceType). Further, include the status badges for GitHub into the table.
 
 .NOTES
 Children (if any) are displayed in format `[L1:5, L2:4, L3:1]`. Each item (separated via ',') shows the level of nesting in the front (e.g. L1) and the number of children in this level (separated by a colon ':').
@@ -56,14 +59,17 @@ function Get-ModulesFeatureOutline {
 
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory = $false)]
-        [string] $ModuleFolderPath = (Join-Path (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent) 'modules'),
+        [Parameter(Mandatory = $true)]
+        [string] $ModulesFolderPath,
+
+        [Parameter(Mandatory = $true)]
+        [string] $ModulesRepoRootPath,
 
         [Parameter(Mandatory = $false)]
         [switch] $ReturnMarkdown,
 
         [Parameter(Mandatory = $false)]
-        [int] $BreakMarkdownModuleNameAt = 1,
+        [int] $BreakMarkdownModuleNameAt = 2,
 
         [Parameter(Mandatory = $false)]
         [switch] $OnlyTopLevel,
@@ -80,11 +86,12 @@ function Get-ModulesFeatureOutline {
 
     # Load external functions
     . (Join-Path $PSScriptRoot 'Get-PipelineStatusUrl.ps1')
+    . (Join-Path $PSScriptRoot 'Get-PipelineFileName.ps1')
 
     if ($OnlyTopLevel) {
-        $moduleTemplatePaths = (Get-ChildItem $ModuleFolderPath -Recurse -Filter 'main.bicep' -Depth 2).FullName
+        $moduleTemplatePaths = (Get-ChildItem $ModulesFolderPath -Recurse -Filter 'main.bicep' -Depth 2).FullName
     } else {
-        $moduleTemplatePaths = (Get-ChildItem $ModuleFolderPath -Recurse -Filter 'main.bicep').FullName
+        $moduleTemplatePaths = (Get-ChildItem $ModulesFolderPath -Recurse -Filter 'main.bicep').FullName
     }
 
     ####################
@@ -112,20 +119,17 @@ function Get-ModulesFeatureOutline {
         }
 
         # Status Badge
-        $isTopLevelModule = ($fullResourcePath -split '/').Count -eq 2
+        $moduleFolderPath = Split-Path $moduleTemplatePath -Parent
+        $relativeFolderPath = Join-Path 'avm' ($moduleFolderPath -split '[\/|\\]{1}avm[\/|\\]{1}')[1]
+        $resourceTypeIdentifier = ($moduleFolderPath -split '[\/|\\]{1}avm[\/|\\]{1}(res|ptn)[\/|\\]{1}')[2] -replace '\\', '/' # avm/res/<provider>/<resourceType>
+        $isTopLevelModule = ($resourceTypeIdentifier -split '[\/|\\]').Count -eq 2
         if ($AddStatusBadges -and $isTopLevelModule) {
-
-            $moduleIdentifier = (Split-Path $fullResourcePath -Parent) -split '[\/|\\](avm[\/|\\])'
-            $specsAlignedResourceName = ($moduleIdentifier[1, 2] -join '') -replace '\\', '/'
-
-            $provider = ($specsAlignedResourceName -split '/')[0]
-            $resourceType = ($specsAlignedResourceName -split '/')[1]
 
             $statusInputObject = @{
                 RepositoryName     = $RepositoryName
                 Organization       = $Organization
-                PipelineFileName   = ((('{0}.{1}.yml' -f $provider, $resourceType) -replace '-', '') -replace '/', '.')
-                PipelineFolderPath = Join-Path '.github' 'workflows'
+                PipelineFileName   = Get-PipelineFileName -ResourceIdentifier $relativeFolderPath
+                WorkflowsFolderPath = Join-Path $ModulesRepoRootPath '.github' 'workflows'
             }
 
             $moduleDataItem['Status'] = Get-PipelineStatusUrl @statusInputObject

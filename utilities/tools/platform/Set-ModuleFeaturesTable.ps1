@@ -9,8 +9,11 @@ Update the module features table in the given markdown file
 .PARAMETER markdownFilePath
 Mandatory. The path to the markdown file to update.
 
-.PARAMETER moduleFolderPath
+.PARAMETER ModulesFolderPath
 Mandatory. The path to the modules folder.
+
+.PARAMETER ModulesRepoRootPath
+Mandatory. The path to the root of the repository containing the modules.
 
 .PARAMETER RepositoryName
 Mandatory. The name of the repository the code resides in. 
@@ -19,7 +22,7 @@ Mandatory. The name of the repository the code resides in.
 Mandatory. The name of the Organization the code resides in.
 
 .EXAMPLE
-Set-ModuleFeaturesTable -markdownFilePath 'bicep-features-table.md' -moduleFolderPath 'bicep-registry-modules/avm/res'
+Set-ModuleFeaturesTable -markdownFilePath 'bicep-features-table.md' -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
 
 Update the file 'bicep-features-table.md' based on the modules in path 'bicep-registry-modules/avm/res'
 #>
@@ -31,7 +34,10 @@ function Set-ModuleFeaturesTable {
         [string] $markdownFilePath,
 
         [Parameter(Mandatory)]
-        [string] $moduleFolderPath,
+        [string] $ModulesFolderPath,
+
+        [Parameter(Mandatory)]
+        [string] $ModulesRepoRootPath,
 
         [Parameter(Mandatory)]
         [string] $RepositoryName,
@@ -48,12 +54,13 @@ function Set-ModuleFeaturesTable {
     $originalContentArray = Get-Content -Path $markdownFilePath
 
     $functionInput = @{
-        ModuleFolderPath = $moduleFolderPath
-        ReturnMarkdown   = $true
-        OnlyTopLevel     = $true
-        AddStatusBadges  = $true
-        RepositoryName   = $RepositoryName
-        Organization     = $Organization
+        ModulesFolderPath   = $ModulesFolderPath
+        ModulesRepoRootPath = $ModulesRepoRootPath
+        ReturnMarkdown      = $true
+        OnlyTopLevel        = $true
+        AddStatusBadges     = $true
+        RepositoryName      = $RepositoryName
+        Organization        = $Organization
     }
     $featureTableString = Get-ModulesFeatureOutline @functionInput -Verbose
 

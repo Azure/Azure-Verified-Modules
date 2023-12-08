@@ -9,7 +9,7 @@ E.g.  # [![AnalysisServices: Servers](https://github.com/Azure/ResourceModules/a
 .PARAMETER PipelineFileName
 Mandatory. The name of the workflow/pipeline file to create the badge for. For example 'platform.updateReadMe.yml'.
 
-.PARAMETER PipelineFolderPath
+.PARAMETER WorkflowsFolderPath
 Mandatory. The path to the pipeline/workflow file
 
 .PARAMETER RepositoryName
@@ -25,7 +25,7 @@ Mandatory. The DevOps environment to generate the status badges for
 Optional. The project the repository is hosted in. Required if the 'environment' is 'ADO'
 
 .EXAMPLE
-Get-PipelineStatusUrl -PipelineFileName 'platform.updateReadMe.yml' -PipelineFolderPath '.github/workflows' -RepositoryName 'ResourceModules' -Organization 'Azure'
+Get-PipelineStatusUrl -PipelineFileName 'platform.updateReadMe.yml' -WorkflowsFolderPath '.github/workflows' -RepositoryName 'ResourceModules' -Organization 'Azure'
 
 Generate a status badge url for the 'platform.updateReadMe.yml' pipeline in the folder path '.github/workflows' of repo 'Azure/ResourceModules'
 #>
@@ -37,7 +37,7 @@ function Get-PipelineStatusUrl {
         [string] $PipelineFileName,
 
         [Parameter(Mandatory = $true)]
-        [string] $PipelineFolderPath,
+        [string] $WorkflowsFolderPath,
 
         [Parameter(Mandatory = $true)]
         [string] $RepositoryName,
@@ -49,7 +49,7 @@ function Get-PipelineStatusUrl {
     # Load external functions
     . (Join-Path $PSScriptRoot 'Get-PipelineNameFromFile.ps1')
 
-    $workflowFileUri = Join-Path $PipelineFolderPath $PipelineFileName
+    $workflowFileUri = Join-Path $WorkflowsFolderPath $PipelineFileName
     $workflowName = Get-PipelineNameFromFile -FilePath $workflowFileUri
     $workflowNameInUri = $workflowName.Replace(' ', '%20').Replace("'", '')
     $workflowStatusUri = 'https://github.com/{0}/{1}/workflows/{2}' -f $Organization, $RepositoryName, $workflowNameInUri
