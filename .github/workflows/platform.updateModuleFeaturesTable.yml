@@ -36,32 +36,32 @@ jobs:
             path: bicep-registry-modules
             fetch-depth: 0
 
-        # - uses: tibdex/github-app-token@v2
-        #   id: generate-token
-        #   with:
-        #     app_id: ${{ secrets.APP_ID }}
-        #     private_key: ${{ secrets.APP_PRIVATE_KEY }}
+        - uses: tibdex/github-app-token@v2
+          id: generate-token
+          with:
+            app_id: ${{ secrets.APP_ID }}
+            private_key: ${{ secrets.APP_PRIVATE_KEY }}
 
-        # - name: Configure local git
-        #   run: |
-        #     git config --global user.name '${{ env.pipelinePrincipalGitUserEmail }}'
-        #     git config --global user.email '${{ env.pipelinePrincipalGitUserName }}'
+        - name: Configure local git
+          run: |
+            git config --global user.name '${{ env.pipelinePrincipalGitUserEmail }}'
+            git config --global user.email '${{ env.pipelinePrincipalGitUserName }}'
 
-        # - name: Create and checkout branch
-        #   run: |
-        #     BRANCH_URL="repos/${{ github.repository }}/branches"
-        #     JQ_FILTER=".[] | select(.name == \"${{ env.branch_name }}\").name"
-        #     CHECK_BRANCH_ORIGIN=$(gh api $BRANCH_URL | jq -r "$JQ_FILTER")
-        #     if [ -z "$CHECK_BRANCH_ORIGIN" ]
-        #     then
-        #       echo "Checkout local branch (create new, no origin)..."
-        #       git checkout -b ${{ env.branch_name }}
-        #     else
-        #       echo "Checkout local branch (create new, track from origin)..."
-        #       git checkout -b ${{ env.branch_name }} --track origin/${{ env.branch_name }}
-        #     fi
-        #   env:
-        #     GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+        - name: Create and checkout branch
+          run: |
+            BRANCH_URL="repos/${{ github.repository }}/branches"
+            JQ_FILTER=".[] | select(.name == \"${{ env.branch_name }}\").name"
+            CHECK_BRANCH_ORIGIN=$(gh api $BRANCH_URL | jq -r "$JQ_FILTER")
+            if [ -z "$CHECK_BRANCH_ORIGIN" ]
+            then
+              echo "Checkout local branch (create new, no origin)..."
+              git checkout -b ${{ env.branch_name }}
+            else
+              echo "Checkout local branch (create new, track from origin)..."
+              git checkout -b ${{ env.branch_name }} --track origin/${{ env.branch_name }}
+            fi
+          env:
+            GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
             
 
         - name: "Update module outline"
@@ -81,42 +81,42 @@ jobs:
   
             Set-ModuleFeaturesTable @functionInput -Verbose
 
-        # - name: Check for changes
-        #   id: git_status
-        #   run: |
-        #     mapfile -t "CHECK_GIT_STATUS" < <(git status -s)
-        #     printf "%s\n" "${CHECK_GIT_STATUS[@]}"
-        #     echo "changes=${#CHECK_GIT_STATUS[@]}" >> "$GITHUB_OUTPUT"
+        - name: Check for changes
+          id: git_status
+          run: |
+            mapfile -t "CHECK_GIT_STATUS" < <(git status -s)
+            printf "%s\n" "${CHECK_GIT_STATUS[@]}"
+            echo "changes=${#CHECK_GIT_STATUS[@]}" >> "$GITHUB_OUTPUT"
   
-        # - name: Add files, commit and push
-        #   if: steps.git_status.outputs.changes > 0
-        #   run: |
-        #     echo "Pushing changes to origin..."
-        #     git add docs/static/governance/apiSpecsList.json
-        #     git commit -m '${{ env.pr_title }}'
-        #     git push origin ${{ env.branch_name }}
-        #   env:
-        #     GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+        - name: Add files, commit and push
+          if: steps.git_status.outputs.changes > 0
+          run: |
+            echo "Pushing changes to origin..."
+            git add docs/static/governance/apiSpecsList.json
+            git commit -m '${{ env.pr_title }}'
+            git push origin ${{ env.branch_name }}
+          env:
+            GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
   
-        # - name: Create pull request
-        #   if: steps.git_status.outputs.changes > 0
-        #   run: |
-        #     HEAD_LABEL="${{ github.repository_owner }}:${{ env.branch_name }}"
-        #     BASE_LABEL="${{ github.repository_owner }}:$(echo '${{ github.ref }}' | sed 's:refs/heads/::')"
-        #     PULL_REQUEST_URL="repos/${{ github.repository }}/pulls"
-        #     JQ_FILTER=".[] | select(.head.label == \"$HEAD_LABEL\") | select(.base.label == \"$BASE_LABEL\") | .url"
-        #     CHECK_PULL_REQUEST_URL=$(gh api $PULL_REQUEST_URL | jq -r "$JQ_FILTER")
-        #     if [ -z "$CHECK_PULL_REQUEST_URL" ]
-        #     then
-        #       CHECK_PULL_REQUEST_URL=$(gh pr create \
-        #       --title "${{ env.pr_title }}" \
-        #       --body "${{ env.pr_body }}" \
-        #       --base "${{ github.ref }}" \
-        #       --head "${{ env.branch_name }}")
-        #       echo "Created new PR: $CHECK_PULL_REQUEST_URL"
-        #     else
-        #       echo "Existing PR found: $CHECK_PULL_REQUEST_URL"
-        #     fi
-        #   env:
-        #     GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+        - name: Create pull request
+          if: steps.git_status.outputs.changes > 0
+          run: |
+            HEAD_LABEL="${{ github.repository_owner }}:${{ env.branch_name }}"
+            BASE_LABEL="${{ github.repository_owner }}:$(echo '${{ github.ref }}' | sed 's:refs/heads/::')"
+            PULL_REQUEST_URL="repos/${{ github.repository }}/pulls"
+            JQ_FILTER=".[] | select(.head.label == \"$HEAD_LABEL\") | select(.base.label == \"$BASE_LABEL\") | .url"
+            CHECK_PULL_REQUEST_URL=$(gh api $PULL_REQUEST_URL | jq -r "$JQ_FILTER")
+            if [ -z "$CHECK_PULL_REQUEST_URL" ]
+            then
+              CHECK_PULL_REQUEST_URL=$(gh pr create \
+              --title "${{ env.pr_title }}" \
+              --body "${{ env.pr_body }}" \
+              --base "${{ github.ref }}" \
+              --head "${{ env.branch_name }}")
+              echo "Created new PR: $CHECK_PULL_REQUEST_URL"
+            else
+              echo "Existing PR found: $CHECK_PULL_REQUEST_URL"
+            fi
+          env:
+            GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
       
