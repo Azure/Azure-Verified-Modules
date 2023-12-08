@@ -111,7 +111,6 @@ function Get-ModulesFeatureOutline {
     foreach ($moduleTemplatePath in $moduleTemplatePaths) {
 
         $fullResourcePath = (((Split-Path $moduleTemplatePath -Parent) -replace '\\', '/') -split '/avm/')[1]
-        $moduleContentArray = Get-Content -Path $moduleTemplatePath
         $moduleContentString = Get-Content -Path $moduleTemplatePath -Raw
 
         $moduleDataItem = [ordered]@{
@@ -183,23 +182,6 @@ function Get-ModulesFeatureOutline {
             $moduleDataItem['PIP'] = $false
         }
 
-        # Number of children
-        $childFolderPaths = (Get-ChildItem -Path (Split-Path $moduleTemplatePath -Parent) -Recurse -Directory).FullName | Where-Object { $_ -and (Split-Path $_ -Leaf) -match '^\w+' }
-        $levelsOfNesting = @()
-        foreach ($childFolderPath in $childFolderPaths) {
-            $simplifiedPath = $childFolderPath.Replace('\', '/').split("$fullResourcePath/")[1]
-            $levelsOfNesting += ($simplifiedPath -split '/').Count
-        }
-        $groupedNesting = $levelsOfNesting | Group-Object | Sort-Object -Property 'Name'
-        $numberOfChildrenFormatted = '[{0}]' -f (($groupedNesting | ForEach-Object { 'L{0}:{1}' -f $_.Name, $_.Count }) -join ', ')
-        $moduleDataItem['# children'] = $numberOfChildrenFormatted
-        $groupedNesting | ForEach-Object { $summaryData.numberOfChildren += $_.Count }
-
-        # Number of lines
-        $numberOfLines = ($moduleContentArray | Where-Object { -not [String]::IsNullOrEmpty($_) }).Count + 1
-        $summaryData.numberOfLines += $numberOfLines
-        $moduleDataItem['# lines'] = $numberOfLines
-
         # Result
         $moduleData += $moduleDataItem
     }
@@ -248,8 +230,6 @@ function Get-ModulesFeatureOutline {
                     'Diag'       = $_.'Diag'
                     'PE'         = $_.'PE'
                     'PIP'        = $_.'PIP'
-                    '# children' = $_.'# children'
-                    '# lines'    = $_.'# lines'
                 }
             }
             sum  = $summaryData
