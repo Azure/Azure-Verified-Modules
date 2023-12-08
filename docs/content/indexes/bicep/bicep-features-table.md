@@ -1,9 +1,11 @@
 ---
-title: Bicep Module Features
-geekdocNav: false
+title: Module Features
+geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
 ---
+
+This page gives you an overview of a the features implemented in each module - as well as their latest workflow status in the [Public Bicep Registry repository](https://github.com/Azure/bicep-registry-modules).
 
 # Feature table
 
