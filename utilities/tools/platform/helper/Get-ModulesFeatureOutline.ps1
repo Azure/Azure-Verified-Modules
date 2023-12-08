@@ -103,7 +103,7 @@ function Get-ModulesFeatureOutline {
     }
     foreach ($moduleTemplatePath in $moduleTemplatePaths) {
 
-        $fullResourcePath = (((Split-Path $moduleTemplatePath -Parent) -replace '\\', '/') -split '/modules/')[1]
+        $fullResourcePath = (((Split-Path $moduleTemplatePath -Parent) -replace '\\', '/') -split '/avm/')[1]
         $moduleContentArray = Get-Content -Path $moduleTemplatePath
         $moduleContentString = Get-Content -Path $moduleTemplatePath -Raw
 
