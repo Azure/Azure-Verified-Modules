@@ -1,5 +1,5 @@
 ---
-title: Module Features
+title: Features
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
