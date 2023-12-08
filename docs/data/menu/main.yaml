@@ -8,6 +8,8 @@ main:
       - name: 'Bicep'
         ref: 'indexes/bicep'
         sub:
+          - name: 'Features table'
+            ref: 'indexes/bicep/bicep-features-tables'
           - name: 'Resource Modules'
             ref: 'indexes/bicep/bicep-resource-modules'
           - name: 'Pattern Modules'
