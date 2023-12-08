@@ -35,4 +35,3 @@ terraform.rc
 
 # Hugo
 docs/.hugo_build.lock
-bicep-registry-modules
