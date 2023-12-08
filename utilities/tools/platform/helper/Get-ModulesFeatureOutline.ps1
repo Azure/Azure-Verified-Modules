@@ -78,10 +78,10 @@ function Get-ModulesFeatureOutline {
         [switch] $AddStatusBadges,
 
         [Parameter(Mandatory = $false)]
-        [string] $RepositoryName = 'Azure',
+        [string] $RepositoryName = 'bicep-registry-modules',
 
         [Parameter(Mandatory = $false)]
-        [string] $Organization = 'bicep-registry-modules'
+        [string] $Organization = 'Azure'
     )
 
     # Load external functions
