@@ -74,8 +74,6 @@ jobs:
               MarkdownFilePath    = Join-Path $env:GITHUB_WORKSPACE 'docs' 'content' 'indexes' 'bicep' 'bicep-features-table.md'
               ModulesRepoRootPath = Join-Path $env:GITHUB_WORKSPACE 'bicep-registry-modules'
               ModulesFolderPath   = Join-Path $env:GITHUB_WORKSPACE 'bicep-registry-modules' 'avm' 'res'
-              Organization        = ($env:GITHUB_REPOSITORY).split('/')[0]
-              RepositoryName      = ($env:GITHUB_REPOSITORY).split('/')[1]
             }
   
             Write-Verbose "Invoke task with" -Verbose

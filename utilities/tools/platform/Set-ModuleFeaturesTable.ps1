@@ -15,12 +15,6 @@ Mandatory. The path to the modules folder.
 .PARAMETER ModulesRepoRootPath
 Mandatory. The path to the root of the repository containing the modules.
 
-.PARAMETER RepositoryName
-Mandatory. The name of the repository the code resides in. 
-
-.PARAMETER Organization
-Mandatory. The name of the Organization the code resides in.
-
 .EXAMPLE
 Set-ModuleFeaturesTable -markdownFilePath 'bicep-features-table.md' -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
 
@@ -37,13 +31,7 @@ function Set-ModuleFeaturesTable {
         [string] $ModulesFolderPath,
 
         [Parameter(Mandatory)]
-        [string] $ModulesRepoRootPath,
-
-        [Parameter(Mandatory)]
-        [string] $RepositoryName,
-
-        [Parameter(Mandatory)]
-        [string] $Organization
+        [string] $ModulesRepoRootPath
     )
 
     # Load external functions
@@ -59,8 +47,6 @@ function Set-ModuleFeaturesTable {
         ReturnMarkdown      = $true
         OnlyTopLevel        = $true
         AddStatusBadges     = $true
-        RepositoryName      = $RepositoryName
-        Organization        = $Organization
     }
     $featureTableString = Get-ModulesFeatureOutline @functionInput -Verbose
 

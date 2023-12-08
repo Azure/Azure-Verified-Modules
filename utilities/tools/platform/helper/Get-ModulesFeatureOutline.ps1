@@ -47,7 +47,7 @@ Get-ModulesFeatureOutline -ReturnMarkdown -BreakMarkdownModuleNameAt 2 -ModulesF
 Get an outline of all modules in the 'bicep-registry-modules/avm/res' folder path, formatted in a markdown table - with the module name column split after the top-level (i.e., <ProviderNamespace>/<ResourceType)
 
 .EXAMPLE
-Get-ModulesFeatureOutline -ReturnMarkdown -BreakMarkdownModuleNameAt 2 -AddStatusBadges -RepositoryName 'ResourceModules' -Organization 'Azure' -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
+Get-ModulesFeatureOutline -ReturnMarkdown -BreakMarkdownModuleNameAt 2 -AddStatusBadges -RepositoryName 'bicep-registry-modules' -Organization 'Azure' -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
 
 Get an outline of all modules in the 'bicep-registry-modules/avm/res' folder path, formatted in a markdown table - with the module name column split after the top-level (i.e., <ProviderNamespace>/<ResourceType). Further, include the status badges for GitHub into the table.
 
@@ -78,10 +78,10 @@ function Get-ModulesFeatureOutline {
         [switch] $AddStatusBadges,
 
         [Parameter(Mandatory = $false)]
-        [string] $RepositoryName,
+        [string] $RepositoryName = 'Azure',
 
         [Parameter(Mandatory = $false)]
-        [string] $Organization
+        [string] $Organization = 'bicep-registry-modules'
     )
 
     # Load external functions
