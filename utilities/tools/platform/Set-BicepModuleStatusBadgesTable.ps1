@@ -32,7 +32,7 @@ function Set-BicepModuleStatusBadgesTable {
     . (Join-Path $PSScriptRoot 'helper' 'Get-ModulesFeatureOutline.ps1')
     
     $functionInput = @{
-        ModulesFolderPath   = (Join-Path $ModulesRepoRootPath 'bicep-registry-modules' 'avm')
+        ModulesFolderPath   = (Join-Path $ModulesRepoRootPath 'avm')
         ModulesRepoRootPath = $ModulesRepoRootPath
         ReturnFormat        = 'Markdown'
         SearchDepth         = 3 # Only top level
