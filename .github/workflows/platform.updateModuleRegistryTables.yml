@@ -11,7 +11,7 @@ env:
     branch_name: "update-module-features-table"
     pr_title: "Update module features table (automated)"
     pr_body:
-        "This is an automated ``pull_request`` containing updates to the module status badges table that is stored at ``docs/content/indexes/bicep/_index.md``, as well as the module features CSV stored at ``docs/static/module-features/bicepFeatures.csv``.\nPlease review the ``files changed`` tab to review changes."  
+        "This is an automated ``pull_request`` containing updates to the module status badges table that is stored at ``docs/content/indexes/bicep/_index.md``, as well as the module features CSV stored at ``docs/static/module-features/bicepFeatures.csv``.\nPlease review the ``files changed`` tab to review changes."
 
 permissions:
     id-token: write
@@ -28,7 +28,7 @@ jobs:
           uses: actions/checkout@v4
           with:
             fetch-depth: 0
-            
+
         - name: Checkout tools repo
           uses: actions/checkout@v4
           with:
@@ -62,7 +62,7 @@ jobs:
             fi
           env:
             GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
-            
+
         - name: "Update module status table"
           shell: pwsh
           run: |
@@ -73,10 +73,10 @@ jobs:
               MarkdownFilePath    = Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepBadges.md'
               ModulesRepoRootPath = Join-Path $env:GITHUB_WORKSPACE 'bicep-registry-modules'
             }
-  
+
             Write-Verbose "Invoke task with" -Verbose
             Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
-  
+
             Set-BicepModuleStatusBadgesTable @functionInput -Verbose
 
         - name: "Update module features csv"
@@ -89,10 +89,10 @@ jobs:
               CSVFilePath         = Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepFeatures.csv'
               ModulesRepoRootPath = Join-Path $env:GITHUB_WORKSPACE 'bicep-registry-modules'
             }
-  
+
             Write-Verbose "Invoke task with" -Verbose
             Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
-  
+
             Set-BicepModulesFeatureCSV @functionInput -Verbose
 
         - name: Check for changes
@@ -101,7 +101,7 @@ jobs:
             mapfile -t "CHECK_GIT_STATUS" < <(git status -s)
             printf "%s\n" "${CHECK_GIT_STATUS[@]}"
             echo "changes=${#CHECK_GIT_STATUS[@]}" >> "$GITHUB_OUTPUT"
-  
+
         - name: Add files, commit and push
           if: steps.git_status.outputs.changes > 0
           run: |
@@ -112,7 +112,7 @@ jobs:
             git push origin ${{ env.branch_name }}
           env:
             GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
-  
+
         - name: Create pull request
           if: steps.git_status.outputs.changes > 0
           run: |
@@ -134,4 +134,3 @@ jobs:
             fi
           env:
             GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
-      
