@@ -1,10 +1,10 @@
 
 <#
 .SYNOPSIS
-Update the module features table in the given markdown file
+Update the module features table in the given markdown file path
 
 .DESCRIPTION
-Update the module features table in the given markdown file
+Update the module features table in the given markdown file path
 
 .PARAMETER markdownFilePath
 Mandatory. The path to the markdown file to update.
@@ -16,9 +16,9 @@ Mandatory. The path to the modules folder.
 Mandatory. The path to the root of the repository containing the modules.
 
 .EXAMPLE
-Set-BicepModuleStatusBadgesTable -markdownFilePath 'bicep-features-table.md' -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
+Set-BicepModuleStatusBadgesTable -markdownFilePath 'bicepBadges.md' -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
 
-Update the file 'bicep-features-table.md' based on the modules in path 'bicep-registry-modules/avm/res'
+Update the file 'bicepBadges.md' based on the modules in path 'bicep-registry-modules/avm/res'
 #>
 function Set-BicepModuleStatusBadgesTable {
 
@@ -35,11 +35,7 @@ function Set-BicepModuleStatusBadgesTable {
     )
 
     # Load external functions
-    . (Join-Path $PSScriptRoot 'helper' 'Merge-FileWithNewContent.ps1')
     . (Join-Path $PSScriptRoot 'helper' 'Get-ModulesFeatureOutline.ps1')
-
-    # Logic
-    $originalContentArray = Get-Content -Path $markdownFilePath
     
     $functionInput = @{
         ModulesFolderPath   = $ModulesFolderPath
@@ -48,16 +44,14 @@ function Set-BicepModuleStatusBadgesTable {
         OnlyTopLevel        = $true
         ColumnsToInclude    = @( 'Status' )
     }
-    $featureTableString = Get-ModulesFeatureOutline @functionInput -Verbose
-
-    $newContent = Merge-FileWithNewContent -oldContent $originalContentArray -newContent $featureTableString.TrimEnd() -sectionStartIdentifier '# Feature table' -contentType 'table'
+    $badgesMarkdown = Get-ModulesFeatureOutline @functionInput -Verbose
 
     Write-Verbose 'New content:'
     Write-Verbose '============'
-    Write-Verbose ($newContent | Out-String)
+    Write-Verbose ($badgesMarkdown | Out-String)
 
     if ($PSCmdlet.ShouldProcess("File in path [$markdownFilePath]", 'Overwrite')) {
-        Set-Content -Path $markdownFilePath -Value $newContent -Force
+        Set-Content -Path $markdownFilePath -Value $badgesMarkdown -Force
         Write-Verbose "File [$markdownFilePath] updated" -Verbose
     }
 }

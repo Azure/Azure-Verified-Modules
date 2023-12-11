@@ -70,7 +70,7 @@ jobs:
             . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'tools' 'platform' 'Set-BicepModuleStatusBadgesTable.ps1')
 
             $functionInput = @{
-              MarkdownFilePath    = Join-Path $env:GITHUB_WORKSPACE 'docs' 'content' 'indexes' 'bicep' '_index.md'
+              MarkdownFilePath    = Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'module-features' 'bicepBadges.md'
               ModulesRepoRootPath = Join-Path $env:GITHUB_WORKSPACE 'bicep-registry-modules'
               ModulesFolderPath   = Join-Path $env:GITHUB_WORKSPACE 'bicep-registry-modules' 'avm' 'res'
             }
@@ -87,7 +87,7 @@ jobs:
             . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'tools' 'platform' 'Set-BicepModulesFeatureCSV.ps1')
 
             $functionInput = @{
-              CSVFilePath    = Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'module-features' 'bicepFeatures.csv
+              CSVFilePath         = Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'module-features' 'bicepFeatures.csv'
               ModulesRepoRootPath = Join-Path $env:GITHUB_WORKSPACE 'bicep-registry-modules'
               ModulesFolderPath   = Join-Path $env:GITHUB_WORKSPACE 'bicep-registry-modules' 'avm'
             }
