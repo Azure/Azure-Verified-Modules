@@ -31,19 +31,19 @@ function Set-BicepModulesFeatureCSV {
     # Load external functions
     . (Join-Path $PSScriptRoot 'helper' 'Get-ModulesFeatureOutline.ps1')
 
-    # Logic   
+    # Logic
     $functionInput = @{
         ModulesFolderPath   = (Join-Path $ModulesRepoRootPath 'avm' 'res')
         ModulesRepoRootPath = $ModulesRepoRootPath
         ReturnFormat        = 'CSV'
         SearchDepth         = 2 # Only top level
-        ColumnsToInclude    = @(      
-            'RBAC',   
-            'Locks',  
-            'Tags',   
-            'Diag',   
-            'PE',     
-            'PIP'    
+        ColumnsToInclude    = @(
+            'RBAC',
+            'Locks',
+            'Tags',
+            'Diag',
+            'PE',
+            'PIP'
         )
     }
     $featuresTable = Get-ModulesFeatureOutline @functionInput -Verbose
