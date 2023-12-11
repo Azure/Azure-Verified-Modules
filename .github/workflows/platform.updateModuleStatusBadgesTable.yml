@@ -1,4 +1,4 @@
-name: '.Platform - Update module features table'
+name: '.Platform - Update module status badges table'
 
 on:
     workflow_dispatch:
@@ -11,7 +11,7 @@ env:
     branch_name: "update-module-features-table"
     pr_title: "Update module features table (automated)"
     pr_body:
-        "This is an automated ``pull_request`` containing updates to the module features table that is stored at ``docs/content/indexes/bicep/bicep-features-table.md``.\nPlease review the ``files changed`` tab to review changes."  
+        "This is an automated ``pull_request`` containing updates to the module status badges table that is stored at ``docs/content/indexes/bicep/_index.md``.\nPlease review the ``files changed`` tab to review changes."  
 
 permissions:
     id-token: write
@@ -68,10 +68,10 @@ jobs:
           shell: pwsh
           run: |
             # Load used functions
-            . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'tools' 'platform' 'Set-ModuleFeaturesTable.ps1')
+            . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'tools' 'platform' 'Set-ModuleStatusBadgesTable.ps1')
 
             $functionInput = @{
-              MarkdownFilePath    = Join-Path $env:GITHUB_WORKSPACE 'docs' 'content' 'indexes' 'bicep' 'bicep-features-table.md'
+              MarkdownFilePath    = Join-Path $env:GITHUB_WORKSPACE 'docs' 'content' 'indexes' 'bicep' '_index.md'
               ModulesRepoRootPath = Join-Path $env:GITHUB_WORKSPACE 'bicep-registry-modules'
               ModulesFolderPath   = Join-Path $env:GITHUB_WORKSPACE 'bicep-registry-modules' 'avm' 'res'
             }
@@ -79,7 +79,7 @@ jobs:
             Write-Verbose "Invoke task with" -Verbose
             Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
   
-            Set-ModuleFeaturesTable @functionInput -Verbose
+            Set-ModuleStatusBadgesTable @functionInput -Verbose
 
         - name: Check for changes
           id: git_status

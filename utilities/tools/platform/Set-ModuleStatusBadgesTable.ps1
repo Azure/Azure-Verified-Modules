@@ -16,11 +16,11 @@ Mandatory. The path to the modules folder.
 Mandatory. The path to the root of the repository containing the modules.
 
 .EXAMPLE
-Set-ModuleFeaturesTable -markdownFilePath 'bicep-features-table.md' -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
+Set-ModuleStatusBadgesTable -markdownFilePath 'bicep-features-table.md' -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
 
 Update the file 'bicep-features-table.md' based on the modules in path 'bicep-registry-modules/avm/res'
 #>
-function Set-ModuleFeaturesTable {
+function Set-ModuleStatusBadgesTable {
 
     [CmdletBinding(SupportsShouldProcess)]
     param (
@@ -39,17 +39,6 @@ function Set-ModuleFeaturesTable {
     . (Join-Path $PSScriptRoot 'helper' 'Get-ModulesFeatureOutline.ps1')
 
     # Logic
-    if(-not (Test-Path -Path $markdownFilePath)) {
-        $null = New-Item -Path $markdownFilePath -ItemType 'File' -Value @(
-            '---'
-            'title: Bicep Module Features'
-            'geekdocNav: false'
-            'geekdocAlign: left'
-            'geekdocAnchor: true'
-            '---'
-            ''
-        ) 
-    } 
     $originalContentArray = Get-Content -Path $markdownFilePath
     
     $functionInput = @{
@@ -57,7 +46,7 @@ function Set-ModuleFeaturesTable {
         ModulesRepoRootPath = $ModulesRepoRootPath
         ReturnMarkdown      = $true
         OnlyTopLevel        = $true
-        AddStatusBadges     = $true
+        ColumnsToInclude    = @( 'Status' )
     }
     $featureTableString = Get-ModulesFeatureOutline @functionInput -Verbose
 
