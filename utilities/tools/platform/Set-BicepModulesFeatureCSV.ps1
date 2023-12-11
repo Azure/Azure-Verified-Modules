@@ -59,7 +59,7 @@ function Set-BicepModulesFeatureCSV {
     Write-Verbose ($featuresTable | Out-String)
 
     if ($PSCmdlet.ShouldProcess("File in path [$CSVFilePath]", 'Overwrite')) {
-        Set-Item -Path $CSVFilePath -Value ($featuresTable | Out-String) -Force
+        New-Item -Path $CSVFilePath -Value ($featuresTable | Out-String) -Force
         Write-Verbose "File [$CSVFilePath] updated" -Verbose
     }
 }

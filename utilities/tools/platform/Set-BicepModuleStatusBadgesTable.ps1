@@ -51,7 +51,7 @@ function Set-BicepModuleStatusBadgesTable {
     Write-Verbose ($badgesMarkdown | Out-String)
 
     if ($PSCmdlet.ShouldProcess("File in path [$markdownFilePath]", 'Overwrite')) {
-        Set-Item -Path $markdownFilePath -Value ($badgesMarkdown | Out-String) -Force
+        New-Item -Path $markdownFilePath -Value ($badgesMarkdown | Out-String) -Force
         Write-Verbose "File [$markdownFilePath] updated" -Verbose
     }
 }
