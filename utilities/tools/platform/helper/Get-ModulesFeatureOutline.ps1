@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
 Get an outline of all modules features for each module contained in the given path
 
@@ -71,9 +71,6 @@ function Get-ModulesFeatureOutline {
 
         [Parameter(Mandatory = $true)]
         [string] $ModulesRepoRootPath,
-
-        [Parameter(Mandatory = $false)]
-        [switch] $ReturnMarkdown,
 
         [Parameter(Mandatory = $false)]
         [ValidateSet('Status', 'RBAC', 'Locks', 'Tags', 'Diag', 'PE', 'PIP')]
