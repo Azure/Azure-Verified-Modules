@@ -19,6 +19,7 @@ Update the file 'bicepFeatures.csv' based on the modules in path './bicep-regist
 #>
 function Set-BicepModulesFeatureCSV {
 
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingPositionalParameters', '', Justification='For Join-Path it''s very difficult to read the cmdlet without positional parameters.')]
     [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory)]
