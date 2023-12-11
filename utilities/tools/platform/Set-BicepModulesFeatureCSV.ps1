@@ -58,8 +58,8 @@ function Set-BicepModulesFeatureCSV {
     Write-Verbose '============'
     Write-Verbose ($featuresTable | Out-String)
 
-    if ($PSCmdlet.ShouldProcess("File in path [$featuresTable]", 'Overwrite')) {
-        Set-Item -Path $CSVFilePath -Value $featuresTable -Force
-        Write-Verbose "File [$featuresTable] updated" -Verbose
+    if ($PSCmdlet.ShouldProcess("File in path [$CSVFilePath]", 'Overwrite')) {
+        Set-Item -Path $CSVFilePath -Value ($featuresTable | Out-String) -Force
+        Write-Verbose "File [$CSVFilePath] updated" -Verbose
     }
 }
