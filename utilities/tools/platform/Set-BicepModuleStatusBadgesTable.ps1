@@ -16,11 +16,11 @@ Mandatory. The path to the modules folder.
 Mandatory. The path to the root of the repository containing the modules.
 
 .EXAMPLE
-Set-ModuleStatusBadgesTable -markdownFilePath 'bicep-features-table.md' -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
+Set-BicepModuleStatusBadgesTable -markdownFilePath 'bicep-features-table.md' -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
 
 Update the file 'bicep-features-table.md' based on the modules in path 'bicep-registry-modules/avm/res'
 #>
-function Set-ModuleStatusBadgesTable {
+function Set-BicepModuleStatusBadgesTable {
 
     [CmdletBinding(SupportsShouldProcess)]
     param (
