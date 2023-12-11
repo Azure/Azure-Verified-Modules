@@ -35,7 +35,6 @@ function Set-BicepModulesFeatureCSV {
     )
 
     # Load external functions
-    . (Join-Path $PSScriptRoot 'helper' 'Merge-FileWithNewContent.ps1')
     . (Join-Path $PSScriptRoot 'helper' 'Get-ModulesFeatureOutline.ps1')
 
     # Logic   
