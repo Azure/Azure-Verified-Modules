@@ -9,16 +9,13 @@ Update the module features table in the given markdown file path
 .PARAMETER markdownFilePath
 Mandatory. The path to the markdown file to update.
 
-.PARAMETER ModulesFolderPath
-Mandatory. The path to the modules folder.
-
 .PARAMETER ModulesRepoRootPath
 Mandatory. The path to the root of the repository containing the modules.
 
 .EXAMPLE
-Set-BicepModuleStatusBadgesTable -markdownFilePath 'bicepBadges.md' -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
+Set-BicepModuleStatusBadgesTable -markdownFilePath 'bicepBadges.md' -ModulesRepoRootPath './bicep-registry-modules'
 
-Update the file 'bicepBadges.md' based on the modules in path 'bicep-registry-modules/avm/res'
+Update the file 'bicepBadges.md' based on the modules in path './bicep-registry-modules'
 #>
 function Set-BicepModuleStatusBadgesTable {
 
@@ -28,9 +25,6 @@ function Set-BicepModuleStatusBadgesTable {
         [string] $markdownFilePath,
 
         [Parameter(Mandatory)]
-        [string] $ModulesFolderPath,
-
-        [Parameter(Mandatory)]
         [string] $ModulesRepoRootPath
     )
 
@@ -38,10 +32,10 @@ function Set-BicepModuleStatusBadgesTable {
     . (Join-Path $PSScriptRoot 'helper' 'Get-ModulesFeatureOutline.ps1')
     
     $functionInput = @{
-        ModulesFolderPath   = $ModulesFolderPath
+        ModulesFolderPath   = (Join-Path $ModulesFolderPath 'bicep-registry-modules' 'avm')
         ModulesRepoRootPath = $ModulesRepoRootPath
         ReturnFormat        = 'Markdown'
-        SearchDepth         = 2 # Only top level
+        SearchDepth         = 3 # Only top level
         ColumnsToInclude    = @( 'Status' )
     }
     $badgesMarkdown = Get-ModulesFeatureOutline @functionInput -Verbose

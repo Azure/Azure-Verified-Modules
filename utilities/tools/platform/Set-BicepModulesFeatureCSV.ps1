@@ -9,16 +9,13 @@ Update the module features table in the given csv file path
 .PARAMETER CSVFilePath
 Mandatory. The path to the CSV file to update.
 
-.PARAMETER ModulesFolderPath
-Mandatory. The path to the modules folder.
-
 .PARAMETER ModulesRepoRootPath
 Mandatory. The path to the root of the repository containing the modules.
 
 .EXAMPLE
-Set-BicepModulesFeatureCSV -CSVFilePath 'docs/static/module-features/bicepFeatures.csv' -ModulesFolderPath 'bicep-registry-modules/avm' -ModulesRepoRootPath 'bicep-registry-modules'
+Set-BicepModulesFeatureCSV -CSVFilePath 'docs/static/module-features/bicepFeatures.csv' -ModulesRepoRootPath './bicep-registry-modules'
 
-Update the file 'bicepFeatures.csv' based on the modules in path 'bicep-registry-modules/avm'
+Update the file 'bicepFeatures.csv' based on the modules in path './bicep-registry-modules'
 #>
 function Set-BicepModulesFeatureCSV {
 
@@ -26,9 +23,6 @@ function Set-BicepModulesFeatureCSV {
     param (
         [Parameter(Mandatory)]
         [string] $CSVFilePath,
-
-        [Parameter(Mandatory)]
-        [string] $ModulesFolderPath,
 
         [Parameter(Mandatory)]
         [string] $ModulesRepoRootPath
@@ -39,10 +33,10 @@ function Set-BicepModulesFeatureCSV {
 
     # Logic   
     $functionInput = @{
-        ModulesFolderPath   = $ModulesFolderPath
+        ModulesFolderPath   = (Join-Path $ModulesFolderPath 'bicep-registry-modules' 'avm' 'res')
         ModulesRepoRootPath = $ModulesRepoRootPath
         ReturnFormat        = 'CSV'
-        SearchDepth         = 3 # Only top level
+        SearchDepth         = 2 # Only top level
         ColumnsToInclude    = @(      
             'RBAC',   
             'Locks',  
