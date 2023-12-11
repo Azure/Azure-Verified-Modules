@@ -20,7 +20,7 @@ The following table shows the number of all available, orphaned and planned **Bi
 {{< moduleStats language="Bicep" moduleType="All" showLanguage=false showClassification=true >}}
 
 
-# Status Badges
+## Status Badges
 
 This section gives you an overview of a the latest workflow status of each AVM module in the [Public Bicep Registry repository](https://github.com/Azure/bicep-registry-modules).
 
