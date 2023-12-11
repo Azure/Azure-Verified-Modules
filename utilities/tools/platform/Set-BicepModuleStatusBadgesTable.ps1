@@ -41,7 +41,7 @@ function Set-BicepModuleStatusBadgesTable {
         ModulesFolderPath   = $ModulesFolderPath
         ModulesRepoRootPath = $ModulesRepoRootPath
         ReturnFormat        = 'Markdown'
-        OnlyTopLevel        = $true
+        SearchDepth         = 2 # Only top level
         ColumnsToInclude    = @( 'Status' )
     }
     $badgesMarkdown = Get-ModulesFeatureOutline @functionInput -Verbose

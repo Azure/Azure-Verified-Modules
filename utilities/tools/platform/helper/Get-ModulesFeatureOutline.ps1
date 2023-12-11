@@ -39,11 +39,6 @@ Optional. The name of the repository the code resides in. Required if 'ColumnsTo
 Optional. The name of the Organization the code resides in. Required if 'ColumnsToInclude.Status' is 'true'
 
 .EXAMPLE
-Get-ModulesFeatureOutline
-
-Get an outline of all modules in the 'bicep-registry-modules/avm/res' folder path.
-
-.EXAMPLE
 Get-ModulesFeatureOutline -ReturnFormat 'Markdown' -SearchDepth 2 -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
 
 Get an outline of top-level (from 'res' 2 level down) modules in the 'bicep-registry-modules/avm/res' folder path, formatted in a markdown table.
@@ -122,7 +117,7 @@ function Get-ModulesFeatureOutline {
         File    = $true
         Filter  = 'main.bicep'
     }
-    if ($Depth) { $childInput.Depth = $Depth }
+    if ($SearchDepth) { $childInput.Depth = $SearchDepth }
     $moduleTemplatePaths = (Get-ChildItem @childInput).FullName
     
     ####################

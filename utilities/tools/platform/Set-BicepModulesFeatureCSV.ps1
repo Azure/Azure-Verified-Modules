@@ -42,7 +42,7 @@ function Set-BicepModulesFeatureCSV {
         ModulesFolderPath   = $ModulesFolderPath
         ModulesRepoRootPath = $ModulesRepoRootPath
         ReturnFormat        = 'CSV'
-        OnlyTopLevel        = $true
+        SearchDepth         = 3 # Only top level
         ColumnsToInclude    = @(      
             'RBAC',   
             'Locks',  
