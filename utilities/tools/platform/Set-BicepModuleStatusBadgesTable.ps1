@@ -18,7 +18,7 @@ Set-BicepModuleStatusBadgesTable -markdownFilePath 'bicepBadges.md' -ModulesRepo
 Update the file 'bicepBadges.md' based on the modules in path './bicep-registry-modules'
 #>
 function Set-BicepModuleStatusBadgesTable {
-    
+
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingPositionalParameters', '', Justification='For Join-Path it''s very difficult to read the cmdlet without positional parameters.')]
     [CmdletBinding(SupportsShouldProcess)]
     param (
