@@ -64,6 +64,8 @@ In the above example, the module has 5 direct children, 4 of them have direct ch
 #>
 function Get-ModulesFeatureOutline {
 
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseOutputTypeCorrectly', '', Justification='It has 3 different output types, not one. It''s a false-positive.')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingPositionalParameters', '', Justification='For Join-Path it''s very difficult to read the cmdlet without positional parameters.')]
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
