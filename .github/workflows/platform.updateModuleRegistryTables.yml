@@ -72,7 +72,6 @@ jobs:
             $functionInput = @{
               MarkdownFilePath    = Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepBadges.md'
               ModulesRepoRootPath = Join-Path $env:GITHUB_WORKSPACE 'bicep-registry-modules'
-              ModulesFolderPath   = Join-Path $env:GITHUB_WORKSPACE 'bicep-registry-modules' 'avm' 'res'
             }
   
             Write-Verbose "Invoke task with" -Verbose
@@ -89,7 +88,6 @@ jobs:
             $functionInput = @{
               CSVFilePath         = Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepFeatures.csv'
               ModulesRepoRootPath = Join-Path $env:GITHUB_WORKSPACE 'bicep-registry-modules'
-              ModulesFolderPath   = Join-Path $env:GITHUB_WORKSPACE 'bicep-registry-modules' 'avm'
             }
   
             Write-Verbose "Invoke task with" -Verbose
