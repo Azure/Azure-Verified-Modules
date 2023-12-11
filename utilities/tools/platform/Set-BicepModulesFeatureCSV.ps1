@@ -33,7 +33,7 @@ function Set-BicepModulesFeatureCSV {
 
     # Logic   
     $functionInput = @{
-        ModulesFolderPath   = (Join-Path $ModulesFolderPath 'bicep-registry-modules' 'avm' 'res')
+        ModulesFolderPath   = (Join-Path $ModulesRepoRootPath 'bicep-registry-modules' 'avm' 'res')
         ModulesRepoRootPath = $ModulesRepoRootPath
         ReturnFormat        = 'CSV'
         SearchDepth         = 2 # Only top level
