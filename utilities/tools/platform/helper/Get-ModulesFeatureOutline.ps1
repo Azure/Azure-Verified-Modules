@@ -291,7 +291,7 @@ function Get-ModulesFeatureOutline {
                 $counter++
             }
             if ($summaryData.Keys.Count -gt 0) {
-                $csv += 'Sum,,,{0}' -f (($summaryData.Keys | ForEach-Object { $summaryData[$_] }) -join ',')
+                $csv += 'Sum,{0},{1}' -f (($summaryData.Keys -contains 'Status') ? ',' : ''), (($summaryData.Keys | ForEach-Object { $summaryData[$_] }) -join ',')
             }
 
             return $csv
