@@ -44,7 +44,7 @@ function Set-ModuleStatusBadgesTable {
     $functionInput = @{
         ModulesFolderPath   = $ModulesFolderPath
         ModulesRepoRootPath = $ModulesRepoRootPath
-        ReturnMarkdown      = $true
+        ReturnFormat        = 'Markdown'
         OnlyTopLevel        = $true
         ColumnsToInclude    = @( 'Status' )
     }
