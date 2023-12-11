@@ -19,8 +19,8 @@ Optional. Control the result format. Supports 'object', a CSV with columns conta
 .PARAMETER BreakMarkdownModuleNameAt
 Optional. When `ReturnFormat` is set to 'Markdown' you can use this number to control if & where you'd want to line break the ModuleName column. Defaults to 1 (i.e., right after the provider namepsace).
 
-.PARAMETER OnlyTopLevel
-Optional. Only consider top-level modules (that is, no child-modules).
+.PARAMETER SearchDepth
+Optional. Control in which depth to search for `main.bicep` files in the given 'ModulesRepoRootPath'
 
 .PARAMETER ColumnsToInclude
 Optional. An array that controls which columns / data points should be added to the result object. Defaults to all columns. The following columns are available:
@@ -44,9 +44,9 @@ Get-ModulesFeatureOutline
 Get an outline of all modules in the 'bicep-registry-modules/avm/res' folder path.
 
 .EXAMPLE
-Get-ModulesFeatureOutline -ReturnFormat 'Markdown' -OnlyTopLevel -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
+Get-ModulesFeatureOutline -ReturnFormat 'Markdown' -SearchDepth 2 -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
 
-Get an outline of top-level modules in the 'bicep-registry-modules/avm/res' folder path, formatted in a markdown table.
+Get an outline of top-level (from 'res' 2 level down) modules in the 'bicep-registry-modules/avm/res' folder path, formatted in a markdown table.
 
 .EXAMPLE
 Get-ModulesFeatureOutline -ReturnFormat 'Markdown' -BreakMarkdownModuleNameAt 2 -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
@@ -59,7 +59,7 @@ Get-ModulesFeatureOutline -ReturnFormat 'Markdown' -BreakMarkdownModuleNameAt 2 
 Get an outline of all modules in the 'bicep-registry-modules/avm/res' folder path, formatted in a markdown table - with the module name column split after the top-level (i.e., <ProviderNamespace>/<ResourceType).
 
 .EXAMPLE
-Get-ModulesFeatureOutline -ReturnFormat 'CSV' -ColumnsToInclude @( 'Status', 'PE' ) -RepositoryName 'bicep-registry-modules' -Organization 'Azure' -ModulesFolderPath 'bicep-registry-modules/avm' -ModulesRepoRootPath 'bicep-registry-modules' -OnlyTopLevel
+Get-ModulesFeatureOutline -ReturnFormat 'CSV' -ColumnsToInclude @( 'Status', 'PE' ) -RepositoryName 'bicep-registry-modules' -Organization 'Azure' -ModulesFolderPath 'bicep-registry-modules/avm' -ModulesRepoRootPath 'bicep-registry-modules' -SearchDepth 2
 
 Get an outline of all modules in the 'bicep-registry-modules/avm' folder path, formatted in a CSV format - with only the Columns 'Status' & 'PE'.
 
@@ -103,7 +103,7 @@ function Get-ModulesFeatureOutline {
         [int] $BreakMarkdownModuleNameAt = 2,
 
         [Parameter(Mandatory = $false)]
-        [switch] $OnlyTopLevel,
+        [int] $SearchDepth,
 
         [Parameter(Mandatory = $false)]
         [string] $RepositoryName = 'bicep-registry-modules',
@@ -116,12 +116,15 @@ function Get-ModulesFeatureOutline {
     . (Join-Path $PSScriptRoot 'Get-PipelineStatusUrl.ps1')
     . (Join-Path $PSScriptRoot 'Get-PipelineFileName.ps1')
 
-    if ($OnlyTopLevel) {
-        $moduleTemplatePaths = (Get-ChildItem $ModulesFolderPath -Recurse -Filter 'main.bicep' -Depth 2).FullName
-    } else {
-        $moduleTemplatePaths = (Get-ChildItem $ModulesFolderPath -Recurse -Filter 'main.bicep').FullName
+    $childInput = @{
+        Path    = $ModulesFolderPath
+        Recurse = $true
+        File    = $true
+        Filter  = 'main.bicep'
     }
-
+    if ($Depth) { $childInput.Depth = $Depth }
+    $moduleTemplatePaths = (Get-ChildItem @childInput).FullName
+    
     ####################
     #   Collect data   #
     ####################
