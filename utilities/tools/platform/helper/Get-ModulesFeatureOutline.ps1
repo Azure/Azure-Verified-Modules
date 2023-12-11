@@ -76,18 +76,15 @@ function Get-ModulesFeatureOutline {
         [switch] $ReturnMarkdown,
 
         [Parameter(Mandatory = $false)]
-        [switch] $ReturnCSV,
-
-        [Parameter(Mandatory = $false)]
         [ValidateSet('Status', 'RBAC', 'Locks', 'Tags', 'Diag', 'PE', 'PIP')]
         [string[]] $ColumnsToInclude = @(
-            'Status', 
-            'RBAC',   
-            'Locks',  
-            'Tags',   
-            'Diag',   
-            'PE',     
-            'PIP'    
+            'Status',
+            'RBAC',
+            'Locks',
+            'Tags',
+            'Diag',
+            'PE',
+            'PIP'
         ),
 
         [Parameter(Mandatory = $false)]
@@ -119,7 +116,7 @@ function Get-ModulesFeatureOutline {
     }
     if ($SearchDepth) { $childInput.Depth = $SearchDepth }
     $moduleTemplatePaths = (Get-ChildItem @childInput).FullName
-    
+
     ####################
     #   Collect data   #
     ####################
@@ -226,7 +223,7 @@ function Get-ModulesFeatureOutline {
     #   Generate output   #
     #######################
     switch ($ReturnFormat) {
-        'Object' { 
+        'Object' {
             return @{
                 data = $moduleData | ForEach-Object {
                     $resultObject = @{
@@ -239,19 +236,19 @@ function Get-ModulesFeatureOutline {
                     if ($ColumnsToInclude -contains 'Diag') { $resultObject.Diag = $_.Diag }
                     if ($ColumnsToInclude -contains 'PE') { $resultObject.PE = $_.PE }
                     if ($ColumnsToInclude -contains 'PIP') { $resultObject.PIP = $_.PIP }
-                    
+
                     # Return result
                     [PSCustomObject] $resultObject
                 }
                 sum  = $summaryData
             }
         }
-        'Markdown' { 
+        'Markdown' {
             $markdownTable = [System.Collections.ArrayList]@(
                 '| # | {0} |' -f ($moduleData[0].Keys -join ' | ')
                 '| - | {0} |' -f (($moduleData[0].Keys | ForEach-Object { '-' }) -join ' | ' )
             )
-    
+
             # Format module identifier
             foreach ($module in $moduleData) {
                 $identifierParts = $module.Module.Replace('\', '/').split('/')
@@ -260,7 +257,7 @@ function Get-ModulesFeatureOutline {
                     $module.Module = '{0}<p>{1}' -f $topLevelIdentifier, ($module.Module -replace "$topLevelIdentifier/", '')
                 }
             }
-    
+
             # Add table data
             $counter = 1
             foreach ($module in ($moduleData | Sort-Object { $_.Module })) {
@@ -271,15 +268,15 @@ function Get-ModulesFeatureOutline {
                 $markdownTable += $line
                 $counter++
             }
-    
+
             if ($summaryData.Keys.Count -gt 0) {
                 $markdownTable += '| Sum | | | {0} |' -f (($summaryData.Keys | ForEach-Object { $summaryData[$_] }) -join ' | ')
             }
             return $markdownTable | Out-String
         }
-        'CSV' { 
+        'CSV' {
             $csv = [System.Collections.ArrayList]@( ('#,{0}' -f ($moduleData[0].Keys -join ',') ))
-        
+
             # Add CSV data
             $counter = 1
             foreach ($module in $moduleData) {
