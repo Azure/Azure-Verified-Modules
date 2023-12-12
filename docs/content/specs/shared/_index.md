@@ -458,6 +458,10 @@ The `@Azure` prefix in the last column of the tables linked above represents the
 
 {{< /hint >}}
 
+{{< hint type=important >}}
+Non-FTE / external contributors (subject matter experts that aren't Microsoft employees) can't be members of the teams described in this chapter, hence, they won't gain any extra permissions on AVM repositories, therefore, they need to work in forks.
+{{< /hint >}}
+
 <br>
 
 ##### Naming Convention
