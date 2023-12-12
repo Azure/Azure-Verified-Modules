@@ -6,6 +6,7 @@ When forking the BRM repository, all workflows from the CI environment are also 
 
 - [Location](#location)
 - [How it works](#how-it-works)
+- [Typical use cases](#typical-use-cases)
 - [Limitations](#limitations)
 
 ---
@@ -16,11 +17,35 @@ You can find the workflow under [`.github/workflows/avm.platform.toggle-avm-work
 
 # How it works
 
+Select the workflow from the list
+
+<img src="../../img/contribution/selectToggleWorkflows.png" width=100%>
+
 Run the workflow `avm.platform.toggle-avm-workflows` and set the following settings:
 - `targetState` to enable or disable workflows
 - `includePattern` set the RegEx which workflows are included
 - `excludePattern` set the RegEx which workflows are excluded
 
+<img src="../../img/contribution/runToggleWorkflows.png" width=100%>
+
+# Typical use cases
+
+If all but one workflow should be disabled, set the following settings:
+- `targetState` to `disable`
+- `includePattern` to `avm\.(?:res|ptn)` (that is the default setting)
+- `includePattern` to `avm.res.compute.virtual-machine` (the name of your workflow, here as example the one for the virtual machine)
+
+If all workflows should be enabled, set the following settings:
+- `targetState` to `enable`
+- `includePattern` to `avm\.(?:res|ptn)` (that is the default setting)
+- `includePattern` to `^$` (that is the default setting)
+
 # Limitations
 
 Please keep in mind, that the workflow run disables all workflows that match the RegEx at that point in time. If you sync your fork with the original repository and new workflows are there, they will be synced to your repository and will be enabled by default. So you will need to run the workflow to disable the new ones again after the sync.
+
+{{< hint type=important >}}
+
+The workflow can only be triggered in forks.
+
+{{< /hint >}}
