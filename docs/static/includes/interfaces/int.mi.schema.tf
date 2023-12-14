@@ -5,3 +5,12 @@ variable "managed_identities" {
   })
   default = {}
 }
+
+# Example resource implementation
+dynamic "identity" {
+  for_each = var.managed_identities != null && (var.managed_identities.system_assigned || length(var.managed_identities.user_assigned_resource_ids) > 0) ? [var.managed_identities] : []
+  content {
+    type         = (each.value.system_assigned && length(identity.value.user_assigned_resource_ids) > 0 ? "SystemAssigned, UserAssigned" : length(identity.value.user_assigned_resource_ids) > 0 ? "UserAssigned" : "SystemAssigned")
+    identity_ids = identity.value.user_assigned_resource_ids
+  }
+}
