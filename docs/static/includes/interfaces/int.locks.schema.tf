@@ -10,7 +10,7 @@ variable "lock" {
     error_message = "The lock level must be one of: 'CanNotDelete', 'ReadOnly'."
   }
 }
-  
+
 # Example resource implementation
 resource "azurerm_management_lock" "this" {
   count      = var.lock != null ? 1 : 0
