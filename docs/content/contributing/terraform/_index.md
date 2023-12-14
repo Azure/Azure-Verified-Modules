@@ -84,11 +84,13 @@ To apply these labels to the repository review the PowerShell script `Set-AvmGit
 
 ## Template Repository
 
-We have created a [template repository](https://github.com/Azure/terraform-azurerm-avm-template) to help you get started.
+We have created a [template repository](https://github.com/Azure/terraform-azurerm-avm-template), that you should use to help you get started.
 Please click the `use this template` and create a copy of the repo in the Azure organization.
 
 You will then have to complete configuration of your repo and start an internal business review.
 See [this link (internal only)](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review?anchor=conduct-initial-repo-configuration-and-trigger-business-review).
+
+You may choose to not use this template, however the [directory and file structure](#directory-and-file-structure), [shared interfaces](/Azure-Verified-Modules/specs/shared/interfaces), and GitHub actions must be aligned to these standards prior to the module being published.
 
 <br>
 
