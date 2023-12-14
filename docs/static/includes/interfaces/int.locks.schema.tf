@@ -7,7 +7,7 @@ variable "lock" {
   default     = null
   validation {
     condition     = contains(["CanNotDelete", "ReadOnly"], var.lock.kind)
-    error_message = "The lock level must be one of: 'CanNotDelete', 'ReadOnly'."
+    error_message = "The lock level must be one of: 'CanNotDelete', or 'ReadOnly'."
   }
 }
 
