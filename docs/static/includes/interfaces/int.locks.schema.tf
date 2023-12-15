@@ -6,7 +6,7 @@ variable "lock" {
   description = "The lock level to apply to the resource. Possible values are `CanNotDelete` and `ReadOnly`."
   default     = null
   validation {
-    condition     = var.lock == null || contains(["CanNotDelete", "ReadOnly"], var.lock.kind)
+    condition     = var.lock == null || contains(["CanNotDelete", "ReadOnly"], try(var.lock.kind, ""))
     error_message = "The lock level must be one of: 'CanNotDelete', or 'ReadOnly'."
   }
 }
