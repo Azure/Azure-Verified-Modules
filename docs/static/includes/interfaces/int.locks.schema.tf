@@ -20,7 +20,7 @@ resource "azurerm_management_lock" "this" {
   count      = var.lock != null ? 1 : 0
 
   name       = coalesce(var.lock.name, "lock-${var.lock.kind}")
-  scope      = azurerm_kubernetes_cluster.main.id
+  scope      = azurerm_MY_RESOURCE.this.id
   lock_level = var.lock.kind
   notes      = var.lock.kind == "CanNotDelete" ? "Cannot delete resource or child resources." : "Cannot delete or modify the resource or child resources."
 }
