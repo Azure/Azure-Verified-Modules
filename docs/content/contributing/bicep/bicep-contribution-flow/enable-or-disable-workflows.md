@@ -31,7 +31,7 @@ Run the workflow `avm.platform.toggle-avm-workflows` and set the following setti
 # Typical use cases
 
 If all but one workflow should be disabled, set the following settings:
-- `targetState` to `disable`
+- `Enable or disable workflows` to `Disable`
 -  `RegEx which workflows are included` to `avm\.(?:res|ptn)` (that is the default setting)
 - `RegEx which workflows are excluded` to `avm.res.compute.virtual-machine` (the name of your workflow, here as example the one for the virtual machine)
 
