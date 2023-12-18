@@ -37,7 +37,7 @@ If all but one workflow should be disabled, set the following settings:
 
 If all workflows should be enabled, set the following settings:
 - `targetState` to `enable`
-- `includePattern` to `avm\.(?:res|ptn)` (that is the default setting)
+- `RegEx which workflows are included` to `avm\.(?:res|ptn)` (that is the default setting)
 - `includePattern` to `^$` (that is the default setting)
 
 # Limitations
