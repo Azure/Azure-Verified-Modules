@@ -23,7 +23,7 @@ Select the workflow from the list
 
 Run the workflow `avm.platform.toggle-avm-workflows` and set the following settings:
 - `Enable or disable workflows` to enable or disable workflows
-- `includePattern` set the RegEx which workflows are included
+- `RegEx which workflows are included` include a specific set of workflows, using a RegEx.
 - `excludePattern` set the RegEx which workflows are excluded
 
 <img src="../../img/contribution/runToggleWorkflows.png" width=100%>
