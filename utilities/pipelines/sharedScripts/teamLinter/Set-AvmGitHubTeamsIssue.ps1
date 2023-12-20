@@ -52,10 +52,11 @@ function Set-AvmGitHubTeamsIssue {
 
     $title = "[GitHub Team Issue] ``$TeamName``"
     $bodyAutoDisclaimer = "*This issue was automatically created by the AVM Team Linter. If this issue has been created by mistake please reach out to the AVM Team using this issue.*"
+    $bodyAdvisoryNote = "**NOTE**: `n`n- This issue title **MUST** note be changed to prevent duplication of issues. `n- This issue **MUST** be closed manually once the issue has been resolved."
     $teamError = "# Description `nThe AVM Team Linter has found an issue with the following GitHub Team."
     $teamTable = "| Team Name | Owner | Issue |`n| --- | --- | --- |`n| $TeamName | $Owner | $validationError |"
     $resolutionSegment = "# Resolution `n$ResolutionInfo"
-    $body = "$teamError`n`n$teamTable`n`n$resolutionSegment`n`n$bodyAutoDisclaimer"
+    $body = "$teamError`n`n$teamTable`n`n$resolutionSegment`n`n$bodyAutoDisclaimer`n`n$bodyAdvisoryNote"
 
     $issues = Find-GithubIssue -title $title
 
