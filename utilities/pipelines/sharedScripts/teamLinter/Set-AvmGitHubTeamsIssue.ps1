@@ -50,7 +50,7 @@ function Set-AvmGitHubTeamsIssue {
     # Extract Gh Handle from Owner String
     $Owner = $Owner.Split(" ")[0]
 
-    $title = "[GitHub Team Issue] $TeamName"
+    $title = "[GitHub Team Issue] ``$TeamName``"
     $bodyAutoDisclaimer = "*This issue was automatically created by the AVM Team Linter. If this issue has been created by mistake please reach out to the AVM Team using this issue.*"
     $teamError = "# Description `nThe AVM Team Linter has found an issue with the following GitHub Team."
     $teamTable = "| Team Name | Owner | Issue |`n| --- | --- | --- |`n| $TeamName | $Owner | $validationError |"
