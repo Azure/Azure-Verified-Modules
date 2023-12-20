@@ -941,7 +941,7 @@ Module owners **MUST** output the following outputs as a minimum in their module
 |------------------------------------------------------------------------|-------------------------------|-----------------------------------|
 | Resource Name                                                          | `name`                        | `name`                            |
 | Resource ID                                                            | `resourceId`                  | `resource_id`                     |
-| System Assigned Managed Identity Principal ID (if supported by module) | `systemAssignedMIPrincipalId` | `system_assigned_mi_prinicpal_id` |
+| System Assigned Managed Identity Principal ID (if supported by module) | `systemAssignedMIPrincipalId` | `system_assigned_mi_principal_id` |
 
 {{< hint type=tip >}}
 
