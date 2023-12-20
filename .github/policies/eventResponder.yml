@@ -133,7 +133,21 @@ configuration:
               label: 'Status: Owners Identified :metal:'
         triggerOnOwnActions: true
 
-      - description: 'ITA17 - If the issue author says they want to be the module owner, assign the issue to the author and respond to them.'
+      - description: 'ITA17A - If the issue author says they want to be the module owner, assign the issue to the author and respond to them.'
+        if:
+          - payloadType: Issues
+          - isAction:
+              action: Opened
+          - bodyContains:
+              pattern: |
+                ### Do you want to be the owner of this module?
+
+                Yes
+        then:
+          - assignTo:
+              author: true
+
+      - description: 'ITA17B - If the issue author says they want to be the module owner, assign the issue to the author and respond to them.'
         if:
           - payloadType: Issues
           - isAction:
@@ -151,8 +165,6 @@ configuration:
                 **Please don't start the development just yet!**
 
                 The AVM core team will review this module proposal and respond to you first. Thank you!
-          - assignTo:
-              author: true
 
       - description: 'ITA18 - Send automatic response to the issue author if they don''t want to be module owner and don''t have any candidate in mind. Assign the "Needs: Module Owner :mega:" label.'
         if:
