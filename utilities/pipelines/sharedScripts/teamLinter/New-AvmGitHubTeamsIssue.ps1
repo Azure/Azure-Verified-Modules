@@ -10,10 +10,10 @@ function New-AVMGitHubTeamsIssue {
     )
 
     # Validate effected module language
-    if ($title -like '*bicep') {
+    if ($title -like '*-bicep') {
         $languageLabel = "Language: Bicep :muscle:"
     }
-    elseif ($title -like '*terraform') {
+    elseif ($title -like '*-tf') {
         $languageLabel = "Language: Terraform :globe_with_meridians:"
     }
 
