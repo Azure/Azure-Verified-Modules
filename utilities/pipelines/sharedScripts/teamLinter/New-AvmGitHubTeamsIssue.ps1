@@ -10,18 +10,18 @@ function New-AVMGitHubTeamsIssue {
     )
 
     # Validate effected module language
-    if ($title -like '*-bicep') {
+    if ($title -like '*-bicep``') {
         $languageLabel = "Language: Bicep :muscle:"
     }
-    elseif ($title -like '*-tf') {
+    elseif ($title -like '*-tf``') {
         $languageLabel = "Language: Terraform :globe_with_meridians:"
     }
 
     # Validate effected module class
-    if ($title -like 'avm-res-*') {
+    if ($title -like '``avm-res-*') {
         $classLabel = "Class: Resource Module :package:"
     }
-    elseif ($title -like 'avm-ptn-*') {
+    elseif ($title -like '``avm-ptn-*') {
         $classLabel = "Class: Pattern Module :package:"
     }
 
@@ -33,7 +33,7 @@ function New-AVMGitHubTeamsIssue {
     }
     try {
         # Construct the full command
-        if ($PSCmdlet.ShouldProcess($title, "Create New GitHub Issue")) {
+        if ($PSCmdlet.ShouldProcess($title, "Create New GitHub Issue assigned to $($assignee) with labels: $languageLabel, $classLabel")) {
         gh issue create --title $title --body $body --assignee $assignee --label $languageLabel --label $classLabel --label "Type: Hygiene :broom:"
         }
     }

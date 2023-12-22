@@ -74,7 +74,9 @@ function Set-AvmGitHubTeamsIssue {
     }
     elseif (($issues -like "No match found*") -And !$CreateIssues) {
         Write-Verbose "New issue should be created for: $($title) with $($body)"
-        Write-Verbose "Issue not created due to -CreateIssues switch not being used. (Check Branch)"
+        Write-Verbose "Issue not created due to -CreateIssues switch not being used. Performing What-If"
+        New-AvmGitHubTeamsIssue -title $title -assignee $Owner -body $body -WhatIf
+
     }
     else {
         Write-Output "Search Output: $($issues)"
