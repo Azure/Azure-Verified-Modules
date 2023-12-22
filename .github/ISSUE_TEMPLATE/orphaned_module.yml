@@ -1,6 +1,6 @@
 name: Orphaned AVM Module 👀
 description: An existing AVM module has just become orphaned and needs a new owner
-title: "[Orphaned Module]: `MODULE NAME BETWEEN BACKTICKS`"
+title: "[Orphaned Module]: `MODULE_NAME_BETWEEN_BACKTICKS`"
 labels: ["Status: Module Orphaned :eyes:", "Needs: Module Owner :mega:", "Needs: Triage :mag:"]
 projects: ["Azure/529"]
 body:
