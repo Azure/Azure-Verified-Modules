@@ -18,12 +18,14 @@ function New-AVMGitHubTeamsIssue {
     }
 
     # Validate effected module class
-    if ($title -like '``avm-res-*') {
+    if ($title -like '*avm-res-*') {
         $classLabel = "Class: Resource Module :package:"
     }
-    elseif ($title -like '``avm-ptn-*') {
+    elseif ($title -like '*avm-ptn-*') {
         $classLabel = "Class: Pattern Module :package:"
     }
+
+    $hygeineLabel = "Type: Hygiene :broom:"
 
     # Validate Auth Status
     gh auth status
@@ -34,7 +36,7 @@ function New-AVMGitHubTeamsIssue {
     try {
         # Construct the full command
         if ($PSCmdlet.ShouldProcess($title, "Create New GitHub Issue assigned to $($assignee) with labels: $languageLabel, $classLabel")) {
-        gh issue create --title $title --body $body --assignee $assignee --label $languageLabel --label $classLabel --label "Type: Hygiene :broom:"
+        gh issue create --title $title --body $body --assignee $assignee --label $languageLabel --label $classLabel --label $hygeineLabel
         }
     }
     catch {
