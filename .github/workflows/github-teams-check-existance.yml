@@ -1,0 +1,185 @@
+---
+name: Github Team - Check Existance
+
+on:
+  # Runs on schedule
+  schedule:
+    - cron: "0 15 * * 1-5" # At 10:00 AM, Monday through Friday
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch: { }
+
+permissions: read-all
+
+jobs:
+  Check-Team-Existance:
+    name: Check-Team-Existance
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # [Setup] task(s)
+      # ---------------
+      - name: "Setup agent"
+        shell: pwsh
+        run: |
+          # Load used functions
+          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'Set-EnvironmentOnAgent.ps1')
+
+          # Define PS modules to install on the runner
+          $modules = @(
+              @{ Name = 'Az.Accounts' },
+              @{ Name = 'Az.Resources' }
+          )
+
+          # Set agent up
+          Set-EnvironmentOnAgent -PSModules $modules
+
+      - uses: tibdex/github-app-token@v2
+        id: generate-token
+        with:
+          app_id: ${{ secrets.TEAM_LINTER_APP_ID }}
+          private_key: ${{ secrets.TEAM_LINTER_PRIVATE_KEY }}
+
+      - name: "Compare Bicep Owners Resource Teams"
+        if: always()
+        id: comparebcpowner
+        shell: pwsh
+        run: |
+          # Load used functions
+          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Invoke-AvmGitHubTeamLinter.ps1')
+
+          $functionInput = @{
+            ModuleIndex                       = 'Bicep-Resource'
+            TeamFilter                        = 'BicepResourceOwners'
+            ValidateBicepParentConfiguration  = $true
+          }
+
+          $branch = git branch --show-current
+          $branchName = $branch.split('/')[-1]
+          if ($branchName -eq "main"){
+              $functionInput['CreateIssues'] = $true
+          }
+          Write-Verbose "Ref: $($branchName)" -Verbose
+          Write-Verbose 'Invoke task with' -Verbose
+          Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
+
+          Invoke-AvmGitHubTeamLinter @functionInput -Verbose
+
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+
+      - name: "Compare Bicep Contributor Resource Teams"
+        if: always()
+        id: comparebcpcontrib
+        shell: pwsh
+        run: |
+          # Load used functions
+          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Invoke-AvmGitHubTeamLinter.ps1')
+
+          # Branch check so issues are only opened on main
+
+          $functionInput = @{
+            ModuleIndex                       = 'Bicep-Resource'
+            TeamFilter                        = 'BicepResourceContributors'
+            ValidateBicepParentConfiguration  = $true
+          }
+
+          $branch = git branch --show-current
+          $branchName = $branch.split('/')[-1]
+          if ($branchName -eq "main"){
+              $functionInput['CreateIssues'] = $true
+          }
+
+          Write-Verbose 'Invoke task with' -Verbose
+          Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
+
+          Invoke-AvmGitHubTeamLinter @functionInput -Verbose
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+
+      - name: "Compare Bicep Pattern Teams"
+        if: always()
+        id: comparebcpptn
+        shell: pwsh
+        run: |
+          # Load used functions
+          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Invoke-AvmGitHubTeamLinter.ps1')
+
+          # Branch check so issues are only opened on main
+
+          $functionInput = @{
+            ModuleIndex                       = 'Bicep-Pattern'
+            TeamFilter                        = 'AllBicepPattern'
+            ValidateBicepParentConfiguration  = $true
+          }
+
+          $branch = git branch --show-current
+          $branchName = $branch.split('/')[-1]
+          if ($branchName -eq "main"){
+              $functionInput['CreateIssues'] = $true
+          }
+
+          Write-Verbose 'Invoke task with' -Verbose
+          Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
+
+          Invoke-AvmGitHubTeamLinter @functionInput -Verbose
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+
+      - name: "Compare Terraform Resource Teams"
+        if: always()
+        id: comparetfres
+        shell: pwsh
+        run: |
+          # Load used functions
+          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Invoke-AvmGitHubTeamLinter.ps1')
+
+          $functionInput = @{
+            ModuleIndex                      = 'Terraform-Resource'
+            TeamFilter                       = 'AllTerraformResource'
+            ValidateTerraformTeamsPermissons = $true
+          }
+
+          $branch = git branch --show-current
+          $branchName = $branch.split('/')[-1]
+          if ($branchName -eq "main"){
+              $functionInput['CreateIssues'] = $true
+          }
+
+          Write-Verbose 'Invoke task with' -Verbose
+          Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
+
+          Invoke-AvmGitHubTeamLinter @functionInput -Verbose
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+
+      - name: "Compare Terraform Pattern Teams"
+        if: always()
+        id: comparetfptn
+        shell: pwsh
+        run: |
+          # Load used functions
+          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Invoke-AvmGitHubTeamLinter.ps1')
+
+          $functionInput = @{
+            ModuleIndex                       = 'Terraform-Pattern'
+            TeamFilter                        = 'AllTerraformPattern'
+            ValidateTerraformTeamsPermissons  = $true
+          }
+
+          $branch = git branch --show-current
+          $branchName = $branch.split('/')[-1]
+          if ($branchName -eq "main"){
+              $functionInput['CreateIssues'] = $true
+          }
+
+          Write-Verbose 'Invoke task with' -Verbose
+          Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
+
+          Invoke-AvmGitHubTeamLinter @functionInput -Verbose
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}

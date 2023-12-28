@@ -1,5 +1,5 @@
 <!-- markdownlint-disable -->
-Hi @{module_owner},
+Hi @avm_module_owner,
 
 Thanks for requesting/proposing to be an AVM module owner!
 

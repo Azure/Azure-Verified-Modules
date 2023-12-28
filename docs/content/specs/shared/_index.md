@@ -118,10 +118,13 @@ To highlight that AVM modules use telemetry, an information notice **MUST** be i
 {{< expand "➕ Telemetry Information Notice" "expand/collapse" >}}
 
 {{< hint type=note >}}
-The following information notice is automatically at the bottom of the `README.md` file of the module when using the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) tool
+The following information notice is automatically added at the bottom of the `README.md` file of the module when
+- **Bicep:** Using the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) utility
+- **Terraform:** Executing the `make docs` command with the note and header `## Data Collection` being placed in the module's `_footer.md` beforehand
 {{< /hint >}}
 
-{{< include file="static/includes/telemetry-information-notice.md" language="markdown" options="linenos=false" >}}
+`## Data Collection`
+{{< include file="static/includes/telemetry-information-notice.md" language="md" options="linenos=false" >}}
 
 {{< /expand >}}
 
@@ -453,6 +456,10 @@ The names for the GitHub teams for each approved module are already defined in t
 
 The `@Azure` prefix in the last column of the tables linked above represents the "Azure" GitHub organization all AVM-related repositories exist in. **DO NOT** include this segment in the team's name!
 
+{{< /hint >}}
+
+{{< hint type=important >}}
+Non-FTE / external contributors (subject matter experts that aren't Microsoft employees) can't be members of the teams described in this chapter, hence, they won't gain any extra permissions on AVM repositories, therefore, they need to work in forks.
 {{< /hint >}}
 
 <br>
@@ -854,7 +861,7 @@ Resource modules support the following optional features/extension resources, as
 | Customer Managed Keys                       | `customerManagedKey` | `customer_managed_key`  | MUST        |
 | Azure Monitor Alerts                        | `alerts`             | `alerts`                | SHOULD      |
 
-Resource modules **MUST NOT** deploy required/dependant resources for the optional features/extension resources specified above. For example, for Diagnostic Settings the resource module **MUST NOT** deploy the Log Analytics Workspace, this is expected to be already in existence from the perspective of the resource module deployed via another method/module etc.
+Resource modules **MUST NOT** deploy required/dependent resources for the optional features/extension resources specified above. For example, for Diagnostic Settings the resource module **MUST NOT** deploy the Log Analytics Workspace, this is expected to be already in existence from the perspective of the resource module deployed via another method/module etc.
 
 {{< hint type=note >}}
 
@@ -934,7 +941,7 @@ Module owners **MUST** output the following outputs as a minimum in their module
 |------------------------------------------------------------------------|-------------------------------|-----------------------------------|
 | Resource Name                                                          | `name`                        | `name`                            |
 | Resource ID                                                            | `resourceId`                  | `resource_id`                     |
-| System Assigned Managed Identity Principal ID (if supported by module) | `systemAssignedMIPrincipalId` | `system_assigned_mi_prinicpal_id` |
+| System Assigned Managed Identity Principal ID (if supported by module) | `systemAssignedMIPrincipalId` | `system_assigned_mi_principal_id` |
 
 {{< hint type=tip >}}
 
