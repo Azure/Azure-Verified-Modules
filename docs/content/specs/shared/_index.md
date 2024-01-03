@@ -510,7 +510,7 @@ In case of Bicep modules, permissions to the [BRM](https://aka.ms/BRM) repositor
 
 {{< /hint >}}
 
-Module owners **MUST** create their `-module-owners-` and `-module-contributors-` teams and as part of the provisioning process, they **MUST** request the addition of these teams to their respective parent teams (see the table below for details). Direct link to perform these actions: https://github.com/orgs/Azure/new-team
+Module owners **MUST** create their `-module-owners-` and `-module-contributors-` teams and as part of the provisioning process, they **MUST** request the addition of these teams to their respective parent teams (see the table below for details). Direct link to perform these actions: [Create new team](https://github.com/orgs/Azure/new-team)
 
 | GitHub Team Name                                     | Description                                                                  | Permissions | Permissions granted through                                        | Where to work?          |
 |------------------------------------------------------|------------------------------------------------------------------------------|-------------|--------------------------------------------------------------------|-------------------------|
