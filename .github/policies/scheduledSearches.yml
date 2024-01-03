@@ -78,6 +78,8 @@ configuration:
       - isOpen
       - hasLabel:
           label: 'Type: New Module Proposal :bulb:'
+      - hasLabel:
+          label: 'Status: Owners Identified :metal:'
       - noActivitySince:
           days: 21
       - isNotLabeledWith:
