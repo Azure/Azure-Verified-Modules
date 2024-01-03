@@ -506,11 +506,11 @@ Unless explicitly requested and agreed, members of the AVM core team or any PG t
 
 {{< hint type=note >}}
 
-In case of Bicep modules, permissions to the [BRM](https://aka.ms/BRM) repository (the repo of the Bicep Registry) are granted via assigning the `-module-owners-` and `-module-contributors-` teams to parent teams that already have the required level access configured. Whilst it't the module owner's responsibility to initiate the addition of their teams to the respective parents, only the AVM core team **CAN** approve this parent-child relationship.
+In case of Bicep modules, permissions to the [BRM](https://aka.ms/BRM) repository (the repo of the Bicep Registry) are granted via assigning the `-module-owners-` and `-module-contributors-` teams to parent teams that already have the required level access configured. Whilst it's the module owner's responsibility to initiate the addition of their teams to the respective parents, only the AVM core team can approve this parent-child relationship.
 
 {{< /hint >}}
 
-Module owners **MUST** create their `-module-owners-` and `-module-contributors-` teams and as part of the provisioning process, they **MUST** request the addition of these teams to their respective parent teams (see the table below for details).
+Module owners **MUST** create their `-module-owners-` and `-module-contributors-` teams and as part of the provisioning process, they **MUST** request the addition of these teams to their respective parent teams (see the table below for details). Direct link to perform these actions: https://github.com/orgs/Azure/new-team
 
 | GitHub Team Name                                     | Description                                                                  | Permissions | Permissions granted through                                        | Where to work?          |
 |------------------------------------------------------|------------------------------------------------------------------------------|-------------|--------------------------------------------------------------------|-------------------------|
