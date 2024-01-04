@@ -5,7 +5,7 @@ variable "managed_identities" {
   })
   default     = {}
   description = <<DESCRIPTION
-A map defining the managed identity configuration on this resource.
+Controls the Managed Identity configuration on this resource.
 
 - `system_assigned` - (Optional) Specifies if the System Assigned Managed Identity should be enabled.
 - `user_assigned_resource_ids` - (Optional) Specifies a list of User Assigned Managed Identity resource IDs to be assigned to this resource.
