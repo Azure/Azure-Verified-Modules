@@ -78,10 +78,12 @@ configuration:
       - isOpen
       - hasLabel:
           label: 'Type: New Module Proposal :bulb:'
+      - hasLabel:
+          label: 'Status: Owners Identified :metal:'
       - noActivitySince:
           days: 21
       - isNotLabeledWith:
-          label: 'Status: No Recent Activity :zzz:'
+          label: 'Status: Long Term :hourglass_flowing_sand:'
       actions:
       - addReply:
           reply: |
