@@ -83,7 +83,7 @@ configuration:
       - noActivitySince:
           days: 21
       - isNotLabeledWith:
-          label: 'Status: No Recent Activity :zzz:'
+          label: 'Status: Long Term :hourglass_flowing_sand:'
       actions:
       - addReply:
           reply: |
