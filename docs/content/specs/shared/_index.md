@@ -821,7 +821,7 @@ Multiple instances of the module **MUST** be used to scale out.
 
 #### ID: RMFR2 - Category: Composition - No Resource Wrapper Modules
 
-A resource module **MUST** add value by including additional features on top of the primary resource. For example a module to create a Resource Group adds little value and therefore should not be created as a Resource Module as explained in RMFR3.
+A resource module **MUST** add value by including additional features on top of the primary resource.
 
 <br>
 
