@@ -33,7 +33,7 @@ Every module needs a module proposal to be created in the AVM repository. This a
 
 During the triage process, module owners are expected to check, complete and follow up on the items described in the sections below.
 
-Module owners **MUST** meet the SLAs defined on the [Module Support](/Azure-Verified-Modules/help-support/module-support/) page! Whilst there's automation in place to support meeting these SLAs, module owners **MUST** check for new issues on a regular basis.
+Module owners **MUST** meet the SLAs defined on the [Module Support](/Azure-Verified-Modules/help-support/module-support/) page! While there's automation in place to support meeting these SLAs, module owners **MUST** check for new issues on a regular basis.
 
 {{< hint type=important >}}
 The [BRM repository](https://aka.ms/BRM) includes other, non-AVM modules and related GitHub issues. As a module owner, make sure you're only triaging, managing or otherwise working on issues that are related to AVM modules!

@@ -79,7 +79,7 @@ You can propose a new module [here][ModuleProposal].
 
 ### How long will it take for someone to respond and a module to be created/updated and published?
 
-Whilst there are SLAs defined for providing [support][ModuleSupport] for existing modules, there are currently no SLAs in place for the creation of new modules. The AVM core team is a small team and is currently working on automating the module creation process to make it as easy as possible for module owners to create and publish modules on their own.
+While there are SLAs defined for providing [support][ModuleSupport] for existing modules, there are currently no SLAs in place for the creation of new modules. The AVM core team is a small team and is currently working on automating the module creation process to make it as easy as possible for module owners to create and publish modules on their own.
 
 Beside of providing program level governance, the [AVM core team][AVMCoreTeam] is mainly responsible for defining the module specifications, providing tooling (such as test frameworks and pipelines), guidance and support to module owners, as well as facilitating the creation of new modules by maintaining the module catalog and identifying volunteers for owning the modules. However, modules will be created and maintained by a broader community of [module owners][ModuleOwners].
 
