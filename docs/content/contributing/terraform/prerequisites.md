@@ -76,10 +76,11 @@ The following tooling/extensions are recommended to assist you developing for th
 
 <br>
 
-#### Desktop Tooling
+#### Desktop/CLI Tooling
 
 - [Go (for writing tests)](https://go.dev/doc/install)
 - [tfenv](https://github.com/tfutils/tfenv) - useful when working on multiple modules that use different Terraform versions from the same machine
+- [grept](https://github.com/Azure/grept) - powerful linting tool for repositories, ensures predefined standards, maintains codebase consistency, and quality
 - [Docker](https://www.docker.com/pricing/#/download) - for executing e2e tests, formatting code and to make sure to meet pipeline requirements using the [Azure Verified Terraform Scaffold](https://github.com/Azure/tfmod-scaffold)
 - [GitHub Desktop](https://desktop.github.com/)
   - To enhance streamlined integration during interactions with upstream repositories, GitHub Desktop will automatically configure your local git repository to use the upstream repository as a remote.
