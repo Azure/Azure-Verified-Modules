@@ -151,8 +151,8 @@ If the module repository you want to contribute to is not yet available, please 
 1. Configure federated identity credentials on the user assigned managed identity. Use the GitHub environment.
 1. Create the following environment secrets on the `test` environment:
    1. `AZURE_CLIENT_ID`
-   1. `AZURE_TENANT_ID`
-   1. `AZURE_SUBSCRIPTION_ID`
+   2. `AZURE_TENANT_ID`
+   3. `AZURE_SUBSCRIPTION_ID`
 1. Search and update TODOs within the code and remove the TODO comments once complete.
 
 To configure the forked CI environment you have to perform several steps:
