@@ -1,21 +1,29 @@
 variable "lock" {
   type = object({
+    kind = optional(string, null)
     name = optional(string, null)
-    kind = optional(string, "None")
   })
-  description = "The lock level to apply to the Key Vault. Possible values are `None`, `CanNotDelete`, and `ReadOnly`."
   default     = {}
+  description = <<DESCRIPTION
+Controls the Resource Lock configuration on this resource. The following properties can be specified:
+
+- `kind` - (Required) The type of lock. Possible values are `null`, `\"CanNotDelete\"` or `\"ReadOnly\"`.
+- `name` - (Optional) The name of the lock. If not specified a name will be generated based on the `kind` value. Changing this forces a new resource to be created.
+DESCRIPTION
   nullable    = false
+
   validation {
-    condition     = contains(["CanNotDelete", "ReadOnly", "None"], var.lock.kind)
-    error_message = "The lock level must be one of: 'None', 'CanNotDelete', or 'ReadOnly'."
+    condition     = var.lock.kind == null || try(contains(["CanNotDelete", "ReadOnly"], var.lock.kind), false)
+    error_message = "The lock level must be one of: `null`, `\"CanNotDelete\"` or `\"ReadOnly\"`."
   }
 }
 
 # Example resource implementation
 resource "azurerm_management_lock" "this" {
-  count      = var.lock.kind != "None" ? 1 : 0
-  name       = coalesce(var.lock.name, "lock-${var.name}")
-  scope      = azurerm_MY_RESOURCE.this.id
+  count = var.lock.kind != null ? 1 : 0
+
   lock_level = var.lock.kind
+  name       = coalesce(var.lock.name, "lock-${var.lock.kind}")
+  scope      = azurerm_MY_RESOURCE.this.id
+  notes      = var.lock.kind == "CanNotDelete" ? "Cannot delete resource or child resources." : "Cannot delete or modify the resource or child resources."
 }
