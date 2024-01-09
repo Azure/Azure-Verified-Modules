@@ -57,12 +57,6 @@ To contribute to this project the following tooling is required:
 
 The following tooling/extensions are recommended to assist you developing for the project:
 
-<br>
-
----
-
-<br>
-
 #### Visual Studio Code Extensions
 
 - [CodeTour extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour)
@@ -70,18 +64,12 @@ The following tooling/extensions are recommended to assist you developing for th
 - For visibility of Bracket Pairs:
   - Inside Visual Studio Code, add `editor.bracketPairColorization.enabled`: true to your `settings.json`, to enable bracket pair colorization.
 
-<br>
-
----
-
-<br>
-
 #### Desktop/CLI Tooling
 
 - [Go (for writing tests)](https://go.dev/doc/install)
 - [tfenv](https://github.com/tfutils/tfenv) - useful when working on multiple modules that use different Terraform versions from the same machine
-- [grept](https://github.com/Azure/grept) - powerful linting tool for repositories, ensures predefined standards, maintains codebase consistency, and quality
-- [Docker](https://www.docker.com/pricing/#/download) - for executing e2e tests, formatting code and to make sure to meet pipeline requirements using the [Azure Verified Terraform Scaffold](https://github.com/Azure/tfmod-scaffold)
+- [grept](https://github.com/Azure/grept) - linting tool for repositories, ensures predefined standards, maintains codebase consistency, and quality
+- [Docker](https://www.docker.com/pricing/#/download) - for executing e2e tests, formatting code and to make sure to meet pipeline requirements using the [Azure Verified Terraform Scaffold](https://github.com/Azure/tfmod-scaffold) (`mcr.microsoft.com/azterraform:latest`) Docker container image
 - [GitHub Desktop](https://desktop.github.com/)
   - To enhance streamlined integration during interactions with upstream repositories, GitHub Desktop will automatically configure your local git repository to use the upstream repository as a remote.
 
