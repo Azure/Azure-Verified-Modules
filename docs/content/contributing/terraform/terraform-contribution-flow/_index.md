@@ -161,8 +161,6 @@ Make sure you have **Docker** installed on your machine.
 
 {{< /hint >}}
 
-{{< /hint >}}
-
 <br>
 
 ---
@@ -215,7 +213,8 @@ Make sure you have **Docker** installed on your machine.
 
 <!-- TODO:
 - Add the creation of 1ES pool
->
+- Add the creation of Deployment protection rules for the `test` environment to avoid spinning up e2e tests with very pull request raised by third-parties
+-->
 
 1. As a Terraform Module Owner you need to be aware of the [AVM contribution process overview](https://azure.github.io/Azure-Verified-Modules/contributing/process/,) [shared specifications](https://azure.github.io/Azure-Verified-Modules/specs/shared/) (including [Interfaces](https://azure.github.io/Azure-Verified-Modules/specs/shared/interfaces/)) and [Terraform-specific](https://azure.github.io/Azure-Verified-Modules/specs/terraform/) specifications as as these need to be considered during pull request reviews for the modules you own.
 2. Familiarise yourself with the AVM Resource Module Naming in the [module index csv's](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes).
