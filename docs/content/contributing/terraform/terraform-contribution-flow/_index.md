@@ -105,7 +105,7 @@ Each time in the following sections we refer to 'your xzy', it is an indicator t
     - [5.4 Run e2e tests](#54-run-e2e-tests)
     - [5.5 Install 1ES](#55-install-1es)
   - [6. Create a pull request to the upstream repository.](#6-create-a-pull-request-to-the-upstream-repository)
-  - [Common mistakes to avoid](#common-mistakes-to-avoid)
+  - [Common mistakes to avoid and recommendations to follow](#common-mistakes-to-avoid-and-recommendations-to-follow)
   - [Owner contribution flow](#owner-contribution-flow)
 
 ## 1. Fork the module source repository
@@ -214,29 +214,30 @@ Make sure you have **Docker** installed on your machine.
 
 <br>
 
-## Common mistakes to avoid
+## Common mistakes to avoid and recommendations to follow
 
+<!--
+TODO:
+- might be worth adding `terraform.tfvars` to `.gitignore` ? -->
+
+- If you contribute to a new module then search and update `TODOs` (which are coming with the [terraform-azurerm-avm-template](https://github.com/Azure/terraform-azurerm-avm-template)) within the code and remove the `TODO` comments once complete
 - `terraform.lock.hcl` shouldn't be in the repository per the `.gitignore` file
 - Update the `support.md` file
-- Consider following specs TFNFR31 for the `local.tf` file
-- Consider updating version to `0.1.0` as the first version that would be published into the terraform registry per spec SNFR17
-- Consider updating output to contain Resource Name, ID and Object per specs RMFR7 & TFFR2.
-- Consider setting prevent_deletion_if_contains_resources to false in provider block in example code per spec TFNFR36.
-- Consider setting a constraint on maximum major version of Provider per spec TFNFR26.
-- The Contributor and Owner teams are not added to the repo per spec SNFR20.
-- Repo needs to be setup in the Azure GitHub Org
-- \_header.md needs to be updated
-- readme.md needs to be generated as per spec SNFR15 & TFNFR2
-- support.md needs to be updated
-- locals.telemetry.tf needs to be updated
-- Outputs haven't been defined in output.tf per specs RMFR7 & TFFR2
-- Consider setting a constraint on maximum major version of Provider per spec TFNFR26 in terraform.tf flle.
-- Exclude terraform.tfvars file from the repo
-- None of the interfaces have been implemented as per spec RMFR5
+- Consider following specs [TFNFR31](https://azure.github.io/Azure-Verified-Modules/specs/terraform/#id-tfnfr31---category-code-style---localstf-must-contain-only-one-locals-block) for the `local.tf` file
+- Consider updating version to `0.1.0` as the first version that would be published into the terraform registry per spec [SNFR17](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning)
+- Consider setting `prevent_deletion_if_contains_resources` to false in provider block in example code per spec TFNFR36.
+- Consider setting a constraint on maximum major version of provider per spec TFNFR26.
+- The `Contributor` and `Owner` teams are not added to the repository per spec [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only).
+- `\_header.md` needs to be updated
+- `readme.md` needs to be generated as per spec [SNFR15](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr15---category-documentation---automatic-documentation-generation) & TFNFR2
+- `support.md` needs to be updated
+- `locals.telemetry.tf` needs to be updated
+- Define outputs like Resource Name, ID and Object in `outputs.tf` per specs RMFR7 & TFFR2
+- Consider setting a constraint on maximum major version of Provider per spec TFNFR26 in `terraform.tf` flle
+- Exclude `terraform.tfvars` file from the repository
+- Make sure to have all interfaces defined as per spec RMFR5
 - Declaration of provider in module should be as per spec TFNFR27 in main.tf
-- After reviewing the main.tf, see multiple issues there in coding style, would recommend following the VM module here. https://github.com/Azure/terraform-azurerm-avm-res-compute-virtualmachine
-- Default E2E testing hasn't been done as per spec SNFR2, also consider adding additional examples giving the criticality of this module.
-- CODEOWNERS file needs to be updated as per spec SNFR9
+- `CODEOWNERS` file needs to be updated as per spec [SNFR9](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr9---category-contributionsupport---avm--pg-teams-github-repo-permissions) & [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#codeowners-file)
 
 ## Owner contribution flow
 
