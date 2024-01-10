@@ -187,18 +187,16 @@ Code!
 
 ### 6. Run Pre-commit Checks
 
-- [6.1 Run grept](#52-run-e2e-tests)
-- [6.2 Check/Generate module documentation](#52-checkgenerate-module-documentation)
-- [6.3 Format Terraform code](#51-format-terraform-code)
-- [6.4 Run e2e tests](#53-run-e2e-tests)
+- [6.1 Run grept](#61-run-e2e-tests)
+- [6.2 Check/Generate module documentation](#62-checkgenerate-module-documentation)
+- [6.3 Format Terraform code](#63-format-terraform-code)
+- [6.4 Run e2e tests](#64-run-e2e-tests)
 
 {{< hint type=tip >}}
 
-To simplify and help with the execution of commands like `docscheck`, `terraform-docs`, `terraform-fmt`, etc. there is now a simplified [avm](https://github.com/Azure/terraform-azurerm-avm-template/blob/main/avm) script available in the [`terraform-azurerm-avm-template`](https://github.com/Azure/terraform-azurerm-avm-template) repository which combines all scripts from the avm_scripts folder in the tfmod-scaffold https://github.com/Azure/tfmod-scaffold/tree/main/avm_scripts respositroy. ONce you run grept it will also download/synchronize the avm script for you with your local repository.
+To simplify and help with the execution of commands like `docscheck`, `terraform-docs`, `terraform-fmt`, etc. there is now a simplified [avm](https://github.com/Azure/terraform-azurerm-avm-template/blob/main/avm) script available in the [`terraform-azurerm-avm-template`](https://github.com/Azure/terraform-azurerm-avm-template) repository which combines all scripts from the [avm_scripts](https://github.com/Azure/tfmod-scaffold/tree/main/avm_scripts) folder in the [tfmod-scaffold](https://github.com/Azure/tfmod-scaffold/) respositroy using [avmmakefile](https://github.com/Azure/tfmod-scaffold/blob/main/avmmakefile). Once you run grept, it will also download/synchronize the avm script for you to your local repository.
 
 {{< /hint >}}
-
-https://github.com/Azure/tfmod-scaffold/blob/main/avmmakefile
 
 #### 6.1 Run grept
 
@@ -209,7 +207,7 @@ You can see [here](https://github.com/Azure/Azure-Verified-Modules-Grept/blob/ma
 
 1. Set environment variables
 
-```
+```bash
 # Linux/MacOS
 export GITHUB_REPOSITORY_OWNER=Azure
 export GITHUB_REPOSITORY=Azure/terraform-azurerm-avm-res-<RP>-<modulename>"
@@ -247,7 +245,7 @@ grept apply -a git::https://github.com/Azure/Azure-Verified-Modules-Grept.git//t
 
 <br>
 
-### 7. Create a pull request to the upstream repository.
+### 7. Create a pull request to the upstream repository
 
 Once you are satisfied with your contribution and validated it, open a PR from your forked repository to the original Terraform Module repository. Make sure you:
 
