@@ -187,7 +187,7 @@ Code!
 
 ### 6. Run Pre-commit Checks
 
-- [6.1 Run grept](#61-run-e2e-tests)
+- [6.1 Run grept](#61-run-grept)
 - [6.2 Check/Generate module documentation](#62-checkgenerate-module-documentation)
 - [6.3 Format Terraform code](#63-format-terraform-code)
 - [6.4 Run e2e tests](#64-run-e2e-tests)
