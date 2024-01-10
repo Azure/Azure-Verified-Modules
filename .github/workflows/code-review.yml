@@ -32,7 +32,7 @@
             VALIDATE_YAML: true
             VALIDATE_BASH: true
             VALIDATE_EDITORCONFIG: true
-            FILTER_REGEX_EXCLUDE: ".*docs/themes/hugo-geekdoc/.*"
+            FILTER_REGEX_EXCLUDE: ".*docs/themes/hugo-geekdoc/.*|.*/telemetry-information-notice\\.md|.*/platform\\.updateModuleRegistryTables\\.yml"
 
     markdown-link-check:
       name: Markdown Link Check

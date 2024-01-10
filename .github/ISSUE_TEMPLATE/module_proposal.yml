@@ -1,6 +1,6 @@
 name: New AVM Module Proposal 📝
 description: Want a new AVM Module to exist? Let us know!
-title: "[Module Proposal]: `MODULE NAME BETWEEN BACKTICKS`"
+title: "[Module Proposal]: `MODULE_NAME_BETWEEN_BACKTICKS`"
 labels: ["Type: New Module Proposal :bulb:", "Needs: Triage :mag:"]
 projects: ["Azure/529"]
 body:

@@ -1,0 +1,135 @@
+name: ".Platform - Update module registry tables"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 1 * * *" # Daily Update at 1 am
+
+env:
+  pipelinePrincipalGitUserName: "AVMPipelinePrincipal"
+  pipelinePrincipalGitUserEmail: "AVM@noreply.github.com"
+  branch_name: "update-module-features-table"
+  pr_title: "Update module features table (automated)"
+  pr_body: "This is an automated ``pull_request`` containing updates to the module status badges table that is stored at ``docs/content/indexes/bicep/_index.md``, as well as the module features CSV stored at ``docs/static/module-features/bicepFeatures.csv``.\nPlease review the ``files changed`` tab to review changes."
+
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  update_status_tables:
+    name: Update status tables
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    environment: platform
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout tools repo
+        uses: actions/checkout@v4
+        with:
+          repository: Azure/bicep-registry-modules
+          path: bicep-registry-modules
+          fetch-depth: 0
+
+      - uses: tibdex/github-app-token@v2
+        id: generate-token
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: Configure local git
+        run: |
+          git config --global user.name '${{ env.pipelinePrincipalGitUserEmail }}'
+          git config --global user.email '${{ env.pipelinePrincipalGitUserName }}'
+
+      - name: Create and checkout branch
+        run: |
+          BRANCH_URL="repos/${{ github.repository }}/branches"
+          JQ_FILTER=".[] | select(.name == \"${{ env.branch_name }}\").name"
+          CHECK_BRANCH_ORIGIN=$(gh api $BRANCH_URL | jq -r "$JQ_FILTER")
+          if [ -z "$CHECK_BRANCH_ORIGIN" ]
+          then
+            echo "Checkout local branch (create new, no origin)..."
+            git checkout -b ${{ env.branch_name }}
+          else
+            echo "Checkout local branch (create new, track from origin)..."
+            git checkout -b ${{ env.branch_name }} --track origin/${{ env.branch_name }}
+          fi
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+
+      - name: "Update module status table"
+        shell: pwsh
+        run: |
+          # Load used functions
+          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'tools' 'platform' 'Set-BicepModuleStatusBadgesTable.ps1')
+
+          $functionInput = @{
+            MarkdownFilePath    = Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepBadges.md'
+            ModulesRepoRootPath = Join-Path $env:GITHUB_WORKSPACE 'bicep-registry-modules'
+          }
+
+          Write-Verbose "Invoke task with" -Verbose
+          Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
+
+          Set-BicepModuleStatusBadgesTable @functionInput -Verbose
+
+      - name: "Update module features csv"
+        shell: pwsh
+        run: |
+          # Load used functions
+          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'tools' 'platform' 'Set-BicepModulesFeatureCSV.ps1')
+
+          $functionInput = @{
+            CSVFilePath         = Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepFeatures.csv'
+            ModulesRepoRootPath = Join-Path $env:GITHUB_WORKSPACE 'bicep-registry-modules'
+          }
+
+          Write-Verbose "Invoke task with" -Verbose
+          Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
+
+          Set-BicepModulesFeatureCSV @functionInput -Verbose
+
+      - name: Check for changes
+        id: git_status
+        run: |
+          mapfile -t "CHECK_GIT_STATUS" < <(git status -s)
+          printf "%s\n" "${CHECK_GIT_STATUS[@]}"
+          echo "changes=${#CHECK_GIT_STATUS[@]}" >> "$GITHUB_OUTPUT"
+
+      - name: Add files, commit and push
+        if: steps.git_status.outputs.changes > 0
+        run: |
+          echo "Pushing changes to origin..."
+          git add docs/static/includes/module-features/bicepBadges.md
+          git add docs/static/includes/module-features/bicepFeatures.csv
+          git commit -m '${{ env.pr_title }}'
+          git push origin ${{ env.branch_name }}
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+
+      - name: Create pull request
+        if: steps.git_status.outputs.changes > 0
+        run: |
+          HEAD_LABEL="${{ github.repository_owner }}:${{ env.branch_name }}"
+          BASE_LABEL="${{ github.repository_owner }}:$(echo '${{ github.ref }}' | sed 's:refs/heads/::')"
+          PULL_REQUEST_URL="repos/${{ github.repository }}/pulls"
+          JQ_FILTER=".[] | select(.head.label == \"$HEAD_LABEL\") | select(.base.label == \"$BASE_LABEL\") | .url"
+          CHECK_PULL_REQUEST_URL=$(gh api $PULL_REQUEST_URL | jq -r "$JQ_FILTER")
+          if [ -z "$CHECK_PULL_REQUEST_URL" ]
+          then
+            CHECK_PULL_REQUEST_URL=$(gh pr create \
+            --title "${{ env.pr_title }}" \
+            --body "${{ env.pr_body }}" \
+            --base "${{ github.ref }}" \
+            --head "${{ env.branch_name }}")
+            echo "Created new PR: $CHECK_PULL_REQUEST_URL"
+          else
+            echo "Existing PR found: $CHECK_PULL_REQUEST_URL"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
