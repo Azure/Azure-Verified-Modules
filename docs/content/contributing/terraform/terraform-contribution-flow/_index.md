@@ -90,9 +90,9 @@ Each time in the following sections we refer to 'your xzy', it is an indicator t
 
 {{< /hint >}}
 
-# Prepare your developer environment
+## Prepare your developer environment
 
-## 1. Fork the module source repository
+### 1. Fork the module source repository
 
 {{< hint type=important >}}
 
@@ -118,7 +118,7 @@ If the module repository you want to contribute to is not yet available, please 
 
 <br>
 
-## 2. Setup your GitHub repository
+### 2. Setup your GitHub repository
 
 1. Set up a GitHub repository environment called `test`.
 2. Configure an environment protection rule to ensure that approval is required before deploying to the `test` environment.
@@ -141,7 +141,7 @@ There is a move from the `test` environment to GitHub self-hosted runners (1ES P
 
 <br>
 
-## 3. Setup your Azure test environment
+### 3. Setup your Azure test environment
 
 AVM tests the deployments in an Azure subscription. To do so, it requires a service principal with access to it.
 
@@ -157,7 +157,7 @@ In this first step, make sure you
 
 <br>
 
-## 4. Configure your CI environment
+### 4. Configure your CI environment
 
 {{< hint type=important >}}
 
@@ -175,7 +175,7 @@ Make sure you have **Docker** installed on your machine.
 
 <br>
 
-## 5. Implement your contribution
+### 5. Implement your contribution
 
 Code!
 
@@ -185,7 +185,7 @@ Code!
 
 <br>
 
-## 6. Run Pre-commit Checks
+### 6. Run Pre-commit Checks
 
 - [6.1 Run grept](#52-run-e2e-tests)
 - [6.2 Check/Generate module documentation](#52-checkgenerate-module-documentation)
@@ -200,7 +200,7 @@ To simplify and help with the execution of commands like `docscheck`, `terraform
 
 https://github.com/Azure/tfmod-scaffold/blob/main/avmmakefile
 
-### 6.1 Run grept
+#### 6.1 Run grept
 
 [Grept](https://github.com/Azure/grept) is a linting tool for repositories, ensures predefined standards, maintains codebase consistency, and quality.
 It's using the grept configuration files from the [Azure-Verified-Modules-Grept](https://github.com/Azure/Azure-Verified-Modules-Grept) repository.
@@ -226,20 +226,20 @@ $env:GITHUB_REPOSITORY="Azure/terraform-azurerm-avm-res-<RP>-<modulename>"
 grept apply -a git::https://github.com/Azure/Azure-Verified-Modules-Grept.git//terraform
 ```
 
-### 6.2. Check/Generate module documentation
+#### 6.2. Check/Generate module documentation
 
 ```bash
 ./avm docscheck # comparing generated README.md with the one in the repo
 ./avm docs # generating module documentation like README.md including examples
 ```
 
-### 6.3 Format Terraform code
+#### 6.3 Format Terraform code
 
 ```bash
 ./avm fmt
 ```
 
-### 6.4 Run e2e tests
+#### 6.4 Run e2e tests
 
 <br>
 
@@ -247,7 +247,7 @@ grept apply -a git::https://github.com/Azure/Azure-Verified-Modules-Grept.git//t
 
 <br>
 
-## 7. Create a pull request to the upstream repository.
+### 7. Create a pull request to the upstream repository.
 
 Once you are satisfied with your contribution and validated it, open a PR from your forked repository to the original Terraform Module repository. Make sure you:
 
@@ -260,7 +260,7 @@ Once you are satisfied with your contribution and validated it, open a PR from y
 
 <br>
 
-## Common mistakes to avoid and recommendations to follow
+### Common mistakes to avoid and recommendations to follow
 
 <!--
 TODO:

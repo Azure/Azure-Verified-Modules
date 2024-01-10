@@ -74,15 +74,15 @@ As per [SNFR23](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contr
 
 Ensure your module is ready for publishing:
 
-1.  All tests are passing.
-2.  All examples are passing.
-3.  All documentation is generated.
-4.  Include/Add [`@Azure/avm-core-team-technical`](https://github.com/orgs/Azure/teams/avm-core-team-technical/members) as a reviewer (if not added automatically added already).
-5.  The repository has an existing tag with the version number you want to publish.
-6.  Elevate your respository access using the Open Source Management Portal (aka.ms/opensource/portal).
-7.  Sign in to the [HashiCorp Registry](https://registry.terraform.io/) using GitHub.
-8.  Publish a module by selecting the `Publish` button in the top right corner, then `Module`
-9.  Select the repository and accept the terms.
+1. All tests are passing.
+2. All examples are passing.
+3. All documentation is generated.
+4. Include/Add [`@Azure/avm-core-team-technical`](https://github.com/orgs/Azure/teams/avm-core-team-technical/members) as a reviewer (if not added automatically added already).
+5. The repository has an existing tag with the version number you want to publish.
+6. Elevate your respository access using the Open Source Management Portal (aka.ms/opensource/portal).
+7. Sign in to the [HashiCorp Registry](https://registry.terraform.io/) using GitHub.
+8. Publish a module by selecting the `Publish` button in the top right corner, then `Module`
+9. Select the repository and accept the terms.
 
 {{< hint type=important >}}
 
