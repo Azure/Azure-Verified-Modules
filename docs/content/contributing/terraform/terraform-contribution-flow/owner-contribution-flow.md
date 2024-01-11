@@ -53,6 +53,14 @@ Familiarise yourself with the AVM Resource Module Naming in the [module index cs
 - Admin: `@Azure/avm-res-<RP>-<modulename>-module-owners-tf` = AVM Resource Module Owners
 - Write: `@Azure/avm-res-<RP>-<modulename>-module-contributors-tf` = AVM Resource Module Contributors
 
+1. Create User Assigned Managed Identity and the e2e `test` Environment.
+
+A module owner can own multiple modules and therefore we recommend to create distinguished User Assigned Managed Identities (UAMI) for each repository a module owner owns. This makes it easier to identify the deployments performed by each identity in the Azure Portal. The UAMI name should follow the pattern `terraform-<provider>-avm-res-<rp>-<ARM resource type>`:
+
+```bash
+az identity create -g <resource group> -n terraform-<provider>-avm-res-<rp>-<ARM resource type>
+```
+
 1. Create deployment protection rules for the `test` environment to avoid spinning up e2e tests with every pull request raised by third-parties. Add the following teams as required reviewers:
 
 - AVM Core Team: `@Azure/avm-core-team`
