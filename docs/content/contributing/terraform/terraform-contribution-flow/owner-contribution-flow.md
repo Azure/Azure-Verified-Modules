@@ -1,6 +1,6 @@
 This section describes the contribution flow for module owners who are responsible for creating and maintaining Terraform Module repositories.
 
-- [GitHub Repository Creation and Configuration](#github-repository-creation-and-configuration)
+- [GitHub repository creation and configuration](#github-repository-creation-and-configuration)
 - [GitHub Respotory Labels](#github-respotory-labels)
 - [Publish the module](#publish-the-module)
 
@@ -31,10 +31,9 @@ Make sure module authors/contributors tested their module in their environment b
 <br>
 <!-- TODO:
 - Add the creation of 1ES pool
-- Add the creation of Deployment protection rules for the `test` environment to avoid spinning up e2e tests with ehttps://azure.github.io/Azure-Verified-Modules/specs/terraform/#id-tffr2---category-outputs---additional-terraform-outputsvery pull request raised by third-parties
 -->
 
-### GitHub Repository Creation and Configuration
+### GitHub repository creation and configuration
 
 Familiarise yourself with the AVM Resource Module Naming in the [module index csv's](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes).
 
@@ -45,14 +44,26 @@ Familiarise yourself with the AVM Resource Module Naming in the [module index cs
 - `@Azure/avm-res-<RP>-<modulename>-module-owners-tf`
 - `@Azure/avm-res-<RP>-<modulename>-module-contributors-tf`
 
-2. Create the module repostory using [terraform-azuremrm-avm-template](https://github.com/Azure/terraform-azurerm-avm-template) in the `Azure` organisation with the following [details (internal only)](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review). You will then have to complete configuration of your repo and start an internal business review. See [this link (internal only)](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review?anchor=conduct-initial-repo-configuration-and-trigger-business-review).
+1. Create the module repostory using [terraform-azuremrm-avm-template](https://github.com/Azure/terraform-azurerm-avm-template) in the `Azure` organisation with the following [details (internal only)](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review). You will then have to complete the configuration of your repository and start an [internal business review](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review?anchor=conduct-initial-repo-configuration-and-trigger-business-review).
 
-3. Add these teams withthe following permissions to the repository:
+2. Add these teams withthe following permissions to the repository:
 
-- Admin: `@Azure/avm-core-team`
+- Admin: `@Azure/avm-core-team` = AVM Core Team
 - Admin: `@Azure/terraform-azure` = Terraform PG
 - Admin: `@Azure/avm-res-<RP>-<modulename>-module-owners-tf` = AVM Resource Module Owners
-- Write: `@Azure/avm-res-<RP>-<modulename>-module-contributors-tf` = AVM Resource Module Contributors\
+- Write: `@Azure/avm-res-<RP>-<modulename>-module-contributors-tf` = AVM Resource Module Contributors
+
+1. Create deployment protection rules for the `test` environment to avoid spinning up e2e tests with every pull request raised by third-parties. Add the following teams as required reviewers:
+
+- AVM Core Team: `@Azure/avm-core-team`
+- Terraform PG: `@Azure/terraform-azure`
+- AVM Resource Module Owners: `@Azure/avm-res-<RP>-<modulename>-module-owners-tf`
+
+<img src="/Azure-Verified-Modules/img/contribution/deploymentProtectionTeams.png" alt="Required reviewers." width=100%>
+
+<p>
+
+<img src="/Azure-Verified-Modules/img/contribution/deploymentProtectionRules.png" alt="Deployment prpotection rules." width=100%>
 
 <br>
 
@@ -62,7 +73,11 @@ Familiarise yourself with the AVM Resource Module Naming in the [module index cs
 
 ### GitHub Respotory Labels
 
-As per [SNFR23](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels) the repositories created by module owners **MUST** have and use the pre-defined GitHub labels. To apply these labels to the repository review the PowerShell script `Set-AvmGitHubLabels.ps1` that is provided in [SNFR23](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels)
+As per [SNFR23](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels) the repositories created by module owners **MUST** have and use the pre-defined GitHub labels. To apply these labels to the repository review the PowerShell script `Set-AvmGitHubLabels.ps1` that is provided in [SNFR23](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels).
+
+```pwsh
+Set-AvmGitHubLabels.ps1 -RepositoryName "Org/MyGitHubRepo" -CreateCsvLabelExports $false -NoUserPrompts $true
+```
 
 <br>
 

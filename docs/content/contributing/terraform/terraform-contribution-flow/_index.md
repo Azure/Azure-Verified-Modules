@@ -60,7 +60,7 @@ merge fix id: "Pull Request 'Fix'" type: HIGHLIGHT
 
 When implementing the GitFlow process as described, it is advisable to configure the local clone of your forked repository with an additional remote for the upstream repository. This will allow you to easily synchronize your locally forked repository with the upstream repository. **_Remember_**, there is a difference between the forked repository on GitHub and the clone of the forked repository on your local machine.
 
-<img src="../../../img/contribution/forkUpstream.png" alt="Upstream to fork and source repository." width=50%>
+<img src="/Azure-Verified-Modules/img/contribution/forkUpstream.png" alt="Upstream to fork and source repository." width=50%>
 
 {{< /hint >}}
 
