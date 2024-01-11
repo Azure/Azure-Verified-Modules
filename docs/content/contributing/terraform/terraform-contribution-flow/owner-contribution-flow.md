@@ -44,22 +44,32 @@ Familiarise yourself with the AVM Resource Module Naming in the [module index cs
 - `@Azure/avm-res-<RP>-<modulename>-module-owners-tf`
 - `@Azure/avm-res-<RP>-<modulename>-module-contributors-tf`
 
-1. Create the module repostory using [terraform-azuremrm-avm-template](https://github.com/Azure/terraform-azurerm-avm-template) in the `Azure` organisation with the following [details (internal only)](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review). You will then have to complete the configuration of your repository and start an [internal business review](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review?anchor=conduct-initial-repo-configuration-and-trigger-business-review).
+2. Create the module repostory using [terraform-azuremrm-avm-template](https://github.com/Azure/terraform-azurerm-avm-template) in the `Azure` organisation with the following [details (internal only)](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review). You will then have to complete the configuration of your repository and start an [internal business review](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review?anchor=conduct-initial-repo-configuration-and-trigger-business-review).
 
-2. Add these teams withthe following permissions to the repository:
+3. Add these teams with the following permissions to the repository:
 
 - Admin: `@Azure/avm-core-team` = AVM Core Team
 - Admin: `@Azure/terraform-azure` = Terraform PG
 - Admin: `@Azure/avm-res-<RP>-<modulename>-module-owners-tf` = AVM Resource Module Owners
 - Write: `@Azure/avm-res-<RP>-<modulename>-module-contributors-tf` = AVM Resource Module Contributors
 
-1. Create User Assigned Managed Identity and the e2e `test` Environment.
+4. Create User Assigned Managed Identity and the e2e `test` Environment.
 
 A module owner can own multiple modules and therefore we recommend to create distinguished User Assigned Managed Identities (UAMI) for each repository a module owner owns. This makes it easier to identify the deployments performed by each identity in the Azure Portal. The UAMI name should follow the pattern `terraform-<provider>-avm-res-<rp>-<ARM resource type>`:
 
 ```bash
 az identity create -g <resource group> -n terraform-<provider>-avm-res-<rp>-<ARM resource type>
 ```
+
+<!-- TODO: secrets can be removed since the latest azteraform docker image with having ./avm implemented -->
+
+5. Create the following environment secrets on the `test` environment
+
+- `AZURE_CLIENT_ID` # Object (principal) ID of the UAMI
+- `AZURE_TENANT_ID`
+- `AZURE_SUBSCRIPTION_ID`
+
+A client secret is not required as the UAMI is used for authentication.
 
 1. Create deployment protection rules for the `test` environment to avoid spinning up e2e tests with every pull request raised by third-parties. Add the following teams as required reviewers:
 

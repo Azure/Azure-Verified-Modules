@@ -121,13 +121,14 @@ If the module repository you want to contribute to is not yet available, please 
 ### 2. Setup your GitHub repository
 
 1. Set up a GitHub repository environment called `test`.
-2. Configure an environment protection rule to ensure that approval is required before deploying to the `test` environment.
 <!-- TODO: secrets can be removed since the latest azteraform docker image with having ./avm implemented -->
-3. Create the following environment secrets on the `test` environment
+2. Create the following environment secrets on the `test` environment
 
 - `AZURE_CLIENT_ID`
 - `AZURE_TENANT_ID`
 - `AZURE_SUBSCRIPTION_ID`
+
+1. Optional: Create deployment protection rules for the `test` environment to avoid spinning up e2e tests with every pull request raised by third-parties.
 
 {{< hint type=important >}}
 
