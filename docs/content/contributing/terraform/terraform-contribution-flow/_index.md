@@ -96,17 +96,17 @@ Each time in the following sections we refer to 'your xzy', it is an indicator t
 
 {{< hint type=important >}}
 
-Each Terraform AVM module will have its own GitHub Repository in the [`Azure`](https://github.com/Azure) GitHub Organization as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
+Each Terraform AVM module will have its own GitHub repository in the [`Azure`](https://github.com/Azure) GitHub Organization as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
 
-This repo will be created by the Module Owners and the AVM Core team collaboratively, including the configuration of permissions as per [SNFR9](/Azure-Verified-Modules/specs/shared/#id-snfr9---category-contributionsupport---avm--pg-teams-github-repo-permissions)
+This repository will be created by the Module owners and the AVM Core team collaboratively, including the configuration of permissions as per [SNFR9](/Azure-Verified-Modules/specs/shared/#id-snfr9---category-contributionsupport---avm--pg-teams-github-repo-permissions)
 
 {{< /hint >}}
 
-Module contributors are expected to fork the corresponding repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the repository's `main` branch.
+Module contributors are expected to fork the corresponding repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the source repository's `main` branch.
 
 To do so, simply navigate to your desired repository, select the `'Fork'` button to the top right of the UI, select where the fork should be created (i.e., the owning organization) and finally click 'Create fork'.
 
-{{< hint type=important >}}
+{{< hint type=note >}}
 
 If the module repository you want to contribute to is not yet available, please get in touch with the respective module owner which can be tracked in the [Terraform Resource Modules index](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/tf-resource-modules/) see `PrimaryModuleOwnerGHHandle` column.
 
@@ -122,17 +122,17 @@ If the module repository you want to contribute to is not yet available, please 
 
 1. Set up a GitHub repository environment called `test`.
 <!-- TODO: secrets can be removed since the latest azteraform docker image with having ./avm implemented -->
-2. Create the following environment secrets on the `test` environment
+2. Create the following environment secrets in the `test` environment
 
 - `AZURE_CLIENT_ID`
 - `AZURE_TENANT_ID`
 - `AZURE_SUBSCRIPTION_ID`
 
-1. Optional: Create deployment protection rules for the `test` environment to avoid spinning up e2e tests with every pull request raised by third-parties.
+1. **Optional**: Create deployment protection rules for the `test` environment to avoid spinning up e2e tests with every pull request raised by third-parties.
 
-{{< hint type=important >}}
+{{< hint type=note >}}
 
-There is a move from the `test` environment to GitHub self-hosted runners (1ES Pool) which soon makes the above secrets obsolete. This is currently in progress.
+There is a move from the `test` environment to GitHub self-hosted runners (1ES Pool) which soon makes the creation of secrets obsolete. This is currently in progress.
 
 {{< /hint >}}
 
@@ -144,13 +144,31 @@ There is a move from the `test` environment to GitHub self-hosted runners (1ES P
 
 ### 3. Setup your Azure test environment
 
-AVM tests the deployments in an Azure subscription. To do so, it requires a service principal with access to it.
+AVM performs end-to-end (e2e) test dpeloyments of all modules in Azure for validation and requires an User-assigned Managed Identity (UAMI) with access to a test subscription:
 
-In this first step, make sure you
+1. Create an UAMI in your Azure test subscription.
+2. Create a role assignment for the UAMI on your test subscription, use `Contributor` role (your module might require higher privileges) such as `Owner` but we reocmmend to go with least privilege.
 
-1. Create a user-assigned managed identity in your test subscription.
-2. Create a role assignment for the managed identity on your test subscription, use `Contributor` role (your module might require higher privileges).
-3. Configure federated identity credentials on the user assigned managed identity. Use the GitHub environment.
+3. Configure [federated identity credentials](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity?pivots=identity-wif-mi-methods-azcli) on the user assigned managed identity. Use the GitHub `test` environment.
+
+You can use the following script to create the UAMI, role assignment and federated identity credentials:
+
+```pwsh
+# Create UAMI
+$identityName = "terraform-<provider>-avm-res-<resource provider>-<modulename>" # e.g. terraform-azurerm-avm-res-keyvault-vault
+$resourceGroupName = "<resource group name>"
+$roleName = "Contributor"
+$subscriptionID = $(az account show --query id --output tsv)
+echo "Creating UAMI $identityName, with role $roleName assigned to /subscriptions/$subscriptionID"
+
+$identity=az identity create -g $resourceGroupName -n $identityName
+$principalId=$(az identity show -n $identityName -g $resourceGroupName --query principalId --out tsv)
+az role assignment create --assignee $principalId --role $roleName --scope /subscriptions/$subscriptionID
+
+# Create federated identity credentials
+$fcName = $identityName
+az identity federated-credential create --name $fcName --identity-name $identityName --resource-group $resourceGroupName --issuer "https://token.actions.githubusercontent.com" --subject "repo:Azure/$($identityName):environment:test" --audiences 'api://AzureADTokenExchange'
+```
 
 <br>
 
@@ -178,7 +196,14 @@ Make sure you have **Docker** installed on your machine.
 
 ### 5. Implement your contribution
 
-Code!
+To implement your contribution, we kindly ask you to first review the [shared](/Azure-Verified-Modules/specs/shared/) & [Terraform-specific](/Azure-Verified-Modules/specs/terraform/) specifications and [composition guidelines](/Azure-Verified-Modules/contributing/bicep/terraform/) in particular to make sure your contribution complies with the repository's design and principles.
+
+If you're working on a new module, we'd also ask you to ...
+
+<!--
+TODO:
+- Add implementation sequence in connection with ### 4. Configure your CI environment and ### 6. Run Pre-commit Checks
+-->
 
 <br>
 

@@ -1,8 +1,9 @@
 This section describes the contribution flow for module owners who are responsible for creating and maintaining Terraform Module repositories.
 
-- [GitHub repository creation and configuration](#github-repository-creation-and-configuration)
-- [GitHub Respotory Labels](#github-respotory-labels)
-- [Publish the module](#publish-the-module)
+- [1. GitHub repository creation and configuration](#1-github-repository-creation-and-configuration)
+- [2. GitHub Respotory Labels](#2-github-respotory-labels)
+- [3. Setup Azure environment for AVM e2e tests](#3-setup-azure-environment-for-avm-e2e-tests)
+- [4. Publish the module](#4-publish-the-module)
 
 <br>
 
@@ -33,7 +34,7 @@ Make sure module authors/contributors tested their module in their environment b
 - Add the creation of 1ES pool
 -->
 
-### GitHub repository creation and configuration
+### 1. GitHub repository creation and configuration
 
 Familiarise yourself with the AVM Resource Module Naming in the [module index csv's](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes).
 
@@ -53,17 +54,11 @@ Familiarise yourself with the AVM Resource Module Naming in the [module index cs
 - Admin: `@Azure/avm-res-<RP>-<modulename>-module-owners-tf` = AVM Resource Module Owners
 - Write: `@Azure/avm-res-<RP>-<modulename>-module-contributors-tf` = AVM Resource Module Contributors
 
-4. Create User Assigned Managed Identity and the e2e `test` Environment.
-
-A module owner can own multiple modules and therefore we recommend to create distinguished User Assigned Managed Identities (UAMI) for each repository a module owner owns. This makes it easier to identify the deployments performed by each identity in the Azure Portal. The UAMI name should follow the pattern `terraform-<provider>-avm-res-<rp>-<ARM resource type>`:
-
-```bash
-az identity create -g <resource group> -n terraform-<provider>-avm-res-<rp>-<ARM resource type>
-```
-
-<!-- TODO: secrets can be removed since the latest azteraform docker image with having ./avm implemented -->
+4. Set up a GitHub repository Environment called `test`.
 
 5. Create the following environment secrets on the `test` environment
+
+<!-- TODO: secrets can be removed since the latest azteraform docker image with having ./avm implemented -->
 
 - `AZURE_CLIENT_ID` # Object (principal) ID of the UAMI
 - `AZURE_TENANT_ID`
@@ -71,7 +66,7 @@ az identity create -g <resource group> -n terraform-<provider>-avm-res-<rp>-<ARM
 
 A client secret is not required as the UAMI is used for authentication.
 
-1. Create deployment protection rules for the `test` environment to avoid spinning up e2e tests with every pull request raised by third-parties. Add the following teams as required reviewers:
+6. Create deployment protection rules for the `test` environment to avoid spinning up e2e tests with every pull request raised by third-parties. Add the following teams as required reviewers:
 
 - AVM Core Team: `@Azure/avm-core-team`
 - Terraform PG: `@Azure/terraform-azure`
@@ -81,7 +76,10 @@ A client secret is not required as the UAMI is used for authentication.
 
 <p>
 
+<!--
 <img src="/Azure-Verified-Modules/img/contribution/deploymentProtectionRules.png" alt="Deployment prpotection rules." width=100%>
+-->
+<img src="/Azure-Verified-Modules/img/contribution/deploymentProtectionRules2.png" alt="Deployment prpotection rules." width=100%>
 
 <br>
 
@@ -89,12 +87,12 @@ A client secret is not required as the UAMI is used for authentication.
 
 <br>
 
-### GitHub Respotory Labels
+### 2. GitHub Respotory Labels
 
 As per [SNFR23](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels) the repositories created by module owners **MUST** have and use the pre-defined GitHub labels. To apply these labels to the repository review the PowerShell script `Set-AvmGitHubLabels.ps1` that is provided in [SNFR23](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels).
 
 ```pwsh
-Set-AvmGitHubLabels.ps1 -RepositoryName "Org/MyGitHubRepo" -CreateCsvLabelExports $false -NoUserPrompts $true
+Set-AvmGitHubLabels.ps1 -RepositoryName "Azure/MyGitHubRepo" -CreateCsvLabelExports $false -NoUserPrompts $true
 ```
 
 <br>
@@ -103,7 +101,43 @@ Set-AvmGitHubLabels.ps1 -RepositoryName "Org/MyGitHubRepo" -CreateCsvLabelExport
 
 <br>
 
-### Publish the module
+### 3. Setup Azure environment for AVM e2e tests
+
+A module owner can own multiple modules and therefore we recommend to create distinguished User Assigned Managed Identities (UAMI) for each repository a module owner owns. This makes it easier to identify the deployments performed by each identity in the Azure Portal. The UAMI name should follow the pattern `terraform-<provider>-avm-res-<resource provider>-<modulename>`:
+
+1. Create an UAMI in your Azure test subscription.
+2. Create a role assignment for the UAMI on your test subscription, use `Contributor` role (your module might require higher privileges) such as `Owner` but we reocmmend to go with least privilege.
+
+3. Configure [federated identity credentials](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity?pivots=identity-wif-mi-methods-azcli) on the user assigned managed identity. Use the GitHub `test` environment.
+
+You can use the following script to create the UAMI, role assignment and federated identity credentials:
+
+```pwsh
+# Create UAMI
+$identityName = "terraform-<provider>-avm-res-<resource provider>-<modulename>" # e.g. terraform-azurerm-avm-res-keyvault-vault
+$resourceGroupName = "<resource group name>"
+$roleName = "Contributor"
+$subscriptionID = $(az account show --query id --output tsv)
+echo "Creating UAMI $identityName, with role $roleName assigned to /subscriptions/$subscriptionID"
+
+$identity=az identity create -g $resourceGroupName -n $identityName
+$principalId=$(az identity show -n $identityName -g $resourceGroupName --query principalId --out tsv)
+az role assignment create --assignee $principalId --role $roleName --scope /subscriptions/$subscriptionID
+
+# Create federated identity credentials
+$fcName = $identityName
+az identity federated-credential create --name $fcName --identity-name $identityName --resource-group $resourceGroupName --issuer "https://token.actions.githubusercontent.com" --subject "repo:Azure/$($identityName):environment:test" --audiences 'api://AzureADTokenExchange'
+```
+
+<br>
+
+---
+
+<br>
+
+### 4. Publish the module
+
+Once the module is ready to be published, follow the below steps to publish the module to the HashiCorp Registry.
 
 Ensure your module is ready for publishing:
 
