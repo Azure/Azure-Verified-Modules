@@ -29,17 +29,17 @@ on:
       - ".github/actions/templates/avm-**"
       - ".github/workflows/avm.template.module.yml"
         # >>> UPDATE to for example ".github/workflows/avm.res.azure.key-vault.vault"
-      - ".github/workflows/avm.[res|ptn].[providerNamespace].[resourceType]" 
+      - ".github/workflows/avm.[res|ptn].[providerNamespace].[resourceType]"
         # >>> UPDATE to for example "avm/res/key-vault/vault/**"
-      - "avm/[res|ptn]/[providerNamespace]/[resourceType]/**"                
+      - "avm/[res|ptn]/[providerNamespace]/[resourceType]/**"
       - "avm/utilities/pipelines/**"
       - "!*/**/README.md"
 
 env:
   # >>> UPDATE to for example "avm/res/key-vault/vault"
-  modulePath: "avm/[res|ptn]/[providerNamespace]/[resourceType]"  
-  # >>> Update to for example ".github/workflows/avm.res.azure.key-vault.vault"                   
-  workflowPath: ".github/workflows/avm.[res|ptn].[providerNamespace].[resourceType]" 
+  modulePath: "avm/[res|ptn]/[providerNamespace]/[resourceType]"
+  # >>> Update to for example ".github/workflows/avm.res.azure.key-vault.vault"
+  workflowPath: ".github/workflows/avm.[res|ptn].[providerNamespace].[resourceType]"
 
 concurrency:
   group: ${{ github.workflow }}
@@ -49,7 +49,7 @@ jobs:
   #   Initialize pipeline   #
   ###########################
   job_initialize_pipeline:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     name: "Initialize pipeline"
     steps:
       - name: "Checkout"

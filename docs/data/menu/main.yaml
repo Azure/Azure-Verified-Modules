@@ -100,6 +100,8 @@ main:
               ref: '/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files'
             - name: 'Validate module locally'
               ref: '/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally'
+            - name: 'Enable or disable workflows'
+              ref: '/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows'
       - name: 'Terraform Modules'
         ref: '/contributing/terraform'
       - name: 'Contribution Q&A'

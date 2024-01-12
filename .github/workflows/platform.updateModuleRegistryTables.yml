@@ -20,7 +20,7 @@ jobs:
   update_status_tables:
     name: Update status tables
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     environment: platform
     steps:
       - name: "Checkout"

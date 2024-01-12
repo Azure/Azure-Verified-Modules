@@ -150,7 +150,7 @@ In these scenarios the AVM modules will not enforce the additional resources to 
 
 {{< hint type=important >}}
 
-Whilst every Well-Architected Framework pillar's recommendations should equally be considered by the module owners/contributors, within AVM we are taking an approach to prioritize reliability and security over cost optimization. This provides consumers of the AVM modules, by default, more resilient and secure resources and patterns.
+While every Well-Architected Framework pillar's recommendations should equally be considered by the module owners/contributors, within AVM we are taking an approach to prioritize reliability and security over cost optimization. This provides consumers of the AVM modules, by default, more resilient and secure resources and patterns.
 
 However, please note these defaulted values can be altered via input parameter/variables in each of the modules so that you can meet your specific requirements.
 
@@ -186,7 +186,7 @@ If the relevant AVM module isn't available to use to assist the Landing Zone Acc
 
 ## Does/will AVM cover Microsoft 365, Azure DevOps, GitHub, etc.?
 
-Whilst the principles and practices of AVM are largely applicable to other clouds and services such as, Microsoft 365 & Azure DevOps, the AVM program (today) only covers Azure cloud resources and architectures.
+While the principles and practices of AVM are largely applicable to other clouds and services such as, Microsoft 365 & Azure DevOps, the AVM program (today) only covers Azure cloud resources and architectures.
 
 However, if you think this program, or a similar one, should exist to cover these other Microsoft Cloud offerings, please give a 👍 or leave a comment on this [GitHub Issue #71](https://github.com/Azure/Azure-Verified-Modules/issues/71) in the AVM repository.
 

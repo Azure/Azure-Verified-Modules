@@ -50,12 +50,13 @@ function Set-AvmGitHubTeamsIssue {
     # Extract Gh Handle from Owner String
     $Owner = $Owner.Split(" ")[0]
 
-    $title = "[GitHub Team Issue] $TeamName"
-    $bodyAutoDisclaimer = "*This issue was automatically created by the AVM Team Linter. If this issue has been created by mistake please reach out to the AVM Team using this issue.*"
+    $title = "[GitHub Team Issue] ``$TeamName``"
+    $bodyAutoDisclaimer = "*This issue was automatically created by the AVM Team Linter. If this issue has been created by mistake, please reach out to the AVM Team by leaving a comment on this issue.*"
+    $bodyAdvisoryNote = "**NOTE**: `n`n- The title of this issue **MUST** not be changed to prevent duplication of issues. `n- This issue **MUST** be closed by the module owner, once the issue has been addressed."
     $teamError = "# Description `nThe AVM Team Linter has found an issue with the following GitHub Team."
     $teamTable = "| Team Name | Owner | Issue |`n| --- | --- | --- |`n| $TeamName | $Owner | $validationError |"
     $resolutionSegment = "# Resolution `n$ResolutionInfo"
-    $body = "$teamError`n`n$teamTable`n`n$resolutionSegment`n`n$bodyAutoDisclaimer"
+    $body = "$teamError`n`n$teamTable`n`n$resolutionSegment`n`n$bodyAutoDisclaimer`n`n$bodyAdvisoryNote"
 
     $issues = Find-GithubIssue -title $title
 
@@ -73,7 +74,9 @@ function Set-AvmGitHubTeamsIssue {
     }
     elseif (($issues -like "No match found*") -And !$CreateIssues) {
         Write-Verbose "New issue should be created for: $($title) with $($body)"
-        Write-Verbose "Issue not created due to -CreateIssues switch not being used. (Check Branch)"
+        Write-Verbose "Issue not created due to -CreateIssues switch not being used. Performing What-If"
+        New-AvmGitHubTeamsIssue -title $title -assignee $Owner -body $body -WhatIf
+
     }
     else {
         Write-Output "Search Output: $($issues)"
