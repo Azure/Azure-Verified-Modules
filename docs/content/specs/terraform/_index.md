@@ -702,9 +702,11 @@ A cleanup of `deprecated_variables.tf` can be performed during a major version r
 
 The `terraform.tf` file must only contain one `terraform` block.
 
-The first line of the `terraform` block should define a `required_version` property for the Terraform CLI.
+The first line of the `terraform` block must define a `required_version` property for the Terraform CLI.
 
-The `required_version` must limit the maximum major version of the Terraform CLI. Major version releases of the Terraform CLI can introduce breaking changes and *MUST* be tested.
+The `required_version` property must include a constraint on the minimum version of the Terraform CLI. Previous releases of the Terraform CLI can have unexpected behaviour.
+
+The `required_version` property must include a constraint on the maximum major version of the Terraform CLI. Major version releases of the Terraform CLI can introduce breaking changes and *MUST* be tested.
 
 The `required_version` property constraint can use the `~> #.#` or the `>= #.#.#, < #.#.#` format.
 
