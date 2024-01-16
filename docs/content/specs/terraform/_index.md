@@ -700,22 +700,23 @@ A cleanup of `deprecated_variables.tf` can be performed during a major version r
 
 #### ID: TFNFR25 - Category: Code Style - All verified modules **MUST** have `terraform.tf` file
 
-`terraform.tf` file can only contain one `terraform` block.
+The `terraform.tf` file must only contain one `terraform` block.
 
-The first line of this `terraform` block should define like: `required_version = ">= 1.1"`.
+The first line of the `terraform` block should define a `required_version` for the Terraform CLI like: `required_version = "~> 1.6"` or `required_version = ">= 1.6.0, < 2.0.0`.
 
-`terraform` block should contain a block called `required_providers`, the content of it is the restrictions for provider's version. Provider's version restriction should be sorted in alphabetical order, same for the assignment statements. `version` restrctions should use `>=` if not specified. No other kinds of restrictions can be used without proper justification.
+The `required_version` should limit the maximum major version of the Terraform CLI as major versions could introduce breaking changes and should be tested.
 
-All the providers used in the module should be defined in `required_providers`. ***Please do not add providers that are not directly required by this module. If submodules are used then each submodule should have its own `versions.tf` file.***
+The `terraform` block should contain a block called `required_providers`, specifying the `source` of the providers. Providers in the `required_providers` block should be sorted in alphabetical order. `version` restrictions must be included for each provider, see TFNFR26 for further details. No other kinds of restrictions can be used without proper justification.
 
-Since a major version upgrade of the provider can lead to a breaking change, a major version upgrade of the provider must come with a major version upgrade of the module itself. Which means, we should almost always declare `azurerm` block like the following example:
+All the providers used in the module must be defined in `required_providers`. ***Please do not add providers that are not directly required by this module. If submodules are used then each submodule should have its own `versions.tf` file.***
 
 ```terraform
 terraform {
+  required_version = "~> 1.6"
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.11, < 4.0"
+      version = "~> 3.11"
     }
   }
 }
@@ -727,36 +728,15 @@ terraform {
 
 <br>
 
-#### ID: TFNFR26 - Category: Code Style - Provider version constraint **MUST** have a constraint on maximum major version
+#### ID: TFNFR26 - Category: Code Style - Provider version constraint **MUST** have a constraint on minimum and maximum major version
 
-Major version upgrade might brings breaking change, all provider's major version upgrade *MUST* be tested.
+The minumum version of the provider must be specified, as older version may not work as expected. A major version upgrade to a provider may introduce breaking change, so all providers must specifiy maximum major version. Upgrades of a major provider version *MUST* be tested.
 
 Good examples:
 
 ```terraform
 terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = ">= 3.11, < 4.0"
-    }
-  }
-}
-```
-
-```terraform
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = ">= 2.0, < 4.0"
-    }
-  }
-}
-```
-
-```terraform
-terraform {
+  required_version = "~> 1.6"
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -768,6 +748,31 @@ terraform {
 
 ```terraform
 terraform {
+  required_version = ">= 1.6.6, < 2.0.0"
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 3.11.1, < 4.0.0"
+    }
+  }
+}
+```
+
+```terraform
+terraform {
+  required_version = ">= 1.6, < 2.0"
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 3.11, < 4.0"
+    }
+  }
+}
+```
+
+```terraform
+terraform {
+  required_version = "1.6"
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -781,6 +786,7 @@ Bad example:
 
 ```terraform
 terraform {
+  required_version = ">= 1.6"
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
