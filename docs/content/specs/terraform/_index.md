@@ -698,24 +698,29 @@ A cleanup of `deprecated_variables.tf` can be performed during a major version r
 
 <br>
 
-#### ID: TFNFR25 - Category: Code Style - All verified modules **MUST** have `terraform.tf` file
+#### ID: TFNFR25 - Category: Code Style - All verified modules **MUST** have `terraform.tf` file and `required_version` **MUST** be set
 
-`terraform.tf` file can only contain one `terraform` block.
+The `terraform.tf` file must only contain one `terraform` block.
 
-The first line of this `terraform` block should define like: `required_version = ">= 1.1"`.
+The first line of the `terraform` block must define a `required_version` property for the Terraform CLI.
 
-`terraform` block should contain a block called `required_providers`, the content of it is the restrictions for provider's version. Provider's version restriction should be sorted in alphabetical order, same for the assignment statements. `version` restrctions should use `>=` if not specified. No other kinds of restrictions can be used without proper justification.
+The `required_version` property must include a constraint on the minimum version of the Terraform CLI. Previous releases of the Terraform CLI can have unexpected behaviour.
 
-All the providers used in the module should be defined in `required_providers`. ***Please do not add providers that are not directly required by this module. If submodules are used then each submodule should have its own `versions.tf` file.***
+The `required_version` property must include a constraint on the maximum major version of the Terraform CLI. Major version releases of the Terraform CLI can introduce breaking changes and *MUST* be tested.
 
-Since a major version upgrade of the provider can lead to a breaking change, a major version upgrade of the provider must come with a major version upgrade of the module itself. Which means, we should almost always declare `azurerm` block like the following example:
+The `required_version` property constraint can use the `~> #.#` or the `>= #.#.#, < #.#.#` format.
+
+***Note: You can read more about Terraform version constraints in the [documentation](https://developer.hashicorp.com/terraform/language/expressions/version-constraints).***
+
+Example `terraform.tf` file:
 
 ```terraform
 terraform {
+  required_version = "~> 1.6"
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.11, < 4.0"
+      version = "~> 3.11"
     }
   }
 }
@@ -727,36 +732,29 @@ terraform {
 
 <br>
 
-#### ID: TFNFR26 - Category: Code Style - Provider version constraint **MUST** have a constraint on maximum major version
+#### ID: TFNFR26 - Category: Code Style - Providers **MUST** be declared in the `required_providers` block in `terraform.tf` and **MUST** have a constraint on minimum and maximum major version
 
-Major version upgrade might brings breaking change, all provider's major version upgrade *MUST* be tested.
+The `terraform` block in `terraform.tf` must contain the `required_providers` block.
+
+Each provider used directly in the module must be specified with the `source` and `version` properties. Providers in the `required_providers` block should be sorted in alphabetical order.
+
+Do not add providers to the `required_providers` block that are not directly required by this module. If submodules are used then each submodule should have its own `versions.tf` file.
+
+The `source` property must be in the format of `namespace/name`. If this is not explicity specified, it can cause failure.
+
+The `version` property must include a constraint on the minumum version of the provider. Older provider versions may not work as expected.
+
+The `version` property must include a constraint on the maximum major version. A provider major version release may introduce breaking change, so updates to the major version constraint for a provider *MUST* be tested.
+
+The `version` property constraint can use the `~> #.#` or the `>= #.#.#, < #.#.#` format.
+
+***Note: You can read more about Terraform version constraints in the [documentation](https://developer.hashicorp.com/terraform/language/expressions/version-constraints).***
 
 Good examples:
 
 ```terraform
 terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = ">= 3.11, < 4.0"
-    }
-  }
-}
-```
-
-```terraform
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = ">= 2.0, < 4.0"
-    }
-  }
-}
-```
-
-```terraform
-terraform {
+  required_version = "~> 1.6"
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -768,6 +766,33 @@ terraform {
 
 ```terraform
 terraform {
+  required_version = ">= 1.6.6, < 2.0.0"
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 3.11.1, < 4.0.0"
+    }
+  }
+}
+```
+
+```terraform
+terraform {
+  required_version = ">= 1.6, < 2.0"
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 3.11, < 4.0"
+    }
+  }
+}
+```
+
+Acceptable example (but not recommended):
+
+```terraform
+terraform {
+  required_version = "1.6"
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -781,6 +806,7 @@ Bad example:
 
 ```terraform
 terraform {
+  required_version = ">= 1.6"
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
