@@ -64,7 +64,7 @@ You can also log a support ticket and these will be redirected to the AVM team a
 
 See [Module Support](/Azure-Verified-Modules/help-support/module-support) for more information.
 
-{{< /hint >}}}
+{{< /hint >}}
 
 ## Next Steps
 
