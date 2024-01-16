@@ -698,15 +698,17 @@ A cleanup of `deprecated_variables.tf` can be performed during a major version r
 
 <br>
 
-#### ID: TFNFR25 - Category: Code Style - All verified modules **MUST** have `terraform.tf` file
+#### ID: TFNFR25 - Category: Code Style - All verified modules **MUST** have `terraform.tf` file and `required_version` **MUST** be set
 
 The `terraform.tf` file must only contain one `terraform` block.
 
-The first line of the `terraform` block should define a `required_version` property for the Terraform CLI in the format `required_version = "~> 1.6"` or `required_version = ">= 1.6.0, < 2.0.0`.
+The first line of the `terraform` block should define a `required_version` property for the Terraform CLI.
+
+The `required_version` must limit the maximum major version of the Terraform CLI. Major version releases of the Terraform CLI can introduce breaking changes and *MUST* be tested.
+
+The `required_version` property constraint can use the `~> #.#` or the `>= #.#.#, < #.#.#` format.
 
 ***Note: You can read more about Terraform version constraints in the [documentation](https://developer.hashicorp.com/terraform/language/expressions/version-constraints).***
-
-The `required_version` should limit the maximum major version of the Terraform CLI, as major version releases can introduce breaking changes and should be tested.
 
 Example `terraform.tf` file:
 
@@ -728,7 +730,7 @@ terraform {
 
 <br>
 
-#### ID: TFNFR26 - Category: Code Style - Providers must be declared in the `required_providers` block in `terraform.tf` and **MUST** have a constraint on minimum and maximum major version
+#### ID: TFNFR26 - Category: Code Style - Providers **MUST** be declared in the `required_providers` block in `terraform.tf` and **MUST** have a constraint on minimum and maximum major version
 
 The `terraform` block in `terraform.tf` must contain the `required_providers` block.
 
