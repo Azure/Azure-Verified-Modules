@@ -702,13 +702,13 @@ A cleanup of `deprecated_variables.tf` can be performed during a major version r
 
 The `terraform.tf` file must only contain one `terraform` block.
 
-The first line of the `terraform` block should define a `required_version` for the Terraform CLI like: `required_version = "~> 1.6"` or `required_version = ">= 1.6.0, < 2.0.0`.
+The first line of the `terraform` block should define a `required_version` property for the Terraform CLI in the format `required_version = "~> 1.6"` or `required_version = ">= 1.6.0, < 2.0.0`.
 
-The `required_version` should limit the maximum major version of the Terraform CLI as major versions could introduce breaking changes and should be tested.
+***Note: You can read more about Terraform version constraints in the [documentation](https://developer.hashicorp.com/terraform/language/expressions/version-constraints).***
 
-The `terraform` block should contain a block called `required_providers`, specifying the `source` of the providers. Providers in the `required_providers` block should be sorted in alphabetical order. `version` restrictions must be included for each provider, see TFNFR26 for further details. No other kinds of restrictions can be used without proper justification.
+The `required_version` should limit the maximum major version of the Terraform CLI, as major version releases can introduce breaking changes and should be tested.
 
-All the providers used in the module must be defined in `required_providers`. ***Please do not add providers that are not directly required by this module. If submodules are used then each submodule should have its own `versions.tf` file.***
+Example `terraform.tf` file:
 
 ```terraform
 terraform {
@@ -728,9 +728,23 @@ terraform {
 
 <br>
 
-#### ID: TFNFR26 - Category: Code Style - Provider version constraint **MUST** have a constraint on minimum and maximum major version
+#### ID: TFNFR26 - Category: Code Style - Providers must be declared in the `required_providers` block in `terraform.tf` and **MUST** have a constraint on minimum and maximum major version
 
-The minumum version of the provider must be specified, as older version may not work as expected. A major version upgrade to a provider may introduce breaking change, so all providers must specifiy maximum major version. Upgrades of a major provider version *MUST* be tested.
+The `terraform` block in `terraform.tf` must contain the `required_providers` block.
+
+Each provider used directly in the module must be specified with the `source` and `version` properties. Providers in the `required_providers` block should be sorted in alphabetical order.
+
+Do not add providers to the `required_providers` block that are not directly required by this module. If submodules are used then each submodule should have its own `versions.tf` file.
+
+The `source` property must be in the format of `namespace/name`. If this is not explicity specified, it can cause failure.
+
+The `version` property must include a constraint on the minumum version of the provider. Older provider versions may not work as expected.
+
+The `version` property must include a constraint on the maximum major version. A provider major version release may introduce breaking change, so updates to the major version constraint for a provider *MUST* be tested.
+
+The `version` property constraint can use the `~> #.#` or the `>= #.#.#, < #.#.#` format.
+
+***Note: You can read more about Terraform version constraints in the [documentation](https://developer.hashicorp.com/terraform/language/expressions/version-constraints).***
 
 Good examples:
 
@@ -769,6 +783,8 @@ terraform {
   }
 }
 ```
+
+Acceptable example (but not recommended):
 
 ```terraform
 terraform {
