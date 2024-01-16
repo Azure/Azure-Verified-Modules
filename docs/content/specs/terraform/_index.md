@@ -297,11 +297,11 @@ subnet {
 
 Meta-arguments are assignment statements can be declared by all `resource` or `data` blocks. They are:
 
-* `count`
-* `depends_on`
-* `for_each`
-* `lifecycle`
-* `provider`
+- `count`
+- `depends_on`
+- `for_each`
+- `lifecycle`
+- `provider`
 
 The order of declarations within `resource` or `data` blocks is:
 
@@ -620,9 +620,9 @@ EOT
 
 `type` **MUST** be defined for every `variable`. `type` should be as precise as possible, `any` can only be defined with adequate reasons.
 
-* Use `bool` instead of `string` or `number` for `true/false`
-* Use `string` for text
-* Use concrete `object` instead of `map(any)`
+- Use `bool` instead of `string` or `number` for `true/false`
+- Use `string` for text
+- Use concrete `object` instead of `map(any)`
 
 <br>
 
@@ -884,7 +884,7 @@ A cleanup can be performed to `deprecated_outputs.tf` and other logics related t
 
 <br>
 
-#### ID: TFNFR31 - Category: Code Style - `locals.tf` **MUST** contain only one `locals` block
+#### ID: TFNFR31 - Category: Code Style - `locals.tf` **MUST** contain only `locals` blocks
 
 In `locals.tf` file we could declare multiple `locals` blocks, but only `locals` blocks are allowed.
 
@@ -1024,4 +1024,3 @@ Module owners are encouraged to use `newres` when they're trying to add new `res
 ---
 
 <br>
-
