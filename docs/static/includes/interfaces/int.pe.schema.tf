@@ -97,7 +97,7 @@ resource "azurerm_private_endpoint" "this" {
 
 # The PE resource when we are managing **not** the private_dns_zone_group block:
 resource "azurerm_private_endpoint" "this_unmanaged_dns_zone_groups" {
-  for_each = { for k, v in var.private_endpoints : k => v if var.private_endpoints_manage_dns_zone_group }
+  for_each = { for k, v in var.private_endpoints : k => v if !var.private_endpoints_manage_dns_zone_group }
 
   # ... repeat configuration above
   # **omitting the private_dns_zone_group block**
