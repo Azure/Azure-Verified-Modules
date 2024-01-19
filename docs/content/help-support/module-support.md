@@ -39,6 +39,6 @@ Modules that have to have the AVM core team or Product Groups step in due to the
 
 {{< hint type=important >}}
 
-We are also working with Microsoft CSS (Microsoft Customer Services & Support) to onboard AVM into their support so they can take and triage support calls/tickets for AVM via the normal Azure support ticket route.
+You can also raise a ticket with Microsoft CSS (Microsoft Customer Services & Support) and your ticket will be triaged by them for any platform issues and if deemed not the platform but a module issue, it will be redirected to the AVM team and the module owner/s.
 
 {{< /hint >}}
