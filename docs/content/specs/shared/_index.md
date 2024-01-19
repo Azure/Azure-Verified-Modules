@@ -556,20 +556,12 @@ Example - `CODEOWNERS` entry for the Bicep resource module of Azure Virtual Netw
 
 ##### Grant Permissions - Terraform
 
-Module owners **MUST** assign the `-module-owners-`and `-module-contributors-` teams the necessary permissions on their Terraform module repository and edit the `CODEOWNERS` file as per the guidance below.
+Module owners **MUST** assign the `-module-owners-`and `-module-contributors-` teams the necessary permissions on their Terraform module repository per the guidance below.
 
 | GitHub Team Name                       | Description                                       | Permissions | Permissions granted through | Where to work?                                                                                |
 |----------------------------------------|---------------------------------------------------|-------------|-----------------------------|-----------------------------------------------------------------------------------------------|
 | `<module name>-module-owners-tf`       | AVM Terraform Module Owners - \<module name>       | **Admin**   | Direct assignment to repo   | Module owner can decide whether they want to work in a branch local to the repo or in a fork. |
 | `<module name>-module-contributors-tf` | AVM Terraform Module Contributors - \<module name> | **Write**   | Direct assignment to repo   | Need to work in a fork.                                                                       |
-
-{{< hint type=important >}}
-
-The `CODEOWNERS` file **MUST** be updated for every module to be onboarded: the `-module-owners-`team **MUST** be added **for all code in the repo**.
-
-For more details on how to modify the `CODEOWNERS` file, please see the [documentation on Github](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners).
-
-{{< /hint >}}
 
 {{< hint type=tip >}}
 Direct link to create a new GitHub team: [Create new team](https://github.com/orgs/Azure/new-team)

@@ -24,4 +24,4 @@ resource exampleResource 'Example.Resource/example@2023-01-31' = {
 }
 
 @description('The principal ID of the system assigned identity.')
-output systemAssignedPrincipalId string = (managedIdentities.?systemAssigned ?? false) && contains(exampleResource.identity, 'principalId') ? exampleResource.identity.principalId : ''
+output systemAssignedPrincipalId string = exampleResource.?identity.?principalId ?? ''
