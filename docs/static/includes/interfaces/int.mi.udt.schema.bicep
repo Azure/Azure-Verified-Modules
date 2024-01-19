@@ -15,8 +15,8 @@ var identity = !empty(managedIdentities) ? {
   userAssignedIdentities: !empty(formattedUserAssignedIdentities) ? formattedUserAssignedIdentities : null
 } : null
 
-resource exampleResource 'Example.Resource/example@2023-01-31' = {
-  name: 'exampleResource'
+resource <exampleResource> 'Example.Resource/example@2023-01-31' = {
+  name: '<exampleResource>'
   identity: identity
   properties: {
     ... // other properties

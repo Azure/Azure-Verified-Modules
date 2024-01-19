@@ -39,7 +39,7 @@ type diagnosticSettingType = {
 @description('Optional. The diagnostic settings of the service.')
 param diagnosticSettings diagnosticSettingType
 
-resource exampleResourceDiagnosticSettings 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = [for (diagnosticSetting, index) in (diagnosticSettings ?? []): {
+resource <exampleResource>_diagnosticSettings 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = [for (diagnosticSetting, index) in (diagnosticSettings ?? []): {
   name: diagnosticSetting.?name ?? '${name}-diagnosticSettings'
   properties: {
     storageAccountId: diagnosticSetting.?storageAccountResourceId
@@ -62,5 +62,5 @@ resource exampleResourceDiagnosticSettings 'Microsoft.Insights/diagnosticSetting
     marketplacePartnerId: diagnosticSetting.?marketplacePartnerResourceId
     logAnalyticsDestinationType: diagnosticSetting.?logAnalyticsDestinationType
   }
-  scope: exampleResource
+  scope: <exampleResource>
 }]

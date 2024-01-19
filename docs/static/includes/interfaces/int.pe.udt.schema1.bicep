@@ -55,7 +55,7 @@ type privateEndpointType = {
   @description('Optional. Specify the type of lock.')
   lock: lockType
 
-  @description('Optional. Array of role assignment objects that contain the \'roleDefinitionIdOrName\' and \'principalId\' to define RBAC role assignments on this resource. In the roleDefinitionIdOrName attribute, you can provide either the display name of the role definition, or its fully qualified ID in the following format: \'/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11\'.')
+  @description('Optional. Array of role assignments to create.')
   roleAssignments: roleAssignmentType
 
   @description('Optional. Tags to be applied on all resources/resource groups in this deployment.')
@@ -71,7 +71,7 @@ type privateEndpointType = {
 @description('Optional. Configuration details for private endpoints. For security reasons, it is recommended to use private endpoints whenever possible.')
 param privateEndpoints privateEndpointType
 
-module <exampleResource>PrivateEndpoint 'br/public:avm/res/network/private-endpoint:X.Y.Z' = [for (privateEndpoint, index) in (privateEndpoints ?? []): {
+module <exampleResource>_privateEndpoints 'br/public:avm/res/network/private-endpoint:X.Y.Z' = [for (privateEndpoint, index) in (privateEndpoints ?? []): {
   name: '${uniqueString(deployment().name, location)}-<exampleResource>-PrivateEndpoint-${index}'
   params: {
     // Variant 1: A default service can be assumed (i.e., for services that only have one private endpoint type)
