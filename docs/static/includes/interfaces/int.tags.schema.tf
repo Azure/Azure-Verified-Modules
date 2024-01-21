@@ -1,4 +1,4 @@
 variable "tags" {
   type    = map(any)
-  default = {}
+  default = null
 }
