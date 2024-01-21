@@ -19,7 +19,7 @@ variable "private_endpoints" {
     lock               = optional(object({}), {})      # see https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#resource-locks
     tags               = optional(map(any), null)      # see https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#tags
     subnet_resource_id = string
-    ## You only need to expose this if there are multiple underlying services, e.g. storage.
+    ## You only need to expose the subresource_name if there are multiple underlying services, e.g. storage.
     ## Which has blob, file, etc.
     ## If there is only one then leave this out and hardcode the value in the module.
     # subresource_name                        = string
@@ -36,6 +36,7 @@ variable "private_endpoints" {
     })), {})
   }))
   default     = {}
+  nullable    = false
   description = <<DESCRIPTION
 A map of private endpoints to create on the Key Vault. The map key is deliberately arbitrary to avoid issues where map keys maybe unknown at plan time.
 
@@ -59,7 +60,7 @@ DESCRIPTION
 
 # The PE resource when we are managing the private_dns_zone_group block:
 resource "azurerm_private_endpoint" "this" {
-  for_each                      = var.private_endpoints
+  for_each                      = { for k, v in var.private_endpoints : k => v if var.private_endpoints_manage_dns_zone_group }
   name                          = each.value.name != null ? each.value.name : "pep-${var.name}"
   location                      = each.value.location != null ? each.value.location : var.location
   resource_group_name           = each.value.resource_group_name != null ? each.value.resource_group_name : var.resource_group_name
