@@ -562,7 +562,7 @@ As part of the "initial Pull Request" (that publishes the first version of the m
 Through this approach, the AVM core team will allow raising a bug or feature request for a module, only after the module gets merged to the [BRM](https://aka.ms/BRM) repository.
 {{< /hint >}}
 
-The module name entry **MUST** be added to the dropdown list with id `module-name-dropdown` as an option in alphabetical order.
+The module name entry **MUST** be added to the dropdown list with id `module-name-dropdown` as an option, in alphabetical order.
 
 {{< hint type=important >}}
 Module owners **MUST** ensure that the module name is added in alphabetical order, to simplify selecting the right module name when raising an AVM module issue.
