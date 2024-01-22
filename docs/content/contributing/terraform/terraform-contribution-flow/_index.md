@@ -293,10 +293,9 @@ TODO:
 - If you contribute to a new module then search and update `TODOs` (which are coming with the [terraform-azurerm-avm-template](https://github.com/Azure/terraform-azurerm-avm-template)) within the code and remove the `TODO` comments once complete
 - `terraform.lock.hcl` shouldn't be in the repository as per the `.gitignore` file
 - Update the `support.md` file
-- Consider following specs [TFNFR31](https://azure.github.io/Azure-Verified-Modules/specs/terraform/#id-tfnfr31---category-code-style---localstf-must-contain-only-one-locals-block) for the `local.tf` file
 - Consider updating version to `0.1.0` as the first version that would be published into the terraform registry per spec [SNFR17](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning)
 - Set `prevent_deletion_if_contains_resources` to `false` in provider block in example code per spec [TFNFR36](https://azure.github.io/Azure-Verified-Modules/specs/terraform/#id-tfnfr36---category-code-style---example-code-must-set-prevent_deletion_if_contains_resources-to-false-in-provider-block)
-- The `Contributor` and `Owner` teams are not added to the repository per spec [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only).
+- The `Contributor` and `Owner` teams are not added to the repository per spec [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only)
 - `\_header.md` needs to be updated
 - `readme.md` needs to be generated as per spec [SNFR15](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr15---category-documentation---automatic-documentation-generation) & [TFNFR2](https://azure.github.io/Azure-Verified-Modules/specs/terraform/#id-tfnfr2---category-documentation---module-documentation-generation)
 - `support.md` needs to be updated
