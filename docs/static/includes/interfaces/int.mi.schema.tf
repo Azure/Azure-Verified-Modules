@@ -14,6 +14,14 @@ DESCRIPTION
 }
 
 # Example resource implementation
+locals {
+  managed_identity_for_each = {
+    this = {
+      type         = var.managed_identities.system_assigned && length(var.managed_identities.user_assigned_resource_ids) > 0 ? "SystemAssigned, UserAssigned" : length(var.managed_identities.user_assigned_resource_ids) > 0 ? "UserAssigned" : "SystemAssigned"
+      identity_ids = length(var.managed_identities.user_assigned_resource_ids) > 0 ? var.managed_identities.user_assigned_resource_ids : null
+    }
+  }
+}
 
 ## Resources supporting both SystemAssigned and UserAssigned
 dynamic "identity" {
