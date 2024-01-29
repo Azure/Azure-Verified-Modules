@@ -180,13 +180,11 @@ az identity federated-credential create --name $fcName --identity-name $identity
 
 {{< hint type=important >}}
 
-Make sure you have **Docker** installed on your machine.
+Make sure you have **Docker** installed and running on your machine.
 
 {{< /hint >}}
 
-1. Download `azterraform` Docker image.
-2. Run `azterraform` Docker image.
-3. ...
+1. Change to the root of your module repository and run `./avm docs` to verify the container image is working as expected or needs to be pulled first.
 
 <br>
 
@@ -197,8 +195,6 @@ Make sure you have **Docker** installed on your machine.
 ### 5. Implement your contribution
 
 To implement your contribution, we kindly ask you to first review the [shared](/Azure-Verified-Modules/specs/shared/) & [Terraform-specific](/Azure-Verified-Modules/specs/terraform/) specifications and [composition guidelines](/Azure-Verified-Modules/contributing/bicep/terraform/) in particular to make sure your contribution complies with the repository's design and principles.
-
-If you're working on a new module, we'd also ask you to ...
 
 <!--
 TODO:

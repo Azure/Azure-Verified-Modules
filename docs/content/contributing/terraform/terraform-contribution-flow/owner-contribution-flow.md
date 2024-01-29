@@ -2,8 +2,7 @@ This section describes the contribution flow for module owners who are responsib
 
 - [1. GitHub repository creation and configuration](#1-github-repository-creation-and-configuration)
 - [2. GitHub Respotory Labels](#2-github-respotory-labels)
-- [3. Setup Azure environment for AVM e2e tests](#3-setup-azure-environment-for-avm-e2e-tests)
-- [4. Publish the module](#4-publish-the-module)
+- [3. Publish the module](#3-publish-the-module)
 
 <br>
 
@@ -56,17 +55,7 @@ Familiarise yourself with the AVM Resource Module Naming in the [module index cs
 
 4. Set up a GitHub repository Environment called `test`.
 
-5. Create the following environment secrets on the `test` environment
-
-<!-- TODO: secrets can be removed since the latest azteraform docker image with having ./avm implemented -->
-
-- `AZURE_CLIENT_ID` # Object (principal) ID of the UAMI
-- `AZURE_TENANT_ID`
-- `AZURE_SUBSCRIPTION_ID`
-
-A client secret is not required as the UAMI is used for authentication.
-
-6. Create deployment protection rules for the `test` environment to avoid spinning up e2e tests with every pull request raised by third-parties. Add the following teams as required reviewers:
+5. Create deployment protection rules for the `test` environment to avoid spinning up e2e tests with every pull request raised by third-parties. Add the following teams as required reviewers:
 
 - AVM Core Team: `@Azure/avm-core-team`
 - Terraform PG: `@Azure/terraform-azure`
@@ -101,41 +90,7 @@ Set-AvmGitHubLabels.ps1 -RepositoryName "Azure/MyGitHubRepo" -CreateCsvLabelExpo
 
 <br>
 
-### 3. Setup Azure environment for AVM e2e tests
-
-A module owner can own multiple modules and therefore we recommend to create distinguished User Assigned Managed Identities (UAMI) for each repository a module owner owns. This makes it easier to identify the deployments performed by each identity in the Azure Portal. The UAMI name should follow the pattern `terraform-<provider>-avm-res-<resource provider>-<modulename>`:
-
-1. Create an UAMI in your Azure test subscription.
-2. Create a role assignment for the UAMI on your test subscription, use `Contributor` role (your module might require higher privileges) such as `Owner` but we reocmmend to go with least privilege.
-
-3. Configure [federated identity credentials](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity?pivots=identity-wif-mi-methods-azcli) on the user assigned managed identity. Use the GitHub `test` environment.
-
-You can use the following script to create the UAMI, role assignment and federated identity credentials:
-
-```pwsh
-# Create UAMI
-$identityName = "terraform-<provider>-avm-res-<resource provider>-<modulename>" # e.g. terraform-azurerm-avm-res-keyvault-vault
-$resourceGroupName = "<resource group name>"
-$roleName = "Contributor"
-$subscriptionID = $(az account show --query id --output tsv)
-echo "Creating UAMI $identityName, with role $roleName assigned to /subscriptions/$subscriptionID"
-
-$identity=az identity create -g $resourceGroupName -n $identityName
-$principalId=$(az identity show -n $identityName -g $resourceGroupName --query principalId --out tsv)
-az role assignment create --assignee $principalId --role $roleName --scope /subscriptions/$subscriptionID
-
-# Create federated identity credentials
-$fcName = $identityName
-az identity federated-credential create --name $fcName --identity-name $identityName --resource-group $resourceGroupName --issuer "https://token.actions.githubusercontent.com" --subject "repo:Azure/$($identityName):environment:test" --audiences 'api://AzureADTokenExchange'
-```
-
-<br>
-
----
-
-<br>
-
-### 4. Publish the module
+### 3. Publish the module
 
 Once the module is ready to be published, follow the below steps to publish the module to the HashiCorp Registry.
 
@@ -146,10 +101,13 @@ Ensure your module is ready for publishing:
 3. All documentation is generated.
 4. Include/Add [`@Azure/avm-core-team-technical`](https://github.com/orgs/Azure/teams/avm-core-team-technical/members) as a reviewer (if not added automatically added already).
 5. The repository has an existing tag with the version number you want to publish.
+<!-- TODO:
+- Explain the tag creation process (git tag, release, etc.)
+-->
 6. Elevate your respository access using the Open Source Management Portal (aka.ms/opensource/portal).
 7. Sign in to the [HashiCorp Registry](https://registry.terraform.io/) using GitHub.
 8. Publish a module by selecting the `Publish` button in the top right corner, then `Module`
-9. Select the repository and accept the terms.
+9.  Select the repository and accept the terms.
 
 {{< hint type=important >}}
 
