@@ -11,6 +11,8 @@ Before submitting a new [module proposal](https://aka.ms/avm/moduleproposal) for
 
 {{< /hint >}}
 
+{{< youtube id="JbIMrJKW5N0" title="An introduction to Azure Verified Modules (AVM)" >}}
+
 {{< columns size=large >}}
 
 ## Value Proposition
