@@ -36,18 +36,12 @@ To contribute to this project the following tooling is required:
   ```
 
 - [Terraform](https://developer.hashicorp.com/terraform/downloads?product_intent=terraform)
-
+- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 - [Visual Studio Code](https://code.visualstudio.com/download)
   - [Terraform extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=hashicorp.terraform)
   - [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 - [Docker](https://www.docker.com/pricing/#/download)
   - [Azure Verified Terraform Scaffold](https://github.com/Azure/tfmod-scaffold) (`mcr.microsoft.com/azterraform:latest`)
-
-{{< hint type=note >}}
-
-**Terraform** and **Docker** must be manually kept up-to-date.
-
-{{< /hint >}}
 
 <br>
 

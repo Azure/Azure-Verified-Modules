@@ -12,18 +12,15 @@ geekdocAnchor: true
 {{< mermaid class="text-center" >}}
 flowchart TD
 A(<a href='/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#1-fork-the-module-source-repository'>1. Fork the module source repository </a>)
-B(<a href='/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#2-setup-your-github-repository'>2. Setup your GitHub repository</a>)
-C(<a href='/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#3-setup-your-azure-test-environment'>3. Setup your Azure test environment </a>)
-D(<a href='/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#4-configure-your-ci-environment'>4. Configure CI environment </a><br> For module tests)
-E(<a href='/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#5-implement-your-contribution'>5. Implement your contribution </a><br> For module tests)
-F{<a href='/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#6-run-pre-commit-checks'>6. Pre-commit Checks <br> succesful?</a>}
-G(<a href='/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#7-create-a-pull-request-to-the-upstream-repository'>7. Create a pull request to the upstream repository</a>)
+B(<a href='/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#3-setup-your-azure-test-environment'>2. Setup your Azure test environment </a>)
+C(<a href='/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#5-implement-your-contribution'>3. Implement your contribution </a>)
+D{<a href='/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#6-run-pre-commit-checks'>4. Pre-commit Checks <br> succesful?</a>}
+E(<a href='/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#7-create-a-pull-request-to-the-upstream-repository'>5. Create a pull request to the upstream repository</a>)
 A --> B
 B --> C
 C --> D
-D --> E
-F -->|yes|G
-F -->|no|E
+D -->|yes|E
+D -->|no|C
 {{< /mermaid >}}
 
 <br>
@@ -110,29 +107,9 @@ To do so, simply navigate to your desired repository, select the `'Fork'` button
 
 If the module repository you want to contribute to is not yet available, please get in touch with the respective module owner which can be tracked in the [Terraform Resource Modules index](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/tf-resource-modules/) see `PrimaryModuleOwnerGHHandle` column.
 
-{{< /hint >}}
+_**Optional:**_ The usage of local source branches
 
-<br>
-
----
-
-<br>
-
-### 2. Setup your GitHub repository
-
-1. Set up a GitHub repository environment called `test`.
-<!-- TODO: secrets can be removed since the latest azteraform docker image with having ./avm implemented -->
-2. Create the following environment secrets in the `test` environment
-
-- `AZURE_CLIENT_ID`
-- `AZURE_TENANT_ID`
-- `AZURE_SUBSCRIPTION_ID`
-
-1. **Optional**: Create deployment protection rules for the `test` environment to avoid spinning up e2e tests with every pull request raised by third-parties.
-
-{{< hint type=note >}}
-
-There is a move from the `test` environment to GitHub self-hosted runners (1ES Pool) which soon makes the creation of secrets obsolete. This is currently in progress.
+For consistent contributors but also Azure-org members in general it is possible to get invited as collaborator of the module repository which enables you to work on branches instead of forks. To get invited get in touch with the module owner since it's the module owner's decision who gets invited as collaborator.
 
 {{< /hint >}}
 
@@ -142,10 +119,42 @@ There is a move from the `test` environment to GitHub self-hosted runners (1ES P
 
 <br>
 
-### 3. Setup your Azure test environment
+### 2. Prepare your Azure test environment
 
-AVM performs end-to-end (e2e) test dpeloyments of all modules in Azure for validation and requires an User-assigned Managed Identity (UAMI) with access to a test subscription:
+AVM performs end-to-end (e2e) test dpeloyments of all modules in Azure for validation. We recommend you to perform a local e2e test deployment of your module before you create a PR to the upstream repository. Especially because the e2e test deployment will be triggered automatically once you create a PR to the upstream repository.
 
+1. Have/create an Azure Active Directory Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
+  - [Create a service principal (Azure CLI)](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1) - _**Recommended**_
+  - [Create a service principal (Azure Portal)](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal)
+  - [Create a service principal (PowerShell)](https://learn.microsoft.com/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
+  - [Find Service Principal object ID](https://learn.microsoft.com/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
+  - [Find managed Identity Service Principal](https://learn.microsoft.com/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
+- Note down the following pieces of information
+  - Application (Client) ID
+  - Service Principal Secret (password)
+  - **Optional:** Tenant ID
+  - **Optional:**  Subscription ID
+
+```bash
+# Linux/MacOs
+export ARM_SUBSCRIPTION_ID=$(az account show --query id --output tsv) # or set <subscription_id>
+export ARM_TENANT_ID=$(az account show --query tenantId --output tsv) # or set <tenant_id>
+export ARM_CLIENT_ID=<client_id>
+export ARM_CLIENT_SECRET=<service_principal_password>
+
+# Windows/Powershell
+$env:ARM_SUBSCRIPTION_ID = $(az account show --query id --output tsv) # or set <subscription_id>
+$env:ARM_TENANT_ID = $(az account show --query tenantId --output tsv) # or set <tenant_id>
+$env:ARM_CLIENT_ID = "<client_id>"
+$env:ARM_CLIENT_SECRET = "<service_principal_password>"
+
+```
+
+2. Change to the root of your module repository and run `./avm docscheck` (Linux/MacOs) / `avm.bat docscheck` (Windows) to verify the container image is working as expected or needs to be pulled first. You will need this later.
+
+<img src="/Azure-Verified-Modules/img/contribution/pullImage.png" alt="Pull latest azterraform container image." width=100%>
+
+<!--
 1. Create an UAMI in your Azure test subscription.
 2. Create a role assignment for the UAMI on your test subscription, use `Contributor` role (your module might require higher privileges) such as `Owner` but we reocmmend to go with least privilege.
 
@@ -169,6 +178,16 @@ az role assignment create --assignee $principalId --role $roleName --scope /subs
 $fcName = $identityName
 az identity federated-credential create --name $fcName --identity-name $identityName --resource-group $resourceGroupName --issuer "https://token.actions.githubusercontent.com" --subject "repo:Azure/$($identityName):environment:test" --audiences 'api://AzureADTokenExchange'
 ```
+-->
+<br>
+
+---
+
+<br>
+
+### 3. Implement your contribution
+
+To implement your contribution, we kindly ask you to first review the [shared](/Azure-Verified-Modules/specs/shared/) & [Terraform-specific](/Azure-Verified-Modules/specs/terraform/) specifications and [composition guidelines](/Azure-Verified-Modules/contributing/bicep/terraform/) in particular to make sure your contribution complies with the repository's design and principles.
 
 <br>
 
@@ -176,7 +195,7 @@ az identity federated-credential create --name $fcName --identity-name $identity
 
 <br>
 
-### 4. Configure your CI environment
+### 5. Run Pre-commit Checks
 
 {{< hint type=important >}}
 
@@ -184,82 +203,65 @@ Make sure you have **Docker** installed and running on your machine.
 
 {{< /hint >}}
 
-1. Change to the root of your module repository and run `./avm docs` to verify the container image is working as expected or needs to be pulled first.
+{{< hint type=note >}}
 
-<br>
-
----
-
-<br>
-
-### 5. Implement your contribution
-
-To implement your contribution, we kindly ask you to first review the [shared](/Azure-Verified-Modules/specs/shared/) & [Terraform-specific](/Azure-Verified-Modules/specs/terraform/) specifications and [composition guidelines](/Azure-Verified-Modules/contributing/bicep/terraform/) in particular to make sure your contribution complies with the repository's design and principles.
-
-<!--
-TODO:
-- Add implementation sequence in connection with ### 4. Configure your CI environment and ### 6. Run Pre-commit Checks
--->
-
-<br>
-
----
-
-<br>
-
-### 6. Run Pre-commit Checks
-
-- [6.1 Run grept](#61-run-grept)
-- [6.2 Check/Generate module documentation](#62-checkgenerate-module-documentation)
-- [6.3 Format Terraform code](#63-format-terraform-code)
-- [6.4 Run e2e tests](#64-run-e2e-tests)
-
-{{< hint type=tip >}}
-
-To simplify and help with the execution of commands like `docscheck`, `terraform-docs`, `terraform-fmt`, etc. there is now a simplified [avm](https://github.com/Azure/terraform-azurerm-avm-template/blob/main/avm) script available in the [`terraform-azurerm-avm-template`](https://github.com/Azure/terraform-azurerm-avm-template) repository which combines all scripts from the [avm_scripts](https://github.com/Azure/tfmod-scaffold/tree/main/avm_scripts) folder in the [tfmod-scaffold](https://github.com/Azure/tfmod-scaffold/) respositroy using [avmmakefile](https://github.com/Azure/tfmod-scaffold/blob/main/avmmakefile). Once you run grept, it will also download/synchronize the avm script for you to your local repository.
+To simplify and help with the execution of commands like `docscheck`, `fmt`, `test-example`, etc. there is now a simplified [avm](https://github.com/Azure/terraform-azurerm-avm-template/blob/main/avm) script available distributed to all repositories via [`terraform-azurerm-avm-template`](https://github.com/Azure/terraform-azurerm-avm-template) which combines all scripts from the [avm_scripts](https://github.com/Azure/tfmod-scaffold/tree/main/avm_scripts) folder in the [tfmod-scaffold](https://github.com/Azure/tfmod-scaffold/) repository using [avmmakefile](https://github.com/Azure/tfmod-scaffold/blob/main/avmmakefile).
 
 {{< /hint >}}
 
-#### 6.1 Run grept
+- [5.1 Check/Generate module documentation](#62-checkgenerate-module-documentation)
+- [5.2 Format Terraform code](#63-format-terraform-code)
+- [5.3 Run e2e tests](#64-run-e2e-tests)
 
-[Grept](https://github.com/Azure/grept) is a linting tool for repositories, ensures predefined standards, maintains codebase consistency, and quality.
-It's using the grept configuration files from the [Azure-Verified-Modules-Grept](https://github.com/Azure/Azure-Verified-Modules-Grept) repository.
-
-You can see [here](https://github.com/Azure/Azure-Verified-Modules-Grept/blob/main/terraform/synced_files.grept.hcl) which files are synced from the [`terraform-azurerm-avm-template`](https://github.com/Azure/terraform-azurerm-avm-template) repository.
-
-1. Set environment variables
+#### 5.1. Check/Generate module documentation
 
 ```bash
-# Linux/MacOS
-export GITHUB_REPOSITORY_OWNER=Azure
-export GITHUB_REPOSITORY=Azure/terraform-azurerm-avm-res-<RP>-<modulename>"
-
-# Windows
-
-$env:GITHUB_REPOSITORY_OWNER="Azure"
-$env:GITHUB_REPOSITORY="Azure/terraform-azurerm-avm-res-<RP>-<modulename>"
-```
-
-1. Run grept
-
-```bash
-grept apply -a git::https://github.com/Azure/Azure-Verified-Modules-Grept.git//terraform
-```
-
-#### 6.2. Check/Generate module documentation
-
-```bash
+# Linux/MacOs
 ./avm docscheck # comparing generated README.md with the one in the repo
 ./avm docs # generating module documentation like README.md including examples
+
+# Windows
+avm.bat docscheck # comparing generated README.md with the one in the repo
+avm.bat docs # generating module documentation like README.md including examples
 ```
 
-#### 6.3 Format Terraform code
+#### 5.2 Format Terraform code
 
 ```bash
+# Linux/MacOs
 ./avm fmt
+
+# Windows
+avm.bat fmt
 ```
 
-#### 6.4 Run e2e tests
+#### 5.3 Run e2e tests
+
+Currently you have two options to run e2e tests:
+
+{{< hint type=note >}}
+
+With the help of the [avm](https://github.com/Azure/terraform-azurerm-avm-template/blob/main/avm) script and the commands `./avm test-example` (Linux/MacOs) / `avm.bat test-example` (Windows) you will be able to run it in a more simplified way. Currently the `test-example` command is not completely ready yet and will be released soon. Therefore please use the below docker command for now.
+
+{{< /hint >}}
+
+1. Run e2e tests with the help of the azterraform docker container image.
+
+```bash
+# Linux/MacOs
+
+docker run --rm -v $(pwd):/src -w /src -v $HOME/.azure:/root/.azure -e TF_IN_AUTOMATION -e AVM_MOD_PATH=/src -e AVM_EXAMPLE=<example_folder> -e ARM_SUBSCRIPTION_ID -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET mcr.microsoft.com/azterraform:latest make test-example
+
+# Powershell
+
+docker run --rm -v ${pwd}:/src -w /src -v $HOME/.azure:/root/.azure -e TF_IN_AUTOMATION -e AVM_MOD_PATH=/src -e AVM_EXAMPLE=<example_folder> -e ARM_SUBSCRIPTION_ID -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET mcr.microsoft.com/azterraform:latest make test-example
+```
+
+Make sure to replace `<client_id>` and `<service_principal_password>` with the values of your service principal as well as `<example_folder>` (e.g. `default`) with the name of the example folder you want to run e2e tests for.
+
+2. Run e2e tests with the help of terraform init/plan/apply
+
+Simply run `terraform init` and `terraform apply` in the `example` folder you want to run e2e tests for. Make sure to set the environment variables `ARM_SUBSCRIPTION_ID`, `ARM_TENANT_ID`, `ARM_CLIENT_ID` and `ARM_CLIENT_SECRET` before you run `terraform init` and `terraform apply` or make sure you have a valid Azure CLI session and are logged in with `az login`.
 
 <br>
 
@@ -267,12 +269,14 @@ grept apply -a git::https://github.com/Azure/Azure-Verified-Modules-Grept.git//t
 
 <br>
 
-### 7. Create a pull request to the upstream repository
+### 6. Create a pull request to the upstream repository
 
 Once you are satisfied with your contribution and validated it, open a PR from your forked repository to the original Terraform Module repository. Make sure you:
 
 1. Include/Add [`@Azure/avm-core-team-technical`](https://github.com/orgs/Azure/teams/avm-core-team-technical/members) as a reviewer.
 2. Make sure all Pull Requst Checks (e2e tests with all examples, linting and version-check) are passing.
+3. Watch comments from the PR checks and reviewers (Module owner or AVM core team) and address them accordingly.
+4. Once your PR is approved, merge it into the upstream repository and the Module owner will publish the module to the HashiCorp Terraform Registry.
 
 <br>
 
@@ -281,10 +285,6 @@ Once you are satisfied with your contribution and validated it, open a PR from y
 <br>
 
 ### Common mistakes to avoid and recommendations to follow
-
-<!--
-TODO:
-- might be worth adding `terraform.tfvars` to `.gitignore` ? -->
 
 - If you contribute to a new module then search and update `TODOs` (which are coming with the [terraform-azurerm-avm-template](https://github.com/Azure/terraform-azurerm-avm-template)) within the code and remove the `TODO` comments once complete
 - `terraform.lock.hcl` shouldn't be in the repository as per the `.gitignore` file

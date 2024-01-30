@@ -1,7 +1,8 @@
 This section describes the contribution flow for module owners who are responsible for creating and maintaining Terraform Module repositories.
 
 - [1. GitHub repository creation and configuration](#1-github-repository-creation-and-configuration)
-- [2. GitHub Respotory Labels](#2-github-respotory-labels)
+- [2. GitHub Repository Labels](#2-github-repository-labels)
+- [3. **_Optional_**: Grept](#3-optional-grept)
 - [3. Publish the module](#3-publish-the-module)
 
 <br>
@@ -76,7 +77,7 @@ Familiarise yourself with the AVM Resource Module Naming in the [module index cs
 
 <br>
 
-### 2. GitHub Respotory Labels
+### 2. GitHub Repository Labels
 
 As per [SNFR23](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels) the repositories created by module owners **MUST** have and use the pre-defined GitHub labels. To apply these labels to the repository review the PowerShell script `Set-AvmGitHubLabels.ps1` that is provided in [SNFR23](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels).
 
@@ -89,6 +90,42 @@ Set-AvmGitHubLabels.ps1 -RepositoryName "Azure/MyGitHubRepo" -CreateCsvLabelExpo
 ---
 
 <br>
+
+### 3. **_Optional_**: Grept
+
+[Grept](https://github.com/Azure/grept) is a linting tool for repositories, ensures predefined standards, maintains codebase consistency, and quality.
+It's using the grept configuration files from the [Azure-Verified-Modules-Grept](https://github.com/Azure/Azure-Verified-Modules-Grept) repository.
+
+You can see [here](https://github.com/Azure/Azure-Verified-Modules-Grept/blob/main/terraform/synced_files.grept.hcl) which files are synced from the [`terraform-azurerm-avm-template`](https://github.com/Azure/terraform-azurerm-avm-template) repository.
+
+{{< hint type=info >}}
+
+You don't need to run grept manaully because it will be executed with the help of a [cron job](https://github.com/Azure/Azure-Verified-Modules-Grept/actions/workflows/grept-cronjob.yml) on a weekly basis to ensure consistency across all AVM Terraform Module repositories. In case your repository is in an inconsistent state it will create necessary PRs which needs to be approved and merged by you, the owner. However, you can also run it manually with the help of `./avm` to check if your module is compliant with the grept rules.
+
+{{< /hint >}}
+
+1. Set environment variables
+
+```bash
+# Linux/MacOS
+export GITHUB_REPOSITORY_OWNER=Azure
+export GITHUB_REPOSITORY=Azure/terraform-azurerm-avm-res-<RP>-<modulename>"
+
+# Windows
+
+$env:GITHUB_REPOSITORY_OWNER="Azure"
+$env:GITHUB_REPOSITORY="Azure/terraform-azurerm-avm-res-<RP>-<modulename>"
+```
+
+1. Run grept
+
+```bash
+# Linux/MacOS
+./avm grept-apply
+
+# Windows
+avm.bat grept-apply
+```
 
 ### 3. Publish the module
 
