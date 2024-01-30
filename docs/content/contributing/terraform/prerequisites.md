@@ -58,7 +58,6 @@ The following tooling/extensions are recommended to assist you developing for th
 
 #### Visual Studio Code Extensions
 
-- [CodeTour extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour)
 - [Go extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=golang.go)
 - For visibility of Bracket Pairs:
   - Inside Visual Studio Code, add `editor.bracketPairColorization.enabled`: true to your `settings.json`, to enable bracket pair colorization.
