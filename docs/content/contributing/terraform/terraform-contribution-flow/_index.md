@@ -124,16 +124,16 @@ For consistent contributors but also Azure-org members in general it is possible
 AVM performs end-to-end (e2e) test dpeloyments of all modules in Azure for validation. We recommend you to perform a local e2e test deployment of your module before you create a PR to the upstream repository. Especially because the e2e test deployment will be triggered automatically once you create a PR to the upstream repository.
 
 1. Have/create an Azure Active Directory Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
-  - [Create a service principal (Azure CLI)](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1) - _**Recommended**_
-  - [Create a service principal (Azure Portal)](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal)
-  - [Create a service principal (PowerShell)](https://learn.microsoft.com/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
-  - [Find Service Principal object ID](https://learn.microsoft.com/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
-  - [Find managed Identity Service Principal](https://learn.microsoft.com/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
+- [Create a service principal (Azure CLI)](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1) - _**Recommended**_
+- [Create a service principal (Azure Portal)](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal)
+- [Create a service principal (PowerShell)](https://learn.microsoft.com/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
+- [Find Service Principal object ID](https://learn.microsoft.com/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
+- [Find managed Identity Service Principal](https://learn.microsoft.com/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
 - Note down the following pieces of information
-  - Application (Client) ID
-  - Service Principal Secret (password)
-  - **Optional:** Tenant ID
-  - **Optional:**  Subscription ID
+- Application (Client) ID
+- Service Principal Secret (password)
+- **Optional:** Tenant ID
+- **Optional:**  Subscription ID
 
 ```bash
 # Linux/MacOs
@@ -211,9 +211,9 @@ The avm script also makes sure to pull the latest `mcr.microsoft.com/azterraform
 
 {{< /hint >}}
 
-- [5.1 Check/Generate module documentation](#62-checkgenerate-module-documentation)
-- [5.2 Format Terraform code](#63-format-terraform-code)
-- [5.3 Run e2e tests](#64-run-e2e-tests)
+- [5.1 Check/Generate module documentation](#51-checkgenerate-module-documentation)
+- [5.2 Format Terraform code](#52-format-terraform-code)
+- [5.3 Run e2e tests](#53-run-e2e-tests)
 
 #### 5.1. Check/Generate module documentation
 
