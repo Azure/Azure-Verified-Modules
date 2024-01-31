@@ -156,7 +156,7 @@ Ensure your module is ready for publishing:
 6. Elevate your respository access using the Open Source Management Portal (aka.ms/opensource/portal).
 7. Sign in to the [HashiCorp Registry](https://registry.terraform.io/) using GitHub.
 8. Publish a module by selecting the `Publish` button in the top right corner, then `Module`
-9.  Select the repository and accept the terms.
+9. Select the repository and accept the terms.
 
 {{< hint type=important >}}
 
