@@ -5,17 +5,13 @@ geekdocNav: true
 geekdocAnchor: true
 ---
 
-{{< hint type=important >}}
-
-**This initiative is still in development!** Please review and leave issues on things you find, via [GitHub Issues](https://github.com/Azure/Azure-Verified-Modules/issues) 👍
-
-{{< /hint >}}
-
 {{< hint type=tip >}}
 
 Before submitting a new [module proposal](https://aka.ms/avm/moduleproposal) for either Bicep or Terraform, please review the FAQ section on ["CARML/TFVM to AVM Evolution Details"](/Azure-Verified-Modules/faq/#carmltfvm-to-avm-evolution-details)!
 
 {{< /hint >}}
+
+{{< youtube id="JbIMrJKW5N0" title="An introduction to Azure Verified Modules (AVM)" >}}
 
 {{< columns size=large >}}
 
@@ -61,6 +57,16 @@ AVM improves code quality and provides a unified customer experience.
 {{< /columns >}}
 
 {{< columns size=large >}}
+
+{{< hint type=important >}}
+
+AVM is owned, developed & supported by Microsoft, you may raise a GitHub issue on this repository or the module's repository directly to get support or log feature requests.
+
+You can also log a support ticket and these will be redirected to the AVM team and the module owner/s.
+
+See [Module Support](/Azure-Verified-Modules/help-support/module-support) for more information.
+
+{{< /hint >}}
 
 ## Next Steps
 
