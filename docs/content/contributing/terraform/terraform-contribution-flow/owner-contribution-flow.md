@@ -51,7 +51,7 @@ Familiarise yourself with the AVM Resource Module Naming in the [module index cs
 
 - Admin: `@Azure/avm-core-team-technical-terraform` = AVM Core Team
 - Admin: `@Azure/terraform-azure` = Terraform PG
-- Admin: `@Azure/avm-res-<RP>-<modulename>-module-owners-tf` = AVM Resource Module Owners
+- Triage: `@Azure/avm-res-<RP>-<modulename>-module-owners-tf` = AVM Resource Module Owners
 - Write: `@Azure/avm-res-<RP>-<modulename>-module-contributors-tf` = AVM Resource Module Contributors
 
 4. Make sure the branch protection rules for the `main` branch are inherited from the `Azure/terraform-azurerm-avm-template` repository:
