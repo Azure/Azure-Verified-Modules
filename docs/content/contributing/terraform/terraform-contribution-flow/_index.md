@@ -207,6 +207,8 @@ Make sure you have **Docker** installed and running on your machine.
 
 To simplify and help with the execution of commands like `docscheck`, `fmt`, `test-example`, etc. there is now a simplified [avm](https://github.com/Azure/terraform-azurerm-avm-template/blob/main/avm) script available distributed to all repositories via [`terraform-azurerm-avm-template`](https://github.com/Azure/terraform-azurerm-avm-template) which combines all scripts from the [avm_scripts](https://github.com/Azure/tfmod-scaffold/tree/main/avm_scripts) folder in the [tfmod-scaffold](https://github.com/Azure/tfmod-scaffold/) repository using [avmmakefile](https://github.com/Azure/tfmod-scaffold/blob/main/avmmakefile).
 
+The avm script also makes sure to pull the latest `mcr.microsoft.com/azterraform:latest` container image before executing any command.
+
 {{< /hint >}}
 
 - [5.1 Check/Generate module documentation](#62-checkgenerate-module-documentation)

@@ -3,7 +3,7 @@ This section describes the contribution flow for module owners who are responsib
 - [1. GitHub repository creation and configuration](#1-github-repository-creation-and-configuration)
 - [2. GitHub Repository Labels](#2-github-repository-labels)
 - [3. **_Optional_**: Grept](#3-optional-grept)
-- [3. Publish the module](#3-publish-the-module)
+- [4. Publish the module](#4-publish-the-module)
 
 <br>
 
@@ -49,26 +49,34 @@ Familiarise yourself with the AVM Resource Module Naming in the [module index cs
 
 3. Add these teams with the following permissions to the repository:
 
-- Admin: `@Azure/avm-core-team` = AVM Core Team
+- Admin: `@Azure/avm-core-team-technical-terraform` = AVM Core Team
 - Admin: `@Azure/terraform-azure` = Terraform PG
 - Admin: `@Azure/avm-res-<RP>-<modulename>-module-owners-tf` = AVM Resource Module Owners
 - Write: `@Azure/avm-res-<RP>-<modulename>-module-contributors-tf` = AVM Resource Module Contributors
 
-4. Set up a GitHub repository Environment called `test`.
+4. Make sure the branch protection rules for the `main` branch are inherited from the `Azure/terraform-azurerm-avm-template` repository:
 
-5. Create deployment protection rules for the `test` environment to avoid spinning up e2e tests with every pull request raised by third-parties. Add the following teams as required reviewers:
+- Require a pull request before merging
+- Dismiss stale pull request approvals when new commits are pushed
+- Require review from Code Owners
+- Require linear history
+- Do not allow bypassing the above settings
 
-- AVM Core Team: `@Azure/avm-core-team`
-- Terraform PG: `@Azure/terraform-azure`
+5. Set up a GitHub repository Environment called `test`.
+
+6. Create deployment protection rules for the `test` environment to avoid spinning up e2e tests with every pull request raised by third-parties. Add the following teams as required reviewers:
+
 - AVM Resource Module Owners: `@Azure/avm-res-<RP>-<modulename>-module-owners-tf`
+- AVM Resource Module Contributors: `@Azure/avm-res-<RP>-<modulename>-module-contributors-tf`
 
 <img src="/Azure-Verified-Modules/img/contribution/deploymentProtectionTeams.png" alt="Required reviewers." width=100%>
 
 <p>
 
-<!--
 <img src="/Azure-Verified-Modules/img/contribution/deploymentProtectionRules.png" alt="Deployment prpotection rules." width=100%>
--->
+
+<p>
+
 <img src="/Azure-Verified-Modules/img/contribution/deploymentProtectionRules2.png" alt="Deployment prpotection rules." width=100%>
 
 <br>
@@ -127,20 +135,24 @@ $env:GITHUB_REPOSITORY="Azure/terraform-azurerm-avm-res-<RP>-<modulename>"
 avm.bat grept-apply
 ```
 
-### 3. Publish the module
+### 4. Publish the module
 
-Once the module is ready to be published, follow the below steps to publish the module to the HashiCorp Registry.
+Once a module was updated and is ready to be published, follow the below steps to publish the module to the HashiCorp Registry.
 
 Ensure your module is ready for publishing:
 
 1. All tests are passing.
 2. All examples are passing.
 3. All documentation is generated.
-4. Include/Add [`@Azure/avm-core-team-technical`](https://github.com/orgs/Azure/teams/avm-core-team-technical/members) as a reviewer (if not added automatically added already).
-5. The repository has an existing tag with the version number you want to publish.
-<!-- TODO:
-- Explain the tag creation process (git tag, release, etc.)
--->
+4. Include/Add [`@Azure/avm-core-team-technical-terraform`](https://github.com/orgs/Azure/teams/avm-core-team-technical/members) as a reviewer (if not added automatically added already).
+5. Create a tag for the module version you want to publish.
+- Create tag: `git tag -a 0.1.0 -m "0.1.0"`
+- Push tag: `git push`
+- [Create a release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) on Github based on the tag you just created. Make sure to generate the release notes using the `Generate release notes` button.
+- **_Optional:_** Instead of creating the tag via git cli, you can also create both the tag and release via [Github UI](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository). Just go to the releases tab and click on `Draft a new release`. Make sure to create the tag from the `main` branch.
+
+<img src="/Azure-Verified-Modules/img/contribution/gitTag.png" alt="Deployment prpotection rules." width=100%>
+
 6. Elevate your respository access using the Open Source Management Portal (aka.ms/opensource/portal).
 7. Sign in to the [HashiCorp Registry](https://registry.terraform.io/) using GitHub.
 8. Publish a module by selecting the `Publish` button in the top right corner, then `Module`
