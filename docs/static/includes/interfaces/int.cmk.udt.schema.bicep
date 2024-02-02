@@ -29,7 +29,7 @@ resource cMKUserAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentiti
   scope: resourceGroup(split((customerManagedKey.?userAssignedIdentityResourceId ?? '//'), '/')[2], split((customerManagedKey.?userAssignedIdentityResourceId ?? '////'), '/')[4])
 }
 
-resource <singularMainResourceType> '<providerNamespace>/<resourceType>@2023-01-31' = {
+resource <singularMainResourceType> '<providerNamespace>/<resourceType>@<apiVersion>' = {
   name: '<exampleResource>'
   properties: {
     ... // other properties
