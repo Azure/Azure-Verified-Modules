@@ -20,6 +20,8 @@ Check out the [Contribution Q&A](/Azure-Verified-Modules/contributing/q-and-a/) 
 
 {{< /hint >}}
 
+# Timeline, history, plans
+
 ## When will we have a library that has a "usable" stand? Not complete, but the most important resources?
 
 - **Bicep**: AVM leverages and evolves existing modules of [CARML](https://aka.ms/CARML) (Common Azure Resource Module Library) for its Bicep resource module collection (see [here](/Azure-Verified-Modules/faq/#carmltfvm-to-avm-evolution-details)). To initially populate AVM with Bicep resource modules, all  existing CARML modules will be migrated to AVM. See the [timeline and approach](/Azure-Verified-Modules/faq/#timeline-and-approach) section below for more details. Pattern modules can then be developed on top of these resource modules.
@@ -104,6 +106,32 @@ However, the AVM core team is focused on the following activities to facilitate 
 
 ---
 
+## Will existing Landing Zone Accelerators (Platform & Application) be migrated to become AVM pattern modules and/or built from AVM resource modules?
+
+Not in the short/immediate term. Existing Landing Zone Accelerators ([Platform](https://aka.ms/alz/aac#platform) & [Application](https://aka.ms/alz/aac#application)) will not be forced to convert their existing code bases, if available in either language, to AVM or to use AVM.
+
+However, over time if new features or functionality are required by Landing Zone Accelerators, that team **SHOULD** consider migrating/refactoring that part of their code base to be constructed with the relevant AVM module if available. For example, the Bicep version of the "[Sub Vending](https://github.com/Azure/bicep-lz-vending)" solution is migrating to AVM shortly.
+
+If the relevant AVM module isn't available to use to assist the Landing Zone Accelerator, then a new [AVM module proposal](https://aka.ms/avm/moduleproposal) should be made, and if desired, the Landing Zone Accelerator team may decide to own this proposed module 👍
+
+---
+
+## Does/will AVM cover Microsoft 365, Azure DevOps, GitHub, etc.?
+
+While the principles and practices of AVM are largely applicable to other clouds and services such as, Microsoft 365 & Azure DevOps, the AVM program (today) only covers Azure cloud resources and architectures.
+
+However, if you think this program, or a similar one, should exist to cover these other Microsoft Cloud offerings, please give a 👍 or leave a comment on this [GitHub Issue #71](https://github.com/Azure/Azure-Verified-Modules/issues/71) in the AVM repository.
+
+---
+
+## Will AVM also become a part of azd cli?
+
+Yes, the AVM team is partnering with the AZD team and they are already using Bicep AVM modules from the public registry.
+
+---
+
+# Definitions, comparisons
+
 ## What is the difference between the Bicep Registry and AVM? (How) Do they come together?
 
 The Public Bicep Registry (backed by the [BRM repository](https://aka.ms/BRM)) is Microsoft's official Bicep Registry for 1st party-supported Bicep modules. It has existed for a while now and has seen quite some contributions.
@@ -111,6 +139,24 @@ The Public Bicep Registry (backed by the [BRM repository](https://aka.ms/BRM)) i
 As various teams inside Microsoft have come together to establish a "One Microsoft" IaC approach and library, we started the AVM initiative to bridge the gaps by defining specifications for both Bicep and Terraform modules.
 
 In the BRM repo today, "vanilla modules" (non-AVM modules) can be found in the `/modules` folder, while AVM modules are located in the `/avm` folder. Both are being published to the same endpoint, the Public Bicep Registry. AVM Bicep modules are published in a dedicated namespace, using the `avm/res` & `avm/ptn` prefixes to make them distinguishable from the Public Registry's "vanilla modules".
+
+{{< hint type=note >}}
+
+Going forward, AVM will become the single Microsoft standard for Bicep modules, published to the Public Bicep Registry, via the BRM repository.
+
+In the upcoming period, existing "vanilla" modules will be retired or migrated to AVM, and new modules will be developed according to the AVM specifications.
+
+{{< /hint >}}
+
+---
+
+## How is AVM different from Bicep private registries and TemplateSpecs? Is AVM related to, or separate from Azure Radius?
+
+AVM - with its modules published in the Public Bicep Registry (backed by the [BRM repository](https://aka.ms/BRM)) - represents the only standard from Microsoft for Bicep modules in the Public Registry.
+
+Bicep private registries and TemplateSpecs are different ways of inner-sourcing, sharing and internally leveraging Bicep modules within an organization. We're planning to provide guidance for theses scenarios in the future.
+
+AVM has nothing to do with Radius (yet), but the AVM core team is constantly looking for additional synergies inside Microsoft.
 
 ---
 
@@ -158,39 +204,13 @@ However, please note these defaulted values can be altered via input parameter/v
 
 ---
 
-## Aren't AVM resource modules too complex for people less skilled in IaC technologies?
-
- **TLDR**: Resource modules have complexity inside, so they can be flexibly used from the outside.
-
-Resource modules are written in a flexible way; therefore, you don't need to modify them from project to project, use case to use case, as they aim to cover most of the functionality that a given resource type can provide, in a way that you can interact with any module just by using the required parameters - i.e., you don't have to know how the template of the particular module works inside, just take a look at the `README.md` file of the given module to learn how to leverage it.
-
-Resource modules are multi-purpose; therefore, they contain a lot of dynamic expressions (functions, variables, etc.), so there's no need to maintain multiple instances for different use cases. They can be deployed in different configurations just by changing the input parameters. They should be perceived by the **user** as black boxes, where they don't have to worry about the internal complexity of the code, as they only interact with them by their parameters.
-
----
-
 ## What is a "Primary Resource" in the context of AVM?
 
 The definition of a Primary Resource is detailed in the [glossary](/Azure-Verified-Modules/glossary/).
 
 ---
 
-## Will existing Landing Zone Accelerators (Platform & Application) be migrated to become AVM pattern modules and/or built from AVM resource modules?
-
-In short, no. Existing Landing Zone Accelerators ([Platform](https://aka.ms/alz/aac#platform) & [Application](https://aka.ms/alz/aac#application)) will not be made or forced to convert their existing code bases, if available in either language, to AVM or to use AVM.
-
-However, over time if new features or functionality are required by Landing Zone Accelerators, that team **SHOULD** consider migrating/refactoring that part of their code base to be constructed with the relevant AVM module if available.
-
-If the relevant AVM module isn't available to use to assist the Landing Zone Accelerator, then a new [AVM module proposal](https://aka.ms/avm/moduleproposal) should be made, and if desired, the Landing Zone Accelerator team may decide to own this proposed module 👍
-
----
-
-## Does/will AVM cover Microsoft 365, Azure DevOps, GitHub, etc.?
-
-While the principles and practices of AVM are largely applicable to other clouds and services such as, Microsoft 365 & Azure DevOps, the AVM program (today) only covers Azure cloud resources and architectures.
-
-However, if you think this program, or a similar one, should exist to cover these other Microsoft Cloud offerings, please give a 👍 or leave a comment on this [GitHub Issue #71](https://github.com/Azure/Azure-Verified-Modules/issues/71) in the AVM repository.
-
----
+# Contribution, module ownership
 
 ## Can I be an AVM module owner if I'm not a Microsoft FTE?
 
@@ -217,6 +237,120 @@ If you're not a Microsoft FTE or don't want to be a module owner, you can still 
 - You can look for [orphaned modules](https://aka.ms/AVM/OrphanedModules) and use the comment section to indicate that you'd be interested in contributing to this module, once a new owner is found.
 
 ---
+
+## Are there different ways to contribute to AVM?
+
+Yes, there are multiple ways to contribute to AVM. You can:
+
+- [Propose](https://aka.ms/ModuleProposal) and develop a new module (Bicep or Terraform)
+- Migrate an existing module from CARML (Bicep only) - look for modules to be migrated [here](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/#planned-modules) and create a [module proposal](https://aka.ms/ModuleProposal) for the module you want to migrate.
+- Become the owner of an orphaned module (mainly Bicep) - look for "orphaned module" issues [here](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aopen+is%3Aissue+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22) or see the "Orphaned" swimlane [here](https://github.com/orgs/Azure/projects/529/views/1?filterQuery=is%3Aissue+is%3Aopen+is%3Aissue+is%3Aopen+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22)
+
+---
+
+## Where can I find modules missing owners?
+
+You can find modules missing owners in the following places:
+
+- [All Orphaned modules](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aopen+is%3Aissue+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22) or see the "Orphaned" swimlane [here](https://github.com/orgs/Azure/projects/529/views/1?filterQuery=is%3Aissue+is%3Aopen+is%3Aissue+is%3Aopen+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22)
+  - [Orphaned Bicep modules](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aopen+is%3Aissue+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22+label%3A%22Language%3A+Bicep+%3Amuscle%3A%22+) or see the "Orphaned" swimlane [here](https://github.com/orgs/Azure/projects/529/views/1?filterQuery=is%3Aissue+is%3Aopen+is%3Aissue+is%3Aopen+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22+label%3A%22Language%3A+Bicep+%3Amuscle%3A%22)
+  - [Orphaned Terraform modules](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aopen+is%3Aissue+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22+label%3A%22Language%3A+Terraform+%3Aglobe_with_meridians%3A%22) or see the "Orphaned" swimlane [here](https://github.com/orgs/Azure/projects/529/views/1?filterQuery=is%3Aissue+is%3Aopen+is%3Aissue+is%3Aopen+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22+label%3A%22Language%3A+Terraform+%3Aglobe_with_meridians%3A%22+)
+- [All modules looking for owners](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aopen+is%3Aissue+label%3A%22Needs%3A+Module+Owner+%3Amega%3A%22) or see the "Looking for owners" swimlane [here](https://github.com/orgs/Azure/projects/529/views/1?filterQuery=is%3Aissue+is%3Aopen+is%3Aissue+is%3Aopen+label%3A%22Needs%3A+Module+Owner+%3Amega%3A%22+)
+  - [Bicep modules looking for owners](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aopen+is%3Aissue+label%3A%22Needs%3A+Module+Owner+%3Amega%3A%22+label%3A%22Language%3A+Bicep+%3Amuscle%3A%22) or see the "Looking for owners" swimlane [here](https://github.com/orgs/Azure/projects/529/views/1?filterQuery=is%3Aissue+is%3Aopen+is%3Aissue+is%3Aopen+label%3A%22Needs%3A+Module+Owner+%3Amega%3A%22+label%3A%22Language%3A+Bicep+%3Amuscle%3A%22)
+  - [Terraform modules looking for owners](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue+is%3Aopen+label%3A%22Needs%3A+Module+Owner+%3Amega%3A%22+label%3A%22Language%3A+Terraform+%3Aglobe_with_meridians%3A%22+) or see the "Looking for owners" swimlane [here](https://github.com/orgs/Azure/projects/529/views/1?filterQuery=is%3Aissue+is%3Aopen+is%3Aissue+is%3Aopen+label%3A%22Needs%3A+Module+Owner+%3Amega%3A%22+label%3A%22Language%3A+Terraform+%3Aglobe_with_meridians%3A%22)
+
+{{< hint type=note >}}
+
+If any of these queries don't return any results, it means that no module in the selected category is missing its owner at the moment.
+
+{{< /hint >}}
+
+---
+
+## I want to become the owner of XYZ modules, where can I indicate this, and what are the expected actions from me?
+
+If exists, you can comment on the [Module Proposal issue](https://aka.ms/AVM/ModuleProposals) of the module that you are interested in and the AVM Core Team will do the triage providing information about next steps.
+
+Having an understanding of roles & responsibilities is useful as well, you can find this information on the [Team Definitions & RACI | Azure Verified Modules](/Azure-Verified-Modules/specs/shared/team-definitions/) page.
+
+---
+
+## Can I submit a PR with new features to an existing module? If so, is this a good way to contribute too?
+
+Of course! As all modules are open source, anyone can submit a PR to an existing module. But we'd suggest opening an issue first to discuss the suggested changes with the module owner before investing time in the code.
+
+---
+
+## Are there any videos on how to get started with contribution? E.g., how to set up a local environment for development, how to write a unit test etc.?
+
+No videos on the technical details of contribution are available (yet), but a detailed, written guidance can be found for both Bicep and Terraform, here:
+
+- [Bicep contribution guide](/Azure-Verified-Modules/contributing/bicep/)
+- [Terraform contribution guide](/Azure-Verified-Modules/contributing/terraform/)
+
+---
+
+# Support
+
+## Is AVM a Microsoft official service/product/library or is this classified as an OSS backed by Microsoft?
+
+AVM is an officially supported OSS project from Microsoft, across all organizations.
+
+AVM is owned, developed & supported by Microsoft, you may raise a GitHub issue on this repository or the module's repository directly to get support or log feature requests.
+
+You can also log a support ticket and these will be redirected to the AVM team and the module owner(s).
+
+See [Module Support](/Azure-Verified-Modules/help-support/module-support) for more information.
+
+---
+
+## So, does CSS support AVM?
+
+Yes, and if they cannot resolve it (and/or it's not related to a Microsoft service/platform/api/etc.) they will pass the ticket to the module owner(s) to resolve.
+
+For Microsoft FTEs only: see the **Internal** wiki for support workflow for more details -[AVM - Support Workflow - Overview](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/275/Azure-Verified-Module-Workflow)
+
+---
+
+# Technical questions
+
+## Should pattern modules leverage resource modules? What if (some of) the required resource modules are not available?
+
+The initial focus of development and migration from CARML/TFVM is mainly on resource modules. Once the most important resource modules are published, pattern modules can start leveraging them as and where needed. This however doesn't mean that the development of pattern modules is blocked in any way, since they may use native resources ("vanilla code"). If you're about to develop a pattern module and would need a resource modules that doesn't exist today, please consider building the resource module first, so that others can leverage it for their pattern modules as well.
+
+Please see [PMNFR2](/Azure-Verified-Modules/specs/shared/#id-pmnfr2---category-composition---use-resource-modules-to-build-a-pattern-module) for more details.
+
+---
+
+## Does AVM have same limitations as ARM (4 MB) size and 255 parameters only?
+
+Yes, as AVM is just a collection of official Bicep/Terraform modules, it still has same Bicep/Terraform language or Azure platform limitations.
+
+---
+
+## Does/will AVM support Managed Identity, and Microsoft Entra objects automation?
+
+Managed Identities - Yes, they are supported in all resources today.
+Entra objects - May come as new modules if/when the Graph provider will be released which is still in private preview.
+
+---
+
+## How does AVM ensure code quality?
+
+AVM utilizes a number of validation pipelines for both Bicep and Terraform. These pipelines are run on every PR and ensure that the code is compliant with the AVM specifications and that the module is working as expected.
+
+For example, in case of Bicep, as part of the [PR process](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry), we're asking contributors to provide a workflow status badge as a proof of successful validation using our testing pipelines.
+
+The validation includes 2 main stages run in sequence:
+
+- Static validation: to ensure that the module complies to AVM specifications.
+- Deployment validation: to ensure all test examples are working from a deployment perspective.
+
+These same validations are also run in the [BRM](https://aka.ms/BRM) repository after merge. The new version of the contributed module is published to the Public Bicep Registry only if all validations are successful.
+
+---
+
+# Using AVM
 
 ## How can I use Bicep modules through the Public Registry?
 
@@ -246,14 +380,18 @@ The Bicep VSCode extension is reading metadata through [this JSON file](https://
 
 ---
 
-## Will the ALZ Bicep/Terraform solution be rebased on AVM?
+## Can I call a Bicep child module directly? E.g., can I update or add a secret in an existing Key Vault, or a route in an existing route table?
 
-It is not currently planned to revamp the ALZ Terraform module to use AVM modules. When the required resource and pattern modules for both Bicep and Terraform will be available in AVM, this option will be assessed and considered.
+As per the way the Public Registry is implemented today, it is not possible to publish child-modules separate from its parents. As such, you cannot reference e.g. a `avm/res/key-vault/vault/key` module directly from the registry, but can only deploy it through its parent `avm/res/key-vault/vault` - UNLESS you actually grab the module folder locally.
+
+However, we kept the door open to make this possible in the future if there is a demand for it.
+
+## Aren't AVM resource modules too complex for people less skilled in IaC technologies?
+
+ **TLDR**: Resource modules have complexity inside, so they can be flexibly used from the outside.
+
+Resource modules are written in a flexible way; therefore, you don't need to modify them from project to project, use case to use case, as they aim to cover most of the functionality that a given resource type can provide, in a way that you can interact with any module just by using the required parameters - i.e., you don't have to know how the template of the particular module works inside, just take a look at the `README.md` file of the given module to learn how to leverage it.
+
+Resource modules are multi-purpose; therefore, they contain a lot of dynamic expressions (functions, variables, etc.), so there's no need to maintain multiple instances for different use cases. They can be deployed in different configurations just by changing the input parameters. They should be perceived by the **user** as black boxes, where they don't have to worry about the internal complexity of the code, as they only interact with them by their parameters.
 
 ---
-
-## Should pattern modules leverage resource modules? What if (some of) the required resource modules are not available?
-
-The initial focus of development and migration from CARML/TFVM is mainly on resource modules. Once the most important resource modules are published, pattern modules can start leveraging them as and where needed. This however doesn't mean that the development of pattern modules is blocked in any way, since they may use native resources ("vanilla code"). If you're about to develop a pattern module and would need a resource modules that doesn't exist today, please consider building the resource module first, so that others can leverage it for their pattern modules as well.
-
-Please see [PMNFR2](/Azure-Verified-Modules/specs/shared/#id-pmnfr2---category-composition---use-resource-modules-to-build-a-pattern-module) for more details.
