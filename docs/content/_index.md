@@ -62,7 +62,7 @@ AVM improves code quality and provides a unified customer experience.
 
 AVM is owned, developed & supported by Microsoft, you may raise a GitHub issue on this repository or the module's repository directly to get support or log feature requests.
 
-You can also log a support ticket and these will be redirected to the AVM team and the module owner/s.
+You can also log a support ticket and these will be redirected to the AVM team and the module owner(s).
 
 See [Module Support](/Azure-Verified-Modules/help-support/module-support) for more information.
 
