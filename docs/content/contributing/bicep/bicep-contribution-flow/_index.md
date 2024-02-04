@@ -181,6 +181,12 @@ To let the workflow engine publish their results into your repository, you have 
 
 <br>
 
+{{< hint type=tip >}}
+
+Once you enabled the GitHub actions, your workflows will behave as they do in the upstream repository. This includes a scheduled trigger to continuously check that all modules are working and compliant with the latest tests. However, testing all modules can be a source of costs so we recommend **disabling all workflows of modules you are not working on**. To make this as easy as possible, we created a workflow that disables/enables workflows based on a selected toggle & naming pattern. For more information on how to use this workflow, please refer to the corresponding [documentation](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows).
+
+{{< /hint >}}
+
 ## 4. Implement your contribution
 
 To implement your contribution, we kindly ask you to first review the [shared](/Azure-Verified-Modules/specs/shared/) & [Bicep-specific](/Azure-Verified-Modules/specs/bicep/) specifications and [composition guidelines](/Azure-Verified-Modules/contributing/bicep/composition/) in particular to make sure your contribution complies with the repository's design and principles.
