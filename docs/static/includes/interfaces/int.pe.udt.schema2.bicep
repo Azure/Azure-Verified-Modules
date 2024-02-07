@@ -75,7 +75,7 @@ module <singularMainResourceType>_privateEndpoints 'br/public:avm/res/network/pr
   name: '${uniqueString(deployment().name, location)}-<singularMainResourceType>-PrivateEndpoint-${index}'
   params: {
     // Variant 2: A default service cannot be assumed (i.e., for services that have more than one private endpoint type, like Storage Account)
-    privateLinkServiceConnections: [
+    privateLinkServiceConnections: (!empty(privateEndpoint.?manualPrivateLinkServiceConnections) ? [] : [
       {
         name: name
         properties: {
@@ -85,7 +85,7 @@ module <singularMainResourceType>_privateEndpoints 'br/public:avm/res/network/pr
           ]
         }
       }
-    ]
+    ])
     name: privateEndpoint.?name ?? 'pep-${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.?service ?? privateEndpoint.service}-${index}'
     subnetResourceId: privateEndpoint.subnetResourceId
     enableTelemetry: privateEndpoint.?enableTelemetry ?? enableTelemetry
@@ -95,7 +95,7 @@ module <singularMainResourceType>_privateEndpoints 'br/public:avm/res/network/pr
     privateDnsZoneResourceIds: privateEndpoint.?privateDnsZoneResourceIds
     roleAssignments: privateEndpoint.?roleAssignments
     tags: privateEndpoint.?tags ?? tags
-    manualPrivateLinkServiceConnections: privateEndpoint.?manualPrivateLinkServiceConnections
+    manualPrivateLinkServiceConnections: !empty(privateEndpoint.?privateLinkServiceConnections) ? [] : privateEndpoint.?manualPrivateLinkServiceConnections
     customDnsConfigs: privateEndpoint.?customDnsConfigs
     ipConfigurations: privateEndpoint.?ipConfigurations
     applicationSecurityGroupResourceIds: privateEndpoint.?applicationSecurityGroupResourceIds
