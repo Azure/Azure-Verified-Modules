@@ -154,31 +154,6 @@ $env:ARM_CLIENT_SECRET = "<service_principal_password>"
 
 <img src="/Azure-Verified-Modules/img/contribution/pullImage.png" alt="Pull latest azterraform container image." width=100%>
 
-<!--
-1. Create an UAMI in your Azure test subscription.
-2. Create a role assignment for the UAMI on your test subscription, use `Contributor` role (your module might require higher privileges) such as `Owner` but we reocmmend to go with least privilege.
-
-3. Configure [federated identity credentials](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity?pivots=identity-wif-mi-methods-azcli) on the user assigned managed identity. Use the GitHub `test` environment.
-
-You can use the following script to create the UAMI, role assignment and federated identity credentials:
-
-```pwsh
-# Create UAMI
-$identityName = "terraform-<provider>-avm-res-<resource provider>-<modulename>" # e.g. terraform-azurerm-avm-res-keyvault-vault
-$resourceGroupName = "<resource group name>"
-$roleName = "Contributor"
-$subscriptionID = $(az account show --query id --output tsv)
-echo "Creating UAMI $identityName, with role $roleName assigned to /subscriptions/$subscriptionID"
-
-$identity=az identity create -g $resourceGroupName -n $identityName
-$principalId=$(az identity show -n $identityName -g $resourceGroupName --query principalId --out tsv)
-az role assignment create --assignee $principalId --role $roleName --scope /subscriptions/$subscriptionID
-
-# Create federated identity credentials
-$fcName = $identityName
-az identity federated-credential create --name $fcName --identity-name $identityName --resource-group $resourceGroupName --issuer "https://token.actions.githubusercontent.com" --subject "repo:Azure/$($identityName):environment:test" --audiences 'api://AzureADTokenExchange'
-```
--->
 <br>
 
 ---
