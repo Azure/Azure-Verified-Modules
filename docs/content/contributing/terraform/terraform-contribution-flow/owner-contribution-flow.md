@@ -30,9 +30,6 @@ Make sure module authors/contributors tested their module in their environment b
 ---
 
 <br>
-<!-- TODO:
-- Add the creation of 1ES pool
--->
 
 ### 1. GitHub repository creation and configuration
 
