@@ -95,7 +95,17 @@ module <singularMainResourceType>_privateEndpoints 'br/public:avm/res/network/pr
     privateDnsZoneResourceIds: privateEndpoint.?privateDnsZoneResourceIds
     roleAssignments: privateEndpoint.?roleAssignments
     tags: privateEndpoint.?tags ?? tags
-    manualPrivateLinkServiceConnections: !empty(privateEndpoint.?privateLinkServiceConnections) ? [] : privateEndpoint.?manualPrivateLinkServiceConnections
+    manualPrivateLinkServiceConnections: (!empty(privateEndpoint.?privateLinkServiceConnections) ? [] : [
+      {
+        name: name
+        properties: {
+          privateLinkServiceId: <singularMainResourceType>.id
+          groupIds: [
+            privateEndpoint.service
+          ]
+        }
+      }
+    ])
     customDnsConfigs: privateEndpoint.?customDnsConfigs
     ipConfigurations: privateEndpoint.?ipConfigurations
     applicationSecurityGroupResourceIds: privateEndpoint.?applicationSecurityGroupResourceIds
