@@ -122,7 +122,7 @@ main:
         ref: "https://opensource.microsoft.com/codeofconduct/"
         external: true
         icon: "gdoc_language"
-  - name: "FAQs"
+  - name: "FAQ"
     ref: "/faq"
   - name: "Glossary"
     ref: "/glossary"
