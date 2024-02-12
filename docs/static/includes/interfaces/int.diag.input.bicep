@@ -1,8 +1,19 @@
 diagnosticSettings: [
   {
     name: 'diagSetting1'
-    logCategoriesAndGroups: ['allLogs']
-    metricCategories: ['AllMetrics']
+    logCategoriesAndGroups: [
+      {
+        category: 'AzurePolicyEvaluationDetails'
+      }
+      {
+        category: 'AuditEvent'
+      }
+    ]
+    metricCategories: [
+      {
+        category: 'AllMetrics'
+      }
+    ]
     logAnalyticsDestinationType: 'Dedicated'
     workspaceResourceId: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}'
     storageAccountResourceId: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}'
