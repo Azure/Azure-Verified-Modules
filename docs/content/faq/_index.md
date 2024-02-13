@@ -1,5 +1,5 @@
 ---
-title: Frequently Asked Questions (FAQs)
+title: Frequently Asked Questions (FAQ)
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
@@ -318,6 +318,15 @@ For Microsoft FTEs only: see the **Internal** wiki for support workflow for more
 
 ---
 
+### How are AVM modules updated/maintained?
+
+[Module owners](/Azure-Verified-Modules/specs/shared/team-definitions/#module-owners) are tasked to do with two types of maintenance:
+
+- Proactive: keeping track of the modules' underlying technology evolving, and keep modules up to date with the latest features and API versions.
+- Reactive: sometimes, mistakes are made that result in bugs and/or there might be features consumers ask for faster than module owners could proactively implement them. Consumers can request feature updates and bug fixes for existing modules [here](https://aka.ms/AVM/ModuleIssue).
+
+---
+
 ## Technical questions
 
 ### Should pattern modules leverage resource modules? What if (some of) the required resource modules are not available?
@@ -353,6 +362,35 @@ The validation includes 2 main stages run in sequence:
 - Deployment validation: to ensure all test examples are working from a deployment perspective.
 
 These same validations are also run in the [BRM](https://aka.ms/BRM) repository after merge. The new version of the contributed module is published to the Public Bicep Registry only if all validations are successful.
+
+---
+
+### Does AVM use semantic versioning?
+
+Yes! For generic guidance, see [SNFR17 - Semantic Versioning](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning).
+For Bicep specific guidance, see [BCPNFR14 - Versioning](https://azure.github.io/Azure-Verified-Modules/specs/bicep/#id-bcpnfr14---category-composition---versioning).
+
+---
+
+### What's the guidance on transitioning to new module versions?
+
+AVM is not different compared to any other solution using semantic versioning.
+
+Customer should consider updating to a newer version of a module if:
+
+- They need a new feature the new version has introduced.
+- It fixes a bug they were having.
+- They'd like ot use the latest and greatest version.
+
+To do this they just change the version in their module declaration for either terraform or bicep and then run it through their pipelines to roll it out.
+
+The high level steps are:
+
+- Check module documentation for any version-incompatibility notes.
+- Increase the version (point to the selected published version of the module).
+- Do a `what-if` (Bicep) or `terraform plan` (Terraform) & review the changes proposed.
+  - If all good, proceed to deployment/apply.
+  - If not, make required changes to make the plan/what-if as expected.
 
 ---
 

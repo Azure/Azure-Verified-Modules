@@ -24,7 +24,7 @@ During the triage process, the AVM Core Team should also check the status of fol
 - Open items that **need triaging**: <a href="https://aka.ms/AVM/NeedsTriage"><mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark></a>
   - Bicep items (that need triaging): <a href="https://aka.ms/AVM/NeedsTriageBicep"><mark style="background-color:#1D73B3;color:white;">Language: Bicep 💪</mark> & <mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark></a>
   - Terraform items (that need triaging): <a href="https://aka.ms/AVM/NeedsTriageTerraform"><mark style="background-color:#7740B6;color:white;">Language: Terraform 🌐</mark> & <mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark></a>
-- Open items that **need triaging AND aren't being triaged yet**: <a href="https://aka.ms/AVM/NeedsTriageButNotInTriage"><mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark> & <mark style="background-color:#E4E669;">Status: In Triage 🔍</mark></a>
+- Open items that **need triaging AND aren't being triaged yet**: <a href="https://aka.ms/AVM/NeedsTriageButNotInTriage"><mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark> & **NOT** <mark style="background-color:#E4E669;">Status: In Triage 🔍</mark></a>
 - Open items that **need attention**: <a href="https://aka.ms/AVM/NeedsAttention"><mark style="background-color:#E99695;">Needs: Attention 👋</mark></a>
 - Open items that **need owners**: <a href="https://aka.ms/AVM/NeedsModuleOwner"><mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark></a>
 - Open items with **no recent activity**: <a href="https://aka.ms/AVM/NoRecentActivity"><mark style="background-color:#808080;color:white;">Status: No Recent Activity 💤</mark></a>
