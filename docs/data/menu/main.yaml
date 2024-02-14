@@ -126,3 +126,5 @@ main:
     ref: "/faq"
   - name: "Glossary"
     ref: "/glossary"
+  - name: "Resources"
+    ref: "/resources"
