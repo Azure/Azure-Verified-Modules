@@ -27,6 +27,12 @@ Any updates to existing or new specifications for Terraform must be submitted as
 
 {{< /hint >}}
 
+{{< hint type=important >}}
+
+Provider Versatility: Users have the autonomy to choose between AzureRM, AzAPI, or a combination of both, tailored to the specific complexity of module requirements.
+
+{{< /hint >}}
+
 The following table summarizes the category identification codes used in this specification:
 
 | Scope                                            | Functional requirements               | Non-functional requirements                 |
