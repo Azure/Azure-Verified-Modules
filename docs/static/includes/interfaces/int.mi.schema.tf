@@ -20,8 +20,8 @@ locals {
   managed_identities = {
     system_assigned_user_assigned = (var.managed_identities.system_assigned || length(var.managed_identities.user_assigned_resource_ids) > 0) ? {
       this = {
-        type         = var.managed_identities.value.system_assigned && length(identity.value.user_assigned_resource_ids) > 0 ? "SystemAssigned, UserAssigned" : length(identity.value.user_assigned_resource_ids) > 0 ? "UserAssigned" : "SystemAssigned"
-        identity_ids = var.managed_identities.user_assigned_resource_ids
+        type                       = var.managed_identities.value.system_assigned && length(var.managed_identities.user_assigned_resource_ids) > 0 ? "SystemAssigned, UserAssigned" : length(var.managed_identities.user_assigned_resource_ids) > 0 ? "UserAssigned" : "SystemAssigned"
+        user_assigned_resource_ids = var.managed_identities.user_assigned_resource_ids
       }
     } : {}
     system_assigned = var.managed_identities.system_assigned ? {
@@ -31,8 +31,8 @@ locals {
     } : {}
     user_assigned = length(var.managed_identities.user_assigned_resource_ids) > 0 ? {
       this = {
-        type         = "UserAssigned"
-        identity_ids = var.managed_identities.user_assigned_resource_ids
+        type                       = "UserAssigned"
+        user_assigned_resource_ids = var.managed_identities.user_assigned_resource_ids
       }
     } : {}
   }
@@ -43,7 +43,7 @@ dynamic "identity" {
   for_each = local.managed_identities.system_assigned_user_assigned
   content {
     type         = identity.value.type
-    identity_ids = identity.value.identity_ids
+    identity_ids = identity.value.user_assigned_resource_ids
   }
 }
 
