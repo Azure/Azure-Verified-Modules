@@ -13,38 +13,53 @@ Controls the Managed Identity configuration on this resource. The following prop
 DESCRIPTION
 }
 
-# Example resource implementation
+# Helper locals to make the dynamic block more readable
+# There are three attributes here to cater for resources that
+# support both user and system MIs, only system MIs, and only user MIs
 locals {
-  managed_identity_for_each = {
-    this = {
-      type         = var.managed_identities.system_assigned && length(var.managed_identities.user_assigned_resource_ids) > 0 ? "SystemAssigned, UserAssigned" : length(var.managed_identities.user_assigned_resource_ids) > 0 ? "UserAssigned" : "SystemAssigned"
-      identity_ids = length(var.managed_identities.user_assigned_resource_ids) > 0 ? var.managed_identities.user_assigned_resource_ids : null
-    }
+  managed_identities = {
+    system_assigned_user_assigned = (var.managed_identities.system_assigned || length(var.managed_identities.user_assigned_resource_ids) > 0) ? {
+      this = {
+        type         = var.managed_identities.value.system_assigned && length(identity.value.user_assigned_resource_ids) > 0 ? "SystemAssigned, UserAssigned" : length(identity.value.user_assigned_resource_ids) > 0 ? "UserAssigned" : "SystemAssigned"
+        identity_ids = var.managed_identities.user_assigned_resource_ids
+      }
+    } : {}
+    system_assigned = var.managed_identities.system_assigned ? {
+      this = {
+        type = "SystemAssigned"
+      }
+    } : {}
+    user_assigned = length(var.managed_identities.user_assigned_resource_ids) > 0 ? {
+      this = {
+        type         = "UserAssigned"
+        identity_ids = var.managed_identities.user_assigned_resource_ids
+      }
+    } : {}
   }
 }
 
 ## Resources supporting both SystemAssigned and UserAssigned
 dynamic "identity" {
-  for_each = (var.managed_identities.system_assigned || length(var.managed_identities.user_assigned_resource_ids) > 0) ? { this = var.managed_identities } : {}
+  for_each = local.managed_identities.system_assigned_user_assigned
   content {
-    type         = identity.value.system_assigned && length(identity.value.user_assigned_resource_ids) > 0 ? "SystemAssigned, UserAssigned" : length(identity.value.user_assigned_resource_ids) > 0 ? "UserAssigned" : "SystemAssigned"
-    identity_ids = identity.value.user_assigned_resource_ids
+    type         = identity.value.type
+    identity_ids = identity.value.identity_ids
   }
 }
 
-## Resources that only supports SystemAssigned
+## Resources that only support SystemAssigned
 dynamic "identity" {
-  for_each = var.managed_identities.system_assigned ? { this = var.managed_identities } : {}
+  for_each = identity.managed_identities.system_assigned
   content {
-    type = "SystemAssigned"
+    type = identity.value.type
   }
 }
 
-## Resources that only supports UserAssigned
+## Resources that only support UserAssigned
 dynamic "identity" {
-  for_each = length(var.managed_identities.user_assigned_resource_ids) > 0 ? { this = var.managed_identities } : {}
+  for_each = local.managed_identities.user_assigned
   content {
-    type         = "UserAssigned"
+    type         = identity.value.type
     identity_ids = identity.value.user_assigned_resource_ids
   }
 }
