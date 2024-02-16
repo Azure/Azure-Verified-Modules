@@ -27,6 +27,12 @@ Any updates to existing or new specifications for Terraform must be submitted as
 
 {{< /hint >}}
 
+{{< hint type=important >}}
+
+Provider Versatility: Users have the autonomy to choose between AzureRM, AzAPI, or a combination of both, tailored to the specific complexity of module requirements.
+
+{{< /hint >}}
+
 The following table summarizes the category identification codes used in this specification:
 
 | Scope                                            | Functional requirements               | Non-functional requirements                 |
@@ -98,10 +104,10 @@ See [Module Sources](https://developer.hashicorp.com/terraform/language/modules/
 
 Module owners **MUST** output the following additional outputs as a minimum in their modules:
 
-| Output                                                                                  | Terraform Output Name                                 | MUST/SHOULD |
-| --------------------------------------------------------------------------------------- | ----------------------------------------------------- | ----------- |
-| Full Resource Output Object                                                             | `resource`                                            | MUST        |
-| Full Resource Output (map of) Object/s of child resource/extension/associated resources | `resource_<child/extension/associated resource name>` | SHOULD      |
+| Output                                                                                   | Terraform Output Name                                 | MUST/SHOULD |
+|------------------------------------------------------------------------------------------|-------------------------------------------------------|-------------|
+| Full Resource Output Object                                                              | `resource`                                            | MUST        |
+| Full Resource Output (map of) Object(s) of child resource/extension/associated resources | `resource_<child/extension/associated resource name>` | SHOULD      |
 
 <br>
 

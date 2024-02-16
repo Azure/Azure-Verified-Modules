@@ -10,43 +10,43 @@ geekdocAnchor: true
 ## High-level contribution flow
 
 {{< mermaid class="text-center" >}}
-  flowchart TD
-    A(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment'>1. Setup your Azure test environment </a>)
-    B(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment'>2. Fork the module source repository</a>)
-    C(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#3-configure-your-ci-environment'>3. Configure CI environment </a> <br> For module tests)
-    D(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution'>4. Implementing your contribution </a><br> Refer to Gitflow Diagram below)
-    E{<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests'>5. Workflow test <br> completed <br> successfully?</a>}
-    F(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry'>6. Create a pull request to the upstream repository</a>)
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E -->|yes|F
-    E -->|no|D
+flowchart TD
+A(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment'>1. Setup your Azure test environment </a>)
+B(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment'>2. Fork the module source repository</a>)
+C(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#3-configure-your-ci-environment'>3. Configure CI environment </a> <br> For module tests)
+D(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution'>4. Implementing your contribution </a><br> Refer to Gitflow Diagram below)
+E{<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests'>5. Workflow test <br> completed <br> successfully?</a>}
+F(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry'>6. Create a pull request to the upstream repository</a>)
+A --> B
+B --> C
+C --> D
+D --> E
+E -->|yes|F
+E -->|no|D
 {{< /mermaid >}}
 
 ## GitFlow for contributors
 
 The GitFlow process outlined here introduces a central anchor branch. This branch should be treated as if it were a protected branch. It serves to synchronize the forked repository with the original upstream repository. The use of the anchor branch is designed to give contributors the flexibility to work on several modules simultaneous.
 {{< mermaid class="text-center" >}}
-  %%{init: { 'logLevel': 'debug', 'gitGraph': {'rotateCommitLabel': false}} }%%
-  gitGraph LR:
-      commit id:"Fork Repo"
-      branch anchor
-      checkout anchor
-      commit id:"Sync Upstream/main" type: HIGHLIGHT
-      branch avm-type-provider-resource-workflow
-      checkout avm-type-provider-resource-workflow
-      commit id:"Add Workflow File for Resource/Pattern"
-      branch avm-type-provider-resource
-      checkout main
-      merge avm-type-provider-resource-workflow id: "merge workflow for GitHub Actions Testing" type: HIGHLIGHT
-      checkout avm-type-provider-resource
-      commit id:"Init"
-      commit id:"Patch 1"
-      commit id:"Patch 2"
-      checkout main
-      merge avm-type-provider-resource
+%%{init: { 'logLevel': 'debug', 'gitGraph': {'rotateCommitLabel': false}} }%%
+gitGraph LR:
+commit id:"Fork Repo"
+branch anchor
+checkout anchor
+commit id:"Sync Upstream/main" type: HIGHLIGHT
+branch avm-type-provider-resource-workflow
+checkout avm-type-provider-resource-workflow
+commit id:"Add Workflow File for Resource/Pattern"
+branch avm-type-provider-resource
+checkout main
+merge avm-type-provider-resource-workflow id: "merge workflow for GitHub Actions Testing" type: HIGHLIGHT
+checkout avm-type-provider-resource
+commit id:"Init"
+commit id:"Patch 1"
+commit id:"Patch 2"
+checkout main
+merge avm-type-provider-resource
 {{< /mermaid >}}
 
 {{< hint type=tip >}}
@@ -65,10 +65,10 @@ Each time in the following sections we refer to 'your xzy', it is an indicator t
 
 {{< /hint >}}
 
-
 AVM tests the deployments in an Azure subscription. To do so, it requires a service principal with access to it.
 
 In this first step, make sure you
+
 - Have/create an Azure Active Directory Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
   - [Create a service principal (Azure Portal)](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal)
   - [Create a service principal (PowerShell)](https://learn.microsoft.com/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
@@ -97,6 +97,7 @@ To do so, simply navigate to the [Public Bicep Registry](https://github.com/Azur
 ## 3. Configure your CI environment
 
 To configure the forked CI environment you have to perform several steps:
+
 - [3.1 Set up secrets](#31-set-up-secrets)
 - [3.2 Enable actions](#32-enable-actions)
 - [3.3 Set Read/Write Workflow permissions](#33-set-readwrite-workflow-permissions)
@@ -119,15 +120,15 @@ To use the environment's pipelines you should use the information you gathered d
 
 1. Navigate to the repository's `Settings`.
 
-    <img src="../../../img/bicep-ci/forkSettings.png" alt="Navigate to settings" width=100%>
+<img src="../../../img/bicep-ci/forkSettings.png" alt="Navigate to settings" width=100%>
 
 2. In the list of settings, expand `Secrets` and select `Actions`. You can create a new repository secret by selecting `New repository secret` on the top right.
 
-    <img src="../../../img/bicep-ci/forkSettingsSecrets.png" alt="Navigate to secrets" width=100%>
+<img src="../../../img/bicep-ci/forkSettingsSecrets.png" alt="Navigate to secrets" width=100%>
 
 3. In the opening view, you can create a secret by providing a secret `Name`, a secret `Value`, followed by a click on the `Add secret` button.
 
-    <img src="../../../img/bicep-ci/forkSettingsSecretAdd.png" alt="Add secret" width=100%>
+<img src="../../../img/bicep-ci/forkSettingsSecretAdd.png" alt="Add secret" width=100%>
 
 {{< /expand >}}
 
@@ -165,7 +166,7 @@ To do so, perform the following steps:
 
 1. Next, select '`I understand my workflows, go ahead and enable them`'.
 
-    <img src="../../../img/bicep-ci/actionsEnable.png" alt="Enable Actions" width=100%>
+<img src="../../../img/bicep-ci/actionsEnable.png" alt="Enable Actions" width=100%>
 
 ### 3.3. Set Read/Write Workflow permissions
 
@@ -177,9 +178,15 @@ To let the workflow engine publish their results into your repository, you have 
 
 1. Make sure to enable `Read and write permissions`
 
-    <img src="../../../img/bicep-ci/workflow_permissions.png" alt="Workflow Permissions" width=100%>
+<img src="../../../img/bicep-ci/workflow_permissions.png" alt="Workflow Permissions" width=100%>
 
 <br>
+
+{{< hint type=tip >}}
+
+Once you enabled the GitHub actions, your workflows will behave as they do in the upstream repository. This includes a scheduled trigger to continuously check that all modules are working and compliant with the latest tests. However, testing all modules can incur substantial costs with the target subscription. Therefore, we recommend **disabling all workflows of modules you are not working on**. To make this as easy as possible, we created a workflow that disables/enables workflows based on a selected toggle & naming pattern. For more information on how to use this workflow, please refer to the corresponding [documentation](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows).
+
+{{< /hint >}}
 
 ## 4. Implement your contribution
 
@@ -226,9 +233,12 @@ To get started implementing your test in the `main.test.bicep` file, we recommen
 - As per [BCPNFR13](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr13---category-testing---test-file-metadata), each `main.test.bicep` file should implement metadata to render the test more meaningful in the documentation
 - The `main.test.bicep` file should deploy any immediate dependencies (e.g., a resource group, if required) and invoke the module's main template while providing all parameters for a given test scenario.
 - Parameters
+
   - Each file should define a parameter `serviceShort`. This parameter should be unique to this file (i.e, no two test files should share the same) as it is injected into all resource deployments, making them unique too and account for corresponding requirements.
+
     - As a reference you can create a identifier by combining a substring of the resource type and test scenario (e.g., in case of a Linux Virtual Machine Deployment: `vmlin`).
     - For the substring, we recommend to take the first character and subsequent 'first' character from the resource type identifier and combine them into one string. Following you can find a few examples for reference:
+
       - `db-for-postgre-sql/flexible-server` with a test folder `default` could be: `dfpsfsdef`
       - `storage/storage-account` with a test folder `waf-aligned` could be: `ssawaf`
 
@@ -237,6 +247,7 @@ To get started implementing your test in the `main.test.bicep` file, we recommen
 
   - If the module deploys a resource-group-level resource, the template should further have a `resourceGroupName` parameter and subsequent resource deployment. As a reference for the default name you can use `dep-<namePrefix><providerNamespace>.<resourceType>-${serviceShort}-rg`.
   - Each file should also provide a `location` parameter that may default to the deployments default location
+
 - It is recommended to define all major resource names in the `main.test.bicep` file as it makes later maintenance easier. To implement this, make sure to pass all resource names to any referenced module (including any resource deployed in the `dependencies.bicep`).
 - Further, for any test file (including the `dependencies.bicep` file), the usage of variables should be reduced to the absolute minimum. In other words: You should only use variables if you must use them in more than one place. The idea is to keep the test files as simple as possible
 - References to dependencies should be implemented using resource references in combination with outputs. In other words: You should not hardcode any references into the module template's deployment. Instead use references such as `nestedDependencies.outputs.managedIdentityPrincipalId`
@@ -292,10 +303,10 @@ To test the numerous diagnostic settings targets (Log Analytics Workspace, Stora
 
 Finally, once you are satisfied with your contribution and validated it, open a PR for the module owners or core team to review. Make sure you:
 
-1. Provide a meaningful title
-1. Provide a meaningful description.
-1. Follow instructions you find in the PR template.
-1. If applicable (i.e., a module is created/updated), please reference the badge status of your pipeline run. This badge will show the reviewer that the code changes were successfully validated & tested in your environment. To create a badge, first select the three dots (`...`) at the top right of the pipeline, and then chose the `Create status badge` option.
+1. Provide a meaningful title in the form of _feat: `<module name>`_ to align witht the Semantic PR Check.
+2. Provide a meaningful description.
+3. Follow instructions you find in the PR template.
+4. If applicable (i.e., a module is created/updated), please reference the badge status of your pipeline run. This badge will show the reviewer that the code changes were successfully validated & tested in your environment. To create a badge, first select the three dots (`...`) at the top right of the pipeline, and then chose the `Create status badge` option.
 
 <img src="../../../img/contribution/badgeDropdown.png" alt="Badge dropdown" height="200">
 
