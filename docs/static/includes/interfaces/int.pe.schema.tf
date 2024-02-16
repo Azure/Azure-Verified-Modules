@@ -1,5 +1,17 @@
 # In this example we only support one service, e.g. Key Vault.
 # If your service has multiple private endpoint services, then expose the service name.
+
+# This variable is used to determine if the private_dns_zone_group block should be included,
+# or if it is to be managed externally, e.g. using Azure Policy.
+# https://github.com/Azure/terraform-azurerm-avm-res-keyvault-vault/issues/32
+# Alternatively you can use AzAPI, which does not have this issue.
+variable "private_endpoints_manage_dns_zone_group" {
+  type        = bool
+  default     = true
+  nullable    = false
+  description = "Whether to manage private DNS zone groups with this module. If set to false, you must manage private DNS zone groups externally, e.g. using Azure Policy."
+}
+
 variable "private_endpoints" {
   type = map(object({
     name               = optional(string, null)
@@ -7,7 +19,7 @@ variable "private_endpoints" {
     lock               = optional(object({}), {})      # see https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#resource-locks
     tags               = optional(map(any), null)      # see https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#tags
     subnet_resource_id = string
-    ## You only need to expose this if there are multiple underlying services, e.g. storage.
+    ## You only need to expose the subresource_name if there are multiple underlying services, e.g. storage.
     ## Which has blob, file, etc.
     ## If there is only one then leave this out and hardcode the value in the module.
     # subresource_name                        = string
@@ -24,6 +36,7 @@ variable "private_endpoints" {
     })), {})
   }))
   default     = {}
+  nullable    = false
   description = <<DESCRIPTION
 A map of private endpoints to create on the Key Vault. The map key is deliberately arbitrary to avoid issues where map keys maybe unknown at plan time.
 
@@ -45,9 +58,9 @@ A map of private endpoints to create on the Key Vault. The map key is deliberate
 DESCRIPTION
 }
 
-# Resources
+# The PE resource when we are managing the private_dns_zone_group block:
 resource "azurerm_private_endpoint" "this" {
-  for_each                      = var.private_endpoints
+  for_each                      = { for k, v in var.private_endpoints : k => v if var.private_endpoints_manage_dns_zone_group }
   name                          = each.value.name != null ? each.value.name : "pep-${var.name}"
   location                      = each.value.location != null ? each.value.location : var.location
   resource_group_name           = each.value.resource_group_name != null ? each.value.resource_group_name : var.resource_group_name
@@ -83,6 +96,19 @@ resource "azurerm_private_endpoint" "this" {
   }
 }
 
+# The PE resource when we are managing **not** the private_dns_zone_group block:
+resource "azurerm_private_endpoint" "this_unmanaged_dns_zone_groups" {
+  for_each = { for k, v in var.private_endpoints : k => v if !var.private_endpoints_manage_dns_zone_group }
+
+  # ... repeat configuration above
+  # **omitting the private_dns_zone_group block**
+  # then add the following lifecycle block to ignore changes to the private_dns_zone_group block
+
+  lifecycle {
+    ignore_changes = [private_dns_zone_group]
+  }
+}
+
 # Private endpoint application security group associations.
 # We merge the nested maps from private endpoints and application security group associations into a single map.
 locals {
@@ -103,10 +129,11 @@ resource "azurerm_private_endpoint_application_security_group_association" "this
   application_security_group_id = each.value.asg_resource_id
 }
 
+# You need an additional resource when not managing private_dns_zone_group with this module:
 
-
+# In your output you need to select the correct resource based on the value of var.private_endpoints_manage_dns_zone_group:
 output "private_endpoints" {
-  value       = azurerm_private_endpoint.this
+  value       = var.private_endpoints_manage_dns_zone_group ? azurerm_private_endpoint.this_managed_dns_zone_groups : azurerm_private_endpoint.this_unmanaged_dns_zone_groups
   description = <<DESCRIPTION
 A map of the private endpoints created.
 DESCRIPTION
