@@ -91,8 +91,9 @@
 90,res/sql/server,✅,✅,✅,,✅,
 91,res/storage/storage-account,✅,✅,✅,✅,✅,
 92,res/synapse/private-link-hub,✅,✅,✅,,✅,
-93,res/virtual-machine-images/image-template,✅,✅,✅,,,
-94,res/web/serverfarm,✅,✅,✅,✅,,
-95,res/web/site,✅,✅,✅,✅,✅,
-96,res/web/static-site,✅,✅,✅,,✅,
-Sum,,87,83,90,39,21,1
+93,res/synapse/workspace,✅,✅,✅,✅,✅,
+94,res/virtual-machine-images/image-template,✅,✅,✅,,,
+95,res/web/serverfarm,✅,✅,✅,✅,,
+96,res/web/site,✅,✅,✅,✅,✅,
+97,res/web/static-site,✅,✅,✅,,✅,
+Sum,,88,84,91,40,22,1
