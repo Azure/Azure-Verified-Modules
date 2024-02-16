@@ -24,6 +24,9 @@ A map of role assignments to create on the Key Vault. The map key is deliberatel
 DESCRIPTION
 }
 
+locals {
+  role_definition_resource_substring = "providers/Microsoft.Authorization/roleDefinitions"
+}
 
 # Example resource declaration
 resource "azurerm_role_assignment" "this" {
