@@ -49,7 +49,7 @@ Today, module owners **MUST** be Microsoft FTEs. This is to ensure that within A
 Module owners are responsible for:
 
 - Module Creation
-- Module Maintenance
+- Module Maintenance (proactive & reactive)
 - Module Issue/Pull Request Triage & Resolution
 - Module Feature Request Triage & Additions
 - Managing Module Contributors
