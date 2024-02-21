@@ -7,7 +7,7 @@ type privateEndpointType = {
   location: string?
 
   // Variant 1: A default service can be assumed (i.e., for services that only have one private endpoint type)
-  @description('Optional. The service (sub-) type to deploy the private endpoint for. For example "vault" or "blob".')
+  @description('Optional. The subresource to deploy the private endpoint for. For example "vault", "mysqlServer" or "dataFactory".')
   service: string?
 
   @description('Required. Resource ID of the subnet where the endpoint needs to be created.')
@@ -18,6 +18,9 @@ type privateEndpointType = {
 
   @description('Optional. The private DNS zone groups to associate the private endpoint with. A DNS zone group can support up to 5 DNS zones.')
   privateDnsZoneResourceIds: string[]?
+
+  @description('Optional. Manual PrivateLink Service Connections.')
+  manualPrivateLinkServiceConnections: array?
 
   @description('Optional. Custom DNS configurations.')
   customDnsConfigs: {
@@ -61,9 +64,6 @@ type privateEndpointType = {
   @description('Optional. Tags to be applied on all resources/resource groups in this deployment.')
   tags: object?
 
-  @description('Optional. Manual PrivateLink Service Connections.')
-  manualPrivateLinkServiceConnections: array?
-
   @description('Optional. Enable/Disable usage telemetry for module.')
   enableTelemetry: bool?
 }[]?
@@ -75,37 +75,38 @@ module <singularMainResourceType>_privateEndpoints 'br/public:avm/res/network/pr
   name: '${uniqueString(deployment().name, location)}-<singularMainResourceType>-PrivateEndpoint-${index}'
   params: {
     // Variant 1: A default service can be assumed (i.e., for services that only have one private endpoint type)
-    privateLinkServiceConnections: (!empty(privateEndpoint.?manualPrivateLinkServiceConnections) ? [] : [
+    name: privateEndpoint.?name ?? 'pep-${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.?service ?? <defaultServiceName>}-${index}'
+    privateLinkServiceConnections: length(privateEndpoint.?manualPrivateLinkServiceConnections) == 0 ? [
       {
-        name: name
+        name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.?service ?? '<defaultServiceName>'}-${index}'
         properties: {
           privateLinkServiceId: <singularMainResourceType>.id
           groupIds: [
-            privateEndpoint.?service ?? '<defaultServiceName>'
+            privateEndpoint.?service ?? <defaultServiceName>
           ]
         }
       }
-    ])
-    name: privateEndpoint.?name ?? 'pep-${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.?service ?? '<defaultServiceName>'}-${index}'
+    ] : null
+    manualPrivateLinkServiceConnections: length(privateEndpoint.?manualPrivateLinkServiceConnections) != 0 ? [
+      {
+        name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.?service ?? '<defaultServiceName>'}-${index}'
+        properties: {
+          privateLinkServiceId: workspace.id
+          groupIds: [
+            privateEndpoint.?service ?? <defaultServiceName>
+          ]
+          requestMessage: privateEndpoint.?manualConnectionRequestMessage ?? 'Manual approval required.'
+        }
+      }
+    ] : null
     subnetResourceId: privateEndpoint.subnetResourceId
-    enableTelemetry: privateEndpoint.?enableTelemetry ?? enableTelemetry
+    enableTelemetry: privateEndpoint.?enableDefaultTelemetry ?? enableReferencedModulesTelemetry
     location: privateEndpoint.?location ?? reference(split(privateEndpoint.subnetResourceId, '/subnets/')[0], '2020-06-01', 'Full').location
     lock: privateEndpoint.?lock ?? lock
     privateDnsZoneGroupName: privateEndpoint.?privateDnsZoneGroupName
     privateDnsZoneResourceIds: privateEndpoint.?privateDnsZoneResourceIds
     roleAssignments: privateEndpoint.?roleAssignments
     tags: privateEndpoint.?tags ?? tags
-    manualPrivateLinkServiceConnections: (!empty(privateEndpoint.?privateLinkServiceConnections) ? [] : [
-      {
-        name: name
-        properties: {
-          privateLinkServiceId: <singularMainResourceType>.id
-          groupIds: [
-            privateEndpoint.?service ?? '<defaultServiceName>'
-          ]
-        }
-      }
-    ])
     customDnsConfigs: privateEndpoint.?customDnsConfigs
     ipConfigurations: privateEndpoint.?ipConfigurations
     applicationSecurityGroupResourceIds: privateEndpoint.?applicationSecurityGroupResourceIds
