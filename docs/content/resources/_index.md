@@ -22,10 +22,10 @@ Additional internal content available for Microsoft FTEs only, [here](https://de
 - [Introducing Azure Verified Modules!](https://aka.ms/AVM/intro/blog)
 - [Azure Verified Modules - Monthly Update Jan 24'](https://techcommunity.microsoft.com/t5/azure-tools-blog/azure-verified-modules-monthly-update-jan-24/ba-p/4048910)
 
-## 💻 Presentations
-
-- [AVM Overview - Customer presentation](https://aka.ms/AVM/CustomerPresentation)
-
 ## 🎙️ Podcasts
 
 - AVM on the Ctrl+Alt+Azure Podcast - [226 - Azure Verified Modules with Jack Tracey](https://ctrlaltazure.com/episodes/226-azure-verified-modules-with-jack-tracey)
+
+## 💻 Presentations
+
+- [AVM Overview - Customer presentation](https://aka.ms/AVM/CustomerPresentation)
