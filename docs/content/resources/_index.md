@@ -25,3 +25,7 @@ Additional internal content available for Microsoft FTEs only, [here](https://de
 ## 💻 Presentations
 
 - [AVM Overview - Customer presentation](https://aka.ms/AVM/CustomerPresentation)
+
+## 🎙️ Podcasts
+
+- AVM on the Ctrl+Alt+Azure Podcast - [226 - Azure Verified Modules with Jack Tracey](https://ctrlaltazure.com/episodes/226-azure-verified-modules-with-jack-tracey)
