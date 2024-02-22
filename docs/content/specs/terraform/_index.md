@@ -600,7 +600,7 @@ The target audience of `description` is the module users.
 
 For a newly created `variable` (Eg. `variable` for switching `dynamic` block on-off), it's `description` should precisely describe the input parameter's purpose and the expected data type. `description` should not contain any information for module developers, this kind of information can only exist in code comments.
 
-For `object` type `variable`, `description` can be composed in HEREDOC format:
+For `object` type `variable`, `description` can be composed in HEREDOC format. The HEREDOC string SHOULD use an indented definition (`<<-`) and indent the content to allow collapsing of `variable` and `description` blocks in a neat way. This is for the developers benefit. The delimiter word SHOULD be `DESCRIPTION`.
 
 ```terraform
 variable "kubernetes_cluster_key_management_service" {
@@ -609,10 +609,10 @@ variable "kubernetes_cluster_key_management_service" {
     key_vault_network_access = optional(string)
   })
   default     = null
-  description = <<-EOT
-  - `key_vault_key_id` - (Required) Identifier of Azure Key Vault key. See [key identifier format](https://learn.microsoft.com/en-us/azure/key-vault/general/about-keys-secrets-certificates#vault-name-and-object-name) for more details. When Azure Key Vault key management service is enabled, this field is required and must be a valid key identifier. When `enabled` is `false`, leave the field empty.
-  - `key_vault_network_access` - (Optional) Network access of the key vault Network access of key vault. The possible values are `Public` and `Private`. `Public` means the key vault allows public access from all networks. `Private` means the key vault disables public access and enables private link. Defaults to `Public`.
-EOT
+  description = <<-DESCRIPTION
+    - `key_vault_key_id` - (Required) Identifier of Azure Key Vault key. See [key identifier format](https://learn.microsoft.com/en-us/azure/key-vault/general/about-keys-secrets-certificates#vault-name-and-object-name) for more details. When Azure Key Vault key management service is enabled, this field is required and must be a valid key identifier. When `enabled` is `false`, leave the field empty.
+    - `key_vault_network_access` - (Optional) Network access of the key vault Network access of key vault. The possible values are `Public` and `Private`. `Public` means the key vault allows public access from all networks. `Private` means the key vault disables public access and enables private link. Defaults to `Public`.
+  DESCRIPTION
 }
 ```
 
