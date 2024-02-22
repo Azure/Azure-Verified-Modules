@@ -20,7 +20,10 @@ type privateEndpointType = {
   privateDnsZoneResourceIds: string[]?
 
   @description('Optional. Manual PrivateLink Service Connections.')
-  manualPrivateLinkServiceConnections: array?
+  isManualConnection: bool?
+
+  @description('Optional. The name of the request message for manual approval.')
+  manualConnectionRequestMessage: string?
 
   @description('Optional. Custom DNS configurations.')
   customDnsConfigs: {
@@ -76,7 +79,7 @@ module <singularMainResourceType>_privateEndpoints 'br/public:avm/res/network/pr
   params: {
     // Variant 1: A default service can be assumed (i.e., for services that only have one private endpoint type)
     name: privateEndpoint.?name ?? 'pep-${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.?service ?? <defaultServiceName>}-${index}'
-    privateLinkServiceConnections: length(privateEndpoint.?manualPrivateLinkServiceConnections) == 0 ? [
+    privateLinkServiceConnections: privateEndpoint.?manualPrivateLinkServiceConnections != true ? [
       {
         name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.?service ?? '<defaultServiceName>'}-${index}'
         properties: {
@@ -87,7 +90,7 @@ module <singularMainResourceType>_privateEndpoints 'br/public:avm/res/network/pr
         }
       }
     ] : null
-    manualPrivateLinkServiceConnections: length(privateEndpoint.?manualPrivateLinkServiceConnections) != 0 ? [
+    manualPrivateLinkServiceConnections: privateEndpoint.?manualPrivateLinkServiceConnections == true ? [
       {
         name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.?service ?? '<defaultServiceName>'}-${index}'
         properties: {
@@ -100,7 +103,7 @@ module <singularMainResourceType>_privateEndpoints 'br/public:avm/res/network/pr
       }
     ] : null
     subnetResourceId: privateEndpoint.subnetResourceId
-    enableTelemetry: privateEndpoint.?enableDefaultTelemetry ?? enableReferencedModulesTelemetry
+    enableTelemetry: privateEndpoint.?enableTelemetry ?? enableTelemetry
     location: privateEndpoint.?location ?? reference(split(privateEndpoint.subnetResourceId, '/subnets/')[0], '2020-06-01', 'Full').location
     lock: privateEndpoint.?lock ?? lock
     privateDnsZoneGroupName: privateEndpoint.?privateDnsZoneGroupName
