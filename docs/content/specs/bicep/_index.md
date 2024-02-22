@@ -53,7 +53,7 @@ This section includes **Bicep specific, functional requirements (BCPFR)** for AV
 
 #### ID: BCPFR1 - Category: Composition - Cross-Referencing Modules
 
-Module owners **MAY** cross-references other modules to build either Resource or Pattern modules.
+Module owners **MAY** cross-reference other modules to build either Resource or Pattern modules.
 
 However, they **MUST** be referenced only by a public registry reference to a pinned version e.g. `br/public:avm/xxx/yyy:1.2.3`. They **MUST NOT** use local parent path references to a module e.g. `../../xxx/yyy.bicep`.
 
