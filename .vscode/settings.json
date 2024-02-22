@@ -24,5 +24,9 @@
         "VMSS",
         "xbcp",
         "xgtf"
-    ]
+    ],
+    ["terraform"]: {
+        "editor.insertSpaces": true,
+        "editor.indentSize": 2
+    }
 }

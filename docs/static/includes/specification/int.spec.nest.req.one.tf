@@ -1,26 +1,23 @@
-# The nested block is required and supports only a single instance
-# Use the nested block directly without a dynamic block and looping.
+# The nested block is required and supports a single instance
 
 # Variable declaration
-Variable "my_nested_block" {
-
+variable "required_single_block" {
+  type = object({
+    name   = string
+    color  = string
+    length = optional(number)
+    pets   = map(object(...))
+  })
+  ...
 }
 
-# Resource implementation
+# Resource declaration
 resource "my_resource" "this" {
-    
+  ...
+  required_single_block {
+      name   = var.required_single_block.name
+      color  = var.required_single_block.color
+      length = var.required_single_block.length
+  }
+  ...
 }
-
-
-
-# The nested block is required and supports one or more instances
-# Use a dynamic block with a `for_each` meta argument. As it requires atleast one input, the definition can be `for_each = var.loop_me`
-
-# The nested block is optional and supports only a single instance
-# Use a dynamic block with a `for_each` meta argument.
-# As its input is optional, the definision **SHOULD** be `for_each = var.loop_me != null ? { this = var.loop_me } : {}`
-
-# The nested block is optional and supports one or more instance
-# Use a dynamic block with a `for_each` meta argument.
-# As its input is optional and supports multiple, the definition **SHOULD** be `for_each = var.loop_me != null ? var.loop_me : {}`. 
-# Where the input parameter is a `map()` type.
