@@ -417,7 +417,7 @@ The syntax is used by the ReadMe-generating utility to identify, pull & format u
 #### ID: BCPNFR13 - Category: Testing - Test file metadata
 
 By default, the ReadMe-generating utility will create usage examples headers based on each `e2e` folder's name.
-Module owners **MAY** provide a custom name & description by specfying the metadata blocks `name` & `description` in their `main.test.bicep` test files.
+Module owners **MAY** provide a custom name and description by specifying the metadata blocks `name` and `description` in their `main.test.bicep` test files.
 
 For example:
 ```bicep
