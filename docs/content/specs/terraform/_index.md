@@ -378,7 +378,7 @@ The meta-arguments below should be declared on the top of a `module` block with 
 3. `count`
 4. `for_each`
 
-blank lines will be used to separate them.
+Blank lines will be used to separate them.
 
 After them will be required arguments, optional arguments, all ranked in alphabetical order.
 
