@@ -461,14 +461,14 @@ module "bar" {
 }
 ```
 
-For this kind of parameters, wrapping with `object` type is recommended：
+For these types of parameters, it is recommended to use the `object` type for wrapping. For example:
 
 ```terraform
 variable "security_group" {
   type = object({
-    id   = string
+    id = string
   })
-  default     = null
+  default = null
 }
 ```
 
