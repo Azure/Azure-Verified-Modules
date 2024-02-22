@@ -131,7 +131,7 @@ if ($false -eq $GitHubRepositoryNameValid) {
 # List GitHub repository provided and check it exists
 $GitHubRepository = gh repo view $RepositoryName
 if ($LASTEXITCODE -ne 0) {
-  Write-Host $GitHubCliAuthenticated -ForegroundColor Read
+  Write-Host $GitHubRepository -ForegroundColor Read
   throw "The GitHub repository $RepositoryName does not exist. Please check the repository name and try again."
 }
 Write-Host "The GitHub repository $RepositoryName exists..." -ForegroundColor Green
