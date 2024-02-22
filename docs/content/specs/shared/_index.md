@@ -691,7 +691,7 @@ docker run -it -v $PWD:/repo -w /repo mcr.microsoft.com/powershell pwsh -Command
 
 By default this script will only update and append labels on the repository specified. However, this can be changed by setting the parameter `-UpdateAndAddLabelsOnly` to `$false`, which will remove all the labels from the repository first and then apply the AVM labels from the CSV only.
 
-Make sure you elevate your privilege to admin level or the labels will not be applied to your repository. Go to https://repos.opensource.microsoft.com/orgs/Azure/repos/<your avm repo>
+Make sure you elevate your privilege to admin level or the labels will not be applied to your repository. Go to repos.opensource.microsoft.com/orgs/Azure/repos/<your avm repo> to request admin access before running the script.
 
 Full Script:
 
