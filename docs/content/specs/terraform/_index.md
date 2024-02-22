@@ -401,9 +401,9 @@ Good example:
 
 ```hcl
 lifecycle {
-    ignore_changes = [
-      tags,
-    ]
+  ignore_changes = [
+    tags,
+  ]
 }
 ```
 
@@ -411,9 +411,9 @@ Bad example:
 
 ```hcl
 lifecycle {
-    ignore_changes = [
-      "tags",
-    ]
+  ignore_changes = [
+    "tags",
+  ]
 }
 ```
 
