@@ -337,7 +337,7 @@ The parameters of `lifecycle` block should show up in the following order:
 2. `ignore_changes`
 3. `prevent_destroy`
 
-parameters under `depends_on` and `ignore_changes` are ranked in alphabetical order.
+Parameters under `depends_on` and `ignore_changes` are ranked in alphabetical order.
 
 Meta-arguments, arguments and nested blocked are separated by blank lines.
 
