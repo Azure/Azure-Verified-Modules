@@ -270,32 +270,6 @@ resource "azurerm_subnet" "pair" {
 }
 ```
 
-##### Nested blocks
-
-Resources nested blocks are implemented differently depending on if they are optional or required and support one or more blocks. These **SHOULD** be implemented in the following ways:
-
-{{< /hint >}}
-
-{{< tabs "nested blocks" >}}
-  {{< tab "Required, one" >}}
-  {{< include file="/static/includes/spec/int.spec.nest.req.one.tf" language="terraform" options="linenos=false" >}}
-  {{< /tab >}}
-  {{< tab "Required, one or more" >}}
-  {{< include file="/static/includes/spec/int.spec.nest.req.more.tf" language="terraform" options="linenos=false" >}}
-  {{< /tab >}}
-  {{< tab "Optional, one" >}}
-  {{< include file="/static/includes/spec/int.spec.nest.opt.one.tf" language="terraform" options="linenos=false" >}}
-  {{< /tab >}}
-  {{< tab "Optional, one or more" >}}
-  {{< include file="/static/includes/spec/int.spec.nest.opt.more.tf" language="terraform" options="linenos=false" >}}
-  {{< /tab >}}
-  {{< tab "Nested dynamic blocks" >}}
-  {{< include file="/static/includes/spec/int.spec.nest.nested.tf" language="terraform" options="linenos=false" >}}
-  {{< /tab >}}
-{{< /tabs >}}
-
-{{< hint type=note >}}
-
 <br>
 
 ---
@@ -526,24 +500,47 @@ Please use this technique under this use case only.
 
 #### ID: TFNFR12 - Category: Code Style - Optional nested object argument should use `dynamic`
 
-An example from the community:
+An example from the interfaces for managed_identity:
 
 ```terraform
 resource "azurerm_kubernetes_cluster" "main" {
   ...
   dynamic "identity" {
-    for_each = var.client_id == "" || var.client_secret == "" ? [1] : []
+    for_each = local.managed_identities.user_assigned
 
     content {
-      type                      = var.identity_type
-      user_assigned_identity_id = var.user_assigned_identity_id
+      type         = identity.value.type
+      identity_ids = identity.value.user_assigned_resource_ids
     }
   }
   ...
 }
 ```
 
-Please refer to the coding style in the example. If you just want to declare some nested block under conditions, please see the section on [nested blocks](#nested-blocks).
+Resources nested blocks are implemented differently depending on if they are optional or required and support one or more blocks. These **SHOULD** be implemented in the following ways:
+
+{{< /hint >}}
+
+{{< tabs "nested blocks" >}}
+  {{< tab "Required, one" >}}
+  {{< include file="/static/includes/spec/int.spec.nest.req.one.tf" language="terraform" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Required, one or more" >}}
+  {{< include file="/static/includes/spec/int.spec.nest.req.more.tf" language="terraform" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Optional, one" >}}
+  {{< include file="/static/includes/spec/int.spec.nest.opt.one.tf" language="terraform" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Optional, one or more" >}}
+  {{< include file="/static/includes/spec/int.spec.nest.opt.more.tf" language="terraform" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Nested dynamic blocks" >}}
+  {{< include file="/static/includes/spec/int.spec.nest.nested.tf" language="terraform" options="linenos=false" >}}
+  {{< /tab >}}
+{{< /tabs >}}
+
+{{< hint type=note >}}
+
 
 <br>
 
