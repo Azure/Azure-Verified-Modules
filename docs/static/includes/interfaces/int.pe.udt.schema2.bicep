@@ -81,7 +81,7 @@ module <singularMainResourceType>_privateEndpoints 'br/public:avm/res/network/pr
     name: privateEndpoint.?name ?? 'pep-${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.?service ?? <defaultServiceName>}-${index}'
     privateLinkServiceConnections: privateEndpoint.?manualPrivateLinkServiceConnections != true ? [
       {
-        name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.?service ?? '<defaultServiceName>'}-${index}'
+        name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.service}-${index}'
         properties: {
           privateLinkServiceId: <singularMainResourceType>.id
           groupIds: [
@@ -92,7 +92,7 @@ module <singularMainResourceType>_privateEndpoints 'br/public:avm/res/network/pr
     ] : null
     manualPrivateLinkServiceConnections: privateEndpoint.?manualPrivateLinkServiceConnections == true ? [
       {
-        name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.?service ?? '<defaultServiceName>'}-${index}'
+        name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.service}-${index}'
         properties: {
           privateLinkServiceId: workspace.id
           groupIds: [
