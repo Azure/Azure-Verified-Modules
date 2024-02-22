@@ -279,7 +279,7 @@ Module owners **MUST** include the following roles in the variable for RBAC Role
 - Contributor - ID: `b24988ac-6180-42a0-ab88-20f7382dd24c`
 - Reader - ID: `acdd72a7-3385-48ef-bd42-f606fba81ae7`
 - User Access Administrator - ID: `18d7d88d-d35e-4fb5-a5c3-7773c20a72d9`
-- Role Based Access Control Administrator (Preview) - ID: `f58310d9-a9f6-439a-9e8d-f62e7b41a168`
+- Role Based Access Control Administrator - ID: `f58310d9-a9f6-439a-9e8d-f62e7b41a168`
 
 {{< hint type=tip >}}
 
