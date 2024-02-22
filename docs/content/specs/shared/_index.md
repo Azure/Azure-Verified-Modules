@@ -885,7 +885,7 @@ Please note that the implementation of Customer Managed Keys from an ARM API per
 
 {{< /hint >}}
 
-Module owners **MAY** choose to utilize cross repo dependencies for these "add-on" resources, or **MAY** chose to implement the code directly in their own repo/module. So long as the implementation and outputs are as per the specifications requirements, then this is acceptable.
+Module owners **MAY** choose to utilize cross repo dependencies for these "add-on" resources, or **MAY** choose to implement the code directly in their own repo/module. So long as the implementation and outputs are as per the specifications requirements, then this is acceptable.
 
 {{< hint type=tip >}}
 
