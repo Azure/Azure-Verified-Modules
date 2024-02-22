@@ -667,7 +667,31 @@ For most scenario this is the command you'll need to call the below PowerShell s
 Set-AvmGitHubLabels.ps1 -RepositoryName "Org/MyGitHubRepo" -CreateCsvLabelExports $false -NoUserPrompts $true
 ```
 
+```shell
+# Linux / MacOs
+# For Windows replace $PWD with your the local path or your repository
+#
+docker run -it -v $PWD:/repo -w /repo mcr.microsoft.com/powershell pwsh -Command '
+    #Invoke-WebRequest -Uri "https://azure.github.io/Azure-Verified-Modules/scripts/Set-AvmGitHubLabels.ps1" -OutFile "Set-AvmGitHubLabels.ps1"
+    $gh_version = "2.44.1"
+    Invoke-WebRequest -Uri "https://github.com/cli/cli/releases/download/v2.44.1/gh_2.44.1_linux_amd64.tar.gz" -OutFile "gh_$($gh_version)_linux_amd64.tar.gz"
+    apt-get update && apt-get install -y git
+    tar -xzf "gh_$($gh_version)_linux_amd64.tar.gz"
+    ls -lsa
+    mv "gh_$($gh_version)_linux_amd64/bin/gh" /usr/local/bin/
+    rm "gh_$($gh_version)_linux_amd64.tar.gz" && rm -rf "gh_$($gh_version)_linux_amd64"
+    gh --version
+    ls -lsa
+    gh auth login
+    $OrgProject = "Azure/terraform-azurerm-avm-res-kusto-cluster"
+    gh auth status
+    ./Set-AvmGitHubLabels.ps1 -RepositoryName $OrgProject -CreateCsvLabelExports $false -NoUserPrompts $true
+  '
+```
+
 By default this script will only update and append labels on the repository specified. However, this can be changed by setting the parameter `-UpdateAndAddLabelsOnly` to `$false`, which will remove all the labels from the repository first and then apply the AVM labels from the CSV only.
+
+Make sure you elevate your privilege to admin level or the labels will not be applied to your repository. Go to https://repos.opensource.microsoft.com/orgs/Azure/repos/<your avm repo>
 
 Full Script:
 

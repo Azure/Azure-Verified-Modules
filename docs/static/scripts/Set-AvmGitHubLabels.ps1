@@ -116,7 +116,7 @@ Write-Host "The GitHub CLI is installed..." -ForegroundColor Green
 
 # Check if GitHub CLI is authenticated
 $GitHubCliAuthenticated = gh auth status
-if ($null -eq $GitHubCliAuthenticated) {
+if ($LASTEXITCODE -ne 0) {
   throw "Not authenticated to GitHub. Please authenticate to GitHub using the GitHub CLI, `gh auth login`, and try again."
 }
 Write-Host "Authenticated to GitHub..." -ForegroundColor Green
@@ -129,7 +129,7 @@ if ($false -eq $GitHubRepositoryNameValid) {
 
 # List GitHub repository provided and check it exists
 $GitHubRepository = gh repo view $RepositoryName
-if ($null -eq $GitHubRepository) {
+if ($LASTEXITCODE -ne 0) {
   throw "The GitHub repository $RepositoryName does not exist. Please check the repository name and try again."
 }
 Write-Host "The GitHub repository $RepositoryName exists..." -ForegroundColor Green
