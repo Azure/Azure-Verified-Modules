@@ -11,8 +11,7 @@ variable "diagnostic_settings" {
     event_hub_name                           = optional(string, null)
     marketplace_partner_resource_id          = optional(string, null)
   }))
-  default  = {}
-  nullable = false
+  default = null
 
   validation {
     condition     = alltrue([for _, v in var.diagnostic_settings : contains(["Dedicated", "AzureDiagnostics"], v.log_analytics_destination_type)])
@@ -45,7 +44,7 @@ DESCRIPTION
 
 # Sample resource
 resource "azurerm_monitor_diagnostic_setting" "this" {
-  for_each                       = var.diagnostic_settings
+  for_each                       = var.diagnostic_settings != null ? var.diagnostic_settings : {}
   name                           = each.value.name != null ? each.value.name : "diag-${var.name}"
   target_resource_id             = azurerm_<MY_RESOURCE>.this.id
   storage_account_id             = each.value.storage_account_resource_id
