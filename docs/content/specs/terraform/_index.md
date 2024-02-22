@@ -270,6 +270,32 @@ resource "azurerm_subnet" "pair" {
 }
 ```
 
+##### Nested blocks
+
+Resources nested blocks are implemented differently depending on if they are optional or required and support one or more blocks. These **SHOULD** be implemented in the following ways:
+
+{{< /hint >}}
+
+{{< tabs "nested blocks" >}}
+  {{< tab "Required, one" >}}
+  {{< include file="/static/includes/spec/int.spec.nest.req.one.tf" language="terraform" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Required, one or more" >}}
+  {{< include file="/static/includes/spec/int.spec.nest.req.more.tf" language="terraform" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Optional, one" >}}
+  {{< include file="/static/includes/spec/int.spec.nest.opt.one.tf" language="terraform" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Optional, one or more" >}}
+  {{< include file="/static/includes/spec/int.spec.nest.opt.more.tf" language="terraform" options="linenos=false" >}}
+  {{< /tab >}}
+  {{< tab "Nested dynamic blocks" >}}
+  {{< include file="/static/includes/spec/int.spec.nest.nested.tf" language="terraform" options="linenos=false" >}}
+  {{< /tab >}}
+{{< /tabs >}}
+
+{{< hint type=note >}}
+
 <br>
 
 ---

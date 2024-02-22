@@ -1,0 +1,4 @@
+# Variable declaration
+
+
+# Resource implementation
