@@ -555,7 +555,7 @@ var.new_network_security_group_name == null ? "${var.subnet_name}-nsg" : var.new
 
 <br>
 
-#### ID: TFFR14 - Category: Inputs - No `enabled` or `module_depends_on` variable
+#### ID: TFNFR14 - Category: Inputs - No `enabled` or `module_depends_on` variable
 
 Since Terraform 0.13, `count`, `for_each` and `depends_on` are introduced for modules, module development is significantly simplified. Module's owners **MUST NOT** add variables like `enabled` or `module_depends_on` to control the entire module's operation. Boolean feature toggles are acceptable however.
 
