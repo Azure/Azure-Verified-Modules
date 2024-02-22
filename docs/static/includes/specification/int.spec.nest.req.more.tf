@@ -15,6 +15,7 @@ variable "required_multi_blocks" {
 resource "my_resource" "this" {
   dynamic "required_multi_blocks" {
     for_each = var.required_multi_blocks
+
     content {
       name   = required_multi_blocks.value.name
       length = required_multi_blocks.value.length

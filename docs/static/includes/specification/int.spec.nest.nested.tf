@@ -16,8 +16,10 @@ variable "optional_multi_block" {
 
 # Resource declaration
 resource "my_resource" "this" {
+
   dynamic "optional_multi_block" {
     for_each = var.optional_multi_block != null ? var.optional_multi_block : {}
+
     content {
       name   = var.optional_multi_block.name
       length = var.optional_multi_block.length

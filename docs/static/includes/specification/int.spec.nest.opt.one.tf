@@ -17,6 +17,7 @@ variable "optional_single_block" {
 resource "my_resource" "this" {
   dynamic "optional_single_block" {
     for_each = var.optional_single_block != null ? { this = var.optional_single_block } : {}
+
     content {
       name   = optional_single_block.value.name
       length = optional_single_block.value.length

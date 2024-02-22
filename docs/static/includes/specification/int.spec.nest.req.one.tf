@@ -13,6 +13,7 @@ variable "required_single_block" {
 # Resource declaration
 # The block is used directly, as only one instance is supported and required.
 resource "my_resource" "this" {
+
   required_single_block {
     name   = var.required_single_block.name
     length = var.required_single_block.length
