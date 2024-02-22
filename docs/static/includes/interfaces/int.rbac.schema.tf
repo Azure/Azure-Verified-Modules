@@ -8,8 +8,7 @@ variable "role_assignments" {
     condition_version                      = optional(string, null)
     delegated_managed_identity_resource_id = optional(string, null)
   }))
-  default     = {}
-  nullable    = false
+  default     = null
   description = <<DESCRIPTION
 A map of role assignments to create on the Key Vault. The map key is deliberately arbitrary to avoid issues where map keys maybe unknown at plan time.
 
@@ -30,7 +29,7 @@ locals {
 
 # Example resource declaration
 resource "azurerm_role_assignment" "this" {
-  for_each                               = var.role_assignments
+  for_each                               = var.role_assignments != null ? var.role_assignments : {}
   scope                                  = azurerm_MY_RESOURCE.this.id
   role_definition_id                     = strcontains(lower(each.value.role_definition_id_or_name), lower(local.role_definition_resource_substring)) ? each.value.role_definition_id_or_name : null
   role_definition_name                   = strcontains(lower(each.value.role_definition_id_or_name), lower(local.role_definition_resource_substring)) ? null : each.value.role_definition_id_or_name
