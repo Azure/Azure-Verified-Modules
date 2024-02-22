@@ -4,5 +4,5 @@ variable "tags" {
   type     = map(string)
   default  = {}
   nullable = false
-  description = "A mapping of tags which should be assigned to the resource."
+  description = "(Optional) A mapping of tags which should be assigned to the resource."
 }
