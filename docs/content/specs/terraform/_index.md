@@ -361,7 +361,7 @@ This `dynamic` block will be ranked as a block named `linux_profile`.
 
 Code within a nested block will also be ranked following the rules above.
 
-PS: You can use [`avmfix`](https://github.com/lonegunmanb/azure-verified-module-fix) tool to reformat your code automatically.
+The [`avmfix`](https://github.com/lonegunmanb/azure-verified-module-fix) tool can be used to reformat the code automatically to comply with these rules.
 
 <br>
 
