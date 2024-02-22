@@ -345,13 +345,13 @@ Meta-arguments, arguments and nested blocked are separated by blank lines.
 
 ```terraform
   dynamic "linux_profile" {
-    for_each = var.admin_username == null ? [] : ["linux_profile"]
+    for_each = var.linux_profile != null ? { this = var.linux_profile } : {}
 
     content {
-      admin_username = var.admin_username
+      admin_username = linux_profile.value.admin_username
 
       ssh_key {
-        key_data = replace(coalesce(var.public_ssh_key, tls_private_key.ssh[0].public_key_openssh), "\n", "")
+        key_data = linux_profile.value.ssh_key
       }
     }
   }
