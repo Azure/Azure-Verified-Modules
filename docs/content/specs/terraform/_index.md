@@ -543,11 +543,7 @@ resource "azurerm_kubernetes_cluster" "main" {
 }
 ```
 
-Please refer to the coding style in the example. If you just want to declare some nested block under conditions, please use:
-
-```terraform
-for_each = <condition> ? [<some_item>] : []
-```
+Please refer to the coding style in the example. If you just want to declare some nested block under conditions, please see the section on [nested blocks](#nested-blocks).
 
 <br>
 
