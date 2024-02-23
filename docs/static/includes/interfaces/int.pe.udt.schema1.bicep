@@ -19,7 +19,7 @@ type privateEndpointType = {
   @description('Optional. The private DNS zone groups to associate the private endpoint with. A DNS zone group can support up to 5 DNS zones.')
   privateDnsZoneResourceIds: string[]?
 
-  @description('Optional. Manual PrivateLink Service Connections.')
+  @description('Optional. If Manual Private Link Connection is required.')
   isManualConnection: bool?
 
   @description('Optional. The name of the request message for manual approval.')
