@@ -22,7 +22,7 @@ type privateEndpointType = {
   @description('Optional. Manual PrivateLink Service Connections.')
   isManualConnection: bool?
 
-  @description('Optional. The name of the request message for manual approval.')
+  @description('Optional. A message passed to the owner of the remote resource with the manual connection request. Restricted to 140 chars.')
   manualConnectionRequestMessage: string?
 
   @description('Optional. Custom DNS configurations.')
