@@ -96,7 +96,7 @@ module <singularMainResourceType>_privateEndpoints 'br/public:avm/res/network/pr
         properties: {
           privateLinkServiceId: workspace.id
           groupIds: [
-            privateEndpoint.?service ?? <defaultServiceName>
+            privateEndpoint.?service ?? '<defaultServiceName>'
           ]
           requestMessage: privateEndpoint.?manualConnectionRequestMessage ?? 'Manual approval required.'
         }
