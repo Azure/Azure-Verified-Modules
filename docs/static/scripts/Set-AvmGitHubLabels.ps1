@@ -117,7 +117,7 @@ Write-Host "The GitHub CLI is installed..." -ForegroundColor Green
 # Check if GitHub CLI is authenticated
 $GitHubCliAuthenticated = gh auth status
 if ($LASTEXITCODE -ne 0) {
-  Write-Host $GitHubCliAuthenticated -ForegroundColor Read
+  Write-Host $GitHubCliAuthenticated -ForegroundColor Red
   throw "Not authenticated to GitHub. Please authenticate to GitHub using the GitHub CLI, `gh auth login`, and try again."
 }
 Write-Host "Authenticated to GitHub..." -ForegroundColor Green
