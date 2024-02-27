@@ -46,12 +46,13 @@ Familiarise yourself with the AVM Resource Module Naming in the [module index cs
 
 3. Add these teams with the following permissions to the repository:
 
-- Admin: `@Azure/avm-core-team-technical-terraform` = AVM Core Team Technical (Terraform)
+- Admin: `@Azure/avm-core-team-technical-terraform` = AVM Core Team (Terraform Technical)
+- Admin: `@Azure/avm-core-team-technical` = AVM Core Team (Technical Only)
 - Admin: `@Azure/terraform-azure` = Terraform PG
-- Triage: `@Azure/avm-res-<RP>-<modulename>-module-owners-tf` = AVM Resource Module Owners
-- Write: `@Azure/avm-res-<RP>-<modulename>-module-contributors-tf` = AVM Resource Module Contributors
+- Admin: `@Azure/avm-res-<RP>-<modulename>-module-owners-tf` = AVM Terraform Module Owners
+- Write: `@Azure/avm-res-<RP>-<modulename>-module-contributors-tf` = AVM Terraform Module Contributors
 
-4. Make sure the branch protection rules for the `main` branch are inherited from the `Azure/terraform-azurerm-avm-template` repository:
+1. Make sure the branch protection rules for the `main` branch are inherited from the `Azure/terraform-azurerm-avm-template` repository:
 
 - Require a pull request before merging
 - Dismiss stale pull request approvals when new commits are pushed
