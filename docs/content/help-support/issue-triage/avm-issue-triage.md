@@ -66,7 +66,7 @@ Follow these steps to triage a module proposal:
 
 ### Triaging pattern modules
 
-During the triage of pattern modules, the following points need to be considered/clarified with the module requestor:
+As part of the triage of pattern modules, the following points need to be considered/clarified with the module requestor:
 
 - Shouldn't this be a resource module? What makes it a pattern - e.g., does it deploy multiple resources?
 - What is it for? What problem does it fix or provides a solution for?
