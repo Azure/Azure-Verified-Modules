@@ -21,7 +21,8 @@ type privateEndpointType = {
   @description('Optional. If Manual Private Link Connection is required.')
   isManualConnection: bool?
 
-  @description('Optional. A message passed to the owner of the remote resource with the manual connection request. Restricted to 140 chars.')
+  @description('Optional. A message passed to the owner of the remote resource with the manual connection request.')
+  @maxLength(140)
   manualConnectionRequestMessage: string?
 
   @description('Optional. Custom DNS configurations.')
@@ -73,29 +74,29 @@ type privateEndpointType = {
 @description('Optional. Configuration details for private endpoints. For security reasons, it is recommended to use private endpoints whenever possible.')
 param privateEndpoints privateEndpointType
 
-module <singularMainResourceType>_privateEndpoints 'br/public:avm/res/network/private-endpoint:X.Y.Z' = [for (privateEndpoint, index) in (privateEndpoints ?? []): {
-  name: '${uniqueString(deployment().name, location)}-<singularMainResourceType>-PrivateEndpoint-${index}'
+module >singularMainResourceType<_privateEndpoints 'br/public:avm/res/network/private-endpoint:X.Y.Z' = [for (privateEndpoint, index) in (privateEndpoints ?? []): {
+  name: '${uniqueString(deployment().name, location)}->singularMainResourceType<-PrivateEndpoint-${index}'
   params: {
     // Variant 1: A default service can be assumed (i.e., for services that only have one private endpoint type)
-    name: privateEndpoint.?name ?? 'pep-${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.?service ?? <defaultServiceName>}-${index}'
+    name: privateEndpoint.?name ?? 'pep-${last(split(>singularMainResourceType<.id, '/'))}-${privateEndpoint.?service ?? '>defaultServiceName<'}-${index}'
     privateLinkServiceConnections: privateEndpoint.?manualPrivateLinkServiceConnections != true ? [
       {
-        name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.?service ?? '<defaultServiceName>'}-${index}'
+        name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(>singularMainResourceType<.id, '/'))}-${privateEndpoint.?service ?? '>defaultServiceName<'}-${index}'
         properties: {
-          privateLinkServiceId: <singularMainResourceType>.id
+          privateLinkServiceId: >singularMainResourceType<.id
           groupIds: [
-            privateEndpoint.?service ?? '<defaultServiceName>'
+            privateEndpoint.?service ?? '>defaultServiceName<'
           ]
         }
       }
     ] : null
     manualPrivateLinkServiceConnections: privateEndpoint.?manualPrivateLinkServiceConnections == true ? [
       {
-        name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.?service ?? '<defaultServiceName>'}-${index}'
+        name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(>singularMainResourceType<.id, '/'))}-${privateEndpoint.?service ?? '>defaultServiceName<'}-${index}'
         properties: {
           privateLinkServiceId: workspace.id
           groupIds: [
-            privateEndpoint.?service ?? '<defaultServiceName>'
+            privateEndpoint.?service ?? '>defaultServiceName<'
           ]
           requestMessage: privateEndpoint.?manualConnectionRequestMessage ?? 'Manual approval required.'
         }

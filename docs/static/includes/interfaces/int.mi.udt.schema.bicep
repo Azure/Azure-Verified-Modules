@@ -15,7 +15,7 @@ var identity = !empty(managedIdentities) ? {
   userAssignedIdentities: !empty(formattedUserAssignedIdentities) ? formattedUserAssignedIdentities : null
 } : null
 
-resource <singularMainResourceType> '<providerNamespace>/<resourceType>@<apiVersion>' = {
+resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVersion<' = {
   name: name
   identity: identity
   properties: {
@@ -24,4 +24,4 @@ resource <singularMainResourceType> '<providerNamespace>/<resourceType>@<apiVers
 }
 
 @description('The principal ID of the system assigned identity.')
-output systemAssignedPrincipalId string = <singularMainResourceType>.?identity.?principalId ?? ''
+output systemAssignedPrincipalId string = >singularMainResourceType<.?identity.?principalId ?? ''
