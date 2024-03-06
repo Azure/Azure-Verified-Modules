@@ -201,7 +201,7 @@ This checklist can be used by anyone (author/contributor/owner) developing AVM B
 ```powershell
 # Start pwsh if not started yet
 
-#pwsh
+pwsh
 
 # Set default directory
 $folder = "<your directory>/bicep-registry-modules"
