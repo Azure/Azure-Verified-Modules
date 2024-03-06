@@ -1,17 +1,13 @@
+---
+title: Owner Contribution Flow
+geekdocNav: true
+geekdocAlign: left
+geekdocAnchor: true
+---
+
 This section describes the contribution flow for module owners who are responsible for creating and maintaining Bicep Modules.
 
-- [1. Owner Activities and Responsibilities](#1-owner-activities-and-responsibilities)
-- [2. Module Handover Activities](#2-module-handover-activities)
-- [3. Orphaned Module Handover Activities](#3-orphaned-module-handover-activities)
-- [4. GitHub Notification Settings](#4-github-notification-settings)
-  - [Enable Global GitHub Notifications](#enable-global-github-notifications)
-  - [Watch a Repository](#watch-a-repository)
-  - [Configure Email Inbox Notification Filters](#configure-email-inbox-notification-filters)
-- [5. Contribution Checklist](#5-contribution-checklist)
-
-<br>
-
----
+{{< toc >}}
 
 <br>
 
@@ -68,20 +64,22 @@ Make sure module authors/contributors tested their module in their environment b
 
 5. Ensure that the module(s) you own are compliant with the AVM specifications and are working as expected. Following specifications are to be considered and where `Owner` is mentioned explicitly:
 
-- [SFR1](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-sfr1---category-composition---preview-services)
-- [SNFR2](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing)
-- [SNFR3](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr3---category-testing---avm-compliance-tests)
-- [SNFR8](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr8---category-contributionsupport---module-owners-github)
-- [SNFR11](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times)
-- [SNFR12](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr12---category-contributionsupport---versions-supported)
-- [SNFR17](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning)
-- [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only)
-- [SNFR21](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr21---category-publishing---cross-language-collaboration)
-- [SNFR24](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr24---category-testing---testing-child-extension--interface-resources)
-- [SNFR25](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr25---category-composition---resource-naming)
-- [RMNFR3](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmnfr3---category-composition---rp-collaboration)
-- [RMFR4](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmfr4---category-composition---avm-consistent-feature--extension-resources-value-add)
-- [RMFR7](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs)
+| ID | Specification |
+|---------------|-----------------------|
+| [SFR1](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-sfr1---category-composition---preview-services) | Category: Composition - Preview Services |
+| [SNFR2](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing) | Category: Testing - E2E Testing |
+| [SNFR3](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr3---category-testing---avm-compliance-tests) | Category: Testing - AVM Compliance Tests |
+| [SNFR8](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr8---category-contributionsupport---module-owners-github) | Category: Contribution/Support - Module Owner(s) GitHub |
+| [SNFR11](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times) | Category: Contribution/Support - Issues Reponse Times |
+| [SNFR12](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr12---category-contributionsupport---versions-supported) | Category: Contribution/Support - Versions Supported |
+| [SNFR17](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning) | Category: Release - Semantic Versioning |
+| [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) | Category: Contribution/Support - GitHub Teams Only |
+| [SNFR21](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr21---category-publishing---cross-language-collaboration) | Category: Publishing - Cross Language Collaboration |
+| [SNFR24](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr24---category-testing---testing-child-extension--interface-resources) | Category: Testing - Testing Child, Extension & Interface Resources |
+| [SNFR25](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr25---category-composition---resource-naming) | Category: Composition - Resource Naming |
+| [RMNFR3](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmnfr3---category-composition---rp-collaboration) | Category: Composition - RP Collaboration |
+| [RMFR4](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmfr4---category-composition---avm-consistent-feature--extension-resources-value-add) | Category: Composition - AVM Consistent Feature & Extension Resources Value Add |
+| [RMFR7](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs) | Category: Outputs - Minimum Required Outputs |
 
 <br>
 
