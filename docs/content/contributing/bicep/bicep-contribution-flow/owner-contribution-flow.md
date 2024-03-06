@@ -180,19 +180,19 @@ This checklist can be used by anyone (author/contributor/owner) developing AVM B
 
 1. You agreed in your issue to start developing your AVM module.
 2. Define your module name assets which you can also find [here](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/BicepResourceModules.csv):
-	1. [Naming convention](https://azure.github.io/Azure-Verified-Modules/specs/shared/#terraform-resource-module-naming):  `avm-res-<resource provider>-<ARM resource type>`
-	2. Module name: `avm-res-dev-center-devcenter`
-	3. Module folder: `avm/res/dev-center/devcenter`
-	4. TelemetryIdPrefix: `46d3xbcp.res.devcenter-devcenter`
+   - [Naming convention](https://azure.github.io/Azure-Verified-Modules/specs/shared/#terraform-resource-module-naming):  `avm-res-<resource provider>-<ARM resource type>`
+   - Module name: `avm-res-dev-center-devcenter`
+   - Module folder: `avm/res/dev-center/devcenter`
+   - TelemetryIdPrefix: `46d3xbcp.res.devcenter-devcenter`
 3. Fork bicep-registry-modules [BRM](https://github.com/Azure/bicep-registry-modules), if you use an existing fork, make sure it's up to date with origin/BRM.
-	1. Make sure all workflows are [disabled by default](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/) once you forked BRM, to prevent accidental runs in your Azure test environment. Since all workflows are disabled by default you have to enable it manually for running your e2e test.
-	2. It is best practice to create a branch even when working in a fork, it is not recommended to directly push commits into main.
-	3. If you create a new module you have to create its corresponding workflow file (see [here](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution)). In order to run your e2e tests in your fork, this workflow file has to be put into `main` first so it can be run against your feature branch (GitHub Workflow appear by default and can run on feature branches only when they are present in main).
-	4. If you update/fix an existing module you don't have to do this because the corresponding workflow already exists in `main`.
+   - Make sure all workflows are [disabled by default](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/) once you forked BRM, to prevent accidental runs in your Azure test environment. Since all workflows are disabled by default you have to enable it manually for running your e2e test.
+   - It is best practice to create a branch even when working in a fork, it is not recommended to directly push commits into main.
+   - If you create a new module you have to create its corresponding workflow file (see [here](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution)). In order to run your e2e tests in your fork, this workflow file has to be put into `main` first so it can be run against your feature branch (GitHub Workflow appear by default and can run on feature branches only when they are present in main).
+   - If you update/fix an existing module you don't have to do this because the corresponding workflow already exists in `main`.
 4. Implement your contribution
-	1. New module: Copy an existing module or start from scratch
-	2. Migrate module: Copy module from CARML
-	3. Adjust code according to specs.
+   - New module: Copy an existing module or start from scratch
+   - Migrate module: Copy module from CARML
+   - Adjust code according to specs.
 5. Run Set-AVMModule.ps1
 6. Run Test-ModuleLocally.ps1
 7. Use Helper script (see code below).
