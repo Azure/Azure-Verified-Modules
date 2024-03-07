@@ -1,7 +1,10 @@
 This section describes the contribution flow for module owners who are responsible for creating and maintaining Terraform Module repositories.
 
-- [1. GitHub repository creation and configuration](#1-github-repository-creation-and-configuration)
-- [2. GitHub Repository Labels](#2-github-repository-labels)
+- [1. Owner Activities and Responsibilities](#1-owner-activities-and-responsibilities)
+- [2. GitHub Teams and repository creation and configuration](#2-github-teams-and-repository-creation-and-configuration)
+- [3. GitHub Repository Labels](#3-github-repository-labels)
+- [4. Module Handover Activities](#4-module-handover-activities)
+- [5. Orphaned Module Handover Activities](#5-orphaned-module-handover-activities)
 - [3. **_Optional_**: Grept](#3-optional-grept)
 - [4. Publish the module](#4-publish-the-module)
 
@@ -31,27 +34,88 @@ Make sure module authors/contributors tested their module in their environment b
 
 <br>
 
-### 1. GitHub repository creation and configuration
+### 1. Owner Activities and Responsibilities
+
+<!-- TODO: Add TF Issue Triage once done -->
+Familiarise yourself with the responsibilities as **Module Owner** outlined in [Team Definitions & RACI](https://azure.github.io/Azure-Verified-Modules/specs/shared/team-definitions/#module-owners) and in the [TF Issue Triage](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/).
+
+1. Watch Pull Request (PR) and issue (questions/feedback) activity for your module(s) in your repository and ensure that PRs are reviewed and merged in a timely manner as outlined in [SNFR11](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times).
+
+{{< hint type=info >}}
+
+Make sure module authors/contributors tested their module in their environment before raising a PR. Also because once a PR is raised a e2e GitHib workflow pipeline is required to be run successfully before the PR can be merged. This is to ensure that the module is working as expected and is compliant with the AVM specifications.
+
+{{< /hint >}}
+
+2. Ensure that the module(s) you own are compliant with the AVM specifications and are working as expected. Following specifications are to be considered and where `Owner` is mentioned explicitly:
+
+| ID | Specification |
+|---------------|-----------------------|
+| [SFR1](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-sfr1---category-composition---preview-services) | Category: Composition - Preview Services |
+| [SNFR2](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing) | Category: Testing - E2E Testing |
+| [SNFR3](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr3---category-testing---avm-compliance-tests) | Category: Testing - AVM Compliance Tests |
+| [SNFR8](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr8---category-contributionsupport---module-owners-github) | Category: Contribution/Support - Module Owner(s) GitHub |
+| [SNFR11](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times) | Category: Contribution/Support - Issues Reponse Times |
+| [SNFR12](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr12---category-contributionsupport---versions-supported) | Category: Contribution/Support - Versions Supported |
+| [SNFR17](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning) | Category: Release - Semantic Versioning |
+| [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) | Category: Contribution/Support - GitHub Teams Only |
+| [SNFR21](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr21---category-publishing---cross-language-collaboration) | Category: Publishing - Cross Language Collaboration |
+| [SNFR24](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr24---category-testing---testing-child-extension--interface-resources) | Category: Testing - Testing Child, Extension & Interface Resources |
+| [SNFR25](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr25---category-composition---resource-naming) | Category: Composition - Resource Naming |
+| [RMNFR3](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmnfr3---category-composition---rp-collaboration) | Category: Composition - RP Collaboration |
+| [RMFR4](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmfr4---category-composition---avm-consistent-feature--extension-resources-value-add) | Category: Composition - AVM Consistent Feature & Extension Resources Value Add |
+| [RMFR7](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs) | Category: Outputs - Minimum Required Outputs |
+
+<br>
+
+---
+
+<br>
+
+### 2. GitHub Teams and repository creation and configuration
 
 Familiarise yourself with the AVM Resource Module Naming in the [module index csv's](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes).
 
 - Example: `terraform-<provider>-avm-res-<rp>-<ARM resource type>`
 
-1. Create GitHub teams:
+{{< hint type=important >}}
 
-- `@Azure/avm-res-<RP>-<modulename>-module-owners-tf`
-- `@Azure/avm-res-<RP>-<modulename>-module-contributors-tf`
+Make sure you have access to the Azure organisation see [GitHub Account Link and Access](https://azure.github.io/Azure-Verified-Modules/contributing/terraform/prerequisites/#github-account-link-and-access).
 
-2. Create the module repostory using [terraform-azuremrm-avm-template](https://github.com/Azure/terraform-azurerm-avm-template) in the `Azure` organisation with the following [details (internal only)](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review). You will then have to complete the configuration of your repository and start an [internal business review](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review?anchor=conduct-initial-repo-configuration-and-trigger-business-review).
+{{< /hint >}}
+
+1. Create the module repostory using [terraform-azuremrm-avm-template](https://github.com/Azure/terraform-azurerm-avm-template) in the `Azure` organisation with the following [details (internal only)](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review). You will then have to complete the configuration of your repository and start an [internal business review](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review?anchor=conduct-initial-repo-configuration-and-trigger-business-review).
+
+2. Create GitHub teams as outlined in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) and add respective parent teams:
+
+Segments:
+
+- `avm-res-<RP>-<modulename>-module-owners-tf`
+- `avm-res-<RP>-<modulename>-module-contributors-tf`
+
+Examples:
+
+<!-- TODO: Clarify parent teams with the team -->
+- `avm-res-compute-virtualmachine-module-owners-tf` and added `avm-technical-reviewers-tf` as parent.
+- `avm-res-compute-virtualmachine-module-contributors-tf` and added `avm-technical-reviewers-tf` as parent.
+
+If a secondary owner is required, add the secondary owner to the `avm-res-<RP>-<modulename>-module-owners-tf` team.
+
+{{< hint type=info >}}
+
+Once you added the parent teams it needs to be approved by the AVM team to ensure team name and parent team membership is correct.
+
+{{< /hint >}}
 
 3. Add these teams with the following permissions to the repository:
 
-- Admin: `@Azure/avm-core-team-technical-terraform` = AVM Core Team (Terraform Technical)
-- Admin: `@Azure/terraform-avm` = Terraform PG
-- Admin: `@Azure/avm-res-<RP>-<modulename>-module-owners-tf` = AVM Terraform Module Owners
-- Write: `@Azure/avm-res-<RP>-<modulename>-module-contributors-tf` = AVM Terraform Module Contributors
+- Admin: `avm-core-team-technical-terraform` = AVM Core Team (Terraform Technical)
+- Admin: `avm-core-team-technical` = AVM Core Team (Technical Only)
+- Admin: `terraform-azure` = Terraform PG
+- Admin: `avm-res-<RP>-<modulename>-module-owners-tf` = AVM Terraform Module Owners
+- Write: `avm-res-<RP>-<modulename>-module-contributors-tf` = AVM Terraform Module Contributors
 
-1. Make sure the branch protection rules for the `main` branch are inherited from the `Azure/terraform-azurerm-avm-template` repository:
+4. Make sure the branch protection rules for the `main` branch are inherited from the `Azure/terraform-azurerm-avm-template` repository:
 
 - Require a pull request before merging
 - Dismiss stale pull request approvals when new commits are pushed
@@ -63,9 +127,9 @@ Familiarise yourself with the AVM Resource Module Naming in the [module index cs
 
 6. Create deployment protection rules for the `test` environment to avoid spinning up e2e tests with every pull request raised by third-parties. Add the following teams as required reviewers:
 
-- AVM Resource Module Owners: `@Azure/avm-res-<RP>-<modulename>-module-owners-tf`
-- AVM Resource Module Contributors: `@Azure/avm-res-<RP>-<modulename>-module-contributors-tf`
-- AVM Core Team Technical (Terraform): `@Azure/avm-core-team-technical-terraform`
+- AVM Resource Module Owners: `avm-res-<RP>-<modulename>-module-owners-tf`
+- AVM Resource Module Contributors: `avm-res-<RP>-<modulename>-module-contributors-tf`
+- AVM Core Team Technical (Terraform): `avm-core-team-technical-terraform`
 
 <img src="/Azure-Verified-Modules/img/contribution/deploymentProtectionTeams.png" alt="Required reviewers." width=100%>
 
@@ -83,13 +147,37 @@ Familiarise yourself with the AVM Resource Module Naming in the [module index cs
 
 <br>
 
-### 2. GitHub Repository Labels
+### 3. GitHub Repository Labels
 
 As per [SNFR23](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels) the repositories created by module owners **MUST** have and use the pre-defined GitHub labels. To apply these labels to the repository review the PowerShell script `Set-AvmGitHubLabels.ps1` that is provided in [SNFR23](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels).
 
 ```pwsh
 Set-AvmGitHubLabels.ps1 -RepositoryName "Azure/MyGitHubRepo" -CreateCsvLabelExports $false -NoUserPrompts $true
 ```
+
+<br>
+
+---
+
+<br>
+
+### 4. Module Handover Activities
+
+<!-- TODO: Rephrasing required -->
+1. Add new owner as maintainer in your `avm-res-<RP>-<modulename>-module-owners-tf` team and remove any other individual including yourself.
+2. In case primary owner leaves, switches roles or abandons the repo and the corresponding team then the parent team doesn't have the permissions to gain back access and a ticket with GitHub support needs to be created (but the team can still be removed from the repo since the team `avm-core-team` has permissions on it).
+
+<br>
+
+---
+
+<br>
+
+### 5. Orphaned Module Handover Activities
+
+<!-- TODO: Rephrasing required -->
+1. In case a module gets a new owner, add the new owner in the `avm-res-<RP>-<modulename>-module-owners-tf` team as `Maintainer` and remove any other individual(s).
+2. Remove `ORPHANED.md` from the root directory of the Module.
 
 <br>
 
@@ -142,7 +230,7 @@ Ensure your module is ready for publishing:
 1. All tests are passing.
 2. All examples are passing.
 3. All documentation is generated.
-4. Include/Add [`@Azure/avm-core-team-technical-terraform`](https://github.com/orgs/Azure/teams/avm-core-team-technical-terraform) as a reviewer (if not added automatically added already).
+4. Include/Add [`avm-core-team-technical-terraform`](https://github.com/orgs/Azure/teams/avm-core-team-technical/members) as a reviewer (if not added automatically added already).
 5. Create a tag for the module version you want to publish.
 - Create tag: `git tag -a 0.1.0 -m "0.1.0"`
 - Push tag: `git push`
