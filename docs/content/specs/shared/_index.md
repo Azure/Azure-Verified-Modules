@@ -671,21 +671,21 @@ Set-AvmGitHubLabels.ps1 -RepositoryName "Org/MyGitHubRepo" -CreateCsvLabelExport
 # Linux / MacOs
 # For Windows replace $PWD with your the local path or your repository
 #
-docker run -it -v $PWD:/repo -w /repo mcr.microsoft.com/powershell pwsh -Command '
-    #Invoke-WebRequest -Uri "https://azure.github.io/Azure-Verified-Modules/scripts/Set-AvmGitHubLabels.ps1" -OutFile "Set-AvmGitHubLabels.ps1"
-    $gh_version = "2.44.1"
-    Invoke-WebRequest -Uri "https://github.com/cli/cli/releases/download/v2.44.1/gh_2.44.1_linux_amd64.tar.gz" -OutFile "gh_$($gh_version)_linux_amd64.tar.gz"
+PROJECT="Azure/terraform-azurerm-avm-<replace>-<replace>-<replace>"
+GH_VERSION="2.44.1"
+docker run -it -e "PROJECT=$PROJECT" -e "GITHUB_TOKEN=$GITHUB_TOKEN" -e "GH_VERSION=$GH_VERSION" -v $PWD:/repo -w /repo mcr.microsoft.com/powershell pwsh -Command '
+    Invoke-WebRequest -Uri "https://azure.github.io/Azure-Verified-Modules/scripts/Set-AvmGitHubLabels.ps1" -OutFile "Set-AvmGitHubLabels.ps1"
+    $gh_version = $env:GH_VERSION
+    Invoke-WebRequest -Uri "https://github.com/cli/cli/releases/download/v$($gh_version)/gh_$($gh_version)_linux_amd64.tar.gz" -OutFile "gh_$($gh_version)_linux_amd64.tar.gz"
     apt-get update && apt-get install -y git
     tar -xzf "gh_$($gh_version)_linux_amd64.tar.gz"
-    ls -lsa
     mv "gh_$($gh_version)_linux_amd64/bin/gh" /usr/local/bin/
     rm "gh_$($gh_version)_linux_amd64.tar.gz" && rm -rf "gh_$($gh_version)_linux_amd64"
     gh --version
-    ls -lsa
-    gh auth login
-    $OrgProject = "Azure/terraform-azurerm-avm-res-kusto-cluster"
+    #gh auth login.  # Uncomment if you need to re-authenticate (ie when not running on codespace)
     gh auth status
-    ./Set-AvmGitHubLabels.ps1 -RepositoryName $OrgProject -CreateCsvLabelExports $false -NoUserPrompts $true
+    ./Set-AvmGitHubLabels.ps1 -RepositoryName $env:PROJECT -CreateCsvLabelExports $false -NoUserPrompts $true
+    rm ./Set-AvmGitHubLabels.ps1
   '
 ```
 
