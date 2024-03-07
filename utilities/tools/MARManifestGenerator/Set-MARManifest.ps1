@@ -153,3 +153,6 @@ function Set-MARManifest {
     # Save the output file
     $outputFileContent | Out-File -FilePath $OutputPath -Force
 }
+
+# # Launch the function
+# Set-MARManifest -OutputPath .\bicep.yml
