@@ -51,8 +51,8 @@ We also know, from our customers, that well defined support statements from Micr
 Azure Verified Modules will achieve this, and its mission statement, by implementing and enforcing the following; driven by the AVM Core Team:
 
 1. Publishing AVM modules to their respective public registries for consumption
-   - For Bicep this will the [Bicep Public Module Registry](https://aka.ms/BRM)
-   - For Terraform this will the [HashiCorp Terraform Registry](https://registry.terraform.io/)
+   - For Bicep this will be the [Bicep Public Module Registry](https://aka.ms/BRM)
+   - For Terraform this will be the [HashiCorp Terraform Registry](https://registry.terraform.io/)
 2. Creating, publishing and maintaining the Azure Verified Modules specifications (this site)
    - Including IaC language specific specifications (today Bicep and Terraform)
 3. Creating easy to follow AVM module contribution and publishing guidance for each IaC language (today Bicep and Terraform)
