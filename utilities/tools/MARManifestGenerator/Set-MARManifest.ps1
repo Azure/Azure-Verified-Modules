@@ -139,7 +139,7 @@ function Set-MARManifest {
 
     # Constructing the output file content
     # Adding the header file to the output file content
-    $headerFilePath = Join-Path $PSScriptRoot 'src' 'manifestHeader.yml'
+    $headerFilePath = Join-Path -Path $PSScriptRoot -ChildPath 'manifestHeader.yml'
     if (-not (Test-Path $headerFilePath)) {
         Write-Error "The header file [$headerFilePath] does not exist."
     }
@@ -155,4 +155,4 @@ function Set-MARManifest {
 }
 
 # # Launch the function
-# Set-MARManifest -OutputPath .\bicep.yml
+# Set-MARManifest
