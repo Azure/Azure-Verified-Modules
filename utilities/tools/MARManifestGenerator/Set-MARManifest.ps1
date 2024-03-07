@@ -102,7 +102,10 @@ function Get-ModuleYamlBlock {
 {7}supportLink: {4}
 {7}documentationLink: {5}/README.md
 '@
-        $yamlEntries += $yamlEntry -f ($csvLine.ModuleName, $csvLine.ModuleDisplayName, $csvLine.Description, $logoURL, $supportLink, $csvLine.RepoURL, $(' ' * $IndentFirstLine), $(' ' * $IndentOtherLines)) + [Environment]::NewLine
+        $yamlEntries += $yamlEntry -f ($csvLine.ModuleName, $csvLine.ModuleDisplayName, $csvLine.Description, $logoURL, $supportLink, $csvLine.RepoURL, $(' ' * $IndentFirstLine), $(' ' * $IndentOtherLines))
+        if ($csvLine -ne $csvData[-1]) { # Add a newline between entries, except for the last one
+            $yamlEntries += [Environment]::NewLine
+        }
     }
 
     # Return the YAML entries
@@ -135,7 +138,7 @@ function Set-MARManifest {
     )
 
     # Retrieve the converted YAML entries for the Bicep-Resource and Bicep-Pattern modules
-    $yamlEntriesRes = Get-ModuleYamlBlock
+    $yamlEntries = Get-ModuleYamlBlock
 
     # Constructing the output file content
     # Adding the header file to the output file content
@@ -148,11 +151,11 @@ function Set-MARManifest {
     $outputFileContent = Get-Content -Path $headerFilePath
 
     # Adding the Bicep-Resource YAML entries to the output file content
-    $outputFileContent += $yamlEntriesRes
+    $outputFileContent += $yamlEntries
 
     # Save the output file
     $outputFileContent | Out-File -FilePath $OutputPath -Force
 }
 
 # # Launch the function
-# Set-MARManifest
+Set-MARManifest
