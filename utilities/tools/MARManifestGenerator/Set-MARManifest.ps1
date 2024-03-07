@@ -1,16 +1,15 @@
 <#
 .SYNOPSIS
-Parses AVM module CSV file
+Parses AVM module CSV files
 
 .DESCRIPTION
-Depending on the parameter, the correct CSV file will be parsed and returned a an object
+The CSV files will be parsed and returned a an object
 
-.PARAMETER ModuleIndex
-Type of CSV file, that should be parsed ('Bicep-Resource', 'Bicep-Pattern')
+.PARAMETER ModuleIndexURLs
+Array the URLs, where module CSV files for Resource and Pattern modules are stored
 
 .EXAMPLE
-Next line will parse the AVM Bicep modules
-Get-AvmCsvData -ModuleIndex 'Bicep-Resource'
+Get-AvmCsvData -ModuleIndexURLs 'https://example.com/url3', 'https://example.com/url4'
 
 #>
 Function Get-AvmCsvData {
@@ -53,8 +52,11 @@ Creates a block of YAML entries based on a AVM CSV file
 .DESCRIPTION
 The function reads the AVM CSV file and converts all entries into a YAML file entries for the MCR bicep.yaml file. 
 
-.PARAMETER ModuleIndex
-Type of CSV file, that should be parsed ('Bicep-Resource', 'Bicep-Pattern')
+.PARAMETER logoURL
+URL to the logo image for all modules.
+
+.PARAMETER supportLink
+URL to the support page for all modules.
 
 .PARAMETER IndentFirstLine
 Number of spaces to indent the first line of the YAML entry.
@@ -63,24 +65,26 @@ Number of spaces to indent the first line of the YAML entry.
 Number of spaces to indent the other lines of the YAML entry.
 
 .EXAMPLE
-New-ModuleYamlBlock -ModuleIndex Bicep-Resource -IndentFirstLine 2 -IndentOtherLines 4
+Get-ModuleYamlBlock -ModuleIndex Bicep-Resource -IndentFirstLine 2 -IndentOtherLines 4
 
 .NOTES
 The entries are sorted by the module name.
 #>
-function New-ModuleYamlBlock {
+function Get-ModuleYamlBlock {
     [CmdletBinding(SupportsShouldProcess)]
     param (
+        [Parameter(Mandatory=$false)]
+        [string] $logoURL = 'https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png',
+
+        [Parameter(Mandatory=$false)]
+        [string] $supportLink = 'https://github.com/Azure/bicep-registry-modules/issues',
+
         [Parameter(Mandatory=$false)]
         [int] $IndentFirstLine = 2,
 
         [Parameter(Mandatory=$false)]
         [int] $IndentOtherLines = 4
     )
-
-    # Define the logo and support link
-    $logoURL = 'https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png'
-    $supportLink = 'https://github.com/Azure/bicep-registry-modules/issues'
 
     # Retrieve the CSV data and sort it by the module name
     $csvData = Get-AvmCsvData | Sort-Object -Property ModuleName
@@ -110,7 +114,7 @@ function New-ModuleYamlBlock {
 Creates the Bicep module YAML file in MCR
 
 .DESCRIPTION
-The function generates the MCR bicep.yaml file based on the AVM CSV files. It uses the New-ModuleYamlBlock function 
+The function generates the MCR bicep.yaml file based on the AVM CSV files. It uses the Get-ModuleYamlBlock function 
 to create the YAML entries for the Bicep-Resource and Bicep-Pattern modules, then it composes the bicep.yaml file
 and saves it to the specified location.
 
@@ -131,7 +135,7 @@ function Set-MARManifest {
     )
 
     # Retrieve the converted YAML entries for the Bicep-Resource and Bicep-Pattern modules
-    $yamlEntriesRes = New-ModuleYamlBlock 
+    $yamlEntriesRes = Get-ModuleYamlBlock 
 
     # Constructing the output file content
     # Adding the header file to the output file content
@@ -149,5 +153,3 @@ function Set-MARManifest {
     # Save the output file
     $outputFileContent | Out-File -FilePath $OutputPath -Force
 }
-
-Set-MARManifest
