@@ -50,7 +50,7 @@ Function Get-AvmCsvData {
 Creates a block of YAML entries based on a AVM CSV file
 
 .DESCRIPTION
-The function reads the AVM CSV file and converts all entries into a YAML file entries for the MCR bicep.yaml file. 
+The function reads the AVM CSV file and converts all entries into a YAML file entries for the MCR bicep.yaml file.
 
 .PARAMETER logoURL
 URL to the logo image for all modules.
@@ -71,7 +71,7 @@ Get-ModuleYamlBlock -ModuleIndex Bicep-Resource -IndentFirstLine 2 -IndentOtherL
 The entries are sorted by the module name.
 #>
 function Get-ModuleYamlBlock {
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding()]
     param (
         [Parameter(Mandatory=$false)]
         [string] $logoURL = 'https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png',
@@ -114,7 +114,7 @@ function Get-ModuleYamlBlock {
 Creates the Bicep module YAML file in MCR
 
 .DESCRIPTION
-The function generates the MCR bicep.yaml file based on the AVM CSV files. It uses the Get-ModuleYamlBlock function 
+The function generates the MCR bicep.yaml file based on the AVM CSV files. It uses the Get-ModuleYamlBlock function
 to create the YAML entries for the Bicep-Resource and Bicep-Pattern modules, then it composes the bicep.yaml file
 and saves it to the specified location.
 
@@ -135,7 +135,7 @@ function Set-MARManifest {
     )
 
     # Retrieve the converted YAML entries for the Bicep-Resource and Bicep-Pattern modules
-    $yamlEntriesRes = Get-ModuleYamlBlock 
+    $yamlEntriesRes = Get-ModuleYamlBlock
 
     # Constructing the output file content
     # Adding the header file to the output file content
