@@ -214,8 +214,8 @@ $folder = "<your directory>/bicep-registry-modules"
 # Variables
 
 $modules = @(
-    # "service-fabric/cluster",
-    "network/private-endpoint"
+    # "service-fabric/cluster", # Replace with your module
+    "network/private-endpoint"  # Replace with your module
 )
 
 # Generate Readme
