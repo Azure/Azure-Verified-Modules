@@ -34,15 +34,15 @@ Familiarise yourself with the responsibilities as **Module Owner** outlined in [
 
 Segments:
 
-- `@Azure/avm-res-<RP>-<modulename>-module-owners-bicep`
-- `@Azure/avm-res-<RP>-<modulename>-module-contributors-bicep`
+- `avm-res-<RP>-<modulename>-module-owners-bicep`
+- `avm-res-<RP>-<modulename>-module-contributors-bicep`
 
 Examples:
 
-- `@Azure/avm-res-compute-virtualmachine-module-owners-bicep` and added `@Azure/avm-technical-reviewers-bicep` as parent.
-- `@Azure/avm-res-compute-virtualmachine-module-contributors-bicep` and added `@Azure/avm-module-contributors-bicep` as parent.
+- `avm-res-compute-virtualmachine-module-owners-bicep` and added `avm-technical-reviewers-bicep` as parent.
+- `avm-res-compute-virtualmachine-module-contributors-bicep` and added `avm-module-contributors-bicep` as parent.
 
-If a secondary owner is required, add the secondary owner to the `@Azure/avm-res-<RP>-<modulename>-module-owners-bicep` team.
+If a secondary owner is required, add the secondary owner to the `avm-res-<RP>-<modulename>-module-owners-bicep` team.
 
 {{< hint type=info >}}
 
@@ -50,9 +50,9 @@ Once you added the parent teams it needs to be approved by the AVM team to ensur
 
 {{< /hint >}}
 
-2. Add teams to `CODEOWNERS` file as outlined in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only).
+1. Add teams to `CODEOWNERS` file as outlined in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only).
 
-3. Watch Pull Request (PR) activity for your module(s) in the [BRM](https://github.com/Azure/bicep-registry-modules) repository (Bicep Registry Modules repository - where all Bicep AVM modules are published) and ensure that PRs are reviewed and merged in a timely manner as outlined in [SNFR11](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times).
+2. Watch Pull Request (PR) activity for your module(s) in the [BRM](https://github.com/Azure/bicep-registry-modules) repository (Bicep Registry Modules repository - where all Bicep AVM modules are published) and ensure that PRs are reviewed and merged in a timely manner as outlined in [SNFR11](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times).
 
 {{< hint type=info >}}
 
@@ -66,20 +66,20 @@ Make sure module authors/contributors tested their module in their environment b
 
 | ID | Specification |
 |---------------|-----------------------|
-| [SFR1](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-sfr1---category-composition---preview-services) | Category: Composition - Preview Services |
-| [SNFR2](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing) | Category: Testing - E2E Testing |
-| [SNFR3](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr3---category-testing---avm-compliance-tests) | Category: Testing - AVM Compliance Tests |
-| [SNFR8](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr8---category-contributionsupport---module-owners-github) | Category: Contribution/Support - Module Owner(s) GitHub |
-| [SNFR11](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times) | Category: Contribution/Support - Issues Reponse Times |
-| [SNFR12](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr12---category-contributionsupport---versions-supported) | Category: Contribution/Support - Versions Supported |
-| [SNFR17](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning) | Category: Release - Semantic Versioning |
-| [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) | Category: Contribution/Support - GitHub Teams Only |
-| [SNFR21](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr21---category-publishing---cross-language-collaboration) | Category: Publishing - Cross Language Collaboration |
-| [SNFR24](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr24---category-testing---testing-child-extension--interface-resources) | Category: Testing - Testing Child, Extension & Interface Resources |
-| [SNFR25](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr25---category-composition---resource-naming) | Category: Composition - Resource Naming |
-| [RMNFR3](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmnfr3---category-composition---rp-collaboration) | Category: Composition - RP Collaboration |
-| [RMFR4](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmfr4---category-composition---avm-consistent-feature--extension-resources-value-add) | Category: Composition - AVM Consistent Feature & Extension Resources Value Add |
-| [RMFR7](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs) | Category: Outputs - Minimum Required Outputs |
+| [SFR1](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-sfr1---category-composition---preview-services) | Composition - Preview Services |
+| [SNFR2](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing) | Testing - E2E Testing |
+| [SNFR3](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr3---category-testing---avm-compliance-tests) | Testing - AVM Compliance Tests |
+| [SNFR8](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr8---category-contributionsupport---module-owners-github) | Contribution/Support - Module Owner(s) GitHub |
+| [SNFR11](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times) | Contribution/Support - Issues Reponse Times |
+| [SNFR12](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr12---category-contributionsupport---versions-supported) | Contribution/Support - Versions Supported |
+| [SNFR17](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning) | Release - Semantic Versioning |
+| [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) | Contribution/Support - GitHub Teams Only |
+| [SNFR21](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr21---category-publishing---cross-language-collaboration) | Publishing - Cross Language Collaboration |
+| [SNFR24](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr24---category-testing---testing-child-extension--interface-resources) | Testing - Testing Child, Extension & Interface Resources |
+| [SNFR25](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr25---category-composition---resource-naming) | Composition - Resource Naming |
+| [RMNFR3](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmnfr3---category-composition---rp-collaboration) | Composition - RP Collaboration |
+| [RMFR4](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmfr4---category-composition---avm-consistent-feature--extension-resources-value-add) | Composition - AVM Consistent Feature & Extension Resources Value Add |
+| [RMFR7](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs) | Outputs - Minimum Required Outputs |
 
 <br>
 
