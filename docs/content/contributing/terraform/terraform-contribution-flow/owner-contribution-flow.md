@@ -1,12 +1,13 @@
+---
+title: Terraform Owner Contribution Flow
+geekdocNav: true
+geekdocAlign: left
+geekdocAnchor: true
+---
+
 This section describes the contribution flow for module owners who are responsible for creating and maintaining Terraform Module repositories.
 
-- [1. Owner Activities and Responsibilities](#1-owner-activities-and-responsibilities)
-- [2. GitHub Teams and repository creation and configuration](#2-github-teams-and-repository-creation-and-configuration)
-- [3. GitHub Repository Labels](#3-github-repository-labels)
-- [4. Module Handover Activities](#4-module-handover-activities)
-- [5. Orphaned Module Handover Activities](#5-orphaned-module-handover-activities)
-- [3. **_Optional_**: Grept](#3-optional-grept)
-- [4. Publish the module](#4-publish-the-module)
+{{< toc >}}
 
 <br>
 
@@ -252,6 +253,19 @@ When an AVM Module is published to the HashiCorp Registry, it **MUST** follow th
 - Pattern Module: `terraform-<provider>-avm-ptn-<patternmodulename>` as per [PMNFR1](/Azure-Verified-Modules/specs/shared/#id-pmnfr1---category-naming---module-naming)
 
 {{< /hint >}}
+
+#### Updated module version and bublish new version
+
+Once a module was updated and is ready to be published, follow the below steps to resync your repository to publish the latest module version to the HashiCorp Registry.
+
+1. Make sure your module version is reflected in the `locals.version.tf.json` file.
+2. Publish a new version by creating a new tag and release on GitHub as describe above.
+3. Sign in to the [HashiCorp Registry](https://registry.terraform.io/) using GitHub.
+4. Visit your module on https://registry.terraform.io/modules/Azure/.
+5. Resync the module by selecting the `Resync Module` button in the top right corner.
+6. It takes a few minutes for the module to be resynced and published to the HashiCorp Registry.
+
+<img src="/Azure-Verified-Modules/img/contribution/updateModule.png" alt="Resync Module." width=100%>
 
 <br>
 
