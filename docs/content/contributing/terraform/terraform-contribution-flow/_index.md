@@ -250,7 +250,7 @@ Simply run `terraform init` and `terraform apply` in the `example` folder you wa
 
 Once you are satisfied with your contribution and validated it, open a PR from your forked repository to the original Terraform Module repository. Make sure you:
 
-1. Include/Add [`@Azure/avm-core-team-technical`](https://github.com/orgs/Azure/teams/avm-core-team-technical/members) as a reviewer.
+1. Include/Add [`@Azure/avm-core-team-technical-terraform`](https://github.com/orgs/Azure/teams/avm-core-team-technical-terraform) as a reviewer.
 2. Make sure all Pull Requst Checks (e2e tests with all examples, linting and version-check) are passing.
 3. Watch comments from the PR checks and reviewers (Module owner or AVM core team) and address them accordingly.
 4. Once your PR is approved, merge it into the upstream repository and the Module owner will publish the module to the HashiCorp Terraform Registry.

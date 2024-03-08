@@ -47,7 +47,6 @@ Familiarise yourself with the AVM Resource Module Naming in the [module index cs
 3. Add these teams with the following permissions to the repository:
 
 - Admin: `@Azure/avm-core-team-technical-terraform` = AVM Core Team (Terraform Technical)
-- Admin: `@Azure/avm-core-team-technical` = AVM Core Team (Technical Only)
 - Admin: `@Azure/terraform-azure` = Terraform PG
 - Admin: `@Azure/avm-res-<RP>-<modulename>-module-owners-tf` = AVM Terraform Module Owners
 - Write: `@Azure/avm-res-<RP>-<modulename>-module-contributors-tf` = AVM Terraform Module Contributors
@@ -143,7 +142,7 @@ Ensure your module is ready for publishing:
 1. All tests are passing.
 2. All examples are passing.
 3. All documentation is generated.
-4. Include/Add [`@Azure/avm-core-team-technical-terraform`](https://github.com/orgs/Azure/teams/avm-core-team-technical/members) as a reviewer (if not added automatically added already).
+4. Include/Add [`@Azure/avm-core-team-technical-terraform`](https://github.com/orgs/Azure/teams/avm-core-team-technical-terraform) as a reviewer (if not added automatically added already).
 5. Create a tag for the module version you want to publish.
 - Create tag: `git tag -a 0.1.0 -m "0.1.0"`
 - Push tag: `git push`
