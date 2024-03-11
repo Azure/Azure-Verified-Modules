@@ -112,7 +112,7 @@ Once you added the parent teams it needs to be approved by the AVM team to ensur
 
 - Admin: `avm-core-team-technical-terraform` = AVM Core Team (Terraform Technical)
 - Admin: `avm-core-team-technical` = AVM Core Team (Technical Only)
-- Admin: `terraform-azure` = Terraform PG
+- Admin: `avm-infra` = Terraform PG
 - Admin: `avm-res-<RP>-<modulename>-module-owners-tf` = AVM Terraform Module Owners
 - Write: `avm-res-<RP>-<modulename>-module-contributors-tf` = AVM Terraform Module Contributors
 
