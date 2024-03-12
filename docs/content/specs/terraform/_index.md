@@ -115,6 +115,17 @@ Module owners **MUST** output the following additional outputs as a minimum in t
 
 <br>
 
+#### ID: TFFR3 - Category: Inputs - No `enabled` or `module_depends_on` variable
+
+Since Terraform 0.13, `count`, `for_each` and `depends_on` are introduced for modules, module development is significantly simplified.
+Module's owners **MUST NOT** add variables like `enabled` or `module_depends_on` to control the entire module's operation. Boolean feature toggles are acceptable however.
+
+<br>
+
+---
+
+<br>
+
 ### Non-Functional Requirements (TFNFR)
 
 {{< hint type=note >}}
@@ -548,16 +559,6 @@ Bad examples:
 ```terraform
 var.new_network_security_group_name == null ? "${var.subnet_name}-nsg" : var.new_network_security_group_name)
 ```
-
-<br>
-
----
-
-<br>
-
-#### ID: TFNFR14 - Category: Inputs - No `enabled` or `module_depends_on` variable
-
-Since Terraform 0.13, `count`, `for_each` and `depends_on` are introduced for modules, module development is significantly simplified. Module's owners **MUST NOT** add variables like `enabled` or `module_depends_on` to control the entire module's operation. Boolean feature toggles are acceptable however.
 
 <br>
 

@@ -165,7 +165,7 @@ Use `snake_casing` as per [TFNFR3](/Azure-Verified-Modules/specs/terraform/#id-t
 Make sure to review all specifications of `Category: Inputs` within both the [Shared](https://azure.github.io/Azure-Verified-Modules/specs/shared/) and the [Terraform specific](https://azure.github.io/Azure-Verified-Modules/specs/terraform/) pages.
 
 {{< hint type=tip >}}
-See examples in specifications [SNFR14](/Azure-Verified-Modules/specs/shared/#id-snfr14---category-inputs---data-types) and [TFNFR14](/Azure-Verified-Modules/specs/terraform/#id-tfnfr14---category-inputs---no-enabled-or-module_depends_on-variable).
+See examples in specifications [SNFR14](/Azure-Verified-Modules/specs/shared/#id-snfr14---category-inputs---data-types) and [TFFR3](/Azure-Verified-Modules/specs/terraform/#id-TFFR3---category-inputs---no-enabled-or-module_depends_on-variable).
 {{< /hint >}}
 
 <br>
