@@ -180,39 +180,34 @@ Make sure you have **Docker** installed and running on your machine.
 
 {{< hint type=note >}}
 
-To simplify and help with the execution of commands like `docscheck`, `fmt`, `test-example`, etc. there is now a simplified [avm](https://github.com/Azure/terraform-azurerm-avm-template/blob/main/avm) script available distributed to all repositories via [`terraform-azurerm-avm-template`](https://github.com/Azure/terraform-azurerm-avm-template) which combines all scripts from the [avm_scripts](https://github.com/Azure/tfmod-scaffold/tree/main/avm_scripts) folder in the [tfmod-scaffold](https://github.com/Azure/tfmod-scaffold/) repository using [avmmakefile](https://github.com/Azure/tfmod-scaffold/blob/main/avmmakefile).
+To simplify and help with the execution of commands like `pre-commit`, `pr-check`, `docscheck`, `fmt`, `test-example`, etc. there is now a simplified [avm](https://github.com/Azure/terraform-azurerm-avm-template/blob/main/avm) script available distributed to all repositories via [`terraform-azurerm-avm-template`](https://github.com/Azure/terraform-azurerm-avm-template) which combines all scripts from the [avm_scripts](https://github.com/Azure/tfmod-scaffold/tree/main/avm_scripts) folder in the [tfmod-scaffold](https://github.com/Azure/tfmod-scaffold/) repository using [avmmakefile](https://github.com/Azure/tfmod-scaffold/blob/main/avmmakefile).
 
 The avm script also makes sure to pull the latest `mcr.microsoft.com/azterraform:latest` container image before executing any command.
 
 {{< /hint >}}
 
-- [5.1 Check/Generate module documentation](#51-checkgenerate-module-documentation)
-- [5.2 Format Terraform code](#52-format-terraform-code)
-- [5.3 Run e2e tests](#53-run-e2e-tests)
+- [5.1 Run pre-commit and pr-check ](#51-run-pre-commit-and-pr-check)
+- [5.2 Run e2e tests](#52-run-e2e-tests)
 
-#### 5.1. Check/Generate module documentation
+#### 5.1. Run pre-commit and pr-check
 
-```bash
-# Linux/MacOs
-./avm docscheck # comparing generated README.md with the one in the repo
-./avm docs # generating module documentation like README.md including examples
-
-# Windows
-avm.bat docscheck # comparing generated README.md with the one in the repo
-avm.bat docs # generating module documentation like README.md including examples
-```
-
-#### 5.2 Format Terraform code
+The following commands will run all pre-commit checks and the pr-check.
 
 ```bash
-# Linux/MacOs
-./avm fmt
+# Running all pre-commit checks
+# `pre-commit` runs depsensure fmt fumpt autofix docs
+# `pr-check` runs fmtcheck tfvalidatecheck lint unit-test
 
-# Windows
-avm.bat fmt
+## Linux/MacOs
+./avm pre-commit
+./avm pr-check
+
+## Windows
+avm.bat pre-commit
+avm.bat pr-check
 ```
 
-#### 5.3 Run e2e tests
+#### 5.2 Run e2e tests
 
 Currently you have two options to run e2e tests:
 
@@ -279,6 +274,11 @@ Once you are satisfied with your contribution and validated it, open a PR from y
 - Make sure to have all interfaces defined as per spec [RMFR5](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmfr5---category-composition---avm-consistent-feature--extension-resources-value-add-interfacesschemas)
 - Declaration of provider in module should be as per spec [TFNFR27](https://azure.github.io/Azure-Verified-Modules/specs/terraform/#id-tfnfr27---category-code-style---declaration-of-a-provider-in-the-module) in `main.tf`
 - `CODEOWNERS` file needs to be updated as per spec [SNFR9](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr9---category-contributionsupport---avm--pg-teams-github-repo-permissions) & [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#codeowners-file)
+- The module is WAF Aligned as per spec [SFR2](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-sfr2---category-composition---waf-aligned)
+- Availability Zones are used (zonal or zone-redundant where applicable) as per spec [SFR5](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-sfr5---category-composition---availability-zones)
+- Cross-reagion replication (data redundancy) used where applicable as per spec [SFR6](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-sfr6---category-composition---data-redundancy)
+- Cross-language collaboration as per spec [SNFR21](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr21---category-publishing---cross-language-collaboration)
+- RP/PG collaboration as per [RMNFR3](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmnfr3---category-composition---rp-collaboration)
 
 <br>
 
