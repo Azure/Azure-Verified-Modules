@@ -178,8 +178,8 @@ The below table details which repositories the above rules are applied to.
 | [ITA17](#ita17)             |         ✔️          |                |                 |
 | [ITA18](#ita18)             |         ✔️          |                |                 |
 | [ITA19](#ita19)             |         ✔️          |                |                 |
-| [ITA20](#ita20)             |                     |       ✔️       |                 |
-| [ITA21](#ita21)             |                     |       ✔️       |                 |
-| [ITA22](#ita22)             |                     |       ✔️       |                 |
-| [ITA23](#ita23)             |          ✔️         |                |                 |
+| [ITA20](#ita20)             |                     |       ✔️       |        ✔️       |
+| [ITA21](#ita21)             |                     |       ✔️       |        ✔️       |
+| [ITA22](#ita22)             |                     |       ✔️       |        ✔️       |
+| [ITA23](#ita23)             |          ✔️         |                |        ✔️       |
 | [ITA24](#ita24)             |          ✔️         |                |                 |
