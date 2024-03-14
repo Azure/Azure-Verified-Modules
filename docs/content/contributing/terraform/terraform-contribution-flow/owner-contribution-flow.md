@@ -47,7 +47,7 @@ Familiarise yourself with the AVM Resource Module Naming in the [module index cs
 3. Add these teams with the following permissions to the repository:
 
 - Admin: `@Azure/avm-core-team-technical-terraform` = AVM Core Team (Terraform Technical)
-- Admin: `@Azure/terraform-azure` = Terraform PG
+- Admin: `@Azure/terraform-avm` = Terraform PG
 - Admin: `@Azure/avm-res-<RP>-<modulename>-module-owners-tf` = AVM Terraform Module Owners
 - Write: `@Azure/avm-res-<RP>-<modulename>-module-contributors-tf` = AVM Terraform Module Contributors
 
