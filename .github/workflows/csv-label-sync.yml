@@ -19,6 +19,8 @@ concurrency:
 
 permissions:
   contents: write
+  issues: write
+  pull-requests: write
 
 # Default to bash
 defaults:
