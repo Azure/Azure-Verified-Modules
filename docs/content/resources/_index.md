@@ -17,6 +17,11 @@ Additional internal content available for Microsoft FTEs only, [here](https://de
 
 - [An Introduction to Azure Verified Modules (AVM)](https://aka.ms/AVM/intro)
 
+### Community Videos
+
+- [Code to Cloud: Getting Started With: Azure Verified Modules](https://youtu.be/y1lOKQOapTw?si=lgM4VJdYDCt2f3_j)
+- [Ned in the Cloud: Introducing Azure Verified Modules for Terraform](https://youtu.be/6OeRByC-sBs?si=D9F203VzRsO2BtEl)
+
 ## 📔 Blog posts
 
 - [Introducing Azure Verified Modules!](https://aka.ms/AVM/intro/blog)
