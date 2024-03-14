@@ -597,7 +597,7 @@ These required GitHub teams are already associated to the [BRM](https://aka.ms/B
 ##### Terraform
 
 - [`@Azure/avm-core-team-technical-terraform`](https://github.com/orgs/Azure/teams/avm-core-team-technical-terraform) = AVM Core Team
-- [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Terraform PG
+- [`@Azure/terraform-avm`](https://github.com/orgs/Azure/teams/terraform-avm) = Terraform PG
 
 {{< hint type=important >}}
 Module owners **MUST** assign these GitHub teams as admins on the GitHub repo of the module in question.
