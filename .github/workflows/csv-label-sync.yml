@@ -17,6 +17,9 @@ concurrency:
   group: "labels"
   cancel-in-progress: true
 
+permissions:
+  contents: write
+
 # Default to bash
 defaults:
   run:
@@ -24,7 +27,7 @@ defaults:
 
 jobs:
   sync-labels:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest 
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
