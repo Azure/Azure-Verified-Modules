@@ -5,6 +5,45 @@ geekdocAlign: left
 geekdocAnchor: true
 ---
 
+<!--
+
+Here are the shortened titles with the requested format maintained:
+
+1. ID: TFNFR6 - Category: Code Style - Resource & Data Order
+2. ID: TFNFR7 - Category: Code Style - count & for_each Use
+3. ID: TFNFR8 - Category: Code Style - Resource & Data Block Orders
+4. ID: TFNFR9 - Category: Code Style - Module Block Order
+5. ID: TFNFR10 - Category: Code Style - No Double Quotes in ignore_changes
+6. ID: TFNFR11 - Category: Code Style - Null Comparison Toggle
+7. ID: TFNFR12 - Category: Code Style - Dynamic for Optional Nested Objects
+8. ID: TFNFR13 - Category: Code Style - Default Values with coalesce/try
+9. ID: TFFR14 - Category: Inputs - No enabled/module_depends_on
+10. ID: TFNFR15 - Category: Code Style - Variable Definition Order
+11. ID: TFNFR16 - Category: Code Style - Variable Naming Rules
+12. ID: TFNFR17 - Category: Code Style - Variables with Descriptions
+13. ID: TFNFR18 - Category: Code Style - Variables with Types
+14. ID: TFNFR19 - Category: Code Style - Sensitive Data Variables
+15. ID: TFNFR20 - Category: Code Style - Use nullable = false
+16. ID: TFNFR21 - Category: Code Style - Avoid nullable = true
+17. ID: TFNFR22 - Category: Code Style - Avoid sensitive = false
+18. ID: TFNFR23 - Category: Code Style - Sensitive Default Value Conditions
+19. ID: TFNFR24 - Category: Code Style - Handling Deprecated Variables
+20. ID: TFNFR25 - Category: Code Style - Verified Modules Requirements
+21. ID: TFNFR26 - Category: Code Style - Providers in required_providers
+22. ID: TFNFR27 - Category: Code Style - Provider Declarations in Modules
+23. ID: TFNFR28 - Category: Code Style - Alphabetical Output Arrangement
+24. ID: TFNFR29 - Category: Code Style - Sensitive Data Outputs
+25. ID: TFNFR30 - Category: Code Style - Handling Deprecated Outputs
+26. ID: TFNFR31 - Category: Code Style - locals.tf for Locals Only
+27. ID: TFNFR32 - Category: Code Style - Alphabetical Local Arrangement
+28. ID: TFNFR33 - Category: Code Style - Precise Local Types
+29. ID: TFNFR34 - Category: Code Style - Using Feature Toggles
+30. ID: TFNFR35 - Category: Code Style - Reviewing Potential Breaking Changes
+31. ID: TFNFR36 - Category: Code Style - Setting prevent_deletion_if_contains_resources
+32. ID: TFNFR37 - Category: Code Style - Tool Usage by Module Owner
+
+-->
+
 {{< hint type=tip >}}
 
 Make sure to checkout the [Shared Specification](/Azure-Verified-Modules/specs/shared/) first before reading further so you understand the specifications items that are shared and agnostic to the IaC language/tool.
