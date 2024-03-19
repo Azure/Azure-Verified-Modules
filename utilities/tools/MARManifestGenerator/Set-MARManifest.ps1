@@ -102,9 +102,11 @@ function Get-ModuleYamlBlock {
 {7}supportLink: {4}
 {7}documentationLink: {5}/README.md
 '@
-        $yamlEntries += $yamlEntry -f ($csvLine.ModuleName, $csvLine.ModuleDisplayName, $csvLine.Description, $logoURL, $supportLink, $csvLine.RepoURL, $(' ' * $IndentFirstLine), $(' ' * $IndentOtherLines))
         if ($csvLine -ne $csvData[-1]) { # Add a newline between entries, except for the last one
-            $yamlEntries += [Environment]::NewLine
+            $yamlEntries += $yamlEntry -f ($csvLine.ModuleName, $csvLine.ModuleDisplayName, $csvLine.Description, $logoURL, $supportLink, $csvLine.RepoURL, $(' ' * $IndentFirstLine), $(' ' * $IndentOtherLines)) + [Environment]::NewLine
+        }
+        else {
+            $yamlEntries += $yamlEntry -f ($csvLine.ModuleName, $csvLine.ModuleDisplayName, $csvLine.Description, $logoURL, $supportLink, $csvLine.RepoURL, $(' ' * $IndentFirstLine), $(' ' * $IndentOtherLines))
         }
     }
 
