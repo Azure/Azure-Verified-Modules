@@ -44,7 +44,9 @@ Familiarise yourself with the AVM Resource Module Naming in the [module index cs
 
 2. Create the module repostory using [terraform-azuremrm-avm-template](https://github.com/Azure/terraform-azurerm-avm-template) in the `Azure` organisation with the following [details (internal only)](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review). You will then have to complete the configuration of your repository and start an [internal business review](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review?anchor=conduct-initial-repo-configuration-and-trigger-business-review).
 
-3. Add these teams with the following permissions to the repository:
+3. Update the README.md with the appropriate title and any additional description required. This is not accounted for in the `pre-check` package. 
+
+4. Add these teams with the following permissions to the repository:
 
 - Admin: `@Azure/avm-core-team-technical-terraform` = AVM Core Team (Terraform Technical)
 - Admin: `@Azure/terraform-avm` = Terraform PG
