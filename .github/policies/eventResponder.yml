@@ -63,7 +63,7 @@ configuration:
         then:
           - cleanEmailReply
 
-      - description: 'ITA13 - If the language is set to Bicep in the Module proposal, assign the "Language: Bicep :muscle:" label on the issue'
+      - description: 'ITA13 - If the language is set to Bicep in the Module proposal, add the "Language: Bicep :muscle:" label on the issue'
         if:
           - payloadType: Issues
           - isAction:
@@ -77,7 +77,7 @@ configuration:
           - addLabel:
               label: 'Language: Bicep :muscle:'
 
-      - description: 'ITA14 - If the language is set to Terraform in the Module proposal, assign the "Language: Terraform :globe_with_meridians:" label on the issue'
+      - description: 'ITA14 - If the language is set to Terraform in the Module proposal, add the "Language: Terraform :globe_with_meridians:" label on the issue'
         if:
           - payloadType: Issues
           - isAction:
@@ -91,7 +91,7 @@ configuration:
           - addLabel:
               label: 'Language: Terraform :globe_with_meridians:'
 
-      - description: 'ITA15 - remove the "Needs: Triage" label from a PR, if it already has a "Type: XYZ" label assigned at the time of creating it.'
+      - description: 'ITA15 - remove the "Needs: Triage" label from a PR, if it already has a "Type: XYZ" label added at the time of creating it.'
         if:
           - payloadType: Pull_Request
           - or:
@@ -133,7 +133,7 @@ configuration:
               label: 'Status: Owners Identified :metal:'
         triggerOnOwnActions: true
 
-      - description: 'ITA17A - If the issue author says they want to be the module owner, assign the issue to the author and respond to them.'
+      - description: 'ITA17 - If the issue author says they want to be the module owner, assign the issue to the author and respond to them.'
         if:
           - payloadType: Issues
           - isAction:
@@ -146,18 +146,6 @@ configuration:
         then:
           - assignTo:
               author: true
-
-      - description: 'ITA17B - If the issue author says they want to be the module owner, assign the issue to the author and respond to them.'
-        if:
-          - payloadType: Issues
-          - isAction:
-              action: Opened
-          - bodyContains:
-              pattern: |
-                ### Do you want to be the owner of this module?
-
-                Yes
-        then:
           - addReply:
               reply: |
                 @${issueAuthor}, thanks for volunteering to be a module owner!
@@ -166,7 +154,7 @@ configuration:
 
                 The AVM core team will review this module proposal and respond to you first. Thank you!
 
-      - description: 'ITA18 - Send automatic response to the issue author if they don''t want to be module owner and don''t have any candidate in mind. Assign the "Needs: Module Owner :mega:" label.'
+      - description: 'ITA18 - Send automatic response to the issue author if they don''t want to be module owner and don''t have any candidate in mind. Add the "Needs: Module Owner :mega:" label.'
         if:
           - payloadType: Issues
           - isAction:
@@ -189,7 +177,7 @@ configuration:
 
                 The AVM core team will review it and will try to find a module owner.
 
-      - description: 'ITA19 - Send automatic response to the issue author if they don''t want to be module owner but have a candidate in mind. Assign the "Status: Owners Identified :metal:" label.'
+      - description: 'ITA19 - Send automatic response to the issue author if they don''t want to be module owner but have a candidate in mind. Add the "Status: Owners Identified :metal:" label.'
         if:
           - payloadType: Issues
           - isAction:
