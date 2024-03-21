@@ -155,6 +155,8 @@ Remove the "<mark style="background-color:#EDEDED;">Status: In PR 👉</mark>" l
 
 The below table details which repositories the above rules are applied to.
 
+### Rules applied for Schedule based automation
+
 | ID                          | AVM Core repository | BRM repository | TF repositories |
 |-----------------------------|:-------------------:|:--------------:|:---------------:|
 | [ITA01BCP1-2](#ita01bcp1-2) |                     |       ✔️       |                 |
@@ -165,6 +167,12 @@ The below table details which repositories the above rules are applied to.
 | [ITA03TF](#ita03tf)         |                     |                |       ✔️        |
 | [ITA04](#ita04)             |         ✔️          |       ✔️       |       ✔️        |
 | [ITA05](#ita05)             |         ✔️          |       ✔️       |       ✔️        |
+| [ITA24](#ita24)             |          ✔️         |                |                 |
+
+### Rules applied for Event based automation
+
+| ID                          | AVM Core repository | BRM repository | TF repositories |
+|-----------------------------|:-------------------:|:--------------:|:---------------:|
 | [ITA06](#ita06)             |         ✔️          |       ✔️       |       ✔️        |
 | [ITA08BCP](#ita08bcp)       |                     |       ✔️       |                 |
 | [ITA09](#ita09)             |         ✔️          |       ✔️       |       ✔️        |
@@ -182,4 +190,3 @@ The below table details which repositories the above rules are applied to.
 | [ITA21](#ita21)             |                     |       ✔️       |        ✔️       |
 | [ITA22](#ita22)             |                     |       ✔️       |        ✔️       |
 | [ITA23](#ita23)             |          ✔️         |                |        ✔️       |
-| [ITA24](#ita24)             |          ✔️         |                |                 |
