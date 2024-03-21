@@ -69,6 +69,9 @@ type privateEndpointType = {
 
   @description('Optional. Enable/Disable usage telemetry for module.')
   enableTelemetry: bool?
+
+  @description('Optional. Specify if you want to deploy the Privte Endpoint into a different resource group than the main resource.')
+  resourceGroupName: string?
 }[]?
 
 @description('Optional. Configuration details for private endpoints. For security reasons, it is recommended to use private endpoints whenever possible.')
@@ -76,6 +79,7 @@ param privateEndpoints privateEndpointType
 
 module >singularMainResourceType<_privateEndpoints 'br/public:avm/res/network/private-endpoint:X.Y.Z' = [for (privateEndpoint, index) in (privateEndpoints ?? []): {
   name: '${uniqueString(deployment().name, location)}->singularMainResourceType<-PrivateEndpoint-${index}'
+  scope: resourceGroup(privateEndpoint.?resourceGroupName ?? '')
   params: {
     // Variant 1: A default service can be assumed (i.e., for services that only have one private endpoint type)
     name: privateEndpoint.?name ?? 'pep-${last(split(>singularMainResourceType<.id, '/'))}-${privateEndpoint.?service ?? '>defaultServiceName<'}-${index}'
