@@ -42,6 +42,8 @@ If a bug/feature/request/general question that has the labels of "<mark style="b
 - To prevent further actions to take effect, the "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" label must be removed.
 - To avoid this rule being triggered at all, the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label must be removed once the issue has been triaged (and the issue is first responded).
 
+---
+
 ### ITA01TF.1-2
 
 If a bug/feature/request/general question that has the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label added is not responded to after 3 business days, then the issue will be marked with the "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" label and the AVM Core team will be mentioned in a comment on the issue to reach out to the module owner.
@@ -66,6 +68,8 @@ If a bug/feature/request/general question that has the "<mark style="background-
 - To prevent further actions to take effect, the "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" label must be removed.
 - To avoid this rule being triggered at all, the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label must be removed once the issue has been triaged (and the issue is first responded).
 
+---
+
 ### ITA02BCP.1-2
 
 If after an additional 3 business days there's still no update to the issue that has the labels of "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>" and "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>", the AVM core team will be mentioned on the issue and a further comment stating module owner is unresponsive will be added. The "<mark style="background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>" label will also be added.
@@ -88,6 +92,8 @@ If after an additional 3 business days there's still no update to the issue that
 **Tip:**
 
 - To avoid this rule being triggered at all, the "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" label must be removed.
+
+---
 
 ### ITA02TF.1-2
 
@@ -112,6 +118,8 @@ If after an additional 3 business days there's still no update to the issue that
 
 - To avoid this rule being triggered at all, the "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" label must be removed.
 
+---
+
 ### ITA03BCP
 
 If there's still no response after 5 days (total from start of issue being raised) on an issue that has the labels of "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>", "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>", "<mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>" and "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>", the Bicep PG GitHub Team will be mentioned on the issue to assist. The "<mark style="background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>" label will also be added.
@@ -135,6 +143,8 @@ If there's still no response after 5 days (total from start of issue being raise
 
 - To avoid this rule being triggered at all, the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label must be removed once the issue has been triaged (and the issue is first responded).
 
+---
+
 ### ITA03TF
 
 If there's still no response after 5 days (total from start of issue being raised) on an issue that has the labels of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>", "<mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>" and "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>", the Terraform PG GitHub Team will be mentioned on the issue to assist. The "<mark style="background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>" label will also be added.
@@ -153,6 +163,8 @@ If there's still no response after 5 days (total from start of issue being raise
 
 - Add a reply, mentioning the `Azure/terraform-avm` team.
 - Add the "<mark style="background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>" label.
+
+---
 
 ### ITA04
 
@@ -182,6 +194,8 @@ To prevent further actions to take effect, one of the following conditions must 
 - The "<mark style="background-color:#808080;color:white;">Status: No Recent Activity 💤</mark>" label must be removed.
 - If applicable, the "<mark style="background-color:#B60205;color:white;">Status: Long Term ⏳</mark>" or the "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" label must be added.
 
+---
+
 ### ITA05
 
 If an issue/PR has been labelled with "<mark style="background-color:#808080;color:white;">Status: No Recent Activity 💤</mark>" and hasn't had any update in 3 days from that point, automatically close it and comment, unless the issue/PR has a "<mark style="background-color:#B60205;color:white;">Status: Long Term ⏳</mark>" - in which case, do not close it.
@@ -205,6 +219,8 @@ If an issue/PR has been labelled with "<mark style="background-color:#808080;col
 **Tip:**
 
 - In case the issue needs to be reopened (e.g., the author responds after the issue was closed), the "<mark style="background-color:#808080;color:white;">Status: No Recent Activity 💤</mark>" label must be removed.
+
+---
 
 ### ITA24
 
@@ -230,6 +246,8 @@ Remind module owner(s) to start or continue working on this module if there was 
 
 - To avoid/silence this notification, provide an update every 3 weeks on the Module Proposal issue, or add the "<mark style="background-color:#B60205;color:white;">Status: Long Term ⏳</mark>" label.
 
+---
+
 <br>
 
 ## Event based automation
@@ -247,6 +265,9 @@ When a new issue or PR of any type is created add the "<mark style="background-c
 **Action(s):**
 
 - Add the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label.
+- Add a reply to explain the action(s).
+
+---
 
 ### ITA08BCP
 
@@ -259,6 +280,9 @@ If AVM or "Azure Verified Modules" is mentioned in an uncategorized issue (i.e.,
 **Action(s):**
 
 - Add the "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>" label.
+- Add a reply to explain the action(s).
+
+---
 
 ### ITA09
 
@@ -267,10 +291,13 @@ When #RR is used in an issue, add the label of "<mark style="background-color:#C
 **Trigger criteria:**
 
 - An issue comment or PR comment contains the string of "#RR".
+- Add a reply to explain the action(s).
 
 **Action(s):**
 
 - Add the "<mark style="background-color:#CB6BA2;color:white;">Needs: Author Feedback 👂</mark>" label.
+
+---
 
 ### ITA10
 
@@ -284,6 +311,9 @@ When #wontfix is used in an issue, mark it by using the label of "<mark style="b
 
 - Add the "<mark style="background-color:#FFFFFF;">Status: Won't Fix 💔</mark>" label.
 - Close the issue.
+- Add a reply to explain the action(s).
+
+---
 
 ### ITA11
 
@@ -297,6 +327,9 @@ When a reply from anyone to an issue occurs, remove the "<mark style="background
 **Action(s):**
 
 - Add the "<mark style="background-color:#E99695;color:white;">Needs: Attention 👋</mark>" label.
+- Add a reply to explain the action(s).
+
+---
 
 ### ITA12
 
@@ -310,72 +343,264 @@ Clean up e-mail replies to GitHub Issues for readability.
 
 - Clean email reply. This is useful when someone directly responds to an email notification from GitHub, and the email signature is included in the comment.
 
+---
+
 ### ITA13
 
 If the language is set to Bicep in the Module proposal, add the "<mark style="background-color:#1D73B3;color:white;">Language: Bicep 💪</mark>" label on the issue.
+
+**Trigger criteria:**
+
+- An issue is opened with its body matching the below pattern.
+
+```markdown
+### Bicep or Terraform?
+
+Bicep
+```
+
+**Action(s):**
+
+- Add the "<mark style="background-color:#1D73B3;color:white;">Language: Bicep 💪</mark>" label.
+- Add a reply to explain the action(s).
+
+---
 
 ### ITA14
 
 If the language is set to Terraform in the Module proposal, add the "<mark style="background-color:#7740B6;color:white;">Language: Terraform 🌐</mark>" label on the issue.
 
+**Trigger criteria:**
+
+- An issue is opened with its body matching the below pattern.
+
+```markdown
+### Bicep or Terraform?
+
+Terraform
+```
+
+**Action(s):**
+
+- Add the "<mark style="background-color:#7740B6;color:white;">Language: Terraform 🌐</mark>" label.
+- Add a reply to explain the action(s).
+
+---
+
 ### ITA15
 
 Remove the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label from a PR, if it already has a "<mark>Type: *XYZ*</mark>" label added at the time of creating it.
+
+**Trigger criteria:**
+
+- A PR is opened with any of the following labels added:
+  - "<mark style="background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>"
+  - "<mark style="background-color:#0075CA;color:white;">Type: Documentation 📄</mark>"
+  - "<mark style="background-color:#CFD3D7;">Type: Duplicate 🤲</mark>"
+  - "<mark style="background-color:#A2EEEF;">Type: Feature Request ➕</mark>"
+  - "<mark style="background-color:#17016A;color:white;">Type: Hygiene 🧹</mark>"
+  - "<mark style="background-color:#ADD8E6;">Type: New Module Proposal 💡</mark>"
+  - "<mark style="background-color:#CB6BA2;color:white;">Type: Question/Feedback 🙋‍♀️</mark>"
+  - "<mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>"
+  - "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>"
+
+**Action(s):**
+
+- Remove the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label.
+- Add a reply to explain the action(s).
+
+---
 
 ### ITA16
 
 Add the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label when someone is assigned to a Module Proposal.
 
+**Trigger criteria:**
+
+- Any action on an issue except closing.
+- Has the "<mark style="background-color:#ADD8E6;">Type: New Module Proposal 💡</mark>" added.
+- The issue is assigned to someone.
+
+**Action(s):**
+
+- Add the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label.
+- Add a reply to explain the action(s).
+
+---
+
 ### ITA17
 
 If the issue author says they want to be the module owner, assign the issue to the author and respond to them.
 
-```markdown
-@${issueAuthor}, thanks for volunteering to be a module owner!
+**Trigger criteria:**
 
-**Please don't start the development just yet!**
+- An issue is opened with its body matching the below pattern.
 
-The AVM core team will review this module proposal and respond to you first. Thank you!
-```
+  ```markdown
+  ### Do you want to be the owner of this module?
+
+  Yes
+  ```
+
+**Action(s):**
+
+- Assign the issue to the author.
+- Add the below reply and explain the action(s).
+
+  ```markdown
+  @${issueAuthor}, thanks for volunteering to be a module owner!
+
+  **Please don't start the development just yet!**
+
+  The AVM core team will review this module proposal and respond to you first. Thank you!
+  ```
+
+---
 
 ### ITA18
 
 Send automatic response to the issue author if they don't want to be module owner and don't have any candidate in mind. Add the "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" label.
 
-```markdown
-@${issueAuthor}, thanks for submitting this module proposal!
-The AVM core team will review it and will try to find a module owner.
-```
+**Trigger criteria:**
+
+- An issue is opened with its body matching the below pattern.
+
+  ```markdown
+    ### Do you want to be the owner of this module?
+
+    No
+
+    ### Module Owner's GitHub Username (handle)
+
+    _No response_
+  ```
+
+**Action(s):**
+
+- Add the "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" label.
+- Add the below reply and explain the action(s).
+
+  ```markdown
+  @${issueAuthor}, thanks for submitting this module proposal!
+  The AVM core team will review it and will try to find a module owner.
+  ```
+
+---
 
 ### ITA19
 
 Send automatic response to the issue author if they don't want to be module owner but have a candidate in mind. Add the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label.
 
-```markdown
-@${issueAuthor}, thanks for submitting this module proposal with a module owner in mind!
+**Trigger criteria:**
 
-**Please don't start the development just yet!**
+- An issue is opened with its body matching the below pattern...
 
-The AVM core team will review this module proposal and respond to you and/or the module owner first. Thank you!
-```
+  ```markdown
+    ### Do you want to be the owner of this module?
+
+    No
+  ```
+
+- ...AND NOT matching the below pattern.
+
+  ```markdown
+  ### Module Owner's GitHub Username (handle)
+
+  _No response_
+  ```
+
+**Action(s):**
+
+- Add the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label.
+- Add the below reply and explain the action(s).
+
+  ```markdown
+  @${issueAuthor}, thanks for submitting this module proposal with a module owner in mind!
+
+  **Please don't start the development just yet!**
+
+  The AVM core team will review this module proposal and respond to you and/or the module owner first. Thank you!
+  ```
+
+---
 
 ### ITA20
 
 If the issue type is feature request, add the "<mark style="background-color:#A2EEEF;">Type: Feature Request ➕</mark>" label on the issue.
 
+**Trigger criteria:**
+
+- An issue is opened with its body matching the below pattern.
+
+  ```markdown
+  ### Issue Type?
+
+  Feature Request
+  ```
+
+**Action(s):**
+
+- Add the "<mark style="background-color:#A2EEEF;">Type: Feature Request ➕</mark>" label.
+- Add a reply to explain the action(s).
+
+---
+
 ### ITA21
 
 If the issue type is bug, add the "<mark style="background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>" label on the issue.
+
+**Trigger criteria:**
+
+- An issue is opened with its body matching the below pattern.
+
+  ```markdown
+  ### Issue Type?
+
+  Bug
+  ```
+
+**Action(s):**
+
+- Add the "<mark style="background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>" label.
+- Add a reply to explain the action(s).
+
+---
 
 ### ITA22
 
 If the issue type is security bug, add the "<mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>" label on the issue.
 
+**Trigger criteria:**
+
+- An issue is opened with its body matching the below pattern.
+
+  ```markdown
+  ### Issue Type?
+
+  Security Bug
+  ```
+
+**Action(s):**
+
+- Add the "<mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>" label.
+- Add a reply to explain the action(s).
+
+---
+
 ### ITA23
 
 Remove the "<mark style="background-color:#EDEDED;">Status: In PR 👉</mark>" label from an issue when it's closed.
 
-<br>
+**Trigger criteria:**
+
+- An issue is opened.
+
+**Action(s):**
+
+- Remove the "<mark style="background-color:#EDEDED;">Status: In PR 👉</mark>" label.
+- Add a reply to explain the action(s).
+
+---
 
 ## Where to apply these rules?
 
