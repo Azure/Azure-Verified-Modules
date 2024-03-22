@@ -37,10 +37,10 @@ If a bug/feature/request/general question that has the labels of "<mark style="b
 - Add a reply, mentioning the `Azure/avm-core-team-technical-bicep` team.
 - Add the "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" label.
 
-**Tip:**
-
-- To prevent further actions to take effect, the "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" label must be removed.
-- To avoid this rule being triggered at all, the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label must be removed once the issue has been triaged (and the issue is first responded).
+{{< hint type=tip >}}
+- To prevent further actions to take effect, the "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" label must be removed, once this issue has been responded to.
+- To avoid this rule being (re)triggered, the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" must be removed as part of the triage process (when the issue is first responded to).
+{{< /hint >}}
 
 ---
 
@@ -63,10 +63,10 @@ If a bug/feature/request/general question that has the "<mark style="background-
 - Add a reply, mentioning the `Azure/avm-core-team-technical-bicep` team.
 - Add the "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" label.
 
-**Tip:**
-
-- To prevent further actions to take effect, the "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" label must be removed.
-- To avoid this rule being triggered at all, the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label must be removed once the issue has been triaged (and the issue is first responded).
+{{< hint type=tip >}}
+- To prevent further actions to take effect, the "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" label must be removed, once this issue has been responded to.
+- To avoid this rule being (re)triggered, the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" must be removed as part of the triage process (when the issue is first responded to).
+{{< /hint >}}
 
 ---
 
@@ -89,9 +89,10 @@ If after an additional 3 business days there's still no update to the issue that
 - Add a reply, mentioning the `Azure/avm-core-team-technical-bicep` team.
 - Add the "<mark style="background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>" label.
 
-**Tip:**
-
-- To avoid this rule being triggered at all, the "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" label must be removed.
+{{< hint type=tip >}}
+- To avoid this rule being (re)triggered, the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" and "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" labels must be removed when the issue is first responded to!
+- Remove the "<mark style="background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>" label once the issue has been responded to.
+{{< /hint >}}
 
 ---
 
@@ -114,9 +115,10 @@ If after an additional 3 business days there's still no update to the issue that
 - Add a reply, mentioning the `Azure/avm-core-team-technical-bicep` team.
 - Add the "<mark style="background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>" label.
 
-**Tip:**
-
-- To avoid this rule being triggered at all, the "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" label must be removed.
+{{< hint type=tip >}}
+- To avoid this rule being (re)triggered, the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" and "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" labels must be removed when the issue is first responded to!
+- Remove the "<mark style="background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>" label once the issue has been responded to.
+{{< /hint >}}
 
 ---
 
@@ -139,9 +141,10 @@ If there's still no response after 5 days (total from start of issue being raise
 - Add a reply, mentioning the `Azure/bicep-admins` team.
 - Add the "<mark style="background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>" label.
 
-**Tip:**
-
-- To avoid this rule being triggered at all, the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label must be removed once the issue has been triaged (and the issue is first responded).
+{{< hint type=tip >}}
+- To avoid this rule being (re)triggered, the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" and "<mark style="background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>" labels must be removed when the issue is first responded to!
+- Remove the "<mark style="background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>" label once the issue has been responded to.
+{{< /hint >}}
 
 ---
 
@@ -186,13 +189,13 @@ If an issue/PR has been labelled with "<mark style="background-color:#CB6BA2;col
 - Add the "<mark style="background-color:#808080;color:white;">Status: No Recent Activity 💤</mark>" label.
 - Add a reply.
 
-**Tip:**
-
+{{< hint type=tip >}}
 To prevent further actions to take effect, one of the following conditions must be met:
 
 - The author must respond in a comment within 3 days of the automatic comment left on the issue.
 - The "<mark style="background-color:#808080;color:white;">Status: No Recent Activity 💤</mark>" label must be removed.
 - If applicable, the "<mark style="background-color:#B60205;color:white;">Status: Long Term ⏳</mark>" or the "<mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>" label must be added.
+{{< /hint >}}
 
 ---
 
@@ -216,9 +219,9 @@ If an issue/PR has been labelled with "<mark style="background-color:#808080;col
 - Add a reply.
 - Close the issue.
 
-**Tip:**
-
+{{< hint type=tip >}}
 - In case the issue needs to be reopened (e.g., the author responds after the issue was closed), the "<mark style="background-color:#808080;color:white;">Status: No Recent Activity 💤</mark>" label must be removed.
+{{< /hint >}}
 
 ---
 
@@ -242,9 +245,9 @@ Remind module owner(s) to start or continue working on this module if there was 
 - Add a reply.
 - Add the "<mark style="background-color:#E99695;color:white;">Needs: Attention 👋</mark>" label.
 
-**Tip:**
-
+{{< hint type=tip >}}
 - To avoid/silence this notification, provide an update every 3 weeks on the Module Proposal issue, or add the "<mark style="background-color:#B60205;color:white;">Status: Long Term ⏳</mark>" label.
+{{< /hint >}}
 
 ---
 
