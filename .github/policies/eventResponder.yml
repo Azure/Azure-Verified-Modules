@@ -19,9 +19,11 @@ configuration:
               label: "Needs: Triage :mag:"
           - addReply:
               reply: |
-                The "Needs: Triage :mag:" label must be removed once the issue/PR has been triaged (and the issue/PR has been first responded)!
+                > [!IMPORTANT]
+                > **The "Needs: Triage :mag:" label must be removed as part of the triage process (when the issue/PR is first responded to) !**
 
-                > **NOTE**: The "Needs: Triage :mag:" label was added as per [ITA06](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita06).
+                > [!NOTE]
+                > This label was added as per [ITA06](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita06).
 
       - description: 'ITA09 - When #RR is used in an issue, add the "Needs: Author Feedback :ear:" label'
         if:
@@ -29,13 +31,14 @@ configuration:
               - payloadType: Pull_Request_Review_Comment
               - payloadType: Issue_Comment
           - commentContains:
-              pattern: '#RR'
+              pattern: "#RR"
         then:
           - addLabel:
-              label: 'Needs: Author Feedback :ear:'
+              label: "Needs: Author Feedback :ear:"
           - addReply:
               reply: |
-                > **NOTE**: The "Needs: Author Feedback :ear:" label was added as per [ITA09](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita09).
+                > [!NOTE]
+                > The "Needs: Author Feedback :ear:" label was added as per [ITA09](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita09).
 
       - description: 'ITA10 - When #wontfix is used in an issue, mark it by using the label of "Status: Won''t Fix :broken_heart:"'
         if:
@@ -43,14 +46,15 @@ configuration:
               - payloadType: Pull_Request_Review_Comment
               - payloadType: Issue_Comment
           - commentContains:
-              pattern: '#wontfix'
+              pattern: "#wontfix"
         then:
           - addLabel:
-              label: 'Status: Won''t Fix :broken_heart:'
+              label: "Status: Won't Fix :broken_heart:"
           - closeIssue
           - addReply:
               reply: |
-                > **NOTE**: The "Status: Won't Fix :broken_heart:" label was added and the issue was closed as per [ITA10](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita10).
+                > [!NOTE]
+                > The "Status: Won't Fix :broken_heart:" label was added and the issue was closed as per [ITA10](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita10).
 
       - description: 'ITA11 - When a reply from anyone to an issue occurs, remove the "Needs: Author Feedback :ear:" label and label with "Needs: Attention :wave:"'
         if:
@@ -61,17 +65,18 @@ configuration:
               isAction:
                 action: Closed
           - hasLabel:
-              label: 'Needs: Author Feedback :ear:'
+              label: "Needs: Author Feedback :ear:"
         then:
           - removeLabel:
-              label: 'Needs: Author Feedback :ear:'
+              label: "Needs: Author Feedback :ear:"
           - addLabel:
-              label: 'Needs: Attention :wave:'
+              label: "Needs: Attention :wave:"
           - addReply:
               reply: |
-                > **NOTE**: The "Needs: Author Feedback :ear:" label was removed and the "Needs: Attention :wave:" label was added as per [ITA11](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita11).
+                > [!NOTE]
+                > The "Needs: Author Feedback :ear:" label was removed and the "Needs: Attention :wave:" label was added as per [ITA11](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita11).
 
-      - description: 'ITA12 - Clean email replies on every comment'
+      - description: "ITA12 - Clean email replies on every comment"
         if:
           - payloadType: Issue_Comment
         then:
@@ -89,10 +94,11 @@ configuration:
                 Bicep
         then:
           - addLabel:
-              label: 'Language: Bicep :muscle:'
+              label: "Language: Bicep :muscle:"
           - addReply:
               reply: |
-                > **NOTE**: The "Language: Bicep :muscle:" label was added as per [ITA13](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita13).
+                > [!NOTE]
+                > The "Language: Bicep :muscle:" label was added as per [ITA13](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita13).
 
       - description: 'ITA14 - If the language is set to Terraform in the Module proposal, add the "Language: Terraform :globe_with_meridians:" label on the issue'
         if:
@@ -106,41 +112,43 @@ configuration:
                 Terraform
         then:
           - addLabel:
-              label: 'Language: Terraform :globe_with_meridians:'
+              label: "Language: Terraform :globe_with_meridians:"
           - addReply:
               reply: |
-                > **NOTE**: The "Language: Terraform :globe_with_meridians:" label was added as per [ITA14](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita14).
+                > [!NOTE]
+                > The "Language: Terraform :globe_with_meridians:" label was added as per [ITA14](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita14).
 
       - description: 'ITA15 - remove the "Needs: Triage" label from a PR, if it already has a "Type: XYZ" label added at the time of creating it.'
         if:
           - payloadType: Pull_Request
           - or:
-            - hasLabel:
-                label: 'Type: Bug :bug:'
-            - hasLabel:
-                label: 'Type: Documentation :page_facing_up:'
-            - hasLabel:
-                label: 'Type: Duplicate :palms_up_together:'
-            - hasLabel:
-                label: 'Type: Feature Request :heavy_plus_sign:'
-            - hasLabel:
-                label: 'Type: Hygiene :broom:'
-            - hasLabel:
-                label: 'Type: New Module Proposal :bulb:'
-            - hasLabel:
-                label: 'Type: Question/Feedback :raising_hand:'
-            - hasLabel:
-                label: 'Type: Security Bug :lock:'
-            - hasLabel:
-                label: 'Type: AVM :a: :v: :m:'
+              - hasLabel:
+                  label: "Type: Bug :bug:"
+              - hasLabel:
+                  label: "Type: Documentation :page_facing_up:"
+              - hasLabel:
+                  label: "Type: Duplicate :palms_up_together:"
+              - hasLabel:
+                  label: "Type: Feature Request :heavy_plus_sign:"
+              - hasLabel:
+                  label: "Type: Hygiene :broom:"
+              - hasLabel:
+                  label: "Type: New Module Proposal :bulb:"
+              - hasLabel:
+                  label: "Type: Question/Feedback :raising_hand:"
+              - hasLabel:
+                  label: "Type: Security Bug :lock:"
+              - hasLabel:
+                  label: "Type: AVM :a: :v: :m:"
           - isAction:
               action: Opened
         then:
           - removeLabel:
-              label: 'Needs: Triage :mag:'
+              label: "Needs: Triage :mag:"
           - addReply:
               reply: |
-                > **NOTE**: The "Needs: Triage :mag:" label was removed as per [ITA15](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita15).
+                > [!NOTE]
+                > The "Needs: Triage :mag:" label was removed as per [ITA15](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita15).
 
       - description: 'ITA16 - Add the "Status: Owners Identified :metal:" label when someone is assigned to a Module Proposal'
         if:
@@ -149,17 +157,18 @@ configuration:
               isAction:
                 action: Closed
           - hasLabel:
-              label: 'Type: New Module Proposal :bulb:'
+              label: "Type: New Module Proposal :bulb:"
           - isAssignedToSomeone
         then:
           - addLabel:
-              label: 'Status: Owners Identified :metal:'
+              label: "Status: Owners Identified :metal:"
           - addReply:
               reply: |
-                > **NOTE**: The "Status: Owners Identified :metal:" label was added as per [ITA15](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita15).
+                > [!NOTE]
+                > The "Status: Owners Identified :metal:" label was added as per [ITA15](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita15).
         triggerOnOwnActions: true
 
-      - description: 'ITA17 - If the issue author says they want to be the module owner, assign the issue to the author and respond to them.'
+      - description: "ITA17 - If the issue author says they want to be the module owner, assign the issue to the author and respond to them."
         if:
           - payloadType: Issues
           - isAction:
@@ -176,11 +185,13 @@ configuration:
               reply: |
                 @${issueAuthor}, thanks for volunteering to be a module owner!
 
-                **Please don't start the development just yet!**
+                > [!IMPORTANT]
+                > **Please don't start the development just yet!**
+                >
+                > The AVM core team will review this module proposal and respond to you first. Thank you!
 
-                The AVM core team will review this module proposal and respond to you first. Thank you!
-
-                > **NOTE**: This message was posted as per [ITA17](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita17).
+                > [!NOTE]
+                > This message was posted as per [ITA17](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita17).
 
       - description: 'ITA18 - Send automatic response to the issue author if they don''t want to be module owner and don''t have any candidate in mind. Add the "Needs: Module Owner :mega:" label.'
         if:
@@ -198,14 +209,16 @@ configuration:
                 _No response_
         then:
           - addLabel:
-              label: 'Needs: Module Owner :mega:'
+              label: "Needs: Module Owner :mega:"
           - addReply:
               reply: |
-                @${issueAuthor}, thanks for submitting this module proposal!
+                **@${issueAuthor}, thanks for submitting this module proposal!**
 
-                The AVM core team will review it and will try to find a module owner.
+                > [!IMPORTANT]
+                > The AVM core team will review it and will try to find a module owner.
 
-                > **NOTE**: This message was posted as per [ITA18](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita18).
+                > [!NOTE]
+                > This message was posted as per [ITA18](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita18).
 
       - description: 'ITA19 - Send automatic response to the issue author if they don''t want to be module owner but have a candidate in mind. Add the "Status: Owners Identified :metal:" label.'
         if:
@@ -225,16 +238,18 @@ configuration:
                   _No response_
         then:
           - addLabel:
-              label: 'Status: Owners Identified :metal:'
+              label: "Status: Owners Identified :metal:"
           - addReply:
               reply: |
-                @${issueAuthor}, thanks for submitting this module proposal with a module owner in mind!
+                **@${issueAuthor}, thanks for submitting this module proposal with a module owner in mind!**
 
-                **Please don't start the development just yet!**
+                > [!IMPORTANT]
+                > **Please don't start the development just yet!**
+                >
+                > The AVM core team will review this module proposal and respond to you and/or the module owner first. Thank you!
 
-                The AVM core team will review this module proposal and respond to you and/or the module owner first. Thank you!
-
-                > **NOTE**: This message was posted as per [ITA19](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita19).
+                > [!NOTE]
+                > This message was posted as per [ITA19](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita19).
 
       - description: 'ITA23 - Remove the "Status: In PR" label from an issue when it''s closed.'
         if:
@@ -243,7 +258,8 @@ configuration:
               action: Closed
         then:
           - removeLabel:
-              label: 'Status: In PR :point_right:'
+              label: "Status: In PR :point_right:"
           - addReply:
               reply: |
-                > **NOTE**: The "Status: In PR :point_right:" label was removed as per [ITA23](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita23).
+                > [!NOTE]
+                > The "Status: In PR :point_right:" label was removed as per [ITA23](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita23).
