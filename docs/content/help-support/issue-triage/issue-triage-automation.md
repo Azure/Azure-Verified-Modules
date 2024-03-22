@@ -246,7 +246,7 @@ Remind module owner(s) to start or continue working on this module if there was 
 - Add the "<mark style="background-color:#E99695;color:white;">Needs: Attention 👋</mark>" label.
 
 {{< hint type=tip >}}
-- To avoid/silence this notification, provide an update every 3 weeks on the Module Proposal issue, or add the "<mark style="background-color:#B60205;color:white;">Status: Long Term ⏳</mark>" label.
+- To silence this notification, provide an update every 3 weeks on the Module Proposal issue, or add the "<mark style="background-color:#B60205;color:white;">Status: Long Term ⏳</mark>" label.
 {{< /hint >}}
 
 ---
