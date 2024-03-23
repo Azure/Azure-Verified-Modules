@@ -95,10 +95,10 @@ An issue is considered to be a "standard issue" or "blank issue" if it was opene
 
 1. When triaging the issue, consider adding one of the following labels as fits:
 
-   - <mark style="background-color:#0075CA;color:white;">Type: Documentation 📄</mark>
-   - <mark style="background-color:#A2EEEF;">Type: Feature Request ➕</mark>
-   - <mark style="background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>
-   - <mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>
+    - <mark style="background-color:#0075CA;color:white;">Type: Documentation 📄</mark>
+    - <mark style="background-color:#A2EEEF;">Type: Feature Request ➕</mark>
+    - <mark style="background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>
+    - <mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>
 
 > To see the full list of available labels, please refer to the [GitHub Repo Labels](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels) section.
 
