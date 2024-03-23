@@ -98,7 +98,7 @@ module >singularMainResourceType<_privateEndpoints 'br/public:avm/res/network/pr
       {
         name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(>singularMainResourceType<.id, '/'))}-${privateEndpoint.?service ?? '>defaultServiceName<'}-${index}'
         properties: {
-          privateLinkServiceId: workspace.id
+          privateLinkServiceId: >singularMainResourceType<.id
           groupIds: [
             privateEndpoint.?service ?? '>defaultServiceName<'
           ]
