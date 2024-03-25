@@ -19,6 +19,7 @@ Additional internal content available for Microsoft FTEs only, [here](https://de
 
 ### Community Videos
 
+- [John Savill's Technical Training: Azure Verified Modules Overview](https://youtu.be/3FeIFHaJOtg?si=fRr1Z8dxfrEbXR8I)
 - [Code to Cloud: Getting Started With: Azure Verified Modules](https://youtu.be/y1lOKQOapTw?si=lgM4VJdYDCt2f3_j)
 - [Ned in the Cloud: Introducing Azure Verified Modules for Terraform](https://youtu.be/6OeRByC-sBs?si=D9F203VzRsO2BtEl)
 
