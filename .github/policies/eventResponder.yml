@@ -35,6 +35,9 @@ configuration:
               - payloadType: Issue_Comment
           - commentContains:
               pattern: "#RR"
+          - not:
+              hasLabel:
+                label: "Needs: Author Feedback :ear:"
         then:
           - addLabel:
               label: "Needs: Author Feedback :ear:"
@@ -50,6 +53,9 @@ configuration:
               - payloadType: Issue_Comment
           - commentContains:
               pattern: "#wontfix"
+          - not:
+              hasLabel:
+                label: "Status: Won't Fix :broken_heart:"
         then:
           - addLabel:
               label: "Status: Won't Fix :broken_heart:"
@@ -95,6 +101,9 @@ configuration:
                 ### Bicep or Terraform?
 
                 Bicep
+          - not:
+              hasLabel:
+                label: "Language: Bicep :muscle:"
         then:
           - addLabel:
               label: "Language: Bicep :muscle:"
@@ -113,6 +122,9 @@ configuration:
                 ### Bicep or Terraform?
 
                 Terraform
+          - not:
+              hasLabel:
+                label: "Language: Terraform :globe_with_meridians:"
         then:
           - addLabel:
               label: "Language: Terraform :globe_with_meridians:"
@@ -124,6 +136,8 @@ configuration:
       - description: 'ITA15 - remove the "Needs: Triage" label from a PR, if it already has a "Type: XYZ" label added at the time of creating it.'
         if:
           - payloadType: Pull_Request
+          - isAction:
+              action: Opened
           - or:
               - hasLabel:
                   label: "Type: Bug :bug:"
@@ -141,10 +155,7 @@ configuration:
                   label: "Type: Question/Feedback :raising_hand:"
               - hasLabel:
                   label: "Type: Security Bug :lock:"
-              - hasLabel:
-                  label: "Type: AVM :a: :v: :m:"
-          - isAction:
-              action: Opened
+          - isAssignedToSomeone
         then:
           - removeLabel:
               label: "Needs: Triage :mag:"
@@ -262,6 +273,8 @@ configuration:
           - payloadType: Issues
           - isAction:
               action: Closed
+          - hasLabel:
+              label: "Status: In PR :point_right:"
         then:
           - removeLabel:
               label: "Status: In PR :point_right:"

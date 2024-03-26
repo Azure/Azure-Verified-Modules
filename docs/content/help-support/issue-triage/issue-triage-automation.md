@@ -392,11 +392,11 @@ Terraform
 
 ### ITA15
 
-Remove the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label from a PR, if it already has a "<mark>Type: *XYZ*</mark>" label added at the time of creating it.
+Remove the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label from a PR, if it already has a "<mark>Type: *XYZ*</mark>" label added and is assigned to someone at the time of creating it.
 
 **Trigger criteria:**
 
-- A PR is opened with any of the following labels added:
+- A PR is opened with any of the following labels added and is assigned to someone:
   - "<mark style="background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>"
   - "<mark style="background-color:#0075CA;color:white;">Type: Documentation 📄</mark>"
   - "<mark style="background-color:#CFD3D7;">Type: Duplicate 🤲</mark>"
@@ -405,7 +405,6 @@ Remove the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" l
   - "<mark style="background-color:#ADD8E6;">Type: New Module Proposal 💡</mark>"
   - "<mark style="background-color:#CB6BA2;color:white;">Type: Question/Feedback 🙋‍♀️</mark>"
   - "<mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>"
-  - "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>"
 
 **Action(s):**
 
