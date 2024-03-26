@@ -42,7 +42,10 @@ Examples:
 - `avm-res-compute-virtualmachine-module-owners-bicep` and added `avm-technical-reviewers-bicep` as parent.
 - `avm-res-compute-virtualmachine-module-contributors-bicep` and added `avm-module-contributors-bicep` as parent.
 
-If a secondary owner is required, add the secondary owner to the `avm-res-<RP>-<modulename>-module-owners-bicep` team.
+If a secondary owner is required, add the secondary owner to the `avm-res-<RP>-<modulename>-module-contributors-bicep` team.
+
+[!NOTE]
+Only fulltime Microsoft employees can be added at this time.
 
 {{< hint type=info >}}
 
@@ -117,7 +120,7 @@ As a module owner, it's important that you receive notifications when any of you
 
 #### Enable Global GitHub Notifications
 
-Visit the [GitHub Notifcations Settings Page](https://github.com/settings/notifications) while logged in with your AVM account.
+Visit the [GitHub Notifcations Settings Page](https://github.com/settings/notifications) while logged in with your GitHub account.
 
 <img src="/Azure-Verified-Modules/img/contribution/gh_notifications_page.png" alt="GitHub Notifications Settings Page." width=100%>
 
@@ -131,7 +134,7 @@ Visit the [GitHub Notifcations Settings Page](https://github.com/settings/notifi
 
 To receive notifications within a repository, you must be **Watching** that repository. When you are **watching** a repository, you will be notified any time you are @mentioned or whenever a conversation you are participating in is updated.
 
-To watch the AVM repository, visit the [AVM repo's main page](https://github.com/Azure/bicep-registry-modules), click the **Watch** button in the top-right of the page, then select **Participating and @mentions.** Optionally, if you would like to be notified for *all activity* within the repository, you can select **All Activity.**
+To watch the AVM repository, visit the [AVM repository main page](https://github.com/Azure/bicep-registry-modules), click the **Watch** button in the top-right of the page, then select **Participating and @mentions.** Optionally, if you would like to be notified for *all activity* within the repository, you can select **All Activity.**
 
 <img src="/Azure-Verified-Modules/img/contribution/gh_watch.png" alt="GitHub Notifications Page." width=100%>
 
