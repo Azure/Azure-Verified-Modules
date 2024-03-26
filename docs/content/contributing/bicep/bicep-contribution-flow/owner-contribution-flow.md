@@ -172,80 +172,20 @@ For a full list of GitHub notification types, see [Filtering Email Notifications
 
 This checklist can be used by anyone (author/contributor/owner) developing AVM Bicep Modules.
 
-1. Before begining any work a new module a valid [Issue: New AVM Module Proposal](https://github.com/Azure/Azure-Verified-Modules/issues/new?assignees=&labels=Type%3A+New+Module+Proposal+%3Abulb%3A%2CNeeds%3A+Triage+%3Amag%3A&projects=Azure%2F529&template=module_proposal.yml&title=%5BModule+Proposal%5D%3A+%60MODULE_NAME_BETWEEN_BACKTICKS%60) needs to be created. Instructions for creating the module proposal are outlined in the issue template. Pay particular attention to the questions and associated links to fill out the proposal successfully.
-2.
+1. Before begining any work a new module a valid [Issue: New AVM Module Proposal](https://github.com/Azure/Azure-Verified-Modules/issues/new?assignees=&labels=Type%3A+New+Module+Proposal+%3Abulb%3A%2CNeeds%3A+Triage+%3Amag%3A&projects=Azure%2F529&template=module_proposal.yml&title=%5BModule+Proposal%5D%3A+%60MODULE_NAME_BETWEEN_BACKTICKS%60) needs to be created. Instructions for creating the module proposal are outlined in the issue template. Pay particular attention to the questions and associated links to fill out the proposal acurately. Please do not start work on your proposed module until you receive a notification that your proposal has been accepted.
 
-3. Fork bicep-registry-modules [BRM](https://github.com/Azure/bicep-registry-modules), if you use an existing fork, make sure it's up to date with origin/BRM.
-- Make sure all workflows are [disabled by default](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/) once you forked BRM, to prevent any accidental deployments into your Azure test environment resulted by an automated deployment." Thanks!
+2. Fork bicep-registry-modules [BRM](https://github.com/Azure/bicep-registry-modules), if you use an existing fork, ensure it's up to date with origin/BRM.
 
-- Since all workflows are disabled by default you have to enable it manually for running your e2e test.
-- It is best practice to create a branch even when working in a fork, it is not recommended to directly push commits into main.
-- If you create a new module you have to create its corresponding workflow file (see [here](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution)). In order to run your e2e tests in your fork, this workflow file has to be put into `main` first so it can be run against your feature branch (GitHub Workflow appear by default and can run on feature branches only when they are present in main).
-- If you update/fix an existing module you don't have to do this because the corresponding workflow already exists in `main`.
-1. Implement your contribution
-- New module: Copy an existing module or start from scratch
-- Migrate module: Copy module from CARML
-- Adjust code according to specs.
-1. Run Set-AVMModule.ps1
-2. Run Test-ModuleLocally.ps1
-3. Use Helper script (see code below).
-4. Run e2e/test pipeline in your fork branch
-5. Create PR and reference the status badge of your pipeline run see [here](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry).
+   - Make sure all workflows are [disabled by default](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/) once you forked the BRM repo, to prevent any accidental deployments into your Azure test environment resulted by an automated deployment.
 
+3. Create a new branch from your forked repository to develop your module.
 
-```powershell
-# Start pwsh if not started yet
+4. If you created a new module you have to create its corresponding workflow file (see [here](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution)).
+   - In order to run your e2e tests in your fork, this workflow file has to be put into `main` first so it can be run against your feature branch (GitHub Workflow appear by default and can run on feature branches only when they are present in main).
+   - Since all workflows are disabled by default you have to enable your module's specific GitHub [workflow](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/) to run your e2e tests.
 
-pwsh
+5. [Implement your contribution](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution)
 
-# Set default directory
-$folder = "<your directory>/bicep-registry-modules"
+6. [Createupdate-and-run-tests](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests)
 
-# Dot source functions
-
-. $folder/avm/utilities/tools/Set-AVMModule.ps1
-. $folder/avm/utilities/tools/Test-ModuleLocally.ps1
-
-# Variables
-
-$modules = @(
-    # "service-fabric/cluster", # Replace with your module
-    "network/private-endpoint"  # Replace with your module
-)
-
-# Generate Readme
-
-foreach ($module in $modules) {
-    Write-Output "Generating ReadMe for module $module"
-    Set-AVMModule -ModuleFolderPath "$folder/avm/res/$module" -Recurse
-
-    # Set up test settings
-
-    $testcases = "waf-aligned", "max", "defaults"
-
-    $TestModuleLocallyInput = @{
-        TemplateFilePath           = "$folder/avm/res/$module/main.bicep"
-        ModuleTestFilePath         = "$folder/avm/res/$module/tests/e2e/max/main.test.bicep"
-        PesterTest                 = $true
-        ValidationTest             = $false
-        DeploymentTest             = $false
-        ValidateOrDeployParameters = @{
-            Location         = '<your location>'
-            SubscriptionId   = '<your subscriptionId>'
-            RemoveDeployment = $true
-        }
-        AdditionalTokens           = @{
-            namePrefix = '<your prefix>'
-            TenantId   = '<your tenantId>'
-        }
-    }
-
-    # Run tests
-
-    foreach ($testcase in $testcases) {
-        Write-Output "Running test case $testcase on module $module"
-        $TestModuleLocallyInput.ModuleTestFilePath = "$folder/avm/res/$module/tests/e2e/$testcase/main.test.bicep"
-        Test-ModuleLocally @TestModuleLocallyInput
-    }
-}
-```
+7. Create PR and reference the status badge of your pipeline run see [here](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry).
