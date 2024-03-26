@@ -27,6 +27,8 @@ Additional internal content available for Microsoft FTEs only, [here](https://de
 
 - [Introducing Azure Verified Modules!](https://aka.ms/AVM/intro/blog)
 - [Azure Verified Modules - Monthly Update Jan 24'](https://techcommunity.microsoft.com/t5/azure-tools-blog/azure-verified-modules-monthly-update-jan-24/ba-p/4048910)
+- [Azure Verified Modules - Monthly Update February 24'](https://techcommunity.microsoft.com/t5/azure-tools-blog/azure-verified-modules-monthly-update-february/ba-p/4074932)
+
 
 ## 🔬 Labs
 
