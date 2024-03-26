@@ -7,6 +7,9 @@ geekdocAnchor: true
 
 {{< toc >}}
 
+## GitHub Account Link and Access
+
+You need to have a GitHub account which is [linked](https://repos.opensource.microsoft.com/link) to your Microsoft FTE corporate identity account and be a member of the [Azure](https://repos.opensource.microsoft.com/orgs/Azure) organisation.
 
 ## Recommended Learning
 
@@ -47,6 +50,7 @@ To contribute to this project the following tooling is required:
 
   {{< /hint >}}
 
+- [Pester](https://pester.dev/docs/introduction/installation)
 - [Visual Studio Code](https://code.visualstudio.com/download)
   - [Bicep extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
 
