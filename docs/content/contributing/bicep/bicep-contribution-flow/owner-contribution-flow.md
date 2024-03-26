@@ -15,7 +15,7 @@ This section describes the contribution flow for module owners who are responsib
 
 This contribution flow is for **Module Owners** only.
 
-As a **Bicep Module Owner** you need to be aware of the [AVM Contribution Process Overview](https://azure.github.io/Azure-Verified-Modules/contributing/process/), [Shared Specifications](https://azure.github.io/Azure-Verified-Modules/specs/shared/) (including [Interfaces](https://azure.github.io/Azure-Verified-Modules/specs/shared/interfaces/)) and [Bicep-specific](https://azure.github.io/Azure-Verified-Modules/specs/bicep/) specifications as as these need to be considered during pull request reviews for the modules you own. The purpose of this **Owner Contribution Flow** is to simplify and list all activities as an owner and to help you understand your responsibilities as an owner.
+As a **Bicep Module Owner** you need to be aware of the [AVM Contribution Process Overview](https://azure.github.io/Azure-Verified-Modules/contributing/process/), [Shared Specifications](https://azure.github.io/Azure-Verified-Modules/specs/shared/) (including [Interfaces](https://azure.github.io/Azure-Verified-Modules/specs/shared/interfaces/)) and [Bicep-specific](https://azure.github.io/Azure-Verified-Modules/specs/bicep/) specifications as these need to be considered during pull request reviews for the modules you own. The purpose of this **Owner Contribution Flow** is to simplify and list all activities as an owner and to help you understand your responsibilities as an owner.
 
 {{< /hint >}}
 
@@ -49,25 +49,17 @@ Only fulltime Microsoft employees can be added at this time.
 
 {{< hint type=info >}}
 
-Once you added the parent teams it needs to be approved by the AVM team to ensure team name and parent team membership is correct.
+Once the teams have been created the AVM Core Team will review the team name and parent team membership for accuracy. A notification will automatically be sent to the AVM Core Team to notify them that their review needs to be completed.
 
 {{< /hint >}}
 
 1. Add teams to `CODEOWNERS` file as outlined in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only).
 
-2. Watch Pull Request (PR) activity for your module(s) in the [BRM](https://github.com/Azure/bicep-registry-modules) repository (Bicep Registry Modules repository - where all Bicep AVM modules are published) and ensure that PRs are reviewed and merged in a timely manner as outlined in [SNFR11](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times).
+2. Make sure your module has been tested before raising a PR. This can happen in your or in another module contributor's own environment - if any. Also, because once a PR is raised, a GitHib workflow pipeline is required to be run successfully before the PR can be merged. This is to ensure that the module is working as expected and is compliant with the AVM specifications.
 
-{{< hint type=info >}}
+3. Ensure that the module(s) you own are compliant with the AVM specifications and are working as expected. The following specifications are to be considered and where `Owner` is mentioned explicitly:
 
-Make sure module authors/contributors tested their module in their environment before raising a PR. Also because once a PR is raised a GitHib workflow pipeline is required to be run successfully before the PR can be merged. This is to ensure that the module is working as expected and is compliant with the AVM specifications.
-
-{{< /hint >}}
-
-4. Watch AVM module issue and AVM question/feedback acitvity for your module(s) in the [BRM](https://github.com/Azure/bicep-registry-modules) repository.
-
-5. Ensure that the module(s) you own are compliant with the AVM specifications and are working as expected. Following specifications are to be considered and where `Owner` is mentioned explicitly:
-
-| ID | Specification |
+| ID | Specification
 |---------------|-----------------------|
 | [SFR1](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-sfr1---category-composition---preview-services) | Composition - Preview Services |
 | [SNFR2](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing) | Testing - E2E Testing |
@@ -84,6 +76,10 @@ Make sure module authors/contributors tested their module in their environment b
 | [RMFR4](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmfr4---category-composition---avm-consistent-feature--extension-resources-value-add) | Composition - AVM Consistent Feature & Extension Resources Value Add |
 | [RMFR7](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs) | Outputs - Minimum Required Outputs |
 
+4. Watch Pull Request (PR) activity for your module(s) in the [BRM](https://github.com/Azure/bicep-registry-modules) repository (Bicep Registry Modules repository - where all Bicep AVM modules are published) and ensure that PRs are reviewed and merged in a timely manner as outlined in [SNFR11](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times).
+
+5. Watch AVM module issue and AVM question/feedback acitvity for your module(s) in the [BRM](https://github.com/Azure/bicep-registry-modules) repository.
+
 <br>
 
 ---
@@ -92,9 +88,13 @@ Make sure module authors/contributors tested their module in their environment b
 
 ### 2. Module Handover Activities
 
-<!-- TODO: Rephrase if required -->
-1. Add new owner as maintainer and remove any other individual including yourself
-2. In case primary owner leaves, switches roles or abandons the repo and the corresponding team then the parent team doesn't have the permissions to gain back access and a ticket with GitHub support needs to be created (but the team can still be removed from the repo since avm-core-team has permissions on it)
+In certain circumstances, you may find yourself unable to continue as the module owner. In such cases, it is advisable to designate a new module owner. The following steps outline this transition:
+
+- Add the new owner's GitHub account as a "maintainer" on your modules GitHub teams.
+- Remove your GitHub account from on your modules GitHub teams.
+
+If a new module owner cannot be identified then the module will need to be "Orphaned". Please follow the step outlined [when-a-module-becomes-orphaned](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-orphaned).
+
 
 <br>
 
@@ -102,11 +102,9 @@ Make sure module authors/contributors tested their module in their environment b
 
 <br>
 
-### 3. Orphaned Module Handover Activities
+### 3. Adopting an Orphaned Module
 
-<!-- TODO: Rephrase if required -->
-1. Add new owner as maintainer and remove any other individual.
-2. Remove `ORPHANED.md` from the root directory of the Module.
+When adopting an orphaned module the [when-a-new-owner-is-identified](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified) steps are followed.
 
 <br>
 
@@ -126,18 +124,17 @@ Visit the [GitHub Notifcations Settings Page](https://github.com/settings/notifi
 
 1. Ensure your **Default Notifications Email** address is set to the email address you intend to use.
 2. (Optional) If you would like to automatically watch repositories that you are active in, ensure **Automatically watch repositories** is set to "On."
-3. (Required) If you would like to automatically subscribe to team-level notifications whenever you join a new team, ensnure **Automatically watch teams** is set to "On."
+3. (**Required**) If you would like to automatically subscribe to team-level notifications whenever you join a new team, ensnure **Automatically watch teams** is set to "On."
 4. To receive notifications whenever a change is made to a repository or conversation that you are **Watching**, ensure the **Notify Me** setting has at least **Email** enabled.
 5. To receive notifications whenever you or a group you belong to are @mentioned, ensure the **Notify Me** setting has at least **Email** enabled.
 
 #### Watch a Repository
 
-To receive notifications within a repository, you must be **Watching** that repository. When you are **watching** a repository, you will be notified any time you are @mentioned or whenever a conversation you are participating in is updated.
+**Watching** a repository means you will be notified any time you are @mentioned or whenever a conversation you are participating in is updated.
 
-To watch the AVM repository, visit the [AVM repository main page](https://github.com/Azure/bicep-registry-modules), click the **Watch** button in the top-right of the page, then select **Participating and @mentions.** Optionally, if you would like to be notified for *all activity* within the repository, you can select **All Activity.**
+The primary repository that owners should **watch** is the **Bicep-Registry-Modules** (BRM) repsository. Notifications from this repository will notify you of issues concerning your module and any @mentions and @Team Mentions. It is important that you **read and react** to these messages.
 
-<img src="/Azure-Verified-Modules/img/contribution/gh_watch.png" alt="GitHub Notifications Page." width=100%>
-
+To watch the BRM repository, visit [Bicep-Registry-Modules](https://github.com/Azure/bicep-registry-modules), click the **Watch** button in the top-right of the page, then select **Participating and @mentions.** Optionally, if you would like to be notified for *all activity* within the repository, you can select **All Activity.**
 
 {{< hint type=note >}}
 
@@ -173,20 +170,15 @@ For a full list of GitHub notification types, see [Filtering Email Notifications
 
 ### 5. Contribution Checklist
 
-<!-- TODO:
-- I added this section here because I don't know if ths should be under Owner or a separated secion under Bicep Contribution Flow
-- This section definitely needs to be rephrased or moved to a different section
--->
 This checklist can be used by anyone (author/contributor/owner) developing AVM Bicep Modules.
 
-1. You agreed in your issue to start developing your AVM module.
-2. Define your module name assets which you can also find [here](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/BicepResourceModules.csv):
-- [Naming convention](https://azure.github.io/Azure-Verified-Modules/specs/shared/#terraform-resource-module-naming):  `avm-res-<resource provider>-<ARM resource type>`
-- Module name: `avm-res-dev-center-devcenter`
-- Module folder: `avm/res/dev-center/devcenter`
-- TelemetryIdPrefix: `46d3xbcp.res.devcenter-devcenter`
-1. Fork bicep-registry-modules [BRM](https://github.com/Azure/bicep-registry-modules), if you use an existing fork, make sure it's up to date with origin/BRM.
-- Make sure all workflows are [disabled by default](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/) once you forked BRM, to prevent accidental runs in your Azure test environment. Since all workflows are disabled by default you have to enable it manually for running your e2e test.
+1. Before begining any work a new module a valid [Issue: New AVM Module Proposal](https://github.com/Azure/Azure-Verified-Modules/issues/new?assignees=&labels=Type%3A+New+Module+Proposal+%3Abulb%3A%2CNeeds%3A+Triage+%3Amag%3A&projects=Azure%2F529&template=module_proposal.yml&title=%5BModule+Proposal%5D%3A+%60MODULE_NAME_BETWEEN_BACKTICKS%60) needs to be created. Instructions for creating the module proposal are outlined in the issue template. Pay particular attention to the questions and associated links to fill out the proposal successfully.
+2.
+
+3. Fork bicep-registry-modules [BRM](https://github.com/Azure/bicep-registry-modules), if you use an existing fork, make sure it's up to date with origin/BRM.
+- Make sure all workflows are [disabled by default](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/) once you forked BRM, to prevent any accidental deployments into your Azure test environment resulted by an automated deployment." Thanks!
+
+- Since all workflows are disabled by default you have to enable it manually for running your e2e test.
 - It is best practice to create a branch even when working in a fork, it is not recommended to directly push commits into main.
 - If you create a new module you have to create its corresponding workflow file (see [here](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution)). In order to run your e2e tests in your fork, this workflow file has to be put into `main` first so it can be run against your feature branch (GitHub Workflow appear by default and can run on feature branches only when they are present in main).
 - If you update/fix an existing module you don't have to do this because the corresponding workflow already exists in `main`.
