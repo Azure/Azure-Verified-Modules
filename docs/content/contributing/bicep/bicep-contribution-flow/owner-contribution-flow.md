@@ -50,7 +50,7 @@ Once the teams have been created the AVM Core Team will review the team name and
 
 2. Add teams to `CODEOWNERS` file as outlined in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only).
 
-2. Make sure your module has been tested before raising a PR. This can happen in your or in another module contributor's own environment - if any. Also, because once a PR is raised, a GitHib workflow pipeline is required to be run successfully before the PR can be merged. This is to ensure that the module is working as expected and is compliant with the AVM specifications.
+3. Make sure your module has been tested before raising a PR. You can do this your own or in another module contributor's environment - if any. Also, once a PR is raised, a GitHub workflow pipeline is required to be run successfully before the PR can be merged. This is to ensure that the module is working as expected and is compliant with the AVM specifications.
 
 3. Ensure that the module(s) you own are compliant with the AVM specifications and are working as expected. The following specifications are to be considered and where `Owner` is mentioned explicitly:
 
