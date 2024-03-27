@@ -79,7 +79,7 @@ Once the teams have been created the AVM Core Team will review the team name and
 
 ### 2. Module Handover Activities
 
-In certain circumstances, you may find yourself unable to continue as the module owner. In such cases, it is advisable to designate a new module owner. The following steps outline this transition:
+Under certain circumstances, you may find yourself unable to continue as the module owner. In such cases, it is advisable to designate a new module owner. The following steps outline this transition:
 
 - Add the new owner's GitHub account as a "maintainer" on your modules GitHub teams.
 - Remove your GitHub account from on your modules GitHub teams.
