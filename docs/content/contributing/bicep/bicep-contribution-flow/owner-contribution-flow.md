@@ -36,7 +36,7 @@ Examples:
 - `avm-res-compute-virtualmachine-module-owners-bicep` and added `avm-technical-reviewers-bicep` as parent.
 - `avm-res-compute-virtualmachine-module-contributors-bicep` and added `avm-module-contributors-bicep` as parent.
 
-If a secondary owner is required, add the secondary owner to the `avm-res-<RP>-<modulename>-module-contributors-bicep` team.
+If there are any additional contributors, add the secondary owner to the `avm-res-<RP>-<modulename>-module-contributors-bicep` team.
 
 [!NOTE]
 Only fulltime Microsoft employees can be added at this time.
