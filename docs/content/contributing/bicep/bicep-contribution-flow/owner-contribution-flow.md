@@ -75,9 +75,9 @@ Once the teams have been created the AVM Core Team will review the team name and
 
 Under certain circumstances, you may find yourself unable to continue as the module owner. In such cases, it is advisable to designate a new module owner. The following steps outline this transition:
 
-- Leave a comment on the original module proposal, indicating that you'd like to hand the ownership over to somebody else. Mention the person who originally helped triage the issue or the `@Azure/avm-core-team-technical-bicep` team. You must wait for someone from the AVM Core Team to respond first, as the module index must be updated before you can continue handing over the ownership.
-- Add the new owner's GitHub account as a "maintainer" on your modules GitHub teams.
-- Remove your GitHub account from your module's GitHub teams.
+    - Leave a comment on the original module proposal, indicating that you'd like to hand the ownership over to somebody else. Mention the person who originally helped triage the issue or the `@Azure/avm-core-team-technical-bicep` team. You must wait for someone from the AVM Core Team to respond first, as the module index must be updated before you can continue handing over the ownership.
+    - Add the new owner's GitHub account as a "maintainer" on your modules GitHub teams.
+    - Remove your GitHub account from your module's GitHub teams.
 
 If a new module owner cannot be identified then the module will need to be "Orphaned". Please follow the step outlined [when-a-module-becomes-orphaned](/Azure-Verified-Modules/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-orphaned).
 
@@ -146,28 +146,25 @@ This checklist can be used in the development of AVM Bicep Modules.
 1. Before beginning any work a new module a valid [Issue: New AVM Module Proposal](https://github.com/Azure/Azure-Verified-Modules/issues/new?assignees=&labels=Type%3A+New+Module+Proposal+%3Abulb%3A%2CNeeds%3A+Triage+%3Amag%3A&projects=Azure%2F529&template=module_proposal.yml&title=%5BModule+Proposal%5D%3A+%60MODULE_NAME_BETWEEN_BACKTICKS%60) needs to be created. Instructions for creating the module proposal are outlined in the issue template. Pay particular attention to the questions and associated links to fill out the proposal accurately. Please do not start work on your proposed module until you receive a notification that your proposal has been accepted.
 2. Fork the bicep-registry-modules [BRM](https://github.com/Azure/bicep-registry-modules) repository. If you use an existing fork, ensure it's up to date with origin/BRM.
 
-- Ensure all workflows are [disabled by default](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/) once you forked the BRM repo, to prevent any accidental deployments into your Azure test environment resulted by an automated deployment.
+    - Ensure all workflows are [disabled by default](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/) once you forked the BRM repo, to prevent any accidental deployments into your Azure test environment resulted by an automated deployment.
 
 3. Create a new branch from your forked repository to develop your module.
 4. If you're working on a new module you have to create its corresponding workflow file (see [here](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution)).
 
-- In order to run your e2e tests in your fork, this workflow file has to be put into the `main` branch first, so it can be run against your feature branch (GitHub Workflows can only be run on feature branches when they are already present in the main branch).
-- Since all workflows are disabled by default you have to enable your module's specific GitHub [workflow](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/) to run your e2e tests.
+    - In order to run your e2e tests in your fork, this workflow file has to be put into the `main` branch first, so it can be run against your feature branch (GitHub Workflows can only be run on feature branches when they are already present in the main branch).
+    - Since all workflows are disabled by default you have to enable your module's specific GitHub [workflow](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/) to run your e2e tests.
 
-5. [Implement your contribution](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution)
+5. [Implement your contribution](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution).
+6. [Create, update, and run tests](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests).
 
-6. [Create, update, and run tests](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests)
+    - In addition to testing your module via GitHub pipeline, you can also [test-locally](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally/). The following helper script facilitates local testing.
 
-- In addition to testing your module via GitHub pipeline, you can also [test-locally](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally/). The following helper script facilitates local testing.
+    {{< expand "➕ Local Test Helper Script" "expand/collapse" >}}
 
-{{< expand "➕ Local Test Helper Script" "expand/collapse" >}}
+    {{< include file="/static/scripts/sample-localtest-helper.ps1" language="powershell" options="linenos=false" >}}
 
-{{< include file="/static/scripts/sample-localtest-helper.ps1" language="powershell" options="linenos=false" >}}
-
-{{< /expand >}}
+    {{< /expand >}}
 
 7. Create a PR and reference the status badge of your pipeline run - [see here](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry).
-
 8. After a pull request has been created, it is important to update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue associated with your module, with a link to the pull request you created in BRM and mention the person who helped triage your module or the `@Azure/avm-core-team-technical-bicep` team.
-
 9. Once your BRM pull request has been approved and merged into main update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue associated with your module, with a **Merged** comment and mention the person who helped triage your module, or the `@Azure/avm-core-team-technical-bicep` team.
