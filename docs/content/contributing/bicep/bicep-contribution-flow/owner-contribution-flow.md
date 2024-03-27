@@ -166,65 +166,15 @@ This checklist can be used by anyone (author/contributor/owner) developing AVM B
 
 - In addition to testing your module via GitHub pipeline, you can also [test-locally](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally/). The following helper script facilitates local testing.
 
-```powershell
-# Start pwsh if not started yet
+{{< expand "➕ Local Test Helper Script" "expand/collapse" >}}
 
-pwsh
+{{< include file="/static/scripts/sample-localtest-helper.ps1" language="powershell" options="linenos=false" >}}
 
-# Set default directory
-$folder = "<your directory>/bicep-registry-modules"
-
-# Dot source functions
-
-. $folder/avm/utilities/tools/Set-AVMModule.ps1
-. $folder/avm/utilities/tools/Test-ModuleLocally.ps1
-
-# Variables
-
-$modules = @(
-    # "service-fabric/cluster", # Replace with your module
-    "network/private-endpoint"  # Replace with your module
-)
-
-# Generate Readme
-
-foreach ($module in $modules) {
-    Write-Output "Generating ReadMe for module $module"
-    Set-AVMModule -ModuleFolderPath "$folder/avm/res/$module" -Recurse
-
-    # Set up test settings
-
-    $testcases = "waf-aligned", "max", "defaults"
-
-    $TestModuleLocallyInput = @{
-        TemplateFilePath           = "$folder/avm/res/$module/main.bicep"
-        ModuleTestFilePath         = "$folder/avm/res/$module/tests/e2e/max/main.test.bicep"
-        PesterTest                 = $true
-        ValidationTest             = $false
-        DeploymentTest             = $false
-        ValidateOrDeployParameters = @{
-            Location         = '<your location>'
-            SubscriptionId   = '<your subscriptionId>'
-            RemoveDeployment = $true
-        }
-        AdditionalTokens           = @{
-            namePrefix = '<your prefix>'
-            TenantId   = '<your tenantId>'
-        }
-    }
-
-    # Run tests
-
-    foreach ($testcase in $testcases) {
-        Write-Output "Running test case $testcase on module $module"
-        $TestModuleLocallyInput.ModuleTestFilePath = "$folder/avm/res/$module/tests/e2e/$testcase/main.test.bicep"
-        Test-ModuleLocally @TestModuleLocallyInput
-    }
-}
-```
+{{< /expand >}}
 
 7. Create PR and reference the status badge of your pipeline run see [here](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry).
 
 8. After a pull request has been created it is important to update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue associated with your module, with a link to the pull request you created in BRM and mention the person who helped triage your module or the `@Azure/avm-core-team-technical-bicep` team.
 
 9. Once your BRM pull request has been approved and merged into main update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue associated with your module, with a **Merged** comment and mention the person who helped triage your module, or the `@Azure/avm-core-team-technical-bicep` team.
+
