@@ -83,7 +83,7 @@ Under certain circumstances, you may find yourself unable to continue as the mod
 
 - Leave a comment on the original module proposal, indicating that you'd like to hand the ownership over to somebody else. Mention the person who originally helped triage the issue or the `@Azure/avm-core-team-technical-bicep` team. You must wait for someone from the AVM Core Team to respond first, as the module index must be updated before you can continue handing over the ownership.
 - Add the new owner's GitHub account as a "maintainer" on your modules GitHub teams.
-- Remove your GitHub account from on your modules GitHub teams.
+- Remove your GitHub account from your module's GitHub teams.
 
 If a new module owner cannot be identified then the module will need to be "Orphaned". Please follow the step outlined [when-a-module-becomes-orphaned](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-orphaned).
 
