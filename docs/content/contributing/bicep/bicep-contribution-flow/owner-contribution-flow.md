@@ -19,7 +19,7 @@ As a **Bicep Module Owner** you need to be aware of the [AVM Contribution Proces
 
 ---
 
-### 1. Owner Activities and Responsibilities
+## 1. Owner Activities and Responsibilities
 
 <!-- TODO: Rephrase sections if required -->
 Familiarise yourself with the responsibilities as **Module Owner** outlined in [Team Definitions & RACI](/Azure-Verified-Modules/specs/shared/team-definitions/#module-owners) and [Module Owner Responsibilities](/Azure-Verified-Modules/help-support/issue-triage/brm-issue-triage/#module-owner-responsibilities) in the [BRM Issue Triage](/Azure-Verified-Modules/help-support/issue-triage/brm-issue-triage/).
@@ -71,7 +71,7 @@ Once the teams have been created the AVM Core Team will review the team name and
 
 ---
 
-### 2. Module Handover Activities
+## 2. Module Handover Activities
 
 Under certain circumstances, you may find yourself unable to continue as the module owner. In such cases, it is advisable to designate a new module owner. The following steps outline this transition:
 
@@ -83,17 +83,17 @@ If a new module owner cannot be identified then the module will need to be "Orph
 
 ---
 
-### 3. Adopting an Orphaned Module
+## 3. Adopting an Orphaned Module
 
 When adopting an orphaned module the [when-a-new-owner-is-identified](/Azure-Verified-Modules/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified) steps are followed.
 
 ---
 
-### 4. GitHub Notification Settings
+## 4. GitHub Notification Settings
 
 As a module owner, it's important that you receive notifications when any of your AVM modules experience activity or when you or any groups you belong to are explicitly mentioned (using the @ operator). This document describes how to configure your GitHub and Email settings to ensure you receive email notifications for these types of scenarios within GitHub.
 
-#### Enable Global GitHub Notifications
+### Enable Global GitHub Notifications
 
 Visit the [GitHub Notifications Settings Page](https://github.com/settings/notifications) while logged in with your GitHub account.
 
@@ -105,7 +105,7 @@ Visit the [GitHub Notifications Settings Page](https://github.com/settings/notif
 4. (**Required**) To receive notifications whenever a change is made to a repository or conversation that you are **Watching**, ensure the **Notify Me** setting has at least **Email** enabled.
 5. (**Required**)To receive notifications whenever you or a group you belong to are @mentioned, ensure the **Notify Me** setting has at least **Email** enabled.
 
-#### Watch a Repository
+### Watch a Repository
 
 Optionally, you may consider "watching" (following most or all activities in) an entire repository. The primary repository that owners should **watch** is the **Bicep-Registry-Modules** (BRM) repository. Notifications from this repository will notify you of issues concerning your module and any direct or team @mentions. It is important that you **read and react** to these messages.
 
@@ -117,7 +117,7 @@ Enabling **All Activity** will result in *a lot* of notifications! If you choose
 
 {{< /hint >}}
 
-#### Configure Email Inbox Notification Filters
+### Configure Email Inbox Notification Filters
 
 GitHub uses a unique email address sender for each type of notification it sends. This allows us to set up filters within our email client to sort our inboxes depending on the type of notifications that was sent. The table below lists all of the relevant email addresses that may be useful for filtering notifications from GitHub.
 
@@ -139,7 +139,7 @@ For a full list of GitHub notification types, see [Filtering Email Notifications
 
 ---
 
-### 5. Contribution Checklist
+## 5. Contribution Checklist
 
 This checklist can be used in the development of AVM Bicep Modules.
 
