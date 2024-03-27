@@ -9,7 +9,7 @@ geekdocAnchor: true
 
 ## GitHub Account Link and Access
 
-You need to have a personal GitHub account which is [linked](https://repos.opensource.microsoft.com/link) to your Microsoft corporate identity. Once the link step is complete you must join the [Azure](https://repos.opensource.microsoft.com/orgs/Azure) organization.
+You need to have a personal GitHub account which is [linked](https://aka.ms/LinkYourGitHubAccount) to your Microsoft corporate identity. Once the link step is complete you must join the [Azure](https://repos.opensource.microsoft.com/orgs/Azure) organization.
 
 ## Recommended Learning
 

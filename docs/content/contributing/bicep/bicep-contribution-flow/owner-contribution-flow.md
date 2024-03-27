@@ -9,8 +9,6 @@ This section describes the contribution flow for module owners who are responsib
 
 {{< toc >}}
 
-<br>
-
 {{< hint type=important >}}
 
 This contribution flow is for **Module Owners** only.
@@ -19,11 +17,7 @@ As a **Bicep Module Owner** you need to be aware of the [AVM Contribution Proces
 
 {{< /hint >}}
 
-<br>
-
 ---
-
-<br>
 
 ### 1. Owner Activities and Responsibilities
 
@@ -80,11 +74,7 @@ Once the teams have been created the AVM Core Team will review the team name and
 
 5. Watch AVM module issue and AVM question/feedback acitvity for your module(s) in the [BRM](https://github.com/Azure/bicep-registry-modules) repository.
 
-<br>
-
 ---
-
-<br>
 
 ### 2. Module Handover Activities
 
@@ -95,22 +85,13 @@ In certain circumstances, you may find yourself unable to continue as the module
 
 If a new module owner cannot be identified then the module will need to be "Orphaned". Please follow the step outlined [when-a-module-becomes-orphaned](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-orphaned).
 
-
-<br>
-
 ---
-
-<br>
 
 ### 3. Adopting an Orphaned Module
 
 When adopting an orphaned module the [when-a-new-owner-is-identified](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified) steps are followed.
 
-<br>
-
 ---
-
-<br>
 
 ### 4. GitHub Notification Settings
 
@@ -129,8 +110,6 @@ Visit the [GitHub Notifcations Settings Page](https://github.com/settings/notifi
 5. To receive notifications whenever you or a group you belong to are @mentioned, ensure the **Notify Me** setting has at least **Email** enabled.
 
 #### Watch a Repository
-
-**Watching** a repository means you will be notified any time you are @mentioned or whenever a conversation you are participating in is updated.
 
 The primary repository that owners should **watch** is the **Bicep-Registry-Modules** (BRM) repsository. Notifications from this repository will notify you of issues concerning your module and any @mentions and @Team Mentions. It is important that you **read and react** to these messages.
 
@@ -162,11 +141,7 @@ GitHub will use the following email addresses to Cc you if you're subscribed to 
 
 For a full list of GitHub notification types, see [Filtering Email Notifications](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#filtering-email-notifications).
 
-<br>
-
 ---
-
-<br>
 
 ### 5. Contribution Checklist
 
@@ -190,3 +165,7 @@ This checklist can be used by anyone (author/contributor/owner) developing AVM B
 6. [Createupdate-and-run-tests](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests)
 
 7. Create PR and reference the status badge of your pipeline run see [here](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry).
+
+8. After a pull request has been created it is important to update the [AVM issue](https://github.com/Azure/Azure-Verified-Modules/issues) assocaited with your module, with a link to the pull request you created in BRM and mention the **@Azure/avm-core-team**.
+
+9. Once your BRM pull request has been approved and merged into main update the [AVM issue](https://github.com/Azure/Azure-Verified-Modules/issues) assocaited with your module, with a **Merged** comment and mention the **@Azure/avm-core-team**.
