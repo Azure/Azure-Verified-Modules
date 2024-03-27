@@ -81,6 +81,7 @@ Once the teams have been created the AVM Core Team will review the team name and
 
 Under certain circumstances, you may find yourself unable to continue as the module owner. In such cases, it is advisable to designate a new module owner. The following steps outline this transition:
 
+- Leave a comment on the original module proposal, indicating that you'd like to hand the ownership over to somebody else. Mention the person who originally helped triage the issue or the `@Azure/avm-core-team-technical-bicep` team. You must wait for someone from the AVM Core Team to respond first, as the module index must be updated before you can continue handing over the ownership.
 - Add the new owner's GitHub account as a "maintainer" on your modules GitHub teams.
 - Remove your GitHub account from on your modules GitHub teams.
 
