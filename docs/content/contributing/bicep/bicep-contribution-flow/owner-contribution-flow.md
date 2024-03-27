@@ -38,7 +38,6 @@ Examples:
 
 If there are any additional contributors, add the secondary owner to the `avm-res-<RP>-<modulename>-module-contributors-bicep` team.
 
-[!NOTE]
 {{< hint type=note >}}
 Only fulltime Microsoft employees can be added to the `-owners` and `-contributors` teams at this time.
 {{< /hint >}}
