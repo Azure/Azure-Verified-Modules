@@ -13,7 +13,7 @@ This section describes the contribution flow for module owners who are responsib
 
 This contribution flow is for **Module Owners** only.
 
-As a **Bicep Module Owner** you need to be aware of the [AVM Contribution Process Overview](/Azure-Verified-Modules/contributing/process/), [Shared Specifications](/Azure-Verified-Modules/specs/shared/) (including [Interfaces](/Azure-Verified-Modules/specs/shared/interfaces/)) and [Bicep-specific](/Azure-Verified-Modules/specs/bicep/) specifications as these need to be considered during pull request reviews for the modules you own. The purpose of this **Owner Contribution Flow** is to simplify and list all activities as an owner and to help you understand your responsibilities as an owner.
+As a **Bicep Module Owner** you need to be aware of the [AVM Contribution Process Overview](https://azure.github.io/Azure-Verified-Modules/contributing/process/), [Shared Specifications](https://azure.github.io/Azure-Verified-Modules/specs/shared/) (including [Interfaces](https://azure.github.io/Azure-Verified-Modules/specs/shared/interfaces/)) and [Bicep-specific](https://azure.github.io/Azure-Verified-Modules/specs/bicep/) specifications as these need to be followed during pull request reviews for the modules you own. The purpose of this **Owner Contribution Flow** is to simplify and list the most important activities of an owner and to help you understand your responsibilities as an owner.
 
 {{< /hint >}}
 
@@ -77,7 +77,7 @@ Under certain circumstances, you may find yourself unable to continue as the mod
 
 - Leave a comment on the original module proposal, indicating that you'd like to hand the ownership over to somebody else. Mention the person who originally helped triage the issue or the `@Azure/avm-core-team-technical-bicep` team. You must wait for someone from the AVM Core Team to respond first, as the module index must be updated before you can continue handing over the ownership.
 - Add the new owner's GitHub account as a "maintainer" on your modules GitHub teams.
-- Remove your GitHub account from on your modules GitHub teams.
+- Remove your GitHub account from your module's GitHub teams.
 
 If a new module owner cannot be identified then the module will need to be "Orphaned". Please follow the step outlined [when-a-module-becomes-orphaned](/Azure-Verified-Modules/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-orphaned).
 
