@@ -101,7 +101,7 @@ As a module owner, it's important that you receive notifications when any of you
 
 #### Enable Global GitHub Notifications
 
-Visit the [GitHub Notifcations Settings Page](https://github.com/settings/notifications) while logged in with your GitHub account.
+Visit the [GitHub Notifications Settings Page](https://github.com/settings/notifications) while logged in with your GitHub account.
 
 <img src="/Azure-Verified-Modules/img/contribution/gh_notifications_page.png" alt="GitHub Notifications Settings Page." width=100%>
 
