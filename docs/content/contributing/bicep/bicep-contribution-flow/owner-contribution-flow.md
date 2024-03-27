@@ -107,7 +107,7 @@ Visit the [GitHub Notifications Settings Page](https://github.com/settings/notif
 
 1. Ensure your **Default Notifications Email** address is set to the email address you intend to use.
 2. (Optional) If you would like to automatically watch repositories that you are active in, ensure **Automatically watch repositories** is set to "On."
-3. (**Required**) If you would like to automatically subscribe to team-level notifications whenever you join a new team, ensnure **Automatically watch teams** is set to "On."
+3. (**Required**) You should set the **Automatically watch teams** setting to "On", so that whenever you join a new team, you're automatically subscribed to team-level notifications. This is needed to receive notifications when your module's `-owners` or `-contributors` teams are mentioned by anyone in a comment or on an Issue/PR.
 4. To receive notifications whenever a change is made to a repository or conversation that you are **Watching**, ensure the **Notify Me** setting has at least **Email** enabled.
 5. To receive notifications whenever you or a group you belong to are @mentioned, ensure the **Notify Me** setting has at least **Email** enabled.
 
