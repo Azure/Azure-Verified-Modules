@@ -113,7 +113,7 @@ Visit the [GitHub Notifications Settings Page](https://github.com/settings/notif
 
 #### Watch a Repository
 
-The primary repository that owners should **watch** is the **Bicep-Registry-Modules** (BRM) repsository. Notifications from this repository will notify you of issues concerning your module and any @mentions and @Team Mentions. It is important that you **read and react** to these messages.
+Optionally, you may consider "watching" (following most or all activities in) an entire repository. The primary repository that Bicep module owners should **watch** is the **Bicep-Registry-Modules** (BRM) repository. Notifications from this repository will inform you of issues concerning your module and any direct or team @mentions. It is important that you **read and react** to these messages.
 
 To watch the BRM repository, visit [Bicep-Registry-Modules](https://github.com/Azure/bicep-registry-modules), click the **Watch** button in the top-right of the page, then select **Participating and @mentions.** Optionally, if you would like to be notified for *all activity* within the repository, you can select **All Activity.**
 
