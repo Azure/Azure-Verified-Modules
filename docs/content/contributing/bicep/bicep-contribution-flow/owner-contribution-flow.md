@@ -60,7 +60,7 @@ Once the teams have been created the AVM Core Team will review the team name and
 | [SNFR2](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing) | Testing - E2E Testing |
 | [SNFR3](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr3---category-testing---avm-compliance-tests) | Testing - AVM Compliance Tests |
 | [SNFR8](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr8---category-contributionsupport---module-owners-github) | Contribution/Support - Module Owner(s) GitHub |
-| [SNFR11](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times) | Contribution/Support - Issues Reponse Times |
+| [SNFR11](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times) | Contribution/Support - Issues Response Times |
 | [SNFR12](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr12---category-contributionsupport---versions-supported) | Contribution/Support - Versions Supported |
 | [SNFR17](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning) | Release - Semantic Versioning |
 | [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) | Contribution/Support - GitHub Teams Only |
