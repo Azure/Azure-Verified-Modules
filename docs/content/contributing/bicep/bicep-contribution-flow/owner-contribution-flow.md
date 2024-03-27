@@ -227,4 +227,4 @@ foreach ($module in $modules) {
 
 8. After a pull request has been created it is important to update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue associated with your module, with a link to the pull request you created in BRM and mention the person who helped triage your module or the `@Azure/avm-core-team-technical-bicep` team.
 
-9. Once your BRM pull request has been approved and merged into main update the [AVM issue](https://github.com/Azure/Azure-Verified-Modules/issues) assocaited with your module, with a **Merged** comment and mention the **@Azure/avm-core-team**.
+9. Once your BRM pull request has been approved and merged into main update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue associated with your module, with a **Merged** comment and mention the person who helped triage your module, or the `@Azure/avm-core-team-technical-bicep` team.
