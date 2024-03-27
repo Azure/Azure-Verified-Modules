@@ -144,7 +144,7 @@ For a full list of GitHub notification types, see [Filtering Email Notifications
 This checklist can be used in the development of AVM Bicep Modules.
 
 1. Before beginning any work a new module a valid [Issue: New AVM Module Proposal](https://github.com/Azure/Azure-Verified-Modules/issues/new?assignees=&labels=Type%3A+New+Module+Proposal+%3Abulb%3A%2CNeeds%3A+Triage+%3Amag%3A&projects=Azure%2F529&template=module_proposal.yml&title=%5BModule+Proposal%5D%3A+%60MODULE_NAME_BETWEEN_BACKTICKS%60) needs to be created. Instructions for creating the module proposal are outlined in the issue template. Pay particular attention to the questions and associated links to fill out the proposal accurately. Please do not start work on your proposed module until you receive a notification that your proposal has been accepted.
-2. Fork bicep-registry-modules [BRM](https://github.com/Azure/bicep-registry-modules), if you use an existing fork, ensure it's up to date with origin/BRM.
+2. Fork the bicep-registry-modules [BRM](https://github.com/Azure/bicep-registry-modules) repository. If you use an existing fork, ensure it's up to date with origin/BRM.
 
 - Ensure all workflows are [disabled by default](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/) once you forked the BRM repo, to prevent any accidental deployments into your Azure test environment resulted by an automated deployment.
 
