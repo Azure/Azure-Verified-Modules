@@ -44,7 +44,7 @@ Only fulltime Microsoft employees can be added to the `-owners` and `-contributo
 
 {{< hint type=info >}}
 
-Once the teams have been created the AVM Core Team will review the team name and parent team membership for accuracy. A notification will automatically be sent to the AVM Core Team to notify them that their review needs to be completed.
+Once the teams have been created the AVM Core Team will review the team name and parent team membership for accuracy. A notification will automatically be sent to the AVM Core Team to inform them that their review needs to be completed.
 
 {{< /hint >}}
 
