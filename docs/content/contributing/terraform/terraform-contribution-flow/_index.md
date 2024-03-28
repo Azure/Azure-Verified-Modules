@@ -124,6 +124,7 @@ For consistent contributors but also Azure-org members in general it is possible
 AVM performs end-to-end (e2e) test dpeloyments of all modules in Azure for validation. We recommend you to perform a local e2e test deployment of your module before you create a PR to the upstream repository. Especially because the e2e test deployment will be triggered automatically once you create a PR to the upstream repository.
 
 1. Have/create an Azure Active Directory Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
+
 - [Create a service principal (Azure CLI)](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1) - _**Recommended**_
 - [Create a service principal (Azure Portal)](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal)
 - [Create a service principal (PowerShell)](https://learn.microsoft.com/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
@@ -133,7 +134,7 @@ AVM performs end-to-end (e2e) test dpeloyments of all modules in Azure for valid
 - Application (Client) ID
 - Service Principal Secret (password)
 - **Optional:** Tenant ID
-- **Optional:**  Subscription ID
+- **Optional:** Subscription ID
 
 ```bash
 # Linux/MacOs
@@ -186,7 +187,7 @@ The avm script also makes sure to pull the latest `mcr.microsoft.com/azterraform
 
 {{< /hint >}}
 
-- [5.1 Run pre-commit and pr-check ](#51-run-pre-commit-and-pr-check)
+- [5.1 Run pre-commit and pr-check](#51-run-pre-commit-and-pr-check)
 - [5.2 Run e2e tests](#52-run-e2e-tests)
 
 #### 5.1. Run pre-commit and pr-check
