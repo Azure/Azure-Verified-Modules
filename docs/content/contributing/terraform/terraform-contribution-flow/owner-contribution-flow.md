@@ -100,6 +100,8 @@ Examples:
 - `avm-res-compute-virtualmachine-module-owners-tf` and added `avm-technical-reviewers-tf` as parent.
 - `avm-res-compute-virtualmachine-module-contributors-tf` and added `avm-technical-reviewers-tf` as parent.
 
+<!-- TODO: Add parent teams (existing teams need to be reviesed as well then) -->
+
 If a secondary owner is required, add the secondary owner to the `avm-res-<RP>-<modulename>-module-owners-tf` team.
 
 {{< hint type=info >}}
