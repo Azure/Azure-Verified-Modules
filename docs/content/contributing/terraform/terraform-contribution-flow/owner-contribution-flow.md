@@ -113,7 +113,7 @@ Once you added the parent teams it needs to be approved by the AVM team to ensur
 3. Add these teams with the following permissions to the repository:
 
 - Admin: `avm-core-team-technical-terraform` = AVM Core Team (Terraform Technical)
-- Admin: `avm-infra` = Terraform PG
+- Admin: `terraform-avm` = Terraform PG
 - Admin: `avm-res-<RP>-<modulename>-module-owners-tf` = AVM Terraform Module Owners
 - Write: `avm-res-<RP>-<modulename>-module-contributors-tf` = AVM Terraform Module Contributors
 
