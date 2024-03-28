@@ -53,7 +53,7 @@ This section includes **Bicep specific, functional requirements (BCPFR)** for AV
 
 #### ID: BCPFR1 - Category: Composition - Cross-Referencing Modules
 
-Module owners **MAY** cross-references other modules to build either Resource or Pattern modules.
+Module owners **MAY** cross-reference other modules to build either Resource or Pattern modules.
 
 However, they **MUST** be referenced only by a public registry reference to a pinned version e.g. `br/public:avm/xxx/yyy:1.2.3`. They **MUST NOT** use local parent path references to a module e.g. `../../xxx/yyy.bicep`.
 
@@ -71,7 +71,7 @@ Modules **MUST NOT** contain references to non-AVM modules.
 
 Module owners **MAY** define common RBAC Role Definition names and IDs within a variable to allow consumers to define a RBAC Role Definition by their name rather than their ID, this should be self contained within the module themselves.
 
-However, the **MUST** use only the official RBAC Role Definition name within the variable and nothing else.
+However, they **MUST** use only the official RBAC Role Definition name within the variable and nothing else.
 
 To meet the requirements of [BCPFR2](/Azure-Verified-Modules/specs/bicep/#id-bcpfr2---category-composition---role-assignments-role-definition-mapping), [BCPNFR5](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr5---category-composition---role-assignments-role-definition-mapping-limits) and [BCPNFR6](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr6---category-composition---role-assignments-role-definition-mapping-compulsory-roles) you **MUST** use the below code sample in your AVM Modules to achieve this.
 
@@ -279,7 +279,7 @@ Module owners **MUST** include the following roles in the variable for RBAC Role
 - Contributor - ID: `b24988ac-6180-42a0-ab88-20f7382dd24c`
 - Reader - ID: `acdd72a7-3385-48ef-bd42-f606fba81ae7`
 - User Access Administrator - ID: `18d7d88d-d35e-4fb5-a5c3-7773c20a72d9`
-- Role Based Access Control Administrator (Preview) - ID: `f58310d9-a9f6-439a-9e8d-f62e7b41a168`
+- Role Based Access Control Administrator - ID: `f58310d9-a9f6-439a-9e8d-f62e7b41a168`
 
 {{< hint type=tip >}}
 
@@ -417,7 +417,7 @@ The syntax is used by the ReadMe-generating utility to identify, pull & format u
 #### ID: BCPNFR13 - Category: Testing - Test file metadata
 
 By default, the ReadMe-generating utility will create usage examples headers based on each `e2e` folder's name.
-Module owners **MAY** provide a custom name & description by specfying the metadata blocks `name` & `description` in their `main.test.bicep` test files.
+Module owners **MAY** provide a custom name and description by specifying the metadata blocks `name` and `description` in their `main.test.bicep` test files.
 
 For example:
 ```bicep

@@ -181,9 +181,9 @@ In Terraform, locks become part of the resource graph and suitable `depends_on` 
 **Notes:**
 
 - The properties defined in the schema above are the minimum amount of properties expected to be exposed for Private Endpoints in AVM Resource Modules.
-  - A module owner **MAY** chose to expose additional properties of the Private Endpoint resource
+  - A module owner **MAY** choose to expose additional properties of the Private Endpoint resource
     - However, module owners considering this **SHOULD** contact the AVM core team first to consult on how the property should be exposed to avoid future breaking changes to the schema that may be enforced upon them
-- Module owners **MAY** chose to define a list of allowed value for the 'service' (a.k.a. `groupIds`) property
+- Module owners **MAY** choose to define a list of allowed value for the 'service' (a.k.a. `groupIds`) property
   - However, they should do so with caution as should a new service appear for their resource module, a new release will need to be cut to add this new service to the allowed values
     - Whereas not specifying allowed values will allow flexibility from day 0 without the need for any changes and releases to be made
 

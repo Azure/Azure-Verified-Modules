@@ -65,7 +65,7 @@ This section includes **Terraform specific, functional requirements (TFFR)** for
 
 #### ID: TFFR1 - Category: Composition - Cross-Referencing Modules
 
-Module owners **MAY** cross-references other modules to build either Resource or Pattern modules. However, they **MUST** be referenced only by a HashiCorp Terraform registry reference to a pinned version e.g.,
+Module owners **MAY** cross-reference other modules to build either Resource or Pattern modules. However, they **MUST** be referenced only by a HashiCorp Terraform registry reference to a pinned version e.g.,
 
 ```terraform
 module "other-module" {
@@ -108,6 +108,17 @@ Module owners **MUST** output the following additional outputs as a minimum in t
 |------------------------------------------------------------------------------------------|-------------------------------------------------------|-------------|
 | Full Resource Output Object                                                              | `resource`                                            | MUST        |
 | Full Resource Output (map of) Object(s) of child resource/extension/associated resources | `resource_<child/extension/associated resource name>` | SHOULD      |
+
+<br>
+
+---
+
+<br>
+
+#### ID: TFFR3 - Category: Inputs - No `enabled` or `module_depends_on` variable
+
+Since Terraform 0.13, `count`, `for_each` and `depends_on` are introduced for modules, module development is significantly simplified.
+Module's owners **MUST NOT** add variables like `enabled` or `module_depends_on` to control the entire module's operation. Boolean feature toggles are acceptable however.
 
 <br>
 
@@ -337,7 +348,7 @@ The parameters of `lifecycle` block should show up in the following order:
 2. `ignore_changes`
 3. `prevent_destroy`
 
-parameters under `depends_on` and `ignore_changes` are ranked in alphabetical order.
+Parameters under `depends_on` and `ignore_changes` are ranked in alphabetical order.
 
 Meta-arguments, arguments and nested blocked are separated by blank lines.
 
@@ -361,7 +372,7 @@ This `dynamic` block will be ranked as a block named `linux_profile`.
 
 Code within a nested block will also be ranked following the rules above.
 
-PS: You can use [`avmfix`](https://github.com/lonegunmanb/azure-verified-module-fix) tool to reformat your code automatically.
+The [`avmfix`](https://github.com/lonegunmanb/azure-verified-module-fix) tool can be used to reformat the code automatically to comply with these rules.
 
 <br>
 
@@ -378,7 +389,7 @@ The meta-arguments below should be declared on the top of a `module` block with 
 3. `count`
 4. `for_each`
 
-blank lines will be used to separate them.
+Blank lines will be used to separate them.
 
 After them will be required arguments, optional arguments, all ranked in alphabetical order.
 
@@ -401,9 +412,9 @@ Good example:
 
 ```hcl
 lifecycle {
-    ignore_changes = [
-      tags,
-    ]
+  ignore_changes = [
+    tags,
+  ]
 }
 ```
 
@@ -411,9 +422,9 @@ Bad example:
 
 ```hcl
 lifecycle {
-    ignore_changes = [
-      "tags",
-    ]
+  ignore_changes = [
+    "tags",
+  ]
 }
 ```
 
@@ -461,14 +472,14 @@ module "bar" {
 }
 ```
 
-For this kind of parameters, wrapping with `object` type is recommended：
+For these types of parameters, it is recommended to use the `object` type for wrapping. For example:
 
 ```terraform
 variable "security_group" {
   type = object({
-    id   = string
+    id = string
   })
-  default     = null
+  default = null
 }
 ```
 
@@ -548,16 +559,6 @@ Bad examples:
 ```terraform
 var.new_network_security_group_name == null ? "${var.subnet_name}-nsg" : var.new_network_security_group_name)
 ```
-
-<br>
-
----
-
-<br>
-
-#### ID: TFFR14 - Category: Inputs - No `enabled` or `module_depends_on` variable
-
-Since Terraform 0.13, `count`, `for_each` and `depends_on` are introduced for modules, module development is significantly simplified. Module's owners **MUST NOT** add variables like `enabled` or `module_depends_on` to control the entire module's operation. Boolean feature toggles are acceptable however.
 
 <br>
 
