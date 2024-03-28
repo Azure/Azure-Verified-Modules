@@ -115,6 +115,8 @@ Enabling **All Activity** will result in *a lot* of notifications! If you choose
 
 {{< /hint >}}
 
+<img src="/Azure-Verified-Modules/img/contribution/gh_watch.png" alt="GitHub Notifications Page." width=100%>
+
 ### Configure Email Inbox Notification Filters
 
 GitHub uses a unique email address sender for each type of notification it sends. This allows us to set up filters within our email client to sort our inboxes depending on the type of notifications that was sent. The table below lists all of the relevant email addresses that may be useful for filtering notifications from GitHub.
