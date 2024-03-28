@@ -21,7 +21,6 @@ As a **Bicep Module Owner** you need to be aware of the [AVM Contribution Proces
 
 ## 1. Owner Activities and Responsibilities
 
-<!-- TODO: Rephrase sections if required -->
 Familiarise yourself with the responsibilities as **Module Owner** outlined in [Team Definitions & RACI](/Azure-Verified-Modules/specs/shared/team-definitions/#module-owners) and [Module Owner Responsibilities](/Azure-Verified-Modules/help-support/issue-triage/brm-issue-triage/#module-owner-responsibilities) in the [BRM Issue Triage](/Azure-Verified-Modules/help-support/issue-triage/brm-issue-triage/).
 
 1. Create GitHub teams as outlined in [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) and add respective parent teams:
@@ -85,7 +84,7 @@ If a new module owner cannot be identified then the module will need to be "Orph
 
 ## 3. Adopting an Orphaned Module
 
-When adopting an orphaned module the [when-a-new-owner-is-identified](/Azure-Verified-Modules/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified) steps are followed.
+When adopting an orphaned module the [when-a-new-owner-is-identified](/Azure-Verified-Modules/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified) steps must be followed.
 
 ---
 

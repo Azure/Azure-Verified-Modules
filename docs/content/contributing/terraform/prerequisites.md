@@ -9,7 +9,7 @@ geekdocAnchor: true
 
 ## GitHub Account Link and Access
 
-To contribute to this project, you need to have a GitHub account which is [linked](https://repos.opensource.microsoft.com/link) to your Microsoft FTE corporate identity account and be a member of the [Azure](https://repos.opensource.microsoft.com/orgs/Azure) organisation.
+To contribute to this project, you need to have a GitHub account which is [linked](https://repos.opensource.microsoft.com/link) to your Microsoft corporate identity account and be a member of the [Azure](https://repos.opensource.microsoft.com/orgs/Azure) organisation.
 
 ## Tooling
 
