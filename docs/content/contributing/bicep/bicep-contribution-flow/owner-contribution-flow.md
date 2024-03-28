@@ -44,8 +44,7 @@ Only fulltime Microsoft employees can be added at this time.
 Once the teams have been created the AVM Core Team will review the team name and parent team membership for accuracy. A notification will automatically be sent to the AVM Core Team to inform them that their review needs to be completed.
 {{< /hint >}}
 
-1. Add teams to `CODEOWNERS` file as outlined in [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only).
-2. Ensure your module has been tested before raising a PR. This can happen in your or in another module contributor's own environment - if any. Also, because once a PR is raised, a GitHib workflow pipeline is required to be run successfully before the PR can be merged. This is to ensure that the module is working as expected and is compliant with the AVM specifications.
+2. Add teams to `CODEOWNERS` file as outlined in [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only).
 3. Ensure your module has been tested before raising a PR. You can do this your own or in another module contributor's environment - if any. Also, once a PR is raised, a GitHub workflow pipeline is required to be run successfully before the PR can be merged. This is to ensure that the module is working as expected and is compliant with the AVM specifications.
 4. Ensure that the module(s) you own are compliant with the AVM specifications and are working as expected. While all specifications are to be followed, pay special attention to the following ones as in these, the `Owner` is mentioned explicitly:
 | ID | Specification
@@ -66,7 +65,7 @@ Once the teams have been created the AVM Core Team will review the team name and
 | [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs) | Outputs - Minimum Required Outputs |
 
 5. Watch Pull Request (PR) activity for your module(s) in the [BRM](https://github.com/Azure/bicep-registry-modules) repository (Bicep Registry Modules repository - where all Bicep AVM modules are published) and ensure that PRs are reviewed and merged in a timely manner as outlined in [SNFR11](/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times).
-6. Watch AVM module issue and AVM question/feedback activity for your module(s) in the [BRM](https://github.com/Azure/bicep-registry-modules) repository.
+6å. Watch AVM module issue and AVM question/feedback activity for your module(s) in the [BRM](https://github.com/Azure/bicep-registry-modules) repository.
 
 ---
 
@@ -74,9 +73,9 @@ Once the teams have been created the AVM Core Team will review the team name and
 
 Under certain circumstances, you may find yourself unable to continue as the module owner. In such cases, it is advisable to designate a new module owner. The following steps outline this transition:
 
-    - Leave a comment on the original module proposal, indicating that you'd like to hand the ownership over to somebody else. Mention the person who originally helped triage the issue or the `@Azure/avm-core-team-technical-bicep` team. You must wait for someone from the AVM Core Team to respond first, as the module index must be updated before you can continue handing over the ownership.
-    - Add the new owner's GitHub account as a "maintainer" on your modules GitHub teams.
-    - Remove your GitHub account from your module's GitHub teams.
+- Leave a comment on the original module proposal, indicating that you'd like to hand the ownership over to somebody else. Mention the person who originally helped triage the issue or the `@Azure/avm-core-team-technical-bicep` team. You must wait for someone from the AVM Core Team to respond first, as the module index must be updated before you can continue handing over the ownership.
+- Add the new owner's GitHub account as a "maintainer" on your modules GitHub teams.
+- Remove your GitHub account from your module's GitHub teams.
 
 If a new module owner cannot be identified then the module will need to be "Orphaned". Please follow the step outlined [when-a-module-becomes-orphaned](/Azure-Verified-Modules/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-orphaned).
 
