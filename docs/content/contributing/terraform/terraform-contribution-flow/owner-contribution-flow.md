@@ -96,22 +96,13 @@ Segments:
 
 Examples:
 
-<!-- TODO: Clarify parent teams with the team -->
+- `avm-res-compute-virtualmachine-module-owners-tf`
+- `avm-res-compute-virtualmachine-module-contributors-tf`
 
-- `avm-res-compute-virtualmachine-module-owners-tf` and added `avm-technical-reviewers-tf` as parent.
-- `avm-res-compute-virtualmachine-module-contributors-tf` and added `avm-technical-reviewers-tf` as parent.
-
-<!-- TODO: Add parent teams (existing teams need to be reviesed as well then) -->
 
 If a secondary owner is required, add the secondary owner to the `avm-res-<RP>-<modulename>-module-owners-tf` team.
 
-{{< hint type=info >}}
-
-Once you added the parent teams it needs to be approved by the AVM team to ensure team name and parent team membership is correct.
-
-{{< /hint >}}
-
-3. Add these teams with the following permissions to the repository:
+1. Add these teams with the following permissions to the repository:
 
 - Admin: `avm-core-team-technical-terraform` = AVM Core Team (Terraform Technical)
 - Admin: `terraform-avm` = Terraform PG
@@ -168,19 +159,15 @@ Set-AvmGitHubLabels.ps1 -RepositoryName "Azure/MyGitHubRepo" -CreateCsvLabelExpo
 
 <!-- TODO: Rephrasing required -->
 1. Add new owner as maintainer in your `avm-res-<RP>-<modulename>-module-owners-tf` team and remove any other individual including yourself.
-2. In case primary owner leaves, switches roles or abandons the repo and the corresponding team then the parent team doesn't have the permissions to gain back access and a ticket with GitHub support needs to be created (but the team can still be removed from the repo since the team `avm-core-team` has permissions on it).
+2. In case primary owner leaves, switches roles or abandons the repo and the corresponding team then the parent team (if assigned) doesn't have the permissions to gain back access and a ticket with GitHub support needs to be created (but the team can still be removed from the repo since the team `avm-core-team` has permissions on it).
 
-<br>
-
----
-
-<br>
-
+<!-- TODO: Rephrasing required and clarify with team what happens with ORPHANED MODULES
 ### 5. Orphaned Module Handover Activities
 
-<!-- TODO: Rephrasing required -->
+
 1. In case a module gets a new owner, add the new owner in the `avm-res-<RP>-<modulename>-module-owners-tf` team as `Maintainer` and remove any other individual(s).
 2. Remove `ORPHANED.md` from the root directory of the Module.
+-->
 
 <br>
 
@@ -188,7 +175,7 @@ Set-AvmGitHubLabels.ps1 -RepositoryName "Azure/MyGitHubRepo" -CreateCsvLabelExpo
 
 <br>
 
-### 3. **_Optional_**: Grept
+### 5. **_Optional_**: Grept
 
 [Grept](https://github.com/Azure/grept) is a linting tool for repositories, ensures predefined standards, maintains codebase consistency, and quality.
 It's using the grept configuration files from the [Azure-Verified-Modules-Grept](https://github.com/Azure/Azure-Verified-Modules-Grept) repository.
@@ -224,7 +211,7 @@ $env:GITHUB_REPOSITORY="Azure/terraform-azurerm-avm-res-<RP>-<modulename>"
 avm.bat grept-apply
 ```
 
-### 4. Publish the module
+### 6. Publish the module
 
 Once a module was updated and is ready to be published, follow the below steps to publish the module to the HashiCorp Registry.
 
@@ -247,6 +234,12 @@ Ensure your module is ready for publishing:
 8. Publish a module by selecting the `Publish` button in the top right corner, then `Module`
 9. Select the repository and accept the terms.
 
+{{< hint type=info >}}
+
+Once a module gets updated and becomes a new version/release it will be automatically published with the latest published release version to the HashiCorp Registry.
+
+{{< /hint >}}
+
 {{< hint type=important >}}
 
 When an AVM Module is published to the HashiCorp Registry, it **MUST** follow the below requirements:
@@ -255,19 +248,6 @@ When an AVM Module is published to the HashiCorp Registry, it **MUST** follow th
 - Pattern Module: `terraform-<provider>-avm-ptn-<patternmodulename>` as per [PMNFR1](/Azure-Verified-Modules/specs/shared/#id-pmnfr1---category-naming---module-naming)
 
 {{< /hint >}}
-
-#### Updated module version and bublish new version
-
-Once a module was updated and is ready to be published, follow the below steps to resync your repository to publish the latest module version to the HashiCorp Registry.
-
-1. Make sure your module version is reflected in the `locals.version.tf.json` file.
-2. Publish a new version by creating a new tag and release on GitHub as describe above.
-3. Sign in to the [HashiCorp Registry](https://registry.terraform.io/) using GitHub.
-4. Visit your module on https://registry.terraform.io/modules/Azure/.
-5. Resync the module by selecting the `Resync Module` button in the top right corner.
-6. It takes a few minutes for the module to be resynced and published to the HashiCorp Registry.
-
-<img src="/Azure-Verified-Modules/img/contribution/updateModule.png" alt="Resync Module." width=100%>
 
 <br>
 
