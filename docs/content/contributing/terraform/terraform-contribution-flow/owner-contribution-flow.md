@@ -97,6 +97,7 @@ Segments:
 Examples:
 
 <!-- TODO: Clarify parent teams with the team -->
+
 - `avm-res-compute-virtualmachine-module-owners-tf` and added `avm-technical-reviewers-tf` as parent.
 - `avm-res-compute-virtualmachine-module-contributors-tf` and added `avm-technical-reviewers-tf` as parent.
 
