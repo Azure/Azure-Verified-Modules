@@ -555,7 +555,7 @@ var.new_network_security_group_name == null ? "${var.subnet_name}-nsg" : var.new
 
 <br>
 
-#### ID: TFNFR14 - Category: Inputs - No enabled/module_depends_on
+#### ID: TFNFR14 - Category: Inputs - Not allowed variables
 
 Since Terraform 0.13, `count`, `for_each` and `depends_on` are introduced for modules, module development is significantly simplified. Module's owners **MUST NOT** add variables like `enabled` or `module_depends_on` to control the entire module's operation. Boolean feature toggles are acceptable however.
 
@@ -646,7 +646,7 @@ If `variable`'s `type` is `object` and contains one or more fields that would be
 
 <br>
 
-#### ID: TFNFR20 - Category: Code Style - Use nullable = false
+#### ID: TFNFR20 - Category: Code Style - Non-Nullable Defaults for collection values
 
 Nullable SHOULD be set to `false` for collection values (e.g. sets, maps, lists) when using them in loops. However for scalar values like string and number, a null value MAY have a semantic meaning and as such these values are allowed.
 
@@ -656,7 +656,9 @@ Nullable SHOULD be set to `false` for collection values (e.g. sets, maps, lists)
 
 <br>
 
-#### ID: TFNFR21 - Category: Code Style - Avoid nullable = true
+#### ID: TFNFR21 - Category: Code Style - Discourage Nullability by Default
+
+Avoid `nullable = true`.
 
 <br>
 
@@ -665,6 +667,8 @@ Nullable SHOULD be set to `false` for collection values (e.g. sets, maps, lists)
 <br>
 
 #### ID: TFNFR22 - Category: Code Style - Avoid sensitive = false
+
+Avoid `sensitive = false`.
 
 <br>
 
