@@ -111,7 +111,8 @@
 110,res/synapse/workspace,✅,✅,✅,✅,✅,
 111,res/virtual-machine-images/image-template,✅,✅,✅,,,
 112,res/web/connection,✅,✅,✅,,,
-113,res/web/serverfarm,✅,✅,✅,✅,,
-114,res/web/site,✅,✅,✅,✅,✅,
-115,res/web/static-site,✅,✅,✅,,✅,
-Sum,,105,102,109,50,31,2
+113,res/web/hosting-environment,✅,✅,✅,✅,,
+114,res/web/serverfarm,✅,✅,✅,✅,,
+115,res/web/site,✅,✅,✅,✅,✅,
+116,res/web/static-site,✅,✅,✅,,✅,
+Sum,,106,103,110,51,31,2
