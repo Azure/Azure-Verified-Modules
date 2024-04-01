@@ -476,72 +476,79 @@ Example - `AVM Module Issue template` module name entry for the Bicep resource m
 
 To improve the usability of primitive module properties declared as strings, you should declare them as the type they are and apply any required casting in the module on behalf of the user.
 
-For example, if the API would expect you to declare a parameter like this:
+For reference, please refer to the following examples:
 
-```bicep
-@allowed([
-  'false'
-  'true'
-])
-param myParameterValue string = 'false'
-
-resource myResource '(...)' = {
-  (...)
-  properties: {
-    myParameter: myParameterValue
+<h5>Boolean as String</h5>
+{{< tabs "booleanString" >}}
+  {{< tab "Before" >}}
+  ```bicep
+  @allowed([
+    'false'
+    'true'
+  ])
+  param myParameterValue string = 'false'
+  
+  resource myResource '(...)' = {
+    (...)
+    properties: {
+      myParameter: myParameterValue
+    }
   }
-}
-```
-
-you should instead implement it like
-
-```bicep
-param myParameterValue string = false
-
-resource myResource '(...)' = {
-  (...)
-  properties: {
-    myParameter: string(myParameterValue)
+  ```
+  {{< /tab >}}
+  {{< tab "After" >}}
+  ```bicep
+  param myParameterValue string = false
+  
+  resource myResource '(...)' = {
+    (...)
+    properties: {
+      myParameter: string(myParameterValue)
+    }
   }
-}
-```
+  ```
+  {{< /tab >}}
+{{< /tabs >}}
 
-while a parameter like 
 
-```bicep
-@allowed([
-  '0'
-  '1'
-  '2'
-  '3'
-])
-param zonesValue array
+<h5>Integer Array as String Array</h5>
 
-resource myResource '(...)' = {
-  (...)
-  properties: {
-    zones: zonesValue
+{{< tabs "intArrayString" >}}
+  {{< tab "Before" >}}
+  ```bicep
+  @allowed([
+    '1'
+    '2'
+    '3'
+  ])
+  param zonesValue array
+  
+  resource myResource '(...)' = {
+    (...)
+    properties: {
+      zones: zonesValue
+    }
   }
-}
-```
-
-should be implemented like
-
-```bicep
-@allowed([
-  1
-  2
-  3
-])
-param zonesValue int[]
-
-resource myResource '(...)' = {
-  (...)
-  properties: {
-    zones: zones: [for zone in zonesValue: string(zone)]
+  ```
+  {{< /tab >}}
+  {{< tab "After" >}}
+  ```bicep
+  @allowed([
+    1
+    2
+    3
+  ])
+  param zonesValue int[]
+  
+  resource myResource '(...)' = {
+    (...)
+    properties: {
+      zones: zones: [for zone in zonesValue: string(zone)]
+    }
   }
-}
-``` 
+  ``` 
+  {{< /tab >}}
+{{< /tabs >}}
 
 <br>
 
