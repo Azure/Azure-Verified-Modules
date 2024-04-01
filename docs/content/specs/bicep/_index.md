@@ -471,3 +471,80 @@ Example - `AVM Module Issue template` module name entry for the Bicep resource m
 ---
 
 <br>
+
+#### ID: BCPNFR17 - Category: Composition - Code Styling - Type casting
+
+To improve the usability of primitive module properties declared as strings, you should declare them as the type they are and apply any required casting in the module on behalf of the user.
+
+For example, if the API would expect you to declare a parameter like this:
+
+```bicep
+@allowed([
+  'false'
+  'true'
+])
+param myParameterValue string = 'false'
+
+resource myResource '(...)' = {
+  (...)
+  properties: {
+    myParameter: myParameterValue
+  }
+}
+```
+
+you should instead implement it like
+
+```bicep
+param myParameterValue string = false
+
+resource myResource '(...)' = {
+  (...)
+  properties: {
+    myParameter: string(myParameterValue)
+  }
+}
+```
+
+while a parameter like 
+
+```bicep
+@allowed([
+  '0'
+  '1'
+  '2'
+  '3'
+])
+param zonesValue array
+
+resource myResource '(...)' = {
+  (...)
+  properties: {
+    zones: zonesValue
+  }
+}
+```
+
+should be implemented like
+
+```bicep
+@allowed([
+  1
+  2
+  3
+])
+param zonesValue int[]
+
+resource myResource '(...)' = {
+  (...)
+  properties: {
+    zones: zones: [for zone in zonesValue: string(zone)]
+  }
+}
+``` 
+
+<br>
+
+---
+
+<br>
