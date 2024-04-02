@@ -519,6 +519,7 @@ For reference, please refer to the following examples:
 
 {{< tabs "intArrayString" >}}
   {{< tab "Before" >}}
+
   ```bicep
   @allowed([
     '1'
@@ -534,8 +535,10 @@ For reference, please refer to the following examples:
     }
   }
   ```
+
   {{< /tab >}}
   {{< tab "After" >}}
+
   ```bicep
   @allowed([
     1
@@ -551,6 +554,7 @@ For reference, please refer to the following examples:
     }
   }
   ```
+
   {{< /tab >}}
 {{< /tabs >}}
 
