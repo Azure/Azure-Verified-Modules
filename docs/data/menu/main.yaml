@@ -96,6 +96,8 @@ main:
           - name: "Bicep Contribution Flow"
             ref: "/contributing/bicep/bicep-contribution-flow"
             sub:
+              - name: "Owner Contribution Flow"
+                ref: "/contributing/bicep/bicep-contribution-flow/owner-contribution-flow"
               - name: "Update Module files"
                 ref: "/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files"
               - name: "Validate Module locally"
