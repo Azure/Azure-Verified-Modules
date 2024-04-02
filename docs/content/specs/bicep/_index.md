@@ -97,39 +97,49 @@ To meet the requirements of [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3
 
 #### ID: BCPFR5 - Category: Inputs - Availability Zones Implementation
 
-To implement requirement [SFR5](/Azure-Verified-Modules/specs/shared/#id-sfr5---category-composition---availability-zones), the following convention should apply.
+To implement requirement [SFR5](/Azure-Verified-Modules/specs/shared/#id-sfr5---category-composition---availability-zones), the following convention should apply:
 
-##### Module accepts multiple zones
-
-In this case, the parameter should be implemented like
-
-```bicep
-@description('Optional. The Availability Zones to place the resources in.')
-param zones int[] = [1, 2, 3]
-```
-
-##### Module accepts a single zone
-
-In this case, the parameter should be implemented using a singular-named `zone` parameter of type `int` like
-
-```bicep
-@description('Required. If set to 1, 2 or 3, the Availability Zone is set to that value. If 0, then Availability Zones is not used.')
-@allowed([
-  0
-  1
-  2
-  3
-])
-param zone int
-
-resource myResource (...) {
-  (...)
-  properties: {
+{{< tabs "zones" >}}
+  {{< tab "Module accepts multiple zones" >}}
+  In this case, the parameter should be implemented like
+  
+  ```bicep
+  @description('Optional. The Availability Zones to place the resources in.')
+  @allowed([
+    1
+    2
+    3
+  ])
+  param zones int[] = [
+    1 
+    2 
+    3
+  ]
+  ```
+  {{< /tab >}}
+  {{< tab "Module accepts a single zone" >}}
+  In this case, the parameter should be implemented using a singular-named `zone` parameter of type `int` like
+  
+  ```bicep
+  @description('Required. The Availability Zone to place the resource in. If set to 0, then Availability Zone is not set.')
+  @allowed([
+    0
+    1
+    2
+    3
+  ])
+  param zone int
+  
+  resource myResource (...) {
     (...)
-    zones: zone != 0 ? [ string(zone) ] : null
+    properties: {
+      (...)
+      zones: zone != 0 ? [ string(zone) ] : null
+    }
   }
-}
-```
+  ```  
+  {{< /tab >}}
+{{< /tabs >}}
 
 <br>
 
