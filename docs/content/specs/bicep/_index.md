@@ -102,7 +102,7 @@ To implement requirement [SFR5](/Azure-Verified-Modules/specs/shared/#id-sfr5---
 {{< tabs "zones" >}}
   {{< tab "Module accepts multiple zones" >}}
   In this case, the parameter should be implemented like
-  
+
   ```bicep
   @description('Optional. The Availability Zones to place the resources in.')
   @allowed([
@@ -111,15 +111,15 @@ To implement requirement [SFR5](/Azure-Verified-Modules/specs/shared/#id-sfr5---
     3
   ])
   param zones int[] = [
-    1 
-    2 
+    1
+    2
     3
   ]
   ```
   {{< /tab >}}
   {{< tab "Module accepts a single zone" >}}
   In this case, the parameter should be implemented using a singular-named `zone` parameter of type `int` like
-  
+
   ```bicep
   @description('Required. The Availability Zone to place the resource in. If set to 0, then Availability Zone is not set.')
   @allowed([
@@ -129,7 +129,7 @@ To implement requirement [SFR5](/Azure-Verified-Modules/specs/shared/#id-sfr5---
     3
   ])
   param zone int
-  
+
   resource myResource (...) {
     (...)
     properties: {
@@ -137,7 +137,7 @@ To implement requirement [SFR5](/Azure-Verified-Modules/specs/shared/#id-sfr5---
       zones: zone != 0 ? [ string(zone) ] : null
     }
   }
-  ```  
+  ```
   {{< /tab >}}
 {{< /tabs >}}
 
