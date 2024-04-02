@@ -95,6 +95,59 @@ To meet the requirements of [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3
 
 <br>
 
+#### ID: BCPFR5 - Category: Inputs - Availability Zones Implementation
+
+To implement requirement [SFR5](/Azure-Verified-Modules/specs/shared/#id-sfr5---category-composition---availability-zones), the following convention should apply:
+
+{{< tabs "zones" >}}
+  {{< tab "Module accepts multiple zones" >}}
+  In this case, the parameter should be implemented like
+
+  ```bicep
+  @description('Optional. The Availability Zones to place the resources in.')
+  @allowed([
+    1
+    2
+    3
+  ])
+  param zones int[] = [
+    1
+    2
+    3
+  ]
+  ```
+  {{< /tab >}}
+  {{< tab "Module accepts a single zone" >}}
+  In this case, the parameter should be implemented using a singular-named `zone` parameter of type `int` like
+
+  ```bicep
+  @description('Required. The Availability Zone to place the resource in. If set to 0, then Availability Zone is not set.')
+  @allowed([
+    0
+    1
+    2
+    3
+  ])
+  param zone int
+
+  resource myResource (...) {
+    (...)
+    properties: {
+      (...)
+      zones: zone != 0 ? [ string(zone) ] : null
+    }
+  }
+  ```
+  {{< /tab >}}
+{{< /tabs >}}
+
+<br>
+
+---
+
+<br>
+
+
 ### Non-Functional Requirements (BCPNFR)
 
 {{< hint type=note >}}
