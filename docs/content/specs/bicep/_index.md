@@ -481,13 +481,14 @@ For reference, please refer to the following examples:
 <h5>Boolean as String</h5>
 {{< tabs "booleanString" >}}
   {{< tab "Before" >}}
+
   ```bicep
   @allowed([
     'false'
     'true'
   ])
   param myParameterValue string = 'false'
-  
+
   resource myResource '(...)' = {
     (...)
     properties: {
@@ -495,11 +496,13 @@ For reference, please refer to the following examples:
     }
   }
   ```
+
   {{< /tab >}}
   {{< tab "After" >}}
+
   ```bicep
   param myParameterValue string = false
-  
+
   resource myResource '(...)' = {
     (...)
     properties: {
@@ -507,6 +510,7 @@ For reference, please refer to the following examples:
     }
   }
   ```
+
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -522,7 +526,7 @@ For reference, please refer to the following examples:
     '3'
   ])
   param zonesValue array
-  
+
   resource myResource '(...)' = {
     (...)
     properties: {
@@ -539,14 +543,14 @@ For reference, please refer to the following examples:
     3
   ])
   param zonesValue int[]
-  
+
   resource myResource '(...)' = {
     (...)
     properties: {
       zones: zones: [for zone in zonesValue: string(zone)]
     }
   }
-  ``` 
+  ```
   {{< /tab >}}
 {{< /tabs >}}
 
