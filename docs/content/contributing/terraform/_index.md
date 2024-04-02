@@ -4,6 +4,7 @@ geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
 geekdocToC: 2
+geekdocCollapseSection: true
 ---
 
 {{< toc >}}

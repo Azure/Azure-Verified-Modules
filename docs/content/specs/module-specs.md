@@ -3,6 +3,7 @@ title: Module Specifications
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+geekdocCollapseSection: true
 ---
 
 This section documents all the specifications for Azure Verified Modules (AVM) and their respective IaC languages.
