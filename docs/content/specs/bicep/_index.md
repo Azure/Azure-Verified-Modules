@@ -476,7 +476,7 @@ Example - `AVM Module Issue template` module name entry for the Bicep resource m
 
 For each test case in the `e2e` folder, you can optionally add post-deployment Pester tests that are executed once the corresponding deployment completed and before the removal logic kicks in.
 
-To leverage the feature you must 
+To leverage the feature you must
 - Use Pester as a test framework in each test file
 - Name the file with the suffix `"*.tests.ps1"`
 - Place each test file the `e2e` test's folder or any subfolder (e.g., `e2e/max/myTest.tests.ps1` or `e2e/max/tests/myTest.tests.ps1`)
@@ -489,7 +489,7 @@ To leverage the feature you must
   ```
   Through this parameter you can make use of every output the `main.test.bicep` file returns, as well as the path to the test template file in case you want to extract data from it directly.
 
-  For example, with an output such as `output resourceId string = testDeployment[1].outputs.resourceId` defined in the `main.test.bicep` file, the `$TestInputData` would look like 
+  For example, with an output such as `output resourceId string = testDeployment[1].outputs.resourceId` defined in the `main.test.bicep` file, the `$TestInputData` would look like
   ```pwsh
   $TestInputData = @{
     DeploymentOutputs    = @{
@@ -510,13 +510,13 @@ To leverage the feature you must
       [Parameter(Mandatory = $false)]
       [hashtable] $TestInputData = @{}
   )
-  
+
   Describe 'Validate private endpoint deployment' {
-  
+
       Context 'Validate sucessful deployment' {
-  
+
           It "Private endpoints should be deployed in resource group" {
-  
+
               $keyVaultResourceId = $TestInputData.DeploymentOutputs.resourceId.Value
               $testResourceGroup = ($keyVaultResourceId -split '\/')[4]
               $deployedPrivateEndpoints = Get-AzPrivateEndpoint -ResourceGroupName   $testResourceGroup
