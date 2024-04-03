@@ -115,6 +115,17 @@ To implement requirement [SFR5](/Azure-Verified-Modules/specs/shared/#id-sfr5---
     2
     3
   ]
+
+  // Note: Must be an extra variable due to a potential Bicep issue
+  var formattedZones = [for zone in zones: string(zone)]
+
+  resource myResource (...) {
+    (...)
+    properties: {
+      (...)
+      zones: formattedZones
+    }
+  }
   ```
   {{< /tab >}}
   {{< tab "Module accepts a single zone" >}}
