@@ -15,7 +15,7 @@ This page provides guidance for **Terraform Module owners** on how to triage **A
 **The following issues can be filed in a Terraform repository**:
 
 - **AVM Module Issue**: Issues specifically related to an existing AVM module, such as feature requests, bug and security bug reports.
-- **AVM Question/Feedback**:Generic feedback and questions, related to existing AVM module, the overall framework, or its automation (CI environment).
+- **AVM Question/Feedback**: Generic feedback and questions, related to existing AVM module, the overall framework, or its automation (CI environment).
 
 Do **NOT** file the following types of issues in a **Terraform repository**, as they **MUST** be tracked in the **AVM repo**:
 
@@ -48,11 +48,9 @@ Module owners **MUST** meet the SLAs defined on the [Module Support](/Azure-Veri
 
 An issue is considered to be an "AVM module issue" if
 
-- it was opened through the **AVM Module Issue** template in the TFM repository,
+- it was opened through the **AVM Module Issue** template in the Terraform repository,
 - it has the label of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" applied to it, and
 - it is assigned to the "[AVM - Module Issues](https://github.com/orgs/Azure/projects/566)" GitHub project.
-
-- it was opened through the **AVM Module Issue** template in the Terraform repository,
 
 {{< hint type=note >}}
 Module issues can only be opened for existing AVM modules. Module issues **MUST NOT** be used to file a module proposal.
@@ -82,11 +80,9 @@ If the issue was opened as a misplaced module proposal, mention the `@Azure/AVM-
 
 An issue is considered to be an "AVM Question/Feedback" if
 
-- it was opened through the **AVM Question/Feedback** template in your TFM repository,
+- it was opened through the **AVM Question/Feedback** template in your Terraform repository,
 - it has the labels of "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" and "<mark style="background-color:#CB6BA2;">Type: Question/Feedback 🙋‍♀️</mark>" applied to it, and
 - it is assigned to the "[AVM - Issue Triage](https://github.com/orgs/Azure/projects/538)" GitHub project.
-
-- it was opened through the **AVM Question/Feedback** template in your Terraform repository,
 
 ### Triaging a General Question/Feedback and other standard issues
 
