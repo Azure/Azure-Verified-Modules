@@ -53,9 +53,10 @@ An issue is considered to be an "AVM module issue" if
 - it is assigned to the "[AVM - Module Issues](https://github.com/orgs/Azure/projects/566)" GitHub project.
 
 - it was opened through the **AVM Module Issue** template in the Terraform repository,
-Module issues can only be opened for existing AVM modules. Module issues **MUST NOT** be used to file a module proposal.
 
 {{< hint type=note >}}
+Module issues can only be opened for existing AVM modules. Module issues **MUST NOT** be used to file a module proposal.
+
 If the issue was opened as a misplaced module proposal, mention the `@Azure/AVM-core-team-technical-terraform` team in the comment section and ask them to move the issue to the AVM repository.
 {{< /hint >}}
 
