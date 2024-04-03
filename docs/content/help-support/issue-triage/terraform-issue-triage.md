@@ -61,7 +61,7 @@ If the issue was opened as a misplaced module proposal, mention the `@Azure/AVM-
 ### Triaging a Module Issue
 
 1. Check the Module issue:
-    - Use the AVM module indexes for the module owner(s) and make sure they are assigned/mentioned/informed.
+    - Use the AVM module indexes to identify the module owner(s) and make sure they are assigned/mentioned/informed.
     - If the module is orphaned (has no owner), make sure there's an orphaned module issue in the AVM repository.
     - Make sure the module's details are captured correctly in the description - i.e., name, classification (resource/pattern), language (Bicep/Terraform), etc.
     - Make sure the issue is categorized using one of the following type labels:
