@@ -105,7 +105,7 @@ To do so, simply navigate to your desired repository, select the `'Fork'` button
 
 {{< hint type=note >}}
 
-If the module repository you want to contribute to is not yet available, please get in touch with the respective module owner which can be tracked in the [Terraform Resource Modules index](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/tf-resource-modules/) see `PrimaryModuleOwnerGHHandle` column.
+If the module repository you want to contribute to is not yet available, please get in touch with the respective module owner which can be tracked in the [Terraform Resource Modules index](/Azure-Verified-Modules/indexes/terraform/tf-resource-modules/) see `PrimaryModuleOwnerGHHandle` column.
 
 _**Optional:**_ The usage of local source branches
 
@@ -124,6 +124,7 @@ For consistent contributors but also Azure-org members in general it is possible
 AVM performs end-to-end (e2e) test dpeloyments of all modules in Azure for validation. We recommend you to perform a local e2e test deployment of your module before you create a PR to the upstream repository. Especially because the e2e test deployment will be triggered automatically once you create a PR to the upstream repository.
 
 1. Have/create an Azure Active Directory Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
+
 - [Create a service principal (Azure CLI)](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1) - _**Recommended**_
 - [Create a service principal (Azure Portal)](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal)
 - [Create a service principal (PowerShell)](https://learn.microsoft.com/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
@@ -133,7 +134,7 @@ AVM performs end-to-end (e2e) test dpeloyments of all modules in Azure for valid
 - Application (Client) ID
 - Service Principal Secret (password)
 - **Optional:** Tenant ID
-- **Optional:**  Subscription ID
+- **Optional:** Subscription ID
 
 ```bash
 # Linux/MacOs
@@ -180,39 +181,34 @@ Make sure you have **Docker** installed and running on your machine.
 
 {{< hint type=note >}}
 
-To simplify and help with the execution of commands like `docscheck`, `fmt`, `test-example`, etc. there is now a simplified [avm](https://github.com/Azure/terraform-azurerm-avm-template/blob/main/avm) script available distributed to all repositories via [`terraform-azurerm-avm-template`](https://github.com/Azure/terraform-azurerm-avm-template) which combines all scripts from the [avm_scripts](https://github.com/Azure/tfmod-scaffold/tree/main/avm_scripts) folder in the [tfmod-scaffold](https://github.com/Azure/tfmod-scaffold/) repository using [avmmakefile](https://github.com/Azure/tfmod-scaffold/blob/main/avmmakefile).
+To simplify and help with the execution of commands like `pre-commit`, `pr-check`, `docscheck`, `fmt`, `test-example`, etc. there is now a simplified [avm](https://github.com/Azure/terraform-azurerm-avm-template/blob/main/avm) script available distributed to all repositories via [`terraform-azurerm-avm-template`](https://github.com/Azure/terraform-azurerm-avm-template) which combines all scripts from the [avm_scripts](https://github.com/Azure/tfmod-scaffold/tree/main/avm_scripts) folder in the [tfmod-scaffold](https://github.com/Azure/tfmod-scaffold/) repository using [avmmakefile](https://github.com/Azure/tfmod-scaffold/blob/main/avmmakefile).
 
 The avm script also makes sure to pull the latest `mcr.microsoft.com/azterraform:latest` container image before executing any command.
 
 {{< /hint >}}
 
-- [5.1 Check/Generate module documentation](#51-checkgenerate-module-documentation)
-- [5.2 Format Terraform code](#52-format-terraform-code)
-- [5.3 Run e2e tests](#53-run-e2e-tests)
+- [5.1 Run pre-commit and pr-check](#51-run-pre-commit-and-pr-check)
+- [5.2 Run e2e tests](#52-run-e2e-tests)
 
-#### 5.1. Check/Generate module documentation
+#### 5.1. Run pre-commit and pr-check
 
-```bash
-# Linux/MacOs
-./avm docscheck # comparing generated README.md with the one in the repo
-./avm docs # generating module documentation like README.md including examples
-
-# Windows
-avm.bat docscheck # comparing generated README.md with the one in the repo
-avm.bat docs # generating module documentation like README.md including examples
-```
-
-#### 5.2 Format Terraform code
+The following commands will run all pre-commit checks and the pr-check.
 
 ```bash
-# Linux/MacOs
-./avm fmt
+# Running all pre-commit checks
+# `pre-commit` runs depsensure fmt fumpt autofix docs
+# `pr-check` runs fmtcheck tfvalidatecheck lint unit-test
 
-# Windows
-avm.bat fmt
+## Linux/MacOs
+./avm pre-commit
+./avm pr-check
+
+## Windows
+avm.bat pre-commit
+avm.bat pr-check
 ```
 
-#### 5.3 Run e2e tests
+#### 5.2 Run e2e tests
 
 Currently you have two options to run e2e tests:
 
@@ -250,7 +246,7 @@ Simply run `terraform init` and `terraform apply` in the `example` folder you wa
 
 Once you are satisfied with your contribution and validated it, open a PR from your forked repository to the original Terraform Module repository. Make sure you:
 
-1. Include/Add [`@Azure/avm-core-team-technical`](https://github.com/orgs/Azure/teams/avm-core-team-technical/members) as a reviewer.
+1. Include/Add [`@Azure/avm-core-team-technical-terraform`](https://github.com/orgs/Azure/teams/avm-core-team-technical-terraform) as a reviewer.
 2. Make sure all Pull Requst Checks (e2e tests with all examples, linting and version-check) are passing.
 3. Watch comments from the PR checks and reviewers (Module owner or AVM core team) and address them accordingly.
 4. Once your PR is approved, merge it into the upstream repository and the Module owner will publish the module to the HashiCorp Terraform Registry.
@@ -266,19 +262,24 @@ Once you are satisfied with your contribution and validated it, open a PR from y
 - If you contribute to a new module then search and update `TODOs` (which are coming with the [terraform-azurerm-avm-template](https://github.com/Azure/terraform-azurerm-avm-template)) within the code and remove the `TODO` comments once complete
 - `terraform.lock.hcl` shouldn't be in the repository as per the `.gitignore` file
 - Update the `support.md` file
-- Consider updating version to `0.1.0` as the first version that would be published into the terraform registry per spec [SNFR17](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning)
-- Set `prevent_deletion_if_contains_resources` to `false` in provider block in example code per spec [TFNFR36](https://azure.github.io/Azure-Verified-Modules/specs/terraform/#id-tfnfr36---category-code-style---example-code-must-set-prevent_deletion_if_contains_resources-to-false-in-provider-block)
-- The `Contributor` and `Owner` teams are not added to the repository per spec [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only)
+- Consider updating version to `0.1.0` as the first version that would be published into the terraform registry per spec [SNFR17](/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning)
+- Set `prevent_deletion_if_contains_resources` to `false` in provider block in example code per spec [TFNFR36](/Azure-Verified-Modules/specs/terraform/#id-tfnfr36---category-code-style---example-code-must-set-prevent_deletion_if_contains_resources-to-false-in-provider-block)
+- The `Contributor` and `Owner` teams are not added to the repository per spec [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only)
 - `\_header.md` needs to be updated
-- `readme.md` needs to be generated as per spec [SNFR15](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr15---category-documentation---automatic-documentation-generation) & [TFNFR2](https://azure.github.io/Azure-Verified-Modules/specs/terraform/#id-tfnfr2---category-documentation---module-documentation-generation)
+- `readme.md` needs to be generated as per spec [SNFR15](/Azure-Verified-Modules/specs/shared/#id-snfr15---category-documentation---automatic-documentation-generation) & [TFNFR2](/Azure-Verified-Modules/specs/terraform/#id-tfnfr2---category-documentation---module-documentation-generation)
 - `support.md` needs to be updated
 - `locals.telemetry.tf` needs to be updated
-- Define outputs like Resource Name, ID and Object in `outputs.tf` per specs [RMFR7](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs) & [TFFR2](https://azure.github.io/Azure-Verified-Modules/specs/terraform/#id-tffr2---category-outputs---additional-terraform-outputs)
-- Consider setting a constraint on maximum major version of Provider per spec [TFNFR26](https://azure.github.io/Azure-Verified-Modules/specs/terraform/#id-tfnfr26---category-code-style---provider-version-constraint-must-have-a-constraint-on-maximum-major-version) in `terraform.tf` flle
+- Define outputs like Resource Name, ID and Object in `outputs.tf` per specs [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs) & [TFFR2](/Azure-Verified-Modules/specs/terraform/#id-tffr2---category-outputs---additional-terraform-outputs)
+- Consider setting a constraint on maximum major version of Provider per spec [TFNFR26](/Azure-Verified-Modules/specs/terraform/#id-tfnfr26---category-code-style---provider-version-constraint-must-have-a-constraint-on-maximum-major-version) in `terraform.tf` flle
 - Exclude `terraform.tfvars` file from the repository
-- Make sure to have all interfaces defined as per spec [RMFR5](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmfr5---category-composition---avm-consistent-feature--extension-resources-value-add-interfacesschemas)
-- Declaration of provider in module should be as per spec [TFNFR27](https://azure.github.io/Azure-Verified-Modules/specs/terraform/#id-tfnfr27---category-code-style---declaration-of-a-provider-in-the-module) in `main.tf`
-- `CODEOWNERS` file needs to be updated as per spec [SNFR9](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr9---category-contributionsupport---avm--pg-teams-github-repo-permissions) & [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#codeowners-file)
+- Make sure to have all interfaces defined as per spec [RMFR5](/Azure-Verified-Modules/specs/shared/#id-rmfr5---category-composition---avm-consistent-feature--extension-resources-value-add-interfacesschemas)
+- Declaration of provider in module should be as per spec [TFNFR27](/Azure-Verified-Modules/specs/terraform/#id-tfnfr27---category-code-style---declaration-of-a-provider-in-the-module) in `main.tf`
+- `CODEOWNERS` file needs to be updated as per spec [SNFR9](/Azure-Verified-Modules/specs/shared/#id-snfr9---category-contributionsupport---avm--pg-teams-github-repo-permissions) & [SNFR20](/Azure-Verified-Modules/specs/shared/#codeowners-file)
+- The module is WAF Aligned as per spec [SFR2](/Azure-Verified-Modules/specs/shared/#id-sfr2---category-composition---waf-aligned)
+- Availability Zones are used (zonal or zone-redundant where applicable) as per spec [SFR5](/Azure-Verified-Modules/specs/shared/#id-sfr5---category-composition---availability-zones)
+- Cross-reagion replication (data redundancy) used where applicable as per spec [SFR6](/Azure-Verified-Modules/specs/shared/#id-sfr6---category-composition---data-redundancy)
+- Cross-language collaboration as per spec [SNFR21](/Azure-Verified-Modules/specs/shared/#id-snfr21---category-publishing---cross-language-collaboration)
+- RP/PG collaboration as per [RMNFR3](/Azure-Verified-Modules/specs/shared/#id-rmnfr3---category-composition---rp-collaboration)
 
 <br>
 

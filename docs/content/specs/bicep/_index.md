@@ -95,6 +95,59 @@ To meet the requirements of [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3
 
 <br>
 
+#### ID: BCPFR5 - Category: Inputs - Availability Zones Implementation
+
+To implement requirement [SFR5](/Azure-Verified-Modules/specs/shared/#id-sfr5---category-composition---availability-zones), the following convention should apply:
+
+{{< tabs "zones" >}}
+  {{< tab "Module accepts multiple zones" >}}
+  In this case, the parameter should be implemented like
+
+  ```bicep
+  @description('Optional. The Availability Zones to place the resources in.')
+  @allowed([
+    1
+    2
+    3
+  ])
+  param zones int[] = [
+    1
+    2
+    3
+  ]
+  ```
+  {{< /tab >}}
+  {{< tab "Module accepts a single zone" >}}
+  In this case, the parameter should be implemented using a singular-named `zone` parameter of type `int` like
+
+  ```bicep
+  @description('Required. The Availability Zone to place the resource in. If set to 0, then Availability Zone is not set.')
+  @allowed([
+    0
+    1
+    2
+    3
+  ])
+  param zone int
+
+  resource myResource (...) {
+    (...)
+    properties: {
+      (...)
+      zones: zone != 0 ? [ string(zone) ] : null
+    }
+  }
+  ```
+  {{< /tab >}}
+{{< /tabs >}}
+
+<br>
+
+---
+
+<br>
+
+
 ### Non-Functional Requirements (BCPNFR)
 
 {{< hint type=note >}}
@@ -467,6 +520,65 @@ Example - `AVM Module Issue template` module name entry for the Bicep resource m
 ```
 
 <br>
+
+---
+
+<br>
+
+#### ID: BCPNFR16 - Category: Testing - Post-deployment tests
+
+For each test case in the `e2e` folder, you can optionally add post-deployment Pester tests that are executed once the corresponding deployment completed and before the removal logic kicks in.
+
+To leverage the feature you must
+- Use Pester as a test framework in each test file
+- Name the file with the suffix `"*.tests.ps1"`
+- Place each test file the `e2e` test's folder or any subfolder (e.g., `e2e/max/myTest.tests.ps1` or `e2e/max/tests/myTest.tests.ps1`)
+- Implement an input parameter `TestInputData` in the following way:
+  ```pwsh
+  param (
+      [Parameter(Mandatory = $false)]
+      [hashtable] $TestInputData = @{}
+  )
+  ```
+  Through this parameter you can make use of every output the `main.test.bicep` file returns, as well as the path to the test template file in case you want to extract data from it directly.
+
+  For example, with an output such as `output resourceId string = testDeployment[1].outputs.resourceId` defined in the `main.test.bicep` file, the `$TestInputData` would look like
+  ```pwsh
+  $TestInputData = @{
+    DeploymentOutputs    = @{
+      resourceId = @{
+        Type  = "String"
+        Value = "/subscriptions/***/resourceGroups/dep-***-keyvault.vaults-kvvpe-rg/providers/Microsoft.KeyVault/vaults/***kvvpe001"
+      }
+    }
+    ModuleTestFolderPath = "/home/runner/work/bicep-registry-modules/bicep-registry-modules/avm/res/key-vault/vault/tests/e2e/private-endpoint"
+  }
+  ```
+  A full test file may look like
+
+  {{< expand "➕ Pester post-deployment test file example" "expand/collapse">}}
+
+  ```pwsh
+  param (
+      [Parameter(Mandatory = $false)]
+      [hashtable] $TestInputData = @{}
+  )
+
+  Describe 'Validate private endpoint deployment' {
+
+      Context 'Validate sucessful deployment' {
+
+          It "Private endpoints should be deployed in resource group" {
+
+              $keyVaultResourceId = $TestInputData.DeploymentOutputs.resourceId.Value
+              $testResourceGroup = ($keyVaultResourceId -split '\/')[4]
+              $deployedPrivateEndpoints = Get-AzPrivateEndpoint -ResourceGroupName   $testResourceGroup
+              $deployedPrivateEndpoints.Count | Should -BeGreaterThan 0
+          }
+      }
+  }
+  ```
+  {{< /expand >}}
 
 ---
 
