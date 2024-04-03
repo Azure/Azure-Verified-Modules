@@ -57,6 +57,8 @@ main:
             ref: "/help-support/issue-triage/avm-issue-triage"
           - name: "BRM Repository"
             ref: "/help-support/issue-triage/brm-issue-triage"
+          - name: "Terraform Repositories"
+            ref: "/help-support/issue-triage/terraform-issue-triage"
           - name: "Issue Triage Automation"
             ref: "/help-support/issue-triage/issue-triage-automation"
       - name: "Telemetry"
