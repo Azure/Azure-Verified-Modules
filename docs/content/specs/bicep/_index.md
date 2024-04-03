@@ -116,7 +116,7 @@ To implement requirement [SFR5](/Azure-Verified-Modules/specs/shared/#id-sfr5---
     3
   ]
 
-  // Note: Must be an extra variable due to a potential Bicep issue
+  // Note: Must be an extra variable (instead of inline) due to a potential Bicep issue
   var formattedZones = [for zone in zones: string(zone)]
 
   resource myResource (...) {
