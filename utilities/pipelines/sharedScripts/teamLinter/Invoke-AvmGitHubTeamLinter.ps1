@@ -57,14 +57,23 @@ Function Invoke-AvmGitHubTeamLinter {
       [switch]$ValidateTerraformTeamsPermissons,
 
       [Parameter(Mandatory = $false)]
-      [switch]$CreateIssues
+      [switch]$validateTerraformAdminPermissions,
+
+      [Parameter(Mandatory = $false)]
+      [switch]$CreateIssues,
+
+      [Parameter(Mandatory = $false)]
+      [array]$TerraformAdminTeamList = @(
+        'terraform-avm',
+        'avm-core-team-technical-terraform'
+      )
   )
 
   # Load used functions
   . (Join-Path $PSScriptRoot 'Get-AvmCsvData.ps1')
   . (Join-Path $PSScriptRoot 'Get-AvmGitHubTeamsData.ps1')
   . (Join-Path $PSScriptRoot 'Set-AvmGitHubTeamsIssue.ps1')
-  . (Join-Path $PSScriptRoot 'Get-AvmGitHubTeamRepoConfiguration.ps1')
+  . (Join-Path $PSScriptRoot 'Test-AvmGitHubTeamPermission.ps1')
 
   if ($TeamFilter -like '*All*') {
       $validateAll = $true
@@ -118,9 +127,9 @@ Function Invoke-AvmGitHubTeamLinter {
                       Write-Verbose "Found team: $($module.ModuleOwnersGHTeam) Checking Permissions configuration"
                       if ($module.ModuleOwnersGHTeam -like "*-tf") {
                           $repoName = "terraform-azurerm-$($module.ModuleName)"
-                          $repoConfiguration = Get-AvmGitHubTeamRepoConfiguration -Organization Azure -TeamName $module.ModuleOwnersGHTeam -RepoName $repoName
+                          $repoConfiguration = Test-AvmGitHubTeamPermission -Organization Azure -TeamName $module.ModuleOwnersGHTeam -RepoName $repoName ExpectedPermission "Admin"
                           if ($repoConfiguration -match "Success") {
-                              Write-Verbose "Good News! Repo: $repoName is configured with the expected permission: admin"
+                              Write-Verbose "Good News! Team: [$($module.ModuleOwnersGHTeam)] is configured with the expected permission: [admin] on Repo: [$repoName] "
                           }
                           else {
                               Write-Verbose "Uh-oh no correct permissions configured for $($module.ModuleOwnersGHTeam) ($($module.PrimaryModuleOwnerDisplayName))"
@@ -218,10 +227,10 @@ Function Invoke-AvmGitHubTeamLinter {
                       Write-Verbose "Found team: $($module.ModuleContributorsGHTeam) Checking Permissions configuration"
                       if ($module.ModuleContributorsGHTeam -like "*-tf") {
                           $repoName = "terraform-azurerm-$($module.ModuleName)"
-                          $repoConfiguration = Get-AvmGitHubTeamRepoConfiguration -Organization Azure -TeamName $module.ModuleContributorsGHTeam -RepoName $repoName
+                          $repoConfiguration = Test-AvmGitHubTeamPermission -Organization Azure -TeamName $module.ModuleContributorsGHTeam -RepoName $repoName -ExpectedPermission "Write"
                           if ($repoConfiguration -match "Success") {
-                              Write-Verbose "Good News! Repo: $repoName is configured with the expected permission: write"
-                          }
+                              Write-Verbose "Good News! Team: [$($module.ModuleOwnersGHTeam)] is configured with the expected permission: [write] on Repo: [$repoName] "
+                            }
                           else {
                               Write-Verbose "Uh-oh no correct permissions configured for $($module.ModuleContributorsGHTeam) ($($module.PrimaryModuleOwnerDisplayName))"
                               # Create a custom object for the unmatched team
@@ -286,6 +295,30 @@ Function Invoke-AvmGitHubTeamLinter {
                   $unmatchedTeams += $unmatchedTeam
               }
           }
+      }
+
+      if ($validateTerraformAdminPermissions -Or $validateAll) {
+        foreach ($tfAdminteam in $TerraformAdminTeamList) {
+          $repoName = "terraform-azurerm-$($module.ModuleName)"
+          $teamTest = Test-AvmGitHubTeamPermission -Organization Azure -TeamName $tfAdminteam -RepoName $repoName -ExpectedPermission "Admin"
+          if ($teamTest -match "Success") {
+            Write-Verbose "Good News! Team: [$tfAdminteam] is configured with the expected permission: [admin] on Repo: [$repoName] "
+          }
+          else {
+            Write-Verbose "Uh-oh no correct permissions configured for [$tfAdminteam]"
+            # Create a custom object for the unmatched team
+            $unmatchedTeam = [PSCustomObject]@{
+                TeamName       = $module.ModuleContributorsGHTeam
+                Validation     = "No correct permissions assigned."
+                Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
+                GitHubTeamName = $tfAdminteam
+                Resolution     = "Please assign the correct permissions to the team: [$tfAdminteam]. This can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only)."
+            }
+            # Add the custom object to the array
+            $unmatchedTeams += $unmatchedTeam
+            break
+          }
+        }
       }
   }
   # Check if $unmatchedTeams is empty
