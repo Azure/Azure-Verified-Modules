@@ -61,26 +61,30 @@ main:
             ref: "/help-support/issue-triage/issue-triage-automation"
       - name: "Telemetry"
         ref: "/help-support/telemetry"
-      - name: "Create GitHub Issue"
-        ref: "https://github.com/Azure/Azure-Verified-Modules/issues"
-        external: true
+      - name: "GitHub Links"
+        ref: "/help-support/GH-links"
         icon: "gdoc_github"
-      - name: "Propose a New Module"
-        ref: "https://aka.ms/AVM/ModuleProposal"
-        external: true
-        icon: "gdoc_github"
-      - name: "Module Triage (Project)"
-        ref: "https://aka.ms/AVM/ModuleTriage"
-        external: true
-        icon: "gdoc_github"
-      - name: "Module Issues (Project)"
-        ref: "https://aka.ms/AVM/ModuleIssues"
-        external: true
-        icon: "gdoc_github"
-      - name: "Issue Triage (Project)"
-        ref: "https://aka.ms/AVM/IssueTriage"
-        external: true
-        icon: "gdoc_github"
+        sub:
+          - name: "Propose a New Module"
+            ref: "https://aka.ms/AVM/ModuleProposal"
+            external: true
+            icon: "gdoc_github"
+          - name: "Question or Feedback"
+            ref: "https://aka.ms/AVM/QuestionFeedback"
+            external: true
+            icon: "gdoc_github"
+          - name: "Module Triage (Project)"
+            ref: "https://aka.ms/AVM/ModuleTriage"
+            external: true
+            icon: "gdoc_github"
+          - name: "Module Issues (Project)"
+            ref: "https://aka.ms/AVM/ModuleIssues"
+            external: true
+            icon: "gdoc_github"
+          - name: "Issue Triage (Project)"
+            ref: "https://aka.ms/AVM/IssueTriage"
+            external: true
+            icon: "gdoc_github"
   - name: "Contributing"
     ref: "contributing"
     sub:

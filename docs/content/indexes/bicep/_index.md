@@ -3,6 +3,7 @@ title: Bicep Modules
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+geekdocCollapseSection: true
 ---
 
 This section lists all Azure Verified Modules that are available in or planned for the **Bicep language**.
