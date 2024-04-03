@@ -350,7 +350,7 @@ Modules **MUST** pass all tests that ensure compliance to AVM specifications. Th
 
 Please note these are still under development at this time and will be published and available soon for module owners.
 
-Module owners **MUST** request a manual GitHub Pull Request review, prior to their first release of version `0.1.0` of their module, from the following GitHub Team: [`@Azure/avm-core-team-technical`](https://github.com/orgs/Azure/teams/avm-core-team-technical/members)
+Module owners **MUST** request a manual GitHub Pull Request review, prior to their first release of version `0.1.0` of their module, from the related GitHub Team: [`@Azure/avm-core-team-technical-bicep`](https://github.com/orgs/Azure/teams/avm-core-team-technical-bicep), OR [`@Azure/avm-core-team-technical-terraform`](https://github.com/orgs/Azure/teams/avm-core-team-technical-terraform).
 
 {{< /hint >}}
 
@@ -556,20 +556,12 @@ Example - `CODEOWNERS` entry for the Bicep resource module of Azure Virtual Netw
 
 ##### Grant Permissions - Terraform
 
-Module owners **MUST** assign the `-module-owners-`and `-module-contributors-` teams the necessary permissions on their Terraform module repository and edit the `CODEOWNERS` file as per the guidance below.
+Module owners **MUST** assign the `-module-owners-`and `-module-contributors-` teams the necessary permissions on their Terraform module repository per the guidance below.
 
 | GitHub Team Name                       | Description                                       | Permissions | Permissions granted through | Where to work?                                                                                |
 |----------------------------------------|---------------------------------------------------|-------------|-----------------------------|-----------------------------------------------------------------------------------------------|
 | `<module name>-module-owners-tf`       | AVM Terraform Module Owners - \<module name>       | **Admin**   | Direct assignment to repo   | Module owner can decide whether they want to work in a branch local to the repo or in a fork. |
 | `<module name>-module-contributors-tf` | AVM Terraform Module Contributors - \<module name> | **Write**   | Direct assignment to repo   | Need to work in a fork.                                                                       |
-
-{{< hint type=important >}}
-
-The `CODEOWNERS` file **MUST** be updated for every module to be onboarded: the `-module-owners-`team **MUST** be added **for all code in the repo**.
-
-For more details on how to modify the `CODEOWNERS` file, please see the [documentation on Github](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners).
-
-{{< /hint >}}
 
 {{< hint type=tip >}}
 Direct link to create a new GitHub team: [Create new team](https://github.com/orgs/Azure/new-team)
@@ -595,7 +587,7 @@ A module owner **MUST** make the following GitHub teams in the Azure GitHub orga
 
 ##### Bicep
 
-- [`@Azure/avm-core-team`](https://github.com/orgs/Azure/teams/avm-core-team/members?query=membership:child-team) = AVM Core Team
+- [`@Azure/avm-core-team-technical-bicep`](https://github.com/orgs/Azure/teams/avm-core-team-technical-bicep) = AVM Core Team
 - [`@Azure/bicep-admins`](https://github.com/orgs/Azure/teams/bicep-admins) = Bicep PG team
 
 {{< hint type=note >}}
@@ -604,8 +596,8 @@ These required GitHub teams are already associated to the [BRM](https://aka.ms/B
 
 ##### Terraform
 
-- [`@Azure/avm-core-team`](https://github.com/orgs/Azure/teams/avm-core-team/members?query=membership:child-team) = AVM Core Team
-- [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Terraform PG
+- [`@Azure/avm-core-team-technical-terraform`](https://github.com/orgs/Azure/teams/avm-core-team-technical-terraform) = AVM Core Team
+- [`@Azure/terraform-avm`](https://github.com/orgs/Azure/teams/terraform-avm) = Terraform PG
 
 {{< hint type=important >}}
 Module owners **MUST** assign these GitHub teams as admins on the GitHub repo of the module in question.
@@ -675,7 +667,31 @@ For most scenario this is the command you'll need to call the below PowerShell s
 Set-AvmGitHubLabels.ps1 -RepositoryName "Org/MyGitHubRepo" -CreateCsvLabelExports $false -NoUserPrompts $true
 ```
 
+```shell
+# Linux / MacOs
+# For Windows replace $PWD with your the local path or your repository
+#
+docker run -it -v $PWD:/repo -w /repo mcr.microsoft.com/powershell pwsh -Command '
+    #Invoke-WebRequest -Uri "https://azure.github.io/Azure-Verified-Modules/scripts/Set-AvmGitHubLabels.ps1" -OutFile "Set-AvmGitHubLabels.ps1"
+    $gh_version = "2.44.1"
+    Invoke-WebRequest -Uri "https://github.com/cli/cli/releases/download/v2.44.1/gh_2.44.1_linux_amd64.tar.gz" -OutFile "gh_$($gh_version)_linux_amd64.tar.gz"
+    apt-get update && apt-get install -y git
+    tar -xzf "gh_$($gh_version)_linux_amd64.tar.gz"
+    ls -lsa
+    mv "gh_$($gh_version)_linux_amd64/bin/gh" /usr/local/bin/
+    rm "gh_$($gh_version)_linux_amd64.tar.gz" && rm -rf "gh_$($gh_version)_linux_amd64"
+    gh --version
+    ls -lsa
+    gh auth login
+    $OrgProject = "Azure/terraform-azurerm-avm-res-kusto-cluster"
+    gh auth status
+    ./Set-AvmGitHubLabels.ps1 -RepositoryName $OrgProject -CreateCsvLabelExports $false -NoUserPrompts $true
+  '
+```
+
 By default this script will only update and append labels on the repository specified. However, this can be changed by setting the parameter `-UpdateAndAddLabelsOnly` to `$false`, which will remove all the labels from the repository first and then apply the AVM labels from the CSV only.
+
+Make sure you elevate your privilege to admin level or the labels will not be applied to your repository. Go to repos.opensource.microsoft.com/orgs/Azure/repos/<your avm repo> to request admin access before running the script.
 
 Full Script:
 

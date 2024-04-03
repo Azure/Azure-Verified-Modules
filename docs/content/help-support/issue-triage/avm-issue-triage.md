@@ -24,7 +24,7 @@ During the triage process, the AVM Core Team should also check the status of fol
 - Open items that **need triaging**: <a href="https://aka.ms/AVM/NeedsTriage"><mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark></a>
   - Bicep items (that need triaging): <a href="https://aka.ms/AVM/NeedsTriageBicep"><mark style="background-color:#1D73B3;color:white;">Language: Bicep 💪</mark> & <mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark></a>
   - Terraform items (that need triaging): <a href="https://aka.ms/AVM/NeedsTriageTerraform"><mark style="background-color:#7740B6;color:white;">Language: Terraform 🌐</mark> & <mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark></a>
-- Open items that **need triaging AND aren't being triaged yet**: <a href="https://aka.ms/AVM/NeedsTriageButNotInTriage"><mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark> & <mark style="background-color:#E4E669;">Status: In Triage 🔍</mark></a>
+- Open items that **need triaging AND aren't being triaged yet**: <a href="https://aka.ms/AVM/NeedsTriageButNotInTriage"><mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark> & **NOT** <mark style="background-color:#E4E669;">Status: In Triage 🔍</mark></a>
 - Open items that **need attention**: <a href="https://aka.ms/AVM/NeedsAttention"><mark style="background-color:#E99695;">Needs: Attention 👋</mark></a>
 - Open items that **need owners**: <a href="https://aka.ms/AVM/NeedsModuleOwner"><mark style="background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark></a>
 - Open items with **no recent activity**: <a href="https://aka.ms/AVM/NoRecentActivity"><mark style="background-color:#808080;color:white;">Status: No Recent Activity 💤</mark></a>
@@ -63,6 +63,18 @@ Follow these steps to triage a module proposal:
 
     - Module classification (resource/pattern): "<mark style="background-color:#D3D3D3;">Class: Resource Module 📦</mark>" or "<mark style="background-color:#A9A9A9;">Class: Pattern Module 📦</mark>"
     - If it's a module that will be migrated from CARML/TFVM, add the related "<mark style="background-color:#00796F;color:white;">Status: Migrate from CARML 🚛</mark>" or the "<mark style="background-color:#00796F;color:white;">Status: Migrate from TFVM 🚛</mark>" label.
+
+### Triaging pattern modules
+
+As part of the triage of pattern modules, the following points need to be considered/clarified with the module requestor:
+
+- Shouldn't this be a resource module? What makes it a pattern - e.g., does it deploy multiple resources?
+- What is it for? What problem does it fix or provides a solution for?
+- What is/isn't part of it? Which resource and/or pattern modules are planned to be leveraged in it? Provide a list of resources that would be part of the planned module.
+- Where is it coming from/what's backing it - e.g., Azure Architecture Center (AAC), community request, customer example. Provide an architectural diagram and related documentation if possible - or a pointer to these if they are publicly available.
+- Don't let the module's scope to grow too big, split it up to multiple smaller ones that are more maintainable - e.g., hub & spoke networking should should be split to a generic hub networking and multiple workload specific spoke networking patterns.
+- The module's name should be as descriptive as possible.
+- Adopt strict name-to-scope mapping - e.g., hub & spoke networking shouldn't deploy monitoring.
 
 ### Scenario 1: Requestor doesn't want to / can't be module owner
 
@@ -116,6 +128,7 @@ Although, it's not directly part of the module proposal triage process, to begin
     - Look for the module owners confirmation on the related `[Module Proposal]` issue that they have created the required `-module-owners-` and `-module-contributors-` GitHub teams.
     - Ensure the `-module-owners-` and `-module-contributors-` GitHub teams have been assigned to their respective parent teams as outlined [here](https://azure.github.io/Azure-Verified-Modules/specs/shared/#grant-permissions---bicep).
     - Ensure the [`CODEOWNERS`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) file in the [BRM repo](https://aka.ms/BRM) has been updated.
+    - Ensure the [`AVM Module Issue template`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/ISSUE_TEMPLATE/avm_module_issue.yml) file in the [BRM repo](https://aka.ms/BRM) has been updated.
 
 {{< /hint >}}
 
@@ -210,8 +223,8 @@ To look for Orphaned Modules:
 5. Remove the information notice (i.e., the file that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.` ):
     - In case of a Bicep module:
       - Delete the `ORPHANED.md` file from the module's root.
-      - Run the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This removed the re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header.
-      - Make sure the the `README.md` file no longer has the information notice in its header (right after the title).
+      - Run the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that it will no longer contain the orphaned module notice in its header.
+      - Double check the previous steps was successful and the `README.md` file no longer has the information notice in its header (right after the title).
     - In case of a Terraform module, remove the information notice from the `README.md` file in the module's root.
     - Once the information notice is removed, submit a Pull Request.
 6. Use the following text to confirm the new ownership of an orphaned module:

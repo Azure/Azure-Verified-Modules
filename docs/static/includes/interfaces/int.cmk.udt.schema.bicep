@@ -29,8 +29,8 @@ resource cMKUserAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentiti
   scope: resourceGroup(split((customerManagedKey.?userAssignedIdentityResourceId ?? '//'), '/')[2], split((customerManagedKey.?userAssignedIdentityResourceId ?? '////'), '/')[4])
 }
 
-resource exampleResoruce 'Example.Resource/example@2023-01-31' = {
-  name: 'exampleResource'
+resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVersion<' = {
+  name: '>exampleResource<'
   properties: {
     ... // other properties
     encryption: !empty(customerManagedKey) ? {

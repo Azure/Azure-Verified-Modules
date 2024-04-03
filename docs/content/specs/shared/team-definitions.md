@@ -49,7 +49,7 @@ Today, module owners **MUST** be Microsoft FTEs. This is to ensure that within A
 Module owners are responsible for:
 
 - Module Creation
-- Module Maintenance
+- Module Maintenance (proactive & reactive)
 - Module Issue/Pull Request Triage & Resolution
 - Module Feature Request Triage & Additions
 - Managing Module Contributors
@@ -79,7 +79,7 @@ Module Contributors **MUST** be in a separate [GitHub Team in the `Azure` organi
 GitHub Teams:
 
 - [`@Azure/bicep-admins`](https://github.com/orgs/Azure/teams/bicep-admins) = Bicep PG team
-- [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Azure Terraform PG
+- [`@Azure/terraform-avm`](https://github.com/orgs/Azure/teams/terraform-avm) = Azure Terraform PG
 
 The Azure Bicep & Terraform Product Groups are responsible for:
 
