@@ -638,12 +638,12 @@ For reference, please refer to the following examples:
     '2'
     '3'
   ])
-  param zonesValue array
+  param zones array
 
   resource myResource '(...)' = {
     (...)
     properties: {
-      zones: zonesValue
+      zones: zones
     }
   }
   ```
@@ -657,12 +657,12 @@ For reference, please refer to the following examples:
     2
     3
   ])
-  param zonesValue int[]
+  param zones int[]
 
   resource myResource '(...)' = {
     (...)
     properties: {
-      zones: zones: [for zone in zonesValue: string(zone)]
+      zones: map(zones, zone => string(zone))
     }
   }
   ```
