@@ -586,7 +586,7 @@ To leverage the feature you must
 
 #### ID: BCPNFR17 - Category: Composition - Code Styling - Type casting
 
-To improve the usability of primitive module properties declared as strings, you should declare them as the type they are and apply any required casting in the module on behalf of the user.
+To improve the usability of primitive module properties declared as strings, you should declare them using a type which better represents them, and apply any required casting in the module on behalf of the user.
 
 For reference, please refer to the following examples:
 
