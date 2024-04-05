@@ -1,5 +1,6 @@
 Function Test-AvmGitHubTeamPermission {
     [CmdletBinding()]
+    [OutputType([System.String])]
     param (
         [Parameter(Mandatory)]
         [string]$Organization,
