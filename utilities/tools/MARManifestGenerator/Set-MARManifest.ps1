@@ -1,5 +1,50 @@
 <#
 .SYNOPSIS
+Creates the Bicep module YAML file in MCR
+
+.DESCRIPTION
+The function generates the MCR bicep.yaml file based on the AVM CSV files. It uses the Get-ModuleYamlBlock function
+to create the YAML entries for the Bicep-Resource and Bicep-Pattern modules, then it composes the bicep.yaml file
+and saves it to the specified location.
+
+.PARAMETER OutputPath
+The path where the bicep.yaml file should be saved.
+
+.EXAMPLE
+Set-MARManifest -OutputPath bicep.yml
+
+.NOTES
+The entries are sorted by the full module name.
+#>
+Function Set-MARManifest {
+    [CmdletBinding(SupportsShouldProcess)]
+    param (
+        [Parameter(Mandatory = $false)]
+        [string] $OutputPath = $(Join-Path $PSScriptRoot 'bicep.yml')
+    )
+
+    # Retrieve the converted YAML entries for the Bicep-Resource and Bicep-Pattern modules
+    $yamlEntries = Get-ModuleYamlBlock
+
+    # Constructing the output file content
+    # Adding the header file to the output file content
+    $headerFilePath = Join-Path -Path $PSScriptRoot -ChildPath 'manifestHeader.yml'
+    if (-not (Test-Path $headerFilePath)) {
+        Write-Error "The header file [$headerFilePath] does not exist."
+    }
+
+    # Adding the header file content to the output file content
+    $outputFileContent = Get-Content -Path $headerFilePath
+
+    # Adding the Bicep-Resource YAML entries to the output file content
+    $outputFileContent += $yamlEntries
+
+    # Save the output file
+    $outputFileContent | Out-File -FilePath $OutputPath -Force
+}
+
+<#
+.SYNOPSIS
 Parses AVM module CSV files
 
 .DESCRIPTION
@@ -70,7 +115,7 @@ Get-ModuleYamlBlock -ModuleIndex Bicep-Resource -IndentFirstLine 2 -IndentOtherL
 .NOTES
 The entries are sorted by the module name.
 #>
-function Get-ModuleYamlBlock {
+Function Get-ModuleYamlBlock {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$false)]
@@ -113,51 +158,3 @@ function Get-ModuleYamlBlock {
     # Return the YAML entries
     return $yamlEntries
 }
-
-<#
-.SYNOPSIS
-Creates the Bicep module YAML file in MCR
-
-.DESCRIPTION
-The function generates the MCR bicep.yaml file based on the AVM CSV files. It uses the Get-ModuleYamlBlock function
-to create the YAML entries for the Bicep-Resource and Bicep-Pattern modules, then it composes the bicep.yaml file
-and saves it to the specified location.
-
-.PARAMETER OutputPath
-The path where the bicep.yaml file should be saved.
-
-.EXAMPLE
-Set-MARManifest -OutputPath bicep.yml
-
-.NOTES
-The entries are sorted by the full module name.
-#>
-function Set-MARManifest {
-    [CmdletBinding(SupportsShouldProcess)]
-    param (
-        [Parameter(Mandatory = $false)]
-        [string] $OutputPath = $(Join-Path $PSScriptRoot 'bicep.yml')
-    )
-
-    # Retrieve the converted YAML entries for the Bicep-Resource and Bicep-Pattern modules
-    $yamlEntries = Get-ModuleYamlBlock
-
-    # Constructing the output file content
-    # Adding the header file to the output file content
-    $headerFilePath = Join-Path -Path $PSScriptRoot -ChildPath 'manifestHeader.yml'
-    if (-not (Test-Path $headerFilePath)) {
-        Write-Error "The header file [$headerFilePath] does not exist."
-    }
-
-    # Adding the header file content to the output file content
-    $outputFileContent = Get-Content -Path $headerFilePath
-
-    # Adding the Bicep-Resource YAML entries to the output file content
-    $outputFileContent += $yamlEntries
-
-    # Save the output file
-    $outputFileContent | Out-File -FilePath $OutputPath -Force
-}
-
-# # Launch the function
-Set-MARManifest
