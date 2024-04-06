@@ -7,6 +7,9 @@ geekdocAnchor: true
 
 {{< toc >}}
 
+## GitHub Account Link and Access
+
+You need to have a personal GitHub account which is [linked](https://aka.ms/LinkYourGitHubAccount) to your Microsoft corporate identity. Once the link step is complete you must join the [Azure](https://repos.opensource.microsoft.com/orgs/Azure) organization.
 
 ## Recommended Learning
 
@@ -47,6 +50,7 @@ To contribute to this project the following tooling is required:
 
   {{< /hint >}}
 
+- [Pester](https://pester.dev/docs/introduction/installation)
 - [Visual Studio Code](https://code.visualstudio.com/download)
   - [Bicep extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
 

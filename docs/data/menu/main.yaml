@@ -57,30 +57,36 @@ main:
             ref: "/help-support/issue-triage/avm-issue-triage"
           - name: "BRM Repository"
             ref: "/help-support/issue-triage/brm-issue-triage"
+          - name: "Terraform Repositories"
+            ref: "/help-support/issue-triage/terraform-issue-triage"
           - name: "Issue Triage Automation"
             ref: "/help-support/issue-triage/issue-triage-automation"
       - name: "Telemetry"
         ref: "/help-support/telemetry"
-      - name: "Create GitHub Issue"
-        ref: "https://github.com/Azure/Azure-Verified-Modules/issues"
-        external: true
+      - name: "GitHub Links"
+        ref: "/help-support/GH-links"
         icon: "gdoc_github"
-      - name: "Propose a New Module"
-        ref: "https://aka.ms/AVM/ModuleProposal"
-        external: true
-        icon: "gdoc_github"
-      - name: "Module Triage (Project)"
-        ref: "https://aka.ms/AVM/ModuleTriage"
-        external: true
-        icon: "gdoc_github"
-      - name: "Module Issues (Project)"
-        ref: "https://aka.ms/AVM/ModuleIssues"
-        external: true
-        icon: "gdoc_github"
-      - name: "Issue Triage (Project)"
-        ref: "https://aka.ms/AVM/IssueTriage"
-        external: true
-        icon: "gdoc_github"
+        sub:
+          - name: "Propose a New Module"
+            ref: "https://aka.ms/AVM/ModuleProposal"
+            external: true
+            icon: "gdoc_github"
+          - name: "Question or Feedback"
+            ref: "https://aka.ms/AVM/QuestionFeedback"
+            external: true
+            icon: "gdoc_github"
+          - name: "Module Triage (Project)"
+            ref: "https://aka.ms/AVM/ModuleTriage"
+            external: true
+            icon: "gdoc_github"
+          - name: "Module Issues (Project)"
+            ref: "https://aka.ms/AVM/ModuleIssues"
+            external: true
+            icon: "gdoc_github"
+          - name: "Issue Triage (Project)"
+            ref: "https://aka.ms/AVM/IssueTriage"
+            external: true
+            icon: "gdoc_github"
   - name: "Contributing"
     ref: "contributing"
     sub:
@@ -96,6 +102,8 @@ main:
           - name: "Bicep Contribution Flow"
             ref: "/contributing/bicep/bicep-contribution-flow"
             sub:
+              - name: "Owner Contribution Flow"
+                ref: "/contributing/bicep/bicep-contribution-flow/owner-contribution-flow"
               - name: "Update Module files"
                 ref: "/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files"
               - name: "Validate Module locally"
