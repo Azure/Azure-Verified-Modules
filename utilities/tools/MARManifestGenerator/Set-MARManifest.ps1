@@ -7,11 +7,11 @@ The function generates the MCR bicep.yaml file based on the AVM CSV files. It us
 to create the YAML entries for the Bicep-Resource and Bicep-Pattern modules, then it composes the bicep.yaml file
 and saves it to the specified location.
 
-.PARAMETER OutputPath
+.PARAMETER OutputFile
 The path where the bicep.yaml file should be saved.
 
 .EXAMPLE
-Set-MARManifest -OutputPath bicep.yml
+Set-MARManifest -OutputFile bicep.yml
 
 .NOTES
 The entries are sorted by the full module name.
@@ -20,7 +20,7 @@ Function Set-MARManifest {
     [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory = $false)]
-        [string] $OutputPath = $(Join-Path $PSScriptRoot 'bicep.yml')
+        [string] $OutputFile = $(Join-Path $PSScriptRoot 'bicep.yml')
     )
 
     # Retrieve the converted YAML entries for the Bicep-Resource and Bicep-Pattern modules
@@ -40,7 +40,7 @@ Function Set-MARManifest {
     $outputFileContent += $yamlEntries
 
     # Save the output file
-    $outputFileContent | Out-File -FilePath $OutputPath -Force
+    $outputFileContent | Out-File -FilePath $OutputFile -Force
 }
 
 <#
