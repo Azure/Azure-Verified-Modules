@@ -83,7 +83,7 @@ module >singularMainResourceType<_privateEndpoints 'br/public:avm/res/network/pr
   params: {
     // Variant 1: A default service can be assumed (i.e., for services that only have one private endpoint type)
     name: privateEndpoint.?name ?? 'pep-${last(split(>singularMainResourceType<.id, '/'))}-${privateEndpoint.?service ?? '>defaultServiceName<'}-${index}'
-    privateLinkServiceConnections: privateEndpoint.?manualPrivateLinkServiceConnections != true ? [
+    privateLinkServiceConnections: privateEndpoint.?isManualConnection != true ? [
       {
         name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(>singularMainResourceType<.id, '/'))}-${privateEndpoint.?service ?? '>defaultServiceName<'}-${index}'
         properties: {
@@ -94,7 +94,7 @@ module >singularMainResourceType<_privateEndpoints 'br/public:avm/res/network/pr
         }
       }
     ] : null
-    manualPrivateLinkServiceConnections: privateEndpoint.?manualPrivateLinkServiceConnections == true ? [
+    manualPrivateLinkServiceConnections: privateEndpoint.?isManualConnection == true ? [
       {
         name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(>singularMainResourceType<.id, '/'))}-${privateEndpoint.?service ?? '>defaultServiceName<'}-${index}'
         properties: {
