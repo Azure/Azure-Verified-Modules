@@ -350,7 +350,7 @@ Modules **MUST** pass all tests that ensure compliance to AVM specifications. Th
 
 Please note these are still under development at this time and will be published and available soon for module owners.
 
-Module owners **MUST** request a manual GitHub Pull Request review, prior to their first release of version `0.1.0` of their module, from the following GitHub Team: [`@Azure/avm-core-team-technical`](https://github.com/orgs/Azure/teams/avm-core-team-technical/members)
+Module owners **MUST** request a manual GitHub Pull Request review, prior to their first release of version `0.1.0` of their module, from the related GitHub Team: [`@Azure/avm-core-team-technical-bicep`](https://github.com/orgs/Azure/teams/avm-core-team-technical-bicep), OR [`@Azure/avm-core-team-technical-terraform`](https://github.com/orgs/Azure/teams/avm-core-team-technical-terraform).
 
 {{< /hint >}}
 
@@ -587,7 +587,7 @@ A module owner **MUST** make the following GitHub teams in the Azure GitHub orga
 
 ##### Bicep
 
-- [`@Azure/avm-core-team`](https://github.com/orgs/Azure/teams/avm-core-team/members?query=membership:child-team) = AVM Core Team
+- [`@Azure/avm-core-team-technical-bicep`](https://github.com/orgs/Azure/teams/avm-core-team-technical-bicep) = AVM Core Team
 - [`@Azure/bicep-admins`](https://github.com/orgs/Azure/teams/bicep-admins) = Bicep PG team
 
 {{< hint type=note >}}
@@ -596,8 +596,8 @@ These required GitHub teams are already associated to the [BRM](https://aka.ms/B
 
 ##### Terraform
 
-- [`@Azure/avm-core-team`](https://github.com/orgs/Azure/teams/avm-core-team/members?query=membership:child-team) = AVM Core Team
-- [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Terraform PG
+- [`@Azure/avm-core-team-technical-terraform`](https://github.com/orgs/Azure/teams/avm-core-team-technical-terraform) = AVM Core Team
+- [`@Azure/terraform-avm`](https://github.com/orgs/Azure/teams/terraform-avm) = Terraform PG
 
 {{< hint type=important >}}
 Module owners **MUST** assign these GitHub teams as admins on the GitHub repo of the module in question.

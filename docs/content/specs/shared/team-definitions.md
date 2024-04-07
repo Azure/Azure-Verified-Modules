@@ -79,7 +79,7 @@ Module Contributors **MUST** be in a separate [GitHub Team in the `Azure` organi
 GitHub Teams:
 
 - [`@Azure/bicep-admins`](https://github.com/orgs/Azure/teams/bicep-admins) = Bicep PG team
-- [`@Azure/terraform-azure`](https://github.com/orgs/Azure/teams/terraform-azure) = Azure Terraform PG
+- [`@Azure/terraform-avm`](https://github.com/orgs/Azure/teams/terraform-avm) = Azure Terraform PG
 
 The Azure Bicep & Terraform Product Groups are responsible for:
 
