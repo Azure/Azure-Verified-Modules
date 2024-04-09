@@ -11,9 +11,9 @@ To limit those workflow runs, you can manually disable each pipeline you do not 
 - [Location](#location)
 - [How it works](#how-it-works)
 - [Typical use cases](#typical-use-cases)
-  - [Disable all but one workflow:](#disable-all-but-one-workflow)
-  - [Disable all but multiple workflows:](#disable-all-but-multiple-workflows)
-  - [Enable all workflows:](#enable-all-workflows)
+  - [Disable all but one workflow](#disable-all-but-one-workflow)
+  - [Disable all but multiple workflows](#disable-all-but-multiple-workflows)
+  - [Enable all workflows](#enable-all-workflows)
 - [Limitations](#limitations)
 
 ---
@@ -37,17 +37,17 @@ Run the workflow `avm.platform.toggle-avm-workflows` and set the following setti
 
 # Typical use cases
 
-## Disable all but one workflow:
+## Disable all but one workflow
 - `Enable or disable workflows` to `Disable`
 - `RegEx which workflows are included` to `avm\.(?:res|ptn)` (this is the default setting)
 - `RegEx which workflows are excluded` to `avm.res.compute.virtual-machine` (use the name of your own workflow. This example uses the workflow for virtual machine)
 
-## Disable all but multiple workflows:
+## Disable all but multiple workflows
 - `Enable or disable workflows` to `Disable`
 - `RegEx which workflows are included` to `avm\.(?:res|ptn)` (this is the default setting)
 - `RegEx which workflows are excluded` to `(?:avm.res.avm.res.compute.virtual-machine|avm.res.compute.image|avm.res.compute.disk)` (use the names of your own workflows. This example uses the workflows for virtual machine, image, and disk)
 
-## Enable all workflows:
+## Enable all workflows
 - `Enable or disable workflows` to `Enable`
 - `RegEx which workflows are included` to `avm\.(?:res|ptn)` (this is the default setting)
 - `RegEx which workflows are excluded` to `^$` (this is the default setting)
