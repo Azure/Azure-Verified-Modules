@@ -594,3 +594,95 @@ To leverage the feature you must
 ---
 
 <br>
+
+#### ID: BCPNFR17 - Category: Composition - Code Styling - Type casting
+
+To improve the usability of primitive module properties declared as strings, you should declare them using a type which better represents them, and apply any required casting in the module on behalf of the user.
+
+For reference, please refer to the following examples:
+
+<h5>Boolean as String</h5>
+{{< tabs "booleanString" >}}
+  {{< tab "Before" >}}
+
+  ```bicep
+  @allowed([
+    'false'
+    'true'
+  ])
+  param myParameterValue string = 'false'
+
+  resource myResource '(...)' = {
+    (...)
+    properties: {
+      myParameter: myParameterValue
+    }
+  }
+  ```
+
+  {{< /tab >}}
+  {{< tab "After" >}}
+
+  ```bicep
+  param myParameterValue string = false
+
+  resource myResource '(...)' = {
+    (...)
+    properties: {
+      myParameter: string(myParameterValue)
+    }
+  }
+  ```
+
+  {{< /tab >}}
+{{< /tabs >}}
+
+
+<h5>Integer Array as String Array</h5>
+
+{{< tabs "intArrayString" >}}
+  {{< tab "Before" >}}
+
+  ```bicep
+  @allowed([
+    '1'
+    '2'
+    '3'
+  ])
+  param zones array
+
+  resource myResource '(...)' = {
+    (...)
+    properties: {
+      zones: zones
+    }
+  }
+  ```
+
+  {{< /tab >}}
+  {{< tab "After" >}}
+
+  ```bicep
+  @allowed([
+    1
+    2
+    3
+  ])
+  param zones int[]
+
+  resource myResource '(...)' = {
+    (...)
+    properties: {
+      zones: map(zones, zone => string(zone))
+    }
+  }
+  ```
+
+  {{< /tab >}}
+{{< /tabs >}}
+
+<br>
+
+---
+
+<br>
