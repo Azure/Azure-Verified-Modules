@@ -314,7 +314,7 @@ See [Module Support](/Azure-Verified-Modules/help-support/module-support) for mo
 
 Yes, and if they cannot resolve it (and/or it's not related to a Microsoft service/platform/api/etc.) they will pass the ticket to the module owner(s) to resolve.
 
-For Microsoft FTEs only: see the **Internal** wiki for support workflow for more details -[AVM - Support Workflow - Overview](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/275/Azure-Verified-Module-Workflow)
+For Microsoft FTEs only: see the **Internal** wiki for support workflow for more details -[AVM - Support Workflow - Overview](https://supportability.visualstudio.com/AzureVerifiedModules/_wiki/wikis/AzureVerifiedModules.wiki/1459317/Support-Flow-for-Azure-Verified-Modules)
 
 ---
 
