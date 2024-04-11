@@ -32,6 +32,7 @@ on:
         # >>> UPDATE to for example "avm/res/key-vault/vault/**"
       - "avm/[res|ptn]/[provider-namespace]/[resource-type]/**"
       - "avm/utilities/pipelines/**"
+      - "!avm/utilities/pipelines/platform/**"
       - "!*/**/README.md"
 
 env:
