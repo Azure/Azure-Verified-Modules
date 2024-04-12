@@ -1,4 +1,27 @@
-Function Test-AvmGitHubTeamPermission {
+<#
+.SYNOPSIS
+  This function checks if a team has the expected permission on a repo.
+
+.DESCRIPTION
+  This function checks if a team has the expected permission on a repo.
+
+.PARAMETER Organization
+  The name of the GitHub Organization.
+
+.PARAMETER TeamName
+  The name of the GitHub Team.
+
+.PARAMETER RepoName
+  The name of the GitHub Repo.
+
+.PARAMETER ExpectedPermission
+  The expected permission for the team on the repo. `Admin | Write | Read | Triage | Maintain | None`
+
+.EXAMPLE
+  Test-AvmGitHubTeamPermission -Organization "myOrg" -TeamName "myTeam" -RepoName "myRepo" -ExpectedPermission "Admin"
+#>
+
+function Test-AvmGitHubTeamPermission {
     [CmdletBinding()]
     [OutputType([System.String])]
     param (

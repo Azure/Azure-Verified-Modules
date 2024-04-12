@@ -74,6 +74,7 @@ Function Invoke-AvmGitHubTeamLinter {
   . (Join-Path $PSScriptRoot 'Get-AvmGitHubTeamsData.ps1')
   . (Join-Path $PSScriptRoot 'Set-AvmGitHubTeamsIssue.ps1')
   . (Join-Path $PSScriptRoot 'Test-AvmGitHubTeamPermission.ps1')
+  . (Join-Path $PSScriptRoot 'Find-AvmGitHubTeamOwner.ps1')
 
   if ($TeamFilter -like '*All*') {
       $validateAll = $true
@@ -90,16 +91,38 @@ Function Invoke-AvmGitHubTeamLinter {
     $sourceData = Get-AvmCsvData -ModuleIndex $ModuleIndex
     $gitHubTeamsData = Get-AvmGitHubTeamsData -TeamFilter $TeamFilter
     $unmatchedTeams = @()
+
     # Iterate through each object in $csv
     foreach ($module in $sourceData) {
       # Assume no match is found initially
       $matchFound = $false
       if ($validateOwnerTeams -Or $validateAll) {
+
           # Check each object in $ghTeam for a match
           foreach ($ghTeam in $gitHubTeamsData) {
               if ($module.ModuleOwnersGHTeam -eq $ghTeam.name) {
                   # If a match is found, set flag to true and break out of the loop
                   $matchFound = $true
+
+                  # Validate Module Owner is part of team.
+                  $testOwner = Find-AvmGitHubTeamOwner -Organization Azure -TeamName $module.ModuleOwnersGHTeam -OwnerGitHubHandle $module.PrimaryModuleOwnerGHHandle
+                  if ($testOwner -match "Success") {
+                    Write-Verbose "Good News! Team: [$($ghTeam.name)] is configured with the expected owners: [$($module.PrimaryModuleOwnerGHHandle)]"
+                  }
+                  else {
+                    Write-Verbose "Uh-oh no incorrect owner configured for [$($ghTeam.name)]"
+                    # Create a custom object for the unmatched team
+                    $unmatchedTeam = [PSCustomObject]@{
+                        TeamName       = $module.ModuleContributorsGHTeam
+                        Validation     = "Owner Not Assigned in Team."
+                        Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
+                        GitHubTeamName = $ghTeam.name
+                        Resolution     = "Please assign the correct owners permissions to the team: [$($ghTeam.name)]. This can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only)."
+                    }
+                    # Add the custom object to the array
+                    $unmatchedTeams += $unmatchedTeam
+                    break
+                  }
 
                   # Validate if Parent Team is configured for Owners Team
                   if ($ValidateBicepParentConfiguration -and $matchFound) {
