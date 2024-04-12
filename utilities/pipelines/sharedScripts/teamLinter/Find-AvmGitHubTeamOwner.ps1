@@ -1,3 +1,25 @@
+<#
+.SYNOPSIS
+    This function is used to find the owner of a GitHub team and Validate it with the expected owner.
+
+.DESCRIPTION
+    This function is used to find the owner of a GitHub team and Validate it with the expected owner.
+
+.PARAMETER Organization
+    The name of the GitHub Organization.
+
+.PARAMETER TeamName
+    The name of the GitHub Team.
+
+.PARAMETER OwnerGitHubHandle
+    The GitHub handle of the expected owner of the team.
+
+.EXAMPLE
+    Find-AvmGitHubTeamOwner -Organization "myOrg" -TeamName "myTeam" -OwnerGitHubHandle "myOwner"
+#>
+
+
+
 function Find-AvmGitHubTeamOwner {
   [CmdletBinding()]
   [OutputType([System.String])]
