@@ -712,11 +712,12 @@ Additional folders `CAN` be created by module owners as required.
 
 For example, to validate parameters not covered by the `max` test due to conflicts, or to provide a real example scenario for a specific use case.
 
-If a module can deploy varying styles of the same resource, e.g. VMs can be Linux or Windows, each style should be tested as both `defaults` and `waf-aligned`. These names should be used as suffixes in the directory name to denote the style, e.g., for a VM we would expect to see:
-  - `/tests/e2e/defaults.linux/main.test.bicep`
-  - `/tests/e2e/waf-aligned.linux/main.test.bicep`
-  - `/tests/e2e/defaults.windows/main.test.bicep`
-  - `/tests/e2e/waf-aligned.windows/main.test.bicep`
+If a module can deploy varying styles of the same resource, e.g., VMs can be Linux or Windows, each style should be tested as both `defaults` and `waf-aligned`. These names should be used as suffixes in the directory name to denote the style, e.g., for a VM we would expect to see:
+
+- `/tests/e2e/defaults.linux/main.test.bicep`
+- `/tests/e2e/waf-aligned.linux/main.test.bicep`
+- `/tests/e2e/defaults.windows/main.test.bicep`
+- `/tests/e2e/waf-aligned.windows/main.test.bicep`
 
 <br>
 
