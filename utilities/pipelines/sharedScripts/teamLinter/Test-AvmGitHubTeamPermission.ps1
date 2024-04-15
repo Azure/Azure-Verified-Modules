@@ -19,6 +19,9 @@
 
 .EXAMPLE
   Test-AvmGitHubTeamPermission -Organization "myOrg" -TeamName "myTeam" -RepoName "myRepo" -ExpectedPermission "Admin"
+
+  Test if 'myTeam' has 'Admin' permission on 'myRepo' in 'myOrg'
+
 #>
 
 function Test-AvmGitHubTeamPermission {
