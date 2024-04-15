@@ -1,4 +1,5 @@
 variable "tags" {
-  type    = map(any)
-  default = {}
+  type     = map(string)
+  default  = null
+  description = "(Optional) Tags of the resource."
 }

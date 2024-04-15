@@ -33,7 +33,7 @@ Please note that the durations stated above are for a reasonable and useful resp
 
 <br>
 
-All of this will be automated via the use of the [Resource Management GitHub Policy Service](https://microsoft.github.io/GitOps/policies/resource-management.html) configuration and GitHub Actions, where possible and appropriate.
+All of this will be automated via the use of the Resource Management feature of the [Microsoft GitHub Policy Service](https://github.com/apps/microsoft-github-policy-service) and GitHub Actions, where possible and appropriate.
 
 Modules that have to have the AVM core team or Product Groups step in due to the module owners/contributors not responding, the AVM module will become "orphaned"; see [Module Lifecycle](/Azure-Verified-Modules/specs/shared/module-lifecycle/) for more info.
 

@@ -24,6 +24,7 @@ Status: Owners Identified :metal:,This module has its owners identified,FBEF2A
 Status: Module Available :green_circle:,The module is published,C8E6C9
 Status: Module Orphaned :eyes:,The module has no owner and is therefore orphaned at this time,F4A460
 Status: Response Overdue :triangular_flag_on_post:,When an issue/PR has not been responded to for X amount of days,850000
+Status: Looking For Assistance :duck:,This item is looking for anyone to help develop the code and submit a PR for resolution,03FCC2
 Type: Bug :bug:,Something isn't working,D73A4A
 Type: Documentation :page_facing_up:,Improvements or additions to documentation,0075CA
 Type: Duplicate :palms_up_together:,This issue or pull request already exists,CFD3D7

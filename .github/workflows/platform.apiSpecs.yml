@@ -75,7 +75,7 @@ jobs:
 
       - name: Azure Login
         id: login
-        uses: azure/login@v1
+        uses: azure/login@v2
         with:
           client-id: ${{ secrets.API_SPECS_OIDC_CLIENT_ID }}
           tenant-id: ${{ secrets.API_SPECS_OIDC_TENANT_ID }}

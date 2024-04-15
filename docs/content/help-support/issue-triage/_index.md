@@ -3,6 +3,7 @@ title: Issue Triage
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+geekdocCollapseSection: true
 ---
 
 This section provides information about the issue triage process and its automation, implemented across various AVM repositories.
