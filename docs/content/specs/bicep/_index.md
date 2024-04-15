@@ -686,9 +686,9 @@ Module owners **MUST** create the `defaults`, `waf-aligned` folders within their
 
 ##### Defaults tests (**MUST**)
 
-The `defaults` folder contains a test instance that deploys the module with the minimum set of required parameters. 
+The `defaults` folder contains a test instance that deploys the module with the minimum set of required parameters.
 
-This includes input parameters of type `Required` plus input parameters of type `Conditional` marked as required for WAF compliance. 
+This includes input parameters of type `Required` plus input parameters of type `Conditional` marked as required for WAF compliance.
 
 This instance has heavy reliance on the default values for other input parameters. Parameters of type `Optional` **SHOULD NOT** be used.
 
@@ -702,7 +702,7 @@ Parameters and dependencies which are not needed for WAF compliance, **SHOULD NO
 
 ##### Max tests (**SHOULD**)
 
-The `max` folder contains a test instance that deploys the module using a large parameter set, enabling most of the modules' features. 
+The `max` folder contains a test instance that deploys the module using a large parameter set, enabling most of the modules' features.
 
 The purpose of this instance is primarily parameter validation and not necessarily to serve as a real example scenario. Ideally, all features, extension resources and child resources should be enabled in this test, unless not possible due to conflicts, e.g., in case parameters are mutually exclusive.
 
