@@ -26,7 +26,7 @@ The following table summarizes the category identification codes used in this sp
 | Scope                                            | Functional requirements                 | Non-functional requirements                   |
 |--------------------------------------------------|-----------------------------------------|-----------------------------------------------|
 | Shared requirements (resource & pattern modules) | [BCPFR](#functional-requirements-bcpfr) | [BCPNFR](#non-functional-requirements-bcpnfr) |
-| Resource module level requirements               | *N/A*                                   | *N/A*                                         |
+| Resource module level requirements               | *N/A*                                   | [BCPRMNFR](#non-functional-requirements-bcprmnfr)                                      |
 | Pattern module level requirements                | *N/A*                                   | *N/A*                                         |
 
 <br>
@@ -465,10 +465,10 @@ Listed below are both functional and non-functional requirements for Bicep [AVM 
 
 <br>
 
-### Non-Functional Requirements (RMNFR)
+### Non-Functional Requirements (BCPRMNFR)
 
 {{< hint type=note >}}
-This section includes **resource module level, non-functional requirements (RMNFR)** for Bicep.
+This section includes **resource module level, non-functional requirements (BCPRMNFR)** for Bicep.
 {{< /hint >}}
 
 ---
@@ -477,22 +477,37 @@ This section includes **resource module level, non-functional requirements (RMNF
 
 #### ID: BCPRMNFR1 - Category: Testing - Expected Test Directories
 
-Module owners **MUST** create the `defaults`, `waf-aligned` folders within their `/tests/e2e/` directory in their module source code and `SHOULD` create a `max` folder also. Each folder will be used as described for various test cases.
+Module owners **MUST** create the `defaults`, `waf-aligned` folders within their `/tests/e2e/` directory in their resource module source code and **SHOULD** create a `max` folder also. Module owners **CAN** create additional folders as required. Each folder will be used as described for various test cases.
 
-##### `defaults` tests (**MUST**)
+##### Defaults tests (**MUST**)
 
-Default testsfolder contains test
-- **MUST** - `defaults` == minimum/required parameters/variables only, heavy reliance on the default values for other parameters/variables
+The `defaults` folder contains a test instance that deploys the module with the minimum set of required parameters. 
+
+This includes input parameters of type `Required` plus input parameters of type `Conditional` marked as required for WAF compliance. 
+
+This instance has heavy reliance on the default values for other input parameters. Parameters of type `Optional` **SHOULD NOT** be used.
 
 ##### WAF aligned tests (**MUST**)
 
-- **MUST** - `waf-aligned` == showing all parameters/variables for the module to be as WAF compliant as possible
+The `waf-aligned` folder contains a test instance that deploys the module in alignment with the best-practices of the Azure Well-Architected Framework.
+
+This includes input parameters of type `Required`, parameters of type `Conditional` marked as required for WAF compliance, and parameters of type `Optional` useful for WAF compliance.
+
+Parameters and dependencies which are not needed for WAF compliance, **SHOULD NOT** be included.
 
 ##### Max tests (**SHOULD**)
 
+The `max` folder contains a test instance that deploys the module using a large parameter set, enabling most of the modules' features. 
+
+The purpose of this instance is primarily parameter validation and not necessarily to serve as a real example scenario. Ideally, all features, extension resources and child resources should be enabled in this test, unless not possible due to conflicts, e.g., in case parameters are mutually exclusive.
+
 ##### Additional tests (**CAN**)
 
-- **SHOULD** - `<other folders for examples as required>` == all the possible parameters/variables set, some will be mutually exclusive for example. If a module can deploy varying styles of the same resource, e.g. VMs can be Linux or Windows, the names above should be used as suffixes in the directory name to denote the style, e.g. for a VM we would expect to see:
+Additional folders `CAN` be created by module owners as required.
+
+For example, to validate parameters not covered by the `max` test due to conflicts, or to provide a real example scenario for a specific use case.
+
+If a module can deploy varying styles of the same resource, e.g. VMs can be Linux or Windows, each style should be tested as both `defaults` and `waf-aligned`. These names should be used as suffixes in the directory name to denote the style, e.g., for a VM we would expect to see:
   - `/tests/e2e/defaults.linux/main.test.bicep`
   - `/tests/e2e/waf-aligned.linux/main.test.bicep`
   - `/tests/e2e/defaults.windows/main.test.bicep`
