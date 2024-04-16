@@ -1,9 +1,9 @@
 type privateEndpointType = {
   @description('Optional. The name of the private endpoint.')
   name: string?
-  
-    @description('Optional. The location to deploy the private endpoint to.')
-    location: string?
+
+  @description('Optional. The location to deploy the private endpoint to.')
+  location: string?
 
   @description('Optional. The name of the private link connection to create.')
   privateLinkServiceConnectionName: string?
