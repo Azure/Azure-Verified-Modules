@@ -2,7 +2,7 @@
 name: Deploy Hugo site to Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  # Runs on pushes targeting the default branch and everyday at 1 am to update dynamic info
   push:
     branches:
       - main
