@@ -3,6 +3,7 @@ title: Shared Specification (Bicep & Terraform)
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+url: /specs/shared/
 ---
 
 {{< hint type=tip >}}
