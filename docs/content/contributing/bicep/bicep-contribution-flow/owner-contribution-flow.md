@@ -21,7 +21,7 @@ As a **Bicep Module Owner** you need to be aware of the [AVM Contribution Proces
 
 ## 1. Owner Activities and Responsibilities
 
-Familiarise yourself with the responsibilities as **Module Owner** outlined in [Team Definitions & RACI](/Azure-Verified-Modules/specs/shared/team-definitions/#module-owners) and [Module Owner Responsibilities](/Azure-Verified-Modules/help-support/issue-triage/brm-issue-triage/#module-owner-responsibilities) in the [BRM Issue Triage](/Azure-Verified-Modules/help-support/issue-triage/brm-issue-triage/).
+Familiarise yourself with the responsibilities as **Module Owner** outlined in [Team Definitions & RACI](/Azure-Verified-Modules/specs-defs/team-definitions/#module-owners) and [Module Owner Responsibilities](/Azure-Verified-Modules/help-support/issue-triage/brm-issue-triage/#module-owner-responsibilities) in the [BRM Issue Triage](/Azure-Verified-Modules/help-support/issue-triage/brm-issue-triage/).
 
 1. Create GitHub teams as outlined in [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) and add respective parent teams:
 

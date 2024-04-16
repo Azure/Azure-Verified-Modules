@@ -23,7 +23,7 @@ flowchart TD
     CheckIndex -->IndexExistenceCheck{Does the module already <br> exist in an active/orphaned <br> state in respective index?}
     IndexExistenceCheck -->|No|A
     IndexExistenceCheck -->|Yes|EndExistenceCheck(Review existing/proposed AVM module)
-    EndExistenceCheck -->OrphanedCheck{Is the module <a href='/Azure-Verified-Modules/specs/shared/module-lifecycle/#orphaned-avm-modules'>orphaned</a>?}
+    EndExistenceCheck -->OrphanedCheck{Is the module <a href='/Azure-Verified-Modules/specs-defs/module-lifecycle/#orphaned-avm-modules'>orphaned</a>?}
     OrphanedCheck -->|No|ContactOwner[Contact module owner,<br> via GitHub issues on the related <br>repo, to discuss enhancements/<br>bugs/opportunities to contribute etc.]
     OrphanedCheck -->|Yes|OrphanOwnerYes(Locate the <a href='https://aka.ms/avm/orphanedmodules'>related issue</a> <br> and comment on:<br> - A feature/enhancement suggestion <br> - Indicating you wish to become the owner)
     OrphanOwnerYes -->B

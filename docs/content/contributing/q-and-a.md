@@ -205,11 +205,11 @@ You should use GitHub issues to propose changes or improvements for specific mod
 
 All issues created in a module repo will be automatically be picked up and tracked by the GitHub Policy Service. This service will take the necessary steps when escalation is needed as per the SLAs defined in the [Module Support][ModuleSupport] chapter .
 
-[AVMCoreTeam]: /Azure-Verified-Modules/specs/shared/team-definitions/#avm-core-team
+[AVMCoreTeam]: /Azure-Verified-Modules/specs-defs/team-definitions/#avm-core-team
 [BicepModules]: /Azure-Verified-Modules/indexes/bicep/
 [TFModules]: /Azure-Verified-Modules/indexes/terraform/
-[ModuleOwners]: /Azure-Verified-Modules/specs/shared/team-definitions/#module-owners
-[ModuleContributors]: /Azure-Verified-Modules/specs/shared/team-definitions/#module-contributors
+[ModuleOwners]: /Azure-Verified-Modules/specs-defs/team-definitions/#module-owners
+[ModuleContributors]: /Azure-Verified-Modules/specs-defs/team-definitions/#module-contributors
 [WAFAligned]: /Azure-Verified-Modules/faq/#what-does-avm-mean-by-waf-aligned
 [ModuleProposal]: https://aka.ms/AVM/ModuleProposal
 [ModuleSupport]: /Azure-Verified-Modules/help-support/module-support/

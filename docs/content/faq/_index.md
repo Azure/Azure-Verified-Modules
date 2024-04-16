@@ -66,7 +66,7 @@ CARML is an existing IaC Bicep module library effort, that was started by ISD an
 
 A lot of CARML's principles and architecture decisions will form the basis for AVM going forward. Most of the CARML modules today are very close to being AVM Resource Modules already and will only require a small number of changes to become AVM compliant.
 
-CARML never got to the stage of creating, at scale, modules like AVM [Pattern Modules](/Azure-Verified-Modules/specs/shared/module-classifications), but they were on its long-term roadmap.
+CARML never got to the stage of creating, at scale, modules like AVM [Pattern Modules](/Azure-Verified-Modules/specs-defs/module-classifications), but they were on its long-term roadmap.
 
 In summary, CARML will **evolve** to become the Bicep version of AVM. A notice will be placed on the CARML repo redirecting users and contributors to the AVM central repository as modules are evolved into AVM modules.​
 
@@ -96,13 +96,13 @@ This will be done in a phased approach, as follows:
 - A second phase including those modules that already have module owners associated, which will be migrated in a prioritized order based on customer demand, using telemetry.
 - A third phase including the remaining of the CARML modules, not yet having a module owner associated.
 
-Modules that won't have a module owner associated with them after they have been migrated to AVM will be marked as "[orphaned](/Azure-Verified-Modules/specs/shared/module-lifecycle/#orphaned-avm-modules)" and will be available for any Microsoft FTEs to pick up and become the module owner.
+Modules that won't have a module owner associated with them after they have been migrated to AVM will be marked as "[orphaned](/Azure-Verified-Modules/specs-defs/module-lifecycle/#orphaned-avm-modules)" and will be available for any Microsoft FTEs to pick up and become the module owner.
 
 The AVM core team plans to have migrated the majority of the CARML modules to AVM by the end of 2023.
 
 #### Terraform Timeline and Approach
 
-As the [AVM core team](/Azure-Verified-Modules/specs/shared/team-definitions/#avm-core-team) is not directly responsible for the development of the modules (that's the responsibility of the [module owners](/Azure-Verified-Modules/specs/shared/team-definitions/#module-owners)), there's no specific timeline available for the publication of Terraform modules.
+As the [AVM core team](/Azure-Verified-Modules/specs-defs/team-definitions/#avm-core-team) is not directly responsible for the development of the modules (that's the responsibility of the [module owners](/Azure-Verified-Modules/specs-defs/team-definitions/#module-owners)), there's no specific timeline available for the publication of Terraform modules.
 
 However, the AVM core team is focused on the following activities to facilitate and optimize the development process:
 
@@ -277,7 +277,7 @@ If any of these queries don't return any results, it means that no module in the
 
 If exists, you can comment on the [Module Proposal issue](https://aka.ms/AVM/ModuleProposals) of the module that you are interested in and the AVM Core Team will do the triage providing information about next steps.
 
-Having an understanding of roles & responsibilities is useful as well, you can find this information on the [Team Definitions & RACI | Azure Verified Modules](/Azure-Verified-Modules/specs/shared/team-definitions/) page.
+Having an understanding of roles & responsibilities is useful as well, you can find this information on the [Team Definitions & RACI | Azure Verified Modules](/Azure-Verified-Modules/specs-defs/team-definitions/) page.
 
 ---
 
@@ -320,7 +320,7 @@ For Microsoft FTEs only: see the **Internal** wiki for support workflow for more
 
 ### How are AVM modules updated/maintained?
 
-[Module owners](/Azure-Verified-Modules/specs/shared/team-definitions/#module-owners) are tasked to do with two types of maintenance:
+[Module owners](/Azure-Verified-Modules/specs-defs/team-definitions/#module-owners) are tasked to do with two types of maintenance:
 
 - Proactive: keeping track of the modules' underlying technology evolving, and keep modules up to date with the latest features and API versions.
 - Reactive: sometimes, mistakes are made that result in bugs and/or there might be features consumers ask for faster than module owners could proactively implement them. Consumers can request feature updates and bug fixes for existing modules [here](https://aka.ms/AVM/ModuleIssue).

@@ -3,6 +3,8 @@ title: Terraform Specific Specification
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+aliases:
+- /specs/terraform
 ---
 
 {{< hint type=tip >}}

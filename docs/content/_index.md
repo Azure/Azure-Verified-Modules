@@ -72,7 +72,7 @@ See [Module Support](/Azure-Verified-Modules/help-support/module-support) for mo
 
 1. Review [What, Why, How](/Azure-Verified-Modules/concepts/what-why-how/)
 
-2. Review the [Module Classification Definitions](/Azure-Verified-Modules/specs/shared/module-classifications/)
+2. Review the [Module Classification Definitions](/Azure-Verified-Modules/specs-defs/module-classifications/)
 
 3. Review the [Shared Specification](/Azure-Verified-Modules/specs/shared/)
 

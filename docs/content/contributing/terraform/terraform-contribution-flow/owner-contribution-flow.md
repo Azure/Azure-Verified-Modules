@@ -38,7 +38,7 @@ Make sure module authors/contributors tested their module in their environment b
 ### 1. Owner Activities and Responsibilities
 
 <!-- TODO: Add TF Issue Triage once done -->
-Familiarise yourself with the responsibilities as **Module Owner** outlined in [Team Definitions & RACI](https://azure.github.io/Azure-Verified-Modules/specs/shared/team-definitions/#module-owners) and in the [TF Issue Triage](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/).
+Familiarise yourself with the responsibilities as **Module Owner** outlined in [Team Definitions & RACI](https://azure.github.io/Azure-Verified-Modules/specs-defs/team-definitions/#module-owners) and in the [TF Issue Triage](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/).
 
 1. Watch Pull Request (PR) and issue (questions/feedback) activity for your module(s) in your repository and ensure that PRs are reviewed and merged in a timely manner as outlined in [SNFR11](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times).
 

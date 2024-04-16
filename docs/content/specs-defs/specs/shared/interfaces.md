@@ -3,6 +3,8 @@ title: Interfaces
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+aliases:
+- /specs/shared/interfaces
 ---
 
 Below are the interfaces/schemas for the AVM Resource Modules features/extension resources as detailed in [RMFR4](/Azure-Verified-Modules/specs/shared/#id-rmfr4---category-composition---avm-consistent-feature--extension-resources-value-add) and [RMFR5](/Azure-Verified-Modules/specs/shared/#id-rmfr5---category-composition---avm-consistent-feature--extension-resources-value-add-interfacesschemas)
