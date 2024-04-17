@@ -708,7 +708,7 @@ The purpose of this instance is primarily parameter validation and not necessari
 
 {{< hint type=note >}}
 
-Please note that this test is not mandatory to have, but recommended for bulk parameter validation. It can be skipped in case the module parameter validation is covered already by additional, more scenario specific tests.
+Please note that this test is not mandatory to have, but recommended for bulk parameter validation. It can be skipped in case the module parameter validation is covered already by additional, more scenario-specific tests.
 
 {{< /hint >}}
 
