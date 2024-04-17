@@ -214,7 +214,7 @@ Before opening a Pull Request to the Bicep Public Registry, ensure your module i
 
 For example, to meet [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing), ensure the updated module is deployable against a testing Azure subscription and compliant with the intended configuration.
 
-Depending on the type of contribution you implemented (for example, a new module feature) we would kindly ask you to also update the `e2e` test run by the pipeline. For a new parameter this could mean to either add its usage to an existing test file, or to add an entirely new test as per [BCPNFR9](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr9---category-testing---expected-test-directories).
+Depending on the type of contribution you implemented (for example, a new resource module feature) we would kindly ask you to also update the `e2e` test run by the pipeline. For a new parameter this could mean to either add its usage to an existing test file, or to add an entirely new test as per [BCPRMNFR1](/Azure-Verified-Modules/specs/bicep/#id-bcprmnfr1---category-testing---expected-test-directories).
 
 Once the contribution is implemented and the changes are pushed to your forked repository, we kindly ask you to validate your updates in your own cloud environment before requesting to merge them to the main repo. Test your code leveraging the forked AVM CI environment you configured before
 
@@ -226,7 +226,8 @@ In case your contribution involves changes to a module, you can also optionally 
 
 ### Creating `e2e` tests
 
-As per [BCPNFR9](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr9---category-testing---expected-test-directories), the module must contain a minimum set of deployment test cases, but beyond those you're free to implement any additional, meaningful test that you see fit. Each test is implemented in its own test folder, containing at least a `main.test.bicep` and optionally any amount of extra deployment files that you may require (e.g., to deploy dependencies using a `dependencies.bicep` that you reference in the test template file).
+As per [BCPRMNFR1](/Azure-Verified-Modules/specs/bicep/#id-bcprmnfr1---category-testing---expected-test-directories), a resource module must contain a minimum set of deployment test cases, while for pattern modules there is no restriction on the naming each deployment test must have.
+In either case, you're free to implement any additional, meaningful test that you see fit. Each test is implemented in its own test folder, containing at least a `main.test.bicep` and optionally any amount of extra deployment files that you may require (e.g., to deploy dependencies using a `dependencies.bicep` that you reference in the test template file).
 
 To get started implementing your test in the `main.test.bicep` file, we recommend the following guidelines:
 
