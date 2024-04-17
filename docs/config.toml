@@ -2,6 +2,8 @@ baseURL = "https://azure.github.io/Azure-Verified-Modules"
 title = "Azure Verified Modules"
 theme = "hugo-geekdoc"
 
+ignoreLogs = ['error-remote-getjson']
+
 # Required to get well formatted code blocks
 pygmentsUseClasses = true
 pygmentsCodeFences = true
