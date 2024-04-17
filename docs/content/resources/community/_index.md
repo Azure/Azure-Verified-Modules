@@ -22,4 +22,4 @@ Let's make each community call a vibrant celebration of connection, collaboratio
 ## Upcoming Event
 
 ### 21st May 2024
-This occurrence will be optimized for EMEA/APJ time zones. To register for the event, please visit: https://aka.ms/AVM/CommunityCall.
+This occurrence will be optimized for EMEA/APJ time zones. To register for the event, please visit: [https://aka.ms/AVM/CommunityCall](https://aka.ms/AVM/CommunityCall).
