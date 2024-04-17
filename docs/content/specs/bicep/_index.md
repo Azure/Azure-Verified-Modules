@@ -706,6 +706,12 @@ The `max` folder contains a test instance that deploys the module using a large 
 
 The purpose of this instance is primarily parameter validation and not necessarily to serve as a real example scenario. Ideally, all features, extension resources and child resources should be enabled in this test, unless not possible due to conflicts, e.g., in case parameters are mutually exclusive.
 
+{{< hint type=note >}}
+
+Please note that this test is not mandatory to have, but recommended for bulk parameter validation. It can be skipped in case the module parameter validation is covered already by additional, more scenario specific tests.
+
+{{< /hint >}}
+
 ##### Additional tests (**CAN**)
 
 Additional folders `CAN` be created by module owners as required.
