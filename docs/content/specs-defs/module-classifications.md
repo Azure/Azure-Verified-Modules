@@ -3,6 +3,7 @@ title: Module Classifications
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+url: /specs/shared/module-classifications/
 ---
 
 AVM defines two module classifications, **Resource Modules** and **Pattern Modules**, that can be created, published, and consumed, these are defined further in the table below:
