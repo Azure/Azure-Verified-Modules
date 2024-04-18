@@ -88,7 +88,7 @@ make docs
 
 {{< hint type=note >}}
 
-Each time in the following sections we refer to 'your xzy', it is an indicator that you have to change something in your own environment.
+Each time in the following sections we refer to 'your xyz', it is an indicator that you have to change something in your own environment.
 
 {{< /hint >}}
 
@@ -130,35 +130,35 @@ AVM performs end-to-end (e2e) test dpeloyments of all modules in Azure for valid
 
 1. Have/create an Azure Active Directory Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
 
-- [Create a service principal (Azure CLI)](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1) - _**Recommended**_
-- [Create a service principal (Azure Portal)](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal)
-- [Create a service principal (PowerShell)](https://learn.microsoft.com/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
-- [Find Service Principal object ID](https://learn.microsoft.com/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
-- [Find managed Identity Service Principal](https://learn.microsoft.com/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
-- Note down the following pieces of information
-- Application (Client) ID
-- Service Principal Secret (password)
-- **Optional:** Tenant ID
-- **Optional:** Subscription ID
+   - [Create a service principal (Azure CLI)](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1) - _**Recommended**_
+   - [Create a service principal (Azure Portal)](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal)
+   - [Create a service principal (PowerShell)](https://learn.microsoft.com/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
+   - [Find Service Principal object ID](https://learn.microsoft.com/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
+   - [Find managed Identity Service Principal](https://learn.microsoft.com/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
+   - Note down the following pieces of information
+   - Application (Client) ID
+   - Service Principal Secret (password)
+   - **Optional:** Tenant ID
+   - **Optional:** Subscription ID
 
-```bash
-# Linux/MacOs
-export ARM_SUBSCRIPTION_ID=$(az account show --query id --output tsv) # or set <subscription_id>
-export ARM_TENANT_ID=$(az account show --query tenantId --output tsv) # or set <tenant_id>
-export ARM_CLIENT_ID=<client_id>
-export ARM_CLIENT_SECRET=<service_principal_password>
+    ```bash
+    # Linux/MacOs
+    export ARM_SUBSCRIPTION_ID=$(az account show --query id --output tsv) # or set <subscription_id>
+    export ARM_TENANT_ID=$(az account show --query tenantId --output tsv) # or set <tenant_id>
+    export ARM_CLIENT_ID=<client_id>
+    export ARM_CLIENT_SECRET=<service_principal_password>
 
-# Windows/Powershell
-$env:ARM_SUBSCRIPTION_ID = $(az account show --query id --output tsv) # or set <subscription_id>
-$env:ARM_TENANT_ID = $(az account show --query tenantId --output tsv) # or set <tenant_id>
-$env:ARM_CLIENT_ID = "<client_id>"
-$env:ARM_CLIENT_SECRET = "<service_principal_password>"
+    # Windows/Powershell
+    $env:ARM_SUBSCRIPTION_ID = $(az account show --query id --output tsv) # or set <subscription_id>
+    $env:ARM_TENANT_ID = $(az account show --query tenantId --output tsv) # or set <tenant_id>
+    $env:ARM_CLIENT_ID = "<client_id>"
+    $env:ARM_CLIENT_SECRET = "<service_principal_password>"
 
-```
+    ```
 
 2. Change to the root of your module repository and run `./avm docscheck` (Linux/MacOs) / `avm.bat docscheck` (Windows) to verify the container image is working as expected or needs to be pulled first. You will need this later.
 
-<img src="/Azure-Verified-Modules/img/contribution/pullImage.png" alt="Pull latest azterraform container image." width=100%>
+    <img src="/Azure-Verified-Modules/img/contribution/pullImage.png" alt="Pull latest azterraform container image." width=100%>
 
 <br>
 
@@ -192,9 +192,6 @@ The avm script also makes sure to pull the latest `mcr.microsoft.com/azterraform
 
 {{< /hint >}}
 
-- [4.1 Run pre-commit and pr-check](#41-run-pre-commit-and-pr-check)
-- [4.2 Run e2e tests](#42-run-e2e-tests)
-
 #### 4.1. Run pre-commit and pr-check
 
 The following commands will run all pre-commit checks and the pr-check.
@@ -225,21 +222,21 @@ With the help of the [avm](https://github.com/Azure/terraform-azurerm-avm-templa
 
 1. Run e2e tests with the help of the azterraform docker container image.
 
-```bash
-# Linux/MacOs
+    ```bash
+    # Linux/MacOs
 
-docker run --rm -v $(pwd):/src -w /src -v $HOME/.azure:/root/.azure -e TF_IN_AUTOMATION -e AVM_MOD_PATH=/src -e AVM_EXAMPLE=<example_folder> -e ARM_SUBSCRIPTION_ID -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET mcr.microsoft.com/azterraform:latest make test-example
+    docker run --rm -v $(pwd):/src -w /src -v $HOME/.azure:/root/.azure -e TF_IN_AUTOMATION -e AVM_MOD_PATH=/src -e AVM_EXAMPLE=<example_folder> -e ARM_SUBSCRIPTION_ID -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET mcr.microsoft.com/azterraform:latest make test-example
 
-# Powershell
+    # Powershell
 
-docker run --rm -v ${pwd}:/src -w /src -v $HOME/.azure:/root/.azure -e TF_IN_AUTOMATION -e AVM_MOD_PATH=/src -e AVM_EXAMPLE=<example_folder> -e ARM_SUBSCRIPTION_ID -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET mcr.microsoft.com/azterraform:latest make test-example
-```
+    docker run --rm -v ${pwd}:/src -w /src -v $HOME/.azure:/root/.azure -e TF_IN_AUTOMATION -e AVM_MOD_PATH=/src -e AVM_EXAMPLE=<example_folder> -e ARM_SUBSCRIPTION_ID -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET mcr.microsoft.com/azterraform:latest make test-example
+    ```
 
-Make sure to replace `<client_id>` and `<service_principal_password>` with the values of your service principal as well as `<example_folder>` (e.g. `default`) with the name of the example folder you want to run e2e tests for.
+    Make sure to replace `<client_id>` and `<service_principal_password>` with the values of your service principal as well as `<example_folder>` (e.g. `default`) with the name of the example folder you want to run e2e tests for.
 
-2. Run e2e tests with the help of terraform init/plan/apply
+2. Run e2e tests with the help of terraform init/plan/apply.
 
-Simply run `terraform init` and `terraform apply` in the `example` folder you want to run e2e tests for. Make sure to set the environment variables `ARM_SUBSCRIPTION_ID`, `ARM_TENANT_ID`, `ARM_CLIENT_ID` and `ARM_CLIENT_SECRET` before you run `terraform init` and `terraform apply` or make sure you have a valid Azure CLI session and are logged in with `az login`.
+    Simply run `terraform init` and `terraform apply` in the `example` folder you want to run e2e tests for. Make sure to set the environment variables `ARM_SUBSCRIPTION_ID`, `ARM_TENANT_ID`, `ARM_CLIENT_ID` and `ARM_CLIENT_SECRET` before you run `terraform init` and `terraform apply` or make sure you have a valid Azure CLI session and are logged in with `az login`.
 
 <br>
 

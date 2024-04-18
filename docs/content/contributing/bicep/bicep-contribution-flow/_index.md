@@ -67,7 +67,7 @@ When implementing the GitFlow process as described, it is advisable to configure
 
 {{< hint type=note >}}
 
-Each time in the following sections we refer to 'your xzy', it is an indicator that you have to change something in your own environment.
+Each time in the following sections we refer to 'your xyz', it is an indicator that you have to change something in your own environment.
 
 {{< /hint >}}
 
@@ -315,11 +315,11 @@ Finally, once you are satisfied with your contribution and validated it, open a 
 3. Follow instructions you find in the PR template.
 4. If applicable (i.e., a module is created/updated), please reference the badge status of your pipeline run. This badge will show the reviewer that the code changes were successfully validated & tested in your environment. To create a badge, first select the three dots (`...`) at the top right of the pipeline, and then chose the `Create status badge` option.
 
-<img src="../../../img/contribution/badgeDropdown.png" alt="Badge dropdown" height="200">
+    <img src="../../../img/contribution/badgeDropdown.png" alt="Badge dropdown" height="200">
 
-In the opening pop-up, you first need to select your branch and then click on the `Copy status badge Markdown`
+    In the opening pop-up, you first need to select your branch and then click on the `Copy status badge Markdown`
 
-<img src="../../../img/contribution/pipelineBadge.png" alt="Status Badge" height="400">
+    <img src="../../../img/contribution/pipelineBadge.png" alt="Status Badge" height="400">
 
 <!--
 ## Publishing to the Registry
