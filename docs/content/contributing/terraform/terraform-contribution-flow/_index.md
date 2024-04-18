@@ -11,11 +11,16 @@ geekdocAnchor: true
 
 {{< mermaid class="text-center" >}}
 flowchart TD
-A(<a href='/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#1-fork-the-module-source-repository'>1. Fork the module source repository </a>)
-B(<a href='/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#3-setup-your-azure-test-environment'>2. Setup your Azure test environment </a>)
-C(<a href='/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#5-implement-your-contribution'>3. Implement your contribution </a>)
-D{<a href='/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#6-run-pre-commit-checks'>4. Pre-commit Checks <br> succesful?</a>}
-E(<a href='/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#7-create-a-pull-request-to-the-upstream-repository'>5. Create a pull request to the upstream repository</a>)
+A(1. Fork the module source repository)
+  click A "/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#1-fork-the-module-source-repository"
+B(2. Setup your Azure test environment)
+  click B "/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#2-prepare-your-azure-test-environment"
+C(3. Implement your contribution)
+  click C "/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#3-implement-your-contribution"
+D{4. Pre-commit Checks <br> succesful?}
+  click D "/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#4-run-pre-commit-checks"
+E(5. Create a pull request to the upstream repository)
+  click E "/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#5-create-a-pull-request-to-the-upstream-repository"
 A --> B
 B --> C
 C --> D
@@ -171,7 +176,7 @@ To implement your contribution, we kindly ask you to first review the [shared](/
 
 <br>
 
-### 5. Run Pre-commit Checks
+### 4. Run Pre-commit Checks
 
 {{< hint type=important >}}
 
@@ -187,10 +192,10 @@ The avm script also makes sure to pull the latest `mcr.microsoft.com/azterraform
 
 {{< /hint >}}
 
-- [5.1 Run pre-commit and pr-check](#51-run-pre-commit-and-pr-check)
-- [5.2 Run e2e tests](#52-run-e2e-tests)
+- [4.1 Run pre-commit and pr-check](#41-run-pre-commit-and-pr-check)
+- [4.2 Run e2e tests](#42-run-e2e-tests)
 
-#### 5.1. Run pre-commit and pr-check
+#### 4.1. Run pre-commit and pr-check
 
 The following commands will run all pre-commit checks and the pr-check.
 
@@ -208,7 +213,7 @@ avm.bat pre-commit
 avm.bat pr-check
 ```
 
-#### 5.2 Run e2e tests
+#### 4.2 Run e2e tests
 
 Currently you have two options to run e2e tests:
 
@@ -242,7 +247,7 @@ Simply run `terraform init` and `terraform apply` in the `example` folder you wa
 
 <br>
 
-### 6. Create a pull request to the upstream repository
+### 5. Create a pull request to the upstream repository
 
 Once you are satisfied with your contribution and validated it, open a PR from your forked repository to the original Terraform Module repository. Make sure you:
 
@@ -280,10 +285,3 @@ Once you are satisfied with your contribution and validated it, open a PR from y
 - Cross-reagion replication (data redundancy) used where applicable as per spec [SFR6](/Azure-Verified-Modules/specs/shared/#id-sfr6---category-composition---data-redundancy)
 - Cross-language collaboration as per spec [SNFR21](/Azure-Verified-Modules/specs/shared/#id-snfr21---category-publishing---cross-language-collaboration)
 - RP/PG collaboration as per [RMNFR3](/Azure-Verified-Modules/specs/shared/#id-rmnfr3---category-composition---rp-collaboration)
-
-<br>
-
----
-
-<br>
-```
