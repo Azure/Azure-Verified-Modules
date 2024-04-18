@@ -111,7 +111,8 @@ These will also be provided as a comment on the module proposal, once accepted, 
 
 {{< /hint >}}
 
-Modules **MUST** provide the capability to collect deployment/usage telemetry, via a blank ARM deployment, as detailed in [Telemetry](/Azure-Verified-Modules/help-support/telemetry/) further.
+Modules **MUST** provide the capability to collect deployment/usage telemetry, via a blank ARM deployment, as detailed in [Telemetry](/Azure-Verified-Modules/help-support/telemetry/) further. Telemetry data should be collected on the "top level" `main.bicep` or `main.telemetry.tf` file; it is not necessary to include it in any nested files (child modules).
+
 
 To highlight that AVM modules use telemetry, an information notice **MUST** be included in the footer of each module's `README.md` file with the below content. (See more details on this requirement, [here](https://docs.opensource.microsoft.com/releasing/general-guidance/telemetry/).)
 
