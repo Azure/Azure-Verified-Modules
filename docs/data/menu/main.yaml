@@ -136,3 +136,6 @@ main:
     ref: "/glossary"
   - name: "Resources"
     ref: "/resources"
+    sub:
+      - name: "Community"
+        ref: "resources/community"
