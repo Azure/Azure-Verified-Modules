@@ -130,16 +130,16 @@ AVM performs end-to-end (e2e) test dpeloyments of all modules in Azure for valid
 
 1. Have/create an Azure Active Directory Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
 
-   - [Create a service principal (Azure CLI)](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1) - _**Recommended**_
-   - [Create a service principal (Azure Portal)](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal)
-   - [Create a service principal (PowerShell)](https://learn.microsoft.com/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
-   - [Find Service Principal object ID](https://learn.microsoft.com/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
-   - [Find managed Identity Service Principal](https://learn.microsoft.com/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
-   - Note down the following pieces of information
-   - Application (Client) ID
-   - Service Principal Secret (password)
-   - **Optional:** Tenant ID
-   - **Optional:** Subscription ID
+    - [Create a service principal (Azure CLI)](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1) - _**Recommended**_
+    - [Create a service principal (Azure Portal)](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal)
+    - [Create a service principal (PowerShell)](https://learn.microsoft.com/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
+    - [Find Service Principal object ID](https://learn.microsoft.com/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
+    - [Find managed Identity Service Principal](https://learn.microsoft.com/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
+    - Note down the following pieces of information
+    - Application (Client) ID
+    - Service Principal Secret (password)
+    - **Optional:** Tenant ID
+    - **Optional:** Subscription ID
 
     ```bash
     # Linux/MacOs
@@ -153,7 +153,6 @@ AVM performs end-to-end (e2e) test dpeloyments of all modules in Azure for valid
     $env:ARM_TENANT_ID = $(az account show --query tenantId --output tsv) # or set <tenant_id>
     $env:ARM_CLIENT_ID = "<client_id>"
     $env:ARM_CLIENT_SECRET = "<service_principal_password>"
-
     ```
 
 2. Change to the root of your module repository and run `./avm docscheck` (Linux/MacOs) / `avm.bat docscheck` (Windows) to verify the container image is working as expected or needs to be pulled first. You will need this later.
