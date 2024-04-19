@@ -150,7 +150,7 @@ Function Invoke-AvmGitHubTeamLinter {
                       Write-Verbose "Found team: $($module.ModuleOwnersGHTeam) Checking Permissions configuration"
                       if ($module.ModuleOwnersGHTeam -like "*-tf") {
                           $repoName = "terraform-azurerm-$($module.ModuleName)"
-                          $repoConfiguration = Test-AvmGitHubTeamPermission -Organization Azure -TeamName $module.ModuleOwnersGHTeam -RepoName $repoName ExpectedPermission "Admin"
+                          $repoConfiguration = Test-AvmGitHubTeamPermission -Organization Azure -TeamName $module.ModuleOwnersGHTeam -RepoName $repoName -ExpectedPermission "Admin"
                           if ($repoConfiguration -match "Success") {
                               Write-Verbose "Good News! Team: [$($module.ModuleOwnersGHTeam)] is configured with the expected permission: [admin] on Repo: [$repoName] "
                           }
