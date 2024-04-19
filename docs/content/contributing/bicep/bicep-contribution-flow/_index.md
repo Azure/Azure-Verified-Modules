@@ -11,12 +11,18 @@ geekdocAnchor: true
 
 {{< mermaid class="text-center" >}}
 flowchart TD
-A(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment'>1. Setup your Azure test environment </a>)
-B(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment'>2. Fork the module source repository</a>)
-C(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#3-configure-your-ci-environment'>3. Configure CI environment </a> <br> For module tests)
-D(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution'>4. Implementing your contribution </a><br> Refer to Gitflow Diagram below)
-E{<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests'>5. Workflow test <br> completed <br> successfully?</a>}
-F(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry'>6. Create a pull request to the upstream repository</a>)
+A(1. Setup your Azure test environment)
+  click A "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment"
+B(2. Fork the module source repository)
+  click B "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#2-fork-the-module-source-repository"
+C(3. Configure CI environment <br> For module tests)
+  click C "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#3-configure-your-ci-environment"
+D(4. Implementing your contribution<br> Refer to Gitflow Diagram below)
+  click D "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution"
+E{5. Workflow test <br> completed <br> successfully?}
+  click E "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests"
+F(6. Create a pull request to the upstream repository)
+  click F "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry"
 A --> B
 B --> C
 C --> D
@@ -61,7 +67,7 @@ When implementing the GitFlow process as described, it is advisable to configure
 
 {{< hint type=note >}}
 
-Each time in the following sections we refer to 'your xzy', it is an indicator that you have to change something in your own environment.
+Each time in the following sections we refer to 'your xyz', it is an indicator that you have to change something in your own environment.
 
 {{< /hint >}}
 
@@ -309,11 +315,11 @@ Finally, once you are satisfied with your contribution and validated it, open a 
 3. Follow instructions you find in the PR template.
 4. If applicable (i.e., a module is created/updated), please reference the badge status of your pipeline run. This badge will show the reviewer that the code changes were successfully validated & tested in your environment. To create a badge, first select the three dots (`...`) at the top right of the pipeline, and then chose the `Create status badge` option.
 
-<img src="../../../img/contribution/badgeDropdown.png" alt="Badge dropdown" height="200">
+    <img src="../../../img/contribution/badgeDropdown.png" alt="Badge dropdown" height="200">
 
-In the opening pop-up, you first need to select your branch and then click on the `Copy status badge Markdown`
+    In the opening pop-up, you first need to select your branch and then click on the `Copy status badge Markdown`
 
-<img src="../../../img/contribution/pipelineBadge.png" alt="Status Badge" height="400">
+    <img src="../../../img/contribution/pipelineBadge.png" alt="Status Badge" height="400">
 
 <!--
 ## Publishing to the Registry
