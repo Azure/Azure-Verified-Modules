@@ -46,3 +46,11 @@ Set-AVMModule (...)
 ```
 
 {{< /hint >}}
+
+{{< hint type=tip >}}
+
+For modules that require the generation of files on multiple-levels (for example, a module with child modules such as the 'Key Vault' module with its 'Secret' child module) it is highly recommended to make use of the `-Recurse` parameter.
+
+This parameter will ensure that the script not only generates the files for the provided module folder path, but also all its nested module folder paths.
+
+{{< /hint >}}

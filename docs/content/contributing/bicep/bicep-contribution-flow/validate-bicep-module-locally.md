@@ -41,3 +41,11 @@ Test-ModuleLocally (...)
 ```
 
 {{< /hint >}}
+
+{{< hint type=important >}}
+
+**Important**: As the script emulates the testing logic of the CI environment, also tokens such as `#_namePrefix_#` are replaced by the script. However, in addition to the CI environment, it also reverses the token replacement to recover the files' original state. As such, ensure that you use a `namePrefix` value that is unlikely to overlap with any string value in module folder you want to test.
+
+For example, do not use `avm`, as the reverse token replacement would incorrectly replace the deployment name `avmTelemetry` found in each module to `#_namePrefix_#Telemetry`.  
+
+{{< /hint >}}
