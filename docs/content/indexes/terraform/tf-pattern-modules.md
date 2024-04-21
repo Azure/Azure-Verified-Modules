@@ -28,7 +28,7 @@ This page contains various views of the module index (catalog) for **Terraform P
 ## Module catalog
 
 {{< hint type=note >}}
-Modules listed below that aren't shown with the status of **`Module Available 🟢`**, are currently in development and are not yet available for use. For proposed modules, see the [Proposed modules](#proposed-modules---) section below.
+Modules listed below that aren't shown with the status of **`Module Available 🟢`**, are currently in development and are not yet available for use. For proposed modules, see the [Proposed modules](/Azure-Verified-Modules/indexes/terraform/tf-pattern-modules/#proposed-modules---) section below.
 {{< /hint >}}
 
 The following table shows the number of all available, orphaned and proposed **Terraform Pattern Modules**.
