@@ -31,6 +31,8 @@ Optional. An array that controls which columns / data points should be added to 
 - Diag: Adds a column indicating if the module supports Diagnostic Settings
 - PE: Adds a column indicating if the module supports Private Endpoints
 - PIP: Adds a column indicating if the module supports Public IP Addresses
+- CMK: Adds a column indicating if the module supports Customer Managed Keys
+- Identity: Adds a column indicating if the module supports managed identities
 
 .PARAMETER RepositoryName
 Optional. The name of the repository the code resides in. Required if 'ColumnsToInclude.Status' is 'true'
@@ -64,8 +66,8 @@ In the above example, the module has 5 direct children, 4 of them have direct ch
 #>
 function Get-ModulesFeatureOutline {
 
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseOutputTypeCorrectly', '', Justification='It has 3 different output types, not one. It''s a false-positive.')]
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingPositionalParameters', '', Justification='For Join-Path it''s very difficult to read the cmdlet without positional parameters.')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseOutputTypeCorrectly', '', Justification = 'It has 3 different output types, not one. It''s a false-positive.')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingPositionalParameters', '', Justification = 'For Join-Path it''s very difficult to read the cmdlet without positional parameters.')]
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
@@ -75,7 +77,7 @@ function Get-ModulesFeatureOutline {
         [string] $ModulesRepoRootPath,
 
         [Parameter(Mandatory = $false)]
-        [ValidateSet('Status', 'RBAC', 'Locks', 'Tags', 'Diag', 'PE', 'PIP')]
+        [ValidateSet('Status', 'RBAC', 'Locks', 'Tags', 'Diag', 'PE', 'PIP', 'CMK', 'Identity')]
         [string[]] $ColumnsToInclude = @(
             'Status',
             'RBAC',
@@ -83,7 +85,9 @@ function Get-ModulesFeatureOutline {
             'Tags',
             'Diag',
             'PE',
-            'PIP'
+            'PIP',
+            'CMK',
+            'Identity'
         ),
 
         [Parameter(Mandatory = $false)]
@@ -213,6 +217,26 @@ function Get-ModulesFeatureOutline {
                 $moduleDataItem['PIP'] = $false
             }
         }
+        
+        # Supports CMK
+        if ($ColumnsToInclude -contains 'CMK') {
+            if ([regex]::Match($moduleContentString, '(?m)^\s*param customerManagedKey customerManagedKeyType').Success) {
+                $summaryData.supportsCMKDeployment++
+                $moduleDataItem['CMK'] = $true
+            } else {
+                $moduleDataItem['CMK'] = $false
+            }
+        }
+
+        # Supports Identity
+        if ($ColumnsToInclude -contains 'Identity') {
+            if ([regex]::Match($moduleContentString, '(?m)^\s*param managedIdentities managedIdentitiesType').Success) {
+                $summaryData.supportsIdentityDeployment++
+                $moduleDataItem['Identity'] = $true
+            } else {
+                $moduleDataItem['Identity'] = $false
+            }
+        }
 
         # Result
         $moduleData += $moduleDataItem
@@ -235,7 +259,9 @@ function Get-ModulesFeatureOutline {
                     if ($ColumnsToInclude -contains 'Diag') { $resultObject.Diag = $_.Diag }
                     if ($ColumnsToInclude -contains 'PE') { $resultObject.PE = $_.PE }
                     if ($ColumnsToInclude -contains 'PIP') { $resultObject.PIP = $_.PIP }
-
+                    if ($ColumnsToInclude -contains 'CMK') { $resultObject.CMK = $_.CMK }
+                    if ($ColumnsToInclude -contains 'Identity') { $resultObject.Identity = $_.Identity }
+I
                     # Return result
                     [PSCustomObject] $resultObject
                 }
