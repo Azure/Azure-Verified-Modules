@@ -220,7 +220,7 @@ function Get-ModulesFeatureOutline {
         
         # Supports CMK
         if ($ColumnsToInclude -contains 'CMK') {
-            if ([regex]::Match($moduleContentString, '(?m)^\s*param customerManagedKey customerManagedKeyType\s*=.+').Success) {
+            if ([regex]::Match($moduleContentString, '(?m)^\s*param customerManagedKey customerManagedKeyType').Success) {
                 $summaryData.supportsCMKDeployment++
                 $moduleDataItem['CMK'] = $true
             } else {
@@ -230,7 +230,7 @@ function Get-ModulesFeatureOutline {
 
         # Supports Identity
         if ($ColumnsToInclude -contains 'Identity') {
-            if ([regex]::Match($moduleContentString, '(?m)^\s*param managedIdentities managedIdentitiesType\s*=.+').Success) {
+            if ([regex]::Match($moduleContentString, '(?m)^\s*param managedIdentities managedIdentitiesType').Success) {
                 $summaryData.supportsIdentityDeployment++
                 $moduleDataItem['Identity'] = $true
             } else {
