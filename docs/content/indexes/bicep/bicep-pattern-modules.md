@@ -33,7 +33,7 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 The following table shows the number of all available, orphaned and planned **Bicep Pattern Modules**.
 
-{{< moduleStats language="Bicep" moduleType="Pattern" showLanguage=false showClassification=false >}}
+{{< moduleStats language="Bicep" moduleType="Pattern" showLanguage=true showClassification=true >}}
 
 <br>
 

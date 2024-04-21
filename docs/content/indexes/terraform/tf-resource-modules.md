@@ -33,7 +33,7 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 The following table shows the number of all available, orphaned and planned **Terraform Resource Modules**.
 
-{{< moduleStats language="Terraform" moduleType="Resource" showLanguage=false showClassification=false >}}
+{{< moduleStats language="Terraform" moduleType="Resource" showLanguage=true showClassification=true >}}
 
 <br>
 
