@@ -3,6 +3,7 @@ title: Specifications & Definitions
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+url: /specs/
 ---
 
 This section lists AVM's Specifications & Definitions.

@@ -25,10 +25,16 @@ Additional internal content available for Microsoft FTEs only, [here](https://de
 
 ## 📔 Blog posts
 
-- [Introducing Azure Verified Modules!](https://aka.ms/AVM/intro/blog)
-- [Azure Verified Modules - Monthly Update Jan 24'](https://techcommunity.microsoft.com/t5/azure-tools-blog/azure-verified-modules-monthly-update-jan-24/ba-p/4048910)
-- [Azure Verified Modules - Monthly Update February 24'](https://techcommunity.microsoft.com/t5/azure-tools-blog/azure-verified-modules-monthly-update-february/ba-p/4074932)
+See the latest blog posts on Azure Verified Modules:
 
+- [Azure Verified Modules - Monthly Update](https://aka.ms/avm/monthly/latest)
+
+See our former blog posts:
+
+- [Introducing Azure Verified Modules!](https://aka.ms/AVM/intro/blog)
+- [Azure Verified Modules - Monthly Update Jan 24'](https://aka.ms/avm/monthly/jan24)
+- [Azure Verified Modules - Monthly Update February 24'](https://aka.ms/avm/monthly/feb24)
+- [Azure Verified Modules - Monthly Update March 24'](https://aka.ms/avm/monthly/march24)
 
 ## 🔬 Labs
 

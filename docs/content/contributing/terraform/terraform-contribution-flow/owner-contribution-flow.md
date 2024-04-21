@@ -19,7 +19,7 @@ This section describes the contribution flow for module owners who are responsib
 
 This contribution flow is for **Module owners** only.
 
-As a Terraform Module Owner you need to be aware of the [AVM contribution process overview](https://azure.github.io/Azure-Verified-Modules/contributing/process/,) [shared specifications](https://azure.github.io/Azure-Verified-Modules/specs/shared/) (including [Interfaces](https://azure.github.io/Azure-Verified-Modules/specs/shared/interfaces/)) and [Terraform-specific](https://azure.github.io/Azure-Verified-Modules/specs/terraform/) specifications as as these need to be considered during pull request reviews for the modules you own.
+As a Terraform Module Owner you need to be aware of the [AVM contribution process overview](/Azure-Verified-Modules/contributing/process/,) [shared specifications](/Azure-Verified-Modules/specs/shared/) (including [Interfaces](/Azure-Verified-Modules/specs/shared/interfaces/)) and [Terraform-specific](/Azure-Verified-Modules/specs/terraform/) specifications as as these need to be considered during pull request reviews for the modules you own.
 
 {{< /hint >}}
 
@@ -38,9 +38,9 @@ Make sure module authors/contributors tested their module in their environment b
 ### 1. Owner Activities and Responsibilities
 
 <!-- TODO: Add TF Issue Triage once done -->
-Familiarise yourself with the responsibilities as **Module Owner** outlined in [Team Definitions & RACI](https://azure.github.io/Azure-Verified-Modules/specs/shared/team-definitions/#module-owners) and in the [TF Issue Triage](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/).
+Familiarise yourself with the responsibilities as **Module Owner** outlined in [Team Definitions & RACI](/Azure-Verified-Modules/specs/shared/team-definitions/#module-owners) and in the [TF Issue Triage](/Azure-Verified-Modules/help-support/issue-triage/).
 
-1. Watch Pull Request (PR) and issue (questions/feedback) activity for your module(s) in your repository and ensure that PRs are reviewed and merged in a timely manner as outlined in [SNFR11](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times).
+1. Watch Pull Request (PR) and issue (questions/feedback) activity for your module(s) in your repository and ensure that PRs are reviewed and merged in a timely manner as outlined in [SNFR11](/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times).
 
 {{< hint type=info >}}
 
@@ -52,20 +52,20 @@ Make sure module authors/contributors tested their module in their environment b
 
 | ID | Specification |
 |---------------|-----------------------|
-| [SFR1](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-sfr1---category-composition---preview-services) | Category: Composition - Preview Services |
-| [SNFR2](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing) | Category: Testing - E2E Testing |
-| [SNFR3](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr3---category-testing---avm-compliance-tests) | Category: Testing - AVM Compliance Tests |
-| [SNFR8](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr8---category-contributionsupport---module-owners-github) | Category: Contribution/Support - Module Owner(s) GitHub |
-| [SNFR11](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times) | Category: Contribution/Support - Issues Reponse Times |
-| [SNFR12](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr12---category-contributionsupport---versions-supported) | Category: Contribution/Support - Versions Supported |
-| [SNFR17](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning) | Category: Release - Semantic Versioning |
-| [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) | Category: Contribution/Support - GitHub Teams Only |
-| [SNFR21](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr21---category-publishing---cross-language-collaboration) | Category: Publishing - Cross Language Collaboration |
-| [SNFR24](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr24---category-testing---testing-child-extension--interface-resources) | Category: Testing - Testing Child, Extension & Interface Resources |
-| [SNFR25](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr25---category-composition---resource-naming) | Category: Composition - Resource Naming |
-| [RMNFR3](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmnfr3---category-composition---rp-collaboration) | Category: Composition - RP Collaboration |
-| [RMFR4](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmfr4---category-composition---avm-consistent-feature--extension-resources-value-add) | Category: Composition - AVM Consistent Feature & Extension Resources Value Add |
-| [RMFR7](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs) | Category: Outputs - Minimum Required Outputs |
+| [SFR1](/Azure-Verified-Modules/specs/shared/#id-sfr1---category-composition---preview-services) | Category: Composition - Preview Services |
+| [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing) | Category: Testing - E2E Testing |
+| [SNFR3](/Azure-Verified-Modules/specs/shared/#id-snfr3---category-testing---avm-compliance-tests) | Category: Testing - AVM Compliance Tests |
+| [SNFR8](/Azure-Verified-Modules/specs/shared/#id-snfr8---category-contributionsupport---module-owners-github) | Category: Contribution/Support - Module Owner(s) GitHub |
+| [SNFR11](/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times) | Category: Contribution/Support - Issues Reponse Times |
+| [SNFR12](/Azure-Verified-Modules/specs/shared/#id-snfr12---category-contributionsupport---versions-supported) | Category: Contribution/Support - Versions Supported |
+| [SNFR17](/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning) | Category: Release - Semantic Versioning |
+| [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) | Category: Contribution/Support - GitHub Teams Only |
+| [SNFR21](/Azure-Verified-Modules/specs/shared/#id-snfr21---category-publishing---cross-language-collaboration) | Category: Publishing - Cross Language Collaboration |
+| [SNFR24](/Azure-Verified-Modules/specs/shared/#id-snfr24---category-testing---testing-child-extension--interface-resources) | Category: Testing - Testing Child, Extension & Interface Resources |
+| [SNFR25](/Azure-Verified-Modules/specs/shared/#id-snfr25---category-composition---resource-naming) | Category: Composition - Resource Naming |
+| [RMNFR3](/Azure-Verified-Modules/specs/shared/#id-rmnfr3---category-composition---rp-collaboration) | Category: Composition - RP Collaboration |
+| [RMFR4](/Azure-Verified-Modules/specs/shared/#id-rmfr4---category-composition---avm-consistent-feature--extension-resources-value-add) | Category: Composition - AVM Consistent Feature & Extension Resources Value Add |
+| [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs) | Category: Outputs - Minimum Required Outputs |
 
 <br>
 
@@ -81,13 +81,13 @@ Familiarise yourself with the AVM Resource Module Naming in the [module index cs
 
 {{< hint type=important >}}
 
-Make sure you have access to the Azure organisation see [GitHub Account Link and Access](https://azure.github.io/Azure-Verified-Modules/contributing/terraform/prerequisites/#github-account-link-and-access).
+Make sure you have access to the Azure organisation see [GitHub Account Link and Access](/Azure-Verified-Modules/contributing/terraform/prerequisites/#github-account-link-and-access).
 
 {{< /hint >}}
 
 1. Create the module repostory using [terraform-azuremrm-avm-template](https://github.com/Azure/terraform-azurerm-avm-template) in the `Azure` organisation with the following [details (internal only)](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review). You will then have to complete the configuration of your repository and start an [internal business review](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review?anchor=conduct-initial-repo-configuration-and-trigger-business-review).
 
-2. Create GitHub teams as outlined in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) and add respective parent teams:
+2. Create GitHub teams as outlined in [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) and add respective parent teams:
 
 Segments:
 
