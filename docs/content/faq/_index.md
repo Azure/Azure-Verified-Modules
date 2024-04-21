@@ -249,7 +249,7 @@ If you're not a Microsoft FTE or don't want to be a module owner, you can still 
 Yes, there are multiple ways to contribute to AVM. You can:
 
 - [Propose](https://aka.ms/ModuleProposal) and develop a new module (Bicep or Terraform)
-- Migrate an existing module from CARML (Bicep only) - look for modules to be migrated [here](/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/#planned-modules) and create a [module proposal](https://aka.ms/ModuleProposal) for the module you want to migrate.
+- Migrate an existing module from CARML (Bicep only) - look for modules to be migrated [here](/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/#proposed-modules---) and create a [module proposal](https://aka.ms/ModuleProposal) for the module you want to migrate.
 - Become the owner of an orphaned module (mainly Bicep) - look for "orphaned module" issues [here](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aopen+is%3Aissue+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22) or see the "Orphaned" swimlane [here](https://github.com/orgs/Azure/projects/529/views/1?filterQuery=is%3Aissue+is%3Aopen+is%3Aissue+is%3Aopen+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22)
 
 ---
