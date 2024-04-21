@@ -249,7 +249,7 @@ If you're not a Microsoft FTE or don't want to be a module owner, you can still 
 Yes, there are multiple ways to contribute to AVM. You can:
 
 - [Propose](https://aka.ms/ModuleProposal) and develop a new module (Bicep or Terraform)
-- Migrate an existing module from CARML (Bicep only) - look for modules to be migrated [here](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/#planned-modules) and create a [module proposal](https://aka.ms/ModuleProposal) for the module you want to migrate.
+- Migrate an existing module from CARML (Bicep only) - look for modules to be migrated [here](/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/#planned-modules) and create a [module proposal](https://aka.ms/ModuleProposal) for the module you want to migrate.
 - Become the owner of an orphaned module (mainly Bicep) - look for "orphaned module" issues [here](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aopen+is%3Aissue+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22) or see the "Orphaned" swimlane [here](https://github.com/orgs/Azure/projects/529/views/1?filterQuery=is%3Aissue+is%3Aopen+is%3Aissue+is%3Aopen+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22)
 
 ---
@@ -314,7 +314,7 @@ See [Module Support](/Azure-Verified-Modules/help-support/module-support) for mo
 
 Yes, and if they cannot resolve it (and/or it's not related to a Microsoft service/platform/api/etc.) they will pass the ticket to the module owner(s) to resolve.
 
-For Microsoft FTEs only: see the **Internal** wiki for support workflow for more details -[AVM - Support Workflow - Overview](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/275/Azure-Verified-Module-Workflow)
+For Microsoft FTEs only: see the **Internal** wiki for support workflow for more details -[AVM - Support Workflow - Overview](https://supportability.visualstudio.com/AzureVerifiedModules/_wiki/wikis/AzureVerifiedModules.wiki/1459317/Support-Flow-for-Azure-Verified-Modules)
 
 ---
 
@@ -367,8 +367,8 @@ These same validations are also run in the [BRM](https://aka.ms/BRM) repository 
 
 ### Does AVM use semantic versioning?
 
-Yes! For generic guidance, see [SNFR17 - Semantic Versioning](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning).
-For Bicep specific guidance, see [BCPNFR14 - Versioning](https://azure.github.io/Azure-Verified-Modules/specs/bicep/#id-bcpnfr14---category-composition---versioning).
+Yes! For generic guidance, see [SNFR17 - Semantic Versioning](/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning).
+For Bicep specific guidance, see [BCPNFR14 - Versioning](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr14---category-composition---versioning).
 
 ---
 

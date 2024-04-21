@@ -3,6 +3,7 @@ title: Module Lifecycle
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+url: /specs/shared/module-lifecycle/
 ---
 {{< hint type=note >}}
 
