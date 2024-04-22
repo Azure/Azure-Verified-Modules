@@ -3,6 +3,7 @@ title: Bicep Specific Specification
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+url: /specs/bicep/
 ---
 
 {{< hint type=tip >}}
@@ -26,7 +27,7 @@ The following table summarizes the category identification codes used in this sp
 | Scope                                            | Functional requirements                 | Non-functional requirements                   |
 |--------------------------------------------------|-----------------------------------------|-----------------------------------------------|
 | Shared requirements (resource & pattern modules) | [BCPFR](#functional-requirements-bcpfr) | [BCPNFR](#non-functional-requirements-bcpnfr) |
-| Resource module level requirements               | *N/A*                                   | *N/A*                                         |
+| Resource module level requirements               | *N/A*                                   | [BCPRMNFR](#non-functional-requirements-bcprmnfr)                                      |
 | Pattern module level requirements                | *N/A*                                   | *N/A*                                         |
 
 <br>
@@ -85,7 +86,7 @@ To meet the requirements of [BCPFR2](/Azure-Verified-Modules/specs/bicep/#id-bcp
 
 #### ID: BCPFR4 - Category: Composition - Telemetry Enablement
 
-To meet the requirements of [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) & [SFR4](/Azure-Verified-Modules/specs/shared/#id-sfr4---category-telemetry---telemetry-enablement-flexibility) you **MUST** use the below code sample in your AVM Modules to achieve this.
+To comply with specifications outlined in [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) & [SFR4](/Azure-Verified-Modules/specs/shared/#id-sfr4---category-telemetry---telemetry-enablement-flexibility) you **MUST** incorporate the following code snippet into your modules. Place this code sample in the "top level" `main.bicep` file; it is not necessary to include it in any nested Bicep files (child modules).
 
 {{< include file="/static/includes/sample.telem.bicep" language="bicep" options="linenos=false" >}}
 
@@ -116,14 +117,11 @@ To implement requirement [SFR5](/Azure-Verified-Modules/specs/shared/#id-sfr5---
     3
   ]
 
-  // Note: Must be an extra variable (instead of inline) due to a potential Bicep issue
-  var formattedZones = [for zone in zones: string(zone)]
-
   resource myResource (...) {
     (...)
     properties: {
       (...)
-      zones: formattedZones
+      zones: map(zones, zone => string(zone))
     }
   }
   ```
@@ -395,24 +393,6 @@ For example, the `version` value should be:
 
 <br>
 
-#### ID: BCPNFR9 - Category: Testing - Expected Test Directories
-
-Module owners **MUST** create the `defaults`, `waf-aligned` folders within their `/tests/e2e/` directory in their module source code and `SHOULD` create a `max` folder also. Each folder will be used as described for various test cases.
-
-- **MUST** - `defaults` == minimum/required parameters/variables only, heavy reliance on the default values for other parameters/variables
-- **MUST** - `waf-aligned` == showing all parameters/variables for the module to be as WAF compliant as possible
-- **SHOULD** - `<other folders for examples as required>` == all the possible parameters/variables set, some will be mutually exclusive for example. If a module can deploy varying styles of the same resource, e.g. VMs can be Linux or Windows, the names above should be used as suffixes in the directory name to denote the style, e.g. for a VM we would expect to see:
-  - `/tests/e2e/defaults.linux/main.test.bicep`
-  - `/tests/e2e/waf-aligned.linux/main.test.bicep`
-  - `/tests/e2e/defaults.windows/main.test.bicep`
-  - `/tests/e2e/waf-aligned.windows/main.test.bicep`
-
-<br>
-
----
-
-<br>
-
 #### ID: BCPNFR10 - Category: Testing - Test Bicep File Naming
 
 Module owners **MUST** name their test `.bicep` files in the `/tests/e2e/<defaults/waf-aligned/max/etc.>` directories: `main.test.bicep` as the test framework (CI) relies upon this name.
@@ -590,6 +570,163 @@ To leverage the feature you must
   }
   ```
   {{< /expand >}}
+
+---
+
+<br>
+
+#### ID: BCPNFR17 - Category: Composition - Code Styling - Type casting
+
+To improve the usability of primitive module properties declared as strings, you should declare them using a type which better represents them, and apply any required casting in the module on behalf of the user.
+
+For reference, please refer to the following examples:
+
+<h5>Boolean as String</h5>
+{{< tabs "booleanString" >}}
+  {{< tab "Before" >}}
+
+  ```bicep
+  @allowed([
+    'false'
+    'true'
+  ])
+  param myParameterValue string = 'false'
+
+  resource myResource '(...)' = {
+    (...)
+    properties: {
+      myParameter: myParameterValue
+    }
+  }
+  ```
+
+  {{< /tab >}}
+  {{< tab "After" >}}
+
+  ```bicep
+  param myParameterValue string = false
+
+  resource myResource '(...)' = {
+    (...)
+    properties: {
+      myParameter: string(myParameterValue)
+    }
+  }
+  ```
+
+  {{< /tab >}}
+{{< /tabs >}}
+
+
+<h5>Integer Array as String Array</h5>
+
+{{< tabs "intArrayString" >}}
+  {{< tab "Before" >}}
+
+  ```bicep
+  @allowed([
+    '1'
+    '2'
+    '3'
+  ])
+  param zones array
+
+  resource myResource '(...)' = {
+    (...)
+    properties: {
+      zones: zones
+    }
+  }
+  ```
+
+  {{< /tab >}}
+  {{< tab "After" >}}
+
+  ```bicep
+  @allowed([
+    1
+    2
+    3
+  ])
+  param zones int[]
+
+  resource myResource '(...)' = {
+    (...)
+    properties: {
+      zones: map(zones, zone => string(zone))
+    }
+  }
+  ```
+
+  {{< /tab >}}
+{{< /tabs >}}
+
+<br>
+
+---
+
+<br>
+
+## Resource Module Requirements
+
+Listed below are both functional and non-functional requirements for Bicep [AVM Resource Modules](/Azure-Verified-Modules/specs/shared/module-classifications/).
+
+### Non-Functional Requirements (BCPRMNFR)
+
+{{< hint type=note >}}
+This section includes **resource module level, non-functional requirements (BCPRMNFR)** for Bicep.
+{{< /hint >}}
+
+---
+
+<br>
+
+#### ID: BCPRMNFR1 - Category: Testing - Expected Test Directories
+
+Module owners **MUST** create the `defaults`, `waf-aligned` folders within their `/tests/e2e/` directory in their resource module source code and **SHOULD** create a `max` folder also. Module owners **CAN** create additional folders as required. Each folder will be used as described for various test cases.
+
+##### Defaults tests (**MUST**)
+
+The `defaults` folder contains a test instance that deploys the module with the minimum set of required parameters.
+
+This includes input parameters of type `Required` plus input parameters of type `Conditional` marked as required for WAF compliance.
+
+This instance has heavy reliance on the default values for other input parameters. Parameters of type `Optional` **SHOULD NOT** be used.
+
+##### WAF aligned tests (**MUST**)
+
+The `waf-aligned` folder contains a test instance that deploys the module in alignment with the best-practices of the Azure Well-Architected Framework.
+
+This includes input parameters of type `Required`, parameters of type `Conditional` marked as required for WAF compliance, and parameters of type `Optional` useful for WAF compliance.
+
+Parameters and dependencies which are not needed for WAF compliance, **SHOULD NOT** be included.
+
+##### Max tests (**SHOULD**)
+
+The `max` folder contains a test instance that deploys the module using a large parameter set, enabling most of the modules' features.
+
+The purpose of this instance is primarily parameter validation and not necessarily to serve as a real example scenario. Ideally, all features, extension resources and child resources should be enabled in this test, unless not possible due to conflicts, e.g., in case parameters are mutually exclusive.
+
+{{< hint type=note >}}
+
+Please note that this test is not mandatory to have, but recommended for bulk parameter validation. It can be skipped in case the module parameter validation is covered already by additional, more scenario-specific tests.
+
+{{< /hint >}}
+
+##### Additional tests (**CAN**)
+
+Additional folders `CAN` be created by module owners as required.
+
+For example, to validate parameters not covered by the `max` test due to conflicts, or to provide a real example scenario for a specific use case.
+
+If a module can deploy varying styles of the same resource, e.g., VMs can be Linux or Windows, each style should be tested as both `defaults` and `waf-aligned`. These names should be used as suffixes in the directory name to denote the style, e.g., for a VM we would expect to see:
+
+- `/tests/e2e/defaults.linux/main.test.bicep`
+- `/tests/e2e/waf-aligned.linux/main.test.bicep`
+- `/tests/e2e/defaults.windows/main.test.bicep`
+- `/tests/e2e/waf-aligned.windows/main.test.bicep`
+
+<br>
 
 ---
 

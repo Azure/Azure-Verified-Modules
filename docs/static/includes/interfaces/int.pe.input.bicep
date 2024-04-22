@@ -1,5 +1,7 @@
 privateEndpoints: {
   {
+    name: 'myPeName'
+    privateLinkServiceConnectionName: 'myPrivateLinkConnectionName'
     lock: 'CanNotDelete'
     tags: {
       'hidden-title': 'This is visible in the resource name'
