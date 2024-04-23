@@ -216,7 +216,7 @@ All issues created in a module repo will be automatically be picked up and track
 [AVMChannel]: https://aka.ms/AVM/channel
 [ModuleSpecifications]: /Azure-Verified-Modules/specs/
 [DiagnosticSettings]: /Azure-Verified-Modules/specs/shared/interfaces/#diagnostic-settings
-[AzureArchitectureCenter]: https://learn.microsoft.com/azure/architecture/browse/
+[AzureArchitectureCenter]: https://learn.microsoft.com/en-us/azure/architecture/browse/
 [ALZ]: https://aka.ms/alz
 [ModuleIndexes]: /Azure-Verified-Modules/indexes/
 [MandatoryLabels]: /Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels
