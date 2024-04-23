@@ -170,7 +170,7 @@ AVM has nothing to do with Radius (yet), but the AVM core team is constantly loo
 
 {{< hint type=tip >}}
 
-WAF == [Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/) (as per our [glossary](/Azure-Verified-Modules/glossary/))
+WAF == [Well-Architected Framework](https://learn.microsoft.com/en-us/azure/well-architected/) (as per our [glossary](/Azure-Verified-Modules/glossary/))
 
 {{< /hint >}}
 
@@ -178,10 +178,10 @@ At a high-level "WAF Aligned" means, where possible and appropriate, AVM Modules
 
 AVM will use the following sources to set it's "WAF Aligned" defaults:
 
-- [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/)
+- [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/well-architected/)
 - [Azure Proactive Resiliency Library](https://azure.github.io/Azure-Proactive-Resiliency-Library/)
 - [Introduction to the Microsoft cloud security benchmark](https://learn.microsoft.com/security/benchmark/azure/introduction)
-- [Security recommendations - Microsoft cloud security benchmark](https://learn.microsoft.com/azure/defender-for-cloud/recommendations-reference)
+- [Security recommendations - Microsoft cloud security benchmark](https://learn.microsoft.com/en-us/azure/defender-for-cloud/recommendations-reference)
 
 #### Will all AVM modules be 100% "WAF Aligned" out of the box and good to go?
 

@@ -201,7 +201,7 @@ For both scenarios the modules **MUST** expose these configuration options via c
 
 {{< hint type=note >}}
 
-For information on the differences between zonal and zone-redundant services, see [Availability zone service and regional support](https://learn.microsoft.com/azure/reliability/availability-zones-service-support#azure-services-with-availability-zone-support)
+For information on the differences between zonal and zone-redundant services, see [Availability zone service and regional support](https://learn.microsoft.com/en-us/azure/reliability/availability-zones-service-support#azure-services-with-availability-zone-support)
 
 {{< /hint >}}
 
@@ -219,7 +219,7 @@ For example, a Storage Account module can simply set the `sku.name` property to 
 
 {{< hint type=note >}}
 
-For information on the data redundancy options in Azure, see [Cross-region replication in Azure](https://learn.microsoft.com/azure/reliability/cross-region-replication-azure)
+For information on the data redundancy options in Azure, see [Cross-region replication in Azure](https://learn.microsoft.com/en-us/azure/reliability/cross-region-replication-azure)
 
 {{< /hint >}}
 
@@ -241,7 +241,7 @@ This section includes **shared, non-functional requirements (SNFR)** for Bicep a
 
 #### ID: SNFR25 - Category: Composition - Resource Naming
 
-Module owners **MUST** set the default resource name prefix for child, extension, and interface resources to the associated abbreviation for the specific resource as documented in the following CAF article [Abbreviation examples for Azure resources](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations), if specified and documented. This reduces the amount of input values a module consumer **MUST** provide by default when using the module.
+Module owners **MUST** set the default resource name prefix for child, extension, and interface resources to the associated abbreviation for the specific resource as documented in the following CAF article [Abbreviation examples for Azure resources](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations), if specified and documented. This reduces the amount of input values a module consumer **MUST** provide by default when using the module.
 
 For example, a Private Endpoint that is being deployed as part of a resource module, via the mandatory interfaces, **MUST** set the Private Endpoint's default name to begin with the prefix of `pep-`.
 
@@ -253,7 +253,7 @@ The name provided **MAY** be used by the module owner to generate the rest of th
 
 {{< hint type=tip >}}
 
-If the resource does not have a documented abbreviation in [Abbreviation examples for Azure resources](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations), then the module owner is free to use a sensible prefix instead.
+If the resource does not have a documented abbreviation in [Abbreviation examples for Azure resources](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations), then the module owner is free to use a sensible prefix instead.
 
 {{< /hint >}}
 
