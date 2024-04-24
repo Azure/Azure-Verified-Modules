@@ -18,7 +18,7 @@
             fetch-depth: 0
 
         - name: Run github/super-linter
-          uses: github/super-linter@v5
+          uses: github/super-linter@v6
           env:
             VALIDATE_ALL_CODEBASE: false
             # Need to define main branch as default is set to master in super-linter
