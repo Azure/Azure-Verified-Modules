@@ -414,22 +414,22 @@ The Bicep VSCode extension is reading metadata through [this JSON file](https://
 {{< /hint >}}
 
 1. When authoring a new Bicep file, use the [VS Code extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) to explore the modules published in the Bicep Public Registry.
-<img src="../img/faq/use-bicep-module-01.png" width=100%>
+<img src="../img/faq/use-bicep-module-01.png" width=100% alt="Select br/public:">
 
 2. Expanding on this you can see the AVM modules that are published.
-<img src="../img/faq/use-bicep-module-02.png" width=100%>
+<img src="../img/faq/use-bicep-module-02.png" width=100% alt="Select module from the Public Bicep Registry">
 
 3. Selecting the module expands on the current available versions.
-<img src="../img/faq/use-bicep-module-03.png" width=100%>
+<img src="../img/faq/use-bicep-module-03.png" width=100% alt="Choose from the available versions">
 
 4. Setting required properties exposes what is required on the module.
-<img src="../img/faq/use-bicep-module-04.png" width=100%>
+<img src="../img/faq/use-bicep-module-04.png" width=100% alt="Select required-properties">
 
 5. Hovering over the `myTestModule` name exposes the module's documentation URL.
-<img src="../img/faq/use-bicep-module-05.png" width=100%>
+<img src="../img/faq/use-bicep-module-05.png" width=100% alt="Hover over the module name">
 
 6. Clicking on the link opens up the Bicep Registry Repo for the AVM module's source code, where you can find the documentation detailing all the module's functionality, input parameters and outputs, while providing various examples.
-<img src="../img/faq/use-bicep-module-06.png" width=100%>
+<img src="../img/faq/use-bicep-module-06.png" width=100% alt="See the module's documentation online">
 
 ---
 
