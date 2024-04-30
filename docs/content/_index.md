@@ -11,12 +11,6 @@ The AVM team is thrilled to announce the launch of our external community calls,
 We look forward to connecting with you and fostering a vibrant community together!
 {{< /hint >}}
 
-{{< hint type=tip >}}
-
-Before submitting a new [module proposal](https://aka.ms/avm/moduleproposal) for either Bicep or Terraform, please review the FAQ section on ["CARML/TFVM to AVM Evolution Details"](/Azure-Verified-Modules/faq/#carmltfvm-to-avm-evolution-details)!
-
-{{< /hint >}}
-
 {{< youtube id="JbIMrJKW5N0" title="An introduction to Azure Verified Modules (AVM)" >}}
 
 {{< columns size=large >}}

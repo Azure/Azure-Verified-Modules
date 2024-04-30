@@ -22,9 +22,9 @@ body:
     id: existing-module-from-elsewhere
     attributes:
       label: Check this module doesn't already exist in the module indexes
-      description: By submitting this issue, you confirm that you have checked the [Bicep](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/) or [Terraform](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/) module indexes for the module you are proposing to ensure it is not already available/being worked on; or you're proposing the module to be migrated from [CARML](https://aka.ms/CARML)/[TFVM](https://aka.ms/TFVM).
+      description: By submitting this issue, you confirm that you have checked the [Bicep](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/) or [Terraform](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/) module indexes for the module you are proposing to ensure it is not already available/being worked on.
       options:
-        - label: I have checked for that this module doesn't already exist in the module indexes; or I'm proposing the module to be migrated from CARML/TFVM.
+        - label: I have checked for that this module doesn't already exist in the module indexes.
           required: true
   - type: dropdown
     id: language

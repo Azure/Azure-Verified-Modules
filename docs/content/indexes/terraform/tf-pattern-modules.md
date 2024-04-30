@@ -41,7 +41,7 @@ The following table shows the number of all available, orphaned and proposed **T
 
 {{< expand "➕ Module Publication History - Module names, status and owners" "expand/collapse" "closed" >}}
 
-{{< moduleHistory header=true csv="/static/module-indexes/TerraformPatternModules.csv" language="Terraform" moduleType="pattern" exclude="New Module :new:,Migrate From CARML :rocket:" monthsToShow=9999 >}}
+{{< moduleHistory header=true csv="/static/module-indexes/TerraformPatternModules.csv" language="Terraform" moduleType="pattern" exclude="New Module :new:" monthsToShow=9999 >}}
 
 {{< /expand >}}
 
@@ -51,7 +51,7 @@ The following table shows the number of all available, orphaned and proposed **T
 
 {{< expand "➕ Published Modules - Module names, status and owners" "expand/collapse" "open" >}}
 
-{{< moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformPatternModules.csv" language="Terraform" moduleType="pattern" exclude="New Module :new:,Migrate From TFVM :rocket:" >}}
+{{< moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformPatternModules.csv" language="Terraform" moduleType="pattern" exclude="New Module :new:" >}}
 
 {{< /expand >}}
 

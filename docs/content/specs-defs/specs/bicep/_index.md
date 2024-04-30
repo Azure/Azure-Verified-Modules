@@ -181,9 +181,9 @@ User-Defined Types are GA in Bicep as of version v0.21.1, please ensure you have
 
 {{< hint type=important title="CARML Migration Exemption" >}}
 
-A early goal for AVM is to complete the [evolution/migration of CARML](/Azure-Verified-Modules/faq/#carml-evolution) modules into AVM modules so they are available on the Bicep Public Registry. However, retrofitting [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) for all CARML modules as they come into AVM will take a considerable amount of time.
+While the [transition of CARML](/Azure-Verified-Modules/faq/#carml-evolution) modules into AVM is complete, retrofitting [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) for all modules will take a considerable amount of time.
 
-Therefore it has been decided by the AVM core team that CARML modules initial migrations to AVM will **NOT** mandate and enforce the addition of using and defining [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types). However, all CARML migrated modules to AVM **MUST** add [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) prior to their next release of a version of the module.
+Therefore, the addition of [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) is currently **NOT** mandated/enforced. However, past their initial release, all modules **MUST** implement [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) prior to the release of their next version.
 
 {{< /hint >}}
 
