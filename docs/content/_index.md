@@ -5,6 +5,12 @@ geekdocNav: true
 geekdocAnchor: true
 ---
 
+{{< hint type=caution icon=gdoc_date title="AVM Community Calls" >}}
+The AVM team is thrilled to announce the launch of our external community calls, tailored for individuals outside of Microsoft. We invite you to join us for insightful discussions and engaging conversations. To attend, simply visit our [dedicated page](/Azure-Verified-Modules/resources/community)!
+
+We look forward to connecting with you and fostering a vibrant community together!
+{{< /hint >}}
+
 {{< hint type=tip >}}
 
 Before submitting a new [module proposal](https://aka.ms/avm/moduleproposal) for either Bicep or Terraform, please review the FAQ section on ["CARML/TFVM to AVM Evolution Details"](/Azure-Verified-Modules/faq/#carmltfvm-to-avm-evolution-details)!

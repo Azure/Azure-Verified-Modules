@@ -11,12 +11,18 @@ geekdocAnchor: true
 
 {{< mermaid class="text-center" >}}
 flowchart TD
-A(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment'>1. Setup your Azure test environment </a>)
-B(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment'>2. Fork the module source repository</a>)
-C(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#3-configure-your-ci-environment'>3. Configure CI environment </a> <br> For module tests)
-D(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution'>4. Implementing your contribution </a><br> Refer to Gitflow Diagram below)
-E{<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests'>5. Workflow test <br> completed <br> successfully?</a>}
-F(<a href='/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry'>6. Create a pull request to the upstream repository</a>)
+A(1. Setup your Azure test environment)
+  click A "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment"
+B(2. Fork the module source repository)
+  click B "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#2-fork-the-module-source-repository"
+C(3. Configure CI environment <br> For module tests)
+  click C "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#3-configure-your-ci-environment"
+D(4. Implementing your contribution<br> Refer to Gitflow Diagram below)
+  click D "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution"
+E{5. Workflow test <br> completed <br> successfully?}
+  click E "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests"
+F(6. Create a pull request to the upstream repository)
+  click F "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry"
 A --> B
 B --> C
 C --> D
@@ -61,7 +67,7 @@ When implementing the GitFlow process as described, it is advisable to configure
 
 {{< hint type=note >}}
 
-Each time in the following sections we refer to 'your xzy', it is an indicator that you have to change something in your own environment.
+Each time in the following sections we refer to 'your xyz', it is an indicator that you have to change something in your own environment.
 
 {{< /hint >}}
 
@@ -70,10 +76,10 @@ AVM tests the deployments in an Azure subscription. To do so, it requires a serv
 In this first step, make sure you
 
 - Have/create an Azure Active Directory Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
-  - [Create a service principal (Azure Portal)](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal)
-  - [Create a service principal (PowerShell)](https://learn.microsoft.com/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
-  - [Find Service Principal object ID](https://learn.microsoft.com/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
-  - [Find managed Identity Service Principal](https://learn.microsoft.com/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
+  - [Create a service principal (Azure Portal)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
+  - [Create a service principal (PowerShell)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
+  - [Find Service Principal object ID](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
+  - [Find managed Identity Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
 - Note down the following pieces of information
   - Application (Client) ID
   - Service Principal Object ID (**not** the object ID of the application)
@@ -214,7 +220,7 @@ Before opening a Pull Request to the Bicep Public Registry, ensure your module i
 
 For example, to meet [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing), ensure the updated module is deployable against a testing Azure subscription and compliant with the intended configuration.
 
-Depending on the type of contribution you implemented (for example, a new module feature) we would kindly ask you to also update the `e2e` test run by the pipeline. For a new parameter this could mean to either add its usage to an existing test file, or to add an entirely new test as per [BCPNFR9](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr9---category-testing---expected-test-directories).
+Depending on the type of contribution you implemented (for example, a new resource module feature) we would kindly ask you to also update the `e2e` test run by the pipeline. For a new parameter this could mean to either add its usage to an existing test file, or to add an entirely new test as per [BCPRMNFR1](/Azure-Verified-Modules/specs/bicep/#id-bcprmnfr1---category-testing---expected-test-directories).
 
 Once the contribution is implemented and the changes are pushed to your forked repository, we kindly ask you to validate your updates in your own cloud environment before requesting to merge them to the main repo. Test your code leveraging the forked AVM CI environment you configured before
 
@@ -226,7 +232,8 @@ In case your contribution involves changes to a module, you can also optionally 
 
 ### Creating `e2e` tests
 
-As per [BCPNFR9](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr9---category-testing---expected-test-directories), the module must contain a minimum set of deployment test cases, but beyond those you're free to implement any additional, meaningful test that you see fit. Each test is implemented in its own test folder, containing at least a `main.test.bicep` and optionally any amount of extra deployment files that you may require (e.g., to deploy dependencies using a `dependencies.bicep` that you reference in the test template file).
+As per [BCPRMNFR1](/Azure-Verified-Modules/specs/bicep/#id-bcprmnfr1---category-testing---expected-test-directories), a resource module must contain a minimum set of deployment test cases, while for pattern modules there is no restriction on the naming each deployment test must have.
+In either case, you're free to implement any additional, meaningful test that you see fit. Each test is implemented in its own test folder, containing at least a `main.test.bicep` and optionally any amount of extra deployment files that you may require (e.g., to deploy dependencies using a `dependencies.bicep` that you reference in the test template file).
 
 To get started implementing your test in the `main.test.bicep` file, we recommend the following guidelines:
 
@@ -308,11 +315,11 @@ Finally, once you are satisfied with your contribution and validated it, open a 
 3. Follow instructions you find in the PR template.
 4. If applicable (i.e., a module is created/updated), please reference the badge status of your pipeline run. This badge will show the reviewer that the code changes were successfully validated & tested in your environment. To create a badge, first select the three dots (`...`) at the top right of the pipeline, and then chose the `Create status badge` option.
 
-<img src="../../../img/contribution/badgeDropdown.png" alt="Badge dropdown" height="200">
+    <img src="../../../img/contribution/badgeDropdown.png" alt="Badge dropdown" height="200">
 
-In the opening pop-up, you first need to select your branch and then click on the `Copy status badge Markdown`
+    In the opening pop-up, you first need to select your branch and then click on the `Copy status badge Markdown`
 
-<img src="../../../img/contribution/pipelineBadge.png" alt="Status Badge" height="400">
+    <img src="../../../img/contribution/pipelineBadge.png" alt="Status Badge" height="400">
 
 <!--
 ## Publishing to the Registry

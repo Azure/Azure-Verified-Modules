@@ -3,6 +3,7 @@ title: Bicep Specific Specification
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+url: /specs/bicep/
 ---
 
 {{< hint type=tip >}}
@@ -26,7 +27,7 @@ The following table summarizes the category identification codes used in this sp
 | Scope                                            | Functional requirements                 | Non-functional requirements                   |
 |--------------------------------------------------|-----------------------------------------|-----------------------------------------------|
 | Shared requirements (resource & pattern modules) | [BCPFR](#functional-requirements-bcpfr) | [BCPNFR](#non-functional-requirements-bcpnfr) |
-| Resource module level requirements               | *N/A*                                   | *N/A*                                         |
+| Resource module level requirements               | *N/A*                                   | [BCPRMNFR](#non-functional-requirements-bcprmnfr)                                      |
 | Pattern module level requirements                | *N/A*                                   | *N/A*                                         |
 
 <br>
@@ -85,7 +86,7 @@ To meet the requirements of [BCPFR2](/Azure-Verified-Modules/specs/bicep/#id-bcp
 
 #### ID: BCPFR4 - Category: Composition - Telemetry Enablement
 
-To meet the requirements of [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) & [SFR4](/Azure-Verified-Modules/specs/shared/#id-sfr4---category-telemetry---telemetry-enablement-flexibility) you **MUST** use the below code sample in your AVM Modules to achieve this.
+To comply with specifications outlined in [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) & [SFR4](/Azure-Verified-Modules/specs/shared/#id-sfr4---category-telemetry---telemetry-enablement-flexibility) you **MUST** incorporate the following code snippet into your modules. Place this code sample in the "top level" `main.bicep` file; it is not necessary to include it in any nested Bicep files (child modules).
 
 {{< include file="/static/includes/sample.telem.bicep" language="bicep" options="linenos=false" >}}
 
@@ -168,7 +169,7 @@ This section includes **Bicep specific, non-functional requirements (BCPNFR)** f
 
 #### ID: BCPNFR1 - Category: Inputs - Data Types
 
-To simplify the consumption experience for module consumers when interacting with complex data types input parameters, mainly objects and arrays, the Bicep feature of [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types) **MUST** be used and declared.
+To simplify the consumption experience for module consumers when interacting with complex data types input parameters, mainly objects and arrays, the Bicep feature of [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) **MUST** be used and declared.
 
 {{< hint type=tip >}}
 
@@ -176,13 +177,13 @@ User-Defined Types are GA in Bicep as of version v0.21.1, please ensure you have
 
 {{< /hint >}}
 
-[User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types) allow intellisense support in supported IDEs (e.g. Visual Studio Code) for complex input parameters using arrays and objects.
+[User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) allow intellisense support in supported IDEs (e.g. Visual Studio Code) for complex input parameters using arrays and objects.
 
 {{< hint type=important title="CARML Migration Exemption" >}}
 
-A early goal for AVM is to complete the [evolution/migration of CARML](/Azure-Verified-Modules/faq/#carml-evolution) modules into AVM modules so they are available on the Bicep Public Registry. However, retrofitting [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types) for all CARML modules as they come into AVM will take a considerable amount of time.
+A early goal for AVM is to complete the [evolution/migration of CARML](/Azure-Verified-Modules/faq/#carml-evolution) modules into AVM modules so they are available on the Bicep Public Registry. However, retrofitting [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) for all CARML modules as they come into AVM will take a considerable amount of time.
 
-Therefore it has been decided by the AVM core team that CARML modules initial migrations to AVM will **NOT** mandate and enforce the addition of using and defining [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types). However, all CARML migrated modules to AVM **MUST** add [User-Defined Types](https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types) prior to their next release of a version of the module.
+Therefore it has been decided by the AVM core team that CARML modules initial migrations to AVM will **NOT** mandate and enforce the addition of using and defining [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types). However, all CARML migrated modules to AVM **MUST** add [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) prior to their next release of a version of the module.
 
 {{< /hint >}}
 
@@ -385,24 +386,6 @@ For example, the `version` value should be:
 - `0.1` for new modules, so that they can be released as `v0.1.0`.
 - `1.0` once the module owner signs off the module is stable enough for it’s first Major release of `v1.0.0`.
 - `0.x` for all feature updates between the first release `v0.1.0` and the first Major release of `v1.0.0`.
-
-<br>
-
----
-
-<br>
-
-#### ID: BCPNFR9 - Category: Testing - Expected Test Directories
-
-Module owners **MUST** create the `defaults`, `waf-aligned` folders within their `/tests/e2e/` directory in their module source code and `SHOULD` create a `max` folder also. Each folder will be used as described for various test cases.
-
-- **MUST** - `defaults` == minimum/required parameters/variables only, heavy reliance on the default values for other parameters/variables
-- **MUST** - `waf-aligned` == showing all parameters/variables for the module to be as WAF compliant as possible
-- **SHOULD** - `<other folders for examples as required>` == all the possible parameters/variables set, some will be mutually exclusive for example. If a module can deploy varying styles of the same resource, e.g. VMs can be Linux or Windows, the names above should be used as suffixes in the directory name to denote the style, e.g. for a VM we would expect to see:
-  - `/tests/e2e/defaults.linux/main.test.bicep`
-  - `/tests/e2e/waf-aligned.linux/main.test.bicep`
-  - `/tests/e2e/defaults.windows/main.test.bicep`
-  - `/tests/e2e/waf-aligned.windows/main.test.bicep`
 
 <br>
 
@@ -677,6 +660,71 @@ For reference, please refer to the following examples:
 
   {{< /tab >}}
 {{< /tabs >}}
+
+<br>
+
+---
+
+<br>
+
+## Resource Module Requirements
+
+Listed below are both functional and non-functional requirements for Bicep [AVM Resource Modules](/Azure-Verified-Modules/specs/shared/module-classifications/).
+
+### Non-Functional Requirements (BCPRMNFR)
+
+{{< hint type=note >}}
+This section includes **resource module level, non-functional requirements (BCPRMNFR)** for Bicep.
+{{< /hint >}}
+
+---
+
+<br>
+
+#### ID: BCPRMNFR1 - Category: Testing - Expected Test Directories
+
+Module owners **MUST** create the `defaults`, `waf-aligned` folders within their `/tests/e2e/` directory in their resource module source code and **SHOULD** create a `max` folder also. Module owners **CAN** create additional folders as required. Each folder will be used as described for various test cases.
+
+##### Defaults tests (**MUST**)
+
+The `defaults` folder contains a test instance that deploys the module with the minimum set of required parameters.
+
+This includes input parameters of type `Required` plus input parameters of type `Conditional` marked as required for WAF compliance.
+
+This instance has heavy reliance on the default values for other input parameters. Parameters of type `Optional` **SHOULD NOT** be used.
+
+##### WAF aligned tests (**MUST**)
+
+The `waf-aligned` folder contains a test instance that deploys the module in alignment with the best-practices of the Azure Well-Architected Framework.
+
+This includes input parameters of type `Required`, parameters of type `Conditional` marked as required for WAF compliance, and parameters of type `Optional` useful for WAF compliance.
+
+Parameters and dependencies which are not needed for WAF compliance, **SHOULD NOT** be included.
+
+##### Max tests (**SHOULD**)
+
+The `max` folder contains a test instance that deploys the module using a large parameter set, enabling most of the modules' features.
+
+The purpose of this instance is primarily parameter validation and not necessarily to serve as a real example scenario. Ideally, all features, extension resources and child resources should be enabled in this test, unless not possible due to conflicts, e.g., in case parameters are mutually exclusive.
+
+{{< hint type=note >}}
+
+Please note that this test is not mandatory to have, but recommended for bulk parameter validation. It can be skipped in case the module parameter validation is covered already by additional, more scenario-specific tests.
+
+{{< /hint >}}
+
+##### Additional tests (**CAN**)
+
+Additional folders `CAN` be created by module owners as required.
+
+For example, to validate parameters not covered by the `max` test due to conflicts, or to provide a real example scenario for a specific use case.
+
+If a module can deploy varying styles of the same resource, e.g., VMs can be Linux or Windows, each style should be tested as both `defaults` and `waf-aligned`. These names should be used as suffixes in the directory name to denote the style, e.g., for a VM we would expect to see:
+
+- `/tests/e2e/defaults.linux/main.test.bicep`
+- `/tests/e2e/waf-aligned.linux/main.test.bicep`
+- `/tests/e2e/defaults.windows/main.test.bicep`
+- `/tests/e2e/waf-aligned.windows/main.test.bicep`
 
 <br>
 
