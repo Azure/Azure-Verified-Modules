@@ -44,7 +44,8 @@ function Set-BicepModulesFeatureCSV {
             'Tags',
             'Diag',
             'PE',
-            'PIP'
+            'CMK',
+            'Identity'
         )
     }
     $featuresTable = Get-ModulesFeatureOutline @functionInput -Verbose
