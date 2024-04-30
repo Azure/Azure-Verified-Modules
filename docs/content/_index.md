@@ -28,14 +28,14 @@ Azure Verified Modules enable and accelerate consistent solution development and
 <--->
 
 <br>
-<img src="img/avm_cycle.png" width=100%>
+<img src="img/avm_cycle.png" width=100% alt="AVM development cycle">
 
 {{< /columns >}}
 
 {{< columns size=standard >}}
 ## Modules
 
-<img src="img/avm_modules.png" width=90%>
+<img src="img/avm_modules.png" width=90% alt="AVM module classifications">
 
 <--->
 
@@ -56,8 +56,6 @@ AVM improves code quality and provides a unified customer experience.
 
 {{< /columns >}}
 
-{{< columns size=large >}}
-
 {{< hint type=important >}}
 
 AVM is owned, developed & supported by Microsoft, you may raise a GitHub issue on this repository or the module's repository directly to get support or log feature requests.
@@ -67,6 +65,8 @@ You can also log a support ticket and these will be redirected to the AVM team a
 See [Module Support](/Azure-Verified-Modules/help-support/module-support) for more information.
 
 {{< /hint >}}
+
+{{< columns size=large >}}
 
 ## Next Steps
 
@@ -85,6 +85,6 @@ See [Module Support](/Azure-Verified-Modules/help-support/module-support) for mo
 <br>
 <br>
 <br>
-<img src="img/avm_logo.png" width=80%>
+<img src="img/avm_logo.png" width=80% alt="AVM">
 
 {{< /columns >}}
