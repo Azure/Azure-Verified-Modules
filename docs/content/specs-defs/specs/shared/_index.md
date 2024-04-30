@@ -307,8 +307,10 @@ It is likely that to complete E2E tests, a number of resources will be required 
 Module owners **MUST**:
 
 - Create the required resources that their module depends upon in the test file/directory
-  - They **MUST** use simple/native resource declarations/definitions in their respective IaC language
-  - They **MUST NOT** use other modules to deploy these required resources
+  - They **MUST** either use:
+    - Simple/native resource declarations/definitions in their respective IaC language <br> **OR**
+    - Another already published AVM Module that **MUST** be pinned to a specific published version
+      - They **MUST NOT** use any local directory path references or local copies of AVM modules in their own modules test directory
 
 {{< expand "➕ Terraform & Bicep Log Analytics Workspace examples using simple/native declarations for use in E2E tests" "expand/collapse">}}
 
