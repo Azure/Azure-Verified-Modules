@@ -28,16 +28,16 @@ This page contains various views of the module index (catalog) for **Bicep Patte
 ## Module catalog
 
 {{< hint type=note >}}
-Modules listed below that aren't shown with the status of **`Module Available 🟢`**, are currently in development and are not yet available for use. For planned modules, see the [Planned modules](#planned-modules) section below.
+Modules listed below that aren't shown with the status of **`Module Available 🟢`**, are currently in development and are not yet available for use. For proposed modules, see the [Proposed modules](/Azure-Verified-Modules/indexes/bicep/bicep-pattern-modules/#proposed-modules---) section below.
 {{< /hint >}}
 
-The following table shows the number of all available, orphaned and planned **Bicep Pattern Modules**.
+The following table shows the number of all available, orphaned and proposed **Bicep Pattern Modules**.
 
-{{< moduleStats language="Bicep" moduleType="Pattern" showLanguage=false showClassification=false >}}
+{{< moduleStats language="Bicep" moduleType="Pattern" showLanguage=true showClassification=true >}}
 
 <br>
 
-### Module Publication History
+### Module Publication History - 📅
 
 {{< expand "➕ Module Publication History - Module names, status and owners" "expand/collapse" "closed" >}}
 
@@ -47,7 +47,7 @@ The following table shows the number of all available, orphaned and planned **Bi
 
 <br>
 
-### Available modules
+### Published modules - 🟢 & 👀
 
 {{< expand "➕ Available Modules - Module names, status and owners" "expand/collapse" "open" >}}
 
@@ -57,9 +57,9 @@ The following table shows the number of all available, orphaned and planned **Bi
 
 <br>
 
-### Planned modules
+### Proposed modules - 🆕
 
-{{< expand "➕ Planned Modules - Module names, status and owners" "expand/collapse" >}}
+{{< expand "➕ Proposed Modules - Module names, status and owners" "expand/collapse" >}}
 
 {{< moduleNameStatusOwners header=true csv="/static/module-indexes/BicepPatternModules.csv" language="Bicep" moduleType="pattern" exclude="Module Available :green_circle:,Module Orphaned :eyes:" >}}
 
@@ -67,7 +67,7 @@ The following table shows the number of all available, orphaned and planned **Bi
 
 <br>
 
-### All modules
+### All modules - 📇
 
 {{< expand "➕ All Modules - Module names, status and owners" "expand/collapse" >}}
 
@@ -79,13 +79,13 @@ The following table shows the number of all available, orphaned and planned **Bi
 
 ## For Module Owners & Contributors
 
-### Module name, Telemetry ID prefix, GitHub Teams for Owners & Contributors
-
 {{< hint type=note >}}
 
 This section is mainly intended **for module owners and contributors** as it contains information important for module development, such as **telemetry ID prefix, and GitHub Teams for Owners & Contributors**.
 
 {{< /hint >}}
+
+### Module name, Telemetry ID prefix, GitHub Teams for Owners & Contributors
 
 {{< expand "➕ All Modules - Module name, Telemetry ID prefix, GitHub Teams for Owners & Contributors" "expand/collapse" >}}
 
