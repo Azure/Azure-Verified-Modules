@@ -170,26 +170,35 @@ AVM has nothing to do with Radius (yet), but the AVM core team is constantly loo
 
 {{< hint type=tip >}}
 
-WAF == [Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/) (as per our [glossary](/Azure-Verified-Modules/glossary/))
+WAF == [Well-Architected Framework](https://learn.microsoft.com/en-us/azure/well-architected/) (as per our [glossary](/Azure-Verified-Modules/glossary/))
 
 {{< /hint >}}
 
-At a high-level "WAF Aligned" means, where possible and appropriate, AVM Modules will align to recommendations and default input parameter/variables to values that algin to WAF recommendations across all of it's pillars. For the security pillar we will also use the Microsoft Cloud Security Benchmark (MCSB) and Microsoft Defender for Cloud (MDFC) to align input parameter/variables values to these.
+At a high-level "WAF Aligned" means, where possible and appropriate, AVM Modules will align to recommendations and default input parameters/variables to values that algin to **high impact/priority recommendations** in the following frameworks and resources:
 
-AVM will use the following sources to set it's "WAF Aligned" defaults:
+- [Well-Architected Framework (WAF)](https://learn.microsoft.com/azure/well-architected/what-is-well-architected-framework)
+- [Reliability Hub](https://learn.microsoft.com/azure/reliability/overview-reliability-guidance)
+- [Azure Proactive Resiliency Library (APRL)](https://aka.ms/aprl)
+  - *Only Product Group (PG) verified*
 
-- [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/)
-- [Azure Proactive Resiliency Library](https://azure.github.io/Azure-Proactive-Resiliency-Library/)
-- [Introduction to the Microsoft cloud security benchmark](https://learn.microsoft.com/security/benchmark/azure/introduction)
-- [Security recommendations - Microsoft cloud security benchmark](https://learn.microsoft.com/azure/defender-for-cloud/recommendations-reference)
+For security recommendations we will also utilize the following frameworks and resources:
+
+- [Microsoft Cloud Security Benchmark (MCSB)](https://learn.microsoft.com/security/benchmark/azure/introduction)
+- [Microsoft Defender for Cloud (MDFC)](https://learn.microsoft.com/en-us/azure/defender-for-cloud/recommendations-reference)
 
 #### Will all AVM modules be 100% "WAF Aligned" out of the box and good to go?
 
-Not quite, but they'll certainly be on the right path.
+Not quite, but they'll certainly be on the right path. By default, modules will only have to set defaults for input parameters/variables to values that align to high impact/priority recommendations, as detailed above.
 
 To understand this further you first must understand that some of the "WAF Aligned" recommendations, from the sources above are more than just setting a string or boolean value to something particular to meet the recommendation; some will require additional resources to be created and exist and then linked together to help satisfy the recommendation.
 
 In these scenarios the AVM modules will not enforce the additional resources to be deployed and configured, but will provide sufficient flexibility via their input parameters/variables to be able to support the configuration, if so desired by the module consumer.
+
+{{< hint type=tip >}}
+
+This is why we **only** enforce AVM module alignment to **high** impact/priority recommendations, as the the majority of recommendations that are not **high** impact/priority will require additional resources to be used together to be compliant, as the below example will show.
+
+{{< /hint >}}
 
 ##### Some examples
 
@@ -249,7 +258,7 @@ If you're not a Microsoft FTE or don't want to be a module owner, you can still 
 Yes, there are multiple ways to contribute to AVM. You can:
 
 - [Propose](https://aka.ms/ModuleProposal) and develop a new module (Bicep or Terraform)
-- Migrate an existing module from CARML (Bicep only) - look for modules to be migrated [here](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/#planned-modules) and create a [module proposal](https://aka.ms/ModuleProposal) for the module you want to migrate.
+- Migrate an existing module from CARML (Bicep only) - look for modules to be migrated [here](/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/#planned-modules) and create a [module proposal](https://aka.ms/ModuleProposal) for the module you want to migrate.
 - Become the owner of an orphaned module (mainly Bicep) - look for "orphaned module" issues [here](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aopen+is%3Aissue+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22) or see the "Orphaned" swimlane [here](https://github.com/orgs/Azure/projects/529/views/1?filterQuery=is%3Aissue+is%3Aopen+is%3Aissue+is%3Aopen+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22)
 
 ---
@@ -367,8 +376,8 @@ These same validations are also run in the [BRM](https://aka.ms/BRM) repository 
 
 ### Does AVM use semantic versioning?
 
-Yes! For generic guidance, see [SNFR17 - Semantic Versioning](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning).
-For Bicep specific guidance, see [BCPNFR14 - Versioning](https://azure.github.io/Azure-Verified-Modules/specs/bicep/#id-bcpnfr14---category-composition---versioning).
+Yes! For generic guidance, see [SNFR17 - Semantic Versioning](/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning).
+For Bicep specific guidance, see [BCPNFR14 - Versioning](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr14---category-composition---versioning).
 
 ---
 

@@ -3,6 +3,7 @@ title: Team Definitions & RACI
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+url: /specs/shared/team-definitions/
 ---
 {{< toc >}}
 

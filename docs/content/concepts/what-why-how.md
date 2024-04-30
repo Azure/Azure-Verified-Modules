@@ -28,7 +28,7 @@ Our mission is to deliver a comprehensive Azure Verified Modules library in mult
 - The modules are supported by Microsoft, across it's many internal organizations, as described in [Module Support](/Azure-Verified-Modules/help-support/module-support/)
 - Modules are aligned to clear specifications that enforces consistency between all AVM modules. *See the 'Specifications & Definitions' section in the menu*
 - Modules will continue to stay up-to-date with product/service roadmaps owned by the module owners and contributors
-- Modules will align to WAF recommendations. *See ['What does AVM mean by "WAF Aligned"?'](/Azure-Verified-Modules/faq/#what-does-avm-mean-by-waf-aligned)*
+- Modules will align to WAF high priority recommendations. *See ['What does AVM mean by "WAF Aligned"?'](/Azure-Verified-Modules/faq/#what-does-avm-mean-by-waf-aligned)*
 - Modules will provide clear documentation alongside examples to promote self-service consumption
 - Modules will be tested to ensure they comply with the specifications for AVM and their examples deploy as intended
 

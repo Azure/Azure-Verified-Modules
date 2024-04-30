@@ -15,7 +15,7 @@ Therefore, this guide **MUST** be used in conjunction with the [Shared Specifica
 
 {{< hint type=important >}}
 
-Before jumping on implementing your contribution, please review the AVM Module specifications, in particular the [Shared](https://azure.github.io/Azure-Verified-Modules/specs/shared/) and the [Terraform specific](https://azure.github.io/Azure-Verified-Modules/specs/terraform/) pages, to make sure your contribution complies with the AVM module's design and principles.
+Before jumping on implementing your contribution, please review the AVM Module specifications, in particular the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Terraform specific](/Azure-Verified-Modules/specs/terraform/) pages, to make sure your contribution complies with the AVM module's design and principles.
 
 {{< /hint >}}
 
@@ -162,7 +162,7 @@ Use `snake_casing` as per [TFNFR3](/Azure-Verified-Modules/specs/terraform/#id-t
 
 ### Input Parameters and Variables
 
-Make sure to review all specifications of `Category: Inputs` within both the [Shared](https://azure.github.io/Azure-Verified-Modules/specs/shared/) and the [Terraform specific](https://azure.github.io/Azure-Verified-Modules/specs/terraform/) pages.
+Make sure to review all specifications of `Category: Inputs` within both the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Terraform specific](/Azure-Verified-Modules/specs/terraform/) pages.
 
 {{< hint type=tip >}}
 See examples in specifications [SNFR14](/Azure-Verified-Modules/specs/shared/#id-snfr14---category-inputs---data-types) and [TFFR14](/Azure-Verified-Modules/specs/terraform/#id-tffr14---category-inputs---no-enabled-or-module_depends_on-variable).
@@ -192,7 +192,7 @@ See examples in specifications [SFR1](/Azure-Verified-Modules/specs/shared/#id-s
 
 ### Outputs
 
-Make sure to review all specifications of `Category: Outputs` within both the [Shared](https://azure.github.io/Azure-Verified-Modules/specs/shared/) and the [Terraform specific](https://azure.github.io/Azure-Verified-Modules/specs/terraform/) pages.
+Make sure to review all specifications of `Category: Outputs` within both the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Terraform specific](/Azure-Verified-Modules/specs/terraform/) pages.
 
 {{< hint type=tip >}}
 See examples in specification [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs) and [TFFR2](/Azure-Verified-Modules/specs/terraform/#id-tffr2---category-outputs---additional-terraform-outputs).

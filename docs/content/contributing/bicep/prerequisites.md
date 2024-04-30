@@ -42,7 +42,7 @@ To contribute to this project the following tooling is required:
     git config --global user.email "johndoe@example.com"
     ```
 
-- [Bicep](https://learn.microsoft.com/azure/azure-resource-manager/bicep/install#install-manually)
+- [Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#install-manually)
 
   {{< hint type=note >}}
 

@@ -13,7 +13,7 @@ This section describes the contribution flow for module owners who are responsib
 
 This contribution flow is for **Module Owners** only.
 
-As a **Bicep Module Owner** you need to be aware of the [AVM Contribution Process Overview](https://azure.github.io/Azure-Verified-Modules/contributing/process/), [Shared Specifications](https://azure.github.io/Azure-Verified-Modules/specs/shared/) (including [Interfaces](https://azure.github.io/Azure-Verified-Modules/specs/shared/interfaces/)) and [Bicep-specific](https://azure.github.io/Azure-Verified-Modules/specs/bicep/) specifications as these need to be followed during pull request reviews for the modules you own. The purpose of this **Owner Contribution Flow** is to simplify and list the most important activities of an owner and to help you understand your responsibilities as an owner.
+As a **Bicep Module Owner** you need to be aware of the [AVM Contribution Process Overview](/Azure-Verified-Modules/contributing/process/), [Shared Specifications](/Azure-Verified-Modules/specs/shared/) (including [Interfaces](/Azure-Verified-Modules/specs/shared/interfaces/)) and [Bicep-specific](/Azure-Verified-Modules/specs/bicep/) specifications as these need to be followed during pull request reviews for the modules you own. The purpose of this **Owner Contribution Flow** is to simplify and list the most important activities of an owner and to help you understand your responsibilities as an owner.
 
 {{< /hint >}}
 
@@ -149,7 +149,7 @@ This checklist can be used in the development of AVM Bicep Modules.
     - Ensure all workflows are [disabled by default](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/) once you forked the BRM repo, to prevent any accidental deployments into your Azure test environment resulted by an automated deployment.
 
 3. Create a new branch from your forked repository to develop your module.
-4. If you're working on a new module you have to create its corresponding workflow file (see [here](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution)).
+4. If you're working on a new module you have to create its corresponding workflow file (see [here](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution)).
 
     - In order to run your e2e tests in your fork, this workflow file has to be put into the `main` branch first, so it can be run against your feature branch (GitHub Workflows can only be run on feature branches when they are already present in the main branch).
     - Since all workflows are disabled by default you have to enable your module's specific GitHub [workflow](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/) to run your e2e tests.
