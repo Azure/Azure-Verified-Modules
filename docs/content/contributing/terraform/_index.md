@@ -8,9 +8,6 @@ geekdocCollapseSection: true
 ---
 
 {{< toc >}}
-{{< hint type=tip >}}
-Before submitting a new [module proposal](https://aka.ms/avm/moduleproposal) for either Bicep or Terraform, please review the FAQ section on ["CARML/TFVM to AVM Evolution Details"](/Azure-Verified-Modules/faq/#carmltfvm-to-avm-evolution-details)
-{{< /hint >}}
 
 {{< hint type=important >}}
 While this page describes and summarizes important aspects of contributing to AVM, it only references _some_ of the shared and language specific requirements.
