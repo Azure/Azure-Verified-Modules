@@ -50,6 +50,8 @@ main:
     sub:
       - name: "Module Support"
         ref: "/help-support/module-support"
+      - name: "Known Issues"
+        ref: "/help-support/known-issues"
       - name: "Issue Triage"
         ref: "/help-support/issue-triage"
         sub:
