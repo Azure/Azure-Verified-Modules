@@ -1,4 +1,4 @@
-As per the module design structure ([BCPFR3](/Azure-Verified-Modules/specs/bicep/#id-bcpfr3---category-composition---directory-and-file-structure)), every module in the AVM library requires 
+As per the module design structure ([BCPFR3](/Azure-Verified-Modules/specs/bicep/#id-bcpfr3---category-composition---directory-and-file-structure)), every module in the AVM library requires
 - a up-to-date ReadMe markdown (`readme.md`) file documenting the set of deployable resource types, input and output parameters and a set of relevant template references from the official Azure Resource Reference documentation
 - an up-to-date compiled template (`main.json`) file
 
@@ -24,10 +24,10 @@ You can find the script under [`avm/utilities/tools/Set-AVMModule.ps1`](https://
 
 # How it works
 
-Using the provided template path, the script 
+Using the provided template path, the script
 1. validates the module's folder structure
    - To do so, it searches for any required folder path / file missing and adds them. For several files, it will also provide some default content to get you started. The sources files for this action can be found [here](https://github.com/Azure/bicep-registry-modules/tree/main/avm/utilities/tools/helper/src)
-1. compiles its bicep template 
+1. compiles its bicep template
 1. updates the readme (recursively, specified)
    1. If the intended readMe file does not yet exist in the expected path, it is generated with a skeleton (with e.g., a generated header name)
    1. The script then goes through all sections defined as `SectionsToRefresh` (by default all) and refreshes the sections' content (for example, for the `Parameters`) based on the values in the ARM/JSON Template. It detects sections by their header and always regenerates the full section.
