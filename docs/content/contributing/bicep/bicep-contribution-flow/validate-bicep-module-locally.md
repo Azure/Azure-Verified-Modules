@@ -34,7 +34,7 @@ For details on how to use the function, please refer to the script's local docum
 
 {{< hint type=note >}}
 
-The script must be loaded ('*dot-sourced*') before the function can be invoked.
+The script must be loaded ('_dot-sourced_') before the function can be invoked.
 ```PowerShell
 . 'C:/dev/Test-ModuleLocally.ps1'
 Test-ModuleLocally (...)
