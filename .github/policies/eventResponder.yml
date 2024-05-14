@@ -283,12 +283,14 @@ configuration:
                 > [!NOTE]
                 > The "Status: In PR :point_right:" label was removed as per [ITA23](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita23).
 
-      - description: 'ITA25 - When #closethis is used in an issue, close the issue.'
+      - description: 'ITA25 - When #CloseThis is used in an issue, close the issue.'
         if:
           - or:
               - payloadType: Issue_Comment
           - commentContains:
               pattern: "#closethis"
+          - hasLabel:
+              label: "Type: Hygiene :broom:"
 
         then:
           - closeIssue
