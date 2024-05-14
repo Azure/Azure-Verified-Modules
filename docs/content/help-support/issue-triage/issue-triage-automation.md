@@ -604,6 +604,21 @@ Remove the "<mark style="background-color:#EDEDED;">Status: In PR 👉</mark>" l
 
 ---
 
+### ITA25
+
+When #closethis is used in an issue, close the issue.
+
+**Trigger criteria:**
+
+- An issue comment or PR comment contains the string of "#closethis".
+
+**Action(s):**
+
+- Close the issue.
+- Add a reply to explain the action(s).
+
+---
+
 ## Where to apply these rules?
 
 The below table details which repositories the above rules are applied to.
@@ -643,3 +658,4 @@ The below table details which repositories the above rules are applied to.
 | [ITA21](#ita21)             |                     |       ✔️       |        ✔️       |
 | [ITA22](#ita22)             |                     |       ✔️       |        ✔️       |
 | [ITA23](#ita23)             |          ✔️         |                |        ✔️       |
+| [ITA25](#ita25)             |          ✔️         |                |                 |
