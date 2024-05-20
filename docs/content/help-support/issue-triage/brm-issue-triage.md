@@ -19,12 +19,12 @@ As such, **the following issues are to be filed in the BRM repository**:
 
 Do **NOT** file the following types of issues in the **BRM repository**, as they **MUST** be tracked in the **AVM repo**:
 
-- **\[[Module Proposal](https://aka.ms/AVM/ModuleProposal)]**: Proposals for new AVM modules, or for migrating existing CARML/TFVM modules to AVM.
+- **\[[Module Proposal](https://aka.ms/AVM/ModuleProposal)]**: Proposals for new AVM modules.
 - **\[[Orphaned Module](https://aka.ms/AVM/OrphanedModule)]**: Indicate that a module is orphaned (has no owner).
 - **\[[Question/Feedback](https://aka.ms/AVM/QuestionFeedback)]**: Generic questions/requests related to the AVM site or documentation.
 
 {{< hint type=note >}}
-Every module needs a module proposal to be created in the AVM repository. This applies to both net new modules, as well as modules that are to be migrated from CARML/TFVM!
+Every module needs a module proposal to be created in the AVM repository.
 {{< /hint >}}
 
 <br>
