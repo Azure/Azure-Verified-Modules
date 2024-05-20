@@ -11,19 +11,9 @@ This page is still a work in progress
 
 {{< /hint >}}
 
-<br>
-
 ## Request/Propose a New AVM Resource or Pattern Module
 
 Please review the [Process Overview](/Azure-Verified-Modules/contributing/process/#new-module-proposal--creation) for guidance on proposing a new AVM module.
-
-{{< hint type=tip >}}
-
-Before submitting a new [module proposal](https://aka.ms/avm/moduleproposal) for either Bicep or Terraform, please review the FAQ section on ["CARML/TFVM to AVM Evolution Details"](/Azure-Verified-Modules/faq/#carmltfvm-to-avm-evolution-details)
-
-{{< /hint >}}
-
-<br>
 
 ## Orphaned AVM Modules
 

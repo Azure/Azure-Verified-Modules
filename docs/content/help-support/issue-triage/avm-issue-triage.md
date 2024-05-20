@@ -15,7 +15,7 @@ This page provides guidance for members of the **AVM Core Team** on how to **tri
 During the AVM Core Team Triage step, the following will be checked, completed and actioned by the AVM Core Team during their triage calls (which are currently twice per week).
 
 {{< hint type=note >}}
-Every module needs a module proposal to be created in the AVM repository. This applies to both net new modules, as well as modules that are to be migrated from CARML/TFVM!
+Every module needs a module proposal to be created in the AVM repository.
 {{< /hint >}}
 
 {{< hint type=tip >}}
@@ -62,7 +62,6 @@ Follow these steps to triage a module proposal:
 3. Apply relevant labels
 
     - Module classification (resource/pattern): "<mark style="background-color:#D3D3D3;">Class: Resource Module 📦</mark>" or "<mark style="background-color:#A9A9A9;">Class: Pattern Module 📦</mark>"
-    - If it's a module that will be migrated from CARML/TFVM, add the related "<mark style="background-color:#00796F;color:white;">Status: Migrate from CARML 🚛</mark>" or the "<mark style="background-color:#00796F;color:white;">Status: Migrate from TFVM 🚛</mark>" label.
 
 ### Triaging pattern modules
 
