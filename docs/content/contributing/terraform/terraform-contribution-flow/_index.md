@@ -169,6 +169,10 @@ AVM performs end-to-end (e2e) test dpeloyments of all modules in Azure for valid
 
 To implement your contribution, we kindly ask you to first review the [shared](/Azure-Verified-Modules/specs/shared/) & [Terraform-specific](/Azure-Verified-Modules/specs/terraform/) specifications and [composition guidelines](/Azure-Verified-Modules/contributing/bicep/terraform/) in particular to make sure your contribution complies with the repository's design and principles.
 
+{{< hint type=tip >}}
+To get a head start on developing your module, consider using the tooling recommended per spec [TFNFR37](https://azure.github.io/Azure-Verified-Modules/specs/terraform/#id-tfnfr37---category-code-style---tool-usage-by-module-owner). For example you can use the [newres](https://github.com/lonegunmanb/newres) tool to help with  creating `variables.tf` and `main.tf` if you're developing a module using Azurerm provider.
+{{< /hint >}}
+
 <br>
 
 ---
