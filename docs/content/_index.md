@@ -6,9 +6,11 @@ geekdocAnchor: true
 ---
 
 {{< hint type=caution icon=gdoc_date title="AVM Community Calls" >}}
-The AVM team is thrilled to announce the launch of our external community calls, tailored for individuals outside of Microsoft. We invite you to join us for insightful discussions and engaging conversations. To attend, simply visit our [dedicated page](/Azure-Verified-Modules/resources/community)!
 
-We look forward to connecting with you and fostering a vibrant community together!
+The AVM team has hosted it's first external community call on the 21st May 2024 🥳
+
+To find out more about future calls and the recordings of previous ones please head to the [dedicated page](/Azure-Verified-Modules/resources/community)!
+
 {{< /hint >}}
 
 {{< youtube id="JbIMrJKW5N0" title="An introduction to Azure Verified Modules (AVM)" >}}
