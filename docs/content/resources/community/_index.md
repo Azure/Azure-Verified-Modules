@@ -19,7 +19,36 @@ Get ready to mark your calendars and ignite your enthusiasm because our communit
 
 Let's make each community call a vibrant celebration of connection, collaboration, and camaraderie!
 
-## Upcoming Event
+## Upcoming Events
+
+{{< hint type=tip title="Coming Soon!">}}
+
+We are busy planning the next quarterly external community call, stay tuned for registration details!
+
+The next instance will be optimized for Americas time zones.
+
+{{< /hint >}}
+
+<!-- ### CHANGE ME
+
+> This occurrence is optimized for Americas time zones.
+
+- [Registration](CHANGE ME)
+- [GitHub Issue for Q&A section](CHANGE ME) -->
+
+## Previous Events
 
 ### 21st May 2024
-This occurrence will be optimized for EMEA/APJ time zones. To register for the event, please visit: [https://aka.ms/AVM/CommunityCall](https://aka.ms/AVM/CommunityCall).
+
+{{< hint type=note >}}
+
+This occurrence was optimized for EMEA/APJ time zones.
+
+{{< /hint >}}
+
+- [Registration](https://msit.events.teams.microsoft.com/event/0934dbca-3fc0-4a0e-a13f-c4c9dc68889b@72f988bf-86f1-41af-91ab-2d7cd011db47)
+- [GitHub Issue for Q&A section](https://github.com/Azure/Azure-Verified-Modules/issues/859)
+
+#### Recording
+
+{{< youtube id="LprWndLjLH0" title="Azure Verified Modules (AVM) - May 2024 - External Community Call" >}}
