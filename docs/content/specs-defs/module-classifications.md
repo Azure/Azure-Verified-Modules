@@ -18,6 +18,6 @@ AVM defines two module classifications, **Resource Modules** and **Pattern Modul
 
 {{< hint type=note >}}
 
-The concept of **Utility Modules** will be introduced gradually, through some initial examples. The definition above is subject to change as additional details are worked out. The required automated tests and other workflow elements will be derived from the Pattern Modules' CI environment as the concept matures. Utility modules will be kept under the `avm/utl` folder in the respective Bicep or Terraform repository.
+The concept of **Utility Modules** will be introduced gradually, through some initial examples. The definition above is subject to change as additional details are worked out. The required automated tests and other workflow elements will be derived from the Pattern Modules' CI environment as the concept matures. Utility modules will be kept under the `avm/utl` folder in the respective Bicep or Terraform repository. Related documentation (functional and non-functional requirements, etc.) will also be published along the way.
 
 {{< /hint >}}
