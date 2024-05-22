@@ -125,8 +125,6 @@ Feel free to reach out to the [AVM Core team][AVMCoreTeam] in case that addition
 
 ### What do I do about existing modules that are available doing a similar thing to my module that I am proposing to develop and release?
 
-We suggest that you first review the FAQ of [What is happening to existing initiatives like CARML and TFVM?][CARMLTFVMEvolution] to understand AVM's intent for existing modules from known Microsoft projects etc.
-
 As part of the [Module Proposal process][ProcessOverview], the AVM core team will work with you to triage your proposal. We also want to make sure that no similar existing modules from known Microsoft projects are already on their way to be migrated to AVM.
 
 - If there aren't any, then you can proceed with developing your module from scratch once given approval to proceed by the AVM core team.
@@ -216,7 +214,7 @@ All issues created in a module repo will be automatically be picked up and track
 [AVMChannel]: https://aka.ms/AVM/channel
 [ModuleSpecifications]: /Azure-Verified-Modules/specs/
 [DiagnosticSettings]: /Azure-Verified-Modules/specs/shared/interfaces/#diagnostic-settings
-[AzureArchitectureCenter]: https://learn.microsoft.com/azure/architecture/browse/
+[AzureArchitectureCenter]: https://learn.microsoft.com/en-us/azure/architecture/browse/
 [ALZ]: https://aka.ms/alz
 [ModuleIndexes]: /Azure-Verified-Modules/indexes/
 [MandatoryLabels]: /Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels
@@ -225,6 +223,5 @@ All issues created in a module repo will be automatically be picked up and track
 [BicepContributios]: /Azure-Verified-Modules/contributing/bicep/
 [TerrafromContribution]: /Azure-Verified-Modules/contributing/terraform/
 [ModuleNaming]: /Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming
-[CARMLTFVMEvolution]: /Azure-Verified-Modules/faq/#what-is-happening-to-existing-initiatives-like-carml-and-tfvm
 [ProcessOverview]: /Azure-Verified-Modules/contributing/process/
 [GitHubLicensing]: https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository

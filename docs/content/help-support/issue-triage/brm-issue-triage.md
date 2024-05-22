@@ -19,12 +19,12 @@ As such, **the following issues are to be filed in the BRM repository**:
 
 Do **NOT** file the following types of issues in the **BRM repository**, as they **MUST** be tracked in the **AVM repo**:
 
-- **\[[Module Proposal](https://aka.ms/AVM/ModuleProposal)]**: Proposals for new AVM modules, or for migrating existing CARML/TFVM modules to AVM.
+- **\[[Module Proposal](https://aka.ms/AVM/ModuleProposal)]**: Proposals for new AVM modules.
 - **\[[Orphaned Module](https://aka.ms/AVM/OrphanedModule)]**: Indicate that a module is orphaned (has no owner).
 - **\[[Question/Feedback](https://aka.ms/AVM/QuestionFeedback)]**: Generic questions/requests related to the AVM site or documentation.
 
 {{< hint type=note >}}
-Every module needs a module proposal to be created in the AVM repository. This applies to both net new modules, as well as modules that are to be migrated from CARML/TFVM!
+Every module needs a module proposal to be created in the AVM repository.
 {{< /hint >}}
 
 <br>
@@ -59,25 +59,24 @@ An issue is considered to be an "AVM module issue" if
 {{< hint type=note >}}
 Module issues can only be opened for existing AVM modules. Module issues **MUST NOT** be used to file a module proposal.
 
-If the issue was opened as a misplaced module proposal, mention the `@Azure/AVM-core-team` in the comment section and ask them to move the issue to the AVM repository.
+If the issue was opened as a misplaced module proposal, mention the `@Azure/AVM-core-team-technical-bicep` team in the comment section and ask them to move the issue to the AVM repository.
 {{< /hint >}}
 
-1. Add the "<mark style="background-color:#E4E669;">Status: In Triage 🔍</mark>" label to indicate you're in the process of triaging the issue.
-2. Check the Module issue:
+### Triaging a Module Issue
+
+1. Check the Module issue:
     - Make sure the issue has the "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>" applied to it.
-    - Use the AVM module indexes to identify the module owner(s).
-    - Assign the issue to the module owner(s).
-    - If the module is orphaned (has no owner), make sure there's an orphaned module issue in the AVM repository
+    - Use the AVM module indexes to identify the module owner(s) and make sure they are assigned/mentioned/informed.
+    - If the module is orphaned (has no owner), make sure there's an orphaned module issue in the AVM repository.
     - Make sure the module's details are captured correctly in the description - i.e., name, classification (resource/pattern), language (Bicep/Terraform), etc.
     - Make sure the issue is categorized using one of the following type labels:
       - "<mark style="background-color:#A2EEEF;">Type: Feature Request ➕</mark>"
       - "<mark style="background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>"
       - "<mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>"
-3. Apply relevant labels
-    - Module language: "<mark style="background-color:#1D73B3;color:white;">Language: Bicep 💪</mark>" or "<mark style="background-color:#7740B6;color:white;">Language: Terraform 🌐</mark>"
-    - Module classification (resource/pattern): "<mark style="background-color:#D3D3D3;">Class: Resource Module 📦</mark>" or "<mark style="background-color:#A9A9A9;">Class: Pattern Module 📦</mark>"
-4. Communicate next steps to the requestor (issue author).
-5. When plans are available, communicate expected timeline for the update/fix to the requestor (issue author).
+2. Apply relevant labels for module classification (resource/pattern): "<mark style="background-color:#D3D3D3;">Class: Resource Module 📦</mark>" or "<mark style="background-color:#A9A9A9;">Class: Pattern Module 📦</mark>"
+3. Communicate next steps to the requestor (issue author).
+4. Remove the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label.
+5. When more detailed plans are available, communicate expected timeline for the update/fix to the requestor (issue author).
 6. Only close the issue, once the next version of the module was fully developed, tested and published.
 
 <br>
@@ -92,14 +91,22 @@ An issue is considered to be an "AVM Question/Feedback" if
 
 An issue is considered to be a "standard issue" or "blank issue" if it was opened without using an issue template, and hence it does **NOT** have any labels assigned, OR only has the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label assigned.
 
-When triaging the issue, consider adding one of the following labels as fits:
+### Triaging a General Question/Feedback and other standard issues
 
-- <mark style="background-color:#0075CA;color:white;">Type: Documentation 📄</mark>
-- <mark style="background-color:#A2EEEF;">Type: Feature Request ➕</mark>
-- <mark style="background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>
-- <mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>
+1. When triaging the issue, consider adding one of the following labels as fits:
 
-To see the full list of available labels, please refer to the [GitHub Repo Labels](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels) section.
+    - <mark style="background-color:#0075CA;color:white;">Type: Documentation 📄</mark>
+    - <mark style="background-color:#A2EEEF;">Type: Feature Request ➕</mark>
+    - <mark style="background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>
+    - <mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>
+
+> To see the full list of available labels, please refer to the [GitHub Repo Labels](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels) section.
+
+2. Add any (additional) labels that apply.
+3. Communicate next steps to the requestor (issue author).
+4. Remove the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label.
+5. When more detailed plans are available, communicate expected timeline for the update/fix to the requestor (issue author).
+6. Once the question/feedback/topic is fully addressed, close the issue.
 
 {{< hint type=note >}}
 

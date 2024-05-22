@@ -3,6 +3,7 @@ title: Terraform Modules
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+geekdocCollapseSection: true
 ---
 
 This section lists all Azure Verified Modules that are available in or planned for the **Terraform language**.
@@ -16,4 +17,4 @@ This section lists all Azure Verified Modules that are available in or planned f
 
 The following table shows the number of all available, orphaned and planned **Terraform Modules**.
 
-{{< moduleStats language="Terraform" moduleType="All" showLanguage=false showClassification=true >}}
+{{< moduleStats language="Terraform" moduleType="All" showLanguage=true showClassification=true >}}

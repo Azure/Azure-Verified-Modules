@@ -18,8 +18,6 @@ Status: Invalid :x:,This doesn't seem right,E4E669
 Status: Long Term :hourglass_flowing_sand:,"We will do it, but will take a longer amount of time due to complexity/priorities",B60205
 Status: No Recent Activity :zzz:,When an issue/PR has not been modified for X amount of days,808080
 Status: Won't Fix :broken_heart:,This will not be worked on,FFFFFF
-Status: Migrate from CARML :articulated_lorry:,This item is related to a module migration from CARML,00796F
-Status: Migrate from TFVM :articulated_lorry:,This item is related to a module migration from TFVM,00796F
 Status: Owners Identified :metal:,This module has its owners identified,FBEF2A
 Status: Module Available :green_circle:,The module is published,C8E6C9
 Status: Module Orphaned :eyes:,The module has no owner and is therefore orphaned at this time,F4A460

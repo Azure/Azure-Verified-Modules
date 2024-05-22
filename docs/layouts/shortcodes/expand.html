@@ -10,6 +10,6 @@
   <input id="{{ $id }}-{{ .Ordinal }}" type="checkbox" class="gdoc-expand__control hidden" />
   {{ end }}
   <div class="gdoc-markdown--nested gdoc-expand__content">
-    {{ .Inner | $.Page.RenderString | htmlUnescape | safeHTML }}
+    {{ .Inner | $.Page.RenderString }}
   </div>
 </div>

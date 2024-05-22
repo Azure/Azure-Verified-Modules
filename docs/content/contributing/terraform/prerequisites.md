@@ -7,12 +7,9 @@ geekdocAnchor: true
 
 {{< toc >}}
 
-<!--
-NOTE:
+## GitHub Account Link and Access
 
-Removed ## Recommended Learning since advanced (not basic) knowledge is required around Git, TF and Docker, it is considered a hard requirement. Someone just looking at the Terraform Docs or code and trying to figure out how to contribute will not be successful. Contributors need to have a good understanding and holistic view of all tools and how to use them.
-
--->
+To contribute to this project, you need to have a GitHub account which is [linked](https://repos.opensource.microsoft.com/link) to your Microsoft corporate identity account and be a member of the [Azure](https://repos.opensource.microsoft.com/orgs/Azure) organisation.
 
 ## Tooling
 
