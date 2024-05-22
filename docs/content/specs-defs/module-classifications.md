@@ -16,7 +16,7 @@ AVM defines two module classifications, **Resource Modules** and **Pattern Modul
 | **Utility Module**<br>(draft,<br>see below) | Implements a function or routine that can be flexibly reused in resource or pattern modules - e.g., a function that retrieves the endpoint of an API or portal of a given environment. <br><br>It MUST NOT deploy any Azure resources other than deployment scripts. | People who want to leverage commonly used functions/routines/helpers in their module, instead of re-implementing them locally. |
 <!-- markdownlint-enable -->
 
-{{< hint type=note >}}
+{{< hint title="PREVIEW" >}}
 
 The concept of **Utility Modules** will be introduced gradually, through some initial examples. The definition above is subject to change as additional details are worked out. The required automated tests and other workflow elements will be derived from the Pattern Modules' CI environment as the concept matures. Utility modules will be kept under the `avm/utl` folder in the respective Bicep or Terraform repository. Related documentation (functional and non-functional requirements, etc.) will also be published along the way.
 
