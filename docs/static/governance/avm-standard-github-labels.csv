@@ -7,6 +7,7 @@ Needs: External Changes :hammer_and_pick:,When an issue/PR requires changes that
 Needs: More Evidence :balance_scale:,We are looking for more evidence to make a decision on this,F64872
 Needs: Triage :mag:,Maintainers need to triage still,FBCA04
 Needs: Module Owner :mega:,This module needs an owner to develop or maintain it,FF0019
+Needs: Core Team :cop:,This it needs the AVM Core Team to review it,DB4503
 Status: Awaiting Release To Be Cut :scissors:,"This is fixed in the main branch but not in the latest release, will be fixed with next release cut",800080
 Status: Do Not Merge :no_entry:,Do not merge PRs with this label attached as they are not ready or aligned to future direction etc.,8B4513
 Status: External Contribution :earth_africa:,This is being worked on by someone outside of the AVM module owners/contributors or AVM core team,D8FA2C
@@ -36,3 +37,4 @@ Language: Terraform :globe_with_meridians:,This is related to the Terraform IaC 
 Language: Bicep :muscle:,This is related to the Bicep IaC language,1D73B3
 Class: Resource Module :package:,This is a resource module,D3D3D3
 Class: Pattern Module :package:,This is a pattern module,A9A9A9
+Class: Utility Module :package:,This is a utility module,CAD1DE
