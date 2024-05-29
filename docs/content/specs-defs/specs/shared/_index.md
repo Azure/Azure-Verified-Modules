@@ -797,7 +797,7 @@ For example all modules should be released using a semantic version that matches
 - Until first Major version `1.0.0` is released, given a version number `X.Y.Z`:
   - `X` Major version MUST NOT be bumped.
   - `Y` Minor version MUST be bumped for both breaking changes (which would normally bump Major after `1.0.0` release) and feature updates (same as it will be after `1.0.0` release).
-  - `Z` Patch version MUST be bumped for non-breaking, backwards compatible bug fixes (same as it will be after `1.0.0` release).
+  - `Z` Patch version MUST be bumped for non-breaking, backward compatible bug fixes (same as it will be after `1.0.0` release).
 
 <br>
 
