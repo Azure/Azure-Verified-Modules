@@ -1,37 +1,75 @@
-# AVM Review of Terraform Modules
+---
+title: AVM Review of Terraform Modules
+geekdocNav: true
+geekdocAlign: left
+geekdocAnchor: true
+---
 
-## New Module Review
-AVM Review is a critical step before an AVM terraform module is published to terraform registry and made publicly available for customers, partners and wider IaC community to consume and contribute to. It acts as a quality assurance step to ensure that the AVM terraform module complies with the shared and terraform specifications of AVM. The below process outlines the steps for both a module owner and a module reviewer to follow to do an AVM Review of a terraform module.
+{{< toc >}}
+
+AVM Review is a critical step before an AVM terraform module is published to [Terraform Registry](https://registry.terraform.io/) and made publicly available for customers, partners and wider IaC community to consume and contribute to. It acts as a quality assurance step to ensure that the AVM terraform module complies with the [shared](https://azure.github.io/Azure-Verified-Modules/specs/shared/) and [terraform](https://azure.github.io/Azure-Verified-Modules/specs/terraform/) specifications of AVM. The below process outlines the steps for both a module owner and a module reviewer should follow to do an AVM Review of a terraform module.
 
 1. The module owner completes the development of the module in their branch or fork.
 
 2. The module owner does a pull request (PR) titled 'AVM-Review-PR' ensuring that all checks are passing on that PR as that is a pre-requisite to request a review.
 
 3. The module owner assigns the `avm-core-team-technical-terraform` as reviewers on the PR.
-<br><img src="/Azure-Verified-Modules/img/contribution/avm-reviewer.png" alt="Request Review" width=25%>
 
 4. The module owner leaves the following comment as is on the module proposal in the AVM Repo by searching for their module proposal here.
 <br>"I would like to request a review of my module. The latest code is in a PR titled AVM-Review-PR on the module repo and all checks on that PR are passing."
 
-5. The above comment will help move the module proposal from "In Development" to "In Review".
+5. The AVM team will move the module proposal from "In Development" to "In Review" in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project.
 
-6. The `avm-core-team-technical-terraform` team will be notified and will assign a module reviewer.
+6. The AVM team will assign a module reviewer who will open a blank issue on the module titled "AVM-Review" and populate it with the below mark down. This template already marks the specs as compliant which are covered by the checks that run on the PR. There are some specs which don't need to be checked at the time of publishing the module therefore they are marked as NA.
 
-7. The module reviewer respond to the module owner's comment with the following comment as is on the module proposal in the AVM Repo.
-<br>"I have been assigned as the module reviewer and will be helping with reviewing this module."
-
-8. The module reviewer will open a blank issue on the module titled "AVM-Review" and populate it with the below mark down. This template already marks the specs as compliant which are covered by the checks that run on the PR. There are some specs which don't need to be checked at the time of publishing the module therefore they are marked as NA.
-
-{{< expand "➕ AVM Terraform Module Review Template" "expand/collapse" >}}
+{{< expand "➕ AVM Terraform Module Review Issue" "expand/collapse" >}}
 
 {{< include file="static/includes/avm-terraform-module-review-template.md" language="markdown" options="linenos=false" >}}
 
 {{< /expand >}}
 
-9. The module reviewer can update the Compliance column for specs 42 to 47 to NA in case the module being reviewed isn't a pattern module.
+7. The module reviewer can update the Compliance column for specs 42 to 47 to NA in case the module being reviewed isn't a pattern module.
 
-10. The module reviewer to review the code in the PR and make comments on anything that doesn't look right to the module reviewer.
+8. The module reviewer to review the code in the PR and make comments to request module owner of any necessary updates to the PR.
 
-11.
+9. The module reviewer will assign the AVM-Review issue to the module owner and respond to the module owner's comment on the Module Proposal in AVM Repo with the following
 
-## Existing Module Review
+{{< expand "➕ AVM Terraform Module Review Initiation Message" "expand/collapse" >}}
+
+"Thank you for reaching out to request a review of your module. The AVM module review process has been initiated, kindly perform the **Requested Actions** on the AVM-Review issue on the module repo."
+
+{{< /expand >}}
+
+10. The module owner will update the check list and the table in the AVM-Review issue and accordingly update the module reviewer.
+
+11. The module reviewer will perform the final review and ensure that all checks in the checklist are complete and the specs table has been updated with no spec's having compliance as 'No'.
+
+12. The module reviewer will approve the AVM-Review-PR and make the following comment on the AVM-Review issue and close it.
+
+{{< expand "➕ AVM Terraform Module Review Completion Message" "expand/collapse" >}}
+
+Thank you so much for contributing this module and completing the review process per AVM specs to ensure quality.
+
+You may proceed with publishing this module to the HashiCorp Terraform Registry with the initial pre-release version of v0.1.0.
+
+Please keep future versions also pre-release (e.g., 0.1.0, 0.1.1, 0.2.0, etc.) until AVM goes to GA of which the AVM team will notify.
+
+**Requested Action**: Once the module is published to the HashiCorp Terraform Registry kindly update the proposal with the below comment.
+
+"The AVM Review of this module has been completed and the module has been published to the registry. Requesting AVM team to close this module proposal and update module index accordingly."
+
+{{< /expand >}}
+
+13. The module owner will merge the AVM-Review-PR and publish the module to Terraform registry and update the module proposal on the AVM repo with the following
+
+{{< expand "➕ AVM Terraform Module Publish Message" "expand/collapse" >}}
+
+The AVM Review of this module has been completed and the module has been published to the registry. Requesting AVM team to close this module proposal and update module index accordingly.
+
+{{< /expand >}}
+
+14. The module reviewer will update the module proposal by doing the following
+- Move the module proposal from "In Review" to "Done" in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project.
+- Assign label Status: Module Available :green_circle:
+- Update the module index
+- Close the module proposal

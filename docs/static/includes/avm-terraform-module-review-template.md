@@ -5,7 +5,7 @@ As per the agreed module ownership requirements and responsibilities at the time
 
 We appreciate if you don't close this issue till the review is complete. This review is required as a pre-req to be able to publish v0.1.0 the module to the Terraform Registry. AVM team would be happy to assist with any questions that you might have.
 
-Requested Actions
+**Requested Actions**
 1. Complete below task list by ticking off the tasks.
 2. Complete the below table by updating the Compliant column with Yes, No or NA as possible values.
 
@@ -15,7 +15,6 @@ Please use the comments columns to provide additional details especially if the 
 ### Tasks
 - [ ] Address comments on PR if any
 - [ ] Ensure that all checks on PR are passing
-- [ ] Ensure the latest "chore: repository governance" PR is merged
 - [ ] Tick this to acknowledge specs with comment "Module Owner to action this spec post-publish as appropriate".
 ```
 

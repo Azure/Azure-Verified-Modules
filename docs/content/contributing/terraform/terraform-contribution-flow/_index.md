@@ -249,12 +249,7 @@ With the help of the [avm](https://github.com/Azure/terraform-azurerm-avm-templa
 
 ### 5. Create a pull request to the upstream repository
 
-Once you are satisfied with your contribution and validated it, open a PR from your forked repository to the original Terraform Module repository. Make sure you:
-
-1. Include/Add [`@Azure/avm-core-team-technical-terraform`](https://github.com/orgs/Azure/teams/avm-core-team-technical-terraform) as a reviewer.
-2. Make sure all Pull Requst Checks (e2e tests with all examples, linting and version-check) are passing.
-3. Watch comments from the PR checks and reviewers (Module owner or AVM core team) and address them accordingly.
-4. Once your PR is approved, merge it into the upstream repository and the Module owner will publish the module to the HashiCorp Terraform Registry.
+Once you are satisfied with your contribution and validated it, create a pull request to the upstream repository and work with the module owner to get the module reviewed from the AVM Core team by following the AVM Review of Terraform Modules process [here](/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/owner-contribution-flow/#6-review-the-module) which is a pre-requisite to publishing the module. Once the review process is complete and your PR is approved, merge it into the upstream repository and the Module owner will [publish](/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/owner-contribution-flow/#7-publish-the-module) the module to the HashiCorp Terraform Registry.
 
 <br>
 
@@ -267,21 +262,7 @@ Once you are satisfied with your contribution and validated it, open a PR from y
 - If you contribute to a new module then search and update `TODOs` (which are coming with the [terraform-azurerm-avm-template](https://github.com/Azure/terraform-azurerm-avm-template)) within the code and remove the `TODO` comments once complete
 - `terraform.lock.hcl` shouldn't be in the repository as per the `.gitignore` file
 - Update the `support.md` file
-- Consider updating version to `0.1.0` as the first version that would be published into the terraform registry per spec [SNFR17](/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning)
-- Set `prevent_deletion_if_contains_resources` to `false` in provider block in example code per spec [TFNFR36](/Azure-Verified-Modules/specs/terraform/#id-tfnfr36---category-code-style---example-code-must-set-prevent_deletion_if_contains_resources-to-false-in-provider-block)
-- The `Contributor` and `Owner` teams are not added to the repository per spec [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only)
 - `\_header.md` needs to be updated
-- `readme.md` needs to be generated as per spec [SNFR15](/Azure-Verified-Modules/specs/shared/#id-snfr15---category-documentation---automatic-documentation-generation) & [TFNFR2](/Azure-Verified-Modules/specs/terraform/#id-tfnfr2---category-documentation---module-documentation-generation)
 - `support.md` needs to be updated
 - `locals.telemetry.tf` needs to be updated
-- Define outputs like Resource Name, ID and Object in `outputs.tf` per specs [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs) & [TFFR2](/Azure-Verified-Modules/specs/terraform/#id-tffr2---category-outputs---additional-terraform-outputs)
-- Consider setting a constraint on maximum major version of Provider per spec [TFNFR26](/Azure-Verified-Modules/specs/terraform/#id-tfnfr26---category-code-style---provider-version-constraint-must-have-a-constraint-on-maximum-major-version) in `terraform.tf` flle
 - Exclude `terraform.tfvars` file from the repository
-- Make sure to have all interfaces defined as per spec [RMFR5](/Azure-Verified-Modules/specs/shared/#id-rmfr5---category-composition---avm-consistent-feature--extension-resources-value-add-interfacesschemas)
-- Declaration of provider in module should be as per spec [TFNFR27](/Azure-Verified-Modules/specs/terraform/#id-tfnfr27---category-code-style---declaration-of-a-provider-in-the-module) in `main.tf`
-- `CODEOWNERS` file needs to be updated as per spec [SNFR9](/Azure-Verified-Modules/specs/shared/#id-snfr9---category-contributionsupport---avm--pg-teams-github-repo-permissions) & [SNFR20](/Azure-Verified-Modules/specs/shared/#codeowners-file)
-- The module is WAF Aligned as per spec [SFR2](/Azure-Verified-Modules/specs/shared/#id-sfr2---category-composition---waf-aligned)
-- Availability Zones are used (zonal or zone-redundant where applicable) as per spec [SFR5](/Azure-Verified-Modules/specs/shared/#id-sfr5---category-composition---availability-zones)
-- Cross-reagion replication (data redundancy) used where applicable as per spec [SFR6](/Azure-Verified-Modules/specs/shared/#id-sfr6---category-composition---data-redundancy)
-- Cross-language collaboration as per spec [SNFR21](/Azure-Verified-Modules/specs/shared/#id-snfr21---category-publishing---cross-language-collaboration)
-- RP/PG collaboration as per [RMNFR3](/Azure-Verified-Modules/specs/shared/#id-rmnfr3---category-composition---rp-collaboration)
