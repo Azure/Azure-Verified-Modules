@@ -31,7 +31,7 @@ variable "private_endpoints" {
     }), null)
     tags               = optional(map(string), null)
     subnet_resource_id = string
-    subresource_name   = string  # NOTE: Sub-resource can be excluded if the resouce does not support multiple sub resource types (e.g. storage account supports blob, queue, etc)
+    subresource_name   = string  # NOTE: `subresource_nam` can be excluded if the resource does not support multiple sub resource types (e.g. storage account supports blob, queue, etc)
     private_dns_zone_group_name             = optional(string, "default")
     private_dns_zone_resource_ids           = optional(set(string), [])
     application_security_group_associations = optional(map(string), {})
