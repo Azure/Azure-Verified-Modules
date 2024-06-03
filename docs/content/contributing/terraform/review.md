@@ -30,7 +30,7 @@ The initial AVM module review is a critical step before an AVM terraform module 
 
 7. The module reviewer can update the Compliance column for specs in line 42 to 47 to `NA`, in case the module being reviewed isn't a pattern module.
 
-8. The module reviewer to review the code in the PR and make comments to request module owner of any necessary updates to the PR.
+8. The module reviewer reviews the code in the PR and leaves comments to request any necessary updates.
 
 9. The module reviewer will assign the AVM-Review issue to the module owner and respond to the module owner's comment on the Module Proposal in AVM Repo with the following
 
