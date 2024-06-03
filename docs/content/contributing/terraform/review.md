@@ -54,7 +54,7 @@ You may proceed with publishing this module to the HashiCorp Terraform Registry 
 
 Please keep future versions also pre-release (e.g., 0.1.0, 0.1.1, 0.2.0, etc.) until AVM becomes generally available (GA) of which the AVM team will notify you.
 
-**Requested Action**: Once the module is published to the HashiCorp Terraform Registry kindly update the proposal with the below comment.
+**Requested Action**: Once the module is published to the HashiCorp Terraform Registry, please update the module proposal issue with the below comment.
 
 "The AVM Review of this module has been completed and the module has been published to the registry. Requesting AVM team to close this module proposal and update module index accordingly."
 
