@@ -19,13 +19,13 @@ This section describes the contribution flow for module owners who are responsib
 
 This contribution flow is for **Module owners** only.
 
-As a Terraform Module Owner you need to be aware of the [AVM contribution process overview](/Azure-Verified-Modules/contributing/process/,) [shared specifications](/Azure-Verified-Modules/specs/shared/) (including [Interfaces](/Azure-Verified-Modules/specs/shared/interfaces/)) and [Terraform-specific](/Azure-Verified-Modules/specs/terraform/) specifications as as these need to be considered during pull request reviews for the modules you own.
+As a Terraform Module Owner you need to be aware of the [AVM contribution process overview](/Azure-Verified-Modules/contributing/process/) & [shared specifications](/Azure-Verified-Modules/specs/shared/) (including [Interfaces](/Azure-Verified-Modules/specs/shared/interfaces/)) and [Terraform-specific](/Azure-Verified-Modules/specs/terraform/) specifications as as these need to be considered during pull request reviews for the modules you own.
 
 {{< /hint >}}
 
 {{< hint type=info >}}
 
-Make sure module authors/contributors tested their module in their environment before raising a PR. The PR uses e2e checks with 1ES agents in the 1ES subscriptions. At the moment their is no read access to the 1ES susbcription. Also if more than two subscriptions are required for testin, that's currently not supported.
+Make sure module authors/contributors tested their module in their environment before raising a PR. The PR uses e2e checks with 1ES agents in the 1ES subscriptions. At the moment their is no read access to the 1ES subscription. Also if more than two subscriptions are required for testing, that's currently not supported.
 
 {{< /hint >}}
 
@@ -47,31 +47,6 @@ Familiarise yourself with the responsibilities as **Module Owner** outlined in [
 Make sure module authors/contributors tested their module in their environment before raising a PR. Also because once a PR is raised a e2e GitHib workflow pipeline is required to be run successfully before the PR can be merged. This is to ensure that the module is working as expected and is compliant with the AVM specifications.
 
 {{< /hint >}}
-
-2. Ensure that the module(s) you own are compliant with the AVM specifications and are working as expected. Following specifications are to be considered and where `Owner` is mentioned explicitly:
-
-| ID | Specification |
-|---------------|-----------------------|
-| [SFR1](/Azure-Verified-Modules/specs/shared/#id-sfr1---category-composition---preview-services) | Category: Composition - Preview Services |
-| [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing) | Category: Testing - E2E Testing |
-| [SNFR3](/Azure-Verified-Modules/specs/shared/#id-snfr3---category-testing---avm-compliance-tests) | Category: Testing - AVM Compliance Tests |
-| [SNFR8](/Azure-Verified-Modules/specs/shared/#id-snfr8---category-contributionsupport---module-owners-github) | Category: Contribution/Support - Module Owner(s) GitHub |
-| [SNFR11](/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times) | Category: Contribution/Support - Issues Reponse Times |
-| [SNFR12](/Azure-Verified-Modules/specs/shared/#id-snfr12---category-contributionsupport---versions-supported) | Category: Contribution/Support - Versions Supported |
-| [SNFR17](/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning) | Category: Release - Semantic Versioning |
-| [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) | Category: Contribution/Support - GitHub Teams Only |
-| [SNFR21](/Azure-Verified-Modules/specs/shared/#id-snfr21---category-publishing---cross-language-collaboration) | Category: Publishing - Cross Language Collaboration |
-| [SNFR24](/Azure-Verified-Modules/specs/shared/#id-snfr24---category-testing---testing-child-extension--interface-resources) | Category: Testing - Testing Child, Extension & Interface Resources |
-| [SNFR25](/Azure-Verified-Modules/specs/shared/#id-snfr25---category-composition---resource-naming) | Category: Composition - Resource Naming |
-| [RMNFR3](/Azure-Verified-Modules/specs/shared/#id-rmnfr3---category-composition---rp-collaboration) | Category: Composition - RP Collaboration |
-| [RMFR4](/Azure-Verified-Modules/specs/shared/#id-rmfr4---category-composition---avm-consistent-feature--extension-resources-value-add) | Category: Composition - AVM Consistent Feature & Extension Resources Value Add |
-| [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs) | Category: Outputs - Minimum Required Outputs |
-
-<br>
-
----
-
-<br>
 
 ### 2. GitHub Teams and repository creation and configuration
 
@@ -175,18 +150,12 @@ Set-AvmGitHubLabels.ps1 -RepositoryName "Azure/MyGitHubRepo" -CreateCsvLabelExpo
 
 <br>
 
-### 5. **_Optional_**: Grept
+### 5. Grept
 
 [Grept](https://github.com/Azure/grept) is a linting tool for repositories, ensures predefined standards, maintains codebase consistency, and quality.
 It's using the grept configuration files from the [Azure-Verified-Modules-Grept](https://github.com/Azure/Azure-Verified-Modules-Grept) repository.
 
 You can see [here](https://github.com/Azure/Azure-Verified-Modules-Grept/blob/main/terraform/synced_files.grept.hcl) which files are synced from the [`terraform-azurerm-avm-template`](https://github.com/Azure/terraform-azurerm-avm-template) repository.
-
-{{< hint type=info >}}
-
-You don't need to run grept manaully because it will be executed with the help of a [cron job](https://github.com/Azure/Azure-Verified-Modules-Grept/actions/workflows/grept-cronjob.yml) on a weekly basis to ensure consistency across all AVM Terraform Module repositories. In case your repository is in an inconsistent state it will create necessary PRs which needs to be approved and merged by you, the owner. However, you can also run it manually with the help of `./avm` to check if your module is compliant with the grept rules.
-
-{{< /hint >}}
 
 1. Set environment variables
 
@@ -211,17 +180,16 @@ $env:GITHUB_REPOSITORY="Azure/terraform-azurerm-avm-res-<RP>-<modulename>"
 avm.bat grept-apply
 ```
 
-### 6. Publish the module
+### 6. Review the module
+Once the development of the module has been completed, get the module reviewed from the AVM Core team by following the AVM Review of Terraform Modules process [here](/Azure-Verified-Modules/contributing/terraform/review/) which is a pre-requisite for the next step.
 
-Once a module was updated and is ready to be published, follow the below steps to publish the module to the HashiCorp Registry.
+### 7. Publish the module
+
+Once a module has been reviewed and is ready to be published, follow the below steps to publish the module to the HashiCorp Registry.
 
 Ensure your module is ready for publishing:
 
-1. All tests are passing.
-2. All examples are passing.
-3. All documentation is generated.
-4. Include/Add [`avm-core-team-technical-terraform`](https://github.com/orgs/Azure/teams/avm-core-team-technical/members) as a reviewer (if not added automatically added already).
-5. Create a tag for the module version you want to publish.
+1. Create a tag for the module version you want to publish.
 - Create tag: `git tag -a 0.1.0 -m "0.1.0"`
 - Push tag: `git push`
 - [Create a release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) on Github based on the tag you just created. Make sure to generate the release notes using the `Generate release notes` button.
@@ -229,10 +197,10 @@ Ensure your module is ready for publishing:
 
 <img src="/Azure-Verified-Modules/img/contribution/gitTag.png" alt="Deployment prpotection rules." width=100%>
 
-6. Elevate your respository access using the Open Source Management Portal (aka.ms/opensource/portal).
-7. Sign in to the [HashiCorp Registry](https://registry.terraform.io/) using GitHub.
-8. Publish a module by selecting the `Publish` button in the top right corner, then `Module`
-9. Select the repository and accept the terms.
+2. Elevate your respository access using the Open Source Management Portal (aka.ms/opensource/portal).
+3. Sign in to the [HashiCorp Registry](https://registry.terraform.io/) using GitHub.
+4. Publish a module by selecting the `Publish` button in the top right corner, then `Module`
+5. Select the repository and accept the terms.
 
 {{< hint type=info >}}
 
