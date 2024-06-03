@@ -3,7 +3,7 @@ Dear module owner,
 
 As per the module ownership requirements and responsibilities at the time of assignment, the AVM Team is opening this issue, requesting you to validate your module against the below AVM specifications and confirm its compliance.
 
-We appreciate if you don't close this issue till the review is complete. This review is required as a pre-req to be able to publish v0.1.0 the module to the Terraform Registry. AVM team would be happy to assist with any questions that you might have.
+Please don't close this issue until the entire initial module review process is fully concluded! This review is a prerequisite of your module's publication as v0.1.0 in the Terraform Registry. The AVM team is happy to assist with any questions you might have.
 
 **Requested Actions**
 1. Complete below task list by ticking off the tasks.
