@@ -60,7 +60,7 @@ Please keep future versions also pre-release (e.g., 0.1.0, 0.1.1, 0.2.0, etc.) u
 
 {{< /expand >}}
 
-13. The module owner will merge the AVM-Review-PR and publish the module to Terraform registry and update the module proposal on the AVM repo with the following
+13. The module owner merges the AVM-Review-PR, publishes the module to Terraform registry and updates the module proposal on the AVM repo with the following comment.
 
 {{< expand "➕ AVM Terraform Module Publish Message" "expand/collapse" >}}
 
