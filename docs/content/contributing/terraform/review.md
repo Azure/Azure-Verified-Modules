@@ -16,11 +16,16 @@ The initial AVM module review is a critical step before an AVM terraform module 
 3. The module owner assigns the `avm-core-team-technical-terraform` GitHub team as reviewer on the PR.
 
 4. The module owner leaves the following comment as is on the module proposal in the [AVM Repo](https://aka.ms/avm/moduleproposals) by searching for their module proposal issue there.
-<br>"I would like to request a review of my module. The latest code is in a PR titled AVM-Review-PR on the module repo and all checks on that PR are passing."
 
-5. The AVM team moves the module proposal from "In Development" to "In Review" in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project.
+{{< expand "➕ AVM Terraform Module Review Request" "expand/collapse" >}}
 
-6. The AVM team will assign a module reviewer who will open a blank issue on the module titled "AVM-Review" and populate it with the below mark down. This template already marks the specs as compliant which are covered by the checks that run on the PR. There are some specs which don't need to be checked at the time of publishing the module therefore they are marked as NA.
+```I would like to request a review of my module. The latest code is in a PR titled AVM-Review-PR on the module repo and all checks on that PR are passing.```
+
+{{< /expand >}}
+
+6. The AVM team moves the module proposal from "In Development" to "In Review" in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project.
+
+7. The AVM team will assign a module reviewer who will open a blank issue on the module titled "AVM-Review" and populate it with the below mark down. This template already marks the specs as compliant which are covered by the checks that run on the PR. There are some specs which don't need to be checked at the time of publishing the module therefore they are marked as NA.
 
 {{< expand "➕ AVM Terraform Module Review Issue" "expand/collapse" >}}
 
@@ -36,7 +41,7 @@ The initial AVM module review is a critical step before an AVM terraform module 
 
 {{< expand "➕ AVM Terraform Module Review Initiation Message" "expand/collapse" >}}
 
-"Thank you for requesting a review of your module. The AVM module review process has been initiated, please perform the **Requested Actions** on the AVM-Review issue on the module repo."
+```Thank you for requesting a review of your module. The AVM module review process has been initiated, please perform the **Requested Actions** on the AVM-Review issue on the module repo.```
 
 {{< /expand >}}
 
@@ -48,7 +53,7 @@ The initial AVM module review is a critical step before an AVM terraform module 
 
 {{< expand "➕ AVM Terraform Module Review Completion Message" "expand/collapse" >}}
 
-Thank you for contributing this module and completing the review process per AVM specs to ensure quality.
+```Thank you for contributing this module and completing the review process per AVM specs to ensure quality.
 
 You may proceed with publishing this module to the HashiCorp Terraform Registry with the initial pre-release version of v0.1.0.
 
@@ -56,7 +61,7 @@ Please keep future versions also pre-release (e.g., 0.1.0, 0.1.1, 0.2.0, etc.) u
 
 **Requested Action**: Once the module is published to the HashiCorp Terraform Registry, please update the module proposal issue with the below comment.
 
-"The initial review of this module is complete and the module has been published to the registry. Requesting AVM team to close this module proposal and mark the module available in the module index."
+"The initial review of this module is complete and the module has been published to the registry. Requesting AVM team to close this module proposal and mark the module available in the module index."```
 
 {{< /expand >}}
 
@@ -64,7 +69,7 @@ Please keep future versions also pre-release (e.g., 0.1.0, 0.1.1, 0.2.0, etc.) u
 
 {{< expand "➕ AVM Terraform Module Publish Message" "expand/collapse" >}}
 
-The initial review of this module is complete and the module has been published to the registry. Requesting AVM team to close this module proposal and mark the module available in the module index.
+```The initial review of this module is complete and the module has been published to the registry. Requesting AVM team to close this module proposal and mark the module available in the module index.```
 
 {{< /expand >}}
 
