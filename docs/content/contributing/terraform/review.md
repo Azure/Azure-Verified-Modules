@@ -11,7 +11,7 @@ The initial AVM module review is a critical step before an AVM terraform module 
 
 1. The module owner completes the development of the module in their branch or fork.
 
-2. The module owner does a pull request (PR) titled 'AVM-Review-PR' ensuring that all checks are passing on that PR as that is a pre-requisite to request a review.
+2. The module owner submits a pull request (PR) titled 'AVM-Review-PR' and ensures that all checks are passing on that PR as that is a pre-requisite to request a review.
 
 3. The module owner assigns the `avm-core-team-technical-terraform` as reviewers on the PR.
 
