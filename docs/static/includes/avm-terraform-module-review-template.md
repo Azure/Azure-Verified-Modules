@@ -6,7 +6,7 @@ As per the module ownership requirements and responsibilities at the time of ass
 Please don't close this issue until the entire initial module review process is fully concluded! This review is a prerequisite of your module's publication as v0.1.0 in the Terraform Registry. The AVM team is happy to assist with any questions you might have.
 
 **Requested Actions**
-1. Complete below task list by ticking off the tasks.
+1. Complete the below task list by ticking off the tasks.
 2. Complete the below table by updating the Compliant column with Yes, No or NA as possible values.
 
 Please use the comments columns to provide additional details especially if the Compliant column is updated to No or NA.
