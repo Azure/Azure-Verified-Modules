@@ -36,7 +36,7 @@ The initial AVM module review is a critical step before an AVM terraform module 
 
 {{< expand "➕ AVM Terraform Module Review Initiation Message" "expand/collapse" >}}
 
-"Thank you for reaching out to request a review of your module. The AVM module review process has been initiated, kindly perform the **Requested Actions** on the AVM-Review issue on the module repo."
+"Thank you for requesting a review of your module. The AVM module review process has been initiated, please perform the **Requested Actions** on the AVM-Review issue on the module repo."
 
 {{< /expand >}}
 
