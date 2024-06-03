@@ -82,6 +82,16 @@ Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](htt
 └───other repo files...
 ```
 
+For a new module (res or ptn), the files can be created automatically, once the parent folder exists. This example shows how to create a res module `res/compute/virtual-machine`.
+
+```powershell
+cd .\avm\res\
+mkdir compute # if it does not already exist
+mkdir compute\virtual-machine
+cd ..
+Set-AVMModule -ModuleFolderPath .\res\compute\virtual-machine
+```
+
 <br>
 
 ### Code Styling
