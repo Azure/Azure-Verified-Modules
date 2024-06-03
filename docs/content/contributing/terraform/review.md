@@ -1,5 +1,5 @@
 ---
-title: AVM Review of Terraform Modules
+title: Initial Review of Terraform Modules
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
