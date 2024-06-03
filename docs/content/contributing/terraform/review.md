@@ -7,7 +7,7 @@ geekdocAnchor: true
 
 {{< toc >}}
 
-AVM Review is a critical step before an AVM terraform module is published to [Terraform Registry](https://registry.terraform.io/) and made publicly available for customers, partners and wider IaC community to consume and contribute to. It acts as a quality assurance step to ensure that the AVM terraform module complies with the [shared](https://azure.github.io/Azure-Verified-Modules/specs/shared/) and [terraform](https://azure.github.io/Azure-Verified-Modules/specs/terraform/) specifications of AVM. The below process outlines the steps for both a module owner and a module reviewer should follow to do an AVM Review of a terraform module.
+The initial AVM module review is a critical step before an AVM terraform module gets published to the [Terraform Registry](https://registry.terraform.io/) and made publicly available for customers, partners and wider IaC community to consume and contribute to. It serves as a quality assurance step to ensure that the AVM terraform module complies with the [shared](https://azure.github.io/Azure-Verified-Modules/specs/shared/) and [terraform](https://azure.github.io/Azure-Verified-Modules/specs/terraform/) specifications of AVM. The below process outlines the steps that both the module owner and module reviewer need to follow.
 
 1. The module owner completes the development of the module in their branch or fork.
 
