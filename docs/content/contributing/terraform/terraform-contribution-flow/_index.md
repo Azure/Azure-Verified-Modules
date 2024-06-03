@@ -249,7 +249,7 @@ With the help of the [avm](https://github.com/Azure/terraform-azurerm-avm-templa
 
 ### 5. Create a pull request to the upstream repository
 
-Once you are satisfied with your contribution and validated it, create a pull request to the upstream repository and work with the module owner to get the module reviewed from the AVM Core team by following the AVM Review of Terraform Modules process [here](/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/owner-contribution-flow/#6-review-the-module) which is a pre-requisite to publishing the module. Once the review process is complete and your PR is approved, merge it into the upstream repository and the Module owner will [publish](/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/owner-contribution-flow/#7-publish-the-module) the module to the HashiCorp Terraform Registry.
+Once you are satisfied with your contribution and validated it, submit a pull request to the upstream repository and work with the module owner to get the module reviewed by the AVM Core team, by following the initial module review process for Terraform Modules, described [here](/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/owner-contribution-flow/#6-review-the-module). This is a prerequisite for publishing the module. Once the review process is complete and your PR is approved, merge it into the upstream repository and the Module owner will [publish](/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/owner-contribution-flow/#7-publish-the-module) the module to the HashiCorp Terraform Registry.
 
 <br>
 
