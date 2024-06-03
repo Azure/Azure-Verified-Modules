@@ -18,7 +18,7 @@ The initial AVM module review is a critical step before an AVM terraform module 
 4. The module owner leaves the following comment as is on the module proposal in the [AVM Repo](https://aka.ms/avm/moduleproposals) by searching for their module proposal issue there.
 <br>"I would like to request a review of my module. The latest code is in a PR titled AVM-Review-PR on the module repo and all checks on that PR are passing."
 
-5. The AVM team will move the module proposal from "In Development" to "In Review" in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project.
+5. The AVM team moves the module proposal from "In Development" to "In Review" in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project.
 
 6. The AVM team will assign a module reviewer who will open a blank issue on the module titled "AVM-Review" and populate it with the below mark down. This template already marks the specs as compliant which are covered by the checks that run on the PR. There are some specs which don't need to be checked at the time of publishing the module therefore they are marked as NA.
 
