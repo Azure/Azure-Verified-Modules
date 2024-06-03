@@ -42,7 +42,7 @@ The initial AVM module review is a critical step before an AVM terraform module 
 
 10. The module owner updates the check list and the table in the AVM-Review issue and notifies the module reviewer in a comment.
 
-11. The module reviewer will perform the final review and ensure that all checks in the checklist are complete and the specs table has been updated with no spec's having compliance as 'No'.
+11. The module reviewer performs the final review and ensures that all checks in the checklist are complete and the specifications table has been updated with no requirements having compliance as 'No'.
 
 12. The module reviewer will approve the AVM-Review-PR and make the following comment on the AVM-Review issue and close it.
 
