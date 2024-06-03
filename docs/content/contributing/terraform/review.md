@@ -68,7 +68,7 @@ The initial review of this module is complete and the module has been published 
 
 {{< /expand >}}
 
-14. The module reviewer will update the module proposal by doing the following
+14. The module reviewer updates the module proposal by performing the following steps:
 - Move the module proposal from "In Review" to "Done" in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project.
 - Assign label Status: Module Available :green_circle:
 - Update the module index
