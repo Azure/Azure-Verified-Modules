@@ -48,7 +48,7 @@ The initial AVM module review is a critical step before an AVM terraform module 
 
 {{< expand "➕ AVM Terraform Module Review Completion Message" "expand/collapse" >}}
 
-Thank you so much for contributing this module and completing the review process per AVM specs to ensure quality.
+Thank you for contributing this module and completing the review process per AVM specs to ensure quality.
 
 You may proceed with publishing this module to the HashiCorp Terraform Registry with the initial pre-release version of v0.1.0.
 
