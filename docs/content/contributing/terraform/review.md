@@ -61,7 +61,7 @@ Please keep future versions also pre-release (e.g., 0.1.0, 0.1.1, 0.2.0, etc.) u
 
 **Requested Action**: Once the module is published to the HashiCorp Terraform Registry, please update the module proposal issue with the below comment.
 
-"The initial review of this module is complete and the module has been published to the registry. Requesting AVM team to close this module proposal and mark the module available in the module index."```
+The initial review of this module is complete and the module has been published to the registry. Requesting AVM team to close this module proposal and mark the module available in the module index.```
 
 {{< /expand >}}
 
