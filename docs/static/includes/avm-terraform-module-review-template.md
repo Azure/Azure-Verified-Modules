@@ -9,7 +9,7 @@ Please don't close this issue until the entire initial module review process is 
 1. Complete the below task list by ticking off the tasks.
 2. Complete the below table by updating the Compliant column with Yes, No or NA as possible values.
 
-Please use the comments columns to provide additional details especially if the Compliant column is updated to No or NA.
+Please use the comments columns to provide additional details especially if the Compliant column is updated to `No` or `NA`.
 
 ```[tasklist]
 ### Tasks
