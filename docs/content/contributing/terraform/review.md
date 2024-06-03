@@ -64,7 +64,7 @@ Please keep future versions also pre-release (e.g., 0.1.0, 0.1.1, 0.2.0, etc.) u
 
 {{< expand "➕ AVM Terraform Module Publish Message" "expand/collapse" >}}
 
-The AVM Review of this module has been completed and the module has been published to the registry. Requesting AVM team to close this module proposal and update module index accordingly.
+The initial review of this module is complete and the module has been published to the registry. Requesting AVM team to close this module proposal and mark the module available in the module index.
 
 {{< /expand >}}
 
