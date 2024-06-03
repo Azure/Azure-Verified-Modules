@@ -32,7 +32,7 @@ The initial AVM module review is a critical step before an AVM terraform module 
 
 8. The module reviewer reviews the code in the PR and leaves comments to request any necessary updates.
 
-9. The module reviewer will assign the AVM-Review issue to the module owner and respond to the module owner's comment on the Module Proposal in AVM Repo with the following
+9. The module reviewer assigns the AVM-Review issue to the module owner and responds to the module owner's comment on the Module Proposal in AVM Repo with the following
 
 {{< expand "➕ AVM Terraform Module Review Initiation Message" "expand/collapse" >}}
 
