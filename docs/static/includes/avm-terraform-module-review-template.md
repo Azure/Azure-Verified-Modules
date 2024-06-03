@@ -1,7 +1,7 @@
 <!-- markdownlint-disable -->
 Dear module owner,
 
-As per the agreed module ownership requirements and responsibilities at the time of assignment, the AVM Team is opening this issue to request you to kindly review your module against the below AVM specs and confirm that they are met by the module.
+As per the module ownership requirements and responsibilities at the time of assignment, the AVM Team is opening this issue, requesting you to validate your module against the below AVM specifications and confirm its compliance.
 
 We appreciate if you don't close this issue till the review is complete. This review is required as a pre-req to be able to publish v0.1.0 the module to the Terraform Registry. AVM team would be happy to assist with any questions that you might have.
 
