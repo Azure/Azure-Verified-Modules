@@ -28,7 +28,7 @@ Browse to `Actions` and select the workflow from the list
 
 <img src="../../../../img/contribution/selectToggleWorkflows.png" alt="Select Toggle Workflows" width=50%>
 
-Run the workflow `avm.platform.toggle-avm-workflows` and set the following settings:
+Run the workflow `platform.toggle-avm-workflows` and set the following settings:
 - `Enable or disable workflows` to enable or disable workflows
 - `RegEx which workflows are included` include a specific set of workflows, using a RegEx.
 - `RegEx which workflows are excluded` exclude a specific set of workflows, using a RegEx.
@@ -45,7 +45,7 @@ Run the workflow `avm.platform.toggle-avm-workflows` and set the following setti
 ## Disable all but multiple workflows
 - `Enable or disable workflows` to `Disable`
 - `RegEx which workflows are included` to `avm\.(?:res|ptn)` (this is the default setting)
-- `RegEx which workflows are excluded` to `(?:avm.res.avm.res.compute.virtual-machine|avm.res.compute.image|avm.res.compute.disk)` (use the names of your own workflows. This example uses the workflows for virtual machine, image, and disk)
+- `RegEx which workflows are excluded` to `(?:avm.res.compute.virtual-machine|avm.res.compute.image|avm.res.compute.disk)` (use the names of your own workflows. This example uses the workflows for virtual machine, image, and disk)
 
 ## Enable all workflows
 - `Enable or disable workflows` to `Enable`
