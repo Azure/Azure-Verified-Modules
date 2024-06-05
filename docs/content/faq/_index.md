@@ -391,6 +391,12 @@ The Bicep VSCode extension is reading metadata through [this JSON file](https://
 
 ---
 
+### Do I need to allow a specific URL to access the Public Registry?
+
+In a regulated environment, network traffic might be limited, especially when using private build agents. The AVM Bicep templates are served from the Microsoft Container Registry. To access this container registry, the URL [https://mcr.microsoft.com](https://mcr.microsoft.com) must be accessible from the network. So, if your network settings or firewall rules prevent access to this URL, you would need to allow it to ensure proper functioning.
+
+---
+
 ### Aren't AVM resource modules too complex for people less skilled in IaC technologies?
 
  **TLDR**: Resource modules have complexity inside, so they can be flexibly used from the outside.
