@@ -786,7 +786,7 @@ For example all modules should be released using a semantic version that matches
 
 ##### Module versioning before first Major version release `1.0.0`
 
-- Initially modules MUST be released as version `0.1.0` and incremented via Minor and Patch versions only until the module owner is happy the module has been "road tested" and is now stable enough for its first Major release of version `1.0.0`.
+- Initially modules MUST be released as version `0.1.0` and incremented via Minor and Patch versions only until the AVM Core Team are confident the AVM specifications are mature enough and appropriate CI test coverage is in place, plus the module owner is happy the module has been "road tested" and is now stable enough for its first Major release of version `1.0.0`.
 
   {{< hint type=note >}}
 
