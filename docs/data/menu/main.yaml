@@ -124,6 +124,8 @@ main:
             sub:
               - name: "Owner Contribution Flow"
                 ref: "/contributing/terraform/terraform-contribution-flow/owner-contribution-flow"
+          - name: "Review"
+            ref: "/contributing/terraform/review"
       - name: "Contribution Q&A"
         ref: "/contributing/q-and-a"
       - name: "Website"
