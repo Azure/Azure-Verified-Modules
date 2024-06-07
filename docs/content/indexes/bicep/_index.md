@@ -10,6 +10,7 @@ This section lists all Azure Verified Modules that are available in or planned f
 
 - [Resource Modules](/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules)
 - [Pattern Modules](/Azure-Verified-Modules/indexes/bicep/bicep-pattern-modules)
+- [Utility Modules](/Azure-Verified-Modules/indexes/bicep/bicep-utility-modules)
 
 ---
 
