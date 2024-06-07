@@ -12,6 +12,8 @@ main:
             ref: "indexes/bicep/bicep-resource-modules"
           - name: "Pattern Modules"
             ref: "indexes/bicep/bicep-pattern-modules"
+          - name: "Utility Modules"
+            ref: "indexes/bicep/bicep-utility-modules"
       - name: "Terraform"
         ref: "indexes/terraform"
         sub:
@@ -19,6 +21,8 @@ main:
             ref: "indexes/terraform/tf-resource-modules"
           - name: "Pattern Modules"
             ref: "indexes/terraform/tf-pattern-modules"
+          - name: "Utility Modules"
+            ref: "indexes/terraform/tf-utility-modules"
   - name: "Concepts"
     ref: "concepts"
     sub:
