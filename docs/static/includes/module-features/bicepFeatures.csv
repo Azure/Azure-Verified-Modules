@@ -67,7 +67,7 @@
 66,res/managed-identity/user-assigned-identity,✅,✅,✅,,,,
 67,res/managed-services/registration-definition,,,,,,,
 68,res/management/management-group,,,,,,,
-69,res/net-app/net-app-account,✅,✅,✅,,,,✅
+69,res/net-app/net-app-account,✅,✅,✅,,,✅,✅
 70,res/network/application-gateway,✅,✅,✅,✅,✅,,✅
 71,res/network/application-gateway-web-application-firewall-policy,,,✅,,,,
 72,res/network/application-security-group,✅,✅,✅,,,,
@@ -131,4 +131,4 @@
 130,res/web/serverfarm,✅,✅,✅,✅,,,
 131,res/web/site,✅,✅,✅,✅,✅,,✅
 132,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,118,116,125,55,32,51,17
+Sum,,118,116,125,55,32,51,18
