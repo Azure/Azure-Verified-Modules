@@ -103,12 +103,12 @@ See [Module Sources](https://developer.hashicorp.com/terraform/language/modules/
 
 #### ID: TFFR2 - Category: Outputs - Additional Terraform Outputs
 
-Module owners **MUST** output the following additional outputs as a minimum in their modules:
+Please see table below for additional outputs:
 
-| Output                                                                                   | Terraform Output Name                                 | MUST/SHOULD |
+| Output                                                                                   | Terraform Output Name                                 | GUIDANCE    |
 |------------------------------------------------------------------------------------------|-------------------------------------------------------|-------------|
-| Full Resource Output Object                                                              | `resource`                                            | MUST        |
-| Full Resource Output (map of) Object(s) of child resource/extension/associated resources | `resource_<child/extension/associated resource name>` | SHOULD      |
+| Full Resource Output Object                                                              | `resource`                                            | MAY         |
+| Full Resource Output (map of) Object(s) of child resource/extension/associated resources | `resource_<child/extension/associated resource name>` | MAY         |
 
 <br>
 
