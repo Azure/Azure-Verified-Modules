@@ -25,6 +25,7 @@ Status: Module Orphaned :eyes:,The module has no owner and is therefore orphaned
 Status: Response Overdue :triangular_flag_on_post:,When an issue/PR has not been responded to for X amount of days,850000
 Status: Looking For Assistance :duck:,This item is looking for anyone to help develop the code and submit a PR for resolution,03FCC2
 Type: Bug :bug:,Something isn't working,D73A4A
+Type: CI :rocket:,This issue is related to the AVM CI,74CFB0
 Type: Documentation :page_facing_up:,Improvements or additions to documentation,0075CA
 Type: Duplicate :palms_up_together:,This issue or pull request already exists,CFD3D7
 Type: Feature Request :heavy_plus_sign:,New feature or request,A2EEEF
