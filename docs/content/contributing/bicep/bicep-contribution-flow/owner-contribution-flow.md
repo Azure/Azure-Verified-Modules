@@ -17,6 +17,12 @@ As a **Bicep Module Owner** you need to be aware of the [AVM Contribution Proces
 
 {{< /hint >}}
 
+{{< hint type=note >}}
+
+Additional internal content for **ongoing module maintenance** available for Microsoft FTEs, [here](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/472/Module-maintenance-tasks).
+
+{{< /hint >}}
+
 ---
 
 ## 1. Owner Activities and Responsibilities
