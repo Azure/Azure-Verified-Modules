@@ -214,27 +214,50 @@ If you're not a Microsoft FTE or don't want to be a module owner, you can still 
 
 ### Are there different ways to contribute to AVM?
 
-Yes, there are multiple ways to contribute to AVM. You can:
+Yes, there are multiple ways to contribute to AVM!
 
-1. [Propose](https://aka.ms/ModuleProposal) and develop a new module (Bicep or Terraform)
-2. Become the owner of an orphaned module (mainly Bicep) - look for "orphaned module" issues [here](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aopen+is%3Aissue+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22) or see the "Orphaned" swimlane [here](https://github.com/orgs/Azure/projects/529/views/1?filterQuery=is%3Aissue+is%3Aopen+is%3Aissue+is%3Aopen+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22)
+You can contribute to modules:
 
----
+1. Become an owner (preferred):
+    - [Propose](https://aka.ms/ModuleProposal) and develop a new module (Bicep or Terraform) or pick up a module someone else proposed.
+    - Become the owner of an orphaned module (mainly Bicep) - look for "orphaned module" issues [here](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aopen+is%3Aissue+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22) or see the "Orphaned" swimlane [here](https://github.com/orgs/Azure/projects/529/views/1?filterQuery=is%3Aissue+is%3Aopen+is%3Aissue+is%3Aopen+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22)
+2. Become an administrative owner and work with other contributors or co-owners on developing and maintaining modules.
+3. Volunteer as a co-owner or module contributor to an existing module, and work along other contributors and the (administrative) module owner.
+4. You can submit a PR with a small proposed change without officially becoming a module owner or contributor.
 
-### Where can I find modules missing owners?
-
-You can find modules missing owners in the following places:
-
-1. [All Orphaned modules](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aopen+is%3Aissue+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22) or see the "Orphaned" swimlane [here](https://github.com/orgs/Azure/projects/529/views/1?filterQuery=is%3Aissue+is%3Aopen+is%3Aissue+is%3Aopen+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22)
-    - [Orphaned Bicep modules](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aopen+is%3Aissue+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22+label%3A%22Language%3A+Bicep+%3Amuscle%3A%22+) or see the "Orphaned" swimlane [here](https://github.com/orgs/Azure/projects/529/views/1?filterQuery=is%3Aissue+is%3Aopen+is%3Aissue+is%3Aopen+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22+label%3A%22Language%3A+Bicep+%3Amuscle%3A%22)
-    - [Orphaned Terraform modules](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aopen+is%3Aissue+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22+label%3A%22Language%3A+Terraform+%3Aglobe_with_meridians%3A%22) or see the "Orphaned" swimlane [here](https://github.com/orgs/Azure/projects/529/views/1?filterQuery=is%3Aissue+is%3Aopen+is%3Aissue+is%3Aopen+label%3A%22Status%3A+Module+Orphaned+%3Aeyes%3A%22+label%3A%22Language%3A+Terraform+%3Aglobe_with_meridians%3A%22+)
-2. [All modules looking for owners](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aopen+is%3Aissue+label%3A%22Needs%3A+Module+Owner+%3Amega%3A%22) or see the "Looking for owners" swimlane [here](https://github.com/orgs/Azure/projects/529/views/1?filterQuery=is%3Aissue+is%3Aopen+is%3Aissue+is%3Aopen+label%3A%22Needs%3A+Module+Owner+%3Amega%3A%22+)
-    - [Bicep modules looking for owners](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aopen+is%3Aissue+label%3A%22Needs%3A+Module+Owner+%3Amega%3A%22+label%3A%22Language%3A+Bicep+%3Amuscle%3A%22) or see the "Looking for owners" swimlane [here](https://github.com/orgs/Azure/projects/529/views/1?filterQuery=is%3Aissue+is%3Aopen+is%3Aissue+is%3Aopen+label%3A%22Needs%3A+Module+Owner+%3Amega%3A%22+label%3A%22Language%3A+Bicep+%3Amuscle%3A%22)
-    - [Terraform modules looking for owners](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue+is%3Aopen+label%3A%22Needs%3A+Module+Owner+%3Amega%3A%22+label%3A%22Language%3A+Terraform+%3Aglobe_with_meridians%3A%22+) or see the "Looking for owners" swimlane [here](https://github.com/orgs/Azure/projects/529/views/1?filterQuery=is%3Aissue+is%3Aopen+is%3Aissue+is%3Aopen+label%3A%22Needs%3A+Module+Owner+%3Amega%3A%22+label%3A%22Language%3A+Terraform+%3Aglobe_with_meridians%3A%22)
+Or you can contribute to the AVM website/documentation, by following [this guidance](/Azure-Verified-Modules/contributing/website/).
 
 {{< hint type=note >}}
 
-If any of these queries don't return any results, it means that no module in the selected category is missing its owner at the moment.
+New modules can't be created and published without having a module owner assigned.
+
+{{< /hint >}}
+
+---
+
+### Where can I find modules I can contribute to?
+
+You can find modules missing owners in the following places:
+
+1. [All new modules looking for owners](https://aka.ms/AVM/NeedsModuleOwner) or see the "Looking for owners" swimlane [here](https://aka.ms/AVM/NeedsModuleOwner/Project)
+    - [New Bicep modules looking for owners](https://aka.ms/AVM/Bicep/NeedsModuleOwner) or see the "Looking for owners" swimlane [here](https://aka.ms/AVM/Bicep/NeedsModuleOwner/Project)
+    - [New Terraform modules looking for owners](https://aka.ms/AVM/TF/NeedsModuleOwner) or see the "Looking for owners" swimlane [here](https://aka.ms/AVM/TF/NeedsModuleOwner/Project)
+2. [All Orphaned modules](https://aka.ms/AVM/OrphanedModules) or see the "Orphaned" swimlane [here](https://aka.ms/AVM/OrphanedModules/Project)
+    - [Orphaned Bicep modules](https://aka.ms/AVM/Bicep/OrphanedModules) or see the "Orphaned" swimlane [here](https://aka.ms/AVM/Bicep/OrphanedModules/Project)
+    - [Orphaned Terraform modules](https://aka.ms/AVM/TF/OrphanedModules) or see the "Orphaned" swimlane [here](https://aka.ms/AVM/TF/OrphanedModules/Project)
+3. [All modules looking for contributors](https://aka.ms/AVM/NeedsModuleContributor)
+    - [Bicep modules looking for contributors](https://aka.ms/AVM/Bicep/NeedsModuleContributor)
+    - [Terraform modules looking for contributors](https://aka.ms/AVM/TF/NeedsModuleContributor)
+
+{{< hint type=tip >}}
+
+To indicate your interest in owning or contributing to a module, just leave a comment on the respective issue.
+
+{{< /hint >}}
+
+{{< hint type=note >}}
+
+If any of these queries don't return any results, it means that no module in the selected category is looking for an owner or contributor at the moment.
 
 {{< /hint >}}
 
