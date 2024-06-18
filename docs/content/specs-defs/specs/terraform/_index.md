@@ -103,12 +103,37 @@ See [Module Sources](https://developer.hashicorp.com/terraform/language/modules/
 
 #### ID: TFFR2 - Category: Outputs - Additional Terraform Outputs
 
-Please see table below for additional outputs:
+Authors **SHOULD NOT** output entire resource objects as these may contain sensitive outputs and the schema can change with API or provider verisons. Instead, authors **SHOULD** output the *necessary* attributes of the resource object within another object. This kind of pattern is known as an [anti-corruption layer](https://learn.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer).
 
-| Output                                                                                   | Terraform Output Name                                 | GUIDANCE    |
-|------------------------------------------------------------------------------------------|-------------------------------------------------------|-------------|
-| Full Resource Output Object                                                              | `resource`                                            | MAY         |
-| Full Resource Output (map of) Object(s) of child resource/extension/associated resources | `resource_<child/extension/associated resource name>` | MAY         |
+Remember, you do not need to output everything! Other attributes may be sourced by the caller using the mandatory resource id output and using a data source.
+
+E.g.
+
+```terraform
+# Resource output object, only necessary attributes and constructed to prevent breaking changes.
+output "resource" {
+  value = {
+    foo = azurerm_resource_myresource.foo
+    bar = azurerm_resource_myresource.bar
+  }
+}
+
+# Resource output object for resources that are deployed using `for_each`. Again only necessary attributes and constructed to prevent breaking changes.
+output "resource" {
+  value = {
+    for key, value in azurerm_resource_myresource : key => {
+      foo = value.foo
+      bar = value.bar
+    }
+  }
+}
+
+# Output of a sensitive attribute
+output "resource_sensitive" {
+  value     = azurerm_resource_myresource.sensitive_attribute
+  sensitive = true
+}
+```
 
 <br>
 

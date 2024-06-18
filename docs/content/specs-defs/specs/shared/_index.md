@@ -997,7 +997,7 @@ Module owners **MUST** output the following outputs as a minimum in their module
 
 | Output                                                                 | Bicep Output Name             | Terraform Output Name             |
 |------------------------------------------------------------------------|-------------------------------|-----------------------------------|
-| Resource Name                                                          | `name`                        | `name`                            |
+| Resource Name                                                          | `name`                        | n/a (not required)               |
 | Resource ID                                                            | `resourceId`                  | `resource_id`                     |
 | System Assigned Managed Identity Principal ID (if supported by module) | `systemAssignedMIPrincipalId` | `system_assigned_mi_principal_id` |
 
