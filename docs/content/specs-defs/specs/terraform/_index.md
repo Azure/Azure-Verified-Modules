@@ -103,7 +103,7 @@ See [Module Sources](https://developer.hashicorp.com/terraform/language/modules/
 
 #### ID: TFFR2 - Category: Outputs - Additional Terraform Outputs
 
-Authors **SHOULD NOT** output entire resource objects as these may contain sensitive outputs and the schema can change with API or provider verisons. Instead, authors **SHOULD** output the *necessary* attributes of the resource object within another object. This kind of pattern is known as an [anti-corruption layer](https://learn.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer).
+Authors **SHOULD NOT** output entire resource objects as these may contain sensitive outputs and the schema can change with API or provider verisons. Instead, authors **SHOULD** output the *necessary* attributes of the resource object within another object. This kind of pattern is known as an [anti-corruption layer](https://learn.microsoft.com/azure/architecture/patterns/anti-corruption-layer).
 
 Remember, you do not need to output everything! Other attributes may be sourced by the caller using the mandatory resource id output and using a data source.
 
