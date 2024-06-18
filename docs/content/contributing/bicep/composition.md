@@ -156,3 +156,125 @@ Please refer to the [Shared Interfaces](/Azure-Verified-Modules/specs/shared/int
 If the primary resource of the AVM resource module you are developing supports any of the listed features/extension resources, please follow the corresponding provided Bicep schema to develop them.
 
 <br>
+
+### Deprecation
+
+Breaking changes are sometimes not avoidable. The impact should be kept as low as possible. A recommendation is to deprecate parameters, instead of completely removing them for a couple of versions. The [Semantic Versioning](/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning) sections offers information about versioning AVM modules.
+
+In case you need to deprecate an input parameter, this sample shows you how this can be achieved.
+
+{{< hint type=note >}}
+
+Since all modules are versioned, nothing will change for existing deployments as the parameter usage does not change for existing version.
+
+{{< /hint >}}
+
+#### Scenario
+
+An AVM module is modified and the parameters will change which breaks backwards compatibility.
+
+- Parameters are changing to a custom type
+- backwards compatibility will be maintained
+
+Existing **input parameters** used to be definined  as follows (reducing the examples to the minimum):
+
+```bicep
+// main.bicep:
+param item object?
+
+// main.test.bicep:
+name: 'name'
+item:
+  {
+    variant: 'Large'
+    osType: 'Windows'
+  }
+```
+
+#### Testing
+
+Before you begin to modify anything, it is recommended to create a new test case e.g. *deprecated* in addition to the already existing tests, to make sure that the changes are not breaking backwards compatibility until they are finally removed (see [BCPRMNFR1 - Category: Testing - Expected Test Directories](/Azure-Verified-Modules/specs/bicep/#id-bcprmnfr1---category-testing---expected-test-directories) for more details about the requirements).
+
+```bicep
+module testDeployment '../../../main.bicep' = [
+  for iteration in ['init', 'idem']: {
+    scope: resourceGroup
+    name: '${uniqueString(deployment().name, resourceLocation)}-test-${serviceShort}-${iteration}'
+    params: {
+      name: '${namePrefix}${serviceShort}001'
+      location: resourceLocation
+      item: {
+        variant: 'Large'
+        osType: 'Linux'
+      }
+    }
+  }
+]
+```
+
+The test should include all previously used parameters to make sure they are covered before any changes to the new parameter layout are done.
+
+#### Code Changes
+
+The **new parameter** structure requires a change to the used parameters and moves them to a different location and looks like:
+
+```bicep
+// main.bicep:
+param item itemType?
+
+type itemType = {
+  name: string
+
+  properties ={
+    osType: 'Linux' | 'Windows'?
+
+    variant: {
+      size: string?
+    }?
+  }
+
+  // keep theese for backwards compatibility in the new type
+  @description('Optional. Note: This is a deprecated property, please use the corresponding `properties.osType` instead.')
+  osType: string?
+
+  @description('Optional. Note: This is a deprecated property, please use the corresponding `properties.variant.size` instead.')
+  variant: string?
+}
+```
+
+The original parmeter *item* is of type object and does not give any clue of what is expected to be added to it. The tests could bring light into the darknet, but this is not ideal. In order to retain backwards compatibility, the previously used parameters need to be added to the new type, as they would be invalid otherwise. Now that the new type is in place some logic needs to be implemented to make sure the module can handle the different sources of data (new and old parameters).
+
+```bicep
+resource <modulename> 'Microsoft.xy/yz@2024-01-01' = {
+  name: name
+  properties: {
+    osType: item.?properties.?osType ?? item.?osType ?? 'Linux' // add a default here, if needed
+    variant: {
+      size: item.?properties.?variant.?size ?? item.?variant
+    }
+  }
+}
+```
+
+By choosing this order for the [Coalesce](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/operators-logical#coalesce-) operator, the new format takes precedence over the old syntax. Also note the [safe-dereference](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/operator-safe-dereference#safe-dereference) ensures that no null reference exception will occure if the property has optional parameters.
+
+The tests can now be changed to adapt the new parameter structure for the new version of the module. They will not cover the old parameter structure anymore.
+
+```bicep
+module testDeployment '../../../main.bicep' = [
+  for iteration in ['init', 'idem']: {
+    scope: resourceGroup
+    name: '${uniqueString(deployment().name, resourceLocation)}-test-${serviceShort}-${iteration}'
+    params: {
+      name: '${namePrefix}${serviceShort}001'
+      location: resourceLocation
+      item:{
+        osType: 'Linux'
+        variant: {
+          size: 'Large'
+        }
+      }
+    }
+  }
+]
+```
