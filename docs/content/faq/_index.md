@@ -225,9 +225,7 @@ You can contribute to modules:
 3. Volunteer as a co-owner or module contributor to an existing module, and work along other contributors and the (administrative) module owner.
 4. You can submit a PR with a small proposed change without officially becoming a module owner or contributor.
 
-Or you can contribute to the AVM website/documentation:
-
-- You can contribute to the [AVM website/documentation](/Azure-Verified-Modules/contributing/website/) too.
+Or you can contribute to the AVM website/documentation, by following [this guidance](/Azure-Verified-Modules/contributing/website/).
 
 {{< hint type=note >}}
 
