@@ -122,7 +122,7 @@ output "foo" {
 output "childresource_foos" {
   description = "MyResource childs' foo attributes"
   value = {
-    for key, value in azurerm_resource_myresource : key => value.foo
+    for key, value in azurerm_resource_mychildresource : key => value.foo
   }
 }
 
