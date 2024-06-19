@@ -592,6 +592,20 @@ Remove the "<mark style="background-color:#EDEDED;">Status: In PR 👉</mark>" l
 
 ---
 
+### ITA25
+
+Inform module owners that they need to add the "<mark style="background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>" label to their PR if they're the sole owner of their module.
+
+**Trigger criteria:**
+
+- A PR is opened.
+
+**Action(s):**
+
+Inform module owners that they need to add the "<mark style="background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>" label to their PR if they're the sole owner of their module.
+
+---
+
 ## Where to apply these rules?
 
 The below table details which repositories the above rules are applied to.
@@ -631,3 +645,4 @@ The below table details which repositories the above rules are applied to.
 | [ITA21](#ita21)             |                     |       ✔️       |        ✔️       |
 | [ITA22](#ita22)             |                     |       ✔️       |        ✔️       |
 | [ITA23](#ita23)             |          ✔️         |                |        ✔️       |
+| [ITA25](#ita25)             |                    |        ✔️        |               |
