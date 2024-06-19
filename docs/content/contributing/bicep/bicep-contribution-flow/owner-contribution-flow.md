@@ -140,11 +140,11 @@ GitHub will use the following email addresses to Cc you if you're subscribed to 
 
 | Type of Notification | GitHub Email Address | Notification Reason |
 | --- | --- | --- |
-| @Mentions | mention@noreply.github.com | You were mentioned on an issue or pull request. |
-| @Team Mention | team_mention@noreply.github.com | A team you belong to was mentioned on an issue or pull request |
-| Subscribed | subscribed@noreply.github.com | There was an update in a repository you're watching. |
-| Assign | assign@noreply.github.com | You were assigned to an issue or pull request. |
-| Comment | comment@noreply.github.com | You commented on an issue or pull request. |
+| @Mentions | <mention@noreply.github.com> | You were mentioned on an issue or pull request. |
+| @Team Mention | <team_mention@noreply.github.com> | A team you belong to was mentioned on an issue or pull request |
+| Subscribed | <subscribed@noreply.github.com> | There was an update in a repository you're watching. |
+| Assign | <assign@noreply.github.com> | You were assigned to an issue or pull request. |
+| Comment | <comment@noreply.github.com> | You commented on an issue or pull request. |
 
 For a full list of GitHub notification types, see [Filtering Email Notifications](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#filtering-email-notifications).
 
