@@ -159,7 +159,7 @@ If the primary resource of the AVM resource module you are developing supports a
 
 ### Deprecation
 
-Breaking changes are sometimes not avoidable. The impact should be kept as low as possible. A recommendation is to deprecate parameters, instead of completely removing them for a couple of versions. The [Semantic Versioning](/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning) sections offers information about versioning AVM modules.
+Breaking changes are sometimes not avoidable. The impact should be kept as low as possible. A recommendation is to [deprecate parameters](/Azure-Verified-Modules/specs/shared/#id-snfr18---category-release---breaking-changes), instead of completely removing them for a couple of versions. The [Semantic Versioning](/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning) sections offers information about versioning AVM modules.
 
 In case you need to deprecate an input parameter, this sample shows you how this can be achieved.
 
@@ -169,11 +169,12 @@ Since all modules are versioned, nothing will change for existing deployments as
 
 {{< /hint >}}
 
-#### Scenario
+#### Example-Scenario
 
-An AVM module is modified and the parameters will change which breaks backwards compatibility.
+An AVM module is modified and the parameters will change, which breaks backwards compatibility.
 
-- Parameters are changing to a custom type
+- parameters are changing to a custom type
+- the parameter structure is changing
 - backwards compatibility will be maintained
 
 Existing **input parameters** used to be definined  as follows (reducing the examples to the minimum):
@@ -193,7 +194,7 @@ item:
 
 #### Testing
 
-Before you begin to modify anything, it is recommended to create a new test case e.g. *deprecated* in addition to the already existing tests, to make sure that the changes are not breaking backwards compatibility until they are finally removed (see [BCPRMNFR1 - Category: Testing - Expected Test Directories](/Azure-Verified-Modules/specs/bicep/#id-bcprmnfr1---category-testing---expected-test-directories) for more details about the requirements).
+Before you begin to modify anything, it is recommended to create a new test case e.g. *deprecated* in addition to the already existing tests, to make sure that the changes are not breaking backwards compatibility until you decide to finally remove the deprecated parameters (see [BCPRMNFR1 - Category: Testing - Expected Test Directories](/Azure-Verified-Modules/specs/bicep/#id-bcprmnfr1---category-testing---expected-test-directories) for more details about the requirements).
 
 ```bicep
 module testDeployment '../../../main.bicep' = [
@@ -202,7 +203,6 @@ module testDeployment '../../../main.bicep' = [
     name: '${uniqueString(deployment().name, resourceLocation)}-test-${serviceShort}-${iteration}'
     params: {
       name: '${namePrefix}${serviceShort}001'
-      location: resourceLocation
       item: {
         variant: 'Large'
         osType: 'Linux'
@@ -216,33 +216,33 @@ The test should include all previously used parameters to make sure they are cov
 
 #### Code Changes
 
-The **new parameter** structure requires a change to the used parameters and moves them to a different location and looks like:
+The **new parameter structure** requires a change to the used parameters and moves them to a different location and looks like:
 
 ```bicep
 // main.bicep:
 param item itemType?
 
 type itemType = {
-  name: string
+  name: string // the name parameter did not change
 
   properties ={
-    osType: 'Linux' | 'Windows'?
+    osType: 'Linux' | 'Windows'? // the new place for the osType
 
     variant: {
-      size: string?
+      size: string? // the new place for the variant size
     }?
   }
 
   // keep theese for backwards compatibility in the new type
   @description('Optional. Note: This is a deprecated property, please use the corresponding `properties.osType` instead.')
-  osType: string?
+  osType: string? // the old parameter location
 
   @description('Optional. Note: This is a deprecated property, please use the corresponding `properties.variant.size` instead.')
-  variant: string?
+  variant: string? // the old parameter location
 }
 ```
 
-The original parmeter *item* is of type object and does not give any clue of what is expected to be added to it. The tests could bring light into the darknet, but this is not ideal. In order to retain backwards compatibility, the previously used parameters need to be added to the new type, as they would be invalid otherwise. Now that the new type is in place some logic needs to be implemented to make sure the module can handle the different sources of data (new and old parameters).
+The original parmeter *item* is of type object and does not give the user any clue of what the syntax is and what is expected to be added to it. The tests could bring light into the darkness, but this is not ideal. In order to retain backwards compatibility, the previously used parameters need to be added to the new type, as they would be invalid otherwise. Now that the new type is in place, some logic needs to be implemented to make sure the module can handle the different sources of data (new and old parameters).
 
 ```bicep
 resource <modulename> 'Microsoft.xy/yz@2024-01-01' = {
@@ -278,3 +278,12 @@ module testDeployment '../../../main.bicep' = [
   }
 ]
 ```
+
+#### Summary
+
+Implementing backwards compatibility can be achieved by:
+
+- adding new parameters
+- marking other parameters as deprecated
+- create a testcase for the old usage syntax
+- increase the version number of the module
