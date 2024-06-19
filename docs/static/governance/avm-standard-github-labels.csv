@@ -7,6 +7,7 @@ Needs: External Changes :hammer_and_pick:,When an issue/PR requires changes that
 Needs: More Evidence :balance_scale:,We are looking for more evidence to make a decision on this,F64872
 Needs: Triage :mag:,Maintainers need to triage still,FBCA04
 Needs: Module Owner :mega:,This module needs an owner to develop or maintain it,FF0019
+Needs: Module Contributor :mega:,This module needs secondary owner(s) or contributor(s) to develop or maintain it,C95474
 Needs: Core Team :genie:,This item needs the AVM Core Team to review it,DB4503
 Status: Awaiting Release To Be Cut :scissors:,"This is fixed in the main branch but not in the latest release, will be fixed with next release cut",800080
 Status: Do Not Merge :no_entry:,Do not merge PRs with this label attached as they are not ready or aligned to future direction etc.,8B4513
@@ -25,6 +26,7 @@ Status: Module Orphaned :eyes:,The module has no owner and is therefore orphaned
 Status: Response Overdue :triangular_flag_on_post:,When an issue/PR has not been responded to for X amount of days,850000
 Status: Looking For Assistance :duck:,This item is looking for anyone to help develop the code and submit a PR for resolution,03FCC2
 Type: Bug :bug:,Something isn't working,D73A4A
+Type: CI :rocket:,This issue is related to the AVM CI,74CFB0
 Type: Documentation :page_facing_up:,Improvements or additions to documentation,0075CA
 Type: Duplicate :palms_up_together:,This issue or pull request already exists,CFD3D7
 Type: Feature Request :heavy_plus_sign:,New feature or request,A2EEEF
