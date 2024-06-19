@@ -995,11 +995,11 @@ Another example for where RPs contain some of their name within a property, leav
 
 Module owners **MUST** output the following outputs as a minimum in their modules:
 
-| Output                                                                 | Bicep Output Name             | Terraform Output Name                                   |
-|------------------------------------------------------------------------|-------------------------------|---------------------------------------------------------|
-| Resource Name                                                          | `name`                        | n/a (not required, use `basename(resource_id)` instead) |
-| Resource ID                                                            | `resourceId`                  | `resource_id`                                           |
-| System Assigned Managed Identity Principal ID (if supported by module) | `systemAssignedMIPrincipalId` | `system_assigned_mi_principal_id`                       |
+| Output                                                                 | Bicep Output Name             | Terraform Output Name             |
+|------------------------------------------------------------------------|-------------------------------|-----------------------------------|
+| Resource Name                                                          | `name`                        | `name`                            |
+| Resource ID                                                            | `resourceId`                  | `resource_id`                     |
+| System Assigned Managed Identity Principal ID (if supported by module) | `systemAssignedMIPrincipalId` | `system_assigned_mi_principal_id` |
 
 {{< hint type=tip >}}
 
