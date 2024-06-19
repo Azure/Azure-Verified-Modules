@@ -52,6 +52,11 @@ Once the teams have been created the AVM Core Team will review the team name and
 
 2. Add teams to `CODEOWNERS` file as outlined in [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only).
 3. Ensure your module has been tested before raising a PR. You can do this your own or in another module contributor's environment - if any. Also, once a PR is raised, a GitHub workflow pipeline is required to be run successfully before the PR can be merged. This is to ensure that the module is working as expected and is compliant with the AVM specifications.
+{{< hint type=note >}}
+
+If you're the **sole owner of the module**, the **AVM core team must review and approve the PR**. To indicate that your PR needs the core team's attention, **apply the** "<mark style="background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>" **label on it!**
+
+{{< /hint >}}
 4. Ensure that the module(s) you own are compliant with the AVM specifications and are working as expected. While all specifications are to be followed, pay special attention to the following ones as in these, the `Owner` is mentioned explicitly:
 | ID | Specification
 |---------------|-----------------------|
@@ -172,5 +177,11 @@ This checklist can be used in the development of AVM Bicep Modules.
     {{< /expand >}}
 
 7. Create a PR and reference the status badge of your pipeline run - [see here](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry).
+{{< hint type=note >}}
+
+If you're the **sole owner of the module**, the **AVM core team must review and approve the PR**. To indicate that your PR needs the core team's attention, **apply the** "<mark style="background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>" **label on it!**
+
+{{< /hint >}}
+
 8. After a pull request has been created, it is important to update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue associated with your module, with a link to the pull request you created in BRM and mention the person who helped triage your module or the `@Azure/avm-core-team-technical-bicep` team.
 9. Once your BRM pull request has been approved and merged into main update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue associated with your module, with a **Merged** comment and mention the person who helped triage your module, or the `@Azure/avm-core-team-technical-bicep` team.
