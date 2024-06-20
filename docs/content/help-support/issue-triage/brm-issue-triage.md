@@ -43,6 +43,7 @@ The [BRM repository](https://aka.ms/BRM) includes other, non-AVM modules and rel
 
 - To look for items that **need triaging**, click on the following link to use this saved query ➡️ <a href="https://aka.ms/BRM/AVMNeedsTriage"><mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark></a> ⬅️.
 - To look for items that **need attention**, click on the following link to use this saved query ➡️ <a href="https://aka.ms/BRM/AVMNeedsAttention"><mark style="background-color:#E99695;color:white;">Needs: Attention 👋</mark></a> ⬅️.
+- Open items that are <a href="https://aka.ms/BRM/NotInAProject">**not in a project**</a>.
 
 {{< /hint >}}
 
