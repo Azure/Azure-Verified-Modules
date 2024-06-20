@@ -5,6 +5,9 @@ type privateEndpointType = {
   @description('Optional. The location to deploy the private endpoint to.')
   location: string?
 
+  @description('Optional. The name of the private link connection to create.')
+  privateLinkServiceConnectionName: string?
+
   // Variant 2: A default subresource cannot be assumed (i.e., for services that have more than one subresource, like Storage Account with Blob (blob, table, queue, file, ...)
   @description('Required. The subresource to deploy the private endpoint for. For example "blob", "table", "queue" or "file".')
   service: string
@@ -21,7 +24,8 @@ type privateEndpointType = {
   @description('Optional. If Manual Private Link Connection is required.')
   isManualConnection: bool?
 
-  @description('Optional. A message passed to the owner of the remote resource with the manual connection request. Restricted to 140 chars.')
+  @description('Optional. A message passed to the owner of the remote resource with the manual connection request.')
+  @maxLength(140)
   manualConnectionRequestMessage: string?
 
   @description('Optional. Custom DNS configurations.')
@@ -68,32 +72,36 @@ type privateEndpointType = {
 
   @description('Optional. Enable/Disable usage telemetry for module.')
   enableTelemetry: bool?
+
+  @description('Optional. Specify if you want to deploy the Private Endpoint into a different resource group than the main resource.')
+  resourceGroupName: string?
 }[]?
 
 @description('Optional. Configuration details for private endpoints. For security reasons, it is recommended to use private endpoints whenever possible.')
 param privateEndpoints privateEndpointType
 
-module <singularMainResourceType>_privateEndpoints 'br/public:avm/res/network/private-endpoint:X.Y.Z' = [for (privateEndpoint, index) in (privateEndpoints ?? []): {
-  name: '${uniqueString(deployment().name, location)}-<singularMainResourceType>-PrivateEndpoint-${index}'
+module >singularMainResourceType<_privateEndpoints 'br/public:avm/res/network/private-endpoint:X.Y.Z' = [for (privateEndpoint, index) in (privateEndpoints ?? []): {
+  name: '${uniqueString(deployment().name, location)}->singularMainResourceType<-PrivateEndpoint-${index}'
+  scope: resourceGroup(privateEndpoint.?resourceGroupName ?? '')
   params: {
     // Variant 2: A default service cannot be assumed (i.e., for services that have more than one private endpoint type, like Storage Account)
-    name: privateEndpoint.?name ?? 'pep-${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.?service ?? <defaultServiceName>}-${index}'
-    privateLinkServiceConnections: privateEndpoint.?manualPrivateLinkServiceConnections != true ? [
+    name: privateEndpoint.?name ?? 'pep-${last(split(>singularMainResourceType<.id, '/'))}-${privateEndpoint.service}-${index}'
+    privateLinkServiceConnections: privateEndpoint.?isManualConnection != true ? [
       {
-        name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.service}-${index}'
+        name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(>singularMainResourceType<.id, '/'))}-${privateEndpoint.service}-${index}'
         properties: {
-          privateLinkServiceId: <singularMainResourceType>.id
+          privateLinkServiceId: >singularMainResourceType<.id
           groupIds: [
             privateEndpoint.service
           ]
         }
       }
     ] : null
-    manualPrivateLinkServiceConnections: privateEndpoint.?manualPrivateLinkServiceConnections == true ? [
+    manualPrivateLinkServiceConnections: privateEndpoint.?isManualConnection == true ? [
       {
-        name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(<singularMainResourceType>.id, '/'))}-${privateEndpoint.service}-${index}'
+        name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(>singularMainResourceType<.id, '/'))}-${privateEndpoint.service}-${index}'
         properties: {
-          privateLinkServiceId: workspace.id
+          privateLinkServiceId: >singularMainResourceType<.id
           groupIds: [
             privateEndpoint.service
           ]

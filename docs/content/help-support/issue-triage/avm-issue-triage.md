@@ -15,7 +15,7 @@ This page provides guidance for members of the **AVM Core Team** on how to **tri
 During the AVM Core Team Triage step, the following will be checked, completed and actioned by the AVM Core Team during their triage calls (which are currently twice per week).
 
 {{< hint type=note >}}
-Every module needs a module proposal to be created in the AVM repository. This applies to both net new modules, as well as modules that are to be migrated from CARML/TFVM!
+Every module needs a module proposal to be created in the AVM repository.
 {{< /hint >}}
 
 {{< hint type=tip >}}
@@ -47,7 +47,7 @@ An issue is considered to be a module proposal if
 Follow these steps to triage a module proposal:
 1. Add the "<mark style="background-color:#E4E669;">Status: In Triage 🔍</mark>" label to indicate you're in the process of triaging the issue.
 2. Check module proposal issue/form:
-    - Check the [Bicep](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/) or [Terraform](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/) module indexes for the proposed module to make sure it is not already available or being worked on.
+    - Check the [Bicep](/Azure-Verified-Modules/indexes/bicep/) or [Terraform](/Azure-Verified-Modules/indexes/terraform/) module indexes for the proposed module to make sure it is not already available or being worked on.
     - Ensure the module's details are correct as per specifications - [naming](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming), [classification](/Azure-Verified-Modules/specs/shared/module-classifications/) (resource/pattern) etc.
     - Check if the module is added to the "`Proposed`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub project board.
     - Check if the requestor is a Microsoft FTE.
@@ -62,7 +62,18 @@ Follow these steps to triage a module proposal:
 3. Apply relevant labels
 
     - Module classification (resource/pattern): "<mark style="background-color:#D3D3D3;">Class: Resource Module 📦</mark>" or "<mark style="background-color:#A9A9A9;">Class: Pattern Module 📦</mark>"
-    - If it's a module that will be migrated from CARML/TFVM, add the related "<mark style="background-color:#00796F;color:white;">Status: Migrate from CARML 🚛</mark>" or the "<mark style="background-color:#00796F;color:white;">Status: Migrate from TFVM 🚛</mark>" label.
+
+### Triaging pattern modules
+
+As part of the triage of pattern modules, the following points need to be considered/clarified with the module requestor:
+
+- Shouldn't this be a resource module? What makes it a pattern - e.g., does it deploy multiple resources?
+- What is it for? What problem does it fix or provides a solution for?
+- What is/isn't part of it? Which resource and/or pattern modules are planned to be leveraged in it? Provide a list of resources that would be part of the planned module.
+- Where is it coming from/what's backing it - e.g., Azure Architecture Center (AAC), community request, customer example. Provide an architectural diagram and related documentation if possible - or a pointer to these if they are publicly available.
+- Don't let the module's scope to grow too big, split it up to multiple smaller ones that are more maintainable - e.g., hub & spoke networking should should be split to a generic hub networking and multiple workload specific spoke networking patterns.
+- The module's name should be as descriptive as possible.
+- Adopt strict name-to-scope mapping - e.g., hub & spoke networking shouldn't deploy monitoring.
 
 ### Triaging pattern modules
 
@@ -126,7 +137,7 @@ Although, it's not directly part of the module proposal triage process, to begin
 1. Update any Azure RBAC permissions for test tenants/subscription, if needed.
 2. In case of **Bicep modules** only:
     - Look for the module owners confirmation on the related `[Module Proposal]` issue that they have created the required `-module-owners-` and `-module-contributors-` GitHub teams.
-    - Ensure the `-module-owners-` and `-module-contributors-` GitHub teams have been assigned to their respective parent teams as outlined [here](https://azure.github.io/Azure-Verified-Modules/specs/shared/#grant-permissions---bicep).
+    - Ensure the `-module-owners-` and `-module-contributors-` GitHub teams have been assigned to their respective parent teams as outlined [here](/Azure-Verified-Modules/specs/shared/#grant-permissions---bicep).
     - Ensure the [`CODEOWNERS`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) file in the [BRM repo](https://aka.ms/BRM) has been updated.
     - Ensure the [`AVM Module Issue template`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/ISSUE_TEMPLATE/avm_module_issue.yml) file in the [BRM repo](https://aka.ms/BRM) has been updated.
 

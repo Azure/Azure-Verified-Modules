@@ -28,7 +28,7 @@ Our mission is to deliver a comprehensive Azure Verified Modules library in mult
 - The modules are supported by Microsoft, across it's many internal organizations, as described in [Module Support](/Azure-Verified-Modules/help-support/module-support/)
 - Modules are aligned to clear specifications that enforces consistency between all AVM modules. *See the 'Specifications & Definitions' section in the menu*
 - Modules will continue to stay up-to-date with product/service roadmaps owned by the module owners and contributors
-- Modules will align to WAF recommendations. *See ['What does AVM mean by "WAF Aligned"?'](/Azure-Verified-Modules/faq/#what-does-avm-mean-by-waf-aligned)*
+- Modules will align to WAF high priority recommendations. *See ['What does AVM mean by "WAF Aligned"?'](/Azure-Verified-Modules/faq/#what-does-avm-mean-by-waf-aligned)*
 - Modules will provide clear documentation alongside examples to promote self-service consumption
 - Modules will be tested to ensure they comply with the specifications for AVM and their examples deploy as intended
 
@@ -51,8 +51,8 @@ We also know, from our customers, that well defined support statements from Micr
 Azure Verified Modules will achieve this, and its mission statement, by implementing and enforcing the following; driven by the AVM Core Team:
 
 1. Publishing AVM modules to their respective public registries for consumption
-   - For Bicep this will the [Bicep Public Module Registry](https://aka.ms/BRM)
-   - For Terraform this will the [HashiCorp Terraform Registry](https://registry.terraform.io/)
+   - For Bicep this will be the [Bicep Public Module Registry](https://aka.ms/BRM)
+   - For Terraform this will be the [HashiCorp Terraform Registry](https://registry.terraform.io/)
 2. Creating, publishing and maintaining the Azure Verified Modules specifications (this site)
    - Including IaC language specific specifications (today Bicep and Terraform)
 3. Creating easy to follow AVM module contribution and publishing guidance for each IaC language (today Bicep and Terraform)

@@ -26,6 +26,7 @@
 {{ $hasModulesAvailable := false }}
 {{ $maps := slice }}
 {{ $i := 0 }}
+{{ $moduleLatestVersion := "" }}
 
 {{ if eq $moduleType "resource" }}
   {{ $ProviderNamespaceColumnId = 0 }}
@@ -67,7 +68,7 @@
     {{ $maps = $maps | append $map }}
   {{ end }}
 
-{{ else if eq $moduleType "pattern" }}
+{{ else if or (eq $moduleType "pattern") (eq $moduleType "utility") }}
   {{ $ModuleDisplayNameColumnId = 0 }}
   {{ $ModuleNameColumnId = 1 }}
   {{ $ModuleStatusColumnId = 2 }}
@@ -103,7 +104,7 @@
     {{ $maps = $maps | append $map }}
   {{ end }}
 {{ else }}
-  {{ errorf "The %q shortcode requires a moduleType parameter to bet set to either 'resource' or 'pattern'. See %s" .Name .Position }}
+  {{ errorf "The %q shortcode requires a moduleType parameter to bet set to either 'resource', 'pattern' or 'utility'. See %s" .Name .Position }}
 {{ end }}
 
 {{ $maps = sort $maps "ModuleName" }}
@@ -116,19 +117,29 @@
     <tr>
       <th>No.</th>
       <th>Module Name</th>
-      <th>Module Display Name</th>
-      <th>Module Status</th>
-      <th>Primary Module Owner<br>GitHub Handle<br>(& Display Name)</th>
+      <th>Display Name</th>
+      <th>Status & Versions</th>
+      <th>Primary Owner</th>
     </tr>
   </thead>
   {{ end }}
   {{ range $item, $maps }}
   {{ if not ( in $exclude $item.ModuleStatus ) }}
+    {{ $moduleLatestVersion = "N/A" }}
+    {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }}
+      {{ $moduleMcrUrl := printf "https://mcr.microsoft.com/v2/bicep/%s/tags/list" $item.ModuleName }}
+      {{ $moduleMcrData := getJSON $moduleMcrUrl }}
+      {{ $moduleVersions := $moduleMcrData.tags }}
+      {{ if $moduleVersions }}
+          {{ $moduleLatestVersion = index $moduleVersions (sub (len $moduleVersions) 1) }}
+      {{ end }}
+    {{ end }}
+    {{ $trimmedModuleStatus := replace $item.ModuleStatus "Module " "" }}
   <tr>
     <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
-    <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Module Available :green_circle:") (eq $item.ModuleStatus "Module Orphaned :eyes:") }} <a href="{{ $item.RepoURL }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
+    <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }} <a href="{{ $item.RepoURL }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
     <td>{{ $item.ModuleDisplayName }}</td>
-    <td>{{ emojify $item.ModuleStatus }}</td>
+    <td>{{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }}<a href="https://mcr.microsoft.com/v2/bicep/{{ $item.ModuleName }}/tags/list"><image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $moduleLatestVersion }}-blue"/></a> {{ else }} <a href=""><image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-N/A-blue"/></a> {{ end }}</td>
     <td>{{ if ne $item.PrimaryModuleOwnerGHHandle ""}}<a href="https://github.com/{{ $item.PrimaryModuleOwnerGHHandle }}">{{ $item.PrimaryModuleOwnerGHHandle }}</a> {{ if and (ne $item.PrimaryModuleOwnerGHHandle "") (ne $item.PrimaryModuleOwnerDisplayName "") }} <br> ({{ $item.PrimaryModuleOwnerDisplayName }}) {{ end }} {{ end}}</td>
   </tr>
   {{ $hasModulesAvailable = true }}
@@ -137,10 +148,10 @@
   {{ if not $hasModulesAvailable }}
   <tr>
     <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
-    <td>❌ None available yet.</td>
-    <td>❌ None available yet.</td>
-    <td>❌ None available yet.</td>
-    <td>❌ None available yet.</td>
+    <td>❌ None available</td>
+    <td>❌ None available</td>
+    <td>❌ None available</td>
+    <td>❌ None available</td>
   </tr>
   {{ end }}
 </table>
@@ -152,20 +163,35 @@
       <th>No.</th>
       <th>Module Name</th>
       <th>Source Code</th>
-      <th>Module Display Name</th>
-      <th>Module Status</th>
-      <th>Primary Module Owner<br>GitHub Handle<br>(& Display Name)</th>
+      <th>Display Name</th>
+      <th>Status & Versions</th>
+      <th>Primary Owner</th>
     </tr>
   </thead>
   {{ end }}
   {{ range $item, $maps }}
   {{ if not ( in $exclude $item.ModuleStatus ) }}
+  {{ $moduleLatestVersion = "N/A" }}
+    {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }}
+      {{ $moduleTfRegApiUrl := printf "https://registry.terraform.io/v1/modules/Azure/%s/azurerm/versions" $item.ModuleName }}
+      {{ $moduleTfRegApiData := getJSON $moduleTfRegApiUrl }}
+      {{ $moduleVersions := slice }}
+      {{ range $moduleTfRegApiData.modules }}
+        {{ range .versions }}
+          {{ $moduleVersions = $moduleVersions | append .version }}
+        {{ end }}
+      {{ end }}
+      {{ if $moduleVersions }}
+          {{ $moduleLatestVersion = index $moduleVersions (sub (len $moduleVersions) 1) }}
+      {{ end }}
+    {{ end }}
+    {{ $trimmedModuleStatus := replace $item.ModuleStatus "Module " "" }}
   <tr>
     <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
-    <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Module Available :green_circle:") (eq $item.ModuleStatus "Module Orphaned :eyes:") }} <a href="{{ $item.PublicRegistryReference }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
-    <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Module Available :green_circle:") (eq $item.ModuleStatus "Module Orphaned :eyes:") }} <a href="{{ $item.RepoURL }}">📄</a> {{ else }} {{ "n/a" }} {{ end }} {{else}} {{ "n/a" }} {{ end }} </td>
+    <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }} <a href="{{ $item.PublicRegistryReference }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
+    <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }} <a href="{{ $item.RepoURL }}" style="color: inherit; text-decoration: none; background-color: transparent;">📄</a> {{ else }} {{ "n/a" }} {{ end }} {{else}} {{ "n/a" }} {{ end }} </td>
     <td>{{ $item.ModuleDisplayName }}</td>
-    <td>{{ emojify $item.ModuleStatus }}</td>
+    <td>{{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }}<a href="{{ $item.PublicRegistryReference }}"><image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $moduleLatestVersion }}-purple"/></a> {{ else }} <a href=""><image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-N/A-purple"/></a> {{ end }}</td>
     <td>{{ if ne $item.PrimaryModuleOwnerGHHandle ""}}<a href="https://github.com/{{ $item.PrimaryModuleOwnerGHHandle }}">{{ $item.PrimaryModuleOwnerGHHandle }}</a> {{ if and (ne $item.PrimaryModuleOwnerGHHandle "") (ne $item.PrimaryModuleOwnerDisplayName "") }} <br> ({{ $item.PrimaryModuleOwnerDisplayName }}) {{ end }} {{ end}}</td>
   </tr>
   {{ $hasModulesAvailable = true }}
@@ -174,11 +200,11 @@
   {{ if not $hasModulesAvailable }}
   <tr>
     <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
-    <td>❌ None available yet.</td>
-    <td>❌ None available yet.</td>
-    <td>❌ None available yet.</td>
-    <td>❌ None available yet.</td>
-    <td>❌ None available yet.</td>
+    <td>❌ None available</td>
+    <td>❌ None available</td>
+    <td>❌ None available</td>
+    <td>❌ None available</td>
+    <td>❌ None available</td>
   </tr>
   {{ end }}
 </table>

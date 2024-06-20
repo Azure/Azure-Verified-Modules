@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Bicep Module Issue ➕🐛🔒
+    url: https://aka.ms/AVM/Bicep/ModuleIssue
+    about: Want to request a new Bicep Module feature or report a bug? Let us know!
+  - name: Terraform Module Issue ➕🐛🔒
+    url: https://aka.ms/AVM/index/tf
+    about: Want to request a new Terraform Module feature or report a bug? Find your module's repository in the index and file a Module Issue there!

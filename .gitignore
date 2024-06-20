@@ -35,6 +35,7 @@ terraform.rc
 
 # Hugo
 docs/.hugo_build.lock
+docs/public/*
 
 # MacOS
 .DS_Store

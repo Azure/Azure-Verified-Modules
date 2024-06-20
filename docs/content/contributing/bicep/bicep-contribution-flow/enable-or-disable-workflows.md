@@ -11,13 +11,16 @@ To limit those workflow runs, you can manually disable each pipeline you do not 
 - [Location](#location)
 - [How it works](#how-it-works)
 - [Typical use cases](#typical-use-cases)
+  - [Disable all but one workflow](#disable-all-but-one-workflow)
+  - [Disable all but multiple workflows](#disable-all-but-multiple-workflows)
+  - [Enable all workflows](#enable-all-workflows)
 - [Limitations](#limitations)
 
 ---
 # Location
 
 You can find the script under [`avm/utilities/pipelines/platform/Switch-WorkflowState.ps1)`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/pipelines/platform/Switch-WorkflowState.ps1)
-You can find the workflow under [`.github/workflows/avm.platform.toggle-avm-workflows.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/avm.platform.toggle-avm-workflows.yml)
+You can find the workflow under [`.github/workflows/platform.toggle-avm-workflows.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/platform.toggle-avm-workflows.yml)
 
 # How it works
 
@@ -25,7 +28,7 @@ Browse to `Actions` and select the workflow from the list
 
 <img src="../../../../img/contribution/selectToggleWorkflows.png" alt="Select Toggle Workflows" width=50%>
 
-Run the workflow `avm.platform.toggle-avm-workflows` and set the following settings:
+Run the workflow `platform.toggle-avm-workflows` and set the following settings:
 - `Enable or disable workflows` to enable or disable workflows
 - `RegEx which workflows are included` include a specific set of workflows, using a RegEx.
 - `RegEx which workflows are excluded` exclude a specific set of workflows, using a RegEx.
@@ -34,15 +37,20 @@ Run the workflow `avm.platform.toggle-avm-workflows` and set the following setti
 
 # Typical use cases
 
-If all but one workflow should be disabled, set the following settings:
+## Disable all but one workflow
 - `Enable or disable workflows` to `Disable`
-- `RegEx which workflows are included` to `avm\.(?:res|ptn)` (that is the default setting)
-- `RegEx which workflows are excluded` to `avm.res.compute.virtual-machine` (the name of your workflow, here as example the one for the virtual machine)
+- `RegEx which workflows are included` to `avm\.(?:res|ptn)` (this is the default setting)
+- `RegEx which workflows are excluded` to `avm.res.compute.virtual-machine` (use the name of your own workflow. This example uses the workflow for virtual machine)
 
-If all workflows should be enabled, set the following settings:
+## Disable all but multiple workflows
+- `Enable or disable workflows` to `Disable`
+- `RegEx which workflows are included` to `avm\.(?:res|ptn)` (this is the default setting)
+- `RegEx which workflows are excluded` to `(?:avm.res.compute.virtual-machine|avm.res.compute.image|avm.res.compute.disk)` (use the names of your own workflows. This example uses the workflows for virtual machine, image, and disk)
+
+## Enable all workflows
 - `Enable or disable workflows` to `Enable`
-- `RegEx which workflows are included` to `avm\.(?:res|ptn)` (that is the default setting)
-- `RegEx which workflows are excluded` to `^$` (that is the default setting)
+- `RegEx which workflows are included` to `avm\.(?:res|ptn)` (this is the default setting)
+- `RegEx which workflows are excluded` to `^$` (this is the default setting)
 
 # Limitations
 
