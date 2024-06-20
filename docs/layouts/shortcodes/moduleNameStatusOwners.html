@@ -68,7 +68,7 @@
     {{ $maps = $maps | append $map }}
   {{ end }}
 
-{{ else if eq $moduleType "pattern" }}
+{{ else if or (eq $moduleType "pattern") (eq $moduleType "utility") }}
   {{ $ModuleDisplayNameColumnId = 0 }}
   {{ $ModuleNameColumnId = 1 }}
   {{ $ModuleStatusColumnId = 2 }}
@@ -104,7 +104,7 @@
     {{ $maps = $maps | append $map }}
   {{ end }}
 {{ else }}
-  {{ errorf "The %q shortcode requires a moduleType parameter to bet set to either 'resource' or 'pattern'. See %s" .Name .Position }}
+  {{ errorf "The %q shortcode requires a moduleType parameter to bet set to either 'resource', 'pattern' or 'utility'. See %s" .Name .Position }}
 {{ end }}
 
 {{ $maps = sort $maps "ModuleName" }}
@@ -148,10 +148,10 @@
   {{ if not $hasModulesAvailable }}
   <tr>
     <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
-    <td>❌ None available yet.</td>
-    <td>❌ None available yet.</td>
-    <td>❌ None available yet.</td>
-    <td>❌ None available yet.</td>
+    <td>❌ None available</td>
+    <td>❌ None available</td>
+    <td>❌ None available</td>
+    <td>❌ None available</td>
   </tr>
   {{ end }}
 </table>
@@ -200,11 +200,11 @@
   {{ if not $hasModulesAvailable }}
   <tr>
     <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
-    <td>❌ None available yet.</td>
-    <td>❌ None available yet.</td>
-    <td>❌ None available yet.</td>
-    <td>❌ None available yet.</td>
-    <td>❌ None available yet.</td>
+    <td>❌ None available</td>
+    <td>❌ None available</td>
+    <td>❌ None available</td>
+    <td>❌ None available</td>
+    <td>❌ None available</td>
   </tr>
   {{ end }}
 </table>

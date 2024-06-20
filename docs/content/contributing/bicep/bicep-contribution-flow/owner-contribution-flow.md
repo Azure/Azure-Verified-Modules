@@ -17,6 +17,12 @@ As a **Bicep Module Owner** you need to be aware of the [AVM Contribution Proces
 
 {{< /hint >}}
 
+{{< hint type=note >}}
+
+Additional internal content for **ongoing module maintenance** available for Microsoft FTEs, [here](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/472/Module-maintenance-tasks).
+
+{{< /hint >}}
+
 ---
 
 ## 1. Owner Activities and Responsibilities
@@ -46,8 +52,13 @@ Once the teams have been created the AVM Core Team will review the team name and
 
 2. Add teams to `CODEOWNERS` file as outlined in [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only).
 3. Ensure your module has been tested before raising a PR. You can do this your own or in another module contributor's environment - if any. Also, once a PR is raised, a GitHub workflow pipeline is required to be run successfully before the PR can be merged. This is to ensure that the module is working as expected and is compliant with the AVM specifications.
+{{< hint type=note >}}
+
+If you're the **sole owner of the module**, the **AVM core team must review and approve the PR**. To indicate that your PR needs the core team's attention, **apply the** "<mark style="background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>" **label on it!**
+
+{{< /hint >}}
 4. Ensure that the module(s) you own are compliant with the AVM specifications and are working as expected. While all specifications are to be followed, pay special attention to the following ones as in these, the `Owner` is mentioned explicitly:
-| ID | Specification
+| ID | Specification |
 |---------------|-----------------------|
 | [SFR1](/Azure-Verified-Modules/specs/shared/#id-sfr1---category-composition---preview-services) | Composition - Preview Services |
 | [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing) | Testing - E2E Testing |
@@ -65,7 +76,7 @@ Once the teams have been created the AVM Core Team will review the team name and
 | [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs) | Outputs - Minimum Required Outputs |
 
 5. Watch Pull Request (PR) activity for your module(s) in the [BRM](https://github.com/Azure/bicep-registry-modules) repository (Bicep Registry Modules repository - where all Bicep AVM modules are published) and ensure that PRs are reviewed and merged in a timely manner as outlined in [SNFR11](/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times).
-6å. Watch AVM module issue and AVM question/feedback activity for your module(s) in the [BRM](https://github.com/Azure/bicep-registry-modules) repository.
+6. Watch AVM module issue and AVM question/feedback activity for your module(s) in the [BRM](https://github.com/Azure/bicep-registry-modules) repository.
 
 ---
 
@@ -128,12 +139,12 @@ GitHub will use the following email addresses to Cc you if you're subscribed to 
 {{< /hint >}}
 
 | Type of Notification | GitHub Email Address | Notification Reason |
-|-|-|-|
-| @Mentions | mention@noreply.github.com | You were mentioned on an issue or pull request. |
-| @Team Mention | team_mention@noreply.github.com | A team you belong to was mentioned on an issue or pull request |
-| Subscribed | subscribed@noreply.github.com | There was an update in a repository you're watching. |
-| Assign | assign@noreply.github.com | You were assigned to an issue or pull request. |
-| Comment | comment@noreply.github.com | You commented on an issue or pull request. |
+| --- | --- | --- |
+| @Mentions | <mention@noreply.github.com> | You were mentioned on an issue or pull request. |
+| @Team Mention | <team_mention@noreply.github.com> | A team you belong to was mentioned on an issue or pull request |
+| Subscribed | <subscribed@noreply.github.com> | There was an update in a repository you're watching. |
+| Assign | <assign@noreply.github.com> | You were assigned to an issue or pull request. |
+| Comment | <comment@noreply.github.com> | You commented on an issue or pull request. |
 
 For a full list of GitHub notification types, see [Filtering Email Notifications](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#filtering-email-notifications).
 
@@ -166,5 +177,11 @@ This checklist can be used in the development of AVM Bicep Modules.
     {{< /expand >}}
 
 7. Create a PR and reference the status badge of your pipeline run - [see here](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry).
+{{< hint type=note >}}
+
+If you're the **sole owner of the module**, the **AVM core team must review and approve the PR**. To indicate that your PR needs the core team's attention, **apply the** "<mark style="background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>" **label on it!**
+
+{{< /hint >}}
+
 8. After a pull request has been created, it is important to update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue associated with your module, with a link to the pull request you created in BRM and mention the person who helped triage your module or the `@Azure/avm-core-team-technical-bicep` team.
 9. Once your BRM pull request has been approved and merged into main update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue associated with your module, with a **Merged** comment and mention the person who helped triage your module, or the `@Azure/avm-core-team-technical-bicep` team.

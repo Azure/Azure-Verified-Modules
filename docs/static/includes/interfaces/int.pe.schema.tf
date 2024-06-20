@@ -17,7 +17,7 @@ variable "private_endpoints" {
     name               = optional(string, null)
     role_assignments   = optional(map(object({})), {}) # see https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#role-assignments
     lock               = optional(object({}), {})      # see https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#resource-locks
-    tags               = optional(map(any), null)      # see https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#tags
+    tags               = optional(map(string), null)   # see https://azure.github.io/Azure-Verified-Modules/Azure-Verified-Modules/specs/shared/interfaces/#tags
     subnet_resource_id = string
     ## You only need to expose the subresource_name if there are multiple underlying services, e.g. storage.
     ## Which has blob, file, etc.

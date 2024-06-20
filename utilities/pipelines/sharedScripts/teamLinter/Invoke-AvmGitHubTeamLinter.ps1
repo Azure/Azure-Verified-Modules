@@ -75,6 +75,7 @@ Function Invoke-AvmGitHubTeamLinter {
   . (Join-Path $PSScriptRoot 'Set-AvmGitHubTeamsIssue.ps1')
   . (Join-Path $PSScriptRoot 'Test-AvmGitHubTeamPermission.ps1')
   . (Join-Path $PSScriptRoot 'Find-AvmGitHubTeamOwner.ps1')
+  . (Join-Path $PSScriptRoot 'Close-ResolvedGithubIssue.ps1')
 
   if ($TeamFilter -like '*All*') {
       $validateAll = $true
@@ -108,6 +109,8 @@ Function Invoke-AvmGitHubTeamLinter {
                   $testOwner = Find-AvmGitHubTeamOwner -Organization Azure -TeamName $module.ModuleOwnersGHTeam -OwnerGitHubHandle $module.PrimaryModuleOwnerGHHandle
                   if ($testOwner -match "Success") {
                     Write-Verbose "Good News! Team: [$($ghTeam.name)] is configured with the expected owners: [$($module.PrimaryModuleOwnerGHHandle)]"
+                    Write-Verbose "Checking if an issue exists for the team: [$($ghTeam.name)]..."
+                    Close-ResolvedGithubIssue -title "[GitHub Team Issue] ``$($ghTeam.name)``"
                   }
                   else {
                     Write-Verbose "Uh-oh no incorrect owner configured for [$($ghTeam.name)]"
@@ -153,6 +156,8 @@ Function Invoke-AvmGitHubTeamLinter {
                           $repoConfiguration = Test-AvmGitHubTeamPermission -Organization Azure -TeamName $module.ModuleOwnersGHTeam -RepoName $repoName -ExpectedPermission "Admin"
                           if ($repoConfiguration -match "Success") {
                               Write-Verbose "Good News! Team: [$($module.ModuleOwnersGHTeam)] is configured with the expected permission: [admin] on Repo: [$repoName] "
+                              Write-Verbose "Checking if an issue exists for the team: [$($ghTeam.name)]..."
+                              Close-ResolvedGithubIssue -title "[GitHub Team Issue] ``$($ghTeam.name)``"
                           }
                           else {
                               Write-Verbose "Uh-oh no correct permissions configured for $($module.ModuleOwnersGHTeam) ($($module.PrimaryModuleOwnerDisplayName))"
@@ -253,6 +258,8 @@ Function Invoke-AvmGitHubTeamLinter {
                           $repoConfiguration = Test-AvmGitHubTeamPermission -Organization Azure -TeamName $module.ModuleContributorsGHTeam -RepoName $repoName -ExpectedPermission "Write"
                           if ($repoConfiguration -match "Success") {
                               Write-Verbose "Good News! Team: [$($module.ModuleOwnersGHTeam)] is configured with the expected permission: [write] on Repo: [$repoName] "
+                              Write-Verbose "Checking if an issue exists for the team: [$($ghTeam.name)]..."
+                              Close-ResolvedGithubIssue -title "[GitHub Team Issue] ``$($ghTeam.name)``"
                             }
                           else {
                               Write-Verbose "Uh-oh no correct permissions configured for $($module.ModuleContributorsGHTeam) ($($module.PrimaryModuleOwnerDisplayName))"
@@ -328,6 +335,8 @@ Function Invoke-AvmGitHubTeamLinter {
             $teamTest = Test-AvmGitHubTeamPermission -Organization Azure -TeamName $tfAdminteam -RepoName $repoName -ExpectedPermission "Admin"
             if ($teamTest -match "Success") {
               Write-Verbose "Good News! Team: [$tfAdminteam] is configured with the expected permission: [admin] on Repo: [$repoName] "
+              Write-Verbose "Checking if an issue exists for the team: [$($ghTeam.name)]..."
+              Close-ResolvedGithubIssue -title "[GitHub Team Issue] ``$($ghTeam.name)``"
             }
             else {
               Write-Verbose "Uh-oh no correct permissions configured for [$tfAdminteam]"
