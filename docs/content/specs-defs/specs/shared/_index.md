@@ -809,14 +809,6 @@ For example all modules should be released using a semantic version that matches
 
 A module **SHOULD** avoid breaking changes, e.g., deprecating inputs vs. removing.
 
-{{< hint type=tip >}}
-
-See the language specific samples how you can deal with deprecations in AVM modules.
-
-- [Bicep](/Azure-Verified-Modules/contributing/bicep/composition/#deprecation)
-
-{{< /hint >}}
-
 <br>
 
 ---
