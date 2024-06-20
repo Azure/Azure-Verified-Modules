@@ -75,18 +75,6 @@ As part of the triage of pattern modules, the following points need to be consid
 - The module's name should be as descriptive as possible.
 - Adopt strict name-to-scope mapping - e.g., hub & spoke networking shouldn't deploy monitoring.
 
-### Triaging pattern modules
-
-As part of the triage of pattern modules, the following points need to be considered/clarified with the module requestor:
-
-- Shouldn't this be a resource module? What makes it a pattern - e.g., does it deploy multiple resources?
-- What is it for? What problem does it fix or provides a solution for?
-- What is/isn't part of it? Which resource and/or pattern modules are planned to be leveraged in it? Provide a list of resources that would be part of the planned module.
-- Where is it coming from/what's backing it - e.g., Azure Architecture Center (AAC), community request, customer example. Provide an architectural diagram and related documentation if possible - or a pointer to these if they are publicly available.
-- Don't let the module's scope to grow too big, split it up to multiple smaller ones that are more maintainable - e.g., hub & spoke networking should should be split to a generic hub networking and multiple workload specific spoke networking patterns.
-- The module's name should be as descriptive as possible.
-- Adopt strict name-to-scope mapping - e.g., hub & spoke networking shouldn't deploy monitoring.
-
 ### Scenario 1: Requestor doesn't want to / can't be module owner
 
 {{< hint type=note >}}
