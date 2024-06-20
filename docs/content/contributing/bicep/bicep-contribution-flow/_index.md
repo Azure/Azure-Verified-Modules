@@ -321,6 +321,12 @@ Finally, once you are satisfied with your contribution and validated it, open a 
 
     <img src="../../../img/contribution/pipelineBadge.png" alt="Status Badge" height="400">
 
+{{< hint type=note >}}
+
+If you're the **sole owner of the module**, the **AVM core team must review and approve the PR**. To indicate that your PR needs the core team's attention, **apply the** "<mark style="background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>" **label on it!**
+
+{{< /hint >}}
+
 <!--
 ## Publishing to the Registry
 
