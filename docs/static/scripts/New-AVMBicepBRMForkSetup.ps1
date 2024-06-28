@@ -1,4 +1,4 @@
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingWriteHost", "", Justification = "Coloured output required in this script")]
+﻿[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingWriteHost", "", Justification = "Coloured output required in this script")]
 
 #Requires -PSEdition Core
 #Requires -Modules @{ ModuleName="Az.Accounts"; ModuleVersion="2.19.0" }
@@ -213,7 +213,7 @@ gh secret set AZURE_CREDENTIALS --body $FormattedAzureCredentialsSecretJsonCompr
 gh secret set TOKEN_NAMEPREFIX --body $GitHubSecret_TOKEN_NAMEPREFIX -R $GitHubOrgAndRepoNameCombined
 
 Write-Host ''
-Write-Host "Successfully created and set GitHub Secrets on forked repostiory '$($GitHubOrgAndRepoNameCombined)" ...' -ForegroundColor Green
+Write-Host "Successfully created and set GitHub Secrets on forked repostiory '$($GitHubOrgAndRepoNameCombined)' ..." -ForegroundColor Green
 Write-Host ''
 
 Write-Host "Openning browser so you can enable GitHub Actions on newly forked repository '$($GitHubOrgAndRepoNameCombined)' ..." -ForegroundColor Magenta
