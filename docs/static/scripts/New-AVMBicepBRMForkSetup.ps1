@@ -1,3 +1,5 @@
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingWriteHost", "", Justification = "Coloured output required in this script")]
+
 #Requires -PSEdition Core
 #Requires -Modules @{ ModuleName="Az.Accounts"; ModuleVersion="2.19.0" }
 #Requires -Modules @{ ModuleName="Az.Resources"; ModuleVersion="6.16.2" }
@@ -196,7 +198,7 @@ if ($GitHubSecret_ARM_MGMTGROUP_ID -ne '') {
 }
 
 # Set GitHub Repo Secrets
-Write-Host 'Setting GitHub Secrets on forked repostiory '$($GitHubOrgAndRepoNameCombined)' ...' -ForegroundColor Magenta
+Write-Host "Setting GitHub Secrets on forked repostiory '$($GitHubOrgAndRepoNameCombined)' ..." -ForegroundColor Magenta
 Write-Host 'Creating and formatting secret `AZURE_CREDENTIALS` with details from SPN creation process and other parameter inputs ...' -ForegroundColor Cyan
 
 $FormattedAzureCredentialsSecret = "{ 'clientId': '$($newSpn.AppId)', 'clientSecret': '$($newSpn.PasswordCredentials.SecretText)', 'subscriptionId': '$($GitHubSecret_ARM_SUBSCRIPTION_ID)', 'tenantId': '$($GitHubSecret_ARM_TENANT_ID)' }"
@@ -211,7 +213,7 @@ gh secret set AZURE_CREDENTIALS --body $FormattedAzureCredentialsSecretJsonCompr
 gh secret set TOKEN_NAMEPREFIX --body $GitHubSecret_TOKEN_NAMEPREFIX -R $GitHubOrgAndRepoNameCombined
 
 Write-Host ''
-Write-Host 'Successfully created and set GitHub Secrets on forked repostiory '$($GitHubOrgAndRepoNameCombined)' ...' -ForegroundColor Green
+Write-Host "Successfully created and set GitHub Secrets on forked repostiory '$($GitHubOrgAndRepoNameCombined)" ...' -ForegroundColor Green
 Write-Host ''
 
 Write-Host "Openning browser so you can enable GitHub Actions on newly forked repository '$($GitHubOrgAndRepoNameCombined)' ..." -ForegroundColor Magenta
