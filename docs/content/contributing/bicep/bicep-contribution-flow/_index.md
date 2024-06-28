@@ -63,7 +63,7 @@ When implementing the GitFlow process as described, it is advisable to configure
 
 ## PowerShell Helper Script To Setup Fork & CI Test Environment
 
-To simplify the setup of the fork, clone and configuration of the required secrets, SPN and RBAC assignments in your Azure environment for the CI framework to function correctly in your fork we have created a PowerShell script that you can use to do steps [1](#1-setup-your-azure-test-environment), [2](#2-fork-the-module-source-repository) & [3](#3-configure-your-ci-environment) below.
+To simplify the setup of the fork, clone and configuration of the required secrets, SPN and RBAC assignments in your Azure environment for the CI framework to function correctly in your fork, we have created a PowerShell script that you can use to do steps [1](#1-setup-your-azure-test-environment), [2](#2-fork-the-module-source-repository) & [3](#3-configure-your-ci-environment) below.
 
 {{< hint type=important >}}
 
@@ -71,30 +71,30 @@ You will still need to complete [step 3.3](#33-set-readwrite-workflow-permission
 
 {{< /hint >}}
 
-The script does the following steps:
+The script performs the following steps:
 
-1. Forks the `Azure/bicep-registry-modules` to your GitHub Account
-2. Clones the repo locally to your machine to the location your specify in the parameter: `-GitHubRepositoryPathForCloneOfForkedRepository`
-3. Prompts you and takes you directly to the place to enable GitHub Actions Workflows on your forked repo
-4. Disables all AVM module workflows, as per [Enable or Disable Workflows](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/)
-5. Creates an Azure Service Principal (SPN) and grants it RBAC roles of `User Access Administrator` & `Contributor` to the Management Group, if specified in the parameter `-GitHubSecret_ARM_MGMTGROUP_ID`, and to the Azure Subscription you provide via the parameter `-GitHubSecret_ARM_SUBSCRIPTION_ID`
-6. Creates the required GitHub Actions Secrets as per [step 3](#3-configure-your-ci-environment) in your forked repo based on the input provided in parameters and the values from resources the script creates, such as the SPN.
+1. Forks the `Azure/bicep-registry-modules` to your GitHub Account.
+2. Clones the repo locally to your machine, based on the location you specify in the parameter: `-GitHubRepositoryPathForCloneOfForkedRepository`.
+3. Prompts you and takes you directly to the place where you can enable GitHub Actions Workflows on your forked repo.
+4. Disables all AVM module workflows, as per [Enable or Disable Workflows](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/).
+5. Creates an Azure Service Principal (SPN) and grants it the RBAC roles of `User Access Administrator` & `Contributor` at Management Group level, if specified in the `-GitHubSecret_ARM_MGMTGROUP_ID` parameter, and at Azure Subscription level if you provide it via the `-GitHubSecret_ARM_SUBSCRIPTION_ID` parameter.
+6. Creates the required GitHub Actions Secrets in your forked repo as per [step 3](#3-configure-your-ci-environment), based on the input provided in parameters and the values from resources the script creates, such as the SPN.
 
 ### Pre-requisites
 
-1. You must have the [Azure PowerShell Modules](https://learn.microsoft.com/powershell/azure/install-azure-powershell) installed and logged in with a user into the desired Tenant with permissions to create an SPN and grant RBAC over the specified Subscription and Management Group, if provided.
-2. You must have the [GitHub CLI](https://github.com/cli/cli#installation) installed and authenticated with the GitHub user account you wish to fork, clone and work with AVM on
+1. You must have the [Azure PowerShell Modules](https://learn.microsoft.com/powershell/azure/install-azure-powershell) installed and you need to be logged with the context set to the desired Tenant. You must have permissions to create an SPN and grant RBAC over the specified Subscription and Management Group, if provided.
+2. You must have the [GitHub CLI](https://github.com/cli/cli#installation) installed and need to be authenticated with the GitHub user account you wish to use to fork, clone and work with on AVM.
 
 {{< expand "New-AVMBicepBRMForkSetup.ps1 - PowerShell Helper Script" "expand/collapse" >}}
 
 The `New-AVMBicepBRMForkSetup.ps1` can be downloaded from <a href="/Azure-Verified-Modules/scripts/New-AVMBicepBRMForkSetup.ps1" download>here</a>.
 
-Once downloaded you can run the script by running - **Please change all the parameter values in the below script usage example to your own values (see the parameter documentation in the script itself)**:
+Once downloaded, you can run the script by running the below - **Please change all the parameter values in the below script usage example to your own values (see the parameter documentation in the script itself)!**:
 ```powershell
 .\<PATH-TO-SCRIPT-DOWNLOAD-LOCATION>\New-AVMBicepBRMForkSetup.ps1 -GitHubRepositoryPathForCloneOfForkedRepository "D:\GitRepos\" -GitHubSecret_ARM_MGMTGROUP_ID "alz" -GitHubSecret_ARM_SUBSCRIPTION_ID "1b60f82b-d28e-4640-8cfa-e02d2ddb421a" -GitHubSecret_ARM_TENANT_ID "c3df6353-a410-40a1-b962-e91e45e14e4b" -GitHubSecret_TOKEN_NAMEPREFIX "ex123"
 ```
 
-See the examples in the script, below the parameters, for more examples.
+For more examples, see the below script's parameters section.
 
 {{< include file="/static/scripts/New-AVMBicepBRMForkSetup.ps1" language="pwsh" options="linenos=false" >}}
 
@@ -110,7 +110,7 @@ Each time in the following sections we refer to 'your xyz', it is an indicator t
 
 {{< hint type=tip >}}
 
-Checkout the [PowerShell Helper Script](#powershell-helper-script-to-setup-fork--ci-test-environment) that can do this step automatically for you 👍
+Checkout the [PowerShell Helper Script](#powershell-helper-script-to-setup-fork--ci-test-environment) that can do this step automatically for you! 👍
 
 {{< /hint >}}
 
@@ -137,7 +137,7 @@ In this first step, make sure you
 
 {{< hint type=tip >}}
 
-Checkout the [PowerShell Helper Script](#powershell-helper-script-to-setup-fork--ci-test-environment) that can do this step automatically for you 👍
+Checkout the [PowerShell Helper Script](#powershell-helper-script-to-setup-fork--ci-test-environment) that can do this step automatically for you! 👍
 
 {{< /hint >}}
 
@@ -153,7 +153,7 @@ To do so, simply navigate to the [Public Bicep Registry](https://github.com/Azur
 
 {{< hint type=tip >}}
 
-Checkout the [PowerShell Helper Script](#powershell-helper-script-to-setup-fork--ci-test-environment) that can do this step automatically for you 👍
+Checkout the [PowerShell Helper Script](#powershell-helper-script-to-setup-fork--ci-test-environment) that can do this step automatically for you! 👍
 
 {{< /hint >}}
 
