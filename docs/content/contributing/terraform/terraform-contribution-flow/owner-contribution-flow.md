@@ -77,7 +77,9 @@ Examples:
 
 If a secondary owner is required, add the secondary owner to the `avm-res-<RP>-<modulename>-module-owners-tf` team.
 
-1. Add these teams with the following permissions to the repository:
+3. Update the README.md in the root folder with the appropriate title and any additional description required. This is not accounted for in the `pre-check` package. 
+
+4. Add these teams with the following permissions to the repository:
 
 - Admin: `avm-core-team-technical-terraform` = AVM Core Team (Terraform Technical)
 - Admin: `terraform-avm` = Terraform PG
