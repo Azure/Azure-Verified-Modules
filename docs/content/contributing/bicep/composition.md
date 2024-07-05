@@ -289,9 +289,27 @@ module testDeployment '../../../main.bicep' = [
 
 #### Summary
 
-Implementing backwards compatibility can be achieved by:
+Changes to modules (resource or pattern) can bei implemented in two ways.
 
-- adding new parameters
-- marking other parameters as deprecated
-- create a testcase for the old usage syntax
-- increase the version number of the module
+1. Implement changes with backwards compatibility
+
+    In this scenario you need to make sure that the code does not break backwards compatibility by:
+
+    - adding new parameters
+    - marking other parameters as deprecated
+    - create a testcase for the old usage syntax
+    - increase the minor version number of the module (0.x)
+
+2. Introduce breaking changes
+
+    The easier way to introduce a new major version requires fewer steps:
+
+    - adding new parameters
+    - create a testcase for the usage
+    - increase the major version number of the module (x.0)
+
+{{< hint type=note >}}
+
+Be aware that currently no module has been released as 1.0, which let's you implement breaking changes without increasing the major version.
+
+{{< /hint >}}
