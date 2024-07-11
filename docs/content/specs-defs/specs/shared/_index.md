@@ -163,6 +163,10 @@ An example deployment name for a shortened module name would be: `46d3xbcp.res.d
 
 {{< hint type=tip >}}
 
+##### Terraform
+
+Terraform uses a telemetry provider, the configuration of which is the same for every module and is included in the template repo.
+
 ##### General
 
 See the language specific contribution guides for detailed guidance and sample code to use in AVM modules to achieve this requirement.
