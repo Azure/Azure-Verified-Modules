@@ -21,14 +21,15 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: res-or-ptn
+    id: res-ptn-utl
     attributes:
       label: Module Classification?
-      description: Is this a Resource or Pattern Module?
+      description: Is this a Resource, Pattern or Utility Module?
       options:
         - Resource Module
         - Pattern Module
-        - I'm not sure, please help identify
+        - Utility Module
+        - I'm not sure, please advise
     validations:
       required: true
   - type: input

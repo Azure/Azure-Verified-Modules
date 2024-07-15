@@ -24,7 +24,7 @@ jobs:
   buildpr:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.124.1
+      HUGO_VERSION: 0.128.2
     steps:
       - name: Install Hugo CLI
         run: |
@@ -56,5 +56,6 @@ jobs:
           hugo \
             --gc \
             --minify \
+            --ignoreCache \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
         working-directory: ./docs
