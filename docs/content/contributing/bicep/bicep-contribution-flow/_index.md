@@ -91,7 +91,7 @@ The `New-AVMBicepBRMForkSetup.ps1` can be downloaded from <a href="/Azure-Verifi
 
 Once downloaded, you can run the script by running the below - **Please change all the parameter values in the below script usage example to your own values (see the parameter documentation in the script itself)!**:
 ```powershell
-.\<PATH-TO-SCRIPT-DOWNLOAD-LOCATION>\New-AVMBicepBRMForkSetup.ps1 -GitHubRepositoryPathForCloneOfForkedRepository "D:\GitRepos\" -GitHubSecret_ARM_MGMTGROUP_ID "alz" -GitHubSecret_ARM_SUBSCRIPTION_ID "1b60f82b-d28e-4640-8cfa-e02d2ddb421a" -GitHubSecret_ARM_TENANT_ID "c3df6353-a410-40a1-b962-e91e45e14e4b" -GitHubSecret_TOKEN_NAMEPREFIX "ex123"
+.\<PATH-TO-SCRIPT-DOWNLOAD-LOCATION>\New-AVMBicepBRMForkSetup.ps1 -GitHubRepositoryPathForCloneOfForkedRepository "<pathToCreateForkedRepoIn>" -GitHubSecret_ARM_MGMTGROUP_ID "<managementGroupId>" -GitHubSecret_ARM_SUBSCRIPTION_ID "<subscriptionId>" -GitHubSecret_ARM_TENANT_ID "<tenantId>" -GitHubSecret_TOKEN_NAMEPREFIX "<unique3to5AlphanumericStringForAVMDeploymentNames>"
 ```
 
 For more examples, see the below script's parameters section.
