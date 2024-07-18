@@ -167,6 +167,13 @@ To configure the forked CI environment you have to perform several steps:
 
 To use the environment's pipelines you should use the information you gathered during the [Azure setup](#1-setup-your-azure-test-environment) to set up the following repository secrets:
 
+The Azure login action supports two different ways of authenticating with Azure:
+
+- [Service principal with secrets](#service-principal-with-secrets)
+- [OpenID Connect (OIDC) with an Azure service principal using a Federated Identity Credential](#openid-connect-oidc-with-an-azure-service-principal-using-a-federated-identity-credential)
+
+#### Service principal with secrets
+
 | Secret Name           | Example                                                                                                                                                                                                | Description                                                                                                                                                                                                                                                                                |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `ARM_MGMTGROUP_ID`    | `11111111-1111-1111-1111-111111111111`                                                                                                                                                                 | The group ID of the management group to test-deploy modules in. Is needed for resources that are deployed to the management group scope.                                                                                                                                                   |
@@ -174,6 +181,29 @@ To use the environment's pipelines you should use the information you gathered d
 | `ARM_TENANT_ID`       | `33333333-3333-3333-3333-333333333333`                                                                                                                                                                 | The tenant ID of the Azure Active Directory tenant to test-deploy modules in. Is needed for resources that are deployed to the tenant scope.                                                                                                                                               |
 | `AZURE_CREDENTIALS`   | `{"clientId": "44444444-4444-4444-4444-444444444444", "clientSecret": "<placeholder>", "subscriptionId": "22222222-2222-2222-2222-222222222222", "tenantId": "33333333-3333-3333-3333-333333333333" }` | The login credentials of the deployment principal used to log into the target Azure environment to test in. The format is described [here](https://github.com/Azure/login#configure-deployment-credentials). For more information, see the `[Special case: AZURE_CREDENTIALS]` note below. |
 | `TOKEN_NAMEPREFIX`    | `cntso`                                                                                                                                                                                                | Required. A short (3-5 character length), unique string that should be included in any deployment to Azure. Usually, AVM Bicep test cases require this value to ensure no two contributors deploy resources with the same name - which is especially important for resources that require a globally unique name (e.g., Key Vault). These characters will be used as part of each resource's name during deployment. For more information, see the `[Special case: TOKEN_NAMEPREFIX]` note below.                                                                                                   |
+
+<p>
+
+{{< hint type=important title="Special case: AZURE_CREDENTIALS">}}
+
+This secret represent the service connection to Azure, and its value is a compressed JSON object that must match the following format:
+
+```JSON
+{"clientId": "<client_id>", "clientSecret": "<client_secret>", "subscriptionId": "<subscriptionId>", "tenantId": "<tenant_id>" }
+```
+
+**Make sure you create this object as one continuous string as shown above** - using the information you collected during [Step 1](#1-setup-your-azure-test-environment). Failing to format the secret as above, causes GitHub to consider each line of the JSON object as a separate secret string. If you're interested, you can find more information about this object [here](https://github.com/Azure/login#configure-deployment-credentials).
+
+{{< /hint >}}
+
+#### OpenID Connect (OIDC) with an Azure service principal using a Federated Identity Credential 
+
+| Secret Name           | Example                                                                                                                                                                                                | Description                                                                                                                                                                                                                                                                                |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `AZURE_CLIENT_ID`    | `11111111-1111-1111-1111-111111111111`                                                                                                                                                                 | The Application (Client) ID of a service principal to test-deploy modules in. Is needed for resources that are deployed to the client scope.                                                                                                                                                    |
+| `AZURE_SUBSCRIPTION_ID` | `22222222-2222-2222-2222-222222222222`                                                                                                                                                                 | The ID of the subscription to test-deploy modules in. Is needed for resources that are deployed to the subscription scope.                                                                                                                                                                 |
+| `AZURE_TENANT_ID`       | `33333333-3333-3333-3333-333333333333`                                                                                                                                                                 | The tenant ID of the Azure Active Directory tenant to test-deploy modules in. Is needed for resources that are deployed to the tenant scope.                                                                                                                                               |
+| `TOKEN_NAMEPREFIX`    | `cntso`                                                                                                                                                                                                | Required. A short (3-5 character length), unique string that should be included in any deployment to Azure. Usually, AVM Bicep test cases require this value to ensure no two contributors deploy resources with the same name - which is especially important for resources that require a globally unique name (e.g., Key Vault). These characters will be used as part of each resource's name during deployment. For more information, see the `[Special case: TOKEN_NAMEPREFIX]` note below.  
 
 <p>
 
@@ -194,18 +224,6 @@ To use the environment's pipelines you should use the information you gathered d
 {{< /expand >}}
 
 <p>
-
-{{< hint type=important title="Special case: AZURE_CREDENTIALS">}}
-
-This secret represent the service connection to Azure, and its value is a compressed JSON object that must match the following format:
-
-```JSON
-{"clientId": "<client_id>", "clientSecret": "<client_secret>", "subscriptionId": "<subscriptionId>", "tenantId": "<tenant_id>" }
-```
-
-**Make sure you create this object as one continuous string as shown above** - using the information you collected during [Step 1](#1-setup-your-azure-test-environment). Failing to format the secret as above, causes GitHub to consider each line of the JSON object as a separate secret string. If you're interested, you can find more information about this object [here](https://github.com/Azure/login#configure-deployment-credentials).
-
-{{< /hint >}}
 
 {{< hint type=note title-="Special case: TOKEN_NAMEPREFIX">}}
 
