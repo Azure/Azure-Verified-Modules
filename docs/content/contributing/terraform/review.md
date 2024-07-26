@@ -1,5 +1,5 @@
 ---
-title: Initial Review of Terraform Modules
+title: Review of Terraform Modules
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
@@ -7,19 +7,19 @@ geekdocAnchor: true
 
 {{< toc >}}
 
-The initial AVM module review is a critical step before an AVM terraform module gets published to the [Terraform Registry](https://registry.terraform.io/) and made publicly available for customers, partners and wider IaC community to consume and contribute to. It serves as a quality assurance step to ensure that the AVM terraform module complies with the [shared](https://azure.github.io/Azure-Verified-Modules/specs/shared/) and [terraform](https://azure.github.io/Azure-Verified-Modules/specs/terraform/) specifications of AVM. The below process outlines the steps that both the module owner and module reviewer need to follow.
+The AVM module review is a critical step before an AVM terraform module gets published to the [Terraform Registry](https://registry.terraform.io/) and made publicly available for customers, partners and wider community to consume and contribute to. It serves as a quality assurance step to ensure that the AVM terraform module complies with the [shared](https://azure.github.io/Azure-Verified-Modules/specs/shared/) and [terraform](https://azure.github.io/Azure-Verified-Modules/specs/terraform/) specifications of AVM. The below process outlines the steps that both the module owner and module reviewer need to follow.
 
 1. The module owner completes the development of the module in their branch or fork.
 
-2. The module owner submits a pull request (PR) titled 'AVM-Review-PR' and ensures that all checks are passing on that PR as that is a pre-requisite to request a review.
+2. The module owner submits a pull request (PR) titled `AVM-Review-PR` and ensures that all checks are passing on that PR as that is a pre-requisite to request a review.
 
 3. The module owner assigns the `avm-core-team-technical-terraform` GitHub team as reviewer on the PR.
 
-4. The module owner leaves the following comment as is on the module proposal in the [AVM Repo](https://aka.ms/avm/moduleproposals) by searching for their module proposal issue there.
+4. The module owner leaves the following comment as is on the module proposal in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project by searching for their module proposal by name there.
 
 {{< expand "➕ AVM Terraform Module Review Request" "expand/collapse" >}}
 
-```I would like to request a review of my module. The latest code is in a PR titled AVM-Review-PR on the module repo and all checks on that PR are passing.```
+```I have completed my initial development of the module and I would like to request a review of my module before publishing it to the terraform registry. The latest code is in a PR titled [AVM-Review-PR](REPLACE WITH URL TO YOUR PR) on the module repo and all checks on that PR are passing.```
 
 {{< /expand >}}
 
@@ -69,12 +69,15 @@ The initial review of this module is complete and the module has been published 
 
 {{< expand "➕ AVM Terraform Module Publish Message" "expand/collapse" >}}
 
-```The initial review of this module is complete and the module has been published to the registry. Requesting AVM team to close this module proposal and mark the module available in the module index.```
+```
+The initial review of this module is complete and the module has been published to the registry. Requesting AVM team to close this module proposal and mark the module available in the module index.
+
+Terraform Registry Link: <REPLACE WITH THE LINK OF THE MODULE IN TERRAFORM REGISTRY>
+```
 
 {{< /expand >}}
 
 14. The module reviewer updates the module proposal by performing the following steps:
-- Move the module proposal from "In Review" to "Done" in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project.
-- Assign label Status: Module Available :green_circle:
 - Update the module index
-- Close the module proposal
+- Assign label Status: Module Available :green_circle:
+- Close the module proposal which will move it from "In Review" to "Done" in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project.
