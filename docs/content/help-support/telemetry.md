@@ -11,7 +11,7 @@ Telemetry collected as described here does not provide Microsoft with insights i
 
 {{< hint type=note >}}
 
-While telemetry gathered as described here is only accessible by Microsoft, Customers have access to the exact same deployment information on the Azure portal, under the Deployments section of the corresponding scope (Resource Group, Subscription, etc.).
+While telemetry gathered as described here is only accessible by Microsoft. Bicep customers have access to the exact same deployment information on the Azure portal, under the Deployments section of the corresponding scope (Resource Group, Subscription, etc.). Terraform customers can view the information sent in the `main.telemetry.tf` file.
 
 See [View deployment history with Azure Resource Manager](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-history?tabs=azure-portal) for further information on how.
 

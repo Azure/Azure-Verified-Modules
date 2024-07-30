@@ -37,13 +37,14 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: res-or-ptn
+    id: res-ptn-utl
     attributes:
       label: Module Classification?
-      description: Will this be a Resource or Pattern Module, as per [AVM Module Classification Definitions](https://azure.github.io/Azure-Verified-Modules/specs/shared/module-classifications/)?
+      description: Will this be a Resource, Pattern or Utility Module, as per [AVM Module Classification Definitions](https://azure.github.io/Azure-Verified-Modules/specs/shared/module-classifications/)?
       options:
         - Resource Module
         - Pattern Module
+        - Utility Module
         - I'm not sure, please advise
     validations:
       required: true
