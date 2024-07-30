@@ -50,7 +50,7 @@ resource >singularMainResourceType<__roleAssignments 'Microsoft.Authorization/ro
   for (roleAssignment, index) in (formattedRoleAssignments ?? []): {
     name: roleAssignment.?name ?? guid(>singularMainResourceType<_.id, roleAssignment.principalId, roleAssignment.roleDefinitionId)
     properties: {
-      roleDefinitionId: roleAssignment.roleDefinitionId    
+      roleDefinitionId: roleAssignment.roleDefinitionId
       principalId: roleAssignment.principalId
       description: roleAssignment.?description
       principalType: roleAssignment.?principalType
