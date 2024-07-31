@@ -8,12 +8,17 @@ privateEndpoints: {
     }
     service: 'vault'
     subnetResourceId: '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myRg/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mysubnet'
-    privateDnsZoneResourceIds: [
-      '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myRg/providers/Microsoft.Network/privateDnsZones/myZone'
-    ]
     applicationSecurityGroupResourceIds: [
       '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myRg/providers/Microsoft.Network/applicationSecurityGroups/myAsg'
     ]
+    privateDnsZoneGroup: {
+      privateDnsZoneGroupConfigs: [
+        {
+          name: 'config'
+          privateDnsZoneResourceId: '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myRg/providers/Microsoft.Network/privateDnsZones/myZone'
+        }
+      ]
+    }
     customDnsConfigs: [
       {
         fqdn: 'fqdn1.example.com'
