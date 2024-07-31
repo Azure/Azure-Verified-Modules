@@ -15,6 +15,7 @@ roleAssignments: [
     principalType: 'ServicePrincipal'
   }
   {
+    name: guid('Custom role assignment name seed')
     roleDefinitionIdOrName: 'Storage Blob Data Reader'
     principalId: 'yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy'
     principalType: 'Group'
