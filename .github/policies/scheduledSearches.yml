@@ -34,9 +34,6 @@ configuration:
                 >   - The "Status: No Recent Activity :zzz:" label must be removed.
                 >   - If applicable, the "Status: Long Term :hourglass_flowing_sand:" or the "Needs: Module Owner :mega:" label must be added.
 
-                > [!NOTE]
-                > This message was posted as per [ITA04](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita04).
-
       - description: 'ITA05A - Close issues that have been marked as requiring author feedback but have not had any activity for 3 days, unless it''s been marked with the "Status long term" label.'
         frequencies:
           - hourly:
@@ -60,9 +57,6 @@ configuration:
 
                 > [!TIP]
                 > In case this issue needs to be reopened (e.g., the author responds after the issue was closed), the "Status: No Recent Activity :zzz:" label must be removed.
-
-                > [!NOTE]
-                > This message was posted as per [ITA05](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita05).
           - closeIssue
 
       - description: 'ITA05B - Close issues that have been marked as requiring author feedback but have not had any activity for 3 days, unless it''s been marked with the "Status long term" label.'
@@ -88,9 +82,6 @@ configuration:
 
                 > [!TIP]
                 > In case this issue needs to be reopened (e.g., the author responds after the issue was closed), the "Status: No Recent Activity :zzz:" label must be removed.
-
-                > [!NOTE]
-                > This message was posted as per [ITA05](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita05).
           - closeIssue
 
       - description: 'ITA24 - Remind module owner(s) to start or continue working on this module if there was no activity on the Module Proposal issue for more than 3 weeks. "Add Needs: Attention :wave:" label.'
@@ -116,8 +107,5 @@ configuration:
 
                 > [!TIP]
                 > To silence this notification, provide an update every 3 weeks on the Module Proposal issue, or add the "Status: Long Term :hourglass_flowing_sand:" label.
-
-                > [!NOTE]
-                > This message was posted as per [ITA24](https://azure.github.io/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/#ita24).
           - addLabel:
               label: "Needs: Attention :wave:"

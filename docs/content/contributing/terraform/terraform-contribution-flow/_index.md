@@ -264,5 +264,4 @@ Once you are satisfied with your contribution and validated it, submit a pull re
 - Update the `support.md` file
 - `\_header.md` needs to be updated
 - `support.md` needs to be updated
-- `locals.telemetry.tf` needs to be updated
 - Exclude `terraform.tfvars` file from the repository

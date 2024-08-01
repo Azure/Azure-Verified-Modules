@@ -43,6 +43,7 @@ The [BRM repository](https://aka.ms/BRM) includes other, non-AVM modules and rel
 
 - To look for items that **need triaging**, click on the following link to use this saved query ➡️ <a href="https://aka.ms/BRM/AVMNeedsTriage"><mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark></a> ⬅️.
 - To look for items that **need attention**, click on the following link to use this saved query ➡️ <a href="https://aka.ms/BRM/AVMNeedsAttention"><mark style="background-color:#E99695;color:white;">Needs: Attention 👋</mark></a> ⬅️.
+- Open items that are <a href="https://aka.ms/BRM/NotInAProject">**not in a project**</a>.
 
 {{< /hint >}}
 
@@ -80,6 +81,28 @@ If the issue was opened as a misplaced module proposal, mention the `@Azure/AVM-
 6. Only close the issue, once the next version of the module was fully developed, tested and published.
 
 <br>
+
+### Triaging a Module PR
+
+1. If the **PR is submitted by the module owner** and the **module is owned by a single person**, **the AVM core team must review and approve the PR**, (as the module owner can't approve their on PR).
+    - To indicate that the PR needs the core team's attention, apply the "<mark style="background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>" label.
+2. If the **PR is submitted by a contributor** (other than the module owner), or the **module is owned by at least 2 people**, **one of the module owners should review and approve the PR**.
+3. Apply relevant labels
+    - Make sure the PR is categorized using one of the following type labels:
+      - "<mark style="background-color:#A2EEEF;">Type: Feature Request ➕</mark>"
+      - "<mark style="background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>"
+      - "<mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>"
+    - For module classification (resource/pattern): "<mark style="background-color:#D3D3D3;">Class: Resource Module 📦</mark>" or "<mark style="background-color:#A9A9A9;">Class: Pattern Module 📦</mark>"
+4. If the module is orphaned (has no owner), make sure the related Orphaned module issue (in the AVM repository) is associated to the PR in a comment, so the new owner can easily identify all related issues and PRs when taking ownership.
+5. Remove the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label.
+
+{{< hint type=tip title="Give your PR a meaningful title" >}}
+
+- **Prefix**: Start with one of the allowed keywords - `fix:` or `feat:` is the most common for module related changes.
+- **Description**: Add a few words, describing the nature of the change.
+- **Module name**: Add the module's full name between backticks ( ` ) to make it pop.
+
+{{< /hint >}}
 
 ## General Question/Feedback and other standard issues
 
