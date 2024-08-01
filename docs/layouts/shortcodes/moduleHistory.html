@@ -76,7 +76,7 @@
     {{ end }}
   {{ end }}
 
-{{ else if eq $moduleType "pattern" }}
+{{ else if or (eq $moduleType "pattern") (eq $moduleType "utility") }}
   {{ $ModuleDisplayNameColumnId = 0 }}
   {{ $ModuleNameColumnId = 1 }}
   {{ $ModuleStatusColumnId = 2 }}
@@ -117,7 +117,7 @@
     {{ end }}
   {{ end }}
 {{ else }}
-  {{ errorf "The %q shortcode requires a moduleType parameter to bet set to either 'resource' or 'pattern'. See %s" .Name .Position }}
+  {{ errorf "The %q shortcode requires a moduleType parameter to bet set to either 'resource', 'pattern' or 'utility'. See %s" .Name .Position }}
 {{ end }}
 
 {{ $publicationDates = sort $publicationDates "value" "desc"  }}
@@ -228,5 +228,5 @@
 
 
 {{ if not $hasModulesAvailable }}
-❌ No module are available yet.
+❌ No modules are available yet.
 {{ end }}

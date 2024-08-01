@@ -34,7 +34,6 @@ The following table summarizes the category identification codes used in this sp
 
 {{< toc >}}
 
-
 <br>
 
 ## Shared Requirements (Resource & Pattern Modules)
@@ -119,8 +118,7 @@ These will also be provided as a comment on the module proposal, once accepted, 
 
 {{< /hint >}}
 
-Modules **MUST** provide the capability to collect deployment/usage telemetry, via a blank ARM deployment, as detailed in [Telemetry](/Azure-Verified-Modules/help-support/telemetry/) further. Telemetry data should be collected on the "top level" `main.bicep` or `main.telemetry.tf` file; it is not necessary to include it in any nested files (child modules).
-
+Modules **MUST** provide the capability to collect deployment/usage telemetry as detailed in [Telemetry](/Azure-Verified-Modules/help-support/telemetry/) further.
 
 To highlight that AVM modules use telemetry, an information notice **MUST** be included in the footer of each module's `README.md` file with the below content. (See more details on this requirement, [here](https://docs.opensource.microsoft.com/releasing/general-guidance/telemetry/).)
 
@@ -128,6 +126,7 @@ To highlight that AVM modules use telemetry, an information notice **MUST** be i
 
 {{< hint type=note >}}
 The following information notice is automatically added at the bottom of the `README.md` file of the module when
+
 - **Bicep:** Using the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) utility
 - **Terraform:** Executing the `make docs` command with the note and header `## Data Collection` being placed in the module's `_footer.md` beforehand
 {{< /hint >}}
@@ -137,22 +136,14 @@ The following information notice is automatically added at the bottom of the `RE
 
 {{< /expand >}}
 
-The ARM deployment name used for the telemetry **MUST** follow the pattern and **MUST** be no longer than 64 characters in length: `<AVM 8 chars (alphanumeric)>.<res/ptn>.<(short) module name>.<version>.<uniqueness>`
+##### Bicep
 
-- `<AVM 8 chars (alphanumeric)>`
-  - Bicep == `46d3xbcp`
-  - Terraform == `46d3xgtf`
+The ARM deployment name used for the telemetry **MUST** follow the pattern and **MUST** be no longer than 64 characters in length: `46d3xbcp.<res/ptn>.<(short) module name>.<version>.<uniqueness>`
+
 - `<res/ptn>` == AVM Resource or Pattern Module
 - `<(short) module name>` == The AVM Module's, possibly shortened, name including the resource provider and the resource type, **without**;
-  - The prefixes: `avm-res-` or `terraform-<provider>-avm-res-`
-  - The prefixes: `avm-ptn-` or `terraform-<provider>-avm-ptn-`
-
-{{< hint type=note >}}
-
-Due to the 64-character length limit of Azure deployment names, the `<(short) module name>` segment has a length limit of 36 characters, so if the module name is longer than that, it **MUST** be truncated to 36 characters. If any of the semantic version's segments are longer than 1 character, it further restricts the number of characters that can be used for naming the module.
-
-{{< /hint >}}
-
+  - The prefixes: `avm-res-`
+  - The prefixes: `avm-ptn-`
 - `<version>` == The AVM Module's MAJOR.MINOR version (only) with `.` (periods) replaced with `-` (hyphens), to allow simpler splitting of the ARM deployment name
 - `<uniqueness>` == This section of the ARM deployment name is to be used to ensure uniqueness of the deployment name.
   - This is to cater for the following scenarios:
@@ -160,17 +151,23 @@ Due to the 64-character length limit of Azure deployment names, the `<(short) mo
       - Location/Region
       - Scope (Tenant, Management Group,Subscription, Resource Group)
 
-An example deployment name for the AVM Virtual Machine Resource Module would be:
+{{< hint type=note >}}
 
-- Bicep == `46d3xbcp.res.compute-virtualmachine.1-2-3.eum3`
-- Terraform == `46d3xgtf.res.compute-virtualmachine.1-2-3.eum3`
+Due to the 64-character length limit of Azure deployment names, the `<(short) module name>` segment has a length limit of 36 characters, so if the module name is longer than that, it **MUST** be truncated to 36 characters. If any of the semantic version's segments are longer than 1 character, it further restricts the number of characters that can be used for naming the module.
 
-An example deployment name for a shortened module name would be:
+{{< /hint >}}
 
-- Bicep == `46d3xbcp.res.desktopvirtualization-appgroup.1-2-3.eum3`
-- Terraform == `46d3xgtf.res.desktopvirtualization-appgroup.1-2-3.eum3`
+An example deployment name for the AVM Virtual Machine Resource Module would be: `46d3xbcp.res.compute-virtualmachine.1-2-3.eum3`
+
+An example deployment name for a shortened module name would be: `46d3xbcp.res.desktopvirtualization-appgroup.1-2-3.eum3`
 
 {{< hint type=tip >}}
+
+##### Terraform
+
+Terraform uses a telemetry provider, the configuration of which is the same for every module and is included in the template repo.
+
+##### General
 
 See the language specific contribution guides for detailed guidance and sample code to use in AVM modules to achieve this requirement.
 
@@ -345,6 +342,7 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-12
   }
 }
 ```
+
 {{< /expand >}}
 
 <br>
@@ -770,7 +768,7 @@ An examples/e2e directory **MUST** exist to provide named scenarios for module d
 
 {{< hint type=important >}}
 
-You cannot specify the patch version for Bicep modules in the public Bicep Registry, as this is automatically incremented by 1 each time a module is published. You can only set the major and minor versions.
+You cannot specify the patch version for Bicep modules in the public Bicep Registry, as this is automatically incremented by 1 each time a module is published. You can only set the Major and Minor versions.
 
 See the [Bicep Contribution Guide](/Azure-Verified-Modules/contributing/bicep/) for more information.
 
@@ -784,13 +782,20 @@ For example all modules should be released using a semantic version that matches
 - `Y` == Minor Version
 - `Z` == Patch Version
 
-Initially modules should be released as version `0.1.0` and incremented via Minor and Patch versions only until the module owner is happy the module has been "road tested" and is now stable enough for it's first Major release of version `1.0.0`.
+##### Module versioning before first Major version release `1.0.0`
 
-{{< hint type=note >}}
+- Initially modules MUST be released as version `0.1.0` and incremented via Minor and Patch versions only until the AVM Core Team are confident the AVM specifications are mature enough and appropriate CI test coverage is in place, plus the module owner is happy the module has been "road tested" and is now stable enough for its first Major release of version `1.0.0`.
 
-Releasing as version `0.1.0` initially and only incrementing Minor and Patch versions allows the module owner to make breaking changes more easily and frequently as it's still not an official Major/Stable release. 👍
+  {{< hint type=note >}}
 
-{{< /hint >}}
+  Releasing as version `0.1.0` initially and only incrementing Minor and Patch versions allows the module owner to make breaking changes more easily and frequently as it's still not an official Major/Stable release. 👍
+
+  {{< /hint >}}
+
+- Until first Major version `1.0.0` is released, given a version number `X.Y.Z`:
+  - `X` Major version MUST NOT be bumped.
+  - `Y` Minor version MUST be bumped when introducing breaking changes (which would normally bump Major after `1.0.0` release) or feature updates (same as it will be after `1.0.0` release).
+  - `Z` Patch version MUST be bumped when introducing non-breaking, backward compatible bug fixes (same as it will be after `1.0.0` release).
 
 <br>
 

@@ -283,7 +283,6 @@ If AVM or "Azure Verified Modules" is mentioned in an uncategorized issue (i.e.,
 **Action(s):**
 
 - Add the "<mark style="background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>" label.
-- Add a reply to explain the action(s).
 
 ---
 
@@ -294,7 +293,6 @@ When #RR is used in an issue, add the label of "<mark style="background-color:#C
 **Trigger criteria:**
 
 - An issue comment or PR comment contains the string of "#RR".
-- Add a reply to explain the action(s).
 
 **Action(s):**
 
@@ -314,7 +312,6 @@ When #wontfix is used in an issue, mark it by using the label of "<mark style="b
 
 - Add the "<mark style="background-color:#FFFFFF;">Status: Won't Fix 💔</mark>" label.
 - Close the issue.
-- Add a reply to explain the action(s).
 
 ---
 
@@ -330,7 +327,6 @@ When a reply from anyone to an issue occurs, remove the "<mark style="background
 **Action(s):**
 
 - Add the "<mark style="background-color:#E99695;color:white;">Needs: Attention 👋</mark>" label.
-- Add a reply to explain the action(s).
 
 ---
 
@@ -365,7 +361,6 @@ Bicep
 **Action(s):**
 
 - Add the "<mark style="background-color:#1D73B3;color:white;">Language: Bicep 💪</mark>" label.
-- Add a reply to explain the action(s).
 
 ---
 
@@ -386,7 +381,6 @@ Terraform
 **Action(s):**
 
 - Add the "<mark style="background-color:#7740B6;color:white;">Language: Terraform 🌐</mark>" label.
-- Add a reply to explain the action(s).
 
 ---
 
@@ -409,7 +403,6 @@ Remove the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" l
 **Action(s):**
 
 - Remove the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label.
-- Add a reply to explain the action(s).
 
 ---
 
@@ -426,7 +419,6 @@ Add the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘<
 **Action(s):**
 
 - Add the "<mark style="background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>" label.
-- Add a reply to explain the action(s).
 
 ---
 
@@ -543,7 +535,6 @@ If the issue type is feature request, add the "<mark style="background-color:#A2
 **Action(s):**
 
 - Add the "<mark style="background-color:#A2EEEF;">Type: Feature Request ➕</mark>" label.
-- Add a reply to explain the action(s).
 
 ---
 
@@ -564,7 +555,6 @@ If the issue type is bug, add the "<mark style="background-color:#D73A4A;color:w
 **Action(s):**
 
 - Add the "<mark style="background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>" label.
-- Add a reply to explain the action(s).
 
 ---
 
@@ -585,7 +575,6 @@ If the issue type is security bug, add the "<mark style="background-color:#FFFF0
 **Action(s):**
 
 - Add the "<mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>" label.
-- Add a reply to explain the action(s).
 
 ---
 
@@ -600,7 +589,20 @@ Remove the "<mark style="background-color:#EDEDED;">Status: In PR 👉</mark>" l
 **Action(s):**
 
 - Remove the "<mark style="background-color:#EDEDED;">Status: In PR 👉</mark>" label.
-- Add a reply to explain the action(s).
+
+---
+
+### ITA25
+
+Inform module owners that they need to add the "<mark style="background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>" label to their PR if they're the sole owner of their module.
+
+**Trigger criteria:**
+
+- A PR is opened.
+
+**Action(s):**
+
+Inform module owners that they need to add the "<mark style="background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>" label to their PR if they're the sole owner of their module.
 
 ---
 
@@ -643,3 +645,4 @@ The below table details which repositories the above rules are applied to.
 | [ITA21](#ita21)             |                     |       ✔️       |        ✔️       |
 | [ITA22](#ita22)             |                     |       ✔️       |        ✔️       |
 | [ITA23](#ita23)             |          ✔️         |                |        ✔️       |
+| [ITA25](#ita25)             |                    |        ✔️        |               |

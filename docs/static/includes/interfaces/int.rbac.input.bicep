@@ -15,8 +15,9 @@ roleAssignments: [
     principalType: 'ServicePrincipal'
   }
   {
+    name: guid('Custom role assignment name seed')
     roleDefinitionIdOrName: 'Storage Blob Data Reader'
-    principalId: 'yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy'
+    principalId: '00000000-0000-0000-0000-000000000000'
     principalType: 'Group'
     description: 'Group with read-only access'
     condition: '@Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase 'foo_storage_container''
