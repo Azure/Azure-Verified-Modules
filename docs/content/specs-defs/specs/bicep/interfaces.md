@@ -21,7 +21,7 @@ The user must
 - provide the resource Id to a Key Vault. The principal used for the deployment must be allowed to set secrets in this Key Vault.
 - provide a name for each secret they want to store (opt-in). The module will suggest which secrets are available via the implemented user-defined type.
 
-In return, the module has an output that returns a table where the key is the secret name the user provided, and the value both the secrets resource Id & uri.
+The module returns an output table where the key is the name of the secret the user provided, and the value contains both the secret's resource Id and URI.
 
 {{< hint type=important >}}
 
