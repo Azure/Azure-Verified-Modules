@@ -14,7 +14,7 @@ Below are the interfaces/schemas for AVM Resource Modules features/extension res
 
 ## Secrets export
 
-The export of secrets from inside a module to a provided Key Vault reference is something that can be implement as per demand following the below schema.
+Secrets used inside a module can be exported to a Key Vault reference provided as per the below schema.
 It's implementation provides a secure way around Bicep's current limitation to be unable to securely output secrets.
 
 The user must
