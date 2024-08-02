@@ -18,7 +18,7 @@ Secrets used inside a module can be exported to a Key Vault reference provided a
 It's implementation provides a secure way around Bicep's current limitation to be unable to securely output secrets.
 
 The user must
-- provide the resource Id to a Key Vault the deploying principal must be allowed to set secrets in
+- provide the resource Id to a Key Vault. The principal used for the deployment must be allowed to set secrets in this Key Vault.
 - provide a name for each secret they want to set (opt-in). The module will suggest which secrets are available via the implemented user-defined type
 
 In return, the module has an output that returns a table where the key is the secret name the user provided, and the value both the secrets resource Id & uri.
