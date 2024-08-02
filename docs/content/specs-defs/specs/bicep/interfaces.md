@@ -25,7 +25,7 @@ The module returns an output table where the key is the name of the secret the u
 
 {{< hint type=important >}}
 
-The feature must be implemented as per the below schema and only divert in places marked via `>text<` to ensure a consistent user experience across modules.
+The feature must be implemented as per the below schema. Diversions are only allowed in places marked as `>text<` to ensure a consistent user experience across modules.
 
 {{< /hint >}}
 
