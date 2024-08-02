@@ -1,5 +1,4 @@
 
-
 // ============== //
 //   Parameters   //
 // ============== //
@@ -10,13 +9,13 @@ param keyVaultName string
 @description('Required. The secrets to set in the Key Vault.')
 param secretsToSet secretToSetType[]
 
-resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
-  name: keyVaultName
-}
-
 // ============= //
 //   Resources   //
 // ============= //
+
+resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
+  name: keyVaultName
+}
 
 resource secrets 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = [
   for secret in secretsToSet: {
