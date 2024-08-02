@@ -42,7 +42,7 @@ The feature must be implemented as per the below schema. Diversions are only all
   {{< tab "Output Usage Example" >}}
   When using a module that implements the above interface, you can access its outputs for example in the following ways:
   {{< include file="/static/includes/interfaces/int.secExp.output.bicep" language="bicep" options="linenos=false" >}}
-  Which returns an JSON-formatted output like
+  Which returns a JSON-formatted output like
   {{< include file="/static/includes/interfaces/int.secExp.output.jsonFmt.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
