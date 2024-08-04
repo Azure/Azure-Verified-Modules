@@ -15,7 +15,7 @@ This page details the Bicep-specific interfaces/schemas for AVM Resource Modules
 ## Secrets export
 
 Secrets used inside a module can be exported to a Key Vault reference provided as per the below schema.
-It's implementation provides a secure way around Bicep's current limitation to be unable to securely output secrets.
+This implementation provides a secure way around the current limitation of Bicep on providing a secure template output (that can be used for secrets).
 
 The user must
 - provide the resource Id to a Key Vault. The principal used for the deployment must be allowed to set secrets in this Key Vault.
