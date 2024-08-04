@@ -6,7 +6,7 @@ geekdocAnchor: true
 url: /specs/bicep/interfaces/
 ---
 
-Below are the interfaces/schemas for AVM Resource Modules features/extension resources only relevant to Bicep.
+This page details the Bicep-specific interfaces/schemas for AVM Resource Modules features/extension resources.
 
 {{< toc >}}
 
