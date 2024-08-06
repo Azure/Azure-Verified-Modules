@@ -119,7 +119,7 @@
       <th>Module Name</th>
       <th>Display Name</th>
       <th>Status & Versions</th>
-      <th>Primary Owner</th>
+      <th>Owner(s)</th>
     </tr>
   </thead>
   {{ end }}
@@ -161,7 +161,7 @@
     <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }} <a href="{{ $item.RepoURL }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
     <td>{{ $item.ModuleDisplayName }}</td>
     <td>{{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }}<a href="https://mcr.microsoft.com/v2/bicep/{{ $item.ModuleName }}/tags/list"><image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $moduleLatestVersion }}-blue"/></a> {{ else }} <a href=""><image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-N/A-blue"/></a> {{ end }}</td>
-    <td>{{ if ne $item.PrimaryModuleOwnerGHHandle ""}}<a href="https://github.com/{{ $item.PrimaryModuleOwnerGHHandle }}">{{ $item.PrimaryModuleOwnerGHHandle }}</a> {{ if and (ne $item.PrimaryModuleOwnerGHHandle "") (ne $item.PrimaryModuleOwnerDisplayName "") }} <br> ({{ $item.PrimaryModuleOwnerDisplayName }}) {{ end }} {{ end}}</td>
+    <td>{{ if ne $item.PrimaryModuleOwnerGHHandle ""}}<a href="https://github.com/{{ $item.PrimaryModuleOwnerGHHandle }}">{{ $item.PrimaryModuleOwnerGHHandle }}</a> {{ if and (ne $item.PrimaryModuleOwnerGHHandle "") (ne $item.PrimaryModuleOwnerDisplayName "") }} <br> ({{ $item.PrimaryModuleOwnerDisplayName }}) {{ end }} {{ end}} <br> {{ if ne $item.SecondaryModuleOwnerGHHandle ""}}<a href="https://github.com/{{ $item.SecondaryModuleOwnerGHHandle }}">{{ $item.SecondaryModuleOwnerGHHandle }}</a> {{ if and (ne $item.SecondaryModuleOwnerGHHandle "") (ne $item.SecondaryModuleOwnerDisplayName "") }} <br> ({{ $item.SecondaryModuleOwnerDisplayName }}) {{ end }} {{ end}}</td>
   </tr>
   {{ $hasModulesAvailable = true }}
   {{ end }}

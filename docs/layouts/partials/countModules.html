@@ -1,0 +1,14 @@
+{{ $params := . }}
+{{ $ModuleStatusColumnId := index $params 0 }}
+{{ $rows := index $params 1 }}
+{{ $moduleStatusToCount := index $params 2 }}
+{{ $moduleCount := 0 }}
+{{ if eq $moduleStatusToCount "All" }}
+  {{ $moduleCount = sub (len $rows) 1 }}
+{{ end }}
+{{ range $row, $rows }}
+  {{ if eq (index $row $ModuleStatusColumnId) $moduleStatusToCount }}
+    {{ $moduleCount = add $moduleCount 1 }}
+  {{ end }}
+{{ end }}
+{{ return $moduleCount }}
