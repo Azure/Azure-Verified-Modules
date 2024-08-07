@@ -1,0 +1,28 @@
+{
+  "name": "Hugo & pnpm",
+
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "html.format.templating": true
+      },
+      "extensions": [
+        "eliostruyf.vscode-front-matter",
+        "rusnasonov.vscode-hugo",
+        "budparr.language-hugo-vscode",
+        "eliostruyf.vscode-hugo-themer",
+        "kaellarkin.hugo-shortcode-syntax",
+        "davidanson.vscode-markdownlint",
+        "streetsidesoftware.code-spell-checker"
+      ]
+    }
+  },
+
+  "remoteUser": "vscode",
+
+  "postCreateCommand": "pnpm install-completion zsh"
+}
