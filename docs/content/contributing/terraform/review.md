@@ -53,11 +53,14 @@ The AVM module review is a critical step before an AVM terraform module gets pub
 
 {{< expand "➕ AVM Terraform Module Review Completion Message" "expand/collapse" >}}
 <!-- markdownlint-disable -->
-Thank you for contributing this module and completing the review process per AVM specs. The AVM-Review-PR has been approved and once you merge it that will close this AVM-Review issue. You may proceed with publishing this module to the HashiCorp Terraform Registry with an initial pre-release version of v0.1.0. Please keep future versions also pre-release i.e. < 1.0.0 until AVM becomes generally available (GA) of which the AVM team will notify you.
+Thank you for contributing this module and completing the review process per AVM specs. The AVM-Review-PR has been approved and once you merge it that will close this AVM-Review issue. You may proceed with [publishing](https://azure.github.io/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/owner-contribution-flow/#7-publish-the-module) this module to the HashiCorp Terraform Registry with an initial pre-release version of v0.1.0. Please keep future versions also pre-release i.e. < 1.0.0 until AVM becomes generally available (GA) of which the AVM team will notify you.
 
-**Requested Action**: Once the module is published to the HashiCorp Terraform Registry, please update the [module proposal](REPLACE WITH THE LINK TO THE MODULE PROPOSAL) with the below comment.
 
-`The initial review of this module is complete, and the module has been [published](REPLACE WITH THE LINK OF THE MODULE IN TERRAFORM REGISTRY) to the registry. Requesting AVM team to close this module proposal and mark the module available in the module index.`
+```
+The initial review of this module is complete, and the module has been published to the registry. Requesting AVM team to close this module proposal and mark the module available in the module index.
+Terraform Registry Link: <REPLACE WITH THE LINK OF THE MODULE IN TERRAFORM REGISTRY>
+GitHub Repo Link: <REPLACE WITH THE LINK OF THE MODULE IN GITHUB>
+```
 
 {{< /expand >}}
 
