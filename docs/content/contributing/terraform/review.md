@@ -37,7 +37,7 @@ The AVM module review is a critical step before an AVM terraform module gets pub
 
 8. The module reviewer reviews the code in the PR and leaves comments to request any necessary updates.
 
-9. The module reviewer assigns the AVM-Review issue to the module owner and responds to the module owner's comment on the Module Proposal in AVM Repo with the following
+9. The module reviewer assigns the AVM-Review issue to the module owner and links the AVM-Review Issue to the AVM-Review-PR so that once the module reviewer approves the PR and the module owner merges the AVM-Review-PR, the AMV-Review issue is automatically closed. The module reviews responds to the module owner's comment on the Module Proposal in AVM Repo with the following
 
 {{< expand "➕ AVM Terraform Module Review Initiation Message" "expand/collapse" >}}
 
@@ -49,12 +49,13 @@ The AVM module review is a critical step before an AVM terraform module gets pub
 
 11. The module reviewer performs the final review and ensures that all checks in the checklist are complete and the specifications table has been updated with no requirements having compliance as 'No'.
 
-12. The module reviewer approves the AVM-Review-PR, and closes the AVM-Review issue with the following comment.
+12. The module reviewer approves the AVM-Review-PR, and leaves the following comment on the AVM-Review issue with the following comment.
 
 {{< expand "➕ AVM Terraform Module Review Completion Message" "expand/collapse" >}}
 <!-- markdownlint-disable -->
 Thank you for contributing this module and completing the review process per AVM specs. The AVM-Review-PR has been approved and once you merge it that will close this AVM-Review issue. You may proceed with [publishing](https://azure.github.io/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/owner-contribution-flow/#7-publish-the-module) this module to the HashiCorp Terraform Registry with an initial pre-release version of v0.1.0. Please keep future versions also pre-release i.e. < 1.0.0 until AVM becomes generally available (GA) of which the AVM team will notify you.
 
+**Requested Action**: Once published please update your [module proposal](REPLACE WITH THE LINK TO THE MODULE PROPOSAL) with the following comment.
 
 ```
 The initial review of this module is complete, and the module has been published to the registry. Requesting AVM team to close this module proposal and mark the module available in the module index.
@@ -64,15 +65,6 @@ GitHub Repo Link: <REPLACE WITH THE LINK OF THE MODULE IN GITHUB>
 
 {{< /expand >}}
 
-13. The module owner merges the AVM-Review-PR, publishes the module to Terraform registry and updates the module proposal on the AVM repo with the following comment.
-
-{{< expand "➕ AVM Terraform Module Publish Message" "expand/collapse" >}}
-
-`The initial review of this module is complete, and the module has been [published](REPLACE WITH THE LINK OF THE MODULE IN TERRAFORM REGISTRY) to the registry. Requesting AVM team to close this module proposal and mark the module available in the module index.`
-
-{{< /expand >}}
-
-14. The module reviewer updates the module proposal by performing the following steps:
-- Update the module index
-- Assign label Status: Module Available :green_circle:
-- Close the module proposal which will move it from "In Review" to "Done" in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project.
+13. Once the module owner perform the requested action in the previous step, the module reviewer updates the module proposal by performing the following steps:
+- Assign label Status: Module Available :green_circle: to the module proposal.
+- Update the module index excel file and CSV file by creating a PR to update the module index and links the module proposal as an issue that gets closed once the PR is merged which will move the module proposal from "In Review" to "Done" in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project.
