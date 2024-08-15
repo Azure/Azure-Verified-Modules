@@ -71,36 +71,58 @@ param (
 $testFiles = "$RepoRoot\Azure-Verified-Modules\utilities\tools\module-indexes\Bicep.tests.ps1"
 # $testFiles
 
-# $files = 'C:\SOURCE\Azure-Verified-Modules\docs\static\module-indexes\BicepResourceModules.csv', 'C:\SOURCE\Azure-Verified-Modules\docs\static\module-indexes\BicepPatternModules.csv'
-# $containers = $files | ForEach-Object {
-#     New-PesterContainer -Path $testFiles -Data @{ File = $_ }
+$files =  @(
+  'C:\SOURCE\Azure-Verified-Modules\docs\static\module-indexes\BicepResourceModules.csv',
+  'C:\SOURCE\Azure-Verified-Modules\docs\static\module-indexes\BicepPatternModules.csv',
+  'C:\SOURCE\Azure-Verified-Modules\docs\static\module-indexes\BicepUtilityModules.csv',
+  'C:\SOURCE\Azure-Verified-Modules\docs\static\module-indexes\TerraformResourceModules.csv',
+  'C:\SOURCE\Azure-Verified-Modules\docs\static\module-indexes\TerraformPatternModules.csv',
+  'C:\SOURCE\Azure-Verified-Modules\docs\static\module-indexes\TerraformUtilityModules.csv'
+)
+
+
+
+foreach ($file in $files) {
+  $pesterConfiguration = @{
+    Run    = @{
+      Container = New-PesterContainer -Path $testFiles -Data @{
+        CsvFilePath = $file
+      }
+      PassThru  = $false
+    }
+    Output = @{
+      Verbosity = 'Detailed'
+    }
+  }
+  Invoke-Pester -Configuration $pesterConfiguration
+}
+
+
+# $pesterConfiguration = @{
+#   Run    = @{
+#     Container = New-PesterContainer -Path $testFiles -Data @{
+#       CsvFilePath = 'C:\SOURCE\Azure-Verified-Modules\docs\static\module-indexes\BicepResourceModules.csv'
+#     }
+#     PassThru  = $false
+#   }
+#   Output = @{
+#     Verbosity = 'Detailed'
+#   }
 # }
+# Invoke-Pester -Configuration $pesterConfiguration
 
-$pesterConfiguration = @{
-  Run    = @{
-    Container = New-PesterContainer -Path $testFiles -Data @{
-      CsvFilePath = 'C:\SOURCE\Azure-Verified-Modules\docs\static\module-indexes\BicepResourceModules.csv'
-    }
-    PassThru  = $false
-  }
-  Output = @{
-    Verbosity = 'Detailed'
-  }
-}
-Invoke-Pester -Configuration $pesterConfiguration
-
-$pesterConfiguration = @{
-  Run    = @{
-    Container = New-PesterContainer -Path $testFiles -Data @{
-      CsvFilePath = 'C:\SOURCE\Azure-Verified-Modules\docs\static\module-indexes\BicepPatternModules.csv'
-    }
-    PassThru  = $false
-  }
-  Output = @{
-    Verbosity = 'Detailed'
-  }
-}
-Invoke-Pester -Configuration $pesterConfiguration
+# $pesterConfiguration = @{
+#   Run    = @{
+#     Container = New-PesterContainer -Path $testFiles -Data @{
+#       CsvFilePath = 'C:\SOURCE\Azure-Verified-Modules\docs\static\module-indexes\BicepPatternModules.csv'
+#     }
+#     PassThru  = $false
+#   }
+#   Output = @{
+#     Verbosity = 'Detailed'
+#   }
+# }
+# Invoke-Pester -Configuration $pesterConfiguration
 
 # Invoke-Pester -Script "$RepoRoot\utilities\tools\module-indexes\Bicep.tests.ps1"
 

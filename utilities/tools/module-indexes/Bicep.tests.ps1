@@ -13,14 +13,15 @@ BeforeAll {
 
     $singularExceptions = @(
         'redis',
-        'address'
+        'address',
+        'publicipaddress'
     )
 
 }
 
-Describe 'Tests for Module Indexes' {
+Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
 
-    Context "Validating the $(Split-Path $CsvFilePath -Leaf) file" {
+    Context 'CSV file' {
 
         It 'CSV file must not be empty' {
             $csvContent | Should -Not -BeNullOrEmpty
@@ -46,13 +47,23 @@ Describe 'Tests for Module Indexes' {
                 )
                 $csvHeaders | Should -Be $requiredColumns
             }
+        } elseif ($CsvFilePath -match 'UtilityModules') {
+            It 'Should contain exactly the columns required for pattern modules' {
+                $requiredColumns = @(
+                    'ModuleDisplayName', 'ModuleName', 'ModuleStatus',
+                    'RepoURL', 'PublicRegistryReference', 'TelemetryIdPrefix', 'PrimaryModuleOwnerGHHandle',
+                    'PrimaryModuleOwnerDisplayName', 'SecondaryModuleOwnerGHHandle', 'SecondaryModuleOwnerDisplayName',
+                    'ModuleOwnersGHTeam', 'ModuleContributorsGHTeam', 'Description', 'Comments', 'FirstPublishedIn'
+                )
+                $csvHeaders | Should -Be $requiredColumns
+            }
         }
 
         It 'Should have at least 1 record' {
             $csvContent.Length | Should -BeGreaterOrEqual 1
         }
 
-        It "Should not have any trailing white spaces in any value" {
+        It 'Should not have any trailing white spaces in any value' {
             $lineNumber = 2
             foreach ($item in $csvContent) {
                 foreach ($column in $csvHeaders) {
@@ -62,7 +73,7 @@ Describe 'Tests for Module Indexes' {
             }
         }
 
-        It "Should not have any leading white spaces in the file" {
+        It 'Should not have any leading white spaces in any value' {
             $lineNumber = 1
             foreach ($line in $rawFile) {
                 $line | Should -Not -Match '^\s+|,\s+' -Because "there should not be any leading white spaces anywhere in line #$lineNumber"
@@ -103,64 +114,148 @@ Describe 'Tests for Module Indexes' {
             $duplicates | Should -BeNullOrEmpty -Because "each module's ModuleName should be unique. This is a duplicate: ""$($duplicates.Name)"""
         }
 
-        if ($CsvFilePath -match 'ResourceModules') {
-            It "Should start with 'avm/res/'" {
-                $lineNumber = 2
-                foreach ($item in $csvContent) {
-                    $item.ModuleName | Should -Match "^avm/res/.*" -Because "ModuleName should start with 'avm/res/'. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
-                    $lineNumber++
-                }
-            }
-
-            It "First segment of ModuleName should be derived from the ProviderNamespace" {
-                $lineNumber = 2
-                foreach ($item in $csvContent) {
-                    $firstSegmentFromRP = ($item.ProviderNamespace -replace 'Microsoft.','').ToLower()
-                    $firstSegmentInModuleName = ($item.ModuleName -split '/')[2] -replace '-',''
-                    # $secondSegment = ((Split-CamelCase -inputString $item.ResourceType) -join "-").ToLower()
-
-                    # $expectedModuleName = "avm/res/" + $firstSegment + '/' + $secondSegment
-                    $firstSegmentInModuleName | Should -BeLike "$firstSegmentFromRP"  -Because "the first segment of ModuleName should be derived from the ProviderNamespace. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
-                    $lineNumber++
-                }
-            }
-            # It "Second segment of ModuleName should be derived from the ResourceType" {
-            #     $lineNumber = 2
-            #     foreach ($item in $csvContent) {
-            #         if ($item.ModuleName -notin $singularExceptions) {
-            #             $lastSegmentOfModuleName = ($item.ModulName -split '/')[-1] -replace '-',''
-            #         }
-            #         elseif ($item.ModuleName -in $singularExceptions) {
-
-            #         }
-            #         $firstSegmentFromRT = ($item.ResourceType -replace 'Microsoft.','').ToLower()
-            #         $firstSegmentInModuleName = ($item.ModuleName -split '/')[2] -replace '-',''
-            #         # $secondSegment = ((Split-CamelCase -inputString $item.ResourceType) -join "-").ToLower()
-
-            #         # $expectedModuleName = "avm/res/" + $firstSegment + '/' + $secondSegment
-            #         $firstSegmentInModuleName | Should -BeLike $firstSegmentFromRT  -Because "the first segment of ModuleName should be derived from the ResourceType. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
-            #         $lineNumber++
-            #     }
-            # }
-            It "Should be in singular form" {
-                $lineNumber = 2
-                foreach ($item in $csvContent) {
-
-                    $lastWord = (($item.ModuleName -split '/')[-1] -split '-')[-1]
-                    if ($lastWord -notin $singularExceptions) {
-                        $item.ModuleName | Should -Not -Match "s$" -Because "ModuleName should be in singular form. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+        if ($CsvFilePath -match 'Bicep') {
+            if ($CsvFilePath -match 'ResourceModules') {
+                It "Should start with 'avm/res/'" {
+                    $lineNumber = 2
+                    foreach ($item in $csvContent) {
+                        $item.ModuleName | Should -Match '^avm/res/.*' -Because "ModuleName should start with 'avm/res/'. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                        $lineNumber++
                     }
-                    $lineNumber++
                 }
+
+                It 'First segment of ModuleName should be derived from the ProviderNamespace' {
+                    $lineNumber = 2
+                    foreach ($item in $csvContent) {
+                        $firstSegmentFromRP = ($item.ProviderNamespace -replace 'Microsoft.', '').ToLower()
+                        $firstSegmentInModuleName = ($item.ModuleName -split '/')[2] -replace '-', ''
+                        $firstSegmentInModuleName | Should -BeLike "$firstSegmentFromRP" -Because "the first segment of ModuleName should be derived from the ProviderNamespace. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                        $lineNumber++
+                    }
+                }
+                # It "Second segment of ModuleName should be derived from the ResourceType" {
+                #     $lineNumber = 2
+                #     foreach ($item in $csvContent) {
+                #         if ($item.ModuleName -notin $singularExceptions) {
+                #             $lastSegmentOfModuleName = ($item.ModulName -split '/')[-1] -replace '-',''
+                #         }
+                #         elseif ($item.ModuleName -in $singularExceptions) {
+
+                #         }
+                #         $firstSegmentFromRT = ($item.ResourceType -replace 'Microsoft.','').ToLower()
+                #         $firstSegmentInModuleName = ($item.ModuleName -split '/')[2] -replace '-',''
+                #         # $secondSegment = ((Split-CamelCase -inputString $item.ResourceType) -join "-").ToLower()
+
+                #         # $expectedModuleName = "avm/res/" + $firstSegment + '/' + $secondSegment
+                #         $firstSegmentInModuleName | Should -BeLike $firstSegmentFromRT  -Because "the first segment of ModuleName should be derived from the ResourceType. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                #         $lineNumber++
+                #     }
+                # }
+                It 'Second segment of ModuleName should be in singular form' {
+                    $lineNumber = 2
+                    foreach ($item in $csvContent) {
+
+                        $lastWord = (($item.ModuleName -split '/')[-1] -split '-')[-1]
+                        if ($lastWord -notin $singularExceptions) {
+                            $item.ModuleName | Should -Not -Match 's$' -Because "ModuleName should be in singular form. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                        }
+                        $lineNumber++
+                    }
+                }
+            }
+            elseif ($CsvFilePath -match 'PatternModules') {
+                It "Should start with 'avm/ptn/'" {
+                    $lineNumber = 2
+                    foreach ($item in $csvContent) {
+                        $item.ModuleName | Should -Match '^avm/ptn/.*' -Because "ModuleName should start with 'avm/ptn/'. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                        $lineNumber++
+                    }
+                }
+            }
+            elseif ($CsvFilePath -match 'UtilityModules') {
+                It "Should start with 'avm/utl/'" {
+                    $lineNumber = 2
+                    foreach ($item in $csvContent) {
+                        $item.ModuleName | Should -Match '^avm/utl/.*' -Because "ModuleName should start with 'avm/utl/'. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                        $lineNumber++
+                    }
+                }
+            }
+        }
+        elseif ($CsvFilePath -match 'Terraform') {
+            if ($CsvFilePath -match 'ResourceModules') {
+                It "Should start with 'avm-res-'" {
+                    $lineNumber = 2
+                    foreach ($item in $csvContent) {
+                        $item.ModuleName | Should -Match '^avm-res-.*' -Because "ModuleName should start with 'avm-res-'. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                        $lineNumber++
+                    }
+                }
+
+                It 'First segment of ModuleName should be derived from the ProviderNamespace' {
+                    $lineNumber = 2
+                    foreach ($item in $csvContent) {
+                        $firstSegmentFromRP = ($item.ProviderNamespace -replace 'Microsoft.', '').ToLower()
+                        $firstSegmentInModuleName = ($item.ModuleName -split '-')[2]
+                        $firstSegmentInModuleName | Should -BeLike "$firstSegmentFromRP" -Because "the first segment of ModuleName should be derived from the ProviderNamespace. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                        $lineNumber++
+                    }
+                }
+
+                It 'Second segment of ModuleName should be in singular form' {
+                    $lineNumber = 2
+                    foreach ($item in $csvContent) {
+
+                        $lastWord = ($item.ModuleName -split '-')[-1]
+                        if ($lastWord -notin $singularExceptions) {
+                            $item.ModuleName | Should -Not -Match 's$' -Because "ModuleName should be in singular form. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                        }
+                        $lineNumber++
+                    }
+                }
+            }
+            elseif ($CsvFilePath -match 'PatternModules') {
+                It "Should start with 'avm-ptn-'" {
+                    $lineNumber = 2
+                    foreach ($item in $csvContent) {
+                        $item.ModuleName | Should -Match '^avm-ptn-.*' -Because "ModuleName should start with 'avm-ptn-'. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                        $lineNumber++
+                    }
+                }
+            }
+            elseif ($CsvFilePath -match 'UtilityModules') {
+                It "Should start with 'avm-utl-'" {
+                    $lineNumber = 2
+                    foreach ($item in $csvContent) {
+                        $item.ModuleName | Should -Match '^avm-utl-.*' -Because "ModuleName should start with 'avm-utl-'. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                        $lineNumber++
+                    }
+                }
+            }
+        }
+
+        It 'Should have a related "Module Proposal" issue in the AVM repo' {
+            $issues = & gh issue list --limit 9999 --state all --json title | ConvertFrom-Json
+            foreach ($item in $csvContent) {
+                $moduleName = $item.ModuleName
+                $issueExists = $false
+
+                foreach ($issue in $issues) {
+                    if ($issue.title -match "[Module Proposal]*``$moduleName``" ) {
+                        $issueExists = $true
+                        break
+                    }
+                }
+                $issueExists | Should -Be $true -Because "there should be a GitHub issue that starts with ""[Module Proposal]"" and contains the ModuleName ""$moduleName"" between backticks,"
             }
         }
     }
 
-    Context "ModuleStatus" {
+    Context 'ModuleStatus' {
         It "Should have a valid value in the 'ModuleStatus' column" {
             $allowedValues = @(
-                    'Proposed :new:','Available :green_circle:','Orphaned :eyes:'
-                )
+                'Proposed :new:', 'Available :green_circle:', 'Orphaned :eyes:'
+            )
             $lineNumber = 2
             foreach ($item in $csvContent) {
                 $item.ModuleStatus | Should -BeIn $allowedValues -Because "ModuleStatus should be one of the following: 'Proposed :new:', 'Available :green_circle:', 'Orphaned :eyes:'. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.ModuleStatus)"""
@@ -215,8 +310,7 @@ Describe 'Tests for Module Indexes' {
                     $lineNumber++
                 }
             }
-        }
-        elseif ($CsvFilePath -match 'Terraform') {
+        } elseif ($CsvFilePath -match 'Terraform') {
             It "Should have a valid Terraform registry reference in the 'PublicRegistryReference' column" {
                 $lineNumber = 2
                 foreach ($item in $csvContent) {
@@ -260,12 +354,19 @@ Describe 'Tests for Module Indexes' {
                     }
                     $lineNumber++
                 }
-            }
-            elseif ($CsvFilePath -match 'PatternModules') {
+            } elseif ($CsvFilePath -match 'PatternModules') {
                 It 'Telemetry ID prefix should start with "46d3xbcp.ptn."' {
                     $lineNumber = 2
                     foreach ($item in $csvContent) {
                         $item.TelemetryIdPrefix | Should -Match '^46d3xbcp.ptn.*$' -Because "TelemetryIdPrefix should start with '46d3xbcp.ptn.'. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.TelemetryIdPrefix)"""
+                    }
+                    $lineNumber++
+                }
+            } elseif ($CsvFilePath -match 'UtilityModules') {
+                It 'Telemetry ID prefix should start with "46d3xbcp.ptn."' {
+                    $lineNumber = 2
+                    foreach ($item in $csvContent) {
+                        $item.TelemetryIdPrefix | Should -Match '^46d3xbcp.utl.*$' -Because "TelemetryIdPrefix should start with '46d3xbcp.utl.'. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.TelemetryIdPrefix)"""
                     }
                     $lineNumber++
                 }
@@ -274,7 +375,7 @@ Describe 'Tests for Module Indexes' {
         }
     }
 
-    Context "PrimaryModuleOwnerGHHandle" {
+    Context 'PrimaryModuleOwnerGHHandle' {
         It "Should have a value for 'Available' modules" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
@@ -295,7 +396,7 @@ Describe 'Tests for Module Indexes' {
             }
         }
 
-        It "Should have a value if the PrimaryModuleOwnerDisplayName also has a value" {
+        It 'Should have a value if the PrimaryModuleOwnerDisplayName also has a value' {
             $lineNumber = 2
             foreach ($item in $csvContent) {
                 if ($item.PrimaryModuleOwnerDisplayName -ne '') {
@@ -304,9 +405,18 @@ Describe 'Tests for Module Indexes' {
                 $lineNumber++
             }
         }
+
+        It 'Should be a valid GitHub handle' {
+            $PrimaryModuleOwnerGHHandles = $csvContent.PrimaryModuleOwnerGHHandle | Where-Object { $_ -ne '' } | Select-Object -Unique
+            foreach ($item in $PrimaryModuleOwnerGHHandles) {
+                $GHUser = (& gh api users/$item) | ConvertFrom-Json
+                $GHUser.login | Should -Not -BeNullOrEmpty -Because "PrimaryModuleOwnerGHHandle ($item) should be a valid GitHub handle"
+
+            }
+        }
     }
 
-    Context "PrimaryModuleOwnerDisplayName" {
+    Context 'PrimaryModuleOwnerDisplayName' {
         It "Should have a value for 'Available' modules" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
@@ -327,7 +437,7 @@ Describe 'Tests for Module Indexes' {
             }
         }
 
-        It "Should have a value if the PrimaryModuleOwnerGHHandle also has a value" {
+        It 'Should have a value if the PrimaryModuleOwnerGHHandle also has a value' {
             $lineNumber = 2
             foreach ($item in $csvContent) {
                 if ($item.PrimaryModuleOwnerGHHandle -ne '') {
@@ -338,7 +448,7 @@ Describe 'Tests for Module Indexes' {
         }
     }
 
-    Context "SecondaryModuleOwnerGHHandle" {
+    Context 'SecondaryModuleOwnerGHHandle' {
         It "Should be empty for 'Orphaned' modules" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
@@ -349,7 +459,7 @@ Describe 'Tests for Module Indexes' {
             }
         }
 
-        It "Should not have a value if the PrimaryModuleOwnerDisplayName is empty" {
+        It 'Should not have a value if the PrimaryModuleOwnerDisplayName is empty' {
             $lineNumber = 2
             foreach ($item in $csvContent) {
                 if ($item.PrimaryModuleOwnerDisplayName -eq '') {
@@ -358,9 +468,18 @@ Describe 'Tests for Module Indexes' {
                 $lineNumber++
             }
         }
+
+        It 'Should be a valid GitHub handle' {
+            $SecondaryModuleOwnerGHHandles = $csvContent.SecondaryModuleOwnerGHHandle | Where-Object { $_ -ne '' } | Select-Object -Unique
+            foreach ($item in $SecondaryModuleOwnerGHHandles) {
+                $GHUser = (& gh api users/$item) | ConvertFrom-Json
+                $GHUser.login | Should -Not -BeNullOrEmpty -Because "SecondaryModuleOwnerGHHandle ($item) should be a valid GitHub handle"
+
+            }
+        }
     }
 
-    Context "SecondaryModuleOwnerDisplayName" {
+    Context 'SecondaryModuleOwnerDisplayName' {
         It "Should be empty for 'Orphaned' modules" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
@@ -371,7 +490,7 @@ Describe 'Tests for Module Indexes' {
             }
         }
 
-        It "Should not have a value if the PrimaryModuleOwnerGHHandle is empty" {
+        It 'Should not have a value if the PrimaryModuleOwnerGHHandle is empty' {
             $lineNumber = 2
             foreach ($item in $csvContent) {
                 if ($item.PrimaryModuleOwnerGHHandle -eq '') {
@@ -382,7 +501,7 @@ Describe 'Tests for Module Indexes' {
         }
     }
 
-    Context "ModuleOwnersGHTeam" {
+    Context 'ModuleOwnersGHTeam' {
         It "Should not have any missing values in the 'ModuleOwnersGHTeam' column" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
@@ -400,13 +519,12 @@ Describe 'Tests for Module Indexes' {
             It "Should have a valid GitHub team name in the 'ModuleOwnersGHTeam' column" {
                 $lineNumber = 2
                 foreach ($item in $csvContent) {
-                    $teamName = $item.ModuleName -replace '-','' -replace '/','-'
+                    $teamName = $item.ModuleName -replace '-', '' -replace '/', '-'
                     $item.ModuleOwnersGHTeam | Should -Match "^@Azure/$teamName-module-owners-bicep$" -Because "ModuleOwnersGHTeam should follow the naming convention. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.ModuleOwnersGHTeam)"""
                     $lineNumber++
                 }
             }
-        }
-        elseif ($CsvFilePath -match 'Terraform') {
+        } elseif ($CsvFilePath -match 'Terraform') {
             It "Should have a valid GitHub team name in the 'ModuleOwnersGHTeam' column" {
                 $lineNumber = 2
                 foreach ($item in $csvContent) {
@@ -417,7 +535,7 @@ Describe 'Tests for Module Indexes' {
         }
     }
 
-    Context "ModuleContributorsGHTeam" {
+    Context 'ModuleContributorsGHTeam' {
         It "Should not have any missing values in the 'ModuleContributorsGHTeam' column" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
@@ -435,13 +553,12 @@ Describe 'Tests for Module Indexes' {
             It "Should have a valid GitHub team name in the 'ModuleContributorsGHTeam' column" {
                 $lineNumber = 2
                 foreach ($item in $csvContent) {
-                    $teamName = $item.ModuleName -replace '-','' -replace '/','-'
+                    $teamName = $item.ModuleName -replace '-', '' -replace '/', '-'
                     $item.ModuleContributorsGHTeam | Should -Match "^@Azure/$teamName-module-contributors-bicep$" -Because "ModuleContributorsGHTeam should follow the naming convention. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.ModuleContributorsGHTeam)"""
                     $lineNumber++
                 }
             }
-        }
-        elseif ($CsvFilePath -match 'Terraform') {
+        } elseif ($CsvFilePath -match 'Terraform') {
             It "Should have a valid GitHub team name in the 'ModuleContributorsGHTeam' column" {
                 $lineNumber = 2
                 foreach ($item in $csvContent) {
@@ -467,7 +584,7 @@ Describe 'Tests for Module Indexes' {
         }
     }
 
-    Context "FirstPublishedIn" {
+    Context 'FirstPublishedIn' {
         It "If the module is 'Proposed' then the 'FirstPublishedIn' column should be empty" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
