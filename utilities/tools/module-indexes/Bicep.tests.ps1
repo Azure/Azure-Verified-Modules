@@ -9,6 +9,12 @@ param (
 BeforeAll {
     $csvContent = Import-Csv -Path $CsvFilePath
     $csvHeaders = $csvContent[0].PSObject.Properties.Name
+
+    $singularExceptions = @(
+        'redis',
+        'address'
+    )
+
 }
 
 Describe 'Tests for Module Indexes' {
@@ -148,6 +154,60 @@ Describe 'Tests for Module Indexes' {
         }
     }
 
+    Context 'ModuleName' {
+        if ($CsvFilePath -match 'ResourceModules') {
+            It "Should start with 'avm/res/'" {
+                $lineNumber = 2
+                foreach ($item in $csvContent) {
+                    $item.ModuleName | Should -Match "^avm/res/.*" -Because "ModuleName should start with 'avm/res/'. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                    $lineNumber++
+                }
+            }
+
+            It "First segment of ModuleName should be derived from the ProviderNamespace" {
+                $lineNumber = 2
+                foreach ($item in $csvContent) {
+                    $firstSegmentFromRP = ($item.ProviderNamespace -replace 'Microsoft.','').ToLower()
+                    $firstSegmentInModuleName = ($item.ModuleName -split '/')[2] -replace '-',''
+                    # $secondSegment = ((Split-CamelCase -inputString $item.ResourceType) -join "-").ToLower()
+
+                    # $expectedModuleName = "avm/res/" + $firstSegment + '/' + $secondSegment
+                    $firstSegmentInModuleName | Should -BeLike "$firstSegmentFromRP"  -Because "the first segment of ModuleName should be derived from the ProviderNamespace. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                    $lineNumber++
+                }
+            }
+            # It "Second segment of ModuleName should be derived from the ResourceType" {
+            #     $lineNumber = 2
+            #     foreach ($item in $csvContent) {
+            #         if ($item.ModuleName -notin $singularExceptions) {
+            #             $lastSegmentOfModuleName = ($item.ModulName -split '/')[-1] -replace '-',''
+            #         }
+            #         elseif ($item.ModuleName -in $singularExceptions) {
+
+            #         }
+            #         $firstSegmentFromRT = ($item.ResourceType -replace 'Microsoft.','').ToLower()
+            #         $firstSegmentInModuleName = ($item.ModuleName -split '/')[2] -replace '-',''
+            #         # $secondSegment = ((Split-CamelCase -inputString $item.ResourceType) -join "-").ToLower()
+
+            #         # $expectedModuleName = "avm/res/" + $firstSegment + '/' + $secondSegment
+            #         $firstSegmentInModuleName | Should -BeLike $firstSegmentFromRT  -Because "the first segment of ModuleName should be derived from the ResourceType. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+            #         $lineNumber++
+            #     }
+            # }
+            It "Should be in singular form" {
+                $lineNumber = 2
+                foreach ($item in $csvContent) {
+
+                    $lastWord = (($item.ModuleName -split '/')[-1] -split '-')[-1]
+                    if ($lastWord -notin $singularExceptions) {
+                        $item.ModuleName | Should -Not -Match "s$" -Because "ModuleName should be in singular form. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                    }
+                    $lineNumber++
+                }
+            }
+        }
+    }
+
     Context 'TelemetryId' {
         BeforeAll {
 
@@ -157,6 +217,28 @@ Describe 'Tests for Module Indexes' {
             foreach ($item in $csvContent) {
                 $item.TelemetryIdPrefix.Length | Should -BeLessOrEqual 49 -Verbose -Because "deployments names must be under 64 characters. To keep the entire deployment name under 64 characters, $($item.TelemetryIdPrefix) should be shorter than 49"
             }
+        }
+
+        if ($CsvFilePath -match 'Bicep') {
+            if ($CsvFilePath -match 'ResourceModules') {
+                It 'Telemetry ID prefix should start with "46d3xbcp.res."' {
+                    $lineNumber = 2
+                    foreach ($item in $csvContent) {
+                        $item.TelemetryIdPrefix | Should -Match '^46d3xbcp.res.*$' -Because "TelemetryIdPrefix should start with '46d3xbcp.res.'. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.TelemetryIdPrefix)"""
+                    }
+                    $lineNumber++
+                }
+            }
+            elseif ($CsvFilePath -match 'PatternModules') {
+                It 'Telemetry ID prefix should start with "46d3xbcp.ptn."' {
+                    $lineNumber = 2
+                    foreach ($item in $csvContent) {
+                        $item.TelemetryIdPrefix | Should -Match '^46d3xbcp.ptn.*$' -Because "TelemetryIdPrefix should start with '46d3xbcp.ptn.'. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.TelemetryIdPrefix)"""
+                    }
+                    $lineNumber++
+                }
+            }
+
         }
     }
 
@@ -209,6 +291,99 @@ Describe 'Tests for Module Indexes' {
                     $item.ModuleOwnersGHTeam | Should -Match '^@Azure/avm-.*-module-owners-tf$' -Because "ModuleOwnersGHTeam should follow the naming convention. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.ModuleOwnersGHTeam)"""
                     $lineNumber++
                 }
+            }
+        }
+    }
+
+    Context "ModuleStatus" {
+        It "Should have a valid value in the 'ModuleStatus' column" {
+            $allowedValues = @(
+                    'Proposed :new:','Available :green_circle:','Orphaned :eyes:'
+                )
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                $item.ModuleStatus | Should -BeIn $allowedValues -Because "ModuleStatus should be one of the following: 'Proposed :new:', 'Available :green_circle:', 'Orphaned :eyes:'. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.ModuleStatus)"""
+                $lineNumber++
+            }
+        }
+
+        It "Should have a PrimaryModuleOwnerGHHandle for 'Available' modules" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                if ($item.ModuleStatus -eq 'Available :green_circle:') {
+                    $item.PrimaryModuleOwnerGHHandle | Should -Not -BeNullOrEmpty -Because "PrimaryModuleOwnerGHHandle is a required field for 'Available' modules. This should have a value in line #$lineNumber"
+                }
+                $lineNumber++
+            }
+        }
+
+        It "Should have a PrimaryModuleOwnerDisplayName for 'Available' modules" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                if ($item.ModuleStatus -eq 'Available :green_circle:') {
+                    $item.PrimaryModuleOwnerDisplayName | Should -Not -BeNullOrEmpty -Because "PrimaryModuleOwnerDisplayName is a required field for 'Available' modules. This should have a value in line #$lineNumber"
+                }
+                $lineNumber++
+            }
+        }
+
+        It "PrimaryModuleOwnerGHHandle should be empty for 'Orphaned' modules" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                if ($item.ModuleStatus -eq 'Orphaned :eyes:') {
+                    $item.PrimaryModuleOwnerGHHandle | Should -BeNullOrEmpty -Because "PrimaryModuleOwnerGHHandle field must be empty for 'Orphaned' modules. This should not have a value in line #$lineNumber"
+                }
+                $lineNumber++
+            }
+        }
+
+        It "PrimaryModuleOwnerDisplayName should be empty for 'Orphaned' modules" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                if ($item.ModuleStatus -eq 'Orphaned :eyes:') {
+                    $item.PrimaryModuleOwnerDisplayName | Should -BeNullOrEmpty -Because "PrimaryModuleOwnerDisplayName field must be empty for 'Orphaned' modules. This should not have a value in line #$lineNumber"
+                }
+                $lineNumber++
+            }
+        }
+
+        It "SecondaryModuleOwnerGHHandle should be empty for 'Orphaned' modules" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                if ($item.ModuleStatus -eq 'Orphaned :eyes:') {
+                    $item.SecondaryModuleOwnerGHHandle | Should -BeNullOrEmpty -Because "SecondaryModuleOwnerGHHandle field must be empty for 'Orphaned' modules. This should not have a value in line #$lineNumber"
+                }
+                $lineNumber++
+            }
+        }
+
+        It "SecondaryModuleOwnerDisplayName should be empty for 'Orphaned' modules" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                if ($item.ModuleStatus -eq 'Orphaned :eyes:') {
+                    $item.SecondaryModuleOwnerDisplayName | Should -BeNullOrEmpty -Because "SecondaryModuleOwnerDisplayName field must be empty for 'Orphaned' modules. This should not have a value in line #$lineNumber"
+                }
+                $lineNumber++
+            }
+        }
+
+        It "Should not have a SecondaryModuleOwnerDisplayName if the PrimaryModuleOwnerDisplayName is empty" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                if ($item.PrimaryModuleOwnerDisplayName -eq '') {
+                    $item.SecondaryModuleOwnerDisplayName | Should -BeNullOrEmpty -Because "SecondaryModuleOwnerDisplayName should be empty if PrimaryModuleOwnerDisplayName is empty. This should not have a value in line #$lineNumber"
+                }
+                $lineNumber++
+            }
+        }
+
+        It "Should not have a SecondaryModuleOwnerGHHandle if the PrimaryModuleOwnerGHHandle is empty" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                if ($item.PrimaryModuleOwnerGHHandle -eq '') {
+                    $item.SecondaryModuleOwnerGHHandle | Should -BeNullOrEmpty -Because "SecondaryModuleOwnerGHHandle should be empty if PrimaryModuleOwnerGHHandle is empty. This should not have a value in line #$lineNumber"
+                }
+                $lineNumber++
             }
         }
     }
