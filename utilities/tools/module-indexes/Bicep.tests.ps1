@@ -8,6 +8,7 @@ param (
 
 BeforeAll {
     $csvContent = Import-Csv -Path $CsvFilePath
+    $rawFile = Get-Content -Path $CsvFilePath
     $csvHeaders = $csvContent[0].PSObject.Properties.Name
 
     $singularExceptions = @(
@@ -50,16 +51,30 @@ Describe 'Tests for Module Indexes' {
         It 'Should have at least 1 record' {
             $csvContent.Length | Should -BeGreaterOrEqual 1
         }
-    }
 
-    Context 'Looking for empty fields' {
-        It "Should not have any missing values in the 'ModuleName' column" {
+        It "Should not have any trailing white spaces in any value" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
-                $item.ModuleName | Should -Not -BeNullOrEmpty -Because "ModuleName is a required field. In line #$lineNumber, this is empty. The following values have been provided: ""$($item)"""
+                foreach ($column in $csvHeaders) {
+                    $item.$column | Should -Not -Match '\s+$' -Because "there should not be any trailing white spaces in the ""$column"" column, in line #$lineNumber"
+                }
                 $lineNumber++
             }
         }
+
+        It "Should not have any leading white spaces in the file" {
+            $lineNumber = 1
+            foreach ($line in $rawFile) {
+                $line | Should -Not -Match '^\s+|,\s+' -Because "there should not be any leading white spaces anywhere in line #$lineNumber"
+                $lineNumber++
+            }
+        }
+
+
+    }
+
+    Context 'ModuleDisplayName' {
+
         It "Should not have any missing values in the 'ModuleDisplayName' column" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
@@ -67,94 +82,27 @@ Describe 'Tests for Module Indexes' {
                 $lineNumber++
             }
         }
-        It "Should not have any missing values in the 'RepoURL' column" {
-            $lineNumber = 2
-            foreach ($item in $csvContent) {
-                $item.RepoURL | Should -Not -BeNullOrEmpty -Because "RepoURL is a required field. In line #$lineNumber, this is empty. The following values have been provided: ""$($item)"""
-                $lineNumber++
-            }
-        }
-        It "Should not have any missing values in the 'PublicRegistryReference' column" {
-            $lineNumber = 2
-            foreach ($item in $csvContent) {
-                $item.PublicRegistryReference | Should -Not -BeNullOrEmpty -Because "PublicRegistryReference is a required field. In line #$lineNumber, this is empty. The following values have been provided: ""$($item)"""
-                $lineNumber++
-            }
-        }
-        It "Should not have any missing values in the 'TelemetryIdPrefix' column" {
-            $lineNumber = 2
-            foreach ($item in $csvContent) {
-                $item.TelemetryIdPrefix | Should -Not -BeNullOrEmpty -Because "TelemetryIdPrefix is a required field. In line #$lineNumber, this is empty. The following values have been provided: ""$($item)"""
-                $lineNumber++
-            }
-        }
-        It "Should not have any missing values in the 'ModuleOwnersGHTeam' column" {
-            $lineNumber = 2
-            foreach ($item in $csvContent) {
-                $item.ModuleOwnersGHTeam | Should -Not -BeNullOrEmpty -Because "ModuleOwnersGHTeam is a required field. In line #$lineNumber, this is empty. The following values have been provided: ""$($item)"""
-                $lineNumber++
-            }
-        }
-        It "Should not have any missing values in the 'ModuleContributorsGHTeam' column" {
-            $lineNumber = 2
-            foreach ($item in $csvContent) {
-                $item.ModuleContributorsGHTeam | Should -Not -BeNullOrEmpty -Because "ModuleContributorsGHTeam is a required field. In line #$lineNumber, this is empty. The following values have been provided: ""$($item)"""
-                $lineNumber++
-            }
-        }
-        It "Should not have any missing values in the 'Description' column" {
-            $lineNumber = 2
-            foreach ($item in $csvContent) {
-                $item.Description | Should -Not -BeNullOrEmpty -Because "Description is a required field. In line #$lineNumber, this is empty. The following values have been provided: ""$($item)"""
-                $lineNumber++
-            }
-        }
 
-        It "should have a valid URL in the 'RepoURL' column" {
-            $lineNumber = 2
-            foreach ($item in $csvContent) {
-                $item.RepoURL | Should -Match '^(http|https)://.*' -Because "RepoURL should be a valid URL. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item)"""
-                $lineNumber++
-            }
-        }
-    }
-
-    Context 'Looking for duplicate entries' {
-        It "Should not have any duplicate values in the 'ModuleName' column" {
-            $duplicates = $csvContent | Group-Object -Property ModuleName | Where-Object Count -GT 1
-            $duplicates | Should -BeNullOrEmpty -Because "each module's ModuleName should be unique. This is a duplicate: ""$($duplicates.Name)"""
-        }
         It "Should not have any duplicate values in the 'ModuleDisplayName' column" {
             $duplicates = $csvContent | Group-Object -Property ModuleDisplayName | Where-Object Count -GT 1
             $duplicates | Should -BeNullOrEmpty -Because "each module's ModuleDisplayName should be unique. This is a duplicate: ""$($duplicates.Name)"""
         }
-        It "Should not have any duplicate values in the 'RepoURL' column" {
-            $duplicates = $csvContent | Group-Object -Property RepoURL | Where-Object Count -GT 1
-            $duplicates | Should -BeNullOrEmpty -Because "each module's RepoURL should be unique. This is a duplicate: ""$($duplicates.Name)"""
-        }
-        It "Should not have any duplicate values in the 'PublicRegistryReference' column" {
-            $duplicates = $csvContent | Group-Object -Property PublicRegistryReference | Where-Object Count -GT 1
-            $duplicates | Should -BeNullOrEmpty -Because "each module's PublicRegistryReference should be unique. This is a duplicate: ""$($duplicates.Name)"""
-        }
-        It "Should not have any duplicate values in the 'TelemetryIdPrefix' column" {
-            $duplicates = $csvContent | Group-Object -Property TelemetryIdPrefix | Where-Object Count -GT 1
-            $duplicates | Should -BeNullOrEmpty -Because "each module's TelemetryIdPrefix should be unique. This is a duplicate: ""$($duplicates.Name)"""
-        }
-        It "Should not have any duplicate values in the 'ModuleOwnersGHTeam' column" {
-            $duplicates = $csvContent | Group-Object -Property ModuleOwnersGHTeam | Where-Object Count -GT 1
-            $duplicates | Should -BeNullOrEmpty -Because "each module's ModuleOwnersGHTeam should be unique. This is a duplicate: ""$($duplicates.Name)"""
-        }
-        It "Should not have any duplicate values in the 'ModuleContributorsGHTeam' column" {
-            $duplicates = $csvContent | Group-Object -Property ModuleContributorsGHTeam | Where-Object Count -GT 1
-            $duplicates | Should -BeNullOrEmpty -Because "each module's ModuleContributorsGHTeam should be unique. This is a duplicate: ""$($duplicates.Name)"""
-        }
-        It "Should not have any duplicate values in the 'Description' column" {
-            $duplicates = $csvContent | Group-Object -Property Description | Where-Object Count -GT 1
-            $duplicates | Should -BeNullOrEmpty -Because "each module's Description should be unique. This is a duplicate: ""$($duplicates.Name)"""
-        }
     }
 
     Context 'ModuleName' {
+        It "Should not have any missing values in the 'ModuleName' column" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                $item.ModuleName | Should -Not -BeNullOrEmpty -Because "ModuleName is a required field. In line #$lineNumber, this is empty. The following values have been provided: ""$($item)"""
+                $lineNumber++
+            }
+        }
+
+        It "Should not have any duplicate values in the 'ModuleName' column" {
+            $duplicates = $csvContent | Group-Object -Property ModuleName | Where-Object Count -GT 1
+            $duplicates | Should -BeNullOrEmpty -Because "each module's ModuleName should be unique. This is a duplicate: ""$($duplicates.Name)"""
+        }
+
         if ($CsvFilePath -match 'ResourceModules') {
             It "Should start with 'avm/res/'" {
                 $lineNumber = 2
@@ -208,9 +156,93 @@ Describe 'Tests for Module Indexes' {
         }
     }
 
-    Context 'TelemetryId' {
+    Context "ModuleStatus" {
+        It "Should have a valid value in the 'ModuleStatus' column" {
+            $allowedValues = @(
+                    'Proposed :new:','Available :green_circle:','Orphaned :eyes:'
+                )
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                $item.ModuleStatus | Should -BeIn $allowedValues -Because "ModuleStatus should be one of the following: 'Proposed :new:', 'Available :green_circle:', 'Orphaned :eyes:'. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.ModuleStatus)"""
+                $lineNumber++
+            }
+        }
+
+    }
+
+    Context 'RepoURL' {
+        It "Should not have any missing values in the 'RepoURL' column" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                $item.RepoURL | Should -Not -BeNullOrEmpty -Because "RepoURL is a required field. In line #$lineNumber, this is empty. The following values have been provided: ""$($item)"""
+                $lineNumber++
+            }
+        }
+
+        It "Should not have any duplicate values in the 'RepoURL' column" {
+            $duplicates = $csvContent | Group-Object -Property RepoURL | Where-Object Count -GT 1
+            $duplicates | Should -BeNullOrEmpty -Because "each module's RepoURL should be unique. This is a duplicate: ""$($duplicates.Name)"""
+        }
+
+        It "Should have a valid URL in the 'RepoURL' column" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                $item.RepoURL | Should -Match '^(http|https)://.*' -Because "RepoURL should be a valid URL. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item)"""
+                $lineNumber++
+            }
+        }
+    }
+
+    Context 'PublicRegistryReference' {
+        It "Should not have any missing values in the 'PublicRegistryReference' column" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                $item.PublicRegistryReference | Should -Not -BeNullOrEmpty -Because "PublicRegistryReference is a required field. In line #$lineNumber, this is empty. The following values have been provided: ""$($item)"""
+                $lineNumber++
+            }
+        }
+
+        It "Should not have any duplicate values in the 'PublicRegistryReference' column" {
+            $duplicates = $csvContent | Group-Object -Property PublicRegistryReference | Where-Object Count -GT 1
+            $duplicates | Should -BeNullOrEmpty -Because "each module's PublicRegistryReference should be unique. This is a duplicate: ""$($duplicates.Name)"""
+        }
+
+        if ($CsvFilePath -match 'Bicep') {
+            It "Should have a valid Public Bicep Regisrtry reference in the 'PublicRegistryReference' column" {
+                $lineNumber = 2
+                foreach ($item in $csvContent) {
+                    $item.PublicRegistryReference | Should -Match "^br/public:$($item.ModuleName):X.Y.Z$" -Because "PublicRegistryReference should point to the Public Bicep Registry. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.PublicRegistryReference)"""
+                    $lineNumber++
+                }
+            }
+        }
+        elseif ($CsvFilePath -match 'Terraform') {
+            It "Should have a valid Terraform registry reference in the 'PublicRegistryReference' column" {
+                $lineNumber = 2
+                foreach ($item in $csvContent) {
+                    $item.PublicRegistryReference | Should -Match "^https://registry.terraform.io/modules/Azure/$($item.ModuleName)/azurerm/latest$" -Because "PublicRegistryReference should be a valid URL. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.PublicRegistryReference)"""
+                    $lineNumber++
+                }
+            }
+        }
+    }
+
+    Context 'TelemetryIdPrefix' {
         BeforeAll {
 
+        }
+
+        It "Should not have any missing values in the 'TelemetryIdPrefix' column" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                $item.TelemetryIdPrefix | Should -Not -BeNullOrEmpty -Because "TelemetryIdPrefix is a required field. In line #$lineNumber, this is empty. The following values have been provided: ""$($item)"""
+                $lineNumber++
+            }
+        }
+
+        It "Should not have any duplicate values in the 'TelemetryIdPrefix' column" {
+            $duplicates = $csvContent | Group-Object -Property TelemetryIdPrefix | Where-Object Count -GT 1
+            $duplicates | Should -BeNullOrEmpty -Because "each module's TelemetryIdPrefix should be unique. This is a duplicate: ""$($duplicates.Name)"""
         }
 
         It 'Telemetry ID prefix should be shorter than 49 characters' {
@@ -242,38 +274,128 @@ Describe 'Tests for Module Indexes' {
         }
     }
 
-    Context 'RepoURL' {
-        It "Should have a valid URL in the 'RepoURL' column" {
+    Context "PrimaryModuleOwnerGHHandle" {
+        It "Should have a value for 'Available' modules" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
-                $item.RepoURL | Should -Match '^(http|https)://.*' -Because "RepoURL should be a valid URL. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item)"""
+                if ($item.ModuleStatus -eq 'Available :green_circle:') {
+                    $item.PrimaryModuleOwnerGHHandle | Should -Not -BeNullOrEmpty -Because "PrimaryModuleOwnerGHHandle is a required field for 'Available' modules. This should have a value in line #$lineNumber"
+                }
+                $lineNumber++
+            }
+        }
+
+        It "hould be empty for 'Orphaned' modules" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                if ($item.ModuleStatus -eq 'Orphaned :eyes:') {
+                    $item.PrimaryModuleOwnerGHHandle | Should -BeNullOrEmpty -Because "PrimaryModuleOwnerGHHandle field must be empty for 'Orphaned' modules. This should not have a value in line #$lineNumber"
+                }
+                $lineNumber++
+            }
+        }
+
+        It "Should have a value if the PrimaryModuleOwnerDisplayName also has a value" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                if ($item.PrimaryModuleOwnerDisplayName -ne '') {
+                    $item.PrimaryModuleOwnerGHHandle | Should -Not -BeNullOrEmpty -Because "PrimaryModuleOwnerGHHandle should have a value if PrimaryModuleOwnerDisplayName has a value. This should have a value in line #$lineNumber"
+                }
                 $lineNumber++
             }
         }
     }
 
-    Context 'PublicRegistryReference' {
-        if ($CsvFilePath -match 'Bicep') {
-            It "Should have a valid Public Bicep Regisrtry reference in the 'PublicRegistryReference' column" {
-                $lineNumber = 2
-                foreach ($item in $csvContent) {
-                    $item.PublicRegistryReference | Should -Match "^br/public:$($item.ModuleName):X.Y.Z$" -Because "PublicRegistryReference should point to the Public Bicep Registry. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.PublicRegistryReference)"""
-                    $lineNumber++
+    Context "PrimaryModuleOwnerDisplayName" {
+        It "Should have a value for 'Available' modules" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                if ($item.ModuleStatus -eq 'Available :green_circle:') {
+                    $item.PrimaryModuleOwnerDisplayName | Should -Not -BeNullOrEmpty -Because "PrimaryModuleOwnerDisplayName is a required field for 'Available' modules. This should have a value in line #$lineNumber"
                 }
+                $lineNumber++
             }
         }
-        elseif ($CsvFilePath -match 'Terraform') {
-            It "Should have a valid Terraform registry reference in the 'PublicRegistryReference' column" {
-                $lineNumber = 2
-                foreach ($item in $csvContent) {
-                    $item.PublicRegistryReference | Should -Match "^https://registry.terraform.io/modules/Azure/$($item.ModuleName)/azurerm/latest$" -Because "PublicRegistryReference should be a valid URL. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.PublicRegistryReference)"""
-                    $lineNumber++
+
+        It "Should be empty for 'Orphaned' modules" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                if ($item.ModuleStatus -eq 'Orphaned :eyes:') {
+                    $item.PrimaryModuleOwnerDisplayName | Should -BeNullOrEmpty -Because "PrimaryModuleOwnerDisplayName field must be empty for 'Orphaned' modules. This should not have a value in line #$lineNumber"
                 }
+                $lineNumber++
+            }
+        }
+
+        It "Should have a value if the PrimaryModuleOwnerGHHandle also has a value" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                if ($item.PrimaryModuleOwnerGHHandle -ne '') {
+                    $item.PrimaryModuleOwnerDisplayName | Should -Not -BeNullOrEmpty -Because "PrimaryModuleOwnerDisplayName should have a value if PrimaryModuleOwnerGHHandle has a value. This should have a value in line #$lineNumber"
+                }
+                $lineNumber++
+            }
+        }
+    }
+
+    Context "SecondaryModuleOwnerGHHandle" {
+        It "Should be empty for 'Orphaned' modules" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                if ($item.ModuleStatus -eq 'Orphaned :eyes:') {
+                    $item.SecondaryModuleOwnerGHHandle | Should -BeNullOrEmpty -Because "SecondaryModuleOwnerGHHandle field must be empty for 'Orphaned' modules. This should not have a value in line #$lineNumber"
+                }
+                $lineNumber++
+            }
+        }
+
+        It "Should not have a value if the PrimaryModuleOwnerDisplayName is empty" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                if ($item.PrimaryModuleOwnerDisplayName -eq '') {
+                    $item.PrimaryModuleOwnerGHHandle | Should -BeNullOrEmpty -Because "PrimaryModuleOwnerGHHandle should be empty if PrimaryModuleOwnerDisplayName is empty. This should not have a value in line #$lineNumber"
+                }
+                $lineNumber++
+            }
+        }
+    }
+
+    Context "SecondaryModuleOwnerDisplayName" {
+        It "Should be empty for 'Orphaned' modules" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                if ($item.ModuleStatus -eq 'Orphaned :eyes:') {
+                    $item.SecondaryModuleOwnerDisplayName | Should -BeNullOrEmpty -Because "SecondaryModuleOwnerDisplayName field must be empty for 'Orphaned' modules. This should not have a value in line #$lineNumber"
+                }
+                $lineNumber++
+            }
+        }
+
+        It "Should not have a value if the PrimaryModuleOwnerGHHandle is empty" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                if ($item.PrimaryModuleOwnerGHHandle -eq '') {
+                    $item.SecondaryModuleOwnerDisplayName | Should -BeNullOrEmpty -Because "SecondaryModuleOwnerDisplayName should be empty if PrimaryModuleOwnerGHHandle is empty. This should not have a value in line #$lineNumber"
+                }
+                $lineNumber++
             }
         }
     }
 
     Context "ModuleOwnersGHTeam" {
+        It "Should not have any missing values in the 'ModuleOwnersGHTeam' column" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                $item.ModuleOwnersGHTeam | Should -Not -BeNullOrEmpty -Because "ModuleOwnersGHTeam is a required field. In line #$lineNumber, this is empty. The following values have been provided: ""$($item)"""
+                $lineNumber++
+            }
+        }
+
+        It "Should not have any duplicate values in the 'ModuleOwnersGHTeam' column" {
+            $duplicates = $csvContent | Group-Object -Property ModuleOwnersGHTeam | Where-Object Count -GT 1
+            $duplicates | Should -BeNullOrEmpty -Because "each module's ModuleOwnersGHTeam should be unique. This is a duplicate: ""$($duplicates.Name)"""
+        }
+
         if ($CsvFilePath -match 'Bicep') {
             It "Should have a valid GitHub team name in the 'ModuleOwnersGHTeam' column" {
                 $lineNumber = 2
@@ -295,93 +417,72 @@ Describe 'Tests for Module Indexes' {
         }
     }
 
-    Context "ModuleStatus" {
-        It "Should have a valid value in the 'ModuleStatus' column" {
-            $allowedValues = @(
-                    'Proposed :new:','Available :green_circle:','Orphaned :eyes:'
-                )
+    Context "ModuleContributorsGHTeam" {
+        It "Should not have any missing values in the 'ModuleContributorsGHTeam' column" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
-                $item.ModuleStatus | Should -BeIn $allowedValues -Because "ModuleStatus should be one of the following: 'Proposed :new:', 'Available :green_circle:', 'Orphaned :eyes:'. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.ModuleStatus)"""
+                $item.ModuleContributorsGHTeam | Should -Not -BeNullOrEmpty -Because "ModuleContributorsGHTeam is a required field. In line #$lineNumber, this is empty. The following values have been provided: ""$($item)"""
                 $lineNumber++
             }
         }
 
-        It "Should have a PrimaryModuleOwnerGHHandle for 'Available' modules" {
+        It "Should not have any duplicate values in the 'ModuleContributorsGHTeam' column" {
+            $duplicates = $csvContent | Group-Object -Property ModuleContributorsGHTeam | Where-Object Count -GT 1
+            $duplicates | Should -BeNullOrEmpty -Because "each module's ModuleContributorsGHTeam should be unique. This is a duplicate: ""$($duplicates.Name)"""
+        }
+
+        if ($CsvFilePath -match 'Bicep') {
+            It "Should have a valid GitHub team name in the 'ModuleContributorsGHTeam' column" {
+                $lineNumber = 2
+                foreach ($item in $csvContent) {
+                    $teamName = $item.ModuleName -replace '-','' -replace '/','-'
+                    $item.ModuleContributorsGHTeam | Should -Match "^@Azure/$teamName-module-contributors-bicep$" -Because "ModuleContributorsGHTeam should follow the naming convention. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.ModuleContributorsGHTeam)"""
+                    $lineNumber++
+                }
+            }
+        }
+        elseif ($CsvFilePath -match 'Terraform') {
+            It "Should have a valid GitHub team name in the 'ModuleContributorsGHTeam' column" {
+                $lineNumber = 2
+                foreach ($item in $csvContent) {
+                    $item.ModuleContributorsGHTeam | Should -Match '^@Azure/avm-.*-module-contributors-tf$' -Because "ModuleContributorsGHTeam should follow the naming convention. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.ModuleContributorsGHTeam)"""
+                    $lineNumber++
+                }
+            }
+        }
+    }
+
+    Context 'Description' {
+        It "Should not have any missing values in the 'Description' column" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
-                if ($item.ModuleStatus -eq 'Available :green_circle:') {
-                    $item.PrimaryModuleOwnerGHHandle | Should -Not -BeNullOrEmpty -Because "PrimaryModuleOwnerGHHandle is a required field for 'Available' modules. This should have a value in line #$lineNumber"
+                $item.Description | Should -Not -BeNullOrEmpty -Because "Description is a required field. In line #$lineNumber, this is empty. The following values have been provided: ""$($item)"""
+                $lineNumber++
+            }
+        }
+
+        It "Should not have any duplicate values in the 'Description' column" {
+            $duplicates = $csvContent | Group-Object -Property Description | Where-Object Count -GT 1
+            $duplicates | Should -BeNullOrEmpty -Because "each module's Description should be unique. This is a duplicate: ""$($duplicates.Name)"""
+        }
+    }
+
+    Context "FirstPublishedIn" {
+        It "If the module is 'Proposed' then the 'FirstPublishedIn' column should be empty" {
+            $lineNumber = 2
+            foreach ($item in $csvContent) {
+                if ($item.ModuleStatus -eq 'Proposed :new:') {
+                    $item.FirstPublishedIn | Should -BeNullOrEmpty -Because "FirstPublishedIn should be empty for 'Proposed' modules. This should not have a value in line #$lineNumber"
                 }
                 $lineNumber++
             }
         }
 
-        It "Should have a PrimaryModuleOwnerDisplayName for 'Available' modules" {
+        It "If the module is 'Available' or 'Orphaned' then the 'FirstPublishedIn' column should be a valid date in YYYY-MM format" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
-                if ($item.ModuleStatus -eq 'Available :green_circle:') {
-                    $item.PrimaryModuleOwnerDisplayName | Should -Not -BeNullOrEmpty -Because "PrimaryModuleOwnerDisplayName is a required field for 'Available' modules. This should have a value in line #$lineNumber"
-                }
-                $lineNumber++
-            }
-        }
-
-        It "PrimaryModuleOwnerGHHandle should be empty for 'Orphaned' modules" {
-            $lineNumber = 2
-            foreach ($item in $csvContent) {
-                if ($item.ModuleStatus -eq 'Orphaned :eyes:') {
-                    $item.PrimaryModuleOwnerGHHandle | Should -BeNullOrEmpty -Because "PrimaryModuleOwnerGHHandle field must be empty for 'Orphaned' modules. This should not have a value in line #$lineNumber"
-                }
-                $lineNumber++
-            }
-        }
-
-        It "PrimaryModuleOwnerDisplayName should be empty for 'Orphaned' modules" {
-            $lineNumber = 2
-            foreach ($item in $csvContent) {
-                if ($item.ModuleStatus -eq 'Orphaned :eyes:') {
-                    $item.PrimaryModuleOwnerDisplayName | Should -BeNullOrEmpty -Because "PrimaryModuleOwnerDisplayName field must be empty for 'Orphaned' modules. This should not have a value in line #$lineNumber"
-                }
-                $lineNumber++
-            }
-        }
-
-        It "SecondaryModuleOwnerGHHandle should be empty for 'Orphaned' modules" {
-            $lineNumber = 2
-            foreach ($item in $csvContent) {
-                if ($item.ModuleStatus -eq 'Orphaned :eyes:') {
-                    $item.SecondaryModuleOwnerGHHandle | Should -BeNullOrEmpty -Because "SecondaryModuleOwnerGHHandle field must be empty for 'Orphaned' modules. This should not have a value in line #$lineNumber"
-                }
-                $lineNumber++
-            }
-        }
-
-        It "SecondaryModuleOwnerDisplayName should be empty for 'Orphaned' modules" {
-            $lineNumber = 2
-            foreach ($item in $csvContent) {
-                if ($item.ModuleStatus -eq 'Orphaned :eyes:') {
-                    $item.SecondaryModuleOwnerDisplayName | Should -BeNullOrEmpty -Because "SecondaryModuleOwnerDisplayName field must be empty for 'Orphaned' modules. This should not have a value in line #$lineNumber"
-                }
-                $lineNumber++
-            }
-        }
-
-        It "Should not have a SecondaryModuleOwnerDisplayName if the PrimaryModuleOwnerDisplayName is empty" {
-            $lineNumber = 2
-            foreach ($item in $csvContent) {
-                if ($item.PrimaryModuleOwnerDisplayName -eq '') {
-                    $item.SecondaryModuleOwnerDisplayName | Should -BeNullOrEmpty -Because "SecondaryModuleOwnerDisplayName should be empty if PrimaryModuleOwnerDisplayName is empty. This should not have a value in line #$lineNumber"
-                }
-                $lineNumber++
-            }
-        }
-
-        It "Should not have a SecondaryModuleOwnerGHHandle if the PrimaryModuleOwnerGHHandle is empty" {
-            $lineNumber = 2
-            foreach ($item in $csvContent) {
-                if ($item.PrimaryModuleOwnerGHHandle -eq '') {
-                    $item.SecondaryModuleOwnerGHHandle | Should -BeNullOrEmpty -Because "SecondaryModuleOwnerGHHandle should be empty if PrimaryModuleOwnerGHHandle is empty. This should not have a value in line #$lineNumber"
+                if ($item.ModuleStatus -eq 'Available :green_circle:' -or $item.ModuleStatus -eq 'Orphaned :eyes:') {
+                    $item.FirstPublishedIn | Should -Match '^20\d{2}-(0[1-9]|1[0-2])$' -Because "FirstPublishedIn should be a valid date for 'Available' modules. This should have a valid value in line #$lineNumber"
                 }
                 $lineNumber++
             }
