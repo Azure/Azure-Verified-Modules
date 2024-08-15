@@ -11,16 +11,21 @@ To mitigate this challenge, the AVM CI provides you with the feature to store an
 
 ### _Navigation_
 
-- [Location](#location)
-- [How it works](#how-it-works)
-- [How to use it](#how-to-use-it)
+- [Example](#example)
+- [Pre-Requisites](#pre-requisites)
+- [Setup](#setup)
+- [Background: Why not simply use GitHub secrets?](#background-why-not-simply-use-github-secrets)
 
 ---
+
+# Example
+
+# Pre-Requisites
+
+# Setup
 
 <img src="../../../../static/img/contribution/secrets/kvltSecret-exampleSecrets.png" alt="Example secrets in Key Vault" height="200">
 <img src="../../../../static/img/contribution/secrets/kvltSecret-ghSetting.png" alt="Required GitHub variable" height="200">
 <img src="../../../../static/img/contribution/secrets/kvltSecret-pipelineLog.png" alt="Example pipeline log" height="200">
 
-# 
-
-# Context: Why not simply use GitHub secrets?
+# Background: Why not simply use GitHub secrets?
