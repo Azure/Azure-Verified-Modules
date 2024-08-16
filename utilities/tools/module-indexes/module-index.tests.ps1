@@ -117,6 +117,15 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
         }
 
         if ($CsvFilePath -match 'Bicep') {
+
+            It "Should only contain allowed characters" {
+                $lineNumber = 2
+                foreach ($item in $csvContent) {
+                    $item.ModuleName | Should -Match '^[a-z0-9]+(?:[\/-][a-z0-9]+)*$' -Because "each segment of ModuleName should only contain lowercase letters, numbers and hyphens, in line #$lineNumber"
+                    $lineNumber++
+                }
+            }
+
             if ($CsvFilePath -match 'ResourceModules') {
                 It "Should start with 'avm/res/'" {
                     $lineNumber = 2
@@ -170,51 +179,6 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                     }
                 }
 
-                It "All items in the CSV should be alphabetically ordered, based on ModuleName" {
-
-                    # Set-ItResult -Skipped
-
-                    # $moduleNames = $csvContent.ModuleName
-                    # $sortedModuleNames = $moduleNames | Sort-Object -Stable -Culture "en-US"
-                    # for ($i = 0; $i -lt $moduleNames.Length; $i++) {
-                    #     $moduleNames[$i] | Should -Be $sortedModuleNames[$i] -Because "All items in the CSV should be alphabetically ordered, based on ModuleName"
-                    # }
-
-                    # $moduleNames = $csvContent.ModuleName
-                    # $normalizedModuleNames = $moduleNames -replace '[/\-]', ''
-                    # $sortedModuleNames = $normalizedModuleNames | Sort-Object -Stable -Culture "en-US"
-
-                    # for ($i = 0; $i -lt $moduleNames.Length; $i++) {
-                    #     $normalizedModuleNames[$i] | Should -Be $sortedModuleNames[$i] -Because "All items in the CSV should be alphabetically ordered, based on normalized ModuleName"
-                    # }
-
-                    $normalizedModuleNames = @()
-                    $moduleNames = $csvContent.ModuleName -replace '-', ''
-
-                    foreach ($moduleName in $moduleNames) {
-                        # $trimmedModuleName = $moduleName -replace "^avm/res/", ""
-
-                        $segments = $moduleName -split "/"
-
-                        $obj = [PSCustomObject]@{
-                            prefix = $segments[0] + "/" + $segments[1] + "/"
-                            firstSegment  = $segments[2]
-                            secondSegment = $segments[3]
-                        }
-
-                        $normalizedModuleNames += $obj
-                    }
-
-                    $customSortedModuleNames = $normalizedModuleNames | Sort-Object -Property firstSegment, secondSegment
-                    $results = @()
-                    foreach ($item in $customSortedModuleNames){
-                        $results +=  $item.prefix + $item.firstSegment + "/" + $item.secondSegment
-                    }
-
-                    for ($i = 0; $i -lt $moduleNames.Length; $i++) {
-                        $moduleNames[$i] | Should -Be $results[$i] -Because "All items in the CSV should be alphabetically ordered, based on ModuleName"
-                    }
-                }
             } elseif ($CsvFilePath -match 'PatternModules') {
                 It "Should start with 'avm/ptn/'" {
                     $lineNumber = 2
@@ -224,7 +188,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                     }
                 }
 
-                It 'Should have exactly 2 segments' {
+                It 'Should have exactly 2 segments (after the prefix)' {
                     $lineNumber = 2
                     foreach ($item in $csvContent) {
                         $truncatedModuleName = $item.ModuleName -replace 'avm/ptn/', ''
@@ -240,13 +204,86 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                         $lineNumber++
                     }
                 }
+
+                It 'Should have exactly 2 segments (after the prefix)' {
+                    $lineNumber = 2
+                    foreach ($item in $csvContent) {
+                        $truncatedModuleName = $item.ModuleName -replace 'avm/utl/', ''
+                        $truncatedModuleName -split '/' | Should -HaveCount 2 -Because "ModuleName should have exactly 2 segments in line #$lineNumber"
+                        $lineNumber++
+                    }
+                }
             }
+
+            It "All items in the CSV should be alphabetically ordered, based on ModuleName" {
+
+                # Set-ItResult -Skipped
+
+                # $moduleNames = $csvContent.ModuleName
+                # $sortedModuleNames = $moduleNames | Sort-Object -Stable -Culture "en-US"
+                # for ($i = 0; $i -lt $moduleNames.Length; $i++) {
+                #     $moduleNames[$i] | Should -Be $sortedModuleNames[$i] -Because "All items in the CSV should be alphabetically ordered, based on ModuleName"
+                # }
+
+                # $moduleNames = $csvContent.ModuleName
+                # $normalizedModuleNames = $moduleNames -replace '[/\-]', ''
+                # $sortedModuleNames = $normalizedModuleNames | Sort-Object -Stable -Culture "en-US"
+
+                # for ($i = 0; $i -lt $moduleNames.Length; $i++) {
+                #     $normalizedModuleNames[$i] | Should -Be $sortedModuleNames[$i] -Because "All items in the CSV should be alphabetically ordered, based on normalized ModuleName"
+                # }
+
+                $normalizedModuleNames = @()
+                $moduleNames = @($csvContent.ModuleName -replace '-', '')
+
+                foreach ($moduleName in $moduleNames) {
+
+                    $segments = $moduleName -split "/"
+
+                    $obj = [PSCustomObject]@{
+                        prefix = $segments[0] + "/" + $segments[1] + "/"
+                        firstSegment  = $segments[2]
+                        secondSegment = $segments[3]
+                    }
+
+                    $normalizedModuleNames += $obj
+                }
+
+                $customSortedModuleNames = $normalizedModuleNames | Sort-Object -Property firstSegment, secondSegment
+                $results = @()
+                foreach ($item in $customSortedModuleNames){
+                    $results +=  $item.prefix + $item.firstSegment + "/" + $item.secondSegment
+                }
+
+                for ($i = 0; $i -lt $moduleNames.Length; $i++) {
+                    $moduleNames[$i] | Should -Be $results[$i] -Because "All items in the CSV should be alphabetically ordered, based on ModuleName"
+                }
+            }
+
         } elseif ($CsvFilePath -match 'Terraform') {
+
+            It "Should only contain allowed characters" {
+                $lineNumber = 2
+                foreach ($item in $csvContent) {
+                    $item.ModuleName | Should -Match '^[a-z0-9]+(?:[-][a-z0-9]+)*$' -Because "each segment of ModuleName should only contain lowercase letters and numbers, in line #$lineNumber"
+                    $lineNumber++
+                }
+            }
+
             if ($CsvFilePath -match 'ResourceModules') {
                 It "Should start with 'avm-res-'" {
                     $lineNumber = 2
                     foreach ($item in $csvContent) {
                         $item.ModuleName | Should -Match '^avm-res-.*' -Because "ModuleName should start with 'avm-res-'. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                        $lineNumber++
+                    }
+                }
+
+                It 'Should have exactly 2 segments (after the prefix)' {
+                    $lineNumber = 2
+                    foreach ($item in $csvContent) {
+                        $truncatedModuleName = $item.ModuleName -replace 'avm-res-', ''
+                        $truncatedModuleName -split '-' | Should -HaveCount 2 -Because "ModuleName should have exactly 2 segments in line #$lineNumber"
                         $lineNumber++
                     }
                 }
@@ -294,6 +331,8 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                         $lineNumber++
                     }
                 }
+
+
             } elseif ($CsvFilePath -match 'PatternModules') {
                 It "Should start with 'avm-ptn-'" {
                     $lineNumber = 2
@@ -311,6 +350,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                     }
                 }
             }
+
         }
 
         It 'Should have a related "Module Proposal" issue in the AVM repo' {

@@ -26,20 +26,13 @@ param (
     # [Parameter(Mandatory = $false, Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Enter the full path to the CSV file.")]
     # [ValidateNotNullOrEmpty()]
     # [Alias("Path")]
-    # [string]$CsvFilePath,
-
-    # [Parameter(Mandatory = $false, Position = 1, HelpMessage = "Enter the IaC language (Bicep or Terraform).")]
-    # [ValidateSet("Bicep", "Terraform")]
-    # [string]$IacLanguage = "Bicep",
+    # [string]$CsvFiles,
 
     [Parameter(Mandatory = $false)]
     [string] $RepoRoot = (Get-Item -Path $PSScriptRoot).parent.parent.parent.parent.FullName
 )
 
-# $RepoRoot
-# $CsvFilePath
-
-$testFiles = "$RepoRoot\Azure-Verified-Modules\utilities\tools\module-indexes\module-index.tests.ps1"
+$testFile = "$RepoRoot\Azure-Verified-Modules\utilities\tools\module-indexes\module-index.tests.ps1"
 
 $csvFiles =  @(
   "$RepoRoot\Azure-Verified-Modules\docs\static\module-indexes\BicepResourceModules.csv",
@@ -54,7 +47,7 @@ $csvFiles =  @(
 foreach ($file in $csvFiles) {
   $pesterConfiguration = @{
     Run    = @{
-      Container = New-PesterContainer -Path $testFiles -Data @{
+      Container = New-PesterContainer -Path $testFile -Data @{
         CsvFilePath = $file
       }
       PassThru  = $false

@@ -1,0 +1,56 @@
+# Workflow for building and deploying a Hugo site to GitHub Pages
+name: Test Module Index CSVs
+
+on:
+  pull_request:
+    paths:
+      - 'docs/static/module-indexes/**'
+  workflow_dispatch: {}
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  sync-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Test All Bicep and Terraform Module Index CSVs
+        shell: pwsh
+        run: |
+          # $RepoRoot = (Get-Item -Path $PSScriptRoot).parent.parent.parent.parent.FullName)
+          $RepoRoot = $env:GITHUB_WORKSPACE
+
+          $testFile = Join-Path $RepoRoot "utilities" "tools" "module-indexes "module-index.tests.ps1"
+
+          $csvFiles =  @(
+            Join-Path $RepoRoot "docs" "static" "module-indexes" "BicepResourceModules.csv",
+            Join-Path $RepoRoot "docs" "static" "module-indexes" "BicepPatternModules.csv",
+            Join-Path $RepoRoot "docs" "static" "module-indexes" "BicepUtilityModules.csv",
+            Join-Path $RepoRoot "docs" "static" "module-indexes" "TerraformResourceModules.csv",
+            Join-Path $RepoRoot "docs" "static" "module-indexes" "TerraformPatternModules.csv",
+            Join-Path $RepoRoot "docs" "static" "module-indexes" "TerraformUtilityModules.csv"
+          )
+
+          foreach ($file in $csvFiles) {
+            $pesterConfiguration = @{
+              Run    = @{
+                Container = New-PesterContainer -Path $testFile -Data @{
+                  CsvFilePath = $file
+                }
+                PassThru  = $false
+              }
+              Output = @{
+                Verbosity = 'Detailed'
+              }
+            }
+            Invoke-Pester -Configuration $pesterConfiguration
+          }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
