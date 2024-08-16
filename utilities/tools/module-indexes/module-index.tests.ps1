@@ -86,7 +86,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
 
     }
 
-    Context 'ModuleDisplayName' {
+    Context 'ModuleDisplayName column' {
 
         It "Should not have any missing values in the 'ModuleDisplayName' column" {
             $lineNumber = 2
@@ -102,7 +102,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
         }
     }
 
-    Context 'ModuleName' {
+    Context 'ModuleName column' {
         It "Should not have any missing values in the 'ModuleName' column" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
@@ -302,7 +302,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
         }
     }
 
-    Context 'ModuleStatus' {
+    Context 'ModuleStatus column' {
         It "Should have a valid value in the 'ModuleStatus' column" {
             $allowedValues = @(
                 'Proposed :new:', 'Available :green_circle:', 'Orphaned :eyes:'
@@ -316,7 +316,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
 
     }
 
-    Context 'RepoURL' {
+    Context 'RepoURL column' {
         It "Should not have any missing values in the 'RepoURL' column" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
@@ -339,7 +339,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
         }
     }
 
-    Context 'PublicRegistryReference' {
+    Context 'PublicRegistryReference column' {
         It "Should not have any missing values in the 'PublicRegistryReference' column" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
@@ -372,7 +372,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
         }
     }
 
-    Context 'TelemetryIdPrefix' {
+    Context 'TelemetryIdPrefix column' {
         BeforeAll {
 
         }
@@ -426,7 +426,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
         }
     }
 
-    Context 'PrimaryModuleOwnerGHHandle' {
+    Context 'PrimaryModuleOwnerGHHandle column' {
         It "Should have a value for 'Available' modules" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
@@ -467,7 +467,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
         }
     }
 
-    Context 'PrimaryModuleOwnerDisplayName' {
+    Context 'PrimaryModuleOwnerDisplayName column' {
         It "Should have a value for 'Available' modules" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
@@ -499,7 +499,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
         }
     }
 
-    Context 'SecondaryModuleOwnerGHHandle' {
+    Context 'SecondaryModuleOwnerGHHandle column' {
         It "Should be empty for 'Orphaned' modules" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
@@ -530,7 +530,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
         }
     }
 
-    Context 'SecondaryModuleOwnerDisplayName' {
+    Context 'SecondaryModuleOwnerDisplayName column' {
         It "Should be empty for 'Orphaned' modules" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
@@ -552,7 +552,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
         }
     }
 
-    Context 'ModuleOwnersGHTeam' {
+    Context 'ModuleOwnersGHTeam column' {
         It "Should not have any missing values in the 'ModuleOwnersGHTeam' column" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
@@ -586,7 +586,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
         }
     }
 
-    Context 'ModuleContributorsGHTeam' {
+    Context 'ModuleContributorsGHTeam column' {
         It "Should not have any missing values in the 'ModuleContributorsGHTeam' column" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
@@ -620,7 +620,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
         }
     }
 
-    Context 'Description' {
+    Context 'Description column' {
         It "Should not have any missing values in the 'Description' column" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
@@ -635,7 +635,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
         }
     }
 
-    Context 'FirstPublishedIn' {
+    Context 'FirstPublishedIn column' {
         It "If the module is 'Proposed' then the 'FirstPublishedIn' column should be empty" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
