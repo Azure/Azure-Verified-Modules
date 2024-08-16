@@ -41,17 +41,17 @@ param (
 
 $testFiles = "$RepoRoot\Azure-Verified-Modules\utilities\tools\module-indexes\module-index.tests.ps1"
 
-$files =  @(
-  'C:\SOURCE\Azure-Verified-Modules\docs\static\module-indexes\BicepResourceModules.csv',
-  'C:\SOURCE\Azure-Verified-Modules\docs\static\module-indexes\BicepPatternModules.csv',
-  'C:\SOURCE\Azure-Verified-Modules\docs\static\module-indexes\BicepUtilityModules.csv',
-  'C:\SOURCE\Azure-Verified-Modules\docs\static\module-indexes\TerraformResourceModules.csv',
-  'C:\SOURCE\Azure-Verified-Modules\docs\static\module-indexes\TerraformPatternModules.csv',
-  'C:\SOURCE\Azure-Verified-Modules\docs\static\module-indexes\TerraformUtilityModules.csv'
+$csvFiles =  @(
+  "$RepoRoot\Azure-Verified-Modules\docs\static\module-indexes\BicepResourceModules.csv",
+  "$RepoRoot\Azure-Verified-Modules\docs\static\module-indexes\BicepPatternModules.csv",
+  "$RepoRoot\Azure-Verified-Modules\docs\static\module-indexes\BicepUtilityModules.csv",
+  "$RepoRoot\Azure-Verified-Modules\docs\static\module-indexes\TerraformResourceModules.csv",
+  "$RepoRoot\Azure-Verified-Modules\docs\static\module-indexes\TerraformPatternModules.csv",
+  "$RepoRoot\Azure-Verified-Modules\docs\static\module-indexes\TerraformUtilityModules.csv"
 )
 
 
-foreach ($file in $files) {
+foreach ($file in $csvFiles) {
   $pesterConfiguration = @{
     Run    = @{
       Container = New-PesterContainer -Path $testFiles -Data @{

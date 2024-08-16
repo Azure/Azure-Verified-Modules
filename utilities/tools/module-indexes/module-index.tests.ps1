@@ -11,7 +11,7 @@ BeforeAll {
     $rawFile = Get-Content -Path $CsvFilePath
     $csvHeaders = $csvContent[0].PSObject.Properties.Name
 
-    $issues = & gh issue list --limit 99999 --state all --json title, body | ConvertFrom-Json
+    $issues = & gh issue list --limit 99999 --state all --json title,body | ConvertFrom-Json
 
     $singularExceptions = @(
         'redis',
@@ -169,6 +169,52 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                         $lineNumber++
                     }
                 }
+
+                It "All items in the CSV should be alphabetically ordered, based on ModuleName" {
+
+                    # Set-ItResult -Skipped
+
+                    # $moduleNames = $csvContent.ModuleName
+                    # $sortedModuleNames = $moduleNames | Sort-Object -Stable -Culture "en-US"
+                    # for ($i = 0; $i -lt $moduleNames.Length; $i++) {
+                    #     $moduleNames[$i] | Should -Be $sortedModuleNames[$i] -Because "All items in the CSV should be alphabetically ordered, based on ModuleName"
+                    # }
+
+                    # $moduleNames = $csvContent.ModuleName
+                    # $normalizedModuleNames = $moduleNames -replace '[/\-]', ''
+                    # $sortedModuleNames = $normalizedModuleNames | Sort-Object -Stable -Culture "en-US"
+
+                    # for ($i = 0; $i -lt $moduleNames.Length; $i++) {
+                    #     $normalizedModuleNames[$i] | Should -Be $sortedModuleNames[$i] -Because "All items in the CSV should be alphabetically ordered, based on normalized ModuleName"
+                    # }
+
+                    $normalizedModuleNames = @()
+                    $moduleNames = $csvContent.ModuleName -replace '-', ''
+
+                    foreach ($moduleName in $moduleNames) {
+                        # $trimmedModuleName = $moduleName -replace "^avm/res/", ""
+
+                        $segments = $moduleName -split "/"
+
+                        $obj = [PSCustomObject]@{
+                            prefix = $segments[0] + "/" + $segments[1] + "/"
+                            firstSegment  = $segments[2]
+                            secondSegment = $segments[3]
+                        }
+
+                        $normalizedModuleNames += $obj
+                    }
+
+                    $customSortedModuleNames = $normalizedModuleNames | Sort-Object -Property firstSegment, secondSegment
+                    $results = @()
+                    foreach ($item in $customSortedModuleNames){
+                        $results +=  $item.prefix + $item.firstSegment + "/" + $item.secondSegment
+                    }
+
+                    for ($i = 0; $i -lt $moduleNames.Length; $i++) {
+                        $moduleNames[$i] | Should -Be $results[$i] -Because "All items in the CSV should be alphabetically ordered, based on ModuleName"
+                    }
+                }
             } elseif ($CsvFilePath -match 'PatternModules') {
                 It "Should start with 'avm/ptn/'" {
                     $lineNumber = 2
@@ -300,6 +346,8 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                 $nameCorrectInBody | Should -Be $true -Because "ModuleName (""$moduleName"") should be captured in the GitHub issue under the ""### Module Name"" section"
             }
         }
+
+
     }
 
     Context 'ModuleStatus column' {
