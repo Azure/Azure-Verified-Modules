@@ -68,7 +68,7 @@ param (
 # }
 
 # $csvContent
-$testFiles = "$RepoRoot\Azure-Verified-Modules\utilities\tools\module-indexes\Bicep.tests.ps1"
+$testFiles = "$RepoRoot\Azure-Verified-Modules\utilities\tools\module-indexes\module-index.tests.ps1"
 # $testFiles
 
 $files =  @(

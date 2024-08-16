@@ -11,6 +11,8 @@ BeforeAll {
     $rawFile = Get-Content -Path $CsvFilePath
     $csvHeaders = $csvContent[0].PSObject.Properties.Name
 
+    $issues = & gh issue list --limit 99999 --state all --json title, body | ConvertFrom-Json
+
     $singularExceptions = @(
         'redis',
         'address',
@@ -127,30 +129,35 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                 It 'First segment of ModuleName should be derived from the ProviderNamespace' {
                     $lineNumber = 2
                     foreach ($item in $csvContent) {
-                        $firstSegmentFromRP = ($item.ProviderNamespace -replace 'Microsoft.', '').ToLower()
+                        $firstSegmentFromRP = ($item.ProviderNamespace -replace 'Microsoft.', '' -replace '\.', '').ToLower()
                         $firstSegmentInModuleName = ($item.ModuleName -split '/')[2] -replace '-', ''
                         $firstSegmentInModuleName | Should -BeLike "$firstSegmentFromRP" -Because "the first segment of ModuleName should be derived from the ProviderNamespace. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
                         $lineNumber++
                     }
                 }
-                # It "Second segment of ModuleName should be derived from the ResourceType" {
-                #     $lineNumber = 2
-                #     foreach ($item in $csvContent) {
-                #         if ($item.ModuleName -notin $singularExceptions) {
-                #             $lastSegmentOfModuleName = ($item.ModulName -split '/')[-1] -replace '-',''
-                #         }
-                #         elseif ($item.ModuleName -in $singularExceptions) {
 
-                #         }
-                #         $firstSegmentFromRT = ($item.ResourceType -replace 'Microsoft.','').ToLower()
-                #         $firstSegmentInModuleName = ($item.ModuleName -split '/')[2] -replace '-',''
-                #         # $secondSegment = ((Split-CamelCase -inputString $item.ResourceType) -join "-").ToLower()
+                It 'Second segment of ModuleName should be derived from the ResourceType' {
+                    $lineNumber = 2
+                    foreach ($item in $csvContent) {
+                        $resourceType = $item.ResourceType.ToLower()
+                        $secondSegmentOfModuleName = (($item.ModuleName -split '/')[-1] -replace '-', '').ToLower()
 
-                #         # $expectedModuleName = "avm/res/" + $firstSegment + '/' + $secondSegment
-                #         $firstSegmentInModuleName | Should -BeLike $firstSegmentFromRT  -Because "the first segment of ModuleName should be derived from the ResourceType. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
-                #         $lineNumber++
-                #     }
-                # }
+                        if ($resourceType -notmatch 's$') {
+                            $secondSegmentOfModuleName | Should -Be $resourceType -Because "the second segment of ModuleName should be derived from the ResourceType in line #$lineNumber"
+                        } elseif ($resourceType -match 'ies$') {
+                            $rootOfResourceType = $resourceType.Substring(0, $resourceType.Length - 3)
+                            $secondSegmentOfModuleName | Should -Match $rootOfResourceType -Because "the second segment of ModuleName should be derived from the ResourceType in line #$lineNumber"
+                        } elseif ($resourceType -match 'es$') {
+                            $rootOfResourceType = $resourceType.Substring(0, $resourceType.Length - 2)
+                            $secondSegmentOfModuleName | Should -Match $rootOfResourceType -Because "the second segment of ModuleName should be derived from the ResourceType in line #$lineNumber"
+                        } elseif ($resourceType -match 's$') {
+                            $rootOfResourceType = $resourceType.Substring(0, $resourceType.Length - 1)
+                            $secondSegmentOfModuleName | Should -Match $rootOfResourceType -Because "the second segment of ModuleName should be derived from the ResourceType in line #$lineNumber"
+                        }
+                        $lineNumber++
+                    }
+                }
+
                 It 'Second segment of ModuleName should be in singular form' {
                     $lineNumber = 2
                     foreach ($item in $csvContent) {
@@ -162,8 +169,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                         $lineNumber++
                     }
                 }
-            }
-            elseif ($CsvFilePath -match 'PatternModules') {
+            } elseif ($CsvFilePath -match 'PatternModules') {
                 It "Should start with 'avm/ptn/'" {
                     $lineNumber = 2
                     foreach ($item in $csvContent) {
@@ -171,8 +177,16 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                         $lineNumber++
                     }
                 }
-            }
-            elseif ($CsvFilePath -match 'UtilityModules') {
+
+                It 'Should have exactly 2 segments' {
+                    $lineNumber = 2
+                    foreach ($item in $csvContent) {
+                        $truncatedModuleName = $item.ModuleName -replace 'avm/ptn/', ''
+                        $truncatedModuleName -split '/' | Should -HaveCount 2 -Because "ModuleName should have exactly 2 segments in line #$lineNumber"
+                        $lineNumber++
+                    }
+                }
+            } elseif ($CsvFilePath -match 'UtilityModules') {
                 It "Should start with 'avm/utl/'" {
                     $lineNumber = 2
                     foreach ($item in $csvContent) {
@@ -181,8 +195,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                     }
                 }
             }
-        }
-        elseif ($CsvFilePath -match 'Terraform') {
+        } elseif ($CsvFilePath -match 'Terraform') {
             if ($CsvFilePath -match 'ResourceModules') {
                 It "Should start with 'avm-res-'" {
                     $lineNumber = 2
@@ -195,9 +208,31 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                 It 'First segment of ModuleName should be derived from the ProviderNamespace' {
                     $lineNumber = 2
                     foreach ($item in $csvContent) {
-                        $firstSegmentFromRP = ($item.ProviderNamespace -replace 'Microsoft.', '').ToLower()
+                        $firstSegmentFromRP = ($item.ProviderNamespace -replace 'Microsoft.', '' -replace '\.', '').ToLower()
                         $firstSegmentInModuleName = ($item.ModuleName -split '-')[2]
                         $firstSegmentInModuleName | Should -BeLike "$firstSegmentFromRP" -Because "the first segment of ModuleName should be derived from the ProviderNamespace. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                        $lineNumber++
+                    }
+                }
+
+                It 'Second segment of ModuleName should be derived from the ResourceType' {
+                    $lineNumber = 2
+                    foreach ($item in $csvContent) {
+                        $resourceType = $item.ResourceType.ToLower()
+                        $secondSegmentOfModuleName = (($item.ModuleName -split '-')[-1]).ToLower()
+
+                        if ($resourceType -notmatch 's$') {
+                            $secondSegmentOfModuleName | Should -Be $resourceType -Because "the second segment of ModuleName should be derived from the ResourceType in line #$lineNumber"
+                        } elseif ($resourceType -match 'ies$') {
+                            $rootOfResourceType = $resourceType.Substring(0, $resourceType.Length - 3)
+                            $secondSegmentOfModuleName | Should -Match $rootOfResourceType -Because "the second segment of ModuleName should be derived from the ResourceType in line #$lineNumber"
+                        } elseif ($resourceType -match 'es$') {
+                            $rootOfResourceType = $resourceType.Substring(0, $resourceType.Length - 2)
+                            $secondSegmentOfModuleName | Should -Match "^$($rootOfResourceType).*" -Because "the second segment of ModuleName should be derived from the ResourceType in line #$lineNumber"
+                        } elseif ($resourceType -match 's$') {
+                            $rootOfResourceType = $resourceType.Substring(0, $resourceType.Length - 1)
+                            $secondSegmentOfModuleName | Should -Match $rootOfResourceType -Because "the second segment of ModuleName should be derived from the ResourceType in line #$lineNumber"
+                        }
                         $lineNumber++
                     }
                 }
@@ -213,8 +248,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                         $lineNumber++
                     }
                 }
-            }
-            elseif ($CsvFilePath -match 'PatternModules') {
+            } elseif ($CsvFilePath -match 'PatternModules') {
                 It "Should start with 'avm-ptn-'" {
                     $lineNumber = 2
                     foreach ($item in $csvContent) {
@@ -222,8 +256,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                         $lineNumber++
                     }
                 }
-            }
-            elseif ($CsvFilePath -match 'UtilityModules') {
+            } elseif ($CsvFilePath -match 'UtilityModules') {
                 It "Should start with 'avm-utl-'" {
                     $lineNumber = 2
                     foreach ($item in $csvContent) {
@@ -235,7 +268,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
         }
 
         It 'Should have a related "Module Proposal" issue in the AVM repo' {
-            $issues = & gh issue list --limit 9999 --state all --json title | ConvertFrom-Json
+
             foreach ($item in $csvContent) {
                 $moduleName = $item.ModuleName
                 $issueExists = $false
@@ -247,6 +280,24 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                     }
                 }
                 $issueExists | Should -Be $true -Because "there should be a GitHub issue that starts with ""[Module Proposal]"" and contains the ModuleName ""$moduleName"" between backticks,"
+            }
+        }
+
+        It 'Should be captured in the related Module Proposal issue, under the "### Module Name" section' {
+            foreach ($item in $csvContent) {
+                $moduleName = $item.ModuleName
+                $nameCorrectInBody = $false
+
+                foreach ($issue in $issues) {
+                    if ($issue.title -match "[Module Proposal]*``$moduleName``" ) {
+                        if ($issue.body -match "### Module Name\s*\r?\n\r?\n$moduleName" ) {
+                            $nameCorrectInBody = $true
+                            break
+                        }
+
+                    }
+                }
+                $nameCorrectInBody | Should -Be $true -Because "ModuleName (""$moduleName"") should be captured in the GitHub issue under the ""### Module Name"" section"
             }
         }
     }
