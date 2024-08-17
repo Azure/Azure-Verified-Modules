@@ -14,18 +14,71 @@ defaults:
 jobs:
   Test-Module-Index-CSVs:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Test All Bicep and Terraform Module Index CSVs
+      - name: Test BicepResourceModules.csv
         shell: pwsh
         run: |
           $RepoRoot = $env:GITHUB_WORKSPACE
 
-          . (Join-Path $RepoRoot "utilities" "tools" "module-indexes" "Test-AvmModuleIndexCSVs.ps1")
+          . (Join-Path $RepoRoot "utilities" "tools" "module-indexes" "Test-AvmModuleIndexCSVs.ps1") -CsvFiles $(Join-Path $RepoRoot "docs" "static" "module-indexes" "BicepResourceModules.csv")
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ always() }}
 
+
+      - name: Test BicepPatternModules.csv
+        shell: pwsh
+        run: |
+          $RepoRoot = $env:GITHUB_WORKSPACE
+
+          . (Join-Path $RepoRoot "utilities" "tools" "module-indexes" "Test-AvmModuleIndexCSVs.ps1") -CsvFiles $(Join-Path $RepoRoot "docs" "static" "module-indexes" "BicepPatternModules.csv")
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ always() }}
+
+      - name: Test BicepUtilityModules.csv
+        shell: pwsh
+        run: |
+          $RepoRoot = $env:GITHUB_WORKSPACE
+
+          . (Join-Path $RepoRoot "utilities" "tools" "module-indexes" "Test-AvmModuleIndexCSVs.ps1") -CsvFiles $(Join-Path $RepoRoot "docs" "static" "module-indexes" "BicepUtilityModules.csv")
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ always() }}
+
+      - name: Test TerraformResourceModules.csv
+        shell: pwsh
+        run: |
+          $RepoRoot = $env:GITHUB_WORKSPACE
+
+          . (Join-Path $RepoRoot "utilities" "tools" "module-indexes" "Test-AvmModuleIndexCSVs.ps1") -CsvFiles $(Join-Path $RepoRoot "docs" "static" "module-indexes" "TerraformResourceModules.csv")
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ always() }}
+
+
+      - name: Test TerraformPatternModules.csv
+        shell: pwsh
+        run: |
+          $RepoRoot = $env:GITHUB_WORKSPACE
+
+          . (Join-Path $RepoRoot "utilities" "tools" "module-indexes" "Test-AvmModuleIndexCSVs.ps1") -CsvFiles $(Join-Path $RepoRoot "docs" "static" "module-indexes" "TerraformPatternModules.csv")
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ always() }}
+
+      - name: Test TerraformUtilityModules.csv
+        shell: pwsh
+        run: |
+          $RepoRoot = $env:GITHUB_WORKSPACE
+
+          . (Join-Path $RepoRoot "utilities" "tools" "module-indexes" "Test-AvmModuleIndexCSVs.ps1") -CsvFiles $(Join-Path $RepoRoot "docs" "static" "module-indexes" "TerraformUtilityModules.csv")
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ always() }}
