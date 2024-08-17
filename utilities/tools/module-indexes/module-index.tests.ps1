@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param (
-    [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'Enter the full path to the CSV file.')]
+    [Parameter(Mandatory = $true, Position = 0, HelpMessage = 'Enter the full path to the CSV file.')]
     [ValidateNotNullOrEmpty()]
     [Alias('Path')]
     [string]$CsvFilePath
