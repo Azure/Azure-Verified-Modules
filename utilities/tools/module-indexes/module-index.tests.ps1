@@ -18,7 +18,10 @@ BeforeAll {
         'address',
         'publicipaddress'
     )
-
+    $rawFile | Out-Null
+    $csvHeaders | Out-Null
+    $issues | Out-Null
+    $singularExceptions | Out-Null
 }
 
 Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
@@ -461,9 +464,6 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
     }
 
     Context 'TelemetryIdPrefix column' {
-        BeforeAll {
-
-        }
 
         It "Should not have any missing values in the 'TelemetryIdPrefix' column" {
             $lineNumber = 2
