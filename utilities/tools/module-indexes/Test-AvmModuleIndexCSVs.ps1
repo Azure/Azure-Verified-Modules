@@ -37,6 +37,13 @@ param (
     )
 )
 
+function SuppressMe()
+{
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingPositionalParameters', '',
+        Justification='Join-Path requires positional parameters')]
+    param()
+}
+
 $RepoRoot = (Get-Item -Path $PSScriptRoot).parent.parent.parent.FullName
 
 $testFile = Join-Path $RepoRoot "utilities" "tools" "module-indexes" "module-index.tests.ps1"
