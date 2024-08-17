@@ -32,17 +32,21 @@ param (
     [string] $RepoRoot = (Get-Item -Path $PSScriptRoot).parent.parent.parent.parent.FullName
 )
 
-$testFile = "$RepoRoot\Azure-Verified-Modules\utilities\tools\module-indexes\module-index.tests.ps1"
+$RepoRoot = (Get-Item -Path $PSScriptRoot).parent.parent.parent.parent.FullName
+$RepoRoot = Join-Path $RepoRoot "Azure-Verified-Modules"
+
+$testFile = Join-Path $RepoRoot "utilities" "tools" "module-indexes" "module-index.tests.ps1"
+
 
 $csvFiles =  @(
-  "$RepoRoot\Azure-Verified-Modules\docs\static\module-indexes\BicepResourceModules.csv",
-  "$RepoRoot\Azure-Verified-Modules\docs\static\module-indexes\BicepPatternModules.csv",
-  "$RepoRoot\Azure-Verified-Modules\docs\static\module-indexes\BicepUtilityModules.csv",
-  "$RepoRoot\Azure-Verified-Modules\docs\static\module-indexes\TerraformResourceModules.csv",
-  "$RepoRoot\Azure-Verified-Modules\docs\static\module-indexes\TerraformPatternModules.csv",
-  "$RepoRoot\Azure-Verified-Modules\docs\static\module-indexes\TerraformUtilityModules.csv"
+  $(Join-Path $RepoRoot "docs" "static" "module-indexes" "BicepResourceModules.csv"),
+  $(Join-Path $RepoRoot "docs" "static" "module-indexes" "BicepPatternModules.csv"),
+  $(Join-Path $RepoRoot "docs" "static" "module-indexes" "BicepUtilityModules.csv"),
+  $(Join-Path $RepoRoot "docs" "static" "module-indexes" "TerraformResourceModules.csv"),
+  $(Join-Path $RepoRoot "docs" "static" "module-indexes" "TerraformPatternModules.csv"),
+  $(Join-Path $RepoRoot "docs" "static" "module-indexes" "TerraformUtilityModules.csv")
 )
-
+$csvFiles
 
 foreach ($file in $csvFiles) {
   $pesterConfiguration = @{

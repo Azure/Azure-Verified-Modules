@@ -365,7 +365,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                         break
                     }
                 }
-                $issueExists | Should -Be $true -Because "there should be a GitHub issue that starts with ""[Module Proposal]"" and contains the ModuleName ""$moduleName"" between backticks,"
+                $issueExists | Should -Be $true -Because "there should be a GitHub issue that starts with ""[Module Proposal]"" and contains the ModuleName ``$moduleName`` between backticks"
             }
         }
 
@@ -525,7 +525,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
             }
         }
 
-        It "hould be empty for 'Orphaned' modules" {
+        It "Should be empty for 'Orphaned' modules" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
                 if ($item.ModuleStatus -eq 'Orphaned :eyes:') {
