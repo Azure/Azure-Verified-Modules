@@ -1,4 +1,4 @@
-# Workflow for building and deploying a Hugo site to GitHub Pages
+# Workflow for testing all module index CSVs
 name: .Platform - Test Module Index CSVs
 
 on:
@@ -25,31 +25,7 @@ jobs:
         run: |
           $RepoRoot = $env:GITHUB_WORKSPACE
 
-          $testFile = Join-Path $RepoRoot "utilities" "tools" "module-indexes" "module-index.tests.ps1"
-
-          $csvFiles =  @(
-            $(Join-Path $RepoRoot "docs" "static" "module-indexes" "BicepResourceModules.csv"),
-            $(Join-Path $RepoRoot "docs" "static" "module-indexes" "BicepPatternModules.csv"),
-            $(Join-Path $RepoRoot "docs" "static" "module-indexes" "BicepUtilityModules.csv"),
-            $(Join-Path $RepoRoot "docs" "static" "module-indexes" "TerraformResourceModules.csv"),
-            $(Join-Path $RepoRoot "docs" "static" "module-indexes" "TerraformPatternModules.csv"),
-            $(Join-Path $RepoRoot "docs" "static" "module-indexes" "TerraformUtilityModules.csv")
-          )
-
-          foreach ($file in $csvFiles) {
-            $pesterConfiguration = @{
-              Run    = @{
-                Container = New-PesterContainer -Path $testFile -Data @{
-                  CsvFilePath = $file
-                }
-                PassThru  = $false
-              }
-              Output = @{
-                Verbosity = 'Detailed'
-              }
-            }
-            Invoke-Pester -Configuration $pesterConfiguration
-          }
+          . (Join-Path $RepoRoot "utilities" "tools" "module-indexes" "Test-AvmModuleIndexCSVs.ps1")
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
