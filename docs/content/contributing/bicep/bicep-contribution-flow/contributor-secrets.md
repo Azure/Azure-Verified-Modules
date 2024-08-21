@@ -50,8 +50,7 @@ The above will enable the CI to identify your Key Vault, look for matching secre
 
 Building upon the prerequisites you only have to implement two actions per value to dynamically populate them during deployment validation:
 1. Create a `@secure()` parameter in your test file (`main.test.bicep`) that you want to populate and use it as you see fit. 
-   > **Note:** It is mandatory to declare the parameter as `secure()` as Key Vault secrets will be pulled and passed into the deployment as `SecureString` values.
-  
+
    For example:
    ```bicep
    @description('Required. The secret needed for testing. This value is tenant-specific and its value must be configured in the secrets vault as \'CUSTOM-MySecret\'.')
@@ -59,8 +58,15 @@ Building upon the prerequisites you only have to implement two actions per value
    param mySecret string
    ```
 
+   {{< hint type=important >}}
+ 
+   It is mandatory to declare the parameter as `secure()` as Key Vault secrets will be pulled and passed into the deployment as `SecureString` values.
+ 
+   {{< /hint >}}
+
 1. Configure a secret of the same name, but with a `CUSTOM-` prefix and corresponding value in the Azure Key Vault you set up as per the prerequisites.
-  <img src="../../../../static/img/contribution/secrets/kvltSecret-exampleSecrets.png" alt="Example secrets in Key Vault" height="200">
+
+   <img src="../../../../static/img/contribution/secrets/kvltSecret-exampleSecrets.png" alt="Example secrets in Key Vault" height="200">
 
 # How it works
 
