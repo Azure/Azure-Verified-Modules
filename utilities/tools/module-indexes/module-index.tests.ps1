@@ -1,3 +1,5 @@
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '')]
+
 [CmdletBinding()]
 param (
     [Parameter(Mandatory = $true, Position = 0, HelpMessage = 'Enter the full path to the CSV file.')]
@@ -18,10 +20,6 @@ BeforeAll {
         'address',
         'publicipaddress'
     )
-    $rawFile | Out-Null
-    $csvHeaders | Out-Null
-    $issues | Out-Null
-    $singularExceptions | Out-Null
 }
 
 Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
