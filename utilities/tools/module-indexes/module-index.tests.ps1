@@ -133,7 +133,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                 It "Should start with 'avm/res/'" {
                     $lineNumber = 2
                     foreach ($item in $csvContent) {
-                        $item.ModuleName | Should -Match '^avm/res/.*' -Because "ModuleName should start with 'avm/res/'. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                        $item.ModuleName | Should -Match '^avm\/res\/.*' -Because "ModuleName should start with 'avm/res/'. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
                         $lineNumber++
                     }
                 }
@@ -141,8 +141,8 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                 It 'First segment of ModuleName should be derived from the ProviderNamespace' {
                     $lineNumber = 2
                     foreach ($item in $csvContent) {
-                        $firstSegmentFromRP = ($item.ProviderNamespace -replace 'Microsoft.', '' -replace '\.', '').ToLower()
-                        $firstSegmentInModuleName = ($item.ModuleName -split '/')[2] -replace '-', ''
+                        $firstSegmentFromRP = ($item.ProviderNamespace -replace 'Microsoft.' -replace '\.').ToLower()
+                        $firstSegmentInModuleName = ($item.ModuleName -split '\/')[2] -replace '-'
                         $firstSegmentInModuleName | Should -BeLike "$firstSegmentFromRP" -Because "the first segment of ModuleName should be derived from the ProviderNamespace. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
                         $lineNumber++
                     }
@@ -152,7 +152,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                     $lineNumber = 2
                     foreach ($item in $csvContent) {
                         $resourceType = $item.ResourceType.ToLower()
-                        $secondSegmentOfModuleName = (($item.ModuleName -split '/')[-1] -replace '-', '').ToLower()
+                        $secondSegmentOfModuleName = (($item.ModuleName -split '\/')[-1] -replace '-').ToLower()
 
                         if ($resourceType -notmatch 's$') {
                             $secondSegmentOfModuleName | Should -Be $resourceType -Because "the second segment of ModuleName should be derived from the ResourceType in line #$lineNumber"
@@ -174,7 +174,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                     $lineNumber = 2
                     foreach ($item in $csvContent) {
 
-                        $lastWord = (($item.ModuleName -split '/')[-1] -split '-')[-1]
+                        $lastWord = (($item.ModuleName -split '\/')[-1] -split '-')[-1]
                         if ($lastWord -notin $singularExceptions) {
                             $item.ModuleName | Should -Not -Match 's$' -Because "ModuleName should be in singular form. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
                         }
@@ -186,7 +186,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                 It "Should start with 'avm/ptn/'" {
                     $lineNumber = 2
                     foreach ($item in $csvContent) {
-                        $item.ModuleName | Should -Match '^avm/ptn/.*' -Because "ModuleName should start with 'avm/ptn/'. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                        $item.ModuleName | Should -Match '^avm\/ptn\/.*' -Because "ModuleName should start with 'avm/ptn/'. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
                         $lineNumber++
                     }
                 }
@@ -195,7 +195,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                     $lineNumber = 2
                     foreach ($item in $csvContent) {
                         $truncatedModuleName = $item.ModuleName -replace 'avm/ptn/', ''
-                        $truncatedModuleName -split '/' | Should -HaveCount 2 -Because "ModuleName should have exactly 2 segments in line #$lineNumber"
+                        $truncatedModuleName -split '\/' | Should -HaveCount 2 -Because "ModuleName should have exactly 2 segments in line #$lineNumber"
                         $lineNumber++
                     }
                 }
@@ -203,7 +203,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                 It "Should start with 'avm/utl/'" {
                     $lineNumber = 2
                     foreach ($item in $csvContent) {
-                        $item.ModuleName | Should -Match '^avm/utl/.*' -Because "ModuleName should start with 'avm/utl/'. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
+                        $item.ModuleName | Should -Match '^avm\/utl\/.*' -Because "ModuleName should start with 'avm/utl/'. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item.ModuleName)"""
                         $lineNumber++
                     }
                 }
@@ -211,8 +211,8 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
                 It 'Should have exactly 2 segments (after the prefix)' {
                     $lineNumber = 2
                     foreach ($item in $csvContent) {
-                        $truncatedModuleName = $item.ModuleName -replace 'avm/utl/', ''
-                        $truncatedModuleName -split '/' | Should -HaveCount 2 -Because "ModuleName should have exactly 2 segments in line #$lineNumber"
+                        $truncatedModuleName = $item.ModuleName -replace 'avm\/utl\/', ''
+                        $truncatedModuleName -split '\/' | Should -HaveCount 2 -Because "ModuleName should have exactly 2 segments in line #$lineNumber"
                         $lineNumber++
                     }
                 }
@@ -241,7 +241,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
 
                 foreach ($moduleName in $moduleNames) {
 
-                    $segments = $moduleName -split "/"
+                    $segments = $moduleName -split "\/"
 
                     $obj = [PSCustomObject]@{
                         prefix = $segments[0] + "/" + $segments[1] + "/"
@@ -424,7 +424,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
         It "Should have a valid URL in the 'RepoURL' column" {
             $lineNumber = 2
             foreach ($item in $csvContent) {
-                $item.RepoURL | Should -Match '^(http|https)://.*' -Because "RepoURL should be a valid URL. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item)"""
+                $item.RepoURL | Should -Match '^(http|https):\/\/.*' -Because "RepoURL should be a valid URL. In line #$lineNumber, this is invalid. The following values have been provided: ""$($item)"""
                 $lineNumber++
             }
         }
@@ -448,7 +448,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
             It "Should have a valid Public Bicep Regisrtry reference in the 'PublicRegistryReference' column" {
                 $lineNumber = 2
                 foreach ($item in $csvContent) {
-                    $item.PublicRegistryReference | Should -Match "^br/public:$($item.ModuleName):X.Y.Z$" -Because "PublicRegistryReference should point to the Public Bicep Registry. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.PublicRegistryReference)"""
+                    $item.PublicRegistryReference | Should -Match "^br\/public:$($item.ModuleName):X.Y.Z$" -Because "PublicRegistryReference should point to the Public Bicep Registry. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.PublicRegistryReference)"""
                     $lineNumber++
                 }
             }
@@ -456,7 +456,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
             It "Should have a valid Terraform registry reference in the 'PublicRegistryReference' column" {
                 $lineNumber = 2
                 foreach ($item in $csvContent) {
-                    $item.PublicRegistryReference | Should -Match "^https://registry.terraform.io/modules/Azure/$($item.ModuleName)/azurerm/latest$" -Because "PublicRegistryReference should be a valid URL. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.PublicRegistryReference)"""
+                    $item.PublicRegistryReference | Should -Match "^https:\/\/registry.terraform.io\/modules\/Azure\/$($item.ModuleName)\/azurerm\/latest$" -Because "PublicRegistryReference should be a valid URL. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.PublicRegistryReference)"""
                     $lineNumber++
                 }
             }
@@ -658,8 +658,8 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
             It "Should have a valid GitHub team name in the 'ModuleOwnersGHTeam' column" {
                 $lineNumber = 2
                 foreach ($item in $csvContent) {
-                    $teamName = $item.ModuleName -replace '-', '' -replace '/', '-'
-                    $item.ModuleOwnersGHTeam | Should -Match "^@Azure/$teamName-module-owners-bicep$" -Because "ModuleOwnersGHTeam should follow the naming convention. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.ModuleOwnersGHTeam)"""
+                    $teamName = $item.ModuleName -replace '-', '' -replace '\/', '-'
+                    $item.ModuleOwnersGHTeam | Should -Match "^@Azure\/$teamName-module-owners-bicep$" -Because "ModuleOwnersGHTeam should follow the naming convention. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.ModuleOwnersGHTeam)"""
                     $lineNumber++
                 }
             }
@@ -667,7 +667,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
             It "Should have a valid GitHub team name in the 'ModuleOwnersGHTeam' column" {
                 $lineNumber = 2
                 foreach ($item in $csvContent) {
-                    $item.ModuleOwnersGHTeam | Should -Match '^@Azure/avm-.*-module-owners-tf$' -Because "ModuleOwnersGHTeam should follow the naming convention. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.ModuleOwnersGHTeam)"""
+                    $item.ModuleOwnersGHTeam | Should -Match '^@Azure\/avm-.*-module-owners-tf$' -Because "ModuleOwnersGHTeam should follow the naming convention. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.ModuleOwnersGHTeam)"""
                     $lineNumber++
                 }
             }
@@ -692,8 +692,8 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
             It "Should have a valid GitHub team name in the 'ModuleContributorsGHTeam' column" {
                 $lineNumber = 2
                 foreach ($item in $csvContent) {
-                    $teamName = $item.ModuleName -replace '-', '' -replace '/', '-'
-                    $item.ModuleContributorsGHTeam | Should -Match "^@Azure/$teamName-module-contributors-bicep$" -Because "ModuleContributorsGHTeam should follow the naming convention. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.ModuleContributorsGHTeam)"""
+                    $teamName = $item.ModuleName -replace '-', '' -replace '\/', '-'
+                    $item.ModuleContributorsGHTeam | Should -Match "^@Azure\/$teamName-module-contributors-bicep$" -Because "ModuleContributorsGHTeam should follow the naming convention. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.ModuleContributorsGHTeam)"""
                     $lineNumber++
                 }
             }
@@ -701,7 +701,7 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
             It "Should have a valid GitHub team name in the 'ModuleContributorsGHTeam' column" {
                 $lineNumber = 2
                 foreach ($item in $csvContent) {
-                    $item.ModuleContributorsGHTeam | Should -Match '^@Azure/avm-.*-module-contributors-tf$' -Because "ModuleContributorsGHTeam should follow the naming convention. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.ModuleContributorsGHTeam)"""
+                    $item.ModuleContributorsGHTeam | Should -Match '^@Azure\/avm-.*-module-contributors-tf$' -Because "ModuleContributorsGHTeam should follow the naming convention. In line #$lineNumber, this is invalid. The following value have been provided: ""$($item.ModuleContributorsGHTeam)"""
                     $lineNumber++
                 }
             }
