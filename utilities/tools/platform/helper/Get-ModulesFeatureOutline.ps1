@@ -261,7 +261,7 @@ function Get-ModulesFeatureOutline {
                     if ($ColumnsToInclude -contains 'PIP') { $resultObject.PIP = $_.PIP }
                     if ($ColumnsToInclude -contains 'CMK') { $resultObject.CMK = $_.CMK }
                     if ($ColumnsToInclude -contains 'Identity') { $resultObject.Identity = $_.Identity }
-I
+
                     # Return result
                     [PSCustomObject] $resultObject
                 }
