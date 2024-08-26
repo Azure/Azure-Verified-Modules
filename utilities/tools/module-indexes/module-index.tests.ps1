@@ -220,22 +220,6 @@ Describe "Tests for the $(Split-Path $CsvFilePath -Leaf) file" {
 
             It "All items in the CSV should be alphabetically ordered, based on ModuleName" {
 
-                # Set-ItResult -Skipped
-
-                # $moduleNames = $csvContent.ModuleName
-                # $sortedModuleNames = $moduleNames | Sort-Object -Stable -Culture "en-US"
-                # for ($i = 0; $i -lt $moduleNames.Length; $i++) {
-                #     $moduleNames[$i] | Should -Be $sortedModuleNames[$i] -Because "All items in the CSV should be alphabetically ordered, based on ModuleName"
-                # }
-
-                # $moduleNames = $csvContent.ModuleName
-                # $normalizedModuleNames = $moduleNames -replace '[/\-]', ''
-                # $sortedModuleNames = $normalizedModuleNames | Sort-Object -Stable -Culture "en-US"
-
-                # for ($i = 0; $i -lt $moduleNames.Length; $i++) {
-                #     $normalizedModuleNames[$i] | Should -Be $sortedModuleNames[$i] -Because "All items in the CSV should be alphabetically ordered, based on normalized ModuleName"
-                # }
-
                 $normalizedModuleNames = @()
                 $moduleNames = @($csvContent.ModuleName -replace '-', '')
 
