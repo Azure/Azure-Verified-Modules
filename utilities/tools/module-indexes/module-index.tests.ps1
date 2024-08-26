@@ -16,7 +16,7 @@ BeforeAll {
     $rawFile = Get-Content -Path $CsvFilePath
     $csvHeaders = $csvContent[0].PSObject.Properties.Name
 
-    $issues = & gh issue list --limit 99999 --state all --json title,body | ConvertFrom-Json
+    $issues = & gh api -X GET "repos/{owner}/{repo}/issues?state=all&per_page=100" --paginate --jq '.[] | {title: .title, body: .body}' | ConvertFrom-Json -Depth 100
 
     $singularExceptions = @(
         'redis',
