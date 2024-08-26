@@ -131,6 +131,8 @@ function Get-ModulesFeatureOutline {
     if ($ColumnsToInclude -contains 'Diag') { $summaryData.supportsDiagnostics = $_.Diag }
     if ($ColumnsToInclude -contains 'PE') { $summaryData.supportsEndpoints = 0 }
     if ($ColumnsToInclude -contains 'PIP') { $summaryData.supportsPipDeployment = 0 }
+    if ($ColumnsToInclude -contains 'CMK') { $summaryData.supportsCMKDeployment = 0 }
+    if ($ColumnsToInclude -contains 'Identity') { $summaryData.supportsIdentityDeployment = 0 }
 
     foreach ($moduleTemplatePath in $moduleTemplatePaths) {
 
