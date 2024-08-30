@@ -31,16 +31,16 @@ param backupManagementServiceEnterpriseObectId string
 ```
 assuming that it would be provided with the correct value by the AVM CI. You consequently reference it in your test case as you would with any other Bicep parameter.
 
-Next, you create a new secret of the same name with a prefix `CUSTOM-` in a previously created Azure Key Vault of your test subscription (e.g., `CUSTOM-BackupManagementServiceEnterpriseObectId`). Its value would be the object id the Enterprise Application has in the tenant of your test subscription. 
+Next, you create a new secret of the same name with a prefix `CI-` in a previously created Azure Key Vault of your test subscription (e.g., `CI-BackupManagementServiceEnterpriseObectId`). Its value would be the object id the Enterprise Application has in the tenant of your test subscription. 
 
-Assuming that also the `KEY_VAULT_NAME` GitHub Repository variable is configured correctly, you can now run your test pipeline and observe how the CI automatically pulls the secret and passes it into your test cases, IF, they have a parameter with a matching name.
+Assuming that also the `CI_KEY_VAULT_NAME` GitHub Repository variable is configured correctly, you can now run your test pipeline and observe how the CI automatically pulls the secret and passes it into your test cases, IF, they have a parameter with a matching name.
 
 # Pre-Requisites
 
 To use this feature, there are really only three prerequisites:
 1. Create an Azure Key Vault in your test subscription
 1. Grant the principal you use for testing in the CI at least _`Key Vault Secrets User'_ permissions on that Key Vault to enable it to pull secrets from it
-1. Configure the name of that Key Vault as a 'Repository variable' `KEY_VAULT_NAME` in your Fork.
+1. Configure the name of that Key Vault as a 'Repository variable' `CI_KEY_VAULT_NAME` in your Fork.
 
 The above will enable the CI to identify your Key Vault, look for matching secrets in it, and pull their values as needed.
 
@@ -53,7 +53,7 @@ Building upon the prerequisites you only have to implement two actions per value
 
    For example:
    ```bicep
-   @description('Required. The secret needed for testing. This value is tenant-specific and its value must be configured in the secrets vault as \'CUSTOM-MySecret\'.')
+   @description('Required. The secret needed for testing. This value is tenant-specific and its value must be configured in the secrets vault as \'CI-MySecret\'.')
    @secure()
    param mySecret string
    ```
@@ -64,16 +64,16 @@ Building upon the prerequisites you only have to implement two actions per value
  
    {{< /hint >}}
 
-1. Configure a secret of the same name, but with a `CUSTOM-` prefix and corresponding value in the Azure Key Vault you set up as per the prerequisites.
+1. Configure a secret of the same name, but with a `CI-` prefix and corresponding value in the Azure Key Vault you set up as per the prerequisites.
 
    <img src="../../../../static/img/contribution/secrets/kvltSecret-exampleSecrets.png" alt="Example secrets in Key Vault" height="200">
 
 # How it works
 
 Assuming you completed both the [prerequisites](#pre-requisites) & [setup](#configuring-a-secret) steps and triggered your module's workflow, the CI will perform the following actions:
-1. When approaching the deployment validation steps, the workflow will lookup the `KEY_VAULT_NAME` repository variable
-1. If it has a value, it will subsequently pull all available secret references (not their values!) from that Key Vault, filtered down to only the secrets that match the `CUSTOM-` prefix
-1. It will then loop through these secret references and check if any match a parameter in the targeted `test.main.bicep` of the same name, but without the `CUSTOM-` prefix
+1. When approaching the deployment validation steps, the workflow will lookup the `CI_KEY_VAULT_NAME` repository variable
+1. If it has a value, it will subsequently pull all available secret references (not their values!) from that Key Vault, filtered down to only the secrets that match the `CI-` prefix
+1. It will then loop through these secret references and check if any match a parameter in the targeted `test.main.bicep` of the same name, but without the `CI-` prefix
 1. Only for a match, the workflow with then pull the secret from the Key Vault and pass its value as a `SecureString` as a parameter into the template deployment.
 
 When reviewing the log during or after a run, you can see each matching and pulled secret is/was added as part of the `AdditionalParameters` object as seen in the following:
