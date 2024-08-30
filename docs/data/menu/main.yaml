@@ -47,6 +47,9 @@ main:
                 ref: "specs-defs/specs/shared/interfaces"
           - name: "Bicep Specific"
             ref: "specs-defs/specs/bicep"
+            sub:
+              - name: "Interfaces"
+                ref: "specs-defs/specs/bicep/interfaces"
           - name: "Terraform Specific"
             ref: "specs-defs/specs/terraform"
   - name: "Help & Support"
