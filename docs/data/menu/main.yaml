@@ -117,7 +117,7 @@ main:
               - name: "Enable or disable workflows"
                 ref: "/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows"
               - name: "Custom test data"
-                ref: "/contributing/bicep/bicep-contribution-flow/contributor-secrets"
+                ref: "/contributing/bicep/bicep-contribution-flow/custom-ci-secrets"
       - name: "Terraform Modules"
         ref: "/contributing/terraform"
         sub:

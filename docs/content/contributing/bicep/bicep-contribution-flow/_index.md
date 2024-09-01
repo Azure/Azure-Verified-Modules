@@ -341,6 +341,12 @@ Dependency file (`dependencies.bicep`) guidelines:
 
 <br>
 
+  {{< hint type=tip >}}
+
+  📜 If your test case requires any value that you cannot / should not specify in the test file itself (e.g., tenant-specific object IDs or secrets), please refer to the [Custom CI Secrets](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/custom-ci-secrets.md) feature.
+
+  {{< /hint >}}
+
 ### Reusable assets
 
 There are a number of additional scripts and utilities available [here](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/e2e-template-assets) that may be of use to module owners/contributors. These contain both scripts and Bicep templates that you can re-use in your test files (e.g., to deploy standadized dependencies, or to generate keys using deployment scripts).
