@@ -53,7 +53,7 @@ Building upon the prerequisites you only have to implement two actions per value
 
    For example:
    ```bicep
-   @description('Required. The secret needed for testing. This value is tenant-specific and its value must be configured in the secrets vault as \'CI-MySecret\'.')
+   @description('Required. My parameter\'s description. This value is tenant-specific and must be stored in the CI Key Vault in a secret named \'CI-MySecret\'.')
    @secure()
    param mySecret string
    ```
