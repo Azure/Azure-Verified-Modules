@@ -343,7 +343,7 @@ Dependency file (`dependencies.bicep`) guidelines:
 
   {{< hint type=tip >}}
 
-  📜 If your test case requires any value that you cannot / should not specify in the test file itself (e.g., tenant-specific object IDs or secrets), please refer to the [Custom CI Secrets](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/custom-ci-secrets.md) feature.
+  📜 If your test case requires any value that you cannot / should not specify in the test file itself (e.g., tenant-specific object IDs or secrets), please refer to the [Custom CI secrets](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/custom-ci-secrets) feature.
 
   {{< /hint >}}
 
