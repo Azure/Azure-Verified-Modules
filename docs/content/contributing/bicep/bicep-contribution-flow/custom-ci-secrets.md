@@ -27,7 +27,8 @@ Let's assume you need a tenant-specific value like the object id of Azure's _Bac
 To do so, you create a new parameter in your test case's `main.test.bicep` file that you call, for example, 
 ```bicep
 @secure()
-param backupManagementServiceEnterpriseObectId string  
+param backupManagementServiceEnterpriseObjectId string  
+
 ```
 assuming that it would be provided with the correct value by the AVM CI. You consequently reference it in your test case as you would with any other Bicep parameter.
 
