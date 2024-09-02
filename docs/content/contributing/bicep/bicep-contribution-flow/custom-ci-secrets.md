@@ -32,7 +32,8 @@ param backupManagementServiceEnterpriseObjectId string
 ```
 assuming that it would be provided with the correct value by the AVM CI. You consequently reference it in your test case as you would with any other Bicep parameter.
 
-Next, you create a new secret of the same name with a prefix `CI-` in a previously created Azure Key Vault of your test subscription (e.g., `CI-BackupManagementServiceEnterpriseObectId`). Its value would be the object id the Enterprise Application has in the tenant of your test subscription. 
+Next, you create a new secret of the same name with a prefix `CI-` in a previously created Azure Key Vault of your test subscription (e.g., `CI-backupManagementServiceEnterpriseObjectId`). Its value would be the object id the Enterprise Application has in the tenant of your test subscription. 
+
 
 Assuming that also the `CI_KEY_VAULT_NAME` GitHub Repository variable is configured correctly, you can now run your test pipeline and observe how the CI automatically pulls the secret and passes it into your test cases, IF, they have a parameter with a matching name.
 
