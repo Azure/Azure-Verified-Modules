@@ -24,15 +24,15 @@ To mitigate this challenge, the AVM CI provides you with the feature to store an
 
 Let's assume you need a tenant-specific value like the object id of Azure's _Backup Management Service_ Enterprise Application for one of your tests. As you want to avoid hardcoding and consequently changing its value each time you want to contribute from your Fork to the main AVM repository, you want to instead have it be automatically pulled into your test cases.
 
-To do so, you create a new parameter in your test case's `main.test.bicep` file that you call, for example, 
+To do so, you create a new parameter in your test case's `main.test.bicep` file that you call, for example,
 ```bicep
 @secure()
-param backupManagementServiceEnterpriseApplicationObjectId string  
+param backupManagementServiceEnterpriseApplicationObjectId string
 
 ```
 assuming that it would be provided with the correct value by the AVM CI. You consequently reference it in your test case as you would with any other Bicep parameter.
 
-Next, you create a new secret of the same name with a prefix `CI-` in a previously created Azure Key Vault of your test subscription (e.g., `CI-backupManagementServiceEnterpriseApplicationObjectId`). Its value would be the object id the Enterprise Application has in the tenant of your test subscription. 
+Next, you create a new secret of the same name with a prefix `CI-` in a previously created Azure Key Vault of your test subscription (e.g., `CI-backupManagementServiceEnterpriseApplicationObjectId`). Its value would be the object id the Enterprise Application has in the tenant of your test subscription.
 
 
 Assuming that also the `CI_KEY_VAULT_NAME` GitHub Repository variable is configured correctly, you can now run your test pipeline and observe how the CI automatically pulls the secret and passes it into your test cases, IF, they have a parameter with a matching name.
@@ -51,7 +51,7 @@ The above will enable the CI to identify your Key Vault, look for matching secre
 # Configuring a secret
 
 Building upon the prerequisites you only have to implement two actions per value to dynamically populate them during deployment validation:
-1. Create a `@secure()` parameter in your test file (`main.test.bicep`) that you want to populate and use it as you see fit. 
+1. Create a `@secure()` parameter in your test file (`main.test.bicep`) that you want to populate and use it as you see fit.
 
    For example:
    ```bicep
@@ -61,9 +61,9 @@ Building upon the prerequisites you only have to implement two actions per value
    ```
 
    {{< hint type=important >}}
- 
+
    It is mandatory to declare the parameter as `secure()` as Key Vault secrets will be pulled and passed into the deployment as `SecureString` values.
- 
+
    {{< /hint >}}
 
 1. Configure a secret of the same name, but with a `CI-` prefix and corresponding value in the Azure Key Vault you set up as per the prerequisites.
@@ -84,11 +84,11 @@ When reviewing the log during or after a run, you can see each matching and pull
 
 # Background: Why not simply use GitHub secrets?
 
-When reviewing the above, you may wonder why an Azure Key Vault was used as opposed to simple GitHub secrets. 
+When reviewing the above, you may wonder why an Azure Key Vault was used as opposed to simple GitHub secrets.
 
-While the simplicity of GitHub secrets would be preferred, it unfortunately turned out that they would not provide us with the level of flexibility we need for our purposes. 
+While the simplicity of GitHub secrets would be preferred, it unfortunately turned out that they would not provide us with the level of flexibility we need for our purposes.
 
-Most notably, GitHub secrets are not automatically available in referenced GitHub actions. Instead, you have to declare every secret you want to use explicitly in the workflow's template, requiring the contributor to update both the module's workflow template as well as test files each time a new value would be added. 
+Most notably, GitHub secrets are not automatically available in referenced GitHub actions. Instead, you have to declare every secret you want to use explicitly in the workflow's template, requiring the contributor to update both the module's workflow template as well as test files each time a new value would be added.
 This characteristic is not only unfortunate for our use case, but is also a lot more likely to lead to mistakes.
 
 Further, with the use of OIDC via Managed Identities, the hurdle to bootstrap & populate an Azure Key Vault is significantly lowered.
