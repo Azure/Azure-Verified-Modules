@@ -46,29 +46,29 @@ To use this feature, there are really only three prerequisites:
 
 The above will enable the CI to identify your Key Vault, look for matching secrets in it, and pull their values as needed.
 
-<img src="../../../../static/img/contribution/secrets/kvltSecret-ghSetting.png" alt="Required GitHub variable" height="200">
+<img src="../../../../img/contribution/secrets/kvltSecret-ghSetting.png" alt="Required GitHub variable" height="200">
 
 # Configuring a secret
 
 Building upon the prerequisites you only have to implement two actions per value to dynamically populate them during deployment validation:
 1. Create a `@secure()` parameter in your test file (`main.test.bicep`) that you want to populate and use it as you see fit.
 
-   For example:
-   ```bicep
-   @description('Required. My parameter\'s description. This value is tenant-specific and must be stored in the CI Key Vault in a secret named \'CI-MySecret\'.')
-   @secure()
-   param mySecret string
-   ```
+  For example:
+  ```bicep
+  @description('Required. My parameter\'s description. This value is tenant-specific and must be stored in the CI Key Vault in a secret named \'CI-MySecret\'.')
+  @secure()
+  param mySecret string
+  ```
 
-   {{< hint type=important >}}
+  {{< hint type=important >}}
 
-   It is mandatory to declare the parameter as `secure()` as Key Vault secrets will be pulled and passed into the deployment as `SecureString` values.
+  It is mandatory to declare the parameter as `secure()` as Key Vault secrets will be pulled and passed into the deployment as `SecureString` values.
 
-   {{< /hint >}}
+  {{< /hint >}}
 
 1. Configure a secret of the same name, but with a `CI-` prefix and corresponding value in the Azure Key Vault you set up as per the prerequisites.
 
-   <img src="../../../../static/img/contribution/secrets/kvltSecret-exampleSecrets.png" alt="Example secrets in Key Vault" height="200">
+  <img src="../../../../img/contribution/secrets/kvltSecret-exampleSecrets.png" alt="Example secrets in Key Vault" height="200">
 
 # How it works
 
@@ -80,7 +80,7 @@ Assuming you completed both the [prerequisites](#pre-requisites) & [setup](#conf
 
 When reviewing the log during or after a run, you can see each matching and pulled secret is/was added as part of the `AdditionalParameters` object as seen in the following:
 
-<img src="../../../../static/img/contribution/secrets/kvltSecret-pipelineLog.png" alt="Example pipeline log" height="200">
+<img src="../../../../img/contribution/secrets/kvltSecret-pipelineLog.png" alt="Example pipeline log" height="200">
 
 # Background: Why not simply use GitHub secrets?
 
