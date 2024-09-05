@@ -1,9 +1,9 @@
 <!-- markdownlint-disable -->
 Dear module owner,
 
-As per the module ownership requirements and responsibilities at the time of assignment, the AVM Team is opening this issue, requesting you to validate your module against the below AVM specifications and confirm its compliance.
+As per the module ownership requirements and responsibilities at the time of [assignment](REPLACE WITH THE LINK TO THE AVM MODULE PROPOSAL), the AVM Team is opening this issue, requesting you to validate your module against the below AVM specifications and confirm its compliance.
 
-Please don't close this issue until the entire initial module review process is fully concluded! This review is a prerequisite of your module's publication as v0.1.0 in the Terraform Registry. The AVM team is happy to assist with any questions you might have.
+Please don't close this issue and merge your AVM-Review-PR until advised to do so. This review is a prerequisite for publishing your module's v0.1.0 in the Terraform Registry. The AVM team is happy to assist with any questions you might have.
 
 **Requested Actions**
 1. Complete the below task list by ticking off the tasks.
@@ -13,9 +13,10 @@ Please use the comments columns to provide additional details especially if the 
 
 ```[tasklist]
 ### Tasks
-- [ ] Address comments on PR if any
-- [ ] Ensure that all checks on PR are passing
-- [ ] Tick this to acknowledge specs with comment "Module Owner to action this spec post-publish as appropriate".
+- [ ] Address comments on AVM-Review-PR if any
+- [ ] Ensure that all checks on AVM-Review-PR are passing
+- [ ] Tick this to acknowledge specs with comment "Module Owner to action this spec post-publish as appropriate" in the table below.
+- [ ] Ensure that the latest 'chore: repository governance' PR is merged into the main branch and the branch/fork of your AVM-Review-PR is also updated with it.
 ```
 
 | ID | Spec                                                                                                                                                                                                                                                                                    | Compliant | Comments                                                        |

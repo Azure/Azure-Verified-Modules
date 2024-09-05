@@ -1,13 +1,14 @@
-type lockType = {
-  @description('Optional. Specify the name of lock.')
-  name: string?
 
-  @description('Optional. Specify the type of lock.')
-  kind: ('CanNotDelete' | 'ReadOnly' | 'None')?
-}?
+// ============== //
+//   Parameters   //
+// ============== //
 
 @description('Optional. The lock settings of the service.')
 param lock lockType
+
+// ============= //
+//   Resources   //
+// ============= //
 
 resource >singularMainResourceType<_lock 'Microsoft.Authorization/locks@2020-05-01' = if (!empty(lock ?? {}) && lock.?kind != 'None') {
   name: lock.?name ?? 'lock-${name}'
@@ -17,3 +18,15 @@ resource >singularMainResourceType<_lock 'Microsoft.Authorization/locks@2020-05-
   }
   scope: >singularMainResourceType<
 }
+
+// =============== //
+//   Definitions   //
+// =============== //
+
+type lockType = {
+  @description('Optional. Specify the name of lock.')
+  name: string?
+
+  @description('Optional. Specify the type of lock.')
+  kind: ('CanNotDelete' | 'ReadOnly' | 'None')?
+}?
