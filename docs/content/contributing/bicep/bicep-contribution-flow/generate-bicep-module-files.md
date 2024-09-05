@@ -62,7 +62,7 @@ While readme files are **always** generated from scratch, you can add custom con
 - The description of parameters & outputs
 - A section with the header `## Notes`
 
-In case the utility finds a section with the `## Notes` header, it will store that content temporarily when re-generating the readme file and then add the section towards the end of the readme back in (i.e., append it). This section **may** contain images, which must be stored in a sub-folder `/src` in the module's root. 
+If the utility finds a section with the heading `## Notes`, it temporarily saves this content when it regenerates the readme file and then re-inserts (i.e. appends) the section towards the end of the readme file. This section **may** contain images, which must be stored in a subfolder `/src` in the root directory of the module. 
 
 Both for the text & images, please make sure to only add what provides tangible value as the content must be manually maintained and should not run stale. Further, for images, please make sure to only store them with an appropriate resolution & size to keep their impact on the repository's size manageable.
 
