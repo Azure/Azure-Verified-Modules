@@ -54,16 +54,3 @@ For modules that require the generation of files on multiple-levels (for example
 This parameter will ensure that the script not only generates the files for the provided module folder path, but also all its nested module folder paths.
 
 {{< /hint >}}
-
-{{< hint type=tip >}}
-
-While readme files are **always** generated from scratch, you can add custom content is specific places that the script will preserve:
-- The module's description in the `main.bicep` file's metadata
-- The description of parameters & outputs
-- A section with the header `## Notes`
-
-If the utility finds a section with the heading `## Notes`, it temporarily saves this content when it regenerates the readme file and then re-inserts (i.e. appends) the section towards the end of the readme file. This section **may** contain images, which must be stored in a subfolder `/src` in the root directory of the module. 
-
-Both for the text & images, please make sure to only add what provides tangible value as the content must be manually maintained and should not run stale. Further, for images, please make sure to only store them with an appropriate resolution & size to keep their impact on the repository's size manageable.
-
-{{< /hint >}}
