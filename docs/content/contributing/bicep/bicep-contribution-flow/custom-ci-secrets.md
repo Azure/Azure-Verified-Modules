@@ -19,7 +19,7 @@ To make this matter not too complicated, we would like to ask you to emphasize t
 
 ```txt
 - [ ] @avm-core-team-technical-bicep TODO: Add custom secret 'mySecret' to AVM CI
-``` 
+```
 
 {{< /hint >}}
 
