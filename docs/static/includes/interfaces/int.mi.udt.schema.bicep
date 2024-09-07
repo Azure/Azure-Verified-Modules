@@ -33,7 +33,7 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
 // =========== //
 
 @description('The principal ID of the system assigned identity.')
-output systemAssignedPrincipalId string = >singularMainResourceType<.?identity.?principalId ?? ''
+output systemAssignedMIPrincipalId string = >singularMainResourceType<.?identity.?principalId ?? ''
 
 // =============== //
 //   Definitions   //
