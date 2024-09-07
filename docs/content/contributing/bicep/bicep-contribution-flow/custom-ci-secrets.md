@@ -43,7 +43,7 @@ Let's assume you need a tenant-specific value like the object id of Azure's _Bac
 To do so, you create a new parameter in your test case's `main.test.bicep` file that you call, for example,
 ```bicep
 @secure()
-param backupManagementServiceEnterpriseApplicationObjectId string
+param backupManagementServiceEnterpriseApplicationObjectId string = ''
 
 ```
 assuming that it would be provided with the correct value by the AVM CI. You consequently reference it in your test case as you would with any other Bicep parameter.
@@ -73,13 +73,14 @@ Building upon the prerequisites you only have to implement two actions per value
   ```bicep
   @description('Required. My parameter\'s description. This value is tenant-specific and must be stored in the CI Key Vault in a secret named \'CI-MySecret\'.')
   @secure()
-  param mySecret string
+  param mySecret string = ''
   ```
 
   {{< hint type=important >}}
 
   It is mandatory to declare the parameter as `secure()` as Key Vault secrets will be pulled and passed into the deployment as `SecureString` values.
 
+  Also, it **must** have an empty default to be compatible with the PSRule scans that require a value for all parameters.
   {{< /hint >}}
 
 1. Configure a secret of the same name, but with a `CI-` prefix and corresponding value in the Azure Key Vault you set up as per the prerequisites.
