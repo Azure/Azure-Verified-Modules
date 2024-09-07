@@ -31,9 +31,9 @@ var formattedRoleAssignments = [
 //   Resources   //
 // ============= //
 
-resource >singularMainResourceType<__roleAssignments 'Microsoft.Authorization/roleAssignments@2022-04-01' = [
+resource >singularMainResourceType<_roleAssignments 'Microsoft.Authorization/roleAssignments@2022-04-01' = [
   for (roleAssignment, index) in (formattedRoleAssignments ?? []): {
-    name: roleAssignment.?name ?? guid(>singularMainResourceType<_.id, roleAssignment.principalId, roleAssignment.roleDefinitionId)
+    name: roleAssignment.?name ?? guid(>singularMainResourceType<.id, roleAssignment.principalId, roleAssignment.roleDefinitionId)
     properties: {
       roleDefinitionId: roleAssignment.roleDefinitionId
       principalId: roleAssignment.principalId
