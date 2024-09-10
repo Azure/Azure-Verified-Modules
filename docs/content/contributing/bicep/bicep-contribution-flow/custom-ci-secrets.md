@@ -25,10 +25,10 @@ To make this matter not too complicated, we would like to ask you to emphasize t
 
 ---
 
-### _Navigation_
+## _Navigation_
 
 - [Example use case](#example-use-case)
-- Setup
+- [Setup](#setup)
   - [Pre-Requisites](#pre-requisites)
   - [Configuring a secret](#configuring-a-secret)
 - [How it works](#how-it-works)
@@ -36,7 +36,7 @@ To make this matter not too complicated, we would like to ask you to emphasize t
 
 ---
 
-# Example use case
+### Example use case
 
 Let's assume you need a tenant-specific value like the object id of Azure's _Backup Management Service_ Enterprise Application for one of your tests. As you want to avoid hardcoding and consequently changing its value each time you want to contribute from your Fork to the main AVM repository, you want to instead have it be automatically pulled into your test cases.
 
@@ -53,7 +53,9 @@ Next, you create a new secret of the same name with a prefix `CI-` in a previous
 
 Assuming that also the `CI_KEY_VAULT_NAME` GitHub Repository variable is configured correctly, you can now run your test pipeline and observe how the CI automatically pulls the secret and passes it into your test cases, IF, they have a parameter with a matching name.
 
-# Pre-Requisites
+### Setup
+
+#### Pre-Requisites
 
 To use this feature, there are really only three prerequisites:
 1. Create an Azure Key Vault in your test subscription
@@ -64,7 +66,7 @@ The above will enable the CI to identify your Key Vault, look for matching secre
 
 <img src="../../../../img/contribution/secrets/kvltSecret-ghSetting.png" alt="Required GitHub variable" height="200">
 
-# Configuring a secret
+#### Configuring a secret
 
 Building upon the prerequisites you only have to implement two actions per value to dynamically populate them during deployment validation:
 1. Create a `@secure()` parameter in your test file (`main.test.bicep`) that you want to populate and use it as you see fit.
@@ -87,7 +89,7 @@ Building upon the prerequisites you only have to implement two actions per value
 
   <img src="../../../../img/contribution/secrets/kvltSecret-exampleSecrets.png" alt="Example secrets in Key Vault" height="250">
 
-# How it works
+### How it works
 
 Assuming you completed both the [prerequisites](#pre-requisites) & [setup](#configuring-a-secret) steps and triggered your module's workflow, the CI will perform the following actions:
 1. When approaching the deployment validation steps, the workflow will lookup the `CI_KEY_VAULT_NAME` repository variable
@@ -99,7 +101,7 @@ When reviewing the log during or after a run, you can see each matching and pull
 
 <img src="../../../../img/contribution/secrets/kvltSecret-pipelineLog.png" alt="Example pipeline log" height="400">
 
-# Background: Why not simply use GitHub secrets?
+### Background: Why not simply use GitHub secrets?
 
 When reviewing the above, you may wonder why an Azure Key Vault was used as opposed to simple GitHub secrets.
 
