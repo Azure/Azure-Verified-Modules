@@ -52,7 +52,7 @@
 51,res/insights/activity-log-alert,✅,,✅,,,,
 52,res/insights/component,✅,,✅,✅,,,
 53,res/insights/data-collection-endpoint,✅,✅,✅,,,,
-54,res/insights/data-collection-rule,✅,✅,✅,,,,
+54,res/insights/data-collection-rule,✅,✅,✅,,,,✅
 55,res/insights/diagnostic-setting,,,,,,,
 56,res/insights/metric-alert,✅,,✅,,,,
 57,res/insights/private-link-scope,✅,✅,✅,,✅,,
@@ -134,4 +134,4 @@
 133,res/web/serverfarm,✅,✅,✅,✅,,,
 134,res/web/site,✅,✅,✅,✅,✅,,✅
 135,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,121,119,128,56,33,19,52
+Sum,,121,119,128,56,33,19,53
