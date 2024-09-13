@@ -251,6 +251,39 @@ With the help of the [avm](https://github.com/Azure/terraform-azurerm-avm-templa
 
 Once you are satisfied with your contribution and validated it, submit a pull request to the upstream repository and work with the module owner to get the module reviewed by the AVM Core team, by following the initial module review process for Terraform Modules, described [here](/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/owner-contribution-flow/#6-review-the-module). This is a prerequisite for publishing the module. Once the review process is complete and your PR is approved, merge it into the upstream repository and the Module owner will [publish](/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/owner-contribution-flow/#7-publish-the-module) the module to the HashiCorp Terraform Registry.
 
+#### 5.1 Create the Pull Request [Contributor]
+
+These steps are performed by the contributor:
+
+1. Navigate to the upstream repository and click on the `Pull requests` tab.
+1. Click on the `New pull request` button.
+1. Ensure the `base repository` is set to the upstream AVM repo.
+1. Ensure the `base` branch is set to `main`.
+1. Ensure your `head repository` and `compare` branch are set to your fork and the branch you are working on.
+1. Click on the `Create pull request` button.
+
+#### 5.2 Review the Pull Request [Owner]
+
+1. IMPORTANT: The module owner must first check for any malicious code or changes to workflow files. If they are found, the owner should close the PR and report the contributor.
+1. Review the changes made by the contributor and determine whether end to end tests need to be run.
+1. If end to end tests do not need to be run (e.g. doc changes, small changes, etc) then so long as the static analysis passes, the PR can be merged to main.
+1. If end to end tests do need to be run, then follow the steps in 5.3.
+
+#### 5.3 Release Branch and Run End to End Tests [Owner]
+
+1. IMPORTANT: The module owner must first check for any malicious code or changes to workflow files. If they are found, the owner should close the PR and report the contributor.
+1. Create a release branch from `main`. Suggested naminmg convention is `release/<description-of-change>`.
+1. Open the PR created by the contributor and click `Edit` at the top right of the PR.
+1. Change the `base` branch to the release branch you just created.
+1. Wait for the PR checks to run, validate the code looks good and then merge the PR into the release branch.
+1. Create a new PR from the release branch to the `main` branch of the AVM module.
+1. The end to end tests should trigger and you can approve the run.
+1. Once the end to end tests have passed, merge the PR into the `main` branch.
+1. If the end to end tests fail, investigate the failure. You have two options:
+    1. Work with the contributor to resolve the issue and ask them to submit a new PR from their fork branch to the release branch.
+        1. Re-run the tests and merge to `main`. Repeat the loop as required.
+    1. If the issue is a simple fix, resolve it directly in the release branch, re-run the tests and merge to `main`.
+
 <br>
 
 ---
