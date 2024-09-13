@@ -8,6 +8,9 @@ pygmentsCodeFences = true
 disablePathToLower = true
 enableGitInfo = true
 
+# Comment/uncomment the below line to allow the site to build successfully depending on the state of the remote data sources
+ignoreLogs = ['error-remote-getjson']
+
 # Required if you want to render robots.txt template
 enableRobotsTXT = true
 
