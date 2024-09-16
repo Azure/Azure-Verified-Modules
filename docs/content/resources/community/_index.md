@@ -25,7 +25,7 @@ Let's make each community call a vibrant celebration of connection, collaboratio
 
 {{< hint type=note >}}
 
-This occurrence is optimized for AMERICA/EMEA time zones.
+This occurrence is optimized for AMERICAS/EMEA time zones.
 
 {{< /hint >}}
 
