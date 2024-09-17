@@ -19,30 +19,12 @@
 
 {{ $ModuleStatusColumnId := 0 }}
 
-{{ define "countModules" }}
-  {{ $params := . }}
-  {{ $ModuleStatusColumnId := index $params 0 }}
-  {{ $rows := index $params 1 }}
-  {{ $moduleStatusToCount := index $params 2 }}
-  {{ $moduleCount := 0 }}
-  {{ if eq $moduleStatusToCount "All" }}
-    {{ $moduleCount = sub (len $rows) 1 }}
-  {{ end }}
-  {{ range $row, $rows }}
-    {{ if eq (index $row $ModuleStatusColumnId) $moduleStatusToCount }}
-      {{ $moduleCount = add $moduleCount 1 }}
-    {{ end }}
-  {{ end }}
-  {{ printf "%d" $moduleCount }}
-{{ end }}
-
 <table>
 <thead>
   <tr>
     {{ if $showLanguage }}<th>Language</th>{{ end }}
     {{ if $showClassification }}<th>Classification</th>{{ end }}
-    <th align="right">{{ emojify ("Available :green_circle:") }}</th>
-    <th align="right">{{ emojify ("Orphaned :eyes:") }}</th>
+    <th align="right">{{ emojify ("Published :green_circle: & :eyes:") }}</th>
     <th align="right">{{ emojify ("Proposed :new:") }}</th>
     <th align="right">SUM 📇</th>
   </tr>
@@ -53,10 +35,9 @@
 <tr>
   {{ if $showLanguage }}<td rowspan="3"><a href="/Azure-Verified-Modules/indexes/bicep/" style="color: inherit; text-decoration: none; background-color: transparent;">Bicep</a></td>{{ end }}
   {{ if $showClassification }}<td><a href="/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/" style="color: inherit; text-decoration: none; background-color: transparent;">Resource</a></td>{{ end }}
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/#published-modules-----" style="color: inherit; text-decoration: none; background-color: transparent;">{{ template "countModules" (slice $ModuleStatusColumnId $bicepResRows "Available :green_circle:") }}</a></td>
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/#published-modules-----" style="color: inherit; text-decoration: none; background-color: transparent;">{{ template "countModules" (slice $ModuleStatusColumnId $bicepResRows "Orphaned :eyes:") }}</a></td>
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/#proposed-modules---" style="color: inherit; text-decoration: none; background-color: transparent;">{{ template "countModules" (slice $ModuleStatusColumnId $bicepResRows "Proposed :new:") }}</a></td>
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/#all-modules---" style="color: inherit; text-decoration: none; background-color: transparent; font-weight: bold">{{ template "countModules" (slice $ModuleStatusColumnId $bicepResRows "All") }}</a></td>
+  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/#published-modules-----" style="color: inherit; text-decoration: none; background-color: transparent;">{{ add (partial "countModules" (slice $ModuleStatusColumnId $bicepResRows "Available :green_circle:")) (partial "countModules" (slice $ModuleStatusColumnId $bicepResRows "Orphaned :eyes:")) }}</a></td>
+  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/#proposed-modules---" style="color: inherit; text-decoration: none; background-color: transparent;">{{ partial "countModules" (slice $ModuleStatusColumnId $bicepResRows "Proposed :new:") }}</a></td>
+  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/#all-modules---" style="color: inherit; text-decoration: none; background-color: transparent; font-weight: bold">{{ partial "countModules" (slice $ModuleStatusColumnId $bicepResRows "All") }}</a></td>
 </tr>
 {{ end }}
 {{ if in (slice "Pattern" "All") $moduleType }}
@@ -64,10 +45,9 @@
 <tr>
   {{ if and (eq $moduleType "Pattern") $showLanguage }}<td><a href="/Azure-Verified-Modules/indexes/bicep/" style="color: inherit; text-decoration: none; background-color: transparent;">Bicep</a></td>{{ end }}
   {{ if $showClassification }}<td><a href="/Azure-Verified-Modules/indexes/bicep/bicep-pattern-modules/" style="color: inherit; text-decoration: none; background-color: transparent;">Pattern</a></td>{{ end }}
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-pattern-modules/#published-modules-----" style="color: inherit; text-decoration: none; background-color: transparent;">{{ template "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "Available :green_circle:") }}</a></td>
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-pattern-modules/#published-modules-----" style="color: inherit; text-decoration: none; background-color: transparent;">{{ template "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "Orphaned :eyes:") }}</a></td>
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-pattern-modules/#proposed-modules---" style="color: inherit; text-decoration: none; background-color: transparent;">{{ template "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "Proposed :new:") }}</a></td>
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-pattern-modules/#all-modules---" style="color: inherit; text-decoration: none; background-color: transparent; font-weight: bold">{{ template "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "All") }}</a></td>
+  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-pattern-modules/#published-modules-----" style="color: inherit; text-decoration: none; background-color: transparent;">{{ add (partial "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "Available :green_circle:")) (partial "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "Orphaned :eyes:")) }}</a></td>
+  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-pattern-modules/#proposed-modules---" style="color: inherit; text-decoration: none; background-color: transparent;">{{ partial "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "Proposed :new:") }}</a></td>
+  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-pattern-modules/#all-modules---" style="color: inherit; text-decoration: none; background-color: transparent; font-weight: bold">{{ partial "countModules" (slice $ModuleStatusColumnId $bicepPtnRows "All") }}</a></td>
 </tr>
 {{ end }}
 {{ if in (slice "Utility" "All") $moduleType }}
@@ -75,10 +55,9 @@
 <tr>
   {{ if and (eq $moduleType "Utility") $showLanguage }}<td><a href="/Azure-Verified-Modules/indexes/bicep/" style="color: inherit; text-decoration: none; background-color: transparent;">Bicep</a></td>{{ end }}
   {{ if $showClassification }}<td><a href="/Azure-Verified-Modules/indexes/bicep/bicep-utility-modules/" style="color: inherit; text-decoration: none; background-color: transparent;">Utility</a></td>{{ end }}
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-utility-modules/#published-modules-----" style="color: inherit; text-decoration: none; background-color: transparent;">{{ template "countModules" (slice $ModuleStatusColumnId $bicepUtlRows "Available :green_circle:") }}</a></td>
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-utility-modules/#published-modules-----" style="color: inherit; text-decoration: none; background-color: transparent;">{{ template "countModules" (slice $ModuleStatusColumnId $bicepUtlRows "Orphaned :eyes:") }}</a></td>
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-utility-modules/#proposed-modules---" style="color: inherit; text-decoration: none; background-color: transparent;">{{ template "countModules" (slice $ModuleStatusColumnId $bicepUtlRows "Proposed :new:") }}</a></td>
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-utility-modules/#all-modules---" style="color: inherit; text-decoration: none; background-color: transparent; font-weight: bold">{{ template "countModules" (slice $ModuleStatusColumnId $bicepUtlRows "All") }}</a></td>
+  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-utility-modules/#published-modules-----" style="color: inherit; text-decoration: none; background-color: transparent;">{{ add (partial "countModules" (slice $ModuleStatusColumnId $bicepUtlRows "Available :green_circle:")) (partial "countModules" (slice $ModuleStatusColumnId $bicepUtlRows "Orphaned :eyes:")) }}</a></td>
+  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-utility-modules/#proposed-modules---" style="color: inherit; text-decoration: none; background-color: transparent;">{{ partial "countModules" (slice $ModuleStatusColumnId $bicepUtlRows "Proposed :new:") }}</a></td>
+  <td align="right"><a href="/Azure-Verified-Modules/indexes/bicep/bicep-utility-modules/#all-modules---" style="color: inherit; text-decoration: none; background-color: transparent; font-weight: bold">{{ partial "countModules" (slice $ModuleStatusColumnId $bicepUtlRows "All") }}</a></td>
 </tr>
 {{ end }}
 {{ end }}
@@ -88,10 +67,9 @@
 <tr>
   {{ if $showLanguage }}<td rowspan="3"><a href="/Azure-Verified-Modules/indexes/terraform/" style="color: inherit; text-decoration: none; background-color: transparent;">Terraform</a></td>{{ end }}
   {{ if $showClassification }}<td><a href="/Azure-Verified-Modules/indexes/terraform/tf-resource-modules/" style="color: inherit; text-decoration: none; background-color: transparent;">Resource</a></td>{{ end }}
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-resource-modules/#published-modules-----" style="color: inherit; text-decoration: none; background-color: transparent;">{{ template "countModules" (slice $ModuleStatusColumnId $tfResRows "Available :green_circle:") }}</a></td>
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-resource-modules/#published-modules-----" style="color: inherit; text-decoration: none; background-color: transparent;">{{ template "countModules" (slice $ModuleStatusColumnId $tfResRows "Orphaned :eyes:") }}</a></td>
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-resource-modules/#proposed-modules---" style="color: inherit; text-decoration: none; background-color: transparent;">{{ template "countModules" (slice $ModuleStatusColumnId $tfResRows "Proposed :new:") }}</a></td>
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-resource-modules/#all-modules---" style="color: inherit; text-decoration: none; background-color: transparent; font-weight: bold">{{ template "countModules" (slice $ModuleStatusColumnId $tfResRows "All") }}</a></td>
+  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-resource-modules/#published-modules-----" style="color: inherit; text-decoration: none; background-color: transparent;">{{ add (partial "countModules" (slice $ModuleStatusColumnId $tfResRows "Available :green_circle:")) (partial "countModules" (slice $ModuleStatusColumnId $tfResRows "Orphaned :eyes:")) }}</a></td>
+  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-resource-modules/#proposed-modules---" style="color: inherit; text-decoration: none; background-color: transparent;">{{ partial "countModules" (slice $ModuleStatusColumnId $tfResRows "Proposed :new:") }}</a></td>
+  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-resource-modules/#all-modules---" style="color: inherit; text-decoration: none; background-color: transparent; font-weight: bold">{{ partial "countModules" (slice $ModuleStatusColumnId $tfResRows "All") }}</a></td>
 </tr>
 {{ end }}
 {{ if in (slice "Pattern" "All") $moduleType }}
@@ -99,10 +77,9 @@
 <tr>
   {{ if and (eq $moduleType "Pattern") $showLanguage }}<td><a href="/Azure-Verified-Modules/indexes/terraform/" style="color: inherit; text-decoration: none; background-color: transparent;">Terraform</a></td>{{ end }}
   {{ if $showClassification }}<td><a href="/Azure-Verified-Modules/indexes/terraform/tf-pattern-modules/" style="color: inherit; text-decoration: none; background-color: transparent;">Pattern</a></td>{{ end }}
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-pattern-modules/#published-modules-----" style="color: inherit; text-decoration: none; background-color: transparent;">{{ template "countModules" (slice $ModuleStatusColumnId $tfPtnRows "Available :green_circle:") }}</a></td>
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-pattern-modules/#published-modules-----" style="color: inherit; text-decoration: none; background-color: transparent;">{{ template "countModules" (slice $ModuleStatusColumnId $tfPtnRows "Orphaned :eyes:") }}</a></td>
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-pattern-modules/#proposed-modules---" style="color: inherit; text-decoration: none; background-color: transparent;">{{ template "countModules" (slice $ModuleStatusColumnId $tfPtnRows "Proposed :new:") }}</a></td>
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-pattern-modules/#all-modules---" style="color: inherit; text-decoration: none; background-color: transparent; font-weight: bold">{{ template "countModules" (slice $ModuleStatusColumnId $tfPtnRows "All") }}</a></td>
+  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-pattern-modules/#published-modules-----" style="color: inherit; text-decoration: none; background-color: transparent;">{{ add (partial "countModules" (slice $ModuleStatusColumnId $tfPtnRows "Available :green_circle:")) (partial "countModules" (slice $ModuleStatusColumnId $tfPtnRows "Orphaned :eyes:")) }}</a></td>
+  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-pattern-modules/#proposed-modules---" style="color: inherit; text-decoration: none; background-color: transparent;">{{ partial "countModules" (slice $ModuleStatusColumnId $tfPtnRows "Proposed :new:") }}</a></td>
+  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-pattern-modules/#all-modules---" style="color: inherit; text-decoration: none; background-color: transparent; font-weight: bold">{{ partial "countModules" (slice $ModuleStatusColumnId $tfPtnRows "All") }}</a></td>
 </tr>
 {{ end }}
 {{ if in (slice "Utility" "All") $moduleType }}
@@ -110,10 +87,9 @@
 <tr>
   {{ if and (eq $moduleType "Utility") $showLanguage }}<td><a href="/Azure-Verified-Modules/indexes/terraform/" style="color: inherit; text-decoration: none; background-color: transparent;">Terraform</a></td>{{ end }}
   {{ if $showClassification }}<td><a href="/Azure-Verified-Modules/indexes/terraform/tf-utility-modules/" style="color: inherit; text-decoration: none; background-color: transparent;">Utility</a></td>{{ end }}
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-utility-modules/#published-modules-----" style="color: inherit; text-decoration: none; background-color: transparent;">{{ template "countModules" (slice $ModuleStatusColumnId $tfUtlRows "Available :green_circle:") }}</a></td>
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-utility-modules/#published-modules-----" style="color: inherit; text-decoration: none; background-color: transparent;">{{ template "countModules" (slice $ModuleStatusColumnId $tfUtlRows "Orphaned :eyes:") }}</a></td>
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-utility-modules/#proposed-modules---" style="color: inherit; text-decoration: none; background-color: transparent;">{{ template "countModules" (slice $ModuleStatusColumnId $tfUtlRows "Proposed :new:") }}</a></td>
-  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-utility-modules/#all-modules---" style="color: inherit; text-decoration: none; background-color: transparent; font-weight: bold">{{ template "countModules" (slice $ModuleStatusColumnId $tfUtlRows "All") }}</a></td>
+  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-utility-modules/#published-modules-----" style="color: inherit; text-decoration: none; background-color: transparent;">{{ add (partial "countModules" (slice $ModuleStatusColumnId $tfUtlRows "Available :green_circle:")) (partial "countModules" (slice $ModuleStatusColumnId $tfUtlRows "Orphaned :eyes:")) }}</a></td>
+  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-utility-modules/#proposed-modules---" style="color: inherit; text-decoration: none; background-color: transparent;">{{ partial "countModules" (slice $ModuleStatusColumnId $tfUtlRows "Proposed :new:") }}</a></td>
+  <td align="right"><a href="/Azure-Verified-Modules/indexes/terraform/tf-utility-modules/#all-modules---" style="color: inherit; text-decoration: none; background-color: transparent; font-weight: bold">{{ partial "countModules" (slice $ModuleStatusColumnId $tfUtlRows "All") }}</a></td>
 </tr>
 {{ end }}
 {{ end }}
