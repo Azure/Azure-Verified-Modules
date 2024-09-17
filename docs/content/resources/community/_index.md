@@ -21,20 +21,16 @@ Let's make each community call a vibrant celebration of connection, collaboratio
 
 ## Upcoming Events
 
-{{< hint type=tip title="Coming Soon!">}}
+### 24th September 2024
 
-We are busy planning the next quarterly external community call, stay tuned for registration details!
+{{< hint type=note >}}
 
-The next instance will be optimized for Americas time zones.
+This occurrence is optimized for AMERICAS/EMEA time zones.
 
 {{< /hint >}}
 
-<!-- ### CHANGE ME
-
-> This occurrence is optimized for Americas time zones.
-
-- [Registration](CHANGE ME)
-- [GitHub Issue for Q&A section](CHANGE ME) -->
+- [Registration](https://msit.events.teams.microsoft.com/event/74fc1d31-fc02-411d-bb3c-a4969833d178@72f988bf-86f1-41af-91ab-2d7cd011db47)
+- [GitHub Issue for Q&A section](https://github.com/Azure/Azure-Verified-Modules/issues/1387)
 
 ## Previous Events
 

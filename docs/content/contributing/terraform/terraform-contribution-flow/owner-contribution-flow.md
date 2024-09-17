@@ -110,6 +110,32 @@ If a secondary owner is required, add the secondary owner to the `avm-res-<RP>-<
 
 <img src="/Azure-Verified-Modules/img/contribution/deploymentProtectionRules2.png" alt="Deployment prpotection rules." width=100%>
 
+7. Create the environment secrets required for end to end tests. These will be suppied to you.
+    1. `ARM_TENANT_ID`: The Azure Tenant ID
+    1. `ARM_SUBSCRIPTION_ID`: The Azure Subscription ID
+    1. `ARM_CLIENT_ID`: The Azure User Assigned Managed Identity Client ID
+
+    This script can also be used to add the secrets to the environment:
+
+    ```pwsh
+    # Install the gh CLI: https://cli.github.com/
+
+    $tenantId = "<tenantId>"
+    $subscriptionId = "<subscriptionId>"
+    $clientId = "<clientId>"
+    $repository = "Azure/terraform-azurerm-avm-res-<your-repo>"
+    $environment = "test"
+
+    # Follow the login prompts
+    gh auth login
+
+    gh secret set ARM_TENANT_ID -b $tenantId -R $repository -e $environment
+    gh secret set ARM_SUBSCRIPTION_ID -b $subscriptionId -R $repository -e $environment
+    gh secret set ARM_CLIENT_ID -b $clientId -R $repository -e $environment
+    ```
+
+    > NOTE: If you wish to use your own tenant and subscription for e2e tests, you can override these secrets by setting `ARM_TENANT_ID_OVERRIDE`, `ARM_SUBSCRIPTION_ID_OVERRIDE`, and `ARM_CLIENT_ID_OVERRIDE` secrets.
+
 <br>
 
 ---
