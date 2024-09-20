@@ -202,7 +202,7 @@ item:
 
 #### Testing
 
-Before you begin to modify anything, it is recommended to create a new test case e.g. *deprecated* in addition to the already existing tests, to make sure that the changes are not breaking backwards compatibility until you decide to finally remove the deprecated parameters (see [BCPRMNFR1 - Category: Testing - Expected Test Directories](/Azure-Verified-Modules/specs/bicep/#id-bcprmnfr1---category-testing---expected-test-directories) for more details about the requirements).
+Before you begin to modify anything, it is recommended to create a new test case (e.g. *deprecated*), in addition to the already existing tests, to make sure that the changes are not breaking backward compatibility until you decide to finally remove the deprecated parameters (see [BCPRMNFR1 - Category: Testing - Expected Test Directories](/Azure-Verified-Modules/specs/bicep/#id-bcprmnfr1---category-testing---expected-test-directories) for more details about the requirements).
 
 ```bicep
 module testDeployment '../../../main.bicep' = [
