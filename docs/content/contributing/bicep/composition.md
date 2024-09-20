@@ -241,7 +241,7 @@ type itemType = {
     }?
   }
 
-  // keep theese for backwards compatibility in the new type
+  // keep these for backward compatibility in the new type
   @description('Optional. Note: This is a deprecated property, please use the corresponding `properties.osType` instead.')
   osType: string? // the old parameter location
 
