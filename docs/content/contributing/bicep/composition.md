@@ -250,7 +250,7 @@ type itemType = {
 }
 ```
 
-The original parmeter *item* is of type object and does not give the user any clue of what the syntax is and what is expected to be added to it. The tests could bring light into the darkness, but this is not ideal. In order to retain backwards compatibility, the previously used parameters need to be added to the new type, as they would be invalid otherwise. Now that the new type is in place, some logic needs to be implemented to make sure the module can handle the different sources of data (new and old parameters).
+The original parmeter *item* is of type object and does not give the user any clue of what the syntax is and what is expected to be added to it. The tests could bring light into the darkness, but this is not ideal. In order to retain backward compatibility, the previously used parameters need to be added to the new type, as they would be invalid otherwise. Now that the new type is in place, some logic needs to be implemented to make sure the module can handle the different sources of data (new and old parameters).
 
 ```bicep
 resource <modulename> 'Microsoft.xy/yz@2024-01-01' = {
