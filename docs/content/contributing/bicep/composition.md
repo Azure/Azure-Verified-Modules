@@ -291,7 +291,7 @@ module testDeployment '../../../main.bicep' = [
 
 Changes to modules (resource or pattern) can bei implemented in two ways.
 
-1. Implement changes with backwards compatibility
+1. Implement changes with backward compatibility
 
     In this scenario you need to make sure that the code does not break backwards compatibility by:
 
