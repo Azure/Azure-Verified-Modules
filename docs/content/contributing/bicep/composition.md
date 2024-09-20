@@ -185,7 +185,7 @@ An AVM module is modified and the parameters will change, which breaks backwards
 - the parameter structure is changing
 - backwards compatibility will be maintained
 
-Existing **input parameters** used to be definined  as follows (reducing the examples to the minimum):
+Existing **input parameters** used to be definined as follows (reducing the examples to the minimum):
 
 ```bicep
 // main.bicep:
