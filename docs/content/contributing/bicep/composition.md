@@ -310,6 +310,6 @@ Changes to modules (resource or pattern) can bei implemented in two ways.
 
 {{< hint type=note >}}
 
-Be aware that currently no module has been released as 1.0, which let's you implement breaking changes without increasing the major version.
+Be aware that currently no module has been released as `1.0.0` (or beyond), which lets you implement breaking changes without increasing the major version.
 
 {{< /hint >}}
