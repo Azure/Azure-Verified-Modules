@@ -293,7 +293,7 @@ Changes to modules (resource or pattern) can bei implemented in two ways.
 
 1. Implement changes with backward compatibility
 
-    In this scenario you need to make sure that the code does not break backwards compatibility by:
+    In this scenario, you need to make sure that the code does not break backward compatibility by:
 
     - adding new parameters
     - marking other parameters as deprecated
