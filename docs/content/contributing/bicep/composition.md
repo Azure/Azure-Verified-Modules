@@ -297,7 +297,7 @@ Changes to modules (resource or pattern) can bei implemented in two ways.
 
     - adding new parameters
     - marking other parameters as deprecated
-    - create a testcase for the old usage syntax
+    - create a test case for the old usage syntax
     - increase the minor version number of the module (0.x)
 
 2. Introduce breaking changes
