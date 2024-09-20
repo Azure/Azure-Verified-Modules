@@ -305,7 +305,7 @@ Changes to modules (resource or pattern) can bei implemented in two ways.
     The easier way to introduce a new major version requires fewer steps:
 
     - adding new parameters
-    - create a testcase for the usage
+    - create a test case for the usage
     - increase the major version number of the module (x.0)
 
 {{< hint type=note >}}
