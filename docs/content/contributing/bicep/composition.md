@@ -173,7 +173,7 @@ In case you need to deprecate an input parameter, this sample shows you how this
 
 {{< hint type=note >}}
 
-Since all modules are versioned, nothing will change for existing deployments as the parameter usage does not change for existing version.
+Since all modules are versioned, nothing will change for existing deployments, as the parameter usage does not change for any existing versions.
 
 {{< /hint >}}
 
