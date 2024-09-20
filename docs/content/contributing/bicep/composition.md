@@ -179,7 +179,7 @@ Since all modules are versioned, nothing will change for existing deployments, a
 
 #### Example-Scenario
 
-An AVM module is modified and the parameters will change, which breaks backwards compatibility.
+An AVM module is modified, and the parameters will change, which breaks backward compatibility.
 
 - parameters are changing to a custom type
 - the parameter structure is changing
