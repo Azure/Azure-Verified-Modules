@@ -183,7 +183,7 @@ An AVM module is modified, and the parameters will change, which breaks backward
 
 - parameters are changing to a custom type
 - the parameter structure is changing
-- backwards compatibility will be maintained
+- backward compatibility will be maintained
 
 Existing **input parameters** used to be definined as follows (reducing the examples to the minimum):
 
