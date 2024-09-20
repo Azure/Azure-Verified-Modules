@@ -173,19 +173,19 @@ In case you need to deprecate an input parameter, this sample shows you how this
 
 {{< hint type=note >}}
 
-Since all modules are versioned, nothing will change for existing deployments as the parameter usage does not change for existing version.
+Since all modules are versioned, nothing will change for existing deployments, as the parameter usage does not change for any existing versions.
 
 {{< /hint >}}
 
 #### Example-Scenario
 
-An AVM module is modified and the parameters will change, which breaks backwards compatibility.
+An AVM module is modified, and the parameters will change, which breaks backward compatibility.
 
 - parameters are changing to a custom type
 - the parameter structure is changing
-- backwards compatibility will be maintained
+- backward compatibility will be maintained
 
-Existing **input parameters** used to be definined  as follows (reducing the examples to the minimum):
+Existing **input parameters** used to be definined as follows (reducing the examples to the minimum):
 
 ```bicep
 // main.bicep:
@@ -202,7 +202,7 @@ item:
 
 #### Testing
 
-Before you begin to modify anything, it is recommended to create a new test case e.g. *deprecated* in addition to the already existing tests, to make sure that the changes are not breaking backwards compatibility until you decide to finally remove the deprecated parameters (see [BCPRMNFR1 - Category: Testing - Expected Test Directories](/Azure-Verified-Modules/specs/bicep/#id-bcprmnfr1---category-testing---expected-test-directories) for more details about the requirements).
+Before you begin to modify anything, it is recommended to create a new test case (e.g. *deprecated*), in addition to the already existing tests, to make sure that the changes are not breaking backward compatibility until you decide to finally remove the deprecated parameters (see [BCPRMNFR1 - Category: Testing - Expected Test Directories](/Azure-Verified-Modules/specs/bicep/#id-bcprmnfr1---category-testing---expected-test-directories) for more details about the requirements).
 
 ```bicep
 module testDeployment '../../../main.bicep' = [
@@ -241,7 +241,7 @@ type itemType = {
     }?
   }
 
-  // keep theese for backwards compatibility in the new type
+  // keep these for backward compatibility in the new type
   @description('Optional. Note: This is a deprecated property, please use the corresponding `properties.osType` instead.')
   osType: string? // the old parameter location
 
@@ -250,7 +250,7 @@ type itemType = {
 }
 ```
 
-The original parmeter *item* is of type object and does not give the user any clue of what the syntax is and what is expected to be added to it. The tests could bring light into the darkness, but this is not ideal. In order to retain backwards compatibility, the previously used parameters need to be added to the new type, as they would be invalid otherwise. Now that the new type is in place, some logic needs to be implemented to make sure the module can handle the different sources of data (new and old parameters).
+The original parmeter *item* is of type object and does not give the user any clue of what the syntax is and what is expected to be added to it. The tests could bring light into the darkness, but this is not ideal. In order to retain backward compatibility, the previously used parameters need to be added to the new type, as they would be invalid otherwise. Now that the new type is in place, some logic needs to be implemented to make sure the module can handle the different sources of data (new and old parameters).
 
 ```bicep
 resource <modulename> 'Microsoft.xy/yz@2024-01-01' = {
@@ -291,13 +291,13 @@ module testDeployment '../../../main.bicep' = [
 
 Changes to modules (resource or pattern) can bei implemented in two ways.
 
-1. Implement changes with backwards compatibility
+1. Implement changes with backward compatibility
 
-    In this scenario you need to make sure that the code does not break backwards compatibility by:
+    In this scenario, you need to make sure that the code does not break backward compatibility by:
 
     - adding new parameters
     - marking other parameters as deprecated
-    - create a testcase for the old usage syntax
+    - create a test case for the old usage syntax
     - increase the minor version number of the module (0.x)
 
 2. Introduce breaking changes
@@ -305,11 +305,11 @@ Changes to modules (resource or pattern) can bei implemented in two ways.
     The easier way to introduce a new major version requires fewer steps:
 
     - adding new parameters
-    - create a testcase for the usage
-    - increase the major version number of the module (x.0)
+    - create a test case for the usage
+    - increase the major version number of the module (`x.0.0`)
 
 {{< hint type=note >}}
 
-Be aware that currently no module has been released as 1.0, which let's you implement breaking changes without increasing the major version.
+Be aware that currently no module has been released as `1.0.0` (or beyond), which lets you implement breaking changes without increasing the major version.
 
 {{< /hint >}}
