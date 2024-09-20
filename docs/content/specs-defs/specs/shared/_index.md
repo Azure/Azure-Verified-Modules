@@ -816,7 +816,7 @@ There are, however, scenarios where you want to include breaking changes into a 
 
 {{< hint type=tip >}}
 
-See the language specific samples how you can deal with deprecations in AVM modules.
+See the language specific examples to find out how you can deal with deprecations in AVM modules.
 
 - [Bicep](/Azure-Verified-Modules/contributing/bicep/composition/#deprecation)
 
