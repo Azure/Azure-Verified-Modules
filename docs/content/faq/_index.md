@@ -133,16 +133,15 @@ WAF == [Well-Architected Framework](https://learn.microsoft.com/en-us/azure/well
 
 {{< /hint >}}
 
-At a high-level "WAF Aligned" means, where possible and appropriate, AVM Modules will align to recommendations and default input parameters/variables to values that algin to **high impact/priority recommendations** in the following frameworks and resources:
+At a high-level "WAF Aligned" means, where possible and appropriate, AVM Modules will align to recommendations and default input parameters/variables to values that algin to **high impact/priority/severity recommendations** in the following frameworks and resources:
 
 - [Well-Architected Framework (WAF)](https://learn.microsoft.com/azure/well-architected/what-is-well-architected-framework)
 - [Reliability Hub](https://learn.microsoft.com/azure/reliability/overview-reliability-guidance)
 - [Azure Proactive Resiliency Library (APRL)](https://aka.ms/aprl)
   - *Only Product Group (PG) verified*
 
-For security recommendations we will also utilize the following frameworks and resources:
+For security recommendations we will also utilize the following frameworks and resources; **again only for high impact/priority/severity recommendations**:
 
-- [Microsoft Cloud Security Benchmark (MCSB)](https://learn.microsoft.com/security/benchmark/azure/introduction)
 - [Microsoft Defender for Cloud (MDFC)](https://learn.microsoft.com/en-us/azure/defender-for-cloud/recommendations-reference)
 
 #### Will all AVM modules be 100% "WAF Aligned" out of the box and good to go?

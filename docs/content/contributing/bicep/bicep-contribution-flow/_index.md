@@ -61,13 +61,56 @@ When implementing the GitFlow process as described, it is advisable to configure
 
 {{< /hint >}}
 
-</br>
+## PowerShell Helper Script To Setup Fork & CI Test Environment
+
+To simplify the setup of the fork, clone and configuration of the required secrets, SPN and RBAC assignments in your Azure environment for the CI framework to function correctly in your fork, we have created a PowerShell script that you can use to do steps [1](#1-setup-your-azure-test-environment), [2](#2-fork-the-module-source-repository) & [3](#3-configure-your-ci-environment) below.
+
+{{< hint type=important >}}
+
+You will still need to complete [step 3.3](#33-set-readwrite-workflow-permissions) manually at this time.
+
+{{< /hint >}}
+
+The script performs the following steps:
+
+1. Forks the `Azure/bicep-registry-modules` to your GitHub Account.
+2. Clones the repo locally to your machine, based on the location you specify in the parameter: `-GitHubRepositoryPathForCloneOfForkedRepository`.
+3. Prompts you and takes you directly to the place where you can enable GitHub Actions Workflows on your forked repo.
+4. Disables all AVM module workflows, as per [Enable or Disable Workflows](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/).
+5. Creates an Azure Service Principal (SPN) and grants it the RBAC roles of `User Access Administrator` & `Contributor` at Management Group level, if specified in the `-GitHubSecret_ARM_MGMTGROUP_ID` parameter, and at Azure Subscription level if you provide it via the `-GitHubSecret_ARM_SUBSCRIPTION_ID` parameter.
+6. Creates the required GitHub Actions Secrets in your forked repo as per [step 3](#3-configure-your-ci-environment), based on the input provided in parameters and the values from resources the script creates, such as the SPN.
+
+### Pre-requisites
+
+1. You must have the [Azure PowerShell Modules](https://learn.microsoft.com/powershell/azure/install-azure-powershell) installed and you need to be logged with the context set to the desired Tenant. You must have permissions to create an SPN and grant RBAC over the specified Subscription and Management Group, if provided.
+2. You must have the [GitHub CLI](https://github.com/cli/cli#installation) installed and need to be authenticated with the GitHub user account you wish to use to fork, clone and work with on AVM.
+
+{{< expand "New-AVMBicepBRMForkSetup.ps1 - PowerShell Helper Script" "expand/collapse" >}}
+
+The `New-AVMBicepBRMForkSetup.ps1` can be downloaded from <a href="/Azure-Verified-Modules/scripts/New-AVMBicepBRMForkSetup.ps1" download>here</a>.
+
+Once downloaded, you can run the script by running the below - **Please change all the parameter values in the below script usage example to your own values (see the parameter documentation in the script itself)!**:
+```powershell
+.\<PATH-TO-SCRIPT-DOWNLOAD-LOCATION>\New-AVMBicepBRMForkSetup.ps1 -GitHubRepositoryPathForCloneOfForkedRepository "<pathToCreateForkedRepoIn>" -GitHubSecret_ARM_MGMTGROUP_ID "<managementGroupId>" -GitHubSecret_ARM_SUBSCRIPTION_ID "<subscriptionId>" -GitHubSecret_ARM_TENANT_ID "<tenantId>" -GitHubSecret_TOKEN_NAMEPREFIX "<unique3to5AlphanumericStringForAVMDeploymentNames>"
+```
+
+For more examples, see the below script's parameters section.
+
+{{< include file="/static/scripts/New-AVMBicepBRMForkSetup.ps1" language="pwsh" options="linenos=false" >}}
+
+{{< /expand >}}
 
 ## 1. Setup your Azure test environment
 
 {{< hint type=note >}}
 
 Each time in the following sections we refer to 'your xyz', it is an indicator that you have to change something in your own environment.
+
+{{< /hint >}}
+
+{{< hint type=tip >}}
+
+Checkout the [PowerShell Helper Script](#powershell-helper-script-to-setup-fork--ci-test-environment) that can do this step automatically for you! 👍
 
 {{< /hint >}}
 
@@ -92,6 +135,12 @@ In this first step, make sure you
 
 ## 2. Fork the module source repository
 
+{{< hint type=tip >}}
+
+Checkout the [PowerShell Helper Script](#powershell-helper-script-to-setup-fork--ci-test-environment) that can do this step automatically for you! 👍
+
+{{< /hint >}}
+
 Bicep AVM Modules (both Resource and Pattern modules) will be homed in the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and live within an `avm` directory that will be located at the root of the repository, as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
 
 Module owners are expected to fork the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository's `main` branch.
@@ -101,6 +150,12 @@ To do so, simply navigate to the [Public Bicep Registry](https://github.com/Azur
 <br>
 
 ## 3. Configure your CI environment
+
+{{< hint type=tip >}}
+
+Checkout the [PowerShell Helper Script](#powershell-helper-script-to-setup-fork--ci-test-environment) that can do this step automatically for you! 👍
+
+{{< /hint >}}
 
 To configure the forked CI environment you have to perform several steps:
 
@@ -112,13 +167,13 @@ To configure the forked CI environment you have to perform several steps:
 
 To use the environment's pipelines you should use the information you gathered during the [Azure setup](#1-setup-your-azure-test-environment) to set up the following repository secrets:
 
-| Secret Name           | Example                                                                                                                                                                                                | Description                                                                                                                                                                                                                                                                                |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `ARM_MGMTGROUP_ID`    | `11111111-1111-1111-1111-111111111111`                                                                                                                                                                 | The group ID of the management group to test-deploy modules in. Is needed for resources that are deployed to the management group scope.                                                                                                                                                   |
-| `ARM_SUBSCRIPTION_ID` | `22222222-2222-2222-2222-222222222222`                                                                                                                                                                 | The ID of the subscription to test-deploy modules in. Is needed for resources that are deployed to the subscription scope.                                                                                                                                                                 |
-| `ARM_TENANT_ID`       | `33333333-3333-3333-3333-333333333333`                                                                                                                                                                 | The tenant ID of the Azure Active Directory tenant to test-deploy modules in. Is needed for resources that are deployed to the tenant scope.                                                                                                                                               |
-| `AZURE_CREDENTIALS`   | `{"clientId": "44444444-4444-4444-4444-444444444444", "clientSecret": "<placeholder>", "subscriptionId": "22222222-2222-2222-2222-222222222222", "tenantId": "33333333-3333-3333-3333-333333333333" }` | The login credentials of the deployment principal used to log into the target Azure environment to test in. The format is described [here](https://github.com/Azure/login#configure-deployment-credentials). For more information, see the `[Special case: AZURE_CREDENTIALS]` note below. |
-| `TOKEN_NAMEPREFIX`    | `cntso`                                                                                                                                                                                                | Required. A short (3-5 character length), unique string that should be included in any deployment to Azure. Usually, AVM Bicep test cases require this value to ensure no two contributors deploy resources with the same name - which is especially important for resources that require a globally unique name (e.g., Key Vault). These characters will be used as part of each resource's name during deployment. For more information, see the `[Special case: TOKEN_NAMEPREFIX]` note below.                                                                                                   |
+| Secret Name           | Example                                                                                                                                                                                                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ARM_MGMTGROUP_ID`    | `11111111-1111-1111-1111-111111111111`                                                                                                                                                                 | The group ID of the management group to test-deploy modules in. Is needed for resources that are deployed to the management group scope.                                                                                                                                                                                                                                                                                                                                                          |
+| `ARM_SUBSCRIPTION_ID` | `22222222-2222-2222-2222-222222222222`                                                                                                                                                                 | The ID of the subscription to test-deploy modules in. Is needed for resources that are deployed to the subscription scope.                                                                                                                                                                                                                                                                                                                                                                        |
+| `ARM_TENANT_ID`       | `33333333-3333-3333-3333-333333333333`                                                                                                                                                                 | The tenant ID of the Azure Active Directory tenant to test-deploy modules in. Is needed for resources that are deployed to the tenant scope.                                                                                                                                                                                                                                                                                                                                                      |
+| `AZURE_CREDENTIALS`   | `{"clientId": "44444444-4444-4444-4444-444444444444", "clientSecret": "<placeholder>", "subscriptionId": "22222222-2222-2222-2222-222222222222", "tenantId": "33333333-3333-3333-3333-333333333333" }` | The login credentials of the deployment principal used to log into the target Azure environment to test in. The format is described [here](https://github.com/Azure/login#configure-deployment-credentials). For more information, see the `[Special case: AZURE_CREDENTIALS]` note below.                                                                                                                                                                                                        |
+| `TOKEN_NAMEPREFIX`    | `cntso`                                                                                                                                                                                                | Required. A short (3-5 character length), unique string that should be included in any deployment to Azure. Usually, AVM Bicep test cases require this value to ensure no two contributors deploy resources with the same name - which is especially important for resources that require a globally unique name (e.g., Key Vault). These characters will be used as part of each resource's name during deployment. For more information, see the `[Special case: TOKEN_NAMEPREFIX]` note below. |
 
 <p>
 
@@ -285,6 +340,12 @@ Dependency file (`dependencies.bicep`) guidelines:
   {{< /hint >}}
 
 <br>
+
+  {{< hint type=tip >}}
+
+  📜 If your test case requires any value that you cannot / should not specify in the test file itself (e.g., tenant-specific object IDs or secrets), please refer to the [Custom CI secrets](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/custom-ci-secrets) feature.
+
+  {{< /hint >}}
 
 ### Reusable assets
 
