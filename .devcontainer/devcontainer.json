@@ -1,9 +1,18 @@
 {
   "name": "Hugo & pnpm",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",  // Any generic, debian-based image.
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers/features/hugo:1": {
+			"extended": true,
+			"version": "latest"
+		}
+	},
 
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [
+		1313
+	],
 
   "customizations": {
     "vscode": {
@@ -22,7 +31,5 @@
     }
   },
 
-  "remoteUser": "vscode",
-
-  "postCreateCommand": "pnpm install-completion zsh"
+  "remoteUser": "root"
 }
