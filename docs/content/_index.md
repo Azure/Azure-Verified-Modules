@@ -7,11 +7,9 @@ geekdocAnchor: true
 
 {{< hint type=caution icon=gdoc_date title="AVM Community Calls" >}}
 
-The AVM team is hosting its next external community call on the **24th September 2024**! 🥳
+The AVM team has hosted 2 community calls to date.
 
-Register here to attend: [https://aka.ms/AVM/CommunityCall](https://aka.ms/AVM/CommunityCall)
-
-To find out more about future calls and watch the recordings of previous ones, see the [Community Calls page](/Azure-Verified-Modules/resources/community)!
+To find out more about future calls and the recordings of previous ones please head to the [dedicated page](/Azure-Verified-Modules/resources/community)!
 
 {{< /hint >}}
 
