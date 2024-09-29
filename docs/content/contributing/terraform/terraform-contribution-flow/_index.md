@@ -126,7 +126,7 @@ For consistent contributors but also Azure-org members in general it is possible
 
 ### 2. Prepare your Azure test environment
 
-AVM performs end-to-end (e2e) test dpeloyments of all modules in Azure for validation. We recommend you to perform a local e2e test deployment of your module before you create a PR to the upstream repository. Especially because the e2e test deployment will be triggered automatically once you create a PR to the upstream repository.
+AVM performs end-to-end (e2e) test deployments of all modules in Azure for validation. We recommend you to perform a local e2e test deployment of your module before you create a PR to the upstream repository. Especially because the e2e test deployment will be triggered automatically once you create a PR to the upstream repository.
 
 1. Have/create an Azure Active Directory Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
 

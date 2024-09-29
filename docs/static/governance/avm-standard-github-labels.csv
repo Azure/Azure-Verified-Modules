@@ -6,7 +6,7 @@ Needs: Author Feedback :ear:,Awaiting feedback from the issue/PR author,F18A07
 Needs: External Changes :hammer_and_pick:,When an issue/PR requires changes that are outside of the control of the module. e.g. to an RP.,DE389D
 Needs: More Evidence :balance_scale:,We are looking for more evidence to make a decision on this,F64872
 Needs: Triage :mag:,Maintainers need to triage still,FBCA04
-Needs: Module Owner :mega:,This module needs an owner to develop or maintain it,FF0019
+Needs: Module Owner :mega:,"In the AVM repository: this module needs an owner to develop or maintain it. In the BRM repository: the module owner needs to review a PR.",FF0019
 Needs: Module Contributor :mega:,This module needs secondary owner(s) or contributor(s) to develop or maintain it,C95474
 Needs: Core Team :genie:,This item needs the AVM Core Team to review it,DB4503
 Status: Awaiting Release To Be Cut :scissors:,"This is fixed in the main branch but not in the latest release, will be fixed with next release cut",800080
