@@ -20,18 +20,18 @@ module secretsExport 'modules/keyVaultExport.bicep' = if (secretsExportConfigura
     keyVaultName: last(split(secretsExportConfiguration.?keyVaultResourceId ?? '//', '/'))
     secretsToSet: union(
       [],
-      contains(secretsExportConfiguration!, '>secretToExportName1<')
+      contains(secretsExportConfiguration!, '>secretToExport1<Name')
         ? [
             {
-              name: secretsExportConfiguration!.>secretToExportName1<
+              name: secretsExportConfiguration!.>secretToExport1<Name
               value: >secretReference1< // e.g., >singularMainResourceType<.listKeys().primaryMasterKey
             }
           ]
         : [],
-      contains(secretsExportConfiguration!, '>secretToExportName2<')
+      contains(secretsExportConfiguration!, '>secretToExport2<Name')
         ? [
             {
-              name: secretsExportConfiguration!.>secretToExportName2<
+              name: secretsExportConfiguration!.>secretToExport2<Name
               value:>secretReference2<  // e.g., >singularMainResourceType<.listKeys().secondaryMasterKey
             }
           ]
@@ -59,10 +59,10 @@ type secretsExportConfigurationType = {
   keyVaultResourceId: string
 
   @description('Optional. The >secretToExport1< secret name to create.')
-  >secretToExportName1<: string?
+  >secretToExport1<Name: string?
 
   @description('Optional. The >secretToExport2< secret name to create.')
-  >secretToExportName2<: string?
+  >secretToExport2<Name: string?
 
   // (...)
 }
