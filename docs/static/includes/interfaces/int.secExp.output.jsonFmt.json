@@ -2,11 +2,11 @@
   "exportedSecrets": {
     "Type": "Object",
     "Value": {
-      ">secretToExport1Name<": {
+      ">secretToExportName1<": {
         "secretResourceId": "/subscriptions/<subId>/resourceGroups/<rgName>providers/Microsoft.KeyVault/vaults/<vaultName>/secrets/>secretToExportName1<",   
         "secretUri": "https://<vaultName>.vault.azure.net/secrets/>secretToExportName1<"
       },
-      ">secretToExport2Name<": {
+      ">secretToExportName2<": {
         "secretResourceId": "/subscriptions/<subId>/resourceGroups/<rgName>providers/Microsoft.KeyVault/vaults/<vaultName>/secrets/>secretToExportName2<",
         "secretUri": "https://<vaultName>.vault.azure.net/secrets/>secretToExportName2<"
       }
