@@ -3,7 +3,7 @@
     "Type": "Object",
     "Value": {
       ">secretToExportName1<": {
-        "secretResourceId": "/subscriptions/<subId>/resourceGroups/<rgName>providers/Microsoft.KeyVault/vaults/<vaultName>/secrets/>secretToExportName1<",   
+        "secretResourceId": "/subscriptions/<subId>/resourceGroups/<rgName>providers/Microsoft.KeyVault/vaults/<vaultName>/secrets/>secretToExportName1<",
         "secretUri": "https://<vaultName>.vault.azure.net/secrets/>secretToExportName1<"
       },
       ">secretToExportName2<": {
@@ -19,8 +19,8 @@
   "exportedSecretResourceIds": {
     "Type": "Array",
     "Value": [
-      "/subscriptions/<subId>/resourceGroups/<rgName>providers/Microsoft.KeyVault/vaults/<vaultName>/secrets/>secretToExportName2<",
-      "/subscriptions/<subId>/resourceGroups/<rgName>providers/Microsoft.KeyVault/vaults/<vaultName>/secrets/>secretToExportName1<"
+      "/subscriptions/<subId>/resourceGroups/<rgName>providers/Microsoft.KeyVault/vaults/<vaultName>/secrets/>secretToExportName1<",
+      "/subscriptions/<subId>/resourceGroups/<rgName>providers/Microsoft.KeyVault/vaults/<vaultName>/secrets/>secretToExportName2<"
     ]
   }
 }
