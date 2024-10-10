@@ -192,7 +192,7 @@ Include the following text in the information notice:
 
 {{< /expand >}}
 
-5. Try to find a new owner using the AVM communities or await a new module owner to comment and propose themselves on the issue.
+6. Try to find a new owner using the AVM communities or await a new module owner to comment and propose themselves on the issue.
 
 ### When a new owner is identified
 
