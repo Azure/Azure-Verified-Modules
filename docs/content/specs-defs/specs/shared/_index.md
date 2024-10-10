@@ -188,6 +188,12 @@ The telemetry enablement **MUST** be on/enabled by default, however this **MUST*
 - Bicep: `enableTelemetry`
 - Terraform: `enable_telemetry`
 
+{{< hint type=note >}}
+
+Whenever a module uses another module (e.g. in a pattern module), the parameter must be passed to the other modules.
+
+{{< /hint >}}
+
 <br>
 
 ---
