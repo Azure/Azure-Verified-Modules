@@ -32,7 +32,7 @@
 31,res/databricks/access-connector,✅,✅,✅,,,,✅
 32,res/databricks/workspace,✅,✅,✅,✅,✅,✅,
 33,res/db-for-my-sql/flexible-server,✅,✅,✅,✅,,✅,✅
-34,res/db-for-postgre-sql/flexible-server,✅,✅,✅,✅,,✅,✅
+34,res/db-for-postgre-sql/flexible-server,✅,✅,✅,✅,✅,✅,✅
 35,res/desktop-virtualization/application-group,✅,✅,✅,✅,,,
 36,res/desktop-virtualization/host-pool,✅,✅,✅,✅,✅,,
 37,res/desktop-virtualization/scaling-plan,✅,✅,✅,✅,,,
@@ -139,4 +139,4 @@
 138,res/web/serverfarm,✅,✅,✅,✅,,,
 139,res/web/site,✅,✅,✅,✅,✅,,✅
 140,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,124,123,133,59,34,19,55
+Sum,,124,123,133,59,35,19,55
