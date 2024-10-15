@@ -97,21 +97,7 @@ Yes, the AVM team is partnering with the AZD team and they are already using Bic
 
 ### Will AVM support OpenTofu?
 
-As of now, Azure Verified Modules (AVM) fully supports both Bicep and Terraform. We understand that many of you are enthusiastic about OpenTofu, and we are closely monitoring developments, including potential impacts from IBM's recent acquisition of HashiCorp. However, we want to be transparent with you about our current priorities and capabilities.
-
-#### Current Support and Future Considerations
-
-We do not have the bandwidth to prioritize support at this time. Therefore, our commitment to providing a reliable and robust experience means that we must depend on OpenTofu's compatibility assurances.
-
-#### Guidance for Module Authors
-
-- We kindly request that module authors refrain from incorporating OpenTofu-specific features, as we currently lack the resources to test them effectively.
-- Authors may utilize Terraform-specific features that may not be present in OpenTofu.
-- To maintain broad compatibility, we advise keeping Terraform version constraints at a minimum required level for the Terraform features that you require in the module.
-
-We deeply appreciate your understanding and continued support. Rest assured, we are evaluating our support options regularly and are committed to keeping you informed of any changes.
-
-Thank you for being an integral part of the Azure Verified Modules community.
+Please see our OpenTofu support statement in this [discussion on GitHub](https://github.com/Azure/Azure-Verified-Modules/discussions/1512).
 
 ---
 
