@@ -253,7 +253,7 @@ Once you enabled the GitHub actions, your workflows will behave as they do in th
 
 To implement your contribution, we kindly ask you to first review the [shared](/Azure-Verified-Modules/specs/shared/) & [Bicep-specific](/Azure-Verified-Modules/specs/bicep/) specifications and [composition guidelines](/Azure-Verified-Modules/contributing/bicep/composition/) in particular to make sure your contribution complies with the repository's design and principles.
 
-If you're working on a new module, we'd also ask you to create its corresponding workflow file. Each module has its own file, but only differs in very few details, such as its triggers and pipeline variables. As a result, you can either copy & update any other module workflow file (starting with `'avm.[res|ptn].'`) or leverage the following template:
+If you're working on a new module, we'd also ask you to create its corresponding workflow file. Each module has its own file, but only differs in very few details, such as its triggers and pipeline variables. As a result, you can either copy & update any other module workflow file (starting with `'avm.[res|ptn|utl].'`) or leverage the following template:
 
 {{< expand "➕ Module workflow template" "expand/collapse" >}}
 
