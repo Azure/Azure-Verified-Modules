@@ -1,4 +1,4 @@
-# >>> UPDATE to for example "avm.res.key-vault.vault"
+# >>> UPDATE to for example "avm.res.key-vault.vault" and remove this comment
 name: "avm.[res|ptn|utl].[provider-namespace].[resource-type]"
 
 on:
@@ -29,18 +29,18 @@ on:
     paths:
       - ".github/actions/templates/avm-**"
       - ".github/workflows/avm.template.module.yml"
-        # >>> UPDATE to for example ".github/workflows/avm.res.key-vault.vault.yml"
+        # >>> UPDATE to for example ".github/workflows/avm.res.key-vault.vault.yml" and remove this comment
       - ".github/workflows/avm.[res|ptn|utl].[provider-namespace].[resource-type].yml"
-        # >>> UPDATE to for example "avm/res/key-vault/vault/**"
+        # >>> UPDATE to for example "avm/res/key-vault/vault/**" and remove this comment
       - "avm/[res|ptn|utl]/[provider-namespace]/[resource-type]/**"
       - "avm/utilities/pipelines/**"
       - "!avm/utilities/pipelines/platform/**"
       - "!*/**/README.md"
 
 env:
-  # >>> UPDATE to for example "avm/res/key-vault/vault"
+  # >>> UPDATE to for example "avm/res/key-vault/vault" and remove this comment
   modulePath: "avm/[res|ptn|utl]/[provider-namespace]/[resource-type]"
-  # >>> Update to for example ".github/workflows/avm.res.key-vault.vault.yml"
+  # >>> Update to for example ".github/workflows/avm.res.key-vault.vault.yml" and remove this comment
   workflowPath: ".github/workflows/avm.[res|ptn|utl].[provider-namespace].[resource-type].yml"
 
 concurrency:
