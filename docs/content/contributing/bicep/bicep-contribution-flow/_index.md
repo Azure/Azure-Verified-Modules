@@ -257,7 +257,7 @@ If you're working on a new module, we'd also ask you to create its corresponding
 
 {{< expand "➕ Module workflow template" "expand/collapse" >}}
 
-{{< include file="/static/includes/avm.[res-ptn].workflow.template.yml" language="yaml" options="linenos=false" >}}
+{{< include file="/static/includes/avm.workflow.template.yml" language="yaml" options="linenos=false" >}}
 
 {{< /expand >}}
 
