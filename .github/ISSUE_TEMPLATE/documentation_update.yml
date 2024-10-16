@@ -1,5 +1,5 @@
-name: Documentation Update 📄
-description: Would you like to see any improvements or additions to the AVM documentation? Let us know!
+name: AVM Documentation Update 📘
+description: Would you like to see any improvements or additions to the AVM website documentation? Let us know!
 title: "[Documentation Update]: "
 labels: ["Type: Documentation :page_facing_up:", "Needs: Triage :mag:"]
 projects: ["Azure/538"]
@@ -20,6 +20,6 @@ body:
     id: question-feedback-text
     attributes:
       label: Description
-      description: Let us know what you would like to see added or fixed in the AVM documentation
+      description: Let us know what you would like to see added to or fixed in the AVM website documentation
     validations:
       required: true
