@@ -146,7 +146,7 @@ function Get-ModulesFeatureOutline {
         # Status Badge
         $moduleFolderPath = Split-Path $moduleTemplatePath -Parent
         $relativeFolderPath = Join-Path 'avm' ($moduleFolderPath -split '[\/|\\]{1}avm[\/|\\]{1}')[1]
-        $resourceTypeIdentifier = ($moduleFolderPath -split '[\/|\\]{1}avm[\/|\\]{1}(res|ptn)[\/|\\]{1}')[2] -replace '\\', '/' # avm/res/<provider>/<resourceType>
+        $resourceTypeIdentifier = ($moduleFolderPath -split '[\/|\\]{1}avm[\/|\\]{1}(res|ptn|utl)[\/|\\]{1}')[2] -replace '\\', '/' # avm/res/<provider>/<resourceType>
         $isTopLevelModule = ($resourceTypeIdentifier -split '[\/|\\]').Count -eq 2
         if (($ColumnsToInclude -contains 'Status') -and $isTopLevelModule) {
 

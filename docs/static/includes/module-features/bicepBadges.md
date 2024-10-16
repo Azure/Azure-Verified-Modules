@@ -164,4 +164,5 @@
 | 162 | res/web<p>serverfarm | [![avm.res.web.serverfarm](https://github.com/Azure/bicep-registry-modules/actions/workflows/avm.res.web.serverfarm.yml/badge.svg?branch=main)](https://github.com/Azure/bicep-registry-modules/actions/workflows/avm.res.web.serverfarm.yml) |
 | 163 | res/web<p>site | [![avm.res.web.site](https://github.com/Azure/bicep-registry-modules/actions/workflows/avm.res.web.site.yml/badge.svg?branch=main)](https://github.com/Azure/bicep-registry-modules/actions/workflows/avm.res.web.site.yml) |
 | 164 | res/web<p>static-site | [![avm.res.web.static-site](https://github.com/Azure/bicep-registry-modules/actions/workflows/avm.res.web.static-site.yml/badge.svg?branch=main)](https://github.com/Azure/bicep-registry-modules/actions/workflows/avm.res.web.static-site.yml) |
+| 165 | utl/types<p>avm-common-types | [![avm.utl.types.avm-common-types](https://github.com/Azure/bicep-registry-modules/actions/workflows/avm.utl.types.avm-common-types.yml/badge.svg?branch=main)](https://github.com/Azure/bicep-registry-modules/actions/workflows/avm.utl.types.avm-common-types.yml) |
 
