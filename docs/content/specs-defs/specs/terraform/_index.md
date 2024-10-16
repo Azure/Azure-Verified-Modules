@@ -1064,9 +1064,20 @@ These changes do not necessarily trigger breaking changes, but they are very lik
 
 #### ID: TFNFR36 - Category: Code Style - Setting prevent_deletion_if_contains_resources
 
-From Terraform AzureRM 3.0, the default value of `prevent_deletion_if_contains_resources` in `provider` block is `true`. This will lead to an unstable test(because the test subscription has some policies applied and they will add some extra resources during the run, which can cause failures during destroy of resource groups).
+From Terraform AzureRM 3.0, the default value of `prevent_deletion_if_contains_resources` in the azurerm `provider` block is `true`. This will lead to an unstable test (because the test subscription has some policies applied that will add some extra resources during the testing run, which can cause failures during destroy of the resource group(s)).
 
-Since we cannot guarantee our testing environment won't be applied some [Azure Policy Remediation Tasks](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources?tabs=azure-portal) in the future, for a robust testing environment, please explicitly set `prevent_deletion_if_contains_resources` to `false`.
+Since we cannot guarantee our testing environment won't be applied some [Azure Policy Remediation Tasks](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources?tabs=azure-portal) in the future, please explicitly set `prevent_deletion_if_contains_resources` to `false` in a `resource_group` block in the `azurerm` provider's `features` block.
+
+E.g.
+```terraform
+provider "azurerm" {
+  features {
+    resource_group {
+      prevent_deletion_if_contains_resources = false
+    }
+  }
+}
+```
 
 <br>
 
