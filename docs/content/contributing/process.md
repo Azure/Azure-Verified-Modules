@@ -17,6 +17,12 @@ Each AVM module **MUST** have a [Module Proposal](https://aka.ms/AVM/ModulePropo
 
 {{< /hint >}}
 
+{{< hint type=tip >}}
+
+Some nodes of the above Flowchart are links that point to more information. You can identify them by the ">" and "<" chars around the node-text.
+
+{{< /hint >}}
+
 <!-- markdownlint-disable -->
 {{< mermaid class="text-center" >}}
 flowchart TD
@@ -60,6 +66,14 @@ flowchart TD
         click P "/Azure-Verified-Modules/help-support/module-support/"
 {{< /mermaid >}}
 <!-- markdownlint-enable -->
+
+### Provide details for module proposals
+
+When proposing a module, please include the information in the description that is mentioned for the triage process here:
+
+- [Module Proposals](/Azure-Verified-Modules/help-support/issue-triage/avm-issue-triage/#module-proposal-triage)
+- [Pattern modules](/Azure-Verified-Modules/help-support/issue-triage/avm-issue-triage/#triaging-pattern-modules)
+
 ## AVM Preview Notice
 
 {{< hint type=important >}}
