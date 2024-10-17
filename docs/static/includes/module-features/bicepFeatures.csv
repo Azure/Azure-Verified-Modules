@@ -7,7 +7,7 @@
 6,res/app/container-app,✅,✅,✅,,,,✅
 7,res/app/job,✅,✅,✅,,,,✅
 8,res/app/managed-environment,✅,✅,✅,,,,✅
-9,res/automation/automation-account,✅,✅,✅,✅,✅,✅,✅
+9,res/automation/automation-account,✅,✅,✅,,,✅,
 10,res/batch/batch-account,✅,✅,✅,✅,✅,✅,✅
 11,res/cache/redis,✅,✅,✅,✅,✅,,✅
 12,res/cdn/profile,✅,✅,✅,,,,✅
@@ -139,4 +139,4 @@
 138,res/web/serverfarm,✅,✅,✅,✅,,,
 139,res/web/site,✅,✅,✅,✅,✅,,✅
 140,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,124,123,133,59,35,19,55
+Sum,,124,123,133,58,34,19,54
