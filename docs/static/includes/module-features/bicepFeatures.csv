@@ -105,7 +105,7 @@
 104,res/network/service-endpoint-policy,✅,✅,✅,,,,
 105,res/network/trafficmanagerprofile,✅,✅,✅,✅,,,
 106,res/network/virtual-hub,,✅,✅,,,,
-107,res/network/virtual-network,✅,✅,✅,✅,,,
+107,res/network/virtual-network,✅,✅,✅,,,,
 108,res/network/virtual-network-gateway,✅,✅,✅,✅,,,
 109,res/network/virtual-wan,✅,✅,✅,,,,
 110,res/network/vpn-gateway,,✅,✅,,,,
@@ -139,4 +139,4 @@
 138,res/web/serverfarm,✅,✅,✅,✅,,,
 139,res/web/site,✅,✅,✅,✅,✅,,✅
 140,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,124,123,133,58,34,19,54
+Sum,,124,123,133,57,34,19,54
