@@ -95,6 +95,12 @@ Yes, the AVM team is partnering with the AZD team and they are already using Bic
 
 ---
 
+### Will AVM support OpenTofu?
+
+Please see our OpenTofu support statement in this [discussion on GitHub](https://github.com/Azure/Azure-Verified-Modules/discussions/1512).
+
+---
+
 ## Definitions, comparisons
 
 ### What is the difference between the Bicep Registry and AVM? (How) Do they come together?
