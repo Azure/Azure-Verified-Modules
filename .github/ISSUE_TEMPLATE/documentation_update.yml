@@ -1,0 +1,25 @@
+name: AVM Documentation Update 📘
+description: Would you like to see any improvements or additions to the AVM website documentation? Let us know!
+title: "[Documentation Update]: "
+labels: ["Type: Documentation :page_facing_up:", "Needs: Triage :mag:"]
+projects: ["Azure/538"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for your documentation update proposal
+  - type: checkboxes
+    id: existing-checks
+    attributes:
+      label: Check for previous/existing GitHub issues
+      description: By submitting this issue, you confirm that you have [searched for previous/existing GitHub issues](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue+sort%3Aupdated-desc+) to avoid creating a duplicate.
+      options:
+        - label: I have checked for previous/existing GitHub issues
+          required: true
+  - type: textarea
+    id: question-feedback-text
+    attributes:
+      label: Description
+      description: Let us know what you would like to see added to or fixed in the AVM website documentation
+    validations:
+      required: true
