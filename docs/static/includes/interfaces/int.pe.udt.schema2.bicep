@@ -98,7 +98,7 @@ type privateEndpointType = {
 
   @description('Optional. Custom DNS configurations.')
   customDnsConfigs: {
-    @description('Required. Fqdn that resolves to private endpoint IP address.')
+    @description('Optional. Fqdn that resolves to private endpoint IP address.')
     fqdn: string?
 
     @description('Required. A list of private IP addresses of the private endpoint.')
@@ -130,10 +130,10 @@ type privateEndpointType = {
   customNetworkInterfaceName: string?
 
   @description('Optional. Specify the type of lock.')
-  lock: lockType
+  lock: lockType?
 
   @description('Optional. Array of role assignments to create.')
-  roleAssignments: roleAssignmentType
+  roleAssignments: roleAssignmentType[]?
 
   @description('Optional. Tags to be applied on all resources/resource groups in this deployment.')
   tags: object?
