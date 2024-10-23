@@ -48,7 +48,7 @@ Make sure module authors/contributors tested their module in their environment b
 
 {{< /hint >}}
 
-### 2. GitHub Teams and repository creation and configuration
+### 2. GitHub repository creation and configuration
 
 Familiarise yourself with the AVM Resource Module Naming in the [module index csv's](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes).
 
@@ -62,79 +62,39 @@ Make sure you have access to the Azure organisation see [GitHub Account Link and
 
 1. Create the module repostory using [terraform-azuremrm-avm-template](https://github.com/Azure/terraform-azurerm-avm-template) in the `Azure` organisation with the following [details (internal only)](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review). You will then have to complete the configuration of your repository and start an [internal business review](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review?anchor=conduct-initial-repo-configuration-and-trigger-business-review).
 
-2. Create GitHub teams as outlined in [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) and add respective parent teams:
+1. Create GitHub teams as outlined in [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) and add respective parent teams:
 
-Segments:
+    Segments:
 
-- `avm-res-<RP>-<modulename>-module-owners-tf`
-- `avm-res-<RP>-<modulename>-module-contributors-tf`
+    - `avm-res-<RP>-<modulename>-module-owners-tf`
+    - `avm-res-<RP>-<modulename>-module-contributors-tf`
 
-Examples:
+    Examples:
 
-- `avm-res-compute-virtualmachine-module-owners-tf`
-- `avm-res-compute-virtualmachine-module-contributors-tf`
+    - `avm-res-compute-virtualmachine-module-owners-tf`
+    - `avm-res-compute-virtualmachine-module-contributors-tf`
 
+    If a secondary owner is required, add the secondary owner to the `avm-res-<RP>-<modulename>-module-owners-tf` team.
 
-If a secondary owner is required, add the secondary owner to the `avm-res-<RP>-<modulename>-module-owners-tf` team.
+1. Add these teams with the following permissions directly to the repository:
 
-1. Add these teams with the following permissions to the repository:
-
-- Admin: `avm-core-team-technical-terraform` = AVM Core Team (Terraform Technical)
-- Admin: `terraform-avm` = Terraform PG
-- Admin: `avm-res-<RP>-<modulename>-module-owners-tf` = AVM Terraform Module Owners
-- Write: `avm-res-<RP>-<modulename>-module-contributors-tf` = AVM Terraform Module Contributors
+    - Admin: `avm-core-team-technical-terraform` = AVM Core Team (Terraform Technical)
+    - Admin: `terraform-avm` = Terraform PG
+    - Admin: `avm-res-<RP>-<modulename>-module-owners-tf` = AVM Terraform Module Owners
+    - Write: `avm-res-<RP>-<modulename>-module-contributors-tf` = AVM Terraform Module Contributors
 
 1. Make sure the branch protection rules for the `main` branch are inherited from the `Azure/terraform-azurerm-avm-template` repository:
 
-- Require a pull request before merging
-- Dismiss stale pull request approvals when new commits are pushed
-- Require review from Code Owners
-- Require linear history
-- Do not allow bypassing the above settings
+    - Require a pull request before merging
+    - Dismiss stale pull request approvals when new commits are pushed
+    - Require review from Code Owners
+    - Require linear history
+    - Do not allow bypassing the above settings
 
-5. Set up a GitHub repository Environment called `test`.
+1. The respoitory environment `test` will be automatically created within 4 hours, it will have approvals and secrets applied to it ready to run end to end tests. You should not create this environment manually.
 
-6. Create deployment protection rules for the `test` environment to avoid spinning up e2e tests with every pull request raised by third-parties. Add the following teams as required reviewers:
-
-- AVM Resource Module Owners: `avm-res-<RP>-<modulename>-module-owners-tf`
-- AVM Resource Module Contributors: `avm-res-<RP>-<modulename>-module-contributors-tf`
-- AVM Core Team Technical (Terraform): `avm-core-team-technical-terraform`
-
-<img src="/Azure-Verified-Modules/img/contribution/deploymentProtectionTeams.png" alt="Required reviewers." width=100%>
-
-<p>
-
-<img src="/Azure-Verified-Modules/img/contribution/deploymentProtectionRules.png" alt="Deployment prpotection rules." width=100%>
-
-<p>
-
-<img src="/Azure-Verified-Modules/img/contribution/deploymentProtectionRules2.png" alt="Deployment prpotection rules." width=100%>
-
-7. Create the environment secrets required for end to end tests. These will be suppied to you.
-    1. `ARM_TENANT_ID`: The Azure Tenant ID
-    1. `ARM_SUBSCRIPTION_ID`: The Azure Subscription ID
-    1. `ARM_CLIENT_ID`: The Azure User Assigned Managed Identity Client ID
-
-    This script can also be used to add the secrets to the environment:
-
-    ```pwsh
-    # Install the gh CLI: https://cli.github.com/
-
-    $tenantId = "<tenantId>"
-    $subscriptionId = "<subscriptionId>"
-    $clientId = "<clientId>"
-    $repository = "Azure/terraform-azurerm-avm-res-<your-repo>"
-    $environment = "test"
-
-    # Follow the login prompts
-    gh auth login
-
-    gh secret set ARM_TENANT_ID -b $tenantId -R $repository -e $environment
-    gh secret set ARM_SUBSCRIPTION_ID -b $subscriptionId -R $repository -e $environment
-    gh secret set ARM_CLIENT_ID -b $clientId -R $repository -e $environment
-    ```
-
-    > NOTE: If you wish to use your own tenant and subscription for e2e tests, you can override these secrets by setting `ARM_TENANT_ID_OVERRIDE`, `ARM_SUBSCRIPTION_ID_OVERRIDE`, and `ARM_CLIENT_ID_OVERRIDE` secrets.
+    - If you wish to use your own tenant and subscription for end to end tests, you can override the secrets by setting `ARM_TENANT_ID_OVERRIDE`, `ARM_SUBSCRIPTION_ID_OVERRIDE`, and `ARM_CLIENT_ID_OVERRIDE` secrets.
+    - If you need to supply additional secrets or variables for your end to end tests, you can add them to the `test` environment. They must be prefixed with `TF_VAR_`, otherwise they will be ignored.
 
 <br>
 
