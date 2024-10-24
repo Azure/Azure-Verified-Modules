@@ -85,7 +85,7 @@
 84,res/network/dns-zone,✅,✅,✅,,,,
 85,res/network/express-route-circuit,✅,✅,✅,✅,,,
 86,res/network/express-route-gateway,✅,✅,✅,,,,
-87,res/network/firewall-policy,,,✅,,,,✅
+87,res/network/firewall-policy,✅,✅,✅,,,,✅
 88,res/network/front-door,✅,✅,✅,✅,,,
 89,res/network/front-door-web-application-firewall-policy,✅,✅,✅,,,,
 90,res/network/ip-group,✅,✅,✅,,,,
@@ -139,4 +139,4 @@
 138,res/web/serverfarm,✅,✅,✅,✅,,,
 139,res/web/site,✅,✅,✅,✅,✅,,✅
 140,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,124,123,133,59,35,19,55
+Sum,,125,124,133,59,35,19,55
