@@ -188,6 +188,12 @@ The telemetry enablement **MUST** be on/enabled by default, however this **MUST*
 - Bicep: `enableTelemetry`
 - Terraform: `enable_telemetry`
 
+{{< hint type=note >}}
+
+Whenever a module references AVM modules that implement the telemetry parameter (e.g., a pattern module that uses AVM resource modules), the telemetry parameter value **MUST** be passed through to these modules. This is necessary to ensure a consumer can reliably enable & disable the telemetry feature for all used modules.
+
+{{< /hint >}}
+
 <br>
 
 ---
