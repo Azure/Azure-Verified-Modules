@@ -560,11 +560,11 @@ Every `CODEOWNERS` entry (line) **MUST** include the following segments separate
 
 - Path of the module, relative to the repo's root, e.g.: `/avm/res/network/virtual-network/`
 - The `-module-owners-`team, with the `@Azure/` prefix, e.g., `@Azure/avm-res-network-virtualnetwork-module-owners-bicep`
-- The GitHub team of the AVM core team, with the `@Azure/` prefix, i.e., `@Azure/avm-core-team-technical-bicep`
+- The GitHub team of the AVM Bicep reviewers, with the `@Azure/` prefix, i.e., `@Azure/avm-module-reviewers-bicep`
 
 Example - `CODEOWNERS` entry for the Bicep resource module of Azure Virtual Network (`avm/res/network/virtual-network`):
 
-- `/avm/res/network/virtual-network/ @Azure/avm-res-network-virtualnetwork-module-owners-bicep @Azure/avm-core-team-technical-bicep`
+- `/avm/res/network/virtual-network/ @Azure/avm-res-network-virtualnetwork-module-owners-bicep @Azure/avm-module-reviewers-bicep`
 
 <br>
 
