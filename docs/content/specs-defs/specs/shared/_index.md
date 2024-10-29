@@ -1015,7 +1015,7 @@ Module owners **MAY** also have to provide additional outputs depending on the I
 
 #### ID: RMFR8 - Category: Composition - End-of-life resource versions
 
-When a given version of an Azure resource used in a resource module reaches its end-of-life (EOL) and is no longer supported by Microsoft, the module owner **MUST** ensure that:
+When a given version of an Azure resource used in a resource module reaches its end-of-life (EOL) and is no longer supported by Microsoft, the module owner **SHOULD** ensure that:
 
 1. The module is aligned with these changes and only includes supported versions of the resource. This is typically achieved through the allowed values in the parameter that specifies the resource SKU or type.
 2. The following notice is shown under the `Notes` section of the module's `readme.md`. (If any related public announcement is available, it can also be linked to from the Notes section.):
