@@ -33,6 +33,11 @@ main:
     sub:
       - name: "Quickstart"
         ref: "usage/quickstart"
+        sub:
+          - name: "Bicep"
+            ref: "usage/quickstart/bicep"
+          - name: "Terraform"
+            ref: "usage/quickstart/terraform"
       - name: "Deployment options"
         ref: "usage/deployment-options"
       - name: "Usage Scenarios"
