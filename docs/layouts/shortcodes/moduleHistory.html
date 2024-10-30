@@ -148,7 +148,16 @@
     {{ $moduleLatestVersion = "N/A" }}
     {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }}
       {{ $moduleMcrUrl := printf "https://mcr.microsoft.com/v2/bicep/%s/tags/list" $item.ModuleName }}
-      {{ $moduleMcrData := getJSON $moduleMcrUrl }}
+      {{ $moduleMcrData := dict }}
+      {{ with resources.GetRemote $moduleMcrUrl }}
+        {{ with .Err }}
+          {{ errorf "%s" . }}
+        {{ else }}
+          {{ $moduleMcrData = . | transform.Unmarshal }}
+        {{ end }}
+      {{ else }}
+        {{ errorf "Unable to get remote resource %q" $moduleMcrUrl }}
+      {{ end }}
       {{ $moduleVersions := $moduleMcrData.tags }}
       {{ if $moduleVersions }}
           {{ $moduleLatestVersion = index $moduleVersions (sub (len $moduleVersions) 1) }}
@@ -194,7 +203,16 @@
     {{ $moduleLatestVersion = "N/A" }}
     {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }}
       {{ $moduleTfRegApiUrl := printf "https://registry.terraform.io/v1/modules/Azure/%s/azurerm/versions" $item.ModuleName }}
-      {{ $moduleTfRegApiData := getJSON $moduleTfRegApiUrl }}
+      {{ $moduleTfRegApiData := dict }}
+      {{ with resources.GetRemote $moduleTfRegApiUrl }}
+        {{ with .Err }}
+          {{ errorf "%s" . }}
+        {{ else }}
+          {{ $moduleTfRegApiData = . | transform.Unmarshal }}
+        {{ end }}
+      {{ else }}
+        {{ errorf "Unable to get remote resource %q" $moduleTfRegApiUrl }}
+      {{ end }}
       {{ $moduleVersions := slice }}
       {{ range $moduleTfRegApiData.modules }}
         {{ range .versions }}
