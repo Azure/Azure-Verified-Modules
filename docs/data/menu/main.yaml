@@ -28,6 +28,17 @@ main:
     sub:
       - name: "What, Why, How"
         ref: "concepts/what-why-how"
+  - name: "Usage Guide"
+    ref: "usage"
+    sub:
+      - name: "Quickstart"
+        ref: "usage/quickstart"
+      - name: "Deployment options"
+        ref: "usage/deployment-options"
+      - name: "Usage Scenarios"
+        ref: "usage/usage-scenarios"
+      - name: "Orchestration"
+        ref: "usage/orchestration"
   - name: "Specifications & Definitions"
     ref: "specs-defs"
     sub:
