@@ -47,7 +47,7 @@
 46,res/event-grid/system-topic,✅,✅,✅,✅,,,✅
 47,res/event-grid/topic,✅,✅,✅,✅,✅,,✅
 48,res/event-hub/namespace,✅,✅,✅,✅,✅,✅,✅
-49,res/fabric/capacity,,,✅,,,,
+49,res/fabric/capacity,,✅,✅,,,,
 50,res/health-bot/health-bot,✅,✅,✅,,,,✅
 51,res/healthcare-apis/workspace,✅,✅,✅,,,,
 52,res/hybrid-compute/machine,✅,✅,✅,,,,
@@ -139,4 +139,4 @@
 138,res/web/serverfarm,✅,✅,✅,✅,,,
 139,res/web/site,✅,✅,✅,✅,✅,,✅
 140,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,125,124,133,59,35,19,55
+Sum,,125,125,133,59,35,19,55
