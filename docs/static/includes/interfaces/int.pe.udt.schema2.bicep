@@ -3,8 +3,9 @@
 //   Parameters   //
 // ============== //
 
+import { privateEndpointMultiServiceType } from 'br/public:avm/utl/types/avm-common-types:0.3.0'
 @description('Optional. Configuration details for private endpoints. For security reasons, it is recommended to use private endpoints whenever possible.')
-param privateEndpoints privateEndpointType
+param privateEndpoints privateEndpointMultiServiceType[]?
 
 // ============= //
 //   Resources   //
@@ -52,95 +53,3 @@ module >singularMainResourceType<_privateEndpoints 'br/public:avm/res/network/pr
     customNetworkInterfaceName: privateEndpoint.?customNetworkInterfaceName
   }
 }]
-
-// =============== //
-//   Definitions   //
-// =============== //
-
-type privateEndpointType = {
-  @description('Optional. The name of the private endpoint.')
-  name: string?
-
-  @description('Optional. The location to deploy the private endpoint to.')
-  location: string?
-
-  @description('Optional. The name of the private link connection to create.')
-  privateLinkServiceConnectionName: string?
-
-  // Variant 2: A default subresource cannot be assumed (i.e., for services that have more than one subresource, like Storage Account with Blob (blob, table, queue, file, ...)
-  @description('Required. The subresource to deploy the private endpoint for. For example "blob", "table", "queue" or "file".')
-  service: string
-
-  @description('Required. Resource ID of the subnet where the endpoint needs to be created.')
-  subnetResourceId: string
-
-  @description('Optional. The private DNS zone group to configure for the private endpoint.')
-  privateDnsZoneGroup: {
-    @description('Optional. The name of the Private DNS Zone Group.')
-    name: string?
-
-    @description('Required. The private DNS zone groups to associate the private endpoint. A DNS zone group can support up to 5 DNS zones.')
-    privateDnsZoneGroupConfigs: {
-      @description('Optional. The name of the private DNS zone group config.')
-      name: string?
-
-      @description('Required. The resource id of the private DNS zone.')
-      privateDnsZoneResourceId: string
-    }[]
-  }?
-
-  @description('Optional. If Manual Private Link Connection is required.')
-  isManualConnection: bool?
-
-  @description('Optional. A message passed to the owner of the remote resource with the manual connection request.')
-  @maxLength(140)
-  manualConnectionRequestMessage: string?
-
-  @description('Optional. Custom DNS configurations.')
-  customDnsConfigs: {
-    @description('Optional. FQDN that resolves to private endpoint IP address.')
-    fqdn: string?
-
-    @description('Required. A list of private IP addresses of the private endpoint.')
-    ipAddresses: string[]
-  }[]?
-
-  @description('Optional. A list of IP configurations of the private endpoint. This will be used to map to the First Party Service endpoints.')
-  ipConfigurations: {
-    @description('Required. The name of the resource that is unique within a resource group.')
-    name: string
-
-    @description('Required. Properties of private endpoint IP configurations.')
-    properties: {
-      @description('Required. The ID of a group obtained from the remote resource that this private endpoint should connect to.')
-      groupId: string
-
-      @description('Required. The member name of a group obtained from the remote resource that this private endpoint should connect to.')
-      memberName: string
-
-      @description('Required. A private IP address obtained from the private endpoint\'s subnet.')
-      privateIPAddress: string
-    }
-  }[]?
-
-  @description('Optional. Application security groups in which the private endpoint IP configuration is included.')
-  applicationSecurityGroupResourceIds: string[]?
-
-  @description('Optional. The custom name of the network interface attached to the private endpoint.')
-  customNetworkInterfaceName: string?
-
-  @description('Optional. Specify the type of lock.')
-  lock: lockType?
-
-  @description('Optional. Array of role assignments to create.')
-  roleAssignments: roleAssignmentType[]?
-
-  @description('Optional. Tags to be applied on all resources/resource groups in this deployment.')
-  tags: object?
-
-  @description('Optional. Enable/Disable usage telemetry for module.')
-  enableTelemetry: bool?
-
-  @description('Optional. Specify if you want to deploy the Private Endpoint into a different resource group than the main resource.')
-  resourceGroupName: string?
-}[]?

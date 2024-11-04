@@ -3,8 +3,9 @@
 //   Parameters   //
 // ============== //
 
+import { managedIdentityAllType } from 'br/public:avm/utl/types/avm-common-types:0.3.0'
 @description('Optional. The managed identity definition for this resource.')
-param managedIdentities managedIdentitiesType
+param managedIdentities managedIdentityAllType?
 
 // ============= //
 //   Variables   //
@@ -34,15 +35,3 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
 
 @description('The principal ID of the system assigned identity.')
 output systemAssignedMIPrincipalId string = >singularMainResourceType<.?identity.?principalId ?? ''
-
-// =============== //
-//   Definitions   //
-// =============== //
-
-type managedIdentitiesType = {
-  @description('Optional. Enables system assigned managed identity on the resource.')
-  systemAssigned: bool?
-
-  @description('Optional. The resource ID(s) to assign to the resource. Required if a user assigned identity is used for encryption.')
-  userAssignedResourceIds: string[]?
-}?

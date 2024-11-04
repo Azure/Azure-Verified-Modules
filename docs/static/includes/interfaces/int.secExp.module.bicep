@@ -6,6 +6,7 @@
 @description('Required. The name of the Key Vault to set the secrets in.')
 param keyVaultName string
 
+import { secretToSetType } from 'br/public:avm/utl/types/avm-common-types:0.3.0'
 @description('Required. The secrets to set in the Key Vault.')
 param secretsToSet secretToSetType[]
 
@@ -39,25 +40,3 @@ output secretsSet secretSetType[] = [
     secretUri: secrets[index].properties.secretUri
   }
 ]
-
-// =============== //
-//   Definitions   //
-// =============== //
-
-@export()
-type secretSetType = {
-  @description('The resourceId of the exported secret.')
-  secretResourceId: string
-
-  @description('The secret URI of the exported secret.')
-  secretUri: string
-}
-
-type secretToSetType = {
-  @description('Required. The name of the secret to set.')
-  name: string
-
-  @description('Required. The value of the secret to set.')
-  @secure()
-  value: string
-}
