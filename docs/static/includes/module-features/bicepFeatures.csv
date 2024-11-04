@@ -125,7 +125,7 @@
 124,res/service-bus/namespace,✅,✅,✅,✅,✅,✅,✅
 125,res/service-fabric/cluster,✅,✅,✅,,,,
 126,res/service-networking/traffic-controller,✅,✅,✅,✅,,,
-127,res/signal-r-service/signal-r,✅,✅,✅,,✅,,
+127,res/signal-r-service/signal-r,✅,✅,✅,,✅,,✅
 128,res/signal-r-service/web-pub-sub,✅,✅,✅,,✅,,✅
 129,res/sql/instance-pool,,,✅,,,,
 130,res/sql/managed-instance,✅,✅,✅,✅,,,✅
@@ -139,4 +139,4 @@
 138,res/web/serverfarm,✅,✅,✅,✅,,,
 139,res/web/site,✅,✅,✅,✅,✅,,✅
 140,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,125,125,133,59,35,19,55
+Sum,,125,125,133,59,35,19,56
