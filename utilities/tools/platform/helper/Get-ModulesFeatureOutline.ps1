@@ -40,10 +40,13 @@ Optional. The name of the repository the code resides in. Required if 'ColumnsTo
 .PARAMETER Organization
 Optional. The name of the Organization the code resides in. Required if 'ColumnsToInclude.Status' is 'true'
 
-.EXAMPLE
-Get-ModulesFeatureOutline -ReturnFormat 'Markdown' -SearchDepth 2 -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
+.PARAMETER UseLinks
+Optional. When `ReturnFormat` is set to 'Markdown' you can use this switch to control if the ModuleName column should be a link to the module in the GitHub repository. Defaults to $false.
 
-Get an outline of top-level (from 'res' 2 level down) modules in the 'bicep-registry-modules/avm/res' folder path, formatted in a markdown table.
+.EXAMPLE
+Get-ModulesFeatureOutline -ReturnFormat 'Markdown' -SearchDepth 2 -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules' -UseLinks True
+
+Get an outline of top-level (from 'res' 2 level down) modules in the 'bicep-registry-modules/avm/res' folder path, formatted in a markdown table with the module name being a link.
 
 .EXAMPLE
 Get-ModulesFeatureOutline -ReturnFormat 'Markdown' -BreakMarkdownModuleNameAt 2 -ModulesFolderPath 'bicep-registry-modules/avm/res' -ModulesRepoRootPath 'bicep-registry-modules'
@@ -104,7 +107,10 @@ function Get-ModulesFeatureOutline {
         [string] $RepositoryName = 'bicep-registry-modules',
 
         [Parameter(Mandatory = $false)]
-        [string] $Organization = 'Azure'
+        [string] $Organization = 'Azure',
+
+        [Parameter(Mandatory = $false)]
+        [bool] $UseLinks = $false
     )
 
     # Load external functions
@@ -219,7 +225,7 @@ function Get-ModulesFeatureOutline {
                 $moduleDataItem['PIP'] = $false
             }
         }
-        
+
         # Supports CMK
         if ($ColumnsToInclude -contains 'CMK') {
             if ([regex]::Match($moduleContentString, '(?m)^\s*param customerManagedKey customerManagedKey.*Type').Success) {
@@ -281,7 +287,12 @@ function Get-ModulesFeatureOutline {
                 $identifierParts = $module.Module.Replace('\', '/').split('/')
                 if ($identifierParts.Count -gt $BreakMarkdownModuleNameAt) {
                     $topLevelIdentifier = $identifierParts[0..($BreakMarkdownModuleNameAt - 1)] -join '/'
-                    $module.Module = '{0}<p>{1}' -f $topLevelIdentifier, ($module.Module -replace "$topLevelIdentifier/", '')
+                    $moduleNameValue = $module.Module -replace "$topLevelIdentifier/", ''
+                    if ($UseLinks) {
+                      $module.Module = '[avm/{0}/{1}](https://github.com/{2}/{3}/tree/main/avm/{0}/{1})' -f $topLevelIdentifier, $moduleNameValue, $Organization, $RepositoryName
+                    } else {
+                      $module.Module = '{0}<p>{1}</p>' -f $topLevelIdentifier, $moduleNameValue
+                    }
                 }
             }
 

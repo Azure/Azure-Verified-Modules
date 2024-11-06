@@ -38,6 +38,7 @@ function Set-BicepModuleStatusBadgesTable {
         ReturnFormat        = 'Markdown'
         SearchDepth         = 3 # Only top level
         ColumnsToInclude    = @( 'Status' )
+        UseLinks            = $true
     }
     $badgesMarkdown = Get-ModulesFeatureOutline @functionInput -Verbose
 
