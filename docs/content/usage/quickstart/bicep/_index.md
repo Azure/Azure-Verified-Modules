@@ -22,13 +22,13 @@ You can use any text editor, but for this Quickstart VSCode will be used.
 
 With the scenario in mind, I need to deploy a Key Vault instance. Available modules (for now, we don't distinguish between resource, pattern and utility modules) are listed on the [Bicep Modules](/Azure-Verified-Modules/indexes/bicep/) site. Searching on this site for *key-vault* .
 
-![Searching key-vault on the Bicep module index](/Azure-Verified-Modules/img/quickstart/bicep_modules_keyvault_search.png)
+![Searching key-vault on the Bicep module index](/Azure-Verified-Modules/img/usage-guide/quickstart/bicep_modules_keyvault_search.png)
 
 {{< hint type=info icon=gdoc_info_outline title="Searching the AVM Website" >}}
 The AVM team is working on improving the overall search experience, which will allow you to search for e.g. '*key vault*' instead of '*key-vault*'.
 {{< /hint >}}
 
-We now know there is a resource module for Key Vault. 
+We now know there is a resource module for Key Vault.
 
 - examples
 - what if my module isn't available?
