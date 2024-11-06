@@ -9,13 +9,26 @@ geekdocCollapseSection: true
 
 {{< toc >}}
 
-With a task in mind, I need to deploy a Key Vault instance. This Quickstart-Guide shows how to deploy an instance with an Azure Verified Module.
+This Quickstart-Guide shows how to deploy an instance with an Azure Verified Module. Let's assume, we need to deploy a [Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) instance.
+
+## Requirements
+
+You can use any text editor, but for this Quickstart VSCode will be used.
+
+- [Visual Studio Code](https://code.visualstudio.com/download)
+- [Bicep](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) Extension for VSCode (not needed, but it provides intellisense)
 
 ## How do I find out which modules exist?
 
-Available modules (currently we don't distinguish between Resource, Pattern and Utility modules) are listed on the [Bicep Modules](/Azure-Verified-Modules/indexes/bicep/) site.
+With the scenario in mind, I need to deploy a Key Vault instance. Available modules (for now, we don't distinguish between resource, pattern and utility modules) are listed on the [Bicep Modules](/Azure-Verified-Modules/indexes/bicep/) site. Searching on this site for *key-vault* .
 
-With a task in mind, I need to deploy a Key Vault instance.
+![Searching key-vault on the Bicep module index](/Azure-Verified-Modules/img/quickstart/bicep_modules_keyvault_search.png)
+
+{{< hint type=info icon=gdoc_info_outline title="Searching the AVM Website" >}}
+The AVM team is working on improving the overall search experience, which will allow you to search for e.g. '*key vault*' instead of '*key-vault*'.
+{{< /hint >}}
+
+We now know there is a resource module for Key Vault. 
 
 - examples
 - what if my module isn't available?
