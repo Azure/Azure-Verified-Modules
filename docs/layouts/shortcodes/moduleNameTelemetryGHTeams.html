@@ -9,6 +9,7 @@
 {{ $ProviderNamespaceColumnId := 0 }}
 {{ $ResourceTypeColumnId := 0 }}
 {{ $ModuleDisplayNameColumnId := 0 }}
+{{ $AlternativeNamesColumnId := 0 }}
 {{ $ModuleNameColumnId := 0 }}
 {{ $ModuleStatusColumnId := 0 }}
 {{ $RepoURLColumnId := 0 }}
@@ -30,25 +31,27 @@
   {{ $ProviderNamespaceColumnId = 0 }}
   {{ $ResourceTypeColumnId = 1 }}
   {{ $ModuleDisplayNameColumnId = 2 }}
-  {{ $ModuleNameColumnId = 3 }}
-  {{ $ModuleStatusColumnId = 4 }}
-  {{ $RepoURLColumnId = 5 }}
-  {{ $PublicRegistryReferenceColumnId = 6 }}
-  {{ $TelemetryIdPrefixColumnId = 7 }}
-  {{ $PrimaryModuleOwnerGHHandleColumnId = 8 }}
-  {{ $PrimaryModuleOwnerDisplayNameColumnId = 9 }}
-  {{ $SecondaryModuleOwnerGHHandleColumnId = 10 }}
-  {{ $SecondaryModuleOwnerDisplayNameColumnId = 11 }}
-  {{ $ModuleOwnersGHTeamColumnId = 12 }}
-  {{ $ModuleContributorsGHTeamColumnId = 13 }}
-  {{ $DescriptionColumnId = 14 }}
-  {{ $CommentsColumnId = 15 }}
+  {{ $AlternativeNamesColumnId = 3 }}
+  {{ $ModuleNameColumnId = 4 }}
+  {{ $ModuleStatusColumnId = 5 }}
+  {{ $RepoURLColumnId = 6 }}
+  {{ $PublicRegistryReferenceColumnId = 7 }}
+  {{ $TelemetryIdPrefixColumnId = 8 }}
+  {{ $PrimaryModuleOwnerGHHandleColumnId = 9 }}
+  {{ $PrimaryModuleOwnerDisplayNameColumnId = 10 }}
+  {{ $SecondaryModuleOwnerGHHandleColumnId = 11 }}
+  {{ $SecondaryModuleOwnerDisplayNameColumnId = 12 }}
+  {{ $ModuleOwnersGHTeamColumnId = 13 }}
+  {{ $ModuleContributorsGHTeamColumnId = 14 }}
+  {{ $DescriptionColumnId = 15 }}
+  {{ $CommentsColumnId = 16 }}
 
   {{ range $row, $rows }}
     {{ $map := dict
       "ProviderNamespace" (index $row $ProviderNamespaceColumnId)
       "ResourceType" (index $row $ResourceTypeColumnId)
       "ModuleDisplayName" (index $row $ModuleDisplayNameColumnId)
+      "AlternativeNames" (index $row $AlternativeNamesColumnId)
       "ModuleName" (index $row $ModuleNameColumnId)
       "ModuleStatus" (index $row $ModuleStatusColumnId)
       "RepoURL" (index $row $RepoURLColumnId)
@@ -68,23 +71,25 @@
 
 {{ else if or (eq $moduleType "pattern") (eq $moduleType "utility") }}
   {{ $ModuleDisplayNameColumnId = 0 }}
-  {{ $ModuleNameColumnId = 1 }}
-  {{ $ModuleStatusColumnId = 2 }}
-  {{ $RepoURLColumnId = 3 }}
-  {{ $PublicRegistryReferenceColumnId = 4 }}
-  {{ $TelemetryIdPrefixColumnId = 5 }}
-  {{ $PrimaryModuleOwnerGHHandleColumnId = 6 }}
-  {{ $PrimaryModuleOwnerDisplayNameColumnId = 7 }}
-  {{ $SecondaryModuleOwnerGHHandleColumnId = 8 }}
-  {{ $SecondaryModuleOwnerDisplayNameColumnId = 9 }}
-  {{ $ModuleOwnersGHTeamColumnId = 10 }}
-  {{ $ModuleContributorsGHTeamColumnId = 11 }}
-  {{ $DescriptionColumnId = 12 }}
-  {{ $CommentsColumnId = 13 }}
+  {{ $AlternativeNamesColumnId = 1 }}
+  {{ $ModuleNameColumnId = 2 }}
+  {{ $ModuleStatusColumnId = 3 }}
+  {{ $RepoURLColumnId = 4 }}
+  {{ $PublicRegistryReferenceColumnId = 5 }}
+  {{ $TelemetryIdPrefixColumnId = 6 }}
+  {{ $PrimaryModuleOwnerGHHandleColumnId = 7 }}
+  {{ $PrimaryModuleOwnerDisplayNameColumnId = 8 }}
+  {{ $SecondaryModuleOwnerGHHandleColumnId = 9 }}
+  {{ $SecondaryModuleOwnerDisplayNameColumnId = 10 }}
+  {{ $ModuleOwnersGHTeamColumnId = 11 }}
+  {{ $ModuleContributorsGHTeamColumnId = 12 }}
+  {{ $DescriptionColumnId = 13 }}
+  {{ $CommentsColumnId = 14 }}
 
   {{ range $row, $rows }}
     {{ $map := dict
       "ModuleDisplayName" (index $row $ModuleDisplayNameColumnId)
+      "AlternativeNames" (index $row $AlternativeNamesColumnId)
       "ModuleName" (index $row $ModuleNameColumnId)
       "ModuleStatus" (index $row $ModuleStatusColumnId)
       "RepoURL" (index $row $RepoURLColumnId)
