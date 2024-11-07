@@ -1,0 +1,22 @@
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var hash = window.location.hash;
+        if (window.location.pathname.startsWith("/Azure-Verified-Modules/indexes/") && hash.startsWith("#avm-")) {
+            // expand the all modules table
+            var allModulesSection = document.getElementById('all-modules---');
+            var allModulesExpand = allModulesSection.parentElement.nextElementSibling;
+            var allModulesExpandedCheckbox = allModulesExpand.children[1];
+            if (!allModulesExpandedCheckbox.checked) {
+                allModulesExpand.children[0].click();
+            }
+
+            // navigate to the module
+            var avmId = hash.substring(1);
+            var moduleTr = document.getElementById(avmId);
+            window.scrollTo({
+                top: moduleTr.getBoundingClientRect().top + window.scrollY,
+                behavior: 'smooth'
+            });
+        }
+    });
+</script>

@@ -118,7 +118,7 @@
       <th>No.</th>
       <th>Module Name</th>
       <th>Display Name</th>
-      <th>Status & Versions</th>
+      <th>Status & Version</th>
       <th>Owner(s)</th>
     </tr>
   </thead>
@@ -165,7 +165,8 @@
       {{ end }}
     {{ end }}
     {{ $trimmedModuleStatus := replace $item.ModuleStatus "Module " "" }}
-  <tr>
+    {{ $moduleAnchor := replace $item.ModuleName "/" "-" }}
+  {{ if eq $exclude ""}}<tr id={{ $moduleAnchor }}>{{ else }}<tr>{{ end }}
     <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
     <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }} <a href="{{ $item.RepoURL }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
     <td>{{ $item.ModuleDisplayName }}</td>
@@ -225,7 +226,8 @@
       {{ end }}
     {{ end }}
     {{ $trimmedModuleStatus := replace $item.ModuleStatus "Module " "" }}
-  <tr>
+    {{ $moduleAnchor := replace $item.ModuleName "/" "-" }}
+  {{ if eq $exclude ""}}<tr id={{ $moduleAnchor }}>{{ else }}<tr>{{ end }}
     <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
     <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }} <a href="{{ $item.PublicRegistryReference }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
     <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }} <a href="{{ $item.RepoURL }}" style="color: inherit; text-decoration: none; background-color: transparent;">📄</a> {{ else }} {{ "n/a" }} {{ end }} {{else}} {{ "n/a" }} {{ end }} </td>
