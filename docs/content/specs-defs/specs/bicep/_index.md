@@ -167,7 +167,7 @@ This section includes **Bicep specific, non-functional requirements (BCPNFR)** f
 
 <br>
 
-#### ID: BCPNFR1 - Category: Inputs - Data Types
+#### ID: BCPNFR1 - Category: User-defined types - General
 
 To simplify the consumption experience for module consumers when interacting with complex data types input parameters, mainly objects and arrays, the Bicep feature of [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) **MUST** be used and declared.
 
@@ -209,6 +209,33 @@ Modules will have lots of parameters that will differ in their requirement type 
 ---
 
 <br>
+
+
+#### ID: BCPNFR9 - Category: Inputs - Decorators
+
+Input parameters SHOULD make use of [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators) whenever possible. Aside fundamental decorators like `description` & `secure`, especially control decorators like `allowed`, `minValue` & `maxValue` (and others) have a big impact on the module's usability.
+
+```bicep
+@description('Optional. The threshold of your resource.')
+@minValue(1)
+@maxValue(10)
+param threshold: int?
+
+@description('Required. The SKU of your resource.')
+@allowed([
+'Basic'
+'Premium'
+'Standard'
+])
+param sku string
+```
+
+<br>
+
+---
+
+<br>
+
 
 #### ID: BCPNFR2 - Category: Documentation - Module Documentation Generation
 
@@ -667,6 +694,90 @@ For reference, please refer to the following examples:
 
 <br>
 
+#### ID: BCPNFR18 - Category: User-defined types - Specification
+
+User-defined types (UDTs) MUST always be singular and non-nullable. The configuration of either should instead be done directly at the parameter or output that uses the type.
+
+For example, instead of
+```bicep
+param subnets subnetsType
+
+type subnetsType = { ... }[]?
+```
+the type should instead be defined like
+```bicep
+param subnets subnetType[]?
+
+type subnetType = { ... }
+```
+
+The primary reason for this requirement is clarity. If not defined directly at the parameter or output, a user would always be required to check the type to understand how e.g., a parameter is expected. 
+
+<br>
+
+---
+
+<br>
+
+#### ID: BCPNFR19 - Category: User-defined types - Naming
+
+User-defined types (UDTs) MUST always end with the suffix `(...)Type` to make them obvious to users. In addition it is recommended to extend the suffix to `(...)OutputType` if a UDT is exclusively used for outputs. 
+```bicep
+type subnet = { ... } // Wrong
+type subnetType = { ... } // Correct
+type subnetOutputType = { ... } // Correct, if used only for outputs
+```
+
+Since User-defined types (UDTs) MUST always be singular as per [BCPNFR18](#id-bcpnfr18---category-user-defined-types---specification), their naming should reflect this and also be singular.
+```bicep
+type subnetsType = { ... } // Wrong
+type subnetType = { ... } // Correct
+```
+
+<br>
+
+---
+
+<br>
+
+#### ID: BCPNFR20 - Category: User-defined types - Export
+
+User-defined types (UDTs) SHOULD always be exported via the `@export()` annotation in every template they're implemented in.
+```bicep
+@export()
+type subnetType = { ... }
+```
+
+Doing so has the benefit that other (e.g., parent) modules can import them and as such reduce code duplication. Also, if the module itself is published, users of the Public Bicep Registry can import the types independently of the module itself. One example where this can be useful is a pattern module that may re-use the same interface when referencing a module from the registry.
+
+<br>
+
+---
+
+<br>
+
+#### ID: BCPNFR21 - Category: User-defined types - Decorators
+
+Just as in case of [BCPNFR9](#id-bcpnfr9---category-inputs---decorators), every property of a User-defined type SHOULD make use of [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators) whenever possible. 
+
+```bicep
+type myType = {
+  @description('Optional. The threshold of your resource.')
+  @minValue(1)
+  @maxValue(10)
+  threshold: int?
+  
+  @description('Required. The SKU of your resource.')
+  sku: ('Basic' | 'Premium' | 'Standard')
+}
+```
+
+<br>
+
+---
+
+<br>
+
 ## Resource Module Requirements
 
 Listed below are both functional and non-functional requirements for Bicep [AVM Resource Modules](/Azure-Verified-Modules/specs/shared/module-classifications/).
@@ -725,6 +836,40 @@ If a module can deploy varying styles of the same resource, e.g., VMs can be Lin
 - `/tests/e2e/waf-aligned.linux/main.test.bicep`
 - `/tests/e2e/defaults.windows/main.test.bicep`
 - `/tests/e2e/waf-aligned.windows/main.test.bicep`
+
+<br>
+
+---
+
+<br>
+
+#### ID: BCPRMNFR2 - Category: User-defined types - AVM-Common-Types
+
+When implementing any of the [shared](/Azure-Verified-Modules/specs/shared/interfaces) or [Bicep-specific](/Azure-Verified-Modules/specs/bicep/interfaces) AVM interface variants you MUST import their User-defined type (UDT) via the published [AVM-Common-Types](https://github.com/Azure/bicep-registry-modules/tree/main/avm/utl/types/avm-common-types) module.
+
+When doing so, each type MUST be imported separately, right above the parameter or output that uses it. 
+
+```bicep
+import { roleAssignmentType } from 'br/public:avm/utl/types/avm-common-types:*.*.*'
+@description('Optional. Array of role assignments to create.')
+param roleAssignments roleAssignmentType[]?
+
+import { diagnosticSettingFullType } from 'br/public:avm/utl/types/avm-common-types:*.*.*'
+@description('Optional. The diagnostic settings of the service.')
+param diagnosticSettings diagnosticSettingFullType[]?
+```
+
+Importing them individually as opposed to one common block has several benefits such as
+- Individual versioning of types
+- If you must update the version for one type, you're not exposed to unexpected changes to other types
+
+{{< hint type=important >}}
+
+The `import (...)` block MUST not be added in between a parameter's definition and its metadata. Doing so breaks the metadata's binding to the parameter in question.
+
+{{< /hint >}}
+
+Finally, you should check for version updates regularly to ensure the resource module stays consistent with the specs. If the used AVM-Common-Types runs stale, the CI may eventually fail the module's static tests. 
 
 <br>
 
