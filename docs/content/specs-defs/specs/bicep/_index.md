@@ -213,7 +213,10 @@ Modules will have lots of parameters that will differ in their requirement type 
 
 #### ID: BCPNFR9 - Category: Inputs - Decorators
 
-Input parameters SHOULD make use of [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators) whenever possible. Aside fundamental decorators like `description` & `secure`, especially control decorators like `allowed`, `minValue` & `maxValue` (and others) have a big impact on the module's usability.
+Input parameters MUST make use of certain [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators), while they SHOULD make use of others whenever possible.
+
+Decorators that MUST always be implemented are `description` & `secure` (if sensitive).
+Decorators that SHOULD always be implemented include but are not limited to `allowed`, `minValue`, `maxValue`, `minLength` & `maxLength` as they have a big impact on the module's usability.
 
 ```bicep
 @description('Optional. The threshold of your resource.')
@@ -758,9 +761,13 @@ Doing so has the benefit that other (e.g., parent) modules can import them and a
 
 #### ID: BCPNFR21 - Category: User-defined types - Decorators
 
-Just as in case of [BCPNFR9](#id-bcpnfr9---category-inputs---decorators), every property of a User-defined type SHOULD make use of [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators) whenever possible. 
+Similar to [BCPNFR9](#id-bcpnfr9---category-inputs---decorators), User-defined types MUST implement certain [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators), while they SHOULD others.
+
+Decorators that MUST be implemented are `description` & `secure` (if sensitive). This is true for every property of the type, as well as the type itself.
+Decorators that SHOULD be implemented include but are not limited to `allowed`, `minValue`, `maxValue`, `minLength` & `maxLength` as they have a big impact on the module's usability.
 
 ```bicep
+@desciption('My type''s description.')
 type myType = {
   @description('Optional. The threshold of your resource.')
   @minValue(1)
