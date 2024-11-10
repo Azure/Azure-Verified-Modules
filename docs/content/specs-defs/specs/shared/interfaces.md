@@ -194,12 +194,7 @@ In Terraform, locks become part of the resource graph and suitable `depends_on` 
 
 {{< tabs "cmk" >}}
   {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< expand "➕ Variant 1: The resource does not support auto-key-rotation" "expand/collapse" >}}
-  {{< include file="/static/includes/interfaces/int.cmk.udt.schema1.bicep" language="bicep" options="linenos=false" >}}
-  {{< /expand >}}
-  {{< expand "➕ Variant 2: The resource does support auto-key-rotation" "expand/collapse" >}}
-  {{< include file="/static/includes/interfaces/int.cmk.udt.schema2.bicep" language="bicep" options="linenos=false" >}}
-  {{< /expand >}}
+  {{< include file="/static/includes/interfaces/int.cmk.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
   {{< include file="/static/includes/interfaces/int.cmk.input.bicep" language="bicep" options="linenos=false" >}}
