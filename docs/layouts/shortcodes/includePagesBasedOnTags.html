@@ -6,7 +6,7 @@
 {{- $allFiles := slice -}}
 
 {{- if $recursive -}}
-  {{- $allFiles = partial "readDirRecursive.html" (dict "path" $folder "allFiles" $allFiles) -}}
+  {{- $allFiles = partial "readDirRecursive" (dict "path" $folder "allFiles" $allFiles) -}}
 {{- else -}}
   {{- $entries := readDir $folder -}}
   {{- range $entries -}}
