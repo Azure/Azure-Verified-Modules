@@ -2,8 +2,17 @@
 {{- $tags := split (.Get "tags") "," -}}
 {{- $type := .Get "type" -}}
 {{- $baseURL := $.Site.BaseURL -}}
+{{- $recursive := default false (.Get "recursive") -}}
+{{- $allFiles := slice -}}
 
-{{- $allFiles := partial "readDirRecursive.html" (dict "path" $folder "allFiles" (slice)) -}}
+{{- if $recursive -}}
+  {{- $allFiles = partial "readDirRecursive.html" (dict "path" $folder "allFiles" $allFiles) -}}
+{{- else -}}
+  {{- $entries := readDir $folder -}}
+  {{- range $entries -}}
+    {{- $allFiles = $allFiles | append (printf "%s/%s" $folder .Name) -}}
+  {{- end -}}
+{{- end -}}
 
 {{- range $allFiles -}}
   {{- $file := replace . "content/" "" -}}
