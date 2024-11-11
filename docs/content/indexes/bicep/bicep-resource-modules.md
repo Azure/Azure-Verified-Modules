@@ -49,7 +49,7 @@ The following table shows the number of all available, orphaned and proposed **B
 
 ### Published modules - 🟢 & 👀
 
-{{< expand "➕ Published Modules - Module names, status and owners" "expand/collapse" "open" >}}
+{{< expand "➕ Published Modules - Module names, status and owners" "expand/collapse" >}}
 
 {{< moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" exclude="Proposed :new:" >}}
 
@@ -69,7 +69,7 @@ The following table shows the number of all available, orphaned and proposed **B
 
 ### All modules - 📇
 
-{{< expand "➕ All Modules - Module names, status and owners" "expand/collapse" >}}
+{{< expand "➕ All Modules - Module names, status and owners" "expand/collapse" "open" >}}
 
 {{< moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" >}}
 
