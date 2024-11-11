@@ -1,38 +1,37 @@
-{{ $folder := .Get "folder" }}
-{{ $tags := split (.Get "tags") "," }}
-{{ $files := readDir $folder }}
-{{ $type := .Get "type" }}
-{{ $baseURL := $.Site.BaseURL}}
+{{- $folder := .Get "folder" -}}
+{{- $tags := split (.Get "tags") "," -}}
+{{- $type := .Get "type" -}}
+{{- $baseURL := $.Site.BaseURL -}}
 
-{{ range $files }}
-  {{ $file := printf "%s/%s" $folder .Name }}
-  {{ $file = replace $file "content/" "" }}
-  {{ $page := site.GetPage $file }}
+{{- $allFiles := partial "readDirRecursive.html" (dict "path" $folder "allFiles" (slice)) -}}
 
-  {{ $pageTags := $page.Params.tags }}
+{{- range $allFiles -}}
+  {{- $file := replace . "content/" "" -}}
+  {{- $page := site.GetPage $file -}}
+  {{- $pageTags := $page.Params.tags -}}
 
-  {{ if $page }}
+  {{- if $page -}}
+    {{- $allTagsPresent := true -}}
+    {{- range $pageTags -}}
+      {{- if not (in $tags .) -}}
+        {{- $allTagsPresent = false -}}
+      {{- end -}}
+    {{- end -}}
 
-    {{ $allTagsPresent := true }}
-    {{ range $pageTags }}
-      {{ if not (in $tags .) }}
-        {{ $allTagsPresent = false }}
-      {{ end }}
-    {{ end }}
-
-    {{ if $allTagsPresent }}
-
-      {{ if eq $type "html" }}
-        {{ $file | readFile | safeHTML }}
-      {{ else if eq $type "page" }}
-        {{ partial "showPageTags" (dict "pageTags" $pageTags "baseURL" $baseURL) }}
-        {{ with $page }}{{ .Content }}{{ end }}
+    {{- if $allTagsPresent -}}
+      {{- if eq $type "html" -}}
+        {{- $file | readFile | safeHTML -}}
+      {{- else if eq $type "page" -}}
+        {{- partial "showPageTags" (dict "pageTags" $pageTags "baseURL" $baseURL) -}}
+        {{- with $page -}}
+          {{- .Content -}}
+        {{- end -}}
         <br>
         <hr>
         <br>
-      {{ else }}
-        {{ $file | readFile | $.Page.RenderString }}
-      {{ end }}
-    {{ end }}
-  {{ end }}
-{{ end }}
+      {{- else -}}
+        {{- $file | readFile | $.Page.RenderString -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
