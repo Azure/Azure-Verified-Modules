@@ -16,7 +16,7 @@
 {{- end -}}
 
 {{- range $allFiles -}}
-  {{- $file := . -}}
+  {{- $file := replace . "content/" "" -}}
   {{- $page := site.GetPage $file -}}
   {{- $pageTags := $page.Params.tags -}}
 
