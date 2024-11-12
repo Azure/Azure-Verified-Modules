@@ -5,6 +5,57 @@
 {{- $recursive := default false (.Get "recursive") -}}
 {{- $strict := default false (.Get "strict") -}}
 {{- $allFiles := slice -}}
+{{- $showHint := default false (.Get "showHint") -}}
+{{- $hintText := default "" (.Get "hintText") -}}
+
+{{- $hintType := default "note" (.Get "hintType") -}}
+{{- $hintIcon := .Get "icon" -}}
+{{- $hintTitle := default ($hintType | title) (.Get "hintTitle") -}}
+
+{{- $summarize := default false (.Get "summarize") -}}
+{{- $summaryOpenByDefault := default false (.Get "summaryOpenByDefault") -}}
+
+
+{{- if $showHint -}}
+  <blockquote class="gdoc-hint {{ $hintType | lower }}">
+    <div class="gdoc-hint__title flex align-center">
+      {{- with $hintIcon -}}
+        <svg class="gdoc-icon {{ . }}"><use xlink:href="#{{ . }}"></use></svg>
+        <span>{{ $hintTitle }}</span>
+      {{- else -}}
+        <i class="fa {{ $hintType | lower }}" title="{{ $hintTitle }}"></i>
+      {{- end -}}
+    </div>
+    <div class="gdoc-hint__text">
+    {{ with $hintText }}{{ $hintText | markdownify }}<br><br>Requirements are listed based on the following tags:{{ end}}
+      {{ with $tags }}
+        <div class="tags">
+          <svg class="flex align-center no-wrap gdoc-icon gdoc_bookmark"><use xlink:href="#gdoc_bookmark"></use></svg>
+          {{ range sort . }}
+            <span class="flex align-center gdoc-button gdoc-button--regular">
+              <a
+                class="gdoc-button__link"
+                href="{{ $baseURL }}tags/{{ . | urlize }}"
+                title="{{ i18n "posts_tagged_with" . }}"
+              >
+                {{ . }}
+              </a>
+            </span>
+          {{ end }}
+        </div>
+      {{ end }}
+    </div>
+  </blockquote>
+{{- end -}}
+
+{{- if $summarize -}}
+  {{- if $summaryOpenByDefault -}}
+    <details open>
+  {{- else -}}
+  <details>
+  {{- end -}}
+  <summary><b>See Requirements</b></summary>
+{{- end -}}
 
 {{- if $recursive -}}
   {{- $allFiles = partial "readDirRecursive" (dict "path" $folder "allFiles" $allFiles) -}}
@@ -14,6 +65,8 @@
     {{- $allFiles = $allFiles | append (printf "%s/%s" $folder .Name) -}}
   {{- end -}}
 {{- end -}}
+
+{{- $pages := slice -}}
 
 {{- range $allFiles -}}
   {{- $file := replace . "content/" "" -}}
@@ -42,19 +95,34 @@
     {{- end -}}
 
     {{- if $allTagsPresent -}}
-      {{- if eq $type "html" -}}
-        {{- $file | readFile | safeHTML -}}
-      {{- else if eq $type "page" -}}
-        {{- partial "showPageTags" (dict "pageTags" $pageTags "baseURL" $baseURL) -}}
-        {{- with $page -}}
-          {{- .Content -}}
-        {{- end -}}
-        <br>
-        <hr>
-        <br>
-      {{- else -}}
-        {{- $file | readFile | $.Page.RenderString -}}
-      {{- end -}}
+      {{- $priority := default 10000 $page.Params.priority -}}
+      {{- $pages = $pages | append (dict "page" $page "priority" $priority "file" $file) -}}
     {{- end -}}
   {{- end -}}
+{{- end -}}
+
+{{- $sortedPages := sort $pages "priority" "asc" -}}
+
+{{- range $sortedPages -}}
+  {{- $page := .page -}}
+  {{- $file := .file -}}
+  {{- $pageTags := $page.Params.tags -}}
+
+  {{- if eq $type "html" -}}
+    {{- $file | readFile | safeHTML -}}
+  {{- else if eq $type "page" -}}
+    {{- partial "showPageTags" (dict "pageTags" $pageTags "baseURL" $baseURL) -}}
+    {{- with $page -}}
+      {{- .Content -}}
+    {{- end -}}
+    <br>
+    <hr>
+    <br>
+  {{- else -}}
+    {{- $file | readFile | $.Page.RenderString -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $summarize -}}
+</details>
 {{- end -}}
