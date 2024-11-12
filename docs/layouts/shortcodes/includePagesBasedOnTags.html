@@ -13,7 +13,7 @@
 {{- $hintTitle := default ($hintType | title) (.Get "hintTitle") -}}
 
 {{- $summarize := default false (.Get "summarize") -}}
-{{- $summaryOpenByDefault := default false (.Get "summaryOpenByDefault") -}}
+{{- $summaryOpenByDefault := default true (.Get "summaryOpenByDefault") -}}
 
 
 {{- if $showHint -}}
@@ -54,7 +54,7 @@
   {{- else -}}
   <details>
   {{- end -}}
-  <summary><b>See Requirements</b></summary>
+  <summary><b>See Specifications</b></summary>
 {{- end -}}
 
 {{- if $recursive -}}
