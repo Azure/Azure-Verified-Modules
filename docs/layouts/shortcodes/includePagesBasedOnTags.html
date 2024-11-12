@@ -3,6 +3,7 @@
 {{- $type := .Get "type" -}}
 {{- $baseURL := $.Site.BaseURL -}}
 {{- $recursive := default false (.Get "recursive") -}}
+{{- $strict := default false (.Get "strict") -}}
 {{- $allFiles := slice -}}
 
 {{- if $recursive -}}
@@ -15,15 +16,28 @@
 {{- end -}}
 
 {{- range $allFiles -}}
-  {{- $file := replace . "content/" "" -}}
+  {{- $file := . -}}
   {{- $page := site.GetPage $file -}}
   {{- $pageTags := $page.Params.tags -}}
 
   {{- if $page -}}
     {{- $allTagsPresent := true -}}
-    {{- range $pageTags -}}
-      {{- if not (in $tags .) -}}
+
+    {{- if $strict -}}
+      {{- if not (eq (len $tags) (len $pageTags)) -}}
         {{- $allTagsPresent = false -}}
+      {{- else -}}
+        {{- range $tags -}}
+          {{- if not (in $pageTags .) -}}
+            {{- $allTagsPresent = false -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- else -}}
+      {{- range $tags -}}
+        {{- if not (in $pageTags .) -}}
+          {{- $allTagsPresent = false -}}
+        {{- end -}}
       {{- end -}}
     {{- end -}}
 
