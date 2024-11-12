@@ -1,5 +1,5 @@
 ---
-title: "ID: SFR4 - Category: Telemetry - Telemetry Enablement Flexibility"
+title: "SFR4 - Telemetry Enablement Flexibility"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

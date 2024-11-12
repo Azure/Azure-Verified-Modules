@@ -1,5 +1,5 @@
 ---
-title: "ID: SNFR17 - Category: Release - Semantic Versioning"
+title: "SNFR17 - Semantic Versioning"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

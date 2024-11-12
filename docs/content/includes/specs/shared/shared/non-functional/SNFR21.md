@@ -1,5 +1,5 @@
 ---
-title: "ID: SNFR21 - Category: Publishing - Cross Language Collaboration"
+title: "SNFR21 - Cross Language Collaboration"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

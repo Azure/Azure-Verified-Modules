@@ -1,5 +1,5 @@
 ---
-title: "ID: SNFR5 - Category: Testing - Upgrade Tests"
+title: "SNFR5 - Upgrade Tests"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

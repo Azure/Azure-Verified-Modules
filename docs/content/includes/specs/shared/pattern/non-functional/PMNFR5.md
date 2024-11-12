@@ -1,5 +1,5 @@
 ---
-title: "ID: PMNFR5 - Category: Inputs - Parameter/Variable Naming"
+title: "PMNFR5 - Parameter/Variable Naming"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

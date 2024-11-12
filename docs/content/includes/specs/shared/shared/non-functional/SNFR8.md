@@ -1,5 +1,5 @@
 ---
-title: "ID: SNFR8 - Category: Contribution/Support - Module Owner(s) GitHub"
+title: "SNFR8 - Module Owner(s) GitHub"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

@@ -1,5 +1,5 @@
 ---
-title: "ID: RMFR9 - Category: Composition - End-of-life resource versions"
+title: "RMFR9 - End-of-life resource versions"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

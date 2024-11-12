@@ -1,5 +1,5 @@
 ---
-title: "ID: RMNFR2 - Category: Inputs - Parameter/Variable Naming"
+title: "RMNFR2 - Parameter/Variable Naming"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

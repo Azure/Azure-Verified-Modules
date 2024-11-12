@@ -1,5 +1,5 @@
 ---
-title: "ID: PMNFR4 - Category: Hygiene - Missing Resource Module(s)"
+title: "PMNFR4 - Missing Resource Module(s)"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

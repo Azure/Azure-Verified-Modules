@@ -1,5 +1,5 @@
 ---
-title: "ID: SNFR14 - Category: Inputs - Data Types"
+title: "SNFR14 - Data Types"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

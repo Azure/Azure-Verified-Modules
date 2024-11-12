@@ -1,5 +1,5 @@
 ---
-title: "ID: SNFR25 - Category: Composition - Resource Naming"
+title: "SNFR25 - Resource Naming"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

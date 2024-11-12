@@ -1,5 +1,5 @@
 ---
-title: "ID: SNFR11 - Category: Contribution/Support - Issues Response Times"
+title: "SNFR11 - Issues Response Times"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

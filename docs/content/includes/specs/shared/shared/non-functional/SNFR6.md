@@ -1,5 +1,5 @@
 ---
-title: "ID: SNFR6 - Category: Testing - Static Analysis/Linting Tests"
+title: "SNFR6 - Static Analysis/Linting Tests"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

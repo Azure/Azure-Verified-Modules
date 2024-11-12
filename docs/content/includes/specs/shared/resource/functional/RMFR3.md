@@ -1,5 +1,5 @@
 ---
-title: "ID: RMFR3 - Category: Composition - Resource Groups"
+title: "RMFR3 - Resource Groups"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

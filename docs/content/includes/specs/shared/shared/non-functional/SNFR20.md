@@ -1,5 +1,5 @@
 ---
-title: "ID: SNFR20 - Category: Contribution/Support - GitHub Teams Only"
+title: "SNFR20 - GitHub Teams Only"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

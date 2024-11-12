@@ -1,5 +1,5 @@
 ---
-title: "ID: SFR2 - Category: Composition - WAF Aligned"
+title: "SFR2 - WAF Aligned"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

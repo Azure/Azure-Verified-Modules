@@ -1,5 +1,5 @@
 ---
-title: "ID: RMNFR1 - Category: Naming - Module Naming"
+title: "RMNFR1 - Module Naming"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

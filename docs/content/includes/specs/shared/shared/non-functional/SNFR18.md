@@ -1,5 +1,5 @@
 ---
-title: "ID: SNFR18 - Category: Release - Breaking Changes"
+title: "SNFR18 - Breaking Changes"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

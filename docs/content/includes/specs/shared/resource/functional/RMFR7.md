@@ -1,5 +1,5 @@
 ---
-title: "ID: RMFR7 - Category: Outputs - Minimum Required Outputs"
+title: "RMFR7 - Minimum Required Outputs"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

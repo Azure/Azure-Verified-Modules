@@ -1,5 +1,5 @@
 ---
-title: "ID: RMFR5 - Category: Composition - AVM Consistent Feature & Extension Resources Value Add Interfaces/Schemas"
+title: "RMFR5 - AVM Consistent Feature & Extension Resources Value Add Interfaces/Schemas"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

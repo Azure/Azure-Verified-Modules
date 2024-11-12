@@ -1,5 +1,5 @@
 ---
-title: "ID: SNFR1 - Category: Testing - Prescribed Tests"
+title: "SNFR1 - Prescribed Tests"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

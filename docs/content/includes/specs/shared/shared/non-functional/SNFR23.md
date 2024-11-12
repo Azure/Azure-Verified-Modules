@@ -1,5 +1,5 @@
 ---
-title: "ID: SNFR23 - Category: Contribution/Support - GitHub Repo Labels"
+title: "SNFR23 - GitHub Repo Labels"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

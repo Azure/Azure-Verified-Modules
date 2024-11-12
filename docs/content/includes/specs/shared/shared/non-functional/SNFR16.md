@@ -1,5 +1,5 @@
 ---
-title: "ID: SNFR16 - Category: Documentation - Examples/E2E"
+title: "SNFR16 - Examples/E2E"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

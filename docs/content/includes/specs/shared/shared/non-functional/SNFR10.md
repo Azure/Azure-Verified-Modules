@@ -1,5 +1,5 @@
 ---
-title: "ID: SNFR10 - Category: Contribution/Support - MIT Licensing"
+title: "SNFR10 - MIT Licensing"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

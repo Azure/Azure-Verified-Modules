@@ -1,5 +1,5 @@
 ---
-title: "ID: SNFR12 - Category: Contribution/Support - Versions Supported"
+title: "SNFR12 - Versions Supported"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

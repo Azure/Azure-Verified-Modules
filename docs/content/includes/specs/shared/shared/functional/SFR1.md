@@ -1,5 +1,5 @@
 ---
-title: "ID: SFR1 - Category: Composition - Preview Services"
+title: "SFR1 - Preview Services"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

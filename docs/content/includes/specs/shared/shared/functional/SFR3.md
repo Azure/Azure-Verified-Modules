@@ -1,5 +1,5 @@
 ---
-title: "ID: SFR3 - Category: Telemetry - Deployment/Usage Telemetry"
+title: "SFR3 - Deployment/Usage Telemetry"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

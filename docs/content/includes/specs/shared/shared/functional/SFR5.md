@@ -1,5 +1,5 @@
 ---
-title: "ID: SFR5 - Category: Composition - Availability Zones"
+title: "SFR5 - Availability Zones"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

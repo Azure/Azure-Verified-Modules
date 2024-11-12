@@ -1,5 +1,5 @@
 ---
-title: "ID: SFR6 - Category: Composition - Data Redundancy"
+title: "SFR6 - Data Redundancy"
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
