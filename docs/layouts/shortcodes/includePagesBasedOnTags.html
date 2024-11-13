@@ -30,10 +30,10 @@
     <div class="gdoc-hint__text">
       {{ with $tags }}
         <div class="tags">
-          {{ with $hintText }}{{ $hintText | markdownify }}<br>Specifications are listed based on the following tags:{{ end }}
+          {{ with $hintText }}{{ $hintText | markdownify }}<br>Specifications are listed based on the following tags:<br>{{ end }}
           <svg class="flex align-center no-wrap gdoc-icon gdoc_bookmark"><use xlink:href="#gdoc_bookmark"></use></svg>
           {{ range sort . }}
-            <span class="flex align-center gdoc-button gdoc-button--regular">
+            <span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 0px;">
               <a
                 class="gdoc-button__link"
                 href="{{ $baseURL }}tags/{{ . | urlize }}"
@@ -47,6 +47,9 @@
       {{ end }}
     </div>
   </blockquote>
+  <br>
+  <hr>
+  <br>
 {{- end -}}
 
 {{- if $summarize -}}
