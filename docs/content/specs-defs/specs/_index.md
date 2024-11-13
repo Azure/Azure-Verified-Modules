@@ -15,7 +15,7 @@ This section documents all the specifications for Azure Verified Modules (AVM) a
   - [Interfaces](/Azure-Verified-Modules/specs/bicep/interfaces)
 - [Terraform Specific](/Azure-Verified-Modules/specs/terraform)
 
-## How to read the specifications?
+<!-- ## How to read the specifications?
 
 {{< hint type=important >}}
 
@@ -35,4 +35,6 @@ Any updates to existing or new specifications for Terraform must be submitted as
 
 Any updates to existing or new specifications for Terraform must be submitted as a draft for review by Azure Terraform PG/Engineering(@Azure/terraform-avm) and AVM core team(@Azure/avm-core-team).
 
-{{< /hint >}}
+{{< /hint >}} -->
+
+{{< tagsBasedNavigationTable folder="content/specs-defs/includes" tags="Class-Resource,Class-Pattern,Language-Bicep" recursive=true strict=false showHint=true summarize=false >}}
