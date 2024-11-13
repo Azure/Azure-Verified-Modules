@@ -3,7 +3,15 @@ title: SNFR15 - Automatic Documentation Generation
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Shared","Type-NonFunctional","Category-Documentation","Language-Shared","Enforcement-MUST","Persona-Owner","Persona-Contributor","Lifecycle-Maintenance"]
+tags: ["Class-Shared",
+  "Type-NonFunctional",
+  "Category-Documentation",
+  "Language-Shared",
+  "Enforcement-MUST",
+  "Persona-Owner",
+  "Persona-Contributor",
+  "Lifecycle-Maintenance
+]
 type: "posts"
 priority: 190
 ---

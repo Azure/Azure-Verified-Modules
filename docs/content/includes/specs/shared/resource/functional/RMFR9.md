@@ -3,7 +3,15 @@ title: RMFR9 - End-of-life resource versions
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Resource","Type-Functional","Category-Composition","Language-Shared","Enforcement-SHOULD","Persona-Owner","Persona-Contributor","Lifecycle-Maintenance"]
+tags: ["Class-Resource",
+  "Type-Functional",
+  "Category-Composition",
+  "Language-Shared",
+  "Enforcement-SHOULD",
+  "Persona-Owner",
+  "Persona-Contributor",
+  "Lifecycle-Maintenance
+]
 type: "posts"
 ---
 

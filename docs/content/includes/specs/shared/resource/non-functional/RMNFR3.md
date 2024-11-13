@@ -3,7 +3,14 @@ title: RMNFR3 - RP Collaboration
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Resource","Type-NonFunctional","Category-Composition","Language-Shared","Enforcement-SHOULD","Persona-Owner","Lifecycle-Maintenance"]
+tags: ["Class-Resource",
+  "Type-NonFunctional",
+  "Category-Composition",
+  "Language-Shared",
+  "Enforcement-SHOULD",
+  "Persona-Owner",
+  "Lifecycle-Maintenance
+]
 type: "posts"
 ---
 

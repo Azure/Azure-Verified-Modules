@@ -3,7 +3,15 @@ title: SNFR3 - AVM Compliance Tests
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Shared","Type-NonFunctional","Category-Telemetry","Language-Shared","Enforcement-MUST","Persona-Owner","Persona-Contributor","Lifecycle-Initial"]
+tags: ["Class-Shared",
+  "Type-NonFunctional",
+  "Category-Telemetry",
+  "Language-Shared",
+  "Enforcement-MUST",
+  "Persona-Owner",
+  "Persona-Contributor",
+  "Lifecycle-Initial
+]
 type: "posts"
 priority: 40
 ---

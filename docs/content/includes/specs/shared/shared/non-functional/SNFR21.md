@@ -3,7 +3,15 @@ title: SNFR21 - Cross Language Collaboration
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Shared","Type-NonFunctional","Category-Publishing","Language-Shared","Enforcement-SHOULD","Persona-Owner","Persona-Contributor","Lifecycle-Maintenance"]
+tags: ["Class-Shared",
+  "Type-NonFunctional",
+  "Category-Publishing",
+  "Language-Shared",
+  "Enforcement-SHOULD",
+  "Persona-Owner",
+  "Persona-Contributor",
+  "Lifecycle-Maintenance
+]
 type: "posts"
 priority: 240
 ---

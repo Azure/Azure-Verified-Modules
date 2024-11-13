@@ -3,7 +3,14 @@ title: RMFR2 - No Resource Wrapper Modules
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Resource","Type-Functional","Category-Composition","Language-Shared","Enforcement-MUST","Persona-Owner","Lifecycle-Initial"]
+tags: ["Class-Resource",
+  "Type-Functional",
+  "Category-Composition",
+  "Language-Shared",
+  "Enforcement-MUST",
+  "Persona-Owner",
+  "Lifecycle-Initial
+]
 type: "posts"
 ---
 

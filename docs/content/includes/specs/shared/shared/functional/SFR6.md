@@ -3,7 +3,14 @@ title: SFR6 - Data Redundancy
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Shared","Type-Functional","Category-Composition","Language-Shared","Enforcement-TBD","Persona-Owner","Lifecycle-Initial"]
+tags: ["Class-Shared",
+  "Type-Functional",
+  "Category-Composition",
+  "Language-Shared",
+  "Enforcement-TBD",
+  "Persona-Owner",
+  "Lifecycle-Initial
+]
 type: "posts"
 ---
 

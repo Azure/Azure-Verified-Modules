@@ -3,7 +3,14 @@ title: SNFR23 - GitHub Repo Labels
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Shared","Type-NonFunctional","Category-Contribution/Support","Language-Shared","Enforcement-MUST","Persona-Owner","Lifecycle-Maintenance"]
+tags: ["Class-Shared",
+  "Type-NonFunctional",
+  "Category-Contribution/Support",
+  "Language-Shared",
+  "Enforcement-MUST",
+  "Persona-Owner",
+  "Lifecycle-Maintenance
+]
 type: "posts"
 priority: 160
 ---

@@ -3,7 +3,14 @@ title: SFR3 - Deployment/Usage Telemetry
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Shared","Type-Functional","Category-Telemetry","Language-Shared","Enforcement-MUST","Persona-Owner","Lifecycle-Initial"]
+tags: ["Class-Shared",
+  "Type-Functional",
+  "Category-Telemetry",
+  "Language-Shared",
+  "Enforcement-MUST",
+  "Persona-Owner",
+  "Lifecycle-Initial
+]
 type: "posts"
 ---
 

@@ -3,7 +3,15 @@ title: PMNFR4 - Missing Resource Module(s)
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Pattern","Type-NonFunctional","Category-Hygiene","Language-Shared","Enforcement-MUST","Persona-Owner","Persona-Contributor","Lifecycle-Maintenance"]
+tags: ["Class-Pattern",
+  "Type-NonFunctional",
+  "Category-Hygiene",
+  "Language-Shared",
+  "Enforcement-MUST",
+  "Persona-Owner",
+  "Persona-Contributor",
+  "Lifecycle-Maintenance
+]
 type: "posts"
 ---
 

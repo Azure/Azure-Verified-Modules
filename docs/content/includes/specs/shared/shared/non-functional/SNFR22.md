@@ -3,7 +3,15 @@ title: SNFR22 - Parameters/Variables for Resource IDs
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Shared","Type-NonFunctional","Category-Inputs","Language-Shared","Enforcement-MUST","Persona-Owner","Persona-Contributor","Lifecycle-Maintenance"]
+tags: ["Class-Shared",
+  "Type-NonFunctional",
+  "Category-Inputs",
+  "Language-Shared",
+  "Enforcement-MUST",
+  "Persona-Owner",
+  "Persona-Contributor",
+  "Lifecycle-Maintenance
+]
 type: "posts"
 priority: 180
 ---

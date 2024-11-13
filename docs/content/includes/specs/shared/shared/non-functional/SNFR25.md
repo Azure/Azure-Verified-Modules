@@ -3,7 +3,14 @@ title: SNFR25 - Resource Naming
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Shared","Type-NonFunctional","Category-Composition","Language-Shared","Enforcement-MUST","Persona-Owner","Lifecycle-Initial"]
+tags: ["Class-Shared",
+  "Type-NonFunctional",
+  "Category-Composition",
+  "Language-Shared",
+  "Enforcement-MUST",
+  "Persona-Owner",
+  "Lifecycle-Initial
+]
 type: "posts"
 priority: 10
 ---

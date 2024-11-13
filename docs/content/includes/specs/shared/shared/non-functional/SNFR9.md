@@ -3,7 +3,14 @@ title: SNFR9 - AVM & PG Teams GitHub Repo Permissions
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Shared","Type-NonFunctional","Category-Contribution/Support","Language-Shared","Enforcement-MUST","Persona-Owner","Lifecycle-Initial"]
+tags: ["Class-Shared",
+  "Type-NonFunctional",
+  "Category-Contribution/Support",
+  "Language-Shared",
+  "Enforcement-MUST",
+  "Persona-Owner",
+  "Lifecycle-Initial
+]
 type: "posts"
 priority: 120
 ---
