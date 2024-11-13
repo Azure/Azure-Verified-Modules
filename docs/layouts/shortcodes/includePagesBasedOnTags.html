@@ -1,6 +1,6 @@
 {{- $folder := .Get "folder" -}}
 {{- $tags := split (.Get "tags") "," -}}
-{{- $type := .Get "type" -}}
+
 {{- $baseURL := $.Site.BaseURL -}}
 {{- $recursive := default false (.Get "recursive") -}}
 {{- $strict := default false (.Get "strict") -}}
@@ -111,22 +111,19 @@
   {{- $page := .page -}}
   {{- $file := .file -}}
   {{- $pageTags := $page.Params.tags -}}
+  {{- $showPage := default true $page.Params.showPage -}}
 
-  {{- if eq $type "html" -}}
-    {{- $file | readFile | safeHTML -}}
-  {{- else if eq $type "page" -}}
-    {{- if $showPageTags -}}
-      {{- partial "showPageTags" (dict "pageTags" $pageTags "baseURL" $baseURL) -}}
-    {{- end -}}
+  {{- with $page -}}
+    {{- if $showPage -}}
+      {{- if $showPageTags -}}
+        {{- partial "showPageTags" (dict "pageTags" $pageTags "baseURL" $baseURL) -}}
+      {{- end -}}
 
-    {{- with $page -}}
       {{- .Content -}}
+      <br>
+      <hr>
+      <br>
     {{- end -}}
-    <br>
-    <hr>
-    <br>
-  {{- else -}}
-    {{- $file | readFile | $.Page.RenderString -}}
   {{- end -}}
 {{- end -}}
 

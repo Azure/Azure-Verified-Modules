@@ -38,11 +38,11 @@ Listed below are both functional and non-functional requirements for Bicep AVM m
 
 ### Functional Requirements (BCPFR)
 
-{{< includePagesBasedOnTags folder="content/specs-defs/includes/bicep/shared/functional" type="page" tags="Class-Resource,Class-Pattern,Type-Functional,Language-Bicep" recursive=true strict=false showHint=true hintText="This section includes **Bicep specific, functional requirements (BCPFR)** for AVM modules (Resource and Pattern)." summarize=false >}}
+{{< includePagesBasedOnTags folder="content/specs-defs/includes/bicep/shared/functional" tags="Class-Resource,Class-Pattern,Type-Functional,Language-Bicep" recursive=true strict=false showHint=true hintText="This section includes **Bicep specific, functional requirements (BCPFR)** for AVM modules (Resource and Pattern)." summarize=false >}}
 
 ### Non-Functional Requirements (BCPNFR)
 
-{{< includePagesBasedOnTags folder="content/specs-defs/includes/bicep/shared/non-functional" type="page" tags="Class-Resource,Class-Pattern,Type-NonFunctional,Language-Bicep" recursive=true strict=false showHint=true hintText="This section includes **Bicep specific, non-functional requirements (BCPNFR)** for AVM modules (Resource and Pattern)." summarize=false >}}
+{{< includePagesBasedOnTags folder="content/specs-defs/includes/bicep/shared/non-functional" tags="Class-Resource,Class-Pattern,Type-NonFunctional,Language-Bicep" recursive=true strict=false showHint=true hintText="This section includes **Bicep specific, non-functional requirements (BCPNFR)** for AVM modules (Resource and Pattern)." summarize=false >}}
 
 ## Resource Module Requirements
 
@@ -50,4 +50,4 @@ Listed below are both functional and non-functional requirements for Bicep [AVM 
 
 ### Non-Functional Requirements (BCPRMNFR)
 
-{{< includePagesBasedOnTags folder="content/specs-defs/includes/bicep/resource/non-functional" type="page" tags="Class-Resource,Type-NonFunctional,Language-Bicep" recursive=true strict=false showHint=true hintText="This section includes **resource module level, non-functional requirements (BCPRMNFR)** for Bicep." summarize=false >}}
+{{< includePagesBasedOnTags folder="content/specs-defs/includes/bicep/resource/non-functional" tags="Class-Resource,Type-NonFunctional,Language-Bicep" recursive=true strict=false showHint=true hintText="This section includes **resource module level, non-functional requirements (BCPRMNFR)** for Bicep." summarize=false >}}
