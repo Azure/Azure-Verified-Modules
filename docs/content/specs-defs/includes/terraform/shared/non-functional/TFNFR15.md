@@ -1,5 +1,6 @@
 ---
 title: TFNFR15 - Variable Definition Order
+url: /spec/TFNFR15
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

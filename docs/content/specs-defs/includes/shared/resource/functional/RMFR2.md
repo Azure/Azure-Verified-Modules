@@ -1,5 +1,6 @@
 ---
 title: RMFR2 - No Resource Wrapper Modules
+url: /spec/RMFR2
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

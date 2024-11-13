@@ -1,5 +1,6 @@
 ---
 title: PMNFR1 - Module Naming
+url: /spec/PMNFR1
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

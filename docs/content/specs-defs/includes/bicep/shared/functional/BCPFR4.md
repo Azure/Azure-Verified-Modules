@@ -1,5 +1,6 @@
 ---
 title: BCPFR4 - Telemetry Enablement
+url: /spec/BCPFR4
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

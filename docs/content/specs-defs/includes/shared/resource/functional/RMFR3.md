@@ -1,5 +1,6 @@
 ---
 title: RMFR3 - Resource Groups
+url: /spec/RMFR3
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

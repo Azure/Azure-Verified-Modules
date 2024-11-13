@@ -1,5 +1,6 @@
 ---
 title: PMFR1 - Resource Group Creation
+url: /spec/PMFR1
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

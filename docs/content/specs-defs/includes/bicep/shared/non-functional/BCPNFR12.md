@@ -1,5 +1,6 @@
 ---
 title: BCPNFR12 - Deployment Test Naming
+url: /spec/BCPNFR12
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

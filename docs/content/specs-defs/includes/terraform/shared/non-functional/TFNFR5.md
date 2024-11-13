@@ -1,5 +1,6 @@
 ---
 title: TFNFR5 - Test Tooling
+url: /spec/TFNFR5
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

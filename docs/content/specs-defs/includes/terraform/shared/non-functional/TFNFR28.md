@@ -1,5 +1,6 @@
 ---
 title: TFNFR28 - Provider Declarations in Modules
+url: /spec/TFNFR28
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

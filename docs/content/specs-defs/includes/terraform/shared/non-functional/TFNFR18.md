@@ -1,5 +1,6 @@
 ---
 title: TFNFR18 - Variables with Types
+url: /spec/TFNFR18
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

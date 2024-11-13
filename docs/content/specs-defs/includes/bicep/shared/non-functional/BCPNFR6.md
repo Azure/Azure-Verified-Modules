@@ -1,5 +1,6 @@
 ---
 title: BCPNFR6 - Role Assignments Role Definition Mapping Compulsory Roles
+url: /spec/BCPNFR6
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

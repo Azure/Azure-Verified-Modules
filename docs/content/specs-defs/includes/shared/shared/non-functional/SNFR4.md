@@ -1,5 +1,6 @@
 ---
 title: SNFR4 - Unit Tests
+url: /spec/SNFR4
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

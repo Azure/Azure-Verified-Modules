@@ -1,5 +1,6 @@
 ---
 title: BCPFR1 - Cross-Referencing Modules
+url: /spec/BCPFR1
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

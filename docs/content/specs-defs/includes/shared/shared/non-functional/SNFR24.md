@@ -1,5 +1,6 @@
 ---
 title: SNFR24 - Testing Child, Extension & Interface Resources
+url: /spec/SNFR24
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

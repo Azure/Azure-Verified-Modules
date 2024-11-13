@@ -1,5 +1,6 @@
 ---
 title: PMNFR3 - Use other Pattern Modules to Build a Pattern Module
+url: /spec/PMNFR3
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

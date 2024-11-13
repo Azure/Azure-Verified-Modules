@@ -1,5 +1,6 @@
 ---
 title: TFFR2 - Additional Terraform Outputs
+url: /spec/TFFR2
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

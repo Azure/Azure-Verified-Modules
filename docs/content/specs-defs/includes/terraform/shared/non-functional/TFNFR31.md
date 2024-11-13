@@ -1,5 +1,6 @@
 ---
 title: TFNFR31 - locals.tf for Locals Only
+url: /spec/TFNFR31
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

@@ -1,5 +1,6 @@
 ---
 title: TFNFR16 - Variable Naming Rules
+url: /spec/TFNFR16
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

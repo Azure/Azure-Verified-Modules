@@ -1,5 +1,6 @@
 ---
 title: SNFR2 - E2E Testing
+url: /spec/SNFR2
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

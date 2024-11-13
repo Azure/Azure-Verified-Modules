@@ -1,5 +1,6 @@
 ---
 title: SFR6 - Data Redundancy
+url: /spec/SFR6
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

@@ -1,5 +1,6 @@
 ---
 title: BCPNFR3 - Usage Example formats
+url: /spec/BCPNFR3
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

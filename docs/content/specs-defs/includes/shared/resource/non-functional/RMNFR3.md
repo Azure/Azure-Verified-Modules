@@ -1,5 +1,6 @@
 ---
 title: RMNFR3 - RP Collaboration
+url: /spec/RMNFR3
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

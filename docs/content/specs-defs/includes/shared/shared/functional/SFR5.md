@@ -1,5 +1,6 @@
 ---
 title: SFR5 - Availability Zones
+url: /spec/SFR5
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

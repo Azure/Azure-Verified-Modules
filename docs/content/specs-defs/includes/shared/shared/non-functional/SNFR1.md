@@ -1,5 +1,6 @@
 ---
 title: SNFR1 - Prescribed Tests
+url: /spec/SNFR1
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

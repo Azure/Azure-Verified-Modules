@@ -1,5 +1,6 @@
 ---
 title: RMFR1 - Single Resource Only
+url: /spec/RMFR1
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

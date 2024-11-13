@@ -1,5 +1,6 @@
 ---
 title: PMNFR5 - Parameter/Variable Naming
+url: /spec/PMNFR5
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

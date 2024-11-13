@@ -1,5 +1,6 @@
 ---
 title: TFNFR12 - Dynamic for Optional Nested Objects
+url: /spec/TFNFR12
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

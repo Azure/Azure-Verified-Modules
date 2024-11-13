@@ -1,5 +1,6 @@
 ---
 title: TFNFR34 - Using Feature Toggles
+url: /spec/TFNFR34
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

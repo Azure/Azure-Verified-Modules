@@ -1,5 +1,6 @@
 ---
 title: TFNFR33 - Precise Local Types
+url: /spec/TFNFR33
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

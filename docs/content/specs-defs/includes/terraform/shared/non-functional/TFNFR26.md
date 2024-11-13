@@ -1,5 +1,6 @@
 ---
 title: TFNFR26 - Providers in required_providers
+url: /spec/TFNFR26
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

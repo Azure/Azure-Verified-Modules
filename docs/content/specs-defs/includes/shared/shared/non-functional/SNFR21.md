@@ -1,5 +1,6 @@
 ---
 title: SNFR21 - Cross Language Collaboration
+url: /spec/SNFR21
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

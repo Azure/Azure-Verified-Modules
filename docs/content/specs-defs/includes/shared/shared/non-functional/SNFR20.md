@@ -1,5 +1,6 @@
 ---
 title: SNFR20 - GitHub Teams Only
+url: /spec/SNFR20
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

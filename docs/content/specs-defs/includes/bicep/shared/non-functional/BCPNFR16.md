@@ -1,5 +1,6 @@
 ---
 title: BCPNFR16 - Post-deployment tests
+url: /spec/BCPNFR16
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

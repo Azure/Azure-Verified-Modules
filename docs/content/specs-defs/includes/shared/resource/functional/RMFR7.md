@@ -1,5 +1,6 @@
 ---
 title: RMFR7 - Minimum Required Outputs
+url: /spec/RMFR7
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

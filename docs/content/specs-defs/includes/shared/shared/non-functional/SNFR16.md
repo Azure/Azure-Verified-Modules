@@ -1,5 +1,6 @@
 ---
 title: SNFR16 - Examples/E2E
+url: /spec/SNFR16
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

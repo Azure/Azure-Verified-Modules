@@ -1,5 +1,6 @@
 ---
 title: BCPFR5 - Availability Zones Implementation
+url: /spec/BCPFR5
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

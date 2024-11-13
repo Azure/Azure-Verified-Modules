@@ -1,5 +1,6 @@
 ---
 title: TFNFR8 - Resource & Data Block Orders
+url: /spec/TFNFR8
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

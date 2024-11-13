@@ -1,5 +1,6 @@
 ---
 title: TFNFR22 - Avoid sensitive = false
+url: /spec/TFNFR22
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

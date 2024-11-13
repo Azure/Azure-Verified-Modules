@@ -1,5 +1,6 @@
 ---
 title: SNFR12 - Versions Supported
+url: /spec/SNFR12
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

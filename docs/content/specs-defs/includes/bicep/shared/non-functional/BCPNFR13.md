@@ -1,5 +1,6 @@
 ---
 title: BCPNFR13 - Test file metadata
+url: /spec/BCPNFR13
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

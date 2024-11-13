@@ -1,5 +1,6 @@
 ---
 title: BCPNFR14 - Versioning
+url: /spec/BCPNFR14
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

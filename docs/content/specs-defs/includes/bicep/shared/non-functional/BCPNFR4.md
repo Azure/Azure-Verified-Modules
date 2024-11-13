@@ -1,5 +1,6 @@
 ---
 title: BCPNFR4 - Parameter Input Examples
+url: /spec/BCPNFR4
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

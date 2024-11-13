@@ -1,5 +1,6 @@
 ---
 title: RMNFR1 - Module Naming
+url: /spec/RMNFR1
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

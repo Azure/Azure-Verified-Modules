@@ -1,5 +1,6 @@
 ---
 title: SNFR23 - GitHub Repo Labels
+url: /spec/SNFR23
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

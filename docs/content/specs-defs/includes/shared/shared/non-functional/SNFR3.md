@@ -1,5 +1,6 @@
 ---
 title: SNFR3 - AVM Compliance Tests
+url: /spec/SNFR3
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

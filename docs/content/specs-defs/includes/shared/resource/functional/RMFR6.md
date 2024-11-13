@@ -1,5 +1,6 @@
 ---
 title: RMFR6 - Parameter/Variable Naming
+url: /spec/RMFR6
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

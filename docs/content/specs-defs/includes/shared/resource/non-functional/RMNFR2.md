@@ -1,5 +1,6 @@
 ---
 title: RMNFR2 - Parameter/Variable Naming
+url: /spec/RMNFR2
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

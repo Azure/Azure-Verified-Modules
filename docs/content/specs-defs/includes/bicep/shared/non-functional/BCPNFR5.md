@@ -1,5 +1,6 @@
 ---
 title: BCPNFR5 - Role Assignments Role Definition Mapping Limits
+url: /spec/BCPNFR5
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

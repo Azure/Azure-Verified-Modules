@@ -1,5 +1,6 @@
 ---
 title: SFR3 - Deployment/Usage Telemetry
+url: /spec/SFR3
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

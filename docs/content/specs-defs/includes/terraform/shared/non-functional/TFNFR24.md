@@ -1,5 +1,6 @@
 ---
 title: TFNFR24 - Handling Deprecated Variables
+url: /spec/TFNFR24
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

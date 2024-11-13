@@ -1,5 +1,6 @@
 ---
 title: TFNFR2 - Module Documentation Generation
+url: /spec/TFNFR2
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

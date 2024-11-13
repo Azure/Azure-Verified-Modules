@@ -1,5 +1,6 @@
 ---
 title: SNFR6 - Static Analysis/Linting Tests
+url: /spec/SNFR6
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

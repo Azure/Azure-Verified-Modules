@@ -1,5 +1,6 @@
 ---
 title: TFNFR17 - Variables with Descriptions
+url: /spec/TFNFR17
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

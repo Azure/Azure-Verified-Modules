@@ -1,5 +1,6 @@
 ---
 title: TFNFR3 - GitHub Repo Branch Protection
+url: /spec/TFNFR3
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

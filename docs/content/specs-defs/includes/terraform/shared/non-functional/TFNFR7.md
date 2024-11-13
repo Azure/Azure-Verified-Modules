@@ -1,5 +1,6 @@
 ---
 title: TFNFR7 - Count & for_each Use
+url: /spec/TFNFR7
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

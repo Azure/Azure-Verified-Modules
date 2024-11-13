@@ -1,5 +1,6 @@
 ---
 title: SNFR10 - MIT Licensing
+url: /spec/SNFR10
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

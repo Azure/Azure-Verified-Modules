@@ -1,5 +1,6 @@
 ---
 title: TFNFR32 - Alphabetical Local Arrangement
+url: /spec/TFNFR32
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

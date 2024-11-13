@@ -1,5 +1,6 @@
 ---
 title: TFNFR36 - Setting prevent_deletion_if_contains_resources
+url: /spec/TFNFR36
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

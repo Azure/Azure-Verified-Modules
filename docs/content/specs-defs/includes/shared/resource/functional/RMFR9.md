@@ -1,5 +1,6 @@
 ---
 title: RMFR9 - End-of-life resource versions
+url: /spec/RMFR9
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

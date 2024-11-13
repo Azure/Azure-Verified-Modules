@@ -1,5 +1,6 @@
 ---
 title: TFNFR6 - Resource & Data Order
+url: /spec/TFNFR6
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

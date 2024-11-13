@@ -1,5 +1,6 @@
 ---
 title: TFNFR25 - Verified Modules Requirements
+url: /spec/TFNFR25
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

@@ -1,5 +1,6 @@
 ---
 title: TFNFR1 - Descriptions
+url: /spec/TFNFR1
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

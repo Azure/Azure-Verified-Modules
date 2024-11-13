@@ -1,5 +1,6 @@
 ---
 title: TFNFR14 - Not allowed variables
+url: /spec/TFNFR14
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

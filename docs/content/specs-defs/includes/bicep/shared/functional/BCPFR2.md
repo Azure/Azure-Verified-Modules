@@ -1,5 +1,6 @@
 ---
 title: BCPFR2 - Role Assignments Role Definition Mapping
+url: /spec/BCPFR2
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

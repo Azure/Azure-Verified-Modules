@@ -1,5 +1,6 @@
 ---
 title: SFR1 - Preview Services
+url: /spec/SFR1
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

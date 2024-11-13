@@ -1,5 +1,6 @@
 ---
 title: RMFR5 - AVM Consistent Feature & Extension Resources Value Add Interfaces/Schemas
+url: /spec/RMFR5
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

@@ -1,5 +1,6 @@
 ---
 title: TFNFR19 - Sensitive Data Variables
+url: /spec/TFNFR19
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

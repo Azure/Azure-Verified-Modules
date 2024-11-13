@@ -1,5 +1,6 @@
 ---
 title: SFR2 - WAF Aligned
+url: /spec/SFR2
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

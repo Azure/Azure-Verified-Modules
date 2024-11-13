@@ -1,5 +1,6 @@
 ---
 title: SNFR8 - Module Owner(s) GitHub
+url: /spec/SNFR8
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

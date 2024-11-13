@@ -1,5 +1,6 @@
 ---
 title: BCPNFR7 - Parameter Requirement Types
+url: /spec/BCPNFR7
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

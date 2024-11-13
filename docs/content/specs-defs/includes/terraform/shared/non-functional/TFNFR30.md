@@ -1,5 +1,6 @@
 ---
 title: TFNFR30 - Handling Deprecated Outputs
+url: /spec/TFNFR30
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

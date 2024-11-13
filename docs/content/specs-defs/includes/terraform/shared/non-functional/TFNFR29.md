@@ -1,5 +1,6 @@
 ---
 title: TFNFR29 - Sensitive Data Outputs
+url: /spec/TFNFR29
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

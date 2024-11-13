@@ -1,5 +1,6 @@
 ---
 title: BCPNFR8 - Code Styling - lower camelCasing
+url: /spec/BCPNFR8
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

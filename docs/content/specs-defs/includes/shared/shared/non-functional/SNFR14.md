@@ -1,5 +1,6 @@
 ---
 title: SNFR14 - Data Types
+url: /spec/SNFR14
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

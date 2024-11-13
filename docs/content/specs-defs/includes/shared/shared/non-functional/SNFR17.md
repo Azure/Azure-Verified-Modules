@@ -1,5 +1,6 @@
 ---
 title: SNFR17 - Semantic Versioning
+url: /spec/SNFR17
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

@@ -1,5 +1,6 @@
 ---
 title: RMFR8 - Dependency on child and other resources
+url: /spec/RMFR8
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

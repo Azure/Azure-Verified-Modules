@@ -1,5 +1,6 @@
 ---
 title: SNFR18 - Breaking Changes
+url: /spec/SNFR18
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

@@ -1,5 +1,6 @@
 ---
 title: TFNFR23 - Sensitive Default Value Conditions
+url: /spec/TFNFR23
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

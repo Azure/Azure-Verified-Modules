@@ -1,5 +1,6 @@
 ---
 title: BCPNFR11 - Test Tooling
+url: /spec/BCPNFR11
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

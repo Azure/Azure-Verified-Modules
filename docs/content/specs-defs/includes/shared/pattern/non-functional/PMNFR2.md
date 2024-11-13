@@ -1,5 +1,6 @@
 ---
 title: PMNFR2 - Use Resource Modules to Build a Pattern Module
+url: /spec/PMNFR2
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

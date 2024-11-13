@@ -1,5 +1,6 @@
 ---
 title: SNFR25 - Resource Naming
+url: /spec/SNFR25
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

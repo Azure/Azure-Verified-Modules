@@ -1,5 +1,6 @@
 ---
 title: BCPNFR10 - Test Bicep File Naming
+url: /spec/BCPNFR10
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

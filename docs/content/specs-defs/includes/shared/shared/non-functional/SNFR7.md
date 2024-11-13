@@ -1,5 +1,6 @@
 ---
 title: SNFR7 - Idempotency Tests
+url: /spec/SNFR7
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

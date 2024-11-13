@@ -1,5 +1,6 @@
 ---
 title: TFNFR11 - Null Comparison Toggle
+url: /spec/TFNFR11
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

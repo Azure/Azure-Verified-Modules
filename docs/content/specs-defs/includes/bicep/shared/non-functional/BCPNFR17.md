@@ -1,5 +1,6 @@
 ---
 title: BCPNFR17 - Code Styling - Type casting
+url: /spec/BCPNFR17
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

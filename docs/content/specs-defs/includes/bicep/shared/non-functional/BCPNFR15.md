@@ -1,5 +1,6 @@
 ---
 title: BCPNFR15 - AVM Module Issue template file
+url: /spec/BCPNFR15
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

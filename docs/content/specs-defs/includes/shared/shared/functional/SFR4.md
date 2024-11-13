@@ -1,5 +1,6 @@
 ---
 title: SFR4 - Telemetry Enablement Flexibility
+url: /spec/SFR4
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

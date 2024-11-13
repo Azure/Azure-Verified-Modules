@@ -1,5 +1,6 @@
 ---
 title: SNFR19 - Registries Targeted
+url: /spec/SNFR19
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

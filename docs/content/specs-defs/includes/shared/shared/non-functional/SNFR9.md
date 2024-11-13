@@ -1,5 +1,6 @@
 ---
 title: SNFR9 - AVM & PG Teams GitHub Repo Permissions
+url: /spec/SNFR9
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

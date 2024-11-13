@@ -1,5 +1,6 @@
 ---
 title: TFNFR9 - Module Block Order
+url: /spec/TFNFR9
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

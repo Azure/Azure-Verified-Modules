@@ -1,5 +1,6 @@
 ---
 title: PMNFR4 - Missing Resource Module(s)
+url: /spec/PMNFR4
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

@@ -1,5 +1,6 @@
 ---
 title: BCPNFR2 - Module Documentation Generation
+url: /spec/BCPNFR2
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

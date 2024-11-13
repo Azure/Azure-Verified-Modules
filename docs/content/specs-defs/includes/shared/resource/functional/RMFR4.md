@@ -1,5 +1,6 @@
 ---
 title: RMFR4 - AVM Consistent Feature & Extension Resources Value Add
+url: /spec/RMFR4
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

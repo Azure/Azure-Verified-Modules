@@ -1,5 +1,6 @@
 ---
 title: BCPRMNFR1 - Expected Test Directories
+url: /spec/BCPRMNFR1
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

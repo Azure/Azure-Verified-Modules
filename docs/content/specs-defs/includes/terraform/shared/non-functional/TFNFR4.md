@@ -1,5 +1,6 @@
 ---
 title: TFNFR4 - Lower snake_casing
+url: /spec/TFNFR4
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

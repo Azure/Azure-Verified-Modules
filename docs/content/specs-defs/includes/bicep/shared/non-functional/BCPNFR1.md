@@ -1,5 +1,6 @@
 ---
 title: BCPNFR1 - Data Types
+url: /spec/BCPNFR1
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

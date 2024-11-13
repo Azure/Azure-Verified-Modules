@@ -1,5 +1,6 @@
 ---
 title: SNFR5 - Upgrade Tests
+url: /spec/SNFR5
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
