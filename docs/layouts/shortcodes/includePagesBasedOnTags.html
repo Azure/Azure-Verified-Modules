@@ -5,6 +5,7 @@
 {{- $recursive := default false (.Get "recursive") -}}
 {{- $strict := default false (.Get "strict") -}}
 {{- $allFiles := slice -}}
+{{- $showPageTags := default true (.Get "showPageTags") -}}
 {{- $showHint := default false (.Get "showHint") -}}
 {{- $hintText := default "" (.Get "hintText") -}}
 
@@ -27,9 +28,9 @@
       {{- end -}}
     </div>
     <div class="gdoc-hint__text">
-    {{ with $hintText }}{{ $hintText | markdownify }}<br><br>Requirements are listed based on the following tags:{{ end}}
       {{ with $tags }}
         <div class="tags">
+          {{ with $hintText }}{{ $hintText | markdownify }}<br>Specifications are listed based on the following tags:{{ end }}
           <svg class="flex align-center no-wrap gdoc-icon gdoc_bookmark"><use xlink:href="#gdoc_bookmark"></use></svg>
           {{ range sort . }}
             <span class="flex align-center gdoc-button gdoc-button--regular">
@@ -111,7 +112,10 @@
   {{- if eq $type "html" -}}
     {{- $file | readFile | safeHTML -}}
   {{- else if eq $type "page" -}}
-    {{- partial "showPageTags" (dict "pageTags" $pageTags "baseURL" $baseURL) -}}
+    {{- if $showPageTags -}}
+      {{- partial "showPageTags" (dict "pageTags" $pageTags "baseURL" $baseURL) -}}
+    {{- end -}}
+
     {{- with $page -}}
       {{- .Content -}}
     {{- end -}}
