@@ -36,7 +36,6 @@ The following table summarizes the category identification codes used in this sp
 
 Listed below are both functional and non-functional requirements for Bicep AVM modules (Resource and Pattern).
 
-
 ### Functional Requirements (BCPFR)
 
 {{< includePagesBasedOnTags folder="content/specs-defs/includes/bicep/shared/functional" type="page" tags="Class-Resource,Class-Pattern,Type-Functional,Language-Bicep" recursive=true strict=false showHint=true hintText="This section includes **Bicep specific, functional requirements (BCPFR)** for AVM modules (Resource and Pattern)." summarize=false >}}
