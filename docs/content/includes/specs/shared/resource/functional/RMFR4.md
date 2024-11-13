@@ -3,14 +3,16 @@ title: RMFR4 - AVM Consistent Feature & Extension Resources Value Add
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Resource",
-  "Type-Functional",
-  "Category-Composition",
-  "Language-Shared",
-  "Enforcement-MUST",
-  "Persona-Owner",
-  "Persona-Contributor",
-  "Lifecycle-Maintenance
+tags: [
+  Class-Resource,
+  Type-Functional,
+  Category-Composition,
+  Language-Bicep,
+  Language-Terraform,
+  Severity-MUST,
+  Persona-Owner,
+  Persona-Contributor,
+  Lifecycle-Maintenance
 ]
 type: "posts"
 ---

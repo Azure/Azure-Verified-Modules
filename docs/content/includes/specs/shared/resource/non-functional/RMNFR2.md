@@ -3,14 +3,16 @@ title: RMNFR2 - Parameter/Variable Naming
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Resource",
-  "Type-NonFunctional",
-  "Category-Inputs",
-  "Language-Shared",
-  "Enforcement-MUST",
-  "Persona-Owner",
-  "Persona-Contributor",
-  "Lifecycle-Maintenance
+tags: [
+  Class-Resource,
+  Type-NonFunctional,
+  Category-Inputs,
+  Language-Bicep,
+  Language-Terraform,
+  Severity-MUST,
+  Persona-Owner,
+  Persona-Contributor,
+  Lifecycle-Maintenance
 ]
 type: "posts"
 ---

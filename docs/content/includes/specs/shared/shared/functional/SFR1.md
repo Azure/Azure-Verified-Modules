@@ -3,13 +3,16 @@ title: SFR1 - Preview Services
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Shared",
-  "Type-Functional",
-  "Category-Composition",
-  "Language-Shared",
-  "Enforcement-TBD",
-  "Persona-Owner",
-  "Lifecycle-Maintenance
+tags: [
+  Class-Resource,
+  Class-Pattern,
+  Type-Functional,
+  Category-Composition,
+  Language-Bicep,
+  Language-Terraform,
+  Severity-TBD,
+  Persona-Owner,
+  Lifecycle-Maintenance
 ]
 type: "posts"
 ---

@@ -3,14 +3,17 @@ title: SNFR2 - E2E Testing
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Shared",
-  "Type-NonFunctional",
-  "Category-Testing",
-  "Language-Shared",
-  "Enforcement-MUST",
-  "Persona-Owner",
-  "Persona-Contributor",
-  "Lifecycle-Maintenance
+tags: [
+  Class-Resource,
+  Class-Pattern,
+  Type-NonFunctional,
+  Category-Testing,
+  Language-Bicep,
+  Language-Terraform,
+  Severity-MUST,
+  Persona-Owner,
+  Persona-Contributor,
+  Lifecycle-Maintenance
 ]
 type: "posts"
 priority: 30

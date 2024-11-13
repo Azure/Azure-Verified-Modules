@@ -3,14 +3,16 @@ title: RMFR7 - Minimum Required Outputs
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Resource",
-  "Type-Functional",
-  "Category-Outputs",
-  "Language-Shared",
-  "Enforcement-MUST",
-  "Persona-Owner",
-  "Persona-Contributor",
-  "Lifecycle-Maintenance
+tags: [
+  Class-Resource,
+  Type-Functional,
+  Category-Outputs,
+  Language-Bicep,
+  Language-Terraform,
+  Severity-MUST,
+  Persona-Owner,
+  Persona-Contributor,
+  Lifecycle-Maintenance
 ]
 type: "posts"
 ---

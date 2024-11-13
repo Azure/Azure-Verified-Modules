@@ -3,13 +3,15 @@ title: RMNFR1 - Module Naming
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Resource",
-  "Type-NonFunctional",
-  "Category-Naming",
-  "Language-Shared",
-  "Enforcement-MUST",
-  "Persona-Owner",
-  "Lifecycle-Initial
+tags: [
+  Class-Resource,
+  Type-NonFunctional,
+  Category-Naming,
+  Language-Bicep,
+  Language-Terraform,
+  Severity-MUST,
+  Persona-Owner,
+  Lifecycle-Initial
 ]
 type: "posts"
 ---

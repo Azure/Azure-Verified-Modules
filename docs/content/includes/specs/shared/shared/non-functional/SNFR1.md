@@ -3,13 +3,16 @@ title: SNFR1 - Prescribed Tests
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Shared",
-  "Type-NonFunctional",
-  "Category-Testing",
-  "Language-Shared",
-  "Enforcement-MUST",
-  "Persona-Owner",
-  "Lifecycle-Initial
+tags: [
+  Class-Resource,
+  Class-Pattern,
+  Type-NonFunctional,
+  Category-Testing,
+  Language-Bicep,
+  Language-Terraform,
+  Severity-MUST,
+  Persona-Owner,
+  Lifecycle-Initial
 ]
 type: "posts"
 priority: 20

@@ -3,13 +3,16 @@ title: SFR2 - WAF Aligned
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Shared",
-  "Type-Functional",
-  "Category-Composition",
-  "Language-Shared",
-  "Enforcement-SHOULD",
-  "Persona-Owner",
-  "Lifecycle-Maintenance
+tags: [
+  Class-Resource,
+  Class-Pattern,
+  Type-Functional,
+  Category-Composition,
+  Language-Bicep,
+  Language-Terraform,
+  Severity-SHOULD,
+  Persona-Owner,
+  Lifecycle-Maintenance
 ]
 type: "posts"
 ---

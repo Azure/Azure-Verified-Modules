@@ -3,14 +3,17 @@ title: SNFR14 - Data Types
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Shared",
-  "Type-NonFunctional",
-  "Category-Inputs",
-  "Language-Shared",
-  "Enforcement-SHOULD",
-  "Persona-Owner",
-  "Persona-Contributor",
-  "Lifecycle-Maintenance
+tags: [
+  Class-Resource,
+  Class-Pattern,
+  Type-NonFunctional,
+  Category-Inputs,
+  Language-Bicep,
+  Language-Terraform,
+  Severity-SHOULD,
+  Persona-Owner,
+  Persona-Contributor,
+  Lifecycle-Maintenance
 ]
 type: "posts"
 priority: 170

@@ -3,13 +3,16 @@ title: SNFR20 - GitHub Teams Only
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Shared",
-  "Type-NonFunctional",
-  "Category-Contribution/Support",
-  "Language-Shared",
-  "Enforcement-MUST",
-  "Persona-Owner",
-  "Lifecycle-Initial
+tags: [
+  Class-Resource,
+  Class-Pattern,
+  Type-NonFunctional,
+  Category-Contribution/Support,
+  Language-Bicep,
+  Language-Terraform,
+  Severity-MUST,
+  Persona-Owner,
+  Lifecycle-Initial
 ]
 type: "posts"
 priority: 110

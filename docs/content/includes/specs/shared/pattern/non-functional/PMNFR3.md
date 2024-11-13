@@ -3,14 +3,16 @@ title: PMNFR3 - Use other Pattern Modules to Build a Pattern Module
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Pattern",
-  "Type-NonFunctional",
-  "Category-Composition",
-  "Language-Shared",
-  "Enforcement-MUST",
-  "Persona-Owner",
-  "Persona-Contributor",
-  "Lifecycle-Maintenance
+tags: [
+  Class-Pattern,
+  Type-NonFunctional,
+  Category-Composition,
+  Language-Bicep,
+  Language-Terraform,
+  Severity-MUST,
+  Persona-Owner,
+  Persona-Contributor,
+  Lifecycle-Maintenance
 ]
 type: "posts"
 ---

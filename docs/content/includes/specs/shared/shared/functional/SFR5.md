@@ -3,13 +3,16 @@ title: SFR5 - Availability Zones
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-tags: ["Class-Shared",
-  "Type-Functional",
-  "Category-Composition",
-  "Language-Shared",
-  "Enforcement-MUST",
-  "Persona-Owner",
-  "Lifecycle-Initial
+tags: [
+  Class-Resource,
+  Class-Pattern,
+  Type-Functional,
+  Category-Composition,
+  Language-Bicep,
+  Language-Terraform,
+  Severity-MUST,
+  Persona-Owner,
+  Lifecycle-Initial
 ]
 type: "posts"
 ---
