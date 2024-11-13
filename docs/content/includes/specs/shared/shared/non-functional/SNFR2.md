@@ -16,7 +16,6 @@ tags: [
   Persona-Contributor,
   Lifecycle-Maintenance
 ]
-type: "posts"
 priority: 30
 ---
 

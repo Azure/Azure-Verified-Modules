@@ -15,7 +15,6 @@ tags: [
   Persona-Owner,
   Lifecycle-Initial
 ]
-type: "posts"
 priority: 20
 ---
 

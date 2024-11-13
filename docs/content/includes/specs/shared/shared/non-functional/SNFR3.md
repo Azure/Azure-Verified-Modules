@@ -16,7 +16,6 @@ tags: [
   Persona-Contributor,
   Lifecycle-Initial
 ]
-type: "posts"
 priority: 40
 ---
 

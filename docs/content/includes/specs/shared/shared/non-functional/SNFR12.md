@@ -15,7 +15,6 @@ tags: [
   Persona-Owner,
   Lifecycle-Maintenance
 ]
-type: "posts"
 priority: 150
 ---
 
