@@ -3,6 +3,7 @@ title: RMFR1 - Single Resource Only
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Type-Functional,
@@ -14,7 +15,6 @@ tags: [
   Persona-Contributor,
   Lifecycle-Maintenance
 ]
-type: "posts"
 ---
 
 #### ID: RMFR1 - Category: Composition - Single Resource Only

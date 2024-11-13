@@ -3,6 +3,7 @@ title: SFR1 - Preview Services
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,
@@ -14,7 +15,6 @@ tags: [
   Persona-Owner,
   Lifecycle-Maintenance
 ]
-type: "posts"
 ---
 
 #### ID: SFR1 - Category: Composition - Preview Services

@@ -3,6 +3,7 @@ title: SNFR24 - Testing Child, Extension & Interface Resources
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,

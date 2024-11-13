@@ -3,6 +3,7 @@ title: RMFR3 - Resource Groups
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Type-Functional,
@@ -14,7 +15,6 @@ tags: [
   Persona-Contributor,
   Lifecycle-Maintenance
 ]
-type: "posts"
 ---
 
 #### ID: RMFR3 - Category: Composition - Resource Groups

@@ -3,6 +3,7 @@ title: SNFR8 - Module Owner(s) GitHub
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,

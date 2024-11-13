@@ -3,6 +3,7 @@ title: SNFR7 - Idempotency Tests
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,

@@ -3,6 +3,7 @@ title: RMNFR3 - RP Collaboration
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Type-NonFunctional,
@@ -13,7 +14,6 @@ tags: [
   Persona-Owner,
   Lifecycle-Maintenance
 ]
-type: "posts"
 ---
 
 #### ID: RMNFR3 - Category: Composition - RP Collaboration

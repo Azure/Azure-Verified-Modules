@@ -3,6 +3,7 @@ title: SNFR15 - Automatic Documentation Generation
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,

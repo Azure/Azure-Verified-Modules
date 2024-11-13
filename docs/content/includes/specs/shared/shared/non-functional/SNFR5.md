@@ -3,6 +3,7 @@ title: SNFR5 - Upgrade Tests
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,

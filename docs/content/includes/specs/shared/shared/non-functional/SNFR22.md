@@ -3,6 +3,7 @@ title: SNFR22 - Parameters/Variables for Resource IDs
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,

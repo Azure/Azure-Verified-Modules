@@ -3,6 +3,7 @@ title: SNFR14 - Data Types
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,

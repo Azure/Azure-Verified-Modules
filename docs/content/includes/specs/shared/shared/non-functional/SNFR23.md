@@ -3,6 +3,7 @@ title: SNFR23 - GitHub Repo Labels
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,

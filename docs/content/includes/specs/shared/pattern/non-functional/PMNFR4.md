@@ -3,6 +3,7 @@ title: PMNFR4 - Missing Resource Module(s)
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Pattern,
   Type-NonFunctional,
@@ -14,7 +15,6 @@ tags: [
   Persona-Contributor,
   Lifecycle-Maintenance
 ]
-type: "posts"
 ---
 
 #### ID: PMNFR4 - Category: Hygiene - Missing Resource Module(s)

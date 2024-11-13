@@ -3,6 +3,7 @@ title: RMFR5 - AVM Consistent Feature & Extension Resources Value Add Interfaces
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Type-Functional,
@@ -14,7 +15,6 @@ tags: [
   Persona-Contributor,
   Lifecycle-Maintenance
 ]
-type: "posts"
 ---
 
 #### ID: RMFR5 - Category: Composition - AVM Consistent Feature & Extension Resources Value Add Interfaces/Schemas

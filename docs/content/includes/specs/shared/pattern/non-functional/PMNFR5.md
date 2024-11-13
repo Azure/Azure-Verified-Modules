@@ -3,6 +3,7 @@ title: PMNFR5 - Parameter/Variable Naming
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Pattern,
   Type-NonFunctional,
@@ -14,7 +15,6 @@ tags: [
   Persona-Contributor,
   Lifecycle-Maintenance
 ]
-type: "posts"
 ---
 
 #### ID: PMNFR5 - Category: Inputs - Parameter/Variable Naming

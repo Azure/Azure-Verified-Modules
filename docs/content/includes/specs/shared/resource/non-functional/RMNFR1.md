@@ -3,6 +3,7 @@ title: RMNFR1 - Module Naming
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Type-NonFunctional,
@@ -13,7 +14,6 @@ tags: [
   Persona-Owner,
   Lifecycle-Initial
 ]
-type: "posts"
 ---
 
 #### ID: RMNFR1 - Category: Naming - Module Naming

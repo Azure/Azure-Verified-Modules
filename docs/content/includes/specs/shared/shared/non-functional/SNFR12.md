@@ -3,6 +3,7 @@ title: SNFR12 - Versions Supported
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,

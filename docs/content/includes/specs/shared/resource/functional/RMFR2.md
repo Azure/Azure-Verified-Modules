@@ -3,6 +3,7 @@ title: RMFR2 - No Resource Wrapper Modules
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Type-Functional,
@@ -13,7 +14,6 @@ tags: [
   Persona-Owner,
   Lifecycle-Initial
 ]
-type: "posts"
 ---
 
 #### ID: RMFR2 - Category: Composition - No Resource Wrapper Modules

@@ -3,6 +3,7 @@ title: SNFR21 - Cross Language Collaboration
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,

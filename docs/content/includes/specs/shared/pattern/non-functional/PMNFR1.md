@@ -3,6 +3,7 @@ title: PMNFR1 - Module Naming
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Pattern,
   Type-NonFunctional,
@@ -13,7 +14,6 @@ tags: [
   Persona-Owner,
   Lifecycle-Initial
 ]
-type: "posts"
 ---
 
 #### ID: PMNFR1 - Category: Naming - Module Naming

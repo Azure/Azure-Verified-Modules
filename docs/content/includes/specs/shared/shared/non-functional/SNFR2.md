@@ -3,6 +3,7 @@ title: SNFR2 - E2E Testing
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,

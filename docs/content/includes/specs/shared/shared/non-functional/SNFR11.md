@@ -3,6 +3,7 @@ title: SNFR11 - Issues Response Times
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,

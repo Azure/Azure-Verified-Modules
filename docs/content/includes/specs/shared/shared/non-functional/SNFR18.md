@@ -3,6 +3,7 @@ title: SNFR18 - Breaking Changes
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,

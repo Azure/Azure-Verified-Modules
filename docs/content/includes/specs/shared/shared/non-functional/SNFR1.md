@@ -3,6 +3,7 @@ title: SNFR1 - Prescribed Tests
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,

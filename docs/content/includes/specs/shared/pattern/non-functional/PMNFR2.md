@@ -3,6 +3,7 @@ title: PMNFR2 - Use Resource Modules to Build a Pattern Module
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Pattern,
   Type-NonFunctional,
@@ -14,7 +15,6 @@ tags: [
   Persona-Contributor,
   Lifecycle-Maintenance
 ]
-type: "posts"
 ---
 
 #### ID: PMNFR2 - Category: Composition - Use Resource Modules to Build a Pattern Module

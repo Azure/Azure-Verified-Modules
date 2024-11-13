@@ -3,6 +3,7 @@ title: SNFR16 - Examples/E2E
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,

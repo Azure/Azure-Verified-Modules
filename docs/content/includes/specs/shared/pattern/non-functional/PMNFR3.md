@@ -3,6 +3,7 @@ title: PMNFR3 - Use other Pattern Modules to Build a Pattern Module
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Pattern,
   Type-NonFunctional,
@@ -14,7 +15,6 @@ tags: [
   Persona-Contributor,
   Lifecycle-Maintenance
 ]
-type: "posts"
 ---
 
 #### ID: PMNFR3 - Category: Composition - Use other Pattern Modules to Build a Pattern Module

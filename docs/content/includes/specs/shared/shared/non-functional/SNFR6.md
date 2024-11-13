@@ -3,6 +3,7 @@ title: SNFR6 - Static Analysis/Linting Tests
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,

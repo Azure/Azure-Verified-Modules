@@ -3,6 +3,7 @@ title: SNFR25 - Resource Naming
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,

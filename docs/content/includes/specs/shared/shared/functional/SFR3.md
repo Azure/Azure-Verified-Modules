@@ -3,6 +3,7 @@ title: SFR3 - Deployment/Usage Telemetry
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+type: posts
 tags: [
   Class-Resource,
   Class-Pattern,
@@ -14,7 +15,6 @@ tags: [
   Persona-Owner,
   Lifecycle-Initial
 ]
-type: "posts"
 ---
 
 #### ID: SFR3 - Category: Telemetry - Deployment/Usage Telemetry
