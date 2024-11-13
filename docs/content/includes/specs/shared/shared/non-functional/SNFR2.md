@@ -1,5 +1,5 @@
 ---
-title: "SNFR2 - E2E Testing"
+title: SNFR2 - E2E Testing
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

@@ -1,5 +1,5 @@
 ---
-title: "RMNFR1 - Module Naming"
+title: RMNFR1 - Module Naming
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

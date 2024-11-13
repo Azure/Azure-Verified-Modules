@@ -1,5 +1,5 @@
 ---
-title: "SNFR15 - Automatic Documentation Generation"
+title: SNFR15 - Automatic Documentation Generation
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

@@ -1,5 +1,5 @@
 ---
-title: "RMFR2 - No Resource Wrapper Modules"
+title: RMFR2 - No Resource Wrapper Modules
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

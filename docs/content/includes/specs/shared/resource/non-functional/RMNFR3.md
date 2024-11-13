@@ -1,5 +1,5 @@
 ---
-title: "RMNFR3 - RP Collaboration"
+title: RMNFR3 - RP Collaboration
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

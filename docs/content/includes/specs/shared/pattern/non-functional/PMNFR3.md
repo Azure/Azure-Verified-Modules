@@ -1,5 +1,5 @@
 ---
-title: "PMNFR3 - Use other Pattern Modules to Build a Pattern Module"
+title: PMNFR3 - Use other Pattern Modules to Build a Pattern Module
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

@@ -1,5 +1,5 @@
 ---
-title: "SNFR7 - Idempotency Tests"
+title: SNFR7 - Idempotency Tests
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

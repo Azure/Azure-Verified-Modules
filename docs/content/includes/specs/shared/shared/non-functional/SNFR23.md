@@ -1,5 +1,5 @@
 ---
-title: "SNFR23 - GitHub Repo Labels"
+title: SNFR23 - GitHub Repo Labels
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

@@ -1,5 +1,5 @@
 ---
-title: "RMFR1 - Single Resource Only"
+title: RMFR1 - Single Resource Only
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

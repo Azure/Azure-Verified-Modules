@@ -1,5 +1,5 @@
 ---
-title: "SNFR22 - Parameters/Variables for Resource IDs"
+title: SNFR22 - Parameters/Variables for Resource IDs
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

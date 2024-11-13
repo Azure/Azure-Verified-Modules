@@ -1,5 +1,5 @@
 ---
-title: "SNFR3 - AVM Compliance Tests"
+title: SNFR3 - AVM Compliance Tests
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

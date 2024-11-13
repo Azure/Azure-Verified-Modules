@@ -1,5 +1,5 @@
 ---
-title: "RMFR7 - Minimum Required Outputs"
+title: RMFR7 - Minimum Required Outputs
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

@@ -1,5 +1,5 @@
 ---
-title: "SFR1 - Preview Services"
+title: SFR1 - Preview Services
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

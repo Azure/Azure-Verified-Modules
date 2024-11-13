@@ -1,5 +1,5 @@
 ---
-title: "RMFR8 - Dependency on child and other resources"
+title: RMFR8 - Dependency on child and other resources
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

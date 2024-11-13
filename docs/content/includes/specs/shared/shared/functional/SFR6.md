@@ -1,5 +1,5 @@
 ---
-title: "SFR6 - Data Redundancy"
+title: SFR6 - Data Redundancy
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

@@ -1,5 +1,5 @@
 ---
-title: "PMFR1 - Resource Group Creation"
+title: PMFR1 - Resource Group Creation
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

@@ -1,5 +1,5 @@
 ---
-title: "RMFR4 - AVM Consistent Feature & Extension Resources Value Add"
+title: RMFR4 - AVM Consistent Feature & Extension Resources Value Add
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

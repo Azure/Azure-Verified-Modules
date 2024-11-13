@@ -1,5 +1,5 @@
 ---
-title: "SNFR11 - Issues Response Times"
+title: SNFR11 - Issues Response Times
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

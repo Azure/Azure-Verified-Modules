@@ -1,5 +1,5 @@
 ---
-title: "RMFR3 - Resource Groups"
+title: RMFR3 - Resource Groups
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

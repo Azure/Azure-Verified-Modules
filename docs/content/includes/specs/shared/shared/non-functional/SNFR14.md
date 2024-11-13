@@ -1,5 +1,5 @@
 ---
-title: "SNFR14 - Data Types"
+title: SNFR14 - Data Types
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

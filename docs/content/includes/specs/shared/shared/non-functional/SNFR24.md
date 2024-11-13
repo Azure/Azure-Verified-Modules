@@ -1,5 +1,5 @@
 ---
-title: "SNFR24 - Testing Child, Extension & Interface Resources"
+title: SNFR24 - Testing Child, Extension & Interface Resources
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

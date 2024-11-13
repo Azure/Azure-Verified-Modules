@@ -1,5 +1,5 @@
 ---
-title: "SNFR5 - Upgrade Tests"
+title: SNFR5 - Upgrade Tests
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

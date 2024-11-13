@@ -1,5 +1,5 @@
 ---
-title: "SFR5 - Availability Zones"
+title: SFR5 - Availability Zones
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

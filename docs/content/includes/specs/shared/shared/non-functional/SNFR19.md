@@ -1,5 +1,5 @@
 ---
-title: "SNFR19 - Registries Targeted"
+title: SNFR19 - Registries Targeted
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

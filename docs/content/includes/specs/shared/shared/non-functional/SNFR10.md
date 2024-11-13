@@ -1,5 +1,5 @@
 ---
-title: "SNFR10 - MIT Licensing"
+title: SNFR10 - MIT Licensing
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

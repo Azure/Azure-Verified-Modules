@@ -1,5 +1,5 @@
 ---
-title: "SNFR1 - Prescribed Tests"
+title: SNFR1 - Prescribed Tests
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

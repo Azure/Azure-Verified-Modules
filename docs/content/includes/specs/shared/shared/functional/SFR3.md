@@ -1,5 +1,5 @@
 ---
-title: "SFR3 - Deployment/Usage Telemetry"
+title: SFR3 - Deployment/Usage Telemetry
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

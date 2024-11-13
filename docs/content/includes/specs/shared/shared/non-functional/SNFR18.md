@@ -1,5 +1,5 @@
 ---
-title: "SNFR18 - Breaking Changes"
+title: SNFR18 - Breaking Changes
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

@@ -1,5 +1,5 @@
 ---
-title: "SNFR9 - AVM & PG Teams GitHub Repo Permissions"
+title: SNFR9 - AVM & PG Teams GitHub Repo Permissions
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

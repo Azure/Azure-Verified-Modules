@@ -1,5 +1,5 @@
 ---
-title: "SFR2 - WAF Aligned"
+title: SFR2 - WAF Aligned
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
