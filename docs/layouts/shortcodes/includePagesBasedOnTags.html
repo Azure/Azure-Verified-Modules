@@ -30,7 +30,7 @@
     <div class="gdoc-hint__text">
       {{ with $tags }}
         <div class="tags">
-          {{ with $hintText }}{{ $hintText | markdownify }}<br>Specifications are listed based on the following tags:<br>{{ end }}
+          {{ with $hintText }}{{ $hintText | markdownify }}<br>{{ end }}The content below is listed based on the following tags:<br>
           <svg class="flex align-center no-wrap gdoc-icon gdoc_bookmark"><use xlink:href="#gdoc_bookmark"></use></svg>
           {{ range sort . }}
             <span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 0px;">
