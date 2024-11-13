@@ -46,46 +46,32 @@ While every effort is being made to standardize requirements and implementation 
 
 ### Functional Requirements (SFR)
 
-{{< includePagesBasedOnTags folder="content/includes/specs/shared/shared/functional" type="page" tags="Class-Shared,Type-Functional,Language-Shared" recursive=true strict=false showHint=true hintText="This section includes **shared, functional requirements (SFR)** for Bicep and Terraform AVM modules (Resource and Pattern)." summarize=false >}}
-
-<br>
+{{< includePagesBasedOnTags folder="content/includes/specs/shared/shared/functional" type="page" tags="Class-Resource,Class-Pattern,Type-Functional,Language-Bicep,Language-Terraform" recursive=true strict=false showHint=true hintText="This section includes **shared, functional requirements (SFR)** for Bicep and Terraform AVM modules (Resource and Pattern)." summarize=false >}}
 
 ### Non-Functional Requirements (SNFR)
 
-{{< includePagesBasedOnTags folder="content/includes/specs/shared/shared/non-functional" type="page" tags="Class-Shared,Type-NonFunctional,Language-Shared" recursive=true strict=false showHint=true hintText="This section includes **shared, non-functional requirements (SNFR)** for Bicep and Terraform AVM modules (Resource and Pattern)." summarize=false >}}
-
-<br>
+{{< includePagesBasedOnTags folder="content/includes/specs/shared/shared/non-functional" type="page" tags="Class-Resource,Class-Pattern,Type-NonFunctional,Language-Bicep,Language-Terraform" recursive=true strict=false showHint=true hintText="This section includes **shared, non-functional requirements (SNFR)** for Bicep and Terraform AVM modules (Resource and Pattern)." summarize=false >}}
 
 ## Resource Module Requirements
 
 Listed below are both functional and non-functional requirements for [AVM Resource Modules](/Azure-Verified-Modules/specs/shared/module-classifications/).
 
-<br>
-
 ### Functional Requirements (RMFR)
 
-{{< includePagesBasedOnTags folder="content/includes/specs/shared/resource/functional" type="page" tags="Class-Resource,Type-Functional,Language-Shared" recursive=true strict=false showHint=true hintText="This section includes **resource module level, functional requirements (RMFR)** for Bicep and Terraform." summarize=false >}}
-
-<br>
+{{< includePagesBasedOnTags folder="content/includes/specs/shared/resource/functional" type="page" tags="Class-Resource,Type-Functional,Language-Bicep,Language-Terraform" recursive=true strict=false showHint=true hintText="This section includes **resource module level, functional requirements (RMFR)** for Bicep and Terraform." summarize=false >}}
 
 ### Non-Functional Requirements (RMNFR)
 
-{{< includePagesBasedOnTags folder="content/includes/specs/shared/resource/non-functional" type="page" tags="Class-Resource,Type-NonFunctional,Language-Shared" recursive=true strict=false showHint=true hintText="This section includes **resource module level, non-functional requirements (RMNFR)** for Bicep and Terraform." summarize=false >}}
-
-<br>
+{{< includePagesBasedOnTags folder="content/includes/specs/shared/resource/non-functional" type="page" tags="Class-Resource,Type-NonFunctional,Language-Bicep,Language-Terraform" recursive=true strict=false showHint=true hintText="This section includes **resource module level, non-functional requirements (RMNFR)** for Bicep and Terraform." summarize=false >}}
 
 ## Pattern Module Requirements
 
 Listed below are both functional and non-functional requirements for [AVM Pattern Modules](/Azure-Verified-Modules/specs/shared/module-classifications/).
 
-<br>
-
 ### Functional Requirements (PMFR)
 
-{{< includePagesBasedOnTags folder="content/includes/specs/shared/pattern/functional" type="page" tags="Class-Pattern,Type-Functional,Language-Shared" recursive=true strict=false showHint=true hintText="This section includes **pattern module level, functional requirements (PMFR)** for Bicep and Terraform." summarize=false >}}
-
-<br>
+{{< includePagesBasedOnTags folder="content/includes/specs/shared/pattern/functional" type="page" tags="Class-Pattern,Type-Functional,Language-Bicep,Language-Terraform" recursive=true strict=false showHint=true hintText="This section includes **pattern module level, functional requirements (PMFR)** for Bicep and Terraform." summarize=false >}}
 
 ### Non-Functional Requirements (PMNFR)
 
-{{< includePagesBasedOnTags folder="content/includes/specs/shared/pattern/non-functional" type="page" tags="Class-Pattern,Type-NonFunctional,Language-Shared" recursive=true strict=false showHint=true hintText="This section includes **pattern module level, non-functional requirements (PMNFR)** for Bicep and Terraform." summarize=false >}}
+{{< includePagesBasedOnTags folder="content/includes/specs/shared/pattern/non-functional" type="page" tags="Class-Pattern,Type-NonFunctional,Language-Bicep,Language-Terraform" recursive=true strict=false showHint=true hintText="This section includes **pattern module level, non-functional requirements (PMNFR)** for Bicep and Terraform." summarize=false >}}
