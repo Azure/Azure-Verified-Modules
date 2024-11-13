@@ -1,5 +1,5 @@
 ---
-title:
+title: BCPNFR10 - Test Bicep File Naming
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
@@ -7,10 +7,9 @@ type: posts
 tags: [
   Class-Resource,
   Class-Pattern,
-  Type-Functional,
+  Type-NonFunctional,
   Category-Testing,
   Language-Bicep,
-  Language-Terraform,
   Severity-MUST,
   Persona-Owner,
   Persona-Contributor,
@@ -19,3 +18,6 @@ tags: [
 priority: 100
 ---
 
+#### ID: BCPNFR10 - Category: Testing - Test Bicep File Naming
+
+Module owners **MUST** name their test `.bicep` files in the `/tests/e2e/<defaults/waf-aligned/max/etc.>` directories: `main.test.bicep` as the test framework (CI) relies upon this name.
