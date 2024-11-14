@@ -37,4 +37,3 @@ Any updates to existing or new specifications for Terraform must be submitted as
 
 {{< /hint >}} -->
 
-{{< tagsBasedNavigationTable folder="content/specs-defs/includes" tags="Class-Resource,Class-Pattern,Language-Bicep" recursive=true strict=false showHint=true summarize=false >}}
