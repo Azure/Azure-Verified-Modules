@@ -18,33 +18,33 @@
 
 
 {{- if $showHint -}}
-  <blockquote class="gdoc-hint {{ $hintType | lower }}">
+  <blockquote class="gdoc-hint {{- $hintType | lower -}}">
     <div class="gdoc-hint__title flex align-center">
       {{- with $hintIcon -}}
-        <svg class="gdoc-icon {{ . }}"><use xlink:href="#{{ . }}"></use></svg>
-        <span>{{ $hintTitle }}</span>
+        <svg class="gdoc-icon {{- . -}}"><use xlink:href="#{{- . -}}"></use></svg>
+        <span>{{- $hintTitle -}}</span>
       {{- else -}}
-        <i class="fa {{ $hintType | lower }}" title="{{ $hintTitle }}"></i>
+        <i class="fa {{- $hintType | lower -}}" title="{{- $hintTitle -}}"></i>
       {{- end -}}
     </div>
     <div class="gdoc-hint__text">
-      {{ with $tags }}
+      {{- with $tags -}}
         <div class="tags">
-          {{ with $hintText }}{{ $hintText | markdownify }}<br>{{ end }}The content below is listed based on the following tags:<br>
+          {{- with $hintText -}}{{- $hintText | markdownify -}}<br>{{- end -}}The content below is listed based on the following tags:<br>
           <svg class="flex align-center no-wrap gdoc-icon gdoc_bookmark"><use xlink:href="#gdoc_bookmark"></use></svg>
-          {{ range sort . }}
+          {{- range sort . -}}
             <span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 0px;">
               <a
                 class="gdoc-button__link"
-                href="{{ $baseURL }}tags/{{ . | urlize }}"
-                title="{{ i18n "posts_tagged_with" . }}"
+                href="{{- $baseURL -}}tags/{{- . | urlize -}}"
+                title="{{- i18n "posts_tagged_with" . -}}"
               >
-                {{ . }}
+                {{- . -}}
               </a>
             </span>
-          {{ end }}
+          {{- end -}}
         </div>
-      {{ end }}
+      {{- end -}}
     </div>
   </blockquote>
   <br>
@@ -108,7 +108,9 @@
 <table>
   <thead>
     <tr>
-      <th>Specification</th>
+      <th>#</th>
+      <th>ID</th>
+      <th>Title</th>
       <th>Category</th>
       {{/*  <th>Type</th>  */}}
       <th>Severity</th>
@@ -117,14 +119,18 @@
     </tr>
   </thead>
   <tbody>
+    {{- $index := 0 -}}
     {{- range $sortedPages -}}
+      {{- $index = add $index 1 -}}
       {{- $page := .page -}}
       {{- $file := .file -}}
       {{- $pageTags := $page.Params.tags -}}
       {{- $showPage := default true $page.Params.showPage -}}
 
       {{- if $showPage -}}
-        {{- $specification := $page.Params.title -}}
+        {{- $titleParts := split $page.Params.title " - " -}}
+        {{- $id := index $titleParts 0 -}}
+        {{- $title := index $titleParts 1 -}}
         {{- $category := slice -}}
         {{/*  {{- $type := slice -}}  */}}
         {{- $severity := slice -}}
@@ -148,19 +154,25 @@
           {{- end -}}
         {{- end -}}
 
-        {{ $link := replaceRE "^-" "#" (index (findRE `^\s####\s.+` $page.RawContent) 0 | anchorize) }}
+        {{- $link := replaceRE "^-" "#" (index (findRE `^\s####\s.+` $page.RawContent) 0 | anchorize) -}}
         <tr>
-          <td><a href="{{ $link }}">{{ $specification }}</a></td>
-          <td>{{ delimit $category ", " }}</td>
-          {{/*  <td>{{ delimit $type ", " }}</td>  */}}
-          <td>{{ delimit $severity ", " }}</td>
-          <td>{{ delimit $persona ", " }}</td>
-          <td>{{ delimit $lifecycle ", " }}</td>
+          <td>{{- $index -}}</td>
+          <td><a href="{{- $link -}}">{{- $id -}}</a></td>
+          <td>{{- $title -}}</td>
+          <td>{{- delimit $category ", " -}}</td>
+          {{/*  <td>{{- delimit $type ", " -}}</td>  */}}
+          <td>{{- delimit $severity ", " -}}</td>
+          <td>{{- delimit $persona ", " -}}</td>
+          <td>{{- delimit $lifecycle ", " -}}</td>
         </tr>
       {{- end -}}
     {{- end -}}
   </tbody>
 </table>
+
+<br>
+<hr>
+<br>
 
 {{- range $sortedPages -}}
   {{- $page := .page -}}
