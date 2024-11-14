@@ -48,8 +48,6 @@
     </div>
   </blockquote>
   <br>
-  <hr>
-  <br>
 {{- end -}}
 
 {{- if $summarize -}}
@@ -107,6 +105,63 @@
 
 {{- $sortedPages := sort $pages "priority" "asc" -}}
 
+<table>
+  <thead>
+    <tr>
+      <th>Specification</th>
+      <th>Category</th>
+      {{/*  <th>Type</th>  */}}
+      <th>Severity</th>
+      <th>Persona</th>
+      <th>Lifecycle</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{- range $sortedPages -}}
+      {{- $page := .page -}}
+      {{- $file := .file -}}
+      {{- $pageTags := $page.Params.tags -}}
+      {{- $showPage := default true $page.Params.showPage -}}
+
+      {{- if $showPage -}}
+        {{- $specification := $page.Params.title -}}
+        {{- $category := slice -}}
+        {{/*  {{- $type := slice -}}  */}}
+        {{- $severity := slice -}}
+        {{- $persona := slice -}}
+        {{- $lifecycle := slice -}}
+
+        {{- range $pageTags -}}
+          {{- $parts := split . "-" -}}
+          {{- $key := index $parts 0 -}}
+          {{- $value := index $parts 1 -}}
+          {{- if eq $key "Category" -}}
+            {{- $category = $category | append $value -}}
+          {{/*  {{- else if eq $key "Type" -}}
+            {{- $type = $type | append $value -}}  */}}
+          {{- else if eq $key "Severity" -}}
+            {{- $severity = $severity | append $value -}}
+          {{- else if eq $key "Persona" -}}
+            {{- $persona = $persona | append $value -}}
+          {{- else if eq $key "Lifecycle" -}}
+            {{- $lifecycle = $lifecycle | append $value -}}
+          {{- end -}}
+        {{- end -}}
+
+        {{ $link := replaceRE "^-" "#" (index (findRE `^\s####\s.+` $page.RawContent) 0 | anchorize) }}
+        <tr>
+          <td><a href="{{ $link }}">{{ $specification }}</a></td>
+          <td>{{ delimit $category ", " }}</td>
+          {{/*  <td>{{ delimit $type ", " }}</td>  */}}
+          <td>{{ delimit $severity ", " }}</td>
+          <td>{{ delimit $persona ", " }}</td>
+          <td>{{ delimit $lifecycle ", " }}</td>
+        </tr>
+      {{- end -}}
+    {{- end -}}
+  </tbody>
+</table>
+
 {{- range $sortedPages -}}
   {{- $page := .page -}}
   {{- $file := .file -}}
@@ -132,3 +187,4 @@
 {{- if $summarize -}}
 </details>
 {{- end -}}
+
