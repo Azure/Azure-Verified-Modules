@@ -2,6 +2,9 @@
 main:
   - name: "Home"
     ref: "/"
+    sub:
+      - name: "Overview"
+        ref: "home/overview"
   - name: "Module Indexes"
     ref: "indexes"
     sub:
@@ -23,11 +26,6 @@ main:
             ref: "indexes/terraform/tf-pattern-modules"
           - name: "Utility Modules"
             ref: "indexes/terraform/tf-utility-modules"
-  - name: "Concepts"
-    ref: "concepts"
-    sub:
-      - name: "What, Why, How"
-        ref: "concepts/what-why-how"
   - name: "Usage Guide"
     ref: "usage"
     sub:

@@ -1,8 +1,11 @@
 ---
-title: What, Why, How
+title: Overview
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
+aliases: [
+   /concepts/what-why-how/
+]
 ---
 
 {{< toc >}}

@@ -5,7 +5,7 @@ geekdocAlign: left
 geekdocAnchor: true
 ---
 
-As mentioned in the [What, Why, How](/Azure-Verified-Modules/concepts/what-why-how) page, we understand that long-term support from Microsoft in an initiative like AVM is critical to its adoption by consumers and therefore the success of AVM. Therefore we have aligned and provide the below support statement/process for AVM modules.
+As mentioned on the [Overview](/Azure-Verified-Modules/home/overview/) page, we understand that long-term support from Microsoft in an initiative like AVM is critical to its adoption by consumers and therefore the success of AVM. Therefore we have aligned and provide the below support statement/process for AVM modules.
 
 {{< hint type=important >}}
 
