@@ -15,6 +15,7 @@ tags: [
   Persona-Owner,
   Lifecycle-Initial
 ]
+priority: 2020
 ---
 
 #### ID: RMFR2 - Category: Composition - No Resource Wrapper Modules

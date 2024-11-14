@@ -16,6 +16,7 @@ tags: [
   Persona-Owner,
   Lifecycle-Maintenance
 ]
+priority: 20
 ---
 
 #### ID: SFR2 - Category: Composition - WAF Aligned

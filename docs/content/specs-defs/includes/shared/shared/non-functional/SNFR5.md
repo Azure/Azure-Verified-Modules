@@ -17,7 +17,7 @@ tags: [
   Persona-Contributor,
   Lifecycle-Maintenance
 ]
-priority: 60
+priority: 1060
 ---
 
 #### ID: SNFR5 - Category: Testing - Upgrade Tests

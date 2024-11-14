@@ -16,7 +16,7 @@ tags: [
   Persona-Contributor,
   Lifecycle-Maintenance
 ]
-priority: 30
+priority: 21030
 ---
 
 #### ID: TFNFR3 - Category: Contribution/Support - GitHub Repo Branch Protection

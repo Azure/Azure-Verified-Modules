@@ -16,6 +16,7 @@ tags: [
   Persona-Contributor,
   Lifecycle-Maintenance
 ]
+priority: 4030
 ---
 
 #### ID: PMNFR2 - Category: Composition - Use Resource Modules to Build a Pattern Module

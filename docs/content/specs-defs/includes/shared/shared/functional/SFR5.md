@@ -16,6 +16,7 @@ tags: [
   Persona-Owner,
   Lifecycle-Initial
 ]
+priority: 50
 ---
 
 #### ID: SFR5 - Category: Composition - Availability Zones

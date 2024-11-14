@@ -17,7 +17,7 @@ tags: [
   Persona-Contributor,
   Lifecycle-Initial
 ]
-priority: 40
+priority: 1040
 ---
 
 #### ID: SNFR3 - Category: Testing - AVM Compliance Tests

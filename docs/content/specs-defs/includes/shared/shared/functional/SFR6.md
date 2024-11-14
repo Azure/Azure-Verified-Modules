@@ -16,6 +16,7 @@ tags: [
   Persona-Owner,
   Lifecycle-Initial
 ]
+priority: 60
 ---
 
 #### ID: SFR6 - Category: Composition - Data Redundancy

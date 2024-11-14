@@ -16,6 +16,7 @@ tags: [
   Persona-Contributor,
   Lifecycle-Maintenance
 ]
+priority: 10030
 ---
 
 #### ID: BCPFR4 - Category: Composition - Telemetry Enablement

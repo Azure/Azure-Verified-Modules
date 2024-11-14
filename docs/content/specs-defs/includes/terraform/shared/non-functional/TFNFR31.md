@@ -16,7 +16,7 @@ tags: [
   Persona-Contributor,
   Lifecycle-Maintenance
 ]
-priority: 310
+priority: 21310
 ---
 
 #### ID: TFNFR31 - Category: Code Style - locals.tf for Locals Only

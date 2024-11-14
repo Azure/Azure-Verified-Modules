@@ -16,6 +16,7 @@ tags: [
   Persona-Contributor,
   Lifecycle-Maintenance
 ]
+priority: 10040
 ---
 
 #### ID: BCPFR5 - Category: Inputs - Availability Zones Implementation

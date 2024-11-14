@@ -16,6 +16,7 @@ tags: [
   Persona-Owner,
   Lifecycle-Initial
 ]
+priority: 40
 ---
 
 #### ID: SFR4 - Category: Telemetry - Telemetry Enablement Flexibility

@@ -16,7 +16,7 @@ tags: [
   Persona-Contributor,
   Lifecycle-Maintenance
 ]
-priority: 270
+priority: 21270
 ---
 
 #### ID: TFNFR27 - Category: Code Style - Provider Declarations in Modules

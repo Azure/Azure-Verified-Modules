@@ -16,6 +16,7 @@ tags: [
   Persona-Contributor,
   Lifecycle-Maintenance
 ]
+priority: 2050
 ---
 
 #### ID: RMFR5 - Category: Composition - AVM Consistent Feature & Extension Resources Value Add Interfaces/Schemas

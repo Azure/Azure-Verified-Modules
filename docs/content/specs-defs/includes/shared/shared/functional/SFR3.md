@@ -16,6 +16,7 @@ tags: [
   Persona-Owner,
   Lifecycle-Initial
 ]
+priority: 30
 ---
 
 #### ID: SFR3 - Category: Telemetry - Deployment/Usage Telemetry

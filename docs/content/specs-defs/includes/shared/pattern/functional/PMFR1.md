@@ -16,6 +16,7 @@ tags: [
   Persona-Contributor,
   Lifecycle-Maintenance
 ]
+priority: 4010
 ---
 
 #### ID: PMFR1 - Category: Composition - Resource Group Creation

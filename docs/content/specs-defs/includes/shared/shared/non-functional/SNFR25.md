@@ -16,7 +16,7 @@ tags: [
   Persona-Owner,
   Lifecycle-Initial
 ]
-priority: 10
+priority: 1010
 ---
 
 #### ID: SNFR25 - Category: Composition - Resource Naming
