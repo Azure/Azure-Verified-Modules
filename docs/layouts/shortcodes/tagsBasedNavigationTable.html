@@ -17,38 +17,39 @@
 {{- $summaryOpenByDefault := default true (.Get "summaryOpenByDefault") -}}
 
 
-{{- if $showHint -}}
-  <blockquote class="gdoc-hint {{- $hintType | lower -}}">
+
+{{ if $showHint }}
+  <blockquote class="gdoc-hint {{ $hintType | lower }}">
     <div class="gdoc-hint__title flex align-center">
       {{- with $hintIcon -}}
-        <svg class="gdoc-icon {{- . -}}"><use xlink:href="#{{- . -}}"></use></svg>
-        <span>{{- $hintTitle -}}</span>
+        <svg class="gdoc-icon {{ . }}"><use xlink:href="#{{ . }}"></use></svg>
+        <span>{{ $hintTitle }}</span>
       {{- else -}}
-        <i class="fa {{- $hintType | lower -}}" title="{{- $hintTitle -}}"></i>
+        <i class="fa {{ $hintType | lower }}" title="{{ $hintTitle }}"></i>
       {{- end -}}
     </div>
     <div class="gdoc-hint__text">
-      {{- with $tags -}}
+      {{ with $tags }}
         <div class="tags">
-          {{- with $hintText -}}{{- $hintText | markdownify -}}<br>{{- end -}}The content below is listed based on the following tags:<br>
+          {{ with $hintText }}{{ $hintText | markdownify }}<br>{{ end }}The content below is listed based on the following tags:<br>
           <svg class="flex align-center no-wrap gdoc-icon gdoc_bookmark"><use xlink:href="#gdoc_bookmark"></use></svg>
-          {{- range sort . -}}
+          {{ range sort . }}
             <span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 0px;">
               <a
                 class="gdoc-button__link"
-                href="{{- $baseURL -}}tags/{{- . | urlize -}}"
-                title="{{- i18n "posts_tagged_with" . -}}"
+                href="{{ $baseURL }}tags/{{ . | urlize }}"
+                title="{{ i18n "posts_tagged_with" . }}"
               >
-                {{- . -}}
+                {{ . }}
               </a>
             </span>
-          {{- end -}}
+          {{ end }}
         </div>
-      {{- end -}}
+      {{ end }}
     </div>
   </blockquote>
   <br>
-{{- end -}}
+{{ end }}
 
 {{- if $summarize -}}
   {{- if $summaryOpenByDefault -}}
