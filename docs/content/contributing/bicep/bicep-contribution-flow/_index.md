@@ -114,22 +114,50 @@ Checkout the [PowerShell Helper Script](#powershell-helper-script-to-setup-fork-
 
 {{< /hint >}}
 
-AVM tests the deployments in an Azure subscription. To do so, it requires a service principal with access to it.
+AVM tests the deployments in an Azure subscription. To do so, it requires a deployment identity with access to it.
 
-In this first step, make sure you
+{{< hint type=important title="Deployment identity">}}
 
-- Have/create an Azure Active Directory Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
+Support to Service Principal + Secret authentication method has been deprecated and will be decommissioned going forward.
+
+It is highly recommended to start leveraging Option 1 to adopt OpenID Connect (OIDC) authentication and align with security best practices.
+
+{{< /hint >}}
+
+{{< expand "➕ Option 1: Create a User-assigned managed identity [Recommended]" "expand/collapse" >}}
+
+1. Create a new or leverage an existing Entra ID Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in.
+
+Additional references:
+
   - [Create a service principal (Azure Portal)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
   - [Create a service principal (PowerShell)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
   - [Find Service Principal object ID](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
   - [Find managed Identity Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
-- Note down the following pieces of information
+2. Note down the following pieces of information
+  - Application (Client) ID
+  - Tenant ID
+  - Subscription ID
+  - Parent Management Group ID
+
+{{< /expand >}}
+
+{{< expand "➕ Option 2 [Deprecated]: Create a Microsoft Entra application " "expand/collapse" >}}
+
+1. Create a new or leverage an existing Entra ID Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
+  - [Create a service principal (Azure Portal)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
+  - [Create a service principal (PowerShell)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
+  - [Find Service Principal object ID](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
+  - [Find managed Identity Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
+2. Note down the following pieces of information
   - Application (Client) ID
   - Service Principal Object ID (**not** the object ID of the application)
   - Service Principal Secret (password)
   - Tenant ID
   - Subscription ID
   - Parent Management Group ID
+
+{{< /expand >}}
 
 <br>
 
