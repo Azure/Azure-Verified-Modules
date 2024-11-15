@@ -154,7 +154,16 @@
       {{- if $showPage -}}
         {{- $titleParts := split $page.Params.title " - " -}}
         {{- $id := index $titleParts 0 -}}
-        {{- $title := index $titleParts 1 -}}
+
+        {{- $title := "" -}}
+        {{- $separator := "" -}}
+        {{- range $i, $part := $titleParts -}}
+          {{- if gt $i 0 -}}
+            {{- $title = printf "%s%s%s" $title $separator $part -}}
+            {{- $separator = " - " -}}
+          {{- end -}}
+        {{- end -}}
+
         {{- $language := slice -}}
         {{- $class := slice -}}
         {{- $category := slice -}}
