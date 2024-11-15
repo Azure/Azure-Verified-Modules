@@ -59,6 +59,9 @@ main:
             sub:
               - name: "Resource"
                 ref: "specs-defs/specs/new/bicep/resource"
+                sub:
+                  - name: "Interfaces"
+                    ref: "specs-defs/specs/new/bicep/resource/interfaces"
               - name: "Pattern"
                 ref: "specs-defs/specs/new/bicep/pattern"
           - name: "Terraform"
@@ -66,8 +69,11 @@ main:
             sub:
               - name: "Resource"
                 ref: "specs-defs/specs/new/terraform/resource"
+                sub:
+                  - name: "Interfaces"
+                    ref: "specs-defs/specs/new/terraform/resource/interfaces"
               - name: "Pattern"
-                ref: "specs-defs/specs/new/terraform/pattern"                
+                ref: "specs-defs/specs/new/terraform/pattern"
           - name: "🟡 Shared (Bcp & TF)"
             ref: "specs-defs/specs/shared"
             sub:
