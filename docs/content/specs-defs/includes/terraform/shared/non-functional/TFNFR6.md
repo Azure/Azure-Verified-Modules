@@ -23,4 +23,4 @@ priority: 21060
 
 For the definition of resources in the same file, the resources be depended on **SHOULD** come first, after them are the resources depending on others.
 
-Resources have dependencies **SHOULD** be defined close to each other.
+Resources that have dependencies **SHOULD** be defined close to each other.

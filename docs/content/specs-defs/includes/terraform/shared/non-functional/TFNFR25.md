@@ -29,7 +29,7 @@ The `required_version` property **MUST** include a constraint on the minimum ver
 
 The `required_version` property **MUST** include a constraint on the maximum major version of the Terraform CLI. Major version releases of the Terraform CLI can introduce breaking changes and **MUST** be tested.
 
-The `required_version` property constraint **MAY** use the `~> #.#` or the `>= #.#.#, < #.#.#` format.
+The `required_version` property constraint **SHOULD** use the `~> #.#` or the `>= #.#.#, < #.#.#` format.
 
 ***Note: You can read more about Terraform version constraints in the [documentation](https://developer.hashicorp.com/terraform/language/expressions/version-constraints).***
 

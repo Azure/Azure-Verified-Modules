@@ -38,7 +38,7 @@ resource "azurerm_kubernetes_cluster" "main" {
 }
 ```
 
-Please refer to the coding style in the example. Nested blocks under conditions, **SHOULD** be declared as:
+Please refer to the coding style in the example. Nested blocks under conditions, **MUST** be declared as:
 
 ```terraform
 for_each = <condition> ? [<some_item>] : []

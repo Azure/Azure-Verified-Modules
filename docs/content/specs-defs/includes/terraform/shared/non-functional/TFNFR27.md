@@ -23,7 +23,7 @@ priority: 21270
 
 [By rules](https://www.terraform.io/docs/language/modules/develop/providers.html), in the module code `provider` **MUST NOT** be declared. The only exception is when the module indeed need different instances of the same kind of `provider`(Eg. manipulating resources across different `location`s or accounts), you **MUST** declare `configuration_aliases` in `terraform.required_providers`. See details in this [document](https://www.terraform.io/docs/language/providers/configuration.html#alias-multiple-provider-configurations).
 
-`provider` block declared in the module **MAY** only be used to differentiate instances used in  `resource` and `data`. Declaration of fields other than `alias` in `provider` block is strictly forbidden. It could lead to module users unable to utilize `count`, `for_each` or `depends_on`. Configurations of the `provider` instance **SHOULD** be passed in by the module users.
+`provider` block declared in the module **MUST** only be used to differentiate instances used in  `resource` and `data`. Declaration of fields other than `alias` in `provider` block is strictly forbidden. It could lead to module users unable to utilize `count`, `for_each` or `depends_on`. Configurations of the `provider` instance **SHOULD** be passed in by the module users.
 
 Good examples:
 
@@ -71,4 +71,3 @@ provider "azurerm" {
   # Configuration options
   features {}
 }
-```

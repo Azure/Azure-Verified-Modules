@@ -21,4 +21,4 @@ priority: 21210
 
 #### ID: TFNFR21 - Category: Code Style - Discourage Nullability by Default
 
-`nullable = true` **SHOULD** be avoided.
+`nullable = true` **MUST** be avoided.

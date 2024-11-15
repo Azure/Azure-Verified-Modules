@@ -33,7 +33,7 @@ The `version` property **MUST** include a constraint on the minimum version of t
 
 The `version` property **MUST** include a constraint on the maximum major version. A provider major version release may introduce breaking change, so updates to the major version constraint for a provider **MUST** be tested.
 
-The `version` property constraint **MAY** use the `~> #.#` or the `>= #.#.#, < #.#.#` format.
+The `version` property constraint **SHOULD** use the `~> #.#` or the `>= #.#.#, < #.#.#` format.
 
 ***Note: You can read more about Terraform version constraints in the [documentation](https://developer.hashicorp.com/terraform/language/expressions/version-constraints).***
 

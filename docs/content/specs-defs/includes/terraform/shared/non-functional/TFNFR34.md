@@ -49,5 +49,3 @@ resource "azurerm_route_table" "this" {
   resource_group_name = var.resource_group_name
 }
 ```
-
-Similarly, when adding a new argument assignment in a `resource` block, we **SHOULD** use the default value provided by the provider's schema or `null`. We **SHOULD** use `dynamic` block with default omitted configuration when adding a new nested block inside a `resource` block.

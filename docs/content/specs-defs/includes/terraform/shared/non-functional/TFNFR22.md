@@ -21,4 +21,4 @@ priority: 21220
 
 #### ID: TFNFR22 - Category: Code Style - Avoid sensitive = false
 
-`sensitive = false` **SHOULD** be avoided.
+`sensitive = false` **MUST** be avoided.

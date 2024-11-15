@@ -33,4 +33,4 @@ variable "enable_network_security_group" {
 }
 ```
 
-A cleanup of `deprecated_variables.tf` **MAY** be performed during a major version release.
+A cleanup of `deprecated_variables.tf` **SHOULD** be performed during a major version release.
