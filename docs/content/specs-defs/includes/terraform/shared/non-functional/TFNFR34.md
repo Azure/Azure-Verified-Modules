@@ -11,7 +11,7 @@ tags: [
   Type-NonFunctional,
   Category-CodeStyle,
   Language-Terraform,
-  Severity-SHOULD,
+  Severity-MUST,
   Persona-Owner,
   Persona-Contributor,
   Lifecycle-Maintenance
@@ -21,7 +21,9 @@ priority: 21340
 
 #### ID: TFNFR34 - Category: Code Style - Using Feature Toggles
 
-E.g., our previous release was `v1.2.1`, now we'd like to submit a pull request which contains such new `resource`:
+A toggle variable **MUST** be used to allow users to avoid the creation of a new `resource` block by default if it is added in a minor or patch version.
+
+E.g., our previous release was `v1.2.1` and next release would be `v1.3.0`, now we'd like to submit a pull request which contains such new `resource`:
 
 ```terraform
 resource "azurerm_route_table" "this" {
