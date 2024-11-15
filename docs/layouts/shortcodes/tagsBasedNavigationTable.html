@@ -12,7 +12,7 @@
 
 {{- $hintType := default "note" (.Get "hintType") -}}
 {{- $hintIcon := .Get "icon" -}}
-{{- $hintTitle := default ($hintType | title) (.Get "hintTitle") -}}
+{{/*  {{- $hintTitle := default ($hintType | title) (.Get "hintTitle") -}}  */}}
 
 {{- $summarize := default false (.Get "summarize") -}}
 {{- $summaryOpenByDefault := default true (.Get "summaryOpenByDefault") -}}
@@ -44,6 +44,7 @@
   {{ (printf "## %s" $chapterTitle) | markdownify }}
 {{ end }}
 
+{{ $hintTitle := "The content below is listed based on the following tags"}}
 
 {{ if $showHint }}
   <blockquote class="gdoc-hint {{ $hintType | lower }}">
@@ -58,10 +59,10 @@
     <div class="gdoc-hint__text">
       {{ with $tags }}
         <div class="tags">
-          {{ with $hintText }}{{ $hintText | markdownify }}<br>{{ end }}The content below is listed based on the following tags:<br>
+          {{ with $hintText }}{{ $hintText | markdownify }}<br>{{ end }}
           <svg class="flex align-center no-wrap gdoc-icon gdoc_bookmark"><use xlink:href="#gdoc_bookmark"></use></svg>
           {{ range sort . }}
-            <span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 0px;">
+            <span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
               <a
                 class="gdoc-button__link"
                 href="{{ $baseURL }}tags/{{ . | urlize }}"
@@ -211,7 +212,7 @@
   {{- else -}}
     <details>
   {{- end -}}
-  <summary><b>See Specifications for the chapter of "{{- $chapterTitle -}}"</b><br><br></summary>
+  <summary><b>See Specifications for this chapter</b><br><br></summary>
 {{- end -}}
 
 {{- range $sortedPages -}}
