@@ -1,5 +1,5 @@
 ---
-title: Terraform Resource Module Specification
+title: Terraform Resource Module Specifications
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

@@ -1,5 +1,5 @@
 ---
-title: Bicep Pattern Module Specification
+title: Bicep Pattern Module Specifications
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true

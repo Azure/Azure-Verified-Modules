@@ -1,5 +1,5 @@
 ---
-title: Terraform Pattern Module Specification
+title: Terraform Pattern Module Specifications
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
