@@ -22,4 +22,4 @@ showPage: false
 
 #### ID: TFNFR29 - Category: Code Style - Sensitive Data Outputs
 
-`output` block contains confidential data **MUST** declare `sensitive = true`.
+An `output` block that contains confidential data **MUST** be declared with `sensitive = true`.
