@@ -11,17 +11,17 @@ geekdocAnchor: true
 
 {{< mermaid class="text-center" >}}
 flowchart TD
-A(1. Setup your Azure test environment)
+A("1 - Setup your Azure test environment")
   click A "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment"
-B(2. Fork the module source repository)
+B(2 - Fork the module source repository)
   click B "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#2-fork-the-module-source-repository"
-C(3. Configure CI environment <br> For module tests)
+C(3 - Configure CI environment <br> For module tests)
   click C "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#3-configure-your-ci-environment"
-D(4. Implementing your contribution<br> Refer to Gitflow Diagram below)
+D(4 - Implementing your contribution<br> Refer to Gitflow Diagram below)
   click D "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution"
-E{5. Workflow test <br> completed <br> successfully?}
+E(5 - Workflow test <br> completed <br> successfully?)
   click E "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests"
-F(6. Create a pull request to the upstream repository)
+F(6 - Create a pull request to the upstream repository)
   click F "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry"
 A --> B
 B --> C
@@ -281,11 +281,11 @@ Once you enabled the GitHub actions, your workflows will behave as they do in th
 
 To implement your contribution, we kindly ask you to first review the [shared](/Azure-Verified-Modules/specs/shared/) & [Bicep-specific](/Azure-Verified-Modules/specs/bicep/) specifications and [composition guidelines](/Azure-Verified-Modules/contributing/bicep/composition/) in particular to make sure your contribution complies with the repository's design and principles.
 
-If you're working on a new module, we'd also ask you to create its corresponding workflow file. Each module has its own file, but only differs in very few details, such as its triggers and pipeline variables. As a result, you can either copy & update any other module workflow file (starting with `'avm.[res|ptn].'`) or leverage the following template:
+If you're working on a new module, we'd also ask you to create its corresponding workflow file. Each module has its own file, but only differs in very few details, such as its triggers and pipeline variables. As a result, you can either copy & update any other module workflow file (starting with `'avm.[res|ptn|utl].'`) or leverage the following template:
 
 {{< expand "➕ Module workflow template" "expand/collapse" >}}
 
-{{< include file="/static/includes/avm.[res-ptn].workflow.template.yml" language="yaml" options="linenos=false" >}}
+{{< include file="/static/includes/avm.workflow.template.yml" language="yaml" options="linenos=false" >}}
 
 {{< /expand >}}
 

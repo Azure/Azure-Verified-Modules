@@ -146,7 +146,7 @@ function Get-ModulesFeatureOutline {
         # Status Badge
         $moduleFolderPath = Split-Path $moduleTemplatePath -Parent
         $relativeFolderPath = Join-Path 'avm' ($moduleFolderPath -split '[\/|\\]{1}avm[\/|\\]{1}')[1]
-        $resourceTypeIdentifier = ($moduleFolderPath -split '[\/|\\]{1}avm[\/|\\]{1}(res|ptn)[\/|\\]{1}')[2] -replace '\\', '/' # avm/res/<provider>/<resourceType>
+        $resourceTypeIdentifier = ($moduleFolderPath -split '[\/|\\]{1}avm[\/|\\]{1}(res|ptn|utl)[\/|\\]{1}')[2] -replace '\\', '/' # avm/res/<provider>/<resourceType>
         $isTopLevelModule = ($resourceTypeIdentifier -split '[\/|\\]').Count -eq 2
         if (($ColumnsToInclude -contains 'Status') -and $isTopLevelModule) {
 
@@ -162,7 +162,7 @@ function Get-ModulesFeatureOutline {
 
         # Supports RBAC
         if ($ColumnsToInclude -contains 'RBAC') {
-            if ([regex]::Match($moduleContentString, '(?m)^\s*param roleAssignments roleAssignmentType').Success) {
+            if ([regex]::Match($moduleContentString, '(?m)^\s*param roleAssignments roleAssignment.*Type').Success) {
                 $summaryData.supportsRBAC++
                 $moduleDataItem['RBAC'] = $true
             } else {
@@ -172,7 +172,7 @@ function Get-ModulesFeatureOutline {
 
         # Supports Locks
         if ($ColumnsToInclude -contains 'Locks') {
-            if ([regex]::Match($moduleContentString, '(?m)^\s*param lock lockType').Success) {
+            if ([regex]::Match($moduleContentString, '(?m)^\s*param lock lock.*Type').Success) {
                 $summaryData.supportsLocks++
                 $moduleDataItem['Locks'] = $true
             } else {
@@ -192,7 +192,7 @@ function Get-ModulesFeatureOutline {
 
         # Supports Diagnostics
         if ($ColumnsToInclude -contains 'Diag') {
-            if ([regex]::Match($moduleContentString, '(?m)^\s*param diagnosticSettings diagnosticSettingType').Success) {
+            if ([regex]::Match($moduleContentString, '(?m)^\s*param diagnosticSettings diagnosticSetting.*Type').Success) {
                 $summaryData.supportsDiagnostics++
                 $moduleDataItem['Diag'] = $true
             } else {
@@ -202,7 +202,7 @@ function Get-ModulesFeatureOutline {
 
         # Supports Private Endpoints
         if ($ColumnsToInclude -contains 'PE') {
-            if ([regex]::Match($moduleContentString, '(?m)^\s*param privateEndpoints privateEndpointType').Success) {
+            if ([regex]::Match($moduleContentString, '(?m)^\s*param privateEndpoints privateEndpoint.*Type').Success) {
                 $summaryData.supportsEndpoints++
                 $moduleDataItem['PE'] = $true
             } else {
@@ -222,7 +222,7 @@ function Get-ModulesFeatureOutline {
         
         # Supports CMK
         if ($ColumnsToInclude -contains 'CMK') {
-            if ([regex]::Match($moduleContentString, '(?m)^\s*param customerManagedKey customerManagedKeyType').Success) {
+            if ([regex]::Match($moduleContentString, '(?m)^\s*param customerManagedKey customerManagedKey.*Type').Success) {
                 $summaryData.supportsCMKDeployment++
                 $moduleDataItem['CMK'] = $true
             } else {
@@ -232,7 +232,7 @@ function Get-ModulesFeatureOutline {
 
         # Supports Identity
         if ($ColumnsToInclude -contains 'Identity') {
-            if ([regex]::Match($moduleContentString, '(?m)^\s*param managedIdentities managedIdentitiesType').Success) {
+            if ([regex]::Match($moduleContentString, '(?m)^\s*param managedIdentities managedIdentit.*Type').Success) {
                 $summaryData.supportsIdentityDeployment++
                 $moduleDataItem['Identity'] = $true
             } else {

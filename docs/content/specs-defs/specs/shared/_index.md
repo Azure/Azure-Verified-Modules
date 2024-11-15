@@ -188,6 +188,12 @@ The telemetry enablement **MUST** be on/enabled by default, however this **MUST*
 - Bicep: `enableTelemetry`
 - Terraform: `enable_telemetry`
 
+{{< hint type=note >}}
+
+Whenever a module references AVM modules that implement the telemetry parameter (e.g., a pattern module that uses AVM resource modules), the telemetry parameter value **MUST** be passed through to these modules. This is necessary to ensure a consumer can reliably enable & disable the telemetry feature for all used modules.
+
+{{< /hint >}}
+
 <br>
 
 ---
@@ -554,11 +560,11 @@ Every `CODEOWNERS` entry (line) **MUST** include the following segments separate
 
 - Path of the module, relative to the repo's root, e.g.: `/avm/res/network/virtual-network/`
 - The `-module-owners-`team, with the `@Azure/` prefix, e.g., `@Azure/avm-res-network-virtualnetwork-module-owners-bicep`
-- The GitHub team of the AVM core team, with the `@Azure/` prefix, i.e., `@Azure/avm-core-team-technical-bicep`
+- The GitHub team of the AVM Bicep reviewers, with the `@Azure/` prefix, i.e., `@Azure/avm-module-reviewers-bicep`
 
 Example - `CODEOWNERS` entry for the Bicep resource module of Azure Virtual Network (`avm/res/network/virtual-network`):
 
-- `/avm/res/network/virtual-network/ @Azure/avm-res-network-virtualnetwork-module-owners-bicep @Azure/avm-core-team-technical-bicep`
+- `/avm/res/network/virtual-network/ @Azure/avm-res-network-virtualnetwork-module-owners-bicep @Azure/avm-module-reviewers-bicep`
 
 <br>
 
@@ -1022,6 +1028,22 @@ Module owners **MAY** also have to provide additional outputs depending on the I
 - [Terraform](/Azure-Verified-Modules/specs/terraform/)
 
 {{< /hint >}}
+
+<br>
+
+---
+
+<br>
+
+#### ID: RMFR8 - Category: Composition - End-of-life resource versions
+
+When a given version of an Azure resource used in a resource module reaches its end-of-life (EOL) and is no longer supported by Microsoft, the module owner **SHOULD** ensure that:
+
+1. The module is aligned with these changes and only includes supported versions of the resource. This is typically achieved through the allowed values in the parameter that specifies the resource SKU or type.
+2. The following notice is shown under the `Notes` section of the module's `readme.md`. (If any related public announcement is available, it can also be linked to from the Notes section.):
+    > "Certain versions of this Azure resource reached their end of life. The latest version of this module only includes supported versions of the resource. All unsupported versions have been removed from the related parameters."
+3. AND the related parameter's description:
+    > "Certain versions of this Azure resource reached their end of life. The latest version of this module only includes supported versions of the resource. All unsupported versions have been removed from this parameter."
 
 <br>
 

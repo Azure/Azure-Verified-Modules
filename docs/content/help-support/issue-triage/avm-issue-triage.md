@@ -192,7 +192,7 @@ Include the following text in the information notice:
 
 {{< /expand >}}
 
-5. Try to find a new owner using the AVM communities or await a new module owner to comment and propose themselves on the issue.
+6. Try to find a new owner using the AVM communities or await a new module owner to comment and propose themselves on the issue.
 
 ### When a new owner is identified
 
@@ -238,9 +238,11 @@ To look for Orphaned Modules:
 
 <br>
 
-## General feedback/question and other standard issues
+## General feedback/question, documentation update and other standard issues
 
 An issue is a "General Question/Feedback ❔" if it was opened through the ["General Question/Feedback ❔"](https://github.com/Azure/Azure-Verified-Modules/issues/new?assignees=&labels=Type%3A+Question%2FFeedback+%3Araising_hand%3A&projects=&template=question_feedback.yml&title=%5BQuestion%2FFeedback%5D%3A+) issue template, and has the labels of "<mark style="background-color:#CB6BA2;color:white;">Type: Question/Feedback 🙋‍♀️</mark>" and "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" applied to it.
+
+An issue is a "AVM Documentation Update 📘" if it was opened through the ["AVM Documentation Update 📘"](https://github.com/Azure/Azure-Verified-Modules/issues/new?template=documentation_update.yml) issue template, and has the labels of "<mark style="background-color:#0075CA;color:white;">Type: Documentation 📄</mark>" and "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" applied to it.
 
 An issue is considered to be a "standard issue" or "blank issue" if it was opened without using an issue template, and hence it does **NOT** have any labels assigned, OR only has the "<mark style="background-color:#FBCA04;">Needs: Triage 🔍</mark>" label assigned.
 

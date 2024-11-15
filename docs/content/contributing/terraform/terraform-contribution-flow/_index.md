@@ -11,15 +11,15 @@ geekdocAnchor: true
 
 {{< mermaid class="text-center" >}}
 flowchart TD
-A(1. Fork the module source repository)
+A(1 - Fork the module source repository)
   click A "/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#1-fork-the-module-source-repository"
-B(2. Setup your Azure test environment)
+B(2 - Setup your Azure test environment)
   click B "/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#2-prepare-your-azure-test-environment"
-C(3. Implement your contribution)
+C(3 - Implement your contribution)
   click C "/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#3-implement-your-contribution"
-D{4. Pre-commit Checks <br> succesful?}
+D{4 - Pre-commit Checks <br> successful?}
   click D "/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#4-run-pre-commit-checks"
-E(5. Create a pull request to the upstream repository)
+E(5 - Create a pull request to the upstream repository)
   click E "/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#5-create-a-pull-request-to-the-upstream-repository"
 A --> B
 B --> C

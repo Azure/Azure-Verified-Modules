@@ -1,0 +1,29 @@
+{
+  "name": "Hugo & pnpm",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/hugo:1": {
+      "extended": true,
+      "version": "0.136.5"
+    }
+  },
+  "forwardPorts": [1313],
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "html.format.templating": true
+      },
+      "extensions": [
+        "eliostruyf.vscode-front-matter",
+        "rusnasonov.vscode-hugo",
+        "budparr.language-hugo-vscode",
+        "eliostruyf.vscode-hugo-themer",
+        "kaellarkin.hugo-shortcode-syntax",
+        "davidanson.vscode-markdownlint",
+        "streetsidesoftware.code-spell-checker"
+      ]
+    }
+  },
+  "remoteUser": "root"
+}
