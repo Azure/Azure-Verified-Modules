@@ -21,7 +21,7 @@ priority: 10040
 
 #### ID: BCPFR5 - Category: Inputs - Availability Zones Implementation
 
-To implement requirement [SFR5](/Azure-Verified-Modules/specs/shared/#id-sfr5---Category-Naming/Composition---availability-zones), the following convention **SHOULD** apply:
+To implement requirement [SFR5](/Azure-Verified-Modules/spec/SFR5), the following convention **SHOULD** apply:
 
 {{< tabs "zones" >}}
   {{< tab "Module accepts multiple zones" >}}

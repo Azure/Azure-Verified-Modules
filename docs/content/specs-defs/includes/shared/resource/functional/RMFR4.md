@@ -48,7 +48,7 @@ Module owners **MAY** choose to utilize cross repo dependencies for these "add-o
 
 Make sure to checkout the language specific specifications for more info on this:
 
-- [Bicep](/Azure-Verified-Modules/specs/bicep#id-bcpnfr1---Category-Naming/Composition---cross-referencing-modules)
-- [Terraform](/Azure-Verified-Modules/specs/terraform#id-tfnfr1---Category-Naming/Composition---cross-referencing-modules)
+- [Bicep](/Azure-Verified-Modules/spec/BCPNFR1)
+- [Terraform](/Azure-Verified-Modules/spec/TFNFR1)
 
 {{< /hint >}}

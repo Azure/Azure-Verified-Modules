@@ -21,7 +21,7 @@ priority: 11090
 
 #### ID: BCPNFR14 - Category: Composition - Versioning
 
-To meet [SNFR17](/Azure-Verified-Modules/specs/shared/#id-snfr17---Category-Release/Publishing---semantic-versioning) and depending on the changes you make, you may need to bump the version in the `version.json` file.
+To meet [SNFR17](/Azure-Verified-Modules/spec/SNFR17) and depending on the changes you make, you may need to bump the version in the `version.json` file.
 
 {{< include file="/static/includes/sample.bicep.version.json" language="json" options="linenos=false" >}}
 

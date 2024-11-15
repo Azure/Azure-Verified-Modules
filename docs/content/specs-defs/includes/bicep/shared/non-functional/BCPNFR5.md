@@ -21,7 +21,7 @@ priority: 11060
 
 #### ID: BCPNFR5 - Category: Composition - Role Assignments Role Definition Mapping Limits
 
-As per [BCPFR2](#id-bcpfr2---Category-Naming/Composition---role-assignments-role-definition-mapping), module owners **MAY** define common RBAC Role Definition names and IDs within a variable to allow consumers to define a RBAC Role Definition by their name rather than their ID.
+As per [BCPFR2](/Azure-Verified-Modules/spec/BCPFR2), module owners **MAY** define common RBAC Role Definition names and IDs within a variable to allow consumers to define a RBAC Role Definition by their name rather than their ID.
 
 Module owners **SHOULD NOT** map every RBAC Role Definition within this variable as it can cause the module to bloat in size and cause consumption issues later when stitched together with other modules due to the 4MB ARM Template size limit.
 

@@ -40,7 +40,7 @@ Make sure module authors/contributors tested their module in their environment b
 <!-- TODO: Add TF Issue Triage once done -->
 Familiarise yourself with the responsibilities as **Module Owner** outlined in [Team Definitions & RACI](/Azure-Verified-Modules/specs/shared/team-definitions/#module-owners) and in the [TF Issue Triage](/Azure-Verified-Modules/help-support/issue-triage/).
 
-1. Watch Pull Request (PR) and issue (questions/feedback) activity for your module(s) in your repository and ensure that PRs are reviewed and merged in a timely manner as outlined in [SNFR11](/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times).
+1. Watch Pull Request (PR) and issue (questions/feedback) activity for your module(s) in your repository and ensure that PRs are reviewed and merged in a timely manner as outlined in [SNFR11](/Azure-Verified-Modules/spec/SNFR11).
 
 {{< hint type=info >}}
 
@@ -62,7 +62,7 @@ Make sure you have access to the Azure organisation see [GitHub Account Link and
 
 1. Create the module repostory using [terraform-azuremrm-avm-template](https://github.com/Azure/terraform-azurerm-avm-template) in the `Azure` organisation with the following [details (internal only)](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review). You will then have to complete the configuration of your repository and start an [internal business review](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review?anchor=conduct-initial-repo-configuration-and-trigger-business-review).
 
-1. Create GitHub teams as outlined in [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) and add respective parent teams:
+1. Create GitHub teams as outlined in [SNFR20](/Azure-Verified-Modules/spec/SNFR20) and add respective parent teams:
 
     Segments:
 
@@ -104,7 +104,7 @@ Make sure you have access to the Azure organisation see [GitHub Account Link and
 
 ### 3. GitHub Repository Labels
 
-As per [SNFR23](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels) the repositories created by module owners **MUST** have and use the pre-defined GitHub labels. To apply these labels to the repository review the PowerShell script `Set-AvmGitHubLabels.ps1` that is provided in [SNFR23](/Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels).
+As per [SNFR23](/Azure-Verified-Modules/spec/SNFR23) the repositories created by module owners **MUST** have and use the pre-defined GitHub labels. To apply these labels to the repository review the PowerShell script `Set-AvmGitHubLabels.ps1` that is provided in [SNFR23](/Azure-Verified-Modules/spec/SNFR23).
 
 ```pwsh
 Set-AvmGitHubLabels.ps1 -RepositoryName "Azure/MyGitHubRepo" -CreateCsvLabelExports $false -NoUserPrompts $true
@@ -198,8 +198,8 @@ Once a module gets updated and becomes a new version/release it will be automati
 
 When an AVM Module is published to the HashiCorp Registry, it **MUST** follow the below requirements:
 
-- Resource Module: `terraform-<provider>-avm-res-<rp>-<ARM resource type>` as per [RMNFR1](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---Category-Naming/Composition---module-naming)
-- Pattern Module: `terraform-<provider>-avm-ptn-<patternmodulename>` as per [PMNFR1](/Azure-Verified-Modules/specs/shared/#id-pmnfr1---Category-Naming/Composition---module-naming)
+- Resource Module: `terraform-<provider>-avm-res-<rp>-<ARM resource type>` as per [RMNFR1](/Azure-Verified-Modules/spec/RMNFR1)
+- Pattern Module: `terraform-<provider>-avm-ptn-<patternmodulename>` as per [PMNFR1](/Azure-Verified-Modules/spec/PMNFR1)
 
 {{< /hint >}}
 

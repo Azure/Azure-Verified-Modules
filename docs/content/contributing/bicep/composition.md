@@ -100,7 +100,7 @@ This section points to conventions to be followed when developing a Bicep templa
 
 #### Casing
 
-Use `camelCasing` as per [BCPNFR8](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr8---Category-Naming/Composition---code-styling---lower-camelcasing).
+Use `camelCasing` as per [BCPNFR8](/Azure-Verified-Modules/spec/BCPNFR8).
 
 ---
 
@@ -109,7 +109,7 @@ Use `camelCasing` as per [BCPNFR8](/Azure-Verified-Modules/specs/bicep/#id-bcpnf
 Make sure to review all specifications of `Category: Inputs` within both the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](/Azure-Verified-Modules/specs/bicep/) pages.
 
 {{< hint type=tip >}}
-See examples in specifications [SNFR14](/Azure-Verified-Modules/specs/shared/#id-snfr14---Category-Inputs/Outputs---data-types) and [BCPNFR1](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr1---Category-Inputs/Outputs---data-types).
+See examples in specifications [SNFR14](/Azure-Verified-Modules/spec/SNFR14) and [BCPNFR1](/Azure-Verified-Modules/spec/BCPNFR1).
 {{< /hint >}}
 
 ---
@@ -121,7 +121,7 @@ Resources are primarily leveraged by resource modules to declare the primary res
 Make sure to review all specifications covering resource properties and usage.
 
 {{< hint type=tip >}}
-See examples in specifications [SFR1](/Azure-Verified-Modules/specs/shared/#id-sfr1---Category-Naming/Composition---preview-services) and [RMFR1](/Azure-Verified-Modules/specs/shared/#id-rmfr1---Category-Naming/Composition---single-resource-only).
+See examples in specifications [SFR1](/Azure-Verified-Modules/spec/SFR1) and [RMFR1](/Azure-Verified-Modules/spec/RMFR1).
 {{< /hint >}}
 
 ---
@@ -133,7 +133,7 @@ Modules enable you to reuse code from a Bicep file in other Bicep files. As such
 Make sure to review all specifications covering module properties and usage.
 
 {{< hint type=tip >}}
-See examples in specifications [BCPFR1](/Azure-Verified-Modules/specs/bicep/#id-bcpfr1---Category-Naming/Composition---cross-referencing-modules) for resource modules and [PMNFR2](//Azure-Verified-Modules/specs/shared/#id-pmnfr2---Category-Naming/Composition---use-resource-modules-to-build-a-pattern-module) for pattern modules.
+See examples in specifications [BCPFR1](/Azure-Verified-Modules/spec/BCPFR1) for resource modules and [PMNFR2](//Azure-Verified-Modules/spec/PMNFR2) for pattern modules.
 {{< /hint >}}
 
 ---
@@ -143,7 +143,7 @@ See examples in specifications [BCPFR1](/Azure-Verified-Modules/specs/bicep/#id-
 Make sure to review all specifications of `Category: Outputs` within both the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](/Azure-Verified-Modules/specs/bicep/) pages.
 
 {{< hint type=tip >}}
-See examples in specification [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---Category-Inputs/Outputs---minimum-required-outputs).
+See examples in specification [RMFR7](/Azure-Verified-Modules/spec/RMFR7).
 {{< /hint >}}
 
 ---
@@ -158,7 +158,7 @@ This section is only relevant for contributions to resource modules.
 
 {{< /hint >}}
 
-To meet [RMFR4](/Azure-Verified-Modules/specs/shared/#id-rmfr4---Category-Naming/Composition---avm-consistent-feature--extension-resources-value-add) and [RMFR5](/Azure-Verified-Modules/specs/shared/#id-rmfr5---Category-Naming/Composition---avm-consistent-feature--extension-resources-value-add-interfacesschemas) AVM resource modules must leverage consistent interfaces for all the optional features/extension resources supported by the AVM module primary resource.
+To meet [RMFR4](/Azure-Verified-Modules/spec/RMFR4) and [RMFR5](/Azure-Verified-Modules/spec/RMFR5) AVM resource modules must leverage consistent interfaces for all the optional features/extension resources supported by the AVM module primary resource.
 
 Please refer to the [Shared Interfaces](/Azure-Verified-Modules/specs/shared/interfaces/) page.
 If the primary resource of the AVM resource module you are developing supports any of the listed features/extension resources, please follow the corresponding provided Bicep schema to develop them.
@@ -167,7 +167,7 @@ If the primary resource of the AVM resource module you are developing supports a
 
 ### Deprecation
 
-Breaking changes are sometimes not avoidable. The impact should be kept as low as possible. A recommendation is to [deprecate parameters](/Azure-Verified-Modules/specs/shared/#id-snfr18---Category-Release/Publishing---breaking-changes), instead of completely removing them for a couple of versions. The [Semantic Versioning](/Azure-Verified-Modules/specs/shared/#id-snfr17---Category-Release/Publishing---semantic-versioning) sections offers information about versioning AVM modules.
+Breaking changes are sometimes not avoidable. The impact should be kept as low as possible. A recommendation is to [deprecate parameters](/Azure-Verified-Modules/spec/SNFR18), instead of completely removing them for a couple of versions. The [Semantic Versioning](/Azure-Verified-Modules/spec/SNFR17) sections offers information about versioning AVM modules.
 
 In case you need to deprecate an input parameter, this sample shows you how this can be achieved.
 
@@ -202,7 +202,7 @@ item:
 
 #### Testing
 
-Before you begin to modify anything, it is recommended to create a new test case (e.g. *deprecated*), in addition to the already existing tests, to make sure that the changes are not breaking backward compatibility until you decide to finally remove the deprecated parameters (see [BCPRMNFR1 - Category: Testing - Expected Test Directories](/Azure-Verified-Modules/specs/bicep/#id-bcprmnfr1---category-testing---expected-test-directories) for more details about the requirements).
+Before you begin to modify anything, it is recommended to create a new test case (e.g. *deprecated*), in addition to the already existing tests, to make sure that the changes are not breaking backward compatibility until you decide to finally remove the deprecated parameters (see [BCPRMNFR1 - Category: Testing - Expected Test Directories](/Azure-Verified-Modules/spec/BCPRMNFR1) for more details about the requirements).
 
 ```bicep
 module testDeployment '../../../main.bicep' = [

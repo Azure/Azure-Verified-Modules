@@ -27,9 +27,9 @@ Before jumping on implementing your contribution, please review the AVM Module s
 
 ## Repositories
 
-Each Terraform AVM module will have its own GitHub Repository in the [`Azure` GitHub Organization](https://github.com/Azure) as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---Category-Release/Publishing---registries-targeted).
+Each Terraform AVM module will have its own GitHub Repository in the [`Azure` GitHub Organization](https://github.com/Azure) as per [SNFR19](/Azure-Verified-Modules/spec/SNFR19).
 
-This repo will be created by the Module Owners and the AVM Core team collaboratively, including the configuration of permissions as per [SNFR9](/Azure-Verified-Modules/specs/shared/#id-snfr9---category-contributionsupport---avm--pg-teams-github-repo-permissions)
+This repo will be created by the Module Owners and the AVM Core team collaboratively, including the configuration of permissions as per [SNFR9](/Azure-Verified-Modules/spec/SNFR9)
 
 <br>
 
@@ -149,7 +149,7 @@ This section points to conventions to be followed when developing a module.
 
 ### Casing
 
-Use `snake_casing` as per [TFNFR3](/Azure-Verified-Modules/specs/terraform/#id-tfnfr4---Category-Naming/Composition---code-styling---lower-snake_casing).
+Use `snake_casing` as per [TFNFR3](/Azure-Verified-Modules/spec/TFNFR3).
 
 <br>
 
@@ -162,7 +162,7 @@ Use `snake_casing` as per [TFNFR3](/Azure-Verified-Modules/specs/terraform/#id-t
 Make sure to review all specifications of `Category: Inputs` within both the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Terraform specific](/Azure-Verified-Modules/specs/terraform/) pages.
 
 {{< hint type=tip >}}
-See examples in specifications [SNFR14](/Azure-Verified-Modules/specs/shared/#id-snfr14---Category-Inputs/Outputs---data-types) and [TFFR14](/Azure-Verified-Modules/specs/terraform/#id-tffr14---Category-Inputs/Outputs---no-enabled-or-module_depends_on-variable).
+See examples in specifications [SNFR14](/Azure-Verified-Modules/spec/SNFR14) and [TFFR14](/Azure-Verified-Modules/spec/TFFR14).
 {{< /hint >}}
 
 <br>
@@ -178,7 +178,7 @@ Resources are primarily leveraged by resource modules to declare the primary res
 Make sure to review all specifications covering resource properties and usage.
 
 {{< hint type=tip >}}
-See examples in specifications [SFR1](/Azure-Verified-Modules/specs/shared/#id-sfr1---Category-Naming/Composition---preview-services) and [RMFR1](/Azure-Verified-Modules/specs/shared/#id-rmfr1---Category-Naming/Composition---single-resource-only).
+See examples in specifications [SFR1](/Azure-Verified-Modules/spec/SFR1) and [RMFR1](/Azure-Verified-Modules/spec/RMFR1).
 {{< /hint >}}
 
 <br>
@@ -192,7 +192,7 @@ See examples in specifications [SFR1](/Azure-Verified-Modules/specs/shared/#id-s
 Make sure to review all specifications of `Category: Outputs` within both the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Terraform specific](/Azure-Verified-Modules/specs/terraform/) pages.
 
 {{< hint type=tip >}}
-See examples in specification [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---Category-Inputs/Outputs---minimum-required-outputs) and [TFFR2](/Azure-Verified-Modules/specs/terraform/#id-tffr2---Category-Inputs/Outputs---additional-terraform-outputs).
+See examples in specification [RMFR7](/Azure-Verified-Modules/spec/RMFR7) and [TFFR2](/Azure-Verified-Modules/spec/TFFR2).
 {{< /hint >}}
 
 <br>
@@ -209,7 +209,7 @@ This section is only relevant for contributions to resource modules.
 
 {{< /hint >}}
 
-To meet [RMFR4](/Azure-Verified-Modules/specs/shared/#id-rmfr4---Category-Naming/Composition---avm-consistent-feature--extension-resources-value-add) and [RMFR5](/Azure-Verified-Modules/specs/shared/#id-rmfr5---Category-Naming/Composition---avm-consistent-feature--extension-resources-value-add-interfacesschemas) AVM resource modules must leverage consistent interfaces for all the optional features/extension resources supported by the AVM module primary resource.
+To meet [RMFR4](/Azure-Verified-Modules/spec/RMFR4) and [RMFR5](/Azure-Verified-Modules/spec/RMFR5) AVM resource modules must leverage consistent interfaces for all the optional features/extension resources supported by the AVM module primary resource.
 
 Please refer to the [Shared Interfaces](/Azure-Verified-Modules/specs/shared/interfaces/) page.
 
@@ -221,7 +221,7 @@ Please refer to the [Shared Interfaces](/Azure-Verified-Modules/specs/shared/int
 
 ## Telemetry
 
-To meet [SFR3](/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry) & [SFR4](/Azure-Verified-Modules/specs/shared/#id-sfr4---category-telemetry---telemetry-enablement-flexibility).
+To meet [SFR3](/Azure-Verified-Modules/spec/SFR3) & [SFR4](/Azure-Verified-Modules/spec/SFR4).
 We use a telemetry provider [modtm](https://registry.terraform.io/providers/Azure/modtm/latest).
 This is a lightweight telemetry provider that sends telemetry data to Azure Application Insights via a HTTP POST front end service.
 

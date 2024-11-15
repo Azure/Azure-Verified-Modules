@@ -59,8 +59,8 @@ The naming convention for Bicep modules is slightly different than the naming co
 Segments:
 
 - `<hyphenated module name>` == the AVM Module's name, with each segment separated by dashes, i.e., `avm-res-<resource provider>-<ARM resource type>`
-  - See [RMNFR1](#id-rmnfr1---Category-Naming/Composition---module-naming) for AVM Resource Module Naming
-  - See [PMNFR1](#id-pmnfr1---Category-Naming/Composition---module-naming) for AVM Pattern Module Naming
+  - See [RMNFR1](/Azure-Verified-Modules/spec/RMNFR1) for AVM Resource Module Naming
+  - See [PMNFR1](/Azure-Verified-Modules/spec/PMNFR1) for AVM Pattern Module Naming
 - `module-owners` or `module-contributors` == the role the GitHub Team is assigned to
 - `<bicep/tf>` == the language the module is written in
 
@@ -77,7 +77,7 @@ All officially documented module owner(s) **MUST** be added to the `-module-owne
 
 Any additional module contributors whom the module owner(s) agreed to work with **MUST** be added to the `-module-contributors-` team.
 
-Unless explicitly requested and agreed, members of the AVM core team or any PG teams **MUST NOT** be added to the `-module-owners-` or `-module-contributors-` teams as permissions for them are granted through the teams described in [SNFR9](/Azure-Verified-Modules/specs/shared/#id-snfr9---category-contributionsupport---avm--pg-teams-github-repo-permissions).
+Unless explicitly requested and agreed, members of the AVM core team or any PG teams **MUST NOT** be added to the `-module-owners-` or `-module-contributors-` teams as permissions for them are granted through the teams described in [SNFR9](/Azure-Verified-Modules/spec/SNFR9).
 
 <br>
 

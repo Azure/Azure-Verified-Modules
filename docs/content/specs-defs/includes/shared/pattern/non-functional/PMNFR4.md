@@ -25,6 +25,6 @@ An item **MUST** be logged onto as an issue on the [AVM Central Repo (`Azure/Azu
 
 {{< hint type=important title=Exception >}}
 
-If the Resource Module adds no value, see Resource Module functional requirement [ID: RMFR2](#id-rmfr2---Category-Naming/Composition---no-resource-wrapper-modules).
+If the Resource Module adds no value, see Resource Module functional requirement [ID: RMFR2](/Azure-Verified-Modules/spec/RMFR2).
 
 {{< /hint >}}

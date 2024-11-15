@@ -141,7 +141,7 @@ Checkout the [PowerShell Helper Script](#powershell-helper-script-to-setup-fork-
 
 {{< /hint >}}
 
-Bicep AVM Modules (both Resource and Pattern modules) will be homed in the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and live within an `avm` directory that will be located at the root of the repository, as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---Category-Release/Publishing---registries-targeted).
+Bicep AVM Modules (both Resource and Pattern modules) will be homed in the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and live within an `avm` directory that will be located at the root of the repository, as per [SNFR19](/Azure-Verified-Modules/spec/SNFR19).
 
 Module owners are expected to fork the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository's `main` branch.
 
@@ -271,11 +271,11 @@ After any change to a module and before running tests, we highly recommend runni
 
 ## 5. Create/Update and run tests
 
-Before opening a Pull Request to the Bicep Public Registry, ensure your module is ready for publishing, by validating that it meets all the Testing Specifications as per [SNFR1](/Azure-Verified-Modules/specs/shared/#id-snfr1---category-testing---prescribed-tests), [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing), [SNFR3](/Azure-Verified-Modules/specs/shared/#id-snfr3---category-testing---avm-unit-tests), [SNFR4](/Azure-Verified-Modules/specs/shared/#id-snfr4---category-testing---additional-unit-tests), [SNFR5](/Azure-Verified-Modules/specs/shared/#id-snfr5---category-testing---upgrade-tests), [SNFR6](/Azure-Verified-Modules/specs/shared/#id-snfr6---category-testing---static-analysislinting-tests), [SNFR7](/Azure-Verified-Modules/specs/shared/#id-snfr7---category-testing---idempotency-tests).
+Before opening a Pull Request to the Bicep Public Registry, ensure your module is ready for publishing, by validating that it meets all the Testing Specifications as per [SNFR1](/Azure-Verified-Modules/spec/SNFR1), [SNFR2](/Azure-Verified-Modules/spec/SNFR2), [SNFR3](/Azure-Verified-Modules/spec/SNFR3), [SNFR4](/Azure-Verified-Modules/spec/SNFR4), [SNFR5](/Azure-Verified-Modules/spec/SNFR5), [SNFR6](/Azure-Verified-Modules/spec/SNFR6), [SNFR7](/Azure-Verified-Modules/spec/SNFR7).
 
-For example, to meet [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing), ensure the updated module is deployable against a testing Azure subscription and compliant with the intended configuration.
+For example, to meet [SNFR2](/Azure-Verified-Modules/specc/SNFR2), ensure the updated module is deployable against a testing Azure subscription and compliant with the intended configuration.
 
-Depending on the type of contribution you implemented (for example, a new resource module feature) we would kindly ask you to also update the `e2e` test run by the pipeline. For a new parameter this could mean to either add its usage to an existing test file, or to add an entirely new test as per [BCPRMNFR1](/Azure-Verified-Modules/specs/bicep/#id-bcprmnfr1---category-testing---expected-test-directories).
+Depending on the type of contribution you implemented (for example, a new resource module feature) we would kindly ask you to also update the `e2e` test run by the pipeline. For a new parameter this could mean to either add its usage to an existing test file, or to add an entirely new test as per [BCPRMNFR1](/Azure-Verified-Modules/spec/BCPRMNFR1).
 
 Once the contribution is implemented and the changes are pushed to your forked repository, we kindly ask you to validate your updates in your own cloud environment before requesting to merge them to the main repo. Test your code leveraging the forked AVM CI environment you configured before
 
@@ -287,12 +287,12 @@ In case your contribution involves changes to a module, you can also optionally 
 
 ### Creating `e2e` tests
 
-As per [BCPRMNFR1](/Azure-Verified-Modules/specs/bicep/#id-bcprmnfr1---category-testing---expected-test-directories), a resource module must contain a minimum set of deployment test cases, while for pattern modules there is no restriction on the naming each deployment test must have.
+As per [BCPRMNFR1](/Azure-Verified-Modules/spec/BCPRMNFR1), a resource module must contain a minimum set of deployment test cases, while for pattern modules there is no restriction on the naming each deployment test must have.
 In either case, you're free to implement any additional, meaningful test that you see fit. Each test is implemented in its own test folder, containing at least a `main.test.bicep` and optionally any amount of extra deployment files that you may require (e.g., to deploy dependencies using a `dependencies.bicep` that you reference in the test template file).
 
 To get started implementing your test in the `main.test.bicep` file, we recommend the following guidelines:
 
-- As per [BCPNFR13](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr13---category-testing---test-file-metadata), each `main.test.bicep` file should implement metadata to render the test more meaningful in the documentation
+- As per [BCPNFR13](/Azure-Verified-Modules/spec/BCPNFR13), each `main.test.bicep` file should implement metadata to render the test more meaningful in the documentation
 - The `main.test.bicep` file should deploy any immediate dependencies (e.g., a resource group, if required) and invoke the module's main template while providing all parameters for a given test scenario.
 - Parameters
 
@@ -316,7 +316,7 @@ To get started implementing your test in the `main.test.bicep` file, we recommen
 
   {{< hint type=important >}}
 
-  As per [BCPNFR12](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr12---category-testing---deployment-test-naming) you must use the header `module testDeployment '../.*main.bicep' =` when invoking the module's template.
+  As per [BCPNFR12](/Azure-Verified-Modules/spec/BCPNFR12) you must use the header `module testDeployment '../.*main.bicep' =` when invoking the module's template.
 
   {{< /hint >}}
 
@@ -393,8 +393,8 @@ If you're the **sole owner of the module**, the **AVM core team must review and 
 
 When the AVM Modules are published to the Bicep Public Registry they **MUST** follow the below requirements:
 
-- Resource Module: `avm/res/<rp>/<resource type>` as per [RMNFR1](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---Category-Naming/Composition---module-naming)
-- Pattern Module: `avm/ptn/<patternmodulename>` as per [PMNFR1](/Azure-Verified-Modules/specs/shared/#id-pmnfr1---Category-Naming/Composition---module-naming)
+- Resource Module: `avm/res/<rp>/<resource type>` as per [RMNFR1](/Azure-Verified-Modules/specRMNFR1)
+- Pattern Module: `avm/ptn/<patternmodulename>` as per [PMNFR1](/Azure-Verified-Modules/spec/PMNFR1)
 
 This will require the alias on the MCR to be different than the directory path, which is the default for BRM today.
 

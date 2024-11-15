@@ -23,4 +23,4 @@ priority: 2060
 
 A resource module **MAY** contain references to other resource modules, however **MUST NOT** contain references to non-AVM modules nor AVM pattern modules.
 
-See [BCPFR1](/Azure-Verified-Modules/specs/bicep/#id-bcpfr1---Category-Naming/Composition---cross-referencing-modules) and [TFFR1](/Azure-Verified-Modules/specs/terraform/#id-tffr1---Category-Naming/Composition---cross-referencing-modules) for more information on this.
+See [BCPFR1](/Azure-Verified-Modules/spec/BCPFR1) and [TFFR1](/Azure-Verified-Modules/spec/TFFR1) for more information on this.

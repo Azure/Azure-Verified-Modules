@@ -98,9 +98,9 @@ Each time in the following sections we refer to 'your xyz', it is an indicator t
 
 {{< hint type=important >}}
 
-Each Terraform AVM module will have its own GitHub repository in the [`Azure`](https://github.com/Azure) GitHub Organization as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---Category-Release/Publishing---registries-targeted).
+Each Terraform AVM module will have its own GitHub repository in the [`Azure`](https://github.com/Azure) GitHub Organization as per [SNFR19](/Azure-Verified-Modules/spec/SNFR19).
 
-This repository will be created by the Module owners and the AVM Core team collaboratively, including the configuration of permissions as per [SNFR9](/Azure-Verified-Modules/specs/shared/#id-snfr9---category-contributionsupport---avm--pg-teams-github-repo-permissions)
+This repository will be created by the Module owners and the AVM Core team collaboratively, including the configuration of permissions as per [SNFR9](/Azure-Verified-Modules/spec/SNFR9)
 
 {{< /hint >}}
 
@@ -170,7 +170,7 @@ AVM performs end-to-end (e2e) test deployments of all modules in Azure for valid
 To implement your contribution, we kindly ask you to first review the [shared](/Azure-Verified-Modules/specs/shared/) & [Terraform-specific](/Azure-Verified-Modules/specs/terraform/) specifications and [composition guidelines](/Azure-Verified-Modules/contributing/bicep/terraform/) in particular to make sure your contribution complies with the repository's design and principles.
 
 {{< hint type=tip >}}
-To get a head start on developing your module, consider using the tooling recommended per spec [TFNFR37](https://azure.github.io/Azure-Verified-Modules/specs/terraform/#id-tfnfr37---category-code-style---tool-usage-by-module-owner). For example you can use the [newres](https://github.com/lonegunmanb/newres) tool to help with  creating `variables.tf` and `main.tf` if you're developing a module using Azurerm provider.
+To get a head start on developing your module, consider using the tooling recommended per spec [TFNFR37](/Azure-Verified-Modules/spec/TFNFR37). For example you can use the [newres](https://github.com/lonegunmanb/newres) tool to help with  creating `variables.tf` and `main.tf` if you're developing a module using Azurerm provider.
 {{< /hint >}}
 
 <br>
