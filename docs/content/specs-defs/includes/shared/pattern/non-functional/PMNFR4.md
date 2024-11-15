@@ -6,9 +6,9 @@ geekdocAlign: left
 geekdocAnchor: true
 type: posts
 tags: [
-  Class-Pattern,
+  Class-Resource,
   Type-NonFunctional,
-  Category-Hygiene,
+  Category-Contribution/Support,
   Language-Bicep,
   Language-Terraform,
   Severity-MUST,

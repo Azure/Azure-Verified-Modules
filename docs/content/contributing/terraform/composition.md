@@ -27,7 +27,7 @@ Before jumping on implementing your contribution, please review the AVM Module s
 
 ## Repositories
 
-Each Terraform AVM module will have its own GitHub Repository in the [`Azure` GitHub Organization](https://github.com/Azure) as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
+Each Terraform AVM module will have its own GitHub Repository in the [`Azure` GitHub Organization](https://github.com/Azure) as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---Category-Release/Publishing---registries-targeted).
 
 This repo will be created by the Module Owners and the AVM Core team collaboratively, including the configuration of permissions as per [SNFR9](/Azure-Verified-Modules/specs/shared/#id-snfr9---category-contributionsupport---avm--pg-teams-github-repo-permissions)
 
@@ -162,7 +162,7 @@ Use `snake_casing` as per [TFNFR3](/Azure-Verified-Modules/specs/terraform/#id-t
 Make sure to review all specifications of `Category: Inputs` within both the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Terraform specific](/Azure-Verified-Modules/specs/terraform/) pages.
 
 {{< hint type=tip >}}
-See examples in specifications [SNFR14](/Azure-Verified-Modules/specs/shared/#id-snfr14---category-inputs---data-types) and [TFFR14](/Azure-Verified-Modules/specs/terraform/#id-tffr14---category-inputs---no-enabled-or-module_depends_on-variable).
+See examples in specifications [SNFR14](/Azure-Verified-Modules/specs/shared/#id-snfr14---Category-Inputs/Outputs---data-types) and [TFFR14](/Azure-Verified-Modules/specs/terraform/#id-tffr14---Category-Inputs/Outputs---no-enabled-or-module_depends_on-variable).
 {{< /hint >}}
 
 <br>
@@ -192,7 +192,7 @@ See examples in specifications [SFR1](/Azure-Verified-Modules/specs/shared/#id-s
 Make sure to review all specifications of `Category: Outputs` within both the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Terraform specific](/Azure-Verified-Modules/specs/terraform/) pages.
 
 {{< hint type=tip >}}
-See examples in specification [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs) and [TFFR2](/Azure-Verified-Modules/specs/terraform/#id-tffr2---category-outputs---additional-terraform-outputs).
+See examples in specification [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---Category-Inputs/Outputs---minimum-required-outputs) and [TFFR2](/Azure-Verified-Modules/specs/terraform/#id-tffr2---Category-Inputs/Outputs---additional-terraform-outputs).
 {{< /hint >}}
 
 <br>

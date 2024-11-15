@@ -66,14 +66,14 @@ If you're the **sole owner of the module**, the **AVM core team must review and 
 | [SNFR8](/Azure-Verified-Modules/specs/shared/#id-snfr8---category-contributionsupport---module-owners-github) | Contribution/Support - Module Owner(s) GitHub |
 | [SNFR11](/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times) | Contribution/Support - Issues Response Times |
 | [SNFR12](/Azure-Verified-Modules/specs/shared/#id-snfr12---category-contributionsupport---versions-supported) | Contribution/Support - Versions Supported |
-| [SNFR17](/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning) | Release - Semantic Versioning |
+| [SNFR17](/Azure-Verified-Modules/specs/shared/#id-snfr17---Category-Release/Publishing---semantic-versioning) | Release - Semantic Versioning |
 | [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) | Contribution/Support - GitHub Teams Only |
-| [SNFR21](/Azure-Verified-Modules/specs/shared/#id-snfr21---category-publishing---cross-language-collaboration) | Publishing - Cross Language Collaboration |
+| [SNFR21](/Azure-Verified-Modules/specs/shared/#id-snfr21---Category-Release/Publishing---cross-language-collaboration) | Publishing - Cross Language Collaboration |
 | [SNFR24](/Azure-Verified-Modules/specs/shared/#id-snfr24---category-testing---testing-child-extension--interface-resources) | Testing - Testing Child, Extension & Interface Resources |
 | [SNFR25](/Azure-Verified-Modules/specs/shared/#id-snfr25---category-composition---resource-naming) | Composition - Resource Naming |
 | [RMNFR3](/Azure-Verified-Modules/specs/shared/#id-rmnfr3---category-composition---rp-collaboration) | Composition - RP Collaboration |
 | [RMFR4](/Azure-Verified-Modules/specs/shared/#id-rmfr4---category-composition---avm-consistent-feature--extension-resources-value-add) | Composition - AVM Consistent Feature & Extension Resources Value Add |
-| [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs) | Outputs - Minimum Required Outputs |
+| [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---Category-Inputs/Outputs---minimum-required-outputs) | Outputs - Minimum Required Outputs |
 
 5. Watch Pull Request (PR) activity for your module(s) in the [BRM](https://github.com/Azure/bicep-registry-modules) repository (Bicep Registry Modules repository - where all Bicep AVM modules are published) and ensure that PRs are reviewed and merged in a timely manner as outlined in [SNFR11](/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times).
 6. Watch AVM module issue and AVM question/feedback activity for your module(s) in the [BRM](https://github.com/Azure/bicep-registry-modules) repository.

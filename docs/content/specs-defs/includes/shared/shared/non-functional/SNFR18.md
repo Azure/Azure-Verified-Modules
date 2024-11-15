@@ -9,7 +9,7 @@ tags: [
   Class-Resource,
   Class-Pattern,
   Type-NonFunctional,
-  Category-Release,
+  Category-Release/Publishing,
   Language-Bicep,
   Language-Terraform,
   Severity-SHOULD,
@@ -26,7 +26,7 @@ A module **SHOULD** avoid breaking changes, e.g., deprecating inputs vs. removin
 
 {{< hint type=info >}}
 
-Modules that have not been released as `1.0.0` may introduce breaking changes, as explained in the previous ID [SNFR17](/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning). That means that you have to introduce non-breaking and breaking changes with a minor version jump, as long as the module has not reached version `1.0.0`.
+Modules that have not been released as `1.0.0` may introduce breaking changes, as explained in the previous ID [SNFR17](/Azure-Verified-Modules/specs/shared/#id-snfr17---Category-Release/Publishing---semantic-versioning). That means that you have to introduce non-breaking and breaking changes with a minor version jump, as long as the module has not reached version `1.0.0`.
 
 {{< /hint >}}
 

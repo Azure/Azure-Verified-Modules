@@ -12,7 +12,7 @@ tags: [
   Category-Composition,
   Language-Bicep,
   Language-Terraform,
-  Severity-TBD,
+  Severity-MUST,
   Persona-Owner,
   Lifecycle-Maintenance
 ]

@@ -9,7 +9,7 @@ tags: [
   Class-Resource,
   Class-Pattern,
   Type-Functional,
-  Category-Inputs,
+  Category-Inputs/Outputs,
   Language-Bicep,
   Severity-SHOULD,
   Persona-Owner,

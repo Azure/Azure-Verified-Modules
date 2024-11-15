@@ -362,7 +362,7 @@ These same validations are also run in the [BRM](https://aka.ms/BRM) repository 
 
 ### Does AVM use semantic versioning?
 
-Yes! For generic guidance, see [SNFR17 - Semantic Versioning](/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning).
+Yes! For generic guidance, see [SNFR17 - Semantic Versioning](/Azure-Verified-Modules/specs/shared/#id-snfr17---Category-Release/Publishing---semantic-versioning).
 For Bicep specific guidance, see [BCPNFR14 - Versioning](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr14---category-composition---versioning).
 
 ---

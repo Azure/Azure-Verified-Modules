@@ -8,7 +8,7 @@ type: posts
 tags: [
   Class-Resource,
   Type-Functional,
-  Category-Outputs,
+  Category-Inputs/Outputs,
   Language-Bicep,
   Language-Terraform,
   Severity-MUST,

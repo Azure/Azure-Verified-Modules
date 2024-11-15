@@ -9,7 +9,7 @@ tags: [
   Class-Resource,
   Class-Pattern,
   Type-NonFunctional,
-  Category-Publishing,
+  Category-Release/Publishing,
   Language-Bicep,
   Language-Terraform,
   Severity-MUST,

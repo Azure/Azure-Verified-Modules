@@ -109,7 +109,7 @@ Use `camelCasing` as per [BCPNFR8](/Azure-Verified-Modules/specs/bicep/#id-bcpnf
 Make sure to review all specifications of `Category: Inputs` within both the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](/Azure-Verified-Modules/specs/bicep/) pages.
 
 {{< hint type=tip >}}
-See examples in specifications [SNFR14](/Azure-Verified-Modules/specs/shared/#id-snfr14---category-inputs---data-types) and [BCPNFR1](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr1---category-inputs---data-types).
+See examples in specifications [SNFR14](/Azure-Verified-Modules/specs/shared/#id-snfr14---Category-Inputs/Outputs---data-types) and [BCPNFR1](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr1---Category-Inputs/Outputs---data-types).
 {{< /hint >}}
 
 ---
@@ -143,7 +143,7 @@ See examples in specifications [BCPFR1](/Azure-Verified-Modules/specs/bicep/#id-
 Make sure to review all specifications of `Category: Outputs` within both the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](/Azure-Verified-Modules/specs/bicep/) pages.
 
 {{< hint type=tip >}}
-See examples in specification [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs).
+See examples in specification [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---Category-Inputs/Outputs---minimum-required-outputs).
 {{< /hint >}}
 
 ---
@@ -167,7 +167,7 @@ If the primary resource of the AVM resource module you are developing supports a
 
 ### Deprecation
 
-Breaking changes are sometimes not avoidable. The impact should be kept as low as possible. A recommendation is to [deprecate parameters](/Azure-Verified-Modules/specs/shared/#id-snfr18---category-release---breaking-changes), instead of completely removing them for a couple of versions. The [Semantic Versioning](/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning) sections offers information about versioning AVM modules.
+Breaking changes are sometimes not avoidable. The impact should be kept as low as possible. A recommendation is to [deprecate parameters](/Azure-Verified-Modules/specs/shared/#id-snfr18---Category-Release/Publishing---breaking-changes), instead of completely removing them for a couple of versions. The [Semantic Versioning](/Azure-Verified-Modules/specs/shared/#id-snfr17---Category-Release/Publishing---semantic-versioning) sections offers information about versioning AVM modules.
 
 In case you need to deprecate an input parameter, this sample shows you how this can be achieved.
 
