@@ -393,8 +393,8 @@ If you're the **sole owner of the module**, the **AVM core team must review and 
 
 When the AVM Modules are published to the Bicep Public Registry they **MUST** follow the below requirements:
 
-- Resource Module: `avm/res/<rp>/<resource type>` as per [RMNFR1](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming---module-naming)
-- Pattern Module: `avm/ptn/<patternmodulename>` as per [PMNFR1](/Azure-Verified-Modules/specs/shared/#id-pmnfr1---category-naming---module-naming)
+- Resource Module: `avm/res/<rp>/<resource type>` as per [RMNFR1](/Azure-Verified-Modules/specs/shared/#id-rmnfr1---Category-Naming/Composition---module-naming)
+- Pattern Module: `avm/ptn/<patternmodulename>` as per [PMNFR1](/Azure-Verified-Modules/specs/shared/#id-pmnfr1---Category-Naming/Composition---module-naming)
 
 This will require the alias on the MCR to be different than the directory path, which is the default for BRM today.
 

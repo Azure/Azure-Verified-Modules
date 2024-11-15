@@ -9,7 +9,7 @@ tags: [
   Class-Resource,
   Class-Pattern,
   Type-NonFunctional,
-  Category-Composition,
+  Category-Naming/Composition,
   Language-Terraform,
   Severity-MUST,
   Persona-Owner,

@@ -1,4 +1,4 @@
-As per the module design structure ([BCPFR3](/Azure-Verified-Modules/specs/bicep/#id-bcpfr3---category-composition---directory-and-file-structure)), every module in the AVM library requires
+As per the module design structure ([BCPFR3](/Azure-Verified-Modules/specs/bicep/#id-bcpfr3---Category-Naming/Composition---directory-and-file-structure)), every module in the AVM library requires
 - a up-to-date ReadMe markdown (`readme.md`) file documenting the set of deployable resource types, input and output parameters and a set of relevant template references from the official Azure Resource Reference documentation
 - an up-to-date compiled template (`main.json`) file
 

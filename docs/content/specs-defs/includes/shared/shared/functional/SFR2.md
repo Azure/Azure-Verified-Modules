@@ -9,7 +9,7 @@ tags: [
   Class-Resource,
   Class-Pattern,
   Type-Functional,
-  Category-Composition,
+  Category-Naming/Composition,
   Language-Bicep,
   Language-Terraform,
   Severity-SHOULD,

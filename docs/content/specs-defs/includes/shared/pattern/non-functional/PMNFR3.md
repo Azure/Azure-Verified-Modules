@@ -8,7 +8,7 @@ type: posts
 tags: [
   Class-Pattern,
   Type-NonFunctional,
-  Category-Composition,
+  Category-Naming/Composition,
   Language-Bicep,
   Language-Terraform,
   Severity-MUST,

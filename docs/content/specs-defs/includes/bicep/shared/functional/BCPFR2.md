@@ -9,7 +9,7 @@ tags: [
   Class-Resource,
   Class-Pattern,
   Type-Functional,
-  Category-Composition,
+  Category-Naming/Composition,
   Language-Bicep,
   Severity-MUST,
   Persona-Owner,
@@ -25,6 +25,6 @@ Module owners **MAY** define common RBAC Role Definition names and IDs within a 
 
 However, they **MUST** use only the official RBAC Role Definition name within the variable and nothing else.
 
-To meet the requirements of [BCPFR2](/Azure-Verified-Modules/specs/bicep/#id-bcpfr2---category-composition---role-assignments-role-definition-mapping), [BCPNFR5](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr5---category-composition---role-assignments-role-definition-mapping-limits) and [BCPNFR6](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr6---category-composition---role-assignments-role-definition-mapping-compulsory-roles) you **MUST** use the below code sample in your AVM Modules to achieve this.
+To meet the requirements of [BCPFR2](/Azure-Verified-Modules/specs/bicep/#id-bcpfr2---Category-Naming/Composition---role-assignments-role-definition-mapping), [BCPNFR5](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr5---Category-Naming/Composition---role-assignments-role-definition-mapping-limits) and [BCPNFR6](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr6---Category-Naming/Composition---role-assignments-role-definition-mapping-compulsory-roles) you **MUST** use the below code sample in your AVM Modules to achieve this.
 
 {{< include file="/static/includes/sample.rbacMapping.bicep" language="bicep" options="linenos=false" >}}

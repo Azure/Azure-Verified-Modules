@@ -8,7 +8,7 @@ type: posts
 tags: [
   Class-Resource,
   Type-Functional,
-  Category-Composition,
+  Category-Naming/Composition,
   Language-Bicep,
   Language-Terraform,
   Severity-MUST,
@@ -48,7 +48,7 @@ Module owners **MAY** choose to utilize cross repo dependencies for these "add-o
 
 Make sure to checkout the language specific specifications for more info on this:
 
-- [Bicep](/Azure-Verified-Modules/specs/bicep#id-bcpnfr1---category-composition---cross-referencing-modules)
-- [Terraform](/Azure-Verified-Modules/specs/terraform#id-tfnfr1---category-composition---cross-referencing-modules)
+- [Bicep](/Azure-Verified-Modules/specs/bicep#id-bcpnfr1---Category-Naming/Composition---cross-referencing-modules)
+- [Terraform](/Azure-Verified-Modules/specs/terraform#id-tfnfr1---Category-Naming/Composition---cross-referencing-modules)
 
 {{< /hint >}}

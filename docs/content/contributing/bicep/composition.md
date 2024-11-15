@@ -19,7 +19,7 @@ While this page describes and summarizes important aspects of the composition of
 Therefore, this guide **MUST** be used in conjunction with the [Shared Specification](/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](/Azure-Verified-Modules/specs/bicep/) specifications. **ALL AVM modules** (Resource and Pattern modules) **MUST meet the respective requirements described in these specifications**!
 {{< /hint >}}
 
-## Composition
+## Naming / Composition
 
 {{< hint type=important >}}
 
@@ -100,7 +100,7 @@ This section points to conventions to be followed when developing a Bicep templa
 
 #### Casing
 
-Use `camelCasing` as per [BCPNFR8](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr8---category-composition---code-styling---lower-camelcasing).
+Use `camelCasing` as per [BCPNFR8](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr8---Category-Naming/Composition---code-styling---lower-camelcasing).
 
 ---
 
@@ -121,7 +121,7 @@ Resources are primarily leveraged by resource modules to declare the primary res
 Make sure to review all specifications covering resource properties and usage.
 
 {{< hint type=tip >}}
-See examples in specifications [SFR1](/Azure-Verified-Modules/specs/shared/#id-sfr1---category-composition---preview-services) and [RMFR1](/Azure-Verified-Modules/specs/shared/#id-rmfr1---category-composition---single-resource-only).
+See examples in specifications [SFR1](/Azure-Verified-Modules/specs/shared/#id-sfr1---Category-Naming/Composition---preview-services) and [RMFR1](/Azure-Verified-Modules/specs/shared/#id-rmfr1---Category-Naming/Composition---single-resource-only).
 {{< /hint >}}
 
 ---
@@ -133,7 +133,7 @@ Modules enable you to reuse code from a Bicep file in other Bicep files. As such
 Make sure to review all specifications covering module properties and usage.
 
 {{< hint type=tip >}}
-See examples in specifications [BCPFR1](/Azure-Verified-Modules/specs/bicep/#id-bcpfr1---category-composition---cross-referencing-modules) for resource modules and [PMNFR2](//Azure-Verified-Modules/specs/shared/#id-pmnfr2---category-composition---use-resource-modules-to-build-a-pattern-module) for pattern modules.
+See examples in specifications [BCPFR1](/Azure-Verified-Modules/specs/bicep/#id-bcpfr1---Category-Naming/Composition---cross-referencing-modules) for resource modules and [PMNFR2](//Azure-Verified-Modules/specs/shared/#id-pmnfr2---Category-Naming/Composition---use-resource-modules-to-build-a-pattern-module) for pattern modules.
 {{< /hint >}}
 
 ---
@@ -158,7 +158,7 @@ This section is only relevant for contributions to resource modules.
 
 {{< /hint >}}
 
-To meet [RMFR4](/Azure-Verified-Modules/specs/shared/#id-rmfr4---category-composition---avm-consistent-feature--extension-resources-value-add) and [RMFR5](/Azure-Verified-Modules/specs/shared/#id-rmfr5---category-composition---avm-consistent-feature--extension-resources-value-add-interfacesschemas) AVM resource modules must leverage consistent interfaces for all the optional features/extension resources supported by the AVM module primary resource.
+To meet [RMFR4](/Azure-Verified-Modules/specs/shared/#id-rmfr4---Category-Naming/Composition---avm-consistent-feature--extension-resources-value-add) and [RMFR5](/Azure-Verified-Modules/specs/shared/#id-rmfr5---Category-Naming/Composition---avm-consistent-feature--extension-resources-value-add-interfacesschemas) AVM resource modules must leverage consistent interfaces for all the optional features/extension resources supported by the AVM module primary resource.
 
 Please refer to the [Shared Interfaces](/Azure-Verified-Modules/specs/shared/interfaces/) page.
 If the primary resource of the AVM resource module you are developing supports any of the listed features/extension resources, please follow the corresponding provided Bicep schema to develop them.

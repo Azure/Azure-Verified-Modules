@@ -59,8 +59,8 @@ The naming convention for Bicep modules is slightly different than the naming co
 Segments:
 
 - `<hyphenated module name>` == the AVM Module's name, with each segment separated by dashes, i.e., `avm-res-<resource provider>-<ARM resource type>`
-  - See [RMNFR1](#id-rmnfr1---category-naming---module-naming) for AVM Resource Module Naming
-  - See [PMNFR1](#id-pmnfr1---category-naming---module-naming) for AVM Pattern Module Naming
+  - See [RMNFR1](#id-rmnfr1---Category-Naming/Composition---module-naming) for AVM Resource Module Naming
+  - See [PMNFR1](#id-pmnfr1---Category-Naming/Composition---module-naming) for AVM Pattern Module Naming
 - `module-owners` or `module-contributors` == the role the GitHub Team is assigned to
 - `<bicep/tf>` == the language the module is written in
 

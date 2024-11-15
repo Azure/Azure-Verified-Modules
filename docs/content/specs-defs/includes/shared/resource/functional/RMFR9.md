@@ -8,7 +8,7 @@ type: posts
 tags: [
   Class-Resource,
   Type-Functional,
-  Category-Composition,
+  Category-Naming/Composition,
   Language-Bicep,
   Language-Terraform,
   Severity-SHOULD,

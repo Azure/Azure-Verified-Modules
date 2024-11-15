@@ -60,7 +60,7 @@ If you're the **sole owner of the module**, the **AVM core team must review and 
 4. Ensure that the module(s) you own are compliant with the AVM specifications and are working as expected. While all specifications are to be followed, pay special attention to the following ones as in these, the `Owner` is mentioned explicitly:
 | ID | Specification |
 |---------------|-----------------------|
-| [SFR1](/Azure-Verified-Modules/specs/shared/#id-sfr1---category-composition---preview-services) | Composition - Preview Services |
+| [SFR1](/Azure-Verified-Modules/specs/shared/#id-sfr1---Category-Naming/Composition---preview-services) | Composition - Preview Services |
 | [SNFR2](/Azure-Verified-Modules/specs/shared/#id-snfr2---category-testing---e2e-testing) | Testing - E2E Testing |
 | [SNFR3](/Azure-Verified-Modules/specs/shared/#id-snfr3---category-testing---avm-compliance-tests) | Testing - AVM Compliance Tests |
 | [SNFR8](/Azure-Verified-Modules/specs/shared/#id-snfr8---category-contributionsupport---module-owners-github) | Contribution/Support - Module Owner(s) GitHub |
@@ -70,9 +70,9 @@ If you're the **sole owner of the module**, the **AVM core team must review and 
 | [SNFR20](/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only) | Contribution/Support - GitHub Teams Only |
 | [SNFR21](/Azure-Verified-Modules/specs/shared/#id-snfr21---Category-Release/Publishing---cross-language-collaboration) | Publishing - Cross Language Collaboration |
 | [SNFR24](/Azure-Verified-Modules/specs/shared/#id-snfr24---category-testing---testing-child-extension--interface-resources) | Testing - Testing Child, Extension & Interface Resources |
-| [SNFR25](/Azure-Verified-Modules/specs/shared/#id-snfr25---category-composition---resource-naming) | Composition - Resource Naming |
-| [RMNFR3](/Azure-Verified-Modules/specs/shared/#id-rmnfr3---category-composition---rp-collaboration) | Composition - RP Collaboration |
-| [RMFR4](/Azure-Verified-Modules/specs/shared/#id-rmfr4---category-composition---avm-consistent-feature--extension-resources-value-add) | Composition - AVM Consistent Feature & Extension Resources Value Add |
+| [SNFR25](/Azure-Verified-Modules/specs/shared/#id-snfr25---Category-Naming/Composition---resource-naming) | Composition - Resource Naming |
+| [RMNFR3](/Azure-Verified-Modules/specs/shared/#id-rmnfr3---Category-Naming/Composition---rp-collaboration) | Composition - RP Collaboration |
+| [RMFR4](/Azure-Verified-Modules/specs/shared/#id-rmfr4---Category-Naming/Composition---avm-consistent-feature--extension-resources-value-add) | Composition - AVM Consistent Feature & Extension Resources Value Add |
 | [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---Category-Inputs/Outputs---minimum-required-outputs) | Outputs - Minimum Required Outputs |
 
 5. Watch Pull Request (PR) activity for your module(s) in the [BRM](https://github.com/Azure/bicep-registry-modules) repository (Bicep Registry Modules repository - where all Bicep AVM modules are published) and ensure that PRs are reviewed and merged in a timely manner as outlined in [SNFR11](/Azure-Verified-Modules/specs/shared/#id-snfr11---category-contributionsupport---issues-response-times).

@@ -149,7 +149,7 @@ This section points to conventions to be followed when developing a module.
 
 ### Casing
 
-Use `snake_casing` as per [TFNFR3](/Azure-Verified-Modules/specs/terraform/#id-tfnfr4---category-composition---code-styling---lower-snake_casing).
+Use `snake_casing` as per [TFNFR3](/Azure-Verified-Modules/specs/terraform/#id-tfnfr4---Category-Naming/Composition---code-styling---lower-snake_casing).
 
 <br>
 
@@ -178,7 +178,7 @@ Resources are primarily leveraged by resource modules to declare the primary res
 Make sure to review all specifications covering resource properties and usage.
 
 {{< hint type=tip >}}
-See examples in specifications [SFR1](/Azure-Verified-Modules/specs/shared/#id-sfr1---category-composition---preview-services) and [RMFR1](/Azure-Verified-Modules/specs/shared/#id-rmfr1---category-composition---single-resource-only).
+See examples in specifications [SFR1](/Azure-Verified-Modules/specs/shared/#id-sfr1---Category-Naming/Composition---preview-services) and [RMFR1](/Azure-Verified-Modules/specs/shared/#id-rmfr1---Category-Naming/Composition---single-resource-only).
 {{< /hint >}}
 
 <br>
@@ -209,7 +209,7 @@ This section is only relevant for contributions to resource modules.
 
 {{< /hint >}}
 
-To meet [RMFR4](/Azure-Verified-Modules/specs/shared/#id-rmfr4---category-composition---avm-consistent-feature--extension-resources-value-add) and [RMFR5](/Azure-Verified-Modules/specs/shared/#id-rmfr5---category-composition---avm-consistent-feature--extension-resources-value-add-interfacesschemas) AVM resource modules must leverage consistent interfaces for all the optional features/extension resources supported by the AVM module primary resource.
+To meet [RMFR4](/Azure-Verified-Modules/specs/shared/#id-rmfr4---Category-Naming/Composition---avm-consistent-feature--extension-resources-value-add) and [RMFR5](/Azure-Verified-Modules/specs/shared/#id-rmfr5---Category-Naming/Composition---avm-consistent-feature--extension-resources-value-add-interfacesschemas) AVM resource modules must leverage consistent interfaces for all the optional features/extension resources supported by the AVM module primary resource.
 
 Please refer to the [Shared Interfaces](/Azure-Verified-Modules/specs/shared/interfaces/) page.
 
