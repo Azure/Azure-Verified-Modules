@@ -160,11 +160,11 @@
           <td>{{- $index -}}</td>
           <td><a href="{{- $link -}}">{{- $id -}}</a></td>
           <td>{{- $title -}}</td>
-          <td>{{- delimit $category ", " -}}</td>
-          {{/*  <td>{{- delimit $type ", " -}}</td>  */}}
-          <td>{{- delimit $severity ", " -}}</td>
-          <td>{{- delimit $persona ", " -}}</td>
-          <td>{{- delimit $lifecycle ", " -}}</td>
+          <td>{{ range $category }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Category-" . | urlize }}">{{ . }}</a></span>{{ if not (eq (index $category (sub (len $category) 1)) .) }}, {{ end }}{{ end }}</td>
+          {{/*  <td>{{ range $type }}<span class="tag-button"><a href="{{ $baseURL }}tags/{{ . | urlize }}">{{ . }}</a></span>{{ if not (eq (index $type (sub (len $type) 1)) .) }}, {{ end }}{{ end }}</td>  */}}
+          <td>{{ range $severity }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Severity-" . | urlize }}">{{ . }}</a></span>{{ if not (eq (index $severity (sub (len $severity) 1)) .) }}, {{ end }}{{ end }}</td>
+          <td>{{ range $persona }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Persona-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>
+          <td>{{ range $lifecycle }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Lifecycle" . | urlize }}">{{ . }}</a></span>{{ if not (eq (index $lifecycle (sub (len $lifecycle) 1)) .) }}, {{ end }}{{ end }}</td>
         </tr>
       {{- end -}}
     {{- end -}}
@@ -182,7 +182,7 @@
   {{- $showPage := default true $page.Params.showPage -}}
 
   {{- with $page -}}
-    
+
 
     {{- if $showPage -}}
       {{- if $showPageTags -}}
