@@ -1,6 +1,5 @@
 {{/*  {{- .Page.Path -}}  */}}
 {{- $page := .Site.GetPage "/specs-defs/specs/new/bicep/resource" -}}
-{{- $page.RenderShortcodes -}}
 {{- $content := $page.Content -}}
 {{- $headings := findRE `(?is)<h[1-4].*?>.*?</h[1-4]>` $content -}}
 
