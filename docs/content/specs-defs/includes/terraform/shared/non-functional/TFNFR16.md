@@ -11,7 +11,7 @@ tags: [
   Type-NonFunctional,
   Category-CodeStyle,
   Language-Terraform,
-  Severity-MUST,
+  Severity-SHOULD,
   Persona-Owner,
   Persona-Contributor,
   Lifecycle-Maintenance

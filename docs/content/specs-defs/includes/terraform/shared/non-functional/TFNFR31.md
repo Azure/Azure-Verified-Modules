@@ -11,7 +11,7 @@ tags: [
   Type-NonFunctional,
   Category-CodeStyle,
   Language-Terraform,
-  Severity-TBD,
+  Severity-MAY,
   Persona-Owner,
   Persona-Contributor,
   Lifecycle-Maintenance
