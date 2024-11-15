@@ -8,6 +8,7 @@
 {{- $showPageTags := default true (.Get "showPageTags") -}}
 {{- $showHint := default false (.Get "showHint") -}}
 {{- $hintText := default "" (.Get "hintText") -}}
+{{- $chapterTitle := default "" (.Get "chapterTitle") -}}
 
 {{- $hintType := default "note" (.Get "hintType") -}}
 {{- $hintIcon := .Get "icon" -}}
@@ -16,6 +17,32 @@
 {{- $summarize := default false (.Get "summarize") -}}
 {{- $summaryOpenByDefault := default true (.Get "summaryOpenByDefault") -}}
 
+{{- $showLanguage := true -}}
+{{- $showClass := true -}}
+{{- $showCategory := true -}}
+{{- $showSeverity := true -}}
+{{- $showPersona := true -}}
+{{- $showLifecycle := true -}}
+
+{{ range $tags }}
+  {{ if (findRE `^Language-` .) }}
+    {{ $showLanguage = false }}
+  {{ else if (findRE `^Class-` .) }}
+    {{ $showClass = false }}
+  {{ else if (findRE `^Category-` .) }}
+    {{ $showCategory = false }}
+  {{ else if (findRE `^Severity-` .) }}
+    {{ $showSeverity = false }}
+  {{ else if (findRE `^Persona-` .) }}
+    {{ $showPersona = false }}
+  {{ else if (findRE `^Lifecycle-` .) }}
+    {{ $showLifecycle = false }}
+  {{ end }}
+{{ end }}
+
+{{ if $chapterTitle }}
+  {{ (printf "## %s" $chapterTitle) | markdownify }}
+{{ end }}
 
 
 {{ if $showHint }}
@@ -48,17 +75,10 @@
       {{ end }}
     </div>
   </blockquote>
-  <br>
+  {{/*  <br>
+  <hr>
+  <br>  */}}
 {{ end }}
-
-{{- if $summarize -}}
-  {{- if $summaryOpenByDefault -}}
-    <details open>
-  {{- else -}}
-  <details>
-  {{- end -}}
-  <summary><b>See Specifications</b></summary>
-{{- end -}}
 
 {{- if $recursive -}}
   {{- $allFiles = partial "readDirRecursive" (dict "path" $folder "allFiles" $allFiles) -}}
@@ -112,11 +132,13 @@
       <th>#</th>
       <th>ID</th>
       <th>Title</th>
-      <th>Category</th>
+      {{ if $showLanguage }}<th>Language</th>{{ end }}
+      {{ if $showClass }}<th>Class</th>{{ end }}
+      {{ if $showCategory }}<th>Category</th>{{ end }}
       {{/*  <th>Type</th>  */}}
-      <th>Severity</th>
-      <th>Persona</th>
-      <th>Lifecycle</th>
+      {{ if $showSeverity }}<th>Severity</th>{{ end }}
+      {{ if $showPersona }}<th>Persona</th>{{ end }}
+      {{ if $showLifecycle }}<th>Lifecycle</th>{{ end }}
     </tr>
   </thead>
   <tbody>
@@ -132,6 +154,8 @@
         {{- $titleParts := split $page.Params.title " - " -}}
         {{- $id := index $titleParts 0 -}}
         {{- $title := index $titleParts 1 -}}
+        {{- $language := slice -}}
+        {{- $class := slice -}}
         {{- $category := slice -}}
         {{/*  {{- $type := slice -}}  */}}
         {{- $severity := slice -}}
@@ -142,7 +166,11 @@
           {{- $parts := split . "-" -}}
           {{- $key := index $parts 0 -}}
           {{- $value := index $parts 1 -}}
-          {{- if eq $key "Category" -}}
+          {{- if eq $key "Language" -}}
+          {{- $language = $language | append $value -}}
+          {{- else if eq $key "Class" -}}
+          {{- $class = $class | append $value -}}
+          {{- else if eq $key "Category" -}}
             {{- $category = $category | append $value -}}
           {{/*  {{- else if eq $key "Type" -}}
             {{- $type = $type | append $value -}}  */}}
@@ -160,11 +188,13 @@
           <td>{{- $index -}}</td>
           <td><a href="{{- $link -}}">{{- $id -}}</a></td>
           <td>{{- $title -}}</td>
-          <td>{{ range $category }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Category-" . | urlize }}">{{ . }}</a></span>{{ if not (eq (index $category (sub (len $category) 1)) .) }}, {{ end }}{{ end }}</td>
+          {{ if $showLanguage }}<td>{{ range $language }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Language-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
+          {{ if $showClass }}<td>{{ range $class }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Class-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
+          {{ if $showCategory }}<td>{{ range $category }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Category-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
           {{/*  <td>{{ range $type }}<span class="tag-button"><a href="{{ $baseURL }}tags/{{ . | urlize }}">{{ . }}</a></span>{{ if not (eq (index $type (sub (len $type) 1)) .) }}, {{ end }}{{ end }}</td>  */}}
-          <td>{{ range $severity }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Severity-" . | urlize }}">{{ . }}</a></span>{{ if not (eq (index $severity (sub (len $severity) 1)) .) }}, {{ end }}{{ end }}</td>
-          <td>{{ range $persona }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Persona-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>
-          <td>{{ range $lifecycle }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Lifecycle" . | urlize }}">{{ . }}</a></span>{{ if not (eq (index $lifecycle (sub (len $lifecycle) 1)) .) }}, {{ end }}{{ end }}</td>
+          {{ if $showSeverity }}<td>{{ range $severity }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Severity-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
+          {{ if $showPersona }}<td>{{ range $persona }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Persona-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
+          {{ if $showLifecycle }}<td>{{ range $lifecycle }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Lifecycle" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
         </tr>
       {{- end -}}
     {{- end -}}
@@ -172,8 +202,17 @@
 </table>
 
 <br>
-<hr>
-<br>
+{{/*  <hr>
+<br>  */}}
+
+{{- if $summarize -}}
+  {{- if $summaryOpenByDefault -}}
+    <details open>
+  {{- else -}}
+    <details>
+  {{- end -}}
+  <summary><b>See Specifications for the chapter of "{{- $chapterTitle -}}"</b><br><br></summary>
+{{- end -}}
 
 {{- range $sortedPages -}}
   {{- $page := .page -}}
@@ -182,8 +221,6 @@
   {{- $showPage := default true $page.Params.showPage -}}
 
   {{- with $page -}}
-
-
     {{- if $showPage -}}
       {{- if $showPageTags -}}
         {{- partial "showPageTags" (dict "pageTags" $pageTags "baseURL" $baseURL) -}}
@@ -200,4 +237,3 @@
 {{- if $summarize -}}
 </details>
 {{- end -}}
-
