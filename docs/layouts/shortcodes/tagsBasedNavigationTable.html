@@ -229,13 +229,15 @@
   {{- $file := .file -}}
   {{- $pageTags := $page.Params.tags -}}
   {{- $showPage := default true $page.Params.showPage -}}
+  {{/*  {{- $specURL := replace (printf "%s%s" $baseURL $page.Params.url) "//" "/" -}}  */}}
+  {{- $specURL := printf "%s%s" $baseURL (replaceRE "^/" "" $page.Params.url) -}}
 
   {{- with $page -}}
     {{- if $showPage -}}
       {{- if $showPageTags -}}
         {{- partial "showPageTags" (dict "pageTags" $pageTags "baseURL" $baseURL) -}}
       {{- end -}}
-
+      <svg class="flex align-center no-wrap gdoc-icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg><a href="{{- $specURL | safeHTML -}}" style="text-decoration: none;">See origin...</a>
       {{- .Content -}}
       <br>
       <hr>
@@ -247,3 +249,4 @@
 {{- if $summarize -}}
 </details>
 {{- end -}}
+
