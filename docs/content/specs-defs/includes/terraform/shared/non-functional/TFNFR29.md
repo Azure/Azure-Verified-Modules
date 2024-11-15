@@ -22,4 +22,4 @@ showPage: false
 
 #### ID: TFNFR29 - Category: Code Style - Sensitive Data Outputs
 
-TBD
+`output` block contains confidential data **MUST** declare `sensitive = true`.

@@ -22,4 +22,27 @@ showPage: false
 
 #### ID: TFNFR32 - Category: Code Style - Alphabetical Local Arrangement
 
-TBD
+Expressions in `locals` block **MUST** be arranged alphabetically
+
+Good examples:
+
+```terraform
+locals {
+  name = coalesce(var.name, "name")
+  tags = merge(var.tags, {
+    env = "prod"
+  })
+}
+```
+
+```terraform
+locals {
+  tags = merge(var.tags, {
+    env = "prod"
+  })
+}
+
+locals {
+  name = coalesce(var.name, "name")
+}
+```
