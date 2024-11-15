@@ -14,7 +14,7 @@ tags: [
   Language-Terraform,
   Severity-MUST,
   Persona-Owner,
-  Lifecycle-Maintenance
+  Lifecycle-BAU
 ]
 priority: 10
 ---

@@ -13,7 +13,7 @@ tags: [
   Language-Bicep,
   Severity-MUST,
   Persona-Owner,
-  Lifecycle-Maintenance
+  Lifecycle-BAU
 ]
 priority: 11140
 ---

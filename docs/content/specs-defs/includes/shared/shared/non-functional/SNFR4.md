@@ -15,7 +15,7 @@ tags: [
   Severity-SHOULD,
   Persona-Owner,
   Persona-Contributor,
-  Lifecycle-Maintenance
+  Lifecycle-BAU
 ]
 priority: 1050
 ---
