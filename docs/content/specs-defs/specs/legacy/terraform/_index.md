@@ -24,7 +24,7 @@ This page contains the **Terraform specific requirements** for AVM modules (**Re
 
 {{< hint type=important >}}
 
-Any updates to existing or new specifications for Terraform must be submitted as a draft for review by Azure Terraform PG/Engineering(@Azure/terraform-avm) and AVM core team(@Azure/avm-core-team).
+Any updates to existing or new specifications for Terraform must be submitted as a draft for review by Azure Terraform PG/Engineering(`@Azure/terraform-avm`) and AVM core team(`@Azure/avm-core-team`).
 
 {{< /hint >}}
 

@@ -10,6 +10,6 @@ url: /specs/bcp/
 
 {{< hint type=important >}}
 
-Any updates to existing or new specifications for Bicep must be submitted as a draft for review by the AVM core team(@Azure/avm-core-team).
+Any updates to existing or new specifications for Bicep must be submitted as a draft for review by the AVM core team(`@Azure/avm-core-team`).
 
 {{< /hint >}}
