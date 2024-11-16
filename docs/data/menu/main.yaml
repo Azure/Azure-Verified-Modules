@@ -64,6 +64,8 @@ main:
                     ref: "specs-defs/specs/new/bicep/resource/interfaces"
               - name: "Pattern"
                 ref: "specs-defs/specs/new/bicep/pattern"
+              - name: "Utility"
+                ref: "specs-defs/specs/new/bicep/utility"
           - name: "Terraform"
             ref: "specs-defs/specs/new/terraform"
             sub:
@@ -74,6 +76,8 @@ main:
                     ref: "specs-defs/specs/new/terraform/resource/interfaces"
               - name: "Pattern"
                 ref: "specs-defs/specs/new/terraform/pattern"
+              - name: "Utility"
+                ref: "specs-defs/specs/new/terraform/utility"
           - name: "🟡 Legacy"
             ref: "specs-defs/specs/legacy"
             sub:
