@@ -103,6 +103,31 @@
   {{- end -}}
 {{- end -}}
 
+{{- $summary := dict -}}
+{{- range $languages -}}
+  {{- $language := . -}}
+  {{- range $classes -}}
+    {{- $class := . -}}
+    {{- $key := printf "%s-%s" $language $class -}}
+    {{- $summary = merge $summary (dict $key 0) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- range $categories -}}
+  {{- $category := . -}}
+  {{- range $languages -}}
+    {{- $language := . -}}
+    {{- range $classes -}}
+      {{- $class := . -}}
+      {{- $key := printf "%s-%s-%s" $category $language $class -}}
+      {{- $summaryKey := printf "%s-%s" $language $class -}}
+      {{- $currentCount := index $counts $key -}}
+      {{- $currentSummary := index $summary $summaryKey -}}
+      {{- $summary = merge $summary (dict $summaryKey (add $currentSummary $currentCount)) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
 <table>
   <thead>
     <tr>
@@ -135,5 +160,17 @@
         {{- end -}}
       </tr>
     {{- end -}}
+    <tr>
+      <td><strong>Summary</strong></td>
+      {{- range $languages -}}
+        {{- $language := . -}}
+        {{- range $classes -}}
+          {{- $class := . -}}
+          {{- $summaryKey := printf "%s-%s" $language $class -}}
+          <td><strong>{{ default 0 (index $summary $summaryKey) }}</strong></td>
+        {{- end -}}
+      {{- end -}}
+    </tr>
   </tbody>
 </table>
+
