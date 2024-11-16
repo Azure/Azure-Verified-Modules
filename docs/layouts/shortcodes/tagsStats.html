@@ -16,11 +16,14 @@
 {{- $classes := slice -}}
 {{- $counts := dict -}}
 
+{{/*  Getting all the pages to find all the possible combinations of categories, languages, and classes.  */}}
 {{- range $allFiles -}}
   {{- $file := replace . "content/" "" -}}
   {{- $page := site.GetPage $file -}}
   {{- $pageTags := $page.Params.tags -}}
 
+  {{/*  At the end, the $categories, $languages, and $classes will have their possible values  */}}
+  {{- /*  Getting one file/page at time  */}}
   {{- if $page -}}
     {{- range $pageTags -}}
       {{- if findRE `^Category-` . -}}
@@ -43,35 +46,44 @@
   {{- end -}}
 {{- end -}}
 
+{{/*  Initialize $counts with zeros  */}}
 {{- range $categories -}}
   {{- $category := . -}}
   {{- range $languages -}}
     {{- $language := . -}}
     {{- range $classes -}}
       {{- $class := . -}}
-      {{- $key := printf "%s-%s-%s" $category $language $class -}}
-      {{- $counts = $counts | merge (dict $key 0) -}}
+      {{/*  {{- $key := printf "%s-%s-%s" $category $language $class -}}  */}}
+      {{- $key := slice $category $language $class -}}
+      {{- $counts = merge $counts (dict $key 0) -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
+
+{{/*  {{- $counts = $counts | uniq -}}  */}}
 
 {{- range $allFiles -}}
   {{- $file := replace . "content/" "" -}}
   {{- $page := site.GetPage $file -}}
   {{- $pageTags := $page.Params.tags -}}
 
+  {{/*  Getting one file/page at time  */}}
   {{- if $page -}}
     {{- $categoryTag := "" -}}
     {{- $languageTag := "" -}}
     {{- $classTag := "" -}}
 
+    {{/*  Getting the 3 important tags from the page  */}}
     {{- range $pageTags -}}
       {{- if findRE `^Category-` . -}}
         {{- $categoryTag = . -}}
+        {{/*  categoryTag: {{- $categoryTag}}  */}}
       {{- else if findRE `^Language-` . -}}
         {{- $languageTag = . -}}
+        {{/*  languageTag: {{- $languageTag }}  */}}
       {{- else if findRE `^Class-` . -}}
         {{- $classTag = . -}}
+        {{/*  classTag: {{- $classTag}}  */}}
       {{- end -}}
     {{- end -}}
 
@@ -79,48 +91,47 @@
       {{- $category := replace $categoryTag "Category-" "" -}}
       {{- $language := replace $languageTag "Language-" "" -}}
       {{- $class := replace $classTag "Class-" "" -}}
-      {{- $key := printf "%s-%s-%s" $category $language $class -}}
+      {{/*  {{- $key := printf "%s-%s-%s" $category $language $class -}}  */}}
+      {{- $key := slice $category $language $class -}}
       {{- $currentCount := index $counts $key -}}
-      {{- $counts = $counts | merge (dict $key (add $currentCount 1)) -}}
+      {{/*  {{- add $currentCount 1 -}}  */}}
+      {{- $counts =  merge $counts (dict $key (add $currentCount 1)) -}}
+
     {{- end -}}
   {{- end -}}
 {{- end -}}
 
-{{/*  {{- $categories -}}
-{{- $languages -}}
-{{- $classes -}}
-{{- $counts -}}  */}}
+{{ $counts}}
+<br>
+{{ index $counts "Testing" }}
 
-{{/*  {{- $categoryTag -}}
-{{- $languageTag -}}
-{{- $classTag -}}  */}}
-
-<table>
+<table class="centered-table">
   <thead>
     <tr>
       <th rowspan="2">Category</th>
-      <th colspan="3" style="text-align: center;">Bicep</th>
-      <th colspan="3" style="text-align: center;">Terraform</th>
+      <th colspan="2" class="centered-header">Bicep</th>
+      <th colspan="2" class="centered-header">Terraform</th>
     </tr>
     <tr>
-      {{/*  <th></th>  */}}
       <th>Resource</th>
       <th>Pattern</th>
-      <th>Utility</th>
+      {{/*  <th>Utility</th>  */}}
       <th>Resource</th>
       <th>Pattern</th>
-      <th>Utility</th>
+      {{/*  <th>Utility</th>  */}}
     </tr>
   </thead>
   <tbody>
     {{- range $categories -}}
+      {{- $category := . -}}
       <tr>
-        <td>{{ . }}</td>
+        <td>{{ $category }}</td>
         {{- range $languages -}}
           {{- $language := . -}}
           {{- range $classes -}}
             {{- $class := . -}}
-            {{- $key := printf "%s-%s-%s" . $language $class -}}
+            {{/*  {{- $key := printf "%s-%s-%s" $category $language $class -}}  */}}
+            {{- $key := slice $category $language $class -}}
             <td>{{ index $counts $key }}</td>
           {{- end -}}
         {{- end -}}
