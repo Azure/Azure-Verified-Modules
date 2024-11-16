@@ -13,7 +13,7 @@
 
 {{- $categories := slice "Contribution/Support" "Telemetry" "Naming/Composition" "CodeStyle" "Inputs/Outputs" "Testing" "Documentation" "Release/Publishing" -}}
 {{- $languages := slice -}}
-{{- $classes := slice -}}
+{{- $classes := slice "Resource" "Pattern" "Utility" -}}
 {{- $counts := dict -}}
 
 {{/*  Getting all the pages to find all the possible combinations of categories, languages, and classes.  */}}
@@ -107,16 +107,16 @@
   <thead>
     <tr>
       <th rowspan="2">Category</th>
-      <th colspan="2" class="centered-header">Bicep</th>
-      <th colspan="2" class="centered-header">Terraform</th>
+      <th colspan="3" class="centered-header">Bicep</th>
+      <th colspan="3" class="centered-header">Terraform</th>
     </tr>
     <tr>
       <th>Resource</th>
       <th>Pattern</th>
-      {{/*  <th>Utility</th>  */}}
+      <th>Utility</th>
       <th>Resource</th>
       <th>Pattern</th>
-      {{/*  <th>Utility</th>  */}}
+      <th>Utility</th>
     </tr>
   </thead>
   <tbody>
@@ -130,7 +130,7 @@
             {{- $class := . -}}
             {{- $key := printf "%s-%s-%s" $category $language $class -}}
             {{/*  {{- $key := slice $category $language $class -}}  */}}
-            <td>{{ index $counts $key }}</td>
+            <td>{{ default 0 (index $counts $key) }}</td>
           {{- end -}}
         {{- end -}}
       </tr>
