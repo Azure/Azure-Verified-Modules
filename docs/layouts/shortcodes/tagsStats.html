@@ -128,6 +128,57 @@
   {{- end -}}
 {{- end -}}
 
+{{- $urlMap := dict
+  "Contribution/Support-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#contribution--support"
+  "Telemetry-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#telemetry"
+  "Naming/Composition-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#naming--composition"
+  "CodeStyle-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#code-style"
+  "Inputs/Outputs-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#inputs--outputs"
+  "Testing-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#testing"
+  "Documentation-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#documentation"
+  "Release/Publishing-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#release--publishing"
+  "Contribution/Support-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#contribution--support"
+  "Telemetry-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#telemetry"
+  "Naming/Composition-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#naming--composition"
+  "CodeStyle-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#code-style"
+  "Inputs/Outputs-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#inputs--outputs"
+  "Testing-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#testing"
+  "Documentation-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#documentation"
+  "Release/Publishing-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#release--publishing"
+  "Contribution/Support-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#contribution--support"
+  "Telemetry-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#telemetry"
+  "Naming/Composition-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#naming--composition"
+  "CodeStyle-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#code-style"
+  "Inputs/Outputs-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#inputs--outputs"
+  "Testing-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#testing"
+  "Documentation-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#documentation"
+  "Release/Publishing-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#release--publishing"
+  "Contribution/Support-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/ptn/#contribution--support"
+  "Telemetry-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#telemetry"
+  "Naming/Composition-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#naming--composition"
+  "CodeStyle-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#code-style"
+  "Inputs/Outputs-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#inputs--outputs"
+  "Testing-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#testing"
+  "Documentation-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#documentation"
+  "Release/Publishing-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#release--publishing"
+  "Contribution/Support-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#contribution--support"
+  "Telemetry-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#telemetry"
+  "Naming/Composition-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#naming--composition"
+  "CodeStyle-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#code-style"
+  "Inputs/Outputs-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#inputs--outputs"
+  "Testing-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#testing"
+  "Documentation-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#documentation"
+  "Release/Publishing-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#release--publishing"
+  "Contribution/Support-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#contribution--support"
+  "Telemetry-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#telemetry"
+  "Naming/Composition-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#naming--composition"
+  "CodeStyle-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#code-style"
+  "Inputs/Outputs-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#inputs--outputs"
+  "Testing-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#testing"
+  "Documentation-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#documentation"
+  "Release/Publishing-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#release--publishing"
+-}}
+
 <table>
   <thead>
     <tr>
@@ -154,8 +205,12 @@
           {{- range $classes -}}
             {{- $class := . -}}
             {{- $key := printf "%s-%s-%s" $category $language $class -}}
-            {{/*  {{- $key := slice $category $language $class -}}  */}}
-            <td>{{ default 0 (index $counts $key) }}</td>
+            {{- $url := index $urlMap $key -}}
+            {{- if $url -}}
+              <td style="text-align: center;"><a href="{{ $url }}" style="text-decoration: none;">{{ default 0 (index $counts $key) }}</a></td>
+            {{- else -}}
+              <td>{{ default 0 (index $counts $key) }}</td>
+            {{- end -}}
           {{- end -}}
         {{- end -}}
       </tr>
@@ -167,10 +222,9 @@
         {{- range $classes -}}
           {{- $class := . -}}
           {{- $summaryKey := printf "%s-%s" $language $class -}}
-          <td><strong>{{ default 0 (index $summary $summaryKey) }}</strong></td>
+          <td style="text-align: center;"><strong>{{ default 0 (index $summary $summaryKey) }}</strong></td>
         {{- end -}}
       {{- end -}}
     </tr>
   </tbody>
 </table>
-
