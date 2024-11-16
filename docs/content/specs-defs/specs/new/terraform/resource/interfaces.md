@@ -1,9 +1,9 @@
 ---
-title: Interfaces
+title: Terraform Interfaces
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
-url: /specs/shared/interfaces/
+url: /specs/tf/interfaces/
 ---
 
 Below are the interfaces/schemas for the AVM Resource Modules features/extension resources as detailed in [RMFR4](/Azure-Verified-Modules/spec/RMFR4) and [RMFR5](/Azure-Verified-Modules/spec/RMFR5)

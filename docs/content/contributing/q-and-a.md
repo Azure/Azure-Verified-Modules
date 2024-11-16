@@ -217,11 +217,11 @@ All issues created in a module repo will be automatically be picked up and track
 [AzureArchitectureCenter]: https://learn.microsoft.com/en-us/azure/architecture/browse/
 [ALZ]: https://aka.ms/alz
 [ModuleIndexes]: /Azure-Verified-Modules/indexes/
-[MandatoryLabels]: /Azure-Verified-Modules/specs/shared/#id-snfr23---category-contributionsupport---github-repo-labels
+[MandatoryLabels]: /Azure-Verified-Modules/spec/SNFR23
 [BicepDir]: /Azure-Verified-Modules/contributing/bicep/#directory-and-file-structure
 [TerraformDir]: /Azure-Verified-Modules/contributing/terraform/#repositories
 [BicepContributios]: /Azure-Verified-Modules/contributing/bicep/
 [TerrafromContribution]: /Azure-Verified-Modules/contributing/terraform/
-[ModuleNaming]: /Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming/Composition---module-naming
+[ModuleNaming]: /Azure-Verified-Modules/spec/RMNFR1
 [ProcessOverview]: /Azure-Verified-Modules/contributing/process/
 [GitHubLicensing]: https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository

@@ -55,7 +55,7 @@ main:
         ref: "specs-defs/specs"
         sub:
           - name: "Bicep"
-            # ref: "specs-defs/specs/new/bicep"
+            ref: "specs-defs/specs/new/bicep"
             sub:
               - name: "Resource"
                 ref: "specs-defs/specs/new/bicep/resource"
@@ -65,7 +65,7 @@ main:
               - name: "Pattern"
                 ref: "specs-defs/specs/new/bicep/pattern"
           - name: "Terraform"
-            # ref: "specs-defs/specs/new/terraform"
+            ref: "specs-defs/specs/new/terraform"
             sub:
               - name: "Resource"
                 ref: "specs-defs/specs/new/terraform/resource"
@@ -74,18 +74,21 @@ main:
                     ref: "specs-defs/specs/new/terraform/resource/interfaces"
               - name: "Pattern"
                 ref: "specs-defs/specs/new/terraform/pattern"
-          - name: "🟡 Shared (Bcp & TF)"
-            ref: "specs-defs/specs/shared"
+          - name: "🟡 Legacy"
+            ref: "specs-defs/specs/legacy"
             sub:
-              - name: "Interfaces"
-                ref: "specs-defs/specs/shared/interfaces"
-          - name: "🟡 Bicep Specific"
-            ref: "specs-defs/specs/bicep"
-            sub:
-              - name: "Interfaces"
-                ref: "specs-defs/specs/bicep/interfaces"
-          - name: "🟡 Terraform Specific"
-            ref: "specs-defs/specs/terraform"
+            - name: "Shared (Bcp & TF)"
+              ref: "specs-defs/specs/legacy/shared"
+              sub:
+                - name: "Interfaces"
+                  ref: "specs-defs/specs/legacy/shared/interfaces"
+            - name: "Bicep Specific"
+              ref: "specs-defs/specs/legacy/bicep"
+              sub:
+                - name: "Interfaces"
+                  ref: "specs-defs/specs/legacy/bicep/interfaces"
+            - name: "Terraform Specific"
+              ref: "specs-defs/specs/legacy/terraform"
   - name: "Help & Support"
     ref: "help-support"
     sub:

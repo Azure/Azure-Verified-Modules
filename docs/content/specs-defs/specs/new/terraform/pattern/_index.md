@@ -16,6 +16,14 @@ url: /specs/tf/ptn/
 
 {{< tagsBasedNavigationTable folder="content/specs-defs/includes" tags="Class-Pattern,Language-Terraform,Category-Telemetry" recursive=true strict=false showHint=true summarize=true summaryOpenByDefault=false >}}
 
+## Naming / Composition
+
+{{< tagsBasedNavigationTable folder="content/specs-defs/includes" tags="Class-Pattern,Language-Terraform,Category-Naming/Composition" recursive=true strict=false showHint=true summarize=true summaryOpenByDefault=false >}}
+
+## Code Style
+
+{{< tagsBasedNavigationTable folder="content/specs-defs/includes" tags="Class-Pattern,Language-Terraform,Category-CodeStyle" recursive=true strict=false showHint=true summarize=true summaryOpenByDefault=false >}}
+
 ## Inputs / Outputs
 
 {{< tagsBasedNavigationTable folder="content/specs-defs/includes" tags="Class-Pattern,Language-Terraform,Category-Inputs/Outputs" recursive=true strict=false showHint=true summarize=true summaryOpenByDefault=false >}}

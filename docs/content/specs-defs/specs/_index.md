@@ -9,13 +9,11 @@ url: /specs/module-specs/
 
 This section documents all the specifications for Azure Verified Modules (AVM) and their respective IaC languages.
 
-- [Shared (Bicep & Terraform)](/Azure-Verified-Modules/specs/shared)
-  - [Interfaces](/Azure-Verified-Modules/specs/shared/interfaces)
-- [Bicep Specific](/Azure-Verified-Modules/specs/bicep)
-  - [Interfaces](/Azure-Verified-Modules/specs/bicep/interfaces)
-- [Terraform Specific](/Azure-Verified-Modules/specs/terraform)
+## How to navigate the specifications?
 
-<!-- ## How to read the specifications?
+The AVM specifications section uses tags to dynamically render content based on the selected attributes, such as the IaC language, module classification, category, severity and more. The tags are defined in the front matter of the markdown files.
+
+## How to read the specifications?
 
 {{< hint type=important >}}
 
@@ -23,17 +21,10 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 {{< /hint >}}
 
-## How to propose changes to the specifications?
+As you're developing/maintaining a module as a module owner or contributor, you need to ensure that your module adheres to the specifications outlined in this section. The specifications are designed to ensure that all AVM modules are consistent, secure, and compliant with best practices.
 
-{{< hint type=important >}}
+There are 3 levels of specifications:
 
-Any updates to existing or new specifications for Terraform must be submitted as a draft for review by the AVM core team(@Azure/avm-core-team).
-
-{{< /hint >}}
-
-{{< hint type=important >}}
-
-Any updates to existing or new specifications for Terraform must be submitted as a draft for review by Azure Terraform PG/Engineering(@Azure/terraform-avm) and AVM core team(@Azure/avm-core-team).
-
-{{< /hint >}} -->
-
+- MUST: These are mandatory requirements that **MUST** be followed.
+- SHOULD: These are recommended requirements that **SHOULD** be followed, unless there are good reasons for not to.
+- MAY: These are optional requirements that **MAY** be followed at the module owner's/contributor's discretion.

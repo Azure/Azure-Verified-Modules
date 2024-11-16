@@ -1,5 +1,5 @@
 ---
-title: Interfaces
+title: Bicep Interfaces
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
