@@ -6,9 +6,9 @@ geekdocAnchor: true
 url: /specs/bcp/
 ---
 
-## How to propose changes to the specifications?
-
 {{< tagsStats folder="content/specs-defs/includes" recursive=true >}}
+
+## How to propose changes to the specifications?
 
 {{< hint type=important >}}
 

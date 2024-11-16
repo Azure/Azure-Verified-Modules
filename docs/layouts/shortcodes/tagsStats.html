@@ -11,7 +11,7 @@
   {{- end -}}
 {{- end -}}
 
-{{- $categories := slice -}}
+{{- $categories := slice "Contribution/Support" "Telemetry" "Naming/Composition" "CodeStyle" "Inputs/Outputs" "Testing" "Documentation" "Release/Publishing" -}}
 {{- $languages := slice -}}
 {{- $classes := slice -}}
 {{- $counts := dict -}}
@@ -95,7 +95,6 @@
           {{- $classTag := . -}}
           {{- $class := replace $classTag "Class-" "" -}}
           {{- $key := printf "%s-%s-%s" $category $language $class -}}
-          {{$key}}<br><br>
           {{- $currentCount := index $counts $key -}}
           {{- $counts = merge $counts (dict $key (add $currentCount 1)) -}}
         {{- end -}}
@@ -103,10 +102,6 @@
     {{- end -}}
   {{- end -}}
 {{- end -}}
-
-{{ $counts}}
-<br>
-{{ index $counts "Testing" }}
 
 <table class="centered-table">
   <thead>
