@@ -53,8 +53,8 @@
     {{- $language := . -}}
     {{- range $classes -}}
       {{- $class := . -}}
-      {{/*  {{- $key := printf "%s-%s-%s" $category $language $class -}}  */}}
-      {{- $key := slice $category $language $class -}}
+      {{- $key := printf "%s-%s-%s" $category $language $class -}}
+      {{/*  {{- $key := slice $category $language $class -}}  */}}
       {{- $counts = merge $counts (dict $key 0) -}}
     {{- end -}}
   {{- end -}}
@@ -67,36 +67,39 @@
   {{- $page := site.GetPage $file -}}
   {{- $pageTags := $page.Params.tags -}}
 
-  {{/*  Getting one file/page at time  */}}
+  {{/*  Getting one file/page at a time  */}}
   {{- if $page -}}
-    {{- $categoryTag := "" -}}
-    {{- $languageTag := "" -}}
-    {{- $classTag := "" -}}
+    {{- $categoryTags := slice -}}
+    {{- $languageTags := slice -}}
+    {{- $classTags := slice -}}
 
-    {{/*  Getting the 3 important tags from the page  */}}
+    {{/*  Getting all category, language, and class tags from the page  */}}
     {{- range $pageTags -}}
       {{- if findRE `^Category-` . -}}
-        {{- $categoryTag = . -}}
-        {{/*  categoryTag: {{- $categoryTag}}  */}}
+        {{- $categoryTags = $categoryTags | append . -}}
       {{- else if findRE `^Language-` . -}}
-        {{- $languageTag = . -}}
-        {{/*  languageTag: {{- $languageTag }}  */}}
+        {{- $languageTags = $languageTags | append . -}}
       {{- else if findRE `^Class-` . -}}
-        {{- $classTag = . -}}
-        {{/*  classTag: {{- $classTag}}  */}}
+        {{- $classTags = $classTags | append . -}}
       {{- end -}}
     {{- end -}}
 
-    {{- if and $categoryTag $languageTag $classTag -}}
+    {{/*  Counting all combinations of category, language, and class tags  */}}
+    {{- range $categoryTags -}}
+      {{- $categoryTag := . -}}
       {{- $category := replace $categoryTag "Category-" "" -}}
-      {{- $language := replace $languageTag "Language-" "" -}}
-      {{- $class := replace $classTag "Class-" "" -}}
-      {{/*  {{- $key := printf "%s-%s-%s" $category $language $class -}}  */}}
-      {{- $key := slice $category $language $class -}}
-      {{- $currentCount := index $counts $key -}}
-      {{/*  {{- add $currentCount 1 -}}  */}}
-      {{- $counts =  merge $counts (dict $key (add $currentCount 1)) -}}
-
+      {{- range $languageTags -}}
+        {{- $languageTag := . -}}
+        {{- $language := replace $languageTag "Language-" "" -}}
+        {{- range $classTags -}}
+          {{- $classTag := . -}}
+          {{- $class := replace $classTag "Class-" "" -}}
+          {{- $key := printf "%s-%s-%s" $category $language $class -}}
+          {{$key}}<br><br>
+          {{- $currentCount := index $counts $key -}}
+          {{- $counts = merge $counts (dict $key (add $currentCount 1)) -}}
+        {{- end -}}
+      {{- end -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
@@ -130,8 +133,8 @@
           {{- $language := . -}}
           {{- range $classes -}}
             {{- $class := . -}}
-            {{/*  {{- $key := printf "%s-%s-%s" $category $language $class -}}  */}}
-            {{- $key := slice $category $language $class -}}
+            {{- $key := printf "%s-%s-%s" $category $language $class -}}
+            {{/*  {{- $key := slice $category $language $class -}}  */}}
             <td>{{ index $counts $key }}</td>
           {{- end -}}
         {{- end -}}
