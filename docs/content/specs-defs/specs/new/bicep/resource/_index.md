@@ -35,3 +35,7 @@ url: /specs/bcp/res/
 ## Release / Publishing
 
 {{< tagsBasedNavigationTable folder="content/specs-defs/includes" tags="Class-Resource,Language-Bicep,Category-Release/Publishing" recursive=true strict=false showHint=true summarize=true summaryOpenByDefault=false >}}
+
+## Code Style
+
+{{< tagsBasedNavigationTable folder="content/specs-defs/includes" tags="Class-Resource,Language-Bicep,Category-CodeStyle" recursive=true strict=false showHint=true summarize=true summaryOpenByDefault=false >}}
