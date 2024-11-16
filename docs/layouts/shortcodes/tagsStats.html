@@ -1,0 +1,130 @@
+{{- $folder := .Get "folder" -}}
+{{- $recursive := default false (.Get "recursive") -}}
+{{- $allFiles := slice -}}
+
+{{- if $recursive -}}
+  {{- $allFiles = partial "readDirRecursive" (dict "path" $folder "allFiles" $allFiles) -}}
+{{- else -}}
+  {{- $entries := readDir $folder -}}
+  {{- range $entries -}}
+    {{- $allFiles = $allFiles | append (printf "%s/%s" $folder .Name) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $categories := slice -}}
+{{- $languages := slice -}}
+{{- $classes := slice -}}
+{{- $counts := dict -}}
+
+{{- range $allFiles -}}
+  {{- $file := replace . "content/" "" -}}
+  {{- $page := site.GetPage $file -}}
+  {{- $pageTags := $page.Params.tags -}}
+
+  {{- if $page -}}
+    {{- range $pageTags -}}
+      {{- if findRE `^Category-` . -}}
+        {{- $category := replace . "Category-" "" -}}
+        {{- if not (in $categories $category) -}}
+          {{- $categories = $categories | append $category -}}
+        {{- end -}}
+      {{- else if findRE `^Language-` . -}}
+        {{- $language := replace . "Language-" "" -}}
+        {{- if not (in $languages $language) -}}
+          {{- $languages = $languages | append $language -}}
+        {{- end -}}
+      {{- else if findRE `^Class-` . -}}
+        {{- $class := replace . "Class-" "" -}}
+        {{- if not (in $classes $class) -}}
+          {{- $classes = $classes | append $class -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- range $categories -}}
+  {{- $category := . -}}
+  {{- range $languages -}}
+    {{- $language := . -}}
+    {{- range $classes -}}
+      {{- $class := . -}}
+      {{- $key := printf "%s-%s-%s" $category $language $class -}}
+      {{- $counts = $counts | merge (dict $key 0) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- range $allFiles -}}
+  {{- $file := replace . "content/" "" -}}
+  {{- $page := site.GetPage $file -}}
+  {{- $pageTags := $page.Params.tags -}}
+
+  {{- if $page -}}
+    {{- $categoryTag := "" -}}
+    {{- $languageTag := "" -}}
+    {{- $classTag := "" -}}
+
+    {{- range $pageTags -}}
+      {{- if findRE `^Category-` . -}}
+        {{- $categoryTag = . -}}
+      {{- else if findRE `^Language-` . -}}
+        {{- $languageTag = . -}}
+      {{- else if findRE `^Class-` . -}}
+        {{- $classTag = . -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{- if and $categoryTag $languageTag $classTag -}}
+      {{- $category := replace $categoryTag "Category-" "" -}}
+      {{- $language := replace $languageTag "Language-" "" -}}
+      {{- $class := replace $classTag "Class-" "" -}}
+      {{- $key := printf "%s-%s-%s" $category $language $class -}}
+      {{- $currentCount := index $counts $key -}}
+      {{- $counts = $counts | merge (dict $key (add $currentCount 1)) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{/*  {{- $categories -}}
+{{- $languages -}}
+{{- $classes -}}
+{{- $counts -}}  */}}
+
+{{/*  {{- $categoryTag -}}
+{{- $languageTag -}}
+{{- $classTag -}}  */}}
+
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2">Category</th>
+      <th colspan="3" style="text-align: center;">Bicep</th>
+      <th colspan="3" style="text-align: center;">Terraform</th>
+    </tr>
+    <tr>
+      {{/*  <th></th>  */}}
+      <th>Resource</th>
+      <th>Pattern</th>
+      <th>Utility</th>
+      <th>Resource</th>
+      <th>Pattern</th>
+      <th>Utility</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{- range $categories -}}
+      <tr>
+        <td>{{ . }}</td>
+        {{- range $languages -}}
+          {{- $language := . -}}
+          {{- range $classes -}}
+            {{- $class := . -}}
+            {{- $key := printf "%s-%s-%s" . $language $class -}}
+            <td>{{ index $counts $key }}</td>
+          {{- end -}}
+        {{- end -}}
+      </tr>
+    {{- end -}}
+  </tbody>
+</table>
