@@ -1,4 +1,5 @@
 {{- $folder := .Get "folder" -}}
+{{- $languageFilter := default "" (.Get "language") -}}
 {{- $recursive := default false (.Get "recursive") -}}
 {{- $allFiles := slice -}}
 
@@ -182,17 +183,26 @@
 <table>
   <thead>
     <tr>
-      <th rowspan="2">Category</th>
-      <th colspan="3" style="text-align: center;">Bicep</th>
-      <th colspan="3" style="text-align: center;">Terraform</th>
+      {{- if (eq $languageFilter "") -}}
+        <th rowspan="2">Category</th>
+        <th colspan="3" style="text-align: center;">Bicep</th>
+        <th colspan="3" style="text-align: center;">Terraform</th>
+      {{- end -}}
     </tr>
     <tr>
-      <th>Resource</th>
-      <th>Pattern</th>
-      <th>Utility</th>
-      <th>Resource</th>
-      <th>Pattern</th>
-      <th>Utility</th>
+      {{- if or (eq $languageFilter "Bicep") (eq $languageFilter "Terraform") -}}
+        <th >Category</th>
+      {{- end -}}
+      {{- if or (eq $languageFilter "Bicep") (eq $languageFilter "") -}}
+        <th style="text-align: center;">Resource</th>
+        <th style="text-align: center;">Pattern</th>
+        <th style="text-align: center;">Utility</th>
+      {{- end -}}
+      {{- if or (eq $languageFilter "Terraform") (eq $languageFilter "") -}}
+        <th style="text-align: center;">Resource</th>
+        <th style="text-align: center;">Pattern</th>
+        <th style="text-align: center;">Utility</th>
+      {{- end -}}
     </tr>
   </thead>
   <tbody>
@@ -200,8 +210,21 @@
       {{- $category := . -}}
       <tr>
         <td>{{ $category }}</td>
-        {{- range $languages -}}
-          {{- $language := . -}}
+        {{- if or (eq $languageFilter "Bicep") (eq $languageFilter "") -}}
+          {{- $language := "Bicep" -}}
+          {{- range $classes -}}
+            {{- $class := . -}}
+            {{- $key := printf "%s-%s-%s" $category $language $class -}}
+            {{- $url := index $urlMap $key -}}
+            {{- if $url -}}
+              <td style="text-align: center;"><a href="{{ $url }}" style="text-decoration: none;">{{ default 0 (index $counts $key) }}</a></td>
+            {{- else -}}
+              <td style="text-align: center;">{{ default 0 (index $counts $key) }}</td>
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+        {{- if or (eq $languageFilter "Terraform") (eq $languageFilter "") -}}
+          {{- $language := "Terraform" -}}
           {{- range $classes -}}
             {{- $class := . -}}
             {{- $key := printf "%s-%s-%s" $category $language $class -}}
@@ -217,8 +240,16 @@
     {{- end -}}
     <tr>
       <td><strong>Summary</strong></td>
-      {{- range $languages -}}
-        {{- $language := . -}}
+      {{- if or (eq $languageFilter "Bicep") (eq $languageFilter "") -}}
+        {{- $language := "Bicep" -}}
+        {{- range $classes -}}
+          {{- $class := . -}}
+          {{- $summaryKey := printf "%s-%s" $language $class -}}
+          <td style="text-align: center;"><strong>{{ default 0 (index $summary $summaryKey) }}</strong></td>
+        {{- end -}}
+      {{- end -}}
+      {{- if or (eq $languageFilter "Terraform") (eq $languageFilter "") -}}
+        {{- $language := "Terraform" -}}
         {{- range $classes -}}
           {{- $class := . -}}
           {{- $summaryKey := printf "%s-%s" $language $class -}}

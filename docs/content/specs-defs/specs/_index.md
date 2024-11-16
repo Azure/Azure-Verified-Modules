@@ -9,6 +9,8 @@ url: /specs/module-specs/
 
 This section documents all the specifications for Azure Verified Modules (AVM) and their respective IaC languages.
 
+{{< tagsStats folder="content/specs-defs/includes" recursive=true >}}
+
 ## How to navigate the specifications?
 
 The AVM specifications section uses tags to dynamically render content based on the selected attributes, such as the IaC language, module classification, category, severity and more. The tags are defined in the front matter of the markdown files.

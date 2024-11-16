@@ -6,6 +6,8 @@ geekdocAnchor: true
 url: /specs/tf/
 ---
 
+{{< tagsStats folder="content/specs-defs/includes" recursive=true language="Terraform" >}}
+
 ## How to propose changes to the specifications?
 
 {{< hint type=important >}}

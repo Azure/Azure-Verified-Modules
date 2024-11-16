@@ -6,7 +6,7 @@ geekdocAnchor: true
 url: /specs/bcp/
 ---
 
-{{< tagsStats folder="content/specs-defs/includes" recursive=true >}}
+{{< tagsStats folder="content/specs-defs/includes" recursive=true language="Bicep" >}}
 
 ## How to propose changes to the specifications?
 
