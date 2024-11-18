@@ -6,6 +6,16 @@ geekdocAnchor: true
 url: /specs/shared/interfaces/
 ---
 
+{{< hint type=warning >}}
+
+**Legacy content**
+
+The content on this website has been deprecated and will be removed in the future.
+
+Please refer to the new documentation under the [Bicep Interfaces](/Azure-Verified-Modules/specs/bcp/res/interfaces/) / [Terraform Interfaces](/Azure-Verified-Modules/specs/tf/interfaces/) chapters for the most up-to-date information.
+
+{{< /hint >}}
+
 Below are the interfaces/schemas for the AVM Resource Modules features/extension resources as detailed in [RMFR4](/Azure-Verified-Modules/spec/RMFR4) and [RMFR5](/Azure-Verified-Modules/spec/RMFR5)
 
 {{< toc >}}

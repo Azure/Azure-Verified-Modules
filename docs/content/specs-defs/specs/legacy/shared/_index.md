@@ -6,19 +6,15 @@ geekdocAnchor: true
 url: /specs/shared/
 ---
 
-{{< hint type=tip >}}
+{{< hint type=warning >}}
 
-Make sure to checkout the [Module Classification Definitions](/Azure-Verified-Modules/specs/shared/module-classifications/) first before reading further so you understand the difference between a Resource and Pattern Module in AVM.
+**Legacy content**
 
-{{< /hint >}}
+The content on this website has been deprecated and will be removed in the future.
 
-{{< hint type=important >}}
-
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED”, “MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119).
+Please refer to the new documentation under the [Bicep Spefications](/Azure-Verified-Modules/specs/bcp/) / [Terraform Specifications](/Azure-Verified-Modules/specs/tf/) chapters for the most up-to-date information.
 
 {{< /hint >}}
-
-<br>
 
 This page contains the shared **requirements for both Bicep and Terraform** AVM modules (**Resource and Pattern modules**) that ALL AVM modules **MUST** meet. In addition to these, requirements specific to each language, defined in their respective specifications also **MUST** be met. See [Bicep](/Azure-Verified-Modules/specs/bicep/) and [Terraform](/Azure-Verified-Modules/specs/terraform/) specific requirements for more information.
 

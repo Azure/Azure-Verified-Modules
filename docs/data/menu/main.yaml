@@ -78,10 +78,10 @@ main:
                 ref: "specs-defs/specs/new/terraform/pattern"
               - name: "Utility"
                 ref: "specs-defs/specs/new/terraform/utility"
-          - name: "🟡 Legacy"
+          - name: "Legacy"
             ref: "specs-defs/specs/legacy"
             sub:
-            - name: "Shared (Bcp & TF)"
+            - name: "Shared (Bicep & Terraform)"
               ref: "specs-defs/specs/legacy/shared"
               sub:
                 - name: "Interfaces"

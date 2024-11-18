@@ -6,15 +6,13 @@ geekdocAnchor: true
 url: /specs/bicep/
 ---
 
-{{< hint type=tip >}}
+{{< hint type=warning >}}
 
-Make sure to checkout the [Shared Specification](/Azure-Verified-Modules/specs/shared/) first before reading further so you understand the specifications items that are shared and agnostic to the IaC language/tool.
+**Legacy content**
 
-{{< /hint >}}
+The content on this website has been deprecated and will be removed in the future.
 
-{{< hint type=important >}}
-
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED”, “MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119).
+Please refer to the new documentation under the [Bicep Spefications](/Azure-Verified-Modules/specs/bcp/) chapter for the most up-to-date information.
 
 {{< /hint >}}
 

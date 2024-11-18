@@ -9,11 +9,21 @@ url: /specs/module-specs/
 
 This section documents all the specifications for Azure Verified Modules (AVM) and their respective IaC languages.
 
+## Specifications by IaC Language
+
 {{< tagsStats folder="content/specs-defs/includes" recursive=true >}}
 
 ## How to navigate the specifications?
 
-The AVM specifications section uses tags to dynamically render content based on the selected attributes, such as the IaC language, module classification, category, severity and more. The tags are defined in the front matter of the markdown files.
+The "Module Specifications" section uses tags to dynamically render content based on the selected attributes, such as the IaC language, module classification, category, severity and more. The tags are defined in the front matter of the markdown files.
+
+To make it easier for module owners and contributors to navigate the documentation, the specifications are grouped to distinct pages by the IaC language (`Bicep` | `Terraform`) and module classification ( `resource` | `pattern` | `utility`). The specifications on each page are further ordered by the category (e.g., `Composition`, `CodeStyle`, `Testing`, etc.), severity of the requirements (`MUST` | `SHOULD` | `MAY`) and at what stage of the module's lifecycle the specification is typically applicable (`Initial` | `BAU` | `EOL`).
+
+To find what you need, simply decide which IaC language you'd like develop in, and what classification your module falls under. Then, navigate to the respective page to find the specifications that are relevant to you.
+
+## Why are there language specific specifications?
+
+While every effort is being made to standardize requirements and implementation details across all languages, it is expected that some of the specifications will be different between their respective languages to ensure we follow the best practices and leverage features of each language.
 
 ## How to read the specifications?
 

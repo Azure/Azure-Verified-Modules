@@ -6,6 +6,16 @@ geekdocAnchor: true
 url: /specs/bicep/interfaces/
 ---
 
+{{< hint type=warning >}}
+
+**Legacy content**
+
+The content on this website has been deprecated and will be removed in the future.
+
+Please refer to the new documentation under the [Bicep Interfaces](/Azure-Verified-Modules/specs/bcp/res/interfaces/) chapter for the most up-to-date information.
+
+{{< /hint >}}
+
 This page details the Bicep-specific interfaces/schemas for AVM Resource Modules features/extension resources.
 
 {{< toc >}}

@@ -6,6 +6,8 @@ geekdocAnchor: true
 url: /specs/bcp/
 ---
 
+## Specifications by Category and Module Classification
+
 {{< tagsStats folder="content/specs-defs/includes" recursive=true language="Bicep" >}}
 
 ## How to propose changes to the specifications?
