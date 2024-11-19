@@ -3,6 +3,7 @@
 {{- $take := default 0 (.Get "take") -}}
 {{- $tags := split (.Get "tags") "," -}}
 {{- $strict := default false (.Get "strict") -}}
+{{- $daysShown := default 0 (.Get "daysShown") -}}
 {{- $allFiles := slice -}}
 {{- $baseURL := $.Site.BaseURL -}}
 
@@ -44,11 +45,13 @@
 
     {{- if $allTagsPresent -}}
       {{- $lastModifiedDate := $page.Params.lastmod -}}
-      {{- $titleParts := split $page.Params.title " - " -}}
-      {{- $id := index $titleParts 0 -}}
-      {{- $url := $page.Params.url -}}
-      {{- $spec := dict "LastModifiedDate" $lastModifiedDate "ID" $id "URL" (printf "%s%s" $baseURL $url) -}}
-      {{- $specs = $specs | append $spec -}}
+      {{- if or (eq $daysShown 0) ($lastModifiedDate.After (now.AddDate 0 0 (int (mul -1 $daysShown ))).UTC) -}}
+        {{- $titleParts := split $page.Params.title " - " -}}
+        {{- $id := index $titleParts 0 -}}
+        {{- $url := $page.Params.url -}}
+        {{- $spec := dict "LastModifiedDate" $lastModifiedDate.UTC "ID" $id "URL" (printf "%s%s" $baseURL $url) -}}
+        {{- $specs = $specs | append $spec -}}
+      {{- end -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
@@ -58,23 +61,26 @@
   {{- $sortedSpecs = first $take $sortedSpecs -}}
 {{- end -}}
 
-<table>
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Last Modified</th>
-      <th>ID</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{- $index := 0 -}}
-    {{- range $sortedSpecs -}}
-      {{- $index = add $index 1 -}}
+<details>
+  <summary>See Specifications modified in the last 30 days...</summary>
+  <table>
+    <thead>
       <tr>
-        <td>{{ $index }}</td>
-        <td>{{ .LastModifiedDate }}</td>
-        <td><a href="{{ .URL }}" style="text-decoration: none;">{{ .ID }}</a></td>
+        <th>#</th>
+        <th>ID</th>
+        <th>Last Modified</th>
       </tr>
-    {{- end -}}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {{- $index := 0 -}}
+      {{- range $sortedSpecs -}}
+        {{- $index = add $index 1 -}}
+        <tr>
+          <td>{{ $index }}</td>
+          <td><a href="{{ .URL }}" style="text-decoration: none;">{{ .ID }}</a></td>
+          <td>{{ .LastModifiedDate }}</td>
+        </tr>
+      {{- end -}}
+    </tbody>
+  </table>
+</details>

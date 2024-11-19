@@ -24,6 +24,6 @@ Provider Versatility: Users have the autonomy to choose between AzureRM, AzAPI, 
 
 {{< /hint >}}
 
-## Last Modified
+## Modified in the last 30 days
 
-{{< specsHistory folder="content/specs-defs/includes" recursive=true tags="Language-Terraform" >}}
+{{< specsHistory folder="content/specs-defs/includes" recursive=true tags="Language-Terraform" daysShown=30 >}}

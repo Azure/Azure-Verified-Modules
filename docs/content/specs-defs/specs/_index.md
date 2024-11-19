@@ -43,6 +43,6 @@ There are 3 levels of specifications:
 - SHOULD: These are recommended requirements that **SHOULD** be followed, unless there are good reasons for not to.
 - MAY: These are optional requirements that **MAY** be followed at the module owner's/contributor's discretion.
 
-## Last Modified
+## Modified in the last 30 days
 
-{{< specsHistory folder="content/specs-defs/includes" recursive=true tags="Language-Bicep" >}}
+{{< specsHistory folder="content/specs-defs/includes" recursive=true daysShown=30 >}}

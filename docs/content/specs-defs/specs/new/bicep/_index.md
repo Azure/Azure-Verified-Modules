@@ -18,6 +18,6 @@ Any updates to existing or new specifications for Bicep must be submitted as a d
 
 {{< /hint >}}
 
-## Last Modified
+## Modified in the last 30 days
 
-{{< specsHistory folder="content/specs-defs/includes" recursive=true tags="Language-Bicep" >}}
+{{< specsHistory folder="content/specs-defs/includes" recursive=true tags="Language-Bicep" daysShown=30 >}}
