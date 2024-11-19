@@ -62,31 +62,37 @@
   {{- end -}}
 {{- end -}}
 
-{{- $sortedSpecs := sort $specs "LastModifiedDate" "desc" -}}
-{{- if gt $take 0 -}}
-  {{- $sortedSpecs = first $take $sortedSpecs -}}
-{{- end -}}
+{{ if gt (len $specs) 0 }}
+  {{- $sortedSpecs := sort $specs "LastModifiedDate" "desc" -}}
+  {{- if gt $take 0 -}}
+    {{- $sortedSpecs = first $take $sortedSpecs -}}
+  {{- end -}}
 
-<details>
-  <summary>{{ if eq $daysShown 0 }}See Specification history...{{ else }}See Specifications modified in the last {{ $daysShown }} days{{ end }}...</summary>
-  <table>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>ID</th>
-        <th>Last Modified</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{- $index := 0 -}}
-      {{- range $sortedSpecs -}}
-        {{- $index = add $index 1 -}}
+  <details>
+    <summary>{{ if eq $daysShown 0 }}See Specification history...{{ else }}See Specifications modified in the last {{ $daysShown }} days{{ end }}...</summary>
+    <table>
+      <thead>
         <tr>
-          <td>{{ $index }}</td>
-          <td><a href="{{ .URL }}" style="text-decoration: none;">{{ .ID }}</a></td>
-          <td>{{ .LastModifiedDate }}</td>
+          <th>#</th>
+          <th>ID</th>
+          <th>Last Modified</th>
         </tr>
-      {{- end -}}
-    </tbody>
-  </table>
-</details>
+      </thead>
+      <tbody>
+        {{- $index := 0 -}}
+        {{- range $sortedSpecs -}}
+          {{- $index = add $index 1 -}}
+          <tr>
+            <td>{{ $index }}</td>
+            <td><a href="{{ .URL }}" style="text-decoration: none;">{{ .ID }}</a></td>
+            <td>{{ .LastModifiedDate }}</td>
+          </tr>
+        {{- end -}}
+      </tbody>
+    </table>
+  </details>
+{{ else }}
+  <p>No specifications were changed in the last {{ $daysShown }} days.</p>
+{{ end -}}
+
+
