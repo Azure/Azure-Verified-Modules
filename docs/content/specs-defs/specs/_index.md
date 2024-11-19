@@ -7,6 +7,8 @@ geekdocCollapseSection: true
 url: /specs/module-specs/
 ---
 
+{{< toc >}}
+
 This section documents all the specifications for Azure Verified Modules (AVM) and their respective IaC languages.
 
 ## Specifications by IaC Language
@@ -40,3 +42,7 @@ There are 3 levels of specifications:
 - MUST: These are mandatory requirements that **MUST** be followed.
 - SHOULD: These are recommended requirements that **SHOULD** be followed, unless there are good reasons for not to.
 - MAY: These are optional requirements that **MAY** be followed at the module owner's/contributor's discretion.
+
+## Last Modified
+
+{{< specsHistory folder="content/specs-defs/includes" recursive=true take=10 >}}

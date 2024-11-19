@@ -1,0 +1,55 @@
+{{- $folder := .Get "folder" -}}
+{{- $recursive := default false (.Get "recursive") -}}
+{{- $take := default 0 (.Get "take") -}}
+{{- $allFiles := slice -}}
+{{- $baseURL := $.Site.BaseURL -}}
+
+{{- if $recursive -}}
+  {{- $allFiles = partial "readDirRecursive" (dict "path" $folder "allFiles" $allFiles) -}}
+{{- else -}}
+  {{- $entries := readDir $folder -}}
+  {{- range $entries -}}
+    {{- $allFiles = $allFiles | append (printf "%s/%s" $folder .Name) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $specs := slice -}}
+
+{{- range $allFiles -}}
+  {{- $file := replace . "content/" "" -}}
+  {{- $page := site.GetPage $file -}}
+  {{- if $page -}}
+    {{- $lastModifiedDate := $page.Params.lastmod -}}
+    {{- $titleParts := split $page.Params.title " - " -}}
+    {{- $id := index $titleParts 0 -}}
+    {{- $url := $page.Params.url -}}
+    {{- $spec := dict "LastModifiedDate" $lastModifiedDate "ID" $id "URL" (printf "%s%s" $baseURL $url) -}}
+    {{- $specs = $specs | append $spec -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $sortedSpecs := sort $specs "LastModifiedDate" "desc" -}}
+{{- if gt $take 0 -}}
+  {{- $sortedSpecs = first $take $sortedSpecs -}}
+{{- end -}}
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>LastModifiedDate</th>
+      <th>ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{- $index := 0 -}}
+    {{- range $sortedSpecs -}}
+      {{- $index = add $index 1 -}}
+      <tr>
+        <td>{{ $index }}</td>
+        <td>{{ .LastModifiedDate }}</td>
+        <td><a href="{{ .URL }}" style="text-decoration: none;">{{ .ID }}</a></td>
+      </tr>
+    {{- end -}}
+  </tbody>
+</table>
