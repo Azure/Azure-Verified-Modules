@@ -1,6 +1,8 @@
 {{- $folder := .Get "folder" -}}
 {{- $recursive := default false (.Get "recursive") -}}
 {{- $take := default 0 (.Get "take") -}}
+{{- $tags := split (.Get "tags") "," -}}
+{{- $strict := default false (.Get "strict") -}}
 {{- $allFiles := slice -}}
 {{- $baseURL := $.Site.BaseURL -}}
 
@@ -19,12 +21,35 @@
   {{- $file := replace . "content/" "" -}}
   {{- $page := site.GetPage $file -}}
   {{- if $page -}}
-    {{- $lastModifiedDate := $page.Params.lastmod -}}
-    {{- $titleParts := split $page.Params.title " - " -}}
-    {{- $id := index $titleParts 0 -}}
-    {{- $url := $page.Params.url -}}
-    {{- $spec := dict "LastModifiedDate" $lastModifiedDate "ID" $id "URL" (printf "%s%s" $baseURL $url) -}}
-    {{- $specs = $specs | append $spec -}}
+    {{- $pageTags := $page.Params.tags -}}
+    {{- $allTagsPresent := true -}}
+
+    {{- if $strict -}}
+      {{- if not (eq (len $tags) (len $pageTags)) -}}
+        {{- $allTagsPresent = false -}}
+      {{- else -}}
+        {{- range $tags -}}
+          {{- if not (in $pageTags .) -}}
+            {{- $allTagsPresent = false -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- else -}}
+      {{- range $tags -}}
+        {{- if not (in $pageTags .) -}}
+          {{- $allTagsPresent = false -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{- if $allTagsPresent -}}
+      {{- $lastModifiedDate := $page.Params.lastmod -}}
+      {{- $titleParts := split $page.Params.title " - " -}}
+      {{- $id := index $titleParts 0 -}}
+      {{- $url := $page.Params.url -}}
+      {{- $spec := dict "LastModifiedDate" $lastModifiedDate "ID" $id "URL" (printf "%s%s" $baseURL $url) -}}
+      {{- $specs = $specs | append $spec -}}
+    {{- end -}}
   {{- end -}}
 {{- end -}}
 
@@ -37,7 +62,7 @@
   <thead>
     <tr>
       <th>#</th>
-      <th>LastModifiedDate</th>
+      <th>Last Modified</th>
       <th>ID</th>
     </tr>
   </thead>

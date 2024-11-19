@@ -23,3 +23,7 @@ Any updates to existing or new specifications for Terraform must be submitted as
 Provider Versatility: Users have the autonomy to choose between AzureRM, AzAPI, or a combination of both, tailored to the specific complexity of module requirements.
 
 {{< /hint >}}
+
+## Last Modified
+
+{{< specsHistory folder="content/specs-defs/includes" recursive=true tags="Language-Terraform" >}}

@@ -45,4 +45,4 @@ There are 3 levels of specifications:
 
 ## Last Modified
 
-{{< specsHistory folder="content/specs-defs/includes" recursive=true take=10 >}}
+{{< specsHistory folder="content/specs-defs/includes" recursive=true tags="Language-Bicep" >}}
