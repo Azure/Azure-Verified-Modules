@@ -53,14 +53,16 @@
 
     {{- if $addPageToList -}}
       {{- $lastModifiedDate := $page.Params.lastmod -}}
+      {{ $timeFormat := "2006-01-02 15:04:05" }}
       {{- if or (eq $daysShown 0) ($lastModifiedDate.After (now.AddDate 0 0 (int (mul -1 $daysShown ))).UTC) -}}
         {{- $titleParts := split $page.Params.title " - " -}}
         {{- $id := index $titleParts 0 -}}
         {{- $url := $page.Params.url -}}
         {{- $commit := $page.GitInfo.AbbreviatedHash -}}
+        {{- $authorName  := $page.GitInfo.AuthorName  -}}
         {{- $gitHistory := $page.File.Path -}}
         {{- $gitHistory = replace $gitHistory `\` `/` -}}
-        {{- $spec := dict "LastModifiedDate" $lastModifiedDate.UTC "ID" $id "URL" (printf "%s%s" $baseURL $url) "GitHistory" $gitHistory "Commit" $commit -}}
+        {{- $spec := dict "LastModifiedDate" ($lastModifiedDate.UTC.Format $timeFormat) "ID" $id "URL" (printf "%s%s" $baseURL $url) "GitHistory" $gitHistory "Commit" $commit "AuthorName" $authorName -}}
         {{- $specs = $specs | append $spec -}}
       {{- end -}}
     {{- end -}}
@@ -80,9 +82,10 @@
       <tr>
         <th>#</th>
         <th>ID</th>
-        <th>Last Modified</th>
+        <th>Last Modified (UTC)</th>
         <th>Git History</th>
         <th>Last Commit</th>
+        {{/*  <th>Last Author's Name</th>  */}}
       </tr>
     </thead>
     <tbody>
@@ -93,8 +96,9 @@
           <td>{{ $index }}</td>
           <td><a href="{{ .URL }}" style="text-decoration: none;">{{ .ID }}</a></td>
           <td>{{ .LastModifiedDate }}</td>
-          <td><a href="{{ $commitsURLPrefix }}{{ .GitHistory }}" style="text-decoration: none;">{{ .GitHistory }}</a></td>
-          <td><a href="{{ $commitURLPrefix }}{{ .Commit }}" style="text-decoration: none;">All Commits</a></td>
+          <td><a href="{{ $commitsURLPrefix }}{{ .GitHistory }}" style="text-decoration: none;">All Commits</a></td>
+          <td><a href="{{ $commitURLPrefix }}{{ .Commit }}" style="text-decoration: none;">{{ .Commit }}</a></td>
+          {{/*  <td>{{ .AuthorName }}</td>  */}}
         </tr>
       {{- end -}}
     </tbody>
