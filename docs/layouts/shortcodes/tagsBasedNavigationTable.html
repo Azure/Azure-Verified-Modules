@@ -61,27 +61,27 @@
   {{- $pageTags := $page.Params.tags -}}
 
   {{- if $page -}}
-    {{- $allTagsPresent := true -}}
+    {{- $addPageToList := true -}}
 
     {{- if $strict -}}
       {{- if not (eq (len $tags) (len $pageTags)) -}}
-        {{- $allTagsPresent = false -}}
+        {{- $addPageToList = false -}}
       {{- else -}}
         {{- range $tags -}}
           {{- if not (in $pageTags .) -}}
-            {{- $allTagsPresent = false -}}
+            {{- $addPageToList = false -}}
           {{- end -}}
         {{- end -}}
       {{- end -}}
     {{- else -}}
       {{- range $tags -}}
         {{- if not (in $pageTags .) -}}
-          {{- $allTagsPresent = false -}}
+          {{- $addPageToList = false -}}
         {{- end -}}
       {{- end -}}
     {{- end -}}
 
-    {{- if $allTagsPresent -}}
+    {{- if $addPageToList -}}
       {{- $priority := default 10000 $page.Params.priority -}}
       {{- $pages = $pages | append (dict "page" $page "priority" $priority "file" $file) -}}
     {{- else -}}
