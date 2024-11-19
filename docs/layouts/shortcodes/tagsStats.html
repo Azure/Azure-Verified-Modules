@@ -2,6 +2,7 @@
 {{- $languageFilter := default "" (.Get "language") -}}
 {{- $recursive := default false (.Get "recursive") -}}
 {{- $allFiles := slice -}}
+{{- $baseURL := $.Site.BaseURL -}}
 
 {{- if $recursive -}}
   {{- $allFiles = partial "readDirRecursive" (dict "path" $folder "allFiles" $allFiles) -}}
@@ -185,8 +186,20 @@
     <tr>
       {{- if (eq $languageFilter "") -}}
         <th rowspan="2">Category</th>
-        <th colspan="3" style="text-align: center;">Bicep</th>
-        <th colspan="3" style="text-align: center;">Terraform</th>
+        <th colspan="3" style="text-align: center;">
+          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Language-Bicep" title="{{ i18n "posts_tagged_with" "Language-Bicep" }}">
+              Bicep
+            </a>
+          </span>
+        </th>
+        <th colspan="3" style="text-align: center;">
+          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Language-Terraform" title="{{ i18n "posts_tagged_with" "Language-Terraform" }}">
+              Bicep
+            </a>
+          </span>
+        </th>
       {{- end -}}
     </tr>
     <tr>
@@ -194,14 +207,50 @@
         <th >Category</th>
       {{- end -}}
       {{- if or (eq $languageFilter "Bicep") (eq $languageFilter "") -}}
-        <th style="text-align: center;">Resource</th>
-        <th style="text-align: center;">Pattern</th>
-        <th style="text-align: center;">Utility</th>
+        <th style="text-align: center;">
+          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Class-Resource" title="{{ i18n "posts_tagged_with" "Class-Resource" }}">
+              Resource
+            </a>
+          </span>
+        </th>
+        <th style="text-align: center;">
+          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Class-Pattern" title="{{ i18n "posts_tagged_with" "Class-Pattern" }}">
+              Pattern
+            </a>
+          </span>
+        </th>
+        <th style="text-align: center;">
+          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Class-Urility" title="{{ i18n "posts_tagged_with" "Class-Urility" }}">
+              Urility
+            </a>
+          </span>
+        </th>
       {{- end -}}
       {{- if or (eq $languageFilter "Terraform") (eq $languageFilter "") -}}
-        <th style="text-align: center;">Resource</th>
-        <th style="text-align: center;">Pattern</th>
-        <th style="text-align: center;">Utility</th>
+        <th style="text-align: center;">
+          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Class-Resource" title="{{ i18n "posts_tagged_with" "Class-Resource" }}">
+              Resource
+            </a>
+          </span>
+        </th>
+        <th style="text-align: center;">
+          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Class-Pattern" title="{{ i18n "posts_tagged_with" "Class-Pattern" }}">
+              Pattern
+            </a>
+          </span>
+        </th>
+        <th style="text-align: center;">
+          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Class-Urility" title="{{ i18n "posts_tagged_with" "Class-Urility" }}">
+              Urility
+            </a>
+          </span>
+        </th>
       {{- end -}}
     </tr>
   </thead>
@@ -209,7 +258,13 @@
     {{- range $categories -}}
       {{- $category := . -}}
       <tr>
-        <td>{{ $category }}</td>
+        <td>
+          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Category-{{ $category | urlize }}" title="{{ i18n "posts_tagged_with" (printf "Category-%s" $category) }}">
+              {{ $category }}
+            </a>
+          </span>
+        </td>
         {{- if or (eq $languageFilter "Bicep") (eq $languageFilter "") -}}
           {{- $language := "Bicep" -}}
           {{- range $classes -}}
@@ -232,7 +287,7 @@
             {{- if $url -}}
               <td style="text-align: center;"><a href="{{ $url }}" style="text-decoration: none;">{{ default 0 (index $counts $key) }}</a></td>
             {{- else -}}
-              <td>{{ default 0 (index $counts $key) }}</td>
+              <td style="text-align: center;">{{ default 0 (index $counts $key) }}</td>
             {{- end -}}
           {{- end -}}
         {{- end -}}
