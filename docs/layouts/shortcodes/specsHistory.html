@@ -10,6 +10,8 @@
 {{- $daysShown := int (default 0 (.Get "daysShown")) -}}
 {{- $allFiles := slice -}}
 {{- $baseURL := $.Site.BaseURL -}}
+{{- $commitURLPrefix := "https://github.com/Azure/Azure-Verified-Modules/commit/" -}}
+{{- $commitsURLPrefix := "https://github.com/Azure/Azure-Verified-Modules/commits/main/docs/content/" -}}
 
 {{- if $recursive -}}
   {{- $allFiles = partial "readDirRecursive" (dict "path" $folder "allFiles" $allFiles) -}}
@@ -55,7 +57,10 @@
         {{- $titleParts := split $page.Params.title " - " -}}
         {{- $id := index $titleParts 0 -}}
         {{- $url := $page.Params.url -}}
-        {{- $spec := dict "LastModifiedDate" $lastModifiedDate.UTC "ID" $id "URL" (printf "%s%s" $baseURL $url) -}}
+        {{- $commit := $page.GitInfo.AbbreviatedHash -}}
+        {{- $gitHistory := $page.File.Path -}}
+        {{- $gitHistory = replace $gitHistory `\` `/` -}}
+        {{- $spec := dict "LastModifiedDate" $lastModifiedDate.UTC "ID" $id "URL" (printf "%s%s" $baseURL $url) "GitHistory" $gitHistory "Commit" $commit -}}
         {{- $specs = $specs | append $spec -}}
       {{- end -}}
     {{- end -}}
@@ -63,36 +68,38 @@
 {{- end -}}
 
 {{ if gt (len $specs) 0 }}
-  {{- $sortedSpecs := sort $specs "LastModifiedDate" "desc" -}}
-  {{- if gt $take 0 -}}
-    {{- $sortedSpecs = first $take $sortedSpecs -}}
-  {{- end -}}
+{{- $sortedSpecs := sort $specs "LastModifiedDate" "desc" -}}
+{{- if gt $take 0 -}}
+  {{- $sortedSpecs = first $take $sortedSpecs -}}
+{{- end -}}
 
-  <details>
-    <summary>{{ if eq $daysShown 0 }}See Specification history...{{ else }}See Specifications modified in the last {{ $daysShown }} days{{ end }}...</summary>
-    <table>
-      <thead>
+<details>
+  <summary>{{ if eq $daysShown 0 }}See Specification history...{{ else }}See Specifications modified in the last {{ $daysShown }} days{{ end }}...</summary>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>ID</th>
+        <th>Last Modified</th>
+        <th>Git History</th>
+        <th>Last Commit</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{- $index := 0 -}}
+      {{- range $sortedSpecs -}}
+        {{- $index = add $index 1 -}}
         <tr>
-          <th>#</th>
-          <th>ID</th>
-          <th>Last Modified</th>
+          <td>{{ $index }}</td>
+          <td><a href="{{ .URL }}" style="text-decoration: none;">{{ .ID }}</a></td>
+          <td>{{ .LastModifiedDate }}</td>
+          <td><a href="{{ $commitsURLPrefix }}{{ .GitHistory }}" style="text-decoration: none;">{{ .GitHistory }}</a></td>
+          <td><a href="{{ $commitURLPrefix }}{{ .Commit }}" style="text-decoration: none;">All Commits</a></td>
         </tr>
-      </thead>
-      <tbody>
-        {{- $index := 0 -}}
-        {{- range $sortedSpecs -}}
-          {{- $index = add $index 1 -}}
-          <tr>
-            <td>{{ $index }}</td>
-            <td><a href="{{ .URL }}" style="text-decoration: none;">{{ .ID }}</a></td>
-            <td>{{ .LastModifiedDate }}</td>
-          </tr>
-        {{- end -}}
-      </tbody>
-    </table>
-  </details>
+      {{- end -}}
+    </tbody>
+  </table>
+</details>
 {{ else }}
   <p>No specifications were changed in the last {{ $daysShown }} days.</p>
 {{ end -}}
-
-
