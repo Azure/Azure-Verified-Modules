@@ -2,7 +2,7 @@
 //   Parameters   //
 // ============== //
 
-import { customerManagedKeyType } from 'br/public:avm/utl/types/avm-common-types:0.3.0'
+import { customerManagedKeyType } from 'br/public:avm/utl/types/avm-common-types:0.4.0'
 @description('Optional. The customer managed key definition.')
 param customerManagedKey customerManagedKeyType?
 

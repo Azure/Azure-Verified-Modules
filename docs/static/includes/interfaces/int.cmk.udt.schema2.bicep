@@ -1,7 +1,7 @@
 // ============== //
 //   Parameters   //
 // ============== //
-import { customerManagedKeyWithAutoRotateType } from 'br/public:avm/utl/types/avm-common-types:0.3.0'
+import { customerManagedKeyWithAutoRotateType } from 'br/public:avm/utl/types/avm-common-types:0.4.0'
 @description('Optional. The customer managed key definition.')
 param customerManagedKey customerManagedKeyWithAutoRotateType?
 
@@ -41,14 +41,14 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
             keyName: customerManagedKey!.keyName
             keyVersion: !empty(customerManagedKey.?keyVersion ?? '')
               ? customerManagedKey!.keyVersion
-              : (customerManagedKey.?autoRotationDisabled ?? false)
-                  ? last(split(cMKKeyVault::cMKKey.properties.keyUriWithVersion, '/'))
-                  : null
+              : (customerManagedKey.?autoRotationEnabled ?? true)
+                ? null
+                : last(split(cMKKeyVault::cMKKey.properties.keyUriWithVersion, '/'))
             keyIdentifier: !empty(customerManagedKey.?keyVersion ?? '')
               ? '${cMKKeyVault::cMKKey.properties.keyUri}/${customerManagedKey!.keyVersion}'
-              : (customerManagedKey.?autoRotationDisabled ?? false)
-                  ? cMKKeyVault::cMKKey.properties.keyUriWithVersion
-                  : cMKKeyVault::cMKKey.properties.keyUri
+              : (customerManagedKey.?autoRotationEnabled ?? true)
+                ? cMKKeyVault::cMKKey.properties.keyUri
+                : cMKKeyVault::cMKKey.properties.keyUriWithVersion
             identityClientId: !empty(customerManagedKey.?userAssignedIdentityResourceId ?? '')
               ? cMKUserAssignedIdentity.properties.clientId
               : null
