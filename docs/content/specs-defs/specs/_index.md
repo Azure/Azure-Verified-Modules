@@ -25,7 +25,7 @@ To find what you need, simply decide which IaC language you'd like develop in, a
 
 ## Why are there language specific specifications?
 
-While every effort is being made to standardize requirements and implementation details across all languages, it is expected that some of the specifications will be different between their respective languages to ensure we follow the best practices and leverage features of each language.
+While every effort is being made to standardize requirements and implementation details across all languages (and most specifications in fact, are applicable to all), it is expected that some of the specifications will be different between their respective languages to ensure we follow the best practices and leverage features of each language.
 
 ## How to read the specifications?
 
