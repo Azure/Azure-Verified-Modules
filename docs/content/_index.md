@@ -5,13 +5,21 @@ geekdocNav: true
 geekdocAnchor: true
 ---
 
-{{< hint type=caution icon=gdoc_date title="AVM Community Calls" >}}
+{{< hint type=tip title="New Module Specifications pages !!" >}}
+
+**Check out our new [Module Specifications](/Azure-Verified-Modules/specs/module-specs) pages!**
+
+It has never been easier to find the specifications you need for your module development.
+
+{{< /hint >}}
+
+<!-- {{< hint type=caution icon=gdoc_date title="AVM Community Calls" >}}
 
 The AVM team has hosted 2 community calls to date.
 
 To find out more about future calls and the recordings of previous ones please head to the [dedicated page](/Azure-Verified-Modules/resources/community)!
 
-{{< /hint >}}
+{{< /hint >}} -->
 
 {{< youtube id="JbIMrJKW5N0" title="An introduction to Azure Verified Modules (AVM)" >}}
 
