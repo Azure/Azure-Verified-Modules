@@ -4,7 +4,6 @@ geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
 url: /specs/bcp/
-geekdocCollapseSection: true
 ---
 
 ## Specifications by Category and Module Classification

@@ -4,6 +4,7 @@ geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
 url: /specs/bcp/res/
+geekdocCollapseSection: true
 ---
 
 {{< toc >}}
