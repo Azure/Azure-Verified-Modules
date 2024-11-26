@@ -34,7 +34,7 @@ Module owners **MUST** output the following outputs as a minimum in their module
 
 Module owners **MAY** also have to provide additional outputs depending on the IaC language, please check the language specific specs:
 
-- [Bicep](/Azure-Verified-Modules/specs/bicep/)
-- [Terraform](/Azure-Verified-Modules/specs/terraform/)
+- [Bicep](/Azure-Verified-Modules/specs/bcp/)
+- [Terraform](/Azure-Verified-Modules/specs/tf/)
 
 {{< /hint >}}

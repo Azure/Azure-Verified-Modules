@@ -167,7 +167,7 @@ AVM performs end-to-end (e2e) test deployments of all modules in Azure for valid
 
 ### 3. Implement your contribution
 
-To implement your contribution, we kindly ask you to first review the [shared](/Azure-Verified-Modules/specs/shared/) & [Terraform-specific](/Azure-Verified-Modules/specs/terraform/) specifications and [composition guidelines](/Azure-Verified-Modules/contributing/bicep/terraform/) in particular to make sure your contribution complies with the repository's design and principles.
+To implement your contribution, we kindly ask you to first review the [Terraform specifications](/Azure-Verified-Modules/specs/tf/) and [composition guidelines](/Azure-Verified-Modules/contributing/terraform/) in particular to make sure your contribution complies with the repository's design and principles.
 
 {{< hint type=tip >}}
 To get a head start on developing your module, consider using the tooling recommended per spec [TFNFR37](/Azure-Verified-Modules/spec/TFNFR37). For example you can use the [newres](https://github.com/lonegunmanb/newres) tool to help with  creating `variables.tf` and `main.tf` if you're developing a module using Azurerm provider.
@@ -237,7 +237,7 @@ With the help of the [avm](https://github.com/Azure/terraform-azurerm-avm-templa
 
     Make sure to replace `<client_id>` and `<service_principal_password>` with the values of your service principal as well as `<example_folder>` (e.g. `default`) with the name of the example folder you want to run e2e tests for.
 
-2. Run e2e tests with the help of terraform init/plan/apply.
+2. Run e2e tests with the help of `terraform init/plan/apply`.
 
     Simply run `terraform init` and `terraform apply` in the `example` folder you want to run e2e tests for. Make sure to set the environment variables `ARM_SUBSCRIPTION_ID`, `ARM_TENANT_ID`, `ARM_CLIENT_ID` and `ARM_CLIENT_SECRET` before you run `terraform init` and `terraform apply` or make sure you have a valid Azure CLI session and are logged in with `az login`.
 

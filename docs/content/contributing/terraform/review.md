@@ -7,7 +7,7 @@ geekdocAnchor: true
 
 {{< toc >}}
 
-The AVM module review is a critical step before an AVM terraform module gets published to the [Terraform Registry](https://registry.terraform.io/) and made publicly available for customers, partners and wider community to consume and contribute to. It serves as a quality assurance step to ensure that the AVM terraform module complies with the [shared](/Azure-Verified-Modules/specs/shared/) and [terraform](/Azure-Verified-Modules/specs/terraform/) specifications of AVM. The below process outlines the steps that both the module owner and module reviewer need to follow.
+The AVM module review is a critical step before an AVM Terraform module gets published to the [Terraform Registry](https://registry.terraform.io/) and made publicly available for customers, partners and wider community to consume and contribute to. It serves as a quality assurance step to ensure that the AVM Terraform module complies with the [Terraform specifications](/Azure-Verified-Modules/specs/tf/) of AVM. The below process outlines the steps that both the module owner and module reviewer need to follow.
 
 1. The module owner completes the development of the module in their branch or fork.
 
@@ -18,7 +18,7 @@ The AVM module review is a critical step before an AVM terraform module gets pub
 4. The module owner leaves the following comment as it is on the module proposal in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project by searching for their module proposal by name there.
 
 {{< expand "➕ AVM Terraform Module Review Request" "expand/collapse" >}}
-I have completed my initial development of the module and I would like to request a review of my module before publishing it to the terraform registry. The latest code is in a PR titled [AVM-Review-PR](REPLACE WITH URL TO YOUR PR) on the module repo and all checks on that PR are passing.
+I have completed my initial development of the module and I would like to request a review of my module before publishing it to the Terraform Registry. The latest code is in a PR titled [AVM-Review-PR](REPLACE WITH URL TO YOUR PR) on the module repo and all checks on that PR are passing.
 {{< /expand >}}
 
 5. The AVM team moves the module proposal from "In Development" to "In Review" in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project.

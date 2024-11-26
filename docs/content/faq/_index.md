@@ -377,7 +377,7 @@ Customer should consider updating to a newer version of a module if:
 - It fixes a bug they were having.
 - They'd like ot use the latest and greatest version.
 
-To do this they just change the version in their module declaration for either terraform or bicep and then run it through their pipelines to roll it out.
+To do this they just change the version in their module declaration for either Terraform or Bicep and then run it through their pipelines to roll it out.
 
 The high level steps are:
 

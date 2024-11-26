@@ -13,7 +13,7 @@ This section describes the contribution flow for module owners who are responsib
 
 This contribution flow is for **Module Owners** only.
 
-As a **Bicep Module Owner** you need to be aware of the [AVM Contribution Process Overview](/Azure-Verified-Modules/contributing/process/), [Shared Specifications](/Azure-Verified-Modules/specs/shared/) (including [Interfaces](/Azure-Verified-Modules/specs/shared/interfaces/)) and [Bicep-specific](/Azure-Verified-Modules/specs/bicep/) specifications as these need to be followed during pull request reviews for the modules you own. The purpose of this **Owner Contribution Flow** is to simplify and list the most important activities of an owner and to help you understand your responsibilities as an owner.
+As a **Bicep Module Owner** you need to be aware of the [AVM Contribution Process Overview](/Azure-Verified-Modules/contributing/process/), [Bicep specifications](/Azure-Verified-Modules/specs/bcp/) (including [Bicep Interfaces](/Azure-Verified-Modules/specs/bcp/res/interfaces/)) as these need to be followed during pull request reviews for the modules you own. The purpose of this **Owner Contribution Flow** is to simplify and list the most important activities of an owner and to help you understand your responsibilities as an owner.
 
 {{< /hint >}}
 

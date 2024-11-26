@@ -10,12 +10,12 @@ geekdocAnchor: true
 {{< hint type=important >}}
 While this page describes and summarizes important aspects of the composition of AVM modules, it may not reference _All_ of the shared and language specific requirements.
 
-Therefore, this guide **MUST** be used in conjunction with the [Shared Specification](/Azure-Verified-Modules/specs/shared/) and the [Terraform specific](/Azure-Verified-Modules/specs/terraform/) specifications. **ALL AVM modules** (Resource and Pattern modules) **MUST meet the respective requirements described in these specifications**!
+Therefore, this guide **MUST** be used in conjunction with the [Terraform specifications](/Azure-Verified-Modules/specs/tf/). **ALL AVM modules** (Resource and Pattern modules) **MUST meet the respective requirements described in these specifications**!
 {{< /hint >}}
 
 {{< hint type=important >}}
 
-Before jumping on implementing your contribution, please review the AVM Module specifications, in particular the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Terraform specific](/Azure-Verified-Modules/specs/terraform/) pages, to make sure your contribution complies with the AVM module's design and principles.
+Before jumping on implementing your contribution, please review the AVM Module specifications, in particular the [Terraform specification](/Azure-Verified-Modules/specs/tf/) pages, to make sure your contribution complies with the AVM module's design and principles.
 
 {{< /hint >}}
 
@@ -159,7 +159,7 @@ Use `snake_casing` as per [TFNFR3](/Azure-Verified-Modules/spec/TFNFR3).
 
 ### Input Parameters and Variables
 
-Make sure to review all specifications of `Category: Inputs` within both the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Terraform specific](/Azure-Verified-Modules/specs/terraform/) pages.
+Make sure to review all specifications of `Category: Inputs/Outputs` within the [Terraform specification](/Azure-Verified-Modules/specs/tf/) pages.
 
 {{< hint type=tip >}}
 See examples in specifications [SNFR14](/Azure-Verified-Modules/spec/SNFR14) and [TFFR14](/Azure-Verified-Modules/spec/TFFR14).
@@ -189,7 +189,7 @@ See examples in specifications [SFR1](/Azure-Verified-Modules/spec/SFR1) and [RM
 
 ### Outputs
 
-Make sure to review all specifications of `Category: Outputs` within both the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Terraform specific](/Azure-Verified-Modules/specs/terraform/) pages.
+Make sure to review all specifications of `Category: Inputs/Outputs` within the [Terraform specification](/Azure-Verified-Modules/specs/tf/) pages.
 
 {{< hint type=tip >}}
 See examples in specification [RMFR7](/Azure-Verified-Modules/spec/RMFR7) and [TFFR2](/Azure-Verified-Modules/spec/TFFR2).
@@ -211,7 +211,7 @@ This section is only relevant for contributions to resource modules.
 
 To meet [RMFR4](/Azure-Verified-Modules/spec/RMFR4) and [RMFR5](/Azure-Verified-Modules/spec/RMFR5) AVM resource modules must leverage consistent interfaces for all the optional features/extension resources supported by the AVM module primary resource.
 
-Please refer to the [Shared Interfaces](/Azure-Verified-Modules/specs/shared/interfaces/) page.
+Please refer to the [Terraform Interfaces](/Azure-Verified-Modules/specs/tf/interfaces/) page.
 
 <br>
 

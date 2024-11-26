@@ -16,14 +16,14 @@ TODO: Should contain
 {{< hint type=important >}}
 While this page describes and summarizes important aspects of the composition of AVM modules, it may not reference *All* of the shared and language specific requirements.
 
-Therefore, this guide **MUST** be used in conjunction with the [Shared Specification](/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](/Azure-Verified-Modules/specs/bicep/) specifications. **ALL AVM modules** (Resource and Pattern modules) **MUST meet the respective requirements described in these specifications**!
+Therefore, this guide **MUST** be used in conjunction with the [Bicep specifications](/Azure-Verified-Modules/specs/bcp/). **ALL AVM modules** (Resource and Pattern modules) **MUST meet the respective requirements described in these specifications**!
 {{< /hint >}}
 
-## Naming / Composition
+## Composition
 
 {{< hint type=important >}}
 
-Before jumping on implementing your contribution, please review the AVM Module specifications, in particular the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](/Azure-Verified-Modules/specs/bicep/) pages, to make sure your contribution complies with the AVM module's design and principles.
+Before jumping on implementing your contribution, please review the AVM Module specifications, in particular the [Bicep specification](/Azure-Verified-Modules/specs/bcp/) page, to make sure your contribution complies with the AVM module's design and principles.
 
 {{< /hint >}}
 
@@ -106,7 +106,7 @@ Use `camelCasing` as per [BCPNFR8](/Azure-Verified-Modules/spec/BCPNFR8).
 
 #### Input Parameters and Variables
 
-Make sure to review all specifications of `Category: Inputs` within both the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](/Azure-Verified-Modules/specs/bicep/) pages.
+Make sure to review all specifications of `Category: Inputs/Outputs` within the [Bicep specification](/Azure-Verified-Modules/specs/bcp/) pages.
 
 {{< hint type=tip >}}
 See examples in specifications [SNFR14](/Azure-Verified-Modules/spec/SNFR14) and [BCPNFR1](/Azure-Verified-Modules/spec/BCPNFR1).
@@ -140,7 +140,7 @@ See examples in specifications [BCPFR1](/Azure-Verified-Modules/spec/BCPFR1) for
 
 #### Outputs
 
-Make sure to review all specifications of `Category: Outputs` within both the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](/Azure-Verified-Modules/specs/bicep/) pages.
+Make sure to review all specifications of `Category: Inputs/Outputs` within the [Bicep specific](/Azure-Verified-Modules/specs/bcp/) pages.
 
 {{< hint type=tip >}}
 See examples in specification [RMFR7](/Azure-Verified-Modules/spec/RMFR7).
@@ -160,7 +160,7 @@ This section is only relevant for contributions to resource modules.
 
 To meet [RMFR4](/Azure-Verified-Modules/spec/RMFR4) and [RMFR5](/Azure-Verified-Modules/spec/RMFR5) AVM resource modules must leverage consistent interfaces for all the optional features/extension resources supported by the AVM module primary resource.
 
-Please refer to the [Shared Interfaces](/Azure-Verified-Modules/specs/shared/interfaces/) page.
+Please refer to the [Bicep Interfaces](/Azure-Verified-Modules/specs/bcp/res/interfaces/) page.
 If the primary resource of the AVM resource module you are developing supports any of the listed features/extension resources, please follow the corresponding provided Bicep schema to develop them.
 
 <br>

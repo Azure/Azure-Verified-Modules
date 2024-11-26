@@ -19,7 +19,7 @@ This section describes the contribution flow for module owners who are responsib
 
 This contribution flow is for **Module owners** only.
 
-As a Terraform Module Owner you need to be aware of the [AVM contribution process overview](/Azure-Verified-Modules/contributing/process/) & [shared specifications](/Azure-Verified-Modules/specs/shared/) (including [Interfaces](/Azure-Verified-Modules/specs/shared/interfaces/)) and [Terraform-specific](/Azure-Verified-Modules/specs/terraform/) specifications as as these need to be considered during pull request reviews for the modules you own.
+As a Terraform Module Owner you need to be aware of the [AVM contribution process overview](/Azure-Verified-Modules/contributing/process/) & [Terraform specifications](/Azure-Verified-Modules/specs/tf/) (including [Interfaces](/Azure-Verified-Modules/specs/tf/interfaces/)) as as these need to be considered during pull request reviews for the modules you own.
 
 {{< /hint >}}
 

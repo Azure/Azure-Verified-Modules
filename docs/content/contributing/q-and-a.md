@@ -212,7 +212,7 @@ All issues created in a module repo will be automatically be picked up and track
 [ModuleProposal]: https://aka.ms/AVM/ModuleProposal
 [ModuleSupport]: /Azure-Verified-Modules/help-support/module-support/
 [AVMChannel]: https://aka.ms/AVM/channel
-[ModuleSpecifications]: /Azure-Verified-Modules/specs/
+[ModuleSpecifications]: /Azure-Verified-Modules/module-specs/
 [DiagnosticSettings]: /Azure-Verified-Modules/specs/shared/interfaces/#diagnostic-settings
 [AzureArchitectureCenter]: https://learn.microsoft.com/en-us/azure/architecture/browse/
 [ALZ]: https://aka.ms/alz

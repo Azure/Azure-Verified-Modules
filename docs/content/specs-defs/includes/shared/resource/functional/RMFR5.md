@@ -26,11 +26,5 @@ Resource modules **MUST** implement a common interface, e.g. the input's data st
 
 See:
 
-- [Diagnostic Settings Interface](/Azure-Verified-Modules/specs/shared/interfaces/#diagnostic-settings)
-- [Role Assignments Interface](/Azure-Verified-Modules/specs/shared/interfaces/#role-assignments)
-- [Resource Locks Interface](/Azure-Verified-Modules/specs/shared/interfaces/#resource-locks)
-- [Tags Interface](/Azure-Verified-Modules/specs/shared/interfaces/#tags)
-- [Managed Identities Interface](/Azure-Verified-Modules/specs/shared/interfaces/#managed-identities)
-- [Private Endpoints Interface](/Azure-Verified-Modules/specs/shared/interfaces/#private-endpoints)
-- [Customer Managed Keys Interface](/Azure-Verified-Modules/specs/shared/interfaces/#customer-managed-keys)
-- [Alerts Interface](/Azure-Verified-Modules/specs/shared/interfaces/#azure-monitor-alerts)
+- [Bicep Interfaces](/Azure-Verified-Modules/specs/bcp/res/interfaces/)
+- [Terraform Interfaces](/Azure-Verified-Modules/specs/tf/interfaces/)
