@@ -11,6 +11,9 @@ geekdocAnchor: true
 
 It has never been easier to find the specifications you need for your module development.
 
+- See [Bicep specifications](/Azure-Verified-Modules/specs/bcp)
+- See [Terraform specifications](/Azure-Verified-Modules/specs/tf)
+
 {{< /hint >}}
 
 <!-- {{< hint type=caution icon=gdoc_date title="AVM Community Calls" >}}
