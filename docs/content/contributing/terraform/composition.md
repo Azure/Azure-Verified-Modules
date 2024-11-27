@@ -46,7 +46,7 @@ See template repo [here](https://github.com/Azure/terraform-azurerm-avm-template
   - `unit/` - (optional, may use further sub-directories if required)
 - `modules/` - (for sub-modules only if used)
 - `examples/` - (all examples must deploy without successfully without requiring input - these are customer facing)
-  - `defaults` - (minimum/required parameters/variables only, heavy reliance on the default values for other parameters/variables)
+  - `<at least one folder>` - (at least one example that uses the variable defaults minimum/required parameters/variables only)
   - `<other folders for examples as required>`
 - `/...` - (Module files that live in the root of module directory)
   - `_header.md` - (required for documentation generation)
@@ -98,7 +98,7 @@ See template repo [here](https://github.com/Azure/terraform-azurerm-avm-template
 │   ├───extensions.json
 │   └───settings.json
 ├───examples/
-│   ├───default/
+│   ├───<example_folder>/
 │   │   ├───README.md
 │   │   ├───_footer.md
 │   │   ├───_header.md
