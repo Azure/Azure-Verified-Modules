@@ -253,7 +253,7 @@ When triaging the issue, consider adding one of the following labels as fits:
 - <mark style="background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>
 - <mark style="background-color:#FFFF00;">Type: Security Bug 🔒</mark>
 
-To see the full list of available labels, please refer to the [GitHub Repo Labels](/Azure-Verified-Modules/spes/SNFR23) section.
+To see the full list of available labels, please refer to the [GitHub Repo Labels](/Azure-Verified-Modules/spec/SNFR23) section.
 
 {{< hint type=note >}}
 
