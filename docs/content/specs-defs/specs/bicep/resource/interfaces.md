@@ -20,10 +20,10 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
 
 {{< tabs "diag-settings" >}}
   {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< include file="/static/includes/interfaces/int.diag.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.diag.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.diag.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.diag.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -39,10 +39,10 @@ In the provided example for Diagnostic Settings, both logs and metrics are enabl
 
 {{< tabs "role-assignments" >}}
   {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< include file="/static/includes/interfaces/int.rbac.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.rbac.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.rbac.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.rbac.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -56,10 +56,10 @@ In the provided example for Diagnostic Settings, both logs and metrics are enabl
 
 {{< tabs "locks" >}}
   {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< include file="/static/includes/interfaces/int.locks.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.locks.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.locks.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.locks.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -80,10 +80,10 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
 
 {{< tabs "tags" >}}
   {{< tab "Bicep Parameter Example" >}}
-  {{< include file="/static/includes/interfaces/int.tags.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.tags.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.tags.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.tags.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -100,10 +100,10 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
 
 {{< tabs "managed-identities" >}}
   {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< include file="/static/includes/interfaces/int.mi.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.mi.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.mi.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.mi.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -122,14 +122,14 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
   Please note that you will need to ensure that the User-Defined Types for [Role Assignments](#role-assignments) & [Locks](#resource-locks) also are present in your module file for this interface to work correctly.
   {{< /hint >}}
   {{< expand "➕ Variant 1: A default service (`groupId`) can be assumed - e.g., for services that only have one private endpoint type)" "expand/collapse" >}}
-  {{< include file="/static/includes/interfaces/int.pe.udt.schema1.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.pe.udt.schema1.bicep" language="bicep" options="linenos=false" >}}
   {{< /expand >}}
   {{< expand "➕ Variant 2: A default service (`groupId`) cannot be assumed - e.g., for services that have more than one private endpoint type, like a Storage Account (blob, file, etc.)" "expand/collapse" >}}
-  {{< include file="/static/includes/interfaces/int.pe.udt.schema2.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.pe.udt.schema2.bicep" language="bicep" options="linenos=false" >}}
   {{< /expand >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.pe.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.pe.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -148,10 +148,15 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
 
 {{< tabs "cmk" >}}
   {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< include file="/static/includes/interfaces/int.cmk.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< expand "➕ Variant 1: The resource does not support auto-key-rotation" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.cmk.udt.schema1.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
+  {{< expand "➕ Variant 2: The resource does support auto-key-rotation" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.cmk.udt.schema2.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.cmk.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.cmk.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -174,21 +179,21 @@ The feature must be implemented as per the below schema. Diversions are only all
 
 {{< /hint >}}
 
-{{< tabs "diag-settings" >}}
+{{< tabs "secret-export" >}}
   {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< include file="/static/includes/interfaces/int.secExp.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.secExp.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.secExp.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.secExp.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "[modules/keyVaultExport.bicep] file" >}}
-  {{< include file="/static/includes/interfaces/int.secExp.module.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.secExp.module.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Output Usage Example" >}}
   When using a module that implements the above interface, you can access its outputs for example in the following ways:
-  {{< include file="/static/includes/interfaces/int.secExp.output.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.secExp.output.bicep" language="bicep" options="linenos=false" >}}
   Which returns a JSON-formatted output like
-  {{< include file="/static/includes/interfaces/int.secExp.output.jsonFmt.json" language="json" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.secExp.output.jsonFmt.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
