@@ -100,13 +100,7 @@ For more examples, see the below script's parameters section.
 
 {{< /expand >}}
 
-## 1. Setup your Azure test environment
-
-{{< hint type=note >}}
-
-Each time in the following sections we refer to 'your xyz', it is an indicator that you have to change something in your own environment.
-
-{{< /hint >}}
+## 1. Fork the module source repository
 
 {{< hint type=tip >}}
 
@@ -114,37 +108,63 @@ Checkout the [PowerShell Helper Script](#powershell-helper-script-to-setup-fork-
 
 {{< /hint >}}
 
-AVM tests the deployments in an Azure subscription. To do so, it requires a deployment identity with access to it.
+Bicep AVM Modules (Resource, Pattern and Utility modules) will be homed in the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and live within an `avm` directory that will be located at the root of the repository, as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
 
-{{< hint type=important title="Deployment identity">}}
+Module owners are expected to fork the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository's `main` branch.
 
-Support to Service Principal + Secret authentication method has been deprecated and will be decommissioned going forward.
+To do so, simply navigate to the [Public Bicep Registry](https://github.com/Azure/bicep-registry-modules) repository, select the `'Fork'` button to the top right of the UI, select where the fork should be created (i.e., the owning organization) and finally click 'Create fork'.
 
-It is highly recommended to start leveraging Option 1 to adopt OpenID Connect (OIDC) authentication and align with security best practices.
+<br>
+
+
+## 2. Configure a deployment identity in Azure
+
+{{< hint type=note >}}
+
+Each time in the following sections we refer to 'your xyz', it is an indicator that you have to change something in your own environment.
 
 {{< /hint >}}
 
-{{< expand "➕ Option 1: Create a User-assigned managed identity [Recommended]" "expand/collapse" >}}
+AVM tests the deployments in an Azure subscription. To do so, it requires a deployment identity with access to it.
 
-1. Create a new or leverage an existing Entra ID Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in.
+{{< hint type=important title="Deprecating the Service Principal + Secret authentication method">}}
 
-Additional references:
+Support to Service Principal + Secret authentication method has been deprecated and will be decommissioned going forward.
 
-  - [Create a service principal (Azure Portal)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
-  - [Create a service principal (PowerShell)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
-  - [Find Service Principal object ID](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
-  - [Find managed Identity Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
-2. Note down the following pieces of information
-  - Application (Client) ID
+It is highly recommended to start leveraging Option 1 below to adopt OpenID Connect (OIDC) authentication and align with security best practices.
+
+{{< /hint >}}
+
+{{< expand "➕ Option 1 [Recommended]: OIDC - Configure a federated identity credential" "expand/collapse" >}}
+
+1. Create a new or leverage an existing user-assigned managed identity with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
+  - [Create a user-assigned managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities#create-a-user-assigned-managed-identity)
+  - [Assign an appropriate role to your user-assigned managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities#manage-access-to-user-assigned-managed-identities)
+
+2. Configure a federated identity credential on a user-assigned managed identity to trust tokens issued by GitHub Actions to your GitHub repository.
+  - In the Microsoft Entra admin center, navigate to the user-assigned managed identity you created. Under Settings in the left nav bar, select Federated credentials and then Add Credential.
+  - In the Federated credential scenario dropdown box, select GitHub Actions deploying Azure resources
+  - For Entity type, select Environment and specify the value avm-validation.
+  - Add a Name for the federated credential.
+  - The Issuer, Audiences, and Subject identifier fields autopopulate based on the values you entered.
+  - Select Add to configure the federated credential.
+  - You might find the following links useful:
+    - [Configure a federated identity credential on a user-assigned managed identity](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity)
+3. Note down the following pieces of information
+  - Client ID
   - Tenant ID
   - Subscription ID
   - Parent Management Group ID
 
+Additional references:
+  - [Configure a federated identity credential](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure-openid-connect#prerequisites)
+  - [Azure login GitHub action - Login with OIDC](https://github.com/Azure/login?tab=readme-ov-file#login-with-openid-connect-oidc-recommended)
+
 {{< /expand >}}
 
-{{< expand "➕ Option 2 [Deprecated]: Create a Microsoft Entra application " "expand/collapse" >}}
+{{< expand "➕ Option 2 [Deprecated]: Configure Service Principal + Secret" "expand/collapse" >}}
 
-1. Create a new or leverage an existing Entra ID Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
+1. Create a new or leverage an existing Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
   - [Create a service principal (Azure Portal)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
   - [Create a service principal (PowerShell)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
   - [Find Service Principal object ID](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
@@ -161,21 +181,6 @@ Additional references:
 
 <br>
 
-## 2. Fork the module source repository
-
-{{< hint type=tip >}}
-
-Checkout the [PowerShell Helper Script](#powershell-helper-script-to-setup-fork--ci-test-environment) that can do this step automatically for you! 👍
-
-{{< /hint >}}
-
-Bicep AVM Modules (both Resource and Pattern modules) will be homed in the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and live within an `avm` directory that will be located at the root of the repository, as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
-
-Module owners are expected to fork the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository's `main` branch.
-
-To do so, simply navigate to the [Public Bicep Registry](https://github.com/Azure/bicep-registry-modules) repository, select the `'Fork'` button to the top right of the UI, select where the fork should be created (i.e., the owning organization) and finally click 'Create fork'.
-
-<br>
 
 ## 3. Configure your CI environment
 
