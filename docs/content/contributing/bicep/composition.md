@@ -16,14 +16,14 @@ TODO: Should contain
 {{< hint type=important >}}
 While this page describes and summarizes important aspects of the composition of AVM modules, it may not reference *All* of the shared and language specific requirements.
 
-Therefore, this guide **MUST** be used in conjunction with the [Shared Specification](/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](/Azure-Verified-Modules/specs/bicep/) specifications. **ALL AVM modules** (Resource and Pattern modules) **MUST meet the respective requirements described in these specifications**!
+Therefore, this guide **MUST** be used in conjunction with the [Bicep specifications](/Azure-Verified-Modules/specs/bcp/). **ALL AVM modules** (Resource and Pattern modules) **MUST meet the respective requirements described in these specifications**!
 {{< /hint >}}
 
 ## Composition
 
 {{< hint type=important >}}
 
-Before jumping on implementing your contribution, please review the AVM Module specifications, in particular the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](/Azure-Verified-Modules/specs/bicep/) pages, to make sure your contribution complies with the AVM module's design and principles.
+Before jumping on implementing your contribution, please review the AVM Module specifications, in particular the [Bicep specification](/Azure-Verified-Modules/specs/bcp/) page, to make sure your contribution complies with the AVM module's design and principles.
 
 {{< /hint >}}
 
@@ -100,16 +100,16 @@ This section points to conventions to be followed when developing a Bicep templa
 
 #### Casing
 
-Use `camelCasing` as per [BCPNFR8](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr8---category-composition---code-styling---lower-camelcasing).
+Use `camelCasing` as per [BCPNFR8](/Azure-Verified-Modules/spec/BCPNFR8).
 
 ---
 
 #### Input Parameters and Variables
 
-Make sure to review all specifications of `Category: Inputs` within both the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](/Azure-Verified-Modules/specs/bicep/) pages.
+Make sure to review all specifications of `Category: Inputs/Outputs` within the [Bicep specification](/Azure-Verified-Modules/specs/bcp/) pages.
 
 {{< hint type=tip >}}
-See examples in specifications [SNFR14](/Azure-Verified-Modules/specs/shared/#id-snfr14---category-inputs---data-types) and [BCPNFR1](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr1---category-inputs---data-types).
+See examples in specifications [SNFR14](/Azure-Verified-Modules/spec/SNFR14) and [BCPNFR1](/Azure-Verified-Modules/spec/BCPNFR1).
 {{< /hint >}}
 
 ---
@@ -121,7 +121,7 @@ Resources are primarily leveraged by resource modules to declare the primary res
 Make sure to review all specifications covering resource properties and usage.
 
 {{< hint type=tip >}}
-See examples in specifications [SFR1](/Azure-Verified-Modules/specs/shared/#id-sfr1---category-composition---preview-services) and [RMFR1](/Azure-Verified-Modules/specs/shared/#id-rmfr1---category-composition---single-resource-only).
+See examples in specifications [SFR1](/Azure-Verified-Modules/spec/SFR1) and [RMFR1](/Azure-Verified-Modules/spec/RMFR1).
 {{< /hint >}}
 
 ---
@@ -133,17 +133,17 @@ Modules enable you to reuse code from a Bicep file in other Bicep files. As such
 Make sure to review all specifications covering module properties and usage.
 
 {{< hint type=tip >}}
-See examples in specifications [BCPFR1](/Azure-Verified-Modules/specs/bicep/#id-bcpfr1---category-composition---cross-referencing-modules) for resource modules and [PMNFR2](//Azure-Verified-Modules/specs/shared/#id-pmnfr2---category-composition---use-resource-modules-to-build-a-pattern-module) for pattern modules.
+See examples in specifications [BCPFR1](/Azure-Verified-Modules/spec/BCPFR1) for resource modules and [PMNFR2](//Azure-Verified-Modules/spec/PMNFR2) for pattern modules.
 {{< /hint >}}
 
 ---
 
 #### Outputs
 
-Make sure to review all specifications of `Category: Outputs` within both the [Shared](/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](/Azure-Verified-Modules/specs/bicep/) pages.
+Make sure to review all specifications of `Category: Inputs/Outputs` within the [Bicep specific](/Azure-Verified-Modules/specs/bcp/) pages.
 
 {{< hint type=tip >}}
-See examples in specification [RMFR7](/Azure-Verified-Modules/specs/shared/#id-rmfr7---category-outputs---minimum-required-outputs).
+See examples in specification [RMFR7](/Azure-Verified-Modules/spec/RMFR7).
 {{< /hint >}}
 
 ---
@@ -158,16 +158,16 @@ This section is only relevant for contributions to resource modules.
 
 {{< /hint >}}
 
-To meet [RMFR4](/Azure-Verified-Modules/specs/shared/#id-rmfr4---category-composition---avm-consistent-feature--extension-resources-value-add) and [RMFR5](/Azure-Verified-Modules/specs/shared/#id-rmfr5---category-composition---avm-consistent-feature--extension-resources-value-add-interfacesschemas) AVM resource modules must leverage consistent interfaces for all the optional features/extension resources supported by the AVM module primary resource.
+To meet [RMFR4](/Azure-Verified-Modules/spec/RMFR4) and [RMFR5](/Azure-Verified-Modules/spec/RMFR5) AVM resource modules must leverage consistent interfaces for all the optional features/extension resources supported by the AVM module primary resource.
 
-Please refer to the [Shared Interfaces](/Azure-Verified-Modules/specs/shared/interfaces/) page.
+Please refer to the [Bicep Interfaces](/Azure-Verified-Modules/specs/bcp/res/interfaces/) page.
 If the primary resource of the AVM resource module you are developing supports any of the listed features/extension resources, please follow the corresponding provided Bicep schema to develop them.
 
 <br>
 
 ### Deprecation
 
-Breaking changes are sometimes not avoidable. The impact should be kept as low as possible. A recommendation is to [deprecate parameters](/Azure-Verified-Modules/specs/shared/#id-snfr18---category-release---breaking-changes), instead of completely removing them for a couple of versions. The [Semantic Versioning](/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning) sections offers information about versioning AVM modules.
+Breaking changes are sometimes not avoidable. The impact should be kept as low as possible. A recommendation is to [deprecate parameters](/Azure-Verified-Modules/spec/SNFR18), instead of completely removing them for a couple of versions. The [Semantic Versioning](/Azure-Verified-Modules/spec/SNFR17) sections offers information about versioning AVM modules.
 
 In case you need to deprecate an input parameter, this sample shows you how this can be achieved.
 
@@ -202,7 +202,7 @@ item:
 
 #### Testing
 
-Before you begin to modify anything, it is recommended to create a new test case (e.g. *deprecated*), in addition to the already existing tests, to make sure that the changes are not breaking backward compatibility until you decide to finally remove the deprecated parameters (see [BCPRMNFR1 - Category: Testing - Expected Test Directories](/Azure-Verified-Modules/specs/bicep/#id-bcprmnfr1---category-testing---expected-test-directories) for more details about the requirements).
+Before you begin to modify anything, it is recommended to create a new test case (e.g. *deprecated*), in addition to the already existing tests, to make sure that the changes are not breaking backward compatibility until you decide to finally remove the deprecated parameters (see [BCPRMNFR1 - Category: Testing - Expected Test Directories](/Azure-Verified-Modules/spec/BCPRMNFR1) for more details about the requirements).
 
 ```bicep
 module testDeployment '../../../main.bicep' = [

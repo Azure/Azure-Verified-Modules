@@ -2,6 +2,9 @@
 main:
   - name: "Home"
     ref: "/"
+    sub:
+      - name: "Overview"
+        ref: "home/overview"
   - name: "Module Indexes"
     ref: "indexes"
     sub:
@@ -23,27 +26,22 @@ main:
             ref: "indexes/terraform/tf-pattern-modules"
           - name: "Utility Modules"
             ref: "indexes/terraform/tf-utility-modules"
-  - name: "Concepts"
-    ref: "concepts"
-    sub:
-      - name: "What, Why, How"
-        ref: "concepts/what-why-how"
-  - name: "Usage Guide"
-    ref: "usage"
-    sub:
-      - name: "Quickstart"
-        ref: "usage/quickstart"
-        sub:
-          - name: "Bicep"
-            ref: "usage/quickstart/bicep"
-          - name: "Terraform"
-            ref: "usage/quickstart/terraform"
-      - name: "Deployment options"
-        ref: "usage/deployment-options"
-      - name: "Usage Scenarios"
-        ref: "usage/usage-scenarios"
-      - name: "Orchestration"
-        ref: "usage/orchestration"
+  # - name: "Usage Guide"
+  #   ref: "usage"
+  #   sub:
+  #     - name: "Quickstart"
+  #       ref: "usage/quickstart"
+  #       sub:
+  #         - name: "Bicep"
+  #           ref: "usage/quickstart/bicep"
+  #         - name: "Terraform"
+  #           ref: "usage/quickstart/terraform"
+  #     - name: "Deployment options"
+  #       ref: "usage/deployment-options"
+  #     - name: "Usage Scenarios"
+  #       ref: "usage/usage-scenarios"
+  #     - name: "Orchestration"
+  #       ref: "usage/orchestration"
   - name: "Specifications & Definitions"
     ref: "specs-defs"
     sub:
@@ -56,18 +54,45 @@ main:
       - name: "Module Specifications"
         ref: "specs-defs/specs"
         sub:
-          - name: "Shared (Bicep & Terraform)"
-            ref: "specs-defs/specs/shared"
-            sub:
-              - name: "Interfaces"
-                ref: "specs-defs/specs/shared/interfaces"
-          - name: "Bicep Specific"
+          - name: "Bicep"
             ref: "specs-defs/specs/bicep"
             sub:
-              - name: "Interfaces"
-                ref: "specs-defs/specs/bicep/interfaces"
-          - name: "Terraform Specific"
+              - name: "Resource"
+                ref: "specs-defs/specs/bicep/resource"
+                sub:
+                  - name: "Interfaces"
+                    ref: "specs-defs/specs/bicep/resource/interfaces"
+              - name: "Pattern"
+                ref: "specs-defs/specs/bicep/pattern"
+              - name: "Utility"
+                ref: "specs-defs/specs/bicep/utility"
+          - name: "Terraform"
             ref: "specs-defs/specs/terraform"
+            sub:
+              - name: "Resource"
+                ref: "specs-defs/specs/terraform/resource"
+                sub:
+                  - name: "Interfaces"
+                    ref: "specs-defs/specs/terraform/resource/interfaces"
+              - name: "Pattern"
+                ref: "specs-defs/specs/terraform/pattern"
+              - name: "Utility"
+                ref: "specs-defs/specs/terraform/utility"
+          - name: "(Legacy)"
+            ref: "specs-defs/specs/legacy"
+            sub:
+            - name: "Shared (Bicep & Terraform)"
+              ref: "specs-defs/specs/legacy/shared"
+              sub:
+                - name: "Interfaces"
+                  ref: "specs-defs/specs/legacy/shared/interfaces"
+            - name: "Bicep Specific"
+              ref: "specs-defs/specs/legacy/bicep"
+              sub:
+                - name: "Interfaces"
+                  ref: "specs-defs/specs/legacy/bicep/interfaces"
+            - name: "Terraform Specific"
+              ref: "specs-defs/specs/legacy/terraform"
   - name: "Help & Support"
     ref: "help-support"
     sub:

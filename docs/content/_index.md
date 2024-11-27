@@ -5,13 +5,24 @@ geekdocNav: true
 geekdocAnchor: true
 ---
 
-{{< hint type=caution icon=gdoc_date title="AVM Community Calls" >}}
+{{< hint type=tip title="New Module Specifications pages !!" >}}
+
+**Check out our new [Module Specifications](/Azure-Verified-Modules/specs/module-specs) pages!**
+
+It has never been easier to find the specifications you need for your module development.
+
+- See [Bicep specifications](/Azure-Verified-Modules/specs/bcp)
+- See [Terraform specifications](/Azure-Verified-Modules/specs/tf)
+
+{{< /hint >}}
+
+<!-- {{< hint type=caution icon=gdoc_date title="AVM Community Calls" >}}
 
 The AVM team has hosted 2 community calls to date.
 
 To find out more about future calls and the recordings of previous ones please head to the [dedicated page](/Azure-Verified-Modules/resources/community)!
 
-{{< /hint >}}
+{{< /hint >}} -->
 
 {{< youtube id="JbIMrJKW5N0" title="An introduction to Azure Verified Modules (AVM)" >}}
 
@@ -72,11 +83,11 @@ See [Module Support](/Azure-Verified-Modules/help-support/module-support) for mo
 
 ## Next Steps
 
-1. Review [What, Why, How](/Azure-Verified-Modules/concepts/what-why-how/)
+1. Review [Overview](/Azure-Verified-Modules/home/overview/)
 
 2. Review the [Module Classification Definitions](/Azure-Verified-Modules/specs/shared/module-classifications/)
 
-3. Review the [Shared Specification](/Azure-Verified-Modules/specs/shared/)
+3. Review the [Specifications](/Azure-Verified-Modules/specs/module-specs/)
 
 4. Review the [FAQ](/Azure-Verified-Modules/faq/)
 
