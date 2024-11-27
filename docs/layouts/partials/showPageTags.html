@@ -1,0 +1,20 @@
+{{ $tags := index . "pageTags" }}
+{{ $baseURL := index . "baseURL" }}
+{{ $class := index . "class" }}
+
+{{ with $tags }}
+  <div class="tags">
+    <svg class="flex align-center no-wrap gdoc-icon gdoc_bookmark"><use xlink:href="#gdoc_bookmark"></use></svg>
+    {{ range sort . }}
+      <span class="flex align-center gdoc-button gdoc-button--regular gdoc-button--small-text{{ with $class }}{{ printf " %s" . }}{{ end }}" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;">
+        <a
+          class="gdoc-button__link"
+          href="{{ $baseURL }}tags/{{ . | urlize }}"
+          title="{{ i18n "posts_tagged_with" . }}"
+        >
+          {{ . }}
+        </a>
+      </span>
+    {{ end }}
+  </div>
+{{ end }}

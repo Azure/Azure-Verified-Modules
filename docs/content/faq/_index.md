@@ -328,7 +328,7 @@ For Microsoft FTEs only: see the **Internal** wiki for support workflow for more
 
 The initial focus of development and migration from CARML/TFVM has solely been on resource modules. Now that the most important resource modules are published, pattern modules can leverage them as and where needed. This however doesn't mean that the development of pattern modules is blocked in any way if a resource module is not available, since they may use native resources ("vanilla code"). If you're about to develop a pattern module and would need a resource modules that doesn't exist today, please consider building the resource module first, so that others can leverage it for their pattern modules as well.
 
-Please see [PMNFR2](/Azure-Verified-Modules/specs/shared/#id-pmnfr2---category-composition---use-resource-modules-to-build-a-pattern-module) for more details.
+Please see [PMNFR2](/Azure-Verified-Modules/spec/PMNFR2) for more details.
 
 ---
 
@@ -362,8 +362,8 @@ These same validations are also run in the [BRM](https://aka.ms/BRM) repository 
 
 ### Does AVM use semantic versioning?
 
-Yes! For generic guidance, see [SNFR17 - Semantic Versioning](/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning).
-For Bicep specific guidance, see [BCPNFR14 - Versioning](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr14---category-composition---versioning).
+Yes! For generic guidance, see [SNFR17 - Semantic Versioning](/Azure-Verified-Modules/spec/SNFR17).
+For Bicep specific guidance, see [BCPNFR14 - Versioning](/Azure-Verified-Modules/spec/BCPNFR14).
 
 ---
 
@@ -377,7 +377,7 @@ Customer should consider updating to a newer version of a module if:
 - It fixes a bug they were having.
 - They'd like ot use the latest and greatest version.
 
-To do this they just change the version in their module declaration for either terraform or bicep and then run it through their pipelines to roll it out.
+To do this they just change the version in their module declaration for either Terraform or Bicep and then run it through their pipelines to roll it out.
 
 The high level steps are:
 

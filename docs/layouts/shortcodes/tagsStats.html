@@ -1,0 +1,316 @@
+{{- $folder := .Get "folder" -}}
+{{- $languageFilter := default "" (.Get "language") -}}
+{{- $recursive := default false (.Get "recursive") -}}
+{{- $allFiles := slice -}}
+{{- $baseURL := $.Site.BaseURL -}}
+
+{{- if $recursive -}}
+  {{- $allFiles = partial "readDirRecursive" (dict "path" $folder "allFiles" $allFiles) -}}
+{{- else -}}
+  {{- $entries := readDir $folder -}}
+  {{- range $entries -}}
+    {{- $allFiles = $allFiles | append (printf "%s/%s" $folder .Name) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $categories := slice "Contribution/Support" "Telemetry" "Naming/Composition" "CodeStyle" "Inputs/Outputs" "Testing" "Documentation" "Release/Publishing" -}}
+{{- $languages := slice -}}
+{{- $classes := slice "Resource" "Pattern" "Utility" -}}
+{{- $counts := dict -}}
+
+{{/*  Getting all the pages to find all the possible combinations of categories, languages, and classes.  */}}
+{{- range $allFiles -}}
+  {{- $file := replace . "content/" "" -}}
+  {{- $page := site.GetPage $file -}}
+  {{- $pageTags := $page.Params.tags -}}
+
+  {{/*  At the end, the $categories, $languages, and $classes will have their possible values  */}}
+  {{- /*  Getting one file/page at time  */}}
+  {{- if $page -}}
+    {{- range $pageTags -}}
+      {{- if findRE `^Category-` . -}}
+        {{- $category := replace . "Category-" "" -}}
+        {{- if not (in $categories $category) -}}
+          {{- $categories = $categories | append $category -}}
+        {{- end -}}
+      {{- else if findRE `^Language-` . -}}
+        {{- $language := replace . "Language-" "" -}}
+        {{- if not (in $languages $language) -}}
+          {{- $languages = $languages | append $language -}}
+        {{- end -}}
+      {{- else if findRE `^Class-` . -}}
+        {{- $class := replace . "Class-" "" -}}
+        {{- if not (in $classes $class) -}}
+          {{- $classes = $classes | append $class -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{/*  Initialize $counts with zeros  */}}
+{{- range $categories -}}
+  {{- $category := . -}}
+  {{- range $languages -}}
+    {{- $language := . -}}
+    {{- range $classes -}}
+      {{- $class := . -}}
+      {{- $key := printf "%s-%s-%s" $category $language $class -}}
+      {{/*  {{- $key := slice $category $language $class -}}  */}}
+      {{- $counts = merge $counts (dict $key 0) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{/*  {{- $counts = $counts | uniq -}}  */}}
+
+{{- range $allFiles -}}
+  {{- $file := replace . "content/" "" -}}
+  {{- $page := site.GetPage $file -}}
+  {{- $pageTags := $page.Params.tags -}}
+
+  {{/*  Getting one file/page at a time  */}}
+  {{- if $page -}}
+    {{- $categoryTags := slice -}}
+    {{- $languageTags := slice -}}
+    {{- $classTags := slice -}}
+
+    {{/*  Getting all category, language, and class tags from the page  */}}
+    {{- range $pageTags -}}
+      {{- if findRE `^Category-` . -}}
+        {{- $categoryTags = $categoryTags | append . -}}
+      {{- else if findRE `^Language-` . -}}
+        {{- $languageTags = $languageTags | append . -}}
+      {{- else if findRE `^Class-` . -}}
+        {{- $classTags = $classTags | append . -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{/*  Counting all combinations of category, language, and class tags  */}}
+    {{- range $categoryTags -}}
+      {{- $categoryTag := . -}}
+      {{- $category := replace $categoryTag "Category-" "" -}}
+      {{- range $languageTags -}}
+        {{- $languageTag := . -}}
+        {{- $language := replace $languageTag "Language-" "" -}}
+        {{- range $classTags -}}
+          {{- $classTag := . -}}
+          {{- $class := replace $classTag "Class-" "" -}}
+          {{- $key := printf "%s-%s-%s" $category $language $class -}}
+          {{- $currentCount := index $counts $key -}}
+          {{- $counts = merge $counts (dict $key (add $currentCount 1)) -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $summary := dict -}}
+{{- range $languages -}}
+  {{- $language := . -}}
+  {{- range $classes -}}
+    {{- $class := . -}}
+    {{- $key := printf "%s-%s" $language $class -}}
+    {{- $summary = merge $summary (dict $key 0) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- range $categories -}}
+  {{- $category := . -}}
+  {{- range $languages -}}
+    {{- $language := . -}}
+    {{- range $classes -}}
+      {{- $class := . -}}
+      {{- $key := printf "%s-%s-%s" $category $language $class -}}
+      {{- $summaryKey := printf "%s-%s" $language $class -}}
+      {{- $currentCount := index $counts $key -}}
+      {{- $currentSummary := index $summary $summaryKey -}}
+      {{- $summary = merge $summary (dict $summaryKey (add $currentSummary $currentCount)) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $urlMap := dict
+  "Contribution/Support-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#contribution--support"
+  "Telemetry-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#telemetry"
+  "Naming/Composition-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#naming--composition"
+  "CodeStyle-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#code-style"
+  "Inputs/Outputs-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#inputs--outputs"
+  "Testing-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#testing"
+  "Documentation-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#documentation"
+  "Release/Publishing-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#release--publishing"
+  "Contribution/Support-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#contribution--support"
+  "Telemetry-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#telemetry"
+  "Naming/Composition-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#naming--composition"
+  "CodeStyle-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#code-style"
+  "Inputs/Outputs-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#inputs--outputs"
+  "Testing-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#testing"
+  "Documentation-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#documentation"
+  "Release/Publishing-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#release--publishing"
+  "Contribution/Support-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#contribution--support"
+  "Telemetry-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#telemetry"
+  "Naming/Composition-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#naming--composition"
+  "CodeStyle-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#code-style"
+  "Inputs/Outputs-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#inputs--outputs"
+  "Testing-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#testing"
+  "Documentation-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#documentation"
+  "Release/Publishing-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#release--publishing"
+  "Contribution/Support-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/ptn/#contribution--support"
+  "Telemetry-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#telemetry"
+  "Naming/Composition-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#naming--composition"
+  "CodeStyle-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#code-style"
+  "Inputs/Outputs-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#inputs--outputs"
+  "Testing-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#testing"
+  "Documentation-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#documentation"
+  "Release/Publishing-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#release--publishing"
+  "Contribution/Support-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#contribution--support"
+  "Telemetry-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#telemetry"
+  "Naming/Composition-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#naming--composition"
+  "CodeStyle-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#code-style"
+  "Inputs/Outputs-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#inputs--outputs"
+  "Testing-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#testing"
+  "Documentation-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#documentation"
+  "Release/Publishing-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#release--publishing"
+  "Contribution/Support-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#contribution--support"
+  "Telemetry-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#telemetry"
+  "Naming/Composition-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#naming--composition"
+  "CodeStyle-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#code-style"
+  "Inputs/Outputs-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#inputs--outputs"
+  "Testing-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#testing"
+  "Documentation-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#documentation"
+  "Release/Publishing-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#release--publishing"
+-}}
+
+<table>
+  <thead>
+    <tr>
+      {{- if (eq $languageFilter "") -}}
+        <th rowspan="2">Category</th>
+        <th colspan="3" style="text-align: center;">
+          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Language-Bicep" title="{{ i18n "posts_tagged_with" "Language-Bicep" }}">
+              Bicep
+            </a>
+          </span>
+        </th>
+        <th colspan="3" style="text-align: center;">
+          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Language-Terraform" title="{{ i18n "posts_tagged_with" "Language-Terraform" }}">
+              Terraform
+            </a>
+          </span>
+        </th>
+      {{- end -}}
+    </tr>
+    <tr>
+      {{- if or (eq $languageFilter "Bicep") (eq $languageFilter "Terraform") -}}
+        <th >Category</th>
+      {{- end -}}
+      {{- if or (eq $languageFilter "Bicep") (eq $languageFilter "") -}}
+        <th style="text-align: center;">
+          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Class-Resource" title="{{ i18n "posts_tagged_with" "Class-Resource" }}">
+              Resource
+            </a>
+          </span>
+        </th>
+        <th style="text-align: center;">
+          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Class-Pattern" title="{{ i18n "posts_tagged_with" "Class-Pattern" }}">
+              Pattern
+            </a>
+          </span>
+        </th>
+        <th style="text-align: center;">
+          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Class-Utility" title="{{ i18n "posts_tagged_with" "Class-Utility" }}">
+              Utility
+            </a>
+          </span>
+        </th>
+      {{- end -}}
+      {{- if or (eq $languageFilter "Terraform") (eq $languageFilter "") -}}
+        <th style="text-align: center;">
+          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Class-Resource" title="{{ i18n "posts_tagged_with" "Class-Resource" }}">
+              Resource
+            </a>
+          </span>
+        </th>
+        <th style="text-align: center;">
+          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Class-Pattern" title="{{ i18n "posts_tagged_with" "Class-Pattern" }}">
+              Pattern
+            </a>
+          </span>
+        </th>
+        <th style="text-align: center;">
+          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Class-Utility" title="{{ i18n "posts_tagged_with" "Class-Utility" }}">
+              Utility
+            </a>
+          </span>
+        </th>
+      {{- end -}}
+    </tr>
+  </thead>
+  <tbody>
+    {{- range $categories -}}
+      {{- $category := . -}}
+      <tr>
+        <td>
+          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Category-{{ $category | urlize }}" title="{{ i18n "posts_tagged_with" (printf "Category-%s" $category) }}">
+              {{ $category }}
+            </a>
+          </span>
+        </td>
+        {{- if or (eq $languageFilter "Bicep") (eq $languageFilter "") -}}
+          {{- $language := "Bicep" -}}
+          {{- range $classes -}}
+            {{- $class := . -}}
+            {{- $key := printf "%s-%s-%s" $category $language $class -}}
+            {{- $url := index $urlMap $key -}}
+            {{- if $url -}}
+              <td style="text-align: center;"><a href="{{ $url }}" style="text-decoration: none;">{{ default 0 (index $counts $key) }}</a></td>
+            {{- else -}}
+              <td style="text-align: center;">{{ default 0 (index $counts $key) }}</td>
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+        {{- if or (eq $languageFilter "Terraform") (eq $languageFilter "") -}}
+          {{- $language := "Terraform" -}}
+          {{- range $classes -}}
+            {{- $class := . -}}
+            {{- $key := printf "%s-%s-%s" $category $language $class -}}
+            {{- $url := index $urlMap $key -}}
+            {{- if $url -}}
+              <td style="text-align: center;"><a href="{{ $url }}" style="text-decoration: none;">{{ default 0 (index $counts $key) }}</a></td>
+            {{- else -}}
+              <td style="text-align: center;">{{ default 0 (index $counts $key) }}</td>
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      </tr>
+    {{- end -}}
+    <tr>
+      <td><strong>Summary</strong></td>
+      {{- if or (eq $languageFilter "Bicep") (eq $languageFilter "") -}}
+        {{- $language := "Bicep" -}}
+        {{- range $classes -}}
+          {{- $class := . -}}
+          {{- $summaryKey := printf "%s-%s" $language $class -}}
+          <td style="text-align: center;"><strong>{{ default 0 (index $summary $summaryKey) }}</strong></td>
+        {{- end -}}
+      {{- end -}}
+      {{- if or (eq $languageFilter "Terraform") (eq $languageFilter "") -}}
+        {{- $language := "Terraform" -}}
+        {{- range $classes -}}
+          {{- $class := . -}}
+          {{- $summaryKey := printf "%s-%s" $language $class -}}
+          <td style="text-align: center;"><strong>{{ default 0 (index $summary $summaryKey) }}</strong></td>
+        {{- end -}}
+      {{- end -}}
+    </tr>
+  </tbody>
+</table>

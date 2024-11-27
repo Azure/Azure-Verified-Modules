@@ -24,15 +24,15 @@ button_homepage: Back to homepage
 
 title_anchor_prefix: "Anchor to:"
 
-posts_read_more: Read full post
+posts_read_more: Read full article
 posts_read_time:
   one: "One minute to read"
   other: "{{ . }} minutes to read"
 posts_update_prefix: Updated on
 posts_count:
-  one: "One post"
-  other: "{{ . }} posts"
-posts_tagged_with: All posts tagged with '{{ . }}'
+  one: "One article"
+  other: "{{ . }} articles"
+posts_tagged_with: All articles tagged with '{{ . }}'
 
 footer_build_with: >
   Built with <a href="https://gohugo.io/" class="gdoc-footer__link">Hugo</a> and

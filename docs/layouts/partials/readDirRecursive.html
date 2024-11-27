@@ -1,0 +1,14 @@
+{{- $path := .path -}}
+{{- $allFiles := .allFiles -}}
+{{- $entries := readDir $path -}}
+
+{{- range $entries -}}
+  {{- $entryPath := printf "%s/%s" $path .Name -}}
+  {{- if .IsDir -}}
+    {{- $allFiles = partial "readDirRecursive" (dict "path" $entryPath "allFiles" $allFiles) -}}
+  {{- else -}}
+    {{- $allFiles = $allFiles | append $entryPath -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return $allFiles -}}
