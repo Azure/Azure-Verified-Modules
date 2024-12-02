@@ -228,7 +228,7 @@ This is a lightweight telemetry provider that sends telemetry data to Azure Appl
 The telemetry provider is included in the module by default and is enabled by default.
 You do not need to change the configuration included in the [template repo](https://github.com/Azure/terraform-azurerm-avm-template/blob/main/main.telemetry.tf).
 
-You must make sure to have the `modtm` provider in your `requried_providers`.
+You must make sure to have the `modtm` provider in your `required_providers`.
 The linter will check this for you.
 However, inside your `terraform.tf` file please make sure you have this entry:
 
