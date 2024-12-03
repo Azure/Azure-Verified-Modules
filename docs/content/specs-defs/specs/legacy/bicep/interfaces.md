@@ -41,17 +41,17 @@ The feature must be implemented as per the below schema. Diversions are only all
 
 {{< tabs "diag-settings" >}}
   {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< include file="/static/includes/interfaces/int.secExp.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.secExp.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.secExp.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.secExp.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "[modules/keyVaultExport.bicep] file" >}}
-  {{< include file="/static/includes/interfaces/int.secExp.module.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.secExp.module.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Output Usage Example" >}}
   When using a module that implements the above interface, you can access its outputs for example in the following ways:
-  {{< include file="/static/includes/interfaces/int.secExp.output.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.secExp.output.bicep" language="bicep" options="linenos=false" >}}
   Which returns a JSON-formatted output like
   {{< include file="/static/includes/interfaces/int.secExp.output.jsonFmt.json" language="json" options="linenos=false" >}}
   {{< /tab >}}

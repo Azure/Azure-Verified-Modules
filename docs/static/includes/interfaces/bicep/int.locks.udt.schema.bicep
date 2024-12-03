@@ -3,8 +3,9 @@
 //   Parameters   //
 // ============== //
 
+import { lockType } from 'br/public:avm/utl/types/avm-common-types:0.4.0'
 @description('Optional. The lock settings of the service.')
-param lock lockType
+param lock lockType?
 
 // ============= //
 //   Resources   //
@@ -18,15 +19,3 @@ resource >singularMainResourceType<_lock 'Microsoft.Authorization/locks@2020-05-
   }
   scope: >singularMainResourceType<
 }
-
-// =============== //
-//   Definitions   //
-// =============== //
-
-type lockType = {
-  @description('Optional. Specify the name of lock.')
-  name: string?
-
-  @description('Optional. Specify the type of lock.')
-  kind: ('CanNotDelete' | 'ReadOnly' | 'None')?
-}?
