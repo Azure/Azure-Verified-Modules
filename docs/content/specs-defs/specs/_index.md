@@ -32,22 +32,26 @@ To find what you need, simply decide which IaC language you'd like develop in, a
 
 The following tags are used to qualify the specifications:
 
-| Key       | Allowed Values                                                                                                             | Multiple/Single |
-|-----------|----------------------------------------------------------------------------------------------------------------------------|-----------------|
-| Language  | Bicep, Terraform                                                                                                           | Multiple        |
-| Class     | Resource, Pattern, Utility                                                                                                 | Multiple        |
-| Type      | Functional, NonFunctional                                                                                                  | Single          |
-| Category  | Testing, Telemetry, Contribution/Support, Documentation, CodeStyle, Naming/Composition, Inputs/Outputs, Release/Publishing | Single          |
-| Severity  | MUST, SHOULD, MAY                                                                                                          | Single          |
-| Persona   | Owner, Contributor                                                                                                         | Multiple        |
-| Lifecycle | Initial, BAU, EOL                                                                                                          | Single          |
-| Validation| Manual, CI/Informational, CI/Enforced                                                                                      | Single          |
+| Key       | Allowed Values                                                                                                             | Multiple/Single     |
+|-----------|----------------------------------------------------------------------------------------------------------------------------|-------------------- |
+| Language  | Bicep, Terraform                                                                                                           | Multiple            |
+| Class     | Resource, Pattern, Utility                                                                                                 | Multiple            |
+| Type      | Functional, NonFunctional                                                                                                  | Single              |
+| Category  | Testing, Telemetry, Contribution/Support, Documentation, CodeStyle, Naming/Composition, Inputs/Outputs, Release/Publishing | Single              |
+| Severity  | MUST, SHOULD, MAY                                                                                                          | Single              |
+| Persona   | Owner, Contributor                                                                                                         | Multiple            |
+| Lifecycle | Initial, BAU, EOL                                                                                                          | Single              |
+| Validation| **Bicep**: BCP/Manual, BCP/CI/Informational, BCP/CI/Enforced <br>**Terraform**: TF/Manual, TF/CI/Informational, TF/CI/Enforced                         | Single per language |
 
 Each tag is a concatenation of exactly one of the keys and one of the values, e.g., `Language-Bicep`, `Class-Resource`, `Type-Functional`, etc. When it's marked as `Multiple`, it means that the tag can have multiple values, e.g., `Language-Bicep, Language-Terraform`, or `Persona-Owner, Persona-Contributor`, etc. When it's marked as `Single`, it means that the tag can have only one value, e.g., `Type-Functional`, `Lifecycle-Initial`, etc.
 
+<details>
+
+<summary>Click here to see the definition of the Severity, Persona, Lifecycle and Validation tags...</summary>
+
 **Severity**
 
-What's the severity or importance of this specification? See "[How to read the specifications?](http://localhost:1313/Azure-Verified-Modules/specs/module-specs/#how-to-read-the-specifications)" section for more details.
+What's the severity or importance of this specification? See "[How to read the specifications?](/Azure-Verified-Modules/specs/module-specs/#how-to-read-the-specifications)" section for more details.
 
 **Persona**
 
@@ -69,6 +73,10 @@ How is this specification checked/validated/enforced?
 - `CI/Informational` means that the module is checked against the specification by a CI pipeline, but the failure is only informational and doesn't block the module release.
 - `CI/Enforced` means that the specification is automatically enforced by a CI pipeline, and the failure blocks the module release.
 
+Note: the `BCP/` or `TF/` prefix is required as shared (language-agnostic) specifications may have different level of validation/enforcement per each language - e.g., it is possible that a specification is enforced by a CI pipeline for Bicep modules, while it is manually enforced for Terraform modules.
+
+</details>
+
 ## Why are there language specific specifications?
 
 While every effort is being made to standardize requirements and implementation details across all languages (and most specifications in fact, are applicable to all), it is expected that some of the specifications will be different between their respective languages to ensure we follow the best practices and leverage features of each language.
@@ -88,4 +96,3 @@ There are 3 levels of specifications:
 - MUST: These are mandatory requirements that **MUST** be followed.
 - SHOULD: These are recommended requirements that **SHOULD** be followed, unless there are good reasons for not to.
 - MAY: These are optional requirements that **MAY** be followed at the module owner's/contributor's discretion.
-
