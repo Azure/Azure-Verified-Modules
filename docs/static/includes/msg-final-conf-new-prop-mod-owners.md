@@ -9,11 +9,11 @@ Before starting development, please ensure ALL the following requirements are me
 
 - For your module:
   - `ModuleName` - for naming your module
-  - `TelemetryIdPrefix` - for your module's [telemetry](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-sfr3---category-telemetry---deploymentusage-telemetry)
+  - `TelemetryIdPrefix` - for your module's [telemetry](https://azure.github.io/Azure-Verified-Modules/spec/SFR3)
 - For your module's repository:
   - Repo name and folder path are defined in `RepoURL`
-  - Create GitHub teams for module owners and contributors and grant them permissions as outlined [here](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only).
-  - Grant permissions for the AVM core team and PG teams on your GitHub repo as described [here](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr9---category-contributionsupport---avm--pg-teams-github-repo-permissions).
+  - Create GitHub teams for module owners and contributors and grant them permissions as outlined [here](https://azure.github.io/Azure-Verified-Modules/spec/SNFR20).
+  - Grant permissions for the AVM core team and PG teams on your GitHub repo as described [here](https://azure.github.io/Azure-Verified-Modules/spec/SNFR9).
 
 Check if this module exists in the other IaC language. If so, collaborate with the other owner for consistency. 👍
 

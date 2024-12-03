@@ -120,7 +120,7 @@ Function Invoke-AvmGitHubTeamLinter {
                         Validation     = "Owner Not Assigned in Team."
                         Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
                         GitHubTeamName = $ghTeam.name
-                        Resolution     = "Please assign the correct owners permissions to the team: [$($ghTeam.name)]. This can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only)."
+                        Resolution     = "Please assign the correct owners permissions to the team: [$($ghTeam.name)]. This can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/spec/SNFR20)."
                     }
                     # Add the custom object to the array
                     $unmatchedTeams += $unmatchedTeam
@@ -142,7 +142,7 @@ Function Invoke-AvmGitHubTeamLinter {
                               Validation     = "No parent team assigned."
                               Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
                               GitHubTeamName = $ghTeam.name
-                              Resolution     = "Assign the correct parent team to the team: $($module.ModuleOwnersGHTeam) [here](https://github.com/orgs/Azure/teams/$($module.ModuleContributorsGHTeam)). Parent information can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only)."
+                              Resolution     = "Assign the correct parent team to the team: $($module.ModuleOwnersGHTeam) [here](https://github.com/orgs/Azure/teams/$($module.ModuleContributorsGHTeam)). Parent information can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/spec/SNFR20)."
                           }
                           # Add the custom object to the array
                           $unmatchedTeams += $unmatchedTeam
@@ -167,7 +167,7 @@ Function Invoke-AvmGitHubTeamLinter {
                                   Validation     = "No correct permissions assigned."
                                   Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
                                   GitHubTeamName = $ghTeam.name
-                                  Resolution     = "Please assign the correct permissions to the team: $($module.ModuleOwnersGHTeam). This can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only)."
+                                  Resolution     = "Please assign the correct permissions to the team: $($module.ModuleOwnersGHTeam). This can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/spec/SNFR20)."
                               }
                               # Add the custom object to the array
                               $unmatchedTeams += $unmatchedTeam
@@ -245,7 +245,7 @@ Function Invoke-AvmGitHubTeamLinter {
                               Validation     = "No parent team assigned."
                               Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
                               GitHubTeamName = $ghTeam.name
-                              Resolution     = "Assign the correct parent team to the team: $($module.ModuleContributorsGHTeam) [here](https://github.com/orgs/Azure/teams/$($module.ModuleContributorsGHTeam)). Parent information can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only)."
+                              Resolution     = "Assign the correct parent team to the team: $($module.ModuleContributorsGHTeam) [here](https://github.com/orgs/Azure/teams/$($module.ModuleContributorsGHTeam)). Parent information can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/spec/SNFR20)."
                           }
                           # Add the custom object to the array
                           $unmatchedTeams += $unmatchedTeam
@@ -269,7 +269,7 @@ Function Invoke-AvmGitHubTeamLinter {
                                   Validation     = "No correct permissions assigned."
                                   Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
                                   GitHubTeamName = $ghTeam.name
-                                  Resolution     = "Please assign the correct permissions to the team: $($module.ModuleContributorsGHTeam). This can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only)."
+                                  Resolution     = "Please assign the correct permissions to the team: $($module.ModuleContributorsGHTeam). This can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/spec/SNFR20)."
                               }
                               # Add the custom object to the array
                               $unmatchedTeams += $unmatchedTeam
@@ -346,7 +346,7 @@ Function Invoke-AvmGitHubTeamLinter {
                   Validation     = "No correct permissions assigned."
                   Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
                   GitHubTeamName = $tfAdminteam
-                  Resolution     = "Please assign the correct permissions to the team: [$tfAdminteam]. This can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-snfr20---category-contributionsupport---github-teams-only)."
+                  Resolution     = "Please assign the correct permissions to the team: [$tfAdminteam]. This can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/spec/SNFR20)."
               }
               # Add the custom object to the array
               $unmatchedTeams += $unmatchedTeam
