@@ -9,7 +9,7 @@ body:
       value: |
         Thank you for proposing a new AVM module!
 
-        Please ensure you have checked the [AVM Module Classification Definitions](https://azure.github.io/Azure-Verified-Modules/specs/shared/module-classifications/) & the [AVM Shared Specifications](https://azure.github.io/Azure-Verified-Modules/specs/shared/).
+        Please ensure you have checked the [AVM Module Classification Definitions](https://azure.github.io/Azure-Verified-Modules/specs/shared/module-classifications/) & the [AVM Module Specifications](https://azure.github.io/Azure-Verified-Modules/specs/module-specs/).
   - type: checkboxes
     id: existing-checks
     attributes:
@@ -53,7 +53,7 @@ body:
     attributes:
       label: Module Name
       description: |
-        What would be the name of the module following the [naming pattern](https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmnfr1---category-naming)?
+        What would be the name of the module following the [naming pattern](https://azure.github.io/Azure-Verified-Modules/spec/RMNFR1/)?
         - Bicep: `avm/res/<rp (hyphenated)>/<resource type (hyphenated, singular form)>`; e.g., `avm/res/virtual-machine-images/image-template`
         - Terraform: `avm-res-<rp (single word)>-<resource type (single word, singular form)>`; e.g., `avm-res-virtualmachineimages-imagetemplate`
       placeholder: '<Module name>'

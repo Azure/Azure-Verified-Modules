@@ -182,23 +182,34 @@
 -}}
 
 <table>
+  {{/*  <colgroup>
+    <col style="border-right: 1px solid rgb(233, 236, 239);">
+    {{- if not (or (eq $languageFilter "Bicep") (eq $languageFilter "Terraform")) -}}
+      <col>
+      <col>
+      <col style="border-right: 1px solid rgb(233, 236, 239);">
+    {{- end -}}
+
+  </colgroup>  */}}
   <thead>
     <tr>
       {{- if (eq $languageFilter "") -}}
         <th rowspan="2">Category</th>
         <th colspan="3" style="text-align: center;">
-          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+          <a href="{{ $baseURL }}specs/bcp" style="text-decoration: none;">Bicep</a>
+          {{/*  <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
             <a class="gdoc-button__link" href="{{ $baseURL }}tags/Language-Bicep" title="{{ i18n "posts_tagged_with" "Language-Bicep" }}">
               Bicep
             </a>
-          </span>
+          </span>  */}}
         </th>
         <th colspan="3" style="text-align: center;">
-          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+          <a href="{{ $baseURL }}specs/tf" style="text-decoration: none;">Terraform</a>
+          {{/*  <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
             <a class="gdoc-button__link" href="{{ $baseURL }}tags/Language-Terraform" title="{{ i18n "posts_tagged_with" "Language-Terraform" }}">
               Terraform
             </a>
-          </span>
+          </span>  */}}
         </th>
       {{- end -}}
     </tr>
@@ -208,48 +219,54 @@
       {{- end -}}
       {{- if or (eq $languageFilter "Bicep") (eq $languageFilter "") -}}
         <th style="text-align: center;">
-          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+          <a href="{{ $baseURL }}specs/bcp/res" style="text-decoration: none;">Resource</a>
+          {{/*  <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
             <a class="gdoc-button__link" href="{{ $baseURL }}tags/Class-Resource" title="{{ i18n "posts_tagged_with" "Class-Resource" }}">
               Resource
             </a>
-          </span>
+          </span>  */}}
         </th>
         <th style="text-align: center;">
-          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+          <a href="{{ $baseURL }}specs/bcp/ptn" style="text-decoration: none;">Pattern</a>
+          {{/*  <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
             <a class="gdoc-button__link" href="{{ $baseURL }}tags/Class-Pattern" title="{{ i18n "posts_tagged_with" "Class-Pattern" }}">
               Pattern
             </a>
-          </span>
+          </span>  */}}
         </th>
         <th style="text-align: center;">
-          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+          <a href="{{ $baseURL }}specs/bcp/utl" style="text-decoration: none;">Utility</a>
+          {{/*  <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
             <a class="gdoc-button__link" href="{{ $baseURL }}tags/Class-Utility" title="{{ i18n "posts_tagged_with" "Class-Utility" }}">
               Utility
             </a>
-          </span>
+          </span>  */}}
         </th>
       {{- end -}}
       {{- if or (eq $languageFilter "Terraform") (eq $languageFilter "") -}}
         <th style="text-align: center;">
-          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+          <a href="{{ $baseURL }}specs/tf/res" style="text-decoration: none;">Resource</a>
+          {{/*  <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
             <a class="gdoc-button__link" href="{{ $baseURL }}tags/Class-Resource" title="{{ i18n "posts_tagged_with" "Class-Resource" }}">
               Resource
             </a>
-          </span>
+          </span>  */}}
         </th>
         <th style="text-align: center;">
-          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+          <a href="{{ $baseURL }}specs/tf/ptn" style="text-decoration: none;">Pattern</a>
+          {{/*  <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
             <a class="gdoc-button__link" href="{{ $baseURL }}tags/Class-Pattern" title="{{ i18n "posts_tagged_with" "Class-Pattern" }}">
               Pattern
             </a>
-          </span>
+          </span>  */}}
         </th>
         <th style="text-align: center;">
-          <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+          <a href="{{ $baseURL }}specs/tf/utl" style="text-decoration: none;">Utility</a>
+          {{/*  <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
             <a class="gdoc-button__link" href="{{ $baseURL }}tags/Class-Utility" title="{{ i18n "posts_tagged_with" "Class-Utility" }}">
               Utility
             </a>
-          </span>
+          </span>  */}}
         </th>
       {{- end -}}
     </tr>
