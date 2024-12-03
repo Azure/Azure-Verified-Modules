@@ -69,11 +69,10 @@ The following table shows the number of all available, orphaned and proposed **B
 
 ### All modules - 📇
 
-{{< expand "➕ All Modules - Module names, status and owners" "expand/collapse" >}}
-
+<details>
+  <summary>➕ All Modules - Module names, status and owners</summary>
 {{< moduleNameStatusOwners header=true csv="/static/module-indexes/BicepPatternModules.csv" language="Bicep" moduleType="pattern" >}}
-
-{{< /expand >}}
+</details>
 
 <br>
 

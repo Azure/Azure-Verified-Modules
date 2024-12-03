@@ -12,7 +12,7 @@ geekdocCollapseSection: true
 {{< hint type=important >}}
 While this page describes and summarizes important aspects of contributing to AVM, it may not reference *All* of the shared and language specific requirements.
 
-Therefore, this contribution guide **MUST** be used in conjunction with the [Shared Specification](/Azure-Verified-Modules/specs/shared/) and the [Bicep specific](/Azure-Verified-Modules/specs/bicep/) specifications. **ALL AVM modules** (Resource and Pattern modules) **MUST meet the respective requirements described in these  specifications**!
+Therefore, this contribution guide **MUST** be used in conjunction with the [Bicep specifications](/Azure-Verified-Modules/specs/bcp/). **ALL AVM modules** (Resource and Pattern modules) **MUST meet the respective requirements described in these  specifications**!
 {{< /hint >}}
 
 This section lists AVM's Bicep-specific contribution guidance.
