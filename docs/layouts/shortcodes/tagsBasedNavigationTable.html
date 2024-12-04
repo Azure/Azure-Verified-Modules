@@ -91,70 +91,98 @@
 {{- end -}}
 
 {{- if eq (len $pages) 0 -}}
-  <blockquote class="gdoc-hint {{ "important" | lower }}">
-    <div class="gdoc-hint__title flex align-center">
-      {{- with $hintIcon -}}
-        <svg class="gdoc-icon {{ . }}"><use xlink:href="#{{ . }}"></use></svg>
-        <span>{{ "important" }}</span>
-      {{- else -}}
-        <i class="fa {{ "important" | lower }}" title="No specifications available for this criteria"></i>
-      {{- end -}}
-    </div>
-    <div class="gdoc-hint__text">
-      {{ with $tags }}
-        <div class="tags">
-          {{ with $hintText }}{{ $hintText | markdownify }}<br>{{ end }}
-          <svg class="flex align-center no-wrap gdoc-icon gdoc_bookmark"><use xlink:href="#gdoc_bookmark"></use></svg>
-          {{ range sort . }}
-            <span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
-              <a
-                class="gdoc-button__link"
-                href="{{ $baseURL }}tags/{{ . | urlize }}"
-                title="{{ i18n "posts_tagged_with" . }}"
-              >
+<blockquote style="padding: 0px; border-color: #ffab00">
+  <table>
+    <tr style="background-color: var(--accent-color-dark);">
+      <td style="margin: 0px; background-color: var(--accent-color-dark); padding: 0px;">
+        <div class="gdoc-hint__title flex align-center"
+          style="margin: 0px; background-color: var(--accent-color-dark);">
+          {{- with $hintIcon -}}
+          <svg class="gdoc-icon {{ . }}">
+            <use xlink:href="#{{ . }}"></use>
+          </svg>
+          <span>{{ "important" }}</span>
+          {{- else -}}
+          <i class="fa {{ "important" | lower }}" title="No specifications available for this criteria"
+            style="color: var(--body-font-color)"></i>
+          {{- end -}}
+        </div>
+      </td>
+    </tr>
+
+    <tr style="background-color: var(--accent-color); ">
+      <td style="padding: 0px;">
+        <div class="gdoc-hint__text">
+          {{ with $tags }}
+          <div class="tags">
+            {{ with $hintText }}{{ $hintText | markdownify }}<br>{{ end }}
+            <svg class="flex align-center no-wrap gdoc-icon gdoc_bookmark">
+              <use xlink:href="#gdoc_bookmark"></use>
+            </svg>
+            {{ range sort . }}
+            <span class="flex align-center gdoc-button gdoc-button--regular"
+              style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+              <a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ . | urlize }}"
+                title="{{ i18n "posts_tagged_with" . }}">
                 {{ . }}
               </a>
             </span>
+            {{ end }}
+          </div>
           {{ end }}
         </div>
-      {{ end }}
-    </div>
-  </blockquote>
+      </td>
+    </tr>
+  </table>
+</blockquote>
 {{- else -}}
   {{- $sortedPages := sort $pages "priority" "asc" -}}
 
   {{ $hintTitle := "The content below is listed based on the following tags"}}
 
   {{ if $showHint }}
-    <blockquote class="gdoc-hint {{ $hintType | lower }}">
-      <div class="gdoc-hint__title flex align-center">
-        {{- with $hintIcon -}}
-          <svg class="gdoc-icon {{ . }}"><use xlink:href="#{{ . }}"></use></svg>
+<blockquote style="padding: 0px; border-color: var(--footer-background)">
+  <table>
+    <tr style="background-color: var(--accent-color-dark);">
+      <td style="margin: 0px; background-color: var(--accent-color-dark); padding: 0px;">
+        <div class="gdoc-hint__title flex align-center"
+          style="margin: 0px; background-color: var(--accent-color-dark); ">
+          {{- with $hintIcon -}}
+          <svg class="gdoc-icon {{ . }}">
+            <use xlink:href="#{{ . }}"></use>
+          </svg>
           <span>{{ $hintTitle }}</span>
-        {{- else -}}
-          <i class="fa {{ $hintType | lower }}" title="{{ $hintTitle }}"></i>
-        {{- end -}}
-      </div>
-      <div class="gdoc-hint__text">
-        {{ with $tags }}
+          {{- else -}}
+          <i class="fa {{ $hintType | lower }}" title="{{ $hintTitle }}" style="color: var(--body-font-color)"></i>
+          {{- end -}}
+        </div>
+      </td>
+    </tr>
+    <tr style="background-color: var(--accent-color); ">
+      <td style="padding: 0px;">
+        <div class="gdoc-hint__text">
+          {{ with $tags }}
           <div class="tags">
             {{ with $hintText }}{{ $hintText | markdownify }}<br>{{ end }}
-            <svg class="flex align-center no-wrap gdoc-icon gdoc_bookmark"><use xlink:href="#gdoc_bookmark"></use></svg>
+            <svg class="flex align-center no-wrap gdoc-icon gdoc_bookmark">
+              <use xlink:href="#gdoc_bookmark"></use>
+            </svg>
             {{ range sort . }}
-              <span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
-                <a
-                  class="gdoc-button__link"
-                  href="{{ $baseURL }}tags/{{ . | urlize }}"
-                  title="{{ i18n "posts_tagged_with" . }}"
-                >
-                  {{ . }}
-                </a>
-              </span>
+            <span class="flex align-center gdoc-button gdoc-button--regular"
+              style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+              <a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ . | urlize }}"
+                title="{{ i18n "posts_tagged_with" . }}">
+                {{ . }}
+              </a>
+            </span>
             {{ end }}
           </div>
-        {{ end }}
-      </div>
-    </blockquote>
+          {{ end }}
+        </div>
+      </td>
+    </tr>
+  </table>
+</blockquote>
     {{/*  <br>
     <hr>
     <br>  */}}
