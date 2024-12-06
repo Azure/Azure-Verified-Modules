@@ -9,7 +9,7 @@ geekdocCollapseSection: true
 
 {{< toc >}}
 
-This Quickstart-Guide shows how to deploy an instance with an Azure Verified Module. Let's assume, we need to deploy a [Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) instance to store a Personal Access Token.
+This Quickstart-Guide shows how to deploy an instance with an Azure Verified Module. Let's assume, we need to deploy a [Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) instance and a Personal Access Token.
 
 ## Requirements
 
@@ -21,6 +21,8 @@ You can use any text editor, but for this Quickstart, VSCode will be used.
 - An Azure subscription to deploy your Bicep template
 
 ## How do I find out which modules exist?
+
+// TODO think or check manually, instead of showing the overview page
 
 With the scenario in mind, I need to deploy a Key Vault instance. Available modules (for now, we don't distinguish between resource, pattern and utility modules) are listed on the [Bicep Modules](/Azure-Verified-Modules/indexes/bicep/) site. Searching on this site for *key-vault*.
 
@@ -61,37 +63,47 @@ The Bicep VSCode extension is reading metadata through [this JSON file](https://
 
 ![Bicep Extension offers](/Azure-Verified-Modules/img/usage-guide/quickstart/bicep_module_vscode_module_hover.png)
 
+// TODO "required-properties" code complete with tab-complete
+// TODO something about UDTs like code-completion
+
 Select the latest version and start coding. Set the required properties for the module. You can use the documentation URL to see the module’s documentation online. The ```main.bicep``` might look like this:
 
-```bicep
+```bicep {lineNos=inline}
+// the scope, the deployment deploys resources to
 targetScope = 'resourceGroup'
 
-param keyVaultName string?
+// parameters and default values
+param keyVaultName string
 param resourceLocation string = resourceGroup().location
 
-@description('Disable for development deployments')
+@description('Disable for development deployments.')
 param enablePurgeProtection bool = true
 
+// the resources to deploy
 module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
   name: 'key-vault-deployment'
   params: {
-    // generate the name, if not explicitly specified
-    name: keyVaultName ?? uniqueString('kv', subscription().id, resourceGroup().name)
+    name: keyVaultName
     location: resourceLocation
     enablePurgeProtection: enablePurgeProtection
+    // more properties are not needed, as AVM provides default values
   }
 }
 
+// output parameters, which give away instance/deployment specific values
 output keyVaultName string = keyVault.name
 ```
 
 The ```dev.bicepparam``` file is optional. You can instead pass parameters to the CLI.
 
-```bicep
+```bicep {lineNos=inline}
 using 'main.bicep'
 
+// environment specific values
 param enablePurgeProtection = false
 ```
+
+// TODO add tabbing feature
 
 To test the script and deploy it to Azure, you can use the Azure CLI:
 
@@ -100,7 +112,11 @@ az group create --name avm-quickstart-rg --location germanywestcentral
 az deployment group create --resource-group avm-quickstart-rg --template-file main.bicep --parameters dev.bicepparam
 ```
 
-### Finalize the template
+To test the script and deploy it to Azure, you can use PowerShell:
+
+```// TODO posh``` with input object https://github.com/Azure/ResourceModules/wiki/The%20library%20-%20Module%20usage#powershell
+
+### Create a key and set permissions
 
 Now let's add a key to the Key Vault instance and grant permissions to a user to work with the key. Sample role assignements can be found in [Example 3: Using large parameter set](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#example-3-using-large-parameter-set). See [Parameter: roleAssignments](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#parameter-roleassignments) for a list of pre-defined roles, that you can reference by name.
 
@@ -108,10 +124,12 @@ You can make use of [User-defined data types](https://learn.microsoft.com/en-us/
 
 For a role assignment, the principal ID is needed, that will be granted a role on the resource. Your own ID can be found out with `az ad signed-in-user show --query id`.
 
-```bicep
+```bicep {lineNos=inline}
+// the scope, the deployment deploys resources to
 targetScope = 'resourceGroup'
 
-param keyVaultName string?
+// parameters and default values
+param keyVaultName string
 param resourceLocation string = resourceGroup().location
 
 @description('Disable for development deployments')
@@ -123,11 +141,11 @@ param keys keyType[]?
 import { roleAssignmentType } from 'br/public:avm/utl/types/avm-common-types:0.3.0'
 param roleAssignments roleAssignmentType[]?
 
+// the resources to deploy
 module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
   name: 'key-vault-deployment'
   params: {
-    // generate the name, if not explicitly specified
-    name: keyVaultName ?? uniqueString('kv', subscription().id, resourceGroup().name)
+    name: keyVaultName
     location: resourceLocation
     enablePurgeProtection: enablePurgeProtection
     keys: keys
@@ -135,14 +153,16 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
   }
 }
 
+// output parameters, which give away instance/deployment specific values
 output keyVaultName string = keyVault.name
 ```
 
 And the bicep parameter file now looks like this:
 
-```bicep
+```bicep {lineNos=inline}
 using 'main.bicep'
 
+// environment specific values
 param enablePurgeProtection = false
 
 param keys = [
@@ -155,12 +175,36 @@ param keys = [
 param roleAssignments = [
   {
     principalId: '<principalId>'
+    // using the name of the role instead of looking up the Guid (which can also be used)
     roleDefinitionIdOrName: 'Key Vault Crypto Officer'
   }
 ]
 ```
 
+// TODO I did get the name of the role from code completion (screenshot or something else)
+
 With this IaC template (Infrastructure as Code), you deploy a Key Vault instance, add a key and grant permissions to a user.
+
+## Bicep-specific configuration
+
+We suggest to create a [`bicepconfig.json`](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-config) file, and enable *use-recent-module-versions*, which brings you a warning when not using the latest version of an Azure Verified Module.
+
+```json
+// This is a Bicep configuration file. It can be used to control how Bicep operates and to customize validation settings for the Bicep linter. The linter uses these settings when evaluating your Bicep files for best practices.
+// For further information, please refer to the official documentation at: https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-config
+{
+  "analyzers": {
+    "core": {
+      "rules": {
+        "use-recent-module-versions": {
+          "level": "warning",
+          "message": "The module version is outdated. Please consider updating to the latest version."
+        }
+      }
+    }
+  }
+}
+```
 
 ## from Máté
 
