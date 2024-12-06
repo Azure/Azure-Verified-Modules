@@ -27,9 +27,30 @@ To deploy an Azure Verified Module (AVM), you will need the following:
 - **Azure Subscription**: An active Azure subscription is necessary to deploy and manage your Azure resources.
 - **Visual Studio Code (VS Code)**: A powerful code editor that supports various extensions.
 - For Bicep modules:
-    - **Bicep Visual Studio Code Extension**: This extension helps you author Bicep templates and explore modules published in the registry. You can install it from the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep).
-    - **PowerShell or Azure CLI**: These tools are required to deploy your Bicep templates. Ensure you have the latest version installed.
+  - **Bicep Visual Studio Code Extension**: This extension helps you author Bicep templates and explore modules published in the registry. You can install it from the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep).
+  - **PowerShell or Azure CLI**: These tools are required to deploy your Bicep templates. Ensure you have the latest version installed.
 - For Terraform modules:
-    - **Terraform CLI**: The Terraform CLI is required to deploy your Terraform modules. Ensure you have the latest version installed.
+  - **Terraform CLI**: The Terraform CLI is required to deploy your Terraform modules. Ensure you have the latest version installed.
 
 Make sure you have these tools and resources set up before proceeding with the deployment of an AVM module.
+
+### Bicep-specific configuration
+
+We suggest to create a [`bicepconfig.json`](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-config) file, and enable *use-recent-module-versions*, which brings you a warning when not using the latest version of an Azure Verified Module.
+
+```json
+// This is a Bicep configuration file. It can be used to control how Bicep operates and to customize validation settings for the Bicep linter. The linter uses these settings when evaluating your Bicep files for best practices.
+// For further information, please refer to the official documentation at: https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-config
+{
+  "analyzers": {
+    "core": {
+      "rules": {
+        "use-recent-module-versions": {
+          "level": "warning",
+          "message": "The module version is outdated. Please consider updating to the latest version."
+        }
+      }
+    }
+  }
+}
+```

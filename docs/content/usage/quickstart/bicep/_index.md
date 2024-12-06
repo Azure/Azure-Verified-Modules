@@ -13,11 +13,12 @@ This Quickstart-Guide shows how to deploy an instance with an Azure Verified Mod
 
 ## Requirements
 
-You can use any text editor, but for this Quickstart VSCode will be used.
+You can use any text editor, but for this Quickstart, VSCode will be used.
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
-- [Bicep](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) Extension for VSCode (not needed, but it provides intellisense)
-- [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
+- [Bicep](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) Extension for VSCode to author your Bicep template and explore modules published in the registry
+- [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) (or PowerShell)
+- An Azure subscription to deploy your Bicep template
 
 ## How do I find out which modules exist?
 
@@ -39,6 +40,8 @@ With the knowledge the module being a resource module, we select *Resource Modul
 
 AVMs are developed including multiple tests. They can be used as additional documentation and are stored under the *tests* folder. But let's first look at what the readme for this Key Vault module offers. Scrolling a little bit down, we'll find the **Usage examples** and **Parameters** sections, which provide details about the usage.
 
+Explore the module’s documentation for usage examples and to understand its functionality, input parameters, and outputs.
+
 We want to deploy a secret in a new Key Vault instance, without thinking much about the other parameters. Fortunately, AVM has covererd us in terms of Security and Reliability, as the default settings apply best-practices from the [Well Architected Framework](https://learn.microsoft.com/en-us/azure/well-architected/).
 
 The [Example 2](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#example-2-using-only-defaults) seems to do pretty much what we want to achieve.
@@ -46,15 +49,19 @@ The [Example 2](https://github.com/Azure/bicep-registry-modules/tree/main/avm/re
 ## Start coding
 
 1. Fire up VSCode (with the Bicep extension installed) and open a folder in which you want to work.
-2. Create a `main.bicep` and a `dev.bicepparam` file.
+2. Create a `main.bicep` and a `dev.bicepparam` file, which will hold parameters for a deveploment deployment.
 
 The scope for the deployment of the Key Vault instance will be a resource group. The Bicep extension offers code-completion, which makes it easy to find and use the Azure Verified Module.
 
 ![Code-Completion in Visual Studio Code](/Azure-Verified-Modules/img/usage-guide/quickstart/bicep_module_vscode_code_completion.png)
 
-### The Basics
+{{< hint type=note >}}
+The Bicep VSCode extension is reading metadata through [this JSON file](https://live-data.bicep.azure.com/module-index). All modules are added to this file, as part of the publication process. This lists all the modules marked as Published or Orphaned on the [AVM Bicep module index pages](https://aka.ms/AVM/ModuleIndex/Bicep).
+{{< /hint >}}
 
-Select the latest version and start building the script. The ```main.bicep``` might look like this:
+![Bicep Extension offers](/Azure-Verified-Modules/img/usage-guide/quickstart/bicep_module_vscode_module_hover.png)
+
+Select the latest version and start coding. Set the required properties for the module. You can use the documentation URL to see the module’s documentation online. The ```main.bicep``` might look like this:
 
 ```bicep
 targetScope = 'resourceGroup'
@@ -65,7 +72,7 @@ param resourceLocation string = resourceGroup().location
 @description('Disable for development deployments')
 param enablePurgeProtection bool = true
 
-module keyVault 'br/public:avm/res/key-vault/vault:0.10.2' = {
+module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
   name: 'key-vault-deployment'
   params: {
     // generate the name, if not explicitly specified
@@ -95,7 +102,9 @@ az deployment group create --resource-group avm-quickstart-rg --template-file ma
 
 ### Finalize the template
 
-Now let's add the key and grant permissions to a user to work with the key. Sample role assignements can be found in [Example 3: Using large parameter set](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#example-3-using-large-parameter-set). See [Parameter: roleAssignments](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#parameter-roleassignments) for a list of pre-defined roles, that you can reference by name.
+Now let's add a key to the Key Vault instance and grant permissions to a user to work with the key. Sample role assignements can be found in [Example 3: Using large parameter set](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#example-3-using-large-parameter-set). See [Parameter: roleAssignments](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#parameter-roleassignments) for a list of pre-defined roles, that you can reference by name.
+
+You can make use of [User-defined data types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) and simplify the parameterization of the modules. Therefore, first import UDTs from the Key Vault and common types module.
 
 For a role assignment, the principal ID is needed, that will be granted a role on the resource. Your own ID can be found out with `az ad signed-in-user show --query id`.
 
@@ -114,7 +123,7 @@ param keys keyType[]?
 import { roleAssignmentType } from 'br/public:avm/utl/types/avm-common-types:0.3.0'
 param roleAssignments roleAssignmentType[]?
 
-module keyVault 'br/public:avm/res/key-vault/vault:0.10.2' = {
+module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
   name: 'key-vault-deployment'
   params: {
     // generate the name, if not explicitly specified
@@ -153,6 +162,8 @@ param roleAssignments = [
 
 With this IaC template (Infrastructure as Code), you deploy a Key Vault instance, add a key and grant permissions to a user.
 
+## from Máté
+
 ### Usage deep-dive
 
 - UDTs
@@ -162,12 +173,6 @@ are stored in a central Azure Container Registry.
 - explore the source of the kv module without leaving VS code
   - how can I see the readme of the kv module from vs code
   - what if there's a missing feature? --> file a module issue
----
-title: Bicep Quickstart
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
----
 
   <!-- - how do I explore what modules are there?
   - what are the built-in features of the key-vault module
