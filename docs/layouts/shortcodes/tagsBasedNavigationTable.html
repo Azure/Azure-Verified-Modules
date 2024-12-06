@@ -1,0 +1,317 @@
+{{- $folder := .Get "folder" -}}
+{{- $tags := split (.Get "tags") "," -}}
+
+{{- $baseURL := $.Site.BaseURL -}}
+{{- $recursive := default false (.Get "recursive") -}}
+{{- $strict := default false (.Get "strict") -}}
+{{- $allFiles := slice -}}
+{{- $showPageTags := default true (.Get "showPageTags") -}}
+{{- $showHint := default false (.Get "showHint") -}}
+{{- $hintText := default "" (.Get "hintText") -}}
+{{- $chapterTitle := default "" (.Get "chapterTitle") -}}
+
+{{- $hintType := default "note" (.Get "hintType") -}}
+{{- $hintIcon := .Get "icon" -}}
+{{/*  {{- $hintTitle := default ($hintType | title) (.Get "hintTitle") -}}  */}}
+
+{{- $summarize := default false (.Get "summarize") -}}
+{{- $summaryOpenByDefault := default true (.Get "summaryOpenByDefault") -}}
+
+{{- $showLanguage := true -}}
+{{- $showClass := true -}}
+{{- $showCategory := true -}}
+{{- $showSeverity := true -}}
+{{- $showPersona := true -}}
+{{- $showLifecycle := true -}}
+
+{{ range $tags }}
+  {{ if (findRE `^Language-` .) }}
+    {{ $showLanguage = false }}
+  {{ else if (findRE `^Class-` .) }}
+    {{ $showClass = false }}
+  {{ else if (findRE `^Category-` .) }}
+    {{ $showCategory = false }}
+  {{ else if (findRE `^Severity-` .) }}
+    {{ $showSeverity = false }}
+  {{ else if (findRE `^Persona-` .) }}
+    {{ $showPersona = false }}
+  {{ else if (findRE `^Lifecycle-` .) }}
+    {{ $showLifecycle = false }}
+  {{ end }}
+{{ end }}
+
+{{ if $chapterTitle }}
+  {{ (printf "## %s" $chapterTitle) | markdownify }}
+{{ end }}
+
+{{- if $recursive -}}
+  {{- $allFiles = partial "readDirRecursive" (dict "path" $folder "allFiles" $allFiles) -}}
+{{- else -}}
+  {{- $entries := readDir $folder -}}
+  {{- range $entries -}}
+    {{- $allFiles = $allFiles | append (printf "%s/%s" $folder .Name) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $pages := slice -}}
+
+{{- range $allFiles -}}
+  {{- $file := replace . "content/" "" -}}
+  {{- $page := site.GetPage $file -}}
+  {{- $pageTags := $page.Params.tags -}}
+
+  {{- if $page -}}
+    {{- $addPageToList := true -}}
+
+    {{- if $strict -}}
+      {{- if not (eq (len $tags) (len $pageTags)) -}}
+        {{- $addPageToList = false -}}
+      {{- else -}}
+        {{- range $tags -}}
+          {{- if not (in $pageTags .) -}}
+            {{- $addPageToList = false -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- else -}}
+      {{- range $tags -}}
+        {{- if not (in $pageTags .) -}}
+          {{- $addPageToList = false -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{- if $addPageToList -}}
+      {{- $priority := default 10000 $page.Params.priority -}}
+      {{- $pages = $pages | append (dict "page" $page "priority" $priority "file" $file) -}}
+    {{- else -}}
+    {{- end -}}
+
+  {{- end -}}
+{{- end -}}
+
+{{- if eq (len $pages) 0 -}}
+<blockquote style="padding: 0px; border-color: #ffab00">
+  <table>
+    <tr style="background-color: var(--accent-color-dark);">
+      <td style="margin: 0px; background-color: var(--accent-color-dark); padding: 0px;">
+        <div class="gdoc-hint__title flex align-center"
+          style="margin: 0px; background-color: var(--accent-color-dark);">
+          {{- with $hintIcon -}}
+          <svg class="gdoc-icon {{ . }}">
+            <use xlink:href="#{{ . }}"></use>
+          </svg>
+          <span>{{ "important" }}</span>
+          {{- else -}}
+          <i class="fa {{ "important" | lower }}" title="No specifications available for this criteria"
+            style="color: var(--body-font-color)"></i>
+          {{- end -}}
+        </div>
+      </td>
+    </tr>
+
+    <tr style="background-color: var(--accent-color); ">
+      <td style="padding: 0px;">
+        <div class="gdoc-hint__text">
+          {{ with $tags }}
+          <div class="tags">
+            {{ with $hintText }}{{ $hintText | markdownify }}<br>{{ end }}
+            <svg class="flex align-center no-wrap gdoc-icon gdoc_bookmark">
+              <use xlink:href="#gdoc_bookmark"></use>
+            </svg>
+            {{ range sort . }}
+            <span class="flex align-center gdoc-button gdoc-button--regular"
+              style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+              <a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ . | urlize }}"
+                title="{{ i18n "posts_tagged_with" . }}">
+                {{ . }}
+              </a>
+            </span>
+            {{ end }}
+          </div>
+          {{ end }}
+        </div>
+      </td>
+    </tr>
+  </table>
+</blockquote>
+{{- else -}}
+  {{- $sortedPages := sort $pages "priority" "asc" -}}
+
+  {{ $hintTitle := "The content below is listed based on the following tags"}}
+
+  {{ if $showHint }}
+<blockquote style="padding: 0px; border-color: var(--footer-background)">
+  <table>
+    <tr style="background-color: var(--accent-color-dark);">
+      <td style="margin: 0px; background-color: var(--accent-color-dark); padding: 0px;">
+        <div class="gdoc-hint__title flex align-center"
+          style="margin: 0px; background-color: var(--accent-color-dark); ">
+          {{- with $hintIcon -}}
+          <svg class="gdoc-icon {{ . }}">
+            <use xlink:href="#{{ . }}"></use>
+          </svg>
+          <span>{{ $hintTitle }}</span>
+          {{- else -}}
+          <i class="fa {{ $hintType | lower }}" title="{{ $hintTitle }}" style="color: var(--body-font-color)"></i>
+          {{- end -}}
+        </div>
+      </td>
+    </tr>
+    <tr style="background-color: var(--accent-color); ">
+      <td style="padding: 0px;">
+        <div class="gdoc-hint__text">
+          {{ with $tags }}
+          <div class="tags">
+            {{ with $hintText }}{{ $hintText | markdownify }}<br>{{ end }}
+            <svg class="flex align-center no-wrap gdoc-icon gdoc_bookmark">
+              <use xlink:href="#gdoc_bookmark"></use>
+            </svg>
+            {{ range sort . }}
+            <span class="flex align-center gdoc-button gdoc-button--regular"
+              style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
+              <a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ . | urlize }}"
+                title="{{ i18n "posts_tagged_with" . }}">
+                {{ . }}
+              </a>
+            </span>
+            {{ end }}
+          </div>
+          {{ end }}
+        </div>
+      </td>
+    </tr>
+  </table>
+</blockquote>
+    {{/*  <br>
+    <hr>
+    <br>  */}}
+  {{ end }}
+
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>ID</th>
+        <th>Title</th>
+        {{ if $showLanguage }}<th>Language</th>{{ end }}
+        {{ if $showClass }}<th>Class</th>{{ end }}
+        {{ if $showCategory }}<th>Category</th>{{ end }}
+        {{/*  <th>Type</th>  */}}
+        {{ if $showSeverity }}<th>Severity</th>{{ end }}
+        {{ if $showPersona }}<th>Persona</th>{{ end }}
+        {{ if $showLifecycle }}<th>Lifecycle</th>{{ end }}
+      </tr>
+    </thead>
+    <tbody>
+      {{- $index := 0 -}}
+      {{- range $sortedPages -}}
+        {{- $index = add $index 1 -}}
+        {{- $page := .page -}}
+        {{- $file := .file -}}
+        {{- $pageTags := $page.Params.tags -}}
+        {{- $showPage := default true $page.Params.showPage -}}
+
+        {{- if $showPage -}}
+          {{- $titleParts := split $page.Params.title " - " -}}
+          {{- $id := index $titleParts 0 -}}
+
+          {{- $title := "" -}}
+          {{- $separator := "" -}}
+          {{- range $i, $part := $titleParts -}}
+            {{- if gt $i 0 -}}
+              {{- $title = printf "%s%s%s" $title $separator $part -}}
+              {{- $separator = " - " -}}
+            {{- end -}}
+          {{- end -}}
+
+          {{- $language := slice -}}
+          {{- $class := slice -}}
+          {{- $category := slice -}}
+          {{/*  {{- $type := slice -}}  */}}
+          {{- $severity := slice -}}
+          {{- $persona := slice -}}
+          {{- $lifecycle := slice -}}
+
+          {{- range $pageTags -}}
+            {{- $parts := split . "-" -}}
+            {{- $key := index $parts 0 -}}
+            {{- $value := index $parts 1 -}}
+            {{- if eq $key "Language" -}}
+            {{- $language = $language | append $value -}}
+            {{- else if eq $key "Class" -}}
+            {{- $class = $class | append $value -}}
+            {{- else if eq $key "Category" -}}
+              {{- $category = $category | append $value -}}
+            {{/*  {{- else if eq $key "Type" -}}
+              {{- $type = $type | append $value -}}  */}}
+            {{- else if eq $key "Severity" -}}
+              {{- $severity = $severity | append $value -}}
+            {{- else if eq $key "Persona" -}}
+              {{- $persona = $persona | append $value -}}
+            {{- else if eq $key "Lifecycle" -}}
+              {{- $lifecycle = $lifecycle | append $value -}}
+            {{- end -}}
+          {{- end -}}
+
+          {{- $link := replaceRE "^-" "#" (index (findRE `^\s####\s.+` $page.RawContent) 0 | anchorize) -}}
+          <tr>
+            <td>{{- $index -}}</td>
+            <td><a href="{{- $link -}}">{{- $id -}}</a></td>
+            <td>{{- $title -}}</td>
+            {{ if $showLanguage }}<td>{{ range $language }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Language-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
+            {{ if $showClass }}<td>{{ range $class }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Class-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
+            {{ if $showCategory }}<td>{{ range $category }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Category-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
+            {{/*  <td>{{ range $type }}<span class="tag-button"><a href="{{ $baseURL }}tags/{{ . | urlize }}">{{ . }}</a></span>{{ if not (eq (index $type (sub (len $type) 1)) .) }}, {{ end }}{{ end }}</td>  */}}
+            {{ if $showSeverity }}<td>{{ range $severity }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Severity-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
+            {{ if $showPersona }}<td>{{ range $persona }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Persona-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
+            {{ if $showLifecycle }}<td>{{ range $lifecycle }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Lifecycle-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
+          </tr>
+        {{- end -}}
+      {{- end -}}
+    </tbody>
+  </table>
+
+  <br>
+  {{/*  <hr>
+  <br>  */}}
+
+  {{- if $summarize -}}
+    {{- if $summaryOpenByDefault -}}
+      <details open>
+    {{- else -}}
+      <details>
+    {{- end -}}
+    <summary><b>See Specifications for this chapter</b><br><br></summary>
+  {{- end -}}
+
+  {{- range $sortedPages -}}
+    {{- $page := .page -}}
+    {{- $file := .file -}}
+    {{- $pageTags := $page.Params.tags -}}
+    {{- $showPage := default true $page.Params.showPage -}}
+    {{/*  {{- $specURL := replace (printf "%s%s" $baseURL $page.Params.url) "//" "/" -}}  */}}
+    {{- $specURL := printf "%s%s" $baseURL (replaceRE "^/" "" $page.Params.url) -}}
+
+    {{- with $page -}}
+      {{- if $showPage -}}
+        {{- if $showPageTags -}}
+          {{- partial "showPageTags" (dict "pageTags" $pageTags "baseURL" $baseURL) -}}
+        {{- end -}}
+        <svg class="flex align-center no-wrap gdoc-icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg><a href="{{- $specURL | safeHTML -}}" style="text-decoration: none;">See origin...</a>
+        {{- .Content -}}
+        <br>
+        <hr>
+        <br>
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if $summarize -}}
+  </details>
+  {{- end -}}
+
+
+{{- end -}}

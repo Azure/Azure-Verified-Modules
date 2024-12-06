@@ -322,13 +322,21 @@ For Microsoft FTEs only: see the **Internal** wiki for support workflow for more
 
 ---
 
+### Can AVM module be used in production before it is marked as "GA" / v1.0?
+
+As the overall AVM framework is not GA (generally available) yet - the CI framework and test automation is not fully functional and implemented across all supported languages yet - breaking changes are expected, and additional customer feedback is yet to be gathered and incorporated. Hence, modules must not be published at version `1.0.0` or higher at this time. All module must be published as a pre-release version (e.g., `0.1.0`, `0.1.1`, `0.2.0`, etc.) until the AVM framework becomes GA.
+
+However, it is important to note that this does not mean that the modules cannot be consumed and utilized. They can be leveraged in all types of environments (dev, test, prod etc.). Consumers can treat them just like any other IaC module and raise issues or feature requests against them as they learn from the usage of the module. Consumers should also read the release notes for each version, if considering updating to a more recent version of a module to see if there are any considerations or breaking changes etc.
+
+---
+
 ## Technical questions
 
 ### Should pattern modules leverage resource modules? What if (some of) the required resource modules are not available?
 
 The initial focus of development and migration from CARML/TFVM has solely been on resource modules. Now that the most important resource modules are published, pattern modules can leverage them as and where needed. This however doesn't mean that the development of pattern modules is blocked in any way if a resource module is not available, since they may use native resources ("vanilla code"). If you're about to develop a pattern module and would need a resource modules that doesn't exist today, please consider building the resource module first, so that others can leverage it for their pattern modules as well.
 
-Please see [PMNFR2](/Azure-Verified-Modules/specs/shared/#id-pmnfr2---category-composition---use-resource-modules-to-build-a-pattern-module) for more details.
+Please see [PMNFR2](/Azure-Verified-Modules/spec/PMNFR2) for more details.
 
 ---
 
@@ -362,8 +370,8 @@ These same validations are also run in the [BRM](https://aka.ms/BRM) repository 
 
 ### Does AVM use semantic versioning?
 
-Yes! For generic guidance, see [SNFR17 - Semantic Versioning](/Azure-Verified-Modules/specs/shared/#id-snfr17---category-release---semantic-versioning).
-For Bicep specific guidance, see [BCPNFR14 - Versioning](/Azure-Verified-Modules/specs/bicep/#id-bcpnfr14---category-composition---versioning).
+Yes! For generic guidance, see [SNFR17 - Semantic Versioning](/Azure-Verified-Modules/spec/SNFR17).
+For Bicep specific guidance, see [BCPNFR14 - Versioning](/Azure-Verified-Modules/spec/BCPNFR14).
 
 ---
 
@@ -377,7 +385,7 @@ Customer should consider updating to a newer version of a module if:
 - It fixes a bug they were having.
 - They'd like ot use the latest and greatest version.
 
-To do this they just change the version in their module declaration for either terraform or bicep and then run it through their pipelines to roll it out.
+To do this they just change the version in their module declaration for either Terraform or Bicep and then run it through their pipelines to roll it out.
 
 The high level steps are:
 
@@ -393,29 +401,7 @@ The high level steps are:
 
 ### How can I use Bicep modules through the Public Registry?
 
-Use the [Bicep Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) to author your Bicep template and explore modules published in the Bicep Public Registry. For more details, see the the below example steps.
-
-{{< hint type=note >}}
-The Bicep VSCode extension is reading metadata through [this JSON file](https://live-data.bicep.azure.com/module-index). All modules are added to this file, as part of the publication process.
-{{< /hint >}}
-
-1. When authoring a new Bicep file, use the [VS Code extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) to explore the modules published in the Bicep Public Registry.
-<img src="../img/faq/use-bicep-module-01.png" width=100% alt="Select br/public:">
-
-2. Expanding on this you can see the AVM modules that are published.
-<img src="../img/faq/use-bicep-module-02.png" width=100% alt="Select module from the Public Bicep Registry">
-
-3. Selecting the module expands on the current available versions.
-<img src="../img/faq/use-bicep-module-03.png" width=100% alt="Choose from the available versions">
-
-4. Setting required properties exposes what is required on the module.
-<img src="../img/faq/use-bicep-module-04.png" width=100% alt="Select required-properties">
-
-5. Hovering over the `myTestModule` name exposes the module's documentation URL.
-<img src="../img/faq/use-bicep-module-05.png" width=100% alt="Hover over the module name">
-
-6. Clicking on the link opens up the Bicep Registry Repo for the AVM module's source code, where you can find the documentation detailing all the module's functionality, input parameters and outputs, while providing various examples.
-<img src="../img/faq/use-bicep-module-06.png" width=100% alt="See the module's documentation online">
+Please see the Bicep Quickstart guide [here](/Azure-Verified-Modules/usage/quickstart/bicep/).
 
 ---
 
