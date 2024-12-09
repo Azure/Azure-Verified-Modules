@@ -26,7 +26,7 @@ You can use any text editor, but for this Quickstart, VSCode will be used.
 
 With the scenario in mind, I need to deploy a Key Vault instance. Available modules (for now, we don't distinguish between resource, pattern and utility modules) are listed on the [Bicep Modules](/Azure-Verified-Modules/indexes/bicep/) site. Searching on this site for *key-vault*.
 
-![Searching key-vault on the Bicep module index](/Azure-Verified-Modules/img/usage-guide/quickstart/bicep_modules_keyvault_search.png)
+![Searching key-vault on the Bicep module index](/Azure-Verified-Modules/img/usage-guide/quickstart/bicep/bicep_modules_keyvault_search.png)
 
 {{< hint type=info icon=gdoc_info_outline title="Searching the AVM Website" >}}
 The AVM team is working on improving the overall search experience, which will allow you to search for e.g. '*key vault*' instead of '*key-vault*'.
@@ -38,7 +38,7 @@ We now know there is a resource module for Key Vault. Next, let's see how it can
 
 With the knowledge the module being a resource module, we select *Resource Modules* in the tree-navigation, search for the name again and click the link. This brings us to the GitHub site, where the module source code is stored.
 
-![AVM GitHub page for Key Vault](/Azure-Verified-Modules/img/usage-guide/quickstart/bicep_module_github_module-start-page.png)]
+![AVM GitHub page for Key Vault](/Azure-Verified-Modules/img/usage-guide/quickstart/bicep/bicep_module_github_module-start-page.png)
 
 AVMs are developed including multiple tests. They can be used as additional documentation and are stored under the *tests* folder. But let's first look at what the readme for this Key Vault module offers. Scrolling a little bit down, we'll find the **Usage examples** and **Parameters** sections, which provide details about the usage.
 
@@ -55,13 +55,13 @@ The [Example 2](https://github.com/Azure/bicep-registry-modules/tree/main/avm/re
 
 The scope for the deployment of the Key Vault instance will be a resource group. The Bicep extension offers code-completion, which makes it easy to find and use the Azure Verified Module.
 
-![Code-Completion in Visual Studio Code](/Azure-Verified-Modules/img/usage-guide/quickstart/bicep_module_vscode_code_completion.png)
+![Code-Completion in Visual Studio Code](/Azure-Verified-Modules/img/usage-guide/quickstart/bicep/bicep_module_vscode_code_completion.png)
 
 {{< hint type=note >}}
 The Bicep VSCode extension is reading metadata through [this JSON file](https://live-data.bicep.azure.com/module-index). All modules are added to this file, as part of the publication process. This lists all the modules marked as Published or Orphaned on the [AVM Bicep module index pages](https://aka.ms/AVM/ModuleIndex/Bicep).
 {{< /hint >}}
 
-![Bicep Extension offers](/Azure-Verified-Modules/img/usage-guide/quickstart/bicep_module_vscode_module_hover.png)
+![Bicep Extension offers](/Azure-Verified-Modules/img/usage-guide/quickstart/bicep/bicep_module_vscode_module_hover.png)
 
 // TODO "required-properties" code complete with tab-complete
 // TODO something about UDTs like code-completion
@@ -262,19 +262,19 @@ The Bicep VSCode extension is reading metadata through [this JSON file](https://
 ### Screenshots to be retaken
 
 1. When authoring a new Bicep file, use the [VS Code extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) to explore the modules published in the Bicep Public Registry.
-<img src="../../../img/quickstart/bicep/use-bicep-module-01.png" width=100% alt="Select br/public:">
+![Select br/public:](/Azure-Verified-Modules/img/usage-guide/quickstart/bicep/use-bicep-module-01.png)
 
 2. Expanding on this you can see the AVM modules that are published.
-<img src="../../../img/quickstart/bicep/use-bicep-module-02.png" width=100% alt="Select module from the Public Bicep Registry">
+![Select module from the Public Bicep Registry](/Azure-Verified-Modules/img/usage-guide/quickstart/bicep/use-bicep-module-02.png)
 
 3. Selecting the module expands on the current available versions.
-<img src="../../../img/quickstart/bicep/use-bicep-module-03.png" width=100% alt="Choose from the available versions">
+![Choose from the available versions](/Azure-Verified-Modules/img/usage-guide/quickstart/bicep/use-bicep-module-03.png)
 
 4. Setting required properties exposes what is required on the module.
-<img src="../../../img/quickstart/bicep/use-bicep-module-04.png" width=100% alt="Select required-properties">
+![Select required-properties](/Azure-Verified-Modules/img/usage-guide/quickstart/bicep/use-bicep-module-04.png)
 
 5. Hovering over the `myTestModule` name exposes the module's documentation URL.
-<img src="../../../img/quickstart/bicep/use-bicep-module-05.png" width=100% alt="Hover over the module name">
+![Hover over the module name](/Azure-Verified-Modules/img/usage-guide/quickstart/bicep/use-bicep-module-05.png)
 
 6. Clicking on the link opens up the Bicep Registry Repo for the AVM module's source code, where you can find the documentation detailing all the module's functionality, input parameters and outputs, while providing various examples.
-<img src="../../../img/quickstart/bicep/use-bicep-module-06.png" width=100% alt="See the module's documentation online">
+![See the module's documentation online](/Azure-Verified-Modules/img/usage-guide/quickstart/bicep/use-bicep-module-06.png)
