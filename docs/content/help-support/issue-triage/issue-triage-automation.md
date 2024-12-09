@@ -331,6 +331,8 @@ When the author replies, remove the "<mark style="background-color:#CB6BA2;color
 
 **Action(s):**
 
+- Remove the "<mark style="background-color:#CB6BA2;color:white;">Needs: Author Feedback 👂</mark>" label.
+- Remove the "<mark style="background-color:#808080;color:white;">Status: No Recent Activity 💤</mark>" label.
 - Add the "<mark style="background-color:#E99695;color:white;">Needs: Attention 👋</mark>" label.
 
 ---
