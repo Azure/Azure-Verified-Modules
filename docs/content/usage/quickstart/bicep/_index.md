@@ -100,6 +100,7 @@ The ```dev.bicepparam``` file is optional. You can instead pass parameters to th
 using 'main.bicep'
 
 // environment specific values
+param keyVaultName = '<keyVaultName>'
 param enablePurgeProtection = false
 ```
 
@@ -136,9 +137,11 @@ param resourceLocation string = resourceGroup().location
 param enablePurgeProtection bool = true
 
 import { keyType } from 'br/public:avm/res/key-vault/vault:0.11.0'
+// adding keys is optional in the Key Vault resource module
 param keys keyType[]?
 
 import { roleAssignmentType } from 'br/public:avm/utl/types/avm-common-types:0.3.0'
+// the role assignements are optional in the Key Vault resource module
 param roleAssignments roleAssignmentType[]?
 
 // the resources to deploy
@@ -163,6 +166,7 @@ And the bicep parameter file now looks like this:
 using 'main.bicep'
 
 // environment specific values
+param keyVaultName = '<keyVaultName>'
 param enablePurgeProtection = false
 
 param keys = [
