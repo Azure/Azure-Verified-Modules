@@ -69,6 +69,8 @@ configuration:
         then:
           - removeLabel:
               label: "Needs: Author Feedback :ear:"
+          - removeLabel:
+              label: "Status: No Recent Activity :zzz:"
           - addLabel:
               label: "Needs: Attention :wave:"
 
