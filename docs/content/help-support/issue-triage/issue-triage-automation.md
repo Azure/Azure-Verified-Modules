@@ -179,7 +179,7 @@ If an issue/PR has been labelled with "<mark style="background-color:#CB6BA2;col
 
 **Trigger criteria:**
 
-- Is an open issue.
+- Is an open issue/PR.
 - Had no activity in the last 4 days.
 - Has the "<mark style="background-color:#CB6BA2;color:white;">Needs: Author Feedback 👂</mark>" label added.
 - Does not have the "<mark style="background-color:#808080;color:white;">Status: No Recent Activity 💤</mark>" label added.
@@ -200,6 +200,10 @@ To prevent further actions to take effect, one of the following conditions must 
 ---
 
 ### ITA05
+
+{{< hint type=warning >}}
+This rule is currently disabled in the AVM and BRM repositories.
+{{< /hint >}}
 
 If an issue/PR has been labelled with "<mark style="background-color:#808080;color:white;">Status: No Recent Activity 💤</mark>" and hasn't had any update in 3 days from that point, automatically close it and comment, unless the issue/PR has a "<mark style="background-color:#B60205;color:white;">Status: Long Term ⏳</mark>" - in which case, do not close it.
 
@@ -317,15 +321,18 @@ When #wontfix is used in an issue, mark it by using the label of "<mark style="b
 
 ### ITA11
 
-When a reply from anyone to an issue occurs, remove the "<mark style="background-color:#CB6BA2;color:white;">Needs: Author Feedback 👂</mark>" label and label with "<mark style="background-color:#E99695;color:white;">Needs: Attention 👋</mark>".
+When the author replies, remove the "<mark style="background-color:#CB6BA2;color:white;">Needs: Author Feedback 👂</mark>" label and label with "<mark style="background-color:#E99695;color:white;">Needs: Attention 👋</mark>".
 
 **Trigger criteria:**
 
 - Any action on an issue comment or PR comment except closing.
 - Has the "<mark style="background-color:#CB6BA2;color:white;">Needs: Author Feedback 👂</mark>" label added.
+- The activity was initiated by the issue/PR author.
 
 **Action(s):**
 
+- Remove the "<mark style="background-color:#CB6BA2;color:white;">Needs: Author Feedback 👂</mark>" label.
+- Remove the "<mark style="background-color:#808080;color:white;">Status: No Recent Activity 💤</mark>" label.
 - Add the "<mark style="background-color:#E99695;color:white;">Needs: Attention 👋</mark>" label.
 
 ---
@@ -621,8 +628,12 @@ The below table details which repositories the above rules are applied to.
 | [ITA03BCP](#ita03bcp)       |                     |       ✔️       |                 |
 | [ITA03TF](#ita03tf)         |                     |                |       ✔️        |
 | [ITA04](#ita04)             |         ✔️          |       ✔️       |       ✔️        |
-| [ITA05](#ita05)             |         ✔️          |       ✔️       |       ✔️        |
+| [ITA05](#ita05)             |         [✔️]          |       [✔️]       |       ✔️        |
 | [ITA24](#ita24)             |          ✔️         |                |                 |
+
+{{< hint type="warning" >}}
+The ITA05 rule is currently disabled in the AVM and BRM repositories.
+{{< /hint >}}
 
 ### Rules applied for Event based automation
 
