@@ -33,24 +33,3 @@ To deploy an Azure Verified Module (AVM), you will need the following:
   - **Terraform CLI**: The Terraform CLI is required to deploy your Terraform modules. Ensure you have the latest version installed.
 
 Make sure you have these tools and resources set up before proceeding with the deployment of an AVM module.
-
-### Bicep-specific configuration
-
-We suggest to create a [`bicepconfig.json`](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-config) file, and enable *use-recent-module-versions*, which brings you a warning when not using the latest version of an Azure Verified Module.
-
-```json
-// This is a Bicep configuration file. It can be used to control how Bicep operates and to customize validation settings for the Bicep linter. The linter uses these settings when evaluating your Bicep files for best practices.
-// For further information, please refer to the official documentation at: https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-config
-{
-  "analyzers": {
-    "core": {
-      "rules": {
-        "use-recent-module-versions": {
-          "level": "warning",
-          "message": "The module version is outdated. Please consider updating to the latest version."
-        }
-      }
-    }
-  }
-}
-```
