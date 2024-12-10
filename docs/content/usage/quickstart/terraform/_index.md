@@ -53,7 +53,7 @@ Searching the Azure Verified Module indexes is the most complete way to discover
 
 ## Create your new root module leveraging AVM
 
-Now that you've located the module details, you can use the module content from the Terraform Registry to accelerate your development efforts in one of two ways. The first method is to duplicate a module example and edit it for your needs. This is useful if you're starting without any existing infrastructure and need to create supporting resources like resource groups as part of your deployment. The second method is to add the AVM module to an existing root module that already includes other resources. This method requires some knowledge of the resource(s) being deployed so that you can make choices about optional features configured within the module. Each deployment method includes a section below so that you can choose the method which fits your needs.
+Now that you've located the module details, you can use the module content from the Terraform Registry to accelerate your development efforts in one of two ways. The first method is to duplicate a module example and edit it for your needs. This is useful if you're starting without any existing infrastructure and need to create supporting resources like resource groups as part of your deployment. The second method is to add the AVM module to an existing root module that already includes other resources. This method requires some knowledge of the resource(s) being deployed so that you can make choices about optional features configured within the module. Each deployment method includes a section below so that you can choose the method which fits your needs. (TODO: add links into the paragraph for each subsection so that users can jump to the desired option.)
 
 ### Creating a root module using AVM module examples
 
@@ -62,9 +62,25 @@ Use the following steps as a template for how to leverage examples for bootstrap
   - Locate and select the **Examples** drop down menu in the middle of the module page.
   - From the drop-down list select an example whose name most closely aligns with your scenario. (i.e. **default**)
   - When the example page loads, read the example description to determine if this is the desired example. If it is not, return to the module main page, and select a different example until you are satisfied that the example covers the scenario you are trying to deploy.
-  
+  - Scroll to the code block for the example and select the **Copy** button on the top right of the block to copy the content to the clipboard.
+  - In your IDE (Visual Studio Code in our example), open the **main.tf** file for your new root module.
+  - **Paste** the content from the clipboard into main.tf
+  - AVM examples frequently use naming and region selection modules to randomly generate a deployment region and unique names as well as default values for required fields. If you want to use a specific region or other custom resource values, remove the existing region and naming module calls and replace any template values with the new desired custom value.
+  - Once any supporting resources such as resource groups have been modified, locate the module call for the AVM module. (i.e. **`module "keyvault"`**)
+  - AVM module examples use dot notation for a relative reference that is useful during module testing. However, you will need to replace the relative reference with a source reference that points to the Terraform registry source location. In most cases, this source reference has been left as a comment in the module example to simplify replacing the existing source dot reference. Peform the following two actions to update the source:
+    - Delete the existing source using a dot reference. (i.e. **`source = "../../"`**)
+    - Uncomment the Terraform registry source reference by deleting the **#** sign at the start of the commented source line.  (i.e. **`source = "Azure/avm-res-keyvault-vault/azurerm"`**)
+  - **Save** your main.tf file changes and then proceed to the guide section for running your module. (TODO: Add this as an inline link so the next sub section can be skipped.)
 
+### Creating a root module by customizing the AVM module
 
+Use the following steps as a guide for a custom implementation of an AVM Module. This instruction path assumes that you have an existing module that you want to add the new AVM module to.
+
+  - Locate the **Provision Instructions** box on the right side of the module's registry page in your web browser.
+  - Select the module template code from the code block and **Copy** it onto the clipboard.
+  - Switch to your IDE and **Paste** the contents of the clipboard into your custom module .tf file. (**main.tf in our example**)
+  - Return to the module's registry page in the browser and select the **Inputs** tab.
+  - 
 
 
 ## Start coding
