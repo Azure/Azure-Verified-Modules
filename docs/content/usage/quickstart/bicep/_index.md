@@ -23,7 +23,6 @@ For the best experience, you will need:
 - [Bicep Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) to author your Bicep template and explore modules published in the registry.
 - [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell) OR [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) to deploy your solution.
 - [Azure Subscription](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/fundamental-concepts) to deploy your Bicep template.
-- [Terraform CLI](https://developer.hashicorp.com/terraform/install) to deploy your Terraform solution. Ensure you have the latest version installed.
 
 Make sure you have these tools set up before proceeding with the deployment of an AVM module.
 
