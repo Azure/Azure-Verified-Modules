@@ -9,16 +9,23 @@ geekdocCollapseSection: true
 
 {{< toc >}}
 
-This Quickstart-Guide shows how to deploy an instance with an Azure Verified Module. Let's assume, we need to deploy a [Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) instance and a Personal Access Token.
+This Quickstart-Guide shows how to deploy an instance with an Azure Verified Module. On this page, we assume that we need to deploy a [Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) instance and a Personal Access Token.
 
-## Requirements
+This article is written for a typical infra-dev user (cloud infrastructure professional) who is new to Azure Verified Modules and wants learn how to deploy a module the easiest possible way. The user has a basic understanding of Azure and Bicep templates.
 
-You can use any text editor, but for this Quickstart, VSCode will be used.
+If you first need to learn Bicep, you can find a [Bicep Quickstart](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/quickstart-create-bicep-use-modules) on the Microsoft Learn platform, study the [detailed documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file), or leverage the [Fundamentals of Bicep](https://learn.microsoft.com/en-us/training/paths/fundamentals-bicep/) learning path.
 
-- [Visual Studio Code](https://code.visualstudio.com/download)
-- [Bicep](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) Extension for VSCode to author your Bicep template and explore modules published in the registry
-- [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) (or PowerShell)
-- An Azure subscription to deploy your Bicep template
+## Prerequisites for Deploying an AVM Module
+
+For the best experience, you will need:
+
+- [Visual Studio Code (VS Code)]((https://code.visualstudio.com/download)) to develop your solution.
+- [Bicep Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) to author your Bicep template and explore modules published in the registry.
+- [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell) OR [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) to deploy your solution.
+- [Azure Subscription](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/fundamental-concepts) to deploy your Bicep template.
+- [Terraform CLI](https://developer.hashicorp.com/terraform/install) to deploy your Terraform solution. Ensure you have the latest version installed.
+
+Make sure you have these tools set up before proceeding with the deployment of an AVM module.
 
 ## How do I find out which modules exist?
 

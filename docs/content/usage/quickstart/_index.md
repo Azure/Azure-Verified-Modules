@@ -20,16 +20,3 @@ Using the default values provided by AVM is generally safe as they are configure
 
 You can find examples and detailed documentation for the each AVM module in their respective code repository's `README.MD` file that details all the features, input parameters, and outputs. The module's documentation also provides comprehensive usage examples, covering various scenarios and configurations. Additionally, you can explore the module's source code repository. This information will help you understand the full capabilities of the module and how to effectively integrate it into your projects.
 
-## Prerequisites for Deploying an AVM Module
-
-To deploy an Azure Verified Module (AVM), you will need the following:
-
-- **Azure Subscription**: An active Azure subscription is necessary to deploy and manage your Azure resources.
-- **Visual Studio Code (VS Code)**: A powerful code editor that supports various extensions.
-- For Bicep modules:
-  - **Bicep Visual Studio Code Extension**: This extension helps you author Bicep templates and explore modules published in the registry. You can install it from the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep).
-  - **PowerShell or Azure CLI**: These tools are required to deploy your Bicep templates. Ensure you have the latest version installed.
-- For Terraform modules:
-  - **Terraform CLI**: The Terraform CLI is required to deploy your Terraform modules. Ensure you have the latest version installed.
-
-Make sure you have these tools and resources set up before proceeding with the deployment of an AVM module.
