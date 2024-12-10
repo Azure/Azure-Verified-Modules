@@ -35,7 +35,7 @@ The simplest way to discover published AVM Terraform modules is to search the Te
   - Find the module you wish to use and select it from the search results.
   - **Please Note:** It is possible to discover other unofficial modules with avm in the name using this search method.  Look for the `Partner` tag in the module title as a way to determine if the module is part of the official set.
 
-  ![Searching for avm on terraform registry and selecting desired module.](/Azure-Verified-Modules/img/usage-guide/quickstart/terraform/avm-tf-search-4-4.gif)
+  ![Searching for avm on terraform registry and selecting desired module.](/Azure-Verified-Modules/img/usage/quickstart/terraform/avm-tf-search-4-4.gif)
 
 ### Searching using the Azure Verified Modules (AVM) Website
 
@@ -80,6 +80,7 @@ Use the following steps as a guide for a custom implementation of an AVM Module.
   - Select the module template code from the code block and **Copy** it onto the clipboard.
   - Switch to your IDE and **Paste** the contents of the clipboard into your custom module .tf file. (**main.tf in our example**)
   - Return to the module's registry page in the browser and select the **Inputs** tab.
+<<<<<<< HEAD
   - Review each input, and add the inputs with the desired target value to the module template. (i.e. **`name = "custom_name"`**)
   - Once you are satisfied that you've include all required inputs and any optional inputs, **Save** your file and continue to the next section.
 
@@ -102,5 +103,8 @@ Once module development is complete you can proceed to the implementation stage.
 Congratulations, you have successfully leveraged Terraform and AVM to deploy resources in Azure.
 
 
+=======
+  -
+>>>>>>> 9062a9a6eb3419fac0e026adb406669346ab7e52
 
 
