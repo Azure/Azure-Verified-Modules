@@ -64,7 +64,7 @@ Use the following steps as a template for how to leverage examples for bootstrap
   - When the example page loads, read the example description to determine if this is the desired example. If it is not, return to the module main page, and select a different example until you are satisfied that the example covers the scenario you are trying to deploy.
   - Scroll to the code block for the example and select the **Copy** button on the top right of the block to copy the content to the clipboard.
   - In your IDE (Visual Studio Code in our example), open the **main.tf** file for your new root module.
-  - **Paste** the content from the clipboard into main.tf
+  - **Paste** the content from the clipboard into **main.tf**.
   - AVM examples frequently use naming and region selection modules to randomly generate a deployment region and unique names as well as default values for required fields. If you want to use a specific region or other custom resource values, remove the existing region and naming module calls and replace any template values with the new desired custom value.
   - Once any supporting resources such as resource groups have been modified, locate the module call for the AVM module. (i.e. **`module "keyvault"`**)
   - AVM module examples use dot notation for a relative reference that is useful during module testing. However, you will need to replace the relative reference with a source reference that points to the Terraform registry source location. In most cases, this source reference has been left as a comment in the module example to simplify replacing the existing source dot reference. Peform the following two actions to update the source:
@@ -74,13 +74,37 @@ Use the following steps as a template for how to leverage examples for bootstrap
 
 ### Creating a root module by customizing the AVM module
 
-Use the following steps as a guide for a custom implementation of an AVM Module. This instruction path assumes that you have an existing module that you want to add the new AVM module to.
+Use the following steps as a guide for a custom implementation of an AVM Module. This instruction path assumes that you have an existing Terraform module file that you want to add the AVM module to.
 
   - Locate the **Provision Instructions** box on the right side of the module's registry page in your web browser.
   - Select the module template code from the code block and **Copy** it onto the clipboard.
   - Switch to your IDE and **Paste** the contents of the clipboard into your custom module .tf file. (**main.tf in our example**)
   - Return to the module's registry page in the browser and select the **Inputs** tab.
+<<<<<<< HEAD
+  - Review each input, and add the inputs with the desired target value to the module template. (i.e. **`name = "custom_name"`**)
+  - Once you are satisfied that you've include all required inputs and any optional inputs, **Save** your file and continue to the next section.
+
+
+## Implementing your module
+
+Once module development is complete you can proceed to the implementation stage.  The following steps represent a basic Terraform workflow:
+
+  - Open the command line and login to Azure using the Azure cli by executing the **`az login`** command. If your account has access to multiple tenants you may need to modify the command to **`az login --tenant <tenant id>`** where **`<tenant id>`** is the guid for the target tenant.
+  - After logging in, select the **target subscription** from the list of subscriptions that you have access to.
+  - Change directory to the directory where your completed terraform root module files reside.
+  - Initialize your Terraform project by running **`terraform init`**. This command downloads the necessary modules and sets up the working directory.
+  - Before applying the configuration, it is good practice to validate it to ensure there are no syntax errors by running **`terraform validate`**.
+  - Run the **`terraform plan`** command to create an execution plan. This step shows what actions Terraform will take to reach the desired state defined in your configuration. Review the plan to ensure that only the desired actions are in the plan output.
+  - Run **`terraform apply`** to apply the configuration and create the resources defined in your configuration file. This command will prompt you to confirm before making changes. If you are confident in your changes you can add the -auto-approve switch to bypass manual approval.  (i.e. **`terraform apply -auto-approve`**)
+  - Once the install completes, validate that the infrastructure has been deployed as desired. Note that a local terraform.tfstate file and a state backup file have been created. The use of local state s is ok for small temporary configurations, but when doing production or long lived installations, the use of a remove state configuration is recommended. Remote state configuration is out of scope for this guide, but you can find details on its configuration in the [Microsoft Learn documentation.](https://learn.microsoft.com/en-us/azure/developer/terraform/store-state-in-azure-storage?tabs=azure-cli)
+  - If you need to tear down the infrastructure, use the **`terraform destroy`** command. This will remove all the resources created by your configuration.
+
+
+Congratulations, you have successfully leveraged Terraform and AVM to deploy resources in Azure.
+
+
+=======
   -
+>>>>>>> 9062a9a6eb3419fac0e026adb406669346ab7e52
 
 
-## Start coding
