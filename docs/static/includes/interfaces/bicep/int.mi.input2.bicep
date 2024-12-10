@@ -1,0 +1,3 @@
+managedIdentities: {
+  systemAssigned: true
+}
