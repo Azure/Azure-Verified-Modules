@@ -6,7 +6,6 @@ privateEndpoints: {
     tags: {
       'hidden-title': 'This is visible in the resource name'
     }
-    service: 'vault'
     subnetResourceId: '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myRg/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mysubnet'
     applicationSecurityGroupResourceIds: [
       '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myRg/providers/Microsoft.Network/applicationSecurityGroups/myAsg'
