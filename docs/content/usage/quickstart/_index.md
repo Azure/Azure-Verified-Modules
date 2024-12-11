@@ -19,4 +19,3 @@ Using the default values provided by AVM is generally safe as they are configure
 ## Where can I find some examples? How can I find out all the features a given module has to offer?
 
 You can find examples and detailed documentation for the each AVM module in their respective code repository's `README.MD` file that details all the features, input parameters, and outputs. The module's documentation also provides comprehensive usage examples, covering various scenarios and configurations. Additionally, you can explore the module's source code repository. This information will help you understand the full capabilities of the module and how to effectively integrate it into your projects.
-

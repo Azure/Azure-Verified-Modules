@@ -15,20 +15,29 @@ This article is written for a typical infra-dev user (cloud infrastructure profe
 
 If you first need to learn Bicep, you can find a [Bicep Quickstart](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/quickstart-create-bicep-use-modules) on the Microsoft Learn platform, study the [detailed documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file), or leverage the [Fundamentals of Bicep](https://learn.microsoft.com/en-us/training/paths/fundamentals-bicep/) learning path.
 
-## Prerequisites for Deploying an AVM Module
+## Prerequisites
 
 For the best experience, you will need:
 
 - [Visual Studio Code (VS Code)]((https://code.visualstudio.com/download)) to develop your solution.
-- [Bicep Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) to author your Bicep template and explore modules published in the registry.
+- [Bicep Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) to author your Bicep template and explore modules published in the [registry](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules#public-module-registry).
 - [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell) OR [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) to deploy your solution.
 - [Azure Subscription](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/fundamental-concepts) to deploy your Bicep template.
 
-Make sure you have these tools set up before proceeding with the deployment of an AVM module.
+Make sure you have these tools set up before proceeding.
 
 ## How do I find out which modules exist?
 
 // TODO think or check manually, instead of showing the overview page
+
+2 ways...
+
+### Bicep Module Indexes
+
+<video width=100% controls muted preload="metadata">
+    <source src="/Azure-Verified-Modules/img/usage/quickstart/bicep/module-index_bcp_res_1080-10fps.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
 
 With the scenario in mind, I need to deploy a Key Vault instance. Available modules (for now, we don't distinguish between resource, pattern and utility modules) are listed on the [Bicep Modules](/Azure-Verified-Modules/indexes/bicep/) site. Searching on this site for *key-vault*.
 
