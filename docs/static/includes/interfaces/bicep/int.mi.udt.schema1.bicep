@@ -3,11 +3,7 @@
 //   Parameters   //
 // ============== //
 
-<<<<<<<< HEAD:docs/static/includes/interfaces/bicep/int.mi.udt.schema.bicep
-import { managedIdentityAllType } from 'br/public:avm/utl/types/avm-common-types:0.4.0'
-========
 import { managedIdentityAllType } from 'br/public:avm/utl/types/avm-common-types:>version<'
->>>>>>>> main:docs/static/includes/interfaces/bicep/int.mi.udt.schema1.bicep
 @description('Optional. The managed identity definition for this resource.')
 param managedIdentities managedIdentityAllType?
 
