@@ -42,8 +42,8 @@ There are two primary ways for locating published Terraform Azure Verified Modul
 
 #### Use the Terraform Registry
 
-<video width=100% controls loop muted>
-    <source src="/Azure-Verified-Modules/img/usage/quickstart/terraform/avm-tf-search-6-10.mp4" type="video/mp4">
+<video width=100% controls muted preload="metadata">
+    <source src="/Azure-Verified-Modules/img/usage/quickstart/terraform/avm-tf-qs-discovery-1080-10.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
 
@@ -90,12 +90,23 @@ Each deployment method includes a section below so that you can choose the metho
 
 ### Option 1: Create a root module using AVM module examples
 
+<video width=100% controls muted preload="metadata">
+    <source src="/Azure-Verified-Modules/img/usage/quickstart/terraform/avm-tf-qs-example-copy-1080-10.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
 Use the following steps as a template for how to leverage examples for bootstrapping your new module. We will use the key vault resource module as an example, but in practice you may use whichever module applies to your scenario.
 
 - Locate and select the **Examples** drop down menu in the middle of the module page.
 - From the drop-down list select an example whose name most closely aligns with your scenario - e.g., **default**.
 - When the example page loads, read the example description to determine if this is the desired example. If it is not, return to the module main page, and select a different example until you are satisfied that the example covers the scenario you are trying to deploy. **\[MB\]: what do you need to do if there isn't an example that fits your scenario?**
 - Scroll to the code block for the example and select the **Copy** button on the top right of the block to copy the content to the clipboard.
+
+<video width=100% controls muted preload="metadata">
+    <source src="/Azure-Verified-Modules/img/usage/quickstart/terraform/avm-tf-qs-example-vscode-1080-10.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
 - In your IDE - Visual Studio Code in our example - open the **`main.tf`** file for your new root module.
 - **Paste** the content from the clipboard into **`main.tf`**.
 - AVM examples frequently use naming and region selection modules to randomly generate a deployment region and unique names as well as default values for required fields. If you want to use a specific region or other custom resource values, remove the existing region and naming module calls and replace any template values with the new desired custom value.
@@ -103,6 +114,7 @@ Use the following steps as a template for how to leverage examples for bootstrap
 - AVM module examples use dot notation for a relative reference that is useful during module testing. However, you will need to replace the relative reference with a source reference that points to the Terraform registry source location. In most cases, this source reference has been left as a comment in the module example to simplify replacing the existing source dot reference. Peform the following two actions to update the source:
   - Delete the existing source using a dot reference - i.e., **`source = "../../"`**.
   - Uncomment the Terraform registry source reference by deleting the **#** sign at the start of the commented source line - i.e., **`source = "Azure/avm-res-keyvault-vault/azurerm"`**.
+- AVM module examples use a variable to enable or disable the telemetry collection. Update the **`enable_telemetry`** input value to true or false. -e.g. **`enable_telemetry = true`**
 - **Save** your `main.tf` file changes and then proceed to the guide section for running your module.
 
 ### Option 2: Create a root module by changing the AVM module input values
