@@ -110,7 +110,6 @@ The Bicep VSCode extension is reading metadata through [this JSON file](https://
 ![Bicep Extension offers](/Azure-Verified-Modules/img/usage/quickstart/bicep/bicep_module_vscode_module_hover.png)
 
 // TODO "required-properties" code complete with tab-complete
-// TODO something about UDTs like code-completion
 
 ### Define the Key Vault instance
 
@@ -151,19 +150,6 @@ using 'main.bicep'
 param keyVaultName = '<keyVaultName>'
 param enablePurgeProtection = false
 ```
-
-// TODO add tabbing feature
-
-To test the script and deploy it to Azure, you can use the Azure CLI:
-
-```bash
-az group create --name avm-quickstart-rg --location germanywestcentral
-az deployment group create --resource-group avm-quickstart-rg --template-file main.bicep --parameters dev.bicepparam
-```
-
-To test the script and deploy it to Azure, you can use PowerShell:
-
-```// TODO posh``` with input object https://github.com/Azure/ResourceModules/wiki/The%20library%20-%20Module%20usage#powershell
 
 ### Create a key and set permissions
 
@@ -233,15 +219,28 @@ param roleAssignments = [
 ]
 ```
 
-// TODO I did get the name of the role from code completion (screenshot or something else)
+// TODO something about UDTs like code-completion
 
-**\[MB\] TODO: show UDT in action**
+// TODO I did get the name of the role from code completion (screenshot or something else)
 
 With this IaC template (Infrastructure as Code), you deploy a Key Vault instance, add a key and grant permissions to a user.
 
 ## Deploy your module
 
-**\[MB\] TODO: Deploy your Bicep template using PowerShell AND Azure CLI.**
+**\[MB\] TODO: Deploy your Bicep template using PowerShell AND Azure CLI - use example from CARML.**
+
+// TODO add tabbing feature
+
+To test the script and deploy it to Azure, you can use the Azure CLI:
+
+```bash
+az group create --name avm-quickstart-rg --location germanywestcentral
+az deployment group create --resource-group avm-quickstart-rg --template-file main.bicep --parameters dev.bicepparam
+```
+
+To test the script and deploy it to Azure, you can use PowerShell:
+
+```// TODO posh``` with input object https://github.com/Azure/ResourceModules/wiki/The%20library%20-%20Module%20usage#powershell
 
 ## Bicep-specific configuration
 
@@ -265,6 +264,9 @@ We suggest to create a [`bicepconfig.json`](https://learn.microsoft.com/en-us/az
 ```
 
 ## Clean up your environment
+
+// TODO: Rene to add CLI and PowerShell commands to disable purge protection and delete the resource group
+// TODO: Mate to add tabs and explanation
 
 When you're ready, tear down the infrastructure. This will remove all the resources created by your configuration:
 
