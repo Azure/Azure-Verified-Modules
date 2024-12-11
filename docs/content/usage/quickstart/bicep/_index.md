@@ -99,13 +99,7 @@ Note how [Example 2](https://github.com/Azure/bicep-registry-modules/tree/main/a
 1. Start up VSCode (with the Bicep extension installed) and open a folder in which you want to work.
 2. Create a `main.bicep` and a `dev.bicepparam` file, which will hold parameters for your Key Vault deployment.
 
-The scope for the deployment of the Key Vault instance will be a resource group. The Bicep extension offers code-completion, which makes it easy to find and use the Azure Verified Module.
-
-{{< hint type=note >}}
-The Bicep VSCode extension is reading metadata through [this JSON file](https://live-data.bicep.azure.com/module-index). All modules are added to this file, as part of the publication process. This lists all the modules marked as Published or Orphaned on the [AVM Bicep module index pages](https://aka.ms/AVM/ModuleIndex/Bicep).
-{{< /hint >}}
-
-The Bicep extension of VSCode offers code-completion, which is offers e.g. the required properties for a module. Thus you can start typing, let the magic do its thing and end up with (we've added comments here, to describe the different names):
+The scope for the deployment of the Key Vault instance will be a resource group. The Bicep extension offers code-completion, which makes it easy to find and use the Azure Verified Module. It will e.g. provide the required properties for a module. You can start typing, let the magic do its thing and end up with (we've added comments here, to describe the different names):
 
 ```bicep {lineNos=inline}
 module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
@@ -116,11 +110,15 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
 }
 ```
 
-After setting the values for the required properties, the module can be deployed. This minimal configuration automatically sets best-practices from reliability and security with default values, which you can always override.
+After setting the values for the required properties, the module can be deployed. This minimal configuration automatically sets best-practices from the [Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/well-architected/) for reliability and security with default values, which you can always override.
+
+{{< hint type=note >}}
+The Bicep VSCode extension is reading metadata through [this JSON file](https://live-data.bicep.azure.com/module-index). All modules are added to this file, as part of the publication process. This lists all the modules marked as Published or Orphaned on the [AVM Bicep module index pages](https://aka.ms/AVM/ModuleIndex/Bicep).
+{{< /hint >}}
 
 ### Define the Key Vault instance
 
-In this scenario, and every other real-world setup, there is a bit more that we want to configure. You can use the documentation URL to see the module’s documentation online for other supported parameters. The ```main.bicep``` might look like this:
+In this scenario, and every other real-world setup, there is a bit more that we want to configure. You can use the documentation URL (by hovering over the module) to see the module’s documentation online for other supported parameters. The ```main.bicep``` might look like this:
 
 ```bicep {lineNos=inline}
 // the scope, the deployment deploys resources to
@@ -143,10 +141,9 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
     // more properties are not needed, as AVM provides default values
   }
 }
-
-// output parameters, which give away instance/deployment specific values
-output keyVaultName string = keyVault.name
 ```
+
+The code I added makes the module usa is for passing in the Key Vault name and optionally change the location and purge protection. You might not want to enable the latter in a non-production environment, as it makes it harder to delete and recreate resources.
 
 The ```dev.bicepparam``` file is optional and sets parameter values for a certain environment. You can instead pass parameters to the CLI.
 
@@ -160,11 +157,11 @@ param enablePurgeProtection = false
 
 ### Create a key and set permissions
 
-Now let's add a key to the Key Vault instance and grant permissions to a user to work with the key. Sample role assignements can be found in [Example 3: Using large parameter set](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#example-3-using-large-parameter-set). See [Parameter: roleAssignments](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#parameter-roleassignments) for a list of pre-defined roles, that you can reference by name.
+Now let's add a key to the Key Vault instance and grant permissions to a user to work with the key. Sample role assignements can be found in [Example 3: Using large parameter set](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#example-3-using-large-parameter-set). See [Parameter: roleAssignments](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#parameter-roleassignments) for a list of pre-defined roles, that you can reference by name instead of a Guid. Again, this is a huge advantage of using AVM, as the code is easy to read and increases the maintainability.
 
-You can make use of [User-defined data types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) and simplify the parameterization of the modules. Therefore, first import UDTs from the Key Vault and common types module.
+You can also make use of [User-defined data types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) and simplify the parameterization of the modules instead of guessing or looking up parameters. Therefore, first import UDTs from the Key Vault and common types module and leverage the UDTs in your Bicep and parameter files.
 
-For a role assignment, the principal ID is needed, that will be granted a role on the resource. Your own ID can be found out with `az ad signed-in-user show --query id`.
+For a role assignment, the principal ID is needed, that will be granted a role (specified by its name) on the resource. Your own ID can be found out with `az ad signed-in-user show --query id`.
 
 ```bicep {lineNos=inline}
 // the scope, the deployment deploys resources to
@@ -178,11 +175,11 @@ param resourceLocation string = resourceGroup().location
 param enablePurgeProtection bool = true
 
 import { keyType } from 'br/public:avm/res/key-vault/vault:0.11.0'
-// adding keys is optional in the Key Vault resource module
+// adding keys is optional in the Key Vault module
 param keys keyType[]?
 
-import { roleAssignmentType } from 'br/public:avm/utl/types/avm-common-types:0.3.0'
-// the role assignements are optional in the Key Vault resource module
+import { roleAssignmentType } from 'br/public:avm/utl/types/avm-common-types:0.4.0'
+// the role assignements are optional in the Key Vault module
 param roleAssignments roleAssignmentType[]?
 
 // the resources to deploy
@@ -196,16 +193,14 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
     roleAssignments: roleAssignments
   }
 }
-
-// output parameters, which give away instance/deployment specific values
-output keyVaultName string = keyVault.name
 ```
 
-You might notice the keys parameter, which has a [User-defined data type](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) that is imported from the Key Vault module and enables again code completion for easy usage. You don't need to lookup the parameters that a key might have. Just start typing and fill whatever you need.
+Notice the keys parameter, which has a UDT (User-defined data type) that is imported from the Key Vault module and enables again code completion for easy usage. You don't need to lookup the parameters that a key might have. Just start typing and fill whatever you need from the offered parameters by the Bicep extension in combination with Azure Verified Modules.
 
 And the bicep parameter file now looks like this:
 
 ```bicep {lineNos=inline}
+// reference to the Bicep file to set the context
 using 'main.bicep'
 
 // environment specific values
@@ -214,6 +209,7 @@ param enablePurgeProtection = false
 
 param keys = [
   {
+    // set required parameters
     kty: 'EC'
     name: 'PAT'
   }
