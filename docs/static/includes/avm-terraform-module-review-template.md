@@ -17,7 +17,7 @@ Please use the comments columns to provide additional details especially if the 
 - [ ] Ensure that all checks on AVM-Review-PR are passing
 - [ ] Make sure you've run [grept](https://azure.github.io/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/owner-contribution-flow/#5-grept) and [pre-commit and pr-check](https://azure.github.io/Azure-Verified-Modules/contributing/terraform/terraform-contribution-flow/#41-run-pre-commit-and-pr-check).
 - [ ] Tick this to acknowledge specs with comment "Module Owner to action this spec post-publish as appropriate" in the table below.
-- [ ] Please remember to update _header.md file as it contains instructions which once actioned need to be replaced with Module Name and Description
+- [ ] Please update the _header.md file as it contains instructions which - once actioned - need to be replaced with Module Name and Description.
 ```
 
 | ID  | Spec                                                                                                                                                                       | Compliant | Comments                                                                                |
