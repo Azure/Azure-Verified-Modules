@@ -101,20 +101,26 @@ Note how [Example 2](https://github.com/Azure/bicep-registry-modules/tree/main/a
 
 The scope for the deployment of the Key Vault instance will be a resource group. The Bicep extension offers code-completion, which makes it easy to find and use the Azure Verified Module.
 
-![Code-Completion in Visual Studio Code](/Azure-Verified-Modules/img/usage/quickstart/bicep/bicep_module_vscode_code_completion.png)
-
 {{< hint type=note >}}
 The Bicep VSCode extension is reading metadata through [this JSON file](https://live-data.bicep.azure.com/module-index). All modules are added to this file, as part of the publication process. This lists all the modules marked as Published or Orphaned on the [AVM Bicep module index pages](https://aka.ms/AVM/ModuleIndex/Bicep).
 {{< /hint >}}
 
-![Bicep Extension offers](/Azure-Verified-Modules/img/usage/quickstart/bicep/bicep_module_vscode_module_hover.png)
+The Bicep extension of VSCode offers code-completion, which is offers e.g. the required properties for a module. Thus you can start typing, let the magic do its thing and end up with (we've added comments here, to describe the different names):
 
-// TODO "required-properties" code complete with tab-complete
-// TODO something about UDTs like code-completion
+```bicep {lineNos=inline}
+module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
+  name: // the name of the deployment
+  params: {
+    name: // the name of the Key Vault instance with constraints like maximum length and the data type
+  }
+}
+```
+
+After setting the values for the required properties, the module can be deployed. This minimal configuration automatically sets best-practices from reliability and security with default values, which you can always override.
 
 ### Define the Key Vault instance
 
-Select the latest version and start coding. Set the required properties for the module. You can use the documentation URL to see the module’s documentation online. The ```main.bicep``` might look like this:
+In this scenario, and every other real-world setup, there is a bit more that we want to configure. You can use the documentation URL to see the module’s documentation online for other supported parameters. The ```main.bicep``` might look like this:
 
 ```bicep {lineNos=inline}
 // the scope, the deployment deploys resources to
@@ -142,7 +148,7 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
 output keyVaultName string = keyVault.name
 ```
 
-The ```dev.bicepparam``` file is optional. You can instead pass parameters to the CLI.
+The ```dev.bicepparam``` file is optional and sets parameter values for a certain environment. You can instead pass parameters to the CLI.
 
 ```bicep {lineNos=inline}
 using 'main.bicep'
@@ -151,19 +157,6 @@ using 'main.bicep'
 param keyVaultName = '<keyVaultName>'
 param enablePurgeProtection = false
 ```
-
-// TODO add tabbing feature
-
-To test the script and deploy it to Azure, you can use the Azure CLI:
-
-```bash
-az group create --name avm-quickstart-rg --location germanywestcentral
-az deployment group create --resource-group avm-quickstart-rg --template-file main.bicep --parameters dev.bicepparam
-```
-
-To test the script and deploy it to Azure, you can use PowerShell:
-
-```// TODO posh``` with input object https://github.com/Azure/ResourceModules/wiki/The%20library%20-%20Module%20usage#powershell
 
 ### Create a key and set permissions
 
@@ -208,6 +201,8 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
 output keyVaultName string = keyVault.name
 ```
 
+You might notice the keys parameter, which has a [User-defined data type](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) that is imported from the Key Vault module and enables again code completion for easy usage. You don't need to lookup the parameters that a key might have. Just start typing and fill whatever you need.
+
 And the bicep parameter file now looks like this:
 
 ```bicep {lineNos=inline}
@@ -235,13 +230,24 @@ param roleAssignments = [
 
 // TODO I did get the name of the role from code completion (screenshot or something else)
 
-**\[MB\] TODO: show UDT in action**
-
 With this IaC template (Infrastructure as Code), you deploy a Key Vault instance, add a key and grant permissions to a user.
 
 ## Deploy your module
 
-**\[MB\] TODO: Deploy your Bicep template using PowerShell AND Azure CLI.**
+**\[MB\] TODO: Deploy your Bicep template using PowerShell AND Azure CLI - use example from CARML.**
+
+// TODO add tabbing feature
+
+To test the script and deploy it to Azure, you can use the Azure CLI:
+
+```bash
+az group create --name avm-quickstart-rg --location germanywestcentral
+az deployment group create --resource-group avm-quickstart-rg --template-file main.bicep --parameters dev.bicepparam
+```
+
+To test the script and deploy it to Azure, you can use PowerShell:
+
+```// TODO posh``` with input object https://github.com/Azure/ResourceModules/wiki/The%20library%20-%20Module%20usage#powershell
 
 ## Bicep-specific configuration
 
@@ -265,6 +271,9 @@ We suggest to create a [`bicepconfig.json`](https://learn.microsoft.com/en-us/az
 ```
 
 ## Clean up your environment
+
+// TODO: Rene to add CLI and PowerShell commands to disable purge protection and delete the resource group
+// TODO: Mate to add tabs and explanation
 
 When you're ready, tear down the infrastructure. This will remove all the resources created by your configuration:
 
