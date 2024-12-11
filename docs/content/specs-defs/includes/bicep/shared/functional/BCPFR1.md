@@ -15,7 +15,7 @@ tags: [
   Persona-Owner, # MULTIPLE VALUES: this can be "Persona-Owner" AND/OR "Persona-Contributor"
   Persona-Contributor, # MULTIPLE VALUES: this can be "Persona-Owner" AND/OR "Persona-Contributor"
   Lifecycle-BAU, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
-  Validation-TBD # SINGLE VALUE: this can be "Validation-Manual" OR "Validation-CI/Informational" OR "CI/Enforced"
+  Validation-TBD # SINGLE VALUE: this can be "Validation-BCP/Manual" OR "Validation-BCP/CI/Informational" OR "Validation-BCP/CI/Enforced"
 ]
 priority: 10010
 ---
@@ -24,7 +24,7 @@ priority: 10010
 
 Module owners **MAY** cross-references other modules to build either Resource or Pattern modules.
 
-However, they **MUST** be referenced only by a public registry reference to a pinned version e.g. `br/public:avm/xxx/yyy:1.2.3`. They **MUST NOT** use local parent path references to a module e.g. `../../xxx/yyy.bicep`.
+However, they **MUST** be referenced only by a public registry reference to a pinned version e.g. `br/public:avm/[res|ptn|utl]/<publishedModuleName>:>version<`. They **MUST NOT** use local parent path references to a module e.g. `../../xxx/yyy.bicep`.
 
 Although, child modules, that are children of the primary resources being deployed by the AVM Resource Module, **MAY** be specified via local child path e.g. `child/resource.bicep`.
 

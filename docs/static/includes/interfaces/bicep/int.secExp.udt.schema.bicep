@@ -45,7 +45,7 @@ module secretsExport 'modules/keyVaultExport.bicep' = if (secretsExportConfigura
 //   Outputs   //
 // =========== //
 
-import { secretsOutputType } from 'br/public:avm/utl/types/avm-common-types:0.4.0'
+import { secretsOutputType } from 'br/public:avm/utl/types/avm-common-types:>version<'
 @description('A hashtable of references to the secrets exported to the provided Key Vault. The key of each reference is each secret\'s name.')
 output exportedSecrets secretsOutputType = (secretsExportConfiguration != null)
   ? toObject(secretsExport.outputs.secretsSet, secret => last(split(secret.secretResourceId, '/')), secret => secret)

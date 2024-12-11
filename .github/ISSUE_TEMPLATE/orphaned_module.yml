@@ -9,7 +9,7 @@ body:
       value: |
         Thank you for reporting an orphaned AVM module!
 
-        Please ensure you have checked the [AVM Module Classification Definitions](https://azure.github.io/Azure-Verified-Modules/specs/shared/module-classifications/) & the [AVM Shared Specification](https://azure.github.io/Azure-Verified-Modules/specs/shared/)
+        Please ensure you have checked the [AVM Module Classification Definitions](https://azure.github.io/Azure-Verified-Modules/specs/shared/module-classifications/) & the [AVM Module Specifications](https://azure.github.io/Azure-Verified-Modules/specs/module-specs/).
   - type: dropdown
     id: language
     attributes:
