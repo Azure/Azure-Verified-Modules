@@ -15,33 +15,28 @@ This guide provides instructions for using an Azure Verified Module (AVM) as par
 
 For the best experience, you will need:
 
-- [Visual Studio Code (VS Code)](https://code.visualstudio.com/download) to develop your solution.
-- [Terraform CLI](https://developer.hashicorp.com/terraform/install) to deploy your Terraform solution. Make sure you have the latest version installed.
+- [Visual Studio Code (VS Code)](https://code.visualstudio.com/docs/setup/setup-overview) to develop your solution.
+- [Terraform CLI](https://developer.hashicorp.com/terraform/install) to deploy your Terraform modules. Make sure you have a recent version installed.
 - [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) to authenticate to Azure.
-- [Azure Subscription](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/fundamental-concepts) to deploy your Bicep template.
+- [Azure Subscription](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/fundamental-concepts) to deploy your resources.
 
 Before you begin, ensure you have the these tools installed in your development environment.
 
-  <!-- - A recent version of the Terraform binaries installed. Official instructions for installing Terraform can be found on the official [Hashicorp installation page.](https://developer.hashicorp.com/terraform/install)
-  - An Integrated Development Environment(IDE) application similar to Visual Studio Code for developing your module. Visual Studio Code will be used in these instructions and setup instructions for it can be found in the [product documentation here](https://code.visualstudio.com/docs/setup/setup-overview). //TODO: do we want to call out specific extensions that make using terraform easier?
-  - A recent version of the Azure Command Line Interface(CLI) application. Terraform uses the Azure CLI to authenticate to Azure.  Installation instructions for the CLI can be found in the [Microsoft Learn documentation here.](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) -->
-
 ## Module Discovery
 
-There are two primary ways for locating published Terraform Azure Verified Modules. The official Terraform registry and the AVM website Terraform module index.
+There are two primary ways for locating published Terraform Azure Verified Modules. The [official Terraform registry](https://registry.terraform.io/) and the AVM website Terraform module index.
 
 ### Searching using the Terraform Registry
 
 The simplest way to discover published AVM Terraform modules is to search the Terraform registry. Use the following steps to locate a specific module in the Terraform registry.
 
 - Use your web browser to go to the [latest version of the Terraform docs.](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
-- In the search bar at the top of the screen type **`avm`**. Optionally, append additional terms to narrow the search results. (i.e. **`avm keyvault`** for avm modules with keyvault in the name.)
-- Select **`see all`** to display the full list of published modules matching your search criteria.
+- In the search bar at the top of the screen type **avm**. Optionally, append additional search terms to narrow the search results. (i.e. **avm keyvault** for avm modules with keyvault in the name.)
+- Select **see all** to display the full list of published modules matching your search criteria.
 - Find the module you wish to use and select it from the search results.
-- **Please Note:** It is possible to discover other unofficial modules with avm in the name using this search method.  Look for the `Partner` tag in the module title as a way to determine if the module is part of the official set.
+- **Please Note:** It is possible to discover other unofficial modules with avm in the name using this search method. Look for the **`Partner`** tag in the module title as a way to determine if the module is part of the official set.
 
-//TODO fix the below link:
-![Searching for avm on terraform registry and selecting desired module.](/Azure-Verified-Modules/img/usage/quickstart/terraform/avm-tf-search-4-4.gif)
+![Searching for avm on terraform registry and selecting desired module.](/Azure-Verified-Modules/img/usage/quickstart/terraform/avm-tf-search-5-10.gif)
 
 ### Searching using the Azure Verified Modules (AVM) Website
 
