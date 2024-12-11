@@ -36,7 +36,7 @@ The simplest way to discover published AVM Terraform modules is to search the Te
 - Find the module you wish to use and select it from the search results.
 - **Please Note:** It is possible to discover other unofficial modules with avm in the name using this search method. Look for the **`Partner`** tag in the module title as a way to determine if the module is part of the official set.
 
-<video width=100% controls autoplay loop muted>
+<video width=100% controls loop muted>
     <source src="/Azure-Verified-Modules/img/usage/quickstart/terraform/avm-tf-search-6-10.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
@@ -75,7 +75,7 @@ Use the following steps as a template for how to leverage examples for bootstrap
   - Uncomment the Terraform registry source reference by deleting the **#** sign at the start of the commented source line.  (i.e. **`source = "Azure/avm-res-keyvault-vault/azurerm"`**)
 - **Save** your main.tf file changes and then proceed to the guide section for running your module. (TODO: Add this as an inline link so the next sub section can be skipped.)
 
-### Creating a root module by customizing the AVM module
+### Creating a root module by updating the AVM module input values
 
 Use the following steps as a guide for a custom implementation of an AVM Module. This instruction path assumes that you have an existing Terraform module file that you want to add the AVM module to.
 
