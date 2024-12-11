@@ -2,6 +2,7 @@
 title: Terraform Quickstart
 geekdocNav: true
 geekdocAlign: left
+geekdocToC: 2
 geekdocAnchor: true
 ---
 
@@ -11,7 +12,7 @@ geekdocAnchor: true
 
 This guide provides instructions for using an Azure Verified Module (AVM) as part of your Terraform workflow. By leveraging AVM modules, you can rapidly deploy and manage Azure infrastructure without having to write extensive code from scratch.
 
-On this page, we assume that we need to deploy a [Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) resource and a Personal Access Token.
+In this guide, we'll deploy deploy a [Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) resource and a Personal Access Token as a secret.
 
 This article is written for a typical "infra-dev" user (cloud infrastructure professional) who is new to Azure Verified Modules and wants learn how to deploy a module the easiest possible way using AVM. The user has a basic understanding of Azure and Bicep templates.
 
@@ -30,12 +31,16 @@ Before you begin, ensure you have the these tools installed in your development 
 
 ## Module Discovery
 
+### Find your module
+
+With our scenario in mind, we need to deploy a Key Vault resource and some of its child resources - e.g., a secret. Let's find the AVM module that will help us achieve this.
+
 There are two primary ways for locating published Terraform Azure Verified Modules:
 
 - Searching the [official Terraform registry](https://registry.terraform.io/), and
 - Browsing the[AVM Terraform module index](https://aka.ms/avm/moduleindex/terraform).
 
-### Use the Terraform Registry
+#### Use the Terraform Registry
 
 <video width=100% controls loop muted>
     <source src="/Azure-Verified-Modules/img/usage/quickstart/terraform/avm-tf-search-6-10.mp4" type="video/mp4">
@@ -50,7 +55,7 @@ The simplest way to discover published AVM Terraform modules is to search the Te
 - Find the module you wish to use and select it from the search results.
   {{< hint >}} It is possible to discover other unofficial modules with **`avm`** in the name using this search method. Look for the **`Partner`** tag in the module title as a way to determine if the module is part of the official set. {{< /hint >}}
 
-### Use the AVM Terraform Module Index
+#### Use the AVM Terraform Module Index
 
 <video width=100% controls muted preload="metadata">
     <source src="/Azure-Verified-Modules/img/usage/quickstart/terraform/module-index_tf_res_1080-10fps.mp4" type="video/mp4">
@@ -70,7 +75,11 @@ Searching the Azure Verified Module indexes is the most complete way to discover
 - **Move through the search results until you locate the desired module.** If you are unable to find a published module, return to the table of contents and expand the **All modules** link to search both published and proposed modules - i.e., modules that are planned, likely in development but not published yet.
 - After finding the desired module, click on the **module's name**. The link will lead you to the official Hashicorp Terraform registry where you can find the module's documentation with examples.
 
-## Create your new root module using AVM
+### Module details and examples
+
+**\[MB\]: add a section here that shows what's included in the readme and that explains how to find examples for a module** - [see this for an example](/Azure-Verified-Modules/usage/quickstart/bicep/#module-details-and-examples).
+
+## Create your new template using AVM
 
 Now that you've located the module details, you can use the module content from the Terraform Registry to accelerate your development efforts in one of two ways:
 
@@ -138,9 +147,17 @@ Once module development is complete you can proceed to the deployment stage. The
 - If you are confident in your changes you can add the `-auto-approve` switch to bypass manual approval: `terraform apply -auto-approve`
 - Once the deployment completes, validate that the infrastructure is configured as desired.
 - Note that a local `terraform.tfstate` file and a state backup file have been created. The use of local state is acceptable for small temporary configurations, but in production or long lived installations, the use of a remove state configuration is recommended. Remote state configuration is out of scope for this guide, but you can find details on its configuration in the [Microsoft Learn documentation](https://learn.microsoft.com/en-us/azure/developer/terraform/store-state-in-azure-storage?tabs=azure-cli).
-- When you're ready, tear down the infrastructure. This will remove all the resources created by your configuration.
-  ```terraform
-  terraform destroy
-  ```
+
+## Clean up your environment
+
+When you're ready, tear down the infrastructure. This will remove all the resources created by your configuration:
+
+```terraform
+terraform destroy
+```
 
 Congratulations, you have successfully leveraged Terraform and AVM to deploy resources in Azure!
+
+{{< hint >}}
+We welcome your contributions and feedback to help us improve the AVM modules and the overall experience for the community.
+{{< /hint >}}
