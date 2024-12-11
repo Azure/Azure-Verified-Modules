@@ -36,7 +36,10 @@ The simplest way to discover published AVM Terraform modules is to search the Te
 - Find the module you wish to use and select it from the search results.
 - **Please Note:** It is possible to discover other unofficial modules with avm in the name using this search method. Look for the **`Partner`** tag in the module title as a way to determine if the module is part of the official set.
 
-![Searching for avm on terraform registry and selecting desired module.](/Azure-Verified-Modules/img/usage/quickstart/terraform/avm-tf-search-5-10.gif)
+<video width=100% controls autoplay loop muted>
+    <source src="/Azure-Verified-Modules/img/usage/quickstart/terraform/avm-tf-search-6-10.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
 
 ### Searching using the Azure Verified Modules (AVM) Website
 
