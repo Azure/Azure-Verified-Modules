@@ -27,7 +27,7 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
   {{< include file="/static/includes/interfaces/bicep/int.diag.input1.bicep" language="bicep" options="linenos=false" >}}
   {{< /expand >}}
   {{< /tab >}}
-  
+
   {{< tab "Variant 2: Diagnostic settings with only metrics" >}}
     {{< expand "➕ Var 2: Bicep User Defined Type, Parameter & Resource Example" "expand/collapse" >}}
   {{< include file="/static/includes/interfaces/bicep/int.diag.udt.schema2.bicep" language="bicep" options="linenos=false" >}}
@@ -36,7 +36,7 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
   {{< include file="/static/includes/interfaces/bicep/int.diag.input2.bicep" language="bicep" options="linenos=false" >}}
   {{< /expand >}}
   {{< /tab >}}
-  
+
   {{< tab "Variant 3: Diagnostic settings with only logs" >}}
   {{< expand "➕ Var 3: Bicep User Defined Type, Parameter & Resource Example" "expand/collapse" >}}
   {{< include file="/static/includes/interfaces/bicep/int.diag.udt.schema3.bicep" language="bicep" options="linenos=false" >}}
@@ -127,7 +127,7 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
   {{< include file="/static/includes/interfaces/bicep/int.mi.input1.bicep" language="bicep" options="linenos=false" >}}
   {{< /expand >}}
   {{< /tab >}}
-  
+
   {{< tab "Variant 2: For resources supporting only a system-assigned identity" >}}
     {{< expand "➕ Var 2: Bicep User Defined Type, Parameter & Resource Example" "expand/collapse" >}}
   {{< include file="/static/includes/interfaces/bicep/int.mi.udt.schema2.bicep" language="bicep" options="linenos=false" >}}
@@ -136,7 +136,7 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
   {{< include file="/static/includes/interfaces/bicep/int.mi.input2.bicep" language="bicep" options="linenos=false" >}}
   {{< /expand >}}
   {{< /tab >}}
-  
+
   {{< tab "Variant 3: For resources supporting only user-assigned identities" >}}
   {{< expand "➕ Var 3: Bicep User Defined Type, Parameter & Resource Example" "expand/collapse" >}}
   {{< include file="/static/includes/interfaces/bicep/int.mi.udt.schema3.bicep" language="bicep" options="linenos=false" >}}
@@ -165,7 +165,7 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
   {{< include file="/static/includes/interfaces/bicep/int.pe.input1.bicep" language="bicep" options="linenos=false" >}}
   {{< /expand >}}
   {{< /tab >}}
-  
+
   {{< tab "Variant 2: For Private Endpoints for which the default service (`groupId`) cannot be assumed - e.g., for services that have more than one private endpoint type, like a Storage Account (blob, file, etc.)" >}}
   {{< expand "➕ Var 2: Bicep User Defined Type, Parameter & Resource Example" "expand/collapse" >}}
   {{< include file="/static/includes/interfaces/bicep/int.pe.udt.schema2.bicep" language="bicep" options="linenos=false" >}}
@@ -198,7 +198,7 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
   {{< include file="/static/includes/interfaces/bicep/int.cmk.input1.bicep" language="bicep" options="linenos=false" >}}
   {{< /expand >}}
   {{< /tab >}}
-  
+
   {{< tab "Variant 2: For CMK configurations supporting auto-key-rotation" >}}
   {{< expand "➕ Var 2: Bicep User Defined Type, Parameter & Resource Example" "expand/collapse" >}}
   {{< include file="/static/includes/interfaces/bicep/int.cmk.udt.schema2.bicep" language="bicep" options="linenos=false" >}}
