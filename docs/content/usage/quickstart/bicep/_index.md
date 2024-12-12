@@ -12,7 +12,7 @@ geekdocToC: 2
 
 This guide shows how to deploy an Azure Verified Module. By leveraging AVM modules, you can rapidly deploy and manage Azure infrastructure without having to write extensive code from scratch.
 
-In this guide, we'll deploy deploy a [Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) resource and a Personal Access Token as a key.
+In this guide, we'll deploy deploy a [Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) resource and a Personal Access Token as a secret.
 
 This article is written for a typical "infra-dev" user (cloud infrastructure professional) who is new to Azure Verified Modules and wants learn how to deploy a module the easiest possible way using AVM. The user has a basic understanding of Azure and Bicep templates.
 
@@ -36,7 +36,7 @@ Make sure you have these tools set up before proceeding.
 
 ### Find your module
 
-With our scenario in mind, we need to deploy a Key Vault resource and some of its child resources - e.g., a key. Let's find the AVM module that will help us achieve this.
+With our scenario in mind, we need to deploy a Key Vault resource and some of its child resources - e.g., a secret. Let's find the AVM module that will help us achieve this.
 
 There are two primary ways for locating published Bicep Azure Verified Modules:
 
@@ -93,13 +93,13 @@ Explore the Key Vault module’s documentation for usage examples and to underst
 - Note the mandatory and optional parameters in the [**Parameters**](https://github.com/Azure/bicep-registry-modules/blob/main/avm/res/key-vault/vault/README.md#Parameters) section.
 - Review [**Usage examples**](https://github.com/Azure/bicep-registry-modules/blob/main/avm/res/key-vault/vault/README.md#Usage-examples). AVM modules are developed including multiple tests. They can be found under the **`tests`** folder and are used as the basis of the usage examples, therefore they are always up-to-date and deployable.
 
-We want to deploy a key in a new Key Vault instance, without needing to provide other parameters. AVM not only provides these, but it also does it with security and reliability being core principles, as the default settings apply the recommendations of the [Well Architected Framework](/Azure-Verified-Modules/faq/#what-does-avm-mean-by-waf-aligned) where possible and appropriate.
+We want to deploy a secret in a new Key Vault instance, without needing to provide other parameters. AVM not only provides these, but it also does it with security and reliability being core principles, as the default settings apply the recommendations of the [Well Architected Framework](/Azure-Verified-Modules/faq/#what-does-avm-mean-by-waf-aligned) where possible and appropriate.
 
 Note how [Example 2](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#example-2-using-only-defaults) seems to do pretty much what we want to achieve.
 
 ## Develop your new template using AVM
 
-In this section, you will develop a Bicep template that references the AVM Key Vault module and its child resources and features, such as a key and role based access control configuration to grant permissions to a user.
+In this section, you will develop a Bicep template that references the AVM Key Vault module and its child resources and features, such as a secret and role based access control configuration to grant permissions to a user.
 
 1. Start VSCode (make sure the Bicep extension is installed) and open a folder in which you want to work.
 2. Create a `main.bicep` and a `dev.bicepparam` file, which will hold parameters for your Key Vault deployment.
@@ -184,9 +184,9 @@ param keyVaultName = '<keyVaultName>'
 param enablePurgeProtection = false
 ```
 
-### Create a key and set permissions
+### Create a secret and set permissions
 
-Now let's add a key to the Key Vault instance and grant permissions to a user to work with the key. Sample role assignments can be found in [Example 3: Using large parameter set](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#example-3-using-large-parameter-set). See [Parameter: roleAssignments](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#parameter-roleassignments) for a list of pre-defined roles, that you can reference by name instead of a GUID. Again, this is a huge advantage of using AVM, as the code is easy to read and increases the maintainability.
+Now let's add a secret to the Key Vault instance and grant permissions to a user to work with the secret. Sample role assignments can be found in [Example 3: Using large parameter set](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#example-3-using-large-parameter-set). See [Parameter: roleAssignments](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#parameter-roleassignments) for a list of pre-defined roles, that you can reference by name instead of a GUID. Again, this is a huge advantage of using AVM, as the code is easy to read and increases the maintainability.
 
 You can also make use of [User-defined data types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) and simplify the parameterization of the modules instead of guessing or looking up parameters. Therefore, first import UDTs from the Key Vault and common types module and leverage the UDTs in your Bicep and parameter files.
 
@@ -204,9 +204,9 @@ param resourceLocation string = resourceGroup().location
 @description('Enabled by default. Disable for development deployments')
 param enablePurgeProtection bool = true
 
-import { keyType } from 'br/public:avm/res/key-vault/vault:0.11.0'
-// adding keys is optional in the Key Vault module
-param keys keyType[]?
+import { secretType } from 'br/public:avm/res/key-vault/vault:0.11.0'
+// adding secrets is optional in the Key Vault module
+param secrets secretType[]?
 
 import { roleAssignmentType } from 'br/public:avm/utl/types/avm-common-types:0.4.0'
 // the role assignments are optional in the Key Vault module
@@ -219,13 +219,13 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
     name: keyVaultName
     location: resourceLocation
     enablePurgeProtection: enablePurgeProtection
-    keys: keys
+    secrets: secrets
     roleAssignments: roleAssignments
   }
 }
 ```
 
-Notice the keys parameter, which has a UDT ([User-defined data type](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types)) that is part of the Key Vault module and enables code completion for easy usage. No need to look up what parameters a key might have. Just start typing and tab-complete what you need from the parameters offered by the Bicep extension in combination with Azure Verified Modules.
+Notice the secrets parameter, which has a UDT ([User-defined data type](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types)) that is part of the Key Vault module and enables code completion for easy usage. No need to look up what parameters a secret might have. Just start typing and tab-complete what you need from the parameters offered by the Bicep extension in combination with Azure Verified Modules.
 
 And the bicep parameter file now looks like this:
 
@@ -238,11 +238,11 @@ using 'main.bicep'
 param keyVaultName = '<keyVaultName>'
 param enablePurgeProtection = false
 
-param keys = [
+param secrets = [
   {
     // set required parameters
-    kty: 'EC'
     name: 'PAT'
+    value: '<personalAccessToken>'
   }
 ]
 
@@ -330,7 +330,7 @@ Now that your template and parameter file is ready, you can deploy your solution
   {{< /tab >}}
 {{< /tabs >}}
 
-Use the Azure portal, Azure PowerShell or the Azure CLI to verify that the Key Vault instance has been successfully created with the correct configuration, along the key.
+Use the Azure portal, Azure PowerShell or the Azure CLI to verify that the Key Vault instance has been successfully created with the correct configuration, along the secret.
 
 ## Clean up your environment
 
