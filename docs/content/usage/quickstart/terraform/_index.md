@@ -77,7 +77,19 @@ Searching the Azure Verified Module indexes is the most complete way to discover
 
 ### Module details and examples
 
-**\[MB\]: add a section here that shows what's included in the readme and that explains how to find examples for a module** - [see this for an example](/Azure-Verified-Modules/usage/quickstart/bicep/#module-details-and-examples).
+Once you have identified the AVM module in the Terraform Registry you can find detailed information about the module’s functionality, components, input parameters, outputs and more. The documentation also provides comprehensive usage examples, covering various scenarios and configurations.
+
+Explore the Key Vault module’s documentation for the root module and usage examples to understand its functionality, input parameters, and outputs.
+
+  - Note the **Examples** drop-down list and explore each example
+  - Review the **Readme** tab to see module provider minimums, a list of rseources and data sources used by the module, a nicely formatted version of the inputs and outputs, and a reference to any submodules that may be called.
+  - Explore the [**Inputs**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest?tab=inputs) tab and observe how each input has a detailed description and a type definition for you to use when adding inputs to your module.
+  - Explore the [**Outputs**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest?tab=outputs) tab and review each of the outputs that are exported by the module for use in other modules in your deployment.
+  - Finally, review the [**Resources**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest?tab=resources) to get a better understanding of the resources defined in the module.
+
+We want to deploy a secret in a new Key Vault instance, without needing to provide other parameters. The AVM Key Vault resource module provides these capabilities, and does so with security and reliability being core principles. The default settings of the module also apply the recommendations of the Well Architected Framework where possible and appropriate.
+
+Note how the [**create-key**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest/examples/create-key) example seems to do pretty much what we want to achieve.
 
 ## Create your new template using AVM
 
@@ -119,6 +131,11 @@ Use the following steps as a template for how to leverage examples for bootstrap
 
 ### Option 2: Create a root module by changing the AVM module input values
 
+<video width=100% controls muted preload="metadata">
+    <source src="/Azure-Verified-Modules/img/usage/quickstart/terraform/avm-tf-qs-custom-full-1080-10.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
 Use the following steps as a guide for a custom implementation of an AVM Module. This instruction path assumes that you have an existing Terraform module file that you want to add the AVM module to.
 
 - Locate the **Provision Instructions** box on the right side of the module's registry page in your web browser.
@@ -152,7 +169,7 @@ Once module development is complete you can proceed to the deployment stage. The
   terraform plan
   ```
 - Review the plan to ensure that only the desired actions are in the plan output.
-- Apply the configuration and create the resources defined in your configuration file. This command will prompt you to confirm before making changes.
+- Apply the configuration and create the resources defined in your configuration file. This command will prompt you to confirm before making changes. Type **yes** to apply the module's infrastructure.
   ```terraform
   terraform apply
   ```
