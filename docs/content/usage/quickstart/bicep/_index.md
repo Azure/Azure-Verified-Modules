@@ -186,7 +186,7 @@ param enablePurgeProtection = false
 
 ### Create a key and set permissions
 
-Now let's add a key to the Key Vault instance and grant permissions to a user to work with the key. Sample role assignements can be found in [Example 3: Using large parameter set](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#example-3-using-large-parameter-set). See [Parameter: roleAssignments](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#parameter-roleassignments) for a list of pre-defined roles, that you can reference by name instead of a Guid. Again, this is a huge advantage of using AVM, as the code is easy to read and increases the maintainability.
+Now let's add a key to the Key Vault instance and grant permissions to a user to work with the key. Sample role assignments can be found in [Example 3: Using large parameter set](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#example-3-using-large-parameter-set). See [Parameter: roleAssignments](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#parameter-roleassignments) for a list of pre-defined roles, that you can reference by name instead of a GUID. Again, this is a huge advantage of using AVM, as the code is easy to read and increases the maintainability.
 
 You can also make use of [User-defined data types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) and simplify the parameterization of the modules instead of guessing or looking up parameters. Therefore, first import UDTs from the Key Vault and common types module and leverage the UDTs in your Bicep and parameter files.
 
@@ -209,7 +209,7 @@ import { keyType } from 'br/public:avm/res/key-vault/vault:0.11.0'
 param keys keyType[]?
 
 import { roleAssignmentType } from 'br/public:avm/utl/types/avm-common-types:0.4.0'
-// the role assignements are optional in the Key Vault module
+// the role assignments are optional in the Key Vault module
 param roleAssignments roleAssignmentType[]?
 
 // the resources to deploy
