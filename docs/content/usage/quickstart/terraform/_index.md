@@ -110,8 +110,8 @@ Each deployment method includes a section below so that you can choose the metho
 Use the following steps as a template for how to leverage examples for bootstrapping your new module. We will use the key vault resource module as an example, but in practice you may use whichever module applies to your scenario.
 
 - Locate and select the **Examples** drop down menu in the middle of the module page.
-- From the drop-down list select an example whose name most closely aligns with your scenario - e.g., **default**.
-- When the example page loads, read the example description to determine if this is the desired example. If it is not, return to the module main page, and select a different example until you are satisfied that the example covers the scenario you are trying to deploy. **\[MB\]: what do you need to do if there isn't an example that fits your scenario?**
+- From the drop-down list select an example whose name most closely aligns with your scenario - e.g., **create-key**.
+- When the example page loads, read the example description to determine if this is the desired example. If it is not, return to the module main page, and select a different example until you are satisfied that the example covers the scenario you are trying to deploy. If you are unable to find a suitable example, leverage the [option 2](#option-2-create-a-root-module-by-changing-the-avm-module-input-values) instructions to modify the closest example to suit your needs.
 - Scroll to the code block for the example and select the **Copy** button on the top right of the block to copy the content to the clipboard.
 
 <video width=100% controls muted preload="metadata">
@@ -146,6 +146,11 @@ Use the following steps as a guide for a custom implementation of an AVM Module.
 - Once you are satisfied that you've include all required inputs and any optional inputs, **Save** your file and continue to the next section.
 
 ## Deploy your module
+
+<video width=100% controls muted preload="metadata">
+    <source src="/Azure-Verified-Modules/img/usage/quickstart/terraform/avm-qs-tf-commands-1080-10.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
 
 Once module development is complete you can proceed to the deployment stage. The following steps represent a basic Terraform workflow:
 
