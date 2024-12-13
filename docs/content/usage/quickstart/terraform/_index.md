@@ -53,7 +53,8 @@ The simplest way to discover published AVM Terraform modules is to search the Te
 - In the search bar at the top of the screen type **avm**. Optionally, append additional search terms to narrow the search results. (e.g., **avm keyvault** for AVM modules with keyvault in the name.)
 - Select **see all** to display the full list of published modules matching your search criteria.
 - Find the module you wish to use and select it from the search results.
-  {{< hint >}} It is possible to discover other unofficial modules with **avm** in the name using this search method. Look for the **`Partner`** tag in the module title as a way to determine if the module is part of the official set. {{< /hint >}}
+
+{{< hint >}} It is possible to discover other unofficial modules with **avm** in the name using this search method. Look for the **`Partner`** tag in the module title as a way to determine if the module is part of the official set. {{< /hint >}}
 
 #### Use the AVM Terraform Module Index
 
@@ -62,7 +63,7 @@ The simplest way to discover published AVM Terraform modules is to search the Te
     Your browser does not support the video tag.
 </video>
 
-Searching the Azure Verified Module indexes is the most complete way to discover published as well as planned and proposed modules. As shown in the video above, use the following steps to locate a specific module on the AVM website:
+Searching the Azure Verified Module indexes is the most complete way to discover published as well as planned modules - shown as proposed. As presented in the video above, use the following steps to locate a specific module on the AVM website:
 
 - Use your web browser to open the AVM website at [https://aka.ms/avm](https://aka.ms/avm).
 - Expand the **Module Indexes** menu item and select the **Terraform** sub-menu item.
@@ -81,11 +82,11 @@ Once you have identified the AVM module in the Terraform Registry you can find d
 
 Explore the Key Vault module’s documentation and usage examples to understand its functionality, input variables, and outputs.
 
-  - Note the **Examples** drop-down list and explore each example
-  - Review the **Readme** tab to see module provider minimums, a list of resources and data sources used by the module, a nicely formatted version of the inputs and outputs, and a reference to any submodules that may be called.
-  - Explore the [**Inputs**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest?tab=inputs) tab and observe how each input has a detailed description and a type definition for you to use when adding input values to your module configuration.
-  - Explore the [**Outputs**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest?tab=outputs) tab and review each of the outputs that are exported by the AVM module for use by other modules in your deployment.
-  - Finally, review the [**Resources**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest?tab=resources) tab to get a better understanding of the resources defined in the module.
+- Note the **Examples** drop-down list and explore each example
+- Review the **Readme** tab to see module provider minimums, a list of resources and data sources used by the module, a nicely formatted version of the inputs and outputs, and a reference to any submodules that may be called.
+- Explore the [**Inputs**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest?tab=inputs) tab and observe how each input has a detailed description and a type definition for you to use when adding input values to your module configuration.
+- Explore the [**Outputs**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest?tab=outputs) tab and review each of the outputs that are exported by the AVM module for use by other modules in your deployment.
+- Finally, review the [**Resources**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest?tab=resources) tab to get a better understanding of the resources defined in the module.
 
 In our example, we want to deploy a secret in a new Key Vault instance without needing to provide other parameters. The AVM Key Vault resource module provides these capabilities, and does so with security and reliability being core principles. The default settings of the module also apply the recommendations of the Well Architected Framework where possible and appropriate.
 
@@ -107,7 +108,7 @@ Each deployment method includes a section below so that you can choose the metho
     Your browser does not support the video tag.
 </video>
 
-Use the following steps as a template for how to leverage examples for bootstrapping your new module. We will use the key vault resource module as an example, but in practice you may use whichever module applies to your scenario.
+Use the following steps as a template for how to leverage examples for bootstrapping your new module. We will use the Key Vault resource module as an example, but in practice you may use whichever module applies to your scenario.
 
 - Locate and select the **Examples** drop down menu in the middle of the module page.
 - From the drop-down list select an example whose name most closely aligns with your scenario - e.g., **create-key**.
@@ -123,7 +124,7 @@ Use the following steps as a template for how to leverage examples for bootstrap
 - **Paste** the content from the clipboard into **main.tf**.
 - AVM examples frequently use naming and/or region selection Terraform modules to generate deployment region and/or naming values as well as any default values for required fields. If you want to use a specific region or other custom resource values, remove the existing region and naming module calls and replace example input values with the new desired custom input values.
 - Once supporting resources such as resource groups have been modified, locate the module call for the AVM module - i.e., **`module "keyvault"`**.
-- AVM module examples use dot notation for a relative reference that is useful during module testing. However, you will need to replace the relative reference with a source reference that points to the Terraform registry source location. In most cases, this source reference has been left as a comment in the module example to simplify replacing the existing source dot reference. Peform the following two actions to update the source:
+- AVM module examples use dot notation for a relative reference that is useful during module testing. However, you will need to replace the relative reference with a source reference that points to the Terraform registry source location. In most cases, this source reference has been left as a comment in the module example to simplify replacing the existing source dot reference. Perform the following two actions to update the source:
   - Delete the existing source definition that uses a dot reference - i.e., **`source = "../../"`**.
   - Uncomment the Terraform registry source reference by deleting the **#** sign at the start of the commented source line - i.e., **`source = "Azure/avm-res-keyvault-vault/azurerm"`**.
 - AVM module examples use a variable to enable or disable the telemetry collection. Update the **`enable_telemetry`** input value to **true** or **false**. -e.g. **`enable_telemetry = true`**
@@ -144,7 +145,8 @@ Use the following steps as a guide for a custom implementation of an AVM Module.
 - Return to the module's registry page in the browser and select the **Inputs** tab.
 - Review each input, and add the inputs with the desired target value to the module template - i.e., **`name = "custom_name"`**.
 - Once you are satisfied that you've include all required inputs and any optional inputs, **Save** your file and continue to the next section.
-  {{< hint >}} For the Azure Key Vaults, the name must be globally unique. When you deploy the key vault, ensure you select a name that is alphanumeric, twenty-four characters or less, and unique enough to ensure no one else has used the name for their key vault. If the name has been used previously, you will get an error. {{< /hint >}}
+
+{{< hint >}} For Azure Key Vaults, the name must be globally unique. When you deploy the Key Vault, ensure you select a name that is alphanumeric, twenty-four characters or less, and unique enough to ensure no one else has used the name for their Key Vault. If the name has been used previously, you will get an error. {{< /hint >}}
 
 ## Deploy your module
 
@@ -156,50 +158,60 @@ Use the following steps as a guide for a custom implementation of an AVM Module.
 Once module development is complete you can proceed to the deployment stage. The following steps represent a basic Terraform workflow:
 
 - Open the command line and login to Azure using the Azure cli
+
   ```terraform
   az login
   ```
+
 - If your account has access to multiple tenants you may need to modify the command to **`az login --tenant <tenant id>`** where **`<tenant id>`** is the guid for the target tenant.
 - After logging in, select the **target subscription** from the list of subscriptions that you have access to.
 - Change directory to the directory where your completed terraform root module files reside.
 
-{{< hint >}} Some modules depend on the AzureRM 4.0 provider which mandates that a subscription id is configured for the provider. If you receive an error indicating that **`subscription_id is a required provider property`** then you will need to set a subscription id value for the provider. For unix based systems (linux or mac) you can configure this by running **`export ARM_SUBSCRIPTION_ID=<your subscription guid>`**. On Microsoft Windows, you can perform the same operation by running **`set ARM_SUBSCRIPTION_ID="<your subscription guid>"`** from the Windows command prompt or by running **`$env:ARM_SUBSCRIPTION_ID="<your subscription guid>"`** from a powershell prompt. Replace **"<your subscription id">** with your Azure subscription's unique id value in each command.  {{< /hint >}}
+  {{< hint >}} Some modules depend on the AzureRM 4.0 provider which mandates that a subscription id is configured for the provider. If you receive an error indicating that **`subscription_id is a required provider property`** then you will need to set a subscription id value for the provider. For unix based systems (linux or mac) you can configure this by running **`export ARM_SUBSCRIPTION_ID=<your subscription guid>`**. On Microsoft Windows, you can perform the same operation by running **`set ARM_SUBSCRIPTION_ID="<your subscription guid>"`** from the Windows command prompt or by running **`$env:ARM_SUBSCRIPTION_ID="<your subscription guid>"`** from a powershell prompt. Replace **"<your subscription id">** with your Azure subscription's unique id value in each command.  {{< /hint >}}
 
 - Initialize your Terraform project. This command downloads the necessary modules and sets up the working directory.
+
   ```terraform
   terraform init
   ```
+
 - Before applying the configuration, it is good practice to validate it to ensure there are no syntax errors.
+
   ```terraform
   terraform validate
   ```
+
 - Create a deployment plan. This step shows what actions Terraform will take to reach the desired state defined in your configuration.
+
   ```terraform
   terraform plan
   ```
+
 - Review the plan to ensure that only the desired actions are in the plan output.
 - Apply the configuration and create the resources defined in your configuration file. This command will prompt you to confirm the deployment prior to making changes. Type **yes** to apply the module's infrastructure.
+
   ```terraform
   terraform apply
   ```
 
-{{< hint >}}If you are confident in your changes you can add the `-auto-approve` switch to bypass manual approval: `terraform apply -auto-approve`{{< /hint >}}
+  {{< hint >}}If you are confident in your changes you can add the `-auto-approve` switch to bypass manual approval: `terraform apply -auto-approve`{{< /hint >}}
 
 - Once the deployment completes, validate that the infrastructure is configured as desired.
 
-{{< hint >}}A local `terraform.tfstate` file and a state backup file have been created during the deployment. The use of local state is acceptable for small temporary configurations, but production or long-lived installations should use a remote state configuration where possible. Configuring remote state is out of scope for this guide, but you can find details on using an Azure storage account for this purpose in the [Microsoft Learn documentation](https://learn.microsoft.com/en-us/azure/developer/terraform/store-state-in-azure-storage?tabs=azure-cli).{{< /hint >}}
+  {{< hint >}}A local `terraform.tfstate` file and a state backup file have been created during the deployment. The use of local state is acceptable for small temporary configurations, but production or long-lived installations should use a remote state configuration where possible. Configuring remote state is out of scope for this guide, but you can find details on using an Azure storage account for this purpose in the [Microsoft Learn documentation](https://learn.microsoft.com/en-us/azure/developer/terraform/store-state-in-azure-storage?tabs=azure-cli).{{< /hint >}}
 
 ## Clean up your environment
 
-When you are read you can remove the infrastructure deployed in this example. The following command will remove all resources created by your configuration:
+When you are ready, you can remove the infrastructure deployed in this example. The following command will remove all resources created by your deployment:
 
 ```terraform
 terraform destroy
 ```
-{{< hint >}}Most key vault deployment examples activate soft-delete functionality as a best practice. The terraform destroy command will remove the key vault resource but does not purge a soft-deleted vault. You may encounter errors if you attempt to re-depoy a key vault with the same name during the soft-delete retention window.{{< /hint >}}
+
+{{< hint >}}Most Key Vault deployment examples activate soft-delete functionality as a best practice. The terraform destroy command will remove the Key Vault resource but does not purge a soft-deleted vault. You may encounter errors if you attempt to re-depoy a Key Vault with the same name during the soft-delete retention window.{{< /hint >}}
 
 Congratulations, you have successfully leveraged Terraform and AVM to deploy resources in Azure!
 
-{{< hint >}}
+{{< hint type=tip >}}
 We welcome your contributions and feedback to help us improve the AVM modules and the overall experience for the community.
 {{< /hint >}}
