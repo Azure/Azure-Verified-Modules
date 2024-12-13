@@ -10,30 +10,30 @@ geekdocAnchor: true
 
 ## Introduction
 
-This guide provides instructions for using an Azure Verified Module (AVM) as part of your Terraform workflow. By leveraging AVM modules, you can rapidly deploy and manage Azure infrastructure without having to write extensive code from scratch.
+This guide explains how to use an Azure Verified Module (AVM) in your Terraform workflow. With AVM modules, you can quickly deploy and manage Azure infrastructure without writing extensive code from scratch."
 
 In this guide, we'll deploy a [Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) resource and generate and store a key.
 
-This article is written for a typical "infra-dev" user (cloud infrastructure professional) who is new to Azure Verified Modules and wants to learn how to deploy a module the easiest possible way using AVM. The user has a basic understanding of Azure and Terraform.
+This article is intended for a typical 'infra-dev' user (cloud infrastructure professional) who is new to Azure Verified Modules and wants to learn how to deploy a module in the easiest way using AVM. The user has a basic understanding of Azure and Terraform.
 
 If you first need to learn Terraform, you can start by trying a [tutorial](https://developer.hashicorp.com/terraform/tutorials/azure-get-started) on the HashiCorp website or studying the [detailed documentation.](https://developer.hashicorp.com/terraform/docs)
 
 ## Prerequisites
 
-For the best experience, you will need:
+You will need the following items to complete the quickstart guide:
 
 - [Visual Studio Code (VS Code)](https://code.visualstudio.com/docs/setup/setup-overview) to develop your solution.
 - [Terraform CLI](https://developer.hashicorp.com/terraform/install) to deploy your Terraform modules. Make sure you have a recent version installed.
 - [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) to authenticate to Azure.
 - [Azure Subscription](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/fundamental-concepts) to deploy your resources.
 
-Before you begin, ensure you have the these tools installed in your development environment.
+Before you begin, ensure you have these tools installed in your development environment.
 
 ## Module Discovery
 
 ### Find your module
 
-With our scenario in mind, we need to deploy a Key Vault resource and some of its child resources - e.g., a key. Let's find the AVM module that will help us achieve this.
+In our scenario, we need to deploy a Key Vault resource and some of its child resources, such as a key. Let's find the AVM module that will help us achieve this.
 
 There are two primary ways for locating published Terraform Azure Verified Modules:
 
@@ -47,14 +47,14 @@ There are two primary ways for locating published Terraform Azure Verified Modul
     Your browser does not support the video tag.
 </video>
 
-The simplest way to discover published AVM Terraform modules is to search the Terraform Registry. As shown in the video above, use the following steps to locate a specific module.
+The easiest way to find published AVM Terraform modules is by searching the Terraform Registry. Follow these steps to locate a specific module, as shown in the video above.
 
 - Use your web browser to go to the [HashiCorp Terraform Registry](https://registry.terraform.io/)
-- In the search bar at the top of the screen type **avm**. Optionally, append additional search terms to narrow the search results. (e.g., **avm keyvault** for AVM modules with keyvault in the name.)
+- In the search bar at the top of the screen type **avm**. Optionally, append additional search terms to narrow the search results. (e.g., **avm key vault** for AVM modules with Key Vault in the name.)
 - Select **see all** to display the full list of published modules matching your search criteria.
 - Find the module you wish to use and select it from the search results.
 
-{{< hint >}} It is possible to discover other unofficial modules with **avm** in the name using this search method. Look for the **`Partner`** tag in the module title as a way to determine if the module is part of the official set. {{< /hint >}}
+{{< hint >}} It is possible to discover other unofficial modules with **avm** in the name using this search method. Look for the `Partner` tag in the module title to determine if the module is part of the official set. {{< /hint >}}
 
 #### Use the AVM Terraform Module Index
 
@@ -88,16 +88,16 @@ Explore the Key Vault module’s documentation and usage examples to understand 
 - Explore the [**Outputs**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest?tab=outputs) tab and review each of the outputs that are exported by the AVM module for use by other modules in your deployment.
 - Finally, review the [**Resources**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest?tab=resources) tab to get a better understanding of the resources defined in the module.
 
-In our example, we want to deploy a secret in a new Key Vault instance without needing to provide other parameters. The AVM Key Vault resource module provides these capabilities, and does so with security and reliability being core principles. The default settings of the module also apply the recommendations of the Well Architected Framework where possible and appropriate.
+In our example, we want to deploy a secret in a new Key Vault instance without needing to provide other parameters. The AVM Key Vault resource module provides these capabilities and does so with security and reliability being core principles. The default settings of the module also apply the recommendations of the Well Architected Framework where possible and appropriate.
 
 Note how the [**create-key**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest/examples/create-key) example seems to do what we want to achieve.
 
 ## Create your new solution using AVM
 
-Now that you've located the module details, you can use the module content from the Terraform Registry to accelerate your development efforts in one of two ways:
+Now that you've found the module details, you can use the content from the Terraform Registry to speed up your development in the following ways:
 
 1. Option 1: [Create a solution using AVM module examples](#option-1-create-a-solution-using-avm-module-examples): duplicate a module example and edit it for your needs. This is useful if you're starting without any existing infrastructure and need to create supporting resources like resource groups as part of your deployment.
-1. Option 2: [Create a solution by changing the AVM module input values](#option-2-create-a-solution-by-changing-the-avm-module-input-values): add the AVM module to an existing solution that already includes other resources. This method requires some knowledge of the resource(s) being deployed so that you can make choices about optional features configured within the module.
+1. Option 2: [Create a solution by changing the AVM module input values](#option-2-create-a-solution-by-changing-the-avm-module-input-values): add the AVM module to an existing solution that already includes other resources. This method requires some knowledge of the resource(s) being deployed so that you can make choices about optional features configured in your solution's version of the module.
 
 Each deployment method includes a section below so that you can choose the method which best fits your needs.
 
@@ -110,9 +110,9 @@ Each deployment method includes a section below so that you can choose the metho
     Your browser does not support the video tag.
 </video>
 
-Use the following steps as a template for how to leverage examples for bootstrapping your new module. We will use the Key Vault resource module as an example, but in practice you may use whichever module applies to your scenario.
+Use the following steps as a template for how to leverage examples for bootstrapping your new solution code. We will use the Key Vault resource module as an example, but in practice you may use whichever module applies to your scenario.
 
-- Locate and select the **Examples** drop down menu in the middle of the module page.
+- Locate and select the **Examples** drop down menu in the middle of the Key Vault module page.
 - From the drop-down list select an example whose name most closely aligns with your scenario - e.g., **create-key**.
 - When the example page loads, read the example description to determine if this is the desired example. If it is not, return to the module main page, and select a different example until you are satisfied that the example covers the scenario you are trying to deploy. If you are unable to find a suitable example, leverage the last two steps in the [option 2](#option-2-create-a-solution-by-changing-the-avm-module-input-values) instructions to modify the inputs of the selected example to match your requirements.
 - Scroll to the code block for the example and select the **Copy** button on the top right of the block to copy the content to the clipboard.
@@ -124,13 +124,13 @@ Use the following steps as a template for how to leverage examples for bootstrap
 
 - In your IDE - Visual Studio Code in our example - create the **main.tf** file for your new solution.
 - **Paste** the content from the clipboard into **main.tf**.
-- AVM examples frequently use naming and/or region selection Terraform modules to generate deployment region and/or naming values as well as any default values for required fields. If you want to use a specific region or other custom resource values, remove the existing region and naming module calls and replace example input values with the new desired custom input values.
-- Once supporting resources such as resource groups have been modified, locate the module call for the AVM module - i.e., **`module "keyvault"`**.
+- AVM examples frequently use naming and/or region selection AVM utility modules to generate deployment region and/or naming values as well as any default values for required fields. If you want to use a specific region name or other custom resource values, remove the existing region and naming module calls and replace example input values with the new desired custom input values.
+- Once supporting resources such as resource groups have been modified, locate the module call for the AVM module - i.e., `module "keyvault"`.
 - AVM module examples use dot notation for a relative reference that is useful during module testing. However, you will need to replace the relative reference with a source reference that points to the Terraform Registry source location. In most cases, this source reference has been left as a comment in the module example to simplify replacing the existing source dot reference. Perform the following two actions to update the source:
-  - Delete the existing source definition that uses a dot reference - i.e., **`source = "../../"`**.
-  - Uncomment the Terraform Registry source reference by deleting the **#** sign at the start of the commented source line - i.e., **`source = "Azure/avm-res-keyvault-vault/azurerm"`**.
-- AVM module examples use a variable to enable or disable the telemetry collection. Update the **`enable_telemetry`** input value to **true** or **false**. -e.g. **`enable_telemetry = true`**
-- **Save** your `main.tf` file changes and then proceed to the guide section for running your module.
+  - Delete the existing source definition that uses a dot reference - i.e., `source = "../../"`.
+  - Uncomment the Terraform Registry source reference by deleting the `#` sign at the start of the commented source line - i.e., `source = "Azure/avm-res-keyvault-vault/azurerm"`.
+- AVM module examples use a variable to enable or disable the telemetry collection. Update the `enable_telemetry` input value to **true** or **false**. - e.g. `enable_telemetry = true`
+- **Save** your **main.tf** file changes and then proceed to the guide section for running your solution code.
 
 ### Option 2: Create a solution by changing the AVM module input values
 
@@ -139,14 +139,14 @@ Use the following steps as a template for how to leverage examples for bootstrap
     Your browser does not support the video tag.
 </video>
 
-Use the following steps as a guide for a custom implementation of an AVM Module. This instruction path assumes that you have an existing Terraform module file that you want to add the AVM module to.
+Use the following steps as a guide for the custom implementation of an AVM Module in your solution code. This instruction path assumes that you have an existing Terraform file that you want to add the AVM module to.
 
-- Locate the **Provision Instructions** box on the right side of the module's registry page in your web browser.
+- Locate the **Provision Instructions** box on the right side of the module's Terraform Registry page in your web browser.
 - Select the module template code from the code block and **Copy** it onto the clipboard.
-- Switch to your IDE and **Paste** the contents of the clipboard into your custom module's .tf file - **`main.tf`** in our example.
-- Return to the module's registry page in the browser and select the **Inputs** tab.
-- Review each input, and add the inputs with the desired target value to the solution's code - i.e., **`name = "custom_name"`**.
-- Once you are satisfied that you've include all required inputs and any optional inputs, **Save** your file and continue to the next section.
+- Switch to your IDE and **Paste** the contents of the clipboard into your solution's .tf Terraform file - **main.tf** in our example.
+- Return to the module's Terraform Registry page in the browser and select the **Inputs** tab.
+- Review each input and add the inputs with the desired target value to the solution's code - i.e., `name = "custom_name"`.
+- Once you are satisfied that you've included all required inputs and any optional inputs, **Save** your file and continue to the next section.
 
 ## Deploy your solution
 
@@ -155,7 +155,7 @@ Use the following steps as a guide for a custom implementation of an AVM Module.
     Your browser does not support the video tag.
 </video>
 
-Once module development is complete you can proceed to the deployment stage. The following steps represent a basic Terraform workflow:
+After completing your solution development, you can move to the deployment stage. Follow these steps for a basic Terraform workflow:
 
 - Open the command line and login to Azure using the Azure cli
 
@@ -163,13 +163,13 @@ Once module development is complete you can proceed to the deployment stage. The
   az login
   ```
 
-- If your account has access to multiple tenants you may need to modify the command to **`az login --tenant <tenant id>`** where **`<tenant id>`** is the guid for the target tenant.
+- If your account has access to multiple tenants, you may need to modify the command to `az login --tenant <tenant id>` where "\<tenant id\>" is the guid for the target tenant.
 - After logging in, select the **target subscription** from the list of subscriptions that you have access to.
 - Change the path to the directory where your completed terraform solution files reside.
 
-  {{< hint >}} Some modules depend on the AzureRM 4.0 provider which mandates that a subscription id is configured for the provider. If you receive an error indicating that **`subscription_id is a required provider property`** then you will need to set a subscription id value for the provider. For unix based systems (linux or mac) you can configure this by running **`export ARM_SUBSCRIPTION_ID=<your subscription guid>`**. On Microsoft Windows, you can perform the same operation by running **`set ARM_SUBSCRIPTION_ID="<your subscription guid>"`** from the Windows command prompt or by running **`$env:ARM_SUBSCRIPTION_ID="<your subscription guid>"`** from a powershell prompt. Replace **"<your subscription id">** with your Azure subscription's unique id value in each command.  {{< /hint >}}
+  {{< hint >}} Many AVM modules depend on the AzureRM 4.0 Terraform provider which mandates that a subscription id is configured. If you receive an error indicating that `subscription_id is a required provider property`, you will need to set a subscription id value for the provider. For Unix based systems (Linux or MacOS) you can configure this by running `export ARM_SUBSCRIPTION_ID=<your subscription guid>` on the command line. On Microsoft Windows, you can perform the same operation by running `set ARM_SUBSCRIPTION_ID="<your subscription guid>"` from the Windows command prompt or by running `$env:ARM_SUBSCRIPTION_ID="<your subscription guid>"` from a powershell prompt. Replace the "\<your subscription id\>" notation in each command with your Azure subscription's unique id value.  {{< /hint >}}
 
-- Initialize your Terraform project. This command downloads the necessary modules and sets up the working directory.
+- Initialize your Terraform project. This command downloads the necessary providers and modules to the working directory.
 
   ```terraform
   terraform init
@@ -188,13 +188,13 @@ Once module development is complete you can proceed to the deployment stage. The
   ```
 
 - Review the plan to ensure that only the desired actions are in the plan output.
-- Apply the configuration and create the resources defined in your configuration file. This command will prompt you to confirm the deployment prior to making changes. Type **yes** to apply the module's infrastructure.
+- Apply the configuration and create the resources defined in your configuration file. This command will prompt you to confirm the deployment prior to making changes. Type **yes** to create your solution's infrastructure.
 
   ```terraform
   terraform apply
   ```
 
-  {{< hint >}}If you are confident in your changes you can add the `-auto-approve` switch to bypass manual approval: `terraform apply -auto-approve`{{< /hint >}}
+  {{< hint >}}If you are confident in your changes, you can add the `-auto-approve` switch to bypass manual approval: `terraform apply -auto-approve`{{< /hint >}}
 
 - Once the deployment completes, validate that the infrastructure is configured as desired.
 
@@ -202,13 +202,13 @@ Once module development is complete you can proceed to the deployment stage. The
 
 ## Clean up your environment
 
-When you are ready, you can remove the infrastructure deployed in this example. The following command will remove all resources created by your deployment:
+When you are ready, you can remove the infrastructure deployed in this example. Use the following command to delete all resources created by your deployment:
 
 ```terraform
 terraform destroy
 ```
 
-{{< hint >}}Most Key Vault deployment examples activate soft-delete functionality as a best practice. The terraform destroy command will remove the Key Vault resource but does not purge a soft-deleted vault. You may encounter errors if you attempt to re-depoy a Key Vault with the same name during the soft-delete retention window.{{< /hint >}}
+{{< hint >}}Most Key Vault deployment examples activate soft-delete functionality as the best practice. The terraform destroy command will remove the Key Vault resource but does not purge a soft-deleted vault. You may encounter errors if you attempt to re-deploy a Key Vault with the same name during the soft-delete retention window. If you wish to purge the soft-delete for this example you can run `az keyvault purge -n <keyVaultName> -l <regionName>` using the Azure CLI, or `Remove-AzKeyVault -VaultName "<keyVaultName>" -Location "<regionName>" -InRemovedState` using Azure PowerShell. {{< /hint >}}
 
 Congratulations, you have successfully leveraged Terraform and AVM to deploy resources in Azure!
 
