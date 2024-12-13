@@ -208,7 +208,7 @@ When you are ready, you can remove the infrastructure deployed in this example. 
 terraform destroy
 ```
 
-{{< hint >}}Most Key Vault deployment examples activate soft-delete functionality as the best practice. The terraform destroy command will remove the Key Vault resource but does not purge a soft-deleted vault. You may encounter errors if you attempt to re-deploy a Key Vault with the same name during the soft-delete retention window. If you wish to purge the soft-delete for this example you can run `az keyvault purge -n <keyVaultName> -l <regionName>` using the Azure CLI, or `Remove-AzKeyVault -VaultName "<keyVaultName>" -Location "<regionName>" -InRemovedState` using Azure PowerShell. {{< /hint >}}
+{{< hint >}}Most Key Vault deployment examples activate soft-delete functionality as a default. The terraform destroy command will remove the Key Vault resource but does not purge a soft-deleted vault. You may encounter errors if you attempt to re-deploy a Key Vault with the same name during the soft-delete retention window. If you wish to purge the soft-delete for this example you can run `az keyvault purge -n <keyVaultName> -l <regionName>` using the Azure CLI, or `Remove-AzKeyVault -VaultName "<keyVaultName>" -Location "<regionName>" -InRemovedState` using Azure PowerShell. {{< /hint >}}
 
 Congratulations, you have successfully leveraged Terraform and AVM to deploy resources in Azure!
 
