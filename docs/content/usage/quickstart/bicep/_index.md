@@ -156,7 +156,6 @@ targetScope = 'resourceGroup'
 
 // parameters and default values
 param keyVaultName string
-param resourceLocation string = resourceGroup().location
 
 @description('Disable for development deployments.')
 param enablePurgeProtection bool = true
@@ -166,7 +165,6 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
   name: 'key-vault-deployment'
   params: {
     name: keyVaultName
-    location: resourceLocation
     enablePurgeProtection: enablePurgeProtection
     // more properties are not needed, as AVM provides default values
   }
@@ -201,14 +199,12 @@ targetScope = 'resourceGroup'
 
 // parameters and default values
 param keyVaultName string
-param resourceLocation string = resourceGroup().location
+// the PAT token is a secret and should not be stored in the Bicep(parameter) file. It can be passed via the commandline, if you don't use a parameter file.
+@secure()
+param patToken string = newGuid()
 
 @description('Enabled by default. Disable for development deployments')
 param enablePurgeProtection bool = true
-
-import { secretType } from 'br/public:avm/res/key-vault/vault:0.11.0'
-// adding secrets is optional in the Key Vault module
-param secrets secretType[]?
 
 import { roleAssignmentType } from 'br/public:avm/utl/types/avm-common-types:0.4.0'
 // the role assignments are optional in the Key Vault module
@@ -219,9 +215,13 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
   name: 'key-vault-deployment'
   params: {
     name: keyVaultName
-    location: resourceLocation
     enablePurgeProtection: enablePurgeProtection
-    secrets: secrets
+    secrets: [
+      {
+        name: 'PAT'
+        value: patToken
+      }
+    ]
     roleAssignments: roleAssignments
   }
 }
@@ -239,20 +239,13 @@ using 'main.bicep'
 // environment specific values
 param keyVaultName = '<keyVaultName>'
 param enablePurgeProtection = false
-
-param secrets = [
-  {
-    // set required parameters
-    name: 'PAT'
-    value: '<personalAccessToken>'
-  }
-]
+// for security reason, the secret value must not be stored in this file. You can change it later in the deployed Key Vault instance, where you also renew it after expiration.
 
 param roleAssignments = [
   {
     principalId: '<principalId>'
     // using the name of the role instead of looking up the Guid (which can also be used)
-    roleDefinitionIdOrName: 'Key Vault Crypto Officer'
+    roleDefinitionIdOrName: 'Key Vault Secrets Officer'
   }
 ]
 ```
@@ -292,16 +285,8 @@ Now that your template and parameter file is ready, you can deploy your solution
   # Deploy a resource group
   New-AzResourceGroup -Name 'avm-quickstart-rg' -Location 'germanywestcentral'
 
-  # Parameterize your deployment
-  $inputObject = @{
-    DeploymentName        = 'avm-quickstart-deployment-{0}' -f (-join (Get-Date -Format 'yyyyMMddTHHMMssffffZ')[0..63])
-    ResourceGroupName     = 'avm-quickstart-rg'
-    TemplateParameterFile = 'dev.bicepparam'
-    TemplateFile          = 'main.bicep'
-  }
-
   # Invoke your deployment
-  New-AzResourceGroupDeployment @inputObject
+  New-AzResourceGroupDeployment -DeploymentName 'avm-quickstart-deployment' -ResourceGroupName 'avm-quickstart-rg' -TemplateParameterFile 'dev.bicepparam' -TemplateFile 'main.bicep'
   ```
 
   {{< /tab >}}
@@ -317,16 +302,8 @@ Now that your template and parameter file is ready, you can deploy your solution
   # Deploy a resource group
   az group create --name 'avm-quickstart-rg' --location 'germanywestcentral'
 
-  # Parameterize your deployment
-  $inputObject = @(
-    '--name',           'avm-quickstart-deployment{0}' -f (-join (Get-Date -Format 'yyyyMMddTHHMMssffffZ')[0..63])),
-    '--resource-group', 'avm-quickstart-rg',
-    '--parameters',     'dev.bicepparam',
-    '--template-file',  'main.bicep',
-  )
-
   # Invoke your deployment
-  az deployment group create @inputObject
+  az deployment group create --name 'avm-quickstart' --resource-group 'avm-quickstart-rg' --template-file 'main.bicep' --parameters 'dev.bicepparam'
   ```
 
   {{< /tab >}}
@@ -349,17 +326,11 @@ CLI KEY: https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-rec
   {{< tab "PowerShell" >}}
 
   ```powershell
-  # Delete the key
-  Remove-AzKeyVaultKey -VaultName "<keyVaultName>" -Name "PAT"
-
-  # Purge the key
-  Remove-AzKeyVaultKey -VaultName "<keyVaultName>" -Name "PAT" -InRemovedState
-
   # Delete the Key Vault
-  Remove-AzKeyVault -VaultName "<keyVaultName>"
+  Remove-AzKeyVault -VaultName "<keyVaultName>" -Force
 
   # Purge the Key Vault
-  Remove-AzKeyVault -VaultName "<keyVaultName>" -Location "germanywestcentral" -InRemovedState
+  Remove-AzKeyVault -VaultName "<keyVaultName>" -Location "germanywestcentral" -InRemovedState -Force
 
   # Delete the resource group
   Remove-AzResourceGroup -Name "avm-quickstart-rg" -Force
@@ -369,20 +340,14 @@ CLI KEY: https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-rec
   {{< tab "AZ CLI" >}}
 
   ```bash
-  # Delete the key
-  az keyvault key delete --vault-name '<keyVaultName>' --name PAT
-
-  # Purge the key
-  az keyvault key purge --vault-name '<keyVaultName>' --name PAT
-
   # Delete the Key Vault
-  az keyvault delete --name '<keyVaultName>' --resource-group avm-quickstart-rg
+  az keyvault delete --name '<keyVaultName>' --resource-group 'avm-quickstart-rg'
 
   # Purge the Key Vault
   az keyvault purge --name '<keyVaultName>'
 
   # Delete the resource group
-  az group delete --name avm-quickstart-rg --yes --no-wait
+  az group delete --name 'avm-quickstart-rg' --yes --no-wait
   ```
 
   {{< /tab >}}
