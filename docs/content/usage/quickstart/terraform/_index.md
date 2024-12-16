@@ -122,20 +122,8 @@ Use the following steps as a template for how to leverage examples for bootstrap
     Your browser does not support the video tag.
 </video>
 
-- In your IDE - Visual Studio Code in our example - create the **main.tf** file for your new solution.
-- **Paste** the content from the clipboard into **main.tf**.
-- AVM examples frequently use naming and/or region selection AVM utility modules to generate deployment region and/or naming values as well as any default values for required fields. If you want to use a specific region name or other custom resource values, remove the existing region and naming module calls and replace example input values with the new desired custom input values.
-- Once supporting resources such as resource groups have been modified, locate the module call for the AVM module - i.e., `module "keyvault"`.
-- AVM module examples use dot notation for a relative reference that is useful during module testing. However, you will need to replace the relative reference with a source reference that points to the Terraform Registry source location. In most cases, this source reference has been left as a comment in the module example to simplify replacing the existing source dot reference. Perform the following two actions to update the source:
-  - Delete the existing source definition that uses a dot reference - i.e., `source = "../../"`.
-  - Uncomment the Terraform Registry source reference by deleting the `#` sign at the start of the commented source line - i.e., `source = "Azure/avm-res-keyvault-vault/azurerm"`.
-- AVM module examples use a variable to enable or disable the telemetry collection. Update the `enable_telemetry` input value to **true** or **false**. - e.g. `enable_telemetry = true`
-- **Save** your **main.tf** file changes and then proceed to the guide section for running your solution code.
-
 <details>
-
 <summary> <b>Click here to copy the sample code from the video.</b> </summary>
-
 
 ``` terraform
 provider "azurerm" {
@@ -231,10 +219,19 @@ module "key_vault" {
     ip_rules = ["${data.http.ip.response_body}/32"]
   }
 }
-
-
 ```
+
 </details>
+
+- In your IDE - Visual Studio Code in our example - create the **main.tf** file for your new solution.
+- **Paste** the content from the clipboard into **main.tf**.
+- AVM examples frequently use naming and/or region selection AVM utility modules to generate deployment region and/or naming values as well as any default values for required fields. If you want to use a specific region name or other custom resource values, remove the existing region and naming module calls and replace example input values with the new desired custom input values.
+- Once supporting resources such as resource groups have been modified, locate the module call for the AVM module - i.e., `module "keyvault"`.
+- AVM module examples use dot notation for a relative reference that is useful during module testing. However, you will need to replace the relative reference with a source reference that points to the Terraform Registry source location. In most cases, this source reference has been left as a comment in the module example to simplify replacing the existing source dot reference. Perform the following two actions to update the source:
+  - Delete the existing source definition that uses a dot reference - i.e., `source = "../../"`.
+  - Uncomment the Terraform Registry source reference by deleting the `#` sign at the start of the commented source line - i.e., `source = "Azure/avm-res-keyvault-vault/azurerm"`.
+- AVM module examples use a variable to enable or disable the telemetry collection. Update the `enable_telemetry` input value to **true** or **false**. - e.g. `enable_telemetry = true`
+- **Save** your **main.tf** file changes and then proceed to the guide section for running your solution code.
 
 ### Option 2: Create a solution by changing the AVM module input values
 
@@ -243,21 +240,10 @@ module "key_vault" {
     Your browser does not support the video tag.
 </video>
 
-Use the following steps as a guide for the custom implementation of an AVM Module in your solution code. This instruction path assumes that you have an existing Terraform file that you want to add the AVM module to.
-
-- Locate the **Provision Instructions** box on the right side of the module's Terraform Registry page in your web browser.
-- Select the module template code from the code block and **Copy** it onto the clipboard.
-- Switch to your IDE and **Paste** the contents of the clipboard into your solution's .tf Terraform file - **main.tf** in our example.
-- Return to the module's Terraform Registry page in the browser and select the **Inputs** tab.
-- Review each input and add the inputs with the desired target value to the solution's code - i.e., `name = "custom_name"`.
-- Once you are satisfied that you've included all required inputs and any optional inputs, **Save** your file and continue to the next section.
-
 <details>
-
 <summary> <b>Click here to copy the sample code from the video.</b> </summary>
 
 ```terraform
-
 module "avm-res-keyvault-vault" {
   source                        = "Azure/avm-res-keyvault-vault/azurerm"
   version                       = "0.9.1"
@@ -291,10 +277,18 @@ module "avm-res-keyvault-vault" {
     create = "60s"
   }
 }
-
 ```
 
 </details>
+
+Use the following steps as a guide for the custom implementation of an AVM Module in your solution code. This instruction path assumes that you have an existing Terraform file that you want to add the AVM module to.
+
+- Locate the **Provision Instructions** box on the right side of the module's Terraform Registry page in your web browser.
+- Select the module template code from the code block and **Copy** it onto the clipboard.
+- Switch to your IDE and **Paste** the contents of the clipboard into your solution's .tf Terraform file - **main.tf** in our example.
+- Return to the module's Terraform Registry page in the browser and select the **Inputs** tab.
+- Review each input and add the inputs with the desired target value to the solution's code - i.e., `name = "custom_name"`.
+- Once you are satisfied that you've included all required inputs and any optional inputs, **Save** your file and continue to the next section.
 
 ## Deploy your solution
 
