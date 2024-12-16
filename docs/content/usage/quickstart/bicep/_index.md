@@ -1,5 +1,5 @@
 ---
-title: Bicep Quickstart
+title: Bicep Quickstart Guide
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
@@ -10,20 +10,18 @@ geekdocToC: 2
 
 ## Introduction
 
-This guide shows how to deploy an Azure Verified Module. By leveraging AVM modules, you can rapidly deploy and manage Azure infrastructure without having to write extensive code from scratch.
+This guide explains how to use an Azure Verified Module (AVM) in your Bicep workflow. By leveraging AVM modules, you can rapidly deploy and manage Azure infrastructure without having to write extensive code from scratch.
 
-In this guide, we'll deploy a [Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) resource and a Personal Access Token as a secret.
+In this guide, you will deploy a [Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) resource and a Personal Access Token as a secret.
 
-This article is written for a typical "infra-dev" user (cloud infrastructure professional) who is new to Azure Verified Modules and wants to learn how to deploy a module the easiest possible way using AVM. The user has a basic understanding of Azure and Bicep templates.
-
-If you first need to learn Bicep, you can find a [Bicep Quickstart](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/quickstart-create-bicep-use-modules) on the Microsoft Learn platform, study the [detailed documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file), or leverage the [Fundamentals of Bicep](https://learn.microsoft.com/en-us/training/paths/fundamentals-bicep/) learning path.
+This article is intended for a typical 'infra-dev' user (cloud infrastructure professional) who has a basic understanding of Azure and Bicep but is new to Azure Verified Modules and wants to learn how to deploy a module in the easiest way using AVM. If you first need to learn Bicep, you can find a [Bicep Quickstart](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/quickstart-create-bicep-use-modules) on the Microsoft Learn platform, study the [detailed documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file), or leverage the [Fundamentals of Bicep](https://learn.microsoft.com/en-us/training/paths/fundamentals-bicep/) learning path.
 
 ## Prerequisites
 
-For the best experience, you will need:
+You will need the following tools and components to complete this quickstart guide:
 
 - [Visual Studio Code (VS Code)](https://code.visualstudio.com/download) to develop your solution.
-- [Bicep Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) to author your Bicep template and explore modules published in the [registry](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules#public-module-registry).
+- [Bicep Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) to author your Bicep template and explore modules published in the [Registry](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules#public-module-registry).
 - One of the following command line tools:
   - [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell) AND [Azure PowerShell](https://learn.microsoft.com/en-us/powershell/azure/install-azure-powershell)
   - [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) to deploy your solution.
@@ -36,7 +34,7 @@ Make sure you have these tools set up before proceeding.
 
 ### Find your module
 
-With our scenario in mind, we need to deploy a Key Vault resource and some of its child resources - e.g., a secret. Let's find the AVM module that will help us achieve this.
+In this scenario, you need to deploy a Key Vault resource and some of its child resources, such as a secret. Let's find the AVM module that will help us achieve this.
 
 There are two primary ways for locating published Bicep Azure Verified Modules:
 
@@ -68,7 +66,7 @@ There are two primary ways for locating published Bicep Azure Verified Modules:
 
 Searching the Azure Verified Module indexes is the most complete way to discover published as well as planned (proposed) modules. As shown in the video above, use the following steps to locate a specific module on the AVM website:
 
-- Use your web browser to open the AVM website at [https://aka.ms/avm](https://aka.ms/avm).
+- Open the AVM website in your favorite web browser: [https://aka.ms/avm](https://aka.ms/avm).
 - Expand the **Module Indexes** menu item and select the **Bicep** sub-menu item.
 - Select the menu item for the module type you are searching for: [Resource](/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/), [Pattern](/Azure-Verified-Modules/indexes/bicep/bicep-pattern-modules/), or [Utility](/Azure-Verified-Modules/indexes/bicep/bicep-utility-modules/).
   {{< hint >}}Since the Key Vault module used as an example in this guide is published as an AVM resource module, it can be found under the [resource modules](/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/) section in the AVM Bicep module index.{{< /hint >}}
@@ -93,22 +91,22 @@ Explore the Key Vault module’s documentation for usage examples and to underst
 - Note the mandatory and optional parameters in the [**Parameters**](https://github.com/Azure/bicep-registry-modules/blob/main/avm/res/key-vault/vault/README.md#Parameters) section.
 - Review [**Usage examples**](https://github.com/Azure/bicep-registry-modules/blob/main/avm/res/key-vault/vault/README.md#Usage-examples). AVM modules are developed including multiple tests. They can be found under the **`tests`** folder and are used as the basis of the usage examples; therefore, they are always up-to-date and deployable.
 
-In our example, we want to deploy a secret in a new Key Vault instance without needing to provide other parameters. AVM not only provides these, but it also does it with security and reliability being core principles, as the default settings apply the recommendations of the [Well Architected Framework](/Azure-Verified-Modules/faq/#what-does-avm-mean-by-waf-aligned) where possible and appropriate.
+In this example, you will deploy a secret in a new Key Vault instance without needing to provide other parameters. AVM not only provides these, but it also does it with security and reliability being core principles, as the default settings apply the recommendations of the [Well Architected Framework](/Azure-Verified-Modules/faq/#what-does-avm-mean-by-waf-aligned) where possible and appropriate.
 
-Note how [Example 2](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#example-2-using-only-defaults) seems to do pretty much what we want to achieve.
+Note how [Example 2](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#example-2-using-only-defaults) seems to do pretty much what you need to achieve.
 
-## Develop your new template using AVM
+## Create your new solution using AVM
 
 In this section, you will develop a Bicep template that references the AVM Key Vault module and its child resources and features, such as a secret and role based access control configuration to grant permissions to a user.
 
 1. Start VSCode (make sure the Bicep extension is installed) and open a folder in which you want to work.
 2. Create a `main.bicep` and a `dev.bicepparam` file, which will hold parameters for your Key Vault deployment.
 
-The scope for the deployment of the Key Vault instance will be a resource group. The Bicep extension offers code-completion, which makes it easy to find and use the Azure Verified Module. It will e.g., provide the required properties for a module. You can start typing, let the magic do its thing and end up with (we've added comments here, to describe the different names):
+The scope for the deployment of the Key Vault instance will be a resource group. The Bicep extension offers code-completion, which makes it easy to find and use the Azure Verified Module. It will e.g., provide the required properties for a module. You can start typing, and let IntelliSense complete it. Note that we added some comments here, to describe the two different occurrences of the `names` attribute.
 
 <!-- {lineNos=inline} -->
 ```bicep
-module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
+module myKeyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
   name: // the name of the module's deployment
   params: {
     name: '<keyVaultName>' // the name of the Key Vault instance - length and character limits apply
@@ -116,17 +114,17 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
 }
 ```
 
-  {{< hint >}} For Azure Key Vaults, the name must be globally unique. When you deploy the Key Vault, ensure you select a name that is alphanumeric, twenty-four characters or less, and unique enough to ensure no one else has used the name for their Key Vault. If the name has been used previously, you will get an error. {{< /hint >}}
+  {{< hint >}} For Azure Key Vaults, the name must be globally unique. When you deploy the Key Vault, ensure you select a name that is alphanumeric, twenty-four characters or less, and unique enough to ensure no one else has used the name for their Key Vault. If the name has been previously taken, you will get an error. {{< /hint >}}
 
 After setting the values for the required properties, the module can be [deployed](#deploy-your-solution). This minimal configuration automatically applies the security and reliability recommendations of the [Well Architected Framework](/Azure-Verified-Modules/faq/#what-does-avm-mean-by-waf-aligned) where possible and appropriate. These settings can be overridden if needed.
 
 {{< hint type=tip title="Bicep-specific configuration" >}}
 
-We suggest to create a [`bicepconfig.json`](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-config) file, and enable *use-recent-module-versions*, which warns you to use the latest available version of the AVM module.
+It is recommended to create a [`bicepconfig.json`](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-config) file, and enable *use-recent-module-versions*, which warns you to use the latest available version of the AVM module.
 
 ```json
 // This is a Bicep configuration file. It can be used to control how Bicep operates and to customize
-// validation settings for the Bicep linter. The linter uses these settings when evaluating your
+// validation settings for the Bicep linter. The linter relies on these settings when evaluating your
 // Bicep files for best practices. For further information, please refer to the official documentation at:
 // https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-config
 {
@@ -147,7 +145,7 @@ We suggest to create a [`bicepconfig.json`](https://learn.microsoft.com/en-us/az
 
 ### Define the Key Vault instance
 
-In this scenario, and every other real-world setup, there is a bit more that we want to configure. You can use the documentation URL (by hovering over the module) to see the module’s documentation online for other supported parameters. The ```main.bicep``` might look like this:
+In this scenario - and every other real-world setup - there is more that you need to configure. You can open the module's documentation by hovering over its symbolic name to see all of the module’s capabilities - including supported parameters. The `main.bicep` might look like this:
 
 <!-- {lineNos=inline} -->
 ```bicep
@@ -161,7 +159,7 @@ param keyVaultName string
 param enablePurgeProtection bool = true
 
 // the resources to deploy
-module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
+module myKeyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
   name: 'key-vault-deployment'
   params: {
     name: keyVaultName
@@ -171,9 +169,9 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
 }
 ```
 
-The code I added makes the module use is for passing in the Key Vault name and optionally change the location and purge protection. You might not want to enable the latter in a non-production environment, as it makes it harder to delete and recreate resources.
+The added parameters are used for passing in the Key Vault name and optionally change the location and purge protection. You might not want to enable the latter in a non-production environment, as it makes it harder to delete and recreate resources.
 
-The ```dev.bicepparam``` file is optional and sets parameter values for a certain environment. You can instead pass these parameters at the time of deployment (using PowerShell or Azure CLI).
+The `dev.bicepparam` file is optional and sets parameter values for a certain environment. You can instead pass these parameters at the time of deployment (using PowerShell or Azure CLI).
 
 <!-- {lineNos=inline} -->
 ```bicep
@@ -188,7 +186,7 @@ param enablePurgeProtection = false
 
 Add a secret to the Key Vault instance and grant permissions to a user to work with the secret. Sample role assignments can be found in [Example 3: Using large parameter set](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#example-3-using-large-parameter-set). See [Parameter: roleAssignments](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#parameter-roleassignments) for a list of pre-defined roles, that you can reference by name instead of a GUID. Again, this is a huge advantage of using AVM, as the code is easy to read and increases the maintainability.
 
-You can also make use of [User-defined data types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) and simplify the parameterization of the modules instead of guessing or looking up parameters. Therefore, first import UDTs from the Key Vault and common types module and leverage the UDTs in your Bicep and parameter files.
+You can also leverage [User-defined data types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) and simplify the parameterization of the modules instead of guessing or looking up parameters. Therefore, first import UDTs from the Key Vault and common types module and leverage the UDTs in your Bicep and parameter files.
 
 For a role assignment, the principal ID is needed, that will be granted a role (specified by its name) on the resource. Your own ID can be found out with `az ad signed-in-user show --query id`.
 
@@ -212,7 +210,7 @@ import { roleAssignmentType } from 'br/public:avm/utl/types/avm-common-types:0.4
 param roleAssignments roleAssignmentType[]?
 
 // the resources to deploy
-module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
+module myKeyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
   name: 'key-vault-deployment'
   params: {
     name: keyVaultName
@@ -263,10 +261,10 @@ The display names for roleDefinitionIdOrName can be acquired the following two w
 
 Leverage the IntelliSense feature in VS Code to speed up your development process. IntelliSense provides code completion, possible parameter values and structure. It helps you write code more efficiently by providing context-aware suggestions as you type.
 
-Here is how quickly you can deliver the solution we detailed in this section:
+Here is how quickly you can deliver the solution detailed in this section:
 
 <video width=100% controls muted preload="metadata">
-    <source src="/Azure-Verified-Modules/img/usage/quickstart/bicep/vs-code-intellisense-bcp-1080-10fps.mp4" type="video/mp4">
+    <source src="/Azure-Verified-Modules/img/usage/quickstart/bicep/kv-and-secret-vs-code-intellisense-bcp-1080-10fps.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
 
@@ -317,13 +315,6 @@ Use the Azure portal, Azure PowerShell or the Azure CLI to verify that the Key V
 
 When you are ready, you can remove the infrastructure deployed in this example. The following commands will remove all resources created by your deployment:
 
-<!--
-PS KV:   https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery?tabs=azure-powershell#key-vault-powershell
-PS KEY:  https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery?tabs=azure-powershell#keys-powershell
-CLI KV:  https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery?tabs=azure-cli#key-vault-cli
-CLI KEY: https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery?tabs=azure-cli#keys-cli
--->
-
 {{< tabs "cleanup" >}}
   {{< tab "PowerShell" >}}
 
@@ -352,5 +343,5 @@ CLI KEY: https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-rec
 Congratulations, you have successfully leveraged an AVM Bicep module to deploy resources in Azure!
 
 {{< hint type=tip >}}
-We welcome your contributions and feedback to help us improve the AVM modules and the overall experience for the community.
+We welcome your contributions and feedback to help us improve the AVM modules and the overall experience for the community!
 {{< /hint >}}
