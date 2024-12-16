@@ -328,28 +328,22 @@ CLI KEY: https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-rec
   {{< tab "PowerShell" >}}
 
   ```powershell
-  # Delete the Key Vault
-  Remove-AzKeyVault -VaultName "<keyVaultName>" -Force
+  # Delete the resource group
+  Remove-AzResourceGroup -Name "avm-quickstart-rg" -Force
 
   # Purge the Key Vault
   Remove-AzKeyVault -VaultName "<keyVaultName>" -Location "germanywestcentral" -InRemovedState -Force
-
-  # Delete the resource group
-  Remove-AzResourceGroup -Name "avm-quickstart-rg" -Force
   ```
 
   {{< /tab >}}
   {{< tab "AZ CLI" >}}
 
   ```bash
-  # Delete the Key Vault
-  az keyvault delete --name '<keyVaultName>' --resource-group 'avm-quickstart-rg'
-
-  # Purge the Key Vault
-  az keyvault purge --name '<keyVaultName>'
-
   # Delete the resource group
   az group delete --name 'avm-quickstart-rg' --yes --no-wait
+
+  # Purge the Key Vault
+  az keyvault purge --name '<keyVaultName>' --no-wait
   ```
 
   {{< /tab >}}
