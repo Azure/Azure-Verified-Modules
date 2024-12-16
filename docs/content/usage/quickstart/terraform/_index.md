@@ -1,5 +1,5 @@
 ---
-title: Terraform Quickstart
+title: Terraform Quickstart Guide
 geekdocNav: true
 geekdocAlign: left
 geekdocToC: 2
@@ -12,7 +12,7 @@ geekdocAnchor: true
 
 This guide explains how to use an Azure Verified Module (AVM) in your Terraform workflow. With AVM modules, you can quickly deploy and manage Azure infrastructure without writing extensive code from scratch.
 
-In this guide, we'll deploy a [Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) resource and generate and store a key.
+In this guide, you will deploy a [Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) resource and generate and store a key.
 
 This article is intended for a typical 'infra-dev' user (cloud infrastructure professional) who is new to Azure Verified Modules and wants to learn how to deploy a module in the easiest way using AVM. The user has a basic understanding of Azure and Terraform.
 
@@ -33,7 +33,7 @@ Before you begin, ensure you have these tools installed in your development envi
 
 ### Find your module
 
-In our scenario, we need to deploy a Key Vault resource and some of its child resources, such as a key. Let's find the AVM module that will help us achieve this.
+In this scenario, you need to deploy a Key Vault resource and some of its child resources, such as a key. Let's find the AVM module that will help us achieve this.
 
 There are two primary ways for locating published Terraform Azure Verified Modules:
 
@@ -88,15 +88,15 @@ Explore the Key Vault module’s documentation and usage examples to understand 
 - Explore the [**Outputs**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest?tab=outputs) tab and review each of the outputs that are exported by the AVM module for use by other modules in your deployment.
 - Finally, review the [**Resources**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest?tab=resources) tab to get a better understanding of the resources defined in the module.
 
-In our example, we want to deploy a secret in a new Key Vault instance without needing to provide other parameters. The AVM Key Vault resource module provides these capabilities and does so with security and reliability being core principles. The default settings of the module also apply the recommendations of the Well Architected Framework where possible and appropriate.
+In this example, your will to deploy a secret in a new Key Vault instance without needing to provide other parameters. The AVM Key Vault resource module provides these capabilities and does so with security and reliability being core principles. The default settings of the module also apply the recommendations of the Well Architected Framework where possible and appropriate.
 
-Note how the [**create-key**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest/examples/create-key) example seems to do what we want to achieve.
+Note how the [**create-key**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest/examples/create-key) example seems to do what you need to achieve.
 
 ## Create your new solution using AVM
 
-Now that you've found the module details, you can use the content from the Terraform Registry to speed up your development in the following ways:
+Now that you have found the module details, you can use the content from the Terraform Registry to speed up your development in the following ways:
 
-1. Option 1: [Create a solution using AVM module examples](#option-1-create-a-solution-using-avm-module-examples): duplicate a module example and edit it for your needs. This is useful if you're starting without any existing infrastructure and need to create supporting resources like resource groups as part of your deployment.
+1. Option 1: [Create a solution using AVM module examples](#option-1-create-a-solution-using-avm-module-examples): duplicate a module example and edit it for your needs. This is useful if you are starting without any existing infrastructure and need to create supporting resources like resource groups as part of your deployment.
 1. Option 2: [Create a solution by changing the AVM module input values](#option-2-create-a-solution-by-changing-the-avm-module-input-values): add the AVM module to an existing solution that already includes other resources. This method requires some knowledge of the resource(s) being deployed so that you can make choices about optional features configured in your solution's version of the module.
 
 Each deployment method includes a section below so that you can choose the method which best fits your needs.
@@ -110,7 +110,7 @@ Each deployment method includes a section below so that you can choose the metho
     Your browser does not support the video tag.
 </video>
 
-Use the following steps as a template for how to leverage examples for bootstrapping your new solution code. We will use the Key Vault resource module as an example, but in practice you may use whichever module applies to your scenario.
+Leverage the following steps as a template for how to leverage examples for bootstrapping your new solution code. The Key Vault resource module is used here as an example, but in practice you may choose any module that applies to your scenario.
 
 - Locate and select the **Examples** drop down menu in the middle of the Key Vault module page.
 - From the drop-down list select an example whose name most closely aligns with your scenario - e.g., **create-key**.
@@ -159,7 +159,7 @@ resource "random_integer" "region_index" {
   min = 0
 }
 
-# This ensures we have unique CAF compliant names for our resources.
+# This ensures you have unique CAF compliant names for our resources.
 module "naming" {
   source  = "Azure/naming/azurerm"
   version = "0.3.0"
@@ -288,7 +288,7 @@ Use the following steps as a guide for the custom implementation of an AVM Modul
 - Switch to your IDE and **Paste** the contents of the clipboard into your solution's .tf Terraform file - **main.tf** in our example.
 - Return to the module's Terraform Registry page in the browser and select the **Inputs** tab.
 - Review each input and add the inputs with the desired target value to the solution's code - i.e., `name = "custom_name"`.
-- Once you are satisfied that you've included all required inputs and any optional inputs, **Save** your file and continue to the next section.
+- Once you are satisfied that you have included all required inputs and any optional inputs, **Save** your file and continue to the next section.
 
 ## Deploy your solution
 
@@ -355,5 +355,5 @@ terraform destroy
 Congratulations, you have successfully leveraged Terraform and AVM to deploy resources in Azure!
 
 {{< hint type=tip >}}
-We welcome your contributions and feedback to help us improve the AVM modules and the overall experience for the community.
+We welcome your contributions and feedback to help us improve the AVM modules and the overall experience for the community!
 {{< /hint >}}
