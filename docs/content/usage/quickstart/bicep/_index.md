@@ -199,7 +199,8 @@ targetScope = 'resourceGroup'
 
 // parameters and default values
 param keyVaultName string
-// the PAT token is a secret and should not be stored in the Bicep(parameter) file. It can be passed via the commandline, if you don't use a parameter file.
+// the PAT token is a secret and should not be stored in the Bicep(parameter) file.
+// It can be passed via the commandline, if you don't use a parameter file.
 @secure()
 param patToken string = newGuid()
 
@@ -239,7 +240,8 @@ using 'main.bicep'
 // environment specific values
 param keyVaultName = '<keyVaultName>'
 param enablePurgeProtection = false
-// for security reason, the secret value must not be stored in this file. You can change it later in the deployed Key Vault instance, where you also renew it after expiration.
+// for security reason, the secret value must not be stored in this file.
+// You can change it later in the deployed Key Vault instance, where you also renew it after expiration.
 
 param roleAssignments = [
   {
