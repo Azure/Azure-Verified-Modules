@@ -12,7 +12,7 @@ geekdocToC: 2
 
 This guide shows how to deploy an Azure Verified Module. By leveraging AVM modules, you can rapidly deploy and manage Azure infrastructure without having to write extensive code from scratch.
 
-In this guide, we'll deploy deploy a [Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) resource and a Personal Access Token as a secret.
+In this guide, we'll deploy a [Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) resource and a Personal Access Token as a secret.
 
 This article is written for a typical "infra-dev" user (cloud infrastructure professional) who is new to Azure Verified Modules and wants to learn how to deploy a module the easiest possible way using AVM. The user has a basic understanding of Azure and Bicep templates.
 
@@ -52,7 +52,7 @@ There are two primary ways for locating published Bicep Azure Verified Modules:
 
 1. In VS Code, create a new file with called `main.bicep`.
 1. Start typing `module`, then give your module a symbolic name, such as `myModule`.
-1. Use Intellisense to select `br/public`.
+1. Use IntelliSense to select `br/public`.
 1. The list of all AVM modules published in the Bicep Public Registry will show up. Use this to explore the published modules.
   {{< hint type=note >}}The Bicep VSCode extension is reading metadata through [this JSON file](https://live-data.bicep.azure.com/module-index). All modules are added to this file, as part of the publication process. This lists all the modules marked as Published or Orphaned on the [AVM Bicep module index pages](https://aka.ms/AVM/ModuleIndex/Bicep).{{< /hint >}}
 1. Select the module you want to use and the version you want to deploy. Note how you can type full or partial module names to filter the list.
@@ -91,7 +91,7 @@ In the module's documentation, you can find detailed information about the modul
 Explore the Key Vault module’s documentation for usage examples and to understand its functionality, input parameters, and outputs.
 
 - Note the mandatory and optional parameters in the [**Parameters**](https://github.com/Azure/bicep-registry-modules/blob/main/avm/res/key-vault/vault/README.md#Parameters) section.
-- Review [**Usage examples**](https://github.com/Azure/bicep-registry-modules/blob/main/avm/res/key-vault/vault/README.md#Usage-examples). AVM modules are developed including multiple tests. They can be found under the **`tests`** folder and are used as the basis of the usage examples, therefore they are always up-to-date and deployable.
+- Review [**Usage examples**](https://github.com/Azure/bicep-registry-modules/blob/main/avm/res/key-vault/vault/README.md#Usage-examples). AVM modules are developed including multiple tests. They can be found under the **`tests`** folder and are used as the basis of the usage examples; therefore, they are always up-to-date and deployable.
 
 In our example, we want to deploy a secret in a new Key Vault instance without needing to provide other parameters. AVM not only provides these, but it also does it with security and reliability being core principles, as the default settings apply the recommendations of the [Well Architected Framework](/Azure-Verified-Modules/faq/#what-does-avm-mean-by-waf-aligned) where possible and appropriate.
 
@@ -104,7 +104,7 @@ In this section, you will develop a Bicep template that references the AVM Key V
 1. Start VSCode (make sure the Bicep extension is installed) and open a folder in which you want to work.
 2. Create a `main.bicep` and a `dev.bicepparam` file, which will hold parameters for your Key Vault deployment.
 
-The scope for the deployment of the Key Vault instance will be a resource group. The Bicep extension offers code-completion, which makes it easy to find and use the Azure Verified Module. It will e.g. provide the required properties for a module. You can start typing, let the magic do its thing and end up with (we've added comments here, to describe the different names):
+The scope for the deployment of the Key Vault instance will be a resource group. The Bicep extension offers code-completion, which makes it easy to find and use the Azure Verified Module. It will e.g., provide the required properties for a module. You can start typing, let the magic do its thing and end up with (we've added comments here, to describe the different names):
 
 <!-- {lineNos=inline} -->
 ```bicep
@@ -171,7 +171,7 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
 }
 ```
 
-The code I added makes the module usa is for passing in the Key Vault name and optionally change the location and purge protection. You might not want to enable the latter in a non-production environment, as it makes it harder to delete and recreate resources.
+The code I added makes the module use is for passing in the Key Vault name and optionally change the location and purge protection. You might not want to enable the latter in a non-production environment, as it makes it harder to delete and recreate resources.
 
 The ```dev.bicepparam``` file is optional and sets parameter values for a certain environment. You can instead pass these parameters at the time of deployment (using PowerShell or Azure CLI).
 
@@ -186,7 +186,7 @@ param enablePurgeProtection = false
 
 ### Create a secret and set permissions
 
-Now, let's add a secret to the Key Vault instance and grant permissions to a user to work with the secret. Sample role assignments can be found in [Example 3: Using large parameter set](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#example-3-using-large-parameter-set). See [Parameter: roleAssignments](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#parameter-roleassignments) for a list of pre-defined roles, that you can reference by name instead of a GUID. Again, this is a huge advantage of using AVM, as the code is easy to read and increases the maintainability.
+Add a secret to the Key Vault instance and grant permissions to a user to work with the secret. Sample role assignments can be found in [Example 3: Using large parameter set](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#example-3-using-large-parameter-set). See [Parameter: roleAssignments](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault#parameter-roleassignments) for a list of pre-defined roles, that you can reference by name instead of a GUID. Again, this is a huge advantage of using AVM, as the code is easy to read and increases the maintainability.
 
 You can also make use of [User-defined data types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) and simplify the parameterization of the modules instead of guessing or looking up parameters. Therefore, first import UDTs from the Key Vault and common types module and leverage the UDTs in your Bicep and parameter files.
 
@@ -240,13 +240,13 @@ using 'main.bicep'
 // environment specific values
 param keyVaultName = '<keyVaultName>'
 param enablePurgeProtection = false
-// for security reason, the secret value must not be stored in this file.
+// for security reasons, the secret value must not be stored in this file.
 // You can change it later in the deployed Key Vault instance, where you also renew it after expiration.
 
 param roleAssignments = [
   {
     principalId: '<principalId>'
-    // using the name of the role instead of looking up the Guid (which can also be used)
+    // using the name of the role instead of looking up the GUID (which can also be used)
     roleDefinitionIdOrName: 'Key Vault Secrets Officer'
   }
 ]
@@ -263,7 +263,7 @@ The display names for roleDefinitionIdOrName can be acquired the following two w
 
 Leverage the IntelliSense feature in VS Code to speed up your development process. IntelliSense provides code completion, possible parameter values and structure. It helps you write code more efficiently by providing context-aware suggestions as you type.
 
-Here's how quickly you can deliver the solution we detailed in this section:
+Here is how quickly you can deliver the solution we detailed in this section:
 
 <video width=100% controls muted preload="metadata">
     <source src="/Azure-Verified-Modules/img/usage/quickstart/bicep/vs-code-intellisense-bcp-1080-10fps.mp4" type="video/mp4">
