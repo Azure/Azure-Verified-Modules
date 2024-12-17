@@ -12,7 +12,7 @@ geekdocAnchor: true
 
 This guide explains how to use an Azure Verified Module (AVM) in your Terraform workflow. With AVM modules, you can quickly deploy and manage Azure infrastructure without writing extensive code from scratch.
 
-In this guide, you will deploy a [Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) resource and generate and store a key.
+In this guide, you will deploy a [Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/) resource and generate and store a key.
 
 This article is intended for a typical 'infra-dev' user (cloud infrastructure professional) who is new to Azure Verified Modules and wants to learn how to deploy a module in the easiest way using AVM. The user has a basic understanding of Azure and Terraform.
 

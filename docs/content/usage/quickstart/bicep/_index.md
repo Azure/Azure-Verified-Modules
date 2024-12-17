@@ -12,7 +12,7 @@ geekdocToC: 2
 
 This guide explains how to use an Azure Verified Module (AVM) in your Bicep workflow. By leveraging AVM modules, you can rapidly deploy and manage Azure infrastructure without having to write extensive code from scratch.
 
-In this guide, you will deploy a [Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) resource and a Personal Access Token as a secret.
+In this guide, you will deploy a [Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/) resource and a Personal Access Token as a secret.
 
 This article is intended for a typical 'infra-dev' user (cloud infrastructure professional) who has a basic understanding of Azure and Bicep but is new to Azure Verified Modules and wants to learn how to deploy a module in the easiest way using AVM.
 
