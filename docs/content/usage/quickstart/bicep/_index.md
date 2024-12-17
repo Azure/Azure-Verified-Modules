@@ -16,7 +16,7 @@ In this guide, you will deploy a [Key Vault](https://azure.microsoft.com/en-us/p
 
 This article is intended for a typical 'infra-dev' user (cloud infrastructure professional) who has a basic understanding of Azure and Bicep but is new to Azure Verified Modules and wants to learn how to deploy a module in the easiest way using AVM.
 
-For additional Bicep learning resources use the [Bicep Quickstart](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/quickstart-create-bicep-use-modules) on the Microsoft Learn platform, study the [detailed documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file), or leverage the [Fundamentals of Bicep](https://learn.microsoft.com/en-us/training/paths/fundamentals-bicep/) learning path.
+For additional Bicep learning resources use the [Bicep documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/) on the Microsoft Learn platform, or leverage the [Fundamentals of Bicep](https://learn.microsoft.com/en-us/training/paths/fundamentals-bicep/) learning path.
 
 ## Prerequisites
 
