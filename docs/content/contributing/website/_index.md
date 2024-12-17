@@ -33,7 +33,7 @@ When in VS Code you should be able to open a terminal and run the below commands
 
 ```text
 cd docs
-hugo server -D
+hugo server -D // you can add "--poll 700ms", if file changes are not detected
 ```
 
 ### Software/Applications
