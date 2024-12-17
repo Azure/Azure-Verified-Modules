@@ -16,7 +16,7 @@ In this guide, you will deploy a [Key Vault](https://azure.microsoft.com/en-us/p
 
 This article is intended for a typical 'infra-dev' user (cloud infrastructure professional) who is new to Azure Verified Modules and wants to learn how to deploy a module in the easiest way using AVM. The user has a basic understanding of Azure and Terraform.
 
-If you first need to learn Terraform, you can start by trying a [tutorial](https://developer.hashicorp.com/terraform/tutorials/azure-get-started) on the HashiCorp website or studying the [detailed documentation.](https://developer.hashicorp.com/terraform/docs)
+For additional Terraform resources, try a [tutorial](https://developer.hashicorp.com/terraform/tutorials/azure-get-started) on the HashiCorp website or study the [detailed documentation.](https://developer.hashicorp.com/terraform/docs)
 
 ## Prerequisites
 
