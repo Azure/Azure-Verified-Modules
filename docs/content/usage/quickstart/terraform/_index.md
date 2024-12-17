@@ -357,3 +357,7 @@ Congratulations, you have successfully leveraged Terraform and AVM to deploy res
 {{< hint type=tip >}}
 We welcome your contributions and feedback to help us improve the AVM modules and the overall experience for the community!
 {{< /hint >}}
+
+## Next Steps
+
+For developing a more advanced solution, please see the lab titled "[Introduction to using Azure Verified Modules for Terraform](https://aka.ms/AVM/TF/labs)".

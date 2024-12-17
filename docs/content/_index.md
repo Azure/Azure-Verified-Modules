@@ -5,14 +5,12 @@ geekdocNav: true
 geekdocAnchor: true
 ---
 
-{{< hint type=tip title="New Module Specifications pages !!" >}}
+{{< hint type=tip title="New Quickstart Guides for Bicep and Terraform" >}}
 
-**Check out our new [Module Specifications](/Azure-Verified-Modules/specs/module-specs) pages!**
+**Check out our new [Quickstart Guides](/Azure-Verified-Modules/usage/quickstart/)!**
 
-It has never been easier to find the specifications you need for your module development.
-
-- See [Bicep specifications](/Azure-Verified-Modules/specs/bcp)
-- See [Terraform specifications](/Azure-Verified-Modules/specs/tf)
+- See [Bicep Quickstart Guide](/Azure-Verified-Modules/usage/quickstart/bicep/)
+- See [Terraform Quickstart Guide](/Azure-Verified-Modules/usage/quickstart/terraform/)
 
 {{< /hint >}}
 
