@@ -33,8 +33,8 @@ on:
       - ".github/workflows/avm.[res|ptn|utl].[provider-namespace].[resource-type].yml"
         # >>> UPDATE to for example "avm/res/key-vault/vault/**" and remove this comment
       - "avm/[res|ptn|utl]/[provider-namespace]/[resource-type]/**"
-      - "avm/utilities/pipelines/**"
-      - "!avm/utilities/pipelines/platform/**"
+      - "utilities/pipelines/**"
+      - "!utilities/pipelines/platform/**"
       - "!*/**/README.md"
 
 env:

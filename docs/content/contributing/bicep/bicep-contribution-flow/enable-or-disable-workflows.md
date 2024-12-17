@@ -19,7 +19,7 @@ To limit those workflow runs, you can manually disable each pipeline you do not 
 ---
 # Location
 
-You can find the script under [`avm/utilities/pipelines/platform/Switch-WorkflowState.ps1)`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/pipelines/platform/Switch-WorkflowState.ps1)
+You can find the script under [`utilities/pipelines/platform/Switch-WorkflowState.ps1)`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/platform/Switch-WorkflowState.ps1)
 You can find the workflow under [`.github/workflows/platform.toggle-avm-workflows.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/platform.toggle-avm-workflows.yml)
 
 # How it works
