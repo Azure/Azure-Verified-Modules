@@ -19,11 +19,31 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
 {{< /hint >}}
 
 {{< tabs "diag-settings" >}}
-  {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< include file="/static/includes/interfaces/int.diag.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< tab "Variant 1: Diagnostic settings with both logs & metrics" >}}
+  {{< expand "➕ Var 1: Bicep User Defined Type, Parameter & Resource Example" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.diag.udt.schema1.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
+  {{< expand "➕ Var 1: Bicep Input Example with Values" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.diag.input1.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
   {{< /tab >}}
-  {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.diag.input.bicep" language="bicep" options="linenos=false" >}}
+
+  {{< tab "Variant 2: Diagnostic settings with only metrics" >}}
+    {{< expand "➕ Var 2: Bicep User Defined Type, Parameter & Resource Example" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.diag.udt.schema2.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
+  {{< expand "➕ Var 2: Bicep Input Example with Values" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.diag.input2.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
+  {{< /tab >}}
+
+  {{< tab "Variant 3: Diagnostic settings with only logs" >}}
+  {{< expand "➕ Var 3: Bicep User Defined Type, Parameter & Resource Example" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.diag.udt.schema3.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
+  {{< expand "➕ Var 3: Bicep Input Example with Values" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.diag.input3.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -39,10 +59,10 @@ In the provided example for Diagnostic Settings, both logs and metrics are enabl
 
 {{< tabs "role-assignments" >}}
   {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< include file="/static/includes/interfaces/int.rbac.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.rbac.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.rbac.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.rbac.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -56,10 +76,10 @@ In the provided example for Diagnostic Settings, both logs and metrics are enabl
 
 {{< tabs "locks" >}}
   {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< include file="/static/includes/interfaces/int.locks.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.locks.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.locks.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.locks.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -80,10 +100,10 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
 
 {{< tabs "tags" >}}
   {{< tab "Bicep Parameter Example" >}}
-  {{< include file="/static/includes/interfaces/int.tags.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.tags.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.tags.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.tags.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -99,11 +119,31 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
 ## Managed Identities
 
 {{< tabs "managed-identities" >}}
-  {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< include file="/static/includes/interfaces/int.mi.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< tab "Variant 1: For resources supporting both user-assigned & system-assigned identities" >}}
+  {{< expand "➕ Var 1: Bicep User Defined Type, Parameter & Resource Example" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.mi.udt.schema1.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
+  {{< expand "➕ Var 1: Bicep Input Example with Values" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.mi.input1.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
   {{< /tab >}}
-  {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.mi.input.bicep" language="bicep" options="linenos=false" >}}
+
+  {{< tab "Variant 2: For resources supporting only a system-assigned identity" >}}
+    {{< expand "➕ Var 2: Bicep User Defined Type, Parameter & Resource Example" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.mi.udt.schema2.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
+  {{< expand "➕ Var 2: Bicep Input Example with Values" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.mi.input2.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
+  {{< /tab >}}
+
+  {{< tab "Variant 3: For resources supporting only user-assigned identities" >}}
+  {{< expand "➕ Var 3: Bicep User Defined Type, Parameter & Resource Example" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.mi.udt.schema3.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
+  {{< expand "➕ Var 3: Bicep Input Example with Values" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.mi.input3.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -117,19 +157,22 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
 ## Private Endpoints
 
 {{< tabs "private-endpoints" >}}
-  {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< hint type=note >}}
-  Please note that you will need to ensure that the User-Defined Types for [Role Assignments](#role-assignments) & [Locks](#resource-locks) also are present in your module file for this interface to work correctly.
-  {{< /hint >}}
-  {{< expand "➕ Variant 1: A default service (`groupId`) can be assumed - e.g., for services that only have one private endpoint type)" "expand/collapse" >}}
-  {{< include file="/static/includes/interfaces/int.pe.udt.schema1.bicep" language="bicep" options="linenos=false" >}}
+  {{< tab "Variant 1: For Private Endpoints for which the default service (`groupId`) can be assumed - e.g., for services that only have one private endpoint type" >}}
+  {{< expand "➕ Var 1: Bicep User Defined Type, Parameter & Resource Example" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.pe.udt.schema1.bicep" language="bicep" options="linenos=false" >}}
   {{< /expand >}}
-  {{< expand "➕ Variant 2: A default service (`groupId`) cannot be assumed - e.g., for services that have more than one private endpoint type, like a Storage Account (blob, file, etc.)" "expand/collapse" >}}
-  {{< include file="/static/includes/interfaces/int.pe.udt.schema2.bicep" language="bicep" options="linenos=false" >}}
+  {{< expand "➕ Var 1: Bicep Input Example with Values" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.pe.input1.bicep" language="bicep" options="linenos=false" >}}
   {{< /expand >}}
   {{< /tab >}}
-  {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.pe.input.bicep" language="bicep" options="linenos=false" >}}
+
+  {{< tab "Variant 2: For Private Endpoints for which the default service (`groupId`) cannot be assumed - e.g., for services that have more than one private endpoint type, like a Storage Account (blob, file, etc.)" >}}
+  {{< expand "➕ Var 2: Bicep User Defined Type, Parameter & Resource Example" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.pe.udt.schema2.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
+  {{< expand "➕ Var 2: Bicep Input Example with Values" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.pe.input2.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -147,11 +190,22 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
 ## Customer Managed Keys
 
 {{< tabs "cmk" >}}
-  {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< include file="/static/includes/interfaces/int.cmk.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< tab "Variant 1: For CMK configurations not supporting auto-key-rotation" >}}
+  {{< expand "➕ Var 1: Bicep User Defined Type, Parameter & Resource Example" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.cmk.udt.schema1.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
+  {{< expand "➕ Var 1: Bicep Input Example with Values" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.cmk.input1.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
   {{< /tab >}}
-  {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.cmk.input.bicep" language="bicep" options="linenos=false" >}}
+
+  {{< tab "Variant 2: For CMK configurations supporting auto-key-rotation" >}}
+  {{< expand "➕ Var 2: Bicep User Defined Type, Parameter & Resource Example" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.cmk.udt.schema2.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
+  {{< expand "➕ Var 2: Bicep Input Example with Values" "expand/collapse" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.cmk.input2.bicep" language="bicep" options="linenos=false" >}}
+  {{< /expand >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -174,21 +228,21 @@ The feature must be implemented as per the below schema. Diversions are only all
 
 {{< /hint >}}
 
-{{< tabs "diag-settings" >}}
+{{< tabs "secret-export" >}}
   {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< include file="/static/includes/interfaces/int.secExp.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.secExp.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.secExp.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.secExp.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "[modules/keyVaultExport.bicep] file" >}}
-  {{< include file="/static/includes/interfaces/int.secExp.module.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.secExp.module.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Output Usage Example" >}}
   When using a module that implements the above interface, you can access its outputs for example in the following ways:
-  {{< include file="/static/includes/interfaces/int.secExp.output.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.secExp.output.bicep" language="bicep" options="linenos=false" >}}
   Which returns a JSON-formatted output like
-  {{< include file="/static/includes/interfaces/int.secExp.output.jsonFmt.json" language="json" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.secExp.output.jsonFmt.json" language="json" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 

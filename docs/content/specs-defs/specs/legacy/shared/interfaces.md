@@ -32,16 +32,16 @@ Allowed values for logs and metric categories or category groups **MUST NOT** be
 
 {{< tabs "diag-settings" >}}
   {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< include file="/static/includes/interfaces/int.diag.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.diag.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.diag.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.diag.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Variable Declaration" >}}
-  {{< include file="/static/includes/interfaces/int.diag.schema.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/tf/int.diag.schema.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.diag.input.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/tf/int.diag.input.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -57,16 +57,16 @@ In the provided example for Diagnostic Settings, both logs and metrics are enabl
 
 {{< tabs "role-assignments" >}}
   {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< include file="/static/includes/interfaces/int.rbac.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.rbac.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.rbac.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.rbac.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Variable Declaration" >}}
-  {{< include file="/static/includes/interfaces/int.rbac.schema.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/tf/int.rbac.schema.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.rbac.input.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/tf/int.rbac.input.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -80,16 +80,16 @@ In the provided example for Diagnostic Settings, both logs and metrics are enabl
 
 {{< tabs "locks" >}}
   {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< include file="/static/includes/interfaces/int.locks.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.locks.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.locks.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.locks.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Variable Declaration" >}}
-  {{< include file="/static/includes/interfaces/int.locks.schema.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/tf/int.locks.schema.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.locks.input.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/tf/int.locks.input.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -116,16 +116,16 @@ In Terraform, locks become part of the resource graph and suitable `depends_on` 
 
 {{< tabs "tags" >}}
   {{< tab "Bicep Parameter Example" >}}
-  {{< include file="/static/includes/interfaces/int.tags.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.tags.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.tags.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.tags.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Variable Declaration" >}}
-  {{< include file="/static/includes/interfaces/int.tags.schema.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/tf/int.tags.schema.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.tags.input.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/tf/int.tags.input.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -142,16 +142,16 @@ In Terraform, locks become part of the resource graph and suitable `depends_on` 
 
 {{< tabs "managed-identities" >}}
   {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< include file="/static/includes/interfaces/int.mi.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.mi.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.mi.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.mi.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Variable Declaration" >}}
-  {{< include file="/static/includes/interfaces/int.mi.schema.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/tf/int.mi.schema.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.mi.input.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/tf/int.mi.input.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -172,20 +172,20 @@ In Terraform, locks become part of the resource graph and suitable `depends_on` 
   Please note that you will need to ensure that the User-Defined Types for [Role Assignments](#role-assignments) & [Locks](#resource-locks) also are present in your module file for this interface to work correctly.
   {{< /hint >}}
   {{< expand "➕ Variant 1: A default service (`groupId`) can be assumed - e.g., for services that only have one private endpoint type)" "expand/collapse" >}}
-  {{< include file="/static/includes/interfaces/int.pe.udt.schema1.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.pe.udt.schema1.bicep" language="bicep" options="linenos=false" >}}
   {{< /expand >}}
   {{< expand "➕ Variant 2: A default service (`groupId`) cannot be assumed - e.g., for services that have more than one private endpoint type, like a Storage Account (blob, file, etc.)" "expand/collapse" >}}
-  {{< include file="/static/includes/interfaces/int.pe.udt.schema2.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.pe.udt.schema2.bicep" language="bicep" options="linenos=false" >}}
   {{< /expand >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.pe.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.pe.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Variable Declaration" >}}
-  {{< include file="/static/includes/interfaces/int.pe.schema.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/tf/int.pe.schema.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.pe.input.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/tf/int.pe.input.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -204,16 +204,16 @@ In Terraform, locks become part of the resource graph and suitable `depends_on` 
 
 {{< tabs "cmk" >}}
   {{< tab "Bicep User Defined Type, Parameter & Resource Example" >}}
-  {{< include file="/static/includes/interfaces/int.cmk.udt.schema.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.cmk.udt.schema.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Bicep Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.cmk.input.bicep" language="bicep" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/bicep/int.cmk.input.bicep" language="bicep" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Variable Declaration" >}}
-  {{< include file="/static/includes/interfaces/int.cmk.schema.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/tf/int.cmk.schema.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
   {{< tab "Terraform Input Example with Values" >}}
-  {{< include file="/static/includes/interfaces/int.cmk.input.tf" language="terraform" options="linenos=false" >}}
+  {{< include file="/static/includes/interfaces/tf/int.cmk.input.tf" language="terraform" options="linenos=false" >}}
   {{< /tab >}}
 {{< /tabs >}}
 
