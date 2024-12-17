@@ -360,4 +360,4 @@ We welcome your contributions and feedback to help us improve the AVM modules an
 
 ## Next Steps
 
-For developing a more advanced solution, please see our lab titled "[Introduction to using Azure Verified Modules for Terraform](https://aka.ms/AVM/TF/labs)".
+For developing a more advanced solution, please see the lab titled "[Introduction to using Azure Verified Modules for Terraform](https://aka.ms/AVM/TF/labs)".
