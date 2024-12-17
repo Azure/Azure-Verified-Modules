@@ -234,8 +234,8 @@ module "key_vault" {
   {{< hint >}}If the module example does not include a commented Terraform Registry source reference, you will need to copy it from the module's main documentation page. Use the following steps to do so:
   - Use the breadcrumbs to leave the example documentation and return to the module's primary Terraform Registry documentation page.
   - Locate the **Provision Instructions** box on the right side of the module's Terraform Registry page in your web browser.
-  - Select the second line that starts with `source = `from the code block and **Copy** it onto the clipboard - i.e., `source = "Azure/avm-res-keyvault-vault/azurerm"`.
-  - Return to your code solution and **Paste** the clipboard contents where you previously deleted the source dot reference - i.e., `source = "../../"`.
+  - Select the second line that starts with `source =` from the code block - e.g., `source = "Azure/avm-res-keyvault-vault/azurerm"`. **Copy** it onto the clipboard.
+  - Return to your code solution and **Paste** the clipboard's content where you previously deleted the source dot reference - e.g., `source = "../../"`.
   {{< /hint >}}
 
 - AVM module examples use a variable to enable or disable the telemetry collection. Update the `enable_telemetry` input value to **true** or **false**. - e.g. `enable_telemetry = true`
