@@ -352,3 +352,7 @@ Congratulations, you have successfully leveraged an AVM Bicep module to deploy r
 {{< hint type=tip >}}
 We welcome your contributions and feedback to help us improve the AVM modules and the overall experience for the community!
 {{< /hint >}}
+
+## Next Steps
+
+For developing a more advanced solution, please see our lab titled "[Introduction to using Azure Verified Modules for Bicep](https://aka.ms/AVM/Bicep/labs)".
