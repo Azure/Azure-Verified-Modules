@@ -39,7 +39,7 @@ To highlight that AVM modules use telemetry, an information notice **MUST** be i
 {{< hint type=note >}}
 The following information notice is automatically added at the bottom of the `README.md` file of the module when
 
-- **Bicep:** Using the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) utility
+- **Bicep:** Using the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility
 - **Terraform:** Executing the `make docs` command with the note and header `## Data Collection` being placed in the module's `_footer.md` beforehand
 {{< /hint >}}
 

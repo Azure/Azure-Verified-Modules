@@ -20,13 +20,13 @@ To ease maintenance, you can run the utility with a `Recurse` flag from the root
 ---
 # Location
 
-You can find the script under [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1)
+You can find the script under [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1)
 
 # How it works
 
 Using the provided template path, the script
 1. validates the module's folder structure
-    - To do so, it searches for any required folder path / file missing and adds them. For several files, it will also provide some default content to get you started. The sources files for this action can be found [here](https://github.com/Azure/bicep-registry-modules/tree/main/avm/utilities/tools/helper/src)
+    - To do so, it searches for any required folder path / file missing and adds them. For several files, it will also provide some default content to get you started. The sources files for this action can be found [here](https://github.com/Azure/bicep-registry-modules/tree/main/utilities/tools/helper/src)
 1. compiles its bicep template
 1. updates the readme (recursively, specified)
     1. If the intended readMe file does not yet exist in the expected path, it is generated with a skeleton (with e.g., a generated header name)
