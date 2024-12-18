@@ -5953,36 +5953,28 @@
     "listApprovedSchemas": [
       "2023-10-11-preview",
       "2024-01-25",
-      "2024-05-07",
-      "2024-09-11",
-      "2024-09-27"
+      "2024-05-07"
     ],
     "locations": [
       "2022-12-13-preview",
       "2023-06-28",
       "2023-10-11-preview",
       "2024-01-25",
-      "2024-05-07",
-      "2024-09-11",
-      "2024-09-27"
+      "2024-05-07"
     ],
     "locations/operationStatuses": [
       "2022-12-13-preview",
       "2023-06-28",
       "2023-10-11-preview",
       "2024-01-25",
-      "2024-05-07",
-      "2024-09-11",
-      "2024-09-27"
+      "2024-05-07"
     ],
     "operations": [
       "2022-12-13-preview",
       "2023-06-28",
       "2023-10-11-preview",
       "2024-01-25",
-      "2024-05-07",
-      "2024-09-11",
-      "2024-09-27"
+      "2024-05-07"
     ],
     "pipelines": [
       "2022-12-13-preview",
@@ -5996,9 +5988,7 @@
     "validateSchema": [
       "2023-10-11-preview",
       "2024-01-25",
-      "2024-05-07",
-      "2024-09-11",
-      "2024-09-27"
+      "2024-05-07"
     ]
   },
   "Microsoft.AzureFleet": {
@@ -12553,54 +12543,66 @@
     "locations": [
       "2024-06-01-preview",
       "2024-08-01-preview",
-      "2024-08-15-preview"
+      "2024-08-15-preview",
+      "2024-10-01"
     ],
     "locations/notifications": [
       "2024-06-01-preview",
-      "2024-08-15-preview"
+      "2024-08-15-preview",
+      "2024-10-01"
     ],
     "locations/OperationStatuses": [
       "2024-08-01-preview"
     ],
     "locations/regionalNotifications": [
       "2024-06-01-preview",
-      "2024-08-15-preview"
+      "2024-08-15-preview",
+      "2024-10-01"
     ],
     "locations/virtualMachinesCancelOperations": [
       "2024-06-01-preview",
-      "2024-08-15-preview"
+      "2024-08-15-preview",
+      "2024-10-01"
     ],
     "locations/virtualMachinesExecuteDeallocate": [
       "2024-06-01-preview",
-      "2024-08-15-preview"
+      "2024-08-15-preview",
+      "2024-10-01"
     ],
     "locations/virtualMachinesExecuteHibernate": [
       "2024-06-01-preview",
-      "2024-08-15-preview"
+      "2024-08-15-preview",
+      "2024-10-01"
     ],
     "locations/virtualMachinesExecuteStart": [
       "2024-06-01-preview",
-      "2024-08-15-preview"
+      "2024-08-15-preview",
+      "2024-10-01"
     ],
     "locations/virtualMachinesGetOperationErrors": [
       "2024-06-01-preview",
-      "2024-08-15-preview"
+      "2024-08-15-preview",
+      "2024-10-01"
     ],
     "locations/virtualMachinesGetOperationStatus": [
       "2024-06-01-preview",
-      "2024-08-15-preview"
+      "2024-08-15-preview",
+      "2024-10-01"
     ],
     "locations/virtualMachinesSubmitDeallocate": [
       "2024-06-01-preview",
-      "2024-08-15-preview"
+      "2024-08-15-preview",
+      "2024-10-01"
     ],
     "locations/virtualMachinesSubmitHibernate": [
       "2024-06-01-preview",
-      "2024-08-15-preview"
+      "2024-08-15-preview",
+      "2024-10-01"
     ],
     "locations/virtualMachinesSubmitStart": [
       "2024-06-01-preview",
-      "2024-08-15-preview"
+      "2024-08-15-preview",
+      "2024-10-01"
     ],
     "operations": [
       "2024-06-01-preview",
@@ -38522,9 +38524,6 @@
       "2023-07-01",
       "2023-07-01-preview"
     ],
-    "virtualNetworks/listDnsResolverPolicies": [
-      "2023-07-01-preview"
-    ],
     "virtualNetworks/listDnsResolvers": [
       "2020-04-01-preview",
       "2022-07-01",
@@ -40913,34 +40912,44 @@
       "2024-10-15-preview"
     ],
     "groupQuotas/groupOperationsStatus": [
-      "2023-06-01-preview"
+      "2023-06-01-preview",
+      "2024-10-15-preview"
     ],
     "groupQuotas/groupQuotaLimits": [
-      "2023-06-01-preview"
+      "2023-06-01-preview",
+      "2024-10-15-preview"
     ],
     "groupQuotas/groupQuotaOperationsStatus": [
-      "2023-06-01-preview"
+      "2023-06-01-preview",
+      "2024-10-15-preview"
     ],
     "groupQuotas/groupQuotaRequests": [
-      "2023-06-01-preview"
+      "2023-06-01-preview",
+      "2024-10-15-preview"
     ],
     "groupQuotas/locationSettings": [
-      "2023-06-01-preview"
+      "2023-06-01-preview",
+      "2024-10-15-preview"
     ],
     "groupQuotas/locationSettingsOperationsStatus": [
-      "2023-06-01-preview"
+      "2023-06-01-preview",
+      "2024-10-15-preview"
     ],
     "groupQuotas/locationUsages": [
-      "2023-06-01-preview"
+      "2023-06-01-preview",
+      "2024-10-15-preview"
     ],
     "groupQuotas/quotaAllocationOperationsStatus": [
-      "2023-06-01-preview"
+      "2023-06-01-preview",
+      "2024-10-15-preview"
     ],
     "groupQuotas/quotaAllocationRequests": [
-      "2023-06-01-preview"
+      "2023-06-01-preview",
+      "2024-10-15-preview"
     ],
     "groupQuotas/quotaAllocations": [
-      "2023-06-01-preview"
+      "2023-06-01-preview",
+      "2024-10-15-preview"
     ],
     "groupQuotas/resourceProviders/groupQuotaRequests": [
       "2023-06-01-preview"
@@ -40953,10 +40962,12 @@
       "2023-06-01-preview"
     ],
     "groupQuotas/subscriptionRequests": [
-      "2023-06-01-preview"
+      "2023-06-01-preview",
+      "2024-10-15-preview"
     ],
     "groupQuotas/subscriptionRequestsOperationsStatus": [
-      "2023-06-01-preview"
+      "2023-06-01-preview",
+      "2024-10-15-preview"
     ],
     "groupQuotas/subscriptions": [
       "2023-06-01-preview",
@@ -42802,7 +42813,8 @@
       "2022-09-01",
       "2023-07-01",
       "2024-03-01",
-      "2024-07-01"
+      "2024-07-01",
+      "2024-11-01"
     ],
     "deployments/operations": [
       "2014-04-01-preview",
@@ -43159,7 +43171,8 @@
       "2023-07-01",
       "2023-07-01-preview",
       "2024-03-01",
-      "2024-07-01"
+      "2024-07-01",
+      "2024-11-01"
     ],
     "resources": [
       "2014-04-01-preview",
@@ -43426,7 +43439,8 @@
       "2022-09-01",
       "2023-07-01",
       "2024-03-01",
-      "2024-07-01"
+      "2024-07-01",
+      "2024-11-01"
     ],
     "templateSpecs": [
       "2019-06-01-preview",
@@ -44192,7 +44206,8 @@
   },
   "Microsoft.SecurityCopilot": {
     "capacities": [
-      "2023-12-01-preview"
+      "2023-12-01-preview",
+      "2024-11-01-preview"
     ],
     "locations": [
       "2023-12-01-preview"
