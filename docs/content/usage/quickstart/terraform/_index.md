@@ -230,6 +230,14 @@ module "key_vault" {
 - AVM module examples use dot notation for a relative reference that is useful during module testing. However, you will need to replace the relative reference with a source reference that points to the Terraform Registry source location. In most cases, this source reference has been left as a comment in the module example to simplify replacing the existing source dot reference. Perform the following two actions to update the source:
   - Delete the existing source definition that uses a dot reference - i.e., `source = "../../"`.
   - Uncomment the Terraform Registry source reference by deleting the `#` sign at the start of the commented source line - i.e., `source = "Azure/avm-res-keyvault-vault/azurerm"`.
+
+  {{< hint >}}If the module example does not include a commented Terraform Registry source reference, you will need to copy it from the module's main documentation page. Use the following steps to do so:
+  - Use the breadcrumbs to leave the example documentation and return to the module's primary Terraform Registry documentation page.
+  - Locate the **Provision Instructions** box on the right side of the module's Terraform Registry page in your web browser.
+  - Select the second line that starts with `source =` from the code block - e.g., `source = "Azure/avm-res-keyvault-vault/azurerm"`. **Copy** it onto the clipboard.
+  - Return to your code solution and **Paste** the clipboard's content where you previously deleted the source dot reference - e.g., `source = "../../"`.
+  {{< /hint >}}
+
 - AVM module examples use a variable to enable or disable the telemetry collection. Update the `enable_telemetry` input value to **true** or **false**. - e.g. `enable_telemetry = true`
 - **Save** your **main.tf** file changes and then proceed to the guide section for running your solution code.
 
