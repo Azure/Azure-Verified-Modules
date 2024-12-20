@@ -29,7 +29,7 @@ For example, instead of
 param subnets subnetsType
 type subnetsType = { ... }[]?
 ```
-the type should instead be defined like
+the type should be defined like
 ```bicep
 param subnets subnetType[]?
 type subnetType = { ... }
