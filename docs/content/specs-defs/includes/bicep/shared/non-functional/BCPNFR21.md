@@ -22,10 +22,9 @@ priority: 11010
 
 #### ID: BCPNFR21 - Category: User-defined types - Decorators
 
-Similar to [BCPNFR9](#id-bcpnfr9---category-inputs---decorators), User-defined types MUST implement certain [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators), while they SHOULD others.
+Similar to [BCPNFR9](#id-bcpnfr9---category-inputs---decorators), User-defined types (UDTs) MUST implement [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators) such as `description` & `secure` (if sensitive). This is true for every property of the UDT, as well as the UDT itself.
 
-Decorators that MUST be implemented are `description` & `secure` (if sensitive). This is true for every property of the type, as well as the type itself.
-Decorators that SHOULD be implemented include but are not limited to `allowed`, `minValue`, `maxValue`, `minLength` & `maxLength` as they have a big impact on the module's usability.
+Further, User-defined types SHOULD implement decorators like `allowed`, `minValue`, `maxValue`, `minLength` & `maxLength` (and others if available) as they have a big positive impact on the module's usability.
 
 ```bicep
 @description('My type''s description.')
