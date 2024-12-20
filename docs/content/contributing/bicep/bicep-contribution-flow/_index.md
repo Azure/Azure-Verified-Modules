@@ -322,7 +322,7 @@ To get started implementing your test in the `main.test.bicep` file, we recommen
 
   {{< hint type=tip >}}
 
-  📜 [Example of test file](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/helper/src/src.main.test.bicep)
+  📜 [Example of test file](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/helper/src/src.main.test.bicep)
 
   {{< /hint >}}
 
@@ -349,11 +349,11 @@ Dependency file (`dependencies.bicep`) guidelines:
 
 ### Reusable assets
 
-There are a number of additional scripts and utilities available [here](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/e2e-template-assets) that may be of use to module owners/contributors. These contain both scripts and Bicep templates that you can re-use in your test files (e.g., to deploy standadized dependencies, or to generate keys using deployment scripts).
+There are a number of additional scripts and utilities available [here](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/e2e-template-assets) that may be of use to module owners/contributors. These contain both scripts and Bicep templates that you can re-use in your test files (e.g., to deploy standadized dependencies, or to generate keys using deployment scripts).
 
 <u><b>Example:</b> Certificate creation script</u>
 
-If you need a Deployment Script to set additional non-template resources up (for example certificates/files, etc.), we recommend to store it as a file in the shared `avm/utilities/e2e-template-assets/scripts` folder and load it using the template function `loadTextContent()` (for example: `scriptContent: loadTextContent('../../../../../../utilities/e2e-template-assets/scripts/New-SSHKey.ps1')`). This approach makes it easier to test & validate the logic and further allows reusing the same logic across multiple test cases.
+If you need a Deployment Script to set additional non-template resources up (for example certificates/files, etc.), we recommend to store it as a file in the shared `utilities/e2e-template-assets/scripts` folder and load it using the template function `loadTextContent()` (for example: `scriptContent: loadTextContent('../../../../../../utilities/e2e-template-assets/scripts/New-SSHKey.ps1')`). This approach makes it easier to test & validate the logic and further allows reusing the same logic across multiple test cases.
 
 <u><b>Example:</b> Diagnostic Settings dependencies</u>
 

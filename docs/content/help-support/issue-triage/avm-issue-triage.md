@@ -179,7 +179,7 @@ Once the **Orphaned Module issue** was closed, it **MUST remain closed**. If the
 5. Place an information notice as per the below guidelines:
     - In case of a Bicep module:
       - Place the information notice - with the text below - in an `ORPHANED.md` file, in the module's root.
-      - Run the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header.
+      - Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header.
       - Make sure the content of the `ORPHANED.md` file is displayed in the `README.md` in its header (right after the title).
     - In case of a Terraform module, place the information notice - with the text below - in the `README.md` file, in the module's root.
     - Once the information notice is placed, submit a Pull Request.
@@ -222,7 +222,7 @@ To look for Orphaned Modules:
 5. Remove the information notice (i.e., the file that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.` ):
     - In case of a Bicep module:
       - Delete the `ORPHANED.md` file from the module's root.
-      - Run the [`avm/utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/avm/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that it will no longer contain the orphaned module notice in its header.
+      - Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that it will no longer contain the orphaned module notice in its header.
       - Double check the previous steps was successful and the `README.md` file no longer has the information notice in its header (right after the title).
     - In case of a Terraform module, remove the information notice from the `README.md` file in the module's root.
     - Once the information notice is removed, submit a Pull Request.
