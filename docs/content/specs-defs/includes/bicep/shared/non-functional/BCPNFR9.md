@@ -22,10 +22,9 @@ priority: 11010
 
 #### ID: BCPNFR9 - Category: Inputs - Decorators
 
-Input parameters MUST make use of certain [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators), while they SHOULD make use of others whenever possible.
+Similar to [BCPNFR21](#id-bcpnfr21---category-user-defined-types---decorators), input parameters MUST implement [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators) such as `description` & `secure` (if sensitive).
 
-Decorators that MUST always be implemented are `description` & `secure` (if sensitive).
-Decorators that SHOULD always be implemented include but are not limited to `allowed`, `minValue`, `maxValue`, `minLength` & `maxLength` as they have a big impact on the module's usability.
+Further, input parameters SHOULD implement decorators like `allowed`, `minValue`, `maxValue`, `minLength` & `maxLength` (and others if available) as they have a big positive impact on the module's usability.
 
 ```bicep
 @description('Optional. The threshold of your resource.')
