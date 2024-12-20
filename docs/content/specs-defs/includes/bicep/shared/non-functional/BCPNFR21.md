@@ -28,7 +28,7 @@ Decorators that MUST be implemented are `description` & `secure` (if sensitive).
 Decorators that SHOULD be implemented include but are not limited to `allowed`, `minValue`, `maxValue`, `minLength` & `maxLength` as they have a big impact on the module's usability.
 
 ```bicep
-@desciption('My type''s description.')
+@description('My type''s description.')
 type myType = {
   @description('Optional. The threshold of your resource.')
   @minValue(1)
