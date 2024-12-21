@@ -26,7 +26,7 @@
 25,res/consumption/budget,,,,,,,
 26,res/container-instance/container-group,,✅,✅,,,✅,✅
 27,res/container-registry/registry,✅,✅,✅,✅,✅,✅,✅
-28,res/container-service/managed-cluster,✅,✅,✅,✅,,✅,✅
+28,res/container-service/managed-cluster,✅,✅,✅,✅,,,✅
 29,res/data-factory/factory,✅,✅,✅,✅,✅,✅,✅
 30,res/data-protection/backup-vault,✅,✅,✅,,,,✅
 31,res/databricks/access-connector,✅,✅,✅,,,,✅
@@ -141,4 +141,4 @@
 140,res/web/serverfarm,✅,✅,✅,✅,,,
 141,res/web/site,✅,✅,✅,✅,✅,,✅
 142,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,126,127,135,61,35,19,56
+Sum,,126,127,135,61,35,18,56
