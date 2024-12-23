@@ -11259,7 +11259,8 @@
       "2020-10-01-preview",
       "2021-03-01",
       "2022-04-04",
-      "2022-09-04"
+      "2022-09-04",
+      "2024-11-04"
     ],
     "cloudServices/networkInterfaces": [
       "2020-10-01-preview",
@@ -11289,7 +11290,8 @@
       "2020-10-01-preview",
       "2021-03-01",
       "2022-04-04",
-      "2022-09-04"
+      "2022-09-04",
+      "2024-11-04"
     ],
     "diskAccesses": [
       "2020-05-01",
@@ -24392,7 +24394,8 @@
       "2020-07-15-privatepreview",
       "2021-03-15-preview",
       "2021-08-15",
-      "2021-08-31-preview"
+      "2021-08-31-preview",
+      "2024-09-15-preview"
     ]
   },
   "Microsoft.Fabric": {
@@ -40909,7 +40912,8 @@
   "Microsoft.Quota": {
     "groupQuotas": [
       "2023-06-01-preview",
-      "2024-10-15-preview"
+      "2024-10-15-preview",
+      "2024-12-18-preview"
     ],
     "groupQuotas/groupOperationsStatus": [
       "2023-06-01-preview",
@@ -40971,7 +40975,8 @@
     ],
     "groupQuotas/subscriptions": [
       "2023-06-01-preview",
-      "2024-10-15-preview"
+      "2024-10-15-preview",
+      "2024-12-18-preview"
     ],
     "operations": [
       "2021-03-15-preview",
@@ -40992,7 +40997,8 @@
       "2021-03-15-preview",
       "2023-02-01",
       "2023-06-01-preview",
-      "2024-10-15-preview"
+      "2024-10-15-preview",
+      "2024-12-18-preview"
     ],
     "usages": [
       "2021-03-15-preview",
@@ -44206,8 +44212,7 @@
   },
   "Microsoft.SecurityCopilot": {
     "capacities": [
-      "2023-12-01-preview",
-      "2024-11-01-preview"
+      "2023-12-01-preview"
     ],
     "locations": [
       "2023-12-01-preview"
@@ -46558,22 +46563,26 @@
       "2022-10-01-preview",
       "2023-05-01-preview",
       "2023-11-01",
-      "2024-05-01-preview"
+      "2024-05-01-preview",
+      "2025-01-01"
     ],
     "trafficControllers/associations": [
       "2022-10-01-preview",
       "2023-05-01-preview",
       "2023-11-01",
-      "2024-05-01-preview"
+      "2024-05-01-preview",
+      "2025-01-01"
     ],
     "trafficControllers/frontends": [
       "2022-10-01-preview",
       "2023-05-01-preview",
       "2023-11-01",
-      "2024-05-01-preview"
+      "2024-05-01-preview",
+      "2025-01-01"
     ],
     "trafficControllers/securityPolicies": [
-      "2024-05-01-preview"
+      "2024-05-01-preview",
+      "2025-01-01"
     ]
   },
   "Microsoft.ServicesHub": {
