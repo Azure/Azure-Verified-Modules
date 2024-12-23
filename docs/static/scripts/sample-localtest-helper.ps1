@@ -7,8 +7,8 @@ $folder = "<your directory>/bicep-registry-modules"
 
 # Dot source functions
 
-. $folder/avm/utilities/tools/Set-AVMModule.ps1
-. $folder/avm/utilities/tools/Test-ModuleLocally.ps1
+. $folder/utilities/tools/Set-AVMModule.ps1
+. $folder/utilities/tools/Test-ModuleLocally.ps1
 
 # Variables
 
