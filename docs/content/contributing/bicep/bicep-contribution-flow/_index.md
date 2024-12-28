@@ -198,25 +198,25 @@ In those cases, for the first PR adding such modules to the public registry, we 
     <img src="../../../img/bicep-ci/msiOIDCInfo.png" alt="OIDC Add" width=70%>
 
 Additional references:
-  - [Configure a federated identity credential](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure-openid-connect#prerequisites)
-  - [Azure login GitHub action - Login with OIDC](https://github.com/Azure/login?tab=readme-ov-file#login-with-openid-connect-oidc-recommended)
+- [Configure a federated identity credential](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure-openid-connect#prerequisites)
+- [Azure login GitHub action - Login with OIDC](https://github.com/Azure/login?tab=readme-ov-file#login-with-openid-connect-oidc-recommended)
 
 {{< /expand >}}
 
 {{< expand "➕ Option 2 [Deprecated]: Configure Service Principal + Secret" "expand/collapse" >}}
 
 1. Create a new or leverage an existing Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
-  - [Create a service principal (Azure Portal)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
-  - [Create a service principal (PowerShell)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
-  - [Find Service Principal object ID](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
-  - [Find managed Identity Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
+- [Create a service principal (Azure Portal)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
+- [Create a service principal (PowerShell)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
+- [Find Service Principal object ID](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
+- [Find managed Identity Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
 2. Note down the following pieces of information
-  - Application (Client) ID
-  - Service Principal Object ID (**not** the object ID of the application)
-  - Service Principal Secret (password)
-  - Tenant ID
-  - Subscription ID
-  - Parent Management Group ID
+- Application (Client) ID
+- Service Principal Object ID (**not** the object ID of the application)
+- Service Principal Secret (password)
+- Tenant ID
+- Subscription ID
+- Parent Management Group ID
 
 {{< /expand >}}
 
