@@ -12,7 +12,7 @@ This function creates and sets up everything a contributor to the AVM Bicep proj
 This function creates and sets up everything a contributor to the AVM Bicep project should need to get started with their contribution to a AVM Bicep Module. This includes:
 
 - Forking and cloning the `Azure/bicep-registry-modules` repository
-- Creating a new SPN and granting it the necessary permissions for the CI tests and configuring the forked repositories secrets, as per: https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment
+- Creating a new SPN and granting it the necessary permissions for the CI tests and configuring the forked repositories secrets, as per: https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#2-configure-a-deployment-identity-in-azure
 - Enabling GitHub Actions on the forked repository
 - Disabling all the module workflows by default, as per: https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/
 
@@ -170,7 +170,7 @@ if ($SPNName -eq '') {
 
   $SPNName = "spn-avm-bicep-brm-fork-ci-$($GitHubOrgName)"
 }
-$newSpn = New-AzADServicePrincipal -DisplayName $SPNName -Description "Service Principal Name (SPN) for the AVM Bicep CI Tests in the $($GitHubOrgName) fork. See: https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment" -ErrorAction Stop
+$newSpn = New-AzADServicePrincipal -DisplayName $SPNName -Description "Service Principal Name (SPN) for the AVM Bicep CI Tests in the $($GitHubOrgName) fork. See: https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#2-configure-a-deployment-identity-in-azure" -ErrorAction Stop
 Write-Host "New SPN created with a Display Name of '$($newSpn.DisplayName)' and an Object ID of '$($newSpn.Id)'." -ForegroundColor Green
 Write-Host ''
 
