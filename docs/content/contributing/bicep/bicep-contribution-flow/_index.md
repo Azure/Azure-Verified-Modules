@@ -243,12 +243,12 @@ To configure the forked CI environment you have to perform several steps:
 
 To use the environment's pipelines you should set up the following repository secrets:
 
-| Secret Name           | Example                                                                                                                                                                                                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ARM_MGMTGROUP_ID`    | `11111111-1111-1111-1111-111111111111` | The group ID of the management group to test-deploy modules in. Is needed for resources that are deployed to the management group scope. |
+| Secret Name | Example | Description |
+| - | - | - |
+| `ARM_MGMTGROUP_ID` | `11111111-1111-1111-1111-111111111111` | The group ID of the management group to test-deploy modules in. Is needed for resources that are deployed to the management group scope. |
 | `ARM_SUBSCRIPTION_ID` | `22222222-2222-2222-2222-222222222222` | The ID of the subscription to test-deploy modules in. Is needed for resources that are deployed to the subscription scope. Note: This repository secret will be deprecated in favor of the `VALIDATE_SUBSCRIPTION_ID` environment secret required by the OIDC authentication. |
-| `ARM_TENANT_ID`       | `33333333-3333-3333-3333-333333333333` | The tenant ID of the Azure Active Directory tenant to test-deploy modules in. Is needed for resources that are deployed to the tenant scope. Note: This repository secret will be deprecated in favor of the `VALIDATE_TENANT_ID` environment secret required by the OIDC authentication.                                                                                                                                                                     |
-| `TOKEN_NAMEPREFIX`    | `cntso`                                | Required. A short (3-5 character length), unique string that should be included in any deployment to Azure. Usually, AVM Bicep test cases require this value to ensure no two contributors deploy resources with the same name - which is especially important for resources that require a globally unique name (e.g., Key Vault). These characters will be used as part of each resource's name during deployment. For more information, see the `[Special case: TOKEN_NAMEPREFIX]` note below. |
+| `ARM_TENANT_ID` | `33333333-3333-3333-3333-333333333333` | The tenant ID of the Azure Active Directory tenant to test-deploy modules in. Is needed for resources that are deployed to the tenant scope. Note: This repository secret will be deprecated in favor of the `VALIDATE_TENANT_ID` environment secret required by the OIDC authentication. |
+| `TOKEN_NAMEPREFIX` | `cntso` | Required. A short (3-5 character length), unique string that should be included in any deployment to Azure. Usually, AVM Bicep test cases require this value to ensure no two contributors deploy resources with the same name - which is especially important for resources that require a globally unique name (e.g., Key Vault). These characters will be used as part of each resource's name during deployment. For more information, see the `[Special case: TOKEN_NAMEPREFIX]` note below. |
 
 {{< hint type=note title="Special case: TOKEN_NAMEPREFIX">}}
 
@@ -290,11 +290,11 @@ Expand and follow the option corresponding to the deployment identity setup chos
 
 Create the following environment secrets in the `avm-validation` GitHub environment created at [Step 1](#1-fork-the-module-source-repository)
 
-| Secret Name                | Example                                | Description |
-| -------------------------- | -------------------------------------- | ------- |
-| `VALIDATE_CLIENT_ID`       | `44444444-4444-4444-4444-444444444444` | The login credentials of the deployment principal used to log into the target Azure environment to test in. The format is described [here](https://github.com/Azure/login#configure-deployment-credentials). |
-| `VALIDATE_SUBSCRIPTION_ID` | `22222222-2222-2222-2222-222222222222` | Same as the `ARM_SUBSCRIPTION_ID` repository secret set up above. The ID of the subscription to test-deploy modules in. Is needed for resources that are deployed to the subscription scope.  |
-| `VALIDATE_TENANT_ID`       | `33333333-3333-3333-3333-333333333333` | Same as the `ARM_TENANT_ID` repository secret set up above. The tenant ID of the Azure Active Directory tenant to test-deploy modules in. Is needed for resources that are deployed to the tenant scope. |
+| Secret Name | Example | Description |
+| - | - | - |
+| `VALIDATE_CLIENT_ID` | `44444444-4444-4444-4444-444444444444` | The login credentials of the deployment principal used to log into the target Azure environment to test in. The format is described [here](https://github.com/Azure/login#configure-deployment-credentials). |
+| `VALIDATE_SUBSCRIPTION_ID` | `22222222-2222-2222-2222-222222222222` | Same as the `ARM_SUBSCRIPTION_ID` repository secret set up above. The ID of the subscription to test-deploy modules in. Is needed for resources that are deployed to the subscription scope. |
+| `VALIDATE_TENANT_ID` | `33333333-3333-3333-3333-333333333333` | Same as the `ARM_TENANT_ID` repository secret set up above. The tenant ID of the Azure Active Directory tenant to test-deploy modules in. Is needed for resources that are deployed to the tenant scope. |
 
 {{< expand "➕ How to: Add an environment secret to GitHub" "expand/collapse" >}}
 
@@ -322,9 +322,9 @@ Create the following environment secrets in the `avm-validation` GitHub environm
 
 Create the following environment repository secret:
 
-| Secret Name           | Example                                                                                                                                                                                                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `AZURE_CREDENTIALS`   | `{"clientId": "44444444-4444-4444-4444-444444444444", "clientSecret": "<placeholder>", "subscriptionId": "22222222-2222-2222-2222-222222222222", "tenantId": "33333333-3333-3333-3333-333333333333" }` | The login credentials of the deployment principal used to log into the target Azure environment to test in. The format is described [here](https://github.com/Azure/login#configure-deployment-credentials). For more information, see the `[Special case: AZURE_CREDENTIALS]` note below.                                                                                                                                                                                                        |
+| Secret Name  | Example | Description |
+| - | - | - |
+| `AZURE_CREDENTIALS` | `{"clientId": "44444444-4444-4444-4444-444444444444", "clientSecret": "<placeholder>", "subscriptionId": "22222222-2222-2222-2222-222222222222", "tenantId": "33333333-3333-3333-3333-333333333333" }` | The login credentials of the deployment principal used to log into the target Azure environment to test in. The format is described [here](https://github.com/Azure/login#configure-deployment-credentials). For more information, see the `[Special case: AZURE_CREDENTIALS]` note below. |
 
 {{< hint type=important title="Special case: AZURE_CREDENTIALS">}}
 
