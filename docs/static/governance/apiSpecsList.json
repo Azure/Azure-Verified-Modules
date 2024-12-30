@@ -5953,28 +5953,36 @@
     "listApprovedSchemas": [
       "2023-10-11-preview",
       "2024-01-25",
-      "2024-05-07"
+      "2024-05-07",
+      "2024-09-11",
+      "2024-09-27"
     ],
     "locations": [
       "2022-12-13-preview",
       "2023-06-28",
       "2023-10-11-preview",
       "2024-01-25",
-      "2024-05-07"
+      "2024-05-07",
+      "2024-09-11",
+      "2024-09-27"
     ],
     "locations/operationStatuses": [
       "2022-12-13-preview",
       "2023-06-28",
       "2023-10-11-preview",
       "2024-01-25",
-      "2024-05-07"
+      "2024-05-07",
+      "2024-09-11",
+      "2024-09-27"
     ],
     "operations": [
       "2022-12-13-preview",
       "2023-06-28",
       "2023-10-11-preview",
       "2024-01-25",
-      "2024-05-07"
+      "2024-05-07",
+      "2024-09-11",
+      "2024-09-27"
     ],
     "pipelines": [
       "2022-12-13-preview",
@@ -5988,7 +5996,9 @@
     "validateSchema": [
       "2023-10-11-preview",
       "2024-01-25",
-      "2024-05-07"
+      "2024-05-07",
+      "2024-09-11",
+      "2024-09-27"
     ]
   },
   "Microsoft.AzureFleet": {
@@ -12683,6 +12693,7 @@
       "2024-02-05-preview",
       "2024-02-13",
       "2024-03-20-preview",
+      "2024-07-01",
       "2024-07-01-preview"
     ],
     "checkNameAvailability": [
@@ -12778,6 +12789,7 @@
       "2024-02-05-preview",
       "2024-02-13",
       "2024-03-20-preview",
+      "2024-07-01",
       "2024-07-01-preview"
     ],
     "organizations/access": [
@@ -12808,6 +12820,7 @@
       "2024-02-05-preview",
       "2024-02-13",
       "2024-03-20-preview",
+      "2024-07-01",
       "2024-07-01-preview"
     ],
     "organizations/environments/clusters": [
@@ -12815,10 +12828,12 @@
       "2024-02-05-preview",
       "2024-02-13",
       "2024-03-20-preview",
+      "2024-07-01",
       "2024-07-01-preview"
     ],
     "organizations/environments/clusters/connectors": [
       "2024-03-20-preview",
+      "2024-07-01",
       "2024-07-01-preview"
     ],
     "organizations/environments/clusters/createAPIKey": [
@@ -12830,6 +12845,7 @@
     ],
     "organizations/environments/clusters/topics": [
       "2024-03-20-preview",
+      "2024-07-01",
       "2024-07-01-preview"
     ],
     "organizations/environments/schemaRegistryClusters": [
@@ -16289,7 +16305,8 @@
   "Microsoft.DatabaseFleetManager": {
     "operations": [
       "2021-05-01-preview",
-      "2023-08-01-preview"
+      "2023-08-01-preview",
+      "2024-10-01-preview"
     ]
   },
   "Microsoft.DatabaseWatcher": {
@@ -38527,6 +38544,9 @@
       "2023-07-01",
       "2023-07-01-preview"
     ],
+    "virtualNetworks/listDnsResolverPolicies": [
+      "2023-07-01-preview"
+    ],
     "virtualNetworks/listDnsResolvers": [
       "2020-04-01-preview",
       "2022-07-01",
@@ -57064,7 +57084,8 @@
       "2024-02-01-preview",
       "2024-06-01-preview",
       "2024-09-01",
-      "2024-10-01-preview"
+      "2024-10-01-preview",
+      "2024-12-01-preview"
     ],
     "Locations/OperationStatuses": [
       "2021-12-01-preview",
@@ -57119,7 +57140,8 @@
       "2024-02-01-preview",
       "2024-06-01-preview",
       "2024-09-01",
-      "2024-10-01-preview"
+      "2024-10-01-preview",
+      "2024-12-01-preview"
     ],
     "phpWorkloads": [
       "2021-12-01-preview"
