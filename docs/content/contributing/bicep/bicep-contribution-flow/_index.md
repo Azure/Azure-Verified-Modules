@@ -121,7 +121,7 @@ Each time in the following sections we refer to 'your xyz', it is an indicator t
 
 {{< /hint >}}
 
-Bicep AVM Modules (Resource, Pattern and Utility modules) will be homed in the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and live within an `avm` directory that will be located at the root of the repository, as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
+Bicep AVM Modules (Resource, Pattern and Utility modules) are located in the `/avm` directory of the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository, as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
 
 Module owners are expected to fork the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository's `main` branch.
 
