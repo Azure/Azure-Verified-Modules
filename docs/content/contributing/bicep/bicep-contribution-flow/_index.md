@@ -150,7 +150,7 @@ Please ref the following link for additional details: [Creating an environment](
 
 ## 2. Configure a deployment identity in Azure
 
-AVM tests the deployments in an Azure subscription. To do so, it requires a deployment identity with access to it.
+AVM tests its modules via deployments in an Azure subscription. To do so, it requires a deployment identity with access to it.
 
 {{< hint type=warning title="Deprecating the Service Principal + Secret authentication method">}}
 
