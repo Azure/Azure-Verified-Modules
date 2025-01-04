@@ -172,7 +172,7 @@ It is highly recommended to start leveraging Option 1 below to adopt OpenID Conn
 
 Some Azure resources may require additional roles to be assigned to the deployment identity. An example is the `avm/res/aad/domain-service` module, which requires the deployment identity to have the Domain Services Contributor Azure role to create the required Domain Services resources.
 
-In those cases, for the first PR adding such modules to the public registry, we recommend the author to reach out to AVM maintainers or, alternatively, to [create a CI environment GitHub issue](https://github.com/Azure/bicep-registry-modules/issues/new?template=avm_ci_environment_issue.yml) in BRM, specifying the additional prerequisites. This is to make sure that the required additional roles get assigned in the upstream CI environment before the corresponding module PR gets merged.
+In those cases, for the first PR adding such modules to the public registry, we recommend the author to reach out to AVM maintainers or, alternatively, to [create a CI environment GitHub issue](https://github.com/Azure/bicep-registry-modules/issues/new?template=avm_ci_environment_issue.yml) in BRM, specifying the additional prerequisites. This ensures that the required additional roles get assigned in the upstream CI environment before the corresponding PR gets merged.
 
 {{< /hint >}}
 
