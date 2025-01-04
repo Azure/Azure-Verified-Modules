@@ -154,7 +154,7 @@ AVM tests its modules via deployments in an Azure subscription. To do so, it req
 
 {{< hint type=warning title="Deprecating the Service Principal + Secret authentication method">}}
 
-Support to Service Principal + Secret authentication method has been deprecated and will be decommissioned going forward.
+Support for the 'Service Principal + Secret' authentication method has been deprecated and will be decommissioned in the future.
 
 It is highly recommended to start leveraging Option 1 below to adopt OpenID Connect (OIDC) authentication and align with security best practices.
 
