@@ -300,19 +300,19 @@ Create the following environment secrets in the `avm-validation` GitHub environm
 
 1. Navigate to the repository's `Settings`.
 
-<img src="../../../img/bicep-ci/forkSettings.png" alt="Navigate to settings" width=100%>
+   <img src="../../../img/bicep-ci/forkSettings.png" alt="Navigate to settings" width=100%>
 
 2. In the list of settings, select `Environments`. Click on the previously created `avm-validation` environment.
 
-<img src="../../../img/bicep-ci/forkSettingsEnvironmentConfigure.png" alt="Navigate to environments" width=100%>
+   <img src="../../../img/bicep-ci/forkSettingsEnvironmentConfigure.png" alt="Navigate to environments" width=100%>
 
 3. In the `Environment secrets` Section click on the `Add environment secret` button.
 
-<img src="../../../img/bicep-ci/forkSettingsEnvironmentSecretAdd.png" alt="Navigate to env secrets" width=70%>
+   <img src="../../../img/bicep-ci/forkSettingsEnvironmentSecretAdd.png" alt="Navigate to env secrets" width=70%>
 
 3. In the opening view, you can create a secret by providing a secret `Name`, a secret `Value`, followed by a click on the `Add secret` button.
 
-<img src="../../../img/bicep-ci/forkSettingsEnvironmentSecretAdd_02.png" alt="Add env secret" width=100%>
+   <img src="../../../img/bicep-ci/forkSettingsEnvironmentSecretAdd_02.png" alt="Add env secret" width=100%>
 
 {{< /expand >}}
 
