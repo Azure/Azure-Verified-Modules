@@ -281,7 +281,7 @@ Each workflow in AVM deploying resources uses a logic that automatically replace
 
 #### 3.1.2 Authentication secrets
 
-In addition to shared repository secrets detailed above, additional GitHub secrets are required to allow the deployment identity authentication to Azure.
+In addition to shared repository secrets detailed above, additional GitHub secrets are required to allow the deploying identity to authenticate to Azure.
 
 Expand and follow the option corresponding to the deployment identity setup chosen at [Step 2](#2-configure-a-deployment-identity-in-azure) and use the information you gathered during that step.
 
