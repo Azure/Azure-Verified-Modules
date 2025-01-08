@@ -182,7 +182,7 @@ In those cases, for the first PR adding such modules to the public registry, we 
     - In the Federated credential scenario dropdown box, select `GitHub Actions deploying Azure resources`
       <img src="../../../img/bicep-ci/msiOIDCAddFederatedIdentity_02.png" alt="OIDC scenario" width=80%>
     - For the `Organization`, specify your GitHub organization name, for the `Repository` the value `bicep-registry-modules`.
-    - For Entity type, select `Environment` and specify the value `avm-validation`.
+    - For the `Entity` type, select `Environment` and specify the value `avm-validation`.
     - Add a Name for the federated credential, for example, `avm-gh-env-validation`.
     - The `Issuer`, `Audiences`, and `Subject identifier` fields autopopulate based on the values you entered.
     - Select `Add` to configure the federated credential.
