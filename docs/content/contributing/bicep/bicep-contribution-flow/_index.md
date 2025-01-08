@@ -186,7 +186,7 @@ In those cases, for the first PR adding such modules to the public registry, we 
     - Add a Name for the federated credential, for example, `avm-gh-env-validation`.
     - The Issuer, Audiences, and Subject identifier fields autopopulate based on the values you entered.
     - Select `Add` to configure the federated credential.
-    <img src="../../../img/bicep-ci/msiOIDCAddFederatedIdentity_03.png" alt="OIDC Add" width=80%>
+      <img src="../../../img/bicep-ci/msiOIDCAddFederatedIdentity_03.png" alt="OIDC Add" width=80%>
     - You might find the following links useful:
       - [Configure a federated identity credential on a user-assigned managed identity](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity)
 3. Note down the following pieces of information
