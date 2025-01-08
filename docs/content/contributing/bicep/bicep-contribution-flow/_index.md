@@ -241,7 +241,7 @@ To configure the forked CI environment you have to perform several steps:
 
 #### 3.1.1 Shared repository secrets
 
-To use the environment's pipelines you should set up the following repository secrets:
+To use the _Continuous Integration_ environment's workflows you should set up the following repository secrets:
 
 | Secret Name | Example | Description |
 | - | - | - |
