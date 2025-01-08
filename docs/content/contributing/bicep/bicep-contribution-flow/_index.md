@@ -180,7 +180,7 @@ In those cases, for the first PR adding such modules to the public registry, we 
     - In the Microsoft Entra admin center, navigate to the user-assigned managed identity you created. Under `Settings` in the left nav bar, select `Federated credentials` and then `Add Credential`.
       <img src="../../../img/bicep-ci/msiOIDCAddFederatedIdentity_01.png" alt="OIDC federated credentials" width=60%>
     - In the Federated credential scenario dropdown box, select `GitHub Actions deploying Azure resources`
-    <img src="../../../img/bicep-ci/msiOIDCAddFederatedIdentity_02.png" alt="OIDC scenario" width=80%>
+      <img src="../../../img/bicep-ci/msiOIDCAddFederatedIdentity_02.png" alt="OIDC scenario" width=80%>
     - For the `Organization`, specify your GitHub organization name, for the `Repository` the value `bicep-registry-modules`.
     - For Entity type, select `Environment` and specify the value `avm-validation`.
     - Add a Name for the federated credential, for example, `avm-gh-env-validation`.
