@@ -27,8 +27,8 @@ Authors **MUST** only use the following Azure providers, and versions, in their 
 
 | provider | min version | max version |
 |----------|-------------|-------------|
-| azurerm  | >= 4.0      | < 5.0       |
 | azapi    | >= 2.0      | < 3.0       |
+| azurerm  | >= 4.0      | < 5.0       |
 
 {{< hint type="note" >}}
 Authors **MAY** select either Azurerm, Azapi, or both providers in their module.
@@ -49,7 +49,7 @@ terraform {
       version = "~> 4.0"
     }
     azapi = {
-      source  = "hashicorp/azapi"
+      source  = "Azure/azapi"
       version = "~> 2.0"
     }
   }
