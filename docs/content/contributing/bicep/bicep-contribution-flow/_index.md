@@ -11,10 +11,10 @@ geekdocAnchor: true
 
 {{< mermaid class="text-center" >}}
 flowchart TD
-A("1 - Setup your Azure test environment")
-  click A "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-setup-your-azure-test-environment"
-B(2 - Fork the module source repository)
-  click B "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#2-fork-the-module-source-repository"
+A("1 - Fork the module source repository")
+  click A "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#1-fork-the-module-source-repository"
+B(2 - Configure a deployment identity in Azure)
+  click B "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#2-configure-a-deployment-identity-in-azure"
 C(3 - Configure CI environment <br> For module tests)
   click C "/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#3-configure-your-ci-environment"
 D(4 - Implementing your contribution<br> Refer to Gitflow Diagram below)
@@ -63,7 +63,14 @@ When implementing the GitFlow process as described, it is advisable to configure
 
 ## PowerShell Helper Script To Setup Fork & CI Test Environment
 
-To simplify the setup of the fork, clone and configuration of the required secrets, SPN and RBAC assignments in your Azure environment for the CI framework to function correctly in your fork, we have created a PowerShell script that you can use to do steps [1](#1-setup-your-azure-test-environment), [2](#2-fork-the-module-source-repository) & [3](#3-configure-your-ci-environment) below.
+{{< hint type=Caution title="Only available for Service Principal + Secret authentication method [Deprecated]">}}
+
+The PowerShell Helper Script currently only supports the Service Principal + Secret authentication method, which is deprecated.
+It is recommended to start adopting OpenID Connect (OIDC) authentication instead.
+
+{{< /hint >}}
+
+To simplify the setup of the fork, clone and configuration of the required secrets, SPN and RBAC assignments in your Azure environment for the CI framework to function correctly in your fork, we have created a PowerShell script that you can use to do steps [1](#1-fork-the-module-source-repository), [2](#2-configure-a-deployment-identity-in-azure) & [3](#3-configure-your-ci-environment) below.
 
 {{< hint type=important >}}
 
@@ -100,7 +107,13 @@ For more examples, see the below script's parameters section.
 
 {{< /expand >}}
 
-## 1. Setup your Azure test environment
+## 1. Fork the module source repository
+
+{{< hint type=tip >}}
+
+Checkout the [PowerShell Helper Script](#powershell-helper-script-to-setup-fork--ci-test-environment) that can do this step automatically for you! 👍
+
+{{< /hint >}}
 
 {{< hint type=note >}}
 
@@ -108,46 +121,107 @@ Each time in the following sections we refer to 'your xyz', it is an indicator t
 
 {{< /hint >}}
 
-{{< hint type=tip >}}
+Bicep AVM Modules (Resource, Pattern and Utility modules) are located in the `/avm` directory of the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository, as per [SNFR19](/Azure-Verified-Modules/specs/shared/#id-snfr19---category-publishing---registries-targeted).
 
-Checkout the [PowerShell Helper Script](#powershell-helper-script-to-setup-fork--ci-test-environment) that can do this step automatically for you! 👍
-
-{{< /hint >}}
-
-AVM tests the deployments in an Azure subscription. To do so, it requires a service principal with access to it.
-
-In this first step, make sure you
-
-- Have/create an Azure Active Directory Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
-  - [Create a service principal (Azure Portal)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
-  - [Create a service principal (PowerShell)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
-  - [Find Service Principal object ID](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
-  - [Find managed Identity Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
-- Note down the following pieces of information
-  - Application (Client) ID
-  - Service Principal Object ID (**not** the object ID of the application)
-  - Service Principal Secret (password)
-  - Tenant ID
-  - Subscription ID
-  - Parent Management Group ID
-
-<br>
-
-## 2. Fork the module source repository
-
-{{< hint type=tip >}}
-
-Checkout the [PowerShell Helper Script](#powershell-helper-script-to-setup-fork--ci-test-environment) that can do this step automatically for you! 👍
-
-{{< /hint >}}
-
-Bicep AVM Modules (both Resource and Pattern modules) will be homed in the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and live within an `avm` directory that will be located at the root of the repository, as per [SNFR19](/Azure-Verified-Modules/spec/SNFR19).
-
-Module owners are expected to fork the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and work on a branch from within their fork, before then creating a Pull Request (PR) back into the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository's `main` branch.
+Module owners are expected to fork the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository and work on a branch from within their fork, before creating a Pull Request (PR) back into the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository's upstream `main` branch.
 
 To do so, simply navigate to the [Public Bicep Registry](https://github.com/Azure/bicep-registry-modules) repository, select the `'Fork'` button to the top right of the UI, select where the fork should be created (i.e., the owning organization) and finally click 'Create fork'.
 
+### 1.1 Create a GitHub environment
+
+Create the `avm-validation` environment in your fork.
+
+{{< expand "➕ How to: Create an environment in GitHub" "expand/collapse" >}}
+
+1. Navigate to the repository's `Settings`.
+
+2. In the list of settings, expand `Environments`. You can create a new environment by selecting `New environment` on the top right.
+
+3. In the opening view, provide `avm-validation` for the environment `Name`. Click on the `Configure environment` button.
+
+<img src="../../../img/bicep-ci/forkSettingsEnvironmentAdd.png" alt="Add environment" width=100%>
+
+Please ref the following link for additional details: [Creating an environment](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-deployments/managing-environments-for-deployment#creating-an-environment)
+
+{{< /expand >}}
+
 <br>
+
+
+## 2. Configure a deployment identity in Azure
+
+AVM tests its modules via deployments in an Azure subscription. To do so, it requires a deployment identity with access to it.
+
+{{< hint type=warning title="Deprecating the Service Principal + Secret authentication method">}}
+
+Support for the 'Service Principal + Secret' authentication method has been deprecated and will be decommissioned in the future.
+
+It is highly recommended to start leveraging Option 1 below to adopt OpenID Connect (OIDC) authentication and align with security best practices.
+
+{{< /hint >}}
+
+{{< expand "➕ Option 1 [Recommended]: OIDC - Configure a federated identity credential" "expand/collapse" >}}
+
+1. Create a new or leverage an existing user-assigned managed identity with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
+    - [Create a user-assigned managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities#create-a-user-assigned-managed-identity)
+    - [Assign an appropriate role to your user-assigned managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities#manage-access-to-user-assigned-managed-identities)
+
+    <img src="../../../img/bicep-ci/msiOIDCRole.png" alt="OIDC identity roles" width=100%>
+
+{{< hint type=note title="Additional roles">}}
+
+Some Azure resources may require additional roles to be assigned to the deployment identity. An example is the `avm/res/aad/domain-service` module, which requires the deployment identity to have the Domain Services Contributor Azure role to create the required Domain Services resources.
+
+In those cases, for the first PR adding such modules to the public registry, we recommend the author to reach out to AVM maintainers or, alternatively, to [create a CI environment GitHub issue](https://github.com/Azure/bicep-registry-modules/issues/new?template=avm_ci_environment_issue.yml) in BRM, specifying the additional prerequisites. This ensures that the required additional roles get assigned in the upstream CI environment before the corresponding PR gets merged.
+
+{{< /hint >}}
+
+2. Configure a federated identity credential on a user-assigned managed identity to trust tokens issued by GitHub Actions to your GitHub repository.
+    - In the Microsoft Entra admin center, navigate to the user-assigned managed identity you created. Under `Settings` in the left nav bar, select `Federated credentials` and then `Add Credential`.
+      <img src="../../../img/bicep-ci/msiOIDCAddFederatedIdentity_01.png" alt="OIDC federated credentials" width=60%>
+    - In the Federated credential scenario dropdown box, select `GitHub Actions deploying Azure resources`
+      <img src="../../../img/bicep-ci/msiOIDCAddFederatedIdentity_02.png" alt="OIDC scenario" width=80%>
+    - For the `Organization`, specify your GitHub organization name, for the `Repository` the value `bicep-registry-modules`.
+    - For the `Entity` type, select `Environment` and specify the value `avm-validation`.
+    - Add a Name for the federated credential, for example, `avm-gh-env-validation`.
+    - The `Issuer`, `Audiences`, and `Subject identifier` fields autopopulate based on the values you entered.
+    - Select `Add` to configure the federated credential.
+      <img src="../../../img/bicep-ci/msiOIDCAddFederatedIdentity_03.png" alt="OIDC Add" width=80%>
+    - You might find the following links useful:
+      - [Configure a federated identity credential on a user-assigned managed identity](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity)
+3. Note down the following pieces of information
+    - Client ID
+    - Tenant ID
+    - Subscription ID
+    - Parent Management Group ID
+
+    <img src="../../../img/bicep-ci/msiOIDCInfo.png" alt="OIDC Add" width=70%>
+
+Additional references:
+- [Configure a federated identity credential](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure-openid-connect#prerequisites)
+- [Azure login GitHub action - Login with OIDC](https://github.com/Azure/login?tab=readme-ov-file#login-with-openid-connect-oidc-recommended)
+
+{{< /expand >}}
+
+{{< expand "➕ Option 2 [Deprecated]: Configure Service Principal + Secret" "expand/collapse" >}}
+
+1. Create a new or leverage an existing Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
+    - [Create a service principal (Azure Portal)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
+    - [Create a service principal (PowerShell)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
+    - [Find Service Principal object ID](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
+    - [Find managed Identity Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal)
+2. Note down the following pieces of information
+    - Application (Client) ID
+    - Service Principal Object ID (**not** the object ID of the application)
+    - Service Principal Secret (password)
+    - Tenant ID
+    - Subscription ID
+    - Parent Management Group ID
+
+{{< /expand >}}
+
+<br>
+
 
 ## 3. Configure your CI environment
 
@@ -165,15 +239,26 @@ To configure the forked CI environment you have to perform several steps:
 
 ### 3.1. Set up secrets
 
-To use the environment's pipelines you should use the information you gathered during the [Azure setup](#1-setup-your-azure-test-environment) to set up the following repository secrets:
+#### 3.1.1 Shared repository secrets
 
-| Secret Name           | Example                                                                                                                                                                                                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ARM_MGMTGROUP_ID`    | `11111111-1111-1111-1111-111111111111`                                                                                                                                                                 | The group ID of the management group to test-deploy modules in. Is needed for resources that are deployed to the management group scope.                                                                                                                                                                                                                                                                                                                                                          |
-| `ARM_SUBSCRIPTION_ID` | `22222222-2222-2222-2222-222222222222`                                                                                                                                                                 | The ID of the subscription to test-deploy modules in. Is needed for resources that are deployed to the subscription scope.                                                                                                                                                                                                                                                                                                                                                                        |
-| `ARM_TENANT_ID`       | `33333333-3333-3333-3333-333333333333`                                                                                                                                                                 | The tenant ID of the Azure Active Directory tenant to test-deploy modules in. Is needed for resources that are deployed to the tenant scope.                                                                                                                                                                                                                                                                                                                                                      |
-| `AZURE_CREDENTIALS`   | `{"clientId": "44444444-4444-4444-4444-444444444444", "clientSecret": "<placeholder>", "subscriptionId": "22222222-2222-2222-2222-222222222222", "tenantId": "33333333-3333-3333-3333-333333333333" }` | The login credentials of the deployment principal used to log into the target Azure environment to test in. The format is described [here](https://github.com/Azure/login#configure-deployment-credentials). For more information, see the `[Special case: AZURE_CREDENTIALS]` note below.                                                                                                                                                                                                        |
-| `TOKEN_NAMEPREFIX`    | `cntso`                                                                                                                                                                                                | Required. A short (3-5 character length), unique string that should be included in any deployment to Azure. Usually, AVM Bicep test cases require this value to ensure no two contributors deploy resources with the same name - which is especially important for resources that require a globally unique name (e.g., Key Vault). These characters will be used as part of each resource's name during deployment. For more information, see the `[Special case: TOKEN_NAMEPREFIX]` note below. |
+To use the _Continuous Integration_ environment's workflows you should set up the following repository secrets:
+
+| Secret Name | Example | Description |
+| - | - | - |
+| `ARM_MGMTGROUP_ID` | `11111111-1111-1111-1111-111111111111` | The group ID of the management group to test-deploy modules in. Is needed for resources that are deployed to the management group scope. |
+| `ARM_SUBSCRIPTION_ID` | `22222222-2222-2222-2222-222222222222` | The ID of the subscription to test-deploy modules in. Is needed for resources that are deployed to the subscription scope. Note: This repository secret will be deprecated in favor of the `VALIDATE_SUBSCRIPTION_ID` environment secret required by the OIDC authentication. |
+| `ARM_TENANT_ID` | `33333333-3333-3333-3333-333333333333` | The tenant ID of the Azure Active Directory tenant to test-deploy modules in. Is needed for resources that are deployed to the tenant scope. Note: This repository secret will be deprecated in favor of the `VALIDATE_TENANT_ID` environment secret required by the OIDC authentication. |
+| `TOKEN_NAMEPREFIX` | `cntso` | Required. A short (3-5 character length), unique string that should be included in any deployment to Azure. Usually, AVM Bicep test cases require this value to ensure no two contributors deploy resources with the same name - which is especially important for resources that require a globally unique name (e.g., Key Vault). These characters will be used as part of each resource's name during deployment. For more information, see the `[Special case: TOKEN_NAMEPREFIX]` note below. |
+
+{{< hint type=note title="Special case: TOKEN_NAMEPREFIX">}}
+
+To lower the barrier to entry and allow users to easily define their own naming conventions, we introduced a default 'name prefix' for all deployed resources.
+
+This prefix is **only** used by the CI environment you validate your modules in, and doesn't affect the naming of any resources you deploy as part of any solutions (applications/workloads) based on the modules.
+
+Each workflow in AVM deploying resources uses a logic that automatically replaces "tokens" (i.e., placeholders) in any module test file. These tokens are, for example, included in the resources names (e.g. `'name: kvlt-${namePrefix}'`). Tokens are stored as repository secrets to facilitate maintenance.
+
+{{< /hint >}}
 
 <p>
 
@@ -181,19 +266,65 @@ To use the environment's pipelines you should use the information you gathered d
 
 1. Navigate to the repository's `Settings`.
 
-<img src="../../../img/bicep-ci/forkSettings.png" alt="Navigate to settings" width=100%>
+    <img src="../../../img/bicep-ci/forkSettings.png" alt="Navigate to settings" width=100%>
 
 2. In the list of settings, expand `Secrets` and select `Actions`. You can create a new repository secret by selecting `New repository secret` on the top right.
 
-<img src="../../../img/bicep-ci/forkSettingsSecrets.png" alt="Navigate to secrets" width=100%>
+    <img src="../../../img/bicep-ci/forkSettingsSecrets.png" alt="Navigate to secrets" width=100%>
 
 3. In the opening view, you can create a secret by providing a secret `Name`, a secret `Value`, followed by a click on the `Add secret` button.
 
-<img src="../../../img/bicep-ci/forkSettingsSecretAdd.png" alt="Add secret" width=100%>
+    <img src="../../../img/bicep-ci/forkSettingsSecretAdd.png" alt="Add secret" width=100%>
 
 {{< /expand >}}
 
-<p>
+
+#### 3.1.2 Authentication secrets
+
+In addition to shared repository secrets detailed above, additional GitHub secrets are required to allow the deploying identity to authenticate to Azure.
+
+Expand and follow the option corresponding to the deployment identity setup chosen at [Step 2](#2-configure-a-deployment-identity-in-azure) and use the information you gathered during that step.
+
+
+{{< expand "➕ Option 1 [Recommended]: Authenticate via OIDC" "expand/collapse" >}}
+
+Create the following environment secrets in the `avm-validation` GitHub environment created at [Step 1](#1-fork-the-module-source-repository)
+
+| Secret Name | Example | Description |
+| - | - | - |
+| `VALIDATE_CLIENT_ID` | `44444444-4444-4444-4444-444444444444` | The login credentials of the deployment principal used to log into the target Azure environment to test in. The format is described [here](https://github.com/Azure/login#configure-deployment-credentials). |
+| `VALIDATE_SUBSCRIPTION_ID` | `22222222-2222-2222-2222-222222222222` | Same as the `ARM_SUBSCRIPTION_ID` repository secret set up above. The ID of the subscription to test-deploy modules in. Is needed for resources that are deployed to the subscription scope. |
+| `VALIDATE_TENANT_ID` | `33333333-3333-3333-3333-333333333333` | Same as the `ARM_TENANT_ID` repository secret set up above. The tenant ID of the Azure Active Directory tenant to test-deploy modules in. Is needed for resources that are deployed to the tenant scope. |
+
+{{< expand "➕ How to: Add an environment secret to GitHub" "expand/collapse" >}}
+
+1. Navigate to the repository's `Settings`.
+
+    <img src="../../../img/bicep-ci/forkSettings.png" alt="Navigate to settings" width=100%>
+
+2. In the list of settings, select `Environments`. Click on the previously created `avm-validation` environment.
+
+    <img src="../../../img/bicep-ci/forkSettingsEnvironmentConfigure.png" alt="Navigate to environments" width=100%>
+
+3. In the `Environment secrets` Section click on the `Add environment secret` button.
+
+    <img src="../../../img/bicep-ci/forkSettingsEnvironmentSecretAdd.png" alt="Navigate to env secrets" width=70%>
+
+4. In the opening view, you can create a secret by providing a secret `Name`, a secret `Value`, followed by a click on the `Add secret` button.
+
+    <img src="../../../img/bicep-ci/forkSettingsEnvironmentSecretAdd_02.png" alt="Add env secret" width=100%>
+
+{{< /expand >}}
+
+{{< /expand >}}
+
+{{< expand "➕ Option 2 [Deprecated]: Authenticate via Service Principal + Secret" "expand/collapse" >}}
+
+Create the following environment repository secret:
+
+| Secret Name  | Example | Description |
+| - | - | - |
+| `AZURE_CREDENTIALS` | `{"clientId": "44444444-4444-4444-4444-444444444444", "clientSecret": "<placeholder>", "subscriptionId": "22222222-2222-2222-2222-222222222222", "tenantId": "33333333-3333-3333-3333-333333333333" }` | The login credentials of the deployment principal used to log into the target Azure environment to test in. The format is described [here](https://github.com/Azure/login#configure-deployment-credentials). For more information, see the `[Special case: AZURE_CREDENTIALS]` note below. |
 
 {{< hint type=important title="Special case: AZURE_CREDENTIALS">}}
 
@@ -203,19 +334,14 @@ This secret represent the service connection to Azure, and its value is a compre
 {"clientId": "<client_id>", "clientSecret": "<client_secret>", "subscriptionId": "<subscriptionId>", "tenantId": "<tenant_id>" }
 ```
 
-**Make sure you create this object as one continuous string as shown above** - using the information you collected during [Step 1](#1-setup-your-azure-test-environment). Failing to format the secret as above, causes GitHub to consider each line of the JSON object as a separate secret string. If you're interested, you can find more information about this object [here](https://github.com/Azure/login#configure-deployment-credentials).
+**Make sure you create this object as one continuous string as shown above** - using the information you collected during [Step 2](#2-configure-a-deployment-identity-in-azure). Failing to format the secret as above, causes GitHub to consider each line of the JSON object as a separate secret string. If you're interested, you can find more information about this object [here](https://github.com/Azure/login#configure-deployment-credentials).
 
 {{< /hint >}}
 
-{{< hint type=note title-="Special case: TOKEN_NAMEPREFIX">}}
+{{< /expand >}}
 
-To lower the barrier to entry and allow users to easily define their own naming conventions, we introduced a default 'name prefix' for all deployed resources.
+<p>
 
-This prefix is **only** used by the CI environment you validate your modules in, and doesn't affect the naming of any resources you deploy as part of any multi-module solutions (applications/workloads) based on the modules.
-
-Each pipeline in AVM deploying resources uses a logic that automatically replaces "tokens" (i.e., placeholders) in any module test file. These tokens are, for example, included in the resources names (e.g. `'name: kvlt-${namePrefix}'`). Tokens are stored as repository secrets to facilitate maintenance.
-
-{{< /hint >}}
 
 ### 3.2. Enable actions
 
