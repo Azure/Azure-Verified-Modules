@@ -1,6 +1,6 @@
 ---
-title: TFFR2 - Additional Terraform Outputs
-url: /spec/TFFR2
+title: TFFR3 - Providers - Permitted Versions
+url: /spec/TFFR3
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
