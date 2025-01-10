@@ -13,7 +13,15 @@ param privateEndpoints privateEndpointSingleServiceType[]?
 
 module >singularMainResourceType<_privateEndpoints 'br/public:avm/res/network/private-endpoint:>version<' = [for (privateEndpoint, index) in (privateEndpoints ?? []): {
   name: '${uniqueString(deployment().name, location)}->singularMainResourceType<-PrivateEndpoint-${index}'
-  scope: resourceGroup(privateEndpoint.?resourceGroupName ?? '')
+  scope: !empty(privateEndpoint.?resourceGroupResourceId)
+  ? resourceGroup(
+      split((privateEndpoint.?resourceGroupResourceId ?? '//'), '/')[2],
+      split((privateEndpoint.?resourceGroupResourceId ?? '////'), '/')[4]
+    )
+  : resourceGroup(
+      split((privateEndpoint.?subnetResourceId ?? '//'), '/')[2],
+      split((privateEndpoint.?subnetResourceId ?? '////'), '/')[4]
+    )
   params: {
     // Variant 1: A default service can be assumed (i.e., for services that only have one private endpoint type)
     name: privateEndpoint.?name ?? 'pep-${last(split(>singularMainResourceType<.id, '/'))}-${privateEndpoint.?service ?? '>defaultServiceName<'}-${index}'
@@ -41,6 +49,7 @@ module >singularMainResourceType<_privateEndpoints 'br/public:avm/res/network/pr
       }
     ] : null
     subnetResourceId: privateEndpoint.subnetResourceId
+    resourceGroupResourceId: privateEndpoint.resourceGroupResourceId
     enableTelemetry: privateEndpoint.?enableTelemetry ?? enableTelemetry
     location: privateEndpoint.?location ?? reference(split(privateEndpoint.subnetResourceId, '/subnets/')[0], '2020-06-01', 'Full').location
     lock: privateEndpoint.?lock ?? lock
