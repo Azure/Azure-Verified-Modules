@@ -1,6 +1,6 @@
 ---
 title: BCPRMNFR3 - Resource module structure
-url: /spec/BCPRMNFR1
+url: /spec/BCPRMNFR3
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
@@ -19,7 +19,7 @@ tags: [
 priority: 13010
 ---
 
-#### ID: BCPRMNFR3 - Category: Composition
+#### ID: BCPRMNFR3 - Category: Composition - Implementing child resources
 
 Providers like `Microsoft.Sql/servers` may have dedicated child resources such as `Microsoft.Sql/servers/databases`. In these cases, the module **MUST** host this child resource in a subfolder named after the child resource's singular name ([ref](/Azure-Verified-Modules/specs-defs/includes/shared/pattern/non-functional/PMNFR1)), so that the path to the child resource folder is consistent with its resource type. In the given example, we would have a `database` subfolder in the `server` parent folder.
 
@@ -30,15 +30,6 @@ sql
 ```
 
 In this folder, we recommend to place the child resource-template alongside a ReadMe & compiled JSON (to be generated via the default [Set-AVMModule](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files) utility) and optionally further nest additional folders for it's child resources.
-
-The parent template **MUST** reference all it's direct child-templates to allow for an end-to-end deployment experience. In case of the SQL server example, the server template would reference the database module and encapsulate it in a loop to allow for the deployment of multiple databases. For example
-
-```Bicep
-@description('Optional. The databases to create in the server')
-param databases databaseType[]?
-
-module server_databases 'database/main.bicep' = [for (database, index) in (databases ?? []): {}]
-```
 
 There are several reasons to structure a module in this way. For example
 - It allows a separation of concerns where each module can focus on its own properties and logic, while delegating most of a child-resource's logic to its separate child module
