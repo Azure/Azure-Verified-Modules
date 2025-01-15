@@ -49,6 +49,5 @@ privateEndpoints: {
         principalType: 'ServicePrincipal'
       }
     ]
-    resourceGroupName: 'mySecondaryRg'
   }
 }
