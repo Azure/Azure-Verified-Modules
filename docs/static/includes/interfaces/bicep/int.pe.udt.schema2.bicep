@@ -13,7 +13,15 @@ param privateEndpoints privateEndpointMultiServiceType[]?
 
 module >singularMainResourceType<_privateEndpoints 'br/public:avm/res/network/private-endpoint:>version<' = [for (privateEndpoint, index) in (privateEndpoints ?? []): {
   name: '${uniqueString(deployment().name, location)}->singularMainResourceType<-PrivateEndpoint-${index}'
-  scope: resourceGroup(privateEndpoint.?resourceGroupName ?? '')
+  scope: !empty(privateEndpoint.?resourceGroupResourceId)
+  ? resourceGroup(
+      split((privateEndpoint.?resourceGroupResourceId ?? '//'), '/')[2],
+      split((privateEndpoint.?resourceGroupResourceId ?? '////'), '/')[4]
+    )
+  : resourceGroup(
+      split((privateEndpoint.?subnetResourceId ?? '//'), '/')[2],
+      split((privateEndpoint.?subnetResourceId ?? '////'), '/')[4]
+    )
   params: {
     // Variant 2: A default service cannot be assumed (i.e., for services that have more than one private endpoint type, like Storage Account)
     name: privateEndpoint.?name ?? 'pep-${last(split(>singularMainResourceType<.id, '/'))}-${privateEndpoint.service}-${index}'
