@@ -20,7 +20,7 @@ tags: [
 priority: 11010
 ---
 
-#### ID: BCPNFR20 - Category: User-defined types - Export
+#### ID: BCPNFR20 - User-defined types - Export
 
 User-defined types (UDTs) SHOULD always be exported via the `@export()` annotation in every template they're implemented in.
 ```bicep

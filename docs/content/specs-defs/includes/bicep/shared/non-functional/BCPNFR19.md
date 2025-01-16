@@ -21,7 +21,7 @@ tags: [
 priority: 11010
 ---
 
-#### ID: BCPNFR19 - Category: User-defined types - Naming
+#### ID: BCPNFR19 - User-defined types - Naming
 
 User-defined types (UDTs) MUST always end with the suffix `(...)Type` to make them obvious to users. In addition it is recommended to extend the suffix to `(...)OutputType` if a UDT is exclusively used for outputs. 
 ```bicep
@@ -30,7 +30,7 @@ type subnetType = { ... } // Correct
 type subnetOutputType = { ... } // Correct, if used only for outputs
 ```
 
-Since User-defined types (UDTs) MUST always be singular as per [BCPNFR18](#id-bcpnfr18---category-user-defined-types---specification), their naming should reflect this and also be singular.
+Since User-defined types (UDTs) MUST always be singular as per [BCPNFR18](#id-bcpnfr18---user-defined-types---specification), their naming should reflect this and also be singular.
 ```bicep
 type subnetsType = { ... } // Wrong
 type subnetType = { ... } // Correct

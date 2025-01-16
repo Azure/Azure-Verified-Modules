@@ -18,7 +18,7 @@ tags: [
 priority: 13010
 ---
 
-#### ID: BCPRMNFR2 - Category: User-defined types - AVM-Common-Types
+#### ID: BCPRMNFR2 - User-defined types - AVM-Common-Types
 
 When implementing any of the [shared](/Azure-Verified-Modules/specs/shared/interfaces) or [Bicep-specific](/Azure-Verified-Modules/specs/bicep/interfaces) AVM interface variants you MUST import their User-defined type (UDT) via the published [AVM-Common-Types](https://github.com/Azure/bicep-registry-modules/tree/main/avm/utl/types/avm-common-types) module.
 

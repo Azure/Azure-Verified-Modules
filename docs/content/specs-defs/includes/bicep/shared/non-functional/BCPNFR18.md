@@ -20,7 +20,7 @@ tags: [
 priority: 11010
 ---
 
-#### ID: BCPNFR18 - Category: User-defined types - Specification
+#### ID: BCPNFR18 - User-defined types - Specification
 
 User-defined types (UDTs) MUST always be singular and non-nullable. The configuration of either should instead be done directly at the parameter or output that uses the type.
 
