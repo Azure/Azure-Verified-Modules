@@ -8,6 +8,7 @@ privateEndpoints: {
     }
     service: 'blob'
     subnetResourceId: '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myRg/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mysubnet'
+    resourceGroupResourceId: '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myRg'
     applicationSecurityGroupResourceIds: [
       '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myRg/providers/Microsoft.Network/applicationSecurityGroups/myAsg'
     ]
@@ -49,6 +50,5 @@ privateEndpoints: {
         principalType: 'ServicePrincipal'
       }
     ]
-    resourceGroupName: 'mySecondaryRg'
   }
 }

@@ -18,12 +18,6 @@ Please refer to the new documentation under the [Terraform Specifications](/Azur
 
 This page contains the **Terraform specific requirements** for AVM modules (**Resource and Pattern modules**) that ALL Terraform AVM modules **MUST** meet. These requirements are in addition to the [Shared Specification](/Azure-Verified-Modules/specs/shared/) requirements that ALL AVM modules **MUST** meet.
 
-{{< hint type=important >}}
-
-Provider Versatility: Users have the autonomy to choose between AzureRM, AzAPI, or a combination of both, tailored to the specific complexity of module requirements.
-
-{{< /hint >}}
-
 The following table summarizes the category identification codes used in this specification:
 
 | Scope                                            | Functional requirements               | Non-functional requirements                 |
