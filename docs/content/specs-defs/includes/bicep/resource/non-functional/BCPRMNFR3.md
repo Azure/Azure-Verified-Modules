@@ -30,7 +30,7 @@ sql
   └─ database [child-module/resource]
 ```
 
-In this folder, we recommend to place the child resource-template alongside a ReadMe & compiled JSON (to be generated via the default [Set-AVMModule](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files) utility) and optionally further nest additional folders for it's child resources.
+In this folder, we recommend to place the child resource-template alongside a ReadMe & compiled JSON (to be generated via the default [Set-AVMModule](/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files) utility) and optionally further nest additional folders for its child resources.
 
 There are several reasons to structure a module in this way. For example
 - It allows a separation of concerns where each module can focus on its own properties and logic, while delegating most of a child-resource's logic to its separate child module
