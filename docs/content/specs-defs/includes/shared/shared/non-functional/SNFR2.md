@@ -91,11 +91,13 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-12
 
 ##### Skipping Deployments (**SHOULD NOT**)
 
-Test are part of the documentation of a module. However, there are situation where an actual deployment can't be performed. One could be, that the deployment is too big (the Azure Resource Manager has a [limit of 4MB](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/best-practices) for a single deployment). To still keep a test for reference and documentation, a file named `.e2eignore` can be placed inside a test folder.
+Tests are part of the documentation and ensure thorough testing of the module and parameters. However, there are situation where an actual deployment can't be performed. One could be, that the deployment is too big (the Azure Resource Manager has a [limit of 4MB](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/best-practices) for a single deployment) or only one instance of a service can be deployed to a subscription. To still keep a test for reference and documentation, a file named `.e2eignore` can be placed inside a test folder to prevent the test case being deployed by the CI.
 
 {{< expand "➕ Terraform & Bicep specific details for use in E2E tests" "expand/collapse">}}
 
 ###### Bicep
+
+You **MUST** add a note to the tests metadata description, which explains the excemption.
 
 If you should require the test to be skipped and add a `.e2eignore` file (e.g. \<module\>/tests/e2e/\<testname\>/.e2eignore) in a PR, it requires a member of the AVM Core Technical Bicep Team to approve. The content of the file is listed in the GitHub Action.
 
