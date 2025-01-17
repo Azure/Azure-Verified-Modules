@@ -19,10 +19,10 @@ tags: [
 priority: 13010
 ---
 
-#### ID: BCPRMNFR3 - Category: Composition - Implementing child resources
+#### ID: BCPRMNFR3 - Implementing child resources
 
-Child resource modules **MUST** be stored in a subfolder of their parent resource module and named after the child resource's singular name ([ref](/Azure-Verified-Modules/specs-defs/includes/shared/pattern/non-functional/PMNFR1)), so that the path to the child resource folder is consistent with the hyerarchy of its resource type.
-For example, `Microsoft.Sql/servers` may have dedicated child resources of type `Microsoft.Sql/servers/databases`. Hence, the sql server database child module is stored in a `database` subfolder of the `server` parent folder.
+Child resource modules **MUST** be stored in a subfolder of their parent resource module and named after the child resource's singular name ([ref](/Azure-Verified-Modules/specs-defs/includes/shared/pattern/non-functional/PMNFR1)), so that the path to the child resource folder is consistent with the hierarchy of its resource type.
+For example, `Microsoft.Sql/servers` may have dedicated child resources of type `Microsoft.Sql/servers/databases`. Hence, the SQL server database child module is stored in a `database` subfolder of the `server` parent folder.
 
 ```txt
 sql
@@ -38,4 +38,8 @@ There are several reasons to structure a module in this way. For example
 - As each module is its own 'deployment', it reduces limitations around nested loops
 - Once the feature is enabled, it will enable module owners to publish set child-modules as separate modules to the public registry, allowing consumers to make use of them directly.
 
+{{< hint type=note >}}
+
 In full transparency: The drawbacks of these additional deployments is an extended deployment period & a contribution to the 800 deployments limit. However, for AVM resource modules it was agreed that the advantages listed above outweigh these limitations.
+
+{{< /hint >}}
