@@ -22,7 +22,8 @@ priority: 10010
 
 #### ID: BCPFR6 - Category: Composition - Cross-Referencing Child-Modules
 
-Parent templates **MUST** reference all their direct child-templates to allow for an end-to-end deployment experience. In case of an SQL server example, the server template must reference the database module and encapsulate it in a loop to allow for the deployment of multiple databases. For example
+Parent templates **MUST** reference all their direct child-templates to allow for an end-to-end deployment experience. 
+For example, the SQL server template must reference its child database module and encapsulate it in a loop to allow for the deployment of multiple databases.
 
 ```Bicep
 @description('Optional. The databases to create in the server')
