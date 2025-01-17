@@ -88,3 +88,23 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-12
 ```
 
 {{< /expand >}}
+
+##### Skipping Deployments (**SHOULD NOT**)
+
+Test are part of the documentation of a module. However, there are situation where an actual deployment can't be performed. One could be, that the deployment is too big (the Azure Resource Manager has a [limit of 4MB](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/best-practices) for a single deployment). To still keep a test for reference and documentation, a file named `.e2eignore` can be placed inside a test folder.
+
+{{< expand "➕ Terraform & Bicep specific details for use in E2E tests" "expand/collapse">}}
+
+###### Bicep
+
+If you should require the test to be skipped and add a `.e2eignore` file (e.g. \<module\>/tests/e2e/\<testname\>/.e2eignore) in a PR, it requires a member of the AVM Core Technical Bicep Team to approve. The content of the file is listed in the GitHub Action.
+
+Sample filecontent: ```The test is skipped due to the maximum deployment template of 4MB, which this test exeecds.```
+
+*For resource modules, the defaults and waf-aligned tests can't be skipped.*
+
+###### Terraform
+
+The deployment of a test can be skipped by adding a `e2eignore`file into a test folder (e.g. /examples/\<testname\>).
+
+{{< /expand >}}
