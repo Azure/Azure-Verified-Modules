@@ -21,7 +21,8 @@ priority: 13010
 
 #### ID: BCPRMNFR3 - Category: Composition - Implementing child resources
 
-Providers like `Microsoft.Sql/servers` may have dedicated child resources such as `Microsoft.Sql/servers/databases`. In these cases, the module **MUST** host this child resource in a subfolder named after the child resource's singular name ([ref](/Azure-Verified-Modules/specs-defs/includes/shared/pattern/non-functional/PMNFR1)), so that the path to the child resource folder is consistent with its resource type. In the given example, we would have a `database` subfolder in the `server` parent folder.
+Child resource modules **MUST** be stored in a subfolder of their parent resource module and named after the child resource's singular name ([ref](/Azure-Verified-Modules/specs-defs/includes/shared/pattern/non-functional/PMNFR1)), so that the path to the child resource folder is consistent with the hyerarchy of its resource type.
+For example, `Microsoft.Sql/servers` may have dedicated child resources of type `Microsoft.Sql/servers/databases`. Hence, the sql server database child module is stored in a `database` subfolder of the `server` parent folder.
 
 ```txt
 sql
