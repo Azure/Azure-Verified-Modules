@@ -33,7 +33,7 @@ type myType = {
   @minValue(1)
   @maxValue(10)
   threshold: int?
-  
+
   @description('Required. The SKU of your resource.')
   sku: ('Basic' | 'Premium' | 'Standard')
 }

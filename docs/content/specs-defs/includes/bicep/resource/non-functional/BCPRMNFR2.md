@@ -22,7 +22,7 @@ priority: 13010
 
 When implementing any of the [shared](/Azure-Verified-Modules/specs/shared/interfaces) or [Bicep-specific](/Azure-Verified-Modules/specs/bicep/interfaces) AVM interface variants you MUST import their User-defined type (UDT) via the published [AVM-Common-Types](https://github.com/Azure/bicep-registry-modules/tree/main/avm/utl/types/avm-common-types) module.
 
-When doing so, each type MUST be imported separately, right above the parameter or output that uses it. 
+When doing so, each type MUST be imported separately, right above the parameter or output that uses it.
 
 ```bicep
 import { roleAssignmentType } from 'br/public:avm/utl/types/avm-common-types:*.*.*'
@@ -43,4 +43,4 @@ The `import (...)` block MUST not be added in between a parameter's definition a
 
 {{< /hint >}}
 
-Finally, you should check for version updates regularly to ensure the resource module stays consistent with the specs. If the used AVM-Common-Types runs stale, the CI may eventually fail the module's static tests. 
+Finally, you should check for version updates regularly to ensure the resource module stays consistent with the specs. If the used AVM-Common-Types runs stale, the CI may eventually fail the module's static tests.

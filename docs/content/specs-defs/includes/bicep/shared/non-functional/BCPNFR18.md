@@ -35,4 +35,4 @@ param subnets subnetType[]?
 type subnetType = { ... }
 ```
 
-The primary reason for this requirement is clarity. If not defined directly at the parameter or output, a user would always be required to check the type to understand how e.g., a parameter is expected. 
+The primary reason for this requirement is clarity. If not defined directly at the parameter or output, a user would always be required to check the type to understand how e.g., a parameter is expected.
