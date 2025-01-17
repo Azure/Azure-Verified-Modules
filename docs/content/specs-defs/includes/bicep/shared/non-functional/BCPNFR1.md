@@ -20,7 +20,7 @@ tags: [
 priority: 11010
 ---
 
-#### ID: BCPNFR1 - Category: Inputs - User-defined types - General
+#### ID: BCPNFR1 - Inputs - User-defined types - General
 
 To simplify the consumption experience for module consumers when interacting with complex data types input parameters, mainly objects and arrays, the Bicep feature of [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) **MUST** be used and declared.
 
