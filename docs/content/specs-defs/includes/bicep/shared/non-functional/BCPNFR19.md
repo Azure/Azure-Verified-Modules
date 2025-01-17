@@ -30,7 +30,7 @@ type subnetType = { ... } // Correct
 type subnetOutputType = { ... } // Correct, if used only for outputs
 ```
 
-Since User-defined types (UDTs) MUST always be singular as per [BCPNFR18](#id-bcpnfr18---user-defined-types---specification), their naming should reflect this and also be singular.
+Since User-defined types (UDTs) MUST always be singular as per [BCPNFR18](/Azure-Verified-Modules/spec/BCPNFR18), their naming should reflect this and also be singular.
 ```bicep
 type subnetsType = { ... } // Wrong
 type subnetType = { ... } // Correct

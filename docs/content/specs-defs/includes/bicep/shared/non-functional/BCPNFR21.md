@@ -22,7 +22,7 @@ priority: 11010
 
 #### ID: BCPNFR21 - User-defined types - Decorators
 
-Similar to [BCPNFR9](#id-bcpnfr9---inputs---decorators), User-defined types (UDTs) MUST implement [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators) such as `description` & `secure` (if sensitive). This is true for every property of the UDT, as well as the UDT itself.
+Similar to [BCPNFR9](/Azure-Verified-Modules/spec/BCPNFR9), User-defined types (UDTs) MUST implement [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators) such as `description` & `secure` (if sensitive). This is true for every property of the UDT, as well as the UDT itself.
 
 Further, User-defined types SHOULD implement decorators like `allowed`, `minValue`, `maxValue`, `minLength` & `maxLength` (and others if available) as they have a big positive impact on the module's usability.
 
