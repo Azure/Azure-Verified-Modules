@@ -1,6 +1,6 @@
 ---
-title: BCPFR1 - Cross-Referencing Modules
-url: /spec/BCPFR1
+title: BCPFR6 - Cross-Referencing Child-Modules
+url: /spec/BCPFR6
 geekdocNav: true
 geekdocAlign: left
 geekdocAnchor: true
@@ -11,7 +11,7 @@ tags: [
   Type-Functional, # SINGLE VALUE: this can be "Type-Functional" OR "Type-NonFunctional"
   Category-Naming/Composition, # SINGLE VALUE: this can be "Category-Testing" OR "Category-Telemetry" OR "Category-Contribution/Support" OR "Category-Documentation" OR "Category-CodeStyle" OR "Category-Naming/Composition" OR "Category-Inputs/Outputs" OR "Category-Release/Publishing"
   Language-Bicep, # MULTIPLE VALUES: this can be "Language-Bicep" AND/OR "Language-Terraform"
-  Severity-MAY, # SINGLE VALUE: this can be "Severity-MUST" OR "Severity-SHOULD" OR "Severity-MAY"
+  Severity-MUST, # SINGLE VALUE: this can be "Severity-MUST" OR "Severity-SHOULD" OR "Severity-MAY"
   Persona-Owner, # MULTIPLE VALUES: this can be "Persona-Owner" AND/OR "Persona-Contributor"
   Persona-Contributor, # MULTIPLE VALUES: this can be "Persona-Owner" AND/OR "Persona-Contributor"
   Lifecycle-BAU, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
@@ -20,13 +20,22 @@ tags: [
 priority: 10010
 ---
 
-#### ID: BCPFR1 - Category: Composition - Cross-Referencing Modules
+#### ID: BCPFR6 - Cross-Referencing Child-Modules
 
-Module owners **MAY** cross-references other modules to build either Resource or Pattern modules.
+Parent templates **MUST** reference all their direct child-templates to allow for an end-to-end deployment experience.
+For example, the SQL server template must reference its child database module and encapsulate it in a loop to allow for the deployment of multiple databases.
 
-However, they **MUST** be referenced only by a public registry reference to a pinned version e.g. `br/public:avm/[res|ptn|utl]/<publishedModuleName>:>version<`. They **MUST NOT** use local parent path references to a module e.g. `../../xxx/yyy.bicep`.
+```Bicep
+@description('Optional. The databases to create in the server')
+param databases databaseType[]?
 
-The **only** exception to this rule are child modules as documented in [BCPFR6](/Azure-Verified-Modules/specs-defs/includes/bicep/shared/functional/BCPFR6).
+resource server 'Microsoft.Sql/servers@(...)' = { (...) }
 
-Modules **MUST NOT** contain references to non-AVM modules.
-
+module server_databases 'database/main.bicep' = [for (database, index) in (databases ?? []): {
+  name: '${uniqueString(deployment().name, location)}-Sql-DB-${index}'
+  params: {
+    serverName: server.name
+    (...)
+  }
+}]
+```
