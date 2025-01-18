@@ -1,5 +1,5 @@
 ---
-title: BCPRMNFR3 - Resource module structure
+title: BCPRMNFR3 - Child resources structure
 url: /spec/BCPRMNFR3
 geekdocNav: true
 geekdocAlign: left
