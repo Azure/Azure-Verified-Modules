@@ -1,5 +1,5 @@
 ---
-title: BCPNFR1 - Data Types
+title: BCPNFR1 - User-defined types - General
 url: /spec/BCPNFR1
 geekdocNav: true
 geekdocAlign: left
@@ -20,7 +20,7 @@ tags: [
 priority: 11010
 ---
 
-#### ID: BCPNFR1 - Category: Inputs - Data Types
+#### ID: BCPNFR1 - Inputs - User-defined types - General
 
 To simplify the consumption experience for module consumers when interacting with complex data types input parameters, mainly objects and arrays, the Bicep feature of [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) **MUST** be used and declared.
 
