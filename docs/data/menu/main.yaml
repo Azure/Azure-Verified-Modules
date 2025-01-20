@@ -167,6 +167,8 @@ main:
             sub:
               - name: "Pipeline design"
                 ref: "/contributing/bicep/ci-environment/ci-environment-pipeline-design"
+              - name: "Static Validation"
+                ref: "/contributing/bicep/ci-environment/static-validation"
       - name: "Terraform Modules"
         ref: "/contributing/terraform"
         sub:
