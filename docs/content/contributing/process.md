@@ -49,7 +49,7 @@ flowchart TD
         click E1 "{{% siteparam base %}}/contributing/"
     E1 -->F("Module Developed by Owner(s) & their Contributors")
     F -->G[[ Module & AVM Compliance Tests ]]
-        click G "https://aka.ms/avm/snfr3"
+        click G "{{% siteparam base %}}/spec/SNFR3"
     G -->|Tests Fail|I(Modules/Tests Fixed <br> To Make Them Pass)
     I -->F
     G -->|Tests Pass|J[[Pre-Release v0.1.0 created]]
@@ -102,7 +102,7 @@ Common issues/blockers/asks/request are:
 
 {{% /notice %}}
 
-1. Create a [GitHub Issue](<https://github.com/Azure{{%> siteparam base %}}/issues/new/choose)
+1. Create a [GitHub Issue](https://github.com/Azure{{% siteparam base %}}/issues/new/choose)
 2. Discuss the issue/blocker with the AVM core team
 3. Agree upon action/resolution/closure
 4. Implement agreed upon action/resolution/closure
