@@ -1,4 +1,0 @@
-+++
-title = "Options"
-singulartitle = "Option"
-+++
