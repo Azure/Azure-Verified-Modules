@@ -236,25 +236,25 @@ The feature **MUST** be implemented as per the below schema. Diversions are only
 
 {{% /notice %}}
 
-##### User Defined Type, Parameter & Resource Example
+### User Defined Type, Parameter & Resource Example
 
 {{< highlight lineNos="false" type="bicep" wrap="true" title="User Defined Type, Parameter & Resource Example" >}}
   {{% include file="/static/includes/interfaces/bicep/int.secExp.udt.schema.bicep" %}}
 {{< /highlight >}}
 
-##### Input Example with Values
+### Input Example with Values
 
 {{< highlight lineNos="false" type="bicep" wrap="true" title="Input Example with Values" >}}
   {{% include file="/static/includes/interfaces/bicep/int.secExp.udt.schema.bicep" %}}
 {{< /highlight >}}
 
-##### [modules/keyVaultExport.bicep] file
+### [modules/keyVaultExport.bicep] file
 
 {{< highlight lineNos="false" type="bicep" wrap="true" title="[modules/keyVaultExport.bicep] file" >}}
   {{% include file="/static/includes/interfaces/bicep/int.secExp.module.bicep" %}}
 {{< /highlight >}}
 
-##### Output Usage Example
+### Output Usage Example
 
 When using a module that implements the above interface, you can access its outputs for example in the following ways:
 {{< highlight lineNos="false" type="bicep" wrap="true" title="Output Usage Example" >}}

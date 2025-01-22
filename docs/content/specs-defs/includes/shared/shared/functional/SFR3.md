@@ -44,7 +44,7 @@ The following information notice is automatically added at the bottom of the `RE
 
 {{< highlight lineNos="false" type="markdown" wrap="true" title="" >}}
 
-## Data Collection
+##### Data Collection
 
 {{% include file="/static/includes/telemetry-information-notice.md" %}}
 {{< /highlight >}}

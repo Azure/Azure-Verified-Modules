@@ -216,8 +216,8 @@ In those cases, for the first PR adding such modules to the public registry, we 
     - Tenant ID
     - Subscription ID
     - Parent Management Group ID
-<!-- markdownlint-enable -->
     ![OIDCInfo]({{% siteparam base %}}/images/bicep-ci/msiOIDCInfo.png?width=35vw "OIDC Info")
+<!-- markdownlint-restore -->
 
 Additional references:
 
