@@ -1,10 +1,7 @@
 ---
 title: TFNFR1 - Descriptions
 url: /spec/TFNFR1
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -26,4 +23,6 @@ Where descriptions for variables and outputs spans multiple lines. The descripti
 
 Example:
 
-{{< include file="/static/includes/sample.var_example.tf" language="terraform" options="linenos=false" >}}
+{{< highlight lineNos="false" type="terraform" wrap="true" title="" >}}
+  {{% include file="/static/includes/sample.var_example.tf" %}}  
+{{< /highlight >}}

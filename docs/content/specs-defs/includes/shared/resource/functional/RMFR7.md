@@ -1,10 +1,7 @@
 ---
 title: RMFR7 - Minimum Required Outputs
 url: /spec/RMFR7
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Type-Functional, # SINGLE VALUE: this can be "Type-Functional" OR "Type-NonFunctional"
@@ -30,11 +27,11 @@ Module owners **MUST** output the following outputs as a minimum in their module
 | Resource ID                                                            | `resourceId`                  | `resource_id`                     |
 | System Assigned Managed Identity Principal ID (if supported by module) | `systemAssignedMIPrincipalId` | `system_assigned_mi_principal_id` |
 
-{{< hint type=tip >}}
+{{% notice style="tip" %}}
 
 Module owners **MAY** also have to provide additional outputs depending on the IaC language, please check the language specific specs:
 
-- [Bicep](/Azure-Verified-Modules/specs/bcp/)
-- [Terraform](/Azure-Verified-Modules/specs/tf/)
+- [Bicep]({{% siteparam base %}}/specs/bcp/)
+- [Terraform]({{% siteparam base %}}/specs/tf/)
 
-{{< /hint >}}
+{{% /notice %}}

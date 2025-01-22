@@ -1,14 +1,10 @@
 ---
+draft: false
 title: Module Specifications
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-geekdocCollapseSection: true
+linktitle: Module Specifications
+weight: 1
 url: /specs/module-specs/
-geekdocToC: 2
 ---
-
-{{< toc >}}
 
 This section documents all the specifications for Azure Verified Modules (AVM) and their respective IaC languages.
 
@@ -32,26 +28,24 @@ To find what you need, simply decide which IaC language you'd like develop in, a
 
 The following tags are used to qualify the specifications:
 
-| Key       | Allowed Values                                                                                                             | Multiple/Single     |
-|-----------|----------------------------------------------------------------------------------------------------------------------------|-------------------- |
-| Language  | Bicep, Terraform                                                                                                           | Multiple            |
-| Class     | Resource, Pattern, Utility                                                                                                 | Multiple            |
-| Type      | Functional, NonFunctional                                                                                                  | Single              |
-| Category  | Testing, Telemetry, Contribution/Support, Documentation, CodeStyle, Naming/Composition, Inputs/Outputs, Release/Publishing | Single              |
-| Severity  | MUST, SHOULD, MAY                                                                                                          | Single              |
-| Persona   | Owner, Contributor                                                                                                         | Multiple            |
-| Lifecycle | Initial, BAU, EOL                                                                                                          | Single              |
-| Validation| **Bicep**: BCP/Manual, BCP/CI/Informational, BCP/CI/Enforced <br>**Terraform**: TF/Manual, TF/CI/Informational, TF/CI/Enforced                         | Single per language |
+| Key       | Allowed Values                                                                                                                 | Multiple/Single     |
+|-----------|--------------------------------------------------------------------------------------------------------------------------------|-------------------- |
+| Language  | Bicep, Terraform                                                                                                               | Multiple            |
+| Class     | Resource, Pattern, Utility                                                                                                     | Multiple            |
+| Type      | Functional, NonFunctional                                                                                                      | Single              |
+| Category  | Testing, Telemetry, Contribution/Support, Documentation, CodeStyle, Naming/Composition, Inputs/Outputs, Release/Publishing     | Single              |
+| Severity  | MUST, SHOULD, MAY                                                                                                              | Single              |
+| Persona   | Owner, Contributor                                                                                                             | Multiple            |
+| Lifecycle | Initial, BAU, EOL                                                                                                              | Single              |
+| Validation| **Bicep**: BCP/Manual, BCP/CI/Informational, BCP/CI/Enforced <br>**Terraform**: TF/Manual, TF/CI/Informational, TF/CI/Enforced | Single per language |
 
 Each tag is a concatenation of exactly one of the keys and one of the values, e.g., `Language-Bicep`, `Class-Resource`, `Type-Functional`, etc. When it's marked as `Multiple`, it means that the tag can have multiple values, e.g., `Language-Bicep, Language-Terraform`, or `Persona-Owner, Persona-Contributor`, etc. When it's marked as `Single`, it means that the tag can have only one value, e.g., `Type-Functional`, `Lifecycle-Initial`, etc.
 
-<details>
-
-<summary>Click here to see the definition of the Severity, Persona, Lifecycle and Validation tags...</summary>
+{{% expand title="➕ Click here to see the definition of the Severity, Persona, Lifecycle and Validation tags..." expanded="false" %}}
 
 **Severity**
 
-What's the severity or importance of this specification? See "[How to read the specifications?](/Azure-Verified-Modules/specs/module-specs/#how-to-read-the-specifications)" section for more details.
+What's the severity or importance of this specification? See "[How to read the specifications?]({{% siteparam base %}}/specs/module-specs/#how-to-read-the-specifications)" section for more details.
 
 **Persona**
 
@@ -75,7 +69,7 @@ How is this specification checked/validated/enforced?
 
 Note: the `BCP/` or `TF/` prefix is required as shared (language-agnostic) specifications may have different level of validation/enforcement per each language - e.g., it is possible that a specification is enforced by a CI pipeline for Bicep modules, while it is manually enforced for Terraform modules.
 
-</details>
+{{% /expand %}}
 
 ## Why are there language specific specifications?
 
@@ -83,11 +77,11 @@ While every effort is being made to standardize requirements and implementation 
 
 ## How to read the specifications?
 
-{{< hint type=important >}}
+{{% notice style="important" %}}
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED”, “MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119).
 
-{{< /hint >}}
+{{% /notice %}}
 
 As you're developing/maintaining a module as a module owner or contributor, you need to ensure that your module adheres to the specifications outlined in this section. The specifications are designed to ensure that all AVM modules are consistent, secure, and compliant with best practices.
 

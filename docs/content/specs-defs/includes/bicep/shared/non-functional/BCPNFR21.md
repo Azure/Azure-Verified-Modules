@@ -1,10 +1,7 @@
 ---
 title: BCPNFR21 - User-defined types - Decorators
 url: /spec/BCPNFR21
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -22,7 +19,7 @@ priority: 11010
 
 #### ID: BCPNFR21 - User-defined types - Decorators
 
-Similar to [BCPNFR9](/Azure-Verified-Modules/spec/BCPNFR9), User-defined types (UDTs) MUST implement [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators) such as `description` & `secure` (if sensitive). This is true for every property of the UDT, as well as the UDT itself.
+Similar to [BCPNFR9]({{% siteparam base %}}/spec/BCPNFR9), User-defined types (UDTs) MUST implement [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators) such as `description` & `secure` (if sensitive). This is true for every property of the UDT, as well as the UDT itself.
 
 Further, User-defined types SHOULD implement decorators like `allowed`, `minValue`, `maxValue`, `minLength` & `maxLength` (and others if available) as they have a big positive impact on the module's usability.
 

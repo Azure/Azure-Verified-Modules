@@ -1,10 +1,7 @@
 ---
 title: BCPNFR3 - Usage Example formats
 url: /spec/BCPNFR3
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -43,14 +40,14 @@ Usage examples for Bicep modules **MUST** be provided in the following formats:
   }
   ```
 
-{{< hint type=note >}}
+{{% notice style="note" %}}
 
 The above formats are currently automatically taken & generated from the `tests/e2e` tests. It is enough to run the `Set-ModuleReadMe` or `Set-AVMModule` functions (from the `utilities` folder) to update the usage examples in the readme(s).
 
-{{< /hint >}}
+{{% /notice %}}
 
-{{< hint type=note >}}
+{{% notice style="note" %}}
 
 Bicep Parameter Files (`.bicepparam`) are being reviewed and considered by the AVM team for the usability and features at this time and will likely be added in the future.
 
-{{< /hint >}}
+{{% /notice %}}

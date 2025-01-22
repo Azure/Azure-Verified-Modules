@@ -1,12 +1,14 @@
 ---
 title: Usage Guide
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
+linktitle: Usage Guide
+type: default
+weight: 3
 ---
+
+## Summary
 
 This section describes usage guidance.
 
-- [Quickstart](/Azure-Verified-Modules/usage/quickstart/)
-  - [Bicep](/Azure-Verified-Modules/usage/quickstart/bicep/)
-  - [Terraform](/Azure-Verified-Modules/usage/quickstart/terraform/)
+- [Quickstart]({{% siteparam base %}}/usage/quickstart/)
+  - [Bicep]({{% siteparam base %}}/usage/quickstart/bicep/)
+  - [Terraform]({{% siteparam base %}}/usage/quickstart/terraform/)

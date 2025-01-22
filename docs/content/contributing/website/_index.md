@@ -1,8 +1,6 @@
 ---
 title: Website Contribution Guide
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
+linktitle: Website
 ---
 
 Looking to contribute to the AVM Website, well you have made it to the right place/page. 👍
@@ -40,9 +38,11 @@ hugo server -D // you can add "--poll 700ms", if file changes are not detected
 
 To contribute to this website, you will need the following installed:
 
-{{< hint type="tip" >}}
+{{% notice style="tip" %}}
+
 You can use `winget` to install all the pre-requisites easily for you. See the [below section](#winget-install-commands)
-{{< /hint >}}
+
+{{% /notice %}}
 
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - [Visual Studio Code (VS Code)](https://code.visualstudio.com/Download)

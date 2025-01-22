@@ -1,10 +1,7 @@
 ---
 title: BCPNFR6 - Role Assignments Role Definition Mapping Compulsory Roles
 url: /spec/BCPNFR6
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -30,8 +27,8 @@ Module owners **MUST** include the following roles in the variable for RBAC Role
 - User Access Administrator - ID: `18d7d88d-d35e-4fb5-a5c3-7773c20a72d9`
 - Role Based Access Control Administrator (Preview) - ID: `f58310d9-a9f6-439a-9e8d-f62e7b41a168`
 
-{{< hint type=tip >}}
+{{% notice style="tip" %}}
 
-Review the [Bicep Contribution Guide's 'RBAC Role Definition Name Mapping' section](/Azure-Verified-Modules/contributing/bicep/#rbac-role-definition-name-mapping) for a code sample to achieve this requirement.
+Review the [Bicep Contribution Guide's 'RBAC Role Definition Name Mapping' section]({{% siteparam base %}}/contributing/bicep/#rbac-role-definition-name-mapping) for a code sample to achieve this requirement.
 
-{{< /hint >}}
+{{% /notice %}}

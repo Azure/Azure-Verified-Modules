@@ -1,16 +1,12 @@
 ---
 title: Terraform Utility Module Specifications
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
+linktitle: Utility Modules
 url: /specs/tf/utl/
 ---
 
-{{< toc >}}
-
 ## Contribution / Support
 
-{{< tagsBasedNavigationTable folder="content/specs-defs/includes" tags="Class-Utility,Language-Terraform,Category-Contribution/Support" recursive=true strict=false showHint=true hintTitle="See Specifications for this chapter" summarize=true summaryOpenByDefault=false >}}
+{{< tagsBasedNavigationTable folder="content/specs-defs/includes" tags="Class-Utility,Language-Terraform,Category-Contribution/Support" recursive=true strict=false showHint=true summarize=true summaryOpenByDefault=false >}}
 
 ## Telemetry
 

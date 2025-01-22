@@ -1,11 +1,8 @@
 ---
-title: Prerequisites
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
+title: Bicep Contribution Prerequisites
+linktitle: Prerequisites
 ---
 
-{{< toc >}}
 
 ## GitHub Account Link and Access
 
@@ -25,8 +22,6 @@ Before you start contributing to the AVM, it is **highly recommended** that you 
 
 - [Introduction to version control with Git](https://learn.microsoft.com/learn/paths/intro-to-vc-git/)
 
-<br>
-
 ## Tooling
 
 ### Required Tooling
@@ -44,11 +39,11 @@ To contribute to this project the following tooling is required:
 
 - [Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#install-manually)
 
-  {{< hint type=note >}}
+  {{% notice style="note" %}}
 
   Must be manually kept up-to-date.
 
-  {{< /hint >}}
+  {{% /notice %}}
 
 - [Pester](https://pester.dev/docs/introduction/installation)
 - [Visual Studio Code](https://code.visualstudio.com/download)
@@ -73,5 +68,3 @@ The following tooling/extensions are recommended to assist you developing for th
 
 - [GitHub Desktop](https://desktop.github.com/)
   - To enhance streamlined integration during interactions with upstream repositories, GitHub Desktop will automatically configure your local git repository to use the upstream repository as a remote.
-
-<br>

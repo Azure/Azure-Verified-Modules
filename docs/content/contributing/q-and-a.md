@@ -1,19 +1,13 @@
 ---
 title: Contribution Q&A
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-
-geekdocToC: 1
 ---
 
-{{< toc >}}
 
-{{< hint type=tip >}}
+{{% notice style="tip" %}}
 
-Check out the [FAQ](/Azure-Verified-Modules/faq/) for more answers to common questions about the AVM initiative in general.
+Check out the [FAQ]({{% siteparam base %}}/faq/) for more answers to common questions about the AVM initiative in general.
 
-{{< /hint >}}
+{{% /notice %}}
 
 ## Proposing a module
 
@@ -97,8 +91,6 @@ The AVM core team will then triage the request and get back to you with next ste
 
 The [AVM core team][AVMCoreTeam] will maintain the module catalog and update it as new modules are created and published or existing ones are updated or retired. -->
 
-<br>
-
 ## Developing a module
 
 ---
@@ -181,8 +173,6 @@ To determine if this is the case you'll need to navigate to the [Microsoft Open 
 
 During initial module development module owners/developers need to use your own environment (Azure subscriptions) to test module. In later phase, during publishing process, we will conduct automated test that will use AVM dedicated environment.
 
-<br>
-
 ## Updating and managing a module
 
 ---
@@ -203,25 +193,25 @@ You should use GitHub issues to propose changes or improvements for specific mod
 
 All issues created in a module repo will be automatically be picked up and tracked by the GitHub Policy Service. This service will take the necessary steps when escalation is needed as per the SLAs defined in the [Module Support][ModuleSupport] chapter .
 
-[AVMCoreTeam]: /Azure-Verified-Modules/specs/shared/team-definitions/#avm-core-team
-[BicepModules]: /Azure-Verified-Modules/indexes/bicep/
-[TFModules]: /Azure-Verified-Modules/indexes/terraform/
-[ModuleOwners]: /Azure-Verified-Modules/specs/shared/team-definitions/#module-owners
-[ModuleContributors]: /Azure-Verified-Modules/specs/shared/team-definitions/#module-contributors
-[WAFAligned]: /Azure-Verified-Modules/faq/#what-does-avm-mean-by-waf-aligned
+[AVMCoreTeam]: {{% siteparam base %}}/specs/shared/team-definitions/#avm-core-team
+[BicepModules]: {{% siteparam base %}}/indexes/bicep/
+[TFModules]: {{% siteparam base %}}/indexes/terraform/
+[ModuleOwners]: {{% siteparam base %}}/specs/shared/team-definitions/#module-owners
+[ModuleContributors]: {{% siteparam base %}}/specs/shared/team-definitions/#module-contributors
+[WAFAligned]: {{% siteparam base %}}/faq/#what-does-avm-mean-by-waf-aligned
 [ModuleProposal]: https://aka.ms/AVM/ModuleProposal
-[ModuleSupport]: /Azure-Verified-Modules/help-support/module-support/
+[ModuleSupport]: {{% siteparam base %}}/help-support/module-support/
 [AVMChannel]: https://aka.ms/AVM/channel
-[ModuleSpecifications]: /Azure-Verified-Modules/module-specs/
-[DiagnosticSettings]: /Azure-Verified-Modules/specs/shared/interfaces/#diagnostic-settings
+[ModuleSpecifications]: {{% siteparam base %}}/module-specs/
+[DiagnosticSettings]: {{% siteparam base %}}/specs/shared/interfaces/#diagnostic-settings
 [AzureArchitectureCenter]: https://learn.microsoft.com/en-us/azure/architecture/browse/
 [ALZ]: https://aka.ms/alz
-[ModuleIndexes]: /Azure-Verified-Modules/indexes/
-[MandatoryLabels]: /Azure-Verified-Modules/spec/SNFR23
-[BicepDir]: /Azure-Verified-Modules/contributing/bicep/#directory-and-file-structure
-[TerraformDir]: /Azure-Verified-Modules/contributing/terraform/#repositories
-[BicepContributios]: /Azure-Verified-Modules/contributing/bicep/
-[TerrafromContribution]: /Azure-Verified-Modules/contributing/terraform/
-[ModuleNaming]: /Azure-Verified-Modules/spec/RMNFR1
-[ProcessOverview]: /Azure-Verified-Modules/contributing/process/
+[ModuleIndexes]: {{% siteparam base %}}/indexes/
+[MandatoryLabels]: {{% siteparam base %}}/spec/SNFR23
+[BicepDir]: {{% siteparam base %}}/contributing/bicep/#directory-and-file-structure
+[TerraformDir]: {{% siteparam base %}}/contributing/terraform/#repositories
+[BicepContributios]: {{% siteparam base %}}/contributing/bicep/
+[TerrafromContribution]: {{% siteparam base %}}/contributing/terraform/
+[ModuleNaming]: {{% siteparam base %}}/spec/RMNFR1
+[ProcessOverview]: {{% siteparam base %}}/contributing/process/
 [GitHubLicensing]: https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository

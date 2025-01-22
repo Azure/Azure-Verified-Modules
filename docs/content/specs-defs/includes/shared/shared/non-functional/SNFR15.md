@@ -1,10 +1,7 @@
 ---
 title: SNFR15 - Automatic Documentation Generation
 url: /spec/SNFR15
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -23,4 +20,4 @@ priority: 1190
 
 #### ID: SNFR15 - Category: Documentation - Automatic Documentation Generation
 
-README documentation **MUST** be automatically/programmatically generated. **MUST** include the sections as defined in the language specific requirements [BCPNFR2](/Azure-Verified-Modules/spec/BCPNFR2), [TFNFR2](/Azure-Verified-Modules/spec/TFNFR2).
+README documentation **MUST** be automatically/programmatically generated. **MUST** include the sections as defined in the language specific requirements [BCPNFR2]({{% siteparam base %}}/spec/BCPNFR2), [TFNFR2]({{% siteparam base %}}/spec/TFNFR2).

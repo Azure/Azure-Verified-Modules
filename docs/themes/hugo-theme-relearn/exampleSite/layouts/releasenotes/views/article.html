@@ -1,0 +1,23 @@
+
+<article class="default">
+  <header class="headline">
+    {{- partial "content-header.html" . }}
+  </header>
+{{ partial "heading-pre.html" . }}{{ partial "heading.html" . }}{{ partial "heading-post.html" . }}
+{{- $page := .}}
+{{- $path := replace .Path "introduction/releasenotes" "introduction/changelog" }}
+{{- with or
+  (.GetPage $path)
+  (.GetPage (strings.TrimRight "/" $path))
+}}
+See the {{ partial "partials/shortcodes/link.html" (dict "page" $page "url" .Path "content" "changelog of this version") }} for a detailed list of changes.
+<hr>
+{{- end }}
+
+{{ partial "partials/shortcodes/include.html" (dict "page" . "file" "introduction/releasenotes/legend") | .RenderString }}
+
+{{ partial "article-content.html" . }}
+  <footer class="footline">
+    {{- partial "content-footer.html" . }}
+  </footer>
+</article>

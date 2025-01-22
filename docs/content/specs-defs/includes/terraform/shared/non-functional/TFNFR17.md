@@ -1,10 +1,7 @@
 ---
 title: TFNFR17 - Variables with Descriptions
 url: /spec/TFNFR17
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -30,7 +27,7 @@ For `object` type `variable`, `description` can be composed in HEREDOC format:
 
 ```terraform
 variable "kubernetes_cluster_key_management_service" {
-  type = object({
+  type: object({
     key_vault_key_id         = string
     key_vault_network_access = optional(string)
   })

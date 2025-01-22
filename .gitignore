@@ -36,6 +36,8 @@ terraform.rc
 # Hugo
 docs/.hugo_build.lock
 docs/public/*
+docs/isableFastRender/*
+docs/disableFastRender/*
 
 # MacOS
 .DS_Store

@@ -1,10 +1,7 @@
 ---
 title: SNFR19 - Registries Targeted
 url: /spec/SNFR19
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -29,11 +26,11 @@ Modules **MUST** be published to their respective language public registries.
   - Within the `avm` directory
 - Terraform = [HashiCorp Terraform Registry](https://registry.terraform.io/)
 
-{{< hint type=tip >}}
+{{% notice style="tip" %}}
 
 See the language specific contribution guides for detailed guidance and sample code to use in AVM modules to achieve this requirement.
 
-- [Bicep](/Azure-Verified-Modules/contributing/bicep/)
-- [Terraform](/Azure-Verified-Modules/contributing/terraform/)
+- [Bicep]({{% siteparam base %}}/contributing/bicep/)
+- [Terraform]({{% siteparam base %}}/contributing/terraform/)
 
-{{< /hint >}}
+{{% /notice %}}

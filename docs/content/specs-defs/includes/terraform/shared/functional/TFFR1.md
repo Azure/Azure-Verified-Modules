@@ -1,10 +1,7 @@
 ---
 title: TFFR1 - Cross-Referencing Modules
 url: /spec/TFFR1
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -47,6 +44,6 @@ module "other-module" {
 
 Modules **MUST NOT** contain references to non-AVM modules.
 
-{{< hint type=tip >}}
+{{% notice style="tip" %}}
 See [Module Sources](https://developer.hashicorp.com/terraform/language/modules/sources) for more information.
-{{< /hint >}}
+{{% /notice %}}

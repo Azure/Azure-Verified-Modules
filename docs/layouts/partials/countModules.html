@@ -1,14 +1,51 @@
+ {{/*  input parameters  */}}
+
 {{ $params := . }}
-{{ $ModuleStatusColumnId := index $params 0 }}
-{{ $rows := index $params 1 }}
-{{ $moduleStatusToCount := index $params 2 }}
-{{ $moduleCount := 0 }}
-{{ if eq $moduleStatusToCount "All" }}
-  {{ $moduleCount = sub (len $rows) 1 }}
+{{ $rows := .rows }}
+
+{{ $moduleStatusToCount := .moduleStatusToCount }}
+{{ $moduleStatusToCount_allowedValues := slice "All" "Proposed :new:" "Available :green_circle:" "Orphaned :eyes:" }}
+{{ if not (in $moduleStatusToCount_allowedValues $moduleStatusToCount) }}
+  {{ errorf "Invalid value for moduleStatusToCount: %s" $moduleStatusToCount }}
 {{ end }}
-{{ range $row, $rows }}
-  {{ if eq (index $row $ModuleStatusColumnId) $moduleStatusToCount }}
-    {{ $moduleCount = add $moduleCount 1 }}
+
+{{ $countParentsOrChildren := .countParentsOrChildren | default "ParentsOnly" }}
+{{ $countParentsOrChildren_allowedValues := slice "ParentsOnly" "ChildrenOnly" "Both" }}
+{{ if not (in $countParentsOrChildren_allowedValues $countParentsOrChildren) }}
+  {{ errorf "Invalid value for countParentsOrChildren: %s" $countParentsOrChildren }}
+{{ end }}
+
+{{ $moduleCount := 0 }}
+
+{{/*  using named columns  */}}
+{{ $headerRow := index $rows 0 }}
+{{ $headerMap := dict }}
+{{ range $index, $header := $headerRow }}
+  {{ $headerMap = merge $headerMap (dict $header $index) }}
+{{ end }}
+
+{{ $ModuleStatusColumnId := index $headerMap "ModuleStatus" }}
+{{ $ParentModuleColumnId := index $headerMap "ParentModule" | default "" }}
+
+
+{{/*  skipping the first row, so we don't count the header row  */}}
+{{ $rows = after 1 $rows }}
+
+{{/*  counting rows that match the criteria  */}}
+{{ range $index, $row := $rows }}
+{{ if or (eq $moduleStatusToCount "All") (eq (index $row $ModuleStatusColumnId) $moduleStatusToCount) }}
+    {{ if eq $countParentsOrChildren "ParentsOnly" }}
+      {{ if or (eq $ParentModuleColumnId "") (or (eq (index $row $ParentModuleColumnId) "n/a") (eq (index $row $ParentModuleColumnId) "")) }}
+        {{ $moduleCount = add $moduleCount 1 }}
+      {{ end }}
+    {{ else if eq $countParentsOrChildren "ChildrenOnly" }}
+      {{ if or (eq $ParentModuleColumnId "") (and (ne (index $row $ParentModuleColumnId) "n/a") (ne (index $row $ParentModuleColumnId) "") ) }}
+        {{ $moduleCount = add $moduleCount 1 }}
+      {{ end }}
+    {{ else if eq $countParentsOrChildren "Both" }}
+      {{ $moduleCount = add $moduleCount 1 }}
+    {{ end }}
   {{ end }}
 {{ end }}
+
 {{ return $moduleCount }}

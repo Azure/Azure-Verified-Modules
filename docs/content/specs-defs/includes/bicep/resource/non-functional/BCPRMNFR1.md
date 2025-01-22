@@ -1,10 +1,7 @@
 ---
 title: BCPRMNFR1 - Expected Test Directories
 url: /spec/BCPRMNFR1
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Type-NonFunctional, # SINGLE VALUE: this can be "Type-Functional" OR "Type-NonFunctional"
@@ -45,11 +42,11 @@ The `max` folder contains a test instance that deploys the module using a large 
 
 The purpose of this instance is primarily parameter validation and not necessarily to serve as a real example scenario. Ideally, all features, extension resources and child resources should be enabled in this test, unless not possible due to conflicts, e.g., in case parameters are mutually exclusive.
 
-{{< hint type=note >}}
+{{% notice style="note" %}}
 
 Please note that this test is not mandatory to have, but recommended for bulk parameter validation. It can be skipped in case the module parameter validation is covered already by additional, more scenario-specific tests.
 
-{{< /hint >}}
+{{% /notice %}}
 
 ##### Additional tests (**CAN**)
 

@@ -10,8 +10,8 @@
 {{- $daysShown := int (default 0 (.Get "daysShown")) -}}
 {{- $allFiles := slice -}}
 {{- $baseURL := $.Site.BaseURL -}}
-{{- $commitURLPrefix := "https://github.com/Azure/Azure-Verified-Modules/commit/" -}}
-{{- $commitsURLPrefix := "https://github.com/Azure/Azure-Verified-Modules/commits/main/docs/content/" -}}
+{{- $commitURLPrefix := add "https://github.com/Azure" .Site.Params.base "/commit/" -}}
+{{- $commitsURLPrefix := add "https://github.com/Azure" .Site.Params.base "/commits/main/docs/content/" -}}
 
 {{- if $recursive -}}
   {{- $allFiles = partial "readDirRecursive" (dict "path" $folder "allFiles" $allFiles) -}}
@@ -75,8 +75,12 @@
   {{- $sortedSpecs = first $take $sortedSpecs -}}
 {{- end -}}
 
+{{ if eq $daysShown 0 }}See specification history...{{ else }}See what specifications changed in the last {{ $daysShown }} days{{ end }}...
+<br>
+<br>
+
 <details>
-  <summary>{{ if eq $daysShown 0 }}See specification history...{{ else }}See what specifications changed in the last {{ $daysShown }} days{{ end }}...</summary>
+  {{/*  <summary>{{ if eq $daysShown 0 }}See specification history...{{ else }}See what specifications changed in the last {{ $daysShown }} days{{ end }}...</summary>  */}}
   <table>
     <thead>
       <tr>

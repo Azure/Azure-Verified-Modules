@@ -1,16 +1,12 @@
 ---
 title: Terraform Pattern Module Specifications
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
+linktitle: Pattern Modules
 url: /specs/tf/ptn/
 ---
 
-{{< toc >}}
-
 ## Contribution / Support
 
-{{< tagsBasedNavigationTable folder="content/specs-defs/includes" tags="Class-Pattern,Language-Terraform,Category-Contribution/Support" recursive=true strict=false showHint=true hintTitle="See Specifications for this chapter" summarize=true summaryOpenByDefault=false >}}
+{{< tagsBasedNavigationTable folder="content/specs-defs/includes" tags="Class-Pattern,Language-Terraform,Category-Contribution/Support" recursive=true strict=false showHint=true summarize=true summaryOpenByDefault=false >}}
 
 ## Telemetry
 

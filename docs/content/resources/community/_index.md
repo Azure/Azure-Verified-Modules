@@ -1,8 +1,6 @@
 ---
-title: "Community Calls"
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
+title: Community Calls
+linktitle: Community
 ---
 
 🎉 Join Our Vibrant Community Calls! 🎉
@@ -21,28 +19,28 @@ Let's make each community call a vibrant celebration of connection, collaboratio
 
 ## Upcoming Events
 
-Stay tuned, to be announced! 👂
+<!-- Stay tuned, to be announced! 👂 -->
 
-<!-- ### 24th September 2024
+### 6th February 2025
 
-{{< hint type=note >}}
+{{% notice style="note" %}}
 
-This occurrence is optimized for AMERICAS/EMEA time zones.
+This occurrence is optimized for EMEA/APAC time zones.
 
-{{< /hint >}}
+{{% /notice %}}
 
-- [Registration](https://msit.events.teams.microsoft.com/event/74fc1d31-fc02-411d-bb3c-a4969833d178@72f988bf-86f1-41af-91ab-2d7cd011db47)
-- [GitHub Issue for Q&A section](https://github.com/Azure/Azure-Verified-Modules/issues/1387) -->
+- [Registration](https://msit.events.teams.microsoft.com/event/5c5ccd0d-4993-44b7-9075-700901263276@72f988bf-86f1-41af-91ab-2d7cd011db47)
+- [GitHub Issue for Q&A section](https://github.com/Azure/Azure-Verified-Modules/issues/1793)
 
 ## Previous Events
 
 ### 24th September 2024
 
-{{< hint type=note >}}
+{{% notice style="note" %}}
 
 This occurrence was optimized for AMERICAS/EMEA time zones.
 
-{{< /hint >}}
+{{% /notice %}}
 
 - [Registration](https://msit.events.teams.microsoft.com/event/74fc1d31-fc02-411d-bb3c-a4969833d178@72f988bf-86f1-41af-91ab-2d7cd011db47)
 - [GitHub Issue for Q&A section](https://github.com/Azure/Azure-Verified-Modules/issues/1387)
@@ -53,15 +51,15 @@ This occurrence was optimized for AMERICAS/EMEA time zones.
 
 #### Slides
 
-[AVM Community Call September 2024 Slides](/Azure-Verified-Modules/assets/community/sept24/avm-community-call-sept24.pdf)
+[AVM Community Call September 2024 Slides]({{% siteparam base %}}/community/avm-community-call-sept24.pdf)
 
 ### 21st May 2024
 
-{{< hint type=note >}}
+{{% notice style="note" %}}
 
 This occurrence was optimized for EMEA/APJ time zones.
 
-{{< /hint >}}
+{{% /notice %}}
 
 - [Registration](https://msit.events.teams.microsoft.com/event/0934dbca-3fc0-4a0e-a13f-c4c9dc68889b@72f988bf-86f1-41af-91ab-2d7cd011db47)
 - [GitHub Issue for Q&A section](https://github.com/Azure/Azure-Verified-Modules/issues/859)
@@ -72,4 +70,4 @@ This occurrence was optimized for EMEA/APJ time zones.
 
 #### Slides
 
-[AVM Community Call May 2024 Slides](/Azure-Verified-Modules/assets/community/may24/avm-community-call-may24.pdf)
+[AVM Community Call May 2024 Slides]({{% siteparam base %}}/community/avm-community-call-may24.pdf)

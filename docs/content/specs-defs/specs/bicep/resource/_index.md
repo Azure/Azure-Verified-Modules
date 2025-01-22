@@ -1,17 +1,12 @@
 ---
 title: Bicep Resource Module Specifications
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
+linktitle: Resource Modules
 url: /specs/bcp/res/
-geekdocCollapseSection: true
 ---
-
-{{< toc >}}
 
 ## Contribution / Support
 
-{{< tagsBasedNavigationTable folder="content/specs-defs/includes" tags="Class-Resource,Language-Bicep,Category-Contribution/Support" recursive=true strict=false showHint=true hintTitle="See Specifications for this chapter" summarize=true summaryOpenByDefault=false >}}
+{{< tagsBasedNavigationTable folder="content/specs-defs/includes" tags="Class-Resource,Language-Bicep,Category-Contribution/Support" recursive=true strict=false showHint=true summarize=true summaryOpenByDefault=false >}}
 
 ## Telemetry
 

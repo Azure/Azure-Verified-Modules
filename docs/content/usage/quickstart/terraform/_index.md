@@ -1,12 +1,9 @@
 ---
+draft: false
 title: Terraform Quickstart Guide
-geekdocNav: true
-geekdocAlign: left
-geekdocToC: 2
-geekdocAnchor: true
+linktitle: Terraform
+weight: 2
 ---
-
-{{< toc >}}
 
 ## Introduction
 
@@ -43,7 +40,7 @@ There are two primary ways for locating published Terraform Azure Verified Modul
 #### Use the Terraform Registry
 
 <video width=100% controls muted preload="metadata">
-    <source src="/Azure-Verified-Modules/img/usage/quickstart/terraform/avm-tf-qs-discovery-1080-10.mp4" type="video/mp4">
+    <source src="{{% siteparam base %}}/images/usage/quickstart/terraform/avm-tf-qs-discovery-1080-10.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
 
@@ -54,12 +51,12 @@ The easiest way to find published AVM Terraform modules is by searching the Terr
 - Select **see all** to display the full list of published modules matching your search criteria.
 - Find the module you wish to use and select it from the search results.
 
-{{< hint >}} It is possible to discover other unofficial modules with **avm** in the name using this search method. Look for the `Partner` tag in the module title to determine if the module is part of the official set. {{< /hint >}}
+{{% notice style="note" %}}It is possible to discover other unofficial modules with **avm** in the name using this search method. Look for the `Partner` tag in the module title to determine if the module is part of the official set.{{% /notice %}}
 
 #### Use the AVM Terraform Module Index
 
 <video width=100% controls muted preload="metadata">
-    <source src="/Azure-Verified-Modules/img/usage/quickstart/terraform/module-index_tf_res_1080-10fps.mp4" type="video/mp4">
+    <source src="{{% siteparam base %}}/images/usage/quickstart/terraform/module-index_tf_res_1080-10fps.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
 
@@ -67,9 +64,9 @@ Searching the Azure Verified Module indexes is the most complete way to discover
 
 - Use your web browser to open the AVM website at [https://aka.ms/avm](https://aka.ms/avm).
 - Expand the **Module Indexes** menu item and select the **Terraform** sub-menu item.
-- Select the menu item for the module type you are searching for: [Resource](/Azure-Verified-Modules/indexes/terraform/tf-resource-modules/), [Pattern](/Azure-Verified-Modules/indexes/terraform/tf-pattern-modules/), or [Utility](/Azure-Verified-Modules/indexes/terraform/tf-utility-modules/).
-  {{< hint >}}Since the Key Vault module used as an example in this guide is published as an AVM resource module, it can be found under the [resource modules](/Azure-Verified-Modules/indexes/terraform/tf-resource-modules/) section in the AVM Terraform module index.{{< /hint >}}
-- A detailed description of each module classification type can be found under the related section [here](/Azure-Verified-Modules/specs/shared/module-classifications/).
+- Select the menu item for the module type you are searching for: [Resource]({{% siteparam base %}}/indexes/terraform/tf-resource-modules/), [Pattern]({{% siteparam base %}}/indexes/terraform/tf-pattern-modules/), or [Utility]({{% siteparam base %}}/indexes/terraform/tf-utility-modules/).
+  {{% notice style="note" %}}Since the Key Vault module used as an example in this guide is published as an AVM resource module, it can be found under the [resource modules]({{% siteparam base %}}/indexes/terraform/tf-resource-modules/) section in the AVM Terraform module index.{{% /notice %}}
+- A detailed description of each module classification type can be found under the related section [here]({{% siteparam base %}}/specs/shared/module-classifications/).
 - Select the **Published modules** link from the table of contents at the top of the page.
 - Use the in-page search feature of your browser (in most Windows browsers you can access it using the `CTRL` + `F` keyboard shortcut).
 - Enter a **search term** to find the module you are looking for - e.g., Key Vault.
@@ -101,12 +98,12 @@ Now that you have found the module details, you can use the content from the Ter
 
 Each deployment method includes a section below so that you can choose the method which best fits your needs.
 
-{{< hint >}} For Azure Key Vaults, the name must be globally unique. When you deploy the Key Vault, ensure you select a name that is alphanumeric, twenty-four characters or less, and unique enough to ensure no one else has used the name for their Key Vault. If the name has been used previously, you will get an error. {{< /hint >}}
+{{% notice style="note" %}}For Azure Key Vaults, the name must be globally unique. When you deploy the Key Vault, ensure you select a name that is alphanumeric, twenty-four characters or less, and unique enough to ensure no one else has used the name for their Key Vault. If the name has been used previously, you will get an error.{{% /notice %}}
 
 ### Option 1: Create a solution using AVM module examples
 
 <video width=100% controls muted preload="metadata">
-    <source src="/Azure-Verified-Modules/img/usage/quickstart/terraform/avm-tf-qs-example-copy-1080-10.mp4" type="video/mp4">
+    <source src="{{% siteparam base %}}/images/usage/quickstart/terraform/avm-tf-qs-example-copy-1080-10.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
 
@@ -118,12 +115,11 @@ Leverage the following steps as a template for how to leverage examples for boot
 - Scroll to the code block for the example and select the **Copy** button on the top right of the block to copy the content to the clipboard.
 
 <video width=100% controls muted preload="metadata">
-    <source src="/Azure-Verified-Modules/img/usage/quickstart/terraform/avm-tf-qs-example-vscode-1080-10.mp4" type="video/mp4">
+    <source src="{{% siteparam base %}}/images/usage/quickstart/terraform/avm-tf-qs-example-vscode-1080-10.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
 
-<details>
-<summary> <b>Click here to copy the sample code from the video.</b> </summary>
+{{% expand title="➕ Click here to copy the sample code from the video." expanded="false" %}}
 
 ``` terraform
 provider "azurerm" {
@@ -200,7 +196,7 @@ module "key_vault" {
         "verify",
         "wrapKey"
       ]
-      key_type = "RSA"
+      key_type: "RSA"
       name     = "cmk-for-storage-account"
       key_size = 2048
     }
@@ -221,7 +217,7 @@ module "key_vault" {
 }
 ```
 
-</details>
+{{% /expand %}}
 
 - In your IDE - Visual Studio Code in our example - create the **main.tf** file for your new solution.
 - **Paste** the content from the clipboard into **main.tf**.
@@ -231,12 +227,13 @@ module "key_vault" {
   - Delete the existing source definition that uses a dot reference - i.e., `source = "../../"`.
   - Uncomment the Terraform Registry source reference by deleting the `#` sign at the start of the commented source line - i.e., `source = "Azure/avm-res-keyvault-vault/azurerm"`.
 
-  {{< hint >}}If the module example does not include a commented Terraform Registry source reference, you will need to copy it from the module's main documentation page. Use the following steps to do so:
+  {{% notice style="note" %}}
+  If the module example does not include a commented Terraform Registry source reference, you will need to copy it from the module's main documentation page. Use the following steps to do so:
   - Use the breadcrumbs to leave the example documentation and return to the module's primary Terraform Registry documentation page.
   - Locate the **Provision Instructions** box on the right side of the module's Terraform Registry page in your web browser.
   - Select the second line that starts with `source =` from the code block - e.g., `source = "Azure/avm-res-keyvault-vault/azurerm"`. **Copy** it onto the clipboard.
   - Return to your code solution and **Paste** the clipboard's content where you previously deleted the source dot reference - e.g., `source = "../../"`.
-  {{< /hint >}}
+  {{% /notice %}}
 
 - AVM module examples use a variable to enable or disable the telemetry collection. Update the `enable_telemetry` input value to **true** or **false**. - e.g. `enable_telemetry = true`
 - **Save** your **main.tf** file changes and then proceed to the guide section for running your solution code.
@@ -244,7 +241,7 @@ module "key_vault" {
 ### Option 2: Create a solution by changing the AVM module input values
 
 <video width=100% controls muted preload="metadata">
-    <source src="/Azure-Verified-Modules/img/usage/quickstart/terraform/avm-tf-qs-custom-full-1080-10.mp4" type="video/mp4">
+    <source src="{{% siteparam base %}}/images/usage/quickstart/terraform/avm-tf-qs-custom-full-1080-10.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
 
@@ -270,7 +267,7 @@ module "avm-res-keyvault-vault" {
         "verify",
         "wrapKey"
       ]
-      key_type = "RSA"
+      key_type: "RSA"
       name     = "cmk-for-storage-account"
       key_size = 2048
     }
@@ -301,7 +298,7 @@ Use the following steps as a guide for the custom implementation of an AVM Modul
 ## Deploy your solution
 
 <video width=100% controls muted preload="metadata">
-    <source src="/Azure-Verified-Modules/img/usage/quickstart/terraform/avm-qs-tf-commands-1080-10.mp4" type="video/mp4">
+    <source src="{{% siteparam base %}}/images/usage/quickstart/terraform/avm-qs-tf-commands-1080-10.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
 
@@ -316,8 +313,8 @@ After completing your solution development, you can move to the deployment stage
 - If your account has access to multiple tenants, you may need to modify the command to `az login --tenant <tenant id>` where "\<tenant id\>" is the guid for the target tenant.
 - After logging in, select the **target subscription** from the list of subscriptions that you have access to.
 - Change the path to the directory where your completed terraform solution files reside.
-
-  {{< hint >}} Many AVM modules depend on the AzureRM 4.0 Terraform provider which mandates that a subscription id is configured. If you receive an error indicating that `subscription_id is a required provider property`, you will need to set a subscription id value for the provider. For Unix based systems (Linux or MacOS) you can configure this by running `export ARM_SUBSCRIPTION_ID=<your subscription guid>` on the command line. On Microsoft Windows, you can perform the same operation by running `set ARM_SUBSCRIPTION_ID="<your subscription guid>"` from the Windows command prompt or by running `$env:ARM_SUBSCRIPTION_ID="<your subscription guid>"` from a powershell prompt. Replace the "\<your subscription id\>" notation in each command with your Azure subscription's unique id value.  {{< /hint >}}
+  
+  {{% notice style="note" %}}Many AVM modules depend on the AzureRM 4.0 Terraform provider which mandates that a subscription id is configured. If you receive an error indicating that `subscription_id is a required provider property`, you will need to set a subscription id value for the provider. For Unix based systems (Linux or MacOS) you can configure this by running `export ARM_SUBSCRIPTION_ID=<your subscription guid>` on the command line. On Microsoft Windows, you can perform the same operation by running `set ARM_SUBSCRIPTION_ID="<your subscription guid>"` from the Windows command prompt or by running `$env:ARM_SUBSCRIPTION_ID="<your subscription guid>"` from a powershell prompt. Replace the "\<your subscription id\>" notation in each command with your Azure subscription's unique id value.{{% /notice %}}
 
 - Initialize your Terraform project. This command downloads the necessary providers and modules to the working directory.
 
@@ -344,11 +341,11 @@ After completing your solution development, you can move to the deployment stage
   terraform apply
   ```
 
-  {{< hint >}}If you are confident in your changes, you can add the `-auto-approve` switch to bypass manual approval: `terraform apply -auto-approve`{{< /hint >}}
+  {{% notice style="info" %}}If you are confident in your changes, you can add the `-auto-approve` switch to bypass manual approval: `terraform apply -auto-approve`{{% /notice %}}
 
 - Once the deployment completes, validate that the infrastructure is configured as desired.
-
-  {{< hint >}}A local `terraform.tfstate` file and a state backup file have been created during the deployment. The use of local state is acceptable for small temporary configurations, but production or long-lived installations should use a remote state configuration where possible. Configuring remote state is out of scope for this guide, but you can find details on using an Azure storage account for this purpose in the [Microsoft Learn documentation](https://learn.microsoft.com/en-us/azure/developer/terraform/store-state-in-azure-storage?tabs=azure-cli).{{< /hint >}}
+  
+  {{% notice style="info" %}}A local `terraform.tfstate` file and a state backup file have been created during the deployment. The use of local state is acceptable for small temporary configurations, but production or long-lived installations should use a remote state configuration where possible. Configuring remote state is out of scope for this guide, but you can find details on using an Azure storage account for this purpose in the [Microsoft Learn documentation](https://learn.microsoft.com/en-us/azure/developer/terraform/store-state-in-azure-storage?tabs=azure-cli).{{% /notice %}}
 
 ## Clean up your environment
 
@@ -358,13 +355,11 @@ When you are ready, you can remove the infrastructure deployed in this example. 
 terraform destroy
 ```
 
-{{< hint >}}Most Key Vault deployment examples activate soft-delete functionality as a default. The terraform destroy command will remove the Key Vault resource but does not purge a soft-deleted vault. You may encounter errors if you attempt to re-deploy a Key Vault with the same name during the soft-delete retention window. If you wish to purge the soft-delete for this example you can run `az keyvault purge -n <keyVaultName> -l <regionName>` using the Azure CLI, or `Remove-AzKeyVault -VaultName "<keyVaultName>" -Location "<regionName>" -InRemovedState` using Azure PowerShell. {{< /hint >}}
+{{% notice style="note" %}}Most Key Vault deployment examples activate soft-delete functionality as a default. The terraform destroy command will remove the Key Vault resource but does not purge a soft-deleted vault. You may encounter errors if you attempt to re-deploy a Key Vault with the same name during the soft-delete retention window. If you wish to purge the soft-delete for this example you can run `az keyvault purge -n <keyVaultName> -l <regionName>` using the Azure CLI, or `Remove-AzKeyVault -VaultName "<keyVaultName>" -Location "<regionName>" -InRemovedState` using Azure PowerShell.{{% /notice %}}
 
 Congratulations, you have successfully leveraged Terraform and AVM to deploy resources in Azure!
 
-{{< hint type=tip >}}
-We welcome your contributions and feedback to help us improve the AVM modules and the overall experience for the community!
-{{< /hint >}}
+{{% notice style="tip" %}}We welcome your contributions and feedback to help us improve the AVM modules and the overall experience for the community!{{% /notice %}}
 
 ## Next Steps
 
