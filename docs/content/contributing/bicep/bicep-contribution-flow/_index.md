@@ -5,9 +5,11 @@ linktitle: Contribution Flow
 
 ## High-level contribution flow
 
-{{< mermaid zoom="false">}}
----
+<!-- markdownlint-disable -->
 
+{{< mermaid zoom="false">}}
+
+---
 config:
   nodeSpacing: 20
   rankSpacing: 20
@@ -41,6 +43,7 @@ flowchart TD
   D --> E
   E -->|yes|F
   E -->|no|D
+
 {{< /mermaid >}}
 
 ## GitFlow for contributors
@@ -74,6 +77,8 @@ gitGraph LR:
   checkout main
   merge avm-type-provider-resource
 {{< /mermaid >}}
+
+<!-- markdownlint-enable -->
 
 {{% notice style="tip" %}}
 

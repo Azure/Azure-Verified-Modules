@@ -6,9 +6,11 @@ linktitle: Contribution Flow
 
 ## High-level contribution flow
 
-{{< mermaid zoom="false">}}
----
+<!-- markdownlint-disable -->
 
+{{< mermaid zoom="false" >}}
+
+---
 config:
   nodeSpacing: 20
   rankSpacing: 20
@@ -39,6 +41,7 @@ flowchart TD
   C --> D
   D -->|yes|E
   D -->|no|C
+
 {{< /mermaid >}}
 
 ## GitFlow for contributors
@@ -71,6 +74,8 @@ gitGraph LR:
   checkout main
   merge fix id: "Pull Request 'Fix'" type: HIGHLIGHT
 {{< /mermaid >}}
+
+<!-- markdownlint-enable -->
 
 {{% notice style="tip" %}}
 
