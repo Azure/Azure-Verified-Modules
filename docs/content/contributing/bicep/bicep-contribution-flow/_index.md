@@ -206,7 +206,7 @@ In those cases, for the first PR adding such modules to the public registry, we 
     - For the `Organization`, specify your GitHub organization name, for the `Repository` the value `bicep-registry-modules`.
     - For the `Entity` type, select `Environment` and specify the value `avm-validation`.
     - Add a Name for the federated credential, for example, `avm-gh-env-validation`.
-    - The `Issuer`, `Audiences`, and `Subject identifier` fields autopopulate based on the values you entered.
+    - The `Issuer`, `Audiences`, and `Subject identifier` fields auto-populate based on the values you entered.
     - Select `Add` to configure the federated credential.
       ![OIDCAdd]({{% siteparam base %}}/images/bicep-ci/msiOIDCAddFederatedIdentity_03.png?width=35vw "OIDC Add")
     - You might find the following links useful:
