@@ -313,7 +313,7 @@
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames ", " "," }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames "," ", " }}
   <tr>
-    {{- if  eq $item.ParentModule "n/a" -}}
+    {{- if or (eq $moduleType "pattern") (eq $moduleType "utility") (and (eq $moduleType "resource") (eq $item.ParentModule "n/a")) -}}
       <td style="text-align: right;"> {{/* row index */}}
         {{- printf "%02d" $i -}}
         {{- $i = add $i 1 -}}
