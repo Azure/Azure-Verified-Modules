@@ -419,7 +419,7 @@ After any change to a module and before running tests, we highly recommend runni
 
 Before opening a Pull Request to the Bicep Public Registry, ensure your module is ready for publishing, by validating that it meets all the Testing Specifications as per [SNFR1]({{% siteparam base %}}/spec/SNFR1), [SNFR2]({{% siteparam base %}}/spec/SNFR2), [SNFR3]({{% siteparam base %}}/spec/SNFR3), [SNFR4]({{% siteparam base %}}/spec/SNFR4), [SNFR5]({{% siteparam base %}}/spec/SNFR5), [SNFR6]({{% siteparam base %}}/spec/SNFR6), [SNFR7]({{% siteparam base %}}/spec/SNFR7).
 
-For example, to meet [SNFR2]({{% siteparam base %}}/specc/SNFR2), ensure the updated module is deployable against a testing Azure subscription and compliant with the intended configuration.
+For example, to meet [SNFR2]({{% siteparam base %}}/spec/SNFR2), ensure the updated module is deployable against a testing Azure subscription and compliant with the intended configuration.
 
 Depending on the type of contribution you implemented (for example, a new resource module feature) we would kindly ask you to also update the `e2e` test run by the pipeline. For a new parameter this could mean to either add its usage to an existing test file, or to add an entirely new test as per [BCPRMNFR1]({{% siteparam base %}}/spec/BCPRMNFR1).
 
