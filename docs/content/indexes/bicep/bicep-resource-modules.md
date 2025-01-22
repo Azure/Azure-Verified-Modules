@@ -9,7 +9,7 @@ weight: 1
 
 This page contains various views of the module index (catalog) for **Bicep Resource Modules**. To see these views, **click on the expandable sections** with the "➕" sign below.
 
-- {{% icon icon="fa-brands fa-github" %}} To see the **full, unfiltered, unformatted module index** on GitHub, click [here](https://github.com/Azure/{{% siteparam base %}}/blob/main/docs/static/module-indexes/BicepResourceModules.csv).
+- {{% icon icon="fa-brands fa-github" %}} To see the **full, unfiltered, unformatted module index** on GitHub, click [here]({{% siteparam baseURL %}}blob/main/docs/static/module-indexes/BicepResourceModules.csv).
 
 - {{% icon icon="download" %}} To download the source CSV file, click [here]({{% siteparam base %}}/module-indexes/BicepResourceModules.csv).
 

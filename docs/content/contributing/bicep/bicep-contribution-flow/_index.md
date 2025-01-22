@@ -201,7 +201,7 @@ Some Azure resources may require additional roles to be assigned to the deployme
 In those cases, for the first PR adding such modules to the public registry, we recommend the author to reach out to AVM maintainers or, alternatively, to [create a CI environment GitHub issue](https://github.com/Azure/bicep-registry-modules/issues/new?template=avm_ci_environment_issue.yml) in BRM, specifying the additional prerequisites. This ensures that the required additional roles get assigned in the upstream CI environment before the corresponding PR gets merged.
 
 {{% /notice %}}
-
+<!-- markdownlint-disable MD029 -->
 2. Configure a federated identity credential on a user-assigned managed identity to trust tokens issued by GitHub Actions to your GitHub repository.
     - In the Microsoft Entra admin center, navigate to the user-assigned managed identity you created. Under `Settings` in the left nav bar, select `Federated credentials` and then `Add Credential`.
       ![OIDCFederatedCredentials]({{% siteparam base %}}/images/bicep-ci/msiOIDCAddFederatedIdentity_01.png?width=30vw "OIDC federated credentials")
@@ -220,7 +220,7 @@ In those cases, for the first PR adding such modules to the public registry, we 
     - Tenant ID
     - Subscription ID
     - Parent Management Group ID
-
+<!-- markdownlint-enable -->
     ![OIDCInfo]({{% siteparam base %}}/images/bicep-ci/msiOIDCInfo.png?width=35vw "OIDC Info")
 
 Additional references:
