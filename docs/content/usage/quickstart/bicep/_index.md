@@ -71,7 +71,7 @@ Searching the Azure Verified Module indexes is the most complete way to discover
 1. Expand the **Module Indexes** menu item and select the **Bicep** sub-menu item.
 1. Select the menu item for the module type you are searching for: [Resource]({{% siteparam base %}}/indexes/bicep/bicep-resource-modules/), [Pattern]({{% siteparam base %}}indexes/bicep/bicep-pattern-modules/), or [Utility]({{% siteparam base %}}indexes/bicep/bicep-utility-modules/).
   {{% notice style="note" %}}Since the Key Vault module used as an example in this guide is published as an AVM resource module, it can be found under the [resource modules]({{% siteparam base %}}indexes/bicep/bicep-resource-modules/) section in the AVM Bicep module index.{{% /notice %}}
-1. A detailed description of module classification types can be found under the related section [here](https://azure.github.io{{% siteparam base %}}/specs/shared/module-classifications/).
+1. A detailed description of module classification types can be found under the related section [here]({{% siteparam base %}}/specs/shared/module-classifications/).
 1. Select the **Published modules** link from the table of contents at the top of the page.
 1. Use the in-page search feature of your browser. In most Windows browsers you can access it using the `CTRL` + `F` keyboard shortcut.
 1. Enter a **search term** to find the module you are looking for - e.g., Key Vault.
