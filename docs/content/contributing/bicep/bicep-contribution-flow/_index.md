@@ -5,8 +5,6 @@ linktitle: Contribution Flow
 
 ## High-level contribution flow
 
-<!-- markdownlint-disable -->
-
 {{< mermaid zoom="false">}}
 
 ---
@@ -77,8 +75,6 @@ gitGraph LR:
   checkout main
   merge avm-type-provider-resource
 {{< /mermaid >}}
-
-<!-- markdownlint-enable -->
 
 {{% notice style="tip" %}}
 

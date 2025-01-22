@@ -6,8 +6,6 @@ linktitle: Contribution Flow
 
 ## High-level contribution flow
 
-<!-- markdownlint-disable -->
-
 {{< mermaid zoom="false" >}}
 
 ---
@@ -74,8 +72,6 @@ gitGraph LR:
   checkout main
   merge fix id: "Pull Request 'Fix'" type: HIGHLIGHT
 {{< /mermaid >}}
-
-<!-- markdownlint-enable -->
 
 {{% notice style="tip" %}}
 
