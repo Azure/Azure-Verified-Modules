@@ -1,10 +1,7 @@
 ---
 title: BCPRMNFR2 - User-defined types - AVM-Common-Types
 url: /spec/BCPRMNFR2
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Type-NonFunctional, # SINGLE VALUE: this can be "Type-Functional" OR "Type-NonFunctional"
@@ -21,7 +18,7 @@ priority: 13010
 
 #### ID: BCPRMNFR2 - User-defined types - AVM-Common-Types
 
-When implementing any of the [shared](/Azure-Verified-Modules/specs/shared/interfaces) or [Bicep-specific](/Azure-Verified-Modules/specs/bicep/interfaces) AVM interface variants you MUST import their User-defined type (UDT) via the published [AVM-Common-Types](https://github.com/Azure/bicep-registry-modules/tree/main/avm/utl/types/avm-common-types) module.
+When implementing any of the [shared]({{% siteparam base %}}/specs/shared/interfaces) or [Bicep-specific]({{% siteparam base %}}/specs/bicep/interfaces) AVM interface variants you MUST import their User-defined type (UDT) via the published [AVM-Common-Types](https://github.com/Azure/bicep-registry-modules/tree/main/avm/utl/types/avm-common-types) module.
 
 When doing so, each type MUST be imported separately, right above the parameter or output that uses it.
 
@@ -38,10 +35,10 @@ Importing them individually as opposed to one common block has several benefits 
 - Individual versioning of types
 - If you must update the version for one type, you're not exposed to unexpected changes to other types
 
-{{< hint type=important >}}
+{{% notice style="important" %}}
 
 The `import (...)` block MUST not be added in between a parameter's definition and its metadata. Doing so breaks the metadata's binding to the parameter in question.
 
-{{< /hint >}}
+{{% /notice %}}
 
 Finally, you should check for version updates regularly to ensure the resource module stays consistent with the specs. If the used AVM-Common-Types runs stale, the CI may eventually fail the module's static tests.

@@ -1,10 +1,7 @@
 ---
 title: SNFR25 - Resource Naming
 url: /spec/SNFR25
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -28,12 +25,12 @@ For example, a Private Endpoint that is being deployed as part of a resource mod
 
 Module owners **MUST** also provide the ability for these default names, including the prefixes, to be overridden via a parameter/variable if the consumer wishes to.
 
-Furthermore, as per [RMNFR2](/Azure-Verified-Modules/spec/RMNFR2), Resource Modules **MUST** not have a default value specified for the name of the primary resource and therefore the name **MUST** be provided and specified by the module consumer.
+Furthermore, as per [RMNFR2]({{% siteparam base %}}/spec/RMNFR2), Resource Modules **MUST** not have a default value specified for the name of the primary resource and therefore the name **MUST** be provided and specified by the module consumer.
 
 The name provided **MAY** be used by the module owner to generate the rest of the default name for child, extension, and interface resources if they wish to. For example, for the Private Endpoint mentioned above, the full default name that can be overridden by the consumer, **MAY** be `pep-<primary-resource-name>`.
 
-{{< hint type=tip >}}
+{{% notice style="tip" %}}
 
 If the resource does not have a documented abbreviation in [Abbreviation examples for Azure resources](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations), then the module owner is free to use a sensible prefix instead.
 
-{{< /hint >}}
+{{% /notice %}}

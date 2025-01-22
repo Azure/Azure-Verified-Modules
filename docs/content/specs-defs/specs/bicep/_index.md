@@ -1,8 +1,6 @@
 ---
 title: Bicep Specifications
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
+linktitle: Bicep
 url: /specs/bcp/
 ---
 
@@ -12,11 +10,11 @@ url: /specs/bcp/
 
 ## How to propose changes to the specifications?
 
-{{< hint type=important >}}
+{{% notice style="important" %}}
 
 Any updates to existing or new specifications for Bicep must be submitted as a draft for review by the AVM core team(`@Azure/avm-core-team`).
 
-{{< /hint >}}
+{{% /notice %}}
 
 ## What changed recently?
 

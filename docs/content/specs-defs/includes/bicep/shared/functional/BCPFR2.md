@@ -1,10 +1,7 @@
 ---
 title: BCPFR2 - Role Assignments Role Definition Mapping
 url: /spec/BCPFR2
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -26,6 +23,8 @@ Module owners **MAY** define common RBAC Role Definition names and IDs within a 
 
 However, they **MUST** use only the official RBAC Role Definition name within the variable and nothing else.
 
-To meet the requirements of [BCPFR2](/Azure-Verified-Modules/spec/BCPFR2), [BCPNFR5](/Azure-Verified-Modules/spec/BCPNFR5) and [BCPNFR6](/Azure-Verified-Modules/spec/BCPNFR6) you **MUST** use the below code sample in your AVM Modules to achieve this.
+To meet the requirements of [BCPFR2]({{% siteparam base %}}/spec/BCPFR2), [BCPNFR5]({{% siteparam base %}}/spec/BCPNFR5) and [BCPNFR6]({{% siteparam base %}}/spec/BCPNFR6) you **MUST** use the below code sample in your AVM Modules to achieve this.
 
-{{< include file="/static/includes/sample.rbacMapping.bicep" language="bicep" options="linenos=false" >}}
+{{< highlight lineNos="false" type="bicep" wrap="true" title="sample.rbacMapping.bicep" >}}
+  {{% include "/static/includes/sample.rbacMapping.bicep" %}}
+{{< /highlight >}}

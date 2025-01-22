@@ -1,10 +1,7 @@
 ---
 title: RMFR5 - AVM Consistent Feature & Extension Resources Value Add Interfaces/Schemas
 url: /spec/RMFR5
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Type-Functional, # SINGLE VALUE: this can be "Type-Functional" OR "Type-NonFunctional"
@@ -26,5 +23,5 @@ Resource modules **MUST** implement a common interface, e.g. the input's data st
 
 See:
 
-- [Bicep Interfaces](/Azure-Verified-Modules/specs/bcp/res/interfaces/)
-- [Terraform Interfaces](/Azure-Verified-Modules/specs/tf/interfaces/)
+- [Bicep Interfaces]({{% siteparam base %}}/specs/bcp/res/interfaces/)
+- [Terraform Interfaces]({{% siteparam base %}}/specs/tf/interfaces/)

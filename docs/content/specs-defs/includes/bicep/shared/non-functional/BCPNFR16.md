@@ -1,10 +1,7 @@
 ---
 title: BCPNFR16 - Post-deployment tests
 url: /spec/BCPNFR16
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -56,7 +53,7 @@ To leverage the feature you **MUST**:
 
   A full test file may look like:
 
-  {{< expand "➕ Pester post-deployment test file example" "expand/collapse">}}
+  {{% expand title="➕ Pester post-deployment test file example" expanded="false" %}}
 
   ```pwsh
   param (
@@ -79,4 +76,4 @@ To leverage the feature you **MUST**:
   }
   ```
 
-  {{< /expand >}}
+  {{% /expand %}}

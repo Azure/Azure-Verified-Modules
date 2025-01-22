@@ -1,10 +1,7 @@
 ---
 title: TFNFR3 - GitHub Repo Branch Protection
 url: /spec/TFNFR3
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -34,8 +31,8 @@ Module owners **MUST** set a branch protection policy on their GitHub Repositori
 8. Do not allow bypassing the above settings
 9. Above settings **MUST** also be enforced to administrators
 
-{{< hint type=tip >}}
+{{% notice style="tip" %}}
 
-If you use the [template repository](/Azure-Verified-Modules/contributing/terraform/#template-repository) as mentioned in the contribution guide, the above will automatically be set.
+If you use the [template repository]({{% siteparam base %}}/contributing/terraform/#template-repository) as mentioned in the contribution guide, the above will automatically be set.
 
-{{< /hint >}}
+{{% /notice %}}

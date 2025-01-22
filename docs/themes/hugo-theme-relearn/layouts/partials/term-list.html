@@ -1,0 +1,32 @@
+{{- $page := .page }}
+{{- $taxonomy := .taxonomy }}
+{{- $class := .class }}
+{{- $color := .color | default "" }}
+{{- $style := .style | default "" }}
+{{- if and (not $style) (eq (len $style) 0) }}
+  {{- $color = .color | default "var(--INTERNAL-TAG-BG-color)" }}
+{{- end }}
+{{- $icon := .icon | default "" }}
+{{- $icon = trim $icon " " }}
+{{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
+  {{- $icon = printf "fa-fw fas fa-%s" $icon }}
+{{- end }}
+{{- $taxonomy_page := $page.Site.GetPage $taxonomy }}
+{{- $term_pages := slice }}
+{{- range $page.GetTerms $taxonomy }}
+  {{- $term_pages = $term_pages | append (dict "Title" (partial "title.gotmpl" (dict "page" . "linkTitle" true)) "Term" . )}}
+{{- end }}
+{{- $taxonomy_title := partial "title.gotmpl" (dict "page" $taxonomy_page) }}
+{{- with $term_pages }}
+<div class="R-taxonomy taxonomy-{{ $taxonomy }} cstyle{{ with $style }} {{ . }}{{ end }}{{ with $class }} {{ . }}{{ end }}" title="{{ $taxonomy_title }}"{{ if $color }}{{ printf " style=\"--VARIABLE-TAGS-BG-color: %s;\"" $color | safeHTMLAttr }}{{ end }}>
+  {{- if $icon }}
+  <i class="{{ $icon }}"></i>
+  {{- end }}
+  <ul>
+  {{- range sort . ".Title" }}
+    {{- $to := .Term }}
+    <li><a class="term-link" href="{{ partial "permalink.gotmpl" (dict "to" $to) }}">{{ .Title }}</a></li>
+  {{- end }}
+  </ul>
+</div>
+{{- end }}

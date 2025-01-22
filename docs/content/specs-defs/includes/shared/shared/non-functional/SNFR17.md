@@ -1,10 +1,7 @@
 ---
 title: SNFR17 - Semantic Versioning
 url: /spec/SNFR17
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -24,13 +21,13 @@ priority: 1210
 
 #### ID: SNFR17 - Category: Release - Semantic Versioning
 
-{{< hint type=important >}}
+{{% notice style="important" %}}
 
 You cannot specify the patch version for Bicep modules in the public Bicep Registry, as this is automatically incremented by 1 each time a module is published. You can only set the Major and Minor versions.
 
-See the [Bicep Contribution Guide](/Azure-Verified-Modules/contributing/bicep/) for more information.
+See the [Bicep Contribution Guide]({{% siteparam base %}}/contributing/bicep/) for more information.
 
-{{< /hint >}}
+{{% /notice %}}
 
 Modules **MUST** use semantic versioning (aka semver) for their versions and releases in accordance with: [Semantic Versioning 2.0.0](https://semver.org/)
 
@@ -44,11 +41,11 @@ For example all modules should be released using a semantic version that matches
 
 - Initially modules MUST be released as version `0.1.0` and incremented via Minor and Patch versions only until the AVM Core Team are confident the AVM specifications are mature enough and appropriate CI test coverage is in place, plus the module owner is happy the module has been "road tested" and is now stable enough for its first Major release of version `1.0.0`.
 
-  {{< hint type=note >}}
+  {{% notice style="note" %}}
 
   Releasing as version `0.1.0` initially and only incrementing Minor and Patch versions allows the module owner to make breaking changes more easily and frequently as it's still not an official Major/Stable release. 👍
 
-  {{< /hint >}}
+  {{% /notice %}}
 
 - Until first Major version `1.0.0` is released, given a version number `X.Y.Z`:
   - `X` Major version MUST NOT be bumped.

@@ -1,10 +1,7 @@
 ---
 title: BCPNFR19 - User-defined types - Naming
 url: /spec/BCPNFR18
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -30,7 +27,7 @@ type subnetType = { ... } // Correct
 type subnetOutputType = { ... } // Correct, if used only for outputs
 ```
 
-Since User-defined types (UDTs) MUST always be singular as per [BCPNFR18](/Azure-Verified-Modules/spec/BCPNFR18), their naming should reflect this and also be singular.
+Since User-defined types (UDTs) MUST always be singular as per [BCPNFR18]({{% siteparam base %}}/spec/BCPNFR18), their naming should reflect this and also be singular.
 ```bicep
 type subnetsType = { ... } // Wrong
 type subnetType = { ... } // Correct

@@ -1,10 +1,7 @@
 ---
 title: PMNFR2 - Use Resource Modules to Build a Pattern Module
 url: /spec/PMNFR2
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Type-NonFunctional, # SINGLE VALUE: this can be "Type-Functional" OR "Type-NonFunctional"
@@ -29,6 +26,8 @@ Valid reasons for not using a Resource Module for a resource required by a Patte
 - When using a Resource Module would result in hitting scaling limitations and/or would reduce the capabilities of the Pattern Module due to the limitations of Azure Resource Manager.
 - Developing a Pattern Module under time constraint, without having all required Resource Modules readily available.
 
-{{< hint type=note >}}
+{{% notice style="note" %}}
+
 In the latter case, the Pattern Module **SHOULD** be updated to use the Resource Module when the required Resource Module becomes available, to avoid accumulating technical debt. Ideally, all required Resource Modules **SHOULD** be developed first, and then leveraged by the Pattern Module.
-{{< /hint >}}
+
+{{% /notice %}}

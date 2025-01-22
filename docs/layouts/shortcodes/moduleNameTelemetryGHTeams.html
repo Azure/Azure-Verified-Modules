@@ -11,6 +11,7 @@
 {{ $ModuleDisplayNameColumnId := 0 }}
 {{ $AlternativeNamesColumnId := 0 }}
 {{ $ModuleNameColumnId := 0 }}
+{{ $ParentModuleColumnId := 0 }}
 {{ $ModuleStatusColumnId := 0 }}
 {{ $RepoURLColumnId := 0 }}
 {{ $PublicRegistryReferenceColumnId := 0 }}
@@ -33,18 +34,19 @@
   {{ $ModuleDisplayNameColumnId = 2 }}
   {{ $AlternativeNamesColumnId = 3 }}
   {{ $ModuleNameColumnId = 4 }}
-  {{ $ModuleStatusColumnId = 5 }}
-  {{ $RepoURLColumnId = 6 }}
-  {{ $PublicRegistryReferenceColumnId = 7 }}
-  {{ $TelemetryIdPrefixColumnId = 8 }}
-  {{ $PrimaryModuleOwnerGHHandleColumnId = 9 }}
-  {{ $PrimaryModuleOwnerDisplayNameColumnId = 10 }}
-  {{ $SecondaryModuleOwnerGHHandleColumnId = 11 }}
-  {{ $SecondaryModuleOwnerDisplayNameColumnId = 12 }}
-  {{ $ModuleOwnersGHTeamColumnId = 13 }}
-  {{ $ModuleContributorsGHTeamColumnId = 14 }}
-  {{ $DescriptionColumnId = 15 }}
-  {{ $CommentsColumnId = 16 }}
+  {{ $ParentModuleColumnId = 5 }}
+  {{ $ModuleStatusColumnId = 6 }}
+  {{ $RepoURLColumnId = 7 }}
+  {{ $PublicRegistryReferenceColumnId = 8 }}
+  {{ $TelemetryIdPrefixColumnId = 9 }}
+  {{ $PrimaryModuleOwnerGHHandleColumnId = 10 }}
+  {{ $PrimaryModuleOwnerDisplayNameColumnId = 11 }}
+  {{ $SecondaryModuleOwnerGHHandleColumnId = 12 }}
+  {{ $SecondaryModuleOwnerDisplayNameColumnId = 13 }}
+  {{ $ModuleOwnersGHTeamColumnId = 14 }}
+  {{ $ModuleContributorsGHTeamColumnId = 15 }}
+  {{ $DescriptionColumnId = 16 }}
+  {{ $CommentsColumnId = 17 }}
 
   {{ range $row, $rows }}
     {{ $map := dict
@@ -53,6 +55,7 @@
       "ModuleDisplayName" (index $row $ModuleDisplayNameColumnId)
       "AlternativeNames" (index $row $AlternativeNamesColumnId)
       "ModuleName" (index $row $ModuleNameColumnId)
+      "ParentModule" (index $row $ParentModuleColumnId)
       "ModuleStatus" (index $row $ModuleStatusColumnId)
       "RepoURL" (index $row $RepoURLColumnId)
       "PublicRegistryReference" (index $row $PublicRegistryReferenceColumnId)
@@ -127,15 +130,39 @@
   {{ end }}
   {{ range $item, $maps }}
   <tr>
-    <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
-    <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }} <a href="{{ $item.RepoURL }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
-    <td><code>{{ $item.TelemetryIdPrefix }}</code></td>
-    <td>
-      <code>{{ $item.ModuleOwnersGHTeam }}</code>
-      <br>
-      <code>{{ $item.ModuleContributorsGHTeam }}</code>
+    <td style="text-align: right;"> {{/* row index */}}
+      {{- printf "%02d" $i -}}
+      {{- $i = add $i 1 -}}
     </td>
-    <td></td>
+    <td> {{/* module name and link to the repo */}}
+      {{- if $useLinks -}}
+        {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+          <a href="{{ $item.RepoURL }}">{{ $item.ModuleName }}</a>
+        {{- else -}}
+          {{ $item.ModuleName }}
+        {{- end -}}
+      {{- else -}}
+        {{ $item.ModuleName }}
+      {{- end -}}
+    </td>
+    <td> {{/* telemetry ID prefix */}}
+      <code style="white-space:normal;">{{ $item.TelemetryIdPrefix }}</code>
+    </td>
+    <td> {{/* GH teams */}}
+      {{- if eq $item.ParentModule "n/a" -}}
+        <code style="white-space:normal;">{{ $item.ModuleOwnersGHTeam }}</code>
+        <br>
+        <code style="white-space:normal;">{{ $item.ModuleContributorsGHTeam }}</code>
+      {{- else -}}
+        {{- range $element, $maps -}}
+          {{- if eq $element.ModuleName $item.ParentModule -}}
+            <code style="white-space:normal;">{{ $element.ModuleOwnersGHTeam }}</code>
+            <br>
+            <code style="white-space:normal;">{{ $element.ModuleContributorsGHTeam }}</code>
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    </td>
   </tr>
   {{ $hasModulesAvailable = true }}
   {{ end }}
@@ -162,15 +189,39 @@
   {{ end }}
   {{ range $item, $maps }}
   <tr>
-    <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
-    <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }} <a href="{{ $item.PublicRegistryReference }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
-    <td><code>{{ $item.TelemetryIdPrefix }}</code></td>
-    <td>
-      <code>{{ $item.ModuleOwnersGHTeam }}</code>
-      <br>
-      <code>{{ $item.ModuleContributorsGHTeam }}</code>
+    <td style="text-align: right;"> {{/* row index */}}
+      {{- printf "%02d" $i -}}
+      {{- $i = add $i 1 -}}
     </td>
-    <td></td>
+    <td> {{/* module name and link to the repo */}}
+      {{- if $useLinks -}}
+        {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+          <a href="{{ $item.PublicRegistryReference }}">{{ $item.ModuleName }}</a>
+        {{- else -}}
+          {{ $item.ModuleName }}
+        {{- end -}}
+      {{- else -}}
+        {{ $item.ModuleName }}
+      {{- end -}}
+    </td>
+    <td> {{/* telemetry ID prefix */}}
+      <code style="white-space:normal;">{{ $item.TelemetryIdPrefix }}</code>
+    </td>
+    <td> {{/* GH teams */}}
+      {{- if eq $item.ParentModule "n/a" -}}
+        <code style="white-space:normal;">{{ $item.ModuleOwnersGHTeam }}</code>
+        <br>
+        <code style="white-space:normal;">{{ $item.ModuleContributorsGHTeam }}</code>
+      {{- else -}}
+        {{- range $element, $maps -}}
+          {{- if eq $element.ModuleName $item.ParentModule -}}
+            <code style="white-space:normal;">{{ $element.ModuleOwnersGHTeam }}</code>
+            <br>
+            <code style="white-space:normal;">{{ $element.ModuleContributorsGHTeam }}</code>
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    </td>
   </tr>
   {{ $hasModulesAvailable = true }}
   {{ end }}

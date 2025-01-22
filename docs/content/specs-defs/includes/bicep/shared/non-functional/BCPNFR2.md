@@ -1,10 +1,7 @@
 ---
 title: BCPNFR2 - Module Documentation Generation
 url: /spec/BCPNFR2
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -22,11 +19,11 @@ priority: 11030
 
 #### ID: BCPNFR2 - Category: Documentation - Module Documentation Generation
 
-{{< hint type=note >}}
+{{% notice style="note" %}}
 
 This script/tool is currently being developed by the AVM team and will be made available very soon.
 
-{{< /hint >}}
+{{% /notice %}}
 
 Bicep modules documentation **MUST** be automatically generated via the provided script/tooling from the AVM team, providing the following headings:
 
