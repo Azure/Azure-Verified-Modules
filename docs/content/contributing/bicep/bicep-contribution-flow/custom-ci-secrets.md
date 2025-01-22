@@ -29,15 +29,16 @@ To make this matter not too complicated, we would like to ask you to emphasize t
 Let's assume you need a tenant-specific value like the object id of Azure's _Backup Management Service_ Enterprise Application for one of your tests. As you want to avoid hardcoding and consequently changing its value each time you want to contribute from your Fork to the main AVM repository, you want to instead have it be automatically pulled into your test cases.
 
 To do so, you create a new parameter in your test case's `main.test.bicep` file that you call, for example,
+
 ```bicep
 @secure()
 param backupManagementServiceEnterpriseApplicationObjectId string = ''
 
 ```
+
 assuming that it would be provided with the correct value by the AVM CI. You consequently reference it in your test case as you would with any other Bicep parameter.
 
 Next, you create a new secret of the same name with a prefix `CI-` in a previously created Azure Key Vault of your test subscription (e.g., `CI-backupManagementServiceEnterpriseApplicationObjectId`). Its value would be the object id the Enterprise Application has in the tenant of your test subscription.
-
 
 Assuming that also the `CI_KEY_VAULT_NAME` GitHub Repository variable is configured correctly, you can now run your test pipeline and observe how the CI automatically pulls the secret and passes it into your test cases, IF, they have a parameter with a matching name.
 
@@ -46,6 +47,7 @@ Assuming that also the `CI_KEY_VAULT_NAME` GitHub Repository variable is configu
 ### Pre-Requisites
 
 To use this feature, there are really only three prerequisites:
+
 1. Create an Azure Key Vault in your test subscription
 1. Grant the principal you use for testing in the CI at least _`Key Vault Secrets User'_ permissions on that Key Vault to enable it to pull secrets from it
 1. Configure the name of that Key Vault as a 'Repository variable' `CI_KEY_VAULT_NAME` in your Fork.
@@ -57,9 +59,11 @@ The above will enable the CI to identify your Key Vault, look for matching secre
 ### Configuring a secret
 
 Building upon the prerequisites you only have to implement two actions per value to dynamically populate them during deployment validation:
+
 1. Create a `@secure()` parameter in your test file (`main.test.bicep`) that you want to populate and use it as you see fit.
 
   For example:
+
   ```bicep
   @description('Required. My parameter\'s description. This value is tenant-specific and must be stored in the CI Key Vault in a secret named \'CI-MySecret\'.')
   @secure()
@@ -80,6 +84,7 @@ Building upon the prerequisites you only have to implement two actions per value
 ## How it works
 
 Assuming you completed both the [prerequisites](#pre-requisites) & [setup](#configuring-a-secret) steps and triggered your module's workflow, the CI will perform the following actions:
+
 1. When approaching the deployment validation steps, the workflow will lookup the `CI_KEY_VAULT_NAME` repository variable
 1. If it has a value, it will subsequently pull all available secret references (not their values!) from that Key Vault, filtered down to only the secrets that match the `CI-` prefix
 1. It will then loop through these secret references and check if any match a parameter in the targeted `test.main.bicep` of the same name, but without the `CI-` prefix

@@ -7,6 +7,7 @@ linktitle: Contribution Flow
 
 {{< mermaid zoom="false">}}
 ---
+
 config:
   nodeSpacing: 20
   rankSpacing: 20
@@ -20,6 +21,7 @@ config:
     mergeEdges: true
     nodePlacementStrategy: LINEAR_SEGMENTS
 ---
+
 flowchart TD
   A("1 - Fork the module source repository")
     click A "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#1-fork-the-module-source-repository"
@@ -47,11 +49,13 @@ The GitFlow process outlined here introduces a central anchor branch. This branc
 
 {{< mermaid zoom="true" >}}
 ---
+
 config:
   logLevel: debug
   gitGraph:
     rotateCommitLabel: false
 ---
+
 gitGraph LR:
   commit id:"Fork Repo"
   branch anchor
@@ -113,6 +117,7 @@ The script performs the following steps:
 The `New-AVMBicepBRMForkSetup.ps1` can be downloaded from <a href="{{% siteparam base %}}/scripts/New-AVMBicepBRMForkSetup.ps1" download>here</a>.
 
 Once downloaded, you can run the script by running the below - **Please change all the parameter values in the below script usage example to your own values (see the parameter documentation in the script itself)!**:
+
 ```powershell
 .\<PATH-TO-SCRIPT-DOWNLOAD-LOCATION>\New-AVMBicepBRMForkSetup.ps1 -GitHubRepositoryPathForCloneOfForkedRepository "<pathToCreateForkedRepoIn>" -GitHubSecret_ARM_MGMTGROUP_ID "<managementGroupId>" -GitHubSecret_ARM_SUBSCRIPTION_ID "<subscriptionId>" -GitHubSecret_ARM_TENANT_ID "<tenantId>" -GitHubSecret_TOKEN_NAMEPREFIX "<unique3to5AlphanumericStringForAVMDeploymentNames>"
 ```
@@ -214,6 +219,7 @@ In those cases, for the first PR adding such modules to the public registry, we 
     ![OIDCInfo]({{% siteparam base %}}/images/bicep-ci/msiOIDCInfo.png?width=35vw "OIDC Info")
 
 Additional references:
+
 - [Configure a federated identity credential](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure-openid-connect#prerequisites)
 - [Azure login GitHub action - Login with OIDC](https://github.com/Azure/login?tab=readme-ov-file#login-with-openid-connect-oidc-recommended)
 
@@ -477,7 +483,6 @@ Dependency file (`dependencies.bicep`) guidelines:
   📜 [Example of test using purge protected Key Vault dependency](https://github.com/Azure/bicep-registry-modules/blob/main/avm/res/cognitive-services/account/tests/e2e/system-assigned-cmk-encryption/main.test.bicep#L43)
 
   {{% /notice %}}
-
 
   {{% notice style="tip" %}}
 

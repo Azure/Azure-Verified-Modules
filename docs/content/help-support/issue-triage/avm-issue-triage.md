@@ -37,6 +37,7 @@ An issue is considered to be a module proposal if
 - it is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project.
 
 Follow these steps to triage a module proposal:
+
 1. Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#E4E669;">Status: In Triage 🔍</mark>&nbsp; label to indicate you're in the process of triaging the issue.
 2. Check module proposal issue/form:
     - Check the [Bicep]({{% siteparam base %}}/indexes/bicep/) or [Terraform]({{% siteparam base %}}/indexes/terraform/) module indexes for the proposed module to make sure it is not already available or being worked on.

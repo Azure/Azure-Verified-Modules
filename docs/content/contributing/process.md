@@ -102,7 +102,7 @@ Common issues/blockers/asks/request are:
 
 {{% /notice %}}
 
-1. Create a [GitHub Issue](https://github.com/Azure{{% siteparam base %}}/issues/new/choose)
+1. Create a [GitHub Issue](<https://github.com/Azure{{%> siteparam base %}}/issues/new/choose)
 2. Discuss the issue/blocker with the AVM core team
 3. Agree upon action/resolution/closure
 4. Implement agreed upon action/resolution/closure

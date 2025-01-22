@@ -8,6 +8,7 @@ linktitle: Contribution Flow
 
 {{< mermaid zoom="false">}}
 ---
+
 config:
   nodeSpacing: 20
   rankSpacing: 20
@@ -21,6 +22,7 @@ config:
     mergeEdges: true
     nodePlacementStrategy: LINEAR_SEGMENTS
 ---
+
 flowchart TD
   A(1 - Fork the module source repository)
     click A "{{% siteparam base %}}/contributing/terraform/terraform-contribution-flow/#1-fork-the-module-source-repository"
@@ -45,11 +47,13 @@ The GitFlow process outlined here depicts and suggests a way of working with Git
 
 {{< mermaid zoom="true" >}}
 ---
+
 config:
   logLevel: debug
   gitGraph:
     rotateCommitLabel: false
 ---
+
 gitGraph LR:
   commit id:"fork"
   branch fork/main

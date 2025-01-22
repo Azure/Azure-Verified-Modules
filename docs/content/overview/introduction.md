@@ -21,7 +21,6 @@ Azure Verified Modules (AVM), as "One Microsoft", we want to provide and define 
 Our mission is to deliver a comprehensive Azure Verified Modules library in multiple IaC languages, following the principles of the well-architected framework, serving as the trusted Microsoft source of truth. Supported by Microsoft, AVM will accelerate deployment time for Azure resources and architectural patterns, empowering every person and organization on the planet on their IaC journey.
 {{% /notice %}}
 
-
 ### Definition of "Verified" Summary
 
 - The modules are supported by Microsoft, across it's many internal organizations, as described in [Module Support]({{% siteparam base %}}/help-support/module-support/)

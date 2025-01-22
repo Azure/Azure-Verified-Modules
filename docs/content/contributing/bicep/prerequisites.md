@@ -63,7 +63,6 @@ The following tooling/extensions are recommended to assist you developing for th
 - For visibility of Bracket Pairs:
   - Inside Visual Studio Code, add `editor.bracketPairColorization.enabled`: true to your `settings.json`, to enable bracket pair colorization.
 
-
 #### Desktop Tooling
 
 - [GitHub Desktop](https://desktop.github.com/)

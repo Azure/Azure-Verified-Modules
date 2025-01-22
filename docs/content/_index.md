@@ -107,5 +107,6 @@ See [Module Support](/help-support/module-support) for more information.
     ![AVM](images/avm_logo.png?width=10vw "AVM")
 
     </td>
+
   </tr>
 </table>

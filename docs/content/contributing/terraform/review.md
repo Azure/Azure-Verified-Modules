@@ -22,7 +22,6 @@ I have completed my initial development of the module and I would like to reques
 
 {{< /highlight >}}
 
-
 {{% /expand %}}
 
 5. The AVM team moves the module proposal from "In Development" to "In Review" in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project.
@@ -74,5 +73,6 @@ GitHub Repo Link: <REPLACE WITH THE LINK OF THE MODULE IN GITHUB>"
 {{% /expand %}}
 
 13. Once the module owner perform the requested action in the previous step, the module reviewer updates the module proposal by performing the following steps:
+
 - Assign label Status: Module Available :green_circle: to the module proposal.
 - Update the module index excel file and CSV file by creating a PR to update the module index and links the module proposal as an issue that gets closed once the PR is merged which will move the module proposal from "In Review" to "Done" in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project.

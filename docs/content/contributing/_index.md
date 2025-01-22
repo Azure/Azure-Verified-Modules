@@ -15,6 +15,6 @@ This section lists all contribution guidance available to module owners and cont
 
 {{% notice style="important" %}}
 
-If you cannot find guidance for what you need, please let us know via [GitHub Issues](https://github.com/Azure{{% siteparam base %}}/issues) 👍
+If you cannot find guidance for what you need, please let us know via [GitHub Issues](<https://github.com/Azure{{%> siteparam base %}}/issues) 👍
 
 {{% /notice %}}

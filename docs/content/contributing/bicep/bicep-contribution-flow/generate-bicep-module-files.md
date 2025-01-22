@@ -4,10 +4,12 @@ linktitle: Update Module Files
 ---
 
 As per the module design structure ([BCPFR3]({{% siteparam base %}}/spec/BCPFR3)), every module in the AVM library requires
+
 - a up-to-date ReadMe markdown (`readme.md`) file documenting the set of deployable resource types, input and output parameters and a set of relevant template references from the official Azure Resource Reference documentation
 - an up-to-date compiled template (`main.json`) file
 
 The `Set-AVMModule` utility aims to simplify contributing to the AVM library, as it supports
+
 - idempotently generating the AVM folder structure for a module (including any child resource)
 - generating the module's ReadMe file from scratch or updating it
 - compiling/building the module template
@@ -21,6 +23,7 @@ You can find the script under [`utilities/tools/Set-AVMModule.ps1`](https://gith
 ## How it works
 
 Using the provided template path, the script
+
 1. validates the module's folder structure
     - To do so, it searches for any required folder path / file missing and adds them. For several files, it will also provide some default content to get you started. The sources files for this action can be found [here](https://github.com/Azure/bicep-registry-modules/tree/main/utilities/tools/helper/src)
 1. compiles its bicep template
@@ -36,6 +39,7 @@ For details on how to use the function, please refer to the script's local docum
 {{% notice style="note" %}}
 
 The script must be loaded ('_dot-sourced_') before the function can be invoked.
+
 ```PowerShell
 . 'C:/dev/Set-AVMModule.ps1'
 Set-AVMModule (...)
@@ -54,6 +58,7 @@ This parameter will ensure that the script not only generates the files for the 
 {{% notice style="tip" %}}
 
 While readme files are **always** generated from scratch, you can add custom content is specific places that the script will preserve:
+
 - The module's description in the `main.bicep` file's metadata
 - The description of parameters & outputs
 - A section with the header `## Notes`

@@ -11,9 +11,11 @@ You can find the script under [`utilities/tools/Test-ModuleLocally.ps1`](https:/
 ## How it works
 
 If the switch for Pester tests (`-PesterTest`) is provided the script will
+
 1. Invoke the module test for the provided template file path and run all tests for it.
 
 If the switch for either the validation test (`-ValidationTest`) or deployment test (`-DeploymentTest`) is provided alongside a HashTable for the token replacement (`-ValidateOrDeployParameters`), the script will
+
 1. Either fetch all module test files of the module's `tests` folder (default) or you can specify a single module test file by leveraging the `-ModuleTestFilePath` parameter instead.
 1. Create a dictionary to replace all tokens in these module test files with actual values. This dictionary will consist
     - of the subscriptionID & managementGroupID of the provided `ValidateOrDeployParameters` object,
@@ -30,6 +32,7 @@ For details on how to use the function, please refer to the script's local docum
 {{% notice style="note" %}}
 
 The script must be loaded ('_dot-sourced_') before the function can be invoked.
+
 ```PowerShell
 . 'C:/dev/Test-ModuleLocally.ps1'
 Test-ModuleLocally (...)

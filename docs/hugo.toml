@@ -14,7 +14,7 @@ enableGitInfo = true
     themeVariant = [
         { identifier = 'auto', name = 'Zen Light/Dark', auto = [ 'zen-light', 'zen-dark' ] },
         { identifier = 'zen-light'      },
-	    { identifier = 'zen-dark'       }
+        { identifier = 'zen-dark'       }
     ]
     disableLandingPageButton = false
     landingPageName = '<i class="fa-fw fas fa-home"></i> Home'

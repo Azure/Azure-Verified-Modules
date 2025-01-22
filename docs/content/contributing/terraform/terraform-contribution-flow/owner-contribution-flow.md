@@ -97,7 +97,6 @@ Set-AvmGitHubLabels.ps1 -RepositoryName "Azure/MyGitHubRepo" -CreateCsvLabelExpo
 <!-- TODO: Rephrasing required and clarify with team what happens with ORPHANED MODULES
 ### 5. Orphaned Module Handover Activities
 
-
 1. In case a module gets a new owner, add the new owner in the `avm-res-<RP>-<modulename>-module-owners-tf` team as `Maintainer` and remove any other individual(s).
 2. Remove `ORPHANED.md` from the root directory of the Module.
 -->
@@ -133,6 +132,7 @@ avm.bat grept-apply
 ```
 
 ### 6. Review the module
+
 Once the development of the module has been completed, get the module reviewed from the AVM Core team by following the AVM Review of Terraform Modules process [here]({{% siteparam base %}}/contributing/terraform/review/) which is a pre-requisite for the next step.
 
 ### 7. Publish the module
@@ -142,6 +142,7 @@ Once a module has been reviewed and is ready to be published, follow the below s
 Ensure your module is ready for publishing:
 
 1. Create a tag for the module version you want to publish.
+
 - Create tag: `git tag -a 0.1.0 -m "0.1.0"`
 - Push tag: `git push`
 - [Create a release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) on Github based on the tag you just created. Make sure to generate the release notes using the `Generate release notes` button.

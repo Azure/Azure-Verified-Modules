@@ -199,13 +199,13 @@ All issues created in a module repo will be automatically be picked up and track
 [ModuleOwners]: {{% siteparam base %}}/specs/shared/team-definitions/#module-owners
 [ModuleContributors]: {{% siteparam base %}}/specs/shared/team-definitions/#module-contributors
 [WAFAligned]: {{% siteparam base %}}/faq/#what-does-avm-mean-by-waf-aligned
-[ModuleProposal]: https://aka.ms/AVM/ModuleProposal
+[ModuleProposal]: <https://aka.ms/AVM/ModuleProposal>
 [ModuleSupport]: {{% siteparam base %}}/help-support/module-support/
-[AVMChannel]: https://aka.ms/AVM/channel
+[AVMChannel]: <https://aka.ms/AVM/channel>
 [ModuleSpecifications]: {{% siteparam base %}}/module-specs/
 [DiagnosticSettings]: {{% siteparam base %}}/specs/shared/interfaces/#diagnostic-settings
-[AzureArchitectureCenter]: https://learn.microsoft.com/en-us/azure/architecture/browse/
-[ALZ]: https://aka.ms/alz
+[AzureArchitectureCenter]: <https://learn.microsoft.com/en-us/azure/architecture/browse/>
+[ALZ]: <https://aka.ms/alz>
 [ModuleIndexes]: {{% siteparam base %}}/indexes/
 [MandatoryLabels]: {{% siteparam base %}}/spec/SNFR23
 [BicepDir]: {{% siteparam base %}}/contributing/bicep/#directory-and-file-structure
@@ -214,4 +214,4 @@ All issues created in a module repo will be automatically be picked up and track
 [TerrafromContribution]: {{% siteparam base %}}/contributing/terraform/
 [ModuleNaming]: {{% siteparam base %}}/spec/RMNFR1
 [ProcessOverview]: {{% siteparam base %}}/contributing/process/
-[GitHubLicensing]: https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository
+[GitHubLicensing]: <https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository>
