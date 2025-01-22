@@ -1,4 +1,4 @@
-module azure.github.io/AVM-Test
+module azure.github.io/azure-verified-modules
 
 go 1.23.4
 
