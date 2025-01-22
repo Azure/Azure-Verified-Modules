@@ -25,7 +25,7 @@ enableGitInfo = true
       # { type = 'page', identifier = 'home', main = true, disableTitle = true, pageRef = '' },
       # { type = 'menu', identifier = 'shortcuts', main = false, disableTitle = false },
     ]
-    editURL = 'https://github.com/Azure/AVM-Test/edit/main/docs/content/${FilePath}'
+    editURL = 'https://github.com/Azure/Azure-Verified-Modules/edit/main/docs/content/${FilePath}'
     disableInlineCopyToClipBoard = true
     disableAnchorScrolling = false
     alwaysopen = true
