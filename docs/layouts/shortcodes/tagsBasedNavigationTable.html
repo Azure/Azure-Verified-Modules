@@ -114,7 +114,7 @@
     {{ partial "shortcodes/notice.html" (dict "page"  . "style" "code" "title" "The content below is listed based on the following tags" "content" (add "<i class='fa-solid fa-tag'>&nbsp</i>" $tagsToShow) )}}
 
   {{ end }}
-  
+
   <table>
     <thead>
       <tr>
@@ -211,7 +211,7 @@
     {{- $specURL := printf "%s%s" $baseURL (replaceRE "^/" "" $page.Params.url) -}}
 
     {{- with $page -}}
-      
+
       {{- if $showPage -}}
         {{- if $showPageTags -}}
           {{- $content = add $content (partial "showPageTags" (dict "pageTags" $pageTags "baseURL" $baseURL)) -}}

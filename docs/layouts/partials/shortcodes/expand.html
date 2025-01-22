@@ -11,7 +11,7 @@
   {{- $expanded = .open }}
 {{- end }}
 {{- if eq (printf "%T" $expanded) "string" }}
-	{{- $expanded = (eq $expanded "true") }}
+  {{- $expanded = (eq $expanded "true") }}
 {{- end }}
 {{- partial "shortcodes/notice.html" (dict
   "page"     .page

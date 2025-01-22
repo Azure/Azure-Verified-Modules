@@ -176,7 +176,7 @@
     {{ $trimmedAlternativeNames := replace $item.AlternativeNames "  " " " }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames ", " "," }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames "," ", " }}
-  
+
   <tr>
     {{- if or (eq $moduleType "pattern") (eq $moduleType "utility") (and (eq $moduleType "resource") (eq $item.ParentModule "n/a")) -}}
       <td style="text-align: right;"> {{/* row index */}}
@@ -188,11 +188,11 @@
           {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
             <a href="{{ $item.RepoURL }}">
               {{ $item.ModuleName }}
-            </a> 
-          {{- else -}} 
-            {{ $item.ModuleName }} 
-          {{- end -}} 
-        {{- else -}} 
+            </a>
+          {{- else -}}
+            {{ $item.ModuleName }}
+          {{- end -}}
+        {{- else -}}
           {{ $item.ModuleName }}
         {{- end -}}
 
@@ -204,33 +204,33 @@
                 <li style="margin-left: 20px;">
                   <a href="{{ $element.RepoURL }}" title="{{ $element.ModuleDisplayName }} | {{ $element.ModuleName }}">{{ $child }}</a>
                 </li>
-              {{- else -}} 
+              {{- else -}}
                 <li style="margin-left: 20px;">
                   <span title="{{ $element.ModuleDisplayName }} ({{ $element.ModuleName }})">{{ $child }}</span>
                 </li>
               {{- end -}}
-            {{- end -}} 
+            {{- end -}}
           {{- end -}}
         {{- end -}}
       </td>
       <td> {{/* display name and alternative names  */}}
-        {{- with $trimmedAlternativeNames -}} 
+        {{- with $trimmedAlternativeNames -}}
           <b>{{ $item.ModuleDisplayName }}</b>
           <br>
-          <i>{{ $trimmedAlternativeNames }} </i> 
-        {{- else -}} 
-          <b>{{ $item.ModuleDisplayName }} </b> 
+          <i>{{ $trimmedAlternativeNames }} </i>
+        {{- else -}}
+          <b>{{ $item.ModuleDisplayName }} </b>
         {{- end -}}
       </td>
       <td> {{/* availability badge and versions  */}}
         {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
           <a href="https://mcr.microsoft.com/v2/bicep/{{ $item.ModuleName }}/tags/list">
             <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $moduleLatestVersion }}-blue"/>
-          </a> 
+          </a>
         {{- else -}}
           <a href="">
             <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-N/A-blue"/>
-          </a> 
+          </a>
         {{- end -}}
       </td>
       <td> {{/* module owners */}}
@@ -319,7 +319,7 @@
         {{- $i = add $i 1 -}}
       </td>
       <td> {{/* module name and link to the registry */}}
-        {{- if $useLinks -}} 
+        {{- if $useLinks -}}
           {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
             <a href="{{ $item.PublicRegistryReference }}">
               {{ $item.ModuleName }}
@@ -330,7 +330,7 @@
         {{- else -}}
           {{ $item.ModuleName }}
         {{- end -}}
-        
+
         {{- range $element, $maps -}}
           {{- if (eq $element.ParentModule $item.ModuleName) -}}
             {{ $child := trim (replace $element.ModuleName (print $item.ModuleName "/") "") "/" }}
@@ -339,18 +339,18 @@
                 <li style="margin-left: 20px;">
                   <a href="{{ $element.PublicRegistryReference }}" title="{{ $element.ModuleDisplayName }} | {{ $element.ModuleName }}">{{ $child }}</a>
                 </li>
-              {{- else -}} 
+              {{- else -}}
                 <li style="margin-left: 20px;">
                   <span title="{{ $element.ModuleDisplayName }} ({{ $element.ModuleName }})">{{ $child }}</span>
                 </li>
               {{- end -}}
-            {{- end -}} 
+            {{- end -}}
           {{- end -}}
         {{- end -}}
       </td>
       <td style="text-align: center;"> {{/* link to the source code repo */}}
         {{- if $useLinks -}}
-          {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}} 
+          {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
             <a href="{{ $item.RepoURL }}" style="color: inherit; text-decoration: none; background-color: transparent;">📄</a>
           {{- else -}}
             {{ "n/a" }}
@@ -363,7 +363,7 @@
         {{- with $trimmedAlternativeNames -}}
           <b>{{ $item.ModuleDisplayName }}</b>
           <br>
-          <i>{{ $trimmedAlternativeNames }} </i> 
+          <i>{{ $trimmedAlternativeNames }} </i>
         {{- else -}}
           <b>{{ $item.ModuleDisplayName }} </b>
         {{- end -}}
@@ -372,8 +372,8 @@
         {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
           <a href="{{ $item.PublicRegistryReference }}">
             <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $moduleLatestVersion }}-purple"/>
-          </a> 
-        {{- else -}} 
+          </a>
+        {{- else -}}
           <a href="">
               <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-N/A-purple"/>
           </a>

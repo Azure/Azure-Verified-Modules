@@ -313,7 +313,7 @@ After completing your solution development, you can move to the deployment stage
 - If your account has access to multiple tenants, you may need to modify the command to `az login --tenant <tenant id>` where "\<tenant id\>" is the guid for the target tenant.
 - After logging in, select the **target subscription** from the list of subscriptions that you have access to.
 - Change the path to the directory where your completed terraform solution files reside.
-  
+
   {{% notice style="note" %}}Many AVM modules depend on the AzureRM 4.0 Terraform provider which mandates that a subscription id is configured. If you receive an error indicating that `subscription_id is a required provider property`, you will need to set a subscription id value for the provider. For Unix based systems (Linux or MacOS) you can configure this by running `export ARM_SUBSCRIPTION_ID=<your subscription guid>` on the command line. On Microsoft Windows, you can perform the same operation by running `set ARM_SUBSCRIPTION_ID="<your subscription guid>"` from the Windows command prompt or by running `$env:ARM_SUBSCRIPTION_ID="<your subscription guid>"` from a powershell prompt. Replace the "\<your subscription id\>" notation in each command with your Azure subscription's unique id value.{{% /notice %}}
 
 - Initialize your Terraform project. This command downloads the necessary providers and modules to the working directory.
@@ -344,7 +344,7 @@ After completing your solution development, you can move to the deployment stage
   {{% notice style="info" %}}If you are confident in your changes, you can add the `-auto-approve` switch to bypass manual approval: `terraform apply -auto-approve`{{% /notice %}}
 
 - Once the deployment completes, validate that the infrastructure is configured as desired.
-  
+
   {{% notice style="info" %}}A local `terraform.tfstate` file and a state backup file have been created during the deployment. The use of local state is acceptable for small temporary configurations, but production or long-lived installations should use a remote state configuration where possible. Configuring remote state is out of scope for this guide, but you can find details on using an Azure storage account for this purpose in the [Microsoft Learn documentation](https://learn.microsoft.com/en-us/azure/developer/terraform/store-state-in-azure-storage?tabs=azure-cli).{{% /notice %}}
 
 ## Clean up your environment

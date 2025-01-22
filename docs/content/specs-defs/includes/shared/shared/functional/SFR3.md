@@ -43,9 +43,10 @@ The following information notice is automatically added at the bottom of the `RE
 {{% /notice %}}
 
 {{< highlight lineNos="false" type="markdown" wrap="true" title="" >}}
+
 ## Data Collection
 
-{{% include file="/static/includes/telemetry-information-notice.md" %}}  
+{{% include file="/static/includes/telemetry-information-notice.md" %}}
 {{< /highlight >}}
 
 ##### Bicep
