@@ -54,7 +54,7 @@ Azure Verified Modules enable and accelerate consistent solution development and
 
   </td>
     <td style="border: none; margin:0; padding: 0;">
-      <img src="images/avm_cycle.png" width=65% alt="AVM development cycle" style="margin:0 auto;padding: 0;">
+      <img src="{{%siteparam base%}}/images/avm_cycle.png" width=65% alt="AVM development cycle" style="margin:0 auto;padding: 0;">
     </td>
   </tr>
 </table>
@@ -64,7 +64,7 @@ Azure Verified Modules enable and accelerate consistent solution development and
 <table style="border: none; border-collapse: collapse; margin: 0; padding: 0;">
   <tr>
     <td style="border: none; padding: 0; width:55%">
-        <img src="images/avm_modules.png" width=80% alt="AVM module classifications">
+        <img src="{{%siteparam base%}}/images/avm_modules.png" width=80% alt="AVM module classifications">
     </td>
     <td style="border: none; padding: 0;">
 Azure Verified Modules provides two types of modules: Resource and Pattern modules.
@@ -87,7 +87,7 @@ AVM is owned, developed & supported by Microsoft, you may raise a GitHub issue o
 
 You can also log a support ticket and these will be redirected to the AVM team and the module owner(s).
 
-See [Module Support](/help-support/module-support) for more information.
+See [Module Support]({{%siteparam base%}}/help-support/module-support) for more information.
 {{% /notice %}}
 
 ## Next Steps
@@ -104,7 +104,7 @@ See [Module Support](/help-support/module-support) for more information.
     </td>
     <td style="border: none; padding: 0;">
 
-    ![AVM](images/avm_logo.png?width=10vw "AVM")
+    ![AVM]({{%siteparam base%}}/images/avm_logo.png?width=10vw "AVM")
 
     </td>
 
