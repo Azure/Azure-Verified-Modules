@@ -14,7 +14,7 @@ tags: [
   Lifecycle-BAU, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
   Validation-TBD # SINGLE VALUE: this can be "Validation-Manual" OR "Validation-CI/Informational" OR "CI/Enforced"
 ]
-priority: 11010
+priority: 11012
 ---
 
 ## ID: BCPNFR18 - User-defined types - Specification

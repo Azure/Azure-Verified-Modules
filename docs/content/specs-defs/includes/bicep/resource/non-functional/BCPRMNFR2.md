@@ -13,7 +13,7 @@ tags: [
   Lifecycle-BAU, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
   Validation-Manual # SINGLE VALUE: this can be "Validation-Manual" OR "Validation-CI/Informational" OR "CI/Enforced"
 ]
-priority: 13010
+priority: 13020
 ---
 
 ## ID: BCPRMNFR2 - User-defined types - AVM-Common-Types
