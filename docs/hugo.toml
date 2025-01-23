@@ -103,7 +103,7 @@ enableGitInfo = true
     name = 'Bicep'
     pageRef = '/indexes/bicep'
     weight = 1
-    params = { alwaysopen = false, collapsibleMenu = true }
+    params = { alwaysopen = true, collapsibleMenu = true }
 
     [[menu.defined]]
       identifier = 'bicep-resource-module-indexes'
@@ -135,7 +135,7 @@ enableGitInfo = true
     name = 'Terraform'
     pageRef = '/indexes/terraform'
     weight = 2
-    params = { alwaysopen = false, collapsibleMenu = true }
+    params = { alwaysopen = true, collapsibleMenu = true }
 
     [[menu.defined]]
       identifier = 'terraform-resource-module-indexes'
