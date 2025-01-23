@@ -17,6 +17,6 @@ tags: [
 priority: 1130
 ---
 
-#### ID: SNFR10 - Category: Contribution/Support - MIT Licensing
+## ID: SNFR10 - Category: Contribution/Support - MIT Licensing
 
 A module **MUST** be published with the MIT License in the Azure GitHub organization.

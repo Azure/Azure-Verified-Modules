@@ -54,6 +54,10 @@ enableGitInfo = true
 
 [markup]
   defaultMarkdownHandler = 'goldmark'
+  [markup.tableOfContents]
+    endLevel = 6
+    ordered = false
+    startLevel = 2
 
 [markup.goldmark.renderer]
     unsafe = true

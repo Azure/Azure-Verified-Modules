@@ -18,6 +18,6 @@ tags: [
 priority: 1240
 ---
 
-#### ID: SNFR21 - Category: Publishing - Cross Language Collaboration
+## ID: SNFR21 - Category: Publishing - Cross Language Collaboration
 
 When the module owners of the same Resource or Pattern AVM module are not the same individual or team for all languages, each languages team **SHOULD** collaborate with their sibling language team for the same module to ensure consistency where possible.

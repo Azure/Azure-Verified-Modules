@@ -18,6 +18,6 @@ priority: 21290
 showPage: false
 ---
 
-#### ID: TFNFR29 - Category: Code Style - Sensitive Data Outputs
+## ID: TFNFR29 - Category: Code Style - Sensitive Data Outputs
 
 An `output` block that contains confidential data **MUST** be declared with `sensitive = true`.

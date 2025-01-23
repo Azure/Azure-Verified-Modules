@@ -17,7 +17,7 @@ tags: [
 priority: 360
 ---
 
-#### ID: TFNFR36 - Category: Code Style - Setting prevent_deletion_if_contains_resources
+## ID: TFNFR36 - Category: Code Style - Setting prevent_deletion_if_contains_resources
 
 From Terraform AzureRM 3.0, the default value of `prevent_deletion_if_contains_resources` in `provider` block is `true`. This will lead to an unstable test because the test subscription has some policies applied, and they will add some extra resources during the run, which can cause failures during destroy of resource groups.
 

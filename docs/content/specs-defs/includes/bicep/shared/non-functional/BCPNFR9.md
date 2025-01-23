@@ -17,7 +17,7 @@ tags: [
 priority: 11010
 ---
 
-#### ID: BCPNFR9 - Inputs - Decorators
+## ID: BCPNFR9 - Inputs - Decorators
 
 Similar to [BCPNFR21]({{% siteparam base %}}/spec/BCPNFR21), input parameters MUST implement [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators) such as `description` & `secure` (if sensitive).
 

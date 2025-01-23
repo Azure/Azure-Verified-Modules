@@ -16,7 +16,7 @@ tags: [
 priority: 13010
 ---
 
-#### ID: BCPRMNFR3 - Implementing child resources
+## ID: BCPRMNFR3 - Implementing child resources
 
 Child resource modules **MUST** be stored in a subfolder of their parent resource module and named after the child resource's singular name ([ref]({{% siteparam base %}}/specs-defs/includes/shared/pattern/non-functional/PMNFR1)), so that the path to the child resource folder is consistent with the hierarchy of its resource type.
 For example, `Microsoft.Sql/servers` may have dedicated child resources of type `Microsoft.Sql/servers/databases`. Hence, the SQL server database child module is stored in a `database` subfolder of the `server` parent folder.

@@ -17,7 +17,7 @@ tags: [
 priority: 11010
 ---
 
-#### ID: BCPNFR21 - User-defined types - Decorators
+## ID: BCPNFR21 - User-defined types - Decorators
 
 Similar to [BCPNFR9]({{% siteparam base %}}/spec/BCPNFR9), User-defined types (UDTs) MUST implement [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators) such as `description` & `secure` (if sensitive). This is true for every property of the UDT, as well as the UDT itself.
 

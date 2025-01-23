@@ -17,7 +17,7 @@ tags: [
 priority: 21130
 ---
 
-#### ID: TFNFR13 - Category: Code Style - Default Values with coalesce/try
+## ID: TFNFR13 - Category: Code Style - Default Values with coalesce/try
 
 The following example shows how `"${var.subnet_name}-nsg"` **SHOULD** be used when `var.new_network_security_group_name` is `null` or `""`
 

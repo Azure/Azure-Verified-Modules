@@ -17,6 +17,6 @@ tags: [
 priority: 4010
 ---
 
-#### ID: PMFR1 - Category: Composition - Resource Group Creation
+## ID: PMFR1 - Category: Composition - Resource Group Creation
 
 A Pattern Module **MAY** create Resource Group(s).

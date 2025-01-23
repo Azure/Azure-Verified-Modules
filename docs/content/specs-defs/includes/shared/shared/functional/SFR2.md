@@ -17,7 +17,7 @@ tags: [
 priority: 20
 ---
 
-#### ID: SFR2 - Category: Composition - WAF Aligned
+## ID: SFR2 - Category: Composition - WAF Aligned
 
 Modules **SHOULD** set defaults in input parameters/variables to align to **high** priority/impact/severity recommendations, where appropriate and applicable, in the following frameworks and resources:
 

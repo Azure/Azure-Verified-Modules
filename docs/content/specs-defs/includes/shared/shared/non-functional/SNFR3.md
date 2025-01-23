@@ -18,7 +18,7 @@ tags: [
 priority: 1040
 ---
 
-#### ID: SNFR3 - Category: Testing - AVM Compliance Tests
+## ID: SNFR3 - Category: Testing - AVM Compliance Tests
 
 Modules **MUST** pass all tests that ensure compliance to AVM specifications. These tests **MUST** pass before a module version can be published.
 

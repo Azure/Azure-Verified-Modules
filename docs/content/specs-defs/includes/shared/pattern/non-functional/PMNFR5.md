@@ -17,6 +17,6 @@ tags: [
 priority: 4050
 ---
 
-#### ID: PMNFR5 - Category: Inputs - Parameter/Variable Naming
+## ID: PMNFR5 - Category: Inputs - Parameter/Variable Naming
 
 Parameter/variable input names **SHOULD** contain the resource to which they pertain. E.g., `virtualMachineSku`/`virtualmachine_sku`

@@ -17,7 +17,7 @@ tags: [
 priority: 2010
 ---
 
-#### ID: RMFR1 - Category: Composition - Single Resource Only
+## ID: RMFR1 - Category: Composition - Single Resource Only
 
 A resource module **MUST** only deploy a single instance of the primary resource, e.g., one virtual machine per instance.
 

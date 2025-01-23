@@ -17,7 +17,7 @@ tags: [
 priority: 21020
 ---
 
-#### ID: TFNFR2 - Category: Documentation - Module Documentation Generation
+## ID: TFNFR2 - Category: Documentation - Module Documentation Generation
 
 Terraform modules documentation **MUST** be automatically generated via [Terraform Docs](https://github.com/terraform-docs/terraform-docs).
 
