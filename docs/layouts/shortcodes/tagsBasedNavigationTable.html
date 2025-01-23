@@ -90,105 +90,30 @@
   {{- end -}}
 {{- end -}}
 
-{{- if eq (len $pages) 0 -}}
-<blockquote style="padding: 0px; border-color: #ffab00">
-  <table>
-    <tr style="background-color: var(--accent-color-dark);">
-      <td style="margin: 0px; background-color: var(--accent-color-dark); padding: 0px;">
-        <div class="gdoc-hint__title flex align-center"
-          style="margin: 0px; background-color: var(--accent-color-dark);">
-          {{- with $hintIcon -}}
-          <svg class="gdoc-icon {{ . }}">
-            <use xlink:href="#{{ . }}"></use>
-          </svg>
-          <span>{{ "important" }}</span>
-          {{- else -}}
-          <i class="fa {{ "important" | lower }}" title="No specifications available for this criteria"
-            style="color: var(--body-font-color)"></i>
-          {{- end -}}
-        </div>
-      </td>
-    </tr>
+{{- $tagsToShow := "" -}}
 
-    <tr style="background-color: var(--accent-color); ">
-      <td style="padding: 0px;">
-        <div class="gdoc-hint__text">
-          {{ with $tags }}
-          <div class="tags">
-            {{ with $hintText }}{{ $hintText | markdownify }}<br>{{ end }}
-            <svg class="flex align-center no-wrap gdoc-icon gdoc_bookmark">
-              <use xlink:href="#gdoc_bookmark"></use>
-            </svg>
-            {{ range sort . }}
-            <span class="flex align-center gdoc-button gdoc-button--regular"
-              style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
-              <a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ . | urlize }}"
-                title="{{ i18n "posts_tagged_with" . }}">
-                {{ . }}
-              </a>
-            </span>
-            {{ end }}
-          </div>
-          {{ end }}
-        </div>
-      </td>
-    </tr>
-  </table>
-</blockquote>
+{{ range sort $tags }}
+{{/*  <span class="R-taxonomy taxonomy-tags cstyle tags" style = "--VARIABLE-TAGS-BG-color: rgb(146, 146, 146);"><a class="term-link" style="display: inline-block;" href="{{ $baseURL }}tags/{{ . | urlize }}" title="All specifications tagged with '{{ . }}'">{{ . }}</a></span>  */}}
+{{/*  {{ $tagsToShow = add $tagsToShow (add "<a class=\"term-link\" style=\"display: inline-block;\" href=\"{{ $baseURL }}tags/{{ . | urlize }} "\" title=\"All specifications tagged with\"" {{ . }} ">" {{ . }} "</a>)" }}  */}}
+
+{{/*  {{ $tagsToShow = add $tagsToShow (add "<span class=\"R-taxonomy taxonomy-tags cstyle tags\"  style = \"--VARIABLE-TAGS-BG-color: rgb(146, 146, 146);\"><a class=\"term-link\" style=\"display:inline-block;\"" " href=\"" $baseURL "tags/" (. | urlize) "\"" "title='All specifications tagged with' " . ">" . "</a></span>") }}  */}}
+
+{{ $tagsToShow = add $tagsToShow (add "<span class='R-taxonomy taxonomy-tags cstyle tags' style = '--VARIABLE-TAGS-BG-color: rgb(146, 146, 146);margin-left: 0;'><a class='term-link' style='display:inline-block;margin-left: 0; margin-right: 10;' href='" $baseURL "tags/" (. | urlize) "' title=\"All specifications tagged with '" . "'\">" . "</a></span>") }}
+
+{{ end }}
+
+{{- if eq (len $pages) 0 -}}
+
+  {{ partial "shortcodes/notice.html" (dict "page"  . "style" "note" "title" "No specifications available for this criteria" "content" $tagsToShow )}}
+
 {{- else -}}
   {{- $sortedPages := sort $pages "priority" "asc" -}}
 
-  {{ $hintTitle := "The content below is listed based on the following tags"}}
-
   {{ if $showHint }}
-<blockquote style="padding: 0px; border-color: var(--footer-background)">
-  <table>
-    <tr style="background-color: var(--accent-color-dark);">
-      <td style="margin: 0px; background-color: var(--accent-color-dark); padding: 0px;">
-        <div class="gdoc-hint__title flex align-center"
-          style="margin: 0px; background-color: var(--accent-color-dark); ">
-          {{- with $hintIcon -}}
-          <svg class="gdoc-icon {{ . }}">
-            <use xlink:href="#{{ . }}"></use>
-          </svg>
-          <span>{{ $hintTitle }}</span>
-          {{- else -}}
-          <i class="fa {{ $hintType | lower }}" title="{{ $hintTitle }}" style="color: var(--body-font-color)"></i>
-          {{- end -}}
-        </div>
-      </td>
-    </tr>
-    <tr style="background-color: var(--accent-color); ">
-      <td style="padding: 0px;">
-        <div class="gdoc-hint__text">
-          {{ with $tags }}
-          <div class="tags">
-            {{ with $hintText }}{{ $hintText | markdownify }}<br>{{ end }}
-            <svg class="flex align-center no-wrap gdoc-icon gdoc_bookmark">
-              <use xlink:href="#gdoc_bookmark"></use>
-            </svg>
-            {{ range sort . }}
-            <span class="flex align-center gdoc-button gdoc-button--regular"
-              style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
-              <a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ . | urlize }}"
-                title="{{ i18n "posts_tagged_with" . }}">
-                {{ . }}
-              </a>
-            </span>
-            {{ end }}
-          </div>
-          {{ end }}
-        </div>
-      </td>
-    </tr>
-  </table>
-</blockquote>
-    {{/*  <br>
-    <hr>
-    <br>  */}}
+
+    {{ partial "shortcodes/notice.html" (dict "page"  . "style" "code" "title" "The content below is listed based on the following tags" "content" (add "<i class='fa-solid fa-tag'>&nbsp</i>" $tagsToShow) )}}
+
   {{ end }}
-
-
 
   <table>
     <thead>
@@ -256,36 +181,26 @@
             {{- end -}}
           {{- end -}}
 
-          {{- $link := replaceRE "^-" "#" (index (findRE `^\s####\s.+` $page.RawContent) 0 | anchorize) -}}
+          {{- $link := replaceRE "^-" "#" (index (findRE `^\s*####\s.+` $page.RawContent) 0 | anchorize) -}}
+
           <tr>
-            <td>{{- $index -}}</td>
-            <td><a href="{{- $link -}}">{{- $id -}}</a></td>
+            <td style="text-align: right;">{{- $index -}}</td>
+            <td style="width: 40px;"><a href="{{- $link -}}">{{- $id -}}</a></td>
             <td>{{- $title -}}</td>
-            {{ if $showLanguage }}<td>{{ range $language }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Language-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
-            {{ if $showClass }}<td>{{ range $class }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Class-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
-            {{ if $showCategory }}<td>{{ range $category }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Category-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
+            {{ if $showLanguage }}<td>{{ range $language }}<span class="R-taxonomy taxonomy-tags cstyle tags" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="R-taxonomy taxonomy-tags cstyle tags" href="{{ $baseURL }}tags/{{ add "Language-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
+            {{ if $showClass }}<td>{{ range $class }}<span class="R-taxonomy taxonomy-tags cstyle tags" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="R-taxonomy taxonomy-tags cstyle tags" href="{{ $baseURL }}tags/{{ add "Class-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
+            {{ if $showCategory }}<td>{{ range $category }}<span class="R-taxonomy taxonomy-tags cstyle tags" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="R-taxonomy taxonomy-tags cstyle tags" href="{{ $baseURL }}tags/{{ add "Category-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
             {{/*  <td>{{ range $type }}<span class="tag-button"><a href="{{ $baseURL }}tags/{{ . | urlize }}">{{ . }}</a></span>{{ if not (eq (index $type (sub (len $type) 1)) .) }}, {{ end }}{{ end }}</td>  */}}
-            {{ if $showSeverity }}<td>{{ range $severity }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Severity-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
-            {{ if $showPersona }}<td>{{ range $persona }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Persona-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
-            {{ if $showLifecycle }}<td>{{ range $lifecycle }}<span class="flex align-center gdoc-button gdoc-button--regular" style = "line-height: 0.8; margin-bottom: 2px; margin-top: 2px; font-size: 12px;"><a class="gdoc-button__link" href="{{ $baseURL }}tags/{{ add "Lifecycle-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
+            {{ if $showSeverity }}<td style="text-align: center; width: 40px;">{{ range $severity }}<span class="R-taxonomy taxonomy-tags cstyle tags" style = "--VARIABLE-TAGS-BG-color: rgb(146, 146, 146);"><a class="term-link" href="{{ $baseURL }}tags/{{ add "Severity-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
+            {{ if $showPersona }}<td style="text-align: center; width: 195px;">{{ range $persona }}<span class="R-taxonomy taxonomy-tags cstyle tags" style = "--VARIABLE-TAGS-BG-color: rgb(146, 146, 146);margin-left: 0;margin-right: 0;"><a class="term-link" style="display: inline-block;margin-left: 5; margin-right: 5;" href="{{ $baseURL }}tags/{{ add "Persona-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
+            {{ if $showLifecycle }}<td style="text-align: center; width: 40px;">{{ range $lifecycle }}<span class="R-taxonomy taxonomy-tags cstyle tags" style = "--VARIABLE-TAGS-BG-color: rgb(146, 146, 146);"><a class="term-link" href="{{ $baseURL }}tags/{{ add "Lifecycle-" . | urlize }}">{{ . }}</a></span>{{ end }}</td>{{ end }}
           </tr>
         {{- end -}}
       {{- end -}}
     </tbody>
   </table>
 
-  <br>
-  {{/*  <hr>
-  <br>  */}}
-
-  {{- if $summarize -}}
-    {{- if $summaryOpenByDefault -}}
-      <details open>
-    {{- else -}}
-      <details>
-    {{- end -}}
-    <summary><b>See Specifications for this chapter</b><br><br></summary>
-  {{- end -}}
+  {{- $content := "" -}}
 
   {{- range $sortedPages -}}
     {{- $page := .page -}}
@@ -296,22 +211,30 @@
     {{- $specURL := printf "%s%s" $baseURL (replaceRE "^/" "" $page.Params.url) -}}
 
     {{- with $page -}}
+
       {{- if $showPage -}}
         {{- if $showPageTags -}}
-          {{- partial "showPageTags" (dict "pageTags" $pageTags "baseURL" $baseURL) -}}
+          {{- $content = add $content (partial "showPageTags" (dict "pageTags" $pageTags "baseURL" $baseURL)) -}}
         {{- end -}}
-        <svg class="flex align-center no-wrap gdoc-icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg><a href="{{- $specURL | safeHTML -}}" style="text-decoration: none;">See origin...</a>
-        {{- .Content -}}
-        <br>
+        {{/*  <a href="{{- $specURL | safeHTML -}}" style="text-decoration: none;">See origin...</a>  */}}
+        {{- $content = add $content ( add ("<a href=") ($specURL | safeHTML) " style=\"text-decoration: none;\">See origin...</a>" ) -}}
+        {{/*  <svg class="flex align-center no-wrap gdoc-icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg><a href="{{- $specURL | safeHTML -}}" style="text-decoration: none;">See origin...</a>  */}}
+        {{/*  {{- .Content | .RenderString | safeHTML -}}  */}}
+        {{- $content = add $content (.Content | .RenderString | safeHTML) -}}
+        {{- $content = add $content "<br><hr><br>" -}}
+
+        {{/*  <br>
         <hr>
-        <br>
+        <br>  */}}
       {{- end -}}
     {{- end -}}
   {{- end -}}
 
   {{- if $summarize -}}
-  </details>
+    {{ partial "shortcodes/expand.html" (dict "page"  . "title" "➕ See Specifications for this category" "content" $content "expanded" $summaryOpenByDefault) }}
+  {{- else -}}
+    <br>
+    {{- $content | safeHTML -}}
   {{- end -}}
-
 
 {{- end -}}

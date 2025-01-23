@@ -1,15 +1,12 @@
 ---
 title: BCPNFR17 - Code Styling - Type casting
 url: /spec/BCPNFR17
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Type-NonFunctional, # SINGLE VALUE: this can be "Type-Functional" OR "Type-NonFunctional"
-  Category-Naming/Composition, # SINGLE VALUE: this can be "Category-Testing" OR "Category-Telemetry" OR "Category-Contribution/Support" OR "Category-Documentation" OR "Category-CodeStyle" OR "Category-Naming/Composition" OR "Category-Inputs/Outputs" OR "Category-Release/Publishing"
+  Category-CodeStyle, # SINGLE VALUE: this can be "Category-Testing" OR "Category-Telemetry" OR "Category-Contribution/Support" OR "Category-Documentation" OR "Category-CodeStyle" OR "Category-Naming/Composition" OR "Category-Inputs/Outputs" OR "Category-Release/Publishing"
   Language-Bicep, # MULTIPLE VALUES: this can be "Language-Bicep" AND/OR "Language-Terraform"
   Severity-SHOULD, # SINGLE VALUE: this can be "Severity-MUST" OR "Severity-SHOULD" OR "Severity-MAY"
   Persona-Owner, # MULTIPLE VALUES: this can be "Persona-Owner" AND/OR "Persona-Contributor"
@@ -28,10 +25,10 @@ For reference, please refer to the following examples:
 
 #### Boolean as String
 
-{{< tabs "booleanString" >}}
-  {{< tab "Before" >}}
+{{< tabs title="Boolean as String" >}}
+{{% tab title="Before" %}}
 
-  ```bicep
+  {{< highlight lineNos="false" type="bicep" wrap="true" title="" >}}
   @allowed([
     'false'
     'true'
@@ -44,12 +41,12 @@ For reference, please refer to the following examples:
       myParameter: myParameterValue
     }
   }
-  ```
+  {{< /highlight >}}
 
-  {{< /tab >}}
-  {{< tab "After" >}}
+{{% /tab %}}
+{{% tab title="After" %}}
 
-  ```bicep
+  {{< highlight lineNos="false" type="bicep" wrap="true" title="" >}}
   param myParameterValue string = false
 
   resource myResource '(...)' = {
@@ -58,17 +55,18 @@ For reference, please refer to the following examples:
       myParameter: string(myParameterValue)
     }
   }
-  ```
+  {{< /highlight >}}
 
-  {{< /tab >}}
+{{% /tab %}}
+
 {{< /tabs >}}
 
 #### Integer Array as String Array
 
-{{< tabs "intArrayString" >}}
-  {{< tab "Before" >}}
+{{< tabs title="Integer Array as String Array" >}}
+{{% tab title="Before" %}}
 
-  ```bicep
+  {{< highlight lineNos="false" type="bicep" wrap="true" title="" >}}
   @allowed([
     '1'
     '2'
@@ -82,12 +80,12 @@ For reference, please refer to the following examples:
       zones: zones
     }
   }
-  ```
+  {{< /highlight >}}
 
-  {{< /tab >}}
-  {{< tab "After" >}}
+{{% /tab %}}
+{{% tab title="After" %}}
 
-  ```bicep
+  {{< highlight lineNos="false" type="bicep" wrap="true" title="" >}}
   @allowed([
     1
     2
@@ -101,7 +99,8 @@ For reference, please refer to the following examples:
       zones: map(zones, zone => string(zone))
     }
   }
-  ```
+  {{< /highlight >}}
 
-  {{< /tab >}}
+{{% /tab %}}
+
 {{< /tabs >}}

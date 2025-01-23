@@ -131,54 +131,54 @@
 {{- end -}}
 
 {{- $urlMap := dict
-  "Contribution/Support-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#contribution--support"
-  "Telemetry-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#telemetry"
-  "Naming/Composition-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#naming--composition"
-  "CodeStyle-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#code-style"
-  "Inputs/Outputs-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#inputs--outputs"
-  "Testing-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#testing"
-  "Documentation-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#documentation"
-  "Release/Publishing-Bicep-Resource" "/Azure-Verified-Modules/specs/bcp/res/#release--publishing"
-  "Contribution/Support-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#contribution--support"
-  "Telemetry-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#telemetry"
-  "Naming/Composition-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#naming--composition"
-  "CodeStyle-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#code-style"
-  "Inputs/Outputs-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#inputs--outputs"
-  "Testing-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#testing"
-  "Documentation-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#documentation"
-  "Release/Publishing-Bicep-Pattern" "/Azure-Verified-Modules/specs/bcp/ptn/#release--publishing"
-  "Contribution/Support-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#contribution--support"
-  "Telemetry-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#telemetry"
-  "Naming/Composition-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#naming--composition"
-  "CodeStyle-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#code-style"
-  "Inputs/Outputs-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#inputs--outputs"
-  "Testing-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#testing"
-  "Documentation-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#documentation"
-  "Release/Publishing-Bicep-Utility" "/Azure-Verified-Modules/specs/bcp/utl/#release--publishing"
-  "Contribution/Support-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/ptn/#contribution--support"
-  "Telemetry-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#telemetry"
-  "Naming/Composition-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#naming--composition"
-  "CodeStyle-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#code-style"
-  "Inputs/Outputs-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#inputs--outputs"
-  "Testing-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#testing"
-  "Documentation-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#documentation"
-  "Release/Publishing-Terraform-Resource" "/Azure-Verified-Modules/specs/tf/res/#release--publishing"
-  "Contribution/Support-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#contribution--support"
-  "Telemetry-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#telemetry"
-  "Naming/Composition-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#naming--composition"
-  "CodeStyle-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#code-style"
-  "Inputs/Outputs-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#inputs--outputs"
-  "Testing-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#testing"
-  "Documentation-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#documentation"
-  "Release/Publishing-Terraform-Pattern" "/Azure-Verified-Modules/specs/tf/ptn/#release--publishing"
-  "Contribution/Support-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#contribution--support"
-  "Telemetry-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#telemetry"
-  "Naming/Composition-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#naming--composition"
-  "CodeStyle-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#code-style"
-  "Inputs/Outputs-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#inputs--outputs"
-  "Testing-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#testing"
-  "Documentation-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#documentation"
-  "Release/Publishing-Terraform-Utility" "/Azure-Verified-Modules/specs/tf/utl/#release--publishing"
+  "Contribution/Support-Bicep-Resource" (add .Site.Params.base "/specs/bcp/res/#contribution--support")
+  "Telemetry-Bicep-Resource" (add .Site.Params.base "/specs/bcp/res/#telemetry")
+  "Naming/Composition-Bicep-Resource" (add .Site.Params.base "/specs/bcp/res/#naming--composition")
+  "CodeStyle-Bicep-Resource" (add .Site.Params.base "/specs/bcp/res/#code-style")
+  "Inputs/Outputs-Bicep-Resource" (add .Site.Params.base "/specs/bcp/res/#inputs--outputs")
+  "Testing-Bicep-Resource" (add .Site.Params.base "/specs/bcp/res/#testing")
+  "Documentation-Bicep-Resource" (add .Site.Params.base "/specs/bcp/res/#documentation")
+  "Release/Publishing-Bicep-Resource" (add .Site.Params.base "/specs/bcp/res/#release--publishing")
+  "Contribution/Support-Bicep-Pattern" (add .Site.Params.base "/specs/bcp/ptn/#contribution--support")
+  "Telemetry-Bicep-Pattern" (add .Site.Params.base "/specs/bcp/ptn/#telemetry")
+  "Naming/Composition-Bicep-Pattern" (add .Site.Params.base "/specs/bcp/ptn/#naming--composition")
+  "CodeStyle-Bicep-Pattern" (add .Site.Params.base "/specs/bcp/ptn/#code-style")
+  "Inputs/Outputs-Bicep-Pattern" (add .Site.Params.base "/specs/bcp/ptn/#inputs--outputs")
+  "Testing-Bicep-Pattern" (add .Site.Params.base "/specs/bcp/ptn/#testing")
+  "Documentation-Bicep-Pattern" (add .Site.Params.base "/specs/bcp/ptn/#documentation")
+  "Release/Publishing-Bicep-Pattern" (add .Site.Params.base "/specs/bcp/ptn/#release--publishing")
+  "Contribution/Support-Bicep-Utility" (add .Site.Params.base "/specs/bcp/utl/#contribution--support")
+  "Telemetry-Bicep-Utility" (add .Site.Params.base "/specs/bcp/utl/#telemetry")
+  "Naming/Composition-Bicep-Utility" (add .Site.Params.base "/specs/bcp/utl/#naming--composition")
+  "CodeStyle-Bicep-Utility" (add .Site.Params.base "/specs/bcp/utl/#code-style")
+  "Inputs/Outputs-Bicep-Utility" (add .Site.Params.base "/specs/bcp/utl/#inputs--outputs")
+  "Testing-Bicep-Utility" (add .Site.Params.base "/specs/bcp/utl/#testing")
+  "Documentation-Bicep-Utility" (add .Site.Params.base "/specs/bcp/utl/#documentation")
+  "Release/Publishing-Bicep-Utility" (add .Site.Params.base "/specs/bcp/utl/#release--publishing")
+  "Contribution/Support-Terraform-Resource" (add .Site.Params.base "/specs/tf/ptn/#contribution--support")
+  "Telemetry-Terraform-Resource" (add .Site.Params.base "/specs/tf/res/#telemetry")
+  "Naming/Composition-Terraform-Resource" (add .Site.Params.base "/specs/tf/res/#naming--composition")
+  "CodeStyle-Terraform-Resource" (add .Site.Params.base "/specs/tf/res/#code-style")
+  "Inputs/Outputs-Terraform-Resource" (add .Site.Params.base "/specs/tf/res/#inputs--outputs")
+  "Testing-Terraform-Resource" (add .Site.Params.base "/specs/tf/res/#testing")
+  "Documentation-Terraform-Resource" (add .Site.Params.base "/specs/tf/res/#documentation")
+  "Release/Publishing-Terraform-Resource" (add .Site.Params.base "/specs/tf/res/#release--publishing")
+  "Contribution/Support-Terraform-Pattern" (add .Site.Params.base "/specs/tf/ptn/#contribution--support")
+  "Telemetry-Terraform-Pattern" (add .Site.Params.base "/specs/tf/ptn/#telemetry")
+  "Naming/Composition-Terraform-Pattern" (add .Site.Params.base "/specs/tf/ptn/#naming--composition")
+  "CodeStyle-Terraform-Pattern" (add .Site.Params.base "/specs/tf/ptn/#code-style")
+  "Inputs/Outputs-Terraform-Pattern" (add .Site.Params.base "/specs/tf/ptn/#inputs--outputs")
+  "Testing-Terraform-Pattern" (add .Site.Params.base "/specs/tf/ptn/#testing")
+  "Documentation-Terraform-Pattern" (add .Site.Params.base "/specs/tf/ptn/#documentation")
+  "Release/Publishing-Terraform-Pattern" (add .Site.Params.base "/specs/tf/ptn/#release--publishing")
+  "Contribution/Support-Terraform-Utility" (add .Site.Params.base "/specs/tf/utl/#contribution--support")
+  "Telemetry-Terraform-Utility" (add .Site.Params.base "/specs/tf/utl/#telemetry")
+  "Naming/Composition-Terraform-Utility" (add .Site.Params.base "/specs/tf/utl/#naming--composition")
+  "CodeStyle-Terraform-Utility" (add .Site.Params.base "/specs/tf/utl/#code-style")
+  "Inputs/Outputs-Terraform-Utility" (add .Site.Params.base "/specs/tf/utl/#inputs--outputs")
+  "Testing-Terraform-Utility" (add .Site.Params.base "/specs/tf/utl/#testing")
+  "Documentation-Terraform-Utility" (add .Site.Params.base "/specs/tf/utl/#documentation")
+  "Release/Publishing-Terraform-Utility" (add .Site.Params.base "/specs/tf/utl/#release--publishing")
 -}}
 
 <table>
@@ -277,7 +277,7 @@
       <tr>
         <td>
           <span class="flex align-center gdoc-button gdoc-button--regular" style="line-height: 0.8; margin-bottom: 0px; margin-top: 0px;">
-            <a class="gdoc-button__link" href="{{ $baseURL }}tags/Category-{{ $category | urlize }}" title="{{ i18n "posts_tagged_with" (printf "Category-%s" $category) }}">
+            <a class="gdoc-button__link" href="{{ $baseURL }}tags/category-{{ $category | urlize }}" title="{{ i18n "posts_tagged_with" (printf "Category-%s" $category) }}">
               {{ $category }}
             </a>
           </span>

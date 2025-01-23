@@ -1,10 +1,7 @@
 ---
 title: BCPNFR9 - Inputs - Decorators
 url: /spec/BCPNFR9
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -22,7 +19,7 @@ priority: 11010
 
 #### ID: BCPNFR9 - Inputs - Decorators
 
-Similar to [BCPNFR21](/Azure-Verified-Modules/spec/BCPNFR21), input parameters MUST implement [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators) such as `description` & `secure` (if sensitive).
+Similar to [BCPNFR21]({{% siteparam base %}}/spec/BCPNFR21), input parameters MUST implement [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators) such as `description` & `secure` (if sensitive).
 
 Further, input parameters SHOULD implement decorators like `allowed`, `minValue`, `maxValue`, `minLength` & `maxLength` (and others if available) as they have a big positive impact on the module's usability.
 

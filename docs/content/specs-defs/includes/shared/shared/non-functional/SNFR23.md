@@ -1,10 +1,7 @@
 ---
 title: SNFR23 - GitHub Repo Labels
 url: /spec/SNFR23
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -19,29 +16,30 @@ tags: [
 ]
 priority: 1160
 ---
-
+<!-- markdownlint-disable -->
 #### ID: SNFR23 - Category: Contribution/Support - GitHub Repo Labels
 
 GitHub repositories where modules are held **MUST** use the below labels and **SHOULD** not use any additional labels:
 
-{{< expand "➕ AVM Standard GitHub Labels" "expand/collapse" >}}
+{{% expand title="➕ AVM Standard GitHub Labels" expanded="false" %}}
 
-These labels are available in a CSV file from [here](/Azure-Verified-Modules/governance/avm-standard-github-labels.csv)
+These labels are available in a CSV file from [here]({{% siteparam base %}}/governance/avm-standard-github-labels.csv)
 
 {{< ghLabelsCsvToTable header=true csv="/static/governance/avm-standard-github-labels.csv" >}}
 
-{{< /expand >}}
+{{% /expand %}}
 
 To help apply these to a module GitHub repository you can use the below PowerShell script:
 
-{{< expand "➕ Set-AvmGitHubLabels.ps1" "expand/collapse" >}}
+{{% expand title="➕ Set-AvmGitHubLabels.ps1" expanded="false" %}}
 
 For most scenario this is the command you'll need to call the below PowerShell script with, replacing the value for `RepositoryName`:
 
-```powershell
-Set-AvmGitHubLabels.ps1 -RepositoryName "Org/MyGitHubRepo" -CreateCsvLabelExports $false -NoUserPrompts $true
-```
+{{< highlight lineNos="false" type="PowerShell" wrap="true" title="Invoke Set-AvmGitHubLabels.ps1" >}}
+  Set-AvmGitHubLabels.ps1 -RepositoryName "Org/MyGitHubRepo" -CreateCsvLabelExports $false -NoUserPrompts $true
+{{< /highlight >}}
 
+{{< highlight lineNos="false" type="shell" wrap="true" title="docker" >}}
 ```shell
 # Linux / MacOs
 # For Windows replace $PWD with your the local path or your repository
@@ -61,8 +59,10 @@ docker run -it -v $PWD:/repo -w /repo mcr.microsoft.com/powershell pwsh -Command
     $OrgProject = "Azure/terraform-azurerm-avm-res-kusto-cluster"
     gh auth status
     ./Set-AvmGitHubLabels.ps1 -RepositoryName $OrgProject -CreateCsvLabelExports $false -NoUserPrompts $true
+
   '
 ```
+{{< /highlight >}}
 
 By default this script will only update and append labels on the repository specified. However, this can be changed by setting the parameter `-UpdateAndAddLabelsOnly` to `$false`, which will remove all the labels from the repository first and then apply the AVM labels from the CSV only.
 
@@ -72,6 +72,9 @@ Full Script:
 
 These `Set-AvmGitHubLabels.ps1` can be downloaded from <a href="/Azure-Verified-Modules/scripts/Set-AvmGitHubLabels.ps1" download>here</a>.
 
-{{< include file="/static/scripts/Set-AvmGitHubLabels.ps1" language="powershell" options="linenos=false" >}}
+{{< highlight lineNos="false" type="PowerShell" wrap="true" title="Set-AvmGitHubLabels.ps1" >}}
+  {{% include file="/static/scripts/Set-AvmGitHubLabels.ps1"%}}
+{{< /highlight >}}
 
-{{< /expand >}}
+{{% /expand %}}
+<!-- markdownlint-enable -->

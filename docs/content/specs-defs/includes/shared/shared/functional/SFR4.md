@@ -1,10 +1,7 @@
 ---
 title: SFR4 - Telemetry Enablement Flexibility
 url: /spec/SFR4
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -27,8 +24,8 @@ The telemetry enablement **MUST** be on/enabled by default, however this **MUST*
 - Bicep: `enableTelemetry`
 - Terraform: `enable_telemetry`
 
-{{< hint type=note >}}
+{{% notice style="note" %}}
 
 Whenever a module references AVM modules that implement the telemetry parameter (e.g., a pattern module that uses AVM resource modules), the telemetry parameter value **MUST** be passed through to these modules. This is necessary to ensure a consumer can reliably enable & disable the telemetry feature for all used modules.
 
-{{< /hint >}}
+{{% /notice %}}

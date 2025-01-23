@@ -1,10 +1,7 @@
 ---
 title: SNFR2 - E2E Testing
 url: /spec/SNFR2
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -29,14 +26,14 @@ Each test **MUST** run and complete without user inputs successfully, for automa
 
 Each test **MUST** also destroy/clean-up its resources and test dependencies following a run.
 
-{{< hint type=tip >}}
+{{% notice style="tip" %}}
 
 To see a directory and file structure for a module, see the language specific contribution guide.
 
-- [Bicep](/Azure-Verified-Modules/contributing/bicep#directory-and-file-structure)
-- [Terraform](/Azure-Verified-Modules/contributing/terraform#directory-and-file-structure)
+- [Bicep]({{% siteparam base %}}/contributing/bicep#directory-and-file-structure)
+- [Terraform]({{% siteparam base %}}/contributing/terraform#directory-and-file-structure)
 
-{{< /hint >}}
+{{% /notice %}}
 
 ##### Required Resources/Dependencies Required for E2E Tests
 
@@ -53,7 +50,7 @@ Module owners **MUST**:
     - Another already published AVM Module that **MUST** be pinned to a specific published version.
       - They **MUST NOT** use any local directory path references or local copies of AVM modules in their own modules test directory.
 
-{{< expand "➕ Terraform & Bicep Log Analytics Workspace examples using simple/native declarations for use in E2E tests" "expand/collapse">}}
+{{% expand title="➕ Terraform & Bicep Log Analytics Workspace examples using simple/native declarations for use in E2E tests" expanded="false" %}}
 
 ###### Terraform
 
@@ -87,4 +84,4 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-12
 }
 ```
 
-{{< /expand >}}
+{{% /expand %}}

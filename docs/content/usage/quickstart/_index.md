@@ -1,9 +1,7 @@
 ---
-title: Quickstart
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-geekdocCollapseSection: true
+draft: false
+title: Quickstart Guide
+linktitle: Quickstart
 ---
 
 This QuickStart guide offers step-by-step instructions for integrating Azure Verified Modules (AVM) into your solutions. It includes the initial setup, essential tools, and configurations required to deploy and manage your Azure resources efficiently using AVM.

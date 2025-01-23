@@ -16,6 +16,9 @@
       "pattern": "/Azure-Verified-Modules/"
     },
     {
+      "pattern": "docs/themes/hugo-theme-relearn"
+    },
+    {
       "pattern": "^https://drone.thegeeklab.de"
     },
     {

@@ -1,0 +1,16 @@
+{{- $ret := false }}
+{{- with .page }}
+	{{- $ret = partialCached "_relearn/pageIsHidden.gotmpl" . .Path }}
+	{{- if not $ret }}
+		{{- with .Parent }}
+			{{- if eq . $.to }}
+				{{- /* stop if we reach the top */}}
+			{{- else if partialCached "_relearn/pageIsHidden.gotmpl" . .Path }}
+				{{- $ret = true }}
+			{{- else }}
+				{{- $ret = partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" $.to) .Path $.to.Path }}
+			{{- end }}
+		{{- end }}
+	{{- end }}
+{{- end }}
+{{- return $ret }}

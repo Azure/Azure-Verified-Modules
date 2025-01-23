@@ -1,10 +1,7 @@
 ---
 title: SNFR11 - Issues Response Times
 url: /spec/SNFR11
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -23,4 +20,4 @@ priority: 1140
 
 #### ID: SNFR11 - Category: Contribution/Support - Issues Response Times
 
-A module owner **MUST** respond to logged issues within 3 business days. See [Module Support](/Azure-Verified-Modules/help-support/module-support/) for more information.
+A module owner **MUST** respond to logged issues within 3 business days. See [Module Support]({{% siteparam base %}}/help-support/module-support/) for more information.
