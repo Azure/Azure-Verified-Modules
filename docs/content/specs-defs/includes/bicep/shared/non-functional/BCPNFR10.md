@@ -17,6 +17,6 @@ tags: [
 priority: 11100
 ---
 
-#### ID: BCPNFR10 - Category: Testing - Test Bicep File Naming
+## ID: BCPNFR10 - Category: Testing - Test Bicep File Naming
 
 Module owners **MUST** name their test `.bicep` files in the `/tests/e2e/<defaults/waf-aligned/max/etc.>` directories: `main.test.bicep` as the test framework (CI) relies upon this name.

@@ -23,8 +23,6 @@ For more details on "**What are the different ways to contribute to AVM?**", see
 
 {{% /notice %}}
 
----
-
 ## Status Badges
 
 This section gives you an overview of the latest workflow status of each AVM module in the [Public Bicep Registry repository](https://github.com/Azure/bicep-registry-modules).

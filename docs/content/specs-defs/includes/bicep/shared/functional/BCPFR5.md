@@ -17,7 +17,7 @@ tags: [
 priority: 10040
 ---
 
-#### ID: BCPFR5 - Category: Inputs - Availability Zones Implementation
+## ID: BCPFR5 - Category: Inputs - Availability Zones Implementation
 
 To implement requirement [SFR5]({{% siteparam base %}}/spec/SFR5), the following convention **SHOULD** apply:
 

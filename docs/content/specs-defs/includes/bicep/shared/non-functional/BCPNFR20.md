@@ -14,10 +14,10 @@ tags: [
   Lifecycle-BAU, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
   Validation-TBD # SINGLE VALUE: this can be "Validation-Manual" OR "Validation-CI/Informational" OR "CI/Enforced"
 ]
-priority: 11010
+priority: 11014
 ---
 
-#### ID: BCPNFR20 - User-defined types - Export
+## ID: BCPNFR20 - User-defined types - Export
 
 User-defined types (UDTs) SHOULD always be exported via the `@export()` annotation in every template they're implemented in.
 ```bicep

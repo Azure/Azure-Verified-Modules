@@ -17,7 +17,7 @@ tags: [
 priority: 2030
 ---
 
-#### ID: RMFR3 - Category: Composition - Resource Groups
+## ID: RMFR3 - Category: Composition - Resource Groups
 
 A resource module **MUST NOT** create a Resource Group **for resources that require them.**
 

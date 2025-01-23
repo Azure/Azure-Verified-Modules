@@ -17,7 +17,7 @@ tags: [
 priority: 21260
 ---
 
-#### ID: TFNFR26 - Category: Code Style - Providers in required_providers
+## ID: TFNFR26 - Category: Code Style - Providers in required_providers
 
 The `terraform` block in `terraform.tf` **MUST** contain the `required_providers` block.
 

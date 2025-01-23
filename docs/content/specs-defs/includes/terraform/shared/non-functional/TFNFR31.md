@@ -17,7 +17,7 @@ tags: [
 priority: 21310
 ---
 
-#### ID: TFNFR31 - Category: Code Style - locals.tf for Locals Only
+## ID: TFNFR31 - Category: Code Style - locals.tf for Locals Only
 
 In `locals.tf`, file we could declare multiple `locals` blocks, but only `locals` blocks are allowed.
 

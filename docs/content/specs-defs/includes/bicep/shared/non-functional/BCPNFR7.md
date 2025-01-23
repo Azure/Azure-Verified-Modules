@@ -17,7 +17,7 @@ tags: [
 priority: 11020
 ---
 
-#### ID: BCPNFR7 - Category: Inputs - Parameter Requirement Types
+## ID: BCPNFR7 - Category: Inputs - Parameter Requirement Types
 
 Modules will have lots of parameters that will differ in their requirement type (required, optional, etc.). To help consumers understand what each parameter's requirement type is, module owners **MUST** add the requirement type to the beginning of each parameter's description. Below are the requirement types with a definition and example for the description decorator:
 

@@ -17,7 +17,7 @@ tags: [
 priority: 21330
 ---
 
-#### ID: TFNFR33 - Category: Code Style - Precise Local Types
+## ID: TFNFR33 - Category: Code Style - Precise Local Types
 
 Precise local types **SHOULD** be used.
 
