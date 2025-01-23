@@ -223,7 +223,7 @@ if ($UseOIDC -eq $false) {
   if ($GitHubSecret_ARM_MGMTGROUP_ID -ne '') {
     Write-Host "Creating RBAC Role Assignments of 'Contributor' and 'User Access Administrator' for the Service Principal Name (SPN) '$($newSpn.DisplayName)' on the Management Group with the ID of '$($GitHubSecret_ARM_MGMTGROUP_ID)' ..." -ForegroundColor Magenta
     New-AzRoleAssignment -ApplicationId $newSpn.AppId -RoleDefinitionName 'User Access Administrator' -Scope "/providers/Microsoft.Management/managementGroups/$($GitHubSecret_ARM_MGMTGROUP_ID)" -ErrorAction Stop
-    New-AzRoleAssignment -ApplicationId $newSpn.AppId -RoleDefinitionName 'Contributor' -Scope "/providers/Microsoft.Management/managementGroups/$($GitHubSecret_ARM_SUBSCRIPTION_ID)" -ErrorAction Stop
+    New-AzRoleAssignment -ApplicationId $newSpn.AppId -RoleDefinitionName 'Contributor' -Scope "/providers/Microsoft.Management/managementGroups/$($GitHubSecret_ARM_MGMTGROUP_ID)" -ErrorAction Stop
     Write-Host "RBAC Role Assignments of 'Contributor' and 'User Access Administrator' for the Service Principal Name (SPN) '$($newSpn.DisplayName)' created successfully on the Management Group with the ID of '$($GitHubSecret_ARM_MGMTGROUP_ID)'." -ForegroundColor Green
     Write-Host ''
   }
@@ -298,7 +298,7 @@ if ($UseOIDC) {
   if ($GitHubSecret_ARM_MGMTGROUP_ID -ne '') {
     Write-Host "Creating RBAC Role Assignments of 'Contributor' and 'User Access Administrator' for the User-Assigned Managed Identity Name (UAMI) '$($newSpn.DisplayName)' on the Management Group with the ID of '$($GitHubSecret_ARM_MGMTGROUP_ID)' ..." -ForegroundColor Magenta
     New-AzRoleAssignment -ObjectId $newUAMI.PrincipalId -RoleDefinitionName 'User Access Administrator' -Scope "/providers/Microsoft.Management/managementGroups/$($GitHubSecret_ARM_MGMTGROUP_ID)" -ErrorAction Stop
-    New-AzRoleAssignment -ObjectId $newUAMI.PrincipalId -RoleDefinitionName 'Contributor' -Scope "/providers/Microsoft.Management/managementGroups/$($GitHubSecret_ARM_SUBSCRIPTION_ID)" -ErrorAction Stop
+    New-AzRoleAssignment -ObjectId $newUAMI.PrincipalId -RoleDefinitionName 'Contributor' -Scope "/providers/Microsoft.Management/managementGroups/$($GitHubSecret_ARM_MGMTGROUP_ID)" -ErrorAction Stop
     Write-Host "RBAC Role Assignments of 'Contributor' and 'User Access Administrator' for the User-Assigned Managed Identity Name (UAMI) '$($newUAMI.Name)' created successfully on the Management Group with the ID of '$($GitHubSecret_ARM_MGMTGROUP_ID)'." -ForegroundColor Green
     Write-Host ''
   }

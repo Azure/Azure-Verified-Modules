@@ -208,7 +208,11 @@ In those cases, for the first PR adding such modules to the public registry, we 
     - The `Issuer`, `Audiences`, and `Subject identifier` fields auto-populate based on the values you entered.
     - Select `Add` to configure the federated credential.
       ![OIDCAdd]({{% siteparam base %}}/images/bicep-ci/msiOIDCAddFederatedIdentity_03.png?width=35vw "OIDC Add")
-    - You might find the following links useful:
+    - You might find the following links & information useful:
+      - If configuring the federated credential via API (e.g. Bicep, PowerShell etc.), you will need the following information points that are configured automatically for you via the portal experience:
+        - Issuer = `https://token.actions.githubusercontent.com`
+        - Subject = `repo:<GitHub Org>/<GitHub Repo>:environment:avm-validation`
+        - Audience = `api://AzureADTokenExchange` (although this is default in the API so not required to set)
       - [Configure a federated identity credential on a user-assigned managed identity](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity)
 3. Note down the following pieces of information
     - Client ID
@@ -222,6 +226,7 @@ Additional references:
 
 - [Configure a federated identity credential](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure-openid-connect#prerequisites)
 - [Azure login GitHub action - Login with OIDC](https://github.com/Azure/login?tab=readme-ov-file#login-with-openid-connect-oidc-recommended)
+
 
 {{% /expand %}}
 
