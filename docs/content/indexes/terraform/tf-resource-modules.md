@@ -29,14 +29,6 @@ Modules listed below that aren't shown with the status of **`Module Available �
 
 {{% /expand %}}
 
-### Module Publication History - 📅
-
-{{% expand title="➕ Module Publication History - Module names, status and owners" expanded="false" %}}
-
-{{% moduleHistory header=true csv="/static/module-indexes/TerraformResourceModules.csv" language="Terraform" moduleType="resource" exclude="Proposed :new:" monthsToShow=9999 %}}
-
-{{% /expand %}}
-
 ### Published modules - 🟢 & 👀
 
 {{% expand title="➕ Published Modules - Module names, status and owners" expanded="true" %}}
@@ -58,6 +50,14 @@ Modules listed below that aren't shown with the status of **`Module Available �
 {{% expand title="➕ All Modules - Module names, status and owners" expanded="false" %}}
 
 {{% moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformResourceModules.csv" language="Terraform" moduleType="resource" %}}
+
+{{% /expand %}}
+
+### Module Publication History - 📅
+
+{{% expand title="➕ Module Publication History - Module names, status and owners" expanded="false" %}}
+
+{{% moduleHistory header=true csv="/static/module-indexes/TerraformResourceModules.csv" language="Terraform" moduleType="resource" exclude="Proposed :new:" monthsToShow=9999 %}}
 
 {{% /expand %}}
 
