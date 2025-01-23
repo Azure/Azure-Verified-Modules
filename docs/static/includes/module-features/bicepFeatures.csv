@@ -10,7 +10,7 @@
 9,res/automation/automation-account,✅,✅,✅,✅,✅,✅,✅
 10,res/batch/batch-account,✅,✅,✅,✅,✅,✅,✅
 11,res/cache/redis,✅,✅,✅,✅,✅,,✅
-12,res/cdn/profile,✅,✅,✅,,,,✅
+12,res/cdn/profile,✅,✅,✅,✅,,,✅
 13,res/cognitive-services/account,✅,✅,✅,✅,✅,✅,✅
 14,res/communication/communication-service,✅,✅,✅,✅,,,✅
 15,res/communication/email-service,✅,✅,✅,,,,
@@ -26,7 +26,7 @@
 25,res/consumption/budget,,,,,,,
 26,res/container-instance/container-group,,✅,✅,,,✅,✅
 27,res/container-registry/registry,✅,✅,✅,✅,✅,✅,✅
-28,res/container-service/managed-cluster,✅,✅,✅,✅,,✅,✅
+28,res/container-service/managed-cluster,✅,✅,✅,✅,,,✅
 29,res/data-factory/factory,✅,✅,✅,✅,✅,✅,✅
 30,res/data-protection/backup-vault,✅,✅,✅,,,,✅
 31,res/databricks/access-connector,✅,✅,✅,,,,✅
@@ -54,7 +54,7 @@
 53,res/hybrid-compute/machine,✅,✅,✅,,,,
 54,res/insights/action-group,✅,,✅,,,,
 55,res/insights/activity-log-alert,✅,,✅,,,,
-56,res/insights/component,✅,,✅,✅,,,
+56,res/insights/component,✅,✅,✅,✅,,,
 57,res/insights/data-collection-endpoint,✅,✅,✅,,,,
 58,res/insights/data-collection-rule,✅,✅,✅,,,,✅
 59,res/insights/diagnostic-setting,,,,,,,
@@ -141,4 +141,4 @@
 140,res/web/serverfarm,✅,✅,✅,✅,,,
 141,res/web/site,✅,✅,✅,✅,✅,,✅
 142,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,126,127,135,60,35,19,56
+Sum,,126,128,135,61,35,18,56
