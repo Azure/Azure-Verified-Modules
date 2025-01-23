@@ -5,6 +5,12 @@ linktitle: Utility Modules
 weight: 3
 ---
 
+## Module catalog
+
+{{% moduleStats language="Bicep" moduleType="Utility" showLanguage=true showClassification=true %}}
+
+{{% expand title="➕ Additional information" %}}
+
 {{% notice style="info" %}}
 
 This page contains various views of the module index (catalog) for **Bicep Utility Modules**. To see these views, **click on the expandable sections** with the "➕" sign below.
@@ -15,17 +21,13 @@ This page contains various views of the module index (catalog) for **Bicep Utili
 
 {{% /notice %}}
 
-## Module catalog
-
 {{% notice style="note" %}}
 
 Modules listed below that aren't shown with the status of **`Module Available 🟢`**, are currently in development and are not yet available for use. For proposed modules, see the [Proposed modules]({{% siteparam base %}}/indexes/bicep/bicep-utility-modules/#proposed-modules---) section below.
 
 {{% /notice %}}
 
-The following table shows the number of all available, orphaned and proposed **Bicep Utility Modules**.
-
-{{% moduleStats language="Bicep" moduleType="Utility" showLanguage=true showClassification=true %}}
+{{% /expand %}}
 
 ### Module Publication History - 📅
 
@@ -35,8 +37,6 @@ The following table shows the number of all available, orphaned and proposed **B
 
 {{% /expand %}}
 
----
-
 ### Published modules - 🟢 & 👀
 
 {{% expand title="➕ Published Modules - Module names, status and owners" expanded="true" %}}
@@ -44,8 +44,6 @@ The following table shows the number of all available, orphaned and proposed **B
 {{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepUtilityModules.csv" language="Bicep" moduleType="utility" exclude="Proposed :new:" %}}
 
 {{% /expand %}}
-
----
 
 ### Proposed modules - 🆕
 
@@ -55,8 +53,6 @@ The following table shows the number of all available, orphaned and proposed **B
 
 {{% /expand %}}
 
----
-
 ### All modules - 📇
 
 {{% expand title="➕ All Modules - Module names, status and owners" expanded="false" %}}
@@ -64,8 +60,6 @@ The following table shows the number of all available, orphaned and proposed **B
 {{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepUtilityModules.csv" language="Bicep" moduleType="utility" %}}
 
 {{% /expand %}}
-
----
 
 ## For Module Owners & Contributors
 
