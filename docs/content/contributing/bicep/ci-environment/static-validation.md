@@ -1,16 +1,10 @@
 ---
-title: The CI environment Static validation
+title: CI environment - Static validation
 ---
 
 This section provides an overview of the principles the static validation is built upon, how it is set up, and how you can interact with it.
 
-- [Static code validation](#static-code-validation)
-  - [Output example](#output-example)
-  - [Additional resources](#additional-resources)
-- [API version validation](#api-version-validation)
-- [Verify the static validation of your module locally](#verify-the-static-validation-of-your-module-locally)
-
-![Static Validation Step](/Azure-Verified-Modules/img/bicep-ci/static-validation-step.png)
+![Static Validation Step]({{% siteparam base %}}/img/bicep-ci/static-validation-step.png)
 
 ## Static code validation
 
@@ -111,7 +105,7 @@ The following activities are performed by the [`utilities/pipelines/staticValida
 
 Every test creates output, that is written to the workflows log. *Yellow* lines are either verbose or warning messages, whereas *red* lines are actuall errors, which mark the whole test as faulty and stopps the CI pipeline.
 
-![Static Validation Output](/Azure-Verified-Modules/img/bicep-ci/static-validation-output.png)
+![Static Validation Output]({{% siteparam base %}}/img/bicep-ci/static-validation-output.png)
 
 ### Additional resources
 
@@ -137,7 +131,7 @@ The [Set-ModuleReadMe.ps1](https://github.com/Azure/bicep-registry-modules/blob/
 
 ## Verify the static validation of your module locally
 
-This paragraph is intended for CARML contributors or more generally for those leveraging the CARML CI environment and having the need to update or add a new module to the library.
+This paragraph is intended for AVM contributors or more generally for those leveraging the AVM CI environment and having the need to update or add a new module to the library.
 
 Refer to the below snippet to leverage the 'Test-ModuleLocally.ps1' script and verify if your module will comply to the static validation before pushing to source control.
 

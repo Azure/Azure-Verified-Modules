@@ -1,5 +1,5 @@
 ---
-title: The CI environment Deployment History Cleanup
+title: CI environment - Deployment History Cleanup
 ---
 
 This pipeline and its scripts can be used to limit the number of deployments that are listed in the Azure deployments history at any given time. This is especially useful for a scope like 'Management Group', since for that scope, Azure Resource Manager does not currently provide [automatic deletion](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-history-deletions?tabs=azure-powershell) of deployments from your history as you near the 800 limit.

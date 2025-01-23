@@ -533,6 +533,70 @@ enableGitInfo = true
         params = { alwaysopen = true, collapsibleMenu = true }
 
   [[menu.defined]]
+    identifier = 'bicep-ci-environment'
+    parent = 'bicep-module-contribution'
+    name = 'CI Environment'
+    pageRef = '/contributing/bicep/ci-environment'
+    weight = 4
+    params = { alwaysopen = false, collapsibleMenu = true }
+
+    [[menu.defined]]
+      identifier = 'pipeline-design'
+      parent = 'bicep-ci-environment'
+      name = 'Pipeline Design'
+      pageRef = '/contributing/bicep/ci-environment/pipeline-design'
+      weight = 1
+      params = { alwaysopen = false, collapsibleMenu = true }
+
+    [[menu.defined]]
+      identifier = 'static-validation'
+      parent = 'bicep-ci-environment'
+      name = 'Static Validation'
+      pageRef = '/contributing/bicep/ci-environment/static-validation'
+      weight = 2
+      params = { alwaysopen = false, collapsibleMenu = true }
+
+    [[menu.defined]]
+      identifier = 'deployment-flow'
+      parent = 'bicep-ci-environment'
+      name = 'Deployment Flow'
+      pageRef = '/contributing/bicep/ci-environment/deployment-flow'
+      weight = 3
+      params = { alwaysopen = true, collapsibleMenu = true }
+
+      [[menu.defined]]
+        identifier = 'deployment-validation'
+        parent = 'deployment-flow'
+        name = 'Deployment Validation'
+        pageRef = '/contributing/bicep/ci-environment/deployment-validation'
+        weight = 1
+        params = { alwaysopen = true, collapsibleMenu = true }
+
+      [[menu.defined]]
+        identifier = 'deployment-history-cleanup'
+        parent = 'deployment-flow'
+        name = 'Deployment History Cleanup'
+        pageRef = '/contributing/bicep/ci-environment/deployment-history-cleanup'
+        weight = 2
+        params = { alwaysopen = true, collapsibleMenu = true }
+
+    [[menu.defined]]
+      identifier = 'publishing'
+      parent = 'bicep-ci-environment'
+      name = 'Publishing'
+      pageRef = '/contributing/bicep/ci-environment/publishing'
+      weight = 4
+      params = { alwaysopen = false, collapsibleMenu = true }
+
+    [[menu.defined]]
+      identifier = 'token-replacement'
+      parent = 'bicep-ci-environment'
+      name = 'Token Replacement'
+      pageRef = '/contributing/bicep/ci-environment/token-replacement'
+      weight = 5
+      params = { alwaysopen = false, collapsibleMenu = true }
+
+  [[menu.defined]]
     identifier = 'terraform-module-contribution'
     parent = 'contributing'
     name = 'Terraform Modules'

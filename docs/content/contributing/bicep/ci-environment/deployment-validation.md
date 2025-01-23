@@ -1,19 +1,10 @@
 ---
-title: The CI environment Deployment Validation
+title: CI environment - Deployment Validation
 ---
 
 This section provides an overview of the principles the deployment validation is built upon, how it is set up, and how you can interact with it.
 
-- [Deployment validation steps](#deployment-validation-steps)
-- [Template validation](#template-validation)
-- [Azure deployment validation](#azure-deployment-validation)
-  - [Output example](#output-example)
-  - [Resource removal](#resource-removal)
-    - [How it works](#how-it-works)
-    - [Create a specialized removal procedure](#create-a-specialized-removal-procedure)
-- [Verify the deployment validation of your module locally](#verify-the-deployment-validation-of-your-module-locally)
-
-![Deployment Validation Step](/Azure-Verified-Modules/img/bicep-ci/deployment-validation-step.png)
+![Deployment Validation Step]({{% siteparam base %}}/img/bicep-ci/deployment-validation-step.png)
 
 ## Deployment validation steps
 
@@ -35,7 +26,7 @@ The intention of this test is to **fail fast**, before getting to the later depl
 
 This step performs the actual Azure deployments using each available & configured module test file. The purpose of this step is to prove the module can be deployed in different configurations based on the different parameters provided. Deployments for the different variants happen in parallel.
 
-If any of these parallel deployments require multiple/different/specific resource instances already present, these resources are deployed by the module test files before the module to validate. You can find additional information about this effort [here](/Azure-Verified-Modules/spec/SNFR2/#required-resourcesdependencies-required-for-e2e-tests).
+If any of these parallel deployments require multiple/different/specific resource instances already present, these resources are deployed by the module test files before the module to validate. You can find additional information about this effort [here]({{% siteparam base %}}/spec/SNFR2/#required-resourcesdependencies-required-for-e2e-tests).
 
 The module test files used in this stage should ideally cover as many configurations as possible to validate the template flexibility, i.e., to verify that the module can cover multiple scenarios in which the given Azure resource may be used. Using the example of the CosmosDB module, we may want to have one module test file for the minimum amount of required parameters, one module test file for each CosmosDB type to test individual configurations, and at least one module test file testing the supported extension resources such as RBAC & diagnostic settings.
 
@@ -45,7 +36,7 @@ The module test files used in this stage should ideally cover as many configurat
 
 ### Output example
 
-![Deployment Validation Output](/Azure-Verified-Modules/img/bicep-ci/deployment-validation-output.png)
+![Deployment Validation Output]({{% siteparam base %}}/img/bicep-ci/deployment-validation-output.png)
 
 ### Resource removal
 
@@ -56,7 +47,7 @@ The removal step is triggered after the deployment completes. It removes all res
 - Make sure to keep the validation subscription cost as low as possible.
 - Run test deployments from scratch at every run.
 
-However, the removal step can be skipped in case further investigation on the deployed resource is needed. This can be controlled when running the module pipeline leveraging [Module pipeline inputs](/Azure-Verified-Modules/contributing/bicep/ci-environment/pipeline-design/#module-pipeline-inputs).
+However, the removal step can be skipped in case further investigation on the deployed resource is needed. This can be controlled when running the module pipeline leveraging [Module pipeline inputs]({{% siteparam base %}}/contributing/bicep/ci-environment/pipeline-design/#module-pipeline-inputs).
 
 > Note: The logic will consider all deployment names used during the deployment step - even those of retries.
 
@@ -87,7 +78,7 @@ It uses several helper scripts that can be found in its `helper` subfolder
 
 ### Create a specialized removal procedure
 
-This paragraph is intended for CARML contributors who want to add a new module to the library. It contains instructions on how to customize the removal scripts if needed for any specific resource.
+This paragraph is intended for AVM contributors who want to add a new module to the library. It contains instructions on how to customize the removal scripts if needed for any specific resource.
 
 The default removal procedure works for most of the modules. As such, it is unlikely you'll have to change anything to enable your new module for post-deployment removal.
 
@@ -126,7 +117,7 @@ To add a **custom post-removal** step:
 
 ## Verify the deployment validation of your module locally
 
-This paragraph is intended for CARML contributors or more generally for those leveraging the CARML CI environment and want to update or add a new module to the library.
+This paragraph is intended for AVM contributors or more generally for those leveraging the AVM CI environment and want to update or add a new module to the library.
 
 You can leverage the below snippet to leverage the 'Test-ModuleLocally.ps1' script to verify if your module will comply with the deployment validation step before pushing to source control.
 
