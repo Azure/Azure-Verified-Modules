@@ -84,13 +84,13 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-12
 }
 ```
 
-{{< /expand >}}
+{{% /expand %}}
 
 ##### Skipping Deployments (**SHOULD NOT**)
 
 Tests are part of the documentation and ensure thorough testing of the module and parameters. However, there are situation where an actual deployment can't be performed. One could be, that the deployment is too big (the Azure Resource Manager has a [limit of 4MB](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/best-practices) for a single deployment) or only one instance of a service can be deployed to a subscription. To still keep a test for reference and documentation, a file named `.e2eignore` can be placed inside a test folder to prevent the test case being deployed by the CI.
 
-{{< expand "➕ Terraform & Bicep specific details for use in E2E tests" "expand/collapse">}}
+{{% expand "➕ Terraform & Bicep specific details for use in E2E tests" "expand/collapse" %}}
 
 ###### Bicep
 
@@ -106,4 +106,4 @@ Sample filecontent: ```The test is skipped due to the maximum deployment templat
 
 The deployment of a test can be skipped by adding a `e2eignore`file into a test folder (e.g. /examples/\<testname\>).
 
-{{< /expand >}}
+{{% /expand %}}
