@@ -84,20 +84,19 @@ When implementing the GitFlow process as described, it is advisable to configure
 
 ## PowerShell Helper Script To Setup Fork & CI Test Environment
 
-{{% notice style="caution" title="Only available for Service Principal + Secret authentication method [Deprecated]" %}}
+{{% notice style="caution" title="Now defaults to OIDC setup" %}}
 
-The PowerShell Helper Script currently only supports the Service Principal + Secret authentication method, which is deprecated.
-It is recommended to start adopting OpenID Connect (OIDC) authentication instead.
+The PowerShell Helper Script has recently added support for the OIDC setup and configuration as documented in detail on this page. This is now the default for the script.
+
+The easiest way to get yourself set back up, is to delete your fork repository, including the local clone of it that you have and start over with the script. This will ensure you have the correct setup for the OIDC authentication method for the AVM CI.
 
 {{% /notice %}}
-
-To simplify the setup of the fork, clone and configuration of the required secrets, SPN and RBAC assignments in your Azure environment for the CI framework to function correctly in your fork, we have created a PowerShell script that you can use to do steps [1](#1-fork-the-module-source-repository), [2](#2-configure-a-deployment-identity-in-azure) & [3](#3-configure-your-ci-environment) below.
 
 {{% notice style="important" %}}
 
-You will still need to complete [step 3.3](#33-set-readwrite-workflow-permissions) manually at this time.
-
 {{% /notice %}}
+
+To simplify the setup of the fork, clone and configuration of the required GitHub Environments, Secrets, User-Assigned Managed Identity (UAMI), Federated Credentials and RBAC assignments in your Azure environment for the CI framework to function correctly in your fork, we have created a PowerShell script that you can use to do steps [1](#1-fork-the-module-source-repository), [2](#2-configure-a-deployment-identity-in-azure) & [3](#3-configure-your-ci-environment) below.
 
 The script performs the following steps:
 
@@ -105,8 +104,8 @@ The script performs the following steps:
 2. Clones the repo locally to your machine, based on the location you specify in the parameter: `-GitHubRepositoryPathForCloneOfForkedRepository`.
 3. Prompts you and takes you directly to the place where you can enable GitHub Actions Workflows on your forked repo.
 4. Disables all AVM module workflows, as per [Enable or Disable Workflows]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/).
-5. Creates an Azure Service Principal (SPN) and grants it the RBAC roles of `User Access Administrator` & `Contributor` at Management Group level, if specified in the `-GitHubSecret_ARM_MGMTGROUP_ID` parameter, and at Azure Subscription level if you provide it via the `-GitHubSecret_ARM_SUBSCRIPTION_ID` parameter.
-6. Creates the required GitHub Actions Secrets in your forked repo as per [step 3](#3-configure-your-ci-environment), based on the input provided in parameters and the values from resources the script creates, such as the SPN.
+5. Creates an User-Assigned Managed Identity (UAMI) and federated credentials for OIDC with your forked GitHub repo and grants it the RBAC roles of `User Access Administrator` & `Contributor` at Management Group level, if specified in the `-GitHubSecret_ARM_MGMTGROUP_ID` parameter, and at Azure Subscription level if you provide it via the `-GitHubSecret_ARM_SUBSCRIPTION_ID` parameter.
+6. Creates the required GitHub Environments & required Secrets in your forked repo as per [step 3](#3-configure-your-ci-environment), based on the input provided in parameters and the values from resources the script creates and configures for OIDC. Also set the workflow permissions to `Read and write permissions` as per step 3.3.
 
 ### Pre-requisites
 
@@ -120,7 +119,7 @@ The `New-AVMBicepBRMForkSetup.ps1` can be downloaded from <a href="{{% siteparam
 Once downloaded, you can run the script by running the below - **Please change all the parameter values in the below script usage example to your own values (see the parameter documentation in the script itself)!**:
 
 ```powershell
-.\<PATH-TO-SCRIPT-DOWNLOAD-LOCATION>\New-AVMBicepBRMForkSetup.ps1 -GitHubRepositoryPathForCloneOfForkedRepository "<pathToCreateForkedRepoIn>" -GitHubSecret_ARM_MGMTGROUP_ID "<managementGroupId>" -GitHubSecret_ARM_SUBSCRIPTION_ID "<subscriptionId>" -GitHubSecret_ARM_TENANT_ID "<tenantId>" -GitHubSecret_TOKEN_NAMEPREFIX "<unique3to5AlphanumericStringForAVMDeploymentNames>"
+.\<PATH-TO-SCRIPT-DOWNLOAD-LOCATION>\New-AVMBicepBRMForkSetup.ps1 -GitHubRepositoryPathForCloneOfForkedRepository "<pathToCreateForkedRepoIn>" -GitHubSecret_ARM_MGMTGROUP_ID "<managementGroupId>" -GitHubSecret_ARM_SUBSCRIPTION_ID "<subscriptionId>" -GitHubSecret_ARM_TENANT_ID "<tenantId>" -GitHubSecret_TOKEN_NAMEPREFIX "<unique3to5AlphanumericStringForAVMDeploymentNames>" -UAMIRsgLocation "<Azure Region/Location of your choice such as 'uksouth'>"
 ```
 
 For more examples, see the below script's parameters section.
