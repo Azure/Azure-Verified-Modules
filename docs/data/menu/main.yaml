@@ -162,17 +162,6 @@ main:
                 ref: "/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows"
               - name: "Custom CI secrets"
                 ref: "/contributing/bicep/bicep-contribution-flow/custom-ci-secrets"
-          - name: "CI Environment"
-            ref: "/contributing/bicep/ci-environment"
-            sub:
-              - name: "Pipeline design"
-                ref: "/contributing/bicep/ci-environment/pipeline-design"
-              - name: "Static Validation"
-                ref: "/contributing/bicep/ci-environment/static-validation"
-              - name: "Deployment Validation"
-                ref: "/contributing/bicep/ci-environment/deployment-validation"
-              - name: "Deployment History Cleanup"
-                ref: "/contributing/bicep/ci-environment/deployment-history-cleanup"
       - name: "Terraform Modules"
         ref: "/contributing/terraform"
         sub:
