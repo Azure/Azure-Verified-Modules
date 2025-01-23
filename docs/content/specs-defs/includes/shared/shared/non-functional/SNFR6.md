@@ -1,10 +1,7 @@
 ---
 title: SNFR6 - Static Analysis/Linting Tests
 url: /spec/SNFR6
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"

@@ -1,10 +1,7 @@
 ---
 title: BCPFR5 - Availability Zones Implementation
 url: /spec/BCPFR5
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -22,13 +19,12 @@ priority: 10040
 
 #### ID: BCPFR5 - Category: Inputs - Availability Zones Implementation
 
-To implement requirement [SFR5](/Azure-Verified-Modules/spec/SFR5), the following convention **SHOULD** apply:
+To implement requirement [SFR5]({{% siteparam base %}}/spec/SFR5), the following convention **SHOULD** apply:
 
-{{< tabs "zones" >}}
-  {{< tab "Module accepts multiple zones" >}}
-  In this case, the parameter should be implemented like
+{{< tabs title="Availability Zones" >}}
+{{% tab title="Module accepts multiple zones" %}}
 
-  ```bicep
+  {{< highlight lineNos="false" type="bicep" wrap="true" title="" >}}
   @description('Optional. The Availability Zones to place the resources in.')
   @allowed([
     1
@@ -48,13 +44,12 @@ To implement requirement [SFR5](/Azure-Verified-Modules/spec/SFR5), the followin
       zones: map(zones, zone => string(zone))
     }
   }
-  ```
+  {{< /highlight >}}
 
-  {{< /tab >}}
-  {{< tab "Module accepts a single zone" >}}
-  In this case, the parameter should be implemented using a singular-named `zone` parameter of type `int` like
+{{% /tab %}}
+{{% tab title="Module accepts a single zone" %}}
 
-  ```bicep
+  {{< highlight lineNos="false" type="bicep" wrap="true" title="" >}}
   @description('Required. The Availability Zone to place the resource in. If set to 0, then Availability Zone is not set.')
   @allowed([
     0
@@ -71,7 +66,8 @@ To implement requirement [SFR5](/Azure-Verified-Modules/spec/SFR5), the followin
       zones: zone != 0 ? [ string(zone) ] : null
     }
   }
-  ```
+  {{< /highlight >}}
 
-  {{< /tab >}}
+{{% /tab %}}
+
 {{< /tabs >}}

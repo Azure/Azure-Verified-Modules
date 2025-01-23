@@ -1,10 +1,7 @@
 ---
 title: TFNFR11 - Null Comparison Toggle
 url: /spec/TFNFR11
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -28,7 +25,7 @@ Intuitively, we will define it like this:
 
 ```terraform
 variable "security_group_id" {
-  type = string
+  type: string
 }
 
 resource "azurerm_network_security_group" "this" {
@@ -62,7 +59,7 @@ For this kind of parameters, wrapping with `object` type is **RECOMMENDED**:
 
 ```terraform
 variable "security_group" {
-  type = object({
+  type: object({
     id   = string
   })
   default     = null

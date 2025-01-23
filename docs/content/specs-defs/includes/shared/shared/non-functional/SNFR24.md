@@ -1,10 +1,7 @@
 ---
 title: SNFR24 - Testing Child, Extension & Interface Resources
 url: /spec/SNFR24
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -23,6 +20,6 @@ priority: 1090
 
 #### ID: SNFR24 - Category: Testing - Testing Child, Extension & Interface Resources
 
-Module owners **MUST** test that child and extension resources and those [Bicep](/Azure-Verified-Modules/specs/bcp/interfaces/) or [Terreform](/Azure-Verified-Modules/specs/tf/interfaces/) interface resources that are supported by their modules, are validated in E2E tests as per [SNFR2](/Azure-Verified-Modules/spec/SNFR2) to ensure they deploy and are configured correctly.
+Module owners **MUST** test that child and extension resources and those [Bicep]({{% siteparam base %}}/specs/bcp/interfaces/) or [Terreform]({{% siteparam base %}}/specs/tf/interfaces/) interface resources that are supported by their modules, are validated in E2E tests as per [SNFR2]({{% siteparam base %}}/spec/SNFR2) to ensure they deploy and are configured correctly.
 
 These **MAY** be tested in a separate E2E test and **DO NOT** have to be tested in each E2E test.

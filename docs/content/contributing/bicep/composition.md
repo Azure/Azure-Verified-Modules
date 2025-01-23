@@ -1,37 +1,23 @@
 ---
-title: Composition
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
+title: Bicep Composition
+linktitle: Composition
 ---
 
-{{< toc >}}
-
-<!--
-TODO: Should contain
-- Repository composition
-- Module composition
--->
-
-{{< hint type=important >}}
+{{% notice style="important" %}}
 While this page describes and summarizes important aspects of the composition of AVM modules, it may not reference *All* of the shared and language specific requirements.
 
-Therefore, this guide **MUST** be used in conjunction with the [Bicep specifications](/Azure-Verified-Modules/specs/bcp/). **ALL AVM modules** (Resource and Pattern modules) **MUST meet the respective requirements described in these specifications**!
-{{< /hint >}}
+Therefore, this guide **MUST** be used in conjunction with the [Bicep specifications]({{% siteparam base %}}/specs/bcp/). **ALL AVM modules** (Resource and Pattern modules) **MUST meet the respective requirements described in these specifications**!
+{{% /notice %}}
 
-## Composition
+{{% notice style="important" %}}
 
-{{< hint type=important >}}
+Before jumping on implementing your contribution, please review the AVM Module specifications, in particular the [Bicep specification]({{% siteparam base %}}/specs/bcp/) page, to make sure your contribution complies with the AVM module's design and principles.
 
-Before jumping on implementing your contribution, please review the AVM Module specifications, in particular the [Bicep specification](/Azure-Verified-Modules/specs/bcp/) page, to make sure your contribution complies with the AVM module's design and principles.
+{{% /notice %}}
 
-{{< /hint >}}
+## Directory and File Structure
 
-<br>
-
-### Directory and File Structure
-
-Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) repository in the `avm` directory will have the following directories and files:
+Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) (BRM) repository in the `avm` directory will have the following directories and files:
 
 - `tests/` - (for unit tests and additional E2E/integration if required - e.g. Pester etc.)
   - `e2e/` - (all examples must deploy successfully - these will be used to automatically generate the examples in the README.md for the module)
@@ -42,7 +28,7 @@ Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](htt
   - `version.json` (BRM requirement)
   - `README.md` (auto generated AVM Module documentation)
 
-#### Example Directory and File Structure within `Azure/bicep-registry-modules` Repository
+### Directory and File Structure Example
 
 ```txt
 / Root of Azure/bicep-registry-modules
@@ -90,94 +76,76 @@ New-Item -ItemType Directory -Path ".\res\compute\virtual-machine"
 Set-AVMModule -ModuleFolderPath .\res\compute\virtual-machine
 ```
 
-<br>
-
-### Code Styling
+## Code Styling
 
 This section points to conventions to be followed when developing a Bicep template.
 
-<br>
+### Casing
 
-#### Casing
+Use `camelCasing` as per [BCPNFR8]({{% siteparam base %}}/spec/BCPNFR8).
 
-Use `camelCasing` as per [BCPNFR8](/Azure-Verified-Modules/spec/BCPNFR8).
+### Input Parameters and Variables
 
----
+Make sure to review all specifications of `Category: Inputs/Outputs` within the [Bicep specification]({{% siteparam base %}}/specs/bcp/) pages.
 
-#### Input Parameters and Variables
+{{% notice style="tip" %}}
+See examples in specifications [SNFR14]({{% siteparam base %}}/spec/SNFR14) and [BCPNFR1]({{% siteparam base %}}/spec/BCPNFR1).
+{{% /notice %}}
 
-Make sure to review all specifications of `Category: Inputs/Outputs` within the [Bicep specification](/Azure-Verified-Modules/specs/bcp/) pages.
-
-{{< hint type=tip >}}
-See examples in specifications [SNFR14](/Azure-Verified-Modules/spec/SNFR14) and [BCPNFR1](/Azure-Verified-Modules/spec/BCPNFR1).
-{{< /hint >}}
-
----
-
-#### Resources
+### Resources
 
 Resources are primarily leveraged by resource modules to declare the primary resource of the main resource type deployed by the AVM module.
 
 Make sure to review all specifications covering resource properties and usage.
 
-{{< hint type=tip >}}
-See examples in specifications [SFR1](/Azure-Verified-Modules/spec/SFR1) and [RMFR1](/Azure-Verified-Modules/spec/RMFR1).
-{{< /hint >}}
+{{% notice style="tip" %}}
+See examples in specifications [SFR1]({{% siteparam base %}}/spec/SFR1) and [RMFR1]({{% siteparam base %}}/spec/RMFR1).
+{{% /notice %}}
 
----
-
-#### Modules
+### Modules
 
 Modules enable you to reuse code from a Bicep file in other Bicep files. As such, for resource modules they're normally leveraged for deploying child resources (e.g., file services in a storage account), cross referenced resources (e.g., network interface in a virtual machine) or extension resources (e.g., role assignments in a key vault). Pattern modules, normally reuse resource modules combined together.
 
 Make sure to review all specifications covering module properties and usage.
 
-{{< hint type=tip >}}
-See examples in specifications [BCPFR1](/Azure-Verified-Modules/spec/BCPFR1) for resource modules and [PMNFR2](//Azure-Verified-Modules/spec/PMNFR2) for pattern modules.
-{{< /hint >}}
+{{% notice style="tip" %}}
+See examples in specifications [BCPFR1]({{% siteparam base %}}/spec/BCPFR1) for resource modules and [PMNFR2](/{{% siteparam base %}}/spec/PMNFR2) for pattern modules.
+{{% /notice %}}
 
----
+### Outputs
 
-#### Outputs
+Make sure to review all specifications of `Category: Inputs/Outputs` within the [Bicep specific]({{% siteparam base %}}/specs/bcp/) pages.
 
-Make sure to review all specifications of `Category: Inputs/Outputs` within the [Bicep specific](/Azure-Verified-Modules/specs/bcp/) pages.
+{{% notice style="tip" %}}
+See examples in specification [RMFR7]({{% siteparam base %}}/spec/RMFR7).
+{{% /notice %}}
 
-{{< hint type=tip >}}
-See examples in specification [RMFR7](/Azure-Verified-Modules/spec/RMFR7).
-{{< /hint >}}
+## Interfaces
 
----
-
-<br>
-
-### Interfaces
-
-{{< hint type=note >}}
+{{% notice style="note" %}}
 
 This section is only relevant for contributions to resource modules.
 
-{{< /hint >}}
+{{% /notice %}}
 
-To meet [RMFR4](/Azure-Verified-Modules/spec/RMFR4) and [RMFR5](/Azure-Verified-Modules/spec/RMFR5) AVM resource modules must leverage consistent interfaces for all the optional features/extension resources supported by the AVM module primary resource.
+To meet [RMFR4]({{% siteparam base %}}/spec/RMFR4) and [RMFR5]({{% siteparam base %}}/spec/RMFR5) AVM resource modules must leverage consistent interfaces for all the optional features/extension resources supported by the AVM module primary resource.
 
-Please refer to the [Bicep Interfaces](/Azure-Verified-Modules/specs/bcp/res/interfaces/) page.
+Please refer to the [Bicep Interfaces]({{% siteparam base %}}/specs/bcp/res/interfaces/) page.
 If the primary resource of the AVM resource module you are developing supports any of the listed features/extension resources, please follow the corresponding provided Bicep schema to develop them.
 
-<br>
+## Deprecation
 
-### Deprecation
-
-Breaking changes are sometimes not avoidable. The impact should be kept as low as possible. A recommendation is to [deprecate parameters](/Azure-Verified-Modules/spec/SNFR18), instead of completely removing them for a couple of versions. The [Semantic Versioning](/Azure-Verified-Modules/spec/SNFR17) sections offers information about versioning AVM modules.
+Breaking changes are sometimes not avoidable. The impact should be kept as low as possible. A recommendation is to [deprecate parameters]({{% siteparam base %}}/spec/SNFR18), instead of completely removing them for a couple of versions. The [Semantic Versioning]({{% siteparam base %}}/spec/SNFR17) sections offers information about versioning AVM modules.
 
 In case you need to deprecate an input parameter, this sample shows you how this can be achieved.
 
-{{< hint type=note >}}
+{{% notice style="note" %}}
 
 Since all modules are versioned, nothing will change for existing deployments, as the parameter usage does not change for any existing versions.
 
-{{< /hint >}}
+{{% /notice %}}
 
-#### Example-Scenario
+### Example-Scenario
 
 An AVM module is modified, and the parameters will change, which breaks backward compatibility.
 
@@ -185,7 +153,7 @@ An AVM module is modified, and the parameters will change, which breaks backward
 - the parameter structure is changing
 - backward compatibility will be maintained
 
-Existing **input parameters** used to be definined as follows (reducing the examples to the minimum):
+Existing **input parameters** used to be defined as follows (reducing the examples to the minimum):
 
 ```bicep
 // main.bicep:
@@ -200,9 +168,9 @@ item:
   }
 ```
 
-#### Testing
+### Testing
 
-Before you begin to modify anything, it is recommended to create a new test case (e.g. *deprecated*), in addition to the already existing tests, to make sure that the changes are not breaking backward compatibility until you decide to finally remove the deprecated parameters (see [BCPRMNFR1 - Category: Testing - Expected Test Directories](/Azure-Verified-Modules/spec/BCPRMNFR1) for more details about the requirements).
+Before you begin to modify anything, it is recommended to create a new test case (e.g. *deprecated*), in addition to the already existing tests, to make sure that the changes are not breaking backward compatibility until you decide to finally remove the deprecated parameters (see [BCPRMNFR1 - Category: Testing - Expected Test Directories]({{% siteparam base %}}/spec/BCPRMNFR1) for more details about the requirements).
 
 ```bicep
 module testDeployment '../../../main.bicep' = [
@@ -222,7 +190,7 @@ module testDeployment '../../../main.bicep' = [
 
 The test should include all previously used parameters to make sure they are covered before any changes to the new parameter layout are done.
 
-#### Code Changes
+### Code Changes
 
 The **new parameter structure** requires a change to the used parameters and moves them to a different location and looks like:
 
@@ -230,7 +198,7 @@ The **new parameter structure** requires a change to the used parameters and mov
 // main.bicep:
 param item itemType?
 
-type itemType = {
+type itemtype: {
   name: string // the name parameter did not change
 
   properties ={
@@ -250,7 +218,7 @@ type itemType = {
 }
 ```
 
-The original parmeter *item* is of type object and does not give the user any clue of what the syntax is and what is expected to be added to it. The tests could bring light into the darkness, but this is not ideal. In order to retain backward compatibility, the previously used parameters need to be added to the new type, as they would be invalid otherwise. Now that the new type is in place, some logic needs to be implemented to make sure the module can handle the different sources of data (new and old parameters).
+The original parameter *item* is of type object and does not give the user any clue of what the syntax is and what is expected to be added to it. The tests could bring light into the darkness, but this is not ideal. In order to retain backward compatibility, the previously used parameters need to be added to the new type, as they would be invalid otherwise. Now that the new type is in place, some logic needs to be implemented to make sure the module can handle the different sources of data (new and old parameters).
 
 ```bicep
 resource <modulename> 'Microsoft.xy/yz@2024-01-01' = {
@@ -287,7 +255,7 @@ module testDeployment '../../../main.bicep' = [
 ]
 ```
 
-#### Summary
+### Summary
 
 Changes to modules (resource or pattern) can bei implemented in two ways.
 
@@ -308,8 +276,8 @@ Changes to modules (resource or pattern) can bei implemented in two ways.
     - create a test case for the usage
     - increase the major version number of the module (`x.0.0`)
 
-{{< hint type=note >}}
+{{% notice style="note" %}}
 
 Be aware that currently no module has been released as `1.0.0` (or beyond), which lets you implement breaking changes without increasing the major version.
 
-{{< /hint >}}
+{{% /notice %}}

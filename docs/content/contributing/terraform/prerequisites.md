@@ -1,25 +1,22 @@
 ---
-title: Prerequisites
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
+title: Terraform Contribution Prerequisites
+linktitle: Prerequisites
 ---
 
-{{< toc >}}
 
 ## GitHub Account Link and Access
 
-To contribute to this project, you need to have a GitHub account which is [linked](https://repos.opensource.microsoft.com/link) to your Microsoft corporate identity account and be a member of the [Azure](https://repos.opensource.microsoft.com/orgs/Azure) organisation.
+To contribute to this project, you need to have a GitHub account which is [linked](https://repos.opensource.microsoft.com/link) to your Microsoft corporate identity account and be a member of the [Azure](https://repos.opensource.microsoft.com/orgs/Azure) organization.
 
 ## Tooling
 
 ### Required Tooling
 
-{{< hint type=tip >}}
+{{% notice style="tip" %}}
 
 We recommend to use Linux or MacOS for your development environment. You can use Windows Subsystem for Linux (WSL) if you are using Windows.
 
-{{< /hint >}}
+{{% /notice %}}
 
 To contribute to this project the following tooling is required:
 
@@ -40,12 +37,6 @@ To contribute to this project the following tooling is required:
 - [Docker](https://www.docker.com/pricing/#/download)
   - [Azure Verified Terraform Scaffold](https://github.com/Azure/tfmod-scaffold) (`mcr.microsoft.com/azterraform:latest`)
 
-<br>
-
----
-
-<br>
-
 ### Recommended Tooling
 
 The following tooling/extensions are recommended to assist you developing for the project:
@@ -58,9 +49,3 @@ The following tooling/extensions are recommended to assist you developing for th
 - [Go extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=golang.go)
 - For visibility of Bracket Pairs:
   - Inside Visual Studio Code, add `editor.bracketPairColorization.enabled`: true to your `settings.json`, to enable bracket pair colorization.
-
-<br>
-
----
-
-<br>

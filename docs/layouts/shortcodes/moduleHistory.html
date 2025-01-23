@@ -13,6 +13,7 @@
 {{ $ModuleDisplayNameColumnId := 0 }}
 {{ $AlternativeNamesColumnId := 0 }}
 {{ $ModuleNameColumnId := 0 }}
+{{ $ParentModuleColumnId := 0 }}
 {{ $ModuleStatusColumnId := 0 }}
 {{ $RepoURLColumnId := 0 }}
 {{ $PublicRegistryReferenceColumnId := 0 }}
@@ -38,19 +39,20 @@
   {{ $ModuleDisplayNameColumnId = 2 }}
   {{ $AlternativeNamesColumnId = 3 }}
   {{ $ModuleNameColumnId = 4 }}
-  {{ $ModuleStatusColumnId = 5 }}
-  {{ $RepoURLColumnId = 6 }}
-  {{ $PublicRegistryReferenceColumnId = 7 }}
-  {{ $TelemetryIdPrefixColumnId = 8 }}
-  {{ $PrimaryModuleOwnerGHHandleColumnId = 9 }}
-  {{ $PrimaryModuleOwnerDisplayNameColumnId = 10 }}
-  {{ $SecondaryModuleOwnerGHHandleColumnId = 11 }}
-  {{ $SecondaryModuleOwnerDisplayNameColumnId = 12 }}
-  {{ $ModuleOwnersGHTeamColumnId = 13 }}
-  {{ $ModuleContributorsGHTeamColumnId = 14 }}
-  {{ $DescriptionColumnId = 15 }}
-  {{ $CommentsColumnId = 16 }}
-  {{ $FirstPublishedInColumnId = 17 }}
+  {{ $ParentModuleColumnId = 5 }}
+  {{ $ModuleStatusColumnId = 6 }}
+  {{ $RepoURLColumnId = 7 }}
+  {{ $PublicRegistryReferenceColumnId = 8 }}
+  {{ $TelemetryIdPrefixColumnId = 9 }}
+  {{ $PrimaryModuleOwnerGHHandleColumnId = 10 }}
+  {{ $PrimaryModuleOwnerDisplayNameColumnId = 11 }}
+  {{ $SecondaryModuleOwnerGHHandleColumnId = 12 }}
+  {{ $SecondaryModuleOwnerDisplayNameColumnId = 13 }}
+  {{ $ModuleOwnersGHTeamColumnId = 14 }}
+  {{ $ModuleContributorsGHTeamColumnId = 15 }}
+  {{ $DescriptionColumnId = 16 }}
+  {{ $CommentsColumnId = 17 }}
+  {{ $FirstPublishedInColumnId = 18 }}
 
   {{ range $row, $rows }}
     {{ $module := dict
@@ -59,6 +61,7 @@
       "ModuleDisplayName" (index $row $ModuleDisplayNameColumnId)
       "AlternativeNames" (index $row $AlternativeNamesColumnId)
       "ModuleName" (index $row $ModuleNameColumnId)
+      "ParentModule" (index $row $ParentModuleColumnId)
       "ModuleStatus" (index $row $ModuleStatusColumnId)
       "RepoURL" (index $row $RepoURLColumnId)
       "PublicRegistryReference" (index $row $PublicRegistryReferenceColumnId)
@@ -148,6 +151,7 @@
     </tr>
   </thead>
   {{ end }}
+
   {{ range $item, $modules }}
   {{ if and (eq $item.FirstPublishedInColumnId $publicationDate) (not ( in $exclude $item.ModuleStatus )) }}
     {{ $moduleLatestVersion = "N/A" }}
@@ -173,11 +177,56 @@
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames ", " "," }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames "," ", " }}
   <tr>
-    <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
-    <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }} <a href="{{ $item.RepoURL }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
-    <td>{{ with $trimmedAlternativeNames }} <b>{{ $item.ModuleDisplayName }}</b><br><i>{{ $trimmedAlternativeNames }} </i> {{ else }} <b>{{ $item.ModuleDisplayName }} </b> {{ end }}</td>
-    <td>{{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }}<a href="https://mcr.microsoft.com/v2/bicep/{{ $item.ModuleName }}/tags/list"><image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $moduleLatestVersion }}-blue"/></a> {{ else }} <a href=""><image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-N/A-blue"/></a> {{ end }}</td>
-    <td>{{ if ne $item.PrimaryModuleOwnerGHHandle ""}}<a href="https://github.com/{{ $item.PrimaryModuleOwnerGHHandle }}">{{ $item.PrimaryModuleOwnerGHHandle }}</a> {{ if and (ne $item.PrimaryModuleOwnerGHHandle "") (ne $item.PrimaryModuleOwnerDisplayName "") }} <br> ({{ $item.PrimaryModuleOwnerDisplayName }}) {{ end }} {{ end}}</td>
+    <td style="text-align: right;"> {{/* row index */}}
+      {{- printf "%02d" $i -}}
+      {{- $i = add $i 1 -}}
+    </td>
+    <td> {{/* module name and link to the repo */}}
+      {{- if $useLinks -}}
+        {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+          <a href="{{ $item.RepoURL }}">{{ $item.ModuleName }}</a>
+        {{- else -}}
+          {{ $item.ModuleName }}
+        {{- end -}}
+      {{- else -}}
+        {{ $item.ModuleName }}
+      {{- end -}}
+    </td>
+    <td> {{/* display name and alternative names  */}}
+      {{- $ModuleDisplayName := $item.ModuleDisplayName -}}
+      {{- if ne $item.ParentModule "n/a" -}}
+        {{ $ModuleDisplayName = print $ModuleDisplayName " (Child of " $item.ParentModule ")" }}
+      {{- end -}}
+      {{- with $trimmedAlternativeNames -}}
+        <b>{{ $ModuleDisplayName }}</b>
+        <br>
+        <i>{{ $trimmedAlternativeNames }} </i>
+      {{- else -}}
+        <b>{{ $ModuleDisplayName }} </b>
+      {{- end -}}
+    </td>
+    <td> {{/* availability badge and versions  */}}
+      {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+        <a href="https://mcr.microsoft.com/v2/bicep/{{ $item.ModuleName }}/tags/list">
+          <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $moduleLatestVersion }}-blue"/>
+        </a>
+      {{- else -}}
+        <a href="">
+          <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-N/A-blue"/>
+        </a>
+      {{- end -}}
+    </td>
+    <td> {{/* module owners */}}
+      {{- if ne $item.PrimaryModuleOwnerGHHandle "" -}}
+        <a href="https://github.com/{{ $item.PrimaryModuleOwnerGHHandle }}">
+          {{ $item.PrimaryModuleOwnerGHHandle }}
+        </a>
+        {{- if and (ne $item.PrimaryModuleOwnerGHHandle "") (ne $item.PrimaryModuleOwnerDisplayName "") -}}
+          <br>
+          {{ $item.PrimaryModuleOwnerDisplayName }}
+        {{- end -}}
+      {{- end -}}
+    </td>
   </tr>
   {{ end }}
   {{ end }}
@@ -186,66 +235,120 @@
 <br>
 {{ $hasModulesAvailable = true }}
 {{ end }}
-{{ else if eq $language "Terraform" }}
-{{ range $publicationDate, $publicationDates }}
+{{- else if eq $language "Terraform" -}}
+{{- range $publicationDate, $publicationDates -}}
   {{ $i = 1 }}
   {{ $date := time (printf "%s-01" $publicationDate) }}
   {{ $formattedDate := $date.Format "January 2006" }}
   {{ printf "### Modules published in %s" $formattedDate | markdownify }}
   {{/*  {{ printf "**Modules published in %s**" $formattedDate | markdownify }}  */}}
 <table>
-  {{ if $useHeaderRow }}
+  {{- if $useHeaderRow -}}
   <thead>
     <tr>
       <th>No.</th>
       <th>Module Name</th>
-      <th>Source Code</th>
+      <th>Source<br>Code</th>
       <th>Display Name</th>
       <th>Status & Versions</th>
       <th>Primary Owner</th>
     </tr>
   </thead>
-  {{ end }}
-  {{ range $item, $modules }}
-  {{ if and (eq $item.FirstPublishedInColumnId $publicationDate) (not ( in $exclude $item.ModuleStatus )) }}
+  {{- end -}}
+  {{- range $item, $modules -}}
+  {{- if and (eq $item.FirstPublishedInColumnId $publicationDate) (not ( in $exclude $item.ModuleStatus )) -}}
     {{ $moduleLatestVersion = "N/A" }}
-    {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }}
+    {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
       {{ $moduleTfRegApiUrl := printf "https://registry.terraform.io/v1/modules/Azure/%s/azurerm/versions" $item.ModuleName }}
       {{ $moduleTfRegApiData := dict }}
-      {{ with resources.GetRemote $moduleTfRegApiUrl }}
-        {{ with .Err }}
+      {{- with resources.GetRemote $moduleTfRegApiUrl -}}
+        {{- with .Err -}}
           {{ errorf "%s" . }}
-        {{ else }}
+        {{- else -}}
           {{ $moduleTfRegApiData = . | transform.Unmarshal }}
-        {{ end }}
-      {{ else }}
+        {{- end -}}
+      {{- else -}}
         {{ errorf "Unable to get remote resource %q" $moduleTfRegApiUrl }}
-      {{ end }}
+      {{- end -}}
       {{ $moduleVersions := slice }}
-      {{ range $moduleTfRegApiData.modules }}
-        {{ range .versions }}
+      {{- range $moduleTfRegApiData.modules -}}
+        {{- range .versions -}}
           {{ $moduleVersions = $moduleVersions | append .version }}
-        {{ end }}
-      {{ end }}
-      {{ if $moduleVersions }}
+        {{- end -}}
+      {{- end -}}
+      {{- if $moduleVersions -}}
           {{ $moduleLatestVersion = index $moduleVersions (sub (len $moduleVersions) 1) }}
-      {{ end }}
-    {{ end }}
+      {{- end -}}
+    {{- end -}}
     {{ $trimmedModuleStatus := replace $item.ModuleStatus "Module " "" }}
     {{ $trimmedAlternativeNames := replace $item.AlternativeNames "  " " " }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames ", " "," }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames "," ", " }}
   <tr>
-    <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
-    <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }} <a href="{{ $item.PublicRegistryReference }}">{{ $item.ModuleName }}</a> {{ else }} {{ $item.ModuleName }} {{ end }} {{else}} {{ $item.ModuleName }} {{ end }} </td>
-    <td>{{ if $useLinks }} {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }} <a href="{{ $item.RepoURL }}" style="color: inherit; text-decoration: none; background-color: transparent;">📄</a> {{ else }} {{ "n/a" }} {{ end }} {{else}} {{ "n/a" }} {{ end }} </td>
-    <td>{{ with $trimmedAlternativeNames }} <b>{{ $item.ModuleDisplayName }}</b><br><i>{{ $trimmedAlternativeNames }} </i> {{ else }} <b>{{ $item.ModuleDisplayName }} </b> {{ end }}</td>
-    <td>{{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }}<a href="{{ $item.PublicRegistryReference }}"><image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $moduleLatestVersion }}-purple"/></a> {{ else }} <a href=""><image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-N/A-purple"/></a> {{ end }}</td>
-    <td>{{ if ne $item.PrimaryModuleOwnerGHHandle ""}}<a href="https://github.com/{{ $item.PrimaryModuleOwnerGHHandle }}">{{ $item.PrimaryModuleOwnerGHHandle }}</a> {{ if and (ne $item.PrimaryModuleOwnerGHHandle "") (ne $item.PrimaryModuleOwnerDisplayName "") }} <br> ({{ $item.PrimaryModuleOwnerDisplayName }}) {{ end }} {{ end}}</td>
-
+    <td style="text-align: right;"> {{/* row index */}}
+      {{- printf "%02d" $i -}}
+      {{- $i = add $i 1 -}}
+    </td>
+    <td> {{/* module name and link to the registry */}}
+      {{- if $useLinks -}}
+        {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+          <a href="{{ $item.PublicRegistryReference }}">{{ $item.ModuleName }}</a>
+        {{- else -}}
+          {{ $item.ModuleName }}
+        {{- end -}}
+      {{- else -}}
+        {{ $item.ModuleName }}
+      {{- end -}}
+    </td>
+    <td style="text-align: center;"> {{/* link to the repo */}}
+      {{- if $useLinks -}}
+        {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+          <a href="{{ $item.RepoURL }}" style="color: inherit; text-decoration: none; background-color: transparent;">📄</a>
+        {{- else -}}
+          {{ "n/a" }}
+        {{- end -}}
+      {{- else -}}
+        {{ "n/a" }}
+      {{- end -}}
+    </td>
+    <td> {{/* display name and alternative names  */}}
+      {{- $ModuleDisplayName := $item.ModuleDisplayName -}}
+      {{- if ne $item.ParentModule "n/a" -}}
+        {{ $ModuleDisplayName = print $ModuleDisplayName " (Child of " $item.ParentModule ")" }}
+      {{- end -}}
+      {{- with $trimmedAlternativeNames -}}
+        <b>{{ $ModuleDisplayName }}</b>
+        <br>
+        <i>{{ $trimmedAlternativeNames }} </i>
+      {{- else -}}
+        <b>{{ $ModuleDisplayName }} </b>
+      {{- end -}}
+    </td>
+    <td> {{/* availability badge and versions  */}}
+      {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+        <a href="{{ $item.PublicRegistryReference }}">
+          <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $moduleLatestVersion }}-purple"/>
+        </a>
+      {{- else -}}
+        <a href="">
+          <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-N/A-purple"/>
+        </a>
+      {{- end -}}
+    </td>
+    <td> {{/* module owners */}}
+      {{- if ne $item.PrimaryModuleOwnerGHHandle "" -}}
+        <a href="https://github.com/{{ $item.PrimaryModuleOwnerGHHandle }}">
+          {{ $item.PrimaryModuleOwnerGHHandle }}
+        </a>
+        {{- if and (ne $item.PrimaryModuleOwnerGHHandle "") (ne $item.PrimaryModuleOwnerDisplayName "") -}}
+          <br>
+          {{ $item.PrimaryModuleOwnerDisplayName }}
+          {{- end -}}
+      {{- end -}}
+    </td>
   </tr>
-  {{ end }}
-  {{ end }}
+  {{- end -}}
+  {{- end -}}
 
 </table>
 <br>

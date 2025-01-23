@@ -1,0 +1,40 @@
+{{- $LastModifierDisplayName := "" }}
+{{- $LastModifierEmail := "" }}
+{{- $Date := "" }}
+{{- $LastCommitHash := "" }}
+{{- $commitURLPrefix := add "https://github.com/Azure" .Site.Params.base "/commit/" -}}
+{{- $commitsURLPrefix := add "https://github.com/Azure" .Site.Params.base "/commits/main/docs/content/" -}}
+{{- with .GitInfo }}
+  {{- with .AuthorName }}
+    {{- $LastModifierDisplayName = . }}
+  {{- end }}
+  {{- with .AuthorEmail  }}
+    {{- $LastModifierEmail = . }}
+  {{- end }}
+  {{- with .AuthorDate  }}
+    {{- $Date = . | time.Format ":date_medium" }}
+  {{- end }}
+  {{- with .AbbreviatedHash  }}
+    {{- $LastCommitHash = . }}
+  {{- end }}
+{{- else }}
+  {{- with .Params.LastModifierDisplayName }}
+    {{- $LastModifierDisplayName = . }}
+  {{- end }}
+  {{- with .Params.LastModifierEmail }}
+    {{- $LastModifierEmail = . }}
+  {{- end }}
+  {{- with .Date }}
+    {{- $Date = . | time.Format ":date_medium" }}
+  {{- end }}
+{{- end }}
+{{- if $LastModifierDisplayName }}
+              {{- $filePath := .Page.File.Path -}}
+              {{- $filePath = replace $filePath `\` `/` -}}
+              <i class='fa-fw fas fa-calendar'></i><a href="{{ $commitsURLPrefix }}{{ $filePath }}"> {{ $Date }}</a>
+{{- end }}
+{{- partial "term-list.html" (dict
+  "page" .
+  "taxonomy" "categories"
+  "icon" "layer-group"
+) }}

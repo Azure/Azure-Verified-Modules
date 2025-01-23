@@ -1,10 +1,7 @@
 ---
 title: TFFR3 - Providers - Permitted Versions
 url: /spec/TFFR3
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -30,15 +27,16 @@ Authors **MUST** only use the following Azure providers, and versions, in their 
 | azapi    | >= 2.0      | < 3.0       |
 | azurerm  | >= 4.0      | < 5.0       |
 
-{{< hint type="note" >}}
+{{% notice style="note" %}}
 Authors **MAY** select either Azurerm, Azapi, or both providers in their module.
-{{< /hint>}}
+{{% /notice %}}
 
 Authors **MUST** use the `required_providers` block in their module to enforce the provider versions.
 
 The following is an example.
-In it we use the [pessimistic version constraint operator](https://developer.hashicorp.com/terraform/language/expressions/version-constraints#operators) `~>`.
-That is to say that `~> 4.0` is equivalent to `>= 4.0, < 5.0`.
+
+- In it we use the [pessimistic version constraint operator](https://developer.hashicorp.com/terraform/language/expressions/version-constraints#operators) `~>`.
+- That is to say that `~> 4.0` is equivalent to `>= 4.0, < 5.0`.
 
 ```terraform
 terraform {

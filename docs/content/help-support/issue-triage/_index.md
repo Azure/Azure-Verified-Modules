@@ -1,13 +1,10 @@
 ---
 title: Issue Triage
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-geekdocCollapseSection: true
 ---
 
 This section provides information about the issue triage process and its automation, implemented across various AVM repositories.
 
-- [AVM Issue Triage](/Azure-Verified-Modules/help-support/issue-triage/avm-issue-triage/)
-- [BRM Issue Triage](/Azure-Verified-Modules/help-support/issue-triage/brm-issue-triage/)
-- [Issue Triage Automation](/Azure-Verified-Modules/help-support/issue-triage/issue-triage-automation/)
+- [AVM Issue Triage]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/)
+- [BRM Issue Triage]({{% siteparam base %}}/help-support/issue-triage/brm-issue-triage/)
+- [Terraform Issue Triage]({{% siteparam base %}}/help-support/issue-triage/terraform-issue-triage/)
+- [Issue Triage Automation]({{% siteparam base %}}/help-support/issue-triage/issue-triage-automation/)

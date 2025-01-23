@@ -1,10 +1,7 @@
 ---
 title: PMNFR4 - Missing Resource Module(s)
 url: /spec/PMNFR4
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-type: posts
+type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Type-NonFunctional, # SINGLE VALUE: this can be "Type-Functional" OR "Type-NonFunctional"
@@ -24,8 +21,8 @@ priority: 4050
 
 An item **MUST** be logged onto as an issue on the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/issues) if a Resource Module does not exist for resources deployed by the pattern module.
 
-{{< hint type=important title=Exception >}}
+{{% notice style="important" title="Exception" %}}
 
-If the Resource Module adds no value, see Resource Module functional requirement [ID: RMFR2](/Azure-Verified-Modules/spec/RMFR2).
+If the Resource Module adds no value, see Resource Module functional requirement [ID: RMFR2]({{% siteparam base %}}/spec/RMFR2).
 
-{{< /hint >}}
+{{% /notice %}}

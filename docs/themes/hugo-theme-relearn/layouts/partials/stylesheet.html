@@ -1,0 +1,70 @@
+    {{- $outputFormat := "html" }}
+    {{- with .Store.Get "relearnOutputFormat" }}
+      {{- $outputFormat = . }}
+    {{- else }}
+      {{- warnf "WARNING no key `relearnOutputFormat` found in page store, set one by providing the file `layouts/_default/view/storeOutputFormat.<MYOUTPUTFORMAT>.html` for your self-defined output format; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/6/#6-0-0" }}
+    {{- end }}
+    {{- $assetBusting := partialCached "assetbusting.gotmpl" . }}
+    {{- /* https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use */}}
+    <link href="{{"css/fontawesome-all.min.css" | relURL}}{{ $assetBusting }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/fontawesome-all.min.css" | relURL}}{{ $assetBusting }}" rel="stylesheet"></noscript>
+    <link href="{{"css/auto-complete.css" | relURL}}{{ $assetBusting }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/auto-complete.css" | relURL}}{{ $assetBusting }}" rel="stylesheet"></noscript>
+    <link href="{{"css/perfect-scrollbar.min.css" | relURL}}{{ $assetBusting }}" rel="stylesheet">
+    {{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" . }}
+    {{- $minify := not hugo.IsServer }}
+    {{- if and (isset site.Params "minify") (ne site.Params.minify "") }}
+      {{- $minify = site.Params.minify }}
+    {{- end }}
+    {{- $min := cond $minify ".min" "" }}
+    <link href="{{(printf "css/theme%s.css" $min) | relURL}}{{ $assetBusting }}" rel="stylesheet">
+    <link href="{{(printf "css/format-%s%s.css" $outputFormat $min) | relURL}}{{ $assetBusting }}" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='{{ partial "_relearn/relBasePath.gotmpl" . | safeJS }}';
+      window.relearn.relBaseUri='{{ partial "_relearn/relBaseUri.gotmpl" . | safeJS }}';
+      window.relearn.absBaseUri='{{ replaceRE "/*$" "" .Site.BaseURL | safeJS }}';
+      {{ printf "window.relearn.min = `%s`;" $min | safeJS }}
+      window.relearn.disableAnchorCopy={{ printf "%t" (eq .Site.Params.disableAnchorCopy true) | safeJS }};
+      window.relearn.disableAnchorScrolling={{ printf "%t" (eq .Site.Params.disableAnchorScrolling true) | safeJS }};
+      {{ "// variant stuff" | safeJS }}
+      {{- $quotedthemevariants := slice }}
+      {{- range $themevariants }}
+        {{- $quotedthemevariants = $quotedthemevariants | append (printf "'%s'" .identifier) }}
+      {{- end }}
+      window.relearn.themevariants = [ {{ delimit $quotedthemevariants ", " | safeJS }} ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
+        var select = document.querySelector("#R-select-variant");
+        if (select) {
+          select.value = variant;
+        }
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      {{ "// translations" | safeJS }}
+      {{ printf "window.T_Copy_to_clipboard = `%s`;" (T `Copy-to-clipboard`) | safeJS }}
+      {{ printf "window.T_Copied_to_clipboard = `%s`;" (T `Copied-to-clipboard`) | safeJS }}
+      {{ printf "window.T_Copy_link_to_clipboard = `%s`;" (T `Copy-link-to-clipboard`) | safeJS }}
+      {{ printf "window.T_Link_copied_to_clipboard = `%s`;" (T `Link-copied-to-clipboard`) | safeJS }}
+      {{ printf "window.T_Reset_view = `%s`;" (T `Reset-view`) | safeJS }}
+      {{ printf "window.T_View_reset = `%s`;" (T `View-reset`) | safeJS }}
+      {{ printf "window.T_No_results_found = `%s`;" (T "No-results-found") | safeJS }}
+      {{ printf "window.T_N_results_found = `%s`;" (T "N-results-found") | safeJS }}
+    </script>
