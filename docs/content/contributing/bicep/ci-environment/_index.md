@@ -19,6 +19,6 @@ The Continuous Integration environment (CI environment) is a set of automation c
     - [Deployment history cleanup]({{% siteparam base %}}/contributing/bicep/ci-environment/deployment-history-cleanup/)
   - [Publishing]({{% siteparam base %}}/contributing/bicep/ci-environment/publishing/)
   - [Token replacement]({{% siteparam base %}}/contributing/bicep/ci-environment/token-replacement/)
-- Pipeline usage
+- [Pipeline usage]({{% siteparam base %}}/contributing/bicep/ci-environment/pipeline-usage/)
 - Bicep configuration
 - Troubleshooting

@@ -596,6 +596,14 @@ enableGitInfo = true
       weight = 5
       params = { alwaysopen = false, collapsibleMenu = true }
 
+    [[menu.defined]]
+      identifier = 'pipeline-usage'
+      parent = 'bicep-ci-environment'
+      name = 'Pipeline Usage'
+      pageRef = '/contributing/bicep/ci-environment/pipeline-usage'
+      weight = 6
+      params = { alwaysopen = false, collapsibleMenu = true }
+
   [[menu.defined]]
     identifier = 'terraform-module-contribution'
     parent = 'contributing'
