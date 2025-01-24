@@ -43,7 +43,7 @@ Optional. The name of the UAMI (User Assigned Managed Identity) to create. If no
 Optional. The name of the Resource Group to create for the UAMI (User Assigned Managed Identity) to create. If not provided, a default name of `rsg-avm-bicep-brm-fork-ci-<GitHub Organization>-oidc` will be used.
 
 .PARAMETER UAMIRsgLocation
-Optional. The location of the Resource Group to create for the UAMI (User Assigned Managed Identity) to create. Also UAMI will be created in this location also. This is required for OIDC deployments.
+Optional. The location of the Resource Group to create for the UAMI (User Assigned Managed Identity) to create. Also UAMI will be created in this location. This is required for OIDC deployments.
 
 .PARAMETER UseOIDC
 Optional. Default is `$true`. If set to `$true`, the script will use the OIDC (OpenID Connect) authentication method for the SPN instead of secrets as per https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/#31-set-up-secrets. If set to `$false`, the script will use the Client Secret authentication method for the SPN and not OIDC.
