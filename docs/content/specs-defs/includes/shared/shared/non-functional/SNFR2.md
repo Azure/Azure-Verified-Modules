@@ -90,20 +90,21 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-12
 
 Tests are part of the documentation and ensure thorough testing of the module and parameters. However, there are situation where an actual deployment can't be performed. One could be, that the deployment is too big (the Azure Resource Manager has a [limit of 4MB](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/best-practices) for a single deployment) or only one instance of a service can be deployed to a subscription. To still keep a test for reference and documentation, a file named `.e2eignore` can be placed inside a test folder to prevent the test case being deployed by the CI.
 
-{{% expand "➕ Terraform & Bicep specific details for use in E2E tests" "expand/collapse" %}}
-
-###### Bicep
+{{% tabs title="Details for use in E2E tests" groupid="e2eignore" %}}
+  {{% tab title="Bicep" %}}
 
 You **MUST** add a note to the tests metadata description, which explains the excemption.
 
-If you should require the test to be skipped and add a `.e2eignore` file (e.g. \<module\>/tests/e2e/\<testname\>/.e2eignore) in a PR, it requires a member of the AVM Core Technical Bicep Team to approve. The content of the file is listed in the GitHub Action.
+If you should require the test to be skipped and add a `.e2eignore` file (e.g. \<module\>/tests/e2e/\<testname\>/.e2eignore) in a PR, it requires a member of the AVM Core Technical Bicep Team to approve. The content of the file is listed in the GitHub Action. State the reason for skipping the deployment in the file.
 
 Sample filecontent: ```The test is skipped due to the maximum deployment template of 4MB, which this test exeecds.```
 
-*For resource modules, the defaults and waf-aligned tests can't be skipped.*
+*For resource modules, the 'defaults' and 'waf-aligned' tests can't be skipped.*
 
-###### Terraform
+  {{% /tab %}}
+  {{% tab title="Terraform" %}}
 
 The deployment of a test can be skipped by adding a `e2eignore`file into a test folder (e.g. /examples/\<testname\>).
 
-{{% /expand %}}
+  {{% /tab %}}
+{{% /tabs %}}
