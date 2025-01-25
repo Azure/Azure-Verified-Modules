@@ -23,7 +23,7 @@ module secretsExport 'modules/keyVaultExport.bicep' = if (secretsExportConfigura
       contains(secretsExportConfiguration!, '>secretToExport1<Name')
         ? [
             {
-              name: secretsExportConfiguration!.>secretToExport1<Name
+              name: secretsExportConfiguration!.?>secretToExport1<Name
               value: >secretReference1< // e.g., >singularMainResourceType<.listKeys().primaryMasterKey
             }
           ]
@@ -31,7 +31,7 @@ module secretsExport 'modules/keyVaultExport.bicep' = if (secretsExportConfigura
       contains(secretsExportConfiguration!, '>secretToExport2<Name')
         ? [
             {
-              name: secretsExportConfiguration!.>secretToExport2<Name
+              name: secretsExportConfiguration!.?>secretToExport2<Name
               value:>secretReference2<  // e.g., >singularMainResourceType<.listKeys().secondaryMasterKey
             }
           ]
