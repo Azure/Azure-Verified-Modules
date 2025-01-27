@@ -13,12 +13,12 @@ Using CI pipelines for Azure Verified Modules also facilitates collaboration amo
 The Continuous Integration environment (CI environment) is a set of automation components that are used for continuously validating and publishing module artifacts (Bicep registry repositories, template specs, universal packages). Technically, the CI environment consists of a DevOps platform (GitHub or Azure DevOps) hosting related pipelines and scripts, as well as an Azure environment (Azure AD tenant with management group(s) and subscription(s)) in which the modules are validated by the automation pipelines and scripts.
 
 - [Pipeline design]({{% siteparam base %}}/contributing/bicep/ci-environment/pipeline-design)
-  - [Static validation]({{% siteparam base %}}/contributing/bicep/ci-environment/static-validation/)
-  - [Deployment Flow]({{% siteparam base %}}/contributing/bicep/ci-environment/deployment-flow/)
-    - [Deployment validation]({{% siteparam base %}}/contributing/bicep/ci-environment/deployment-validation/)
-    - [Deployment history cleanup]({{% siteparam base %}}/contributing/bicep/ci-environment/deployment-history-cleanup/)
-  - [Publishing]({{% siteparam base %}}/contributing/bicep/ci-environment/publishing/)
-  - [Token replacement]({{% siteparam base %}}/contributing/bicep/ci-environment/token-replacement/)
-- [Pipeline usage]({{% siteparam base %}}/contributing/bicep/ci-environment/pipeline-usage/)
-- Bicep configuration
-- Troubleshooting
+  - [Static validation]({{% siteparam base %}}/contributing/bicep/ci-environment/static-validation)
+  - [Deployment Flow]({{% siteparam base %}}/contributing/bicep/ci-environment/deployment-flow)
+    - [Deployment validation]({{% siteparam base %}}/contributing/bicep/ci-environment/deployment-validation)
+    - [Deployment history cleanup]({{% siteparam base %}}/contributing/bicep/ci-environment/deployment-history-cleanup)
+  - [Publishing]({{% siteparam base %}}/contributing/bicep/ci-environment/publishing)
+  - [Token replacement]({{% siteparam base %}}/contributing/bicep/ci-environment/token-replacement)
+- [Pipeline usage]({{% siteparam base %}}/contributing/bicep/ci-environment/pipeline-usage)
+- [Bicep configuration]({{% siteparam base %}}/contributing/bicep/ci-environment/bicep-configuration)
+- [Troubleshooting]({{% siteparam base %}}/contributing/bicep/ci-environment/troubleshooting)

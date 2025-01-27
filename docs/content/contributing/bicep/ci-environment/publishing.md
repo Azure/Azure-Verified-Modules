@@ -1,10 +1,10 @@
 ---
-title: CI environment - Publishing (CARML specific)
+title: CI environment - Publishing
 ---
 
 This section provides an overview of the principles the publishing is built upon, how it is set up, and how you can interact with it.
 
-![Publishing Step]({{% siteparam base %}}/img/bicep-ci/publishing-step.png)
+![Publishing Step]({{% siteparam base %}}/img/bicep-ci/publishing-step.png?width=500px)
 
 ## Publishing overview
 
@@ -36,7 +36,7 @@ The final name is different based on the `useApiSpecsAlignedName` setting in the
 
 ### Examples
 
-| Module Path | `useApiSpecsAlignedName` | Result |
+| Module Path | useApiSpecsAlignedName | Result |
 | - | - | - |
 | `/recovery-services/vault` | `true` | `ms.recoveryservices.vaults` |
 | | `false` | `recovery-services.vault` |
@@ -59,7 +59,7 @@ The final name is different based on the `useApiSpecsAlignedName` setting in the
 
 ### Examples
 
-| Module Path | `useApiSpecsAlignedName` | Result |
+| Module Path | useApiSpecsAlignedName | Result |
 | - | - | - |
 | `/recovery-services/vault` | `true` | `bicep/modules/microsoft.recoveryservices.vaults` |
 | | `false` | `bicep/modules/recovery-services.vault` |

@@ -604,6 +604,22 @@ enableGitInfo = true
       weight = 6
       params = { alwaysopen = false, collapsibleMenu = true }
 
+    [[menu.defined]]
+      identifier = 'bicep-configuration'
+      parent = 'bicep-ci-environment'
+      name = 'Bicep Configuration'
+      pageRef = '/contributing/bicep/ci-environment/bicep-configuration'
+      weight = 7
+      params = { alwaysopen = false, collapsibleMenu = true }
+
+    [[menu.defined]]
+      identifier = 'troubleshooting'
+      parent = 'bicep-ci-environment'
+      name = 'Troubleshooting'
+      pageRef = '/contributing/bicep/ci-environment/troubleshooting'
+      weight = 8
+      params = { alwaysopen = false, collapsibleMenu = true }
+
   [[menu.defined]]
     identifier = 'terraform-module-contribution'
     parent = 'contributing'
