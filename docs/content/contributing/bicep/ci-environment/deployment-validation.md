@@ -4,7 +4,7 @@ title: CI environment - Deployment Validation
 
 This section provides an overview of the principles the deployment validation is built upon, how it is set up, and how you can interact with it.
 
-![Deployment Validation Step]({{% siteparam base %}}/img/bicep-ci/deployment-validation-step.png)
+![Deployment Validation Step]({{% siteparam base %}}/img/bicep-ci/deployment-validation-step.png?width=400px)
 
 ## Deployment validation steps
 
@@ -36,7 +36,7 @@ The module test files used in this stage should ideally cover as many configurat
 
 ### Output example
 
-![Deployment Validation Output]({{% siteparam base %}}/img/bicep-ci/deployment-validation-output.png)
+![Deployment Validation Output]({{% siteparam base %}}/img/bicep-ci/deployment-validation-output.png?width=400px)
 
 ### Resource removal
 

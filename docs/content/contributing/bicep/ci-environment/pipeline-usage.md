@@ -33,11 +33,11 @@ To trigger a workflow in _GitHub_:
 
 1. Navigate to the 'Actions' tab in your repository.
 
-  ![Actions tab]({{% siteparam base %}}/img/bicep-ci/gh-actions-tab.png)
+  ![Actions tab]({{% siteparam base %}}/img/bicep-ci/gh-actions-tab.png?width=400px)
 
 1. Select the pipeline of your choice from the list on the left, followed by 'Run workflow' to the right. You can then select the branch of your choice and trigger the pipeline by clicking on the green 'Run workflow' button.
 
-  ![Run workflow]({{% siteparam base %}}/img/bicep-ci/gh-trigger-pipeline.png)
+  ![Run workflow]({{% siteparam base %}}/img/bicep-ci/gh-trigger-pipeline.png?width=400px)
 
 >**Note**: Depending on the pipeline you selected you may have additional input parameters you can provide aside from the branch. An outline can be found in the [Module pipeline inputs](./The%20CI%20environment%20-%20Pipeline%20design#module-pipeline-inputs) section.
 

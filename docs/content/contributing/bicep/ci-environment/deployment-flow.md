@@ -4,7 +4,7 @@ title: Deployment Flow
 
 This page provides an overview of the standard development-to-deployment flow that goes from source modules to target solutions.
 
-![Deployment Flow]({{% siteparam base %}}/img/bicep-ci/deployment_flow.png)
+![Deployment Flow]({{% siteparam base %}}/img/bicep-ci/deployment_flow.png?width=400px)
 
 This flow generally covers 3 phases:
 
@@ -26,7 +26,7 @@ The CI environment covers Phase #1, (the validation) & Phase #2 (the publishing)
 The AVM solution developer and solution consumer personas are usually working in Phase #2 and Phase #3, i.e., building/leveraging complex, multi-module solutions by consuming the already tested and versioned modules previously placed in an artifact store.
 The below diagram shows the details of how the different phases are interconnected:
 
-![Deployment Flow]({{% siteparam base %}}/img/bicep-ci/deployment_flow_detail_white.png)
+![Deployment Flow]({{% siteparam base %}}/img/bicep-ci/deployment_flow_detail_white.png?width=400px)
 
 The top row represents your orchestration environment, for example, GitHub or Azure DevOps. The bottom row represents your Azure cloud environment.
 From left to right, there are the three phases introduced before, Develop modules, Publish modules & Consume modules. The diagram shows how each phase interacts with the Azure environment.

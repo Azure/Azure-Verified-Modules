@@ -4,7 +4,7 @@ title: CI environment - Static validation
 
 This section provides an overview of the principles the static validation is built upon, how it is set up, and how you can interact with it.
 
-![Static Validation Step]({{% siteparam base %}}/img/bicep-ci/static-validation-step.png)
+![Static Validation Step]({{% siteparam base %}}/img/bicep-ci/static-validation-step.png?width=400px)
 
 ## Static code validation
 
@@ -105,7 +105,7 @@ The following activities are performed by the [`utilities/pipelines/staticValida
 
 Every test creates output, that is written to the workflows log. *Yellow* lines are either verbose or warning messages, whereas *red* lines are actuall errors, which mark the whole test as faulty and stopps the CI pipeline.
 
-![Static Validation Output]({{% siteparam base %}}/img/bicep-ci/static-validation-output.png)
+![Static Validation Output]({{% siteparam base %}}/img/bicep-ci/static-validation-output.png?width=400px)
 
 ### Additional resources
 
