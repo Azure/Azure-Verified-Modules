@@ -19,7 +19,7 @@ tags: [
 priority: 1210
 ---
 
-#### ID: SNFR17 - Category: Release - Semantic Versioning
+## ID: SNFR17 - Category: Release - Semantic Versioning
 
 {{% notice style="important" %}}
 
@@ -37,7 +37,7 @@ For example all modules should be released using a semantic version that matches
 - `Y` == Minor Version
 - `Z` == Patch Version
 
-##### Module versioning before first Major version release `1.0.0`
+### Module versioning before first Major version release `1.0.0`
 
 - Initially modules MUST be released as version `0.1.0` and incremented via Minor and Patch versions only until the AVM Core Team are confident the AVM specifications are mature enough and appropriate CI test coverage is in place, plus the module owner is happy the module has been "road tested" and is now stable enough for its first Major release of version `1.0.0`.
 

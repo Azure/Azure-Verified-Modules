@@ -5,6 +5,12 @@ linktitle: Utility Modules
 weight: 3
 ---
 
+## Module catalog
+
+{{% moduleStats language="Terraform" moduleType="Utility" showLanguage=true showClassification=true %}}
+
+{{% expand title="➕ Additional information" %}}
+
 {{% notice style="info" %}}
 
 This page contains various views of the module index (catalog) for **Terraform Utility Modules**. To see these views, **click on the expandable sections** with the "➕" sign below.
@@ -15,27 +21,13 @@ This page contains various views of the module index (catalog) for **Terraform U
 
 {{% /notice %}}
 
-## Module catalog
-
 {{% notice style="note" %}}
 
 Modules listed below that aren't shown with the status of **`Module Available 🟢`**, are currently in development and are not yet available for use. For proposed modules, see the [Proposed modules]({{% siteparam base %}}/indexes/terraform/tf-utility-modules/#proposed-modules---) section below.
 
 {{% /notice %}}
 
-The following table shows the number of all available, orphaned and proposed **Terraform Utility Modules**.
-
-{{% moduleStats language="Terraform" moduleType="Utility" showLanguage=true showClassification=true %}}
-
-### Module Publication History - 📅
-
-{{% expand title="➕ Module Publication History - Module names, status and owners" expanded="false" %}}
-
-{{% moduleHistory header=true csv="/static/module-indexes/TerraformUtilityModules.csv" language="Terraform" moduleType="utility" exclude="Proposed :new:" monthsToShow=9999 %}}
-
 {{% /expand %}}
-
----
 
 ### Published modules - 🟢 & 👀
 
@@ -45,8 +37,6 @@ The following table shows the number of all available, orphaned and proposed **T
 
 {{% /expand %}}
 
----
-
 ### Proposed modules - 🆕
 
 {{% expand title="➕ Proposed Modules - Module names, status and owners" expanded="false" %}}
@@ -54,8 +44,6 @@ The following table shows the number of all available, orphaned and proposed **T
 {{% moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformUtilityModules.csv" language="Terraform" moduleType="utility" exclude="Available :green_circle:,Orphaned :eyes:" %}}
 
 {{% /expand %}}
-
----
 
 ### All modules - 📇
 
@@ -65,7 +53,13 @@ The following table shows the number of all available, orphaned and proposed **T
 
 {{% /expand %}}
 
----
+### Module Publication History - 📅
+
+{{% expand title="➕ Module Publication History - Module names, status and owners" expanded="false" %}}
+
+{{% moduleHistory header=true csv="/static/module-indexes/TerraformUtilityModules.csv" language="Terraform" moduleType="utility" exclude="Proposed :new:" monthsToShow=9999 %}}
+
+{{% /expand %}}
 
 ## For Module Owners & Contributors
 

@@ -17,7 +17,7 @@ tags: [
 priority: 10010
 ---
 
-#### ID: BCPFR1 - Category: Composition - Cross-Referencing Modules
+## ID: BCPFR1 - Category: Composition - Cross-Referencing Modules
 
 Module owners **MAY** cross-references other modules to build either Resource or Pattern modules.
 

@@ -18,7 +18,7 @@ tags: [
 priority: 1170
 ---
 
-#### ID: SNFR14 - Category: Inputs - Data Types
+## ID: SNFR14 - Category: Inputs - Data Types
 
 A module **SHOULD** use either: simple data types. e.g., string, int, bool.
 

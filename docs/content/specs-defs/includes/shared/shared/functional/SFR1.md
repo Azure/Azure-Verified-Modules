@@ -17,7 +17,7 @@ tags: [
 priority: 10
 ---
 
-#### ID: SFR1 - Category: Composition - Preview Services
+## ID: SFR1 - Category: Composition - Preview Services
 
 Modules **MAY** create/adopt public preview services and features at their discretion.
 

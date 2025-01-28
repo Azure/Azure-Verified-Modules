@@ -18,7 +18,7 @@ priority: 21320
 showPage: false
 ---
 
-#### ID: TFNFR32 - Category: Code Style - Alphabetical Local Arrangement
+## ID: TFNFR32 - Category: Code Style - Alphabetical Local Arrangement
 
 Expressions in `locals` block **MUST** be arranged alphabetically.
 

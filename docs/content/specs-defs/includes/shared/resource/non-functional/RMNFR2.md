@@ -17,7 +17,7 @@ tags: [
 priority: 3020
 ---
 
-#### ID: RMNFR2 - Category: Inputs - Parameter/Variable Naming
+## ID: RMNFR2 - Category: Inputs - Parameter/Variable Naming
 
 A resource module **MUST** use the following standard inputs:
 

@@ -17,7 +17,7 @@ tags: [
 priority: 11050
 ---
 
-#### ID: BCPNFR4 - Category: Documentation - Parameter Input Examples
+## ID: BCPNFR4 - Category: Documentation - Parameter Input Examples
 
 Bicep modules **MAY** provide parameter input examples for parameters using the `metadata.example` property via the `@metadata()` decorator.
 

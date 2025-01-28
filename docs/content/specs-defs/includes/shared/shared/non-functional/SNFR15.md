@@ -18,6 +18,6 @@ tags: [
 priority: 1190
 ---
 
-#### ID: SNFR15 - Category: Documentation - Automatic Documentation Generation
+## ID: SNFR15 - Category: Documentation - Automatic Documentation Generation
 
 README documentation **MUST** be automatically/programmatically generated. **MUST** include the sections as defined in the language specific requirements [BCPNFR2]({{% siteparam base %}}/spec/BCPNFR2), [TFNFR2]({{% siteparam base %}}/spec/TFNFR2).
