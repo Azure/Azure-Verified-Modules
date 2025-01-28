@@ -17,7 +17,7 @@ tags: [
 priority: 21030
 ---
 
-#### ID: TFNFR3 - Category: Contribution/Support - GitHub Repo Branch Protection
+## ID: TFNFR3 - Category: Contribution/Support - GitHub Repo Branch Protection
 
 Module owners **MUST** set a branch protection policy on their GitHub Repositories for AVM modules against their default branch, typically `main`, to do the following:
 

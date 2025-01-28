@@ -17,7 +17,7 @@ tags: [
 priority: 1010
 ---
 
-#### ID: SNFR25 - Category: Composition - Resource Naming
+## ID: SNFR25 - Category: Composition - Resource Naming
 
 Module owners **MUST** set the default resource name prefix for child, extension, and interface resources to the associated abbreviation for the specific resource as documented in the following CAF article [Abbreviation examples for Azure resources](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations), if specified and documented. This reduces the amount of input values a module consumer **MUST** provide by default when using the module.
 

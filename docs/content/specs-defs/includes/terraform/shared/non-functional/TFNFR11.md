@@ -17,7 +17,7 @@ tags: [
 priority: 21110
 ---
 
-#### ID: TFNFR11 - Category: Code Style - Null Comparison Toggle
+## ID: TFNFR11 - Category: Code Style - Null Comparison Toggle
 
 Sometimes we need to ensure that the resources created are compliant to some rules at a minimum extent, for example a `subnet` has to be connected to at least one `network_security_group`. The user **SHOULD** pass in a `security_group_id` and ask us to make a connection to an existing `security_group`, or want us to create a new security group.
 

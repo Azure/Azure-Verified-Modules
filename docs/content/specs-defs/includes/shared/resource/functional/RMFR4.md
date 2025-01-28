@@ -17,7 +17,7 @@ tags: [
 priority: 2040
 ---
 
-#### ID: RMFR4 - Category: Composition - AVM Consistent Feature & Extension Resources Value Add
+## ID: RMFR4 - Category: Composition - AVM Consistent Feature & Extension Resources Value Add
 
 Resource modules support the following optional features/extension resources, as specified, if supported by the primary resource. The top-level variable/parameter names **MUST** be:
 

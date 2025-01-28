@@ -18,7 +18,7 @@ tags: [
 priority: 11090
 ---
 
-#### ID: BCPNFR14 - Category: Composition - Versioning
+## ID: BCPNFR14 - Category: Composition - Versioning
 
 To meet [SNFR17]({{% siteparam base %}}/spec/SNFR17) and depending on the changes you make, you may need to bump the version in the `version.json` file.
 

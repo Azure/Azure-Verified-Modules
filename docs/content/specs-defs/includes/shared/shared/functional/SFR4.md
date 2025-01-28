@@ -17,7 +17,7 @@ tags: [
 priority: 40
 ---
 
-#### ID: SFR4 - Category: Telemetry - Telemetry Enablement Flexibility
+## ID: SFR4 - Category: Telemetry - Telemetry Enablement Flexibility
 
 The telemetry enablement **MUST** be on/enabled by default, however this **MUST** be able to be disabled by a module consumer by setting the below parameter/variable value to `false`:
 

@@ -18,6 +18,6 @@ tags: [
 priority: 1060
 ---
 
-#### ID: SNFR5 - Category: Testing - Upgrade Tests
+## ID: SNFR5 - Category: Testing - Upgrade Tests
 
 Modules **SHOULD** implement upgrade testing to ensure new features are implemented in a non-breaking fashion on non-major releases.

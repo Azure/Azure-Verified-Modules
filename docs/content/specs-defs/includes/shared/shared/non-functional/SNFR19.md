@@ -18,7 +18,7 @@ tags: [
 priority: 1230
 ---
 
-#### ID: SNFR19 - Category: Publishing - Registries Targeted
+## ID: SNFR19 - Category: Publishing - Registries Targeted
 
 Modules **MUST** be published to their respective language public registries.
 

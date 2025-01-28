@@ -17,7 +17,7 @@ tags: [
 priority: 2070
 ---
 
-#### ID: RMFR6 - Category: Inputs - Parameter/Variable Naming
+## ID: RMFR6 - Category: Inputs - Parameter/Variable Naming
 
 Parameters/variables that pertain to the primary resource **MUST NOT** use the resource type in the name.
 
