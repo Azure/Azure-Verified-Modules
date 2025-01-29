@@ -617,11 +617,19 @@ enableGitInfo = true
       params = { alwaysopen = false, collapsibleMenu = true }
 
     [[menu.defined]]
+      identifier = 'changelog-automation'
+      parent = 'bicep-ci-environment'
+      name = 'Changelog Automation'
+      pageRef = '/contributing/bicep/ci-environment/changelog-automation'
+      weight = 8
+      params = { alwaysopen = false, collapsibleMenu = true }
+
+    [[menu.defined]]
       identifier = 'troubleshooting'
       parent = 'bicep-ci-environment'
       name = 'Troubleshooting'
       pageRef = '/contributing/bicep/ci-environment/troubleshooting'
-      weight = 8
+      weight = 9
       params = { alwaysopen = false, collapsibleMenu = true }
 
   [[menu.defined]]

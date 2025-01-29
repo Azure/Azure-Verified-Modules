@@ -4,7 +4,7 @@ title: CI environment - Pipeline design
 
 ## Module Pipelines
 
-The repository hosts one pipeline for each module in the AVM library.
+The repository hosts one pipeline for each module in the AVM library (see [Contribution Guide - Implement your contribution]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution)).
 
 The purpose of each module pipeline is twofold:
 
@@ -21,7 +21,7 @@ The following paragraphs provide an overview of the different phases and shared 
 
 This paragraph provides an overview of the three phases performed by each module pipeline. Further details about the implementation and design of each phase are provided on the dedicated pages linked below.
 
-1. **Static Validation**: Runs a set of static Pester tests on the module and its templates to ensure they comply with the design principles. Further details for this phase are provided on the corresponding wiki page - see the [Static validation]({{% siteparam base %}}/contributing/bicep/ci-environment/static-validation) section.
+1. **Static Validation**: Runs a set of static [Pester (test and mock framework for PowerShell)](https://pester.dev/) tests on the module and its templates to ensure they comply with the AVM design principles. Further details for this phase are provided on the corresponding wiki page - see the [Static validation]({{% siteparam base %}}/contributing/bicep/ci-environment/static-validation) section.
 1. **Deployment Validation**: An actual Azure deployment is run in a sandbox subscription leveraging a predefined set of module test files, each validating a different configuration of the same Azure resource in parallel. The test suite is cleaned up by default, removing all test resources post-deployment. Further details for this phase are provided on the corresponding wiki page - see the [Deployment validation]({{% siteparam base %}}/contributing/bicep/ci-environment/deployment-validation) section.
 1. **Publishing**: Runs only if the previous steps are successful. A new module version is published to all configured target locations such as template specs, private Bicep registry and Azure DevOps Universal Packages. Published module versions can then be referenced by solutions using them. Further details for this phase are provided on the corresponding wiki page - see the [Publishing]({{% siteparam base %}}/contributing/bicep/ci-environment/publishing) page.
 

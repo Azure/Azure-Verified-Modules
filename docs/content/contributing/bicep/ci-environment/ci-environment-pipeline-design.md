@@ -17,9 +17,6 @@ As such, each pipeline can be mapped to Phases 1 and 2 described in the Deployme
 
 The following paragraphs provide an overview of the different phases and shared logic the module pipelines use.
 
-- [Pipeline phases](#pipeline-phases)
-- [Module pipeline inputs](#module-pipeline-inputs)
-
 ## Pipeline phases
 
 This paragraph provides an overview of the three phases performed by each module pipeline. Further details about the implementation and design of each phase are provided on the dedicated pages linked below.

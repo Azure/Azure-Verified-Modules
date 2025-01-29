@@ -8,11 +8,11 @@ This section provides an overview of the principles the static validation is bui
 
 ## Static code validation
 
-All module Unit tests are performed with the help of [Pester](https://github.com/pester/Pester) to ensure that the modules are configured correctly, documentation is up to date, and modules don't turn stale.
-
-The following activities are performed by the [`utilities/pipelines/staticValidation/compliance/module.tests.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/staticValidation/compliance/module.tests.ps1) script.
+All module Unit tests are performed with the help of [Pester](https://github.com/pester/Pester) to ensure that the modules are configured correctly, documentation is up to date and modules don't turn stale.
 
 ### Outline
+
+The following activities are performed by the [`utilities/pipelines/staticValidation/compliance/module.tests.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/staticValidation/compliance/module.tests.ps1) script.
 
 - **File/folder tests**
   - **General module folder tests**
@@ -20,11 +20,11 @@ The following activities are performed by the [`utilities/pipelines/staticValida
     1. Module should contain a [` main.json `] file.
     1. Module should contain a [` README.md `] file.
     1. Module should contain a [` CHANGELOG.md `] file.
-    1. Main module version should be increased, if the child version number has been increased.
+    1. Main module version should be increased in the [` version.json `] file, if the child version number has been increased.
     1. Module should contain a [` ORPHANED.md `] file only, if the module is orphaned.
     1. Module should contain a [` version.json `] file.
     1. Module should contain a [` tests `] folder.
-    1. Module should contain a [` tests/e2e `] folder.^
+    1. Module should contain a [` tests/e2e `] folder.
     1. Module should contain a [` tests/e2e/waf-aligned `] folder.
     1. Module should contain a [` tests/e2e/defaults `] folder.
     1. Module should contain a [` main.test.bicep `] file in each e2e test folder.
@@ -35,7 +35,7 @@ The following activities are performed by the [`utilities/pipelines/staticValida
   - **Readme content tests**
     1. `Set-ModuleReadMe` script should not apply any updates.
   - **Compiled ARM template tests**
-    1. Compiled ARM template should be basedn on the current Bicep template.
+    1. Compiled ARM template should be based on the current Bicep template.
   - **General template tests**
     1. The template file should not be empty.
     1. Template schema version should be the latest.
@@ -43,19 +43,18 @@ The following activities are performed by the [`utilities/pipelines/staticValida
     1. The template file should contain required elements [schema], [contentVersion], [resources].
     1. The template file should have a module name specified.
     1. The template file should have a module description specified.
-    1. The template file should have a module owner specified.
   - **Parameters template tests**
-    1. The Location should be defined as a parameter, with the default value of [resourceGroup().Location] or [global] for ResourceGroup deployment scope.
+    1. The Location should be defined as a parameter, with the default value of 'resourceGroup().location' or global' for ResourceGroup deployment scope.
     1. The telemetry parameter should be present and valid.
     1. Parameter & UDT names should be camel-cased (no dashes or underscores and must start with lower-case letter).
     1. Each parameters' & UDT's description should be well formatted.
     1. Conditional parameters' & UDT's description should contain 'Required if' followed by a definition.
     1. Non-required parameters' and UDT's description should not start with 'Required'.
-    1. Required parameters' and UDT's description should start with '(Required|Conditional)'.
+    1. Required parameters' and UDT's description should start with 'Required|Conditional'.
     - **UDT Parameters template tests**
-      1. Parameters should implement AVM'S corresponding user-defined type.
-      1. If a UDT definition [managedIdentitiesType] exists and supports system-assigned-identities, an output for its principal ID should exist.
-      1. A parameter [tags] should be nullable.
+      1. Parameters should implement AVM's corresponding user-defined type.
+      1. If a UDT definition [managedIdentitiesType] exists and the module supports system-assigned-identities, an output for its principal ID should exist.
+      1. A parameter [tags] should be 'nullable'.
   - **Variables template tests**
     1. Variable names should be camel-cased (no dashes or underscores and must start with lower-case letter).
   - **Resources template tests**
@@ -71,7 +70,7 @@ The following activities are performed by the [`utilities/pipelines/staticValida
     1. Resource name output should exist.
     1. Resource ID output should exist.
     1. Resource modules Principal ID output should exist, if supported.
-  - **Changelog content tests**
+  - [**Changelog content tests**]({{% siteparam base %}}/contributing/bicep/ci-environment/changelog-automation)
     1. The changelog should not be empty.
     1. The changelog shoud start with '# Changelog'.
     1. The changelog shoud start with '# Changelog', followed by an empty line.
@@ -106,12 +105,6 @@ The following activities are performed by the [`utilities/pipelines/staticValida
 Every test creates output, that is written to the workflows log. *Yellow* lines are either verbose or warning messages, whereas *red* lines are actuall errors, which mark the whole test as faulty and stopps the CI pipeline.
 
 ![Static Validation Output]({{% siteparam base %}}/img/bicep-ci/static-validation-output.png?width=400px)
-
-### Additional resources
-
-- [Pester wiki](https://github.com/pester/Pester/wiki)
-- [Pester on GitHub](https://github.com/pester/Pester)
-- [Pester Installation and Update](https://pester.dev/docs/introduction/installation)
 
 ## API version validation
 
