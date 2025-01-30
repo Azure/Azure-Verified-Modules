@@ -2,6 +2,7 @@
 title: Bicep Pattern Module Specifications
 linktitle: Pattern Modules
 url: /specs/bcp/ptn/
+description: Bicep Pattern Module Specifications for the Azure Verified Modules (AVM) program
 ---
 
 ## Contribution / Support

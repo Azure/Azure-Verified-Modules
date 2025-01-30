@@ -1,6 +1,7 @@
 ---
 title: Website Contribution Guide
 linktitle: Website
+description: Website Contribution Guidance for the Azure Verified Modules (AVM) program
 ---
 
 Looking to contribute to the AVM Website, well you have made it to the right place/page. 👍

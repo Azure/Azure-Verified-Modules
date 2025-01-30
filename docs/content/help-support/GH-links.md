@@ -1,5 +1,6 @@
 ---
 title: GitHub Links
+description: GitHub Links for the Azure Verified Modules (AVM) program
 ---
 
 - {{% icon icon="fa-brands fa-github" %}} [Propose a New Module](https://aka.ms/AVM/ModuleProposal)

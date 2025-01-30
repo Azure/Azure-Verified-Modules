@@ -4,6 +4,7 @@ title: Overview
 linktitle: Overview
 type: default
 weight: 1
+description: Overview pages for the Azure Verified Modules (AVM) program
 ---
 
 ## Summary

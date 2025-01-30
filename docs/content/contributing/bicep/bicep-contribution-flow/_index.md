@@ -1,6 +1,7 @@
 ---
 title: Bicep Contribution Flow
 linktitle: Contribution Flow
+description: Bicep Contribution Flow for the Azure Verified Modules (AVM) program
 ---
 
 ## High-level contribution flow

@@ -4,6 +4,7 @@ title: Introduction
 linktitle: Introduction
 type: default
 weight: 1
+description: Introduction to the Azure Verified Modules (AVM) program
 ---
 
 

@@ -2,6 +2,7 @@
 title: Frequently Asked Questions (FAQ)
 linktitle: FAQ
 aliases: ['/faq']
+description: Frequently Asked Questions (FAQ) for the Azure Verified Modules (AVM) program
 ---
 
 {{% notice style="tip" %}}

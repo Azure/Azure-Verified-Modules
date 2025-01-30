@@ -1,5 +1,6 @@
 ---
 title: Glossary
+description: Terms, Abbreviations, and Acronyms for the Azure Verified Modules (AVM) program
 ---
 
 ## Terms, Abbreviations, and Acronyms

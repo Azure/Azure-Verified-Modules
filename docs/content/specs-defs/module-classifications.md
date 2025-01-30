@@ -1,6 +1,7 @@
 ---
 title: Module Classifications
 url: /specs/shared/module-classifications/
+description: Module Classifications for the Azure Verified Modules (AVM) program
 ---
 
 ## Module Classification Definitions

@@ -2,6 +2,7 @@
 title: Terraform Interfaces
 linktitle: Interfaces
 url: /specs/tf/interfaces/
+description: Terraform Module Interface Specifications for the Azure Verified Modules (AVM) program
 ---
 
 This chapter details the interfaces/schemas for the AVM Resource Modules features/extension resources as referenced in [RMFR4]({{% siteparam base %}}/spec/RMFR4) and [RMFR5]({{% siteparam base %}}/spec/RMFR5).
