@@ -3,6 +3,7 @@ draft: false
 title: Bicep Utility Modules
 linktitle: Utility Modules
 weight: 3
+description: Bicep Utility Module Index showing all available, orphaned and planned modules
 ---
 
 ## Module catalog

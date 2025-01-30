@@ -1,5 +1,6 @@
 ---
 title: TFNFR31 - locals.tf for Locals Only
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR31
 type: default
 tags: [

@@ -1,5 +1,6 @@
 ---
 title: BCPRMNFR3 - Child resources structure
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPRMNFR3
 type: default
 tags: [

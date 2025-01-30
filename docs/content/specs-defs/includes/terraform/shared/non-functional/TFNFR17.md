@@ -1,5 +1,6 @@
 ---
 title: TFNFR17 - Variables with Descriptions
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR17
 type: default
 tags: [

@@ -1,5 +1,6 @@
 ---
 title: SFR3 - Deployment/Usage Telemetry
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SFR3
 type: default
 tags: [

@@ -2,6 +2,7 @@
 title: Terraform Utility Module Specifications
 linktitle: Utility Modules
 url: /specs/tf/utl/
+description: Terraform Utility Module Specifications for the Azure Verified Modules (AVM) program
 ---
 
 ## Contribution / Support

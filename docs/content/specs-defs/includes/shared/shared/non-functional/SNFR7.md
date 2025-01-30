@@ -1,5 +1,6 @@
 ---
 title: SNFR7 - Idempotency Tests
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR7
 type: default
 tags: [

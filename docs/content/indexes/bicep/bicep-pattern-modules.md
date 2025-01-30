@@ -3,6 +3,7 @@ draft: false
 title: Bicep Pattern Modules
 linktitle: Pattern Modules
 weight: 2
+description: Bicep Pattern Module Index showing all available, orphaned and planned modules
 ---
 
 

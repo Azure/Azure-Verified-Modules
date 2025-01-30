@@ -1,5 +1,6 @@
 ---
 title: RMFR4 - AVM Consistent Feature & Extension Resources Value Add
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/RMFR4
 type: default
 tags: [

@@ -1,5 +1,6 @@
 ---
 title: BCPFR6 - Cross-Referencing Child-Modules
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPFR6
 type: default
 tags: [

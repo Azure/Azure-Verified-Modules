@@ -1,5 +1,6 @@
 ---
 title: RMNFR1 - Module Naming
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/RMNFR1
 type: default
 tags: [

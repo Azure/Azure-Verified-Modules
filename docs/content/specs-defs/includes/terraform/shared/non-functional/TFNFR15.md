@@ -1,5 +1,6 @@
 ---
 title: TFNFR15 - Variable Definition Order
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR15
 type: default
 tags: [

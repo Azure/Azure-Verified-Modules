@@ -1,5 +1,6 @@
 ---
 title: BCPNFR15 - AVM Module Issue template file
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR15
 type: default
 tags: [

@@ -1,5 +1,6 @@
 ---
 title: BCPNFR14 - Versioning
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR14
 type: default
 tags: [

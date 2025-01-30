@@ -1,5 +1,6 @@
 ---
 title: SNFR2 - E2E Testing
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR2
 type: default
 tags: [

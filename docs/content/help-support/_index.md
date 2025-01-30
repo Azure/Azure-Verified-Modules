@@ -1,5 +1,6 @@
 ---
 title: Help & Support
+description: Help & Support pages for the Azure Verified Modules (AVM) program
 ---
 
 ## Summary

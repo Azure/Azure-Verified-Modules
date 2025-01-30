@@ -1,5 +1,6 @@
 ---
 title: PMNFR2 - Use Resource Modules to Build a Pattern Module
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/PMNFR2
 type: default
 tags: [

@@ -1,5 +1,6 @@
 ---
 title: TFNFR16 - Variable Naming Rules
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR16
 type: default
 tags: [

@@ -1,5 +1,6 @@
 ---
 title: SFR5 - Availability Zones
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SFR5
 type: default
 tags: [

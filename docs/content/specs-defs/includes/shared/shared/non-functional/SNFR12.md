@@ -1,5 +1,6 @@
 ---
 title: SNFR12 - Versions Supported
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR12
 type: default
 tags: [

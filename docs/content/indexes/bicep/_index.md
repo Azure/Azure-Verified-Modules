@@ -3,6 +3,7 @@ draft: false
 title: Bicep Modules
 linktitle: Bicep
 weight: 1
+description: Bicep Module Index pages showing all available, orphaned and planned modules
 ---
 
 ## Summary

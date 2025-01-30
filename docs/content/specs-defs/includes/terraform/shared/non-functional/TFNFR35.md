@@ -1,5 +1,6 @@
 ---
 title: TFNFR35 - Reviewing Potential Breaking Changes
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR35
 type: default
 tags: [

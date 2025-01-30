@@ -1,5 +1,6 @@
 ---
 title: TFNFR29 - Sensitive Data Outputs
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR29
 type: default
 tags: [

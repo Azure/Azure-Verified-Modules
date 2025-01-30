@@ -1,5 +1,6 @@
 ---
 title: BCPNFR4 - Parameter Input Examples
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR4
 type: default
 tags: [

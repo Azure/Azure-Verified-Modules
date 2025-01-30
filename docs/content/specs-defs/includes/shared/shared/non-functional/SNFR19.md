@@ -1,5 +1,6 @@
 ---
 title: SNFR19 - Registries Targeted
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR19
 type: default
 tags: [

@@ -1,5 +1,6 @@
 ---
 title: TFNFR25 - Verified Modules Requirements
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR25
 type: default
 tags: [

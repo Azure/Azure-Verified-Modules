@@ -1,5 +1,6 @@
 ---
 title: SFR6 - Data Redundancy
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SFR6
 type: default
 tags: [

@@ -1,5 +1,6 @@
 ---
 title: PMFR1 - Resource Group Creation
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/PMFR1
 type: default
 tags: [

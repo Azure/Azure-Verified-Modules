@@ -1,5 +1,6 @@
 ---
 title: Resources
+description: Collection of Additional Resources for the Azure Verified Modules (AVM) program
 ---
 
 This page references additional resources available for Azure Verified Modules (AVM).

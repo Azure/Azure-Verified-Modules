@@ -3,6 +3,7 @@ draft: false
 title: Terraform Pattern Modules
 linktitle: Pattern Modules
 weight: 2
+description: Terraform Pattern Module Index showing all available, orphaned and planned modules
 ---
 
 ## Module catalog

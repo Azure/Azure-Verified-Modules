@@ -1,5 +1,6 @@
 ---
 title: SNFR20 - GitHub Teams Only
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR20
 type: default
 tags: [

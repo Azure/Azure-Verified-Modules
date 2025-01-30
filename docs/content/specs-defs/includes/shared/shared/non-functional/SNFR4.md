@@ -1,5 +1,6 @@
 ---
 title: SNFR4 - Unit Tests
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR4
 type: default
 tags: [

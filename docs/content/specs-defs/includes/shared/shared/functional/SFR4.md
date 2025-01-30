@@ -1,5 +1,6 @@
 ---
 title: SFR4 - Telemetry Enablement Flexibility
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SFR4
 type: default
 tags: [

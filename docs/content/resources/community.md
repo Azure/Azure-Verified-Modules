@@ -1,6 +1,7 @@
 ---
 title: Community Calls
 linktitle: Community
+description: Community Content for the Azure Verified Modules (AVM) program
 ---
 
 🎉 Join Our Vibrant Community Calls! 🎉

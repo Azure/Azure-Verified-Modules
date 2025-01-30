@@ -1,5 +1,6 @@
 ---
 title: SNFR22 - Parameters/Variables for Resource IDs
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR22
 type: default
 tags: [

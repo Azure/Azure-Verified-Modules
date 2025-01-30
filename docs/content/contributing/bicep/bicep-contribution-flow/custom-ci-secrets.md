@@ -1,5 +1,6 @@
 ---
 title: Custom CI Secrets
+description: Custom CI Secrets in the Bicep Modules of the Azure Verified Modules (AVM) program
 ---
 
 When working on a module, and more specifically its e2e deployment validation test cases, it may be necessary to leverage tenant-specific information such as:

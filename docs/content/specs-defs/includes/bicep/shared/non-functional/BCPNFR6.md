@@ -1,5 +1,6 @@
 ---
 title: BCPNFR6 - Role Assignments Role Definition Mapping Compulsory Roles
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR6
 type: default
 tags: [

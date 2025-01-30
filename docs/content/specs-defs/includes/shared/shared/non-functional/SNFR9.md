@@ -1,5 +1,6 @@
 ---
 title: SNFR9 - AVM & PG Teams GitHub Repo Permissions
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR9
 type: default
 tags: [

@@ -1,5 +1,6 @@
 ---
 title: SFR1 - Preview Services
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SFR1
 type: default
 tags: [

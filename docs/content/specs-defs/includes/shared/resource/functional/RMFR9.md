@@ -1,5 +1,6 @@
 ---
 title: RMFR9 - End-of-life resource versions
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/RMFR9
 type: default
 tags: [

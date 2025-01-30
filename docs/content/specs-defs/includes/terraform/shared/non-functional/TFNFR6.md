@@ -1,5 +1,6 @@
 ---
 title: TFNFR6 - Resource & Data Order
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR6
 type: default
 tags: [
