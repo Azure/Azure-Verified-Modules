@@ -186,7 +186,7 @@ The definition of a Primary Resource is detailed in the [glossary]({{% siteparam
 
 ### How does AVM align and assist with the Secure Future Initiative (SFI)?
 
-AVM modules are continuously being improved with the security and reliability recommendations of the Well-Architected Framework. The AVM team are constantly reviewing SFI recommendations and if required rolling out updates to the AVM initiative to remain SFI compliant as well as assisting module owners ensure their modules help their consumers align to SFI where appropriate.
+AVM modules are continuously being improved with the security and reliability recommendations of the Well-Architected Framework (for more details, see what AVM means by "[WAF-aligned](#what-does-avm-mean-by-waf-aligned)"). The AVM team is continuously reviewing SFI recommendations and if required rolling out updates to the AVM initiative to remain SFI compliant as well as assisting module owners to ensure their modules help their consumers align to SFI where appropriate.
 
 ---
 
