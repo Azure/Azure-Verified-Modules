@@ -184,6 +184,10 @@ However, please note these defaulted values can be altered via input parameter/v
 
 The definition of a Primary Resource is detailed in the [glossary]({{% siteparam base %}}/glossary/).
 
+### How does AVM align and assist with the Secure Future Initiative (SFI)?
+
+AVM modules are continuously being improved with the security and reliability recommendations of the Well-Architected Framework. The AVM team are constantly reviewing SFI recommendations and if required rolling out updates to the AVM initiative to remain SFI compliant as well as assisting module owners ensure their modules help their consumers align to SFI where appropriate.
+
 ---
 
 ## Contribution, module ownership
