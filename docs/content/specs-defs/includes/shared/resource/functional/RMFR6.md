@@ -1,5 +1,6 @@
 ---
 title: RMFR6 - Parameter/Variable Naming
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/RMFR6
 type: default
 tags: [

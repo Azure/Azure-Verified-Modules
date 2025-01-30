@@ -1,5 +1,6 @@
 ---
 title: TFNFR9 - Module Block Order
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR9
 type: default
 tags: [

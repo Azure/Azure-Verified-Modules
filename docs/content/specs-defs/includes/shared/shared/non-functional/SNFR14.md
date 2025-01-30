@@ -1,5 +1,6 @@
 ---
 title: SNFR14 - Data Types
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR14
 type: default
 tags: [

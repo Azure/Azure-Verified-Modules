@@ -1,5 +1,6 @@
 ---
 title: SNFR16 - Examples/E2E
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR16
 type: default
 tags: [

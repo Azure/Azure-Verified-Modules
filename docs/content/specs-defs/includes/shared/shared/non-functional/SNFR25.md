@@ -1,5 +1,6 @@
 ---
 title: SNFR25 - Resource Naming
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR25
 type: default
 tags: [

@@ -1,5 +1,6 @@
 ---
 title: SFR2 - WAF Aligned
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SFR2
 type: default
 tags: [

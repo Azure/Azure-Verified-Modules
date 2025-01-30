@@ -1,5 +1,6 @@
 ---
 title: BCPNFR10 - Test Bicep File Naming
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR10
 type: default
 tags: [

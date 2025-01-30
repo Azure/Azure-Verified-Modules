@@ -1,5 +1,6 @@
 ---
 title: SNFR1 - Prescribed Tests
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR1
 type: default
 tags: [

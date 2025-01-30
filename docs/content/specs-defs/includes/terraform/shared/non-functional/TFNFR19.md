@@ -1,5 +1,6 @@
 ---
 title: TFNFR19 - Sensitive Data Variables
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR19
 type: default
 tags: [

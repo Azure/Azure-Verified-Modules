@@ -1,5 +1,6 @@
 ---
 title: RMNFR3 - RP Collaboration
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/RMNFR3
 type: default
 tags: [

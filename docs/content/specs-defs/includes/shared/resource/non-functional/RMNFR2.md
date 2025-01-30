@@ -1,5 +1,6 @@
 ---
 title: RMNFR2 - Parameter/Variable Naming
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/RMNFR2
 type: default
 tags: [

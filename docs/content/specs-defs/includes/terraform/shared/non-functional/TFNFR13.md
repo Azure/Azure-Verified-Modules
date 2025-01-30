@@ -1,5 +1,6 @@
 ---
 title: TFNFR13 - Default Values with coalesce/try
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR13
 type: default
 tags: [

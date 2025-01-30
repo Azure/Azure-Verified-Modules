@@ -1,5 +1,6 @@
 ---
 title: BCPNFR18 - User-defined types - Specification
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR18
 type: default
 tags: [

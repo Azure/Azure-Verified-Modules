@@ -1,5 +1,6 @@
 ---
 title: SNFR8 - Module Owner(s) GitHub
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR8
 type: default
 tags: [

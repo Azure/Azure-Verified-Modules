@@ -1,5 +1,6 @@
 ---
 title: TFNFR32 - Alphabetical Local Arrangement
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR32
 type: default
 tags: [

@@ -1,5 +1,6 @@
 ---
 title: PMNFR1 - Module Naming
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/PMNFR1
 type: default
 tags: [

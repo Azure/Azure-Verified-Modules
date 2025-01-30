@@ -1,5 +1,6 @@
 ---
 title: SNFR18 - Breaking Changes
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR18
 type: default
 tags: [

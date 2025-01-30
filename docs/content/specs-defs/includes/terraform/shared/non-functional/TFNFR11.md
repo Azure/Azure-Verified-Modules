@@ -1,5 +1,6 @@
 ---
 title: TFNFR11 - Null Comparison Toggle
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR11
 type: default
 tags: [

@@ -1,5 +1,6 @@
 ---
 title: RMFR3 - Resource Groups
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/RMFR3
 type: default
 tags: [

@@ -1,5 +1,6 @@
 ---
 title: BCPNFR16 - Post-deployment tests
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR16
 type: default
 tags: [

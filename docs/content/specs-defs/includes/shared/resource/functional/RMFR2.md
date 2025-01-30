@@ -1,5 +1,6 @@
 ---
 title: RMFR2 - No Resource Wrapper Modules
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/RMFR2
 type: default
 tags: [
