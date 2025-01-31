@@ -52,7 +52,7 @@ Bugfix
 
 - The recently introduced minCPU parameter is now applied
 
-## 0.2.0 (2024-10-10)
+## 0.2.0 - 2024-10-10
 
 New Features
 
@@ -67,7 +67,7 @@ Breaking Changes
 
 - The minCPU parameter is mandatory
 
-## 0.1.0 (2024-10-1)
+## 0.1.0 - 2024-10-10
 
 New Features
 
@@ -86,7 +86,7 @@ While merging and publishing the PR, the changelog is adjusted to include the no
 ```
 # Changelog
 
-## 0.2.1 (2024-10-11)
+## 0.2.1 - 2024-10-11
 
 Changes
 
@@ -96,7 +96,7 @@ Bugfix
 
 - The recently introduced minCPU parameter is now applied
 
-## 0.2.0 (2024-10-10)
+## 0.2.0 - 2024-10-10
 
 New Features
 
@@ -111,7 +111,7 @@ Breaking Changes
 
 - The minCPU parameter is mandatory
 
-## 0.1.0 (2024-10-1)
+## 0.1.0 - 2024-10-10
 
 New Features
 
@@ -127,10 +127,24 @@ New Features
 Whenever the version of a module is increased (major, minor or patch), static tests ensure the existance of
 
 1. a `CHANGELOG.md` file in the modules root directory
-2. the file contains a section 'unreleased' with four sections
+2. the changelog file contains a section 'unreleased' with four sections
     - New Features
     - Changes
     - Bugfixes
     - Breaking Changes
 
-When the PR is being merged, the content of the changelog is adjusted accordingly and filling the new version number as well as the date.
+When the PR is being merged, the content of the changelog is adjusted accordingly and filling the new version number as well as the date. This is done before the module will be published to central libraries, to ensure the changelog is up-to-date.
+
+### CI pipelines
+
+Whenever code is being checked in, the module's specific test is triggered (if the corresponding action is not deactivated).
+
+1. avm.[res|ptn|utl].[provider-namespace].[resource-type] - the default [module pipeline]({{% siteparam base %}}/contributing/bicep/ci-environment/pipeline-design/#module-pipelines)
+2. avm.template.module - triggered by the above workflow with module specific parameters
+    1. static validation tests, which make sure the CHANGELOG.md is well-formatted
+
+*Until now, the content of the changelog file (specifically the 'unreleased' section can still be changed).*
+
+Then, after static and deployment tests have been executed **and the PR is actually merged**, the changelog file is modified and the new version and changedate are included. This is done in the [publishing phase]({{% siteparam base %}}/contributing/bicep/ci-environment/publishing/).
+
+![GitHub Commit message]({{% siteparam base %}}/images/bicep-ci/gh-changelog-commit.png?width=400px)

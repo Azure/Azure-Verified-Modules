@@ -1,10 +1,10 @@
 ---
-title: Deployment Flow
+title: CI Environment
 ---
 
 This page provides an overview of the standard development-to-deployment flow that goes from source modules to target solutions.
 
-![Deployment Flow]({{% siteparam base %}}/images/bicep-ci/deployment_flow.png?width=400px)
+![Deployment Flow](/Azure-Verified-Modules/images/bicep-ci/deployment_flow.png)
 
 This flow generally covers 3 phases:
 
@@ -22,11 +22,11 @@ Also, if you reference a module version that was tested in and has passed throug
 ## Where does the AVM CI environment fit in?
 
 To ensure the modules hosted by the AVM library are valid and can perform the intended deployments, the repository comes with a continuous integration (CI) environment for each module. If the validation is successful, the CI environment is also publishing versioned modules to one or multiple target locations, from where they can be referenced by solutions consuming them.
-The CI environment covers Phase #1, (the validation) & Phase #2 (the publishing) of the [deployment flow]({{% siteparam base %}}/contributing/bicep/ci-environment/deployment-flow/) section - these include the steps typically performed by the module developer persona.
+The CI environment covers Phase #1, (the validation) & Phase #2 (the publishing) of the [deployment flow](/Azure-Verified-Modules/contributing/bicep/ci-environment/deployment-flow/) section - these include the steps typically performed by the module developer persona.
 The AVM solution developer and solution consumer personas are usually working in Phase #2 and Phase #3, i.e., building/leveraging complex, multi-module solutions by consuming the already tested and versioned modules previously placed in an artifact store.
 The below diagram shows the details of how the different phases are interconnected:
 
-![Deployment Flow]({{% siteparam base %}}/images/bicep-ci/deployment_flow_detail_white.png?width=400px)
+![Deployment Flow](/Azure-Verified-Modules/images/bicep-ci/deployment_flow_detail_white.png)
 
 The top row represents your orchestration environment, for example, GitHub or Azure DevOps. The bottom row represents your Azure cloud environment.
 From left to right, there are the three phases introduced before, Develop modules, Publish modules & Consume modules. The diagram shows how each phase interacts with the Azure environment.
@@ -41,6 +41,8 @@ From left to right, there are the three phases introduced before, Develop module
 
     - [Template specs](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/template-specs?tabs=azure-powershell)
     - [Private Bicep registry](https://learn.microsoft.com/en-gb/azure/azure-resource-manager/bicep/private-module-registry)
+    - [Azure DevOps Universal Packages.](https://learn.microsoft.com/en-us/azure/devops/artifacts/concepts/feeds?view=azure-devops)
+      *Note: this is only available if using Azure DevOps pipelines.*
 
     To dive deeper and understand which target locations may be best suited for your use case, we provide further information in the Publish-location considerations section.
 

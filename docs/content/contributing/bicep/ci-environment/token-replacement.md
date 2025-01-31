@@ -64,13 +64,13 @@ When validating modules through the CI environment, you must update it to a cust
 
 The below image compares the different token types that can be used for module test file tokens:
 
-![token types]({{% siteparam base %}}/img/bicep-ci/token-types.png?width=400px)
+![token types]({{% siteparam base %}}/images/bicep-ci/token-types.png?width=400px)
 
 ### How tokens are replaced in a module test file
 
 The below diagram illustrates the Token Replacement Functionality via the [validate module deployment](https://github.com/Azure/bicep-registry-modules/blob/main/.github/actions/templates/avm-validateModuleDeployment/action.yml) Action/Template.
 
-![token replacement]({{% siteparam base %}}/img/bicep-ci/token-replacement.png?width=400px)
+![token replacement]({{% siteparam base %}}/images/bicep-ci/token-replacement.png?width=400px)
 
 - **1.** The user creates default tokens as [GitHub Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) or [Azure DevOps Pipeline Variables](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/?view=azure-devops), that are injected as environment variables.
 - **2.** The module test files can now be tokenized as per required value. And the token format can look like `[[tokenA]]`. Example:

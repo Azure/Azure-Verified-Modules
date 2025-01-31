@@ -4,7 +4,7 @@ title: CI environment - Pipeline design
 
 ## Module Pipelines
 
-The repository hosts one pipeline for each module in the AVM library (see [Contribution Guide - Implement your contribution]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution)).
+The repository hosts one pipeline for each module in the AVM library.
 
 The purpose of each module pipeline is twofold:
 
@@ -13,23 +13,26 @@ The purpose of each module pipeline is twofold:
 
 As such, each pipeline can be mapped to Phases 1 and 2 described in the Deployment flow section.
 
-![Pipeline Phases]({{% siteparam base %}}/images/bicep-ci/pipeline-design.png?width=400px)
+![Pipeline Phases](/Azure-Verified-Modules/images/bicep-ci/pipeline-design.png)
 
 The following paragraphs provide an overview of the different phases and shared logic the module pipelines use.
+
+- [Pipeline phases](#pipeline-phases)
+- [Module pipeline inputs](#module-pipeline-inputs)
 
 ## Pipeline phases
 
 This paragraph provides an overview of the three phases performed by each module pipeline. Further details about the implementation and design of each phase are provided on the dedicated pages linked below.
 
-1. **Static Validation**: Runs a set of static [Pester (test and mock framework for PowerShell)](https://pester.dev/) tests on the module and its templates to ensure they comply with the AVM design principles. Further details for this phase are provided on the corresponding wiki page - see the [Static validation]({{% siteparam base %}}/contributing/bicep/ci-environment/static-validation) section.
-1. **Deployment Validation**: An actual Azure deployment is run in a sandbox subscription leveraging a predefined set of module test files, each validating a different configuration of the same Azure resource in parallel. The test suite is cleaned up by default, removing all test resources post-deployment. Further details for this phase are provided on the corresponding wiki page - see the [Deployment validation]({{% siteparam base %}}/contributing/bicep/ci-environment/deployment-validation) section.
-1. **Publishing**: Runs only if the previous steps are successful. A new module version is published to all configured target locations such as template specs, private Bicep registry and Azure DevOps Universal Packages. Published module versions can then be referenced by solutions using them. Further details for this phase are provided on the corresponding wiki page - see the [Publishing]({{% siteparam base %}}/contributing/bicep/ci-environment/publishing) page.
+1. **Static Validation**: Runs a set of static Pester tests on the module and its templates to ensure they comply with the design principles. Further details for this phase are provided on the corresponding wiki page - see the [Static validation](/Azure-Verified-Modules/contributing/bicep/ci-environment/static-validation) section.
+1. **Deployment Validation**: An actual Azure deployment is run in a sandbox subscription leveraging a predefined set of module test files, each validating a different configuration of the same Azure resource in parallel. The test suite is cleaned up by default, removing all test resources post-deployment. Further details for this phase are provided on the corresponding wiki page - see the [Deployment validation](/Azure-Verified-Modules/contributing/bicep/ci-environment/deployment-validation) section.
+1. **Publishing**: Runs only if the previous steps are successful. A new module version is published to all configured target locations such as template specs, private Bicep registry and Azure DevOps Universal Packages. Published module versions can then be referenced by solutions using them. Further details for this phase are provided on the corresponding wiki page - see the [Publishing](/Azure-Verified-Modules/contributing/bicep/ci-environment/publishing) page.
 
-![Pipeline Design Phases]({{% siteparam base %}}/images/bicep-ci/pipeline-design-phases.png?width=400px)
+![Pipeline Design Phases](/Azure-Verified-Modules/images/bicep-ci/pipeline-design-phases.png)
 
 ### GitHub-specific design
 
-![Pipeline Phases GitHub]({{% siteparam base %}}/images/bicep-ci/pipeline-phases-github.png?width=400px)
+![Pipeline Phases GitHub](/Azure-Verified-Modules/images/bicep-ci/pipeline-phases-github.png)
 
 GitHub workflows map each pipeline phase to a dedicated composite action, to maximize code reusability.
 The mapping to the specific composite action is provided below:
@@ -71,7 +74,7 @@ Each module pipeline comes with the following runtime parameters:
   > **Note:** This switch cannot be used to bypass the publishing requirements, where both the static tests & deployment validation jobs must be successful.
 - `'Default location overwrite'` string: By default, a region is choosen randomly, that the resources are deployed into. This parameter let's you overwrite a random region with one you specify (e.g. eastus).
 
-![Module Pipeline Input]({{% siteparam base %}}/images/bicep-ci/module-pipeline-input.png?width=400px)
+![Module Pipeline Input](/Azure-Verified-Modules/images/bicep-ci/module-pipeline-input.png)
 
 ---
 
@@ -80,7 +83,7 @@ Each module pipeline comes with the following runtime parameters:
 In addition to module pipelines, the repository includes several platform pipelines covering further tasks as described below.
 
 - [PSRule Pre-Flight validation pipeline](#psrule-pre-flight-validation-pipeline)
-- [Deployment history cleanup]({{% siteparam base %}}/contributing/bicep/ci-environment/deployment-history-cleanup)
+- [Deployment history cleanup](/Azure-Verified-Modules/contributing/bicep/ci-environment/deployment-history-cleanup)
 // TODO add missing pipelines
 
 ## PSRule Pre-Flight validation pipeline
@@ -128,4 +131,4 @@ PSRule allows skipping rules on two levels:
 
 To better outline failed rules and allow fixing incompliant resources quickly, the pipeline leverages the script [utilities\pipelines\PSRulestaticValidation\psrule\Set-PSRuleGitHubOutput.ps1](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/staticValidation/psrule/Set-PSRuleGitHubOutput.ps1) to aggregate PSRule output into Custom Markdown content and display it to the Actions run summary page.
 
-![PSRule Summary]({{% siteparam base %}}/images/bicep-ci/psrule-summary.png?width=400px)
+![PSRule Summary](/Azure-Verified-Modules/images/bicep-ci/psrule-summary.png)

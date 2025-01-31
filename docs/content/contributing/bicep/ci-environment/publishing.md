@@ -4,7 +4,7 @@ title: CI environment - Publishing
 
 This section provides an overview of the principles the publishing is built upon, how it is set up, and how you can interact with it.
 
-![Publishing Step]({{% siteparam base %}}/img/bicep-ci/publishing-step.png?width=500px)
+![Publishing Step]({{% siteparam base %}}/images/bicep-ci/publishing-step.png?width=500px)
 
 ## Publishing overview
 
@@ -126,4 +126,4 @@ C499 -> C500 ---> C501 ---> C502 ---> C503 (503)
 
 ### Output example
 
-![Publishing Output]({{% siteparam base %}}/img/bicep-ci/publishing-output.png)
+![Publishing Output]({{% siteparam base %}}/images/bicep-ci/publishing-output.png)
