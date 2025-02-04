@@ -26,11 +26,11 @@ To propose a new module, simply create an issue/complete the form [here](https:/
 
 **For example, can I propose one for managed disks or NICs or diagnostic settings? What about patterns?**
 
-No, you cannot propose or create just any module. You can only propose modules that are aligned with requirements documented in the [module specifications]({{% siteparam base %}}/module-specs/) section.
+No, you cannot propose or create just any module. You can only propose modules that are aligned with requirements documented in the [module specifications]({{% siteparam base %}}/specs/module-specs/) section.
 
 Below, we provide some guidance on what modules you can / cannot propose.
 
-- **Resource modules**: resource modules have bring extra value to the end user (can't just be simple wrappers) and **MUST** mapped 1:1 to RPs (resource providers) and top level resources. You **MUST** follow the [module specifications]({{% siteparam base %}}/module-specs/) and your modules **SHOULD** be [WAF aligned]({{% siteparam base %}}/faq/#what-does-avm-mean-by-waf-aligned).
+- **Resource modules**: resource modules have bring extra value to the end user (can't just be simple wrappers) and **MUST** mapped 1:1 to RPs (resource providers) and top level resources. You **MUST** follow the [module specifications]({{% siteparam base %}}/specs/module-specs/) and your modules **SHOULD** be [WAF aligned]({{% siteparam base %}}/faq/#what-does-avm-mean-by-waf-aligned).
   - Good examples:
     - Virtual machine: the VM module is highly complex and therefore, it brings extra value to the end user by providing a wide variety of features (e.g., diagnostics, RBAC, domain join, disk encryption, backup and more).
     - Storage account: even though, this module is mainly built around one RP, it brings extra value by providing easy access to its child resources, such as file/table/queue services, as well as additional standard interfaces (e.g., diagnostics, RBAC, encryption, firewall, etc.).
@@ -107,7 +107,7 @@ At this moment, only Microsoft FTEs can be module owners.
 
 ### What do I need so I can start developing a module?
 
-We suggest that you review [module specification]({{% siteparam base %}}/module-specs/) and [contribution guides]({{% siteparam base %}}/specs/shared/team-definitions/#module-contributors):
+We suggest that you review [module specification]({{% siteparam base %}}/specs/module-specs/) and [contribution guides]({{% siteparam base %}}/specs/shared/team-definitions/#module-contributors):
 
 - [Bicep contribution guide]({{% siteparam base %}}/contributing/bicep/)
 - [Terraform contribution guide]({{% siteparam base %}}/contributing/terraform/)
@@ -139,7 +139,7 @@ There is also a [PowerShell script]({{% siteparam base %}}/spec/SNFR23) that the
 
 ### Is there any naming convention for modules name, repository name, variables, parameters.... ?
 
-[AVM specification]({{% siteparam base %}}/module-specs/) covers all naming conventions. As example:
+[AVM specification]({{% siteparam base %}}/specs/module-specs/) covers all naming conventions. As example:
   [Module naming specification]({{% siteparam base %}}/spec/RMNFR1)
 
 <!-- ### Where are examples to follow / first sample modules to get inspiration from? -->
