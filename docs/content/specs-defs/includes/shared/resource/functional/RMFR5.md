@@ -1,5 +1,6 @@
 ---
 title: RMFR5 - AVM Consistent Feature & Extension Resources Value Add Interfaces/Schemas
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/RMFR5
 type: default
 tags: [

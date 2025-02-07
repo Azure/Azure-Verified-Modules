@@ -1,5 +1,6 @@
 ---
 title: SNFR15 - Automatic Documentation Generation
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR15
 type: default
 tags: [

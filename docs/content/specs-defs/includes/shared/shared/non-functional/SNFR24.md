@@ -1,5 +1,6 @@
 ---
 title: SNFR24 - Testing Child, Extension & Interface Resources
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR24
 type: default
 tags: [

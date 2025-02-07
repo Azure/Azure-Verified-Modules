@@ -1,5 +1,6 @@
 ---
 title: TFNFR8 - Resource & Data Block Orders
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR8
 type: default
 tags: [

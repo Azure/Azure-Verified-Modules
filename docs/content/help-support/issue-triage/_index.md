@@ -1,5 +1,6 @@
 ---
 title: Issue Triage
+description: Issue Triage description for the Azure Verified Modules (AVM) program
 ---
 
 This section provides information about the issue triage process and its automation, implemented across various AVM repositories.

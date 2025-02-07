@@ -1,5 +1,6 @@
 ---
 title: BCPNFR5 - Role Assignments Role Definition Mapping Limits
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR5
 type: default
 tags: [

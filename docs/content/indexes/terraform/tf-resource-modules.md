@@ -3,6 +3,7 @@ draft: false
 title: Terraform Resource Modules
 linktitle: Resource Modules
 weight: 1
+description: Terraform Resource Module Index showing all available, orphaned and planned modules
 ---
 
 ## Module catalog

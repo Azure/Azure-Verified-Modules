@@ -4,6 +4,7 @@ title: Module Specifications
 linktitle: Module Specifications
 weight: 1
 url: /specs/module-specs/
+description: Module Specifications for the Azure Verified Modules (AVM) program
 ---
 
 This section documents all the specifications for Azure Verified Modules (AVM) and their respective IaC languages.

@@ -9,6 +9,8 @@ enableGitInfo = true
 
 [params]
     base = '/Azure-Verified-Modules'
+    images = ['images/avm_logo.png']
+    logo = 'images/favicon.svg'
     disableExplicitIndexURLs = true
     disableLanguageSwitchingButton = false
     themeVariant = [

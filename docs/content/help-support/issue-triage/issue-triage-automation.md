@@ -1,6 +1,7 @@
 ---
 title: Issue Triage Automation
 linktitle: Issue Triage Automation
+description: Issue Triage Automation for the Azure Verified Modules (AVM) program's repositories
 ---
 
 This page details the automation that is in place to help with the triage of issues and PRs raised against the AVM modules.

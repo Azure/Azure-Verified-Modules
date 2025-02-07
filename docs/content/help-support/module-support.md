@@ -1,5 +1,6 @@
 ---
 title: Module Support
+description: Module Support for the Azure Verified Modules (AVM) program
 ---
 
 As mentioned on the [Overview]({{% siteparam base %}}/home/overview/) page, we understand that long-term support from Microsoft in an initiative like AVM is critical to its adoption by consumers and therefore the success of AVM. Therefore we have aligned and provide the below support statement/process for AVM modules.

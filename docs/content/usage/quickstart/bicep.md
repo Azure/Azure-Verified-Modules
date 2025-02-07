@@ -3,6 +3,7 @@ draft: false
 title: Bicep Quickstart Guide
 linktitle: Bicep
 weight: 1
+description: Bicep Quickstart Guidance for the Azure Verified Modules (AVM) program
 ---
 
 ## Introduction

@@ -1,5 +1,6 @@
 ---
 title: TFNFR14 - Not allowed variables
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR14
 type: default
 tags: [

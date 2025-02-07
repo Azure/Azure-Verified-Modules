@@ -1,5 +1,6 @@
 ---
 title: BCPFR2 - Role Assignments Role Definition Mapping
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPFR2
 type: default
 tags: [

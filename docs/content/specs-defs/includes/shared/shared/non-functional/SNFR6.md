@@ -1,5 +1,6 @@
 ---
 title: SNFR6 - Static Analysis/Linting Tests
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR6
 type: default
 tags: [

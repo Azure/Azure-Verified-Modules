@@ -1,5 +1,6 @@
 ---
 title: BCPFR4 - Telemetry Enablement
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPFR4
 type: default
 tags: [

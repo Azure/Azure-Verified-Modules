@@ -1,5 +1,6 @@
 ---
 title: TFNFR34 - Using Feature Toggles
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR34
 type: default
 tags: [

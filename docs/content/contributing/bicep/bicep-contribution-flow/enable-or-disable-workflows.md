@@ -1,5 +1,6 @@
 ---
 title: Enable or Disable Workflows
+description: Enable or Disable Workflows for the Bicep Modules of the Azure Verified Modules (AVM) program
 ---
 
 When forking the BRM repository, all workflows from the CI environment are also part of your fork. In an earlier step it was explained, how to set them up correctly, to verify your module development.

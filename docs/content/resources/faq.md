@@ -2,6 +2,7 @@
 title: Frequently Asked Questions (FAQ)
 linktitle: FAQ
 aliases: ['/faq']
+description: Frequently Asked Questions (FAQ) for the Azure Verified Modules (AVM) program
 ---
 
 {{% notice style="tip" %}}
@@ -182,6 +183,10 @@ However, please note these defaulted values can be altered via input parameter/v
 ### What is a "Primary Resource" in the context of AVM?
 
 The definition of a Primary Resource is detailed in the [glossary]({{% siteparam base %}}/glossary/).
+
+### How does AVM align and assist with the Secure Future Initiative (SFI)?
+
+AVM modules are continuously being improved with the security and reliability recommendations of the Well-Architected Framework (for more details, see what AVM means by "[WAF-aligned](#what-does-avm-mean-by-waf-aligned)"). The AVM team is continuously reviewing SFI recommendations and if required rolling out updates to the AVM initiative to remain SFI compliant as well as assisting module owners to ensure their modules help their consumers align to SFI where appropriate.
 
 ---
 

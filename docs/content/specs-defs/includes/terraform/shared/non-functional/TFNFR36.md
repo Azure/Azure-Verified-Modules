@@ -1,5 +1,6 @@
 ---
 title: TFNFR36 - Setting prevent_deletion_if_contains_resources
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR36
 type: default
 tags: [

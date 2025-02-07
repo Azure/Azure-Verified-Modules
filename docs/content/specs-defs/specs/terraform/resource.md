@@ -2,6 +2,7 @@
 title: Terraform Resource Module Specifications
 linktitle: Resource Modules
 url: /specs/tf/res/
+description: Terraform Resource Module Specifications for the Azure Verified Modules (AVM) program
 ---
 
 ## Contribution / Support

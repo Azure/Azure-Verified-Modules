@@ -1,5 +1,6 @@
 ---
 title: BCPNFR2 - Module Documentation Generation
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR2
 type: default
 tags: [

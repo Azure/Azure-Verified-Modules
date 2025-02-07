@@ -1,5 +1,6 @@
 ---
 title: TFNFR26 - Providers in required_providers
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR26
 type: default
 tags: [

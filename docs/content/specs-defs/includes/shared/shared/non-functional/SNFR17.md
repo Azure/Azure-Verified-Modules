@@ -1,5 +1,6 @@
 ---
 title: SNFR17 - Semantic Versioning
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR17
 type: default
 tags: [

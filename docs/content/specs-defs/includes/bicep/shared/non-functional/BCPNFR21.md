@@ -1,5 +1,6 @@
 ---
 title: BCPNFR21 - User-defined types - Decorators
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR21
 type: default
 tags: [

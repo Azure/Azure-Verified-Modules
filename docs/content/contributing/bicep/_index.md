@@ -1,5 +1,7 @@
 ---
 title: Bicep Contribution Guide
+linktitle: Bicep Modules
+description: Bicep Contribution Guidance for the Azure Verified Modules (AVM) program
 ---
 
 

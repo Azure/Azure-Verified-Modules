@@ -1,5 +1,6 @@
 ---
 title: BCPFR5 - Availability Zones Implementation
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPFR5
 type: default
 tags: [

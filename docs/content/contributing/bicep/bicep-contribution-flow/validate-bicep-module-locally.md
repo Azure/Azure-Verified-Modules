@@ -1,5 +1,6 @@
 ---
 title: Validate Module Locally
+description: Validate a Bicep Module Locally for the Azure Verified Modules (AVM) program
 ---
 
 Use this script to test a module from your PC locally, without a CI environment. You can use it to run only the static validation (Pester tests), a deployment validation (dryRun) or an actual deployment to Azure. In the latter cases the script also takes care to replace placeholder tokens in the used module test & template files for you.

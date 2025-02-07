@@ -1,5 +1,6 @@
 ---
 title: Known Issues
+description: Known Issues for the Azure Verified Modules (AVM) program
 ---
 
 Unfortunately, there will be times where issues are out of the AVM core team and module owners/contributor's control and the issue may be something that has to be lived with for a longer than ideal duration - for example, in case of changes that are due to the way the Azure platform, or a resource behaves, or because of an IaC language issue.

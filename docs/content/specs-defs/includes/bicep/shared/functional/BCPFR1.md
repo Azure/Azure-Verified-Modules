@@ -1,5 +1,6 @@
 ---
 title: BCPFR1 - Cross-Referencing Modules
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPFR1
 type: default
 tags: [

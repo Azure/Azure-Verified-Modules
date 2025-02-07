@@ -3,6 +3,7 @@ draft: false
 title: Bicep Resource Modules
 linktitle: Resource Modules
 weight: 1
+description: Bicep Resource Module Index showing all available, orphaned and planned modules
 ---
 
 ## Module catalog

@@ -1,5 +1,6 @@
 ---
 title: TFNFR3 - GitHub Repo Branch Protection
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR3
 type: default
 tags: [

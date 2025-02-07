@@ -1,5 +1,6 @@
 ---
 title: TFNFR30 - Handling Deprecated Outputs
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR30
 type: default
 tags: [

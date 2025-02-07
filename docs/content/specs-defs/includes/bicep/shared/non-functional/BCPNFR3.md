@@ -1,5 +1,6 @@
 ---
 title: BCPNFR3 - Usage Example formats
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR3
 type: default
 tags: [

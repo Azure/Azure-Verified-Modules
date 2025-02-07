@@ -1,5 +1,6 @@
 ---
 title: PMNFR3 - Use other Pattern Modules to Build a Pattern Module
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/PMNFR3
 type: default
 tags: [

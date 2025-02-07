@@ -1,5 +1,6 @@
 ---
 title: TFNFR27 - Provider Declarations in Modules
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR27
 type: default
 tags: [
