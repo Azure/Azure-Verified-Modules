@@ -9,27 +9,20 @@ Changelogs are crucial in software development as they provide a detailed and ch
 
 ## new release template
 
-This template should be included in any PR that changes the version number of a module.
+This template should be included right after the `# Changelog` line in any PR that changes the version number of a module.
 
-```
-## unreleased
+```text
+## <version>
 
-New Features
-
-- new feature
-
-Changes
+### Changes
 
 - this changed
 - and this also
 
-Bugfixes
-
-- the deployment does now deploy with the correct settings
-
-Breaking Changes
+### Breaking Changes
 
 - none
+
 ```
 
   {{% /tab %}}
@@ -37,103 +30,56 @@ Breaking Changes
 
 ## changelog for a PR
 
-The 'unreleased' template is inserted after the opening heading and adjusted acording to the changes in the PR.
+The current version changes are inserted after the opening heading and adjusted acording to the changes in the PR.
 
-```
+```text
 # Changelog
 
-## unreleased
+## 0.5.3
 
-Changes
+### Changes
 
 - Updated the referenced AVM common types
-
-Bugfix
-
 - The recently introduced minCPU parameter is now applied
 
-## 0.2.0 - 2024-10-10
+### Breaking Changes
 
-New Features
+- none
+
+## 0.2.0
+
+### Changes
 
 - Implemented the minCPU parameter
-
-Changes
-
 - Updated the referenced VirtualNetwork module
 - Updated the referenced AVM common types
 
-Breaking Changes
+### Breaking Changes
 
 - The minCPU parameter is mandatory
 
-## 0.1.0 - 2024-10-10
+## 0.1.0
 
-New Features
-
-- Initial Release
-
-```
-
-  {{% /tab %}}
-
-  {{% tab title="fully generated changelog" %}}
-
-## fully generated changelog
-
-While merging and publishing the PR, the changelog is adjusted to include the now changed version and the date of the merge.
-
-```
-# Changelog
-
-## 0.2.1 - 2024-10-11
-
-Changes
-
-- Updated the referenced AVM common types
-
-Bugfix
-
-- The recently introduced minCPU parameter is now applied
-
-## 0.2.0 - 2024-10-10
-
-New Features
-
-- Implemented the minCPU parameter
-
-Changes
-
-- Updated the referenced VirtualNetwork module
-- Updated the referenced AVM common types
-
-Breaking Changes
-
-- The minCPU parameter is mandatory
-
-## 0.1.0 - 2024-10-10
-
-New Features
+### Changes
 
 - Initial Release
 
-```
+### Breaking Changes
 
+- none
+
+```
   {{% /tab %}}
 {{% /tabs %}}
 
 ## Generation process
 
-Whenever the version of a module is increased (major, minor or patch), static tests ensure the existance of
+Whenever the version of a (sub-)module is increased (major, minor or patch), static tests ensure the existance of
 
 1. a `CHANGELOG.md` file in the modules root directory
-2. the changelog file contains a section 'unreleased' with four sections
-    - New Features
+2. the changelog file contains a section '## \<new-version>' with two sections
     - Changes
-    - Bugfixes
     - Breaking Changes
-
-When the PR is being merged, the content of the changelog is adjusted accordingly and filling the new version number as well as the date. This is done before the module will be published to central libraries, to ensure the changelog is up-to-date.
 
 ### CI pipelines
 
@@ -142,9 +88,5 @@ Whenever code is being checked in, the module's specific test is triggered (if t
 1. avm.[res|ptn|utl].[provider-namespace].[resource-type] - the default [module pipeline]({{% siteparam base %}}/contributing/bicep/ci-environment/pipeline-design/#module-pipelines)
 2. avm.template.module - triggered by the above workflow with module specific parameters
     1. static validation tests, which make sure the CHANGELOG.md is well-formatted
-
-*Until now, the content of the changelog file (specifically the 'unreleased' section can still be changed).*
-
-Then, after static and deployment tests have been executed **and the PR is actually merged**, the changelog file is modified and the new version and changedate are included. This is done in the [publishing phase]({{% siteparam base %}}/contributing/bicep/ci-environment/publishing/).
 
 ![GitHub Commit message]({{% siteparam base %}}/images/bicep-ci/gh-changelog-commit.png?width=400px)
