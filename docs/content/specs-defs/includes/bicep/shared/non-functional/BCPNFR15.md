@@ -1,5 +1,6 @@
 ---
 title: BCPNFR15 - AVM Module Issue template file
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR15
 type: default
 tags: [
@@ -16,7 +17,7 @@ tags: [
 priority: 11140
 ---
 
-#### ID: BCPNFR15 - Category: Contribution/Support - AVM Module Issue template file
+## ID: BCPNFR15 - Category: Contribution/Support - AVM Module Issue template file
 
 As part of the "initial Pull Request" (that publishes the first version of the module), module owners **MUST** add an entry to the `AVM Module Issue template` file in the BRM repository ([here](https://github.com/Azure/bicep-registry-modules/blob/main/.github/ISSUE_TEMPLATE/avm_module_issue.yml)).
 

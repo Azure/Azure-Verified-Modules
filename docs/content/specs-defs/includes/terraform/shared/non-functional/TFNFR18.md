@@ -1,5 +1,6 @@
 ---
 title: TFNFR18 - Variables with Types
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR18
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21180
 ---
 
-#### ID: TFNFR18 - Category: Code Style - Variables with Types
+## ID: TFNFR18 - Category: Code Style - Variables with Types
 
 `type` **MUST** be defined for every `variable`. `type` **SHOULD** be as precise as possible, `any` **MAY** only be defined with adequate reasons.
 

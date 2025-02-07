@@ -1,5 +1,6 @@
 ---
 title: TFNFR4 - Lower snake_casing
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR4
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21040
 ---
 
-#### ID: TFNFR4 - Category: Composition - Code Styling - lower snake_casing
+## ID: TFNFR4 - Category: Composition - Code Styling - lower snake_casing
 
 Module owners **MUST** use [lower snake_casing](https://wikipedia.org/wiki/Snake_case) for naming the following:
 

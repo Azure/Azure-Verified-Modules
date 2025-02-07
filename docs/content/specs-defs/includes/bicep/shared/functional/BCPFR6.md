@@ -1,5 +1,6 @@
 ---
 title: BCPFR6 - Cross-Referencing Child-Modules
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPFR6
 type: default
 tags: [
@@ -14,10 +15,10 @@ tags: [
   Lifecycle-BAU, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
   Validation-TBD # SINGLE VALUE: this can be "Validation-BCP/Manual" OR "Validation-BCP/CI/Informational" OR "Validation-BCP/CI/Enforced"
 ]
-priority: 10010
+priority: 10050
 ---
 
-#### ID: BCPFR6 - Cross-Referencing Child-Modules
+## ID: BCPFR6 - Cross-Referencing Child-Modules
 
 Parent templates **MUST** reference all their direct child-templates to allow for an end-to-end deployment experience.
 For example, the SQL server template must reference its child database module and encapsulate it in a loop to allow for the deployment of multiple databases.

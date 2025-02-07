@@ -1,5 +1,6 @@
 ---
 title: SNFR5 - Upgrade Tests
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR5
 type: default
 tags: [
@@ -18,6 +19,6 @@ tags: [
 priority: 1060
 ---
 
-#### ID: SNFR5 - Category: Testing - Upgrade Tests
+## ID: SNFR5 - Category: Testing - Upgrade Tests
 
 Modules **SHOULD** implement upgrade testing to ensure new features are implemented in a non-breaking fashion on non-major releases.

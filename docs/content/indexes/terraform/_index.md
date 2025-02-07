@@ -3,6 +3,7 @@ draft: false
 title: Terraform Modules
 linktitle: Terraform
 weight: 2
+description: Terraform Module Index pages showing all available, orphaned and planned modules
 ---
 
 ## Summary

@@ -1,5 +1,6 @@
 ---
 title: PMNFR1 - Module Naming
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/PMNFR1
 type: default
 tags: [
@@ -16,11 +17,11 @@ tags: [
 priority: 4020
 ---
 
-#### ID: PMNFR1 - Category: Naming - Module Naming
+## ID: PMNFR1 - Category: Naming - Module Naming
 
 Pattern Modules **MUST** follow the below naming conventions (all lower case):
 
-##### Bicep Pattern Module Naming
+### Bicep Pattern Module Naming
 
 - Naming convention: `avm/ptn/<hyphenated grouping/category name>/<hyphenated pattern module name>`
 - Example: `avm/ptn/compute/app-tier-vmss` or `avm/ptn/avd-lza/management-plane` or `avm/ptn/3-tier/web-app`
@@ -32,7 +33,7 @@ Pattern Modules **MUST** follow the below naming conventions (all lower case):
     - architecture, e.g., `3-tier`
   - `<hyphenated pattern module name>` is a term describing the module’s function, with each word separated by dashes, e.g., `app-tier-vmss` = Application Tier VMSS; `management-plane` = Azure Virtual Desktop Landing Zone Accelerator Management Plane
 
-##### Terraform Pattern Module Naming
+### Terraform Pattern Module Naming
 
 - Naming convention:
   - `avm-ptn-<pattern module name>` (Module name for registry)

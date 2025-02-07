@@ -1,5 +1,6 @@
 ---
 title: TFNFR35 - Reviewing Potential Breaking Changes
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR35
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21350
 ---
 
-#### ID: TFNFR35 - Category: Code Style - Reviewing Potential Breaking Changes
+## ID: TFNFR35 - Category: Code Style - Reviewing Potential Breaking Changes
 
 Potential breaking(surprise) changes introduced by `resource` block
 

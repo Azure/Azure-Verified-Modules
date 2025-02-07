@@ -1,5 +1,6 @@
 ---
 title: BCPNFR9 - Inputs - Decorators
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR9
 type: default
 tags: [
@@ -14,10 +15,10 @@ tags: [
   Lifecycle-BAU, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
   Validation-TBD # SINGLE VALUE: this can be "Validation-Manual" OR "Validation-CI/Informational" OR "CI/Enforced"
 ]
-priority: 11010
+priority: 11011
 ---
 
-#### ID: BCPNFR9 - Inputs - Decorators
+## ID: BCPNFR9 - Inputs - Decorators
 
 Similar to [BCPNFR21]({{% siteparam base %}}/spec/BCPNFR21), input parameters MUST implement [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators) such as `description` & `secure` (if sensitive).
 

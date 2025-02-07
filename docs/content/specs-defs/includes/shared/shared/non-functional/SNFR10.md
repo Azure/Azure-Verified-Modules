@@ -1,5 +1,6 @@
 ---
 title: SNFR10 - MIT Licensing
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR10
 type: default
 tags: [
@@ -17,6 +18,6 @@ tags: [
 priority: 1130
 ---
 
-#### ID: SNFR10 - Category: Contribution/Support - MIT Licensing
+## ID: SNFR10 - Category: Contribution/Support - MIT Licensing
 
 A module **MUST** be published with the MIT License in the Azure GitHub organization.

@@ -2,6 +2,7 @@
 title: Bicep Interfaces
 linktitle: Interfaces
 url: /specs/bcp/res/interfaces/
+description: Bicep Module Interface Specifications for the Azure Verified Modules (AVM) program
 ---
 
 This chapter details the interfaces/schemas for the AVM Resource Modules features/extension resources as referenced in [RMFR4]({{% siteparam base %}}/spec/RMFR4) and [RMFR5]({{% siteparam base %}}/spec/RMFR5).

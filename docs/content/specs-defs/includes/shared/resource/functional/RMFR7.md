@@ -1,5 +1,6 @@
 ---
 title: RMFR7 - Minimum Required Outputs
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/RMFR7
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 2080
 ---
 
-#### ID: RMFR7 - Category: Outputs - Minimum Required Outputs
+## ID: RMFR7 - Category: Outputs - Minimum Required Outputs
 
 Module owners **MUST** output the following outputs as a minimum in their modules:
 

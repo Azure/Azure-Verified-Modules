@@ -1,5 +1,6 @@
 ---
 title: TFNFR23 - Sensitive Default Value Conditions
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR23
 type: default
 tags: [
@@ -17,6 +18,6 @@ tags: [
 priority: 21230
 ---
 
-#### ID: TFNFR23 - Category: Code Style - Sensitive Default Value Conditions
+## ID: TFNFR23 - Category: Code Style - Sensitive Default Value Conditions
 
 A default value **MUST NOT** be set for a sensitive input - e.g., a default password.

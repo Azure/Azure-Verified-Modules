@@ -1,5 +1,6 @@
 ---
 title: TFFR3 - Providers - Permitted Versions
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFFR3
 type: default
 tags: [
@@ -18,7 +19,7 @@ tags: [
 priority: 20030
 ---
 
-#### ID: TFFR3 - Category: Providers - Permitted Versions
+## ID: TFFR3 - Category: Providers - Permitted Versions
 
 Authors **MUST** only use the following Azure providers, and versions, in their modules:
 

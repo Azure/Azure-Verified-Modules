@@ -1,6 +1,7 @@
 ---
 title: Generate Bicep Module Files
 linktitle: Update Module Files
+description: Generate Bicep Module Files for the Azure Verified Modules (AVM) program
 ---
 
 As per the module design structure ([BCPFR3]({{% siteparam base %}}/spec/BCPFR3)), every module in the AVM library requires

@@ -1,5 +1,6 @@
 ---
 title: TFNFR15 - Variable Definition Order
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR15
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21150
 ---
 
-#### ID: TFNFR15 - Category: Code Style - Variable Definition Order
+## ID: TFNFR15 - Category: Code Style - Variable Definition Order
 
 Input variables **SHOULD** follow this order:
 

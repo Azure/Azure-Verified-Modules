@@ -1,5 +1,6 @@
 ---
 title: BRM Issue Triage
+description: Issue Triage description for the Bicep Registry Modules (BRM) repository
 ---
 
 

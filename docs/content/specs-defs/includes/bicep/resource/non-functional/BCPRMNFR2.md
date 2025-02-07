@@ -1,5 +1,6 @@
 ---
 title: BCPRMNFR2 - User-defined types - AVM-Common-Types
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPRMNFR2
 type: default
 tags: [
@@ -13,10 +14,10 @@ tags: [
   Lifecycle-BAU, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
   Validation-Manual # SINGLE VALUE: this can be "Validation-Manual" OR "Validation-CI/Informational" OR "CI/Enforced"
 ]
-priority: 13010
+priority: 13020
 ---
 
-#### ID: BCPRMNFR2 - User-defined types - AVM-Common-Types
+## ID: BCPRMNFR2 - User-defined types - AVM-Common-Types
 
 When implementing any of the [shared]({{% siteparam base %}}/specs/shared/interfaces) or [Bicep-specific]({{% siteparam base %}}/specs/bicep/interfaces) AVM interface variants you MUST import their User-defined type (UDT) via the published [AVM-Common-Types](https://github.com/Azure/bicep-registry-modules/tree/main/avm/utl/types/avm-common-types) module.
 

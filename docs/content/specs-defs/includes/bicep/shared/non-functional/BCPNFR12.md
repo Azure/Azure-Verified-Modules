@@ -1,5 +1,6 @@
 ---
 title: BCPNFR12 - Deployment Test Naming
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR12
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 11120
 ---
 
-#### ID: BCPNFR12 - Category: Testing - Deployment Test Naming
+## ID: BCPNFR12 - Category: Testing - Deployment Test Naming
 
 Module owners **MUST** invoke the module in their test using the syntax:
 

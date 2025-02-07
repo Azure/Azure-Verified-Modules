@@ -1,5 +1,6 @@
 ---
 title: PMNFR4 - Missing Resource Module(s)
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/PMNFR4
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 4050
 ---
 
-#### ID: PMNFR4 - Category: Hygiene - Missing Resource Module(s)
+## ID: PMNFR4 - Category: Hygiene - Missing Resource Module(s)
 
 An item **MUST** be logged onto as an issue on the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/issues) if a Resource Module does not exist for resources deployed by the pattern module.
 

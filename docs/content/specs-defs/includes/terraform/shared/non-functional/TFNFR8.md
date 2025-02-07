@@ -1,5 +1,6 @@
 ---
 title: TFNFR8 - Resource & Data Block Orders
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR8
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21080
 ---
 
-#### ID: TFNFR8 - Category: Code Style - Resource & Data Block Orders
+## ID: TFNFR8 - Category: Code Style - Resource & Data Block Orders
 
 There are 3 types of assignment statements in a `resource` or `data` block: argument, meta-argument and nested block. The argument assignment statement is a parameter followed by `=`:
 

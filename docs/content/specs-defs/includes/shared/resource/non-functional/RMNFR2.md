@@ -1,5 +1,6 @@
 ---
 title: RMNFR2 - Parameter/Variable Naming
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/RMNFR2
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 3020
 ---
 
-#### ID: RMNFR2 - Category: Inputs - Parameter/Variable Naming
+## ID: RMNFR2 - Category: Inputs - Parameter/Variable Naming
 
 A resource module **MUST** use the following standard inputs:
 

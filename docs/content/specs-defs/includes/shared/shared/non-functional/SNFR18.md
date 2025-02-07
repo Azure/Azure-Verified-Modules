@@ -1,5 +1,6 @@
 ---
 title: SNFR18 - Breaking Changes
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR18
 type: default
 tags: [
@@ -18,7 +19,7 @@ tags: [
 priority: 1220
 ---
 
-#### ID: SNFR18 - Category: Release - Breaking Changes
+## ID: SNFR18 - Category: Release - Breaking Changes
 
 A module **SHOULD** avoid breaking changes, e.g., deprecating inputs vs. removing. If you need to implement changes that cause a breaking change, the major version should be increased.
 

@@ -1,5 +1,6 @@
 ---
 title: SFR2 - WAF Aligned
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SFR2
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 20
 ---
 
-#### ID: SFR2 - Category: Composition - WAF Aligned
+## ID: SFR2 - Category: Composition - WAF Aligned
 
 Modules **SHOULD** set defaults in input parameters/variables to align to **high** priority/impact/severity recommendations, where appropriate and applicable, in the following frameworks and resources:
 

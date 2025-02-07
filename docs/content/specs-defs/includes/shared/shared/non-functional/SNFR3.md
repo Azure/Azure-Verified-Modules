@@ -1,5 +1,6 @@
 ---
 title: SNFR3 - AVM Compliance Tests
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR3
 type: default
 tags: [
@@ -18,7 +19,7 @@ tags: [
 priority: 1040
 ---
 
-#### ID: SNFR3 - Category: Testing - AVM Compliance Tests
+## ID: SNFR3 - Category: Testing - AVM Compliance Tests
 
 Modules **MUST** pass all tests that ensure compliance to AVM specifications. These tests **MUST** pass before a module version can be published.
 

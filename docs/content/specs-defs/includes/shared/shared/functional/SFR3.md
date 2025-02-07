@@ -1,5 +1,6 @@
 ---
 title: SFR3 - Deployment/Usage Telemetry
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SFR3
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 30
 ---
 
-#### ID: SFR3 - Category: Telemetry - Deployment/Usage Telemetry
+## ID: SFR3 - Category: Telemetry - Deployment/Usage Telemetry
 
 {{% notice style="important" %}}
 
@@ -31,7 +32,7 @@ Modules **MUST** provide the capability to collect deployment/usage telemetry as
 
 To highlight that AVM modules use telemetry, an information notice **MUST** be included in the footer of each module's `README.md` file with the below content. (See more details on this requirement, [here](https://docs.opensource.microsoft.com/releasing/general-guidance/telemetry/).)
 
-##### Telemetry Information Notice
+### Telemetry Information Notice
 
 {{% notice style="note" %}}
 
@@ -44,12 +45,12 @@ The following information notice is automatically added at the bottom of the `RE
 
 {{< highlight lineNos="false" type="markdown" wrap="true" title="" >}}
 
-##### Data Collection
+### Data Collection
 
 {{% include file="/static/includes/telemetry-information-notice.md" %}}
 {{< /highlight >}}
 
-##### Bicep
+### Bicep
 
 The ARM deployment name used for the telemetry **MUST** follow the pattern and **MUST** be no longer than 64 characters in length: `46d3xbcp.<res/ptn>.<(short) module name>.<version>.<uniqueness>`
 

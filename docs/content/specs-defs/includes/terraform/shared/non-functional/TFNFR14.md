@@ -1,5 +1,6 @@
 ---
 title: TFNFR14 - Not allowed variables
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR14
 type: default
 tags: [
@@ -17,6 +18,6 @@ tags: [
 priority: 21140
 ---
 
-#### ID: TFNFR14 - Category: Inputs - Not allowed variables
+## ID: TFNFR14 - Category: Inputs - Not allowed variables
 
 Since Terraform 0.13, `count`, `for_each` and `depends_on` are introduced for modules, module development is significantly simplified. Module's owners **MUST NOT** add variables like `enabled` or `module_depends_on` to control the entire module's operation. Boolean feature toggles are acceptable however.

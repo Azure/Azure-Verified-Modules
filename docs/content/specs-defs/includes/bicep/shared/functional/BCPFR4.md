@@ -1,5 +1,6 @@
 ---
 title: BCPFR4 - Telemetry Enablement
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPFR4
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 10030
 ---
 
-#### ID: BCPFR4 - Category: Composition - Telemetry Enablement
+## ID: BCPFR4 - Category: Composition - Telemetry Enablement
 
 To comply with specifications outlined in [SFR3]({{% siteparam base %}}/spec/SFR3) & [SFR4]({{% siteparam base %}}/spec/SFR4) you **MUST** incorporate the following code snippet into your modules. Place this code sample in the "top level" `main.bicep` file; it is not necessary to include it in any nested Bicep files (child modules).
 

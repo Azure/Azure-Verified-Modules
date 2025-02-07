@@ -1,5 +1,6 @@
 ---
 title: BCPFR5 - Availability Zones Implementation
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPFR5
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 10040
 ---
 
-#### ID: BCPFR5 - Category: Inputs - Availability Zones Implementation
+## ID: BCPFR5 - Category: Inputs - Availability Zones Implementation
 
 To implement requirement [SFR5]({{% siteparam base %}}/spec/SFR5), the following convention **SHOULD** apply:
 

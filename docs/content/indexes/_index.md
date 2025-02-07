@@ -3,6 +3,7 @@ title: Module Indexes
 linktitle: Module Indexes
 type: default
 weight: 2
+description: Module Index pages for the Azure Verified Modules (AVM) program
 ---
 
 ## Summary

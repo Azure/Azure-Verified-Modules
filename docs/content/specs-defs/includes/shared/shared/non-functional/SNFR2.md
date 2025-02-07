@@ -1,5 +1,6 @@
 ---
 title: SNFR2 - E2E Testing
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR2
 type: default
 tags: [
@@ -18,7 +19,7 @@ tags: [
 priority: 1030
 ---
 
-#### ID: SNFR2 - Category: Testing - E2E Testing
+## ID: SNFR2 - Category: Testing - E2E Testing
 
 Modules **MUST** implement end-to-end (deployment) testing that create actual resources to validate that module deployments work. In Bicep tests are sourced from the directories in `/tests/e2e`. In Terraform, these are in `/examples`.
 
@@ -35,7 +36,7 @@ To see a directory and file structure for a module, see the language specific co
 
 {{% /notice %}}
 
-##### Required Resources/Dependencies Required for E2E Tests
+### Resources/Dependencies Required for E2E Tests
 
 It is likely that to complete E2E tests, a number of resources will be required as dependencies to enable the tests to pass successfully. Some examples:
 
@@ -52,7 +53,7 @@ Module owners **MUST**:
 
 {{% expand title="➕ Terraform & Bicep Log Analytics Workspace examples using simple/native declarations for use in E2E tests" expanded="false" %}}
 
-###### Terraform
+#### Terraform
 
 ```terraform
 resource "azurerm_resource_group" "example" {
@@ -69,7 +70,7 @@ resource "azurerm_log_analytics_workspace" "example" {
 }
 ```
 
-###### Bicep
+#### Bicep
 
 ```bicep
 resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-12-01-preview' = {

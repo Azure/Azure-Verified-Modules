@@ -1,5 +1,6 @@
 ---
 title: BCPNFR3 - Usage Example formats
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR3
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 11040
 ---
 
-#### ID: BCPNFR3 - Category: Documentation - Usage Example formats
+## ID: BCPNFR3 - Category: Documentation - Usage Example formats
 
 Usage examples for Bicep modules **MUST** be provided in the following formats:
 

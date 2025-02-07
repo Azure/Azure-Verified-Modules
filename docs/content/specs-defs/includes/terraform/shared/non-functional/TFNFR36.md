@@ -1,5 +1,6 @@
 ---
 title: TFNFR36 - Setting prevent_deletion_if_contains_resources
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR36
 type: default
 tags: [
@@ -14,10 +15,10 @@ tags: [
   Lifecycle-BAU, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
   Validation-TBD # SINGLE VALUE: this can be "Validation-TF/Manual" OR "Validation-TF/CI/Informational" OR "Validation-TF/CI/Enforced"
 ]
-priority: 360
+priority: 21360
 ---
 
-#### ID: TFNFR36 - Category: Code Style - Setting prevent_deletion_if_contains_resources
+## ID: TFNFR36 - Category: Code Style - Setting prevent_deletion_if_contains_resources
 
 From Terraform AzureRM 3.0, the default value of `prevent_deletion_if_contains_resources` in `provider` block is `true`. This will lead to an unstable test because the test subscription has some policies applied, and they will add some extra resources during the run, which can cause failures during destroy of resource groups.
 

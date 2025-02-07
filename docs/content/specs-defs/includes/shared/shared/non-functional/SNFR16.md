@@ -1,5 +1,6 @@
 ---
 title: SNFR16 - Examples/E2E
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR16
 type: default
 tags: [
@@ -18,6 +19,6 @@ tags: [
 priority: 1200
 ---
 
-#### ID: SNFR16 - Category: Documentation - Examples/E2E
+## ID: SNFR16 - Category: Documentation - Examples/E2E
 
 An examples/e2e directory **MUST** exist to provide named scenarios for module deployment.

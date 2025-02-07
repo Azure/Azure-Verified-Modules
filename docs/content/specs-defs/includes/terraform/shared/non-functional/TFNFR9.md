@@ -1,5 +1,6 @@
 ---
 title: TFNFR9 - Module Block Order
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR9
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21090
 ---
 
-#### ID: TFNFR9 - Category: Code Style - Module Block Order
+## ID: TFNFR9 - Category: Code Style - Module Block Order
 
 The meta-arguments below **SHOULD** be declared on the top of a `module` block with the following order:
 

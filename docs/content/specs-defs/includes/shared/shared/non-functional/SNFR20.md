@@ -1,5 +1,6 @@
 ---
 title: SNFR20 - GitHub Teams Only
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR20
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 1110
 ---
 
-#### ID: SNFR20 - Category: Contribution/Support - GitHub Teams Only
+## ID: SNFR20 - Category: Contribution/Support - GitHub Teams Only
 
 All GitHub repositories that AVM module are published from and hosted within **MUST** only assign GitHub repository permissions to GitHub teams only.
 
@@ -41,7 +42,7 @@ The `@Azure` prefix in the last column of the tables linked above represents the
 Non-FTE / external contributors (subject matter experts that aren't Microsoft employees) can't be members of the teams described in this chapter, hence, they won't gain any extra permissions on AVM repositories, therefore, they need to work in forks.
 {{% /notice %}}
 
-##### Naming Convention
+### Naming Convention
 
 The naming convention for the GitHub teams **MUST** follow the below pattern:
 
@@ -65,7 +66,7 @@ Examples:
 - `avm-res-compute-virtualmachine-module-owners-bicep`
 - `avm-res-compute-virtualmachine-module-contributors-tf`
 
-##### Add Team Members
+### Add Team Members
 
 All officially documented module owner(s) **MUST** be added to the `-module-owners-` team. The `-module-owners-` team **MUST NOT** have any other members.
 
@@ -73,9 +74,9 @@ Any additional module contributors whom the module owner(s) agreed to work with 
 
 Unless explicitly requested and agreed, members of the AVM core team or any PG teams **MUST NOT** be added to the `-module-owners-` or `-module-contributors-` teams as permissions for them are granted through the teams described in [SNFR9]({{% siteparam base %}}/spec/SNFR9).
 
-##### Grant Permissions - Bicep
+### Grant Permissions - Bicep
 
-##### Team memberships
+### Team memberships
 
 {{% notice style="note" %}}
 
@@ -107,7 +108,7 @@ Fill in the values as follows:
 - **Team notifications**: `Enabled`
 {{% /notice %}}
 
-##### CODEOWNERS file
+### CODEOWNERS file
 
 As part of the "initial Pull Request" (that publishes the first version of the module), module owners **MUST** add an entry to the `CODEOWNERS` file in the BRM repository ([here](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS)).
 
@@ -125,7 +126,7 @@ Example - `CODEOWNERS` entry for the Bicep resource module of Azure Virtual Netw
 
 - `/avm/res/network/virtual-network/ @Azure/avm-res-network-virtualnetwork-module-owners-bicep @Azure/avm-module-reviewers-bicep`
 
-##### Grant Permissions - Terraform
+### Grant Permissions - Terraform
 
 Module owners **MUST** assign the `-module-owners-`and `-module-contributors-` teams the necessary permissions on their Terraform module repository per the guidance below.
 

@@ -1,5 +1,6 @@
 ---
 title: TFNFR6 - Resource & Data Order
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR6
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21060
 ---
 
-#### ID: TFNFR6 - Category: Code Style - Resource & Data Order
+## ID: TFNFR6 - Category: Code Style - Resource & Data Order
 
 For the definition of resources in the same file, the resources be depended on **SHOULD** come first, after them are the resources depending on others.
 

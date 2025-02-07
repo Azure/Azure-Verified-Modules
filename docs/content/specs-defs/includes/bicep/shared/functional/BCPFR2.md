@@ -1,5 +1,6 @@
 ---
 title: BCPFR2 - Role Assignments Role Definition Mapping
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPFR2
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 10020
 ---
 
-#### ID: BCPFR2 - Category: Composition - Role Assignments Role Definition Mapping
+## ID: BCPFR2 - Category: Composition - Role Assignments Role Definition Mapping
 
 Module owners **MAY** define common RBAC Role Definition names and IDs within a variable to allow consumers to define a RBAC Role Definition by their name rather than their ID, this should be self contained within the module themselves.
 

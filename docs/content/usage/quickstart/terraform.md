@@ -3,6 +3,7 @@ draft: false
 title: Terraform Quickstart Guide
 linktitle: Terraform
 weight: 2
+description: Terraform Quickstart Guidance for the Azure Verified Modules (AVM) program
 ---
 
 ## Introduction

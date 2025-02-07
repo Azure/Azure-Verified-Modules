@@ -1,5 +1,6 @@
 ---
 title: TFNFR29 - Sensitive Data Outputs
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR29
 type: default
 tags: [
@@ -18,6 +19,6 @@ priority: 21290
 showPage: false
 ---
 
-#### ID: TFNFR29 - Category: Code Style - Sensitive Data Outputs
+## ID: TFNFR29 - Category: Code Style - Sensitive Data Outputs
 
 An `output` block that contains confidential data **MUST** be declared with `sensitive = true`.

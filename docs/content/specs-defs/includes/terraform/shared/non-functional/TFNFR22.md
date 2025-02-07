@@ -1,5 +1,6 @@
 ---
 title: TFNFR22 - Avoid sensitive = false
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR22
 type: default
 tags: [
@@ -17,6 +18,6 @@ tags: [
 priority: 21220
 ---
 
-#### ID: TFNFR22 - Category: Code Style - Avoid sensitive = false
+## ID: TFNFR22 - Category: Code Style - Avoid sensitive = false
 
 `sensitive = false` **MUST** be avoided.

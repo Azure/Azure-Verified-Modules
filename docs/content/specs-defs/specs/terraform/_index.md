@@ -2,6 +2,7 @@
 title: Terraform Specifications
 linktitle: Terraform
 url: /specs/tf/
+description: Terraform Module Specifications for the Azure Verified Modules (AVM) program
 ---
 
 ## Specifications by Category and Module Classification

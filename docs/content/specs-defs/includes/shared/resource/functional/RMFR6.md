@@ -1,5 +1,6 @@
 ---
 title: RMFR6 - Parameter/Variable Naming
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/RMFR6
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 2070
 ---
 
-#### ID: RMFR6 - Category: Inputs - Parameter/Variable Naming
+## ID: RMFR6 - Category: Inputs - Parameter/Variable Naming
 
 Parameters/variables that pertain to the primary resource **MUST NOT** use the resource type in the name.
 

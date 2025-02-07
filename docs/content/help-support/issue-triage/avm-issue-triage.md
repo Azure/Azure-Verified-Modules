@@ -1,5 +1,6 @@
 ---
 title: AVM Issue Triage
+description: Issue Triage description for the Azure Verified Modules (AVM) repository
 ---
 
 ## "AVM Core Team Triage" Explained

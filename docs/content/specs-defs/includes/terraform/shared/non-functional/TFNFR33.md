@@ -1,5 +1,6 @@
 ---
 title: TFNFR33 - Precise Local Types
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR33
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21330
 ---
 
-#### ID: TFNFR33 - Category: Code Style - Precise Local Types
+## ID: TFNFR33 - Category: Code Style - Precise Local Types
 
 Precise local types **SHOULD** be used.
 

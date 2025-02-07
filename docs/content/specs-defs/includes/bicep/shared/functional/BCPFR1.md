@@ -1,5 +1,6 @@
 ---
 title: BCPFR1 - Cross-Referencing Modules
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPFR1
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 10010
 ---
 
-#### ID: BCPFR1 - Category: Composition - Cross-Referencing Modules
+## ID: BCPFR1 - Category: Composition - Cross-Referencing Modules
 
 Module owners **MAY** cross-references other modules to build either Resource or Pattern modules.
 

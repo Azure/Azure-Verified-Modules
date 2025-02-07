@@ -1,5 +1,6 @@
 ---
 title: RMNFR1 - Module Naming
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/RMNFR1
 type: default
 tags: [
@@ -16,7 +17,7 @@ tags: [
 priority: 3010
 ---
 
-#### ID: RMNFR1 - Category: Naming - Module Naming
+## ID: RMNFR1 - Category: Naming - Module Naming
 
 {{% notice style="note" %}}
 
@@ -28,7 +29,7 @@ This will be updated quarterly, or ad-hoc as new RPs/ Resources are created and 
 
 Resource modules **MUST** follow the below naming conventions (all lower case):
 
-##### Bicep Resource Module Naming
+### Bicep Resource Module Naming
 
 - Naming convention: `avm/res/<hyphenated resource provider name>/<hyphenated ARM resource type>` (module name for registry)
 - Example: `avm/res/compute/virtual-machine` or `avm/res/managed-identity/user-assigned-identity`
@@ -37,7 +38,7 @@ Resource modules **MUST** follow the below naming conventions (all lower case):
   - `<hyphenated resource provider name>` is the resource provider’s name after the `Microsoft` part, with each word starting with a capital letter separated by dashes, e.g., `Microsoft.Compute` = `compute`, `Microsoft.ManagedIdentity` = `managed-identity`.
   - `<hyphenated ARM resource type>` is the **singular** version of the word after the resource provider, with each word starting with a capital letter separated by dashes, e.g., `Microsoft.Compute/virtualMachines` = `virtual-machine`, **BUT** `Microsoft.Network/trafficmanagerprofiles` = `trafficmanagerprofile` - since `trafficmanagerprofiles` is all lower case as per the ARM API definition.
 
-##### Terraform Resource Module Naming
+### Terraform Resource Module Naming
 
 - Naming convention:
   - `avm-res-<resource provider>-<ARM resource type>` (module name for registry)

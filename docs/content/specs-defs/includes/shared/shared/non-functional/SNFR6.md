@@ -1,5 +1,6 @@
 ---
 title: SNFR6 - Static Analysis/Linting Tests
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR6
 type: default
 tags: [
@@ -18,7 +19,7 @@ tags: [
 priority: 1070
 ---
 
-#### ID: SNFR6 - Category: Testing - Static Analysis/Linting Tests
+## ID: SNFR6 - Category: Testing - Static Analysis/Linting Tests
 
 Modules **MUST** use static analysis, e.g., linting, security scanning (PSRule, tflint, etc.). These tests **MUST** pass before a module version can be published.
 

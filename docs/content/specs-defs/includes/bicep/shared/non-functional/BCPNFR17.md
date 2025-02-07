@@ -1,5 +1,6 @@
 ---
 title: BCPNFR17 - Code Styling - Type casting
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR17
 type: default
 tags: [
@@ -17,13 +18,13 @@ tags: [
 priority: 11160
 ---
 
-#### ID: BCPNFR17 - Category: Composition - Code Styling - Type casting
+## ID: BCPNFR17 - Category: Composition - Code Styling - Type casting
 
 To improve the usability of primitive module properties declared as strings, you **SHOULD** declare them using a type which better represents them, and apply any required casting in the module on behalf of the user.
 
 For reference, please refer to the following examples:
 
-#### Boolean as String
+### Boolean as String
 
 {{< tabs title="Boolean as String" >}}
 {{% tab title="Before" %}}
@@ -61,7 +62,7 @@ For reference, please refer to the following examples:
 
 {{< /tabs >}}
 
-#### Integer Array as String Array
+### Integer Array as String Array
 
 {{< tabs title="Integer Array as String Array" >}}
 {{% tab title="Before" %}}

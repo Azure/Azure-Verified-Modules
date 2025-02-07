@@ -1,5 +1,6 @@
 ---
 title: BCPNFR18 - User-defined types - Specification
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR18
 type: default
 tags: [
@@ -14,10 +15,10 @@ tags: [
   Lifecycle-BAU, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
   Validation-TBD # SINGLE VALUE: this can be "Validation-Manual" OR "Validation-CI/Informational" OR "CI/Enforced"
 ]
-priority: 11010
+priority: 11012
 ---
 
-#### ID: BCPNFR18 - User-defined types - Specification
+## ID: BCPNFR18 - User-defined types - Specification
 
 User-defined types (UDTs) MUST always be singular and non-nullable. The configuration of either should instead be done directly at the parameter or output that uses the type.
 

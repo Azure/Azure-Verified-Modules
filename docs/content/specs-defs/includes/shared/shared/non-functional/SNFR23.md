@@ -1,5 +1,6 @@
 ---
 title: SNFR23 - GitHub Repo Labels
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR23
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 1160
 ---
 <!-- markdownlint-disable -->
-#### ID: SNFR23 - Category: Contribution/Support - GitHub Repo Labels
+## ID: SNFR23 - Category: Contribution/Support - GitHub Repo Labels
 
 GitHub repositories where modules are held **MUST** use the below labels and **SHOULD** not use any additional labels:
 

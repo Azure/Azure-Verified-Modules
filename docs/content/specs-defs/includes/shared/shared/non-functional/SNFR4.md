@@ -1,5 +1,6 @@
 ---
 title: SNFR4 - Unit Tests
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR4
 type: default
 tags: [
@@ -18,7 +19,7 @@ tags: [
 priority: 1050
 ---
 
-#### ID: SNFR4 - Category: Testing - Unit Tests
+## ID: SNFR4 - Category: Testing - Unit Tests
 
 Modules **SHOULD** implement unit testing to ensure logic and conditions within parameters/variables/locals are performing correctly. These tests **MUST** pass before a module version can be published.
 

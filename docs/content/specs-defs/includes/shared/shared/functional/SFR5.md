@@ -1,5 +1,6 @@
 ---
 title: SFR5 - Availability Zones
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SFR5
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 50
 ---
 
-#### ID: SFR5 - Category: Composition - Availability Zones
+## ID: SFR5 - Category: Composition - Availability Zones
 
 Modules that deploy ***zone-redundant*** resources **MUST** enable the spanning across as many zones as possible by default, typically all 3.
 

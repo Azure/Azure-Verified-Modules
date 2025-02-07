@@ -1,5 +1,6 @@
 ---
 title: BCPRMNFR3 - Child resources structure
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPRMNFR3
 type: default
 tags: [
@@ -13,10 +14,10 @@ tags: [
   Lifecycle-BAU, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
   Validation-TBD # SINGLE VALUE: this can be "Validation-BCP/Manual" OR "Validation-BCP/CI/Informational" OR "Validation-BCP/CI/Enforced"
 ]
-priority: 13010
+priority: 13030
 ---
 
-#### ID: BCPRMNFR3 - Implementing child resources
+## ID: BCPRMNFR3 - Implementing child resources
 
 Child resource modules **MUST** be stored in a subfolder of their parent resource module and named after the child resource's singular name ([ref]({{% siteparam base %}}/specs-defs/includes/shared/pattern/non-functional/PMNFR1)), so that the path to the child resource folder is consistent with the hierarchy of its resource type.
 For example, `Microsoft.Sql/servers` may have dedicated child resources of type `Microsoft.Sql/servers/databases`. Hence, the SQL server database child module is stored in a `database` subfolder of the `server` parent folder.

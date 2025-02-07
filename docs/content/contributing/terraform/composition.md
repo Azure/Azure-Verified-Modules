@@ -1,6 +1,7 @@
 ---
 title: Terraform Composition
 linktitle: Composition
+description: Terraform Composition description for the Azure Verified Modules (AVM) program
 ---
 
 

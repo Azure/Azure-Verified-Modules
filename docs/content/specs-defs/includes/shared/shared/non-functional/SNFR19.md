@@ -1,5 +1,6 @@
 ---
 title: SNFR19 - Registries Targeted
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR19
 type: default
 tags: [
@@ -18,7 +19,7 @@ tags: [
 priority: 1230
 ---
 
-#### ID: SNFR19 - Category: Publishing - Registries Targeted
+## ID: SNFR19 - Category: Publishing - Registries Targeted
 
 Modules **MUST** be published to their respective language public registries.
 

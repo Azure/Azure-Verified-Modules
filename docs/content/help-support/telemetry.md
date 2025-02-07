@@ -1,5 +1,6 @@
 ---
 title: Telemetry
+description: Telemetry description for the Azure Verified Modules (AVM) program
 ---
 
 Microsoft uses the approach detailed in this section to identify the deployments of the AVM Modules. Microsoft collects this information to provide the best experiences with their products and to operate their business. Telemetry data is captured through the built-in mechanisms of the Azure platform; therefore, it never leaves the platform, providing only Microsoft with access. Deployments are identified through a specific GUID (Globally Unique ID), indicating that the code originated from AVM. The data is collected and governed by Microsoft's privacy policies, located at the [Trust Center](https://www.microsoft.com/trust-center).

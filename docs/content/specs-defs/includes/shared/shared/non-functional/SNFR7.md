@@ -1,5 +1,6 @@
 ---
 title: SNFR7 - Idempotency Tests
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR7
 type: default
 tags: [
@@ -18,7 +19,7 @@ tags: [
 priority: 1080
 ---
 
-#### ID: SNFR7 - Category: Testing - Idempotency Tests
+## ID: SNFR7 - Category: Testing - Idempotency Tests
 
 Modules **MUST** implement idempotency end-to-end (deployment) testing. E.g. deploying the module twice over the top of itself.
 

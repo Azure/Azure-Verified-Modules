@@ -1,5 +1,6 @@
 ---
 title: TFNFR17 - Variables with Descriptions
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR17
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21170
 ---
 
-#### ID: TFNFR17 - Category: Code Style - Variables with Descriptions
+## ID: TFNFR17 - Category: Code Style - Variables with Descriptions
 
 The target audience of `description` is the module users.
 

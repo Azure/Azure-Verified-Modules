@@ -3,6 +3,7 @@ draft: false
 title: Bicep Modules
 linktitle: Bicep
 weight: 1
+description: Bicep Module Index pages showing all available, orphaned and planned modules
 ---
 
 ## Summary
@@ -22,8 +23,6 @@ The following table shows the number of all available, orphaned and planned **Bi
 For more details on "**What are the different ways to contribute to AVM?**", see [here]({{% siteparam base %}}/faq/#are-there-different-ways-to-contribute-to-avm).
 
 {{% /notice %}}
-
----
 
 ## Status Badges
 

@@ -1,5 +1,6 @@
 ---
 title: TFNFR7 - Count & for_each Use
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR7
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21070
 ---
 
-#### ID: TFNFR7 - Category: Code Style - count & for_each Use
+## ID: TFNFR7 - Category: Code Style - count & for_each Use
 
 We can use `count` and `for_each` to deploy multiple resources, but the improper use of `count` can lead to [anti pattern](https://github.com/Azure/terraform-robust-module-design/tree/main/looping_for_resources_or_modules/count_index_antipattern).
 

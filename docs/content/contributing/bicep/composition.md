@@ -1,6 +1,7 @@
 ---
 title: Bicep Composition
 linktitle: Composition
+description: Bicep Composition description for the Azure Verified Modules (AVM) program
 ---
 
 {{% notice style="important" %}}

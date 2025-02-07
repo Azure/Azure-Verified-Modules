@@ -1,5 +1,6 @@
 ---
 title: TFNFR24 - Handling Deprecated Variables
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR24
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21240
 ---
 
-#### ID: TFNFR24 - Category: Code Style - Handling Deprecated Variables
+## ID: TFNFR24 - Category: Code Style - Handling Deprecated Variables
 
 Sometimes we will find names for some `variable` are not suitable anymore, or a change **SHOULD** be made to the data type. We want to ensure forward compatibility within a major version, so direct changes are strictly forbidden. The right way to do this is move this `variable` to an independent `deprecated_variables.tf` file, then redefine the new parameter in `variable.tf` and make sure it's compatible everywhere else.
 

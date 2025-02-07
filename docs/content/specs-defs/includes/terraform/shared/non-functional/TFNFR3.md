@@ -1,5 +1,6 @@
 ---
 title: TFNFR3 - GitHub Repo Branch Protection
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR3
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21030
 ---
 
-#### ID: TFNFR3 - Category: Contribution/Support - GitHub Repo Branch Protection
+## ID: TFNFR3 - Category: Contribution/Support - GitHub Repo Branch Protection
 
 Module owners **MUST** set a branch protection policy on their GitHub Repositories for AVM modules against their default branch, typically `main`, to do the following:
 

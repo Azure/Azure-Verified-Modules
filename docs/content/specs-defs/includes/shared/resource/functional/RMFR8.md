@@ -1,5 +1,6 @@
 ---
 title: RMFR8 - Dependency on child and other resources
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/RMFR8
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 2060
 ---
 
-#### ID: RMFR8 - Category: Composition - Dependency on child and other resources
+## ID: RMFR8 - Category: Composition - Dependency on child and other resources
 
 A resource module **MAY** contain references to other resource modules, however **MUST NOT** contain references to non-AVM modules nor AVM pattern modules.
 

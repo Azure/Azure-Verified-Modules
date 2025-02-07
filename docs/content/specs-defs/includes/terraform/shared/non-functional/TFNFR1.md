@@ -1,5 +1,6 @@
 ---
 title: TFNFR1 - Descriptions
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR1
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21010
 ---
 
-#### ID: TFNFR1 - Category: Documentation - Descriptions
+## ID: TFNFR1 - Category: Documentation - Descriptions
 
 Where descriptions for variables and outputs spans multiple lines. The description **MAY** provide variable input examples for each variable using the HEREDOC format and embedded markdown.
 

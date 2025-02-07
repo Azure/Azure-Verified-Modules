@@ -1,5 +1,6 @@
 ---
 title: SFR4 - Telemetry Enablement Flexibility
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SFR4
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 40
 ---
 
-#### ID: SFR4 - Category: Telemetry - Telemetry Enablement Flexibility
+## ID: SFR4 - Category: Telemetry - Telemetry Enablement Flexibility
 
 The telemetry enablement **MUST** be on/enabled by default, however this **MUST** be able to be disabled by a module consumer by setting the below parameter/variable value to `false`:
 

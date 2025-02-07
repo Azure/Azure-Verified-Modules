@@ -9,6 +9,8 @@ enableGitInfo = true
 
 [params]
     base = '/Azure-Verified-Modules'
+    images = ['images/avm_logo.png']
+    logo = 'images/favicon.svg'
     disableExplicitIndexURLs = true
     disableLanguageSwitchingButton = false
     themeVariant = [
@@ -54,6 +56,10 @@ enableGitInfo = true
 
 [markup]
   defaultMarkdownHandler = 'goldmark'
+  [markup.tableOfContents]
+    endLevel = 6
+    ordered = false
+    startLevel = 2
 
 [markup.goldmark.renderer]
     unsafe = true
@@ -99,7 +105,7 @@ enableGitInfo = true
     name = 'Bicep'
     pageRef = '/indexes/bicep'
     weight = 1
-    params = { alwaysopen = false, collapsibleMenu = true }
+    params = { alwaysopen = true, collapsibleMenu = true }
 
     [[menu.defined]]
       identifier = 'bicep-resource-module-indexes'
@@ -131,7 +137,7 @@ enableGitInfo = true
     name = 'Terraform'
     pageRef = '/indexes/terraform'
     weight = 2
-    params = { alwaysopen = false, collapsibleMenu = true }
+    params = { alwaysopen = true, collapsibleMenu = true }
 
     [[menu.defined]]
       identifier = 'terraform-resource-module-indexes'

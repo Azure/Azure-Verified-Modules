@@ -1,5 +1,6 @@
 ---
 title: SNFR11 - Issues Response Times
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR11
 type: default
 tags: [
@@ -18,6 +19,6 @@ tags: [
 priority: 1140
 ---
 
-#### ID: SNFR11 - Category: Contribution/Support - Issues Response Times
+## ID: SNFR11 - Category: Contribution/Support - Issues Response Times
 
 A module owner **MUST** respond to logged issues within 3 business days. See [Module Support]({{% siteparam base %}}/help-support/module-support/) for more information.

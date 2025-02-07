@@ -1,5 +1,6 @@
 ---
 title: TFNFR26 - Providers in required_providers
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR26
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21260
 ---
 
-#### ID: TFNFR26 - Category: Code Style - Providers in required_providers
+## ID: TFNFR26 - Category: Code Style - Providers in required_providers
 
 The `terraform` block in `terraform.tf` **MUST** contain the `required_providers` block.
 

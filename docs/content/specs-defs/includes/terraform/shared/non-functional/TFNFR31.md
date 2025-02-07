@@ -1,5 +1,6 @@
 ---
 title: TFNFR31 - locals.tf for Locals Only
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR31
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21310
 ---
 
-#### ID: TFNFR31 - Category: Code Style - locals.tf for Locals Only
+## ID: TFNFR31 - Category: Code Style - locals.tf for Locals Only
 
 In `locals.tf`, file we could declare multiple `locals` blocks, but only `locals` blocks are allowed.
 

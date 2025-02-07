@@ -1,5 +1,6 @@
 ---
 title: TFNFR20 - Non-Nullable Defaults for collection values
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR20
 type: default
 tags: [
@@ -17,6 +18,6 @@ tags: [
 priority: 21200
 ---
 
-#### ID: TFNFR20 - Category: Code Style - Non-Nullable Defaults for collection values
+## ID: TFNFR20 - Category: Code Style - Non-Nullable Defaults for collection values
 
 Nullable **SHOULD** be set to `false` for collection values (e.g. sets, maps, lists) when using them in loops. However for scalar values like string and number, a null value **MAY** have a semantic meaning and as such these values are allowed.

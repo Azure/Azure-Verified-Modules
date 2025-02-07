@@ -2,6 +2,7 @@
 title: Bicep Specifications
 linktitle: Bicep
 url: /specs/bcp/
+description: Bicep Module Specifications for the Azure Verified Modules (AVM) program
 ---
 
 ## Specifications by Category and Module Classification

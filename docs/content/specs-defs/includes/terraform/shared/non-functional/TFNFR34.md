@@ -1,5 +1,6 @@
 ---
 title: TFNFR34 - Using Feature Toggles
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR34
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21340
 ---
 
-#### ID: TFNFR34 - Category: Code Style - Using Feature Toggles
+## ID: TFNFR34 - Category: Code Style - Using Feature Toggles
 
 A toggle variable **MUST** be used to allow users to avoid the creation of a new `resource` block by default if it is added in a minor or patch version.
 

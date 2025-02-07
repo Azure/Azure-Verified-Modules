@@ -1,5 +1,6 @@
 ---
 title: BCPNFR11 - Test Tooling
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR11
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 11110
 ---
 
-#### ID: BCPNFR11 - Category: Testing - Test Tooling
+## ID: BCPNFR11 - Category: Testing - Test Tooling
 
 Module owners **MUST** use the below tooling for unit/linting/static/security analysis tests. These are also used in the AVM Compliance Tests.
 

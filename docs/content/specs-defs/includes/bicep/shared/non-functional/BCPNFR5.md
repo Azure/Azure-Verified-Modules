@@ -1,5 +1,6 @@
 ---
 title: BCPNFR5 - Role Assignments Role Definition Mapping Limits
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR5
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 11060
 ---
 
-#### ID: BCPNFR5 - Category: Composition - Role Assignments Role Definition Mapping Limits
+## ID: BCPNFR5 - Category: Composition - Role Assignments Role Definition Mapping Limits
 
 As per [BCPFR2]({{% siteparam base %}}/spec/BCPFR2), module owners **MAY** define common RBAC Role Definition names and IDs within a variable to allow consumers to define a RBAC Role Definition by their name rather than their ID.
 

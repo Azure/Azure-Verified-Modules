@@ -1,5 +1,6 @@
 ---
 title: SNFR1 - Prescribed Tests
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR1
 type: default
 tags: [
@@ -18,6 +19,6 @@ tags: [
 priority: 1020
 ---
 
-#### ID: SNFR1 - Category: Testing - Prescribed Tests
+## ID: SNFR1 - Category: Testing - Prescribed Tests
 
 Modules **MUST** use the prescribed tooling and testing frameworks defined in the language specific specs.

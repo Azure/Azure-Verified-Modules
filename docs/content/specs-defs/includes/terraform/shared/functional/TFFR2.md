@@ -1,5 +1,6 @@
 ---
 title: TFFR2 - Additional Terraform Outputs
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFFR2
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 20020
 ---
 
-#### ID: TFFR2 - Category: Outputs - Additional Terraform Outputs
+## ID: TFFR2 - Category: Outputs - Additional Terraform Outputs
 
 Authors **SHOULD NOT** output entire resource objects as these may contain sensitive outputs and the schema can change with API or provider versions.
 Instead, authors **SHOULD** output the *computed* attributes of the resource as discreet outputs.

@@ -1,5 +1,6 @@
 ---
 title: RMFR3 - Resource Groups
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/RMFR3
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 2030
 ---
 
-#### ID: RMFR3 - Category: Composition - Resource Groups
+## ID: RMFR3 - Category: Composition - Resource Groups
 
 A resource module **MUST NOT** create a Resource Group **for resources that require them.**
 

@@ -1,5 +1,6 @@
 ---
 title: TFNFR21 - Discourage Nullability by Default
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR21
 type: default
 tags: [
@@ -17,6 +18,6 @@ tags: [
 priority: 21210
 ---
 
-#### ID: TFNFR21 - Category: Code Style - Discourage Nullability by Default
+## ID: TFNFR21 - Category: Code Style - Discourage Nullability by Default
 
 `nullable = true` **MUST** be avoided.

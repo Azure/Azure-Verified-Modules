@@ -1,5 +1,6 @@
 ---
 title: SNFR22 - Parameters/Variables for Resource IDs
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR22
 type: default
 tags: [
@@ -18,7 +19,7 @@ tags: [
 priority: 1180
 ---
 
-#### ID: SNFR22 - Category: Inputs - Parameters/Variables for Resource IDs
+## ID: SNFR22 - Category: Inputs - Parameters/Variables for Resource IDs
 
 A module parameter/variable that requires a full Azure Resource ID as an input value, e.g. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{keyVaultName}`, **MUST** contain `ResourceId/resource_id` in its parameter/variable name to assist users in knowing what value to provide at a glance of the parameter/variable name.
 

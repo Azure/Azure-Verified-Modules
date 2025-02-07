@@ -1,5 +1,6 @@
 ---
 title: BCPNFR19 - User-defined types - Naming
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR18
 type: default
 tags: [
@@ -15,10 +16,10 @@ tags: [
   Lifecycle-BAU, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
   Validation-TBD # SINGLE VALUE: this can be "Validation-Manual" OR "Validation-CI/Informational" OR "CI/Enforced"
 ]
-priority: 11010
+priority: 11013
 ---
 
-#### ID: BCPNFR19 - User-defined types - Naming
+## ID: BCPNFR19 - User-defined types - Naming
 
 User-defined types (UDTs) MUST always end with the suffix `(...)Type` to make them obvious to users. In addition it is recommended to extend the suffix to `(...)OutputType` if a UDT is exclusively used for outputs.
 ```bicep

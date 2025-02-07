@@ -1,5 +1,6 @@
 ---
 title: TFNFR27 - Provider Declarations in Modules
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR27
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21270
 ---
 
-#### ID: TFNFR27 - Category: Code Style - Provider Declarations in Modules
+## ID: TFNFR27 - Category: Code Style - Provider Declarations in Modules
 
 [By rules](https://www.terraform.io/docs/language/modules/develop/providers.html), in the module code `provider` **MUST NOT** be declared. The only exception is when the module indeed need different instances of the same kind of `provider`(Eg. manipulating resources across different `location`s or accounts), you **MUST** declare `configuration_aliases` in `terraform.required_providers`. See details in this [document](https://www.terraform.io/docs/language/providers/configuration.html#alias-multiple-provider-configurations).
 

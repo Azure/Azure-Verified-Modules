@@ -1,6 +1,7 @@
 ---
 title: Terraform Contribution Prerequisites
 linktitle: Prerequisites
+description: Terraform Contribution Prerequisites for the Azure Verified Modules (AVM) program
 ---
 
 

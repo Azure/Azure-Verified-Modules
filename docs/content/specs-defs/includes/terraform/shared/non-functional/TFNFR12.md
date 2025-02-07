@@ -1,5 +1,6 @@
 ---
 title: TFNFR12 - Dynamic for Optional Nested Objects
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR12
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21120
 ---
 
-#### ID: TFNFR12 - Category: Code Style - Dynamic for Optional Nested Objects
+## ID: TFNFR12 - Category: Code Style - Dynamic for Optional Nested Objects
 
 An example from the community:
 

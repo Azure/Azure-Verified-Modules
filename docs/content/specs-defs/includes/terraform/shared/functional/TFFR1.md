@@ -1,5 +1,6 @@
 ---
 title: TFFR1 - Cross-Referencing Modules
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFFR1
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 20010
 ---
 
-#### ID: TFFR1 - Category: Composition - Cross-Referencing Modules
+## ID: TFFR1 - Category: Composition - Cross-Referencing Modules
 
 Module owners **MAY** cross-references other modules to build either Resource or Pattern modules. However, they **MUST** be referenced only by a HashiCorp Terraform registry reference to a pinned version e.g.,
 

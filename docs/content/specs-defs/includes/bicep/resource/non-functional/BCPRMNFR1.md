@@ -1,5 +1,6 @@
 ---
 title: BCPRMNFR1 - Expected Test Directories
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPRMNFR1
 type: default
 tags: [
@@ -16,11 +17,11 @@ tags: [
 priority: 13010
 ---
 
-#### ID: BCPRMNFR1 - Category: Testing - Expected Test Directories
+## ID: BCPRMNFR1 - Category: Testing - Expected Test Directories
 
 Module owners **MUST** create the `defaults`, `waf-aligned` folders within their `/tests/e2e/` directory in their resource module source code and **SHOULD** create a `max` folder also. Module owners **CAN** create additional folders as required. Each folder will be used as described for various test cases.
 
-##### Defaults tests (**MUST**)
+### Defaults tests (**MUST**)
 
 The `defaults` folder contains a test instance that deploys the module with the minimum set of required parameters.
 
@@ -28,7 +29,7 @@ This includes input parameters of type `Required` plus input parameters of type 
 
 This instance has heavy reliance on the default values for other input parameters. Parameters of type `Optional` **SHOULD NOT** be used.
 
-##### WAF aligned tests (**MUST**)
+### WAF aligned tests (**MUST**)
 
 The `waf-aligned` folder contains a test instance that deploys the module in alignment with the best-practices of the Azure Well-Architected Framework.
 
@@ -36,7 +37,7 @@ This includes input parameters of type `Required`, parameters of type `Condition
 
 Parameters and dependencies which are not needed for WAF compliance, **SHOULD NOT** be included.
 
-##### Max tests (**SHOULD**)
+### Max tests (**SHOULD**)
 
 The `max` folder contains a test instance that deploys the module using a large parameter set, enabling most of the modules' features.
 
@@ -48,7 +49,7 @@ Please note that this test is not mandatory to have, but recommended for bulk pa
 
 {{% /notice %}}
 
-##### Additional tests (**CAN**)
+### Additional tests (**CAN**)
 
 Additional folders `CAN` be created by module owners as required.
 

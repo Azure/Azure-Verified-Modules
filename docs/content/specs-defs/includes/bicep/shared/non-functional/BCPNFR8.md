@@ -1,5 +1,6 @@
 ---
 title: BCPNFR8 - Code Styling - lower camelCasing
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR8
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 11080
 ---
 
-#### ID: BCPNFR8 - Category: Composition - Code Styling - lower camelCasing
+## ID: BCPNFR8 - Category: Composition - Code Styling - lower camelCasing
 
 Module owners **SHOULD** use [lower camelCasing](https://wikipedia.org/wiki/Camel_case) for naming the following:
 

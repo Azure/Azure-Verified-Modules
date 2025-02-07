@@ -1,5 +1,6 @@
 ---
 title: BCPNFR10 - Test Bicep File Naming
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR10
 type: default
 tags: [
@@ -17,6 +18,6 @@ tags: [
 priority: 11100
 ---
 
-#### ID: BCPNFR10 - Category: Testing - Test Bicep File Naming
+## ID: BCPNFR10 - Category: Testing - Test Bicep File Naming
 
 Module owners **MUST** name their test `.bicep` files in the `/tests/e2e/<defaults/waf-aligned/max/etc.>` directories: `main.test.bicep` as the test framework (CI) relies upon this name.

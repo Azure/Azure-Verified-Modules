@@ -1,5 +1,6 @@
 ---
 title: SFR6 - Data Redundancy
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SFR6
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 60
 ---
 
-#### ID: SFR6 - Category: Composition - Data Redundancy
+## ID: SFR6 - Category: Composition - Data Redundancy
 
 Modules that deploy resources or patterns that support data redundancy **SHOULD** enable this to the highest possible value by default, e.g. `RA-GZRS`. When a resource or pattern doesn't provide the ability to specify data redundancy as a simple property, e.g. `GRS` etc., then the modules **MUST** provide the ability to enable data redundancy for the resources or pattern via parameters/variables.
 

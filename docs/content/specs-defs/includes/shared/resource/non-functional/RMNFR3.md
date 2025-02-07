@@ -1,5 +1,6 @@
 ---
 title: RMNFR3 - RP Collaboration
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/RMNFR3
 type: default
 tags: [
@@ -16,7 +17,7 @@ tags: [
 priority: 3030
 ---
 
-#### ID: RMNFR3 - Category: Composition - RP Collaboration
+## ID: RMNFR3 - Category: Composition - RP Collaboration
 
 Module owners (Microsoft FTEs) **SHOULD** reach out to the respective Resource Provider teams to build a partnership and collaboration on the modules creation, existence and long term maintenance.
 

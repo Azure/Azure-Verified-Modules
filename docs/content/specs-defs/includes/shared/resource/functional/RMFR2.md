@@ -1,5 +1,6 @@
 ---
 title: RMFR2 - No Resource Wrapper Modules
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/RMFR2
 type: default
 tags: [
@@ -16,6 +17,6 @@ tags: [
 priority: 2020
 ---
 
-#### ID: RMFR2 - Category: Composition - No Resource Wrapper Modules
+## ID: RMFR2 - Category: Composition - No Resource Wrapper Modules
 
 A resource module **MUST** add value by including additional features on top of the primary resource.

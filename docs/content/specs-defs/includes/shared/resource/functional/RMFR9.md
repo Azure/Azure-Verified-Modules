@@ -1,5 +1,6 @@
 ---
 title: RMFR9 - End-of-life resource versions
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/RMFR9
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 2090
 ---
 
-#### ID: RMFR9 - Category: Composition - End-of-life resource versions
+## ID: RMFR9 - Category: Composition - End-of-life resource versions
 
 When a given version of an Azure resource used in a resource module reaches its end-of-life (EOL) and is no longer supported by Microsoft, the module owner **SHOULD** ensure that:
 

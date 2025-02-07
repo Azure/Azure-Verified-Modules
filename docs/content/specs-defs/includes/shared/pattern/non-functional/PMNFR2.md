@@ -1,5 +1,6 @@
 ---
 title: PMNFR2 - Use Resource Modules to Build a Pattern Module
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/PMNFR2
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 4030
 ---
 
-#### ID: PMNFR2 - Category: Composition - Use Resource Modules to Build a Pattern Module
+## ID: PMNFR2 - Category: Composition - Use Resource Modules to Build a Pattern Module
 
 A Pattern Module **SHOULD** be built from AVM Resources Modules to establish a standardized code base and improve maintainability. If a valid reason exists, a pattern module **MAY** contain native resources ("vanilla" code) where it's necessary. A Pattern Module **MUST NOT** contain references to non-AVM modules.
 

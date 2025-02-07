@@ -1,5 +1,6 @@
 ---
 title: TFNFR16 - Variable Naming Rules
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR16
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21160
 ---
 
-#### ID: TFNFR16 - Category: Code Style - Variable Naming Rules
+## ID: TFNFR16 - Category: Code Style - Variable Naming Rules
 
 The naming of a `variable` **SHOULD** follow [HashiCorp's naming rule](https://www.terraform.io/docs/extend/best-practices/naming.html).
 

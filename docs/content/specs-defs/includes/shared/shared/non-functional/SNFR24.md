@@ -1,5 +1,6 @@
 ---
 title: SNFR24 - Testing Child, Extension & Interface Resources
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/SNFR24
 type: default
 tags: [
@@ -18,7 +19,7 @@ tags: [
 priority: 1090
 ---
 
-#### ID: SNFR24 - Category: Testing - Testing Child, Extension & Interface Resources
+## ID: SNFR24 - Category: Testing - Testing Child, Extension & Interface Resources
 
 Module owners **MUST** test that child and extension resources and those [Bicep]({{% siteparam base %}}/specs/bcp/interfaces/) or [Terreform]({{% siteparam base %}}/specs/tf/interfaces/) interface resources that are supported by their modules, are validated in E2E tests as per [SNFR2]({{% siteparam base %}}/spec/SNFR2) to ensure they deploy and are configured correctly.
 

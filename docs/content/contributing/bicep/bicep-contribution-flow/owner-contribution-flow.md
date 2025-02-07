@@ -1,5 +1,6 @@
 ---
 title: Owner Contribution Flow
+description: Bicep Owner Contribution Flow for the Azure Verified Modules (AVM) program
 ---
 
 This section describes the contribution flow for module owners who are responsible for creating and maintaining Bicep Modules.

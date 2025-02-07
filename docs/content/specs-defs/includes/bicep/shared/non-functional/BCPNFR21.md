@@ -1,5 +1,6 @@
 ---
 title: BCPNFR21 - User-defined types - Decorators
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR21
 type: default
 tags: [
@@ -14,10 +15,10 @@ tags: [
   Lifecycle-BAU, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
   Validation-TBD # SINGLE VALUE: this can be "Validation-Manual" OR "Validation-CI/Informational" OR "CI/Enforced"
 ]
-priority: 11010
+priority: 11015
 ---
 
-#### ID: BCPNFR21 - User-defined types - Decorators
+## ID: BCPNFR21 - User-defined types - Decorators
 
 Similar to [BCPNFR9]({{% siteparam base %}}/spec/BCPNFR9), User-defined types (UDTs) MUST implement [decorators](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators) such as `description` & `secure` (if sensitive). This is true for every property of the UDT, as well as the UDT itself.
 

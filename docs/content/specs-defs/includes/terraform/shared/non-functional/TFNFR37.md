@@ -1,5 +1,6 @@
 ---
 title: TFNFR37 - Tool Usage by Module Owner
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR37
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21370
 ---
 
-#### ID: TFNFR37 - Category: Code Style - Tool Usage by Module Owner
+## ID: TFNFR37 - Category: Code Style - Tool Usage by Module Owner
 
 `newres` is a command-line tool that generates Terraform configuration files for a specified resource type. It automates the process of creating `variables.tf` and `main.tf` files, making it easier to get started with Terraform and reducing the time spent on manual configuration.
 

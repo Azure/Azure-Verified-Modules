@@ -1,5 +1,6 @@
 ---
 title: BCPNFR13 - Test file metadata
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR13
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 11130
 ---
 
-#### ID: BCPNFR13 - Category: Testing - Test file metadata
+## ID: BCPNFR13 - Category: Testing - Test file metadata
 
 By default, the ReadMe-generating utility will create usage examples headers based on each `e2e` folder's name.
 Module owners **MAY** provide a custom name & description by specifying the metadata blocks `name` & `description` in their `main.test.bicep` test files.

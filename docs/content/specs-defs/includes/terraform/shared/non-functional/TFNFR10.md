@@ -1,5 +1,6 @@
 ---
 title: TFNFR10 - No Double Quotes in ignore_changes
+description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR10
 type: default
 tags: [
@@ -17,7 +18,7 @@ tags: [
 priority: 21100
 ---
 
-#### ID: TFNFR10 - Category: Code Style - No Double Quotes in ignore_changes
+## ID: TFNFR10 - Category: Code Style - No Double Quotes in ignore_changes
 
 The `ignore_changes` attribute **MUST NOT** be enclosed in double quotes.
 
