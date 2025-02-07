@@ -41,6 +41,12 @@ This occurrence is optimized for EMEA/APAC time zones.
 {{< youtube id="M2dJetgK2U8" title="Azure Verified Modules (AVM) - February 2025 - External Community Call" >}}
 </div>
 
+<br>
+
+<div style="width:70%; margin: 0 auto;">
+{{< youtube id="ifDba74rdG8" title="Azure Verified Modules (AVM) - Website Updates - February 2025" >}}
+</div>
+
 ### 24th September 2024
 
 <!-- - [Registration](https://msit.events.teams.microsoft.com/event/74fc1d31-fc02-411d-bb3c-a4969833d178@72f988bf-86f1-41af-91ab-2d7cd011db47) -->
