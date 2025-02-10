@@ -188,7 +188,7 @@ It is highly recommended to start leveraging Option 1 below to adopt OpenID Conn
 
 While it is possible to set federated credentials up for both a Service Principal and a Managed Identity, it is highly recommended to use the later.
 
-Amongst other advantages, the OIDC token created for a Managed Identity is can be refreshed for up to 24 hours, while the maximum lifetime for a Service Principal-based OIDC token is at about 1 hour. 
+Amongst other advantages, the OIDC token created for a Managed Identity can be refreshed for up to 24 hours, while the maximum lifetime for a Service Principal-based OIDC token is at about 1 hour.
 
 {{% /notice %}}
 
