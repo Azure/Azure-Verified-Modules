@@ -184,8 +184,6 @@ It is highly recommended to start leveraging Option 1 below to adopt OpenID Conn
 
 {{% expand title="➕ Option 1 [Recommended]: OIDC - Configure a federated identity credential" %}}
 
-{{% /notice %}}
-
 1. Create a new or leverage an existing user-assigned managed identity with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
     - [Create a user-assigned managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities#create-a-user-assigned-managed-identity)
     - [Assign an appropriate role to your user-assigned managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities#manage-access-to-user-assigned-managed-identities)
