@@ -184,12 +184,6 @@ It is highly recommended to start leveraging Option 1 below to adopt OpenID Conn
 
 {{% expand title="➕ Option 1 [Recommended]: OIDC - Configure a federated identity credential" %}}
 
-{{% notice style="warning" title="Known issue: Service Principal vs User-Assigned / Managed Identity" %}}
-
-While it is possible to set federated credentials up for both a Service Principal and a Managed Identity, it is highly recommended to use the later.
-
-Amongst other advantages, the OIDC token created for a Managed Identity is can be refreshed for up to 24 hours, while the maximum lifetime for a Service Principal-based OIDC token is at about 1 hour. 
-
 {{% /notice %}}
 
 1. Create a new or leverage an existing user-assigned managed identity with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
