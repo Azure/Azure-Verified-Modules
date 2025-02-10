@@ -56,3 +56,43 @@ module >singularMainResourceType<_privateEndpoints 'br/public:avm/res/network/pr
     customNetworkInterfaceName: privateEndpoint.?customNetworkInterfaceName
   }
 }]
+
+
+@description('The private endpoints of the resource.')
+output privateEndpoints privateEndpointOutputType[] = [
+  for (pe, index) in (!empty(privateEndpoints) ? array(privateEndpoints) : []): {
+    name: >singularMainResourceType<_privateEndpoints[index].outputs.name
+    resourceId: >singularMainResourceType<_privateEndpoints[index].outputs.resourceId
+    groupId: >singularMainResourceType<_privateEndpoints[index].outputs.?groupId!
+    customDnsConfigs: >singularMainResourceType<_privateEndpoints[index].outputs.customDnsConfigs
+    networkInterfaceResourceIds: >singularMainResourceType<_privateEndpoints[index].outputs.networkInterfaceResourceIds
+  }
+]
+
+// =============== //
+//   Definitions   //
+// =============== //
+
+@export()
+type privateEndpointOutputType = {
+  @description('The name of the private endpoint.')
+  name: string
+
+  @description('The resource ID of the private endpoint.')
+  resourceId: string
+
+  @description('The group Id for the private endpoint Group.')
+  groupId: string?
+
+  @description('The custom DNS configurations of the private endpoint.')
+  customDnsConfigs: {
+    @description('FQDN that resolves to private endpoint IP address.')
+    fqdn: string?
+
+    @description('A list of private IP addresses of the private endpoint.')
+    ipAddresses: string[]
+  }[]
+
+  @description('The IDs of the network interfaces associated with the private endpoint.')
+  networkInterfaceResourceIds: string[]
+}
