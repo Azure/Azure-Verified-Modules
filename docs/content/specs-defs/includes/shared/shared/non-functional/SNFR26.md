@@ -22,15 +22,15 @@ priority: 1240
 
 ## ID: SNFR26 - Category: Publishing - Changelog
 
-When a module, that is going to be published (has a `version.json` file) is changed (the major, minor or patch version is increased), an entry **MUST** be created in the `CHANGELOG.md` file in the module folder.
+When a module, that is going to be published (has a `version.json` file) is changed, an entry **MUST** be created in the `CHANGELOG.md` file in the module folder.
 
   {{% notice style="note" %}}
 
-  The versioning is following the [SNFR17 - Semantic Versioning ](/Azure-Verified-Modules/spec/SNFR17/) spec.
+  The versioning is following the [SNFR17 - Semantic Versioning](/Azure-Verified-Modules/spec/SNFR17/) spec.
 
   {{% /notice %}}
 
-For a new version an entry **MUST** be created in the changelog.md file of the module.
+For a new version an entry **MUST** be created above all existing versions in the `CHANGELOG.md` file of the module.
 
 ```text
 ## <version>
@@ -45,19 +45,20 @@ For a new version an entry **MUST** be created in the changelog.md file of the m
 - none
 ```
 
-### Content of the CHANGELOG.md
+Each version's entry contains two sections: *Changes* and *Breaking Changes*. At least one of them must have a meaningfull entry and sections must not be left empty. A `- none` may be added as content for a section.
 
-A `CHANGELOG.md` file in the module's root folder starts with a changelog, followed by an empty line. A section for each published version follows. Newer versions are placed above older versions.
+### Example content of the CHANGELOG.md
+
+A `CHANGELOG.md` file in the module's root folder **MUST** start with the `# Changelog` header, followed by an empty line. A section for each published version follows. Newer versions are placed above older versions.
 
 ```text
 # Changelog
 
-## 0.5.3
+## 0.2.1
 
 ### Changes
 
 - Updated the referenced AVM common types
-- The recently introduced minCPU parameter is now applied
 
 ### Breaking Changes
 
