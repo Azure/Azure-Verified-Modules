@@ -57,7 +57,6 @@ module >singularMainResourceType<_privateEndpoints 'br/public:avm/res/network/pr
   }
 }]
 
-
 @description('The private endpoints of the resource.')
 output privateEndpoints privateEndpointOutputType[] = [
   for (pe, index) in (!empty(privateEndpoints) ? array(privateEndpoints) : []): {
