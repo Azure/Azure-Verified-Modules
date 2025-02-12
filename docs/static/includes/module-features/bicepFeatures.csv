@@ -119,7 +119,7 @@
 118,res/portal/dashboard,✅,✅,✅,,,,
 119,res/power-bi-dedicated/capacity,✅,✅,✅,,,,
 120,res/purview/account,✅,✅,✅,✅,,,✅
-121,res/recovery-services/vault,✅,✅,✅,✅,✅,,✅
+121,res/recovery-services/vault,✅,✅,✅,✅,✅,✅,✅
 122,res/relay/namespace,✅,✅,✅,✅,✅,,
 123,res/resource-graph/query,✅,✅,✅,,,,
 124,res/resources/deployment-script,✅,✅,✅,,,,✅
@@ -142,4 +142,4 @@
 141,res/web/serverfarm,✅,✅,✅,✅,,,
 142,res/web/site,✅,✅,✅,✅,✅,,✅
 143,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,127,129,135,61,35,18,56
+Sum,,127,129,135,61,35,19,56
