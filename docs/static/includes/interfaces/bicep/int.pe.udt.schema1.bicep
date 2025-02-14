@@ -14,8 +14,8 @@ param privateEndpoints privateEndpointSingleServiceType[]?
 module >singularMainResourceType<_privateEndpoints 'br/public:avm/res/network/private-endpoint:>version<' = [for (privateEndpoint, index) in (privateEndpoints ?? []): {
   name: '${uniqueString(deployment().name, location)}->singularMainResourceType<-PrivateEndpoint-${index}'
   scope: resourceGroup(
-    split(privateEndpoint.?resourceGroupResourceId ?? privateEndpoint.?subnetResourceId, '/')[2],
-    split(privateEndpoint.?resourceGroupResourceId ?? privateEndpoint.?subnetResourceId, '/')[4]
+    split(privateEndpoint.?resourceGroupResourceId ?? resourceGroup().Id, '/')[2],
+    split(privateEndpoint.?resourceGroupResourceId ?? resourceGroup().Id, '/')[4]
   )
   params: {
     // Variant 1: A default service can be assumed (i.e., for services that only have one private endpoint type)
