@@ -14,8 +14,8 @@ param privateEndpoints privateEndpointSingleServiceType[]?
 module >singularMainResourceType<_privateEndpoints 'br/public:avm/res/network/private-endpoint:>version<' = [for (privateEndpoint, index) in (privateEndpoints ?? []): {
   name: '${uniqueString(deployment().name, location)}->singularMainResourceType<-PrivateEndpoint-${index}'
   scope: resourceGroup(
-    split(privateEndpoint.?resourceGroupResourceId ?? resourceGroup().id, '/')[2],
-    split(privateEndpoint.?resourceGroupResourceId ?? resourceGroup().id, '/')[4]
+    split(privateEndpoint.?resourceGroupResourceId ?? privateEndpoint.?subnetResourceId, '/')[2],
+    split(privateEndpoint.?resourceGroupResourceId ?? privateEndpoint.?subnetResourceId, '/')[4]
   )
   params: {
     // Variant 1: A default service can be assumed (i.e., for services that only have one private endpoint type)
@@ -59,7 +59,7 @@ module >singularMainResourceType<_privateEndpoints 'br/public:avm/res/network/pr
 
 @description('The private endpoints of the resource.')
 output privateEndpoints privateEndpointOutputType[] = [
-  for (pe, index) in (privateEndpoints ?? []): {
+  for (pe, index) in (!empty(privateEndpoints) ? array(privateEndpoints) : []): {
     name: >singularMainResourceType<_privateEndpoints[index].outputs.name
     resourceId: >singularMainResourceType<_privateEndpoints[index].outputs.resourceId
     groupId: >singularMainResourceType<_privateEndpoints[index].outputs.?groupId!
