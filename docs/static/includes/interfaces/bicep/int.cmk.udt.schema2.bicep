@@ -28,7 +28,6 @@ resource cMKUserAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentiti
     split(customerManagedKey.?userAssignedIdentityResourceId!, '/')[4]
   )
 }
-}
 
 resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVersion<' = {
   name: '>exampleResource<'
