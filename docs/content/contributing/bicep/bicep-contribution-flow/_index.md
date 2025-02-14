@@ -184,11 +184,19 @@ It is highly recommended to start leveraging Option 1 below to adopt OpenID Conn
 
 {{% expand title="➕ Option 1 [Recommended]: OIDC - Configure a federated identity credential" %}}
 
+<<<<<<< HEAD
 {{% notice style="warning" title="Known issue: Service Principal vs User-Assigned / Managed Identity" %}}
 
 While it is possible to set federated credentials up for both a Service Principal and a Managed Identity, it is highly recommended to use the later.
 
 Amongst other advantages, the OIDC token created for a Managed Identity is can be refreshed for up to 24 hours, while the maximum lifetime for a Service Principal-based OIDC token is at about 1 hour. 
+=======
+{{% notice style="warning" title="Using a Managed Identity for OIDC" %}}
+
+Make sure to use a Managed Identity for OIDC as instructed below, **not** a Service Principal. Azure access token issued by Managed Identities is expected to have an expiration of 24 hours by default. With Service Principal, instead, it would be only 1 hour - which is not sufficient for many deployment pipelines.
+
+For more information, please refer to the official [GitHub documentation](https://github.com/marketplace/actions/azure-login#login-with-openid-connect-oidc-recommended).
+>>>>>>> 3d50536b7996c6a1eff600f7d43e6438a70927a8
 
 {{% /notice %}}
 
