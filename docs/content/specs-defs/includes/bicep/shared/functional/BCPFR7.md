@@ -18,7 +18,7 @@ priority: 10060
 
 #### ID: BCPFR7 - Cross-Referencing published Modules
 
-**Resource modules**, that reference other modules, **MUST** disable the telemetry on the referenced modules.
+**Resource modules**, that reference other modules (child, utility, or other resource modules), **MUST** disable the telemetry on the referenced modules.
 
 {{% notice style="note" %}}
 
