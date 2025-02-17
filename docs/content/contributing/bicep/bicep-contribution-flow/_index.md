@@ -184,6 +184,14 @@ It is highly recommended to start leveraging Option 1 below to adopt OpenID Conn
 
 {{% expand title="➕ Option 1 [Recommended]: OIDC - Configure a federated identity credential" %}}
 
+{{% notice style="warning" title="Using a Managed Identity for OIDC" %}}
+
+Make sure to use a Managed Identity for OIDC as instructed below, **not** a Service Principal. Azure access token issued by Managed Identities is expected to have an expiration of 24 hours by default. With Service Principal, instead, it would be only 1 hour - which is not sufficient for many deployment pipelines.
+
+For more information, please refer to the official [GitHub documentation](https://github.com/marketplace/actions/azure-login#login-with-openid-connect-oidc-recommended).
+
+{{% /notice %}}
+
 1. Create a new or leverage an existing user-assigned managed identity with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
     - [Create a user-assigned managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities#create-a-user-assigned-managed-identity)
     - [Assign an appropriate role to your user-assigned managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities#manage-access-to-user-assigned-managed-identities)
