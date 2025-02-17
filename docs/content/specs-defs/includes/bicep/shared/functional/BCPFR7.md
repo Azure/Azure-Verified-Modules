@@ -23,9 +23,10 @@ priority: 10060
 {{% notice style="note" %}}
 
 This only applies to resource modules that reference other modules, such as:
+
 - other resource modules
 - utility modules
-- child-modules qualifying for publishing, i.e. having a `version.json` file in their directory and exposing the `enableTelemetry` input parameter.
+- child-modules qualifying for publishing, i.e. having a `version.json` file in their directory and exposing the `enableTelemetry` input parameter
 
 For pattern modules, [SFR4]({{% siteparam base %}}/spec/SFR4/) still applies.
 
