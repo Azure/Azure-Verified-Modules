@@ -1,5 +1,5 @@
 ---
-title: Changelog Generation
+title: Module Changelog Generation
 ---
 
 Changelogs are crucial in software development as they provide a detailed and chronological record of all notable changes made to a project. This documentation helps developers, project managers, and users to track the progress of the project, understand the evolution of features, and identify when and where bugs were introduced or fixed. Changelogs also facilitate better communication within the development team and with stakeholders, ensuring everyone is aware of the latest updates and improvements. Additionally, they are essential for maintaining transparency and accountability in the development process.
@@ -35,7 +35,7 @@ The current version changes are inserted after the opening heading and adjusted 
 ```text
 # Changelog
 
-## 0.5.3
+## 0.2.1
 
 ### Changes
 

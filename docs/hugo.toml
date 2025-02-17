@@ -621,8 +621,8 @@ enableGitInfo = true
     [[menu.defined]]
       identifier = 'changelog-automation'
       parent = 'bicep-ci-environment'
-      name = 'Changelog Automation'
-      pageRef = '/contributing/bicep/ci-environment/changelog-automation'
+      name = 'Module Changelog Automation'
+      pageRef = '/contributing/bicep/ci-environment/module-changelog-automation'
       weight = 8
       params = { alwaysopen = false, collapsibleMenu = true }
 

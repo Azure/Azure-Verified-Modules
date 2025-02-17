@@ -1,5 +1,6 @@
 ---
 title: CI environment - Deployment Validation
+linktitle: Deployment Validation # breadcrumb
 ---
 
 This section provides an overview of the principles the deployment validation is built upon, how it is set up, and how you can interact with it.

@@ -1,9 +1,7 @@
 ---
-title: CI environment
-geekdocNav: true
-geekdocAlign: left
-geekdocAnchor: true
-geekdocCollapseSection: true
+title: Bicep CI environment
+linktitle: CI # breadcrumb
+description: Continuous Integration (CI) pipelines are essential for maintaining the quality and reliability of Azure Verified Modules.
 ---
 
 Continuous Integration (CI) pipelines are essential for maintaining the quality and reliability of Azure Verified Modules. These pipelines automate the process of integrating code changes from multiple contributors and running tests. By automating these tasks, CI pipelines help to catch errors early, ensure that code changes do not introduce new issues, maintain a consistent codebase and ensuring idempotency for deployments.
