@@ -28,6 +28,7 @@ The telemetry enablement **MUST** be on/enabled by default, however this **MUST*
 {{% notice style="note" %}}
 
 Whenever a module references AVM modules that implement the telemetry parameter (e.g., a pattern module that uses AVM resource modules), the telemetry parameter value **MUST** be passed through to these modules. This is necessary to ensure a consumer can reliably enable & disable the telemetry feature for all used modules.
-For cross-references in resource modules, the spec [BCPFR7]({{% siteparam base %}}/spec/BCPFR7/) applies!
+
+For cross-references in resource modules, the spec [BCPFR7]({{% siteparam base %}}/spec/BCPFR7/) also applies.
 
 {{% /notice %}}
