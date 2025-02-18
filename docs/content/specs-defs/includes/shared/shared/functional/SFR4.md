@@ -33,10 +33,10 @@ Whenever a module references AVM modules that implement the telemetry parameter 
 
 This general specification can be modified for some use-cases, that are language specific:
 
-**Bicep**
+### Bicep
 
 - for cross-references in resource modules, the spec [BCPFR7]({{% siteparam base %}}/spec/BCPFR7/) also applies
 
-**Terraform**
+### Terraform
 
 - currently no further requirements
