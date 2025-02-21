@@ -5,12 +5,6 @@ type: home
 description: 'Azure Verified Modules - The Microsoft IaC Module Strategy'
 ---
 
-{{% notice style="caution" icon="fa-solid fa-calendar-days" title="AVM Community Calls" %}}
-
-The AVM team hosted its last external community call on **February 6th, 2025**! 🥳 To watch the recording, see the [Community Calls page]({{% siteparam base %}}/resources/community/#6th-february-2025)! 📽️
-
-{{% /notice %}}
-
 ## Introduction
 
 <div style="width:70%; margin: 0 auto;">
