@@ -275,3 +275,30 @@ Which returns a JSON-formatted output like:
 This interface is a **SHOULD** instead of a **MUST** and therefore the AVM core team have not mandated a interface schema to use.
 
 {{% /notice %}}
+
+## Zone-redundant resources
+
+{{< tabs title="" >}}
+{{% tab title="Variant 1: Zone-redundant resource (e.g., VirtualMachineScaleSet)" %}}
+
+  {{< highlight lineNos="false" type="bicep" wrap="true" title="Parameter & Resource Example" >}}
+    {{% include file="/static/includes/interfaces/bicep/int.zone.schema1.bicep" %}}
+  {{< /highlight >}}
+
+  {{< highlight lineNos="false" type="bicep" wrap="true" title="Input Example with Values" >}}
+    {{% include file="/static/includes/interfaces/bicep/int.zone.input1.bicep" %}}
+  {{< /highlight >}}
+
+{{% /tab %}}
+{{% tab title="Variant 2: Zonal resource (e.g., Compute Disk)" %}}
+
+  {{< highlight lineNos="false" type="bicep" wrap="true" title="Parameter & Resource Example" >}}
+    {{% include file="/static/includes/interfaces/bicep/int.zone.schema2.bicep" %}}
+  {{< /highlight >}}
+
+  {{< highlight lineNos="false" type="bicep" wrap="true" title="Input Example with Values" >}}
+    {{% include file="/static/includes/interfaces/bicep/int.zone.input2.bicep" %}}
+  {{< /highlight >}}
+
+{{% /tab %}}
+{{< /tabs >}}
