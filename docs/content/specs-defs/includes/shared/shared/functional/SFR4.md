@@ -39,4 +39,4 @@ For cross-references in resource modules, the spec [BCPFR7]({{% siteparam base %
 
 ### Terraform
 
-- currently no further requirements
+Currently, no further requirements apply.
