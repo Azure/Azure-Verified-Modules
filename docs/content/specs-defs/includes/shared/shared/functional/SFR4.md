@@ -35,7 +35,7 @@ This general specification can be modified for some use-cases, that are language
 
 ### Bicep
 
-- for cross-references in resource modules, the spec [BCPFR7]({{% siteparam base %}}/spec/BCPFR7/) also applies
+For cross-references in resource modules, the spec [BCPFR7]({{% siteparam base %}}/spec/BCPFR7/) also applies.
 
 ### Terraform
 
