@@ -194,7 +194,7 @@
     </td>
     <td> {{/* display name and alternative names  */}}
       {{- $ModuleDisplayName := $item.ModuleDisplayName -}}
-      {{- if ne $item.ParentModule "n/a" -}}
+      {{- if and (ne $ParentModuleColumnId 0)  (ne $item.ParentModule "n/a") -}}
         {{ $ModuleDisplayName = print $ModuleDisplayName " (Child of " $item.ParentModule ")" }}
       {{- end -}}
       {{- with $trimmedAlternativeNames -}}
@@ -313,7 +313,7 @@
     </td>
     <td> {{/* display name and alternative names  */}}
       {{- $ModuleDisplayName := $item.ModuleDisplayName -}}
-      {{- if ne $item.ParentModule "n/a" -}}
+      {{- if and (ne $ParentModuleColumnId 0) (ne $item.ParentModule "n/a") -}}
         {{ $ModuleDisplayName = print $ModuleDisplayName " (Child of " $item.ParentModule ")" }}
       {{- end -}}
       {{- with $trimmedAlternativeNames -}}
