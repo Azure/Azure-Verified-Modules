@@ -18,6 +18,6 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
   name: '>exampleResource<'
   properties: {
     ... // other properties
-    zones: availabilityZone != 0 ? array(string(availabilityZone)) : null
+    zones: !empty(availabilityZone) ? array(string(availabilityZone)) : null
   }
 }
