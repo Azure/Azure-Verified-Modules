@@ -1,7 +1,7 @@
 ---
-title: SNFR26 - Changelog
+title: BCPNRF22 - Changelog
 description: Module changes are written to a changelog
-url: /spec/SNFR26
+url: /spec/BCPNRF22
 type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -17,10 +17,10 @@ tags: [
   Lifecycle-BAU, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
   Validation-TBD # SINGLE VALUE (PER LANGUAGE): for Bicep, this can be "Validation-BCP/Manual" OR "Validation-BCP/CI/Informational" OR "Validation-BCP/CI/Enforced" and for Terraform, this can be "Validation-TF/Manual" OR "Validation-TF/CI/Informational" OR "Validation-TF/CI/Enforced"
 ]
-priority: 1250
+priority: 11016
 ---
 
-## ID: SNFR26 - Category: Publishing - Changelog
+## ID: BCPNRF22 - Category: Publishing - Changelog
 
 When a module, that is going to be published (has a `version.json` file) is changed, an entry **MUST** be created in the `CHANGELOG.md` file in the module folder.
 
@@ -88,7 +88,7 @@ A `CHANGELOG.md` file in the module's root folder **MUST** start with the `# Cha
 
 ```
 
-### manual edditing
+### Manual Editing
 
 It is possible to modify the changelog content any time to e.g. add missing versions. Please note the following requirements in all cases:
 
