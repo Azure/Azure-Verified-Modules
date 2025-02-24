@@ -5,32 +5,6 @@ type: home
 description: 'Azure Verified Modules - The Microsoft IaC Module Strategy'
 ---
 
-{{% notice style="caution" icon="fa-solid fa-calendar-days" title="AVM Community Calls" %}}
-
-The AVM team hosted its last external community call on **February 6th, 2025**! 🥳
-
-- To watch the recording, see the [Community Calls page]({{% siteparam base %}}/resources/community/#6th-february-2025)!
-
-{{% /notice %}}
-
-{{% notice style="info" title="AVM Site Updates" icon="fa-solid fa-sitemap" %}}
-
-**AVM has just gone through a major website overhaul - Check out our features!**
-
-- **New theme**: Change between light and dark mode in the bottom left corner ( <i class="fa-solid fa-paintbrush"></i> ) or leave it on dynamic mode to switch automatically based on your system settings.
-- **New navigation option**: Use the arrows ( <i class="fa-solid fa-chevron-left"></i> and <i class="fa-solid fa-chevron-right"></i> ) in the top right corner to navigate back and forth between pages.
-- **New search**: Look for a module - e.g., "*virtual network*" or "*vnet*" - using the search bar ( <i class="fa-solid fa-magnifying-glass"></i> ) in the top right corner and follow the search results to the related Bicep or Terraform index page.
-- **New TOC menu**: Try our new table of contents ( <i class="fa-solid fa-rectangle-list"></i> ) now moved to the top left corner of the page to provide easier in-page navigation consistently.
-- **New print functionality**: Click the printer icon ( <i class="fa-solid fa-print"></i> ) in the top right corner to generate a PDF or print parts of the documentation. Note, this feature will show all content in the hierarchy below the current page - i.e., when invoked from the home page, it will include he entire AVM documentation.
-- Other minor updates and bug fixes, such as:
-  - More compact, zoomable mermaid diagrams for better viewing.
-  - Last modified date on each page is now a clickable link to the GitHub commit history for that page.
-  - Minor menu updates, including the default collapsed/expanded configuration.
-
-Try out things and let us know what you think!
-
-{{% /notice %}}
-
 ## Introduction
 
 <div style="width:70%; margin: 0 auto;">
