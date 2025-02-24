@@ -95,11 +95,17 @@ Tests are part of the documentation and ensure thorough testing of the module an
 
 You **MUST** add a note to the tests metadata description, which explains the excemption.
 
-If you should require the test to be skipped and add a `.e2eignore` file (e.g. \<module\>/tests/e2e/\<testname\>/.e2eignore) in a PR, it requires a member of the AVM Core Technical Bicep Team to approve. The content of the file is listed in the GitHub Action. State the reason for skipping the deployment in the file.
+If you should require the test to be skipped and add a `.e2eignore` file (e.g. \<module\>/tests/e2e/\<testname\>/.e2eignore) in a PR, it requires a member of the AVM Core Technical Bicep Team to approve. The content of the file is listed in the GitHub Action and helps to document and understand why a specific testcase is skipped from the deployment test. State the reason for skipping the deployment in the file.
 
-Sample filecontent: ```The test is skipped due to the maximum deployment template of 4MB, which this test exeecds.```
+Sample filecontent:
 
-*For resource modules, the 'defaults' and 'waf-aligned' tests can't be skipped.*
+```text
+The test is skipped due to the maximum deployment template of 4MB, which this test exeecds.
+```
+
+{{% notice style="note" %}}
+For resource modules, the 'defaults' and 'waf-aligned' tests can't be skipped.
+{{% /notice %}}
 
   {{% /tab %}}
   {{% tab title="Terraform" %}}
