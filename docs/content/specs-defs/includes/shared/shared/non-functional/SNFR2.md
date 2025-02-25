@@ -110,7 +110,7 @@ For resource modules, the 'defaults' and 'waf-aligned' tests can't be skipped.
   {{% /tab %}}
   {{% tab title="Terraform" %}}
 
-The deployment of a test can be skipped by adding a `e2eignore`file into a test folder (e.g. /examples/\<testname\>).
+The deployment of a test can be skipped by adding a `.e2eignore` file into a test folder (e.g. /examples/\<testname\>).
 
   {{% /tab %}}
 {{% /tabs %}}
