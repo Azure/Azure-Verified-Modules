@@ -49,3 +49,15 @@ Potential reasons
     - The Bicep extension for the Azure CLI ([ref](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#azure-cli))
     - The Bicep CLI ([ref](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#azure-powershell)
   - **Background:** When using Bicep on your local device, you usually handle 2 different tools: The 'Bicep' extension for the Azure CLI (identified by commands such as `az bicep version`) and the Bicep CLI itself (identified by commands such as `bicep --version`). The later is the one responsible for compiling Bicep templates into ARM templates. The Bicep extension for Visual Studio Code usually automatically updates the Azure CLI extension. However, the same is not true for the Bicep CLI version. This you have to update yourself.
+
+## Failed pipelines
+
+Sometimes pipelines report an error, which occured from timeouts during deployments or other reasons, that are unique to a single execution. The AVM team has created a PowerShell script [Invoke-WorkflowsFailedJobsReRun.ps1](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Invoke-WorkflowsFailedJobsReRun.ps1) that allows you to re-run all failed jobs on a branch in a repository.
+
+As always, the documentation is within the script. This is a sample usage, which takes the GitHub token from the login and shows which workflows and jobs would be re-run.
+
+```bash
+. .\utilities\tools\Invoke-WorkflowsFailedJobsReRun.ps1
+gh auth login
+Invoke-WorkflowsFailedJobsReRun -TargetBranch main -RepositoryOwner Azure -PipelineFilter 'avm\.(?:res|ptn|utl)' -WhatIf
+```
