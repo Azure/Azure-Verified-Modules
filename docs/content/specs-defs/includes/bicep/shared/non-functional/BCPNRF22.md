@@ -45,7 +45,7 @@ For each new version, an entry **MUST** be created above all existing versions i
 - none
 ```
 
-Each version's entry contains two sections: *Changes* and *Breaking Changes*. At least one of them must have a meaningfull entry and sections must not be left empty. A `- none` may be added as content for a section.
+Each version's entry **MUST** contain two sections: *Changes* and *Breaking Changes*. At least one of them must have a meaningful entry and sections must not be left empty. A `- none` may be added as content for a section.
 
 ### Example content of the CHANGELOG.md
 
