@@ -22,7 +22,7 @@ priority: 11016
 
 ## ID: BCPNRF22 - Category: Publishing - Changelog
 
-When a module, that is going to be published (has a `version.json` file) is changed, an entry **MUST** be created in the `CHANGELOG.md` file in the module folder.
+When a module to be published (i.e., that has a `version.json` file) is changed, an entry **MUST** be created in the `CHANGELOG.md` file in the module folder.
 
   {{% notice style="note" %}}
 
