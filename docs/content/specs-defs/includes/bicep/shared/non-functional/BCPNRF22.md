@@ -30,7 +30,7 @@ When a module to be published (i.e., that has a `version.json` file) is changed,
 
   {{% /notice %}}
 
-For a new version an entry **MUST** be created above all existing versions in the `CHANGELOG.md` file of the module.
+For each new version, an entry **MUST** be created above all existing versions in the `CHANGELOG.md` file of the module.
 
 ```text
 ## <version>
