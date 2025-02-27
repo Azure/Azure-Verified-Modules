@@ -181,7 +181,7 @@
             {{- end -}}
           {{- end -}}
 
-          {{- $link := replaceRE "^-" "#" (index (findRE `^\s*####\s.+` $page.RawContent) 0 | anchorize) -}}
+          {{- $link := replaceRE "^-" "#" (index (findRE `^\s*##\s.+` $page.RawContent) 0 | anchorize) -}}
 
           <tr>
             <td style="text-align: right;">{{- $index -}}</td>
