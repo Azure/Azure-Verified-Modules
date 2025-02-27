@@ -26,7 +26,7 @@ When a module to be published (i.e., that has a `version.json` file) is changed,
 
   {{% notice style="note" %}}
 
-  The versioning is following the [SNFR17 - Semantic Versioning](/Azure-Verified-Modules/spec/SNFR17/) spec.
+  The versioning is following the [SNFR17 - Semantic Versioning]({{% siteparam base %}}/spec/SNFR17/) spec.
 
   {{% /notice %}}
 
