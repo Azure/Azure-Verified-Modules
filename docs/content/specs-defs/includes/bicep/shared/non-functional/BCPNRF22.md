@@ -90,7 +90,7 @@ A `CHANGELOG.md` file in the module's root folder **MUST** start with the `# Cha
 
 ### Manual Editing
 
-It is possible to modify the changelog content any time to e.g. add missing versions. Please note the following requirements in all cases:
+It is possible to modify the changelog content any time, e.g., to add missing versions. Please note the following requirements in all cases:
 
 - all versions in the file, need to be available as published version
 - every version needs the two sections `## Changes` and `## Breaking Changes` with content
