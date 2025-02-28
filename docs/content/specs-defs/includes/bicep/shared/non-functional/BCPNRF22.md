@@ -1,5 +1,5 @@
 ---
-title: BCPNRF22 - Changelog
+title: BCPNRF22 - Bicep Module Changelog
 description: Module changes are written to a changelog
 url: /spec/BCPNRF22
 type: default
@@ -92,11 +92,11 @@ A `CHANGELOG.md` file in the module's root folder **MUST** start with the `# Cha
 
 It is possible to modify the changelog content any time, e.g., to add missing versions. Please note the following requirements in all cases:
 
-- all versions in the file, need to be available as published version
+- all versions in the file, need to be valid and available as published version
 - every version needs the two sections `## Changes` and `## Breaking Changes` with content
 
 {{% notice style="note" %}}
 
-All published versions can be listed as tags in the Microsoft Container Registry (MCR) for each module [https://mcr.microsoft.com/v2/bicep/avm/(res|ptn|utl)/<namespace/modulename>/tags/list](https://mcr.microsoft.com/v2/bicep/avm/$moduleType/$moduleFolderName/tags/list)
+Azure Verified Modules are artifacts in the Microsoft Container Registry (MCR). Every version of a module exists as a tag in the Container Registry and can be listed as tags for each module [https://mcr.microsoft.com/v2/bicep/avm/(res|ptn|utl)/<namespace/modulename>/tags/list](https://mcr.microsoft.com/v2/bicep/avm/$moduleType/$moduleFolderName/tags/list)
 
 {{% /notice %}}
