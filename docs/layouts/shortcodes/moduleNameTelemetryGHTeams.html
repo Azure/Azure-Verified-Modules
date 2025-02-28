@@ -149,7 +149,7 @@
       <code style="white-space:normal;">{{ $item.TelemetryIdPrefix }}</code>
     </td>
     <td> {{/* GH teams */}}
-      {{- if eq $item.ParentModule "n/a" -}}
+      {{- if or (eq $ParentModuleColumnId 0) (eq $item.ParentModule "n/a") -}}
         <code style="white-space:normal;">{{ $item.ModuleOwnersGHTeam }}</code>
         <br>
         <code style="white-space:normal;">{{ $item.ModuleContributorsGHTeam }}</code>
