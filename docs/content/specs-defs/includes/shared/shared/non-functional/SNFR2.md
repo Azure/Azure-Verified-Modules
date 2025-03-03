@@ -88,7 +88,7 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-12
 
 ##### Skipping Deployments (**SHOULD NOT**)
 
-Tests are part of the documentation and ensure thorough testing of the module and parameters. However, there are situation where an actual deployment can't be performed. One could be, that the deployment is too big (the Azure Resource Manager has a [limit of 4MB](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/best-practices) for a single deployment) or only one instance of a service can be deployed to a subscription. To still keep a test for reference and documentation, a file named `.e2eignore` can be placed inside a test folder to prevent the test case being deployed by the CI.
+Tests are an important part ensuring a module is working as intended and part of the validation steps. However, there are situations where an actual deployment can't be performed. One could be that a service can only be deployed once in a tenant or subscription or need special registration (like certain AI models). To keep a test for reference and documentation, a file named `.e2eignore` can be placed inside a test folder to prevent the test case being deployed by the CI. A test that is not being executed as it is skipped, can be added to the module, because it will appear with its parameters in the module's documentation and improves the overall experience even when skipped.
 
 {{% tabs title="Details for use in E2E tests" groupid="e2eignore" %}}
   {{% tab title="Bicep" %}}
@@ -100,7 +100,7 @@ If you should require the test to be skipped and add a `.e2eignore` file (e.g. \
 Sample filecontent:
 
 ```text
-The test is skipped due to the maximum deployment template of 4MB, which this test exeecds.
+The test is skipped, as only one instance of this service can be deployed to a subscription.
 ```
 
 {{% notice style="note" %}}
