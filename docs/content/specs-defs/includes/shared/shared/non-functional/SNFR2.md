@@ -88,7 +88,9 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-12
 
 ##### Skipping Deployments (**SHOULD NOT**)
 
-Tests are an important part ensuring a module is working as intended and part of the validation steps. However, there are situations where an actual deployment can't be performed. One could be that a service can only be deployed once in a tenant or subscription or need special registration (like certain AI models). To keep a test for reference and documentation, a file named `.e2eignore` can be placed inside a test folder to prevent the test case being deployed by the CI. A test that is not being executed as it is skipped, can be added to the module, because it will appear with its parameters in the module's documentation and improves the overall experience even when skipped.
+Deployment tests are an important part of a module's validation and a staple of AVM's CI environment. However, there are situations where certain e2e-test-deployments cannot be performed against AVM's test environment (e.g., if a special configuration/registration (such as certain AI models) is required). For these cases, the CI offers the possibility to 'skip' specific test cases by placing a file named `.e2eignore` in their test folder. 
+
+Note: A skipped test case is still added to the 'Usage Examples' section of the module's readme and should be manually validated in regular intervals.
 
 {{% tabs title="Details for use in E2E tests" groupid="e2eignore" %}}
   {{% tab title="Bicep" %}}
