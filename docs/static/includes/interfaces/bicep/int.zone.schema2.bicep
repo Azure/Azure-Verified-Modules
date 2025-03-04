@@ -3,6 +3,11 @@
 // ============== //
 
 @description('Optional. The list of Availability zones to use for the zone-reundant resources.')
+@allowed([
+  1
+  2
+  3
+])
 param availabilityZones int[] = [1, 2, 3]
 
 // ============= //
