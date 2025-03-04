@@ -97,7 +97,7 @@ Note: A skipped test case is still added to the 'Usage Examples' section of the 
 
 You **MUST** add a note to the tests metadata description, which explains the excemption.
 
-If you should require the test to be skipped and add a `.e2eignore` file (e.g. \<module\>/tests/e2e/\<testname\>/.e2eignore) in a PR, it requires a member of the AVM Core Technical Bicep Team to approve. The content of the file is listed in the GitHub Action and helps to document and understand why a specific testcase is skipped from the deployment test. State the reason for skipping the deployment in the file.
+If you require that a test is skipped and add an “.e2eignore” file (e.g. `\<module\>/tests/e2e/\<testname\>/.e2eignore`) to a pull request, a member of the AVM Core Technical Bicep Team must approve set pull request. The content of the file is logged the module's workflow runs and transparently communicates why the test case is skipped during the deployment validation stage. It iss hence important to specify the reason for skipping the deployment in this file.
 
 Sample filecontent:
 
