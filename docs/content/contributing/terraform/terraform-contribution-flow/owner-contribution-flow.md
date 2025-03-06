@@ -45,11 +45,6 @@ If you need your repository to be created urgently, please message the AVM Core 
 
 Once you module is ready for development, the `Status: Repository Created` label will be added to the issue and you'll be notified it is ready.
 
-1. The respoitory environment `test` will be automatically created within 4 hours, it will have approvals and secrets applied to it ready to run end to end tests. You should not create this environment manually.
-
-    - If you wish to use your own tenant and subscription for end to end tests, you can override the secrets by setting `ARM_TENANT_ID_OVERRIDE`, `ARM_SUBSCRIPTION_ID_OVERRIDE`, and `ARM_CLIENT_ID_OVERRIDE` secrets.
-    - If you need to supply additional secrets or variables for your end to end tests, you can add them to the `test` environment. They must be prefixed with `TF_VAR_`, otherwise they will be ignored.
-
 ### 3. Module Development Activities
 
 You can now start developing your module, following standard guidance for Terraform module development.
