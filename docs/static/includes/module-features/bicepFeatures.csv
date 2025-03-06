@@ -33,7 +33,7 @@
 32,res/container-registry/registry,✅,✅,✅,✅,✅,✅,✅
 33,res/container-service/managed-cluster,✅,✅,✅,✅,,,✅
 34,res/data-factory/factory,✅,✅,✅,✅,✅,✅,✅
-35,res/data-protection/backup-vault,✅,✅,✅,,,,✅
+35,res/data-protection/backup-vault,✅,✅,✅,,,✅,✅
 36,res/databricks/access-connector,✅,✅,✅,,,,✅
 37,res/databricks/workspace,✅,✅,✅,✅,✅,✅,
 38,res/db-for-my-sql/flexible-server,✅,✅,✅,✅,,✅,✅
@@ -150,4 +150,4 @@
 149,res/web/serverfarm,✅,✅,✅,✅,,,
 150,res/web/site,✅,✅,✅,✅,✅,,✅
 151,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,133,133,144,63,36,20,58
+Sum,,133,133,144,63,36,21,58
