@@ -35,123 +35,79 @@ Make sure module authors/contributors tested their module in their environment b
 
 ### 2. GitHub repository creation and configuration
 
-Familiarise yourself with the AVM Resource Module Naming in the [module index csv's](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes).
+Once your module has been approved and you are ready to start development, you need to request that a new repository be created for your module.
 
-- Example: `terraform-<provider>-avm-res-<rp>-<ARM resource type>`
+You do that by adding the `Status: Ready For Repository Creation` label to the [issue](https://github.com/Azure/Azure-Verified-Modules/issues) that was created for your module. This will trigger the creation of the repository and the configuration of the repository with the required settings.
 
-{{% notice style="important" %}}
-
-Make sure you have access to the Azure organisation see [GitHub Account Link and Access]({{% siteparam base %}}/contributing/terraform/prerequisites/#github-account-link-and-access).
-
+{{% notice style="info" %}}
+If you need your repository to be created urgently, please message the AVM Core team in the AVM Teams channel.
 {{% /notice %}}
 
-1. Create the module repostory using [terraform-azuremrm-avm-template](https://github.com/Azure/terraform-azurerm-avm-template) in the `Azure` organisation with the following [details (internal only)](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review). You will then have to complete the configuration of your repository and start an [internal business review](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/333/-TF-Create-repository-in-Github-Azure-org-and-conduct-business-review?anchor=conduct-initial-repo-configuration-and-trigger-business-review).
+Once you module is ready for development, the `Status: Repository Created` label will be added to the issue and you'll be notified it is ready.
 
-1. Create GitHub teams as outlined in [SNFR20]({{% siteparam base %}}/spec/SNFR20) and add respective parent teams:
+### 3. Module Development Activities
 
-    Segments:
+You can now start developing your module, following standard guidance for Terraform module development.
 
-    - `avm-res-<RP>-<modulename>-module-owners-tf`
-    - `avm-res-<RP>-<modulename>-module-contributors-tf`
+Some useful things to know:
 
-    Examples:
+#### Pull Request
 
-    - `avm-res-compute-virtualmachine-module-owners-tf`
-    - `avm-res-compute-virtualmachine-module-contributors-tf`
+You can raise a pull request anytime, don't wait until the end of the development cycle. Raise the PR after you first push your branch.
 
-    If a secondary owner is required, add the secondary owner to the `avm-res-<RP>-<modulename>-module-owners-tf` team.
+You can then use the PR to run end to end tests, check linting, etc.
 
-1. Add these teams with the following permissions directly to the repository:
+Once readdy for review, you can request a review per step 4.
 
-    - Admin: `avm-core-team-technical-terraform` = AVM Core Team (Terraform Technical)
-    - Admin: `terraform-avm` = Terraform PG
-    - Admin: `avm-res-<RP>-<modulename>-module-owners-tf` = AVM Terraform Module Owners
-    - Write: `avm-res-<RP>-<modulename>-module-contributors-tf` = AVM Terraform Module Contributors
-
-1. Make sure the branch protection rules for the `main` branch are inherited from the `Azure/terraform-azurerm-avm-template` repository:
-
-    - Require a pull request before merging
-    - Dismiss stale pull request approvals when new commits are pushed
-    - Require review from Code Owners
-    - Require linear history
-    - Do not allow bypassing the above settings
-
-1. The respoitory environment `test` will be automatically created within 4 hours, it will have approvals and secrets applied to it ready to run end to end tests. You should not create this environment manually.
-
-    - If you wish to use your own tenant and subscription for end to end tests, you can override the secrets by setting `ARM_TENANT_ID_OVERRIDE`, `ARM_SUBSCRIPTION_ID_OVERRIDE`, and `ARM_CLIENT_ID_OVERRIDE` secrets.
-    - If you need to supply additional secrets or variables for your end to end tests, you can add them to the `test` environment. They must be prefixed with `TF_VAR_`, otherwise they will be ignored.
-
-### 3. GitHub Repository Labels
-
-As per [SNFR23]({{% siteparam base %}}/spec/SNFR23) the repositories created by module owners **MUST** have and use the pre-defined GitHub labels. To apply these labels to the repository review the PowerShell script `Set-AvmGitHubLabels.ps1` that is provided in [SNFR23]({{% siteparam base %}}/spec/SNFR23).
-
-```pwsh
-Set-AvmGitHubLabels.ps1 -RepositoryName "Azure/MyGitHubRepo" -CreateCsvLabelExports $false -NoUserPrompts $true
-```
-
-### 4. Module Handover Activities
-
-<!-- TODO: Rephrasing required -->
-1. Add new owner as maintainer in your `avm-res-<RP>-<modulename>-module-owners-tf` team and remove any other individual including yourself.
-2. In case primary owner leaves, switches roles or abandons the repo and the corresponding team then the parent team (if assigned) doesn't have the permissions to gain back access and a ticket with GitHub support needs to be created (but the team can still be removed from the repo since the team `avm-core-team` has permissions on it).
-
-<!-- TODO: Rephrasing required and clarify with team what happens with ORPHANED MODULES
-### 5. Orphaned Module Handover Activities
-
-1. In case a module gets a new owner, add the new owner in the `avm-res-<RP>-<modulename>-module-owners-tf` team as `Maintainer` and remove any other individual(s).
-2. Remove `ORPHANED.md` from the root directory of the Module.
--->
-
-### 5. Grept
+#### Grept
 
 [Grept](https://github.com/Azure/grept) is a linting tool for repositories, ensures predefined standards, maintains codebase consistency, and quality.
 It's using the grept configuration files from the [Azure-Verified-Modules-Grept](https://github.com/Azure/Azure-Verified-Modules-Grept) repository.
 
 You can see [here](https://github.com/Azure/Azure-Verified-Modules-Grept/blob/main/terraform/synced_files.grept.hcl) which files are synced from the [`terraform-azurerm-avm-template`](https://github.com/Azure/terraform-azurerm-avm-template) repository.
 
-1. Set environment variables
+Set environment variables and run Grept:
 
 ```bash
-# Linux/MacOS
 export GITHUB_REPOSITORY_OWNER=Azure
 export GITHUB_REPOSITORY=Azure/terraform-azurerm-avm-res-<RP>-<modulename>"
 
-# Windows
+./avm grept-apply
+```
 
+```pwsh
 $env:GITHUB_REPOSITORY_OWNER="Azure"
 $env:GITHUB_REPOSITORY="Azure/terraform-azurerm-avm-res-<RP>-<modulename>"
-```
 
-1. Run grept
-
-```bash
-# Linux/MacOS
 ./avm grept-apply
-
-# Windows
-avm.bat grept-apply
 ```
 
-### 6. Review the module
+#### Custom Variables and Secrets for end to end tests
+
+The respoitory has an environment called `test`, it has have approvals and secrets applied to it ready to run end to end tests.
+
+- In the unusual cicumstance that you need to use your own tenant and subscription for end to end tests, you can override the secrets by setting `ARM_TENANT_ID_OVERRIDE`, `ARM_SUBSCRIPTION_ID_OVERRIDE`, and `ARM_CLIENT_ID_OVERRIDE` secrets.
+- If you need to supply additional secrets or variables for your end to end tests, you can add them to the `test` environment. They must be prefixed with `TF_VAR_`, otherwise they will be ignored.
+
+### 4. Review the module
 
 Once the development of the module has been completed, get the module reviewed from the AVM Core team by following the AVM Review of Terraform Modules process [here]({{% siteparam base %}}/contributing/terraform/review/) which is a pre-requisite for the next step.
 
-### 7. Publish the module
+### 5. Publish the module
 
-Once a module has been reviewed and is ready to be published, follow the below steps to publish the module to the HashiCorp Registry.
+Once a module has been reviewed and the PR is merged to `main`. Follow the below steps to publish the module to the HashiCorp Registry.
 
 Ensure your module is ready for publishing:
 
-1. Create a tag for the module version you want to publish.
+1. Create a release with a new tag (e.g. `0.1.0`) via [Github UI](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository).
+    - Go to the releases tab and click on `Draft a new release`.
+    - Ensure that the `Target` is set to the `main` branch.
+    - Select `Choose a tag` and type in a new tag, such as `0.1.0` Make sure to create the tag from the `main` branch.
+    - Generate the release notes using the `Generate release notes` button.
 
-- Create tag: `git tag -a 0.1.0 -m "0.1.0"`
-- Push tag: `git push`
-- [Create a release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) on Github based on the tag you just created. Make sure to generate the release notes using the `Generate release notes` button.
-- **_Optional:_** Instead of creating the tag via git cli, you can also create both the tag and release via [Github UI](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository). Just go to the releases tab and click on `Draft a new release`. Make sure to create the tag from the `main` branch.
+    ![DeploymentProtectionRules]({{% siteparam base %}}/images/contribution/gitTag.png "GitHub Release")
 
-    ![DeploymentProtectionRules]({{% siteparam base %}}/images/contribution/gitTag.png "Deployment protection rules")
-
-2. Elevate your respository access using the Open Source Management Portal (aka.ms/opensource/portal).
+2. Elevate your respository access using the [Open Source Management Portal](https://aka.ms/opensource/portal).
 3. Sign in to the [HashiCorp Registry](https://registry.terraform.io/) using GitHub.
 4. Publish a module by selecting the `Publish` button in the top right corner, then `Module`
 5. Select the repository and accept the terms.
