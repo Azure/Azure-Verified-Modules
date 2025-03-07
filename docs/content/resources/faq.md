@@ -427,3 +427,7 @@ Resource modules are multi-purpose; therefore, they contain a lot of dynamic exp
 As per the way the Public Registry is implemented today, it is not possible to publish child-modules separate from its parents. As such, you cannot reference e.g. a `avm/res/key-vault/vault/key` module directly from the registry, but can only deploy it through its parent `avm/res/key-vault/vault` - UNLESS you actually grab the module folder locally.
 
 However, we kept the door open to make this possible in the future if there is a demand for it.
+
+### If I use AVM modules in my solution, do I need to have the MIT license in my own repo also? Do I need to add or reference AVM's license in my solution?
+
+Microsoft is not in the position of providing legal guidance on what licensing model your product/solution/etc. (the "Software") leveraging Azure Verified Modules can or should be under. Generally speaking, the MIT license is permissive and allows you to freely use, modify, and distribute the code and does not mandate you to have your entire Software under the MIT license, but you must follow the requirements for the MIT-licensed code that you carry. As stated in the AVM LICENSE reference [here](https://github.com/Azure/Azure-Verified-Modules/blob/823d79037d9decbcb4a5bdb4a044f2d3f3975ac3/LICENSE#L12C5-L13C52), the described "*copyright notice and permission notice shall be included in all copies or substantial portions of the Software*".
