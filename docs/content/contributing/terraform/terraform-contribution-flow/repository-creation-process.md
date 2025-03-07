@@ -19,19 +19,19 @@ This contribution flow is for **AVM Core Team members** only.
 1. Open one of the issues to find the details you need.
     1. Module name: This will be in the format `avm-<type>-<name>`. e.g. `avm-res-network-virtualnetwork`
     1. Module owner GitHub handle: This will be in the content of the issue
-    1. Module description: If this does not exist, then create one. The description will automtically be prefixed with `Terraform Azure Verified <module type> Module for `, where `<module type>` is either Resource, Pattern, or Utility
+    1. Module description: If this does not exist, then create one. The description will automtically be prefixed with `Terraform Azure Verified <module-type> Module for `, where `<module-type>` is either Resource, Pattern, or Utility
 
 ### 2. Create the repository
 
 1. Open a PowerShell terminal
-1. Clone the https://github.com/Azure/terraform-azure-modules repository and navigate to the `repository_creation_helper` folder
+1. Clone the <https://github.com/Azure/terraform-azure-modules> repository and navigate to the `repository_creation_helper` folder
 
     ```pwsh
     git clone "https://github.com/Azure/terraform-azure-modules"
     cd ./terraform-azure-modules/repository_creation_helper
     ```
 
-1. Install the GitHub CLI if you don't already have it installed: https://cli.github.com/
+1. Install the GitHub CLI if you don't already have it installed: <https://cli.github.com>
 1. Login to GitHub CLI
 
     ```pwsh
@@ -78,8 +78,8 @@ This contribution flow is for **AVM Core Team members** only.
     | Question | Answer |
     | --- | --- |
     | Classify the repository | Production |
-    | Assign a Service tree or Opt-out | Azure Verified Modules / AVM
-    | Direct owners	| Add the module owner and yourself as direct owners. Add the avm-team-module-owners as security group. |
+    | Assign a Service tree or Opt-out | Azure Verified Modules / AVM |
+    | Direct owners | Add the module owner and yourself as direct owners. Add the avm-team-module-owners as security group. |
     | Is this going to ship as a public open source licensed project | Yes, creating an open source licensed project |
     | What type of open source will this be | Sample code |
     | What license will you be releasing with | MIT |
@@ -87,14 +87,14 @@ This contribution flow is for **AVM Core Team members** only.
     | Does this project send any data or telemetry back to Microsoft? | Yes, telemetry |
     | Does this project implement cryptography | No |
     | Project name | Azure Verified Module (Terraform) for '*module name*' |
-    | Project version |	1 |
-    | Project description	| Azure Verified Module (Terraform) for '*module name*'. Part of AVM project - https://aka.ms/avm |
+    | Project version | 1 |
+    | Project description | Azure Verified Module (Terraform) for '*module name*'. Part of AVM project - <https://aka.ms/avm> |
     | Business goals | Create IaC module that will accelerate deployment on Azure using Microsoft best practice. |
     | Will this be used in a Microsoft product or service? | This is open source project and can be leveraged in Microsoft service and product. |
-    | Adopt security best practice?	| Yes, use just-in-time elevation |
+    | Adopt security best practice? | Yes, use just-in-time elevation |
     | Maintainer permissions | Leave empty |
     | Write permissions | Leave empty |
-    | Repository template	| Uncheck |
+    | Repository template | Uncheck |
     | Add .gitignore | Uncheck |
 
 1. Click `Finish setup + start business review` to complete the setup
@@ -114,7 +114,7 @@ This contribution flow is for **AVM Core Team members** only.
 
 ### 3. Request the GitHub App Install
 
-1. Create a new issue at https://github.com/microsoft/github-operations/issues/new?template=GitHub-App-Installation-Request.md
+1. Create a new issue at <https://github.com/microsoft/github-operations/issues/new?template=GitHub-App-Installation-Request.md>
 1. Update the issue with the following details:
     1. Title: `[GitHub App] Installation Request - Azure Verified Modules`
     1. Body - replace `<repository url>` with the URL of the repository you created in step 2:
