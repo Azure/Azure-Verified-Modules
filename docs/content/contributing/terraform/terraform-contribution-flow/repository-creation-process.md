@@ -19,7 +19,7 @@ This contribution flow is for **AVM Core Team members** only.
 1. Open one of the issues to find the details you need.
     1. Module name: This will be in the format `avm-<type>-<name>`. e.g. `avm-res-network-virtualnetwork`
     1. Module owner GitHub handle: This will be in the content of the issue
-    1. Module description: If this does not exist, then create one. The description will automtically be prefixed with `Terraform Azure Verified <module-type> Module for `, where `<module-type>` is either Resource, Pattern, or Utility
+    1. Module description: If this does not exist, then create one. The description will automtically be prefixed with `Terraform Azure Verified <module-type> Module for ...`, where `<module-type>` is either Resource, Pattern, or Utility
 
 ### 2. Create the repository
 
