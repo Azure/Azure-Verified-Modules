@@ -612,7 +612,21 @@ Inform module owners that they need to add the &nbsp;<mark style="background-ima
 
 **Action(s):**
 
-Inform module owners that they need to add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label to their PR if they're the sole owner of their module.
+- Inform module owners that they need to add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label to their PR if they're the sole owner of their module.
+
+---
+
+### ITA26
+
+Add a label for the AVM Core Team to query called &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#136A41;color:white;">Status: Ready For Repository Creation 📝</mark>&nbsp; when a module owner adds a comment to the issue to tell them.
+
+**Trigger criteria:**
+
+- A comment is added to an issue that contains the `#RFRC` tag.
+
+**Action(s):**
+
+- Adds the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#136A41;color:white;">Status: Ready For Repository Creation 📝</mark>&nbsp; label to the Issue.
 
 ---
 
@@ -662,3 +676,4 @@ The ITA05 rule is currently disabled in the AVM and BRM repositories.
 | [ITA22](#ita22)             |                     |       ✔️       |        ✔️       |
 | [ITA23](#ita23)             |          ✔️         |                |        ✔️       |
 | [ITA25](#ita25)             |                    |        ✔️        |               |
+| [ITA25](#ita26)             |                    |                 |       ✔️        |
