@@ -676,4 +676,4 @@ The ITA05 rule is currently disabled in the AVM and BRM repositories.
 | [ITA22](#ita22)             |                     |       ✔️       |        ✔️       |
 | [ITA23](#ita23)             |          ✔️         |                |        ✔️       |
 | [ITA25](#ita25)             |                    |        ✔️        |               |
-| [ITA26](#ita26)             |                    |                 |       ✔️        |
+| [ITA26](#ita26)             |              ✔️      |                 |              |
