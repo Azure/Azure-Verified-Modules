@@ -37,7 +37,7 @@ Make sure module authors/contributors tested their module in their environment b
 
 Once your module has been approved and you are ready to start development, you need to request that a new repository be created for your module.
 
-You do that by adding the `Status: Ready For Repository Creation` label to the [issue](https://github.com/Azure/Azure-Verified-Modules/issues) that was created for your module. This will trigger the creation of the repository and the configuration of the repository with the required settings.
+You do that by adding a comment to the [issue](https://github.com/Azure/Azure-Verified-Modules/issues) with the `#RFRC` tag. The `Status: Ready For Repository Creation` label will then be applied. This will trigger the creation of the repository and the configuration of the repository with the required settings.
 
 {{% notice style="info" %}}
 If you need your repository to be created urgently, please message the AVM Core team in the AVM Teams channel.
