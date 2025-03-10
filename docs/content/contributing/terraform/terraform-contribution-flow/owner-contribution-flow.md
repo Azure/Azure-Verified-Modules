@@ -43,7 +43,7 @@ You do that by adding a comment to the [issue](https://github.com/Azure/Azure-Ve
 If you need your repository to be created urgently, please message the AVM Core team in the AVM Teams channel.
 {{% /notice %}}
 
-Once you module is ready for development, the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#27AB03;color:white;">Status: Repository Created 📄</mark>&nbsp; label will be added to the issue and you'll be notified it is ready.
+Once your module is ready for development, the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#27AB03;color:white;">Status: Repository Created 📄</mark>&nbsp; label will be added to the issue and you'll be notified it is ready.
 
 ### 3. Module Development Activities
 
