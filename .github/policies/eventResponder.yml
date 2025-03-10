@@ -250,4 +250,4 @@ configuration:
               pattern: "#RFRC"
         then:
           - addLabel:
-              label: "Status: Ready For Repository Creation"
+              label: "Status: Ready For Repository Creation :memo:"
