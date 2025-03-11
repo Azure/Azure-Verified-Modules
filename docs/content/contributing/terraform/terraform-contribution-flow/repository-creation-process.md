@@ -15,7 +15,7 @@ This contribution flow is for **AVM Core Team members** only.
 ### 1. Find Issues Ready for Repository Creation
 
 1. When a module owner is ready to start development, they will add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#136A41;color:white;">Status: Ready For Repository Creation 📝</mark>&nbsp; label to the proposal via a comment [issue](https://github.com/Azure/Azure-Verified-Modules/issues).
-1. To find issues that are ready for repository creation, click this [link](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Status%3A%20Ready%20For%20Repository%20Creation%22)
+1. To find issues that are ready for repository creation, click this [link](https://github.com/Azure/Azure-Verified-Modules/labels/Status%3A%20Ready%20For%20Repository%20Creation%20%3Amemo%3A)
 1. Open one of the issues to find the details you need.
     1. Module name: This will be in the format `avm-<type>-<name>`. e.g. `avm-res-network-virtualnetwork`
     1. Module owner GitHub handle: This will be in the content of the issue
