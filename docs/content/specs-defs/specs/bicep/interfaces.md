@@ -278,7 +278,7 @@ This interface is a **SHOULD** instead of a **MUST** and therefore the AVM core 
 
 ## Zonal & zone-redundant resources
 
-Many Azure resources can be deployed into specific availability zones. Depending on whether a resource is 'zonal' (i.e., deploys a single instance into a single zone) or 'zone-redundant' (i.e., spreads multiple of its instances across the configured zones), implementing a different interface is required. Simply put, a the zone of a zonal resource must be a required parameter (but give the user the option to 'opt-out'), while zone-redundant resources must span all available zones. Please note that the support for Availability Zones may differ from region to region.
+Many Azure resources can be deployed into specific availability zones. Depending on whether a resource is 'zonal' (i.e., deploys a single instance into a single zone) or 'zone-redundant' (i.e., spreads multiple of its instances across the configured zones), implementing a different interface is required. Simply put, the zone of a zonal resource must be a required parameter (but give the user the option to 'opt-out'), while zone-redundant resources must span all available zones by default, but still give the user the option to 'opt-out'. Please note that the support for Availability Zones may differ from region to region.
 
 {{< tabs title="" >}}
 {{% tab title="Variant 1: Zone-redundant resource (e.g., VirtualMachineScaleSet)" %}}
