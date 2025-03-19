@@ -2,7 +2,7 @@
 //   Parameters   //
 // ============== //
 
-@description('Optional. The list of Availability zones to use for the zone-reundant resources.')
+@description('Optional. The list of Availability zones to use for the zone-redundant resources.')
 @allowed([
   1
   2
