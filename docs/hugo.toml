@@ -195,6 +195,14 @@ enableGitInfo = true
       weight = 2
       params = { alwaysopen = false, collapsibleMenu = true }
 
+  [[menu.defined]]
+    identifier = 'concepts'
+    parent = 'usage'
+    name = 'Concepts'
+    pageRef = '/usage/concepts'
+    weight = 2
+    params = { alwaysopen = false, collapsibleMenu = true }
+
 [[menu.defined]]
   identifier = 'specs-defs'
   parent = 'home'
