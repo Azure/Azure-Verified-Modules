@@ -1,5 +1,5 @@
 name: New Bicep Child Module Proposal 🗒️
-description: Want a new Bicep Child Module to exist? Let us know!
+description: Want a new child module of a Bicep resource module to exist? Let us know!
 title: "[Bicep Child Module Proposal]: `BICEP_CHILD_MODULE_NAME_BETWEEN_BACKTICKS`"
 labels: ["Type: New Module Proposal :bulb:", "Needs: Triage :mag:", "Language: Bicep :muscle:", "Class: Child Module :package:"]
 projects: ["Azure/529"]
@@ -7,7 +7,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for proposing a new Bicep Child module! Please create a separate proposal for each child module.
+        Thank you for proposing a new Bicep child module! Please create a separate proposal for each child module.
 
         This issue will automatically assigned to the owner of the parent module unless the module is currently orphaned.
   - type: checkboxes
