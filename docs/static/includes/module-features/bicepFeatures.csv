@@ -98,7 +98,7 @@
 97,res/network/dns-zone,✅,✅,✅,,,,
 98,res/network/express-route-circuit,✅,✅,✅,✅,,,
 99,res/network/express-route-gateway,✅,✅,✅,,,,
-100,res/network/express-route-port,✅,✅,✅,,,,
+100,res/network/express-route-port,✅,✅,✅,,,,✅
 101,res/network/firewall-policy,✅,✅,✅,,,,✅
 102,res/network/front-door,✅,✅,✅,✅,,,
 103,res/network/front-door-web-application-firewall-policy,✅,✅,✅,,,,
@@ -155,4 +155,4 @@
 154,res/web/serverfarm,✅,✅,✅,✅,,,
 155,res/web/site,✅,✅,✅,✅,✅,,✅
 156,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,136,133,148,63,36,22,59
+Sum,,136,133,148,63,36,22,60
