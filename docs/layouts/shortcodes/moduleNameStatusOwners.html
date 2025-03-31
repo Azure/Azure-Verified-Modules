@@ -287,7 +287,11 @@
   {{ if not ( in $exclude $item.ModuleStatus ) }}
   {{ $moduleLatestVersion = "N/A" }}
     {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }}
-      {{ $moduleTfRegApiUrl := printf "https://registry.terraform.io/v1/modules/Azure/%s/azurerm/versions" $item.ModuleName }}
+      {{ $repoURLSplit := strings.Split $item.RepoURL "/" }}
+      {{ $repoName := index $repoURLSplit (sub (len $repoURLSplit) 1) }}
+      {{ $repoNameSplit := strings.Split $repoName "-" }}
+      {{ $moduleProvider := index $repoNameSplit 1 }}
+      {{ $moduleTfRegApiUrl := printf "https://registry.terraform.io/v1/modules/Azure/%s/%s/versions" $item.ModuleName $moduleProvider }}
       {{ $moduleTfRegApiData := dict }}
       {{ with resources.GetRemote $moduleTfRegApiUrl }}
         {{ with .Err }}
