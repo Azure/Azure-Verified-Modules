@@ -209,7 +209,7 @@ body:
       description: |
         What would be the name of the module following the [naming pattern](https://azure.github.io/Azure-Verified-Modules/spec/RMNFR1/)?
         - Bicep: `avm/res/<rp (hyphenated)>/<resource type (hyphenated, singular form)>/<child resource type>`; e.g., `avm/res/network/virtual-network/subnet`
-      placeholder: '<Child Module's name>'
+      placeholder: <Child Module's name>
     validations:
       required: true
   - type: textarea
