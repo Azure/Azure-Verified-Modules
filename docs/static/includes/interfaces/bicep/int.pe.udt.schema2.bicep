@@ -7,6 +7,8 @@ import { privateEndpointMultiServiceType } from 'br/public:avm/utl/types/avm-com
 @description('Optional. Configuration details for private endpoints. For security reasons, it is recommended to use private endpoints whenever possible.')
 param privateEndpoints privateEndpointMultiServiceType[]?
 
+var enableReferencedModulesTelemetry = false // resource module
+
 // ============= //
 //   Resources   //
 // ============= //
@@ -44,7 +46,8 @@ module >singularMainResourceType<_privateEndpoints 'br/public:avm/res/network/pr
       }
     ] : null
     subnetResourceId: privateEndpoint.subnetResourceId
-    enableTelemetry: privateEndpoint.?enableTelemetry ?? enableTelemetry
+    enableTelemetry: enableReferencedModulesTelemetry // resource module
+    enableTelemetry: privateEndpoint.?enableTelemetry ?? enableTelemetry // pattern / utility module
     location: privateEndpoint.?location ?? reference(split(privateEndpoint.subnetResourceId, '/subnets/')[0], '2020-06-01', 'Full').location
     lock: privateEndpoint.?lock ?? lock
     privateDnsZoneGroup: privateEndpoint.?privateDnsZoneGroup
