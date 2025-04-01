@@ -578,6 +578,14 @@ enableGitInfo = true
         weight = 1
         params = { alwaysopen = false, collapsibleMenu = true }
 
+      [[menu.defined]]
+        identifier = 'terraform-repository-creation-process'
+        parent = 'terraform-contribution-flow'
+        name = 'Repository Creation Process'
+        pageRef = '/contributing/terraform/terraform-contribution-flow/repository-creation-process'
+        weight = 1
+        params = { alwaysopen = false, collapsibleMenu = true }
+
     [[menu.defined]]
       identifier = 'review'
       parent = 'terraform-module-contribution'

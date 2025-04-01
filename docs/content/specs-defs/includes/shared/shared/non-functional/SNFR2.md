@@ -86,3 +86,36 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-12
 ```
 
 {{% /expand %}}
+
+##### Skipping Deployments (**SHOULD NOT**)
+
+Deployment tests are an important part of a module's validation and a staple of AVM's CI environment. However, there are situations where certain e2e-test-deployments cannot be performed against AVM's test environment (e.g., if a special configuration/registration (such as certain AI models) is required). For these cases, the CI offers the possibility to 'skip' specific test cases by placing a file named `.e2eignore` in their test folder.
+
+{{% notice style="note" %}}
+A skipped test case is still added to the 'Usage Examples' section of the module's readme and should be manually validated in regular intervals.
+{{% /notice %}}
+
+{{% tabs title="Details for use in E2E tests" groupid="e2eignore" %}}
+  {{% tab title="Bicep" %}}
+
+You **MUST** add a note to the tests metadata description, which explains the excemption.
+
+If you require that a test is skipped and add an “.e2eignore” file (e.g. `\<module\>/tests/e2e/\<testname\>/.e2eignore`) to a pull request, a member of the AVM Core Technical Bicep Team must approve set pull request. The content of the file is logged the module's workflow runs and transparently communicates why the test case is skipped during the deployment validation stage. It iss hence important to specify the reason for skipping the deployment in this file.
+
+Sample filecontent:
+
+```text
+The test is skipped, as only one instance of this service can be deployed to a subscription.
+```
+
+{{% notice style="note" %}}
+For resource modules, the 'defaults' and 'waf-aligned' tests can't be skipped.
+{{% /notice %}}
+
+  {{% /tab %}}
+  {{% tab title="Terraform" %}}
+
+The deployment of a test can be skipped by adding a `.e2eignore` file into a test folder (e.g. /examples/\<testname\>).
+
+  {{% /tab %}}
+{{% /tabs %}}
