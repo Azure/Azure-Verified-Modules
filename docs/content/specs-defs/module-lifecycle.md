@@ -77,11 +77,15 @@ Also, the AVM core team will amend the issue automation to auto reply stating th
 
 Once a module reaches the end of its lifecycle, it needs to be deprecated. A deprecated module will no longer be maintained, and no new features or bug fixes will be implemented for it. The module will indefinitely stay available in the public registry and source code repository for use, but certain measures will take place, such as:
 
-- It will show as deprecated in the AVM module index.
+- The module will show as deprecated in the AVM module index.
 - The module will no longer be shown through VS Code IntelliSense.
-- Its source code will show and archived status (through an `ARCHIVED.MD` file and a disclaimer in its `README.md` file).
-- It will be clearly indicated on the module's repo that new issues can no longer be submitted for the module:
+- The module's source code will show an archived status (through an `ARCHIVED.MD` file and a disclaimer in its `README.md` file).
+- There will be a clear indication on the module's repo that new issues can no longer be submitted for the module:
   - Bicep: The module will be taken off the list of available modules in related issue templates.
   - Terraform: The module's repo will be archived.
 
 It is recommended to migrate to a replacement/alternative version of the module, if available.
+
+{{% notice style="info" %}}
+The module's `-owners-` and `-contributors-` GitHub teams will be retained indefinitely as these grant access to the source code of the module.
+{{% /notice %}}
