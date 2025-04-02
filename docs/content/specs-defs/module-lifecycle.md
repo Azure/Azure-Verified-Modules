@@ -6,16 +6,30 @@ description: Module Lifecycle description for the Azure Verified Modules (AVM) p
 
 This section outlines the different stages of a module's lifecycle:
 
-1. Proposed
-2. Available
-3. Orphaned
-4. Deprecated
+{{< mermaid zoom="false">}}
+flowchart LR
+    Proposed["1 - Proposed 💡"] --> Available["2 - Available 🟢"]
+    Proposed -->|Acceptence criteria not met| Rejected[Rejected]
+    Available -->|Module temporarily not maintained| Orphaned["3 - Orphaned 👀"]
+    Orphaned --> Deprecated["4 - Deprecated ❌"]
+    Orphaned -->|New owner identified| Available
+    Available -->|End of life| Deprecated
+    style Proposed fill:#ADD8E6,stroke:#333,stroke-width:1px
+    style Orphaned fill:#F4A460,stroke:#333,stroke-width:1px
+    style Available fill:#8DE971,stroke:#333,stroke-width:4px
+    style Deprecated fill:#000000,stroke:#333,stroke-width:1px,color:#fff
+    style Rejected fill:#A2A2A2,stroke:#333,stroke-width:1px
+{{< /mermaid >}}
 
-## Proposed Modules
+{{% notice style="info" %}}
+If a module proposal is rejected, the issue is closed and the module's lifecycle ends.
+{{% /notice %}}
+
+## 1. Proposed Modules
 
 A module can be proposed through the module proposal process. The module proposal process is outlined in the [Process Overview]({{% siteparam base %}}/contributing/process/#new-module-proposal--creation) section.
 
-To propose/request a new AVM resource, pattern or utility module, submit a (module proposal)[https://aka.ms/AVM/ModuleProposal] issue in the AVM repository.
+To propose/request a new AVM resource, pattern or utility module, submit a [module proposal](https://aka.ms/AVM/ModuleProposal) issue in the AVM repository.
 
 The proposal should include the following information:
 
@@ -27,11 +41,11 @@ The proposal should include the following information:
 
 The AVM core team will review the proposal, and administrate the module.
 
-## Available modules
+## 2. Available modules
 
 Once a module has been fully developed, tested and published in the main branch of the repository and the corresponding public registry (Bicep or Terraform), it is then considered to be "available" and can be used by the community. The module is maintained by the module owner(s). Feature or bug fix requests and related pull requests can be submitted by anyone to the module owner(s) for review.
 
-## Orphaned Modules
+## 3. Orphaned Modules
 
 It is critical to the consumers experience that modules continue to be maintained. In the case where a module owner cannot continue in their role or do not respond to issues as per the defined timescale in the [Module Support page]({{% siteparam base %}}/help-support/module-support/) , the following process will apply:
 
@@ -59,13 +73,15 @@ The information notice will include the following statement:
 
 Also, the AVM core team will amend the issue automation to auto reply stating that the repo is orphaned and only security/bug fixes are being handled until a new module owner is found.
 
-## Deprecated Modules
+## 4. Deprecated Modules
 
 Once a module reaches the end of its lifecycle, it needs to be deprecated. A deprecated module will no longer be maintained, and no new features or bug fixes will be implemented for it. The module will indefinitely stay available in the public registry and source code repository for use, but certain measures will take place, such as:
 
 - It will show as deprecated in the AVM module index.
 - The module will no longer be shown through VS Code IntelliSense.
 - Its source code will show and archived status (through an `ARCHIVED.MD` file and a disclaimer in its `README.md` file).
-- It will be taken off the list of available modules in related issue templates.
+- It will be clearly indicated on the module's repo that new issues can no longer be submitted for the module:
+  - Bicep: The module will be taken off the list of available modules in related issue templates.
+  - Terraform: The module's repo will be archived.
 
 It is recommended to migrate to a replacement/alternative version of the module, if available.
