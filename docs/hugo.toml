@@ -203,6 +203,38 @@ enableGitInfo = true
     weight = 2
     params = { alwaysopen = false, collapsibleMenu = true }
 
+  [[menu.defined]]
+    identifier = 'solution-development'
+    parent = 'usage'
+    name = 'Solution Development'
+    pageRef = '/usage/solution-development'
+    weight = 3
+    params = { alwaysopen = false, collapsibleMenu = true }
+
+    [[menu.defined]]
+      identifier = 'template-orchestration'
+      parent = 'solution-development'
+      name = 'Template Orchestration'
+      pageRef = '/usage/solution-development/template-orchestration'
+      weight = 1
+      params = { alwaysopen = true, collapsibleMenu = true }
+
+      [[menu.defined]]
+        identifier = 'bicep-template-orchestration'
+        parent = 'template-orchestration'
+        name = 'Bicep'
+        pageRef = '/usage/solution-development/template-orchestration/bicep'
+        weight = 1
+        params = { alwaysopen = false, collapsibleMenu = true }
+
+      [[menu.defined]]
+        identifier = 'terraform-template-orchestration'
+        parent = 'template-orchestration'
+        name = 'Terraform'
+        pageRef = '/usage/solution-development/template-orchestration/terraform'
+        weight = 2
+        params = { alwaysopen = false, collapsibleMenu = true }
+
 [[menu.defined]]
   identifier = 'specs-defs'
   parent = 'home'

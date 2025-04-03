@@ -2,7 +2,7 @@
 title: Concepts
 linktitle: Concepts
 type: default
-weight: 4
+weight: 2
 description: Technical decisions and concepts for the Usage Guidance of Azure Verified Modules (AVM)
 ---
 
