@@ -275,3 +275,32 @@ Which returns a JSON-formatted output like:
 This interface is a **SHOULD** instead of a **MUST** and therefore the AVM core team have not mandated a interface schema to use.
 
 {{% /notice %}}
+
+## Zonal & zone-redundant resources
+
+Many Azure resources can be deployed into specific availability zones. Depending on whether a resource is 'zonal' (i.e., deploys a single instance into a single zone) or 'zone-redundant' (i.e., spreads multiple of its instances across the configured zones), implementing a different interface is required. Simply put, the zone of a zonal resource must be a required parameter (but give the user the option to 'opt-out'), while zone-redundant resources must span all available zones by default, but still give the user the option to 'opt-out'. Please note that the support for Availability Zones may differ from region to region.
+
+{{< tabs title="" >}}
+{{% tab title="Variant 1: Zone-redundant resource (e.g., VirtualMachineScaleSet)" %}}
+
+  {{< highlight lineNos="false" type="bicep" wrap="true" title="Parameter & Resource Example" >}}
+    {{% include file="/static/includes/interfaces/bicep/int.zone.schema1.bicep" %}}
+  {{< /highlight >}}
+
+  {{< highlight lineNos="false" type="bicep" wrap="true" title="Input Example with Values" >}}
+    {{% include file="/static/includes/interfaces/bicep/int.zone.input1.bicep" %}}
+  {{< /highlight >}}
+
+{{% /tab %}}
+{{% tab title="Variant 2: Zonal resource (e.g., Compute Disk)" %}}
+
+  {{< highlight lineNos="false" type="bicep" wrap="true" title="Parameter & Resource Example" >}}
+    {{% include file="/static/includes/interfaces/bicep/int.zone.schema2.bicep" %}}
+  {{< /highlight >}}
+
+  {{< highlight lineNos="false" type="bicep" wrap="true" title="Input Example with Values" >}}
+    {{% include file="/static/includes/interfaces/bicep/int.zone.input2.bicep" %}}
+  {{< /highlight >}}
+
+{{% /tab %}}
+{{< /tabs >}}
