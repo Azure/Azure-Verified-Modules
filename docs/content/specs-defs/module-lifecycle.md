@@ -9,11 +9,11 @@ This section outlines the different stages of a module's lifecycle:
 {{< mermaid zoom="false">}}
 flowchart LR
     Proposed["1 - Proposed 💡"] --> Available["2 - Available 🟢"]
-    Proposed -->|Acceptence criteria not met| Rejected[Rejected]
-    Available -->|Module temporarily not maintained| Orphaned["3 - Orphaned 👀"]
-    Orphaned --> Deprecated["4 - Deprecated ❌"]
-    Orphaned -->|New owner identified| Available
-    Available -->|End of life| Deprecated
+    Proposed --> |Acceptence criteria not met| Rejected[Rejected]
+    Available --> |Module temporarily not maintained| Orphaned["3 - Orphaned 👀"]
+    Orphaned --> |End of life| Deprecated["4 - Deprecated ❌"]
+    Orphaned --> |New owner identified| Available
+    Available --> |End of life| Deprecated
     style Proposed fill:#ADD8E6,stroke:#333,stroke-width:1px
     style Orphaned fill:#F4A460,stroke:#333,stroke-width:1px
     style Available fill:#8DE971,stroke:#333,stroke-width:4px
@@ -75,7 +75,7 @@ Also, the AVM core team will amend the issue automation to auto reply stating th
 
 ## 4. Deprecated Modules
 
-Once a module reaches the end of its lifecycle, it needs to be deprecated. A deprecated module will no longer be maintained, and no new features or bug fixes will be implemented for it. The module will indefinitely stay available in the public registry and source code repository for use, but certain measures will take place, such as:
+Once a module reaches the end of its lifecycle (e.g., it's permanently replaced by another module; permanent retirement due to obsolete technology/solution), it needs to be deprecated. A deprecated module will no longer be maintained, and no new features or bug fixes will be implemented for it. The module will indefinitely stay available in the public registry and source code repository for use, but certain measures will take place, such as:
 
 - The module will show as deprecated in the AVM module index.
 - The module will no longer be shown through VS Code IntelliSense.
