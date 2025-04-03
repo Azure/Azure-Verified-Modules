@@ -37,6 +37,7 @@ Type: New Module Proposal :bulb:,A new module for AVM is being proposed,ADD8E6
 Type: Question/Feedback :raising_hand:,Further information is requested or just some feedback,CB6BA2
 Type: Security Bug :lock:,This is a security bug,FFFF00
 Type: AVM :a: :v: :m:,This is an AVM related issue,F0FFFF
+Type: Module Deprecation Request :x:,This is a request to deprecate a module,000000
 Language: Terraform :globe_with_meridians:,This is related to the Terraform IaC language,7740B6
 Language: Bicep :muscle:,This is related to the Bicep IaC language,1D73B3
 Class: Resource Module :package:,This is a resource module,D3D3D3
