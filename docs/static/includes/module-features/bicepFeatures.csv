@@ -145,7 +145,7 @@
 144,res/signal-r-service/web-pub-sub,✅,✅,✅,,✅,,✅
 145,res/sql/instance-pool,,,✅,,,,
 146,res/sql/managed-instance,✅,✅,✅,✅,,,✅
-147,res/sql/server,✅,✅,✅,,✅,,✅
+147,res/sql/server,✅,✅,✅,,✅,✅,✅
 148,res/storage/storage-account,✅,✅,✅,✅,✅,✅,✅
 149,res/synapse/private-link-hub,✅,✅,✅,,✅,,
 150,res/synapse/workspace,✅,✅,✅,✅,✅,✅,✅
@@ -155,4 +155,4 @@
 154,res/web/serverfarm,✅,✅,✅,✅,,,
 155,res/web/site,✅,✅,✅,✅,✅,,✅
 156,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,136,133,148,63,36,22,60
+Sum,,136,133,148,63,36,23,60
