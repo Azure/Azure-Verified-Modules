@@ -105,7 +105,7 @@ The script performs the following steps:
 2. Clones the repo locally to your machine, based on the location you specify in the parameter: `-GitHubRepositoryPathForCloneOfForkedRepository`.
 3. Prompts you and takes you directly to the place where you can enable GitHub Actions Workflows on your forked repo.
 4. Disables all AVM module workflows, as per [Enable or Disable Workflows]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/).
-5. Creates an User-Assigned Managed Identity (UAMI) and federated credentials for OIDC with your forked GitHub repo and grants it the RBAC roles of `User Access Administrator` & `Contributor` at Management Group level, if specified in the `-GitHubSecret_ARM_MGMTGROUP_ID` parameter, and at Azure Subscription level if you provide it via the `-GitHubSecret_ARM_SUBSCRIPTION_ID` parameter.
+5. Creates an User-Assigned Managed Identity (UAMI) and federated credentials for OIDC with your forked GitHub repo and grants it the RBAC roles of `Owner` at Management Group level, if specified in the `-GitHubSecret_ARM_MGMTGROUP_ID` parameter, and at Azure Subscription level if you provide it via the `-GitHubSecret_ARM_SUBSCRIPTION_ID` parameter.
 6. Creates the required GitHub Environments & required Secrets in your forked repo as per [step 3](#3-configure-your-ci-environment), based on the input provided in parameters and the values from resources the script creates and configures for OIDC. Also set the workflow permissions to `Read and write permissions` as per step 3.3.
 
 ### Pre-requisites
@@ -192,7 +192,7 @@ For more information, please refer to the official [GitHub documentation](https:
 
 {{% /notice %}}
 
-1. Create a new or leverage an existing user-assigned managed identity with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
+1. Create a new or leverage an existing user-assigned managed identity with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You may find creating an `Owner` role assignment is more efficient and avoids some validation failures for some modules. You might find the following links useful:
     - [Create a user-assigned managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities#create-a-user-assigned-managed-identity)
     - [Assign an appropriate role to your user-assigned managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities#manage-access-to-user-assigned-managed-identities)
 
@@ -241,7 +241,7 @@ Additional references:
 
 {{% expand title="➕ Option 2 [Deprecated]: Configure Service Principal + Secret" %}}
 
-1. Create a new or leverage an existing Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You might find the following links useful:
+1. Create a new or leverage an existing Service Principal with at least `Contributor` & `User Access Administrator` permissions on the Management-Group/Subscription you want to test the modules in. You may find creating an `Owner` role assignment is more efficient and avoids some validation failures for some modules. You might find the following links useful:
     - [Create a service principal (Azure Portal)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
     - [Create a service principal (PowerShell)](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
     - [Find Service Principal object ID](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/assign-roles-azure-service-principals#find-your-spn-and-tenant-id)
