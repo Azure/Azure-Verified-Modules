@@ -11,13 +11,8 @@ param lock lockType?
 
 param addressPrefix array
 
-@description('Required. DNS zone name in which entries for forum... are created.')
-param dnsZoneName string
-
 var bastionSubnetAddressPrefixV4 = cidrSubnet(addressPrefix[0], 24, 0) // the first /24 subnet in the address space
 var bastionSubnetAddressPrefixV6 = cidrSubnet(addressPrefix[1], 64, 0) // the first /24 subnet in the address space
-var appGatewayAddressPrefixV4 = cidrSubnet(addressPrefix[0], 24, 1) // the second /24 subnet in the address space
-var appGatewayAddressPrefixV6 = cidrSubnet(addressPrefix[1], 64, 1) // the second /24 subnet in the address space
 var vmPubSubnetAddressPrefixV4 = cidrSubnet(addressPrefix[0], 24, 2) // the third /24 subnet in the address space
 var vmPubSubnetAddressPrefixV6 = cidrSubnet(addressPrefix[1], 64, 2) // the third /24 subnet in the address space
 var vmPrivSubnetAddressPrefixV4 = cidrSubnet(addressPrefix[0], 24, 3) // the fourth /24 subnet in the address space

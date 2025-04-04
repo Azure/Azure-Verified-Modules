@@ -15,15 +15,11 @@ param enableBackup bool = false
 @description('The address prefixes for the virtual network. Add an IPV4 and an IPv6 address prefix.')
 param addressPrefix array = ['10.222.0.0/16', 'fd00:3333:4830::/48']
 
-@description('Required. DNS zone name.')
-param  dnsZoneName string
-
 var resourceLocation = 'GermanyWestCentral'
 var governanceResourceGroupName = 'Governance-RG'
 var networkingResourceGroupName = 'Networking-RG'
 var vmResourceGroupName = 'VMs-RG'
 var resourceLock = tags.Environment == 'Production' ? { name: 'DoNotDelete', kind: 'CanNotDelete' } : null
-
 
 // ------------------ Resource Groups -----------------
 
@@ -82,7 +78,6 @@ module networking './networking.bicep' = {
     namePrefix: namePrefix
     location: resourceLocation
     addressPrefix: addressPrefix
-    dnsZoneName: dnsZoneName
     // zones: zones
     tags: tags
     lock: resourceLock
