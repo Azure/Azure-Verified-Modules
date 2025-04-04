@@ -33,6 +33,8 @@ Modules that have to have the AVM core team or Product Groups step in due to the
 
 {{% notice style="important" %}}
 
-You can also raise a ticket with Microsoft CSS (Microsoft Customer Services & Support) and your ticket will be triaged by them for any platform issues and if deemed not the platform but a module issue, it will be redirected to the AVM team and the module owner(s).
+Issues that are likely related to an AVM module should be directly submitted on the module's GitHub repository as an "*AVM - Module Issue*". To identify the correct code repository, see the AVM [module indexes]({{% siteparam base %}}/indexes).
+
+If an issue is likely related to the Azure platform, its APIs or configuration, script or programming languages, etc., you need to raise a ticket with Microsoft CSS (Microsoft Customer Services & Support) where your ticket will be triaged for any platform issues. If deemed a platform issue, the ticket will be addressed accordingly. In case it's deemed not a platform but a module issue, you will be redirected to submit a module issue on GitHub.
 
 {{% /notice %}}
