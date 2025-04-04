@@ -22,7 +22,7 @@ priority: 11016
 
 ## ID: BCPNRF22 - Category: Publishing - Changelog
 
-When a module to be published (i.e., that has a `version.json` file) is changed, an entry **MUST** be created in the `CHANGELOG.md` file in the module folder.
+When a module to be published (i.e., that has a `version.json` file) is changed, an entry **MUST** be created in the `CHANGELOG.md` file in the module folder. A link to the latest version of the changelog file has to be included at the top of the file, just below the `# Changelog` line. It is surrounded by empty lines.
 
   {{% notice style="note" %}}
 
@@ -34,6 +34,8 @@ For each new version, an entry **MUST** be created above all existing versions i
 
 ```text
 ## <version>
+
+The latest version of the changelog can be found [here](/Azure/bicep-registry-modules/blob/main/avm/<ptn|res|utl>/<namespace/modulename>/main.json).
 
 ### Changes
 
@@ -53,6 +55,8 @@ A `CHANGELOG.md` file in the module's root folder **MUST** start with the `# Cha
 
 ```text
 # Changelog
+
+The latest version of the changelog can be found [here](/Azure/bicep-registry-modules/blob/main/avm/res/aad/domain-service/main.json).
 
 ## 0.2.1
 
