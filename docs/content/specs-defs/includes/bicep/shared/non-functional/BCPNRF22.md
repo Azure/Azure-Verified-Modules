@@ -47,11 +47,16 @@ The latest version of the changelog can be found [here](/Azure/bicep-registry-mo
 - none
 ```
 
-Each version's entry **MUST** contain two sections: *Changes* and *Breaking Changes*. At least one of them must have a meaningful entry and sections must not be left empty. A `- none` may be added as content for a section.
+Each version's entry:
+
+- **MUST** contain two sections: `Changes` and `Breaking Changes`. At least one of them must have a meaningful entry and sections must not be left empty. A `- none` may be added as content for a section.
+- **MUST** exist only once.
+
+All versions appear in decending order, which puts the most recent changes at the top.
 
 ### Example content of the CHANGELOG.md
 
-A `CHANGELOG.md` file in the module's root folder **MUST** start with the `# Changelog` header, followed by an empty line. A section for each published version follows. Newer versions are placed above older versions.
+A `CHANGELOG.md` file in the module's root folder **MUST** start with the `# Changelog` header, followed by an empty line and a link to the latest published version of the changelog file, followed by another empty line. A section for each published version follows. Newer versions are placed above older versions.
 
 ```text
 # Changelog
@@ -94,7 +99,7 @@ The latest version of the changelog can be found [here](/Azure/bicep-registry-mo
 
 ### Manual Editing
 
-It is possible to modify the changelog content any time, e.g., to add missing versions. Please note the following requirements in all cases:
+It is possible to modify the changelog content any time, e.g., to add missing versions, which will not create a new release of the module itself. Please note the following requirements in all cases:
 
 - all versions in the file, need to be valid and available as published version
 - every version needs the two sections `## Changes` and `## Breaking Changes` with content
