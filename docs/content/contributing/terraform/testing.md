@@ -146,7 +146,7 @@ Use cases here can be to modify the example files to ensure unique names or to r
 You can do this by creating a file called `examples/example_name/pre.sh` in the example directory.
 This script will be run before the example is tested, and will be authorized with the same credentials as the example.
 You can optionally supply a post script that will be run after the example is tested.
-This should be called `examples/example_name/post.sh` and will be run after the example is tested.
+This should be called `examples/example_name/post.sh`.
 
 The pre and post scripts are run in the context of the example directory, so you can use relative paths to access files.
 
