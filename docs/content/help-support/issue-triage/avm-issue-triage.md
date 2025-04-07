@@ -45,7 +45,7 @@ Follow these steps to triage a module proposal:
     - Ensure the module's details are correct as per specifications - [naming]({{% siteparam base %}}/spec/RMNFR1), [classification]({{% siteparam base %}}/specs/shared/module-classifications/) (resource/pattern) etc.
     - Check if the module is added to the "`Proposed`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub project board.
     - Check if the requestor is a Microsoft FTE.
-    - If there's any additional clarification needed, contact the requestor through comments (using their GH handle) or internal channels - for Microsoft FTEs only! You can look them up by their name or using the Microsoft internal "[1ES Open Source Assistant Browser Extension](https://docs.opensource.microsoft.com/tools/browser/)". Make sure you capture any decisions regarding the module in the comments section.
+    - If there's any additional clarification needed, contact the requestor through comments (using their GH handle) or internal channels - for Microsoft FTEs only! You can look them up by their name or using the Microsoft Open Source Management Portal's People finder: "[Linked people across Microsoft organizations](https://repos.opensource.microsoft.com/people?q=)". Make sure you capture any decisions regarding the module in the comments section.
     - Make adjustments to the module's name/classification as needed.
     - Change the name of the issue to reflect the module's name, i.e.,
       - After the "[Module Proposal]:" prefix, change the issues name to the module's approved name between backticks, i.e., \` and \`, e.g., `avm/res/sql/managed-instance` for a Bicep module, or `avm-res-compute-virtualmachine` for a Terraform module.
@@ -87,7 +87,7 @@ If the requestor indicated they want to become the module owner, the GitHub Poli
 
 You **MUST** still confirm that the requestor is a Microsoft FTE and that they understand the implications of becoming the owner! If any of these conditions aren't met, remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; label and unassign the issue from the requestor.
 
-1. Make sure the requestor is a Microsoft FTE. You can look them up by their name or using the Microsoft internal "[1ES Open Source Assistant Browser Extension](https://docs.opensource.microsoft.com/tools/browser/)".
+1. Make sure the requestor is a Microsoft FTE. You can look them up by their name or using the Microsoft Open Source Management Portal's People finder: "[Linked people across Microsoft organizations](https://repos.opensource.microsoft.com/people?q=)".
 2. Clarify the roles and responsibilities of the module owner:
     - Clarify they understand and accept what "module ownership" means by replying in a comment to the requestor/proposed owner:
 
@@ -107,7 +107,7 @@ You **MUST** still confirm that the requestor is a Microsoft FTE and that they u
     - Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; label is added to the issue.
       - If applied earlier, remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; label from the issue.
     - Remove the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#E4E669;">Status: In Triage 🔍</mark>&nbsp; to indicate you're done with triaging the issue.
-4. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
+4. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
 5. Use the following text to approve module development
 
 {{% expand title="➕ Final Confirmation for Proposed Module Owners" %}}
@@ -139,7 +139,7 @@ Once module is developed and `v0.1.0` has been published to the relevant registr
 
 1. Assign the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#C8E6C9;">Status: Module Available 🟢</mark>&nbsp; label to the issue.
 2. Move the issue into "`Done`" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project.
-3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
+3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
 4. Close the issue.
 
 {{% notice style="important" %}}
@@ -173,7 +173,7 @@ Once the **Orphaned Module issue** was closed, it **MUST remain closed**. If the
 1. Create a new issue using the "[Orphaned AVM Module 👀](https://aka.ms/AVM/OrphanedModule)" issue template.
 2. Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp;, and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 👀</mark>&nbsp; labels are assigned to the issue.
 3. Move the issue into the "`Orphaned`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
-4. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
+4. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
 5. Place an information notice as per the below guidelines:
     - In case of a Bicep module:
       - Place the information notice - with the text below - in an `ORPHANED.md` file, in the module's root.
@@ -223,7 +223,7 @@ To look for Orphaned Modules:
     - Remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 👀</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; labels from the issue.
     - Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#C8E6C9;">Status: Module Available 🟢</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; labels to the issue.
     - Move the issue into the "`Done`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
-3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/286/Module-index-file-update-process).
+3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
 4. Get the new owner(s) and any new contributor(s) added to the related `-module-owners-` or `-module-contributors-` teams. See [SNFR20]({{% siteparam base %}}/spec/SNFR20) for more details.
 5. Remove the information notice (i.e., the file that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.` ):
     - In case of a Bicep module:
