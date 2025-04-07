@@ -178,3 +178,32 @@ To override the Azure environment, you can specify the environment in your modul
     - `ARM_CLIENT_ID_OVERRIDE` - The client ID of the user-assigned managed identity.
     - `ARM_TENANT_ID_OVERRIDE` - The tenant ID of the user-assigned managed identity.
     - `ARM_SUBSCRIPTION_ID_OVERRIDE` - The subscription ID you want to use for the tests.
+
+## Terraform Test (Optional)
+
+Authors may choose to use terraform test to run unit and integration tests on their modules.
+
+###  Unit tests
+
+Test files should be placed in the `tests/unit` directory.
+They can be run using the following command:
+
+```bash
+./avm unit-test
+```
+
+Authors SHOULD use unit tests with [mocked providers](https://developer.hashicorp.com/terraform/language/tests/mocking).
+This ensures that the tests are fast and do not require any external dependencies.
+
+### Integration tests
+
+Integration tests should be placed in the `tests/integration` directory.
+They can be run using the following command:
+
+```bash
+./avm integration-test
+```
+
+Integration tests should deploy real resources and should be run against a real Azure subscription.
+However, they are not fully integrated into the AVM GitHub Actions workflows.
+Authors should run integration tests locally and ensure that they are passing but they will not be run automatically in the CI/CD pipeline.
