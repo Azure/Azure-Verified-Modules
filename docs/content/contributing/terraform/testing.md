@@ -16,7 +16,7 @@ Mandatory tooling:
 - [avmfix](https://github.com/lonegunmanb/avmfix) for advanced formatting
 - [Conftest](https://www.conftest.dev/), and Open Policy Agent (OPA) for well architected compliance
 - [grept](https://github.com/Azure/grept) (Go REPository linTer) for repository contents
-- [terraform-docs] for documentation generation
+- [terraform-docs](https://terraform-docs.io/) for documentation generation
 - [TFLint](https://github.com/terraform-linters/tflint) for spec compliance
 
 Optional tooling:
