@@ -133,7 +133,7 @@ The contents of the file should explain why the example is excluded from testing
 
 Some modules require a global setup and teardown to be run before and after ALL examples.
 We provide a way to do this by creating a file called `examples/setup.sh` in the root of your module.
-This script will eb run before all examples are tested, and will be authorized with the same credentials as the examples.
+This script will be run before all examples are tested, and will be authorized with the same credentials as the examples.
 
 You can optionally supply a teardown script that will be run after all examples are tested.
 This should be called `examples/teardown.sh` and will be run after all examples are tested.
