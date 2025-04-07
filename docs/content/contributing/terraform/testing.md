@@ -14,10 +14,10 @@ For Terraform modules, we use the following tools:
 Mandatory tooling:
 
 - [avmfix](https://github.com/lonegunmanb/avmfix) for advanced formatting
+- [Conftest](https://www.conftest.dev/), and Open Policy Agent (OPA) for well architected compliance
+- [grept](https://github.com/Azure/grept) (Go REPository linTer) for repository contents
 - [terraform-docs] for documentation generation
 - [TFLint](https://github.com/terraform-linters/tflint) for spec compliance
-- Go repository linter [grept](https://github.com/Azure/grept) for repository contents
-- OPA (Open Policy Agent) using a tool called [conftest](https://www.conftest.dev/) for well architected compliance
 
 Optional tooling:
 
