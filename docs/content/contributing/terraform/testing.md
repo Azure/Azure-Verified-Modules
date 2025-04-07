@@ -28,24 +28,19 @@ Optional tooling:
 Before you submit a pull request to your module, you should ensure that the following checks are passed.
 You can run the linting tools locally by running the following command:
 
-{{< tabs "environment" >}}
-{{< tab "Linux" >}}
+### Linux / MacOS / WSL
 
 ```bash
 ./avm pre-commit
 ./avm pr-check
 ```
 
-{{< /tab >}}
-{{< tab "Windows" >}}
+### Windows
 
 ```powershell
 .\avm.bat pre-commit
 .\avm.bat pr-check
 ```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 Doing so will shorten the development cycle and ensure that your module is compliant with the AVM specifications.
 
@@ -87,8 +82,8 @@ If you get failures, you should example them to understand how you can make your
 
 ### Creating exceptions
 
-In some circumstances, you may need to create an exception for a policy, you can do so by creating a `.rego` file in the `exceptions` sub-directory of your module.
-For example, to exclude the rule called `"configure_aks_default_node_pool_zones"`, create a file called `exceptions/exception.rego` in your module, with the following content:
+In some circumstances, you may need to create an exception for a policy, you can do so by creating a `.rego` file in the `exceptions` sub-directory of your example.
+For example, to exclude the rule called `"configure_aks_default_node_pool_zones"`, create a file called `exceptions/exception.rego` in your example, with the following content:
 
 ```rego
 package Azure_Proactive_Resiliency_Library_v2
