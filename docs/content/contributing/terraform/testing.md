@@ -136,7 +136,7 @@ We provide a way to do this by creating a file called `examples/setup.sh` in the
 This script will be run before all examples are tested, and will be authorized with the same credentials as the examples.
 
 You can optionally supply a teardown script that will be run after all examples are tested.
-This should be called `examples/teardown.sh` and will be run after all examples are tested.
+This should be called `examples/teardown.sh`.
 
 ## Pre and post scripts per-example
 
