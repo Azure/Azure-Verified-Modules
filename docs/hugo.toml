@@ -9,8 +9,6 @@ enableGitInfo = true
 
 [params]
     base = '/Azure-Verified-Modules'
-    images = ['images/avm_logo.png']
-    logo = 'images/favicon.svg'
     disableExplicitIndexURLs = true
     disableLanguageSwitchingButton = false
     themeVariant = [
@@ -538,6 +536,102 @@ enableGitInfo = true
         weight = 5
         params = { alwaysopen = true, collapsibleMenu = true }
 
+    [[menu.defined]]
+    identifier = 'bicep-ci-environment'
+    parent = 'bicep-module-contribution'
+    name = 'CI Environment'
+    pageRef = '/contributing/bicep/ci-environment'
+    weight = 4
+    params = { alwaysopen = false, collapsibleMenu = true }
+
+      [[menu.defined]]
+        identifier = 'pipeline-design'
+        parent = 'bicep-ci-environment'
+        name = 'Pipeline Design'
+        pageRef = '/contributing/bicep/ci-environment/pipeline-design'
+        weight = 1
+        params = { alwaysopen = false, collapsibleMenu = true }
+
+      [[menu.defined]]
+        identifier = 'static-validation'
+        parent = 'bicep-ci-environment'
+        name = 'Static Validation'
+        pageRef = '/contributing/bicep/ci-environment/static-validation'
+        weight = 2
+        params = { alwaysopen = false, collapsibleMenu = true }
+
+      [[menu.defined]]
+        identifier = 'deployment-flow'
+        parent = 'bicep-ci-environment'
+        name = 'Deployment Flow'
+        pageRef = '/contributing/bicep/ci-environment/deployment-flow'
+        weight = 3
+        params = { alwaysopen = true, collapsibleMenu = true }
+
+        [[menu.defined]]
+          identifier = 'deployment-validation'
+          parent = 'deployment-flow'
+          name = 'Deployment Validation'
+          pageRef = '/contributing/bicep/ci-environment/deployment-validation'
+          weight = 1
+          params = { alwaysopen = true, collapsibleMenu = true }
+
+        [[menu.defined]]
+          identifier = 'deployment-history-cleanup'
+          parent = 'deployment-flow'
+          name = 'Deployment History Cleanup'
+          pageRef = '/contributing/bicep/ci-environment/deployment-history-cleanup'
+          weight = 2
+          params = { alwaysopen = true, collapsibleMenu = true }
+
+      [[menu.defined]]
+        identifier = 'publishing'
+        parent = 'bicep-ci-environment'
+        name = 'Publishing'
+        pageRef = '/contributing/bicep/ci-environment/publishing'
+        weight = 4
+        params = { alwaysopen = false, collapsibleMenu = true }
+
+      [[menu.defined]]
+        identifier = 'token-replacement'
+        parent = 'bicep-ci-environment'
+        name = 'Token Replacement'
+        pageRef = '/contributing/bicep/ci-environment/token-replacement'
+        weight = 5
+        params = { alwaysopen = false, collapsibleMenu = true }
+
+      [[menu.defined]]
+        identifier = 'pipeline-usage'
+        parent = 'bicep-ci-environment'
+        name = 'Pipeline Usage'
+        pageRef = '/contributing/bicep/ci-environment/pipeline-usage'
+        weight = 6
+        params = { alwaysopen = false, collapsibleMenu = true }
+
+      [[menu.defined]]
+        identifier = 'bicep-configuration'
+        parent = 'bicep-ci-environment'
+        name = 'Bicep Configuration'
+        pageRef = '/contributing/bicep/ci-environment/bicep-configuration'
+        weight = 7
+        params = { alwaysopen = false, collapsibleMenu = true }
+
+      [[menu.defined]]
+        identifier = 'changelog-automation'
+        parent = 'bicep-ci-environment'
+        name = 'Module Changelog Automation'
+        pageRef = '/contributing/bicep/ci-environment/module-changelog-automation'
+        weight = 8
+        params = { alwaysopen = false, collapsibleMenu = true }
+
+      [[menu.defined]]
+        identifier = 'troubleshooting'
+        parent = 'bicep-ci-environment'
+        name = 'Troubleshooting'
+        pageRef = '/contributing/bicep/ci-environment/troubleshooting'
+        weight = 9
+        params = { alwaysopen = false, collapsibleMenu = true }
+
   [[menu.defined]]
     identifier = 'terraform-module-contribution'
     parent = 'contributing'
@@ -595,7 +689,7 @@ enableGitInfo = true
       params = { alwaysopen = false, collapsibleMenu = true }
 
   [[menu.defined]]
-    identifier = 'contirbution-qna'
+    identifier = 'contribution-qna'
     parent = 'contributing'
     name = 'Contribution Q&A'
     pageRef = '/contributing/q-and-a'
