@@ -24,18 +24,19 @@ priority: 11016
 
 When a module to be published (i.e., that has a `version.json` file) is changed, an entry **MUST** be created in the `CHANGELOG.md` file in the module folder. A link to the latest version of the changelog file has to be included at the top of the file, just below the `# Changelog` line. It is surrounded by empty lines.
 
-  {{% notice style="note" %}}
 
-  The versioning is following the [SNFR17 - Semantic Versioning]({{% siteparam base %}}/spec/SNFR17/) spec.
 
-  {{% /notice %}}
+```text
+# Changelog
+
+The latest version of the changelog can be found [here](/Azure/bicep-registry-modules/blob/main/avm/<ptn|res|utl>/<namespace/modulename>/main.json).
+
+```
 
 For each new version, an entry **MUST** be created above all existing versions in the `CHANGELOG.md` file of the module.
 
 ```text
 ## <version>
-
-The latest version of the changelog can be found [here](/Azure/bicep-registry-modules/blob/main/avm/<ptn|res|utl>/<namespace/modulename>/main.json).
 
 ### Changes
 
@@ -53,6 +54,12 @@ Each version's entry:
 - **MUST** exist only once.
 
 All versions appear in decending order, which puts the most recent changes at the top.
+
+  {{% notice style="note" %}}
+
+  The versioning is following the [SNFR17 - Semantic Versioning]({{% siteparam base %}}/spec/SNFR17/) spec.
+
+  {{% /notice %}}
 
 ### Example content of the CHANGELOG.md
 
