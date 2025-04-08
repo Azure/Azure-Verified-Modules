@@ -29,7 +29,7 @@ When a module to be published (i.e., that has a `version.json` file) is changed,
 ```text
 # Changelog
 
-The latest version of the changelog can be found [here](/Azure/bicep-registry-modules/blob/main/avm/<ptn|res|utl>/<namespace/modulename>/main.json).
+The latest version of the changelog can be found [here](/Azure/bicep-registry-modules/blob/main/avm/<ptn|res|utl>/<namespace/modulename[/submodulePath]>/main.json).
 
 ```
 
