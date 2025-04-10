@@ -1,5 +1,6 @@
 param location string = resourceGroup().location
 param namePrefix string = 'vm'
+param vmSize string = 'Standard_B2ms'
 param zones array
 param subnetResourceId string
 param dcrResourceId string
@@ -22,7 +23,8 @@ module vm 'br/public:avm/res/compute/virtual-machine:0.12.3' = {
     name: vmName
     location: location
     zone: zones[0]
-    vmSize: 'Standard_B2ms'
+    zones: zones
+    vmSize: vmSize
     imageReference: {
       publisher: 'Canonical'
       offer: '0001-com-ubuntu-server-jammy'
@@ -131,6 +133,7 @@ module vm_pip_v6 'br/public:avm/res/network/public-ip-address:0.8.0' = {
       // fqdn: '${toLower(vmName)}.${location}.cloudapp.azure.com'
     }
     location: location
+    zones: zones
     publicIPAddressVersion: 'IPv6'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4

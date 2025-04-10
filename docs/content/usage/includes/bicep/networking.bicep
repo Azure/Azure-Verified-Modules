@@ -11,12 +11,10 @@ param lock lockType?
 
 param addressPrefix array
 
-var bastionSubnetAddressPrefixV4 = cidrSubnet(addressPrefix[0], 24, 0) // the first /24 subnet in the address space
-var bastionSubnetAddressPrefixV6 = cidrSubnet(addressPrefix[1], 64, 0) // the first /24 subnet in the address space
-var vmPubSubnetAddressPrefixV4 = cidrSubnet(addressPrefix[0], 24, 2) // the third /24 subnet in the address space
-var vmPubSubnetAddressPrefixV6 = cidrSubnet(addressPrefix[1], 64, 2) // the third /24 subnet in the address space
-var vmPrivSubnetAddressPrefixV4 = cidrSubnet(addressPrefix[0], 24, 3) // the fourth /24 subnet in the address space
-var vmPrivSubnetAddressPrefixV6 = cidrSubnet(addressPrefix[1], 64, 3) // the fourth /24 subnet in the address space
+var bastionSubnetAddressPrefixV4 = cidrSubnet(addressPrefix[0], 24, 0) // first subnet in address space
+var bastionSubnetAddressPrefixV6 = cidrSubnet(addressPrefix[1], 64, 0) // first subnet in address space
+var vmSubnetAddressPrefixV4 = cidrSubnet(addressPrefix[0], 24, 1) // second subnet in address space
+var vmSubnetAddressPrefixV6 = cidrSubnet(addressPrefix[1], 64, 1) // second subnet in address space
 
 module vnet 'br/public:avm/res/network/virtual-network:0.6.1' = {
   name: '${namePrefix}-vnet'
@@ -32,14 +30,9 @@ module vnet 'br/public:avm/res/network/virtual-network:0.6.1' = {
         networkSecurityGroupResourceId: nsg_bastion.outputs.resourceId
       }
       {
-        name: 'public-vms'
+        name: 'vms'
         addressPrefixes: [vmPubSubnetAddressPrefixV4, vmPubSubnetAddressPrefixV6]
-        networkSecurityGroupResourceId: nsg_public_vms.outputs.resourceId
-      }
-      {
-        name: 'private-vms'
-        addressPrefixes: [vmPrivSubnetAddressPrefixV4, vmPrivSubnetAddressPrefixV6]
-        networkSecurityGroupResourceId: nsg_private_vms.outputs.resourceId
+        networkSecurityGroupResourceId: nsg_vms.outputs.resourceId
       }
     ]
   }
@@ -232,7 +225,7 @@ module nsg_public_vms 'br/public:avm/res/network/network-security-group:0.5.1' =
   }
 }
 
-module nsg_private_vms 'br/public:avm/res/network/network-security-group:0.5.1' = {
+module nsg_vms 'br/public:avm/res/network/network-security-group:0.5.1' = {
   name: '${namePrefix}-nsg-private'
   params: {
     name: 'NSG-Private-VMs'
