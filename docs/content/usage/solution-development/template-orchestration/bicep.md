@@ -36,7 +36,7 @@ description: Bicep template orchestration for the Azure Verified Modules (AVM) s
 
 < this is a placeholder for the architecture >
 
-Architecture:
+Architecture: // TODO Tony to add a diagram
 - Image Gallery
 - VM
   - private pipv4+v6
