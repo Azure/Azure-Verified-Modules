@@ -183,7 +183,7 @@ Right. For the VM, we need dependencies like the network. Let's add that as well
 
 Since we want to support IPV4 and IPV6 in this template, let's just add both (obviously, you can skip either).
 
-Now here we see, that the template is quickly getting bigger and bigger. Let alone the NSGs, defining all rules taking more than 150 lines.
+Now here we see the template is quickly getting bigger and bigger. Let alone the NSGs, defining all rules taking more than 150 lines.
 
 {{% expand title="networking.bicep" %}}
 
@@ -398,6 +398,74 @@ module bastion 'br/public:avm/res/network/bastion-host:0.6.1' = {
 output vnetName string = vnet.outputs.name
 output vnetResourceId string = vnet.outputs.resourceId
 output vmSubnetResourceId string = vnet.outputs.subnetResourceIds[1] // the second subnet is the vm subnet
+```
+
+{{% /expand %}}
+
+You might have noticed that we have created an existing resource 'vm_nic'. The module for deploying the virtual machine does not supply the generated IP adresses, which we want to provide as output parameter. Therefore, a plain Bicep resource references the network interface of new VM and allows us to grab the IPs.
+
+### Bringing it together
+
+Deploying resources, requires a scope where the resouces will be deployed to. Often, it is necessary to change the scope for further deployments. E.g. resource groups are deployed to a subscription, whereas a VM is deployed into a resource group.
+
+The two already existing bicep templates need to be orchestrated by a caller, which we'll call main.bicep. Also, we want the services to be deployed into separate resource groups.
+
+{{% expand title="main.bicep" %}}
+
+```bicep
+targetScope = 'subscription'
+
+param resourceLocation string = 'GermanyWestCentral'
+param namePrefix string = 'avm-demo'
+param tags object = {environment: 'Demo', owner: 'AVM Team'}
+import { lockType } from 'br/public:avm/utl/types/avm-common-types:0.5.1'
+param resourceLock lockType?
+@description('The address prefixes for the virtual network. Add an IPV4 and an IPv6 address prefix.')
+param addressPrefixes array = ['10.222.0.0/16', 'fd00:3333:4830::/48']
+
+var networkingResourceGroupName = '${namePrefix}-Networking-RG'
+var vmResourceGroupName = '${namePrefix}-VMs-RG'
+
+module rg_networking 'br/public:avm/res/resources/resource-group:0.4.1' = {
+  name: '${uniqueString(deployment().name, resourceLocation)}-rg-networking'
+  params: {
+    name: networkingResourceGroupName
+    location: resourceLocation
+    tags: tags
+    lock: resourceLock
+  }
+}
+
+module rg_vms 'br/public:avm/res/resources/resource-group:0.4.1' = {
+  name: '${uniqueString(deployment().name, resourceLocation)}-rg-vms'
+  params: {
+    name: vmResourceGroupName
+    location: resourceLocation
+    tags: tags
+    lock: resourceLock
+  }
+}
+
+module networking 'networking.bicep' = {
+  name: '${uniqueString(deployment().name, resourceLocation)}-networking'
+  scope: resourceGroup(networkingResourceGroupName)
+  params: {
+    location: resourceLocation
+    namePrefix: namePrefix
+    addressPrefix: addressPrefixes
+  }
+}
+
+module vm 'modules/VM.bicep' = {
+  name: '${uniqueString(deployment().name, resourceLocation)}-virtual-machine'
+  scope: resourceGroup(vmResourceGroupName)
+  params: {
+    location: resourceLocation
+    namePrefix: namePrefix
+    tags: tags
+    subnetResourceId: networking.outputs.vmSubnetResourceId
+  }
+}
 ```
 
 {{% /expand %}}

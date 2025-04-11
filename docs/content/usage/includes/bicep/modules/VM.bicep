@@ -17,7 +17,7 @@ param diskBackupPolicyName string?
 
 var vmName = '${namePrefix}-vm'
 
-module vm 'br/public:avm/res/compute/virtual-machine:0.12.3' = {
+module vm 'br/public:avm/res/compute/virtual-machine:0.13.0' = {
   name: '${uniqueString(deployment().name, location)}-${vmName}'
   params: {
     name: vmName
