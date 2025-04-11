@@ -73,32 +73,6 @@ module vm 'br/public:avm/res/compute/virtual-machine:0.13.0' = {
   }
 }
 
-module vm_pip_v4 'br/public:avm/res/network/public-ip-address:0.8.0' = {
-  name: '${vmName}-pip-v4'
-  params: {
-    name: '${vmName}-pip-v4'
-    location: location
-    zones: zones
-    publicIPAddressVersion: 'IPv4'
-    publicIPAllocationMethod: 'Static'
-    idleTimeoutInMinutes: 4
-    tags: tags
-  }
-}
-
-module vm_pip_v6 'br/public:avm/res/network/public-ip-address:0.8.0' = {
-  name: '${vmName}-pip-v6'
-  params: {
-    name: '${vmName}-pip-v6'
-    location: location
-    zones: zones
-    publicIPAddressVersion: 'IPv6'
-    publicIPAllocationMethod: 'Static'
-    idleTimeoutInMinutes: 4
-    tags: tags
-  }
-}
-
 // resource vm_nic_v4 'Microsoft.Network/networkInterfaces@2024-05-01' existing = {
 //   name: '${nicName}-v4'
 //   dependsOn: [

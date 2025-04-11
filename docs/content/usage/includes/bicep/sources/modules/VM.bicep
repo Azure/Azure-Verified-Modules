@@ -297,7 +297,7 @@ output storageAccountResourceId string = storage.outputs.resourceId
 @description('The resource ID of the maintenance configuration.')
 output maintenanceConfigurationResourceId string = maintenanceConfiguration.id
 
-output vmPrivateIpV4 string = vm_nic.properties.ipConfigurations[0].properties.privateIPAddress
+// output vmPrivateIpV4 string = vm_nic.properties.ipConfigurations[0].properties.privateIPAddress
 // output vmPrivateIpV6 string = vm_nic.properties.ipConfigurations[1].properties.privateIPAddress
 
 output vmManagedIdentityPrincipalId string = vm.outputs.?systemAssignedMIPrincipalId!
