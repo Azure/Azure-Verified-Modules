@@ -25,10 +25,10 @@ Module owners **MUST** create the `defaults`, `waf-aligned` folders within their
 
 If a module can deploy varying styles of the same resource, e.g., VMs can be Linux or Windows, each style should be tested as both `defaults` and `waf-aligned`. Each must then be used as **suffixes** in the directory name to denote the style, e.g., for a VM we would expect to see:
 
-- `/tests/e2e/defaults.linux/main.test.bicep`
-- `/tests/e2e/waf-aligned.linux/main.test.bicep`
-- `/tests/e2e/defaults.windows/main.test.bicep`
-- `/tests/e2e/waf-aligned.windows/main.test.bicep`
+- `/tests/e2e/linux.defaults/main.test.bicep`
+- `/tests/e2e/linux.waf-aligned/main.test.bicep`
+- `/tests/e2e/windows.defaults/main.test.bicep`
+- `/tests/e2e/windows.waf-aligned/main.test.bicep`
 
 {{% /notice %}}
 
