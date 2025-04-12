@@ -110,11 +110,21 @@ You **MUST** still confirm that the requestor is a Microsoft FTE and that they u
 4. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
 5. Use the following text to approve module development
 
-{{% expand title="➕ Final Confirmation for Proposed Module Owners" %}}
+{{% expand title="➕ Final Confirmation for Proposed Module Owners - Bicep" %}}
 
 {{< highlight lineNos="false" type="markdown" wrap="true" title="" >}}
 
-{{% include file="/static/includes/msg-final-conf-new-prop-mod-owners.md" %}}
+{{% include file="/static/includes/msg-final-conf-new-prop-mod-owners-bicep.md" %}}
+
+{{< /highlight >}}
+
+{{% /expand %}}
+
+{{% expand title="➕ Final Confirmation for Proposed Module Owners - Terraform" %}}
+
+{{< highlight lineNos="false" type="markdown" wrap="true" title="" >}}
+
+{{% include file="/static/includes/msg-final-conf-new-prop-mod-owners-tf.md" %}}
 
 {{< /highlight >}}
 
