@@ -21,6 +21,17 @@ priority: 13010
 
 Module owners **MUST** create the `defaults`, `waf-aligned` folders within their `/tests/e2e/` directory in their resource module source code and **SHOULD** create a `max` folder also. Module owners **CAN** create additional folders as required. Each folder will be used as described for various test cases.
 
+{{% notice style="note" %}}
+
+If a module can deploy varying styles of the same resource, e.g., VMs can be Linux or Windows, each style should be tested as both `defaults` and `waf-aligned`. Each must then be used as **suffixes** in the directory name to denote the style, e.g., for a VM we would expect to see:
+
+- `/tests/e2e/defaults.linux/main.test.bicep`
+- `/tests/e2e/waf-aligned.linux/main.test.bicep`
+- `/tests/e2e/defaults.windows/main.test.bicep`
+- `/tests/e2e/waf-aligned.windows/main.test.bicep`
+
+{{% /notice %}}
+
 ### Defaults tests (**MUST**)
 
 The `defaults` folder contains a test instance that deploys the module with the minimum set of required parameters.
@@ -54,10 +65,3 @@ Please note that this test is not mandatory to have, but recommended for bulk pa
 Additional folders `CAN` be created by module owners as required.
 
 For example, to validate parameters not covered by the `max` test due to conflicts, or to provide a real example scenario for a specific use case.
-
-If a module can deploy varying styles of the same resource, e.g., VMs can be Linux or Windows, each style should be tested as both `defaults` and `waf-aligned`. These names should be used as suffixes in the directory name to denote the style, e.g., for a VM we would expect to see:
-
-- `/tests/e2e/defaults.linux/main.test.bicep`
-- `/tests/e2e/waf-aligned.linux/main.test.bicep`
-- `/tests/e2e/defaults.windows/main.test.bicep`
-- `/tests/e2e/waf-aligned.windows/main.test.bicep`
