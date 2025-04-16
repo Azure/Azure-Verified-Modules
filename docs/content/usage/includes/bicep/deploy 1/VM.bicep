@@ -2,8 +2,8 @@
 param location string = resourceGroup().location
 param tags object = {}
 param namePrefix string = 'vm'
-param vmSize string = 'Standard_B2ms'
-param zones array = [1, 2, 3]
+param vmSize string = 'Standard_D2s_v6'
+param zone int = 0
 import { lockType } from 'br/public:avm/utl/types/avm-common-types:0.5.1'
 param lock lockType?
 param adminUsername string = 'vm-admin'
@@ -18,7 +18,7 @@ module vm 'br/public:avm/res/compute/virtual-machine:0.13.0' = {
   params: {
     name: vmName
     location: location
-    zone: 0
+    zone: zone
     vmSize: vmSize
     imageReference: {
       publisher: 'Canonical'
@@ -31,7 +31,7 @@ module vm 'br/public:avm/res/compute/virtual-machine:0.13.0' = {
       diskSizeGB: 30
       deleteOption: 'Detach' // don't delete the disk when the VM is deleted
       managedDisk: {
-        storageAccountType: 'Standard_LRS'
+        storageAccountType: 'StandardSSD_ZRS'
       }
       name: '${vmName}-os-disk'
     }
@@ -41,6 +41,7 @@ module vm 'br/public:avm/res/compute/virtual-machine:0.13.0' = {
     patchMode: 'AutomaticByPlatform'
     enableAutomaticUpdates: true
     enableHotpatching: true
+    // TODO: change to certificates (stored in Key Vault)
     adminUsername: adminUsername
     adminPassword: guid(vmName, 'password')
     managedIdentities: { systemAssigned: true }
@@ -50,21 +51,18 @@ module vm 'br/public:avm/res/compute/virtual-machine:0.13.0' = {
         name: '${nicName}-v4'
         privateIPAddressVersion: 'IPv4'
         deleteOption: 'Delete'
-        enableAcceleratedNetworking: false // not compatible with the SKU
+        enableAcceleratedNetworking: true
         enableIPForwarding: false
         enableIPConfiguration: true
         enablePublicIPAddress: false
-        subnetResourceId: subnetResourceId
-      }
-      {
-        name: '${nicName}-v6'
-        privateIPAddressVersion: 'IPv6'
-        deleteOption: 'Delete'
-        enableAcceleratedNetworking: false // not compatible with the SKU
-        enableIPForwarding: false
-        enableIPConfiguration: true
-        enablePublicIPAddress: false
-        subnetResourceId: subnetResourceId
+        ipConfigurations: [
+          {
+            name: '${nicName}-ipconfig'
+            privateIPAddressVersion: 'IPv4'
+            deleteOption: 'Delete'
+            subnetResourceId: subnetResourceId
+          }
+        ]
       }
     ]
 
@@ -73,20 +71,4 @@ module vm 'br/public:avm/res/compute/virtual-machine:0.13.0' = {
   }
 }
 
-// resource vm_nic_v4 'Microsoft.Network/networkInterfaces@2024-05-01' existing = {
-//   name: '${nicName}-v4'
-//   dependsOn: [
-//     vm
-//   ]
-// }
-
-// resource vm_nic_v6 'Microsoft.Network/networkInterfaces@2024-05-01' existing = {
-//   name: '${nicName}-v6'
-//   dependsOn: [
-//     vm
-//   ]
-// }
-
 output vmManagedIdentityPrincipalId string = vm.outputs.?systemAssignedMIPrincipalId!
-// output vmPrivateIpV4 string = vm_nic_v4.properties.ipConfigurations[0].properties.privateIPAddress
-// output vmPrivateIpV6 string = vm_nic_v6.properties.ipConfigurations[0].properties.privateIPAddress

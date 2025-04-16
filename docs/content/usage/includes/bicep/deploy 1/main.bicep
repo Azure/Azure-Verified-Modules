@@ -6,7 +6,7 @@ param tags object = {environment: 'Demo', owner: 'AVM Team'}
 import { lockType } from 'br/public:avm/utl/types/avm-common-types:0.5.1'
 param resourceLock lockType?
 @description('The address prefixes for the virtual network. Add an IPV4 and an IPv6 address prefix.')
-param addressPrefixes array = ['10.222.0.0/16', 'fd00:3333:4830::/48']
+param addressPrefix string = '10.222.0.0/16'
 
 var networkingResourceGroupName = '${namePrefix}-Networking-RG'
 var vmResourceGroupName = '${namePrefix}-VMs-RG'
@@ -37,14 +37,14 @@ module networking 'networking.bicep' = {
   params: {
     location: resourceLocation
     namePrefix: namePrefix
-    addressPrefix: addressPrefixes
+    addressPrefix: addressPrefix
   }
   dependsOn: [
     rg_networking
   ]
 }
 
-module vm 'modules/VM.bicep' = {
+module vm 'VM.bicep' = {
   name: '${uniqueString(deployment().name, resourceLocation)}-virtual-machine'
   scope: resourceGroup(vmResourceGroupName)
   params: {

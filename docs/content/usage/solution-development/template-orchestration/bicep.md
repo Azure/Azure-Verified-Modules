@@ -82,7 +82,7 @@ Codeing. Finally. I start with the VM.bicep file, add parameters and later creat
 {{% expand title="VM" %}}
 
 ```bicep
-{{% include file="/content/usage/includes/bicep/deploy 1/modules/VM.bicep" %}}
+{{% include file="/content/usage/includes/bicep/deploy 1/VM.bicep" %}}
 ```
 
 {{% /expand %}}

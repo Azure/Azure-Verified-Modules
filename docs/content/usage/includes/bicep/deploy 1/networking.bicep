@@ -3,12 +3,10 @@ param location string
 param tags object = {}
 import { lockType } from 'br/public:avm/utl/types/avm-common-types:0.5.1'
 param lock lockType?
-param addressPrefix array
+param addressPrefix string
 
-var bastionSubnetAddressPrefixV4 = cidrSubnet(addressPrefix[0], 24, 0) // first subnet in address space
-var bastionSubnetAddressPrefixV6 = cidrSubnet(addressPrefix[1], 64, 0) // first subnet in address space
-var vmSubnetAddressPrefixV4 = cidrSubnet(addressPrefix[0], 24, 1) // second subnet in address space
-var vmSubnetAddressPrefixV6 = cidrSubnet(addressPrefix[1], 64, 1) // second subnet in address space
+var bastionSubnetAddressPrefixV4 = cidrSubnet(addressPrefix, 24, 0) // first subnet in address space
+var vmSubnetAddressPrefixV4 = cidrSubnet(addressPrefix, 24, 1) // second subnet in address space
 
 module vnet 'br/public:avm/res/network/virtual-network:0.6.1' = {
   name: '${namePrefix}-vnet'
@@ -16,16 +14,16 @@ module vnet 'br/public:avm/res/network/virtual-network:0.6.1' = {
     name: '${namePrefix}-vnet'
     location: location
     lock: lock
-    addressPrefixes: addressPrefix
+    addressPrefixes: [addressPrefix]
     subnets: [
       {
         name: 'AzureBastionSubnet'
-        addressPrefixes: [bastionSubnetAddressPrefixV4, bastionSubnetAddressPrefixV6]
+        addressPrefix: bastionSubnetAddressPrefixV4
         networkSecurityGroupResourceId: nsg_bastion.outputs.resourceId
       }
       {
         name: 'vms'
-        addressPrefixes: [vmSubnetAddressPrefixV4, vmSubnetAddressPrefixV6]
+        addressPrefix: vmSubnetAddressPrefixV4
         networkSecurityGroupResourceId: nsg_vms.outputs.resourceId
       }
     ]
