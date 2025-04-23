@@ -43,31 +43,67 @@ This contribution flow is for **AVM Core Team members** only.
 1. Run the following command, replacing the values with the details you collected in step 1
 
     ```pwsh
-    $moduleProvider = "azurerm" # Only change this if you know why you need to change it :)
+    # Required Inputs
+    $moduleProvider = "azurerm" # Only change this if you know why you need to change it (Allowed values: azurerm, azapi, azure)
     $moduleName = "<module name>" # Replace with the module name (do not include the "terraform-azurerm" prefix)
-    $moduleDescription = "<module description>" # Replace with a short description of the module
-    $moduleOwner = "<github user handle>" # Replace with the GitHub handle of the module owner
+    $moduleDisplayName = "<module description>" # Replace with a short description of the module
+    $resourceProviderNamespace = "<resource provider namespace>" # Replace with the resource provider namespace of the module (NOTE: Leave empty for Pattern or Utility Modules)
+    $resourceType = "<resource type>" # Replace with the resource type of the module (NOTE: Leave empty for Pattern or Utility Modules)
+    $ownerPrimaryGitHubHandle = "<github user handle>" # Replace with the GitHub handle of the module owner
+    $ownerPrimaryDisplayName = "<user display name>" # Replace with the display name of the module owner
+
+    # Optional Metadata Inputs
+    $moduleAlternativeNames = "<alternative names>" # Replace with a comma separated list of alternative names for the module
+    $moduleComments = "<comments>" # Replace with any comments you want to add to the module
+    $ownerSecondaryGitHubHandle = "<github user handle>" # Replace with the GitHub handle of the module owner
+    $ownerSecondaryDisplayName = "<user display name>" # Replace with the display name of the module owner
 
     ./New-Repository.ps1 `
         -moduleProvider $moduleProvider `
         -moduleName $moduleName `
-        -moduleDescription $moduleDescription `
-        -moduleOwner $moduleOwner
+        -moduleDisplayName $moduleDisplayName `
+        -resourceProviderNamespace $resourceProviderNamespace `
+        -resourceType $resourceType `
+        -ownerPrimaryGitHubHandle $ownerPrimaryGitHubHandle `
+        -ownerPrimaryDisplayName $ownerPrimaryDisplayName `
+        -moduleAlternativeNames $moduleAlternativeNames `
+        -moduleComments $moduleComments `
+        -ownerSecondaryGitHubHandle $ownerSecondaryGitHubHandle `
+        -ownerSecondaryDisplayName $ownerSecondaryDisplayName
+
     ```
 
     For example:
 
     ```pwsh
-    $moduleProvider = "azurerm" # Only change this if you know why you need to change it :)
+    # Required Inputs
+    $moduleProvider = "azurerm" # Only change this if you know why you need to change it (Allowed values: azurerm, azapi, azure)
     $moduleName = "avm-res-network-virtualnetwork" # Replace with the module name (do not include the "terraform-azurerm" prefix)
-    $moduleDescription = "Virtual Networks" # Replace with a short description of the module
-    $moduleOwner = "jaredfholgate" # Replace with the GitHub handle of the module owner
+    $moduleDisplayName = "Virtual Networks" # Replace with a short description of the module
+    $resourceProviderNamespace = "Microsoft.Network" # Replace with the resource provider namespace of the module (NOTE: Leave empty for Pattern or Utility Modules)
+    $resourceType = "virtualNetworks" # Replace with the resource type of the module (NOTE: Leave empty for Pattern or Utility Modules)
+    $ownerPrimaryGitHubHandle = "jaredfholgate" # Replace with the GitHub handle of the module owner
+    $ownerPrimaryDisplayName = "Jared Holgate" # Replace with the display name of the module owner
+
+    # Optional Metadata Inputs
+    $moduleAlternativeNames = "VNet" # Replace with a comma separated list of alternative names for the module
+    $moduleComments = "" # Replace with any comments you want to add to the module
+    $ownerSecondaryGitHubHandle = "" # Replace with the GitHub handle of the module owner
+    $ownerSecondaryDisplayName = "" # Replace with the display name of the module owner
 
     ./New-Repository.ps1 `
         -moduleProvider $moduleProvider `
         -moduleName $moduleName `
-        -moduleDescription $moduleDescription `
-        -moduleOwner $moduleOwner
+        -moduleDisplayName $moduleDisplayName `
+        -resourceProviderNamespace $resourceProviderNamespace `
+        -resourceType $resourceType `
+        -ownerPrimaryGitHubHandle $ownerPrimaryGitHubHandle `
+        -ownerPrimaryDisplayName $ownerPrimaryDisplayName `
+        -moduleAlternativeNames $moduleAlternativeNames `
+        -moduleComments $moduleComments `
+        -ownerSecondaryGitHubHandle $ownerSecondaryGitHubHandle `
+        -ownerSecondaryDisplayName $ownerSecondaryDisplayName
+
     ```
 
 1. The script will stop and prompt you to fill out the Microsoft Open Source details,
