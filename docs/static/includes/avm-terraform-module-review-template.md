@@ -11,7 +11,6 @@ Please don't close this issue and merge your AVM-Review-PR until advised to do s
 
 Please use the comments columns to provide additional details especially if the Compliant column is updated to `No` or `NA`.
 
-```[tasklist]
 ### Tasks
 - [ ] Address comments on AVM-Review-PR if any
 - [ ] Ensure that all checks on AVM-Review-PR are passing
