@@ -46,3 +46,32 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
     ]
   }
 }
+
+module keyVault 'br/public:avm/res/key-vault/vault:0.12.1' = {
+  name: 'keyVaultDeployment'
+  params: {
+    // Required parameters
+    name: '${uniqueString(resourceGroup().id)}-kv'
+    // Non-required parameters
+    location: location
+    diagnosticSettings: [
+      {
+        workspaceResourceId: logAnalyticsWorkspace.outputs.logAnalyticsWorkspaceId
+        logCategoriesAndGroups: [
+          {
+            category: 'AzurePolicyEvaluationDetails'
+          }
+          {
+            category: 'AuditEvent'
+          }
+        ]
+        metricCategories: [
+          {
+            category: 'AllMetrics'
+          }
+        ]
+        name: 'keyVaultDiagnostics'
+      }
+    ]
+  }
+}
