@@ -174,14 +174,14 @@ Since this is the real meat of our `main.bicep` file, we need to take a closer l
 {{% notice style="info" %}}Always use the `@secure()` decorator when creating a parameter that will hold sensitive data!{{% /notice %}}
 
 - **Add the VM Admin Password to KeyVault**
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" id="add-keyvault-secret" lang="bicep" hl_lines="27-32" line_anchors="vm-keyvault-pw" >}}
+{{< code file="\content\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" id="add-keyvault-secret" lang="bicep" hl_lines="27-32" line_anchors="vm-keyvault-pw" >}}
 
   The next thing we have done is saved the value of our `vmAdminPass` parameter to our key vault. We have done this by adding a `secrets` parameter to the key vault module. Adding secrets to key vaults is very simple when using the AVM module.
 
   By adding our password to the key vault, it will ensure that we never lose the password and that it is stored securely. As long as a user has appropriate permissions on the vault, the password can be fetched easily.
 
 - **Reference the VM Subnet**
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" id="vm-subnet-reference" lang="bicep" hl_lines="9" line_anchors="vm-subnet" >}}
+{{< code file="\content\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" id="vm-subnet-reference" lang="bicep" hl_lines="9" line_anchors="vm-subnet" >}}
 
   Here, we reference another built-in output, this time from the AVM Virtual Network module. This example shows how to use an output that is part of an array. When the Virtual Network module creates subnets, it automatically creates a set of pre-defined outputs for the subnets, one of which is an array that contains each subnet's `subnetResourceId`. Our VM Subnet was the second one created, which is position `[1]` in the array.
 
@@ -258,84 +258,48 @@ Remember that in a real production environment, you would not only use RBAC to l
 
 ## Recap
 
+Throughout this tutorial, we have built a comprehensive Azure solution using AVM Bicep modules. Let's review what we've accomplished:
+
+1. **Built the Core Infrastructure**:
+   - Created a Log Analytics Workspace for centralized logging
+   - Deployed a Virtual Network with multiple subnets (VM, Bastion, and Private Endpoints)
+   - Added Network Security Groups with appropriate security rules
+
+2. **Added Security Services**:
+   - Deployed a Key Vault for secure secret management
+   - Stored our VM admin password in the Key Vault
+   - Configured a Bastion Host for secure VM access
+
+3. **Deployed Application Components**:
+   - Added a Virtual Machine with a System-assigned Managed Identity
+   - Created a Storage Account for application data
+   - Secured the Storage Account with a Private Endpoint
+
+4. **Applied Security Best Practices**:
+   - Disabled public network access to sensitive resources
+   - Implemented Private Endpoints for secure connectivity
+   - Applied RBAC using Managed Identity to follow least-privilege access
+   - Configured diagnostic settings to send logs to Log Analytics
+
+5. **Used Bicep Best Practices**:
+   - Leveraged variables for reused values
+   - Used parameters for configurable settings
+   - Employed the `@secure()` decorator for sensitive information
+   - Referenced module outputs to create dependencies between resources
+
+By breaking down our architecture into manageable components and deploying incrementally, we were able to build a complex solution with relative ease. This approach not only made the development process more manageable but also allowed us to test our deployments at each step.
+
 ## Conclusion
 
-<!-- The Linux VM is created in a new Virtual Network respecting the Well Architected Framework. This means, I need to add NSGs to the subnet, a maintenance configuration, not public endpoints (why we will add an Azure Bastion as well) and other resources.
+In this tutorial, we've explored how to leverage Azure Verified Modules (AVM) to build a secure, well-architected solution in Azure. AVM modules significantly simplify the deployment of Azure resources by abstracting away much of the complexity involved in configuring individual resources.
 
-## Developing the template
+AVM modules provide several key advantages over writing raw Bicep templates:
 
-Before we start to create the template, let's quickly check if you dev-environment is setup with everything we need:
+1. **Simplified Resource Configuration**: AVM modules handle much of the complex configuration work behind the scenes
+2. **Built-in Best Practices**: The modules implement many of Microsoft's best practices by default
+3. **Consistent Outputs**: Each module exposes a consistent set of outputs that can be easily referenced
+4. **Reduced Boilerplate Code**: What would normally require hundreds of lines of Bicep code can be accomplished in a fraction of the space
 
-// TODO link/copy from the Quickstart https://azure.github.io/Azure-Verified-Modules/usage/quickstart/bicep/#prerequisites
+As you continue your journey with Azure and AVM, remember that this approach can be applied to more complex architectures as well. The modular nature of AVM allows you to mix and match components to build solutions that meet your specific needs while adhering to Microsoft's Well-Architected Framework.
 
-*Don't forget to add the *bicepconfig.json* file, which supports with warnings for outdated AVM versions.*
-
-I decided to not put all code into one big bicep file, but to build it modular with multiple files.
-
-// TODO for the website, show code blocks for e.g. VM. Then, for the usage, all codeblocks are added to a single bicep file.
-
-{{% notice style="info" %}}
-We'll skip comments to improve the readability, but strongly suggest working with comments and descriptions for your template.
-{{% /notice %}}
-
-We start with a minimal configuration, and extend the templates over time.
-
-### The Virtual Machine
-
-Codeing. Finally. I start with the VM.bicep file, add parameters and later create the main.bicep file that calls the VM template. I like to add default values for parameters.
-
-{{% expand title="VM" %}}
-
-```bicep
-{{% include file="/content/usage/includes/bicep/deploy 1/VM.bicep" %}}
-```
-
-{{% /expand %}}
-
-Right. For the VM, we need dependencies like the network. Let's add that as well.
-
-### Virtual Network
-
-Since we want to support IPV4 and IPV6 in this template, let's just add both (obviously, you can skip either).
-
-Now here we see the template is quickly getting bigger and bigger. Let alone the NSGs, defining all rules taking more than 150 lines.
-
-{{% expand title="networking.bicep" %}}
-
-```bicep
-{{% include file="/content/usage/includes/bicep/deploy 1/networking.bicep" %}}
-```
-
-{{% /expand %}}
-
-You might have noticed that we have created an existing resource 'vm_nic'. The module for deploying the virtual machine does not supply the generated IP adresses, which we want to provide as output parameter. Therefore, a plain Bicep resource references the network interface of new VM and allows us to grab the IPs.
-
-### Bringing it together
-
-Deploying resources, requires a scope where the resouces will be deployed to. Often, it is necessary to change the scope for further deployments. E.g. resource groups are deployed to a subscription, whereas a VM is deployed into a resource group.
-
-The two already existing bicep templates need to be orchestrated by a caller, which we'll call main.bicep. Also, we want the services to be deployed into separate resource groups.
-
-{{% expand title="main.bicep" %}}
-
-```bicep
-{{% include file="/content/usage/includes/bicep/deploy 1/main.bicep" %}}
-```
-
-{{% /expand %}}
-
-**Optimizations:**
-
-For simplicity, we didn't make everything as configurable/automated as possible. Some of them are:
-
-- use the environment tag to not delete the Disk/NIC with the VM in a production environment
-
-
-// TODO - this needs to be covered
-
-Missing:
-
-- maintenance configuration
-- key access
-- Backup?
-- monitoring -->
+By using AVM modules as building blocks, you can focus more on your solution architecture and less on the intricacies of individual resource configurations, ultimately leading to faster development cycles and more reliable deployments.
