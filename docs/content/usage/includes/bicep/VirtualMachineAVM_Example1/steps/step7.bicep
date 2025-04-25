@@ -1,7 +1,7 @@
 param location string = 'westus2'
 
 // START add-password-param
-@description('Required. A password for the VM admin user. This parameter is marked as secure, so it will not be displayed in the Azure portal or in the output of the deployment.')
+@description('Required. A password for the VM admin user.')
 @secure()
 param vmAdminPass string
 // END add-password-param
@@ -52,7 +52,6 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
   }
 }
 
-// START add-keyvault-secret
 module keyVault 'br/public:avm/res/key-vault/vault:0.12.1' = {
   name: 'keyVaultDeployment'
   params: {
@@ -79,15 +78,17 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.12.1' = {
         name: 'keyVaultDiagnostics'
       }
     ]
+    // START add-keyvault-secret
     secrets: [
       {
         name: 'vmAdminPassword'
         value: vmAdminPass
       }
     ]
+    // END add-keyvault-secret
   }
 }
-// END add-keyvault-secret
+
 
 
 module virtualMachine 'br/public:avm/res/compute/virtual-machine:0.13.1' = {

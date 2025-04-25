@@ -105,9 +105,7 @@ We will start by adding a logging service to our `main.bicep` since everything e
 
 The logging solution depicted in our Architecture Diagram shows we will be using a Log Analytics Workspace. Let's go ahead and add that to our template. Open your `main.bicep` file and add the following:
 
-```bicep
-{{% include file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step1.bicep" %}}
-```
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step1.bicep" lang="bicep" line_anchors="vm-step1" >}}
 
 Congratulations, you now have a fully-functional bicep template that will deploy a working Log Analytics Workspace! If you would like to try it, run the following in your console:
 
@@ -123,17 +121,13 @@ We will now add a Virtual Network to our `main.bicep` file. This Vnet will conta
 
 In your `main.bicep` file, add the following:
 
-```bicep
-{{% include file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step2.bicep" %}}
-```
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step2.bicep" lang="bicep" line_anchors="vm-step2" hl_lines="11-22" >}}
 
 Again, notice how the Virtual Network AVM module requires only two things: a `name` and an `addressPrefixes` parameter. This template is also fully-deployable on its own, but let's make a simple change to it first. There is an additional parameter available in *most* AVM modules named `diagnosticSettings`. This parameter allows you configure your service to send its logs to any suitable logging service. In our case, we are using a Log Analytics Workspace.
 
 Let's update our `main.bicep` file to have our VNet send all of its logging data to our Log Analytics Workspace:
 
-```bicep
-{{% include file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step3.bicep" %}}
-```
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step3.bicep" lang="bicep" line_anchors="vm-step3" hl_lines="21-31" >}}
 
 Notice how the `diagnosticsSettings` parameter needs a `workspaceResourceId`? All you need to do is add a reference to the built-in `logAnalyticsWorkspaceId` output of the logAnalyticsWorkspace AVM module. That's it! Our VNet now has integrated its logging with our Log Analytics Workspace. All AVM modules come with an assortment of built-in `outputs` that can be easily referenced by other modules within your template.
 
@@ -145,9 +139,7 @@ We can't rightly do much with a Virtual Network without some subnets, so let's a
 
 Add the following to your `main.bicep`:
 
-```bicep
-{{% include file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step4.bicep" %}}
-```
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step4.bicep" lang="bicep" line_anchors="vm-step-4" hl_lines="32-41" >}}
 
 As you can see, we have added a `subnets` property to our virtualNetwork module. The AVM `network/virtual-network` module supports the creation of subnets directly within the module itself.
 
@@ -161,9 +153,7 @@ We're now at a point in the development of our `main.bicep` file where should le
 
 Let's change our CIDR block to a variable and our location to a parameter, then reference those in our modules:
 
-```bicep
-{{% include file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step5.bicep" %}}
-```
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step5.bicep" lang="bicep" line_anchors="vm-step5" hl_lines="1 3 40 44 12 25" >}}
 
 We now have a good basis of infrastructure to be utilized by the rest of the resources in our Architecture. Don't worry, we will come back to our networking in a future step once we are ready to create some Network Security Groups, but for now let's move on to some other modules.
 
@@ -175,9 +165,7 @@ In this tutorial, we will use one of the most secure methods of storage and retr
 
 Our first step is easy: add the KeyVault AVM module to our `main.bicep` file. We won't actually use the KeyVault for anything at the moment, but we will use it later when we create a VM and need to store its password. Let's add the KeyVault module and ensure it's hooked into our Log Analytics Workspace (we will do this for every new module from here on out):
 
-```bicep
-{{% include file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step6.bicep" %}}
-```
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step6.bicep" lang="bicep" line_anchors="vm-step6" hl_lines="50-77" >}}
 
 You may notice the name of the KeyVault we will deploy uses the `uniqueString()` bicep function. KeyVault names must be globally unique. We will therefore deviate from our standard naming convention thus far and make an exception for the KeyVault. Note how we are still adding a suffix to the KeyVault name so its name isn't just random gibberish; you can use a combination of concatenating unique strings, prefixes, or suffixes to abide by your own naming standard preferences.
 
@@ -191,9 +179,7 @@ Now that we have our KeyVault, Virtual Network, and Log Analytics prepared we sh
 
 For our Virtual Machine (VM) deployment, we need to add the following to our `main.bicep` file:
 
-```bicep
-{{% include file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" %}}
-```
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" lang="bicep" line_anchors="vm-step7" hl_lines="4-6 82-87 93-135" >}}
 
 The VM module is one of the more detailed modules in AVM--but behind the scenes, it takes care of a *lot* of heavy lifting that, without AVM, would require multiple bicep resources to be deployed and referenced.
 
@@ -204,7 +190,7 @@ With the AVM VM module, the `nicConfigurations` parameter accepts an object, all
 Since this is the real meat of our `main.bicep` file, we need to take a closer look at some of the other changes that were made.
 
 - **VM Admin Password Parameter**
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" id="add-password-param" lang="bicep">}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" id="add-password-param" lang="bicep" line_anchors="vm-pw-param" >}}
 
   First, we added a new parameter. The value of this will be provided when the `main.bicep` template is deployed. We don't want any passwords stored as text in code; for our purposes, the safest way to do this is to have the user who is deploying the template provide the password.
 
@@ -213,14 +199,14 @@ Since this is the real meat of our `main.bicep` file, we need to take a closer l
 {{% notice style="info" %}}Always use the `@secure()` decorator when creating a parameter that will hold sensitive data!{{% /notice %}}
 
 - **Add the VM Admin Password to KeyVault**
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" id="add-keyvault-secret" lang="bicep">}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" id="add-keyvault-secret" lang="bicep" hl_lines="27-32" line_anchors="vm-keyvault-pw" >}}
 
-  The next thing we have done is saved the value of our `vmAdminPass` parameter to our key vault. We have done this by adding a `secrets` parameter to the key vault module. As you can see, adding secrets to key vaults is very simple when using the AVM module.
+  The next thing we have done is saved the value of our `vmAdminPass` parameter to our key vault. We have done this by adding a `secrets` parameter to the key vault module. Adding secrets to key vaults is very simple when using the AVM module.
 
   By adding our password to the key vault, it will ensure that we never lose the password and that it is stored securely. As long as a user has appropriate permissions on the vault, the password can be fetched easily.
 
 - **Reference the VM Subnet**
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" id="vm-subnet-reference" lang="bicep">}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" id="vm-subnet-reference" lang="bicep" hl_lines="9" line_anchors="vm-subnet" >}}
 
   Here, we reference another built-in output, this time from the AVM Virtual Network module. This example shows how to use an output that is part of an array. When the Virtual Network module creates subnets, it automatically creates a set of pre-defined outputs for the subnets, one of which is an array that contains each subnet's `subnetResourceId`. Our VM Subnet was the second one created, which is position `[1]` in the array.
 
