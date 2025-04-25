@@ -1,10 +1,8 @@
 param location string = 'westus2'
 
-// START add-password-param
 @description('Required. A password for the VM admin user.')
 @secure()
 param vmAdminPass string
-// END add-password-param
 
 var addressPrefix = '10.0.0.0/16'
 var prefix = 'VM-AVM-Ex1'
@@ -79,14 +77,12 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.12.1' = {
         name: 'keyVaultDiagnostics'
       }
     ]
-    // START add-keyvault-secret
     secrets: [
       {
         name: 'vmAdminPassword'
         value: vmAdminPass
       }
     ]
-    // END add-keyvault-secret
   }
 }
 
@@ -103,7 +99,6 @@ module virtualMachine 'br/public:avm/res/compute/virtual-machine:0.13.1' = {
       version: 'latest'
     }
     name: '${prefix}-vm1'
-    // START vm-subnet-reference
     nicConfigurations: [
       {
         ipConfigurations: [
@@ -118,7 +113,6 @@ module virtualMachine 'br/public:avm/res/compute/virtual-machine:0.13.1' = {
         nicSuffix: '-nic-01'
       }
     ]
-    // END vm-subnet-reference
     osDisk: {
       caching: 'ReadWrite'
       diskSizeGB: 128
@@ -126,10 +120,35 @@ module virtualMachine 'br/public:avm/res/compute/virtual-machine:0.13.1' = {
         storageAccountType: 'Standard_LRS'
       }
     }
+
     osType: 'Linux'
     vmSize: 'Standard_B2s_v2'
     zone: 0
     // Non-required parameters
     location: location
+  }
+}
+
+module storageAccount 'br/public:avm/res/storage/storage-account:0.19.0' = {
+  name: 'storageAccountDeployment'
+  params: {
+    // Required parameters
+    name: '${uniqueString(resourceGroup().id)}sa'
+    // Non-required parameters
+    location: location
+    skuName: 'Standard_LRS'
+    diagnosticSettings: [
+      {
+        workspaceResourceId: logAnalyticsWorkspace.outputs.logAnalyticsWorkspaceId
+      }
+    ]
+    blobServices: {
+      containers: [
+        {
+          name: 'vmStorage'
+          publicAccess: 'None'
+        }
+      ]
+    }
   }
 }
