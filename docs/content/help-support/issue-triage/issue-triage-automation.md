@@ -14,7 +14,7 @@ This section details all automation rules that are based on a schedule.
 When calculating the number of business days in the issue/triage automation, the built-in logic considers Monday-Friday as business days. The logic doesn't consider any holidays.
 {{% /notice %}}
 
-### ITA01BCP.1-2
+### ITA01BCP.1 & ITA01BCP.2
 
 If a bug/feature/request/general question that has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; is not responded to after 3 business days, then the issue will be marked with the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; label and the AVM Core team will be mentioned in a comment on the issue to reach out to the module owner.
 
@@ -27,6 +27,7 @@ If a bug/feature/request/general question that has the labels of &nbsp;<mark sty
 - Is an open issue.
 - Had no activity in the last 3 business days.
 - Has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>&nbsp; labels added.
+- Does not have the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; label added.
 
 **Action(s):**
 
@@ -41,7 +42,7 @@ If a bug/feature/request/general question that has the labels of &nbsp;<mark sty
 
 ---
 
-### ITA01TF.1-2
+### ITA01TF.1 & ITA01TF.2
 
 If a bug/feature/request/general question that has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; label added is not responded to after 3 business days, then the issue will be marked with the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; label and the AVM Core team will be mentioned in a comment on the issue to reach out to the module owner.
 
@@ -68,7 +69,7 @@ If a bug/feature/request/general question that has the &nbsp;<mark style="backgr
 
 ---
 
-### ITA02BCP.1-2
+### ITA02BCP.1 & ITA02BCP.2
 
 If after an additional 3 business days there's still no update to the issue that has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp;, the AVM core team will be mentioned on the issue and a further comment stating module owner is unresponsive will be added. The &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label will also be added.
 
@@ -81,6 +82,7 @@ If after an additional 3 business days there's still no update to the issue that
 - Is an open issue.
 - Had no activity in the last 3 business days.
 - Has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>&nbsp; labels added.
+- Does not have the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label added.
 
 **Action(s):**
 
@@ -95,7 +97,7 @@ If after an additional 3 business days there's still no update to the issue that
 
 ---
 
-### ITA02TF.1-2
+### ITA02TF.1 & ITA02TF.2
 
 If after an additional 3 business days there's still no update to the issue that has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; label added, the AVM core team will be mentioned on the issue and a further comment stating module owner is unresponsive will be added. The &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label will also be added.
 
@@ -638,10 +640,10 @@ The below table details which repositories the above rules are applied to.
 
 | ID                          | AVM Core repository | BRM repository | TF repositories |
 |-----------------------------|:-------------------:|:--------------:|:---------------:|
-| [ITA01BCP1-2](#ita01bcp1-2) |                     |       ✔️       |                 |
-| [ITA01TF1-2](#ita01tf1-2)   |                     |                |       ✔️        |
-| [ITA02BCP1-2](#ita02bcp1-2) |                     |       ✔️       |                 |
-| [ITA02TF1-2](#ita02tf1-2)   |                     |                |       ✔️        |
+| [ITA01BCP1-2](#ita01bcp1--ita01bcp2) |                     |       ✔️       |                 |
+| [ITA01TF1-2](#ita01tf1--ita01tf2)   |                     |                |       ✔️        |
+| [ITA02BCP1-2](#ita02bcp1--ita02bcp2) |                     |       ✔️       |                 |
+| [ITA02TF1-2](#ita02tf1--ita02tf2)   |                     |                |       ✔️        |
 | [ITA03BCP](#ita03bcp)       |                     |       ✔️       |                 |
 | [ITA03TF](#ita03tf)         |                     |                |       ✔️        |
 | [ITA04](#ita04)             |         ✔️          |       ✔️       |       ✔️        |
