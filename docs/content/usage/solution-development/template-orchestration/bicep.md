@@ -25,8 +25,6 @@ After completing this tutorial, you will have a working knowledge of the followi
 - Configuration of AVM modules to meet Microsoft's Well Architected Framework (WAF) principles
 - How to deploy your Bicep template into an Azure subscription from your local machine
 
-The methodology we use in this tutorial will introduce you to various concepts in a step-by-step manner. After each section, we will run a deployment of the template and view our results in Azure. This will allow us to start with simple concepts and build up to a full-fledged deployment. It will also allow you to easily pick up where you left off if you need to take a break.
-
 Let's get started!
 
 ## Prerequisites
@@ -258,7 +256,7 @@ We will accomplish this by enabling a System-assigned Managed Identity on the Vi
 {{% /expand %}}
 
 {{% notice style="info" %}}
-The Azure Subscription owner will have CRUD permissions and more. If you have the Owner role in your subscription, you'll still be able to read the contents of the Key Vault and Storage Account. **!Important!**: at this point you will only be able to access the Storage Account from the Bastion Host--remember, we disabled public internet access!
+The Azure Subscription owner will have CRUD permissions for the Storage Account but not for the Key Vault. The Key Vault requires explicit RBAC permissions assigned to a user to grant them access: [Provide access to Key Vaults using RBAC](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide?tabs=azure-portal). **!Important!**: at this point you will only be able to access the Storage Account from the Bastion Host--remember, we disabled public internet access!
 {{% /notice %}}
 
 For this scenario, we have successfully applied RBAC policies by using a System-assigned Managed Identity on our Virtual Machine. We then assigned that Managed Identity permissions on the Key Vault and Storage Account. Our VM can now read secrets from the Key Vault and Read, Create, or Delete blobs in our Storage Account.
