@@ -2,7 +2,7 @@ module logAnalyticsWorkspace 'br/public:avm/res/operational-insights/workspace:0
   name: 'logAnalyticsWorkspace'
   params: {
     // Required parameters
-    name: 'VM-AVM-Ex1-LAW'
+    name: '${prefix}-LAW'
     // Non-required parameters
     location: 'westus2'
   }
