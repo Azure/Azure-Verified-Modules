@@ -4,6 +4,12 @@ variable "name_prefix" {
   default     = "example"
 }
 
+variable "location" {
+  description = "The Azure location to deploy the resources"
+  type        = string
+  default     = "East US"
+}
+
 variable "virtual_network_cidr" {
   description = "The CIDR prefix for the virtual network. This should be at least a /22. Example 10.0.0.0/22"
   type        = string

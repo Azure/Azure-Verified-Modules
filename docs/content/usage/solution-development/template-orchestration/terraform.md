@@ -57,6 +57,7 @@ Terraform will merge content from any file ending in a .tf extension in the modu
 
 In our example, we will use the following variables as inputs to allow for customization:
 
+- location - the location where our infrastructure will be deployed
 - name_prefix - this will be used to preface all of the resource naming
 - virtual_network_prefix - This will be used to ensure IP uniqueness for the deployment
 - tags - the custom tags to use for each deployment
@@ -121,7 +122,7 @@ Go back to the IDE, and create a file named `variables.tf` in the working direct
 Add the following code to your `variables.tf` file to configure the inputs for our example:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step2-variables.tf" lang="terraform" line_anchors="sol-step2" hl_lines="1-16" >}}
+{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step2-variables.tf" lang="terraform" line_anchors="sol-step2" hl_lines="1-22" >}}
 {{% /expand %}}
 
 {{% notice style="note" %}}
@@ -133,6 +134,110 @@ We should now test the new content we've created for our module. To do this, fir
 Type `terraform plan` on your command line. Note that it now asks for us to provide a value for the `var.virtual_network_cidr` variable. This is because we don't provide a default value for that input so terraform must have a valid input before it can continue. Type `10.0.0.0/22` into the input and press `enter` to allow the plan to complete. You should now see a message indicating that `Your infrastructure matches the configuration` and that no changes are needed.
 
 ### Creating a development.tfvars file
+
+There are multiple ways to provide input to the module we're creating. To avoid needing to manually provide testing inputs, we will create a tfvars file that can be supplied during plan and apply stages. Tfvars files are a nice way to document inputs as well as allow for deploying different versions of your module. This is useful if you have a pipeline where infrastructure code is deployed first for development, and then the same code is deployed for QA, staging, or production with different input values.
+
+In your IDE, create a new file named `development.tfvars` in your working directory.
+
+Now add the following content to your `development.tfvars` file.
+
+{{% expand title="➕ Expand Code" %}}
+{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step3-development.tf" lang="terraform" line_anchors="sol-step3" hl_lines="1-7" >}}
+{{% /expand %}}
+
+{{% notice style="note" %}}
+Note that each variable has a value defined. Although only inputs without defaults are required, we include values for all of the inputs for clarity. Consider doing this in your environments so that someone looking at the tfvars files has a full picture of what values are being set.
+{{% /notice %}}
+
+Re-run the terraform apply, but this time referencing the .tfvars file. `terraform plan -var-file=development.tfvars` This time, you should get a successful completion without needing to manually provide inputs.
+
+### Creating the main.tf file
+
+Now that we've created the supporting files we can start building the actual infrastructure code in our main file. We will add one AVM resource module at a time so that we can test each as we implement them.
+
+Return to your IDE and create a new file named `main.tf`
+
+#### Add a resource group
+
+In Azure, we need a resource group to hold any infrastructure resources we create.  This is a simple resource that typically wouldn't require an AVM module, but we'll include the AVM module so we can take advantage of the tags interface to standardize creation of our solutions tags. TODO: review this comment to see if we want to highlight the resource group and/or tags interface as they are both quite basic.
+
+First, let's visit the terraform registry [documentation page for the resource group](https://registry.terraform.io/modules/Azure/avm-res-resources-resourcegroup/azurerm/latest) and explore several key sections.
+
+1. Note the `Provision Instructions` box on the right-hand side of the page. This contains the module source and version details which allows us to copy the latest version syntax without needing to type everything ourselves.
+1. Now review the `Readme` tab in the middle of the page. It contains details about all required and optional inputs, resources that are created with the module, and any outputs that are defined. If you want to explore any of these items in detail, each have their own tab for review as needed.
+1. Finally, in the middle of the page there is a drop down menu named `Examples` that contains functioning examples for the AVM module. These are a great way to use copy/paste to bootstrap module code and then modify it for your specific purpose.
+
+Now that we've explored the registry content, let's add a resource group to our module.
+
+First, copy the content from the `Provision Instructions` box into our main.tf file.
+
+{{% expand title="➕ Expand Code" %}}
+{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step4-main.tf" lang="terraform" line_anchors="sol-step4" hl_lines="1-3" >}}
+{{% /expand %}}
+
+Now, replace the `# insert the 2 required variables here` comment with the following code to define the module inputs. Our full module code should look like the following:
+
+{{% expand title="➕ Expand Code" %}}
+{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step4-main.tf" lang="terraform" line_anchors="sol-step4" hl_lines="5-7" >}}
+{{% /expand %}}
+
+{{% notice style="note" %}}
+Note how we've used the prefix variable and Terraform interpolation syntax to dynamically name the resource group. This allows for module customization and re-use. Also note that although we chose to use the default module name of avm-res-resources-resourcegroup, we could modify the name of the module if needed.
+{{% /notice %}}
+
+After saving the file, we want to test our new content.  To do this, return to the command line and first run `terraform init`. Notice how now Terraform has download the module code as well as providers that the module requires. In this case you can see the `azurerm`, `random`, and `modtm` providers were downloaded.
+
+Let's now deploy our resource group. First, let's run a plan operation to review what will be created. Type `terraform plan -var-file=development.tfvars` and press enter to initiate the plan.
+
+##### Add the features block
+
+Notice that we get an error indicating that we are `Missing required argument` and that for the `azurerm` provider we need to provide a features argument. The addition of the resource group AVM resource requires that the `azurerm` provider be installed to provision resources in our module. This provier requires a features block in it's provider definition that is missing in our configuration.
+
+Return to the `terraform.tf` file and add the following content to it. Note how the features block is currently empty. If we needed to activate any feature flags in our module we could add them here.
+
+{{% expand title="➕ Expand Code" %}}
+{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step5-terraform-features.tf" lang="terraform" line_anchors="sol-step5" hl_lines="7-9" >}}
+{{% /expand %}}
+
+Re-run `terraform plan -var-file=development.tfvars` now that we have updated the features block.
+
+##### Set the subscription ID
+
+Note that we once again get an error. This time we get one more error indicating that `subscription_id is a required provider property` for plan/apply operations. This is a change that was introduced as part of the version 4 release of the AzureRM provider. We need to supply the ID of the deployment subscription where our resources will be created.
+
+There are multiple ways to provide terraform the subscription ID.
+
+First, we need to get the subscription id itself. We will use the portal, but using the Azure CLI, powershell, or the resource graph are also valid.
+
+1. Open the [Azure portal.](https://portal.azure.com)
+1. Enter `Subscriptions` in the search field at the top middle of the page.
+1. Select `Subscriptions` from the services menu in the search drop down
+1. Select the subscription you wish to deploy to from the list of subscriptions.
+1. Find the `Subscription ID` field on the overview page and click the copy button to copy it to the clipboard.
+
+Secondly, we need to update Terraform so that it can use the subscription id. For scenario we'll use environment variables to set the values so that we don't have to re-enter them on each run. Select a command based on your operating system from the list below.
+
+1. (Linux) - Run the following command with your subscription id. `export ARM_SUBSCRIPTION_ID=<your id here>`
+1. (Windows) - Run the following command with your subscription id. `set ARM_SUBSCRIPTION_ID=<your id here>`
+
+Finally, we should now be able to complete our plan operation by re-running `terraform plan -var-file=development.tfvars`. Note that the plan will create three resources, two for telemetry and the resource group.
+
+##### Deploy the resource group
+
+We can complete testing by implementing the resource group. Run `terraform apply -var-file=development.tfvars` and type `yes` and press `enter` when prompted to accept the changes. Terraform will run for a create the resource group and notify you when the `Apply complete` with a summary of the resources that were added, changed, and destroyed.
+
+#### Add the log analytics workspace
+
+We can now continue by adding the Log Analytics Workspace to our `main.tf` file. We will follow a workflow similar to what we did with the resource group.
+
+1. Browse to the AVM [Log Analytics Workspace module page](https://registry.terraform.io/modules/Azure/avm-res-operationalinsights-workspace/azurerm/latest) in the Terraform Registry.
+1. Copy the module content from the `Provision Instructions` portion of the page into the main.tf file
+
+Instead of manually supplying module inputs, we will instead copy content from one of the examples to minimize the amount of typing required. Navigate to the `Examples` drop down menu in the documentation and select the `default` example from the menu. In the example you will see a fully functioning example with supporting resources. Since we only care about the workspace resource from this example we can scroll to the bottom of the code block and find the `module "log_analytics_workspace"` line. Then copy the content between the brackets excluding the source since we already copied that from the provision instructions. The log analytics module content should look like the following code block. For simplicity you can also copy this directly to avoid multiple copy/paste actions.
+
+{{% expand title="➕ Expand Code" %}}
+{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step5-terraform-features.tf" lang="terraform" line_anchors="sol-step5" hl_lines="7-9" >}}
+{{% /expand %}}
 
 
 
