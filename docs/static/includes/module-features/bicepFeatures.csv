@@ -37,7 +37,7 @@
 36,res/data-protection/backup-vault,✅,✅,✅,,,✅,✅
 37,res/databricks/access-connector,✅,✅,✅,,,,✅
 38,res/databricks/workspace,✅,✅,✅,✅,✅,✅,
-39,res/db-for-my-sql/flexible-server,✅,✅,✅,✅,,✅,✅
+39,res/db-for-my-sql/flexible-server,✅,✅,✅,✅,✅,✅,✅
 40,res/db-for-postgre-sql/flexible-server,✅,✅,✅,✅,✅,✅,✅
 41,res/desktop-virtualization/application-group,✅,✅,✅,✅,,,
 42,res/desktop-virtualization/host-pool,✅,✅,✅,✅,✅,,
@@ -61,15 +61,15 @@
 60,res/hybrid-compute/license,,,✅,,,,
 61,res/hybrid-compute/machine,✅,✅,✅,,,,
 62,res/hybrid-container-service/provisioned-cluster-instance,,,✅,,,,
-63,res/insights/action-group,✅,,✅,,,,
-64,res/insights/activity-log-alert,✅,,✅,,,,
+63,res/insights/action-group,✅,✅,✅,,,,
+64,res/insights/activity-log-alert,✅,✅,✅,,,,
 65,res/insights/component,✅,✅,✅,✅,,,
 66,res/insights/data-collection-endpoint,✅,✅,✅,,,,
 67,res/insights/data-collection-rule,✅,✅,✅,,,,✅
 68,res/insights/diagnostic-setting,,,,,,,
-69,res/insights/metric-alert,✅,,✅,,,,
+69,res/insights/metric-alert,✅,✅,✅,,,,
 70,res/insights/private-link-scope,✅,✅,✅,,✅,,
-71,res/insights/scheduled-query-rule,✅,,✅,,,,
+71,res/insights/scheduled-query-rule,✅,✅,✅,,,,✅
 72,res/insights/webtest,✅,✅,✅,,,,
 73,res/key-vault/vault,✅,✅,✅,✅,✅,,
 74,res/kubernetes-configuration/extension,,,,,,,
@@ -145,7 +145,7 @@
 144,res/signal-r-service/web-pub-sub,✅,✅,✅,,✅,,✅
 145,res/sql/instance-pool,,,✅,,,,
 146,res/sql/managed-instance,✅,✅,✅,✅,,,✅
-147,res/sql/server,✅,✅,✅,,✅,,✅
+147,res/sql/server,✅,✅,✅,,✅,✅,✅
 148,res/storage/storage-account,✅,✅,✅,✅,✅,✅,✅
 149,res/synapse/private-link-hub,✅,✅,✅,,✅,,
 150,res/synapse/workspace,✅,✅,✅,✅,✅,✅,✅
@@ -155,4 +155,4 @@
 154,res/web/serverfarm,✅,✅,✅,✅,,,
 155,res/web/site,✅,✅,✅,✅,✅,,✅
 156,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,136,133,148,63,36,22,60
+Sum,,136,137,148,63,37,23,61

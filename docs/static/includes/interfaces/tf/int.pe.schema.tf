@@ -153,7 +153,7 @@ resource "azurerm_private_endpoint_application_security_group_association" "this
 
 # In your output you need to select the correct resource based on the value of var.private_endpoints_manage_dns_zone_group:
 output "private_endpoints" {
-  value       = var.private_endpoints_manage_dns_zone_group ? azurerm_private_endpoint.this_managed_dns_zone_groups : azurerm_private_endpoint.this_unmanaged_dns_zone_groups
+  value       = var.private_endpoints_manage_dns_zone_group ? azurerm_private_endpoint.this : azurerm_private_endpoint.this_unmanaged_dns_zone_groups
   description = <<DESCRIPTION
 A map of the private endpoints created.
 DESCRIPTION

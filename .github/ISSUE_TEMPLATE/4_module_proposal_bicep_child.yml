@@ -1,0 +1,228 @@
+name: New Bicep Child Module Proposal 🗒️
+description: Want to publish the child module of a Bicep resource module? Let us know!
+title: "[Bicep Child Module Proposal]: `BICEP_CHILD_MODULE_NAME_BETWEEN_BACKTICKS`"
+labels: ["Type: New Module Proposal :bulb:", "Needs: Triage :mag:", "Language: Bicep :muscle:", "Class: Child Module :package:"]
+projects: ["Azure/529"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for proposing a Bicep child module to be published in the Public Bicep Registry! Please create a separate proposal for each child module.
+
+        This issue will be automatically assigned to the owner of the parent module unless the module is currently orphaned.
+  - type: checkboxes
+    id: existing-checks
+    attributes:
+      label: Check for previous/existing GitHub issues/module proposals
+      description: By submitting this issue, you confirm that you have [searched for previous/existing GitHub issues/module proposals](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue+sort%3Aupdated-desc+) to avoid creating a duplicate.
+      options:
+        - label: I have checked for previous/existing GitHub issues/module proposals.
+          required: true
+  - type: checkboxes
+    id: existing-module-from-elsewhere
+    attributes:
+      label: Check this module doesn't already exist in the module indexes
+      description: By submitting this issue, you confirm that you have checked the [Bicep](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/) module indexes for the module you are proposing to ensure it is not already available/being worked on.
+      options:
+        - label: I have checked for that this module doesn't already exist in the module indexes.
+          required: true
+  - type: dropdown
+    id: parentmodule
+    attributes:
+      label: Parent module?
+      description: Which parent module is this the child of?
+      options:
+        - avm/res/aad/domain-service
+        - avm/res/alerts-management/action-rule
+        - avm/res/analysis-services/server
+        - avm/res/api-management/service
+        - avm/res/app/container-app
+        - avm/res/app/job
+        - avm/res/app/managed-environment
+        - avm/res/app/session-pool
+        - avm/res/app-configuration/configuration-store
+        - avm/res/automation/automation-account
+        - avm/res/avs/private-cloud
+        - avm/res/azure-stack-hci/cluster
+        - avm/res/azure-stack-hci/logical-network
+        - avm/res/azure-stack-hci/marketplace-gallery-image
+        - avm/res/azure-stack-hci/network-interface
+        - avm/res/azure-stack-hci/virtual-hard-disk
+        - avm/res/azure-stack-hci/virtual-machine-instance
+        - avm/res/batch/batch-account
+        - avm/res/cache/redis
+        - avm/res/cache/redis-enterprise
+        - avm/res/cdn/profile
+        - avm/res/chaos/experiment
+        - avm/res/cognitive-services/account
+        - avm/res/communication/communication-service
+        - avm/res/communication/email-service
+        - avm/res/compute/availability-set
+        - avm/res/compute/disk
+        - avm/res/compute/disk-encryption-set
+        - avm/res/compute/gallery
+        - avm/res/compute/image
+        - avm/res/compute/proximity-placement-group
+        - avm/res/compute/ssh-public-key
+        - avm/res/compute/virtual-machine
+        - avm/res/compute/virtual-machine-scale-set
+        - avm/res/consumption/budget
+        - avm/res/container-instance/container-group
+        - avm/res/container-registry/registry
+        - avm/res/container-service/managed-cluster
+        - avm/res/dashboard/grafana
+        - avm/res/databricks/access-connector
+        - avm/res/databricks/workspace
+        - avm/res/data-factory/factory
+        - avm/res/data-protection/backup-vault
+        - avm/res/db-for-my-sql/flexible-server
+        - avm/res/db-for-postgre-sql/flexible-server
+        - avm/res/desktop-virtualization/application-group
+        - avm/res/desktop-virtualization/host-pool
+        - avm/res/desktop-virtualization/scaling-plan
+        - avm/res/desktop-virtualization/workspace
+        - avm/res/dev-center/devcenter
+        - avm/res/dev-ops-infrastructure/pool
+        - avm/res/dev-test-lab/lab
+        - avm/res/digital-twins/digital-twins-instance
+        - avm/res/document-db/database-account
+        - avm/res/document-db/mongo-cluster
+        - avm/res/elastic-san/elastic-san
+        - avm/res/event-grid/domain
+        - avm/res/event-grid/namespace
+        - avm/res/event-grid/system-topic
+        - avm/res/event-grid/topic
+        - avm/res/event-hub/namespace
+        - avm/res/fabric/capacity
+        - avm/res/health-bot/health-bot
+        - avm/res/healthcare-apis/workspace
+        - avm/res/hybrid-compute/gateway
+        - avm/res/hybrid-compute/license
+        - avm/res/hybrid-compute/machine
+        - avm/res/hybrid-compute/private-link-scope
+        - avm/res/hybrid-compute/setting
+        - avm/res/hybrid-container-service/provisioned-cluster-instance
+        - avm/res/insights/action-group
+        - avm/res/insights/activity-log-alert
+        - avm/res/insights/autoscale-setting
+        - avm/res/insights/component
+        - avm/res/insights/data-collection-endpoint
+        - avm/res/insights/data-collection-rule
+        - avm/res/insights/diagnostic-setting
+        - avm/res/insights/metric-alert
+        - avm/res/insights/private-link-scope
+        - avm/res/insights/scheduled-query-rule
+        - avm/res/insights/webtest
+        - avm/res/key-vault/vault
+        - avm/res/kubernetes/connected-cluster
+        - avm/res/kubernetes-configuration/extension
+        - avm/res/kubernetes-configuration/flux-configuration
+        - avm/res/kusto/cluster
+        - avm/res/load-test-service/load-test
+        - avm/res/logic/workflow
+        - avm/res/machine-learning-services/registry
+        - avm/res/machine-learning-services/workspace
+        - avm/res/maintenance/configuration-assignment
+        - avm/res/maintenance/maintenance-configuration
+        - avm/res/managed-identity/user-assigned-identity
+        - avm/res/managed-services/registration-definition
+        - avm/res/management/management-group
+        - avm/res/maps/account
+        - avm/res/net-app/net-app-account
+        - avm/res/network/application-gateway
+        - avm/res/network/application-gateway-web-application-firewall-policy
+        - avm/res/network/application-security-group
+        - avm/res/network/azure-firewall
+        - avm/res/network/bastion-host
+        - avm/res/network/connection
+        - avm/res/network/ddos-protection-plan
+        - avm/res/network/dns-forwarding-ruleset
+        - avm/res/network/dns-resolver
+        - avm/res/network/dns-zone
+        - avm/res/network/express-route-circuit
+        - avm/res/network/express-route-gateway
+        - avm/res/network/express-route-port
+        - avm/res/network/firewall-policy
+        - avm/res/network/front-door
+        - avm/res/network/front-door-web-application-firewall-policy
+        - avm/res/network/ip-group
+        - avm/res/network/load-balancer
+        - avm/res/network/local-network-gateway
+        - avm/res/network/nat-gateway
+        - avm/res/network/network-interface
+        - avm/res/network/network-manager
+        - avm/res/network/network-security-group
+        - avm/res/network/network-security-perimeter
+        - avm/res/network/network-watcher
+        - avm/res/network/p2s-vpn-gateway
+        - avm/res/network/private-dns-zone
+        - avm/res/network/private-endpoint
+        - avm/res/network/private-link-service
+        - avm/res/network/public-ip-address
+        - avm/res/network/public-ip-prefix
+        - avm/res/network/route-table
+        - avm/res/network/service-endpoint-policy
+        - avm/res/network/trafficmanagerprofile
+        - avm/res/network/virtual-hub
+        - avm/res/network/virtual-network
+        - avm/res/network/virtual-network-gateway
+        - avm/res/network/virtual-wan
+        - avm/res/network/vpn-gateway
+        - avm/res/network/vpn-server-configuration
+        - avm/res/network/vpn-site
+        - avm/res/operational-insights/workspace
+        - avm/res/operations-management/solution
+        - avm/res/portal/dashboard
+        - avm/res/power-bi-dedicated/capacity
+        - avm/res/purview/account
+        - avm/res/recovery-services/vault
+        - avm/res/relay/namespace
+        - avm/res/resource-graph/query
+        - avm/res/resources/deployment-script
+        - avm/res/resources/resource-group
+        - avm/res/scom/managed-instance
+        - avm/res/search/search-service
+        - avm/res/service-bus/namespace
+        - avm/res/service-fabric/cluster
+        - avm/res/service-networking/traffic-controller
+        - avm/res/signal-r-service/signal-r
+        - avm/res/signal-r-service/web-pub-sub
+        - avm/res/sql/instance-pool
+        - avm/res/sql/managed-instance
+        - avm/res/sql/server
+        - avm/res/sql-virtual-machine/sql-virtual-machine
+        - avm/res/storage/storage-account
+        - avm/res/synapse/private-link-hub
+        - avm/res/synapse/workspace
+        - avm/res/virtual-machine-images/image-template
+        - avm/res/web/connection
+        - avm/res/web/hosting-environment
+        - avm/res/web/serverfarm
+        - avm/res/web/site
+        - avm/res/web/static-site
+    validations:
+      required: true
+  - type: input
+    id: module-name
+    attributes:
+      label: Module Name
+      description: |
+        What would be the name of the module following the [naming pattern](https://azure.github.io/Azure-Verified-Modules/spec/RMNFR1/)?
+        - Bicep: `avm/res/<rp (hyphenated)>/<resource type (hyphenated, singular form)>/<child resource type>`; e.g., `avm/res/network/virtual-network/subnet`
+      placeholder: <Child Module's name>
+    validations:
+      required: true
+  - type: textarea
+    id: module-details
+    attributes:
+      label: Module Details
+      description: Let us know some info about the module you are proposing!
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        > **NOTE**:
+        >
+        > - This Module Proposal issue **MUST remain open** until the module is fully developed, tested and published to the relevant registry. **Do NOT close** the issue before the successful publication is confirmed!
+        > - Once the module is fully developed, tested and published to the relevant registry, and the Module Proposal issue was closed, it **MUST remain closed**.

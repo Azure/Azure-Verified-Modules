@@ -8,65 +8,68 @@ images = ['images/avm_logo.png']
 enableGitInfo = true
 
 [params]
-    base = '/Azure-Verified-Modules'
-    images = ['images/avm_logo.png']
-    logo = 'images/favicon.svg'
-    disableExplicitIndexURLs = true
-    disableLanguageSwitchingButton = false
-    themeVariant = [
-        { identifier = 'auto', name = 'Zen Light/Dark', auto = [ 'zen-light', 'zen-dark' ] },
-        { identifier = 'zen-light'      },
-        { identifier = 'zen-dark'       }
-    ]
-    disableLandingPageButton = false
-    landingPageName = '<i class="fa-fw fas fa-home"></i> Home'
-    showVisitedLinks = false
-    titleSeparator = '|'
-    sidebarmenus = [
-      { type = 'menu', identifier = 'defined', main = true, disableTitle = true },
-      # { type = 'page', identifier = 'home', main = true, disableTitle = true, pageRef = '' },
-      # { type = 'menu', identifier = 'shortcuts', main = false, disableTitle = false },
-    ]
-    editURL = 'https://github.com/Azure/Azure-Verified-Modules/edit/main/docs/content/${FilePath}'
-    disableInlineCopyToClipBoard = true
-    disableAnchorScrolling = false
-    alwaysopen = true
-    collapsibleMenu = false
-    disableRootBreadcrumb = false
-    # clarityId = 'prb1m4vask' # AVM-Test
-    clarityId = 'p0l7yeco82' # Azure-Verified-Modules
+base = '/Azure-Verified-Modules'
+images = ['images/avm_logo.png']
+logo = 'images/favicon.svg'
+disableExplicitIndexURLs = true
+disableLanguageSwitchingButton = false
+themeVariant = [
+  { identifier = 'auto', name = 'Zen Light/Dark', auto = [
+    'zen-light',
+    'zen-dark',
+  ] },
+  { identifier = 'zen-light' },
+  { identifier = 'zen-dark' },
+]
+disableLandingPageButton = false
+landingPageName = '<i class="fa-fw fas fa-home"></i> Home'
+showVisitedLinks = false
+titleSeparator = '|'
+sidebarmenus = [
+  { type = 'menu', identifier = 'defined', main = true, disableTitle = true },
+  # { type = 'page', identifier = 'home', main = true, disableTitle = true, pageRef = '' },
+  # { type = 'menu', identifier = 'shortcuts', main = false, disableTitle = false },
+]
+editURL = 'https://github.com/Azure/Azure-Verified-Modules/edit/main/docs/content/${FilePath}'
+disableInlineCopyToClipBoard = true
+disableAnchorScrolling = false
+alwaysopen = true
+collapsibleMenu = false
+disableRootBreadcrumb = false
+# clarityId = 'prb1m4vask' # AVM-Test
+clarityId = 'p0l7yeco82' # Azure-Verified-Modules
 
 [module]
-  [[module.imports]]
-    path = 'github.com/McShelby/hugo-theme-relearn'
+[[module.imports]]
+path = 'github.com/McShelby/hugo-theme-relearn'
 
 [outputs]
-  home = ['html', 'rss', 'print']
-  page = ['html', 'rss', 'print']
-  section = ['html', 'rss', 'print']
+home = ['html', 'rss', 'print']
+page = ['html', 'rss', 'print']
+section = ['html', 'rss', 'print']
 
 [outputFormats]
-  [outputFormats.print]
-    baseName = 'print'
-    isHTML = true
-    mediaType = 'text/html'
-    name = 'print'
-    noUgly = true
-    permalinkable = false
+[outputFormats.print]
+baseName = 'print'
+isHTML = true
+mediaType = 'text/html'
+name = 'print'
+noUgly = true
+permalinkable = false
 
 [markup]
-  defaultMarkdownHandler = 'goldmark'
-  [markup.tableOfContents]
-    endLevel = 6
-    ordered = false
-    startLevel = 2
+defaultMarkdownHandler = 'goldmark'
+[markup.tableOfContents]
+endLevel = 6
+ordered = false
+startLevel = 2
 
 [markup.goldmark.renderer]
-    unsafe = true
-    hardWraps = true
+unsafe = true
+hardWraps = true
 
 [markup.goldmark.parser]
-  autoHeadingID = true
+autoHeadingID = true
 
 # [[menu.defined]]
 #   pre = '<i class="fa-fw fas fa-home"></i> '
@@ -76,578 +79,586 @@ enableGitInfo = true
 #   weight = 10
 
 [[menu.defined]]
-  identifier = 'overview'
-  parent = 'home'
-  name = 'Overview'
-  pageRef = '/overview'
-  weight = 1
-  params = { alwaysopen = true, collapsibleMenu = true }
-
-  [[menu.defined]]
-    identifier = 'introduction'
-    parent = 'overview'
-    name = 'Introduction'
-    pageRef = '/overview/introduction'
-    weight = 1
-    params = { alwaysopen = true, collapsibleMenu = true }
+identifier = 'overview'
+parent = 'home'
+name = 'Overview'
+pageRef = '/overview'
+weight = 1
+params = { alwaysopen = true, collapsibleMenu = true }
 
 [[menu.defined]]
-  identifier = 'module-indexes'
-  parent = 'home'
-  name = 'Module Indexes'
-  pageRef = '/indexes'
-  weight = 2
-  params = { alwaysopen = true, collapsibleMenu = true }
-
-  [[menu.defined]]
-    identifier = 'bicep-module-indexes'
-    parent = 'module-indexes'
-    name = 'Bicep'
-    pageRef = '/indexes/bicep'
-    weight = 1
-    params = { alwaysopen = true, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'bicep-resource-module-indexes'
-      parent = 'bicep-module-indexes'
-      name = 'Resource Modules'
-      pageRef = '/indexes/bicep/bicep-resource-modules'
-      weight = 1
-      params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'bicep-pattern-module-indexes'
-      parent = 'bicep-module-indexes'
-      name = 'Pattern Modules'
-      pageRef = '/indexes/bicep/bicep-pattern-modules'
-      weight = 2
-      params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'bicep-utility-module-indexes'
-      parent = 'bicep-module-indexes'
-      name = 'Utility Modules'
-      pageRef = '/indexes/bicep/bicep-utility-modules'
-      weight = 3
-      params = { alwaysopen = false, collapsibleMenu = true }
-
-  [[menu.defined]]
-    identifier = 'terraform-module-indexes'
-    parent = 'module-indexes'
-    name = 'Terraform'
-    pageRef = '/indexes/terraform'
-    weight = 2
-    params = { alwaysopen = true, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'terraform-resource-module-indexes'
-      parent = 'terraform-module-indexes'
-      name = 'Resource Modules'
-      pageRef = '/indexes/terraform/tf-resource-modules'
-      weight = 1
-      params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'terraform-pattern-module-indexes'
-      parent = 'terraform-module-indexes'
-      name = 'Pattern Modules'
-      pageRef = '/indexes/terraform/tf-pattern-modules'
-      weight = 2
-      params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'terraform-utility-module-indexes'
-      parent = 'terraform-module-indexes'
-      name = 'Utility Modules'
-      pageRef = '/indexes/terraform/tf-utility-modules'
-      weight = 3
-      params = { alwaysopen = false, collapsibleMenu = true }
+identifier = 'introduction'
+parent = 'overview'
+name = 'Introduction'
+pageRef = '/overview/introduction'
+weight = 1
+params = { alwaysopen = true, collapsibleMenu = true }
 
 [[menu.defined]]
-  identifier = 'usage'
-  parent = 'home'
-  name = 'Usage Guide'
-  pageRef = '/usage'
-  weight = 3
-  params = { alwaysopen = true, collapsibleMenu = true }
-
-  [[menu.defined]]
-    identifier = 'quickstart'
-    parent = 'usage'
-    name = 'Quickstart'
-    pageRef = '/usage/quickstart'
-    weight = 1
-    params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'bicep-quickstart'
-      parent = 'quickstart'
-      name = 'Bicep'
-      pageRef = '/usage/quickstart/bicep'
-      weight = 1
-      params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'terraform-quickstart'
-      parent = 'quickstart'
-      name = 'Terraform'
-      pageRef = '/usage/quickstart/terraform'
-      weight = 2
-      params = { alwaysopen = false, collapsibleMenu = true }
+identifier = 'module-indexes'
+parent = 'home'
+name = 'Module Indexes'
+pageRef = '/indexes'
+weight = 2
+params = { alwaysopen = true, collapsibleMenu = true }
 
 [[menu.defined]]
-  identifier = 'specs-defs'
-  parent = 'home'
-  name = 'Specifications & Definitions'
-  pageRef = '/specs-defs'
-  weight = 4
-  params = { alwaysopen = false, collapsibleMenu = true }
-
-  [[menu.defined]]
-    identifier = 'team-def-and-raci'
-    parent = 'specs-defs'
-    name = 'Team Definitions & RACI'
-    pageRef = '/specs-defs/team-definitions'
-    weight = 1
-    params = { alwaysopen = false, collapsibleMenu = true }
-
-  [[menu.defined]]
-    identifier = 'module-classifications'
-    parent = 'specs-defs'
-    name = 'Module Classifications'
-    pageRef = '/specs-defs/module-classifications'
-    weight = 2
-    params = { alwaysopen = false, collapsibleMenu = true }
-
-  [[menu.defined]]
-    identifier = 'module-lifecycle'
-    parent = 'specs-defs'
-    name = 'Module Lifecycle'
-    pageRef = '/specs-defs/module-lifecycle'
-    weight = 3
-    params = { alwaysopen = false, collapsibleMenu = true }
-
-  [[menu.defined]]
-    identifier = 'module-specs'
-    parent = 'specs-defs'
-    name = 'Module Specifications'
-    pageRef = '/specs-defs/specs'
-    weight = 4
-    params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'bicep-specs'
-      parent = 'module-specs'
-      name = 'Bicep'
-      pageRef = '/specs-defs/specs/bicep'
-      weight = 1
-      params = { alwaysopen = true, collapsibleMenu = true }
-
-      [[menu.defined]]
-        identifier = 'bicep-resource-specs'
-        parent = 'bicep-specs'
-        name = 'Resource Modules'
-        pageRef = '/specs-defs/specs/bicep/resource'
-        weight = 1
-        params = { alwaysopen = false, collapsibleMenu = true }
-
-      [[menu.defined]]
-        identifier = 'bicep-pattern-specs'
-        parent = 'bicep-specs'
-        name = 'Pattern  Modules'
-        pageRef = '/specs-defs/specs/bicep/pattern'
-        weight = 2
-        params = { alwaysopen = true, collapsibleMenu = true }
-
-      [[menu.defined]]
-        identifier = 'bicep-utility-specs'
-        parent = 'bicep-specs'
-        name = 'Utility  Modules'
-        pageRef = '/specs-defs/specs/bicep/utility'
-        weight = 3
-        params = { alwaysopen = true, collapsibleMenu = true }
-
-      [[menu.defined]]
-        identifier = 'bicep-resource-interfaces'
-        parent = 'bicep-specs'
-        name = 'Interfaces'
-        pageRef = '/specs-defs/specs/bicep/interfaces'
-        weight = 4
-        params = { alwaysopen = true, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'terraform-specs'
-      parent = 'module-specs'
-      name = 'Terraform'
-      pageRef = '/specs-defs/specs/terraform'
-      weight = 2
-      params = { alwaysopen = true, collapsibleMenu = true }
-
-      [[menu.defined]]
-        identifier = 'terraform-resource-specs'
-        parent = 'terraform-specs'
-        name = 'Resource  Modules'
-        pageRef = '/specs-defs/specs/terraform/resource'
-        weight = 1
-        params = { alwaysopen = false, collapsibleMenu = true }
-
-      [[menu.defined]]
-        identifier = 'terraform-pattern-specs'
-        parent = 'terraform-specs'
-        name = 'Pattern  Modules'
-        pageRef = '/specs-defs/specs/terraform/pattern'
-        weight = 2
-        params = { alwaysopen = true, collapsibleMenu = true }
-
-      [[menu.defined]]
-        identifier = 'terraform-utility-specs'
-        parent = 'terraform-specs'
-        name = 'Utility  Modules'
-        pageRef = '/specs-defs/specs/terraform/utility'
-        weight = 3
-        params = { alwaysopen = true, collapsibleMenu = true }
-
-      [[menu.defined]]
-        identifier = 'terraform-resource-interfaces'
-        parent = 'terraform-specs'
-        name = 'Interfaces'
-        pageRef = '/specs-defs/specs/terraform/interfaces'
-        weight = 4
-        params = { alwaysopen = true, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'terraform-specs'
-      parent = 'module-specs'
-      name = 'Terraform'
-      pageRef = '/specs-defs/specs/terraform'
-      weight = 2
-      params = { alwaysopen = true, collapsibleMenu = true }
+identifier = 'bicep-module-indexes'
+parent = 'module-indexes'
+name = 'Bicep'
+pageRef = '/indexes/bicep'
+weight = 1
+params = { alwaysopen = true, collapsibleMenu = true }
 
 [[menu.defined]]
-  identifier = 'help-support'
-  parent = 'home'
-  name = 'Help & Support'
-  pageRef = '/help-support'
-  weight = 5
-  params = { alwaysopen = false, collapsibleMenu = true }
-
-  [[menu.defined]]
-    identifier = 'module-support'
-    parent = 'help-support'
-    name = 'Module Support'
-    pageRef = '/help-support/module-support'
-    weight = 1
-    params = { alwaysopen = false, collapsibleMenu = true }
-
-  [[menu.defined]]
-    identifier = 'known-issues'
-    parent = 'help-support'
-    name = 'Known Issues'
-    pageRef = '/help-support/known-issues'
-    weight = 2
-    params = { alwaysopen = false, collapsibleMenu = true }
-
-  [[menu.defined]]
-    identifier = 'issue-triage'
-    parent = 'help-support'
-    name = 'Issue Triage'
-    pageRef = '/help-support/issue-triage'
-    weight = 3
-    params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'avm-repository'
-      parent = 'issue-triage'
-      name = 'AVM Repository'
-      pageRef = '/help-support/issue-triage/avm-issue-triage'
-      weight = 1
-      params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'brm-repository'
-      parent = 'issue-triage'
-      name = 'BRM Repository'
-      pageRef = '/help-support/issue-triage/brm-issue-triage'
-      weight = 2
-      params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'terraform-repositories'
-      parent = 'issue-triage'
-      name = 'Terraform Repositories'
-      pageRef = '/help-support/issue-triage/terraform-issue-triage'
-      weight = 3
-      params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'issue-triage-automation'
-      parent = 'issue-triage'
-      name = 'Issue Triage Automation'
-      pageRef = '/help-support/issue-triage/issue-triage-automation'
-      weight = 4
-      params = { alwaysopen = false, collapsibleMenu = true }
-
-  [[menu.defined]]
-    identifier = 'telemetry'
-    parent = 'help-support'
-    name = 'Telemetry'
-    pageRef = '/help-support/telemetry'
-    weight = 4
-    params = { alwaysopen = false, collapsibleMenu = true }
-
-  [[menu.defined]]
-    identifier = 'github-links'
-    parent = 'help-support'
-    pre = '<i class="fa-fw fab fa-github"></i> '
-    name = 'GitHub Links'
-    pageRef = '/help-support/GH-links'
-    weight = 5
-    params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'propose-a-new-module'
-      parent = 'github-links'
-      pre = '<i class="fa-fw fab fa-github"></i> '
-      name = 'Propose a New Module'
-      url = 'https://aka.ms/AVM/ModuleProposal'
-      weight = 1
-      params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'question-or-feedback'
-      parent = 'github-links'
-      pre = '<i class="fa-fw fab fa-github"></i> '
-      name = 'Question or Feedback'
-      url = 'https://aka.ms/AVM/QuestionFeedback'
-      weight = 2
-      params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'module-triage-project'
-      parent = 'github-links'
-      pre = '<i class="fa-fw fab fa-github"></i> '
-      name = 'Module Triage (Project)'
-      url = 'https://aka.ms/AVM/ModuleTriage'
-      weight = 3
-      params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'module-issues-project'
-      parent = 'github-links'
-      pre = '<i class="fa-fw fab fa-github"></i> '
-      name = 'Module Issues (Project)'
-      url = 'https://aka.ms/AVM/ModuleIssues'
-      weight = 4
-      params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'issue-triage-project'
-      parent = 'github-links'
-      pre = '<i class="fa-fw fab fa-github"></i> '
-      name = 'Issue Triage (Project)'
-      url = 'https://aka.ms/AVM/IssueTriage'
-      weight = 5
-      params = { alwaysopen = false, collapsibleMenu = true }
+identifier = 'bicep-resource-module-indexes'
+parent = 'bicep-module-indexes'
+name = 'Resource Modules'
+pageRef = '/indexes/bicep/bicep-resource-modules'
+weight = 1
+params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
-  identifier = 'contributing'
-  parent = 'home'
-  name = 'Contributing'
-  pageRef = '/contributing'
-  weight = 6
-  params = { alwaysopen = false, collapsibleMenu = true }
-
-  [[menu.defined]]
-    identifier = 'process-overview'
-    parent = 'contributing'
-    name = 'Process Overview'
-    pageRef = '/contributing/process'
-    weight = 1
-    params = { alwaysopen = false, collapsibleMenu = true }
-
-
-  [[menu.defined]]
-    identifier = 'bicep-module-contribution'
-    parent = 'contributing'
-    name = 'Bicep Modules'
-    pageRef = '/contributing/bicep'
-    weight = 2
-    params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'bicep-contribution-prerequisites'
-      parent = 'bicep-module-contribution'
-      name = 'Prerequisites'
-      pageRef = '/contributing/bicep/prerequisites'
-      weight = 1
-      params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'bicep-contribution-composition'
-      parent = 'bicep-module-contribution'
-      name = 'Composition'
-      pageRef = '/contributing/bicep/composition'
-      weight = 2
-      params = { alwaysopen = false, collapsibleMenu = false }
-
-    [[menu.defined]]
-      identifier = 'bicep-contribution-flow'
-      parent = 'bicep-module-contribution'
-      name = 'Contribution Flow'
-      pageRef = '/contributing/bicep/bicep-contribution-flow'
-      weight = 3
-      params = { alwaysopen = true, collapsibleMenu = true }
-
-      [[menu.defined]]
-        identifier = 'bicep-owner-contribution-flow'
-        parent = 'bicep-contribution-flow'
-        name = 'Owner Contribution Flow'
-        pageRef = '/contributing/bicep/bicep-contribution-flow/owner-contribution-flow'
-        weight = 1
-        params = { alwaysopen = true, collapsibleMenu = true }
-
-      [[menu.defined]]
-        identifier = 'update-module-files'
-        parent = 'bicep-contribution-flow'
-        name = 'Update Module Files'
-        pageRef = '/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files'
-        weight = 2
-        params = { alwaysopen = true, collapsibleMenu = true }
-
-      [[menu.defined]]
-        identifier = 'validate-module-locally'
-        parent = 'bicep-contribution-flow'
-        name = 'Validate Module Locally'
-        pageRef = '/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally'
-        weight = 3
-        params = { alwaysopen = true, collapsibleMenu = true }
-
-      [[menu.defined]]
-        identifier = 'enable-disable-workflows'
-        parent = 'bicep-contribution-flow'
-        name = 'Enable or Disable Workflows'
-        pageRef = '/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows'
-        weight = 4
-        params = { alwaysopen = true, collapsibleMenu = true }
-
-      [[menu.defined]]
-        identifier = 'custom-ci-secrets'
-        parent = 'bicep-contribution-flow'
-        name = 'Custom CI Secrets'
-        pageRef = '/contributing/bicep/bicep-contribution-flow/custom-ci-secrets'
-        weight = 5
-        params = { alwaysopen = true, collapsibleMenu = true }
-
-  [[menu.defined]]
-    identifier = 'terraform-module-contribution'
-    parent = 'contributing'
-    name = 'Terraform Modules'
-    pageRef = '/contributing/terraform'
-    weight = 3
-    params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'prerequisites'
-      parent = 'terraform-module-contribution'
-      name = 'Prerequisites'
-      pageRef = '/contributing/terraform/prerequisites'
-      weight = 1
-      params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'composition'
-      parent = 'terraform-module-contribution'
-      name = 'Composition'
-      pageRef = '/contributing/terraform/composition'
-      weight = 2
-      params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'terraform-contribution-flow'
-      parent = 'terraform-module-contribution'
-      name = 'Contribution Flow'
-      pageRef = '/contributing/terraform/terraform-contribution-flow'
-      weight = 3
-      params = { alwaysopen = true, collapsibleMenu = true }
-
-      [[menu.defined]]
-        identifier = 'terraform-owner-contribution-flow'
-        parent = 'terraform-contribution-flow'
-        name = 'Owner Contribution Flow'
-        pageRef = '/contributing/terraform/terraform-contribution-flow/owner-contribution-flow'
-        weight = 1
-        params = { alwaysopen = false, collapsibleMenu = true }
-
-      [[menu.defined]]
-        identifier = 'terraform-repository-creation-process'
-        parent = 'terraform-contribution-flow'
-        name = 'Repository Creation Process'
-        pageRef = '/contributing/terraform/terraform-contribution-flow/repository-creation-process'
-        weight = 1
-        params = { alwaysopen = false, collapsibleMenu = true }
-
-    [[menu.defined]]
-      identifier = 'review'
-      parent = 'terraform-module-contribution'
-      name = 'Review'
-      pageRef = '/contributing/terraform/review'
-      weight = 4
-      params = { alwaysopen = false, collapsibleMenu = true }
-
-  [[menu.defined]]
-    identifier = 'contirbution-qna'
-    parent = 'contributing'
-    name = 'Contribution Q&A'
-    pageRef = '/contributing/q-and-a'
-    weight = 4
-    params = { alwaysopen = false, collapsibleMenu = true }
-
-
-  [[menu.defined]]
-    identifier = 'website-contribution'
-    parent = 'contributing'
-    name = 'Website'
-    pageRef = '/contributing/website'
-    weight = 5
-    params = { alwaysopen = false, collapsibleMenu = true }
-
-
-  [[menu.defined]]
-    identifier = 'code-of-conduct'
-    parent = 'contributing'
-    pre = '<i class="fa-solid fa-globe"></i> '
-    name = 'Code of Conduct'
-    url = 'https://opensource.microsoft.com/codeofconduct/'
-    weight = 6
+identifier = 'bicep-pattern-module-indexes'
+parent = 'bicep-module-indexes'
+name = 'Pattern Modules'
+pageRef = '/indexes/bicep/bicep-pattern-modules'
+weight = 2
+params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
-  identifier = 'resources'
-  parent = 'home'
-  name = 'Resources'
-  pageRef = '/resources'
-  weight = 7
-  params = { alwaysopen = true, collapsibleMenu = true }
+identifier = 'bicep-utility-module-indexes'
+parent = 'bicep-module-indexes'
+name = 'Utility Modules'
+pageRef = '/indexes/bicep/bicep-utility-modules'
+weight = 3
+params = { alwaysopen = false, collapsibleMenu = true }
 
-  [[menu.defined]]
-    identifier = 'community'
-    parent = 'resources'
-    name = 'Community'
-    pageRef = '/resources/community'
-    weight = 1
-    params = { alwaysopen = false, collapsibleMenu = true }
+[[menu.defined]]
+identifier = 'terraform-module-indexes'
+parent = 'module-indexes'
+name = 'Terraform'
+pageRef = '/indexes/terraform'
+weight = 2
+params = { alwaysopen = true, collapsibleMenu = true }
 
-    [[menu.defined]]
-    identifier = 'faq'
-    parent = 'resources'
-    name = 'FAQ'
-    pageRef = '/resources/faq'
-    weight = 2
-    params = { alwaysopen = false, collapsibleMenu = true }
+[[menu.defined]]
+identifier = 'terraform-resource-module-indexes'
+parent = 'terraform-module-indexes'
+name = 'Resource Modules'
+pageRef = '/indexes/terraform/tf-resource-modules'
+weight = 1
+params = { alwaysopen = false, collapsibleMenu = true }
 
-    [[menu.defined]]
-    identifier = 'glossary'
-    parent = 'resources'
-    name = 'Glossary'
-    pageRef = '/resources/glossary'
-    weight = 3
-    params = { alwaysopen = false, collapsibleMenu = true }
+[[menu.defined]]
+identifier = 'terraform-pattern-module-indexes'
+parent = 'terraform-module-indexes'
+name = 'Pattern Modules'
+pageRef = '/indexes/terraform/tf-pattern-modules'
+weight = 2
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'terraform-utility-module-indexes'
+parent = 'terraform-module-indexes'
+name = 'Utility Modules'
+pageRef = '/indexes/terraform/tf-utility-modules'
+weight = 3
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'usage'
+parent = 'home'
+name = 'Usage Guide'
+pageRef = '/usage'
+weight = 3
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'quickstart'
+parent = 'usage'
+name = 'Quickstart'
+pageRef = '/usage/quickstart'
+weight = 1
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'bicep-quickstart'
+parent = 'quickstart'
+name = 'Bicep'
+pageRef = '/usage/quickstart/bicep'
+weight = 1
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'terraform-quickstart'
+parent = 'quickstart'
+name = 'Terraform'
+pageRef = '/usage/quickstart/terraform'
+weight = 2
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'specs-defs'
+parent = 'home'
+name = 'Specifications & Definitions'
+pageRef = '/specs-defs'
+weight = 4
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'team-def-and-raci'
+parent = 'specs-defs'
+name = 'Team Definitions & RACI'
+pageRef = '/specs-defs/team-definitions'
+weight = 1
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'module-classifications'
+parent = 'specs-defs'
+name = 'Module Classifications'
+pageRef = '/specs-defs/module-classifications'
+weight = 2
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'module-lifecycle'
+parent = 'specs-defs'
+name = 'Module Lifecycle'
+pageRef = '/specs-defs/module-lifecycle'
+weight = 3
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'module-specs'
+parent = 'specs-defs'
+name = 'Module Specifications'
+pageRef = '/specs-defs/specs'
+weight = 4
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'bicep-specs'
+parent = 'module-specs'
+name = 'Bicep'
+pageRef = '/specs-defs/specs/bicep'
+weight = 1
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'bicep-resource-specs'
+parent = 'bicep-specs'
+name = 'Resource Modules'
+pageRef = '/specs-defs/specs/bicep/resource'
+weight = 1
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'bicep-pattern-specs'
+parent = 'bicep-specs'
+name = 'Pattern  Modules'
+pageRef = '/specs-defs/specs/bicep/pattern'
+weight = 2
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'bicep-utility-specs'
+parent = 'bicep-specs'
+name = 'Utility  Modules'
+pageRef = '/specs-defs/specs/bicep/utility'
+weight = 3
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'bicep-resource-interfaces'
+parent = 'bicep-specs'
+name = 'Interfaces'
+pageRef = '/specs-defs/specs/bicep/interfaces'
+weight = 4
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'terraform-specs'
+parent = 'module-specs'
+name = 'Terraform'
+pageRef = '/specs-defs/specs/terraform'
+weight = 2
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'terraform-resource-specs'
+parent = 'terraform-specs'
+name = 'Resource  Modules'
+pageRef = '/specs-defs/specs/terraform/resource'
+weight = 1
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'terraform-pattern-specs'
+parent = 'terraform-specs'
+name = 'Pattern  Modules'
+pageRef = '/specs-defs/specs/terraform/pattern'
+weight = 2
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'terraform-utility-specs'
+parent = 'terraform-specs'
+name = 'Utility  Modules'
+pageRef = '/specs-defs/specs/terraform/utility'
+weight = 3
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'terraform-resource-interfaces'
+parent = 'terraform-specs'
+name = 'Interfaces'
+pageRef = '/specs-defs/specs/terraform/interfaces'
+weight = 4
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'terraform-specs'
+parent = 'module-specs'
+name = 'Terraform'
+pageRef = '/specs-defs/specs/terraform'
+weight = 2
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'help-support'
+parent = 'home'
+name = 'Help & Support'
+pageRef = '/help-support'
+weight = 5
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'module-support'
+parent = 'help-support'
+name = 'Module Support'
+pageRef = '/help-support/module-support'
+weight = 1
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'known-issues'
+parent = 'help-support'
+name = 'Known Issues'
+pageRef = '/help-support/known-issues'
+weight = 2
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'issue-triage'
+parent = 'help-support'
+name = 'Issue Triage'
+pageRef = '/help-support/issue-triage'
+weight = 3
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'avm-repository'
+parent = 'issue-triage'
+name = 'AVM Repository'
+pageRef = '/help-support/issue-triage/avm-issue-triage'
+weight = 1
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'brm-repository'
+parent = 'issue-triage'
+name = 'BRM Repository'
+pageRef = '/help-support/issue-triage/brm-issue-triage'
+weight = 2
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'terraform-repositories'
+parent = 'issue-triage'
+name = 'Terraform Repositories'
+pageRef = '/help-support/issue-triage/terraform-issue-triage'
+weight = 3
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'issue-triage-automation'
+parent = 'issue-triage'
+name = 'Issue Triage Automation'
+pageRef = '/help-support/issue-triage/issue-triage-automation'
+weight = 4
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'telemetry'
+parent = 'help-support'
+name = 'Telemetry'
+pageRef = '/help-support/telemetry'
+weight = 4
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'github-links'
+parent = 'help-support'
+pre = '<i class="fa-fw fab fa-github"></i> '
+name = 'GitHub Links'
+pageRef = '/help-support/GH-links'
+weight = 5
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'propose-a-new-module'
+parent = 'github-links'
+pre = '<i class="fa-fw fab fa-github"></i> '
+name = 'Propose a New Module'
+url = 'https://aka.ms/AVM/ModuleProposal'
+weight = 1
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'question-or-feedback'
+parent = 'github-links'
+pre = '<i class="fa-fw fab fa-github"></i> '
+name = 'Question or Feedback'
+url = 'https://aka.ms/AVM/QuestionFeedback'
+weight = 2
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'module-triage-project'
+parent = 'github-links'
+pre = '<i class="fa-fw fab fa-github"></i> '
+name = 'Module Triage (Project)'
+url = 'https://aka.ms/AVM/ModuleTriage'
+weight = 3
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'module-issues-project'
+parent = 'github-links'
+pre = '<i class="fa-fw fab fa-github"></i> '
+name = 'Module Issues (Project)'
+url = 'https://aka.ms/AVM/ModuleIssues'
+weight = 4
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'issue-triage-project'
+parent = 'github-links'
+pre = '<i class="fa-fw fab fa-github"></i> '
+name = 'Issue Triage (Project)'
+url = 'https://aka.ms/AVM/IssueTriage'
+weight = 5
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'contributing'
+parent = 'home'
+name = 'Contributing'
+pageRef = '/contributing'
+weight = 6
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'process-overview'
+parent = 'contributing'
+name = 'Process Overview'
+pageRef = '/contributing/process'
+weight = 1
+params = { alwaysopen = false, collapsibleMenu = true }
+
+
+[[menu.defined]]
+identifier = 'bicep-module-contribution'
+parent = 'contributing'
+name = 'Bicep Modules'
+pageRef = '/contributing/bicep'
+weight = 2
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'bicep-contribution-prerequisites'
+parent = 'bicep-module-contribution'
+name = 'Prerequisites'
+pageRef = '/contributing/bicep/prerequisites'
+weight = 1
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'bicep-contribution-composition'
+parent = 'bicep-module-contribution'
+name = 'Composition'
+pageRef = '/contributing/bicep/composition'
+weight = 2
+params = { alwaysopen = false, collapsibleMenu = false }
+
+[[menu.defined]]
+identifier = 'bicep-contribution-flow'
+parent = 'bicep-module-contribution'
+name = 'Contribution Flow'
+pageRef = '/contributing/bicep/bicep-contribution-flow'
+weight = 3
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'bicep-owner-contribution-flow'
+parent = 'bicep-contribution-flow'
+name = 'Owner Contribution Flow'
+pageRef = '/contributing/bicep/bicep-contribution-flow/owner-contribution-flow'
+weight = 1
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'update-module-files'
+parent = 'bicep-contribution-flow'
+name = 'Update Module Files'
+pageRef = '/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files'
+weight = 2
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'validate-module-locally'
+parent = 'bicep-contribution-flow'
+name = 'Validate Module Locally'
+pageRef = '/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally'
+weight = 3
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'enable-disable-workflows'
+parent = 'bicep-contribution-flow'
+name = 'Enable or Disable Workflows'
+pageRef = '/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows'
+weight = 4
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'custom-ci-secrets'
+parent = 'bicep-contribution-flow'
+name = 'Custom CI Secrets'
+pageRef = '/contributing/bicep/bicep-contribution-flow/custom-ci-secrets'
+weight = 5
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'terraform-module-contribution'
+parent = 'contributing'
+name = 'Terraform Modules'
+pageRef = '/contributing/terraform'
+weight = 3
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'prerequisites'
+parent = 'terraform-module-contribution'
+name = 'Prerequisites'
+pageRef = '/contributing/terraform/prerequisites'
+weight = 1
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'composition'
+parent = 'terraform-module-contribution'
+name = 'Composition'
+pageRef = '/contributing/terraform/composition'
+weight = 2
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'testing'
+parent = 'terraform-module-contribution'
+name = 'Testing'
+pageRef = '/contributing/terraform/testing'
+weight = 2
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'terraform-contribution-flow'
+parent = 'terraform-module-contribution'
+name = 'Contribution Flow'
+pageRef = '/contributing/terraform/terraform-contribution-flow'
+weight = 3
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'terraform-owner-contribution-flow'
+parent = 'terraform-contribution-flow'
+name = 'Owner Contribution Flow'
+pageRef = '/contributing/terraform/terraform-contribution-flow/owner-contribution-flow'
+weight = 1
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'terraform-repository-creation-process'
+parent = 'terraform-contribution-flow'
+name = 'Repository Creation Process'
+pageRef = '/contributing/terraform/terraform-contribution-flow/repository-creation-process'
+weight = 1
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'review'
+parent = 'terraform-module-contribution'
+name = 'Review'
+pageRef = '/contributing/terraform/review'
+weight = 4
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'contirbution-qna'
+parent = 'contributing'
+name = 'Contribution Q&A'
+pageRef = '/contributing/q-and-a'
+weight = 4
+params = { alwaysopen = false, collapsibleMenu = true }
+
+
+[[menu.defined]]
+identifier = 'website-contribution'
+parent = 'contributing'
+name = 'Website'
+pageRef = '/contributing/website'
+weight = 5
+params = { alwaysopen = false, collapsibleMenu = true }
+
+
+[[menu.defined]]
+identifier = 'code-of-conduct'
+parent = 'contributing'
+pre = '<i class="fa-solid fa-globe"></i> '
+name = 'Code of Conduct'
+url = 'https://opensource.microsoft.com/codeofconduct/'
+weight = 6
+
+[[menu.defined]]
+identifier = 'resources'
+parent = 'home'
+name = 'Resources'
+pageRef = '/resources'
+weight = 7
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'community'
+parent = 'resources'
+name = 'Community'
+pageRef = '/resources/community'
+weight = 1
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'faq'
+parent = 'resources'
+name = 'FAQ'
+pageRef = '/resources/faq'
+weight = 2
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'glossary'
+parent = 'resources'
+name = 'Glossary'
+pageRef = '/resources/glossary'
+weight = 3
+params = { alwaysopen = false, collapsibleMenu = true }

@@ -43,3 +43,4 @@ Language: Bicep :muscle:,This is related to the Bicep IaC language,1D73B3
 Class: Resource Module :package:,This is a resource module,D3D3D3
 Class: Pattern Module :package:,This is a pattern module,A9A9A9
 Class: Utility Module :package:,This is a utility module,CAD1DE
+Class: Child Module :package:, This is a child module,5E5186

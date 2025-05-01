@@ -19,6 +19,8 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
   name: '>exampleResource<'
   properties: {
     ... // other properties
-    zones: !empty(availabilityZone) ? array(string(availabilityZone)) : null
+    zones: availabilityZone != -1 ? array(string(availabilityZone)) : null // If expecting an array
+    // Or
+    availabilityZone: availabilityZone != -1 ? string(availabilityZone) : null // If expecting a single value
   }
 }
