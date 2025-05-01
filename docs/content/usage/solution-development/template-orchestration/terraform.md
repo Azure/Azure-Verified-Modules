@@ -42,21 +42,25 @@ Based on this narrative we will create the following resources:
 
 ### Solution root module design
 
-Since our solution template (root module) is intended to be deployed multiple times, we want to develop in a way that provides flexibility while minimizing the amount of input necessary to deploy the solution. To this end, we will create our module with a small set of variables that allow for differentiation when deploying while also populating solution-specific defaults to minimize overall input. We will also separate our content into `variables.tf`, `outputs.tf`, `terraform.tf`, and `main.tf` files to simplify future maintenance. Based on this, our filesystem will take the following structure:
+Since our solution template (root module) is intended to be deployed multiple times, we want to develop in a way that provides flexibility while minimizing the amount of input necessary to deploy the solution. To this end, we will create our module with a small set of variables that allow for deployment differentiation while still populating solution-specific defaults to minimize input. We will also separate our content into `variables.tf`, `outputs.tf`, `terraform.tf`, and `main.tf` files to simplify future maintenance. Based on this, our filesystem will take the following structure:
 
 - Module Directory
   - `terraform.tf` - This file holds the provider definitions and versions
   - `variables.tf` - This file contains the input variable definitions and defaults
   - `outputs.tf`   - This file contains the outputs and their descriptions for use by any external modules calling this root module
   - `main.tf`      - This file contains the core module code for creating the solutions infrastructure
-  - `inputs.tfvars` - This file will contain the inputs for the instance of the module that is being deployed. Content in this file will vary from instance to instance.
+  - `development.tfvars` - This file will contain the inputs for the instance of the module that is being deployed. Content in this file will vary from instance to instance.
+
+{{% notice style="note" %}}
+Terraform will merge content from any file ending in a .tf extension in the module folder to create the full module content. Because of this, using different files is not required. We encourage file separation to allow for organizing code in a way that makes it easier to maintain. While the naming structure we've used is common, there are many other valid file naming and organization options that can be used.
+{{% /notice %}}
 
 In our example, we will use the following variables as inputs to allow for customization:
 
-- prefix - this will be used to preface all of the resource naming
-- virtual_network_prefixes - This will be used to ensure IP uniqueness for the deployment
+- name_prefix - this will be used to preface all of the resource naming
+- virtual_network_prefix - This will be used to ensure IP uniqueness for the deployment
 - tags - the custom tags to use for each deployment
-- cloud-init-script-content - the script to use for configuring the virtual machine ?
+- cloud-init-script-content - the script to use for configuring the virtual machine TODO: decide if we want this complexity in the example
 
 Finally, we will export the following outputs:
 
@@ -83,4 +87,53 @@ For our sample architecture we have the following AVM resource modules at our di
 - [Virtual Machine](https://registry.terraform.io/modules/Azure/avm-res-compute-virtualmachine/azurerm/latest)
 
 ## Develop the Solution Code
+
+We will now code the solution one element at a time to allow us to test our deployment as we build it out.
+
+### Creating the terraform.tf file
+
+Let's begin with configuring the provider details necessary to build our solution. Since this is a root module, we want to include any provider and terraform version constraints for this module. We'll periodically come back and add any needed additional providers if our design includes a resource from a new provider.
+
+Open up your development IDE (Visual studio code in our example) and create a file named `terraform.tf` in your root directory.
+
+Add the following code to your `terraform.tf` file:
+
+{{% expand title="➕ Expand Code" %}}
+{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step1-terraform.tf" lang="terraform" line_anchors="sol-step1" hl_lines="1-5" >}}
+{{% /expand %}}
+
+This specifies that the required terraform binary version to run your module can be any version between 1.9 and 2.0. This is a good compromise for allowing a range of binary versions while also ensuring that versions support any required features that are used as part of the module. This can include things like newly introduced functions or support for new key words.
+
+Since we are developing incrementally, we should validate our code. To do this we will execute the following steps:
+
+1. Open up a terminal window if it is not already open. In some IDE's this can be done as a function of the IDE.
+1. Change directory to the module directory by typing `cd` and then the path to the module. As an example, if the module directory was named `example` we would execute `cd example`.
+1. Run `terraform init` to initialize your provider file.
+
+You should now see a message indicating that `Terraform has been successfully initialized`. This indicates that our code is error free and we can continue on. If you get errors, examine the provider syntax for typos, missing quotes, or missing brackets.
+
+### Creating a variables.tf file
+
+Because our module is intended to be re-usable, we want to provide the capability to customize each module call with those items that will differ between them. This is done using variables to accept input into the module. We'll define those inputs in a separate file named `variables.tf`.
+
+Go back to the IDE, and create a file named `variables.tf` in the working directory.
+
+Add the following code to your `variables.tf` file to configure the inputs for our example:
+
+{{% expand title="➕ Expand Code" %}}
+{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step2-variables.tf" lang="terraform" line_anchors="sol-step2" hl_lines="1-16" >}}
+{{% /expand %}}
+
+{{% notice style="note" %}}
+Note that each variable definition includes a type definition to guide module users on how to properly define an input. Also note that it is possible to set a default value. This allows module consumers to avoid setting a value if they find the default to be acceptable.
+{{% /notice %}}
+
+We should now test the new content we've created for our module. To do this, first re-run `terraform init` on your command line.  Note that nothing has changed and the initialization completes successfully. Since we now have module content, we will attempt to run the plan as the next step of the workflow.
+
+Type `terraform plan` on your command line. Note that it now asks for us to provide a value for the `var.virtual_network_cidr` variable. This is because we don't provide a default value for that input so terraform must have a valid input before it can continue. Type `10.0.0.0/22` into the input and press `enter` to allow the plan to complete. You should now see a message indicating that `Your infrastructure matches the configuration` and that no changes are needed.
+
+### Creating a development.tfvars file
+
+
+
 
