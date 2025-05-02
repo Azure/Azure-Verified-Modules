@@ -8,7 +8,4 @@ module "avm-res-operationalinsights-workspace" {
   name                                      = "${var.name_prefix}-law"
   log_analytics_workspace_retention_in_days = 30
   log_analytics_workspace_sku               = "PerGB2018"
-  log_analytics_workspace_identity = {
-    type = "SystemAssigned"
-  }
 }

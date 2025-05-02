@@ -217,7 +217,7 @@ First, we need to get the subscription id itself. We will use the portal, but us
 
 Secondly, we need to update Terraform so that it can use the subscription id. For scenario we'll use environment variables to set the values so that we don't have to re-enter them on each run. Select a command based on your operating system from the list below.
 
-1. (Linux) - Run the following command with your subscription id. `export ARM_SUBSCRIPTION_ID=<your id here>`
+1. (Linux/MacOS) - Run the following command with your subscription id. `export ARM_SUBSCRIPTION_ID=<your id here>`
 1. (Windows) - Run the following command with your subscription id. `set ARM_SUBSCRIPTION_ID=<your id here>`
 
 Finally, we should now be able to complete our plan operation by re-running `terraform plan -var-file=development.tfvars`. Note that the plan will create three resources, two for telemetry and the resource group.
@@ -226,19 +226,71 @@ Finally, we should now be able to complete our plan operation by re-running `ter
 
 We can complete testing by implementing the resource group. Run `terraform apply -var-file=development.tfvars` and type `yes` and press `enter` when prompted to accept the changes. Terraform will run for a create the resource group and notify you when the `Apply complete` with a summary of the resources that were added, changed, and destroyed.
 
-#### Add the log analytics workspace
+#### Deploy the Log Analytics Workspace
 
 We can now continue by adding the Log Analytics Workspace to our `main.tf` file. We will follow a workflow similar to what we did with the resource group.
 
 1. Browse to the AVM [Log Analytics Workspace module page](https://registry.terraform.io/modules/Azure/avm-res-operationalinsights-workspace/azurerm/latest) in the Terraform Registry.
 1. Copy the module content from the `Provision Instructions` portion of the page into the main.tf file
 
-Instead of manually supplying module inputs, we will instead copy content from one of the examples to minimize the amount of typing required. Navigate to the `Examples` drop down menu in the documentation and select the `default` example from the menu. In the example you will see a fully functioning example with supporting resources. Since we only care about the workspace resource from this example we can scroll to the bottom of the code block and find the `module "log_analytics_workspace"` line. Then copy the content between the brackets excluding the source since we already copied that from the provision instructions. The log analytics module content should look like the following code block. For simplicity you can also copy this directly to avoid multiple copy/paste actions.
+Instead of manually supplying module inputs, we will instead copy content from one of the examples to minimize the amount of typing required.
+
+1. Navigate to the `Examples` drop down menu in the documentation and select the `default` example from the menu. In the example you will see a fully functioning example with supporting resources. Since we only care about the workspace resource from this example we can scroll to the bottom of the code block and find the `module "log_analytics_workspace"` line.
+1. Then copy the content between the module brackets with the exception of the line defining the module source since we already copied that from the provision instructions.
+1. Update the location and resource group name values to reference outputs from the resoure group module. Using implicit references such as these allow Terraform to infer the order in which resources should be built.
+1. Update the name field using the prefix variable to allow for customization using a similar pattern to what we used on the resource group.
+
+The log analytics module content should look like the following code block. For simplicity you can also copy this directly to avoid multiple copy/paste actions.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step5-terraform-features.tf" lang="terraform" line_anchors="sol-step5" hl_lines="7-9" >}}
+{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step6-main-law.tf" lang="terraform" line_anchors="sol-step6" hl_lines="5-10" >}}
+{{% /expand %}}
+
+Again we will need to run `terraform init` to allow Terraform to initialize a copy of the AVM log analytics module.
+
+Now we can deploy the log analytics workspace by running `terraform apply -var-file=development.tfvars`, typing `yes` and pressing `enter`. Note that Terraform will only deploy the new Log Analytics resources since the resource group already exists.  This is one of the key benefits of deploying using Terraform.
+
+{{% notice style="note" %}}
+Note that we ran the `terraform apply` command without first running `terraform plan`. Because terraform apply includes running the plan step we opted to shorten the instructions by skipping the plan step. If you are testing in a live environment you may want to run the plan step and save the plan for things like change control.
+{{% /notice %}}
+
+
+#### Deploy the Azure Key Vault
+
+Our solution calls for a simple key vault implementation to store virtual machine secrets.  We'll follow the same workflow for deploying the key vault as we used for the previous resource group and log analytics workspace resources. However, since Key Vaults require data roles to manage secrets and keys we will need to use the RBAC interface on the module in conjunction with a data resource to configure Role Based Access Control during the deployment.
+
+{{% notice style="note" %}}
+For this exercise we will provision the deployment user with data rights on the key vault. In your environment, you will likely want to either provide additional roles as inputs or statically assign users or groups to the key vault data roles.
+{{% /notice %}}
+
+Before we implement the AVM module for the key vault, we want to use a data resource to read the client details for the user context of the current terraform deployment.
+
+Add the following line to your main.tf file and save it.
+
+{{% expand title="➕ Expand Code" %}}
+{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step7-clientconfig.tf" lang="terraform" line_anchors="sol-step7" hl_lines="1-1" >}}
+{{% /expand %}}
+
+Key vaults use a global namespace which means that we will also need to add a randomization resource to allow us to randomize the name to avoid any potential name intersection issues with other key vault deployments. We will use Terraform's random provider to generate the random string we will append to the key vault name.  Add the following code to your main module to create the random_string resource we will use for naming.
+
+{{% expand title="➕ Expand Code" %}}
+{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step8-random-string.tf" lang="terraform" line_anchors="sol-step8" hl_lines="1-5" >}}
 {{% /expand %}}
 
 
+Now we can continue with adding the AVM key vault module to our solution.
 
+1. Browse to the AVM [Key Vault resource module page](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest) in the Terraform Registry.
+1. Copy the module content from the `Provision Instructions` portion of the page into the main.tf file.
+1. This time we're going to select relevant content from the `Create secret` example to fill out our module.
+1. Copy the `name`, `location`, `enable_telemetry`, `resource_group_name`, `tenant_id`, and `role_assignments` value content from the example and paste it into the new key vault module in your solution.
+1. Update the name value to be `"${var.prefix}-kv-${random_string.name_suffix.result}"`
+1. Update the `location` and `resource_group_name` values to the same implicit resource group module references we used in the log analytics workspace.
+1. Set the `enable_telemetry` value to true
+1. Leave the `tenant_id` and `role_assignments` values to the same values that are in the example.
 
+Your key vault module definition should now look like the following:
+
+{{% expand title="➕ Expand Code" %}}
+{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step9-key-vault-module.tf" lang="terraform" line_anchors="sol-step9" hl_lines="1-17" >}}
+{{% /expand %}}
