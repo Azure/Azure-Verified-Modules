@@ -31,6 +31,7 @@ Based on this narrative we will create the following resources:
 - A NAT Gateway for enabling outbound internet access
   - Associated to the virtual machine subnet
   - logging to the Log Analytics workspace
+- A Bastion service for secure remote access to the Virtual Machine
 - A virtual machine resource with
   - A single private IPv4 interface attached to the VM subnet
   - The Azure Monitor Agent configured to send logs to the Log Analytics workspace
@@ -85,6 +86,7 @@ For our sample architecture we have the following AVM resource modules at our di
 - [Key Vault](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest)
 - [Virtual Network](https://registry.terraform.io/modules/Azure/avm-res-network-virtualnetwork/azurerm/latest)
 - [NAT Gateway](https://registry.terraform.io/modules/Azure/avm-res-network-natgateway/azurerm/latest)
+- [Bastion](https://registry.terraform.io/modules/Azure/avm-res-network-bastionhost/azurerm/latest)
 - [Virtual Machine](https://registry.terraform.io/modules/Azure/avm-res-compute-virtualmachine/azurerm/latest)
 
 ## Develop the Solution Code
@@ -289,8 +291,96 @@ Now we can continue with adding the AVM key vault module to our solution.
 1. Set the `enable_telemetry` value to true
 1. Leave the `tenant_id` and `role_assignments` values to the same values that are in the example.
 
+TODO: check to see if we need to configure public/private network access for the KV to work for the rest of the deployment.
+
 Your key vault module definition should now look like the following:
 
 {{% expand title="➕ Expand Code" %}}
 {{< code file="\content\usage\includes\terraform\template-orchestration\steps\step9-key-vault-module.tf" lang="terraform" line_anchors="sol-step9" hl_lines="1-17" >}}
 {{% /expand %}}
+
+{{% notice style="note" %}}
+One of the core values of AVM is the standard configuration for interfaces across modules. The Role Assignments interface we used as part of the key vault deployment is a good example of this.
+{{% /notice %}}
+
+Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file=development.tfvars` sequence.
+
+#### Deploy the Nat Gateway
+Our architecture calls for a nat gateway to allow virtual machines to access the internet. We will use the Nat Gateway `resource_id` output in future modules to link the virtual machine subnet.
+
+1. Browse to the AVM [NAT Gateway resource module page](https://registry.terraform.io/modules/Azure/avm-res-network-natgateway/azurerm/latest) in the Terraform Registry.
+1. Copy the module definition and source from the `Provision Instructions` card from the module main page.
+1. Copy the remaining module content from the `default` example excluding the subnet associations map as we will do the association when we build the vnet.
+1. Update the `location` and `resource_group_name`using implicit references from our resource group module.
+1. Then update each of the name values to use the `name_prefix` variables.
+
+Review the following code to see each of these changes.
+
+{{% expand title="➕ Expand Code" %}}
+{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step10-natgw.tf" lang="terraform" line_anchors="sol-step10" hl_lines="1-20" >}}
+{{% /expand %}}
+
+#### Deploy the Virtual Network
+
+We can now continue the build-out of our architecture by configuring the virtual network deployment. This will follow a similar pattern as the previous resource modules, but this time we will also add some network functions to help us customize the subnet configurations.
+
+1. Browse to the AVM [Virtual Network resource module page](https://registry.terraform.io/modules/Azure/avm-res-network-virtualnetwork/azurerm/latest) in the Terraform Registry.
+1. Copy the module definition and source from the `Provision Instructions` card from the module main page.
+1. After looking through the examples, this time we'll use the `complete` example as a source to copy our content.
+1. Copy the `resource_group_name`, `location`, `name`, and `address_space` lines and replace their values with our deployment specific variables or module references.
+1. We'll copy the `subnets` map and duplicate the `subnet0` map for each subnet.
+1. We can then update the key, and name values
+1. Then we'll use the `cidrsubnet` function to dynamically generate the CIDR range for each subnet.
+1. We will also populate the `nat_gateway` object on `subnet0` with the `resource_id` output from our nat gateway module.
+1. Finally, we'll copy the diagnostic settings from the example and update the implicit references to point to our previously deployed log analytics workspace.
+
+After making these changes our virtual network module call code will be as follows:
+
+{{% expand title="➕ Expand Code" %}}
+{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step11-vnet.tf" lang="terraform" line_anchors="sol-step11" hl_lines="1-34" >}}
+{{% /expand %}}
+
+{{% notice style="note" %}}
+Note how the log analytics workspace reference ends in `resource_id`. Each AVM module is required to export it's Azure resource ID with the `resource_id` name to allow for consistent references.
+{{% /notice %}}
+
+
+#### Deploy the Bastion service
+
+We want to allow for secure remote access to the virtual machine for configuration and troubleshooting tasks. We'll use Azure Bastion to accomplish this objective following a similar workflow to our other resources.
+
+1. Browse to the AVM [Bastion resource module page](https://registry.terraform.io/modules/Azure/avm-res-network-bastionhost/azurerm/latest) in the Terraform Registry.
+1. Copy the module definition and source from the `Provision Instructions` card from the module main page.
+1. Copy the remaining module content from the `Simple Deployment` example.
+1. Update the `location` and `resource_group_name`using implicit references from our resource group module.
+1. Update the name value using the `name_prefix` variable interpolation as we did with the other modules.
+1. Finally, update the subnet_id value to include an implicit reference to the `bastion` keyed subnet from our virtual network module.
+
+The new code we added for the Bastion resource will be as follows:
+
+{{% expand title="➕ Expand Code" %}}
+{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step12-bastion.tf" lang="terraform" line_anchors="sol-step11" hl_lines="1-11" >}}
+{{% /expand %}}
+
+{{% notice style="note" %}}
+Pay attention to the subnet_id syntax. In the virtual network module, the subnets are created as a sub-module allowing us to reference each of them using the map key that was defined in the `subnets` input. Again we see the consistent output naming with the `resource_id` output for the sub-module.
+{{% /notice %}}
+
+#### Deploy the virtual machine
+
+The final step in our deployment will be our application virtual machine. We've had good success with our workflow so far, so we'll use it for this step as well.
+
+1. Browse to the AVM [Bastion resource module page](https://registry.terraform.io/modules/Azure/avm-res-compute-virtualmachine/azurerm/latest) in the Terraform Registry.
+1. Copy the module definition and source from the `Provision Instructions` card from the module main page.
+1. Copy the remaining module content from the `windows_minimal` example.
+1. Update the `location` and `resource_group_name`using implicit references from our resource group module.
+1. Update the zone input to 1.
+1. Update the sku_size input to "Standard_D2s_v5"
+1. Update the name values using the `name_prefix` variable interpolation as we did with the other modules and include the output from the random_string.name_suffix resoure to add uniqueness.
+1. Update the `private_ip_subnet_resource_id` value to an implicit reference to the subnet0 subnet output from the virtual network module.
+
+Because our minimal example doesn't include diagnostic settings, we need to add that content in a different way. Because the interfaces are standard we can copy the `diagnostic_settings` input from our virtual network module.
+
+1. Locate the virtual network module in your code and copy the `diagnostic_settings` map from it.
+1. Paste the `diagnostic_settings` content into your virtual machine module code.
+1. Update the `name` value to reflect that it applies to the virtual machine.
