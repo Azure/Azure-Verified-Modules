@@ -147,7 +147,7 @@
       <th>Module Name</th>
       <th>Display Name</th>
       <th>Status & Versions</th>
-      <th>Primary Owner</th>
+      <th>Owner(s)</th>
     </tr>
   </thead>
   {{ end }}
@@ -226,6 +226,42 @@
           {{ $item.PrimaryModuleOwnerDisplayName }}
         {{- end -}}
       {{- end -}}
+      <br>
+      {{- if ne $item.SecondaryModuleOwnerGHHandle "" -}}
+        <a href="https://github.com/{{ $item.SecondaryModuleOwnerGHHandle }}">
+          {{ $item.SecondaryModuleOwnerGHHandle }}
+        </a>
+        {{- if and (ne $item.SecondaryModuleOwnerGHHandle "") (ne $item.SecondaryModuleOwnerDisplayName "") -}}
+          <br>
+          {{ $item.SecondaryModuleOwnerDisplayName }}
+        {{- end -}}
+      {{- end -}}
+
+      {{- if and (ne $ParentModuleColumnId 0)  (ne $item.ParentModule "n/a") -}}
+        {{- $parentModule := index (where $modules "ModuleName" $item.ParentModule) 0 -}}
+        {{- if $parentModule -}}
+        (Inherited):
+          {{- if ne $parentModule.PrimaryModuleOwnerGHHandle "" -}}
+          <a href="https://github.com/{{ $parentModule.PrimaryModuleOwnerGHHandle }}">
+            {{ $parentModule.PrimaryModuleOwnerGHHandle }}
+          </a>
+          {{- if and (ne $parentModule.PrimaryModuleOwnerGHHandle "") (ne $parentModule.PrimaryModuleOwnerDisplayName "") -}}
+            <br>
+            {{ $parentModule.PrimaryModuleOwnerDisplayName }}
+          {{- end -}}
+          <br>
+          {{- if ne $parentModule.SecondaryModuleOwnerGHHandle "" -}}
+            <a href="https://github.com/{{ $parentModule.SecondaryModuleOwnerGHHandle }}">
+              {{ $parentModule.SecondaryModuleOwnerGHHandle }}
+            </a>
+            {{- if and (ne $parentModule.SecondaryModuleOwnerGHHandle "") (ne $parentModule.SecondaryModuleOwnerDisplayName "") -}}
+              <br>
+              {{ $parentModule.SecondaryModuleOwnerDisplayName }}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+        {{- end -}}
+      {{- end -}}
     </td>
   </tr>
   {{ end }}
@@ -251,7 +287,7 @@
       <th>Source<br>Code</th>
       <th>Display Name</th>
       <th>Status & Versions</th>
-      <th>Primary Owner</th>
+      <th>Owner(s)</th>
     </tr>
   </thead>
   {{- end -}}
@@ -348,6 +384,16 @@
           <br>
           {{ $item.PrimaryModuleOwnerDisplayName }}
           {{- end -}}
+      {{- end -}}
+      <br>
+      {{- if ne $item.SecondaryModuleOwnerGHHandle "" -}}
+        <a href="https://github.com/{{ $item.SecondaryModuleOwnerGHHandle }}">
+          {{ $item.SecondaryModuleOwnerGHHandle }}
+        </a>
+        {{- if and (ne $item.SecondaryModuleOwnerGHHandle "") (ne $item.SecondaryModuleOwnerDisplayName "") -}}
+          <br>
+          {{ $item.SecondaryModuleOwnerDisplayName }}
+        {{- end -}}
       {{- end -}}
     </td>
   </tr>
