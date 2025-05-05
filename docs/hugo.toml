@@ -196,44 +196,36 @@ enableGitInfo = true
       params = { alwaysopen = false, collapsibleMenu = true }
 
   [[menu.defined]]
-    identifier = 'concepts'
-    parent = 'usage'
-    name = 'Concepts'
-    pageRef = '/usage/concepts'
-    weight = 2
-    params = { alwaysopen = false, collapsibleMenu = true }
-
-  [[menu.defined]]
     identifier = 'solution-development'
     parent = 'usage'
     name = 'Solution Development'
     pageRef = '/usage/solution-development'
-    weight = 3
+    weight = 2
     params = { alwaysopen = false, collapsibleMenu = true }
 
     [[menu.defined]]
-      identifier = 'template-orchestration'
+      identifier = 'bicep-solution-development'
       parent = 'solution-development'
-      name = 'Template Orchestration'
-      pageRef = '/usage/solution-development/template-orchestration'
+      name = 'Bicep'
+      pageRef = '/usage/solution-development/bicep'
       weight = 1
-      params = { alwaysopen = true, collapsibleMenu = true }
+      params = { alwaysopen = false, collapsibleMenu = true }
 
-      [[menu.defined]]
-        identifier = 'bicep-template-orchestration'
-        parent = 'template-orchestration'
-        name = 'Bicep'
-        pageRef = '/usage/solution-development/template-orchestration/bicep'
-        weight = 1
-        params = { alwaysopen = false, collapsibleMenu = true }
+    [[menu.defined]]
+      identifier = 'terraform-solution-development'
+      parent = 'solution-development'
+      name = 'Terraform'
+      pageRef = '/usage/solution-development/terraform'
+      weight = 2
+      params = { alwaysopen = false, collapsibleMenu = true }
 
-      [[menu.defined]]
-        identifier = 'terraform-template-orchestration'
-        parent = 'template-orchestration'
-        name = 'Terraform'
-        pageRef = '/usage/solution-development/template-orchestration/terraform'
-        weight = 2
-        params = { alwaysopen = false, collapsibleMenu = true }
+  # [[menu.defined]]
+  #   identifier = 'concepts'
+  #   parent = 'usage'
+  #   name = 'Concepts'
+  #   pageRef = '/usage/concepts'
+  #   weight = 3
+  #   params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
   identifier = 'specs-defs'

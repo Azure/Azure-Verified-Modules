@@ -20,10 +20,7 @@ For additional Terraform resources, try a [tutorial](https://developer.hashicorp
 
 You will need the following items to complete the quickstart guide:
 
-- [Visual Studio Code (VS Code)](https://code.visualstudio.com/docs/setup/setup-overview) to develop your solution.
-- [Terraform CLI](https://developer.hashicorp.com/terraform/install) to deploy your Terraform modules. Make sure you have a recent version installed.
-- [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) to authenticate to Azure.
-- [Azure Subscription](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/fundamental-concepts) to deploy your resources.
+{{% include file="/content/usage/includes/terraform-prerequisites.md" %}}
 
 Before you begin, ensure you have these tools installed in your development environment.
 

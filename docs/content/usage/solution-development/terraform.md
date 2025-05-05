@@ -1,14 +1,22 @@
 ---
-title: Terraform - Template Orchestration
+title: Terraform - Solution Development
 linktitle: Terraform
 type: default
 weight: 2
-description: Terraform template orchestration for the Azure Verified Modules (AVM) solution development. It covers the technical decisions and concepts that are important for building and deploying Azure solutions using AVM modules.
+description: Terraform solution development for the Azure Verified Modules (AVM). It covers the technical decisions and concepts that are important for building and deploying Azure solutions using AVM modules.
 ---
 
 ## Introduction
 
 Now that Terraform has been chosen as the IaC language, let's walk through the Terraform specific considerations and recommended practices on developing your solution leveraging Azure Verified Modules. We'll review some of the design trade-offs and include sample code to illustrate each discussion point.
+
+## Prerequisites
+
+You will need the following items to complete this guide:
+
+{{% include file="/content/usage/includes/terraform-prerequisites.md" %}}
+
+Before you begin, ensure you have these tools installed in your development environment.
 
 ## Planning
 
@@ -62,7 +70,7 @@ In our example, we will use the following variables as inputs to allow for custo
 - name_prefix - this will be used to preface all of the resource naming
 - virtual_network_prefix - This will be used to ensure IP uniqueness for the deployment
 - tags - the custom tags to use for each deployment
-- cloud-init-script-content - the script to use for configuring the virtual machine TODO: decide if we want this complexity in the example
+- cloud-init-script-content - the script to use for configuring the virtual machine **TODO: decide if we want this complexity in the example**
 
 Finally, we will export the following outputs:
 
@@ -102,7 +110,7 @@ Open up your development IDE (Visual studio code in our example) and create a fi
 Add the following code to your `terraform.tf` file:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step1-terraform.tf" lang="terraform" line_anchors="sol-step1" hl_lines="1-5" >}}
+{{< code file="\content\usage\includes\terraform\steps\step1-terraform.tf" lang="terraform" line_anchors="sol-step1" hl_lines="1-5" >}}
 {{% /expand %}}
 
 This specifies that the required terraform binary version to run your module can be any version between 1.9 and 2.0. This is a good compromise for allowing a range of binary versions while also ensuring that versions support any required features that are used as part of the module. This can include things like newly introduced functions or support for new key words.
@@ -124,7 +132,7 @@ Go back to the IDE, and create a file named `variables.tf` in the working direct
 Add the following code to your `variables.tf` file to configure the inputs for our example:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step2-variables.tf" lang="terraform" line_anchors="sol-step2" hl_lines="1-22" >}}
+{{< code file="\content\usage\includes\terraform\steps\step2-variables.tf" lang="terraform" line_anchors="sol-step2" hl_lines="1-22" >}}
 {{% /expand %}}
 
 {{% notice style="note" %}}
@@ -144,7 +152,7 @@ In your IDE, create a new file named `development.tfvars` in your working direct
 Now add the following content to your `development.tfvars` file.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step3-development.tf" lang="terraform" line_anchors="sol-step3" hl_lines="1-7" >}}
+{{< code file="\content\usage\includes\terraform\steps\step3-development.tf" lang="terraform" line_anchors="sol-step3" hl_lines="1-7" >}}
 {{% /expand %}}
 
 {{% notice style="note" %}}
@@ -161,7 +169,7 @@ Return to your IDE and create a new file named `main.tf`
 
 #### Add a resource group
 
-In Azure, we need a resource group to hold any infrastructure resources we create.  This is a simple resource that typically wouldn't require an AVM module, but we'll include the AVM module so we can take advantage of the tags interface to standardize creation of our solutions tags. TODO: review this comment to see if we want to highlight the resource group and/or tags interface as they are both quite basic.
+In Azure, we need a resource group to hold any infrastructure resources we create.  This is a simple resource that typically wouldn't require an AVM module, but we'll include the AVM module so we can take advantage of the tags interface to standardize creation of our solutions tags. **TODO: review this comment to see if we want to highlight the resource group and/or tags interface as they are both quite basic.**
 
 First, let's visit the terraform registry [documentation page for the resource group](https://registry.terraform.io/modules/Azure/avm-res-resources-resourcegroup/azurerm/latest) and explore several key sections.
 
@@ -174,13 +182,13 @@ Now that we've explored the registry content, let's add a resource group to our 
 First, copy the content from the `Provision Instructions` box into our main.tf file.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step4-main.tf" lang="terraform" line_anchors="sol-step4" hl_lines="1-3" >}}
+{{< code file="\content\usage\includes\terraform\steps\step4-main.tf" lang="terraform" line_anchors="sol-step4" hl_lines="1-3" >}}
 {{% /expand %}}
 
 Now, replace the `# insert the 2 required variables here` comment with the following code to define the module inputs. Our full module code should look like the following:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step4-main.tf" lang="terraform" line_anchors="sol-step4" hl_lines="5-7" >}}
+{{< code file="\content\usage\includes\terraform\steps\step4-main.tf" lang="terraform" line_anchors="sol-step4" hl_lines="5-7" >}}
 {{% /expand %}}
 
 {{% notice style="note" %}}
@@ -198,7 +206,7 @@ Notice that we get an error indicating that we are `Missing required argument` a
 Return to the `terraform.tf` file and add the following content to it. Note how the features block is currently empty. If we needed to activate any feature flags in our module we could add them here.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step5-terraform-features.tf" lang="terraform" line_anchors="sol-step5" hl_lines="7-9" >}}
+{{< code file="\content\usage\includes\terraform\steps\step5-terraform-features.tf" lang="terraform" line_anchors="sol-step5" hl_lines="7-9" >}}
 {{% /expand %}}
 
 Re-run `terraform plan -var-file=development.tfvars` now that we have updated the features block.
@@ -245,7 +253,7 @@ Instead of manually supplying module inputs, we will instead copy content from o
 The log analytics module content should look like the following code block. For simplicity you can also copy this directly to avoid multiple copy/paste actions.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step6-main-law.tf" lang="terraform" line_anchors="sol-step6" hl_lines="5-10" >}}
+{{< code file="\content\usage\includes\terraform\steps\step6-main-law.tf" lang="terraform" line_anchors="sol-step6" hl_lines="5-10" >}}
 {{% /expand %}}
 
 Again we will need to run `terraform init` to allow Terraform to initialize a copy of the AVM log analytics module.
@@ -270,13 +278,13 @@ Before we implement the AVM module for the key vault, we want to use a data reso
 Add the following line to your main.tf file and save it.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step7-clientconfig.tf" lang="terraform" line_anchors="sol-step7" hl_lines="1-1" >}}
+{{< code file="\content\usage\includes\terraform\steps\step7-clientconfig.tf" lang="terraform" line_anchors="sol-step7" hl_lines="1-1" >}}
 {{% /expand %}}
 
 Key vaults use a global namespace which means that we will also need to add a randomization resource to allow us to randomize the name to avoid any potential name intersection issues with other key vault deployments. We will use Terraform's random provider to generate the random string we will append to the key vault name.  Add the following code to your main module to create the random_string resource we will use for naming.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step8-random-string.tf" lang="terraform" line_anchors="sol-step8" hl_lines="1-5" >}}
+{{< code file="\content\usage\includes\terraform\steps\step8-random-string.tf" lang="terraform" line_anchors="sol-step8" hl_lines="1-5" >}}
 {{% /expand %}}
 
 
@@ -291,12 +299,12 @@ Now we can continue with adding the AVM key vault module to our solution.
 1. Set the `enable_telemetry` value to true
 1. Leave the `tenant_id` and `role_assignments` values to the same values that are in the example.
 
-TODO: check to see if we need to configure public/private network access for the KV to work for the rest of the deployment.
+**TODO: check to see if we need to configure public/private network access for the KV to work for the rest of the deployment.**
 
 Your key vault module definition should now look like the following:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step9-key-vault-module.tf" lang="terraform" line_anchors="sol-step9" hl_lines="1-17" >}}
+{{< code file="\content\usage\includes\terraform\steps\step9-key-vault-module.tf" lang="terraform" line_anchors="sol-step9" hl_lines="1-17" >}}
 {{% /expand %}}
 
 {{% notice style="note" %}}
@@ -317,7 +325,7 @@ Our architecture calls for a nat gateway to allow virtual machines to access the
 Review the following code to see each of these changes.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step10-natgw.tf" lang="terraform" line_anchors="sol-step10" hl_lines="1-20" >}}
+{{< code file="\content\usage\includes\terraform\steps\step10-natgw.tf" lang="terraform" line_anchors="sol-step10" hl_lines="1-20" >}}
 {{% /expand %}}
 
 #### Deploy the Virtual Network
@@ -337,7 +345,7 @@ We can now continue the build-out of our architecture by configuring the virtual
 After making these changes our virtual network module call code will be as follows:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step11-vnet.tf" lang="terraform" line_anchors="sol-step11" hl_lines="1-34" >}}
+{{< code file="\content\usage\includes\terraform\steps\step11-vnet.tf" lang="terraform" line_anchors="sol-step11" hl_lines="1-34" >}}
 {{% /expand %}}
 
 {{% notice style="note" %}}
@@ -359,7 +367,7 @@ We want to allow for secure remote access to the virtual machine for configurati
 The new code we added for the Bastion resource will be as follows:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\terraform\template-orchestration\steps\step12-bastion.tf" lang="terraform" line_anchors="sol-step11" hl_lines="1-11" >}}
+{{< code file="\content\usage\includes\terraform\steps\step12-bastion.tf" lang="terraform" line_anchors="sol-step11" hl_lines="1-11" >}}
 {{% /expand %}}
 
 {{% notice style="note" %}}
@@ -384,3 +392,11 @@ Because our minimal example doesn't include diagnostic settings, we need to add 
 1. Locate the virtual network module in your code and copy the `diagnostic_settings` map from it.
 1. Paste the `diagnostic_settings` content into your virtual machine module code.
 1. Update the `name` value to reflect that it applies to the virtual machine.
+
+## Conclusion
+
+**TODO: add a summary that explains what we just built here, and include a link to the final code.**
+
+## Clean up your environment
+
+**TODO: add a clean up section to remove the resources created by this solution . This can be done using `terraform destroy -var-file=development.tfvars` and typing `yes` when prompted.**

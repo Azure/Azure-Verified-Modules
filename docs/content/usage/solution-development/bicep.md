@@ -1,9 +1,9 @@
 ---
-title: Bicep - Template Orchestration
+title: Bicep - Solution Development
 linktitle: Bicep
 type: default
 weight: 1
-description: Bicep template orchestration for the Azure Verified Modules (AVM) solution development. It covers the technical decisions and concepts that are important for building and deploying Azure solutions using AVM modules.
+description: Bicep solution development for the Azure Verified Modules (AVM). It covers the technical decisions and concepts that are important for building and deploying Azure solutions using AVM modules.
 ---
 
 ## Introduction
@@ -29,7 +29,11 @@ Let's get started!
 
 ## Prerequisites
 
-**TODO: insert prerequisites here or link to another page? Also include how to authenticate into az cli so we don't have to repeat that during the tutorials**
+You will need the following tools and components to complete this guide:
+
+{{% include file="/content/usage/includes/bicep-prerequisites.md" %}}
+
+Make sure you have these tools set up before proceeding.
 
 ## Solution Architecture
 
@@ -70,7 +74,50 @@ The logging solution depicted in our Architecture Diagram shows we will be using
 {{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step1.bicep" lang="bicep" line_anchors="vm-step1" >}}
 {{% /expand %}}
 
+{{% notice style="note" %}}
+Always click on the "Copy to clipboard" button in the top right corner of the Code sample area in order not to have the line numbers included in the copied code.
+{{% /notice %}}
+
 You now have a fully-functional Bicep template that will deploy a working Log Analytics workspace! If you would like to try it, run the following in your console:
+
+**TODO: make sure the commands are updated to crete the RG and deploy the solution defined in this example**
+
+{{% tabs title="Deploy with" groupid="scriptlanguage" %}}
+  {{% tab title="PowerShell" %}}
+
+  ```powershell
+  # Log in to Azure
+  Connect-AzAccount
+
+  # Select your subscription
+  Set-AzContext -SubscriptionId '<subscriptionId>'
+
+  # Deploy a resource group
+  New-AzResourceGroup -Name 'avm-quickstart-rg' -Location 'germanywestcentral'
+
+  # Invoke your deployment
+  New-AzResourceGroupDeployment -DeploymentName 'avm-quickstart-deployment' -ResourceGroupName 'avm-quickstart-rg' -TemplateParameterFile 'dev.bicepparam' -TemplateFile 'main.bicep'
+  ```
+
+  {{% /tab %}}
+  {{% tab title="AZ CLI" %}}
+
+  ```bash
+  # Log in to Azure
+  az login
+
+  # Select your subscription
+  az account set --subscription '<subscriptionId>'
+
+  # Deploy a resource group
+  az group create --name 'avm-quickstart-rg' --location 'germanywestcentral'
+
+  # Invoke your deployment
+  az deployment group create --name 'avm-quickstart' --resource-group 'avm-quickstart-rg' --template-file 'main.bicep' --parameters 'dev.bicepparam'
+  ```
+
+  {{% /tab %}}
+{{% /tabs %}}
 
 `az deployment group create --resource-group <resource-group-name> --template-file main.bicep`
 
@@ -101,7 +148,7 @@ Notice how the `diagnosticsSettings` parameter needs a `workspaceResourceId`? Al
 {{% notice style="info" %}}
 All AVM modules have built-in outputs which can be referenced using the `<moduleName>.outputs.<outputName>` syntax.
 
-When using plain Bicep, many of these outputs would require multiple lines of code or knowledge of the correct object ID references to make in order to get at the desired output. AVM modules do much of this heavy-lifting for you by taking care of these complex tasks within the module itself, then exposing it to you through the module's outputs. **<TODO: insert documentation on how to find module outputs here>**
+When using plain Bicep, many of these outputs would require multiple lines of code or knowledge of the correct object ID references to make in order to get at the desired output. AVM modules do much of this heavy-lifting for you by taking care of these complex tasks within the module itself, then exposing it to you through the module's outputs. Find out more about [Bicep Outputs](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/outputs?tabs=azure-powershell).
 {{% /notice %}}
 
 We can't do much with a Virtual Network without subnets, so let's add a couple of subnets next. According to our Architecture, we will have two subnets: one for the Virtual Machine and one for the Bastion.
@@ -131,6 +178,10 @@ Let's change our CIDR block to a variable, add a `prefix` variable, and switch `
 We now have a good basis of infrastructure to be utilized by the rest of the resources in our Architecture. We will come back to our networking in a future step once we are ready to create some Network Security Groups. For now, let's move on to other modules.
 
 ### Key Vault
+
+**TODO: add an information box that says Key Vault will be used to store an auth cert in the future**
+
+**TODO: test full deployment**
 
 Key Vaults are one of the *key* components in most Azure architectures as they create a place where you can save and reference secrets in a secure manner ("secrets" in the general sense, as opposed to the `secret` object type in Key Vaults). The Key Vault AVM module makes it very simple to store secrets generated in your template. In this tutorial, we will use one of the most secure methods of storing and retrieving secrets by leveraging this Key Vault in our Bicep template.
 
@@ -277,3 +328,42 @@ AVM modules provide several key advantages over writing raw Bicep templates:
 As you continue your journey with Azure and AVM, remember that this approach can be applied to more complex architectures as well. The modular nature of AVM allows you to mix and match components to build solutions that meet your specific needs while adhering to Microsoft's Well-Architected Framework.
 
 By using AVM modules as building blocks, you can focus more on your solution architecture and less on the intricacies of individual resource configurations, ultimately leading to faster development cycles and more reliable deployments.
+
+**TODO: add a link to the final code with a note saying this is what you're supposed to have by the end of this guide, etc.**
+
+## Clean up your environment
+
+**TODO: make sure the commands are updated to delete the solution deployed in this example**
+
+When you are ready, you can remove the infrastructure deployed in this example. The following commands will remove all resources created by your deployment:
+
+{{% tabs title="Clean up with" groupid="scriptlanguage" %}}
+  {{% tab title="PowerShell" %}}
+
+  ```powershell
+  # Delete the resource group
+  Remove-AzResourceGroup -Name "avm-quickstart-rg" -Force
+
+  # Purge the Key Vault
+  Remove-AzKeyVault -VaultName "<keyVaultName>" -Location "germanywestcentral" -InRemovedState -Force
+  ```
+
+  {{% /tab %}}
+  {{% tab title="AZ CLI"%}}
+
+  ```bash
+  # Delete the resource group
+  az group delete --name 'avm-quickstart-rg' --yes --no-wait
+
+  # Purge the Key Vault
+  az keyvault purge --name '<keyVaultName>' --no-wait
+  ```
+
+  {{% /tab %}}
+{{% /tabs %}}
+
+Congratulations, you have successfully leveraged an AVM Bicep module to deploy resources in Azure!
+
+{{% notice style="tip" %}}
+We welcome your contributions and feedback to help us improve the AVM modules and the overall experience for the community!
+{{% /notice %}}
