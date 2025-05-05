@@ -1,3 +1,5 @@
+You will need the following tools and components to complete this guide:
+
 - [Visual Studio Code (VS Code)](https://code.visualstudio.com/download) to develop your solution.
 - [Bicep Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) to author your Bicep template and explore modules published in the [Registry](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules#public-module-registry).
 - One of the following command line tools:

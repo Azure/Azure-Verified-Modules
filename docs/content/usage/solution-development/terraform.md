@@ -12,8 +12,6 @@ Now that Terraform has been chosen as the IaC language, let's walk through the T
 
 ## Prerequisites
 
-You will need the following items to complete this guide:
-
 {{% include file="/content/usage/includes/terraform-prerequisites.md" %}}
 
 Before you begin, ensure you have these tools installed in your development environment.

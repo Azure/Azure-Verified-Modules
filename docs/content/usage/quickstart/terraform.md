@@ -18,8 +18,6 @@ For additional Terraform resources, try a [tutorial](https://developer.hashicorp
 
 ## Prerequisites
 
-You will need the following items to complete the quickstart guide:
-
 {{% include file="/content/usage/includes/terraform-prerequisites.md" %}}
 
 Before you begin, ensure you have these tools installed in your development environment.

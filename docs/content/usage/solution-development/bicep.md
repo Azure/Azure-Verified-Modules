@@ -29,8 +29,6 @@ Let's get started!
 
 ## Prerequisites
 
-You will need the following tools and components to complete this guide:
-
 {{% include file="/content/usage/includes/bicep-prerequisites.md" %}}
 
 Make sure you have these tools set up before proceeding.

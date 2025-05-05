@@ -18,8 +18,6 @@ For additional Bicep learning resources use the [Bicep documentation](https://le
 
 ## Prerequisites
 
-You will need the following tools and components to complete this quickstart guide:
-
 {{% include file="/content/usage/includes/bicep-prerequisites.md" %}}
 
 Make sure you have these tools set up before proceeding.
