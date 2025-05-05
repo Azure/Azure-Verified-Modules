@@ -31,6 +31,17 @@ All of this will be automated via the use of the Resource Management feature of 
 
 Modules that have to have the AVM core team or Product Groups step in due to the module owners/contributors not responding, the AVM module will become "orphaned"; see [Module Lifecycle]({{% siteparam base %}}/specs/shared/module-lifecycle/) for more info.
 
+{{% notice style="info" %}}
+
+If a module is orphaned, the AVM team will try to find a new owner by:
+
+1. Listing [orphaned modules](https://aka.ms/AVM/OrphanedModules) in a saved GitHub issue query on the [AVM module index](https://aka.ms/AVM/ModuleIndex) pages for potential new owners to pick up.
+2. In more urgent or high priority cases, selectively identifying a new module owner from the pool of existing AVM module owners/contributors to take over the module.
+
+**To raise attention to an orphaned module and allow the AVM team to better prioritize actions, customers can leave a comment on the "orphaned module" issue, explaining their use case and why they would like to see the module supported.** This will help the AVM team to prioritize the module for a new owner.
+
+{{% /notice %}}
+
 {{% notice style="important" %}}
 
 Issues that are likely related to an AVM module should be directly submitted on the module's GitHub repository as an "*AVM - Module Issue*". To identify the correct code repository, see the AVM [module indexes]({{% siteparam base %}}/indexes).
