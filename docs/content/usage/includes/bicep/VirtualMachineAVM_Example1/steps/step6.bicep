@@ -25,11 +25,6 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
     location: location
     diagnosticSettings: [
       {
-        metricCategories: [
-          {
-            category: 'AllMetrics'
-          }
-        ]
         name: 'vNetDiagnostics'
         workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
@@ -56,21 +51,8 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.12.1' = {
     location: location
     diagnosticSettings: [
       {
-        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
-        logCategoriesAndGroups: [
-          {
-            category: 'AzurePolicyEvaluationDetails'
-          }
-          {
-            category: 'AuditEvent'
-          }
-        ]
-        metricCategories: [
-          {
-            category: 'AllMetrics'
-          }
-        ]
         name: 'keyVaultDiagnostics'
+        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
   }

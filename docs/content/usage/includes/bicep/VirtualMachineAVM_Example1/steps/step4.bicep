@@ -20,11 +20,6 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
     location: 'westus2'
     diagnosticSettings: [
       {
-        metricCategories: [
-          {
-            category: 'AllMetrics'
-          }
-        ]
         name: 'vNetDiagnostics'
         workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }

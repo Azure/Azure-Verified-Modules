@@ -29,6 +29,7 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
     location: location
     diagnosticSettings: [
       {
+        name: 'vNetDiagnostics'
         workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
@@ -232,6 +233,7 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.12.1' = {
     location: location
     diagnosticSettings: [
       {
+        name: 'keyVaultDiagnostics'
         workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
@@ -296,6 +298,7 @@ module storageAccount 'br/public:avm/res/storage/storage-account:0.19.0' = {
     skuName: 'Standard_LRS'
     diagnosticSettings: [
       {
+        name: 'storageAccountDiagnostics'
         workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
@@ -341,6 +344,7 @@ module bastion 'br/public:avm/res/network/bastion-host:0.6.1' = {
     location: location
     diagnosticSettings: [
       {
+        name: 'bastionDiagnostics'
         workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
