@@ -90,7 +90,7 @@ module virtualMachine 'br/public:avm/res/compute/virtual-machine:0.13.1' = {
             pipConfiguration: {
               name: 'pip-01'
             }
-            subnetResourceId: virtualNetwork.outputs.subnetResourceIds[1].id // VMSubnet
+            subnetResourceId: virtualNetwork.outputs.subnetResourceIds[1] // VMSubnet
           }
         ]
         nicSuffix: '-nic-01'

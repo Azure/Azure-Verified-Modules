@@ -136,7 +136,7 @@ Again, notice how the Virtual Network AVM module requires only two things: a `na
 Let's update our `main.bicep` file to have our VNet send all of its logging data to our Log Analytics workspace:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step3.bicep" lang="bicep" line_anchors="vm-step3" hl_lines="21-31" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step3.bicep" lang="bicep" line_anchors="vm-step3" hl_lines="21-26" >}}
 {{% /expand %}}
 
 Notice how the `diagnosticsSettings` parameter needs a `workspaceResourceId`? All you need to do is add a reference to the built-in `logAnalyticsWorkspaceId` output of the logAnalyticsWorkspace AVM module. That's it! Our VNet now has integrated its logging with our Log Analytics workspace. All AVM modules come with a set of built-in `outputs` that can be easily referenced by other modules within your template.
@@ -152,7 +152,7 @@ We can't do much with a Virtual Network without subnets, so let's add a couple o
 Add the following to your `main.bicep`:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step4.bicep" lang="bicep" line_anchors="vm-step-4" hl_lines="32-41" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step4.bicep" lang="bicep" line_anchors="vm-step-4" hl_lines="27-36" >}}
 {{% /expand %}}
 
 As you can see, we have added a `subnets` property to our virtualNetwork module. The AVM `network/virtual-network` module supports the creation of subnets directly within the module itself.
@@ -168,7 +168,7 @@ Use Bicep **variables** to define values that will be constant and reused with y
 Let's change our CIDR block to a variable, add a `prefix` variable, and switch `location` to a parameter with a default value, then reference those in our modules:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step5.bicep" lang="bicep" line_anchors="vm-step5" hl_lines="1 3 4 10 12 23 25 40 44" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step5.bicep" lang="bicep" line_anchors="vm-step5" hl_lines="1 3 4 10 12 23 25 35 39" >}}
 {{% /expand %}}
 
 We now have a good basis of infrastructure to be utilized by the rest of the resources in our Architecture. We will come back to our networking in a future step once we are ready to create some Network Security Groups. For now, let's move on to other modules.
@@ -180,7 +180,7 @@ Key Vaults are one of the *key* components in most Azure architectures as they c
 The first step is easy: add the Key Vault AVM module to our `main.bicep` file. In addition, let's also ensure it's hooked into our Log Analytics workspace (we will do this for every new module from here on out).
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step6.bicep" lang="bicep" line_anchors="vm-step6" hl_lines="50-77" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step6.bicep" lang="bicep" line_anchors="vm-step6" hl_lines="45-58" >}}
 {{% /expand %}}
 
 You may notice the name of the Key Vault we will deploy uses the `uniqueString()` Bicep function. Key Vault names must be globally unique. We will therefore deviate from our standard naming convention thus far and make an exception for the Key Vault. Note how we are still adding a suffix to the Key Vault name so its name remains recognizable; you can use a combination of concatenating unique strings, prefixes, or suffixes to follow your own naming standard preferences.
@@ -199,10 +199,36 @@ In the future, we will update this guide to show how to generate and store a cer
 
 ### Virtual Machine
 
+{{% notice style="warning" %}}
+The AVM Virtual Machine module enables the `EncryptionAtHost` feature by default. You must enable this feature within your Azure subscription successfully deploy this example code. To do so, run the following:
+
+{{% tabs title="Deploy with" groupid="scriptlanguage" %}}
+  {{% tab title="PowerShell" %}}
+
+  ```powershell
+  # Wait a few minutes after running the command to allow it to propagate
+  Register-AzProviderFeature -FeatureName "EncryptionAtHost" -ProviderNamespace "Microsoft.Compute"
+  ```
+
+  {{% /tab %}}
+  {{% tab title="AZ CLI" %}}
+
+  ```bash
+  az feature register --namespace Microsoft.Compute --name EncryptionAtHost
+
+  # Propagate the change
+  az provider register --namespace Microsoft.Compute
+  ```
+
+  {{% /tab %}}
+{{% /tabs %}}
+
+{{% /notice %}}
+
 For our Virtual Machine (VM) deployment, we need to add the following to our `main.bicep` file:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" lang="bicep" line_anchors="vm-step7" hl_lines="4-6 83-88 93-135" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" lang="bicep" line_anchors="vm-step7" hl_lines="4-6 65-70 75-116" >}}
 {{% /expand %}}
 
 The VM module is one of the more complex modules in AVM---behind the scenes, it takes care of a *lot* of heavy lifting that, without AVM, would require multiple Bicep resources to be deployed and referenced.
@@ -218,7 +244,11 @@ Since this is the real highlight of our `main.bicep` file, we need to take a clo
 
   First, we added a new parameter. The value of this will be provided when the `main.bicep` template is deployed. We don't want any passwords stored as text in code; for our purposes, the safest way to do this is to prompt the end user for the password at the time of deployment.
 
-  Also note how we are using the `@secure()` decorator on this parameter. This will ensure the value of the password is never displayed in any of the deployment logs or in Azure. We have also added the `@description()` decorator and started the description with "Required". It's a good habit and recommended practice to document your parameters in Bicep. This will ensure that VS Code's built-in Bicep linter can provide end-users insightful information when deploying your Bicep templates.
+  {{% notice style="warning" %}}
+The supplied password must be between 6-72 characters long and must satisfy at least 3 of password complexity requirements from the following: Contains an uppercase character; Contains a lowercase character; Contains a numeric digit; Contains a special character. Control characters are not allowed
+  {{% /notice %}}
+
+  Also note how we are using the `@secure()` decorator on the password parameter. This will ensure the value of the password is never displayed in any of the deployment logs or in Azure. We have also added the `@description()` decorator and started the description with "Required." It's a good habit and recommended practice to document your parameters in Bicep. This will ensure that VS Code's built-in Bicep linter can provide end-users insightful information when deploying your Bicep templates.
 
   {{% notice style="info" %}}
 Always use the `@secure()` decorator when creating a parameter that will hold sensitive data!
@@ -243,7 +273,7 @@ Always use the `@secure()` decorator when creating a parameter that will hold se
 The last major component we need to add is a Storage Account. Because this Storage Account will be used as a backend storage to hold blobs for the hypothetical application that runs on our VM, we'll also create a blob container within it using the same AVM Storage Account module.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step8.bicep" lang="bicep" hl_lines="132-154" line_anchors="vm-storageaccount" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step8.bicep" lang="bicep" hl_lines="115-137" line_anchors="vm-storageaccount" >}}
 {{% /expand %}}
 
 We now have all the major components of our Architecture diagram built!
