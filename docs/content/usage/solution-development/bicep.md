@@ -175,8 +175,6 @@ We now have a good basis of infrastructure to be utilized by the rest of the res
 
 ### Key Vault
 
-**TODO: test full deployment**
-
 Key Vaults are one of the *key* components in most Azure architectures as they create a place where you can save and reference secrets in a secure manner ("secrets" in the general sense, as opposed to the `secret` object type in Key Vaults). The Key Vault AVM module makes it very simple to store secrets generated in your template. In this tutorial, we will use one of the most secure methods of storing and retrieving secrets by leveraging this Key Vault in our Bicep template.
 
 The first step is easy: add the Key Vault AVM module to our `main.bicep` file. In addition, let's also ensure it's hooked into our Log Analytics workspace (we will do this for every new module from here on out).
