@@ -317,7 +317,7 @@ In this tutorial, we've explored how to leverage Azure Verified Modules (AVM) to
 Your final, deployable Bicep template file should now look like this:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step12.bicep" lang="bicep" "line_anchors="vm-final" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step12.bicep" lang="bicep" line_anchors="vm-final" >}}
 {{% /expand %}}
 
 AVM modules provide several key advantages over writing raw Bicep templates:
