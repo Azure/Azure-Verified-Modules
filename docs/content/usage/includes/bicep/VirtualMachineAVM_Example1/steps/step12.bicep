@@ -317,7 +317,7 @@ module storageAccount 'br/public:avm/res/storage/storage-account:0.19.0' = {
     blobServices: {
       containers: [
         {
-          name: 'vmStorage'
+          name: 'vmstorage'
           publicAccess: 'None'
         }
       ]
