@@ -41,7 +41,7 @@ Make sure you have these tools set up before proceeding.
 
 **Technical Requirements**: The VM must not be accessible from the internet and its logs should be easily accessible. All azure services should utilize logging tools for auditing purposes.
 
-**<TODO: this is a placeholder for the architecture diagram >**
+<img src="{{% siteparam base %}}/images/usage/solution-development/avm-virtualmachine-example1.png" alt="Azure VM Solution Architecture" style="max-width:800px;" />
 
 ## Creating Our main.bicep File
 
@@ -78,8 +78,6 @@ Always click on the "Copy to clipboard" button in the top right corner of the Co
 
 You now have a fully-functional Bicep template that will deploy a working Log Analytics workspace! If you would like to try it, run the following in your console:
 
-**TODO: make sure the commands are updated to crete the RG and deploy the solution defined in this example**
-
 {{% tabs title="Deploy with" groupid="scriptlanguage" %}}
   {{% tab title="PowerShell" %}}
 
@@ -91,10 +89,10 @@ You now have a fully-functional Bicep template that will deploy a working Log An
   Set-AzContext -SubscriptionId '<subscriptionId>'
 
   # Deploy a resource group
-  New-AzResourceGroup -Name 'avm-quickstart-rg' -Location 'germanywestcentral'
+  New-AzResourceGroup -Name 'avm-bicep-vmexample1' -Location '<location>'
 
   # Invoke your deployment
-  New-AzResourceGroupDeployment -DeploymentName 'avm-quickstart-deployment' -ResourceGroupName 'avm-quickstart-rg' -TemplateParameterFile 'dev.bicepparam' -TemplateFile 'main.bicep'
+  New-AzResourceGroupDeployment -DeploymentName 'avm-bicep-vmexample1-deployment' -ResourceGroupName 'avm-bicep-vmexample1' -TemplateFile '/<path-to>/VirtualMachineAVM_Example1/main.bicep'
   ```
 
   {{% /tab %}}
@@ -108,18 +106,18 @@ You now have a fully-functional Bicep template that will deploy a working Log An
   az account set --subscription '<subscriptionId>'
 
   # Deploy a resource group
-  az group create --name 'avm-quickstart-rg' --location 'germanywestcentral'
+  az group create --name 'avm-bicep-vmexample1' --location '<location>'
 
   # Invoke your deployment
-  az deployment group create --name 'avm-quickstart' --resource-group 'avm-quickstart-rg' --template-file 'main.bicep' --parameters 'dev.bicepparam'
+  az deployment group create --name 'avm-bicep-vmexample1-deployment' --resource-group 'avm-bicep-vmexample1' --template-file '/<path-to>/VirtualMachineAVM_Example1/main.bicep'
   ```
 
   {{% /tab %}}
 {{% /tabs %}}
 
-`az deployment group create --resource-group <resource-group-name> --template-file main.bicep`
+The above commands will log you in to your Azure subscription, select a subscription to use, create a resource group, then deploy the `main.bicep` template to your resource group.
 
-AVM Makes the deployment of Azure resources incredibly easy. Many of the parameters you would normally be required to define are taken care of for you by the AVM module itself. In fact, notice how the `location` parameter is not even needed---when left blank, by default, all AVM modules will deploy to the location in which your target Resource Group exists.
+AVM Makes the deployment of Azure resources incredibly easy. Many of the parameters you would normally be required to define are taken care of for you by the AVM module itself. In fact, notice how the `location` parameter is not even needed in your template---when left blank, by default, all AVM modules will deploy to the location in which your target Resource Group exists.
 
 Now we have a Log Analytics workspace in our resource group which doesn't do a whole lot of good on its own. Let's take our template a step further by adding a Virtual Network that integrates with the Log Analytics workspace.
 
@@ -177,10 +175,6 @@ We now have a good basis of infrastructure to be utilized by the rest of the res
 
 ### Key Vault
 
-**TODO: add an information box that says Key Vault will be used to store an auth cert in the future**
-
-**TODO: test full deployment**
-
 Key Vaults are one of the *key* components in most Azure architectures as they create a place where you can save and reference secrets in a secure manner ("secrets" in the general sense, as opposed to the `secret` object type in Key Vaults). The Key Vault AVM module makes it very simple to store secrets generated in your template. In this tutorial, we will use one of the most secure methods of storing and retrieving secrets by leveraging this Key Vault in our Bicep template.
 
 The first step is easy: add the Key Vault AVM module to our `main.bicep` file. In addition, let's also ensure it's hooked into our Log Analytics workspace (we will do this for every new module from here on out).
@@ -198,6 +192,10 @@ Bicep has many built-in functions available. We used two here: `uniqueString()` 
 {{% /notice %}}
 
 We will use this Key Vault later on, when we create a VM and need to store its password. Now that we have it, a Virtual Network, and Log Analytics prepared, we should have everything we need to deploy a Virtual Machine!
+
+{{% notice style="info" %}}
+In the future, we will update this guide to show how to generate and store a certificate in the Key Vault, then use that certificate to authenticate into the Virtual Machine.
+{{% /notice %}}
 
 ### Virtual Machine
 
@@ -305,16 +303,22 @@ We will accomplish this by enabling a System-assigned Managed Identity on the Vi
 {{% /expand %}}
 
 {{% notice style="info" %}}
-The Azure Subscription owner will have CRUD permissions for the Storage Account but not for the Key Vault. The Key Vault requires explicit RBAC permissions assigned to a user to grant them access: [Provide access to Key Vaults using RBAC](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide?tabs=azure-portal). **!Important!**: at this point you will only be able to access the Storage Account from the Bastion Host. Remember, we disabled public internet access!
+The Azure Subscription owner will have CRUD permissions for the Storage Account but not for the Key Vault. The Key Vault requires explicit RBAC permissions assigned to a user to grant them access: [Provide access to Key Vaults using RBAC](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide?tabs=azure-portal). **Important!**: at this point you will only be able to access the Storage Account from the Bastion Host. Remember, we disabled public internet access!
 {{% /notice %}}
 
 We have successfully applied RBAC policies by using a System-assigned Managed Identity on our Virtual Machine. We then assigned that Managed Identity permissions on the Key Vault and Storage Account. Our VM can now read secrets from the Key Vault and Read, Create, or Delete blobs in our Storage Account.
 
-Remember that in a real production environment, you would not only use RBAC to limit access to each service, but you would also apply the principle of Least Privileged Access, meaning you would only provide the exact permissions each service needs to carry out its functions. **<TODO: Link to WAF stuff on LP access?>**
+Remember that in a real production environment, you would not only use RBAC to limit access to each service, but you would also apply the principle of Least Privileged Access, meaning you would only provide the exact permissions each service needs to carry out its functions. Learn more about Microsoft's [recommendations for identity and access management](https://learn.microsoft.com/en-us/azure/well-architected/security/identity-access).
 
 ## Conclusion
 
 In this tutorial, we've explored how to leverage Azure Verified Modules (AVM) to build a secure, well-architected solution in Azure. AVM modules significantly simplify the deployment of Azure resources by abstracting away much of the complexity involved in configuring individual resources.
+
+Your final, deployable Bicep template file should now look like this:
+
+{{% expand title="➕ Expand Code" %}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step12.bicep" lang="bicep" line_anchors="vm-final" >}}
+{{% /expand %}}
 
 AVM modules provide several key advantages over writing raw Bicep templates:
 
@@ -327,23 +331,19 @@ As you continue your journey with Azure and AVM, remember that this approach can
 
 By using AVM modules as building blocks, you can focus more on your solution architecture and less on the intricacies of individual resource configurations, ultimately leading to faster development cycles and more reliable deployments.
 
-**TODO: add a link to the final code with a note saying this is what you're supposed to have by the end of this guide, etc.**
-
 ## Clean up your environment
 
-**TODO: make sure the commands are updated to delete the solution deployed in this example**
-
-When you are ready, you can remove the infrastructure deployed in this example. The following commands will remove all resources created by your deployment:
+When you are ready, you can remove the infrastructure deployed in this example. Key Vaults are set to a soft-delete state so you will also need to **purge** the one we created in order to fully delete it. The following commands will remove all resources created by your deployment:
 
 {{% tabs title="Clean up with" groupid="scriptlanguage" %}}
   {{% tab title="PowerShell" %}}
 
   ```powershell
   # Delete the resource group
-  Remove-AzResourceGroup -Name "avm-quickstart-rg" -Force
+  Remove-AzResourceGroup -Name "avm-bicep-vmexample1" -Force
 
   # Purge the Key Vault
-  Remove-AzKeyVault -VaultName "<keyVaultName>" -Location "germanywestcentral" -InRemovedState -Force
+  Remove-AzKeyVault -VaultName "<keyVaultName>" -Location "<location>" -InRemovedState -Force
   ```
 
   {{% /tab %}}
@@ -351,7 +351,7 @@ When you are ready, you can remove the infrastructure deployed in this example. 
 
   ```bash
   # Delete the resource group
-  az group delete --name 'avm-quickstart-rg' --yes --no-wait
+  az group delete --name 'avm-bicep-vmexample1' --yes --no-wait
 
   # Purge the Key Vault
   az keyvault purge --name '<keyVaultName>' --no-wait
