@@ -26,12 +26,8 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
     ]
     subnets: [
       {
-        name: 'AzureBastionSubnet'
-        addressPrefix: cidrSubnet('10.0.0.0/16', 24, 0) // first subnet in address space
-      }
-      {
         name: 'VMSubnet'
-        addressPrefix: cidrSubnet('10.0.0.0/16', 24, 1) // second subnet in address space
+        addressPrefix: cidrSubnet('10.0.0.0/16', 24, 0) // first subnet in address space
       }
     ]
   }

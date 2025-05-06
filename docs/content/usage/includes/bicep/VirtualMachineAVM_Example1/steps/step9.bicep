@@ -35,137 +35,9 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
     ]
     subnets: [
       {
-        name: 'AzureBastionSubnet'
-        addressPrefix: cidrSubnet(addressPrefix, 24, 0) // first subnet in address space
-        networkSecurityGroupResourceId: nsgBastion.outputs.resourceId
-      }
-      {
         name: 'VMSubnet'
-        addressPrefix: cidrSubnet(addressPrefix, 24, 1) // second subnet in address space
+        addressPrefix: cidrSubnet(addressPrefix, 24, 0) // first subnet in address space
         networkSecurityGroupResourceId: nsgVM.outputs.resourceId
-      }
-    ]
-  }
-}
-
-module nsgBastion 'br/public:avm/res/network/network-security-group:0.5.1' = {
-  name: 'nsgBastionDeployment'
-  params: {
-    name: '${prefix}-nsg-bastion'
-    location: location
-    securityRules: [
-      {
-        name: 'AllowHttpsInbound'
-        properties: {
-          priority: 120
-          protocol: 'Tcp'
-          access: 'Allow'
-          direction: 'Inbound'
-          sourceAddressPrefix: 'Internet'
-          sourcePortRange: '*'
-          destinationAddressPrefix: '*'
-          destinationPortRange: '443'
-        }
-      }
-      {
-        name: 'AllowGatewayManagerInbound'
-        properties: {
-          priority: 130
-          protocol: 'Tcp'
-          access: 'Allow'
-          direction: 'Inbound'
-          sourceAddressPrefix: 'GatewayManager'
-          sourcePortRange: '*'
-          destinationAddressPrefix: '*'
-          destinationPortRange: '443'
-        }
-      }
-      {
-        name: 'AllowAzureLoadBalancerInbound'
-        properties: {
-          priority: 140
-          protocol: 'Tcp'
-          access: 'Allow'
-          direction: 'Inbound'
-          sourceAddressPrefix: 'AzureLoadBalancer'
-          sourcePortRange: '*'
-          destinationAddressPrefix: '*'
-          destinationPortRange: '443'
-        }
-      }
-      {
-        name: 'AllowBastionHostCommunication'
-        properties: {
-          priority: 150
-          protocol: '*'
-          access: 'Allow'
-          direction: 'Inbound'
-          sourceAddressPrefix: 'VirtualNetwork'
-          sourcePortRange: '*'
-          destinationAddressPrefix: 'VirtualNetwork'
-          destinationPortRanges: [
-            '8080'
-            '5701'
-          ]
-        }
-      }
-      {
-        name: 'AllowSshOutbound'
-        properties: {
-          priority: 100
-          protocol: '*'
-          access: 'Allow'
-          direction: 'Outbound'
-          sourceAddressPrefix: '*'
-          sourcePortRange: '*'
-          destinationAddressPrefix: 'VirtualNetwork'
-          destinationPortRanges: [
-            '22'
-            '3389'
-          ]
-        }
-      }
-      {
-        name: 'AllowAzureCloudOutbound'
-        properties: {
-          priority: 110
-          protocol: 'Tcp'
-          access: 'Allow'
-          direction: 'Outbound'
-          sourceAddressPrefix: '*'
-          sourcePortRange: '*'
-          destinationAddressPrefix: 'AzureCloud'
-          destinationPortRange: '443'
-        }
-      }
-      {
-        name: 'AllowBastionCommunication'
-        properties: {
-          priority: 120
-          protocol: '*'
-          access: 'Allow'
-          direction: 'Outbound'
-          sourceAddressPrefix: 'VirtualNetwork'
-          sourcePortRange: '*'
-          destinationAddressPrefix: 'VirtualNetwork'
-          destinationPortRanges: [
-            '8080'
-            '5701'
-          ]
-        }
-      }
-      {
-        name: 'AllowHttpOutbound'
-        properties: {
-          priority: 130
-          protocol: '*'
-          access: 'Allow'
-          direction: 'Outbound'
-          sourceAddressPrefix: '*'
-          sourcePortRange: '*'
-          destinationAddressPrefix: 'Internet'
-          destinationPortRange: '80'
-        }
       }
     ]
   }
@@ -178,45 +50,16 @@ module nsgVM 'br/public:avm/res/network/network-security-group:0.5.1' = {
     location: location
     securityRules: [
       {
-        name: 'DenySSHInternet' // We are using Azure Bastion so we don't need to allow SSH from the Internet
-        properties: {
-          access: 'Deny'
-          direction: 'Inbound'
-          priority: 100
-          protocol: 'Tcp'
-          sourceAddressPrefix: 'Internet'
-          sourcePortRange: '*'
-          destinationAddressPrefix: '*'
-          destinationPortRange: '22'
-        }
-      }
-      {
         name: 'AllowBastionSSH'
         properties: {
           access: 'Allow'
           direction: 'Inbound'
-          priority: 110
+          priority: 100
           protocol: 'Tcp'
           sourceAddressPrefix: 'virtualNetwork'
           sourcePortRange: '*'
           destinationAddressPrefix: '*'
           destinationPortRange: '22'
-        }
-      }
-      {
-        name: 'AllowHTTPS' // Our hypothetical VM application will run on a webserver so let's allow HTTP/S
-        properties: {
-          access: 'Allow'
-          direction: 'Inbound'
-          priority: 120
-          protocol: 'Tcp'
-          sourceAddressPrefix: '*'
-          sourcePortRange: '*'
-          destinationAddressPrefix: 'virtualNetwork'
-          destinationPortRanges: [
-            '80'
-            '443'
-          ]
         }
       }
     ]
