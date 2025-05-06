@@ -199,7 +199,7 @@ module nsgVM 'br/public:avm/res/network/network-security-group:0.5.1' = {
         properties: {
           access: 'Allow'
           direction: 'Inbound'
-          priority: 100
+          priority: 110
           protocol: 'Tcp'
           sourceAddressPrefix: 'virtualNetwork'
           sourcePortRange: '*'
@@ -217,7 +217,10 @@ module nsgVM 'br/public:avm/res/network/network-security-group:0.5.1' = {
           sourceAddressPrefix: '*'
           sourcePortRange: '*'
           destinationAddressPrefix: 'virtualNetwork'
-          destinationPortRanges: ['80,443']
+          destinationPortRanges: [
+            '80'
+            '443'
+          ]
         }
       }
     ]

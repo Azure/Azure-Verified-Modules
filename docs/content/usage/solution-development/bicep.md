@@ -285,7 +285,7 @@ The last steps we need to take to meet our Business and Technical requirements i
 We'll add Network Security Groups (NSGs) to both of our subnets. These act as layer 3 and layer 4 firewalls to our networking resources. At the same time, we will add appropriate Inbound and Outbound rules so they only allow necessary traffic.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step9.bicep" lang="bicep" hl_lines="56-226 45 50" line_anchors="vm-nsg" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step9.bicep" lang="bicep" hl_lines="51-221 40 45" line_anchors="vm-nsg" >}}
 {{% /expand %}}
 
 The NSG Rules set for the Bastion Subnet are default, [required rules](https://learn.microsoft.com/en-us/azure/bastion/bastion-nsg#apply) that allow the Azure Bastion service to function.
