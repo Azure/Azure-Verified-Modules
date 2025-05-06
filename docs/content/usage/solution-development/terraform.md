@@ -18,9 +18,11 @@ Before you begin, ensure you have these tools installed in your development envi
 
 ## Planning
 
+Good module development should start with a good plan. Let's first review the architecture and module design prior to developing our solution.
+
 ### Architecture
 
-Before we begin coding, it is important to have details for what the infrastructure architecture will include. For our example, we will be building a solution that will host a simple application on a linux virtual machine (VM). This VM will require appropriate tagging to comply with our corporate standards and must send its log and metric data to a Log Analytics workspace so that the application and infrastructure support teams can properly manage the environment. It will also require outbound internet access to allow the application to properly function. A Key Vault will be included to store any secret and key artifacts and we will include a Bastion instance to allow support personnel to access the virtual machine if needed. Finally, the VM is intended to run without interaction so we will auto-generate an ssh private key and store it in the Key Vault for the rare event of someone needing to log in to it.
+Before we begin coding, it is important to have details for what the infrastructure architecture will include. For our example, we will be building a solution that will host a simple application on a linux virtual machine (VM). The resource group for our solution will require appropriate tagging to comply with our corporate standards and resources that support Diagnostic Settings must send metric data to a Log Analytics workspace so that the infrastructure support teams can get metric telemetry. The virtual machine will require outbound internet access to allow the application to properly function. A Key Vault will be included to store any secret and key artifacts and we will include a Bastion instance to allow support personnel to access the virtual machine if needed. Finally, the VM is intended to run without interaction so we will auto-generate an ssh private key and store it in the Key Vault for the rare event of someone needing to log in to it.
 
 Based on this narrative we will create the following resources:
 
@@ -40,10 +42,7 @@ Based on this narrative we will create the following resources:
 - A Bastion service for secure remote access to the Virtual Machine
 - A virtual machine resource with
   - A single private IPv4 interface attached to the VM subnet
-  - The Azure Monitor Agent configured to send logs to the Log Analytics workspace
-  - A cloud init script to configure the virtual machine
   - A randomly generated admin account private key stored in the Key Vault
-- Application insights?
 
 **TODO: Attach a visualization of this configuration**
 
@@ -378,14 +377,15 @@ The final step in our deployment will be our application virtual machine. We've 
 
 1. Browse to the AVM [Bastion resource module page](https://registry.terraform.io/modules/Azure/avm-res-compute-virtualmachine/azurerm/latest) in the Terraform Registry.
 1. Copy the module definition and source from the `Provision Instructions` card from the module main page.
-1. Copy the remaining module content from the `windows_minimal` example.
+1. Copy the remaining module content from the `linux_default` example.
 1. Update the `location` and `resource_group_name`using implicit references from our resource group module.
 1. Update the zone input to 1.
 1. Update the sku_size input to "Standard_D2s_v5"
 1. Update the name values using the `name_prefix` variable interpolation as we did with the other modules and include the output from the random_string.name_suffix resoure to add uniqueness.
+1. Set the `account_credentials.key_vault_configuration.resource_id` value to reference the `resource_id` output from the key vault module.
 1. Update the `private_ip_subnet_resource_id` value to an implicit reference to the subnet0 subnet output from the virtual network module.
 
-Because our minimal example doesn't include diagnostic settings, we need to add that content in a different way. Because the interfaces are standard we can copy the `diagnostic_settings` input from our virtual network module.
+Because the default linux example doesn't include diagnostic settings, we need to add that content in a different way. Because the interfaces are standard we can copy the `diagnostic_settings` input from our virtual network module.
 
 1. Locate the virtual network module in your code and copy the `diagnostic_settings` map from it.
 1. Paste the `diagnostic_settings` content into your virtual machine module code.
