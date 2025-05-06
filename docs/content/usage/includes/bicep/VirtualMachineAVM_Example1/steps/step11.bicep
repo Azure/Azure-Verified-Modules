@@ -240,6 +240,7 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.12.1' = {
         workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
+    enablePurgeProtection: false // disable purge protection for this example so we can more easily delete it
     secrets: [
       {
         name: 'vmAdminPassword'
@@ -318,7 +319,7 @@ module storageAccount 'br/public:avm/res/storage/storage-account:0.19.0' = {
     privateEndpoints:[
       {
         service: 'Blob'
-        subnetResourceId: virtualNetwork.outputs.subnetResourceIds[2].id // Private Endpoint Subnet
+        subnetResourceId: virtualNetwork.outputs.subnetResourceIds[2] // Private Endpoint Subnet
       }
     ]
   }

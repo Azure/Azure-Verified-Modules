@@ -285,7 +285,7 @@ The last steps we need to take to meet our Business and Technical requirements i
 We'll add Network Security Groups (NSGs) to both of our subnets. These act as layer 3 and layer 4 firewalls to our networking resources. At the same time, we will add appropriate Inbound and Outbound rules so they only allow necessary traffic.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step9.bicep" lang="bicep" hl_lines="51-221 40 45" line_anchors="vm-nsg" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step9.bicep" lang="bicep" hl_lines="51-224 40 45" line_anchors="vm-nsg" >}}
 {{% /expand %}}
 
 The NSG Rules set for the Bastion Subnet are default, [required rules](https://learn.microsoft.com/en-us/azure/bastion/bastion-nsg#apply) that allow the Azure Bastion service to function.
@@ -297,7 +297,7 @@ For our VM Subnet, we are blocking all internet-based SSH traffic and only allow
 Because our Storage Account is a backend resource that only our Virtual Machine should have access to, we will secure it as much as possible. We'll do this by adding a Private Endpoint to it and disable public internet access. AVM makes creating and assigning Private Endpoints to resources incredibly easy. Take a look:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step10.bicep" lang="bicep" hl_lines="52-55 322-323 332-337 341-353" line_anchors="vm-pes" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step10.bicep" lang="bicep" hl_lines="47-50 318-323 327-339" line_anchors="vm-pes" >}}
 {{% /expand %}}
 
 First, we added a new Subnet to our `virtualNetwork` module to hold our Private Endpoints. It is a recommended practice to have a dedicated subnet to hold all of your Private Endpoints.
@@ -313,7 +313,7 @@ The last thing we have done is add a Private DNS zone and linked it to our VNet.
 In order to securely access our Virtual Machine without exposing its SSH port to the public internet is to create an Azure Bastion host.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step11.bicep" lang="bicep" hl_lines="335-348" line_anchors="vm-bastion" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step11.bicep" lang="bicep" hl_lines="341-355" line_anchors="vm-bastion" >}}
 {{% /expand %}}
 
 All we have done is add the `bastion-host` AVM module to our template and ensured that it is associated with our Virtual Network.
