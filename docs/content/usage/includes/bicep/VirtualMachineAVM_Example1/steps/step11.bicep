@@ -29,7 +29,7 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
     location: location
     diagnosticSettings: [
       {
-        workspaceResourceId: logAnalyticsWorkspace.outputs.logAnalyticsWorkspaceId
+        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
     subnets: [
@@ -232,7 +232,7 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.12.1' = {
     location: location
     diagnosticSettings: [
       {
-        workspaceResourceId: logAnalyticsWorkspace.outputs.logAnalyticsWorkspaceId
+        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
     secrets: [
@@ -296,7 +296,7 @@ module storageAccount 'br/public:avm/res/storage/storage-account:0.19.0' = {
     skuName: 'Standard_LRS'
     diagnosticSettings: [
       {
-        workspaceResourceId: logAnalyticsWorkspace.outputs.logAnalyticsWorkspaceId
+        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
     publicNetworkAccess: 'Disabled'
@@ -341,7 +341,7 @@ module bastion 'br/public:avm/res/network/bastion-host:0.6.1' = {
     location: location
     diagnosticSettings: [
       {
-        workspaceResourceId: logAnalyticsWorkspace.outputs.logAnalyticsWorkspaceId
+        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
   }

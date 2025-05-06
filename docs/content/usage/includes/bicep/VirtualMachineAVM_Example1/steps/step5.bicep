@@ -31,7 +31,7 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
           }
         ]
         name: 'vNetDiagnostics'
-        workspaceResourceId: logAnalyticsWorkspace.outputs.logAnalyticsWorkspaceId
+        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
     subnets: [
