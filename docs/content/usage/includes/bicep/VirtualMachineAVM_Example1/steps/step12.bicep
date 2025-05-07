@@ -237,8 +237,8 @@ module privateDnsBlob 'br/public:avm/res/network/private-dns-zone:0.7.1' = {
   }
 }
 
-// Note: Deploying a Bastion Host will automatically use the subnet named "AzureBastionSubnet" within our
-// VNet. This subnet is required and must be named exactly "AzureBastionSubnet" for the Bastion Host to work.
+// Note: Deploying a Bastion Host will automatically create a Public IP and use the subnet named "AzureBastionSubnet"
+// within our VNet. This subnet is required and must be named exactly "AzureBastionSubnet" for the Bastion Host to work.
 module bastion 'br/public:avm/res/network/bastion-host:0.6.1' = {
   name: 'bastionDeployment'
   params: {
