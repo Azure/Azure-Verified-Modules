@@ -47,16 +47,16 @@ Make sure you have these tools set up before proceeding.
 
 Our architecture diagram shows everything we need to add to our template to be successful in our solution deployment. But instead of attempting to build a solution template that covers everything at once, we will build out our Bicep file piece-by-piece and test our deployment as we progress. This will provide us the opportunity to discuss each step and decision we make as we proceed.
 
-We are going to tackle the development of our Bicep template beginning with the larger pieces that are core to the functionality of our platform. These are the **backend logging services** (Log Analytics) and the **virtual network**.
+We will begin the development of our Bicep template by creating the larger pieces that are core to the functionality of our platform. These are the **backend logging services** (Log Analytics) and the **virtual network**.
 
-Let's begin by creating our folder structure along with a `main.bicep` file. Your folder structure should be as follows:
+Let's start by creating our folder structure along with a `main.bicep` file. Your folder structure should be as follows:
 
 ```text
 VirtualMachineAVM_Example1/
 └── main.bicep
 ```
 
-After you have your folder structure and `main.bicep` file, we can proceed with adding our first AVM resources!
+Once the folder structure and main.bicep file are in place, the first AVM resources can be added!
 
 ### Log Analytics
 
