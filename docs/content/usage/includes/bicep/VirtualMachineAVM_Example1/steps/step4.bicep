@@ -8,6 +8,15 @@ module logAnalyticsWorkspace 'br/public:avm/res/operational-insights/workspace:0
   }
 }
 
+module natGateway 'br/public:avm/res/network/nat-gateway:1.2.2' = {
+  name: 'natGatewayDeployment'
+  params: {
+    // Required parameters
+    name: 'VM-AVM-Ex1-natGw'
+    zone: 1
+  }
+}
+
 module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
   name: 'virtualNetworkDeployment'
   params: {
@@ -28,6 +37,7 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
       {
         name: 'VMSubnet'
         addressPrefix: cidrSubnet('10.0.0.0/16', 24, 0) // first subnet in address space
+        natGatewayResourceId: natGateway.outputs.resourceId
       }
     ]
   }

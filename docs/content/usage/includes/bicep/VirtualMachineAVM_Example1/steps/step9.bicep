@@ -11,9 +11,18 @@ module logAnalyticsWorkspace 'br/public:avm/res/operational-insights/workspace:0
   name: 'logAnalyticsWorkspace'
   params: {
     // Required parameters
-    name: '${prefix}-LAW'
+    name: '${prefix}-law'
     // Non-required parameters
     location: location
+  }
+}
+
+module natGateway 'br/public:avm/res/network/nat-gateway:1.2.2' = {
+  name: 'natGatewayDeployment'
+  params: {
+    // Required parameters
+    name: '${prefix}-natgw'
+    zone: 1
   }
 }
 
@@ -37,6 +46,7 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
       {
         name: 'VMSubnet'
         addressPrefix: cidrSubnet(addressPrefix, 24, 0) // first subnet in address space
+        natGatewayResourceId: natGateway.outputs.resourceId
         networkSecurityGroupResourceId: nsgVM.outputs.resourceId
       }
     ]

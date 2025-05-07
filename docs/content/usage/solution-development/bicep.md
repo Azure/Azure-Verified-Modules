@@ -123,7 +123,7 @@ Now we have a Log Analytics workspace in our resource group which doesn't do a w
 
 ### Virtual Network
 
-We will now add a Virtual Network to our `main.bicep` file. This VNet will contain subnets and network security groups (NSGs) for any of the resources we deploy that require IP addresses.
+We will now add a Virtual Network to our `main.bicep` file. This VNet will contain subnets and network security groups (NSGs) for any of the resources we deploy that require IP addresses. We will also add a NAT Gateway which will allow our VM the ability to access public internet.
 
 In your `main.bicep` file, add the following:
 
@@ -147,7 +147,7 @@ All AVM modules have built-in outputs which can be referenced using the `<module
 When using plain Bicep, many of these outputs would require multiple lines of code or knowledge of the correct object ID references to make in order to get at the desired output. AVM modules do much of this heavy-lifting for you by taking care of these complex tasks within the module itself, then exposing it to you through the module's outputs. Find out more about [Bicep Outputs](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/outputs?tabs=azure-powershell).
 {{% /notice %}}
 
-We can't do much with a Virtual Network without subnets, so let's add a couple of subnets next. According to our Architecture, we will have two subnets: one for the Virtual Machine and one for the Bastion.
+We can't do much with a Virtual Network without subnets, so let's add a subnet next. According to our Architecture, we will have two subnets: one for the Virtual Machine and one for Private Endpoints. We can start with the VM subnet for now. While we're at it, let's also add the NAT Gateway and attach it to the VM subnet.
 
 Add the following to your `main.bicep`:
 
