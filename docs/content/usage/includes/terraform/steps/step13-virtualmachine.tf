@@ -6,8 +6,16 @@ module "avm-res-compute-virtualmachine" {
   location            = module.avm-res-resources-resourcegroup.resource.location
   resource_group_name = module.avm-res-resources-resourcegroup.name
   name                = "${var.name_prefix}-vm"
+  os_type             = "Linux"
   sku_size            = "Standard_D2s_v5"
   zone                = 1
+
+  source_image_reference = {
+    publisher = "Canonical"
+    offer     = "0001-com-ubuntu-server-focal"
+    sku       = "20_04-lts-gen2"
+    version   = "latest"
+  }
 
   network_interfaces = {
     network_interface_1 = {
