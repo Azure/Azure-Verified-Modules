@@ -6,6 +6,12 @@ weight: 2
 description: Technical decisions and concepts for the Usage Guidance of Azure Verified Modules (AVM)
 ---
 
+{{% notice style="note" %}}
+
+This page is a work in progress and will be updated as we improve & finalize the content. Please check back regularly for updates.
+
+{{% /notice %}}
+
 When developing an Azure solution using AVM modules, there are several aspects to consider. This page covers important concepts and provides guidance the technical decisions. Each concept/topic referenced here will be further detailed in the corresponding Bicep or Terraform specific guidance.
 
 ## Language-agnostic concepts

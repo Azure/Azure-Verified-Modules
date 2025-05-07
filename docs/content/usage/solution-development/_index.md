@@ -37,10 +37,6 @@ Before starting the process of codifying infrastructure, it is important to deve
 1. Any relationship between services that will be codified as part of the deployment.
 1. Identify inputs to your solution for designs that are intended to be used as templates.
 
-For our simple example we've created the following architecture diagram as our starting point. **TODO: Move this statement and supporting details to the examples?**
-
-**TODO: link architecture image and details**
-
 {{% notice style="note" %}}
 For a production grade solution, you need to
 
