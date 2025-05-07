@@ -123,7 +123,7 @@ Now we have a Log Analytics workspace in our resource group which doesn't do a w
 
 ### Virtual Network
 
-We will now add a Virtual Network to our `main.bicep` file. This VNet will contain subnets and network security groups (NSGs) for any of the resources we deploy that require IP addresses.
+We will now add a Virtual Network to our `main.bicep` file. This VNet will contain subnets and network security groups (NSGs) for any of the resources we deploy that require IP addresses. We will also add a NAT Gateway which will allow our VM the ability to access public internet.
 
 In your `main.bicep` file, add the following:
 
@@ -136,7 +136,7 @@ Again, notice how the Virtual Network AVM module requires only two things: a `na
 Let's update our `main.bicep` file to have our VNet send all of its logging data to our Log Analytics workspace:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step3.bicep" lang="bicep" line_anchors="vm-step3" hl_lines="21-31" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step3.bicep" lang="bicep" line_anchors="vm-step3" hl_lines="21-26" >}}
 {{% /expand %}}
 
 Notice how the `diagnosticsSettings` parameter needs a `workspaceResourceId`? All you need to do is add a reference to the built-in `logAnalyticsWorkspaceId` output of the logAnalyticsWorkspace AVM module. That's it! Our VNet now has integrated its logging with our Log Analytics workspace. All AVM modules come with a set of built-in `outputs` that can be easily referenced by other modules within your template.
@@ -147,15 +147,15 @@ All AVM modules have built-in outputs which can be referenced using the `<module
 When using plain Bicep, many of these outputs would require multiple lines of code or knowledge of the correct object ID references to make in order to get at the desired output. AVM modules do much of this heavy-lifting for you by taking care of these complex tasks within the module itself, then exposing it to you through the module's outputs. Find out more about [Bicep Outputs](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/outputs?tabs=azure-powershell).
 {{% /notice %}}
 
-We can't do much with a Virtual Network without subnets, so let's add a couple of subnets next. According to our Architecture, we will have two subnets: one for the Virtual Machine and one for the Bastion.
+We can't do much with a Virtual Network without subnets, so let's add a subnet next. According to our Architecture, we will have two subnets: one for the Virtual Machine and one for Private Endpoints. We can start with the VM subnet for now. While we're at it, let's also add the NAT Gateway and attach it to the VM subnet.
 
 Add the following to your `main.bicep`:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step4.bicep" lang="bicep" line_anchors="vm-step-4" hl_lines="32-41" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step4.bicep" lang="bicep" line_anchors="vm-step-4" hl_lines="11-18 36-42" >}}
 {{% /expand %}}
 
-As you can see, we have added a `subnets` property to our virtualNetwork module. The AVM `network/virtual-network` module supports the creation of subnets directly within the module itself.
+As you can see, we have added a `subnets` property to our virtualNetwork module. The AVM `network/virtual-network` module supports the creation of subnets directly within the module itself. We can also link our NAT Gateway directly to the subnet within this submodule.
 
 We are also using a nice function provided by Bicep, the [`cidrSubnet()`](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-functions-cidr#cidrsubnet) function. This makes it easy to declare CIDR blocks without having to calculate them on your own.
 
@@ -168,7 +168,7 @@ Use Bicep **variables** to define values that will be constant and reused with y
 Let's change our CIDR block to a variable, add a `prefix` variable, and switch `location` to a parameter with a default value, then reference those in our modules:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step5.bicep" lang="bicep" line_anchors="vm-step5" hl_lines="1 3 4 10 12 23 25 40 44" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step5.bicep" lang="bicep" line_anchors="vm-step5" hl_lines="1 3 4 10 12 20 30 32 34 44" >}}
 {{% /expand %}}
 
 We now have a good basis of infrastructure to be utilized by the rest of the resources in our Architecture. We will come back to our networking in a future step once we are ready to create some Network Security Groups. For now, let's move on to other modules.
@@ -180,7 +180,7 @@ Key Vaults are one of the *key* components in most Azure architectures as they c
 The first step is easy: add the Key Vault AVM module to our `main.bicep` file. In addition, let's also ensure it's hooked into our Log Analytics workspace (we will do this for every new module from here on out).
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step6.bicep" lang="bicep" line_anchors="vm-step6" hl_lines="50-77" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step6.bicep" lang="bicep" line_anchors="vm-step6" hl_lines="51-65" >}}
 {{% /expand %}}
 
 You may notice the name of the Key Vault we will deploy uses the `uniqueString()` Bicep function. Key Vault names must be globally unique. We will therefore deviate from our standard naming convention thus far and make an exception for the Key Vault. Note how we are still adding a suffix to the Key Vault name so its name remains recognizable; you can use a combination of concatenating unique strings, prefixes, or suffixes to follow your own naming standard preferences.
@@ -199,10 +199,36 @@ In the future, we will update this guide to show how to generate and store a cer
 
 ### Virtual Machine
 
+{{% notice style="warning" %}}
+The AVM Virtual Machine module enables the `EncryptionAtHost` feature by default. You must enable this feature within your Azure subscription successfully deploy this example code. To do so, run the following:
+
+{{% tabs title="Deploy with" groupid="scriptlanguage" %}}
+  {{% tab title="PowerShell" %}}
+
+  ```powershell
+  # Wait a few minutes after running the command to allow it to propagate
+  Register-AzProviderFeature -FeatureName "EncryptionAtHost" -ProviderNamespace "Microsoft.Compute"
+  ```
+
+  {{% /tab %}}
+  {{% tab title="AZ CLI" %}}
+
+  ```bash
+  az feature register --namespace Microsoft.Compute --name EncryptionAtHost
+
+  # Propagate the change
+  az provider register --namespace Microsoft.Compute
+  ```
+
+  {{% /tab %}}
+{{% /tabs %}}
+
+{{% /notice %}}
+
 For our Virtual Machine (VM) deployment, we need to add the following to our `main.bicep` file:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" lang="bicep" line_anchors="vm-step7" hl_lines="4-6 83-88 93-135" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" lang="bicep" line_anchors="vm-step7" hl_lines="4-6 71-76 81-123" >}}
 {{% /expand %}}
 
 The VM module is one of the more complex modules in AVM---behind the scenes, it takes care of a *lot* of heavy lifting that, without AVM, would require multiple Bicep resources to be deployed and referenced.
@@ -218,7 +244,11 @@ Since this is the real highlight of our `main.bicep` file, we need to take a clo
 
   First, we added a new parameter. The value of this will be provided when the `main.bicep` template is deployed. We don't want any passwords stored as text in code; for our purposes, the safest way to do this is to prompt the end user for the password at the time of deployment.
 
-  Also note how we are using the `@secure()` decorator on this parameter. This will ensure the value of the password is never displayed in any of the deployment logs or in Azure. We have also added the `@description()` decorator and started the description with "Required". It's a good habit and recommended practice to document your parameters in Bicep. This will ensure that VS Code's built-in Bicep linter can provide end-users insightful information when deploying your Bicep templates.
+  {{% notice style="warning" %}}
+The supplied password must be between 6-72 characters long and must satisfy at least 3 of password complexity requirements from the following: Contains an uppercase character; Contains a lowercase character; Contains a numeric digit; Contains a special character. Control characters are not allowed
+  {{% /notice %}}
+
+  Also note how we are using the `@secure()` decorator on the password parameter. This will ensure the value of the password is never displayed in any of the deployment logs or in Azure. We have also added the `@description()` decorator and started the description with "Required." It's a good habit and recommended practice to document your parameters in Bicep. This will ensure that VS Code's built-in Bicep linter can provide end-users insightful information when deploying your Bicep templates.
 
   {{% notice style="info" %}}
 Always use the `@secure()` decorator when creating a parameter that will hold sensitive data!
@@ -232,9 +262,9 @@ Always use the `@secure()` decorator when creating a parameter that will hold se
   By adding our password to the Key Vault, it will ensure that we never lose the password and that it is stored securely. As long as a user has appropriate permissions on the vault, the password can be fetched easily.
 
 - **Reference the VM Subnet**
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" id="vm-subnet-reference" lang="bicep" hl_lines="9" line_anchors="vm-subnet" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" id="vm-subnet-reference" lang="bicep" hl_lines="6" line_anchors="vm-subnet" >}}
 
-  Here, we reference another built-in output, this time from the AVM Virtual Network module. This example shows how to use an output that is part of an array. When the Virtual Network module creates subnets, it automatically creates a set of pre-defined outputs for them, one of which is an array that contains each subnet's `subnetResourceId`. Our VM Subnet was the second one created which is position `[1]` in the array.
+  Here, we reference another built-in output, this time from the AVM Virtual Network module. This example shows how to use an output that is part of an array. When the Virtual Network module creates subnets, it automatically creates a set of pre-defined outputs for them, one of which is an array that contains each subnet's `subnetResourceId`. Our VM Subnet was the second one created which is position `[0]` in the array.
 
   Other AVM modules may make use of arrays to store outputs. If you are unsure what type of outputs a module provides, you can always reference the [Outputs](https://github.com/Azure/bicep-registry-modules/blob/main/avm/res/network/virtual-network/README.md#Outputs) section of each module's README.md.
 
@@ -243,7 +273,7 @@ Always use the `@secure()` decorator when creating a parameter that will hold se
 The last major component we need to add is a Storage Account. Because this Storage Account will be used as a backend storage to hold blobs for the hypothetical application that runs on our VM, we'll also create a blob container within it using the same AVM Storage Account module.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step8.bicep" lang="bicep" hl_lines="132-154" line_anchors="vm-storageaccount" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step8.bicep" lang="bicep" hl_lines="119-142" line_anchors="vm-storageaccount" >}}
 {{% /expand %}}
 
 We now have all the major components of our Architecture diagram built!
@@ -252,22 +282,18 @@ The last steps we need to take to meet our Business and Technical requirements i
 
 ### Network Security Groups
 
-We'll add Network Security Groups (NSGs) to both of our subnets. These act as layer 3 and layer 4 firewalls to our networking resources. At the same time, we will add appropriate Inbound and Outbound rules so they only allow necessary traffic.
+We'll add a Network Security Group (NSG) to our VM subnet. This will act as a layer 3 and layer 4 firewall to our networked resources. At the same time, we will add an appropriate Inbound rule to allow SSH traffic from our Bastion.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step9.bicep" lang="bicep" hl_lines="56-226 45 50" line_anchors="vm-nsg" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step9.bicep" lang="bicep" hl_lines="56-77 50" line_anchors="vm-nsg" >}}
 {{% /expand %}}
-
-The NSG Rules set for the Bastion Subnet are default, [required rules](https://learn.microsoft.com/en-us/azure/bastion/bastion-nsg#apply) that allow the Azure Bastion service to function.
-
-For our VM Subnet, we are blocking all internet-based SSH traffic and only allowing HTTP/S traffic from the internet and SSH traffic from within our Virtual Network.
 
 ### Disable Public Access to Storage Account
 
 Because our Storage Account is a backend resource that only our Virtual Machine should have access to, we will secure it as much as possible. We'll do this by adding a Private Endpoint to it and disable public internet access. AVM makes creating and assigning Private Endpoints to resources incredibly easy. Take a look:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step10.bicep" lang="bicep" hl_lines="52-55 322-323 332-337 341-353" line_anchors="vm-pes" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step10.bicep" lang="bicep" hl_lines="52-55 169-181 185-197" line_anchors="vm-pes" >}}
 {{% /expand %}}
 
 First, we added a new Subnet to our `virtualNetwork` module to hold our Private Endpoints. It is a recommended practice to have a dedicated subnet to hold all of your Private Endpoints.
@@ -283,14 +309,10 @@ The last thing we have done is add a Private DNS zone and linked it to our VNet.
 In order to securely access our Virtual Machine without exposing its SSH port to the public internet is to create an Azure Bastion host.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step11.bicep" lang="bicep" hl_lines="335-348" line_anchors="vm-bastion" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step11.bicep" lang="bicep" hl_lines="199-213" line_anchors="vm-bastion" >}}
 {{% /expand %}}
 
 All we have done is add the `bastion-host` AVM module to our template and ensured that it is associated with our Virtual Network.
-
-{{% notice style="info" %}}
-Azure Bastion requires a dedicated subnet with the name `AzureBastionSubnet`. We already created a subnet with that exact name in our `virtualNetwork` module. When this Azure Bastion host is created, it will use that subnet automatically.
-{{% /notice %}}
 
 ### RBAC
 
@@ -299,7 +321,7 @@ To complete our solution, we have one final task: to apply RBAC restrictions on 
 We will accomplish this by enabling a System-assigned Managed Identity on the Virtual Machine, then grant the VM's Managed Identity appropriate permissions on the Storage Account and Key Vault.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step12.bicep" lang="bicep" hl_lines="293-295 321-327 244-250" line_anchors="vm-rbac" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step12.bicep" lang="bicep" hl_lines="149-151 103-109 178-184" line_anchors="vm-rbac" >}}
 {{% /expand %}}
 
 {{% notice style="info" %}}

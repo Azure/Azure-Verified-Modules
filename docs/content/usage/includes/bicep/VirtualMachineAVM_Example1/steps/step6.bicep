@@ -7,9 +7,18 @@ module logAnalyticsWorkspace 'br/public:avm/res/operational-insights/workspace:0
   name: 'logAnalyticsWorkspace'
   params: {
     // Required parameters
-    name: '${prefix}-LAW'
+    name: '${prefix}-law'
     // Non-required parameters
     location: location
+  }
+}
+
+module natGateway 'br/public:avm/res/network/nat-gateway:1.2.2' = {
+  name: 'natGatewayDeployment'
+  params: {
+    // Required parameters
+    name: '${prefix}-natgw'
+    zone: 1
   }
 }
 
@@ -25,23 +34,15 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
     location: location
     diagnosticSettings: [
       {
-        metricCategories: [
-          {
-            category: 'AllMetrics'
-          }
-        ]
         name: 'vNetDiagnostics'
-        workspaceResourceId: logAnalyticsWorkspace.outputs.logAnalyticsWorkspaceId
+        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
     subnets: [
       {
-        name: 'AzureBastionSubnet'
-        addressPrefix: cidrSubnet(addressPrefix, 24, 0) // first subnet in address space
-      }
-      {
         name: 'VMSubnet'
-        addressPrefix: cidrSubnet(addressPrefix, 24, 1) // second subnet in address space
+        addressPrefix: cidrSubnet(addressPrefix, 24, 0) // first subnet in address space
+        natGatewayResourceId: natGateway.outputs.resourceId
       }
     ]
   }
@@ -56,21 +57,8 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.12.1' = {
     location: location
     diagnosticSettings: [
       {
-        workspaceResourceId: logAnalyticsWorkspace.outputs.logAnalyticsWorkspaceId
-        logCategoriesAndGroups: [
-          {
-            category: 'AzurePolicyEvaluationDetails'
-          }
-          {
-            category: 'AuditEvent'
-          }
-        ]
-        metricCategories: [
-          {
-            category: 'AllMetrics'
-          }
-        ]
         name: 'keyVaultDiagnostics'
+        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
   }

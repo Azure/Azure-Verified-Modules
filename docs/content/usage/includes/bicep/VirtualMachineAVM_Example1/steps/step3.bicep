@@ -2,7 +2,7 @@ module logAnalyticsWorkspace 'br/public:avm/res/operational-insights/workspace:0
   name: 'logAnalyticsWorkspace'
   params: {
     // Required parameters
-    name: '${prefix}-LAW'
+    name: 'VM-AVM-Ex1-LAW'
     // Non-required parameters
     location: 'westus2'
   }
@@ -15,18 +15,13 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
     addressPrefixes: [
       '10.0.0.0/16'
     ]
-    name: '${prefix}-vnet'
+    name: 'VM-AVM-Ex1-vnet'
     // Non-required parameters
     location: 'westus2'
     diagnosticSettings: [
       {
-        metricCategories: [
-          {
-            category: 'AllMetrics'
-          }
-        ]
         name: 'vNetDiagnostics'
-        workspaceResourceId: logAnalyticsWorkspace.outputs.logAnalyticsWorkspaceId
+        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
   }

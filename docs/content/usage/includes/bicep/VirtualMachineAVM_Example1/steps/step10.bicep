@@ -11,9 +11,18 @@ module logAnalyticsWorkspace 'br/public:avm/res/operational-insights/workspace:0
   name: 'logAnalyticsWorkspace'
   params: {
     // Required parameters
-    name: '${prefix}-LAW'
+    name: '${prefix}-law'
     // Non-required parameters
     location: location
+  }
+}
+
+module natGateway 'br/public:avm/res/network/nat-gateway:1.2.2' = {
+  name: 'natGatewayDeployment'
+  params: {
+    // Required parameters
+    name: '${prefix}-natgw'
+    zone: 1
   }
 }
 
@@ -29,152 +38,20 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
     location: location
     diagnosticSettings: [
       {
-        metricCategories: [
-          {
-            category: 'AllMetrics'
-          }
-        ]
         name: 'vNetDiagnostics'
-        workspaceResourceId: logAnalyticsWorkspace.outputs.logAnalyticsWorkspaceId
+        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
     subnets: [
       {
-        name: 'AzureBastionSubnet'
-        addressPrefix: cidrSubnet(addressPrefix, 24, 0) // first subnet in address space
-        networkSecurityGroupResourceId: nsgBastion.outputs.resourceId
-      }
-      {
         name: 'VMSubnet'
-        addressPrefix: cidrSubnet(addressPrefix, 24, 1) // second subnet in address space
+        addressPrefix: cidrSubnet(addressPrefix, 24, 0) // first subnet in address space
+        natGatewayResourceId: natGateway.outputs.resourceId
         networkSecurityGroupResourceId: nsgVM.outputs.resourceId
       }
       {
         name: 'PrivateEndpointSubnet'
-        addressPrefix: cidrSubnet(addressPrefix, 24, 2) // third subnet in address space
-      }
-    ]
-  }
-}
-
-module nsgBastion 'br/public:avm/res/network/network-security-group:0.5.1' = {
-  name: 'nsgBastionDeployment'
-  params: {
-    name: '${prefix}-nsg-bastion'
-    location: location
-    securityRules: [
-      {
-        name: 'AllowHttpsInbound'
-        properties: {
-          priority: 120
-          protocol: 'Tcp'
-          access: 'Allow'
-          direction: 'Inbound'
-          sourceAddressPrefix: 'Internet'
-          sourcePortRange: '*'
-          destinationAddressPrefix: '*'
-          destinationPortRange: '443'
-        }
-      }
-      {
-        name: 'AllowGatewayManagerInbound'
-        properties: {
-          priority: 130
-          protocol: 'Tcp'
-          access: 'Allow'
-          direction: 'Inbound'
-          sourceAddressPrefix: 'GatewayManager'
-          sourcePortRange: '*'
-          destinationAddressPrefix: '*'
-          destinationPortRange: '443'
-        }
-      }
-      {
-        name: 'AllowAzureLoadBalancerInbound'
-        properties: {
-          priority: 140
-          protocol: 'Tcp'
-          access: 'Allow'
-          direction: 'Inbound'
-          sourceAddressPrefix: 'AzureLoadBalancer'
-          sourcePortRange: '*'
-          destinationAddressPrefix: '*'
-          destinationPortRange: '443'
-        }
-      }
-      {
-        name: 'AllowBastionHostCommunication'
-        properties: {
-          priority: 150
-          protocol: '*'
-          access: 'Allow'
-          direction: 'Inbound'
-          sourceAddressPrefix: 'VirtualNetwork'
-          sourcePortRange: '*'
-          destinationAddressPrefix: 'VirtualNetwork'
-          destinationPortRanges: [
-            '8080'
-            '5701'
-          ]
-        }
-      }
-      {
-        name: 'AllowSshOutbound'
-        properties: {
-          priority: 100
-          protocol: '*'
-          access: 'Allow'
-          direction: 'Outbound'
-          sourceAddressPrefix: '*'
-          sourcePortRange: '*'
-          destinationAddressPrefix: 'VirtualNetwork'
-          destinationPortRanges: [
-            '22'
-            '3389'
-          ]
-        }
-      }
-      {
-        name: 'AllowAzureCloudOutbound'
-        properties: {
-          priority: 110
-          protocol: 'Tcp'
-          access: 'Allow'
-          direction: 'Outbound'
-          sourceAddressPrefix: '*'
-          sourcePortRange: '*'
-          destinationAddressPrefix: 'AzureCloud'
-          destinationPortRange: '443'
-        }
-      }
-      {
-        name: 'AllowBastionCommunication'
-        properties: {
-          priority: 120
-          protocol: '*'
-          access: 'Allow'
-          direction: 'Outbound'
-          sourceAddressPrefix: 'VirtualNetwork'
-          sourcePortRange: '*'
-          destinationAddressPrefix: 'VirtualNetwork'
-          destinationPortRanges: [
-            '8080'
-            '5701'
-          ]
-        }
-      }
-      {
-        name: 'AllowHttpOutbound'
-        properties: {
-          priority: 130
-          protocol: '*'
-          access: 'Allow'
-          direction: 'Outbound'
-          sourceAddressPrefix: '*'
-          sourcePortRange: '*'
-          destinationAddressPrefix: 'Internet'
-          destinationPortRange: '80'
-        }
+        addressPrefix: cidrSubnet(addressPrefix, 24, 1) // second subnet in address space
       }
     ]
   }
@@ -187,19 +64,6 @@ module nsgVM 'br/public:avm/res/network/network-security-group:0.5.1' = {
     location: location
     securityRules: [
       {
-        name: 'DenySSHInternet' // We are using Azure Bastion so we don't need to allow SSH from the Internet
-        properties: {
-          access: 'Deny'
-          direction: 'Inbound'
-          priority: 100
-          protocol: 'Tcp'
-          sourceAddressPrefix: 'Internet'
-          sourcePortRange: '*'
-          destinationAddressPrefix: '*'
-          destinationPortRange: '22'
-        }
-      }
-      {
         name: 'AllowBastionSSH'
         properties: {
           access: 'Allow'
@@ -210,19 +74,6 @@ module nsgVM 'br/public:avm/res/network/network-security-group:0.5.1' = {
           sourcePortRange: '*'
           destinationAddressPrefix: '*'
           destinationPortRange: '22'
-        }
-      }
-      {
-        name: 'AllowHTTPS' // Our hypothetical VM application will run on a webserver so let's allow HTTP/S
-        properties: {
-          access: 'Allow'
-          direction: 'Inbound'
-          priority: 120
-          protocol: 'Tcp'
-          sourceAddressPrefix: '*'
-          sourcePortRange: '*'
-          destinationAddressPrefix: 'virtualNetwork'
-          destinationPortRanges: ['80,443']
         }
       }
     ]
@@ -238,23 +89,11 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.12.1' = {
     location: location
     diagnosticSettings: [
       {
-        workspaceResourceId: logAnalyticsWorkspace.outputs.logAnalyticsWorkspaceId
-        logCategoriesAndGroups: [
-          {
-            category: 'AzurePolicyEvaluationDetails'
-          }
-          {
-            category: 'AuditEvent'
-          }
-        ]
-        metricCategories: [
-          {
-            category: 'AllMetrics'
-          }
-        ]
         name: 'keyVaultDiagnostics'
+        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
+    enablePurgeProtection: false // disable purge protection for this example so we can more easily delete it
     secrets: [
       {
         name: 'vmAdminPassword'
@@ -282,10 +121,7 @@ module virtualMachine 'br/public:avm/res/compute/virtual-machine:0.14.0' = {
         ipConfigurations: [
           {
             name: 'ipconfig01'
-            pipConfiguration: {
-              name: 'pip-01'
-            }
-            subnetResourceId: virtualNetwork.outputs.subnetResourceIds[1].id // VMSubnet
+            subnetResourceId: virtualNetwork.outputs.subnetResourceIds[0] // VMSubnet
           }
         ]
         nicSuffix: '-nic-01'
@@ -316,7 +152,8 @@ module storageAccount 'br/public:avm/res/storage/storage-account:0.19.0' = {
     skuName: 'Standard_LRS'
     diagnosticSettings: [
       {
-        workspaceResourceId: logAnalyticsWorkspace.outputs.logAnalyticsWorkspaceId
+        name: 'storageAccountDiagnostics'
+        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
     publicNetworkAccess: 'Disabled'
@@ -324,7 +161,7 @@ module storageAccount 'br/public:avm/res/storage/storage-account:0.19.0' = {
     blobServices: {
       containers: [
         {
-          name: 'vmStorage'
+          name: 'vmstorage'
           publicAccess: 'None'
         }
       ]
@@ -332,7 +169,14 @@ module storageAccount 'br/public:avm/res/storage/storage-account:0.19.0' = {
     privateEndpoints: [
       {
         service: 'Blob'
-        subnetResourceId: virtualNetwork.outputs.subnetResourceIds[2].id // Private Endpoint Subnet
+        subnetResourceId: virtualNetwork.outputs.subnetResourceIds[1] // Private Endpoint Subnet
+        privateDnsZoneGroup: {
+          privateDnsZoneGroupConfigs: [
+            {
+              privateDnsZoneResourceId: privateDnsBlob.outputs.resourceId
+            }
+          ]
+        }
       }
     ]
   }

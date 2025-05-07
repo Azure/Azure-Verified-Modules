@@ -11,9 +11,18 @@ module logAnalyticsWorkspace 'br/public:avm/res/operational-insights/workspace:0
   name: 'logAnalyticsWorkspace'
   params: {
     // Required parameters
-    name: '${prefix}-LAW'
+    name: '${prefix}-law'
     // Non-required parameters
     location: location
+  }
+}
+
+module natGateway 'br/public:avm/res/network/nat-gateway:1.2.2' = {
+  name: 'natGatewayDeployment'
+  params: {
+    // Required parameters
+    name: '${prefix}-natgw'
+    zone: 1
   }
 }
 
@@ -29,23 +38,16 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
     location: location
     diagnosticSettings: [
       {
-        metricCategories: [
-          {
-            category: 'AllMetrics'
-          }
-        ]
+
         name: 'vNetDiagnostics'
-        workspaceResourceId: logAnalyticsWorkspace.outputs.logAnalyticsWorkspaceId
+        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
     subnets: [
       {
-        name: 'AzureBastionSubnet'
-        addressPrefix: cidrSubnet(addressPrefix, 24, 0) // first subnet in address space
-      }
-      {
         name: 'VMSubnet'
-        addressPrefix: cidrSubnet(addressPrefix, 24, 1) // second subnet in address space
+        addressPrefix: cidrSubnet(addressPrefix, 24, 0) // first subnet in address space
+        natGatewayResourceId: natGateway.outputs.resourceId
       }
     ]
   }
@@ -60,23 +62,11 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.12.1' = {
     location: location
     diagnosticSettings: [
       {
-        workspaceResourceId: logAnalyticsWorkspace.outputs.logAnalyticsWorkspaceId
-        logCategoriesAndGroups: [
-          {
-            category: 'AzurePolicyEvaluationDetails'
-          }
-          {
-            category: 'AuditEvent'
-          }
-        ]
-        metricCategories: [
-          {
-            category: 'AllMetrics'
-          }
-        ]
         name: 'keyVaultDiagnostics'
+        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
+    enablePurgeProtection: false // disable purge protection for this example so we can more easily delete it
     secrets: [
       {
         name: 'vmAdminPassword'
@@ -104,10 +94,7 @@ module virtualMachine 'br/public:avm/res/compute/virtual-machine:0.13.1' = {
         ipConfigurations: [
           {
             name: 'ipconfig01'
-            pipConfiguration: {
-              name: 'pip-01'
-            }
-            subnetResourceId: virtualNetwork.outputs.subnetResourceIds[1].id // VMSubnet
+            subnetResourceId: virtualNetwork.outputs.subnetResourceIds[0] // VMSubnet
           }
         ]
         nicSuffix: '-nic-01'
@@ -139,13 +126,14 @@ module storageAccount 'br/public:avm/res/storage/storage-account:0.19.0' = {
     skuName: 'Standard_LRS'
     diagnosticSettings: [
       {
-        workspaceResourceId: logAnalyticsWorkspace.outputs.logAnalyticsWorkspaceId
+        name: 'storageAccountDiagnostics'
+        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
       }
     ]
     blobServices: {
       containers: [
         {
-          name: 'vmStorage'
+          name: 'vmstorage'
           publicAccess: 'None'
         }
       ]
