@@ -293,7 +293,7 @@ We'll add a Network Security Group (NSG) to our VM subnet. This will act as a la
 Because our Storage Account is a backend resource that only our Virtual Machine should have access to, we will secure it as much as possible. We'll do this by adding a Private Endpoint to it and disable public internet access. AVM makes creating and assigning Private Endpoints to resources incredibly easy. Take a look:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step10.bicep" lang="bicep" hl_lines="52-55 169-174 178-190" line_anchors="vm-pes" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step10.bicep" lang="bicep" hl_lines="52-55 169-181 185-197" line_anchors="vm-pes" >}}
 {{% /expand %}}
 
 First, we added a new Subnet to our `virtualNetwork` module to hold our Private Endpoints. It is a recommended practice to have a dedicated subnet to hold all of your Private Endpoints.
@@ -309,14 +309,10 @@ The last thing we have done is add a Private DNS zone and linked it to our VNet.
 In order to securely access our Virtual Machine without exposing its SSH port to the public internet is to create an Azure Bastion host.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step11.bicep" lang="bicep" hl_lines="192-206" line_anchors="vm-bastion" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step11.bicep" lang="bicep" hl_lines="199-213" line_anchors="vm-bastion" >}}
 {{% /expand %}}
 
 All we have done is add the `bastion-host` AVM module to our template and ensured that it is associated with our Virtual Network.
-
-{{% notice style="info" %}}
-Azure Bastion requires a dedicated subnet with the name `AzureBastionSubnet`. We already created a subnet with that exact name in our `virtualNetwork` module. When this Azure Bastion host is created, it will use that subnet automatically.
-{{% /notice %}}
 
 ### RBAC
 

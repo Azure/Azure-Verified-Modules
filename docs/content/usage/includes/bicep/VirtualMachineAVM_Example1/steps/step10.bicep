@@ -170,6 +170,13 @@ module storageAccount 'br/public:avm/res/storage/storage-account:0.19.0' = {
       {
         service: 'Blob'
         subnetResourceId: virtualNetwork.outputs.subnetResourceIds[1] // Private Endpoint Subnet
+        privateDnsZoneGroup: {
+          privateDnsZoneGroupConfigs: [
+            {
+              privateDnsZoneResourceId: privateDnsBlob.outputs.resourceId
+            }
+          ]
+        }
       }
     ]
   }
