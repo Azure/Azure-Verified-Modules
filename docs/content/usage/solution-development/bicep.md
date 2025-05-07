@@ -161,7 +161,7 @@ Add the following to your `main.bicep`:
 {{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step4.bicep" lang="bicep" line_anchors="vm-step-4" hl_lines="11-18 36-42" >}}
 {{% /expand %}}
 
-As you can see, we have added a `subnets` property to our virtualNetwork module. The AVM `network/virtual-network` module supports the creation of subnets directly within the module itself. We can also link our NAT Gateway directly to the subnet within this submodule.
+The modification adds a `subnets` property to our virtualNetwork module. The AVM `network/virtual-network` module supports the creation of subnets directly within the module itself. We can also link our NAT Gateway directly to the subnet within this submodule.
 
 A nice feature within Bicep are the various functions available. We use the [`cidrSubnet()`](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-functions-cidr#cidrsubnet) function to declare CIDR blocks without having to calculate them on your own.
 
