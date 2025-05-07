@@ -13,15 +13,15 @@ Azure Verified Modules (AVM) for Bicep are a powerful tool that leverage the Bic
 In this tutorial, we will:
 
 - Deploy a basic Virtual Machine architecture into Azure
-- Discuss recommended practices related to Bicep template development
-- Demonstrate the ease with which you can deploy resources using AVM
-- Describe each of the development and deployment steps in detail as we encounter them
+- Explore recommended practices related to Bicep template development
+- Demonstrate the ease with which you can deploy AVM modules
+- Describe each of the development and deployment steps in detail
 
-After completing this tutorial, you will have a working knowledge of the following:
+After completing this tutorial, you'll have a working knowledge of:
 
 - How to discover and add AVM modules to your Bicep template
 - How to reference and use outputs across AVM modules
-- Recommended practices regarding parameterization and structure of your Bicep file
+- Recommended practices for parameterization and structure of your Bicep file
 - Configuration of AVM modules to meet Microsoft's Well Architected Framework (WAF) principles
 - How to deploy your Bicep template into an Azure subscription from your local machine
 
@@ -41,29 +41,29 @@ Make sure you have these tools set up before proceeding.
 
 **Technical Requirements**: The VM must not be accessible from the internet and its logs should be easily accessible. All azure services should utilize logging tools for auditing purposes.
 
-<img src="{{% siteparam base %}}/images/usage/solution-development/avm-virtualmachine-example1.png" alt="Azure VM Solution Architecture" style="max-width:800px;" />
+<img src="/images/usage/solution-development/avm-virtualmachine-example1.png" alt="Azure VM Solution Architecture" style="max-width:100%; height:auto;" />
 
 ## Creating Our main.bicep File
 
-Our architecture diagram shows everything we need to add to our template to be successful in our solution deployment. But instead of attempting to build a solution template that covers everything at once, we will build out our Bicep file piece-by-piece and test our deployment as we progress. This will provide us the opportunity to discuss each step and decision we make as we proceed.
+The architecture diagram shows all components needed for a successful solution deployment. Rather than building the complete solution at once, this tutorial takes an incremental approach - building the Bicep file piece-by-piece and testing the deployment at each stage. This approach allows for discussion of each design decision along the way.
 
-We will begin the development of our Bicep template by creating the larger pieces that are core to the functionality of our platform. These are the **backend logging services** (Log Analytics) and the **virtual network**.
+The development will start with core platform components - first the **backend logging services** (Log Analytics) and then the **virtual network**.
 
-Let's start by creating our folder structure along with a `main.bicep` file. Your folder structure should be as follows:
+Let's begin by creating our folder structure along with a `main.bicep` file. Your folder structure should be as follows:
 
 ```text
 VirtualMachineAVM_Example1/
 └── main.bicep
 ```
 
-Once the folder structure and main.bicep file are in place, the first AVM resources can be added!
+After you have your folder structure and `main.bicep` file, we can proceed with adding our first AVM resources!
 
 ### Log Analytics
 
-We will start by adding a logging service to our `main.bicep` since everything else we deploy will use this service to save their logs to.
+Let's start by adding a logging service to our `main.bicep` since all other deployed resources will use this service for their logs.
 
 {{% notice style="tip" %}}
-It's always a good idea to start your template development by adding resources that create dependencies for other downstream services. This makes it easy to reference these dependencies within your other modules as you develop them. In more a more concrete example, we are starting with Logging and Virtual Network services since all other services we deploy will depend on these.
+Always begin template development by adding resources that create dependencies for other downstream services. This approach simplifies referencing these dependencies within your other modules as you develop them. For example, starting with Logging and Virtual Network services makes sense since all other services will depend on these.
 {{% /notice %}}
 
 The logging solution depicted in our Architecture Diagram shows we will be using a Log Analytics workspace. Let's add that to our template! Open your `main.bicep` file and add the following:
@@ -173,10 +173,10 @@ See how we are reusing the same CIDR block `10.0.0.0/16` in multiple location? Y
 Use Bicep **variables** to define values that will be constant and reused with your template; use **parameters** anywhere you may need a modifiable value.
 {{% /notice %}}
 
-Let's change our CIDR block to a variable, add a `prefix` variable, and switch `location` to a parameter with a default value, then reference those in our modules:
+Let's enhance the template by adding variables at the beginning:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step5.bicep" lang="bicep" line_anchors="vm-step5" hl_lines="1 3 4 10 12 20 30 32 34 44" >}}
+{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step5.bicep" lang="bicep" line_anchors="vm-step-5" hl_lines="1-5" >}}
 {{% /expand %}}
 
 We now have a good basis of infrastructure to be utilized by the rest of the resources in our Architecture. We will come back to our networking in a future step once we are ready to create some Network Security Groups. For now, let's move on to other modules.
@@ -263,14 +263,14 @@ Always use the `@secure()` decorator when creating a parameter that will hold se
   {{% /notice %}}
 
 - **Add the VM Admin Password to Key Vault**
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" id="add-keyvault-secret" lang="bicep" hl_lines="27-32" line_anchors="vm-keyvault-pw" >}}
+{{< code file="\content\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" id="add-keyvault-secret" lang="bicep" hl_lines="27-32" line_anchors="vm-keyvault-pw" >}}
 
   The next thing we have done is save the value of our `vmAdminPass` parameter to our Key Vault. We have done this by adding a `secrets` parameter to the Key Vault module. Adding secrets to Key Vaults is very simple when using the AVM module.
 
   By adding our password to the Key Vault, it will ensure that we never lose the password and that it is stored securely. As long as a user has appropriate permissions on the vault, the password can be fetched easily.
 
 - **Reference the VM Subnet**
-{{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" id="vm-subnet-reference" lang="bicep" hl_lines="6" line_anchors="vm-subnet" >}}
+{{< code file="\content\includes\bicep\VirtualMachineAVM_Example1\steps\step7.bicep" id="vm-subnet-reference" lang="bicep" hl_lines="6" line_anchors="vm-subnet" >}}
 
   Here, we reference another built-in output, this time from the AVM Virtual Network module. This example shows how to use an output that is part of an array. When the Virtual Network module creates subnets, it automatically creates a set of pre-defined outputs for them, one of which is an array that contains each subnet's `subnetResourceId`. Our VM Subnet was the second one created which is position `[0]` in the array.
 
@@ -290,7 +290,7 @@ The last steps we need to take to meet our Business and Technical requirements i
 
 ### Network Security Groups
 
-We'll add a Network Security Group (NSG) to our VM subnet. This will act as a layer 3 and layer 4 firewall to our networked resources. At the same time, we will add an appropriate Inbound rule to allow SSH traffic from our Bastion.
+Add a Network Security Group (NSG) to the VM subnet to act as a layer 3 and layer 4 firewall for networked resources. This implementation includes an appropriate inbound rule to allow SSH traffic from the Bastion host:
 
 {{% expand title="➕ Expand Code" %}}
 {{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step9.bicep" lang="bicep" hl_lines="56-77 50" line_anchors="vm-nsg" >}}
@@ -298,47 +298,47 @@ We'll add a Network Security Group (NSG) to our VM subnet. This will act as a la
 
 ### Disable Public Access to Storage Account
 
-Because our Storage Account is a backend resource that only our Virtual Machine should have access to, we will secure it as much as possible. We'll do this by adding a Private Endpoint to it and disable public internet access. AVM makes creating and assigning Private Endpoints to resources incredibly easy. Take a look:
+Since the Storage Account serves as a backend resource exclusively for the Virtual Machine, it requires maximum security measures. This involves adding a Private Endpoint and disabling public internet access. AVM simplifies the creation and assignment of Private Endpoints:
 
 {{% expand title="➕ Expand Code" %}}
 {{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step10.bicep" lang="bicep" hl_lines="52-55 169-181 185-197" line_anchors="vm-pes" >}}
 {{% /expand %}}
 
-First, we added a new Subnet to our `virtualNetwork` module to hold our Private Endpoints. It is a recommended practice to have a dedicated subnet to hold all of your Private Endpoints.
+This implementation adds a dedicated subnet for Private Endpoints in the Virtual Network - following the recommended practice of isolating Private Endpoints in their own subnet.
 
-Next, we added a new `privateEndpoints` parameter---just a few lines of code--to our `storageAccount` module. This will take care of all the heavy-lifting in creating a new Private Endpoint and associating it with our VNet, attaching it to the resource, etc. This is a burdensome task if using plain Bicep and would require 2x to 5x more code to accomplish. AVM drastically simplifies the creation of Private Endpoints for just about every Azure Resource that supports them.
+The addition of just a few lines of code in the `privateEndpoints` parameter handles the complex tasks of creating the Private Endpoint, associating it with the VNet, and attaching it to the resource. Without AVM, this would require significantly more code.
 
-In addition, we've disabled all public network connectivity to our Storage Account to ensure the only traffic it can receive is over the Private Endpoint.
+The implementation also disables all public network connectivity to the Storage Account, ensuring it only accepts traffic via the Private Endpoint.
 
-The last thing we have done is add a Private DNS zone and linked it to our VNet. The Private DNS zone is required so that our VM can resolve the new Private IP address that is associated with our Storage Account.
+Finally, a Private DNS zone is added and linked to the VNet, enabling the VM to resolve the Private IP address associated with the Storage Account.
 
 ### Bastion
 
-In order to securely access our Virtual Machine without exposing its SSH port to the public internet is to create an Azure Bastion host.
+To securely access the Virtual Machine without exposing its SSH port to the public internet, add an Azure Bastion host:
 
 {{% expand title="➕ Expand Code" %}}
 {{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step11.bicep" lang="bicep" hl_lines="199-213" line_anchors="vm-bastion" >}}
 {{% /expand %}}
 
-All we have done is add the `bastion-host` AVM module to our template and ensured that it is associated with our Virtual Network.
+This simple addition of the `bastion-host` AVM module completes the secure access component of the architecture by associating it with the Virtual Network.
 
 ### RBAC
 
-To complete our solution, we have one final task: to apply RBAC restrictions on our services, namely the Key Vault and Storage Account. The idea is we explicitly allow certain serviecs to have Create, Read, Update, or Delete (CRUD) permissions. In our architecture, we only want the Virtual Machine to have this level of access.
+To complete the solution, apply RBAC restrictions on services, particularly the Key Vault and Storage Account. The goal is to explicitly allow only the Virtual Machine to have Create, Read, Update, or Delete (CRUD) permissions.
 
-We will accomplish this by enabling a System-assigned Managed Identity on the Virtual Machine, then grant the VM's Managed Identity appropriate permissions on the Storage Account and Key Vault.
+This is accomplished by enabling a System-assigned Managed Identity on the Virtual Machine, then granting the VM's Managed Identity appropriate permissions on the Storage Account and Key Vault:
 
 {{% expand title="➕ Expand Code" %}}
 {{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step12.bicep" lang="bicep" hl_lines="149-151 103-109 178-184" line_anchors="vm-rbac" >}}
 {{% /expand %}}
 
 {{% notice style="info" %}}
-The Azure Subscription owner will have CRUD permissions for the Storage Account but not for the Key Vault. The Key Vault requires explicit RBAC permissions assigned to a user to grant them access: [Provide access to Key Vaults using RBAC](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide?tabs=azure-portal). **Important!**: at this point you will only be able to access the Storage Account from the Bastion Host. Remember, we disabled public internet access!
+The Azure Subscription owner will have CRUD permissions for the Storage Account but not for the Key Vault. The Key Vault requires explicit RBAC permissions assigned to a user to grant them access: [Provide access to Key Vaults using RBAC](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide?tabs=azure-portal). **Important!**: at this point you will only be able to access the Storage Account from the Bastion Host. Remember, public internet access has been disabled!
 {{% /notice %}}
 
-We have successfully applied RBAC policies by using a System-assigned Managed Identity on our Virtual Machine. We then assigned that Managed Identity permissions on the Key Vault and Storage Account. Our VM can now read secrets from the Key Vault and Read, Create, or Delete blobs in our Storage Account.
+The RBAC policies have been successfully applied using a System-assigned Managed Identity on the Virtual Machine. This identity has been granted permissions on both the Key Vault and Storage Account. Now the VM can read secrets from the Key Vault and Read, Create, or Delete blobs in the Storage Account.
 
-Remember that in a real production environment, you would not only use RBAC to limit access to each service, but you would also apply the principle of Least Privileged Access, meaning you would only provide the exact permissions each service needs to carry out its functions. Learn more about Microsoft's [recommendations for identity and access management](https://learn.microsoft.com/en-us/azure/well-architected/security/identity-access).
+In a real production environment, the principle of Least Privileged Access should be applied—providing only the exact permissions each service needs to carry out its functions. Learn more about Microsoft's [recommendations for identity and access management](https://learn.microsoft.com/en-us/azure/well-architected/security/identity-access).
 
 ## Conclusion
 

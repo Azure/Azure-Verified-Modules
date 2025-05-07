@@ -17,12 +17,32 @@ module logAnalyticsWorkspace 'br/public:avm/res/operational-insights/workspace:0
   }
 }
 
+module natGwPublicIp 'br/public:avm/res/network/public-ip-address:0.8.0' = {
+  name: 'natGwPublicIpDeployment'
+  params: {
+    // Required parameters
+    name: '${prefix}-natgwpip'
+    // Non-required parameters
+    location: location
+    diagnosticSettings: [
+      {
+        name: 'natGwPublicIpDiagnostics'
+        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
+      }
+    ]
+  }
+}
+
 module natGateway 'br/public:avm/res/network/nat-gateway:1.2.2' = {
   name: 'natGatewayDeployment'
   params: {
     // Required parameters
     name: '${prefix}-natgw'
     zone: 1
+    // Non-required parameters
+    publicIpResourceIds: [
+      natGwPublicIp.outputs.resourceId
+    ]
   }
 }
 

@@ -17,12 +17,32 @@ module logAnalyticsWorkspace 'br/public:avm/res/operational-insights/workspace:0
   }
 }
 
+module natGwPublicIp 'br/public:avm/res/network/public-ip-address:0.8.0' = {
+  name: 'natGwPublicIpDeployment'
+  params: {
+    // Required parameters
+    name: '${prefix}-natgwpip'
+    // Non-required parameters
+    location: location
+    diagnosticSettings: [
+      {
+        name: 'natGwPublicIpDiagnostics'
+        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
+      }
+    ]
+  }
+}
+
 module natGateway 'br/public:avm/res/network/nat-gateway:1.2.2' = {
   name: 'natGatewayDeployment'
   params: {
     // Required parameters
     name: '${prefix}-natgw'
     zone: 1
+    // Non-required parameters
+    publicIpResourceIds: [
+      natGwPublicIp.outputs.resourceId
+    ]
   }
 }
 
@@ -52,6 +72,10 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
       {
         name: 'PrivateEndpointSubnet'
         addressPrefix: cidrSubnet(addressPrefix, 24, 1) // second subnet in address space
+      }
+      {
+        name: 'AzureBastionSubnet' // Azure Bastion Host requires this subnet to be named exactly "AzureBastionSubnet"
+        addressPrefix: cidrSubnet(addressPrefix, 24, 2) // third subnet in address space
       }
     ]
   }
@@ -196,12 +220,14 @@ module privateDnsBlob 'br/public:avm/res/network/private-dns-zone:0.7.1' = {
   }
 }
 
+// Note: Deploying a Bastion Host will automatically use the subnet named "AzureBastionSubnet" within our
+// VNet. This subnet is required and must be named exactly "AzureBastionSubnet" for the Bastion Host to work.
 module bastion 'br/public:avm/res/network/bastion-host:0.6.1' = {
   name: 'bastionDeployment'
   params: {
     name: '${prefix}-bastion'
     virtualNetworkResourceId: virtualNetwork.outputs.resourceId
-    skuName: 'Developer'
+    skuName: 'Basic'
     location: location
     diagnosticSettings: [
       {
