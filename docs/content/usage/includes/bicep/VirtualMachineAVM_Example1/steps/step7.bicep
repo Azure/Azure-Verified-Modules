@@ -47,7 +47,7 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
     subnets: [
       {
         name: 'VMSubnet'
-        addressPrefix: cidrSubnet('10.0.0.0/16', 24, 0) // first subnet in address space
+        addressPrefix: cidrSubnet(addressPrefix, 24, 0) // first subnet in address space
         natGatewayResourceId: natGateway.outputs.resourceId
       }
     ]
@@ -97,10 +97,7 @@ module virtualMachine 'br/public:avm/res/compute/virtual-machine:0.13.1' = {
         ipConfigurations: [
           {
             name: 'ipconfig01'
-            pipConfiguration: {
-              name: 'pip-01'
-            }
-            subnetResourceId: virtualNetwork.outputs.subnetResourceIds[1] // VMSubnet
+            subnetResourceId: virtualNetwork.outputs.subnetResourceIds[0] // VMSubnet
           }
         ]
         nicSuffix: '-nic-01'

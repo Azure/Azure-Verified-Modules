@@ -121,10 +121,7 @@ module virtualMachine 'br/public:avm/res/compute/virtual-machine:0.14.0' = {
         ipConfigurations: [
           {
             name: 'ipconfig01'
-            pipConfiguration: {
-              name: 'pip-01'
-            }
-            subnetResourceId: virtualNetwork.outputs.subnetResourceIds[1] // VMSubnet
+            subnetResourceId: virtualNetwork.outputs.subnetResourceIds[0] // VMSubnet
           }
         ]
         nicSuffix: '-nic-01'
@@ -172,7 +169,7 @@ module storageAccount 'br/public:avm/res/storage/storage-account:0.19.0' = {
     privateEndpoints:[
       {
         service: 'Blob'
-        subnetResourceId: virtualNetwork.outputs.subnetResourceIds[2] // Private Endpoint Subnet
+        subnetResourceId: virtualNetwork.outputs.subnetResourceIds[1] // Private Endpoint Subnet
       }
     ]
   }
