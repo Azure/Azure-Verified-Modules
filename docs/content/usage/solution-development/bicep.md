@@ -117,7 +117,7 @@ You now have a fully-functional Bicep template that will deploy a working Log An
 
 The above commands will log you in to your Azure subscription, select a subscription to use, create a resource group, then deploy the `main.bicep` template to your resource group.
 
-AVM Makes the deployment of Azure resources incredibly easy. Many of the parameters you would normally be required to define are taken care of for you by the AVM module itself. In fact, notice how the `location` parameter is not even needed in your template---when left blank, by default, all AVM modules will deploy to the location in which your target Resource Group exists.
+AVM Makes the deployment of Azure resources incredibly easy. Many of the parameters you would normally be required to define are taken care of for you by the AVM module itself. In fact the `location` parameter is not even needed in your template---when left blank, by default, all AVM modules will deploy to the location in which your target Resource Group exists.
 
 Now we have a Log Analytics workspace in our resource group which doesn't do a whole lot of good on its own. Let's take our template a step further by adding a Virtual Network that integrates with the Log Analytics workspace.
 
@@ -131,7 +131,11 @@ In your `main.bicep` file, add the following:
 {{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step2.bicep" lang="bicep" line_anchors="vm-step2" hl_lines="11-22" >}}
 {{% /expand %}}
 
-Again, notice how the Virtual Network AVM module requires only two things: a `name` and an `addressPrefixes` parameter. There is an additional parameter available in *most* AVM modules named `diagnosticSettings`. This parameter allows you configure your resource to send its logs to any suitable logging service. In our case, we are using a Log Analytics workspace.
+Again, the Virtual Network AVM module requires only two things: a `name` and an `addressPrefixes` parameter.
+
+#### Configure Diagnostics Settings
+
+There is an additional parameter available in *most* AVM modules named `diagnosticSettings`. This parameter allows you configure your resource to send its logs to any suitable logging service. In our case, we are using a Log Analytics workspace.
 
 Let's update our `main.bicep` file to have our VNet send all of its logging data to our Log Analytics workspace:
 
@@ -144,10 +148,12 @@ Notice how the `diagnosticsSettings` parameter needs a `workspaceResourceId`? Al
 {{% notice style="info" %}}
 All AVM modules have built-in outputs which can be referenced using the `<moduleName>.outputs.<outputName>` syntax.
 
-When using plain Bicep, many of these outputs would require multiple lines of code or knowledge of the correct object ID references to make in order to get at the desired output. AVM modules do much of this heavy-lifting for you by taking care of these complex tasks within the module itself, then exposing it to you through the module's outputs. Find out more about [Bicep Outputs](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/outputs?tabs=azure-powershell).
+When using plain Bicep, many of these outputs require multiple lines of code or knowledge of the correct object ID references to get at the desired output. AVM modules do much of this heavy-lifting for you by taking care of these complex tasks within the module itself, then exposing them to you through the module's outputs. Find out more about [Bicep Outputs](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/outputs?tabs=azure-powershell).
 {{% /notice %}}
 
-We can't do much with a Virtual Network without subnets, so let's add a subnet next. According to our Architecture, we will have two subnets: one for the Virtual Machine and one for Private Endpoints. We can start with the VM subnet for now. While we're at it, let's also add the NAT Gateway and attach it to the VM subnet.
+#### Add a Subnet
+
+We can't use a Virtual Network without subnets, so let's add a subnet next. According to our Architecture, we will have three subnets: one for the Virtual Machine, one for the Bastion host, and one for Private Endpoints. We can start with the VM subnet for now. While we're at it, let's also add the NAT Gateway and attach it to the VM subnet.
 
 Add the following to your `main.bicep`:
 
@@ -157,9 +163,11 @@ Add the following to your `main.bicep`:
 
 As you can see, we have added a `subnets` property to our virtualNetwork module. The AVM `network/virtual-network` module supports the creation of subnets directly within the module itself. We can also link our NAT Gateway directly to the subnet within this submodule.
 
-We are also using a nice function provided by Bicep, the [`cidrSubnet()`](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-functions-cidr#cidrsubnet) function. This makes it easy to declare CIDR blocks without having to calculate them on your own.
+A nice feature within Bicep are the various functions available. We use the [`cidrSubnet()`](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-functions-cidr#cidrsubnet) function to declare CIDR blocks without having to calculate them on your own.
 
-Notice how we are reusing the same CIDR block `10.0.0.0/16` in multiple location? You may also notice we are defining the same `location` in two different spots as well. We're now at a point in the development where we should leverage one of our first recommended practices: using variables!
+#### Switch to Parameters and Variables
+
+See how we are reusing the same CIDR block `10.0.0.0/16` in multiple location? You may have noticed we are defining the same `location` in two different spots as well. We're now at a point in the development where we should leverage one of our first recommended practices: using parameters and variables!
 
 {{% notice style="tip" %}}
 Use Bicep **variables** to define values that will be constant and reused with your template; use **parameters** anywhere you may need a modifiable value.
@@ -183,7 +191,7 @@ The first step is easy: add the Key Vault AVM module to our `main.bicep` file. I
 {{< code file="\content\usage\includes\bicep\VirtualMachineAVM_Example1\steps\step6.bicep" lang="bicep" line_anchors="vm-step6" hl_lines="51-65" >}}
 {{% /expand %}}
 
-You may notice the name of the Key Vault we will deploy uses the `uniqueString()` Bicep function. Key Vault names must be globally unique. We will therefore deviate from our standard naming convention thus far and make an exception for the Key Vault. Note how we are still adding a suffix to the Key Vault name so its name remains recognizable; you can use a combination of concatenating unique strings, prefixes, or suffixes to follow your own naming standard preferences.
+The name of the Key Vault we will deploy uses the `uniqueString()` Bicep function. Key Vault names must be globally unique. We will therefore deviate from our standard naming convention thus far and make an exception for the Key Vault. Note how we are still adding a suffix to the Key Vault name so its name remains recognizable; you can use a combination of concatenating unique strings, prefixes, or suffixes to follow your own naming standard preferences.
 
 When we generate our unique string, we will pass in the `resourceGroup().id` as the seed for the `uniqueString()` function so that every time you deploy this `main.bicep` to the same resource group, it will use the same randomly-generated name for your Key Vault (since `resourceGroup().id` will be the same).
 
