@@ -11,7 +11,7 @@ flowchart LR
     Proposed["1 - Proposed 💡"] --> Available["2 - Available 🟢"]
     Proposed --> |Acceptence criteria not met| Rejected[Rejected]
     Available --> |Module temporarily not maintained| Orphaned["3 - Orphaned 👀"]
-    Orphaned --> |End of life| Deprecated["4 - Deprecated ❌"]
+    Orphaned --> |End of life| Deprecated["4 - Deprecated 🟡"]
     Orphaned --> |New owner identified| Available
     Available --> |End of life| Deprecated
     style Proposed fill:#ADD8E6,stroke:#333,stroke-width:1px
@@ -65,7 +65,7 @@ When a module becomes orphaned, the AVM core team will communicate this through 
 
 The information notice will include the following statement:
 
-{{< highlight lineNos="false" type="markdown" wrap="true" title="orphaned-module-notice.md" >}}
+{{< highlight lineNos="false" type="markdown" wrap="true" title="ORPHANED.md" >}}
 {{% include file="/static/includes/orphaned-module-notice.md" %}}
 {{< /highlight >}}
 
@@ -79,12 +79,32 @@ Once a module reaches the end of its lifecycle (e.g., it's permanently replaced 
 
 - The module will show as deprecated in the AVM module index.
 - The module will no longer be shown through VS Code IntelliSense.
-- The module's source code will show an archived status (through an `ARCHIVED.MD` file and a disclaimer in its `README.md` file).
+- The module's source code will show an archived status (through a, `DEPRECATED.md` and an `ARCHIVED.MD` file and a disclaimer in its `README.md` file).
 - There will be a clear indication on the module's repo that new issues can no longer be submitted for the module:
   - Bicep: The module will be taken off the list of available modules in related issue templates.
   - Terraform: The module's repo will be archived.
 
 It is recommended to migrate to a replacement/alternative version of the module, if available.
+
+{{% notice style="important" %}}
+When a module becomes deprecated, the AVM core team will communicate this through an information notice to be placed as follows.
+
+- In case of a Bicep module, the information notice will be placed in a `DEPRECATED.md` file and in the header of the module's `README.md` - both residing in the module's root.
+- In case of a Terraform module, the information notice will be placed in the header of the `README.md` file, in the module's root.
+
+The information notice will include the following statement:
+
+{{< highlight lineNos="false" type="markdown" wrap="true" title="DEPRECATED.md" >}}
+{{% include file="/static/includes/deprecated-module-notice.md" %}}
+{{< /highlight >}}
+
+The `ARCHIVED.md` file will include the following information (Bicep example):
+
+{{< highlight lineNos="false" type="markdown" wrap="true" title="ARCHIVED.md" >}}
+{{% include file="/static/includes/archived-module-notice-example.md" %}}
+{{< /highlight >}}
+
+{{% /notice %}}
 
 {{% notice style="info" %}}
 The module's `-owners-` and `-contributors-` GitHub teams will be retained indefinitely as these grant access to the source code of the module.

@@ -164,9 +164,9 @@ Once module is developed and `v0.1.0` has been published to the relevant registr
 
 ### When a module becomes orphaned
 
-If a module meets the criteria described in the "[Orphaned AVM Modules]({{% siteparam base %}}/specs/shared/module-lifecycle/#orphaned-avm-modules)" chapter, the modules is considered to be orphaned and the below steps must be performed.
+If a module meets the criteria described in the "[Orphaned Modules]({{% siteparam base %}}/specs/shared/module-lifecycle/#3-orphaned-avm-modules)" chapter, the module is considered to be orphaned and the below steps must be performed.
 
-An issue is considered to be an orphaned module if
+An "orphaned module" issue must be submitted. An issue is considered to be an "orphaned module" issue if
 
 - it was opened through the "[Orphaned AVM Module 👀](https://aka.ms/avm/OrphanedModule)" template,
 - it has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 👀</mark>&nbsp; applied to it, and
@@ -196,7 +196,7 @@ Include the following text in the information notice:
 
 {{% expand title="➕ Orphaned module notice for module README file" %}}
 
-{{< highlight lineNos="false" type="markdown" wrap="true" title="" >}}
+{{< highlight lineNos="false" type="markdown" wrap="true" title="ORPHANED.md" >}}
 
 {{% include file="/static/includes/orphaned-module-notice.md" %}}
 
@@ -255,6 +255,53 @@ To look for Orphaned Modules:
 {{% /expand %}}
 
 7. Close the Orphaned Module issue.
+
+## Deprecated modules
+
+### When a module becomes deprecated
+
+If a module meets the criteria described in the "[Deprecated Modules]({{% siteparam base %}}/specs/shared/module-lifecycle/#4-deprecated-modules)" chapter, the module is considered to be deprecated and the below steps must be performed.
+
+A "deprecated module" issue must be submitted. An issue is considered to be a "deprecated module" issue if:
+
+- it was opened through the "[Deprecate AVM Module 🟡](https://aka.ms/avm/DeprecatedModule)" template,
+- it has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#000000;color:white;">Type: Module Deprecation Request 🟡</mark>&nbsp; applied to it, and
+- it is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project.
+
+1. Create a new issue using the "[Deprecate AVM Module 🟡](https://aka.ms/avm/DeprecatedModule)" issue template.
+2. Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#000000;color:white;">Type: Module Deprecation Request 🟡</mark>&nbsp; labels are assigned to the issue.
+3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
+4. Place an information notice as per the below guidelines:
+    - In case of a Bicep module:
+      - Place the information notice - with the text below - in an `DEPRECATED.md` file, in the module's root.
+      - Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header.
+      - Make sure the content of the `DEPRECATED.md` file is displayed in the `README.md` in its header (right after the title).
+    - In case of a Terraform module, place the information notice - with the text below - in the `README.md` file, in the module's root.
+    - In case of both Bicep and Terraform modules, place the an `ARCHIVE.md` file in the module's root, with the content below.
+    - Once the information notice is placed, submit a Pull Request.
+
+Place the following indicators in the module's repository:
+
+{{% expand title="➕ Deprecated module indicators" %}}
+
+{{< highlight lineNos="false" type="markdown" wrap="true" title="DEPRECATED.md" >}}
+
+{{% include file="/static/includes/deprecated-module-notice.md" %}}
+
+{{< /highlight >}}
+
+Populate the `ARCHIVED.md` file with information about the module's previous releases and place it in the module's root folder.
+
+Bicep example for deprecating the `avm/ptn/finops-toolkit/finops-hub` module:
+
+- To find out what the available versions are, run the following command: `git tag -l "*avm/ptn/finops-toolkit/finops-hub*"`
+- Populate the `ARCHIVED.md` file with the available versions and module name matching the following format:
+
+{{< highlight lineNos="false" type="markdown" wrap="true" title="ARCHIVED.md" >}}
+{{% include file="/static/includes/archived-module-notice-example.md" %}}
+{{< /highlight >}}
+
+{{% /expand %}}
 
 ## General feedback/question, documentation update and other standard issues
 
