@@ -34,7 +34,7 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{% expand title="âž• Published Modules - Module names, status and owners" expanded="true" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformPatternModules.csv" language="Terraform" moduleType="pattern" exclude="Proposed :new:" %}}
+{{% moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformPatternModules.csv" language="Terraform" moduleType="pattern" include="Available :green_circle:,Orphaned :eyes:" %}}
 
 {{% /expand %}}
 
@@ -42,7 +42,15 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{% expand title="âž• Proposed Modules - Module names, status and owners" expanded="false" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformPatternModules.csv" language="Terraform" moduleType="pattern" exclude="Available :green_circle:,Orphaned :eyes:" %}}
+{{% moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformPatternModules.csv" language="Terraform" moduleType="pattern" include="Proposed :new:" %}}
+
+{{% /expand %}}
+
+### Deprecated modules - ðŸŸ¡
+
+{{% expand title="âž• Deprecated Modules - Module names, status and owners" expanded="false" %}}
+
+{{% moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformPatternModules.csv" language="Terraform" moduleType="pattern" include="Deprecated" %}}
 
 {{% /expand %}}
 
@@ -50,7 +58,7 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{% expand title="âž• All Modules - Module names, status and owners" expanded="false" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformPatternModules.csv" language="Terraform" moduleType="pattern" %}}
+{{% moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformPatternModules.csv" language="Terraform" moduleType="pattern" include="Available :green_circle:,Orphaned :eyes:Proposed :new:,Deprecated" %}}
 
 {{% /expand %}}
 
