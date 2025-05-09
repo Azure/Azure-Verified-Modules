@@ -2,9 +2,9 @@ module "avm-res-resources-resourcegroup" {
   source  = "Azure/avm-res-resources-resourcegroup/azurerm"
   version = "0.2.1"
 
-  name     = "${var.name_prefix}-rg"
+  name = "${var.name_prefix}-rg"
   location = var.location
-  tags     = var.tags
+  tags = var.tags
 }
 
 module "avm-res-operationalinsights-workspace" {
@@ -53,8 +53,6 @@ module "avm-res-keyvault-vault" {
   }
 }
 
-
-
 module "avm-res-network-natgateway" {
   source  = "Azure/avm-res-network-natgateway/azurerm"
   version = "0.2.1"
@@ -67,11 +65,6 @@ module "avm-res-network-natgateway" {
   public_ips = {
     public_ip_1 = {
       name = "${var.name_prefix}-natgw-pip"
-    }
-  }
-  subnet_associations = {
-    subnet_1 = {
-      resource_id = module.avm-res-network-virtualnetwork.subnets["subnet0"].resource_id
     }
   }
 }
@@ -90,15 +83,18 @@ module "avm-res-network-virtualnetwork" {
     subnet0 = {
       name                            = "${var.name_prefix}-vm-subnet"
       default_outbound_access_enabled = false
-      address_prefixes                = [cidrsubnet(var.virtual_network_cidr, 1, 0)]
+      address_prefixes = [cidrsubnet(var.virtual_network_cidr, 1, 0)]
       nat_gateway = {
         id = module.avm-res-network-natgateway.resource_id
+      }
+      network_security_group = {
+        id = module.avm-res-network-networksecuritygroup.resource_id
       }
     }
     bastion = {
       name                            = "AzureBastionSubnet"
       default_outbound_access_enabled = false
-      address_prefixes                = [cidrsubnet(var.virtual_network_cidr, 1, 1)]
+      address_prefixes = [cidrsubnet(var.virtual_network_cidr, 1, 1)]
     }
   }
 
@@ -127,6 +123,28 @@ module "avm-res-network-bastionhost" {
       name                           = "${var.name_prefix}-bastion-diagnostic"
       workspace_resource_id          = module.avm-res-operationalinsights-workspace.resource_id
       log_analytics_destination_type = "Dedicated"
+    }
+  }
+}
+
+module "avm-res-network-networksecuritygroup" {
+  source  = "Azure/avm-res-network-networksecuritygroup/azurerm"
+  version = "0.4.0"
+  resource_group_name = module.avm-res-resources-resourcegroup.name
+  name                = "${var.name_prefix}-vm-subnet-nsg"
+  location            = module.avm-res-resources-resourcegroup.resource.location
+
+  security_rules = {
+    "rule01" = {
+      name                       = "${var.name_prefix}-ssh"
+      access                     = "Allow"
+      destination_address_prefix = "*"
+      destination_port_ranges    = ["22"]
+      direction                  = "Inbound"
+      priority                   = 200
+      protocol                   = "Tcp"
+      source_address_prefix      = "*"
+      source_port_range          = "*"
     }
   }
 }

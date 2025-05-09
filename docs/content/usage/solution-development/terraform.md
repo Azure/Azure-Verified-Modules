@@ -37,7 +37,7 @@ Based on this narrative we will create the following resources:
 - A virtual network with:
   - A virtual machine subnet
   - A Bastion subnet
-  - Network Security Group on the VM subnet
+  - Network Security Group on the VM subnet allowing SSH traffic
   - Logging to the Log Analytics workspace
 - A NAT Gateway for enabling outbound internet access
   - Associated to the virtual machine subnet
@@ -71,12 +71,11 @@ In our example, we will use the following variables as inputs to allow for custo
 - name_prefix - this will be used to preface all of the resource naming
 - virtual_network_prefix - This will be used to ensure IP uniqueness for the deployment
 - tags - the custom tags to use for each deployment
-- cloud-init-script-content - the script to use for configuring the virtual machine **TODO: decide if we want this complexity in the example**
 
 Finally, we will export the following outputs:
 
 - resource_group_name - this will allow for finding this deployment if there are multiples
-- virtual_machine_ip_address - This can be used to find and login to the vm if needed.
+- virtual_machine_name - This can be used to find and login to the vm if needed.
 
 ### Identifying AVM modules that match our solution
 
@@ -94,6 +93,7 @@ For our sample architecture we have the following AVM resource modules at our di
 - [Log Analytics Workspace](https://registry.terraform.io/modules/Azure/avm-res-operationalinsights-workspace/azurerm/latest)
 - [Key Vault](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest)
 - [Virtual Network](https://registry.terraform.io/modules/Azure/avm-res-network-virtualnetwork/azurerm/latest)
+- [Network Security Group](https://registry.terraform.io/modules/Azure/avm-res-network-networksecuritygroup/azurerm/latest)
 - [NAT Gateway](https://registry.terraform.io/modules/Azure/avm-res-network-natgateway/azurerm/latest)
 - [Bastion](https://registry.terraform.io/modules/Azure/avm-res-network-bastionhost/azurerm/latest)
 - [Virtual Machine](https://registry.terraform.io/modules/Azure/avm-res-compute-virtualmachine/azurerm/latest)
@@ -113,6 +113,10 @@ Add the following code to your `terraform.tf` file:
 {{% expand title="➕ Expand Code" %}}
 {{< code file="\content\usage\includes\terraform\steps\step1-terraform.tf" lang="terraform" line_anchors="sol-step1" hl_lines="1-5" >}}
 {{% /expand %}}
+
+{{% notice style="note" %}}
+We use a utility to enable code highlighting which includes line numbers. This causes issues if you attempt to copy portions of the code from the code block. Use the copy button in the top right of the code window to copy the full text and remove any unneeded content if a smaller portion of the content is desired.
+{{% /notice %}}
 
 This specifies that the required terraform binary version to run your module can be any version between 1.9 and 2.0. This is a good compromise for allowing a range of binary versions while also ensuring that versions support any required features that are used as part of the module. This can include things like newly introduced functions or support for new key words.
 
@@ -254,7 +258,7 @@ This time, instead of manually supplying module inputs we will copy module conte
 The log analytics module content should look like the following code block. For simplicity you can also copy this directly to avoid multiple copy/paste actions.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\terraform\steps\step6-main-law.tf" lang="terraform" line_anchors="sol-step6" hl_lines="5-10" >}}
+{{< code file="\content\usage\includes\terraform\steps\step6-main-law.tf" lang="terraform" line_anchors="sol-step6" hl_lines="1-11" >}}
 {{% /expand %}}
 
 Again we will need to run `terraform init` to allow Terraform to initialize a copy of the AVM log analytics module.
@@ -283,8 +287,6 @@ Add the following line to your main.tf file and save it.
 {{% /expand %}}
 
 Key vaults use a global namespace which means that we will also need to add a randomization resource to allow us to randomize the name to avoid any potential name intersection issues with other key vault deployments. We will use Terraform's random provider to generate the random string we will append to the key vault name.  Add the following code to your main module to create the random_string resource we will use for naming.
-
-**TODO: Add content to update the required resource provider details for random.**
 
 {{% expand title="➕ Expand Code" %}}
 {{< code file="\content\usage\includes\terraform\steps\step8-random-string.tf" lang="terraform" line_anchors="sol-step8" hl_lines="1-5" >}}
@@ -342,6 +344,29 @@ Review the following code to see each of these changes.
 
 Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file=development.tfvars` sequence.
 
+#### Deploy the Network Security Group
+
+Our architecture calls for a Network Security Group allowing SSH access to the virtual machine subnet. We will use the network security group AVM resource module to accomplish this task.
+
+1. Browse to the AVM [Network Security Group resource module page](https://registry.terraform.io/modules/Azure/avm-res-network-networksecuritygroup/azurerm/latest) in the Terraform Registry.
+1. Copy the module definition and source from the `Provision Instructions` card from the module main page.
+1. Copy the remaining module content from the `example_with_NSG_rule` example.
+1. Update the `location` and `resource_group_name`using implicit references from our resource group module.
+1. Update the name value using the `name_prefix` variable interpolation as we did with the other modules.
+1. Copy the map entry labeled `rule02` from the locals `nsg_rules` map and paste it between two curly braces to create the `security_rules` attribute in the NSG module we're building.
+1. Make the following updates to the rule details:
+  1. Rename the map key to `"rule01"` from `"rule02"`
+  1. Update the name to use the var.prefix interpolation and ssh to describe the rule
+  1. Update the `destination_port_ranges` list to be `["22"]`
+
+Upon completion the code for the NSG module should be as follows:
+
+{{% expand title="➕ Expand Code" %}}
+{{< code file="\content\usage\includes\terraform\steps\step17-nsg.tf" lang="terraform" line_anchors="sol-step17" hl_lines="1-21" >}}
+{{% /expand %}}
+
+Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file=development.tfvars` sequence.
+
 #### Deploy the Virtual Network
 
 We can now continue the build-out of our architecture by configuring the virtual network deployment. This will follow a similar pattern as the previous resource modules, but this time we will also add some network functions to help us customize the subnet configurations.
@@ -354,12 +379,13 @@ We can now continue the build-out of our architecture by configuring the virtual
 1. Now we will update the map key, and `name` values for each subnet so that they are unique
 1. Then we'll use the `cidrsubnet` function to dynamically generate the CIDR range for each subnet. You can explore the [function documentation](https://developer.hashicorp.com/terraform/language/functions/cidrsubnet) for more details on how it can be used.
 1. We will also populate the `nat_gateway` object on `subnet0` with the `resource_id` output from our nat gateway module.
+1. To configure the NSG on the VM subnet we need to link it.  Add a `network_security_group` attribute to the `subnet0` definition, and replace the value with the `resource_id` output from the NSG module.
 1. Finally, we'll copy the diagnostic settings from the example and update the implicit references to point to our previously deployed log analytics workspace.
 
 After making these changes our virtual network module call code will be as follows:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\terraform\steps\step11-vnet.tf" lang="terraform" line_anchors="sol-step11" hl_lines="1-34" >}}
+{{< code file="\content\usage\includes\terraform\steps\step11-vnet.tf" lang="terraform" line_anchors="sol-step11" hl_lines="1-37" >}}
 {{% /expand %}}
 
 {{% notice style="note" %}}
@@ -425,6 +451,36 @@ The new code we added for the virtual machine resource will be as follows:
 
 Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file=development.tfvars` sequence.
 
+### Creating the outputs.tf file
+
+The final piece of our module is to export any values that may need to be consumed by module users. From our architecture we'll export the resource group name and the virtual machine resource name.
+
+1. Create an `outputs.tf` file in your IDE
+1. Create an output named `resource_group_name` and set the value to an implicit reference to the resource group modules name output. Include a brief description for the output.
+1. Create an output named `virtual_machine_name` and set the value to an implicit reference to the virtual machine module's name output. Include a brief description for the output.
+
+The new code we added for the outputs will be as follows:
+
+{{% expand title="➕ Expand Code" %}}
+{{< code file="\content\usage\includes\terraform\steps\step15-outputs.tf" lang="terraform" line_anchors="sol-step15" hl_lines="1-9" >}}
+{{% /expand %}}
+
+Because no new modules were created we don't need to run terraform init to test this change. Run `terraform apply -var-file=development.tfvars` to see the new outputs that have been created.
+
+### Update the terraform.tf file
+
+It is a best practice to define the required versions of the providers for your module to ensure consistent behavior when it is being run. In this case we are going to be slightly permissive and allow increases in minor and patch versions to fluctuate since those are not supposed to include breaking changes. In production you would likely want to pin on a specific version to guarantee behavior.
+
+1. Run `terraform init` to review the providers and versions that are currently installed.
+1. Update your `terraform.tf` file's required providers field for each provider listed in the downloaded providers
+
+The updated code we added for the providers in the terraform.tf file will be as follows:
+
+{{% expand title="➕ Expand Code" %}}
+{{< code file="\content\usage\includes\terraform\steps\step16-terraform.tf" lang="terraform" line_anchors="sol-step16" hl_lines="3-28" >}}
+{{% /expand %}}
+
+
 ## Conclusion
 
 Congratulations on successfully implementing a solution using Azure Verified Modules. You were able to build out our sample architecture using module documentation and taking advantage of features like standard interfaces and pre-defined defaults to simplify the development experience.
@@ -434,7 +490,7 @@ This was a long exercise and mistakes can happen. If you're getting errors or a 
 {{% /notice %}}
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="\content\usage\includes\terraform\steps\step14-main.tf" lang="terraform" line_anchors="sol-step14" hl_lines="1-172" >}}
+{{< code file="\content\usage\includes\terraform\steps\step14-main.tf" lang="terraform" line_anchors="sol-step14" hl_lines="1-190" >}}
 {{% /expand %}}
 
 ### Additional exercises
@@ -444,6 +500,7 @@ For additional learning it can be helpful to experiment with modifying this solu
 1. Use the `managed_identities` interface to add a system assigned managed identity to the virtual machine and give it `Key Vault Administrator` rights on the key vault
 1. Use the `tags` interface to assign tags directly to one or more resources
 1. Add an Azure Monitoring Agent extension to the virtual machine resource
+1. Add additional inputs like VM sku to your module to make it more customizable. Be sure to update the code and tfvars files to match.
 
 ## Clean up your environment
 

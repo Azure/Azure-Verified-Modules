@@ -16,6 +16,9 @@ module "avm-res-network-virtualnetwork" {
       nat_gateway = {
         id = module.avm-res-network-natgateway.resource_id
       }
+      network_security_group = {
+        id = module.avm-res-network-networksecuritygroup.resource_id
+      }
     }
     bastion = {
       name                            = "AzureBastionSubnet"
