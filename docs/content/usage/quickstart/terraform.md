@@ -8,7 +8,7 @@ description: Terraform Quickstart Guidance for the Azure Verified Modules (AVM) 
 
 ## Introduction
 
-This guide explains how to use an Azure Verified Module (AVM) in your Terraform workflow. With AVM modules, you can quickly deploy and manage Azure infrastructure without writing extensive code from scratch.
+This guide explains how to use an Azure Verified Modules (AVM) in your Terraform workflow. With AVM modules, you can quickly deploy and manage Azure infrastructure without writing extensive code from scratch.
 
 In this guide, you will deploy a [Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/) resource and generate and store a key.
 
@@ -18,12 +18,7 @@ For additional Terraform resources, try a [tutorial](https://developer.hashicorp
 
 ## Prerequisites
 
-You will need the following items to complete the quickstart guide:
-
-- [Visual Studio Code (VS Code)](https://code.visualstudio.com/docs/setup/setup-overview) to develop your solution.
-- [Terraform CLI](https://developer.hashicorp.com/terraform/install) to deploy your Terraform modules. Make sure you have a recent version installed.
-- [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) to authenticate to Azure.
-- [Azure Subscription](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/fundamental-concepts) to deploy your resources.
+{{% include file="/content/usage/includes/terraform-prerequisites.md" %}}
 
 Before you begin, ensure you have these tools installed in your development environment.
 
@@ -61,7 +56,7 @@ The easiest way to find published AVM Terraform modules is by searching the Terr
     Your browser does not support the video tag.
 </video>
 
-Searching the Azure Verified Module indexes is the most complete way to discover published as well as planned modules - shown as proposed. As presented in the video above, use the following steps to locate a specific module on the AVM website:
+Searching the Azure Verified Modules indexes is the most complete way to discover published as well as planned modules - shown as proposed. As presented in the video above, use the following steps to locate a specific module on the AVM website:
 
 - Use your web browser to open the AVM website at [https://aka.ms/avm](https://aka.ms/avm).
 - Expand the **Module Indexes** menu item and select the **Terraform** sub-menu item.
@@ -72,13 +67,13 @@ Searching the Azure Verified Module indexes is the most complete way to discover
 - Use the in-page search feature of your browser (in most Windows browsers you can access it using the `CTRL` + `F` keyboard shortcut).
 - Enter a **search term** to find the module you are looking for - e.g., Key Vault.
 - **Move through the search results until you locate the desired module.** If you are unable to find a published module, return to the table of contents and expand the **All modules** link to search both published and proposed modules - i.e., modules that are planned, likely in development but not published yet.
-- After finding the desired module, click on the **module's name**. This link will lead you to the official Hashicorp Terraform Registry page for the module where you can find the module's documentation and examples.
+- After finding the desired module, click on the **module's name**. This link will lead you to the official HashiCorp Terraform Registry page for the module where you can find the module's documentation and examples.
 
 ### Module details and examples
 
-Once you have identified the AVM module in the Terraform Registry you can find detailed information about the module’s functionality, components, input parameters, outputs and more. The documentation also provides comprehensive usage examples, covering various scenarios and configurations.
+Once you have identified the AVM module in the Terraform Registry you can find detailed information about the module's functionality, components, input parameters, outputs and more. The documentation also provides comprehensive usage examples, covering various scenarios and configurations.
 
-Explore the Key Vault module’s documentation and usage examples to understand its functionality, input variables, and outputs.
+Explore the Key Vault module's documentation and usage examples to understand its functionality, input variables, and outputs.
 
 - Note the **Examples** drop-down list and explore each example
 - Review the **Readme** tab to see module provider minimums, a list of resources and data sources used by the module, a nicely formatted version of the inputs and outputs, and a reference to any submodules that may be called.

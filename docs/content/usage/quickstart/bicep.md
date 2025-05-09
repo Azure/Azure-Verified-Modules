@@ -8,7 +8,7 @@ description: Bicep Quickstart Guidance for the Azure Verified Modules (AVM) prog
 
 ## Introduction
 
-This guide explains how to use an Azure Verified Module (AVM) in your Bicep workflow. By leveraging AVM modules, you can rapidly deploy and manage Azure infrastructure without having to write extensive code from scratch.
+This guide explains how to use an Azure Verified Modules (AVM) in your Bicep workflow. By leveraging AVM modules, you can rapidly deploy and manage Azure infrastructure without having to write extensive code from scratch.
 
 In this guide, you will deploy a [Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/) resource and a Personal Access Token as a secret.
 
@@ -18,15 +18,7 @@ For additional Bicep learning resources use the [Bicep documentation](https://le
 
 ## Prerequisites
 
-You will need the following tools and components to complete this quickstart guide:
-
-- [Visual Studio Code (VS Code)](https://code.visualstudio.com/download) to develop your solution.
-- [Bicep Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) to author your Bicep template and explore modules published in the [Registry](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules#public-module-registry).
-- One of the following command line tools:
-  - [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell) AND [Azure PowerShell](https://learn.microsoft.com/en-us/powershell/azure/install-azure-powershell)
-  - [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) to deploy your solution.
-- [Bicep CLI](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#install-manually)
-- [Azure Subscription](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/fundamental-concepts) to deploy your Bicep template.
+{{% include file="/content/usage/includes/bicep-prerequisites.md" %}}
 
 Make sure you have these tools set up before proceeding.
 
@@ -66,7 +58,7 @@ The Bicep VSCode extension is reading metadata through [this JSON file](https://
     Your browser does not support the video tag.
 </video>
 
-Searching the Azure Verified Module indexes is the most complete way to discover published as well as planned (proposed) modules. As shown in the video above, use the following steps to locate a specific module on the AVM website:
+Searching the Azure Verified Modules indexes is the most complete way to discover published as well as planned (proposed) modules. As shown in the video above, use the following steps to locate a specific module on the AVM website:
 
 1. Open the AVM website in your favorite web browser: [https://aka.ms/avm](https://aka.ms/avm).
 1. Expand the **Module Indexes** menu item and select the **Bicep** sub-menu item.
@@ -88,7 +80,7 @@ Searching the Azure Verified Module indexes is the most complete way to discover
 
 In the module's documentation, you can find detailed information about the module's functionality, components, input parameters, outputs and more. The documentation also provides comprehensive usage examples, covering various scenarios and configurations.
 
-Explore the Key Vault module’s documentation for usage examples and to understand its functionality, input parameters, and outputs.
+Explore the Key Vault module's documentation for usage examples and to understand its functionality, input parameters, and outputs.
 
   1. Note the mandatory and optional parameters in the [**Parameters**](https://github.com/Azure/bicep-registry-modules/blob/main/avm/res/key-vault/vault/README.md#Parameters) section.
 
@@ -147,7 +139,7 @@ It is recommended to create a [`bicepconfig.json`](https://learn.microsoft.com/e
 
 ### Define the Key Vault instance
 
-In this scenario - and every other real-world setup - there is more that you need to configure. You can open the module's documentation by hovering over its symbolic name to see all of the module’s capabilities - including supported parameters.
+In this scenario - and every other real-world setup - there is more that you need to configure. You can open the module's documentation by hovering over its symbolic name to see all of the module's capabilities - including supported parameters.
 
 {{% notice style="note" %}}The Bicep extension facilitates code-completion, enabling you to easily locate and utilize the Azure Verified Module. This feature also provides the necessary properties for a module, allowing you to begin typing and leverage IntelliSense for completion.{{% /notice %}}
 
