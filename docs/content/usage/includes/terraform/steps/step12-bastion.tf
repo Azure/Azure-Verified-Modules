@@ -8,4 +8,12 @@ module "avm-res-network-bastionhost" {
   ip_configuration = {
     subnet_id = module.avm-res-network-virtualnetwork.subnets["bastion"].resource_id
   }
+
+  diagnostic_settings = {
+    sendToLogAnalytics = {
+      name                           = "${var.name_prefix}-bastion-diagnostic"
+      workspace_resource_id          = module.avm-res-operationalinsights-workspace.resource_id
+      log_analytics_destination_type = "Dedicated"
+    }
+  }
 }
