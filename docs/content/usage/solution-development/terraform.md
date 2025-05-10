@@ -22,9 +22,9 @@ Good module development should start with a good plan. Let's first review the ar
 
 ### Architecture
 
-Before we begin coding, it is important to have details for what the infrastructure architecture will include. For our example, we will be building a solution that will host a simple application on a linux virtual machine (VM).
+Before we begin coding, it is important to have details about what the infrastructure architecture will include. For our example, we will be building a solution that will host a simple application on a linux virtual machine (VM).
 
-In our design, the resource group for our solution will require appropriate tagging to comply with our corporate standards. Resources that support Diagnostic Settings must also send metric data to a Log Analytics workspace so that the infrastructure support teams can get metric telemetry. The virtual machine will require outbound internet access to allow the application to properly function. A Key Vault will be included to store any secret and key artifacts and we will include a Bastion instance to allow support personnel to access the virtual machine if needed. Finally, the VM is intended to run without interaction so we will auto-generate an ssh private key and store it in the Key Vault for the rare event of someone needing to log into the VM.
+In our design, the resource group for our solution will require appropriate tagging to comply with our corporate standards. Resources that support Diagnostic Settings must also send metric data to a Log Analytics workspace so that the infrastructure support teams can get metric telemetry. The virtual machine will require outbound internet access to allow the application to properly function. A Key Vault will be included to store any secret and key artifacts, and we will include a Bastion instance to allow support personnel to access the virtual machine if needed. Finally, the VM is intended to run without interaction so we will auto-generate an SSH private key and store it in the Key Vault for the rare event of someone needing to log into the VM.
 
 Based on this narrative we will create the following resources:
 
@@ -79,15 +79,15 @@ Finally, we will export the following outputs:
 
 ### Identifying AVM modules that match our solution
 
-Now that we've determined our architecture and module configurations we need to see what AVM modules exist for use in our solution. To do this, we will open the AVM Terraform [pattern module index](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/tf-pattern-modules/) and check if there are any existing pattern modules that match our requirement. In this case, no pattern modules fit our need. If this was a common pattern we could open an issue on the AVM github repository to get assistance from the AVM project to create a pattern module matching our requirements. Since our architecture isn't common, we'll continue to the next step.
+Now that we've determined our architecture and module configurations we need to see what AVM modules exist for use in our solution. To do this, we will open the AVM Terraform [pattern module index](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/tf-pattern-modules/) and check if there are any existing pattern modules that match our requirement. In this case, no pattern modules fit our needs. If this was a common pattern we could open an issue on the AVM github repository to get assistance from the AVM project to create a pattern module matching our requirements. Since our architecture isn't common, we'll continue to the next step.
 
-When a pattern module fitting our need doesn't exist for a solution, leveraging AVM resource modules to build our own solution is the next best option. Review the AVM Terraform [published resource module index](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/tf-resource-modules/) for each of the resource types included in your architecture. For each AVM module, capture a link to the module to allow for a review of the documentation details on the Terraform Registry website.
+When a pattern module fitting our needs doesn't exist for a solution, leveraging AVM resource modules to build our own solution is the next best option. Review the AVM Terraform [published resource module index](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/tf-resource-modules/) for each of the resource types included in your architecture. For each AVM module, capture a link to the module to allow for a review of the documentation details on the Terraform Registry website.
 
 {{% notice style="note" %}}
 Some of the published pattern modules cover multi-resource configurations that can sometimes be interpreted as a single resource. Be sure to check the pattern index for groups of resources that may be part of your architecture and that don't exist in the resource module index. (e.g. Virtual WAN)
 {{% /notice %}}
 
-For our sample architecture we have the following AVM resource modules at our disposal. Feel free to click each module and explore it's documentation on the Terraform Registry.
+For our sample architecture we have the following AVM resource modules at our disposal. Feel free to click each module and explore its documentation on the Terraform Registry.
 
 - [Resource Group](https://registry.terraform.io/modules/Azure/avm-res-resources-resourcegroup/azurerm/latest)
 - [Log Analytics Workspace](https://registry.terraform.io/modules/Azure/avm-res-operationalinsights-workspace/azurerm/latest)
@@ -104,7 +104,7 @@ We can now begin coding our solution. We will create each element individually t
 
 ### Creating the terraform.tf file
 
-Let's begin with configuring the provider details necessary to build our solution. Since this is a root module, we want to include any provider and terraform version constraints for this module. We'll periodically come back and add any needed additional providers if our design includes a resource from a new provider.
+Let's begin by configuring the provider details necessary to build our solution. Since this is a root module, we want to include any provider and Terraform version constraints for this module. We'll periodically come back and add any needed additional providers if our design includes a resource from a new provider.
 
 Open up your development IDE (Visual studio code in our example) and create a file named `terraform.tf` in your root directory.
 
@@ -118,12 +118,12 @@ Add the following code to your `terraform.tf` file:
 We use a utility to enable code highlighting which includes line numbers. This causes issues if you attempt to copy portions of the code from the code block. Use the copy button in the top right of the code window to copy the full text and remove any unneeded content if a smaller portion of the content is desired.
 {{% /notice %}}
 
-This specifies that the required terraform binary version to run your module can be any version between 1.9 and 2.0. This is a good compromise for allowing a range of binary versions while also ensuring that versions support any required features that are used as part of the module. This can include things like newly introduced functions or support for new key words.
+This specifies that the required Terraform binary version to run your module can be any version between 1.9 and 2.0. This is a good compromise for allowing a range of binary versions while also ensuring that versions support any required features that are used as part of the module. This can include things like newly introduced functions or support for new key words.
 
-Since we are developing incrementally, we should validate our code. To do this we will execute the following steps:
+Since we are developing incrementally, we should validate our code. To do this we will take the following steps:
 
 1. Open up a terminal window if it is not already open. In some IDE's this can be done as a function of the IDE.
-1. Change directory to the module directory by typing `cd` and then the path to the module. As an example, if the module directory was named `example` we would execute `cd example`.
+1. Change directory to the module directory by typing `cd` and then the path to the module. As an example, if the module directory was named `example` we would run `cd example`.
 1. Run `terraform init` to initialize your provider file.
 
 You should now see a message indicating that `Terraform has been successfully initialized`. This indicates that our code is error free and we can continue on. If you get errors, examine the provider syntax for typos, missing quotes, or missing brackets.
@@ -146,7 +146,7 @@ Note that each variable definition includes a type definition to guide module us
 
 We should now test the new content we've created for our module. To do this, first re-run `terraform init` on your command line.  Note that nothing has changed and the initialization completes successfully. Since we now have module content, we will attempt to run the plan as the next step of the workflow.
 
-Type `terraform plan` on your command line. Note that it now asks for us to provide a value for the `var.virtual_network_cidr` variable. This is because we don't provide a default value for that input so terraform must have a valid input before it can continue. Type `10.0.0.0/22` into the input and press `enter` to allow the plan to complete. You should now see a message indicating that `Your infrastructure matches the configuration` and that no changes are needed.
+Type `terraform plan` on your command line. Note that it now asks for us to provide a value for the `var.virtual_network_cidr` variable. This is because we don't provide a default value for that input so Terraform must have a valid input before it can continue. Type `10.0.0.0/22` into the input and press `enter` to allow the plan to complete. You should now see a message indicating that `Your infrastructure matches the configuration` and that no changes are needed.
 
 ### Creating a development.tfvars file
 
@@ -161,10 +161,10 @@ Now add the following content to your `development.tfvars` file.
 {{% /expand %}}
 
 {{% notice style="note" %}}
-Note that each variable has a value defined. Although only inputs without defaults are required, we include values for all of the inputs for clarity. Consider doing this in your environments so that someone looking at the tfvars files has a full picture of what values are being set.
+Note that each variable has a value defined. Although only inputs without default values are required, we include values for all of the inputs for clarity. Consider doing this in your environments so that someone looking at the tfvars files has a full picture of what values are being set.
 {{% /notice %}}
 
-Re-run the terraform apply, but this time referencing the .tfvars file by using the following command. `terraform plan -var-file=development.tfvars` This time, you should get a successful completion without needing to manually provide inputs.
+Re-run the `terraform apply`, but this time referencing the .tfvars file by using the following command. `terraform plan -var-file=development.tfvars` This time, you should get a successful completion without needing to manually provide inputs.
 
 ### Creating the main.tf file
 
@@ -176,11 +176,11 @@ Return to your IDE and create a new file named `main.tf`
 
 In Azure, we need a resource group to hold any infrastructure resources we create.  This is a simple resource that typically wouldn't require an AVM module, but we'll include the AVM module so we can take advantage of the Role Based Access Control (RBAC) interface if we need to restrict access to the resource group in future versions.
 
-First, let's visit the terraform registry [documentation page for the resource group](https://registry.terraform.io/modules/Azure/avm-res-resources-resourcegroup/azurerm/latest) and explore several key sections.
+First, let's visit the Terraform registry [documentation page for the resource group](https://registry.terraform.io/modules/Azure/avm-res-resources-resourcegroup/azurerm/latest) and explore several key sections.
 
 1. Note the `Provision Instructions` box on the right-hand side of the page. This contains the module source and version details which allows us to copy the latest version syntax without needing to type everything ourselves.
 1. Now review the `Readme` tab in the middle of the page. It contains details about all required and optional inputs, resources that are created with the module, and any outputs that are defined. If you want to explore any of these items in detail, each element has a tab that you can review as needed.
-1. Finally, in the middle of the page there is a drop down menu named `Examples` that contains functioning examples for the AVM module. These are a great way to use copy/paste to bootstrap module code and then modify it for your specific purpose.
+1. Finally, in the middle of the page, there is a drop-down menu named `Examples` that contains functioning examples for the AVM module. These showcase a good example of using copy/paste to bootstrap module code and then modify it for your specific purpose.
 
 Now that we've explored the registry content, let's add a resource group to our module.
 
@@ -202,13 +202,13 @@ Now, replace the `# insert the 2 required variables here` comment with the follo
 Note how we've used the prefix variable and Terraform interpolation syntax to dynamically name the resource group. This allows for module customization and re-use. Also note that although we chose to use the default module name of avm-res-resources-resourcegroup, we could modify the name of the module if needed.
 {{% /notice %}}
 
-After saving the file, we want to test our new content.  To do this, return to the command line and first run `terraform init`. Notice how now Terraform has download the module code as well as providers that the module requires. In this case you can see the `azurerm`, `random`, and `modtm` providers were downloaded.
+After saving the file, we want to test our new content.  To do this, return to the command line and first run `terraform init`. Notice how Terraform has downloaded the module code, as well as providers that the module requires. In this case you can see the `azurerm`, `random`, and `modtm` providers were downloaded.
 
 Let's now deploy our resource group. First, let's run a plan operation to review what will be created. Type `terraform plan -var-file=development.tfvars` and press enter to initiate the plan.
 
 ##### Add the features block
 
-Notice that we get an error indicating that we are `Missing required argument` and that for the `azurerm` provider we need to provide a features argument. The addition of the resource group AVM resource requires that the `azurerm` provider be installed to provision resources in our module. This provider requires a features block in it's provider definition that is missing in our configuration.
+Notice that we get an error indicating that we are `Missing required argument` and that for the `azurerm` provider we need to provide a features argument. The addition of the resource group AVM resource requires that the `azurerm` provider be installed to provision resources in our module. This provider requires a features block in its provider definition that is missing in our configuration.
 
 Return to the `terraform.tf` file and add the following content to it. Note how the features block is currently empty. If we needed to activate any feature flags in our module we could add them here.
 
@@ -222,15 +222,15 @@ Re-run `terraform plan -var-file=development.tfvars` now that we have updated th
 
 Note that we once again get an error. This time the error indicates that `subscription_id is a required provider property` for plan/apply operations. This is a change that was introduced as part of the version 4 release of the AzureRM provider. We need to supply the ID of the deployment subscription where our resources will be created.
 
-First, we need to get the subscription id value. We will use the portal for this exercise, but using the Azure CLI, powershell, or the resource graph will also work to retrieve this value.
+First, we need to get the subscription id value. We will use the portal for this exercise, but using the Azure CLI, PowerShell, or the resource graph will also work to retrieve this value.
 
-1. Open the [Azure portal.](https://portal.azure.com)
+1. Open the [Azure portal](https://portal.azure.com).
 1. Enter `Subscriptions` in the search field at the top middle of the page.
-1. Select `Subscriptions` from the services menu in the search drop down
-1. Select the subscription you wish to deploy to from the list of subscriptions.
+1. Select `Subscriptions` from the services menu in the search drop-down.
+1. Select the subscription you wish to deploy to, from the list of subscriptions.
 1. Find the `Subscription ID` field on the overview page and click the copy button to copy it to the clipboard.
 
-Secondly, we need to update Terraform so that it can use the subscription id. There are multiple ways that you can provide a subscription ID to the provider including adding it to the features block, or using environment variables. For scenario we'll use environment variables to set the values so that we don't have to re-enter them on each run. This also keeps us from storing the subscription id in our code since it is considered a sensitive value. Select a command from the list below  based on your operating system.
+Secondly, we need to update Terraform so that it can use the subscription id. There are multiple ways to provide a subscription ID to the provider including adding it to the features block or using environment variables. For this scenario we'll use environment variables to set the values so that we don't have to re-enter them on each run. This also keeps us from storing the subscription id in our code since it is considered a sensitive value. Select a command from the list below  based on your operating system.
 
 1. (Linux/MacOS) - Run the following command with your subscription id. `export ARM_SUBSCRIPTION_ID=<your id here>`
 1. (Windows) - Run the following command with your subscription id. `set ARM_SUBSCRIPTION_ID=<your id here>`
@@ -250,9 +250,9 @@ We can now continue by adding the Log Analytics Workspace to our `main.tf` file.
 
 This time, instead of manually supplying module inputs we will copy module content from one of the examples to minimize the amount of typing required. In most examples, the AVM module call is located at the bottom of the example.
 
-1. Navigate to the `Examples` drop down menu in the documentation and select the `default` example from the menu. In the example you will see a fully functioning example code which includes the module and any supporting resources. Since we only care about the workspace resource from this example we can scroll to the bottom of the code block and find the `module "log_analytics_workspace"` line.
-1. Copy the content between the module brackets with the exception of the line defining the module source. Because these examples are part of the testing methodology for the module they use a dot reference value (`../..`) for the module source value which will not work in our module call. To work around this we copied those values from the provision instructions section of the module documentation in a previous step.
-1. Update the location and resource group name values to reference outputs from the resoure group module. Using implicit references such as these allow Terraform to infer the order in which resources should be built.
+1. Navigate to the `Examples` drop-down menu in the documentation and select the `default` example from the menu. In the example you will see a fully functioning example code which includes the module and any supporting resources. Since we only care about the workspace resource from this example we can scroll to the bottom of the code block and find the `module "log_analytics_workspace"` line.
+1. Copy the content between the module brackets with the exception of the line defining the module source. Because these examples are part of the testing methodology for the module they use a dot reference value (`../..`) for the module source value which will not work in our module call. To work around this, we copied those values from the provision instructions section of the module documentation in a previous step.
+1. Update the location and resource group name values to reference outputs from the resource group module. Using implicit references such as these allow Terraform to infer the order in which resources should be built.
 1. Update the name field using the prefix variable to allow for customization using a similar pattern to what we used on the resource group.
 
 The log analytics module content should look like the following code block. For simplicity you can also copy this directly to avoid multiple copy/paste actions.
@@ -261,12 +261,12 @@ The log analytics module content should look like the following code block. For 
 {{< code file="\content\usage\includes\terraform\steps\step6-main-law.tf" lang="terraform" line_anchors="sol-step6" hl_lines="1-11" >}}
 {{% /expand %}}
 
-Again we will need to run `terraform init` to allow Terraform to initialize a copy of the AVM log analytics module.
+Again, we will need to run `terraform init` to allow Terraform to initialize a copy of the AVM log analytics module.
 
 Now we can deploy the log analytics workspace by running `terraform apply -var-file=development.tfvars`, typing `yes` and pressing `enter`. Note that Terraform will only create the new Log Analytics resources since the resource group already exists. This is one of the key benefits of deploying using Infrastructure as Code (IAC) tools like Terraform.
 
 {{% notice style="note" %}}
-Note that we ran the `terraform apply` command without first running `terraform plan`. Because terraform apply executes a plan before prompting for the apply, we opted to shorten the instructions by skipping the explicit plan step. If you are testing in a live environment you may want to run the plan step and save the plan as part of your governance or change control processes.
+Note that we ran the `terraform apply` command without first running `terraform plan`. Because `terraform apply` runs a `plan` before prompting for the `apply`, we opted to shorten the instructions by skipping the explicit plan step. If you are testing in a live environment you may want to run the plan step and save the plan as part of your governance or change control processes.
 {{% /notice %}}
 
 
@@ -275,10 +275,10 @@ Note that we ran the `terraform apply` command without first running `terraform 
 Our solution calls for a simple key vault implementation to store virtual machine secrets.  We'll follow the same workflow for deploying the key vault as we used for the previous resource group and log analytics workspace resources. However, since Key Vaults require data roles to manage secrets and keys we will need to use the RBAC interface and a data resource to configure Role Based Access Control (RBAC) during the deployment.
 
 {{% notice style="note" %}}
-For this exercise we will provision the deployment user with data rights on the key vault. In your environment, you will likely want to either provide additional roles as inputs or statically assign users or groups to the key vault data roles. For simplicity we also set the Key Vault to have public access enabled due to us not being able to dictate a private deployment environemnt. In your environment where your deployment machine will be on a private network it is recommended to restrict public access for the key vault.
+For this exercise, we will provision the deployment user with data rights on the key vault. In your environment, you will likely want to either provide additional roles as inputs or statically assign users or groups to the key vault data roles. For simplicity we also set the Key Vault to have public access enabled due to us not being able to dictate a private deployment environment. In your environment where your deployment machine will be on a private network it is recommended to restrict public access for the key vault.
 {{% /notice %}}
 
-Before we implement the AVM module for the key vault, we want to use a data resource to read the client details for the user context of the current terraform deployment.
+Before we implement the AVM module for the key vault, we want to use a data resource to read the client details about the user context of the current Terraform deployment.
 
 Add the following line to your main.tf file and save it.
 
@@ -286,7 +286,7 @@ Add the following line to your main.tf file and save it.
 {{< code file="\content\usage\includes\terraform\steps\step7-clientconfig.tf" lang="terraform" line_anchors="sol-step7" hl_lines="1-1" >}}
 {{% /expand %}}
 
-Key vaults use a global namespace which means that we will also need to add a randomization resource to allow us to randomize the name to avoid any potential name intersection issues with other key vault deployments. We will use Terraform's random provider to generate the random string we will append to the key vault name.  Add the following code to your main module to create the random_string resource we will use for naming.
+Key vaults use a global namespace which means that we will also need to add a randomization resource to allow us to randomize the name to avoid any potential name intersection issues with other key vault deployments. We will use Terraform's random provider to generate the random string we will append to the key vault name.  Add the following code to your main module to create the `random_string` resource we will use for naming.
 
 {{% expand title="➕ Expand Code" %}}
 {{< code file="\content\usage\includes\terraform\steps\step8-random-string.tf" lang="terraform" line_anchors="sol-step8" hl_lines="1-5" >}}
@@ -306,12 +306,12 @@ Now we can continue with adding the AVM key vault module to our solution.
 
 Our architecture calls for us to include a diagnostic settings configuration for each resource that supports it. We'll use the `diagnostic-settings` example to copy this content.
 
-1. Return to the documentation page and select the `diagnostic-settings` option from the exmaples drop down.
+1. Return to the documentation page and select the `diagnostic-settings` option from the examples drop-down.
 1. Locate the key vault resource in the example's code block and copy the `diagnostic_settings` value and paste it into the key vault module block we're building in main.tf.
 1. Update the name value to use our prefix variable to allow for name customization.
 1. Update the `workspace_resource_id` value to be an implicit reference to the output from the previously implemented log analytics module. (`module.avm-res-operationalinsights-workspace.resource_id` in our code.)
 
-Finally, we will allow public access so that our deployer machine can add secrets to the key vault. If your environment doesn't allow public access for key vault deployments, locate the public IP address of your deployer machine (this may be an external NAT ip for your network) and add it to the `network_acls.ip_rules` list value using CIDR notation.
+Finally, we will allow public access so that our deployer machine can add secrets to the key vault. If your environment doesn't allow public access for key vault deployments, locate the public IP address of your deployer machine (this may be an external NAT IP for your network) and add it to the `network_acls.ip_rules` list value using CIDR notation.
 
 1. Set the `network_acls` input to `null` in your module block for the key vault.
 
@@ -327,8 +327,9 @@ One of the core values of AVM is the standard configuration for interfaces acros
 
 Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file=development.tfvars` sequence.
 
-#### Deploy the Nat Gateway
-Our architecture calls for a nat gateway to allow virtual machines to access the internet. We will use the Nat Gateway `resource_id` output in future modules to link the virtual machine subnet.
+#### Deploy the NAT Gateway
+
+Our architecture calls for a nat gateway to allow virtual machines to access the internet. We will use the NAT Gateway `resource_id` output in future modules to link the virtual machine subnet.
 
 1. Browse to the AVM [NAT Gateway resource module page](https://registry.terraform.io/modules/Azure/avm-res-network-natgateway/azurerm/latest) in the Terraform Registry.
 1. Copy the module definition and source from the `Provision Instructions` card from the module main page.
@@ -356,7 +357,7 @@ Our architecture calls for a Network Security Group allowing SSH access to the v
 1. Copy the map entry labeled `rule02` from the locals `nsg_rules` map and paste it between two curly braces to create the `security_rules` attribute in the NSG module we're building.
 1. Make the following updates to the rule details:
     1. Rename the map key to `"rule01"` from `"rule02"`
-    1. Update the name to use the var.prefix interpolation and ssh to describe the rule
+    1. Update the name to use the var.prefix interpolation and SSH to describe the rule
     1. Update the `destination_port_ranges` list to be `["22"]`
 
 Upon completion the code for the NSG module should be as follows:
@@ -379,7 +380,7 @@ We can now continue the build-out of our architecture by configuring the virtual
 1. Now we will update the map key, and `name` values for each subnet so that they are unique
 1. Then we'll use the `cidrsubnet` function to dynamically generate the CIDR range for each subnet. You can explore the [function documentation](https://developer.hashicorp.com/terraform/language/functions/cidrsubnet) for more details on how it can be used.
 1. We will also populate the `nat_gateway` object on `subnet0` with the `resource_id` output from our nat gateway module.
-1. To configure the NSG on the VM subnet we need to link it.  Add a `network_security_group` attribute to the `subnet0` definition, and replace the value with the `resource_id` output from the NSG module.
+1. To configure the NSG on the VM subnet we need to link it.  Add a `network_security_group` attribute to the `subnet0` definition and replace the value with the `resource_id` output from the NSG module.
 1. Finally, we'll copy the diagnostic settings from the example and update the implicit references to point to our previously deployed log analytics workspace.
 
 After making these changes our virtual network module call code will be as follows:
@@ -389,7 +390,7 @@ After making these changes our virtual network module call code will be as follo
 {{% /expand %}}
 
 {{% notice style="note" %}}
-Note how the log analytics workspace reference ends in `resource_id`. Each AVM module is required to export it's Azure resource ID with the `resource_id` name to allow for consistent references.
+Note how the log analytics workspace reference ends in `resource_id`. Each AVM module is required to export its Azure resource ID with the `resource_id` name to allow for consistent references.
 {{% /notice %}}
 
 Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file=development.tfvars` sequence.
@@ -418,7 +419,7 @@ The new code we added for the Bastion resource will be as follows:
 {{% /expand %}}
 
 {{% notice style="note" %}}
-Pay attention to the subnet_id syntax. In the virtual network module, the subnets are created as a sub-module allowing us to reference each of them using the map key that was defined in the `subnets` input. Again we see the consistent output naming with the `resource_id` output for the sub-module.
+Pay attention to the subnet_id syntax. In the virtual network module, the subnets are created as a sub-module allowing us to reference each of them using the map key that was defined in the `subnets` input. Again, we see the consistent output naming with the `resource_id` output for the sub-module.
 {{% /notice %}}
 
 Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file=development.tfvars` sequence.
@@ -433,7 +434,7 @@ The final step in our deployment will be our application virtual machine. We've 
 1. Update the `location` and `resource_group_name`using implicit references from our resource group module.
 1. To be compliant with Well Architected Framework guidance we encourage defining a zone if your region supports it. Update the zone input to 1.
 1. Update the sku_size input to "Standard_D2s_v5"
-1. Update the name values using the `name_prefix` variable interpolation as we did with the other modules and include the output from the random_string.name_suffix resoure to add uniqueness.
+1. Update the name values using the `name_prefix` variable interpolation as we did with the other modules and include the output from the `random_string.name_suffix` resource to add uniqueness.
 1. Set the `account_credentials.key_vault_configuration.resource_id` value to reference the `resource_id` output from the key vault module.
 1. Update the `private_ip_subnet_resource_id` value to an implicit reference to the `subnet0` subnet output from the virtual network module.
 
@@ -480,7 +481,6 @@ The updated code we added for the providers in the terraform.tf file will be as 
 {{< code file="\content\usage\includes\terraform\steps\step16-terraform.tf" lang="terraform" line_anchors="sol-step16" hl_lines="3-28" >}}
 {{% /expand %}}
 
-
 ## Conclusion
 
 Congratulations on successfully implementing a solution using Azure Verified Modules. You were able to build out our sample architecture using module documentation and taking advantage of features like standard interfaces and pre-defined defaults to simplify the development experience.
@@ -504,4 +504,4 @@ For additional learning it can be helpful to experiment with modifying this solu
 
 ## Clean up your environment
 
-Once you have completed this set of exercises, it is a good idea to clean-up your resources to avoid incurring costs for them. This can be done typing `terraform destroy -var-file=development.tfvars` and entering `yes` when prompted.
+Once you have completed this set of exercises, it is a good idea to clean up your resources to avoid incurring costs for them. This can be done typing `terraform destroy -var-file=development.tfvars` and entering `yes` when prompted.
