@@ -355,9 +355,9 @@ Our architecture calls for a Network Security Group allowing SSH access to the v
 1. Update the name value using the `name_prefix` variable interpolation as we did with the other modules.
 1. Copy the map entry labeled `rule02` from the locals `nsg_rules` map and paste it between two curly braces to create the `security_rules` attribute in the NSG module we're building.
 1. Make the following updates to the rule details:
-  1. Rename the map key to `"rule01"` from `"rule02"`
-  1. Update the name to use the var.prefix interpolation and ssh to describe the rule
-  1. Update the `destination_port_ranges` list to be `["22"]`
+    1. Rename the map key to `"rule01"` from `"rule02"`
+    1. Update the name to use the var.prefix interpolation and ssh to describe the rule
+    1. Update the `destination_port_ranges` list to be `["22"]`
 
 Upon completion the code for the NSG module should be as follows:
 
