@@ -36,15 +36,13 @@ Make sure you have these tools set up before proceeding.
 
 ## Solution Architecture
 
-**Mission Statement**: Deploy a single Linux VM into Azure.
-
-**Business Requirements**: The solution must be secure and auditable.
-
-**Technical Requirements**: The VM must not be accessible from the internet and its logs should be easily accessible. All azure services should utilize logging tools for auditing purposes.
+Before we begin coding, it is important to have details about what the infrastructure architecture will include. For our example, we will be building a solution that will host a simple application on a Linux virtual machine (VM).The solution must be secure and auditable. The VM must not be accessible from the internet and its logs should be easily accessible. All azure services should utilize logging tools for auditing purposes.
 
 <img src="{{% siteparam base %}}/images/usage/solution-development/avm-virtualmachine-example1.png" alt="Azure VM Solution Architecture" style="max-width:800px;" />
 
-## Creating Our main.bicep File
+## Develop the Solution Code
+
+### Creating the main.bicep file
 
 The architecture diagram shows all components needed for a successful solution deployment. Rather than building the complete solution at once, this tutorial takes an incremental approach building the Bicep file piece-by-piece and testing the deployment at each stage. This approach allows for discussion of each design decision along the way.
 
@@ -287,7 +285,7 @@ The last major component we need to add is a Storage Account. Because this Stora
 
 We now have all the major components of our Architecture diagram built!
 
-The last steps we need to take to meet our Business and Technical requirements is to ensure our networking resources are secure and that we are using least privileged access by leveraging Role Based Access Control (RBAC). Let's get to it!
+The last steps we need to take to meet our Business and Technical requirements is to ensure our networking resources are secure and that we are using least privileged access by leveraging Role-Based Access Control (RBAC). Let's get to it!
 
 ### Network Security Groups
 
@@ -323,9 +321,9 @@ To securely access the Virtual Machine without exposing its SSH port to the publ
 
 This simple addition of the `bastion-host` AVM module completes the secure access component of our architecture. You can now access the Virtual Machine by way of the Bastion Host in the Azure Portal.
 
-### RBAC
+### Role-Based Access Control
 
-To complete our solution, we have one final task: to apply RBAC restrictions on our services, namely the Key Vault and Storage Account. The goal is to explicitly allow only the Virtual Machine to have Create, Read, Update, or Delete (CRUD) permissions on these two services.
+To complete our solution, we have one final task: to apply Role-Based Access Control (RBAC) restrictions on our services, namely the Key Vault and Storage Account. The goal is to explicitly allow only the Virtual Machine to have Create, Read, Update, or Delete (CRUD) permissions on these two services.
 
 This is accomplished by enabling a System-assigned Managed Identity on the Virtual Machine, then granting the VM's Managed Identity appropriate permissions on the Storage Account and Key Vault:
 

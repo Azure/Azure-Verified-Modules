@@ -21,7 +21,7 @@ Before you begin, ensure you have these tools installed in your development envi
 
 Good module development should start with a good plan. Let's first review the architecture and module design prior to developing our solution.
 
-### Architecture
+### Solution Architecture
 
 Before we begin coding, it is important to have details about what the infrastructure architecture will include. For our example, we will be building a solution that will host a simple application on a Linux virtual machine (VM).
 
@@ -33,7 +33,7 @@ Based on this narrative, we will create the following resources:
 - A random string resource for use in resources with global naming (Key Vault)
 - A Log Analytics workspace for diagnostic data
 - A Key Vault with:
-  - RBAC to allow data access
+  - Role-Based Access Control (RBAC) to allow data access
   - Logging to the Log Analytics workspace
 - A virtual network with:
   - A virtual machine subnet
@@ -177,7 +177,7 @@ Return to your IDE and create a new file named `main.tf`.
 
 #### Add a resource group
 
-In Azure, we need a resource group to hold any infrastructure resources we create. This is a simple resource that typically wouldn't require an AVM module, but we'll include the AVM module so we can take advantage of the Role Based Access Control (RBAC) interface if we need to restrict access to the resource group in future versions.
+In Azure, we need a resource group to hold any infrastructure resources we create. This is a simple resource that typically wouldn't require an AVM module, but we'll include the AVM module so we can take advantage of the Role-Based Access Control (RBAC) interface if we need to restrict access to the resource group in future versions.
 
 First, let's visit the Terraform registry [documentation page for the resource group](https://registry.terraform.io/modules/Azure/avm-res-resources-resourcegroup/azurerm/latest) and explore several key sections.
 
@@ -274,7 +274,7 @@ Note that we ran the `terraform apply` command without first running `terraform 
 
 #### Deploy the Azure Key Vault
 
-Our solution calls for a simple Key Vault implementation to store virtual machine secrets. We'll follow the same workflow for deploying the Key Vault as we used for the previous resource group and Log Analytics workspace resources. However, since Key Vaults require data roles to manage secrets and keys, we will need to use the RBAC interface and a data resource to configure Role Based Access Control (RBAC) during the deployment.
+Our solution calls for a simple Key Vault implementation to store virtual machine secrets. We'll follow the same workflow for deploying the Key Vault as we used for the previous resource group and Log Analytics workspace resources. However, since Key Vaults require data roles to manage secrets and keys, we will need to use the RBAC interface and a data resource to configure Role-Based Access Control (RBAC) during the deployment.
 
 {{% notice style="note" %}}
 For this exercise, we will provision the deployment user with data rights on the Key Vault. In your environment, you will likely want to either provide additional roles as inputs or statically assign users, or groups to the Key Vault data roles. For simplicity we also set the Key Vault to have public access enabled due to us not being able to dictate a private deployment environment. In your environment where your deployment machine will be on a private network it is recommended to restrict public access for the Key Vault.
