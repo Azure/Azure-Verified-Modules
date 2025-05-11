@@ -114,7 +114,7 @@ Open up your development IDE (Visual studio code in our example) and create a fi
 Add the following code to your `terraform.tf` file:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="/content/usage/includes/terraform/steps/step1-terraform.tf" lang="terraform" line_anchors="sol-step1" hl_lines="1-5" >}}
+{{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step1-terraform.tf" lang="terraform" line_anchors="sol-step1" hl_lines="1-5" >}}
 {{% /expand %}}
 
 {{% notice style="note" %}}
@@ -140,7 +140,7 @@ Go back to the IDE, and create a file named `variables.tf` in the working direct
 Add the following code to your `variables.tf` file to configure the inputs for our example:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="/content/usage/includes/terraform/steps/step2-variables.tf" lang="terraform" line_anchors="sol-step2" hl_lines="1-22" >}}
+{{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step2-variables.tf" lang="terraform" line_anchors="sol-step2" hl_lines="1-22" >}}
 {{% /expand %}}
 
 {{% notice style="note" %}}
@@ -160,7 +160,7 @@ In your IDE, create a new file named `development.tfvars` in your working direct
 Now add the following content to your `development.tfvars` file.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="/content/usage/includes/terraform/steps/step3-development.tf" lang="terraform" line_anchors="sol-step3" hl_lines="1-7" >}}
+{{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step3-development.tf" lang="terraform" line_anchors="sol-step3" hl_lines="1-7" >}}
 {{% /expand %}}
 
 {{% notice style="note" %}}
@@ -190,7 +190,7 @@ Now that we've explored the registry content, let's add a resource group to our 
 First, copy the content from the `Provision Instructions` box into our `main.tf` file.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="/content/usage/includes/terraform/steps/step4-main-rg-novars.tf" lang="terraform" line_anchors="sol-step4" hl_lines="1-3" >}}
+{{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step4-main-rg-novars.tf" lang="terraform" line_anchors="sol-step4" hl_lines="1-3" >}}
 {{% /expand %}}
 
 On the modules documentation page, go to the [inputs tab](https://registry.terraform.io/modules/Azure/avm-res-resources-resourcegroup/azurerm/latest?tab=inputs). Review the `Required Inputs` tab. These are the values that don't have defaults and are the minimum required values to deploy the module. There are additional inputs in the `Optional Inputs` section that can be used to configure additional module functionality. Review these inputs and determine which values you would like to define in your AVM module call.
@@ -198,7 +198,7 @@ On the modules documentation page, go to the [inputs tab](https://registry.terra
 Now, replace the `# insert the 2 required variables here` comment with the following code to define the module inputs. Our `main.tf` code should look like the following:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="/content/usage/includes/terraform/steps/step4a-main-rg.tf" lang="terraform" line_anchors="sol-step4a" hl_lines="5-7" >}}
+{{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step4a-main-rg.tf" lang="terraform" line_anchors="sol-step4a" hl_lines="5-7" >}}
 {{% /expand %}}
 
 {{% notice style="note" %}}
@@ -216,7 +216,7 @@ Notice that we get an error indicating that we are `Missing required argument` a
 Return to the `terraform.tf` file and add the following content to it. Note how the features block is currently empty. If we needed to activate any feature flags in our module, we could add them here.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="/content/usage/includes/terraform/steps/step5-terraform-features.tf" lang="terraform" line_anchors="sol-step5" hl_lines="7-9" >}}
+{{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step5-terraform-features.tf" lang="terraform" line_anchors="sol-step5" hl_lines="7-9" >}}
 {{% /expand %}}
 
 Re-run `terraform plan -var-file=development.tfvars` now that we have updated the features block.
@@ -261,7 +261,7 @@ This time, instead of manually supplying module inputs, we will copy module cont
 The Log Analytics module content should look like the following code block. For simplicity, you can also copy this directly to avoid multiple copy/paste actions.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="/content/usage/includes/terraform/steps/step6-main-law.tf" lang="terraform" line_anchors="sol-step6" hl_lines="1-11" >}}
+{{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step6-main-law.tf" lang="terraform" line_anchors="sol-step6" hl_lines="1-11" >}}
 {{% /expand %}}
 
 Again, we will need to run `terraform init` to allow Terraform to initialize a copy of the AVM Log Analytics module.
@@ -285,13 +285,13 @@ Before we implement the AVM module for the Key Vault, we want to use a data reso
 Add the following line to your `main.tf` file and save it.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="/content/usage/includes/terraform/steps/step7-clientconfig.tf" lang="terraform" line_anchors="sol-step7" hl_lines="1-1" >}}
+{{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step7-clientconfig.tf" lang="terraform" line_anchors="sol-step7" hl_lines="1-1" >}}
 {{% /expand %}}
 
 Key vaults use a global namespace which means that we will also need to add a randomization resource to allow us to randomize the name to avoid any potential name intersection issues with other Key Vault deployments. We will use Terraform's random provider to generate the random string which we will append to the Key Vault name. Add the following code to your main module to create the `random_string` resource we will use for naming.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="/content/usage/includes/terraform/steps/step8-random-string.tf" lang="terraform" line_anchors="sol-step8" hl_lines="1-5" >}}
+{{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step8-random-string.tf" lang="terraform" line_anchors="sol-step8" hl_lines="1-5" >}}
 {{% /expand %}}
 
 Now we can continue with adding the AVM Key Vault module to our solution.
@@ -319,7 +319,7 @@ Finally, we will allow public access, so that our deployer machine can add secre
 Your Key Vault module definition should now look like the following:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="/content/usage/includes/terraform/steps/step9-key-vault-module.tf" lang="terraform" line_anchors="sol-step9" hl_lines="1-25" >}}
+{{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step9-key-vault-module.tf" lang="terraform" line_anchors="sol-step9" hl_lines="1-25" >}}
 {{% /expand %}}
 
 {{% notice style="note" %}}
@@ -341,7 +341,7 @@ Our architecture calls for a NAT Gateway to allow virtual machines to access the
 Review the following code to see each of these changes.
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="/content/usage/includes/terraform/steps/step10-natgw.tf" lang="terraform" line_anchors="sol-step10" hl_lines="1-20" >}}
+{{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step10-natgw.tf" lang="terraform" line_anchors="sol-step10" hl_lines="1-20" >}}
 {{% /expand %}}
 
 Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file=development.tfvars` sequence.
@@ -364,7 +364,7 @@ Our architecture calls for a Network Security Group (NSG) allowing SSH access to
 Upon completion the code for the NSG module should be as follows:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="/content/usage/includes/terraform/steps/step17-nsg.tf" lang="terraform" line_anchors="sol-step17" hl_lines="1-21" >}}
+{{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step17-nsg.tf" lang="terraform" line_anchors="sol-step17" hl_lines="1-21" >}}
 {{% /expand %}}
 
 Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file=development.tfvars` sequence.
@@ -387,7 +387,7 @@ We can now continue the build-out of our architecture by configuring the virtual
 After making these changes our virtual network module call code will be as follows:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="/content/usage/includes/terraform/steps/step11-vnet.tf" lang="terraform" line_anchors="sol-step11" hl_lines="1-37" >}}
+{{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step11-vnet.tf" lang="terraform" line_anchors="sol-step11" hl_lines="1-37" >}}
 {{% /expand %}}
 
 {{% notice style="note" %}}
@@ -416,7 +416,7 @@ Our architecture calls for diagnostic settings to be configured on the Azure Bas
 The new code we added for the Bastion resource will be as follows:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="/content/usage/includes/terraform/steps/step12-bastion.tf" lang="terraform" line_anchors="sol-step12" hl_lines="1-19" >}}
+{{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step12-bastion.tf" lang="terraform" line_anchors="sol-step12" hl_lines="1-19" >}}
 {{% /expand %}}
 
 {{% notice style="note" %}}
@@ -448,7 +448,7 @@ Because the default Linux example doesn't include diagnostic settings, we need t
 The new code we added for the virtual machine resource will be as follows:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="/content/usage/includes/terraform/steps/step13-virtualmachine.tf" lang="terraform" line_anchors="sol-step13" hl_lines="1-39" >}}
+{{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step13-virtualmachine.tf" lang="terraform" line_anchors="sol-step13" hl_lines="1-39" >}}
 {{% /expand %}}
 
 Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file=development.tfvars` sequence.
@@ -464,7 +464,7 @@ The final piece of our module is to export any values that may need to be consum
 The new code we added for the outputs will be as follows:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="/content/usage/includes/terraform/steps/step15-outputs.tf" lang="terraform" line_anchors="sol-step15" hl_lines="1-9" >}}
+{{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step15-outputs.tf" lang="terraform" line_anchors="sol-step15" hl_lines="1-9" >}}
 {{% /expand %}}
 
 Because no new modules were created, we don't need to run `terraform init` to test this change. Run `terraform apply -var-file=development.tfvars` to see the new outputs that have been created.
@@ -479,7 +479,7 @@ It is a recommended practice to define the required versions of the providers fo
 The updated code we added for the providers in the `terraform.tf` file will be as follows:
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="/content/usage/includes/terraform/steps/step16-terraform.tf" lang="terraform" line_anchors="sol-step16" hl_lines="3-28" >}}
+{{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step16-terraform.tf" lang="terraform" line_anchors="sol-step16" hl_lines="3-28" >}}
 {{% /expand %}}
 
 ## Conclusion
@@ -491,7 +491,7 @@ This was a long exercise and mistakes can happen. If you're getting errors or a 
 {{% /notice %}}
 
 {{% expand title="➕ Expand Code" %}}
-{{< code file="/content/usage/includes/terraform/steps/step14-main.tf" lang="terraform" line_anchors="sol-step14" hl_lines="1-190" >}}
+{{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step14-main.tf" lang="terraform" line_anchors="sol-step14" hl_lines="1-190" >}}
 {{% /expand %}}
 
 ### Additional exercises
