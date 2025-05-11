@@ -6,4 +6,4 @@ You will need the following tools and components to complete this guide:
   - [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell) AND [Azure PowerShell](https://learn.microsoft.com/en-us/powershell/azure/install-azure-powershell)
   - [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) to deploy your solution.
 - [Bicep CLI](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#install-manually)
-- [Azure Subscription](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/fundamental-concepts) to deploy your Bicep template.s
+- [Azure Subscription](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/fundamental-concepts) to deploy your Bicep templates.

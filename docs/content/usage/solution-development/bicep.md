@@ -32,11 +32,11 @@ Let's get started!
 
 {{% include file="/content/usage/includes/bicep-prerequisites.md" %}}
 
-Make sure you have these tools set up before proceeding.
+Before you begin, make sure you have these tools installed in your development environment.
 
 ## Solution Architecture
 
-Before we begin coding, it is important to have details about what the infrastructure architecture will include. For our example, we will be building a solution that will host a simple application on a Linux virtual machine (VM).The solution must be secure and auditable. The VM must not be accessible from the internet and its logs should be easily accessible. All azure services should utilize logging tools for auditing purposes.
+Before we begin coding, it is important to have details about what the infrastructure architecture will include. For our example, we will be building a solution that will host a simple application on a Linux virtual machine (VM). The solution must be secure and auditable. The VM must not be accessible from the internet and its logs should be easily accessible. All azure services should utilize logging tools for auditing purposes.
 
 <img src="{{% siteparam base %}}/images/usage/solution-development/avm-virtualmachine-example1.png" alt="Azure VM Solution Architecture" style="max-width:800px;" />
 
@@ -75,7 +75,7 @@ The logging solution depicted in our Architecture Diagram shows we will be using
 Always click on the "Copy to clipboard" button in the top right corner of the Code sample area in order not to have the line numbers included in the copied code.
 {{% /notice %}}
 
-You now have a fully-functional Bicep template that will deploy a working Log Analytics workspace! If you would like to try it, run the following in your console:
+You now have a fully functional Bicep template that will deploy a working Log Analytics workspace! If you would like to try it, run the following in your console:
 
 {{% tabs title="Deploy with" groupid="scriptlanguage" %}}
   {{% tab title="PowerShell" %}}
@@ -116,13 +116,13 @@ You now have a fully-functional Bicep template that will deploy a working Log An
 
 The above commands will log you in to your Azure subscription, select a subscription to use, create a resource group, then deploy the `main.bicep` template to your resource group.
 
-AVM Makes the deployment of Azure resources incredibly easy. Many of the parameters you would normally be required to define are taken care of for you by the AVM module itself. In fact the `location` parameter is not even needed in your template---when left blank, by default, all AVM modules will deploy to the location in which your target Resource Group exists.
+AVM Makes the deployment of Azure resources incredibly easy. Many of the parameters you would normally be required to define are taken care of by the AVM module itself. In fact, the `location` parameter is not even needed in your template---when left blank, by default, all AVM modules will deploy to the location in which your target Resource Group exists.
 
 Now we have a Log Analytics workspace in our resource group which doesn't do a whole lot of good on its own. Let's take our template a step further by adding a Virtual Network that integrates with the Log Analytics workspace.
 
 ### Virtual Network
 
-We will now add a Virtual Network to our `main.bicep` file. This VNet will contain subnets and network security groups (NSGs) for any of the resources we deploy that require IP addresses.
+We will now add a Virtual Network to our `main.bicep` file. This VNet will contain subnets and Network Security Groups (NSGs) for any of the resources we deploy that require IP addresses.
 
 In your `main.bicep` file, add the following:
 
@@ -134,7 +134,7 @@ Again, the Virtual Network AVM module requires only two things: a `name` and an 
 
 #### Configure Diagnostics Settings
 
-There is an additional parameter available in *most* AVM modules named `diagnosticSettings`. This parameter allows you configure your resource to send its logs to any suitable logging service. In our case, we are using a Log Analytics workspace.
+There is an additional parameter available in *most* AVM modules named `diagnosticSettings`. This parameter allows you to configure your resource to send its logs to any suitable logging service. In our case, we are using a Log Analytics workspace.
 
 Let's update our `main.bicep` file to have our VNet send all of its logging data to our Log Analytics workspace:
 
@@ -147,7 +147,7 @@ Notice how the `diagnosticsSettings` parameter needs a `workspaceResourceId`? Al
 {{% notice style="info" %}}
 All AVM modules have built-in outputs which can be referenced using the `<moduleName>.outputs.<outputName>` syntax.
 
-When using plain Bicep, many of these outputs require multiple lines of code or knowledge of the correct object ID references to get at the desired output. AVM modules do much of this heavy-lifting for you by taking care of these complex tasks within the module itself, then exposing them to you through the module's outputs. Find out more about [Bicep Outputs](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/outputs?tabs=azure-powershell).
+When using plain Bicep, many of these outputs require multiple lines of code or knowledge of the correct object ID references to get at the desired output. AVM modules do much of this heavy lifting for you by taking care of these complex tasks within the module itself, then exposing them to you through the module's outputs. Find out more about [Bicep Outputs](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/outputs?tabs=azure-powershell).
 {{% /notice %}}
 
 #### Add a Subnet and NAT Gateway
@@ -166,7 +166,7 @@ A nice feature within Bicep are the various functions available. We use the [`ci
 
 #### Switch to Parameters and Variables
 
-See how we are reusing the same CIDR block `10.0.0.0/16` in multiple location? You may have noticed we are defining the same `location` in two different spots as well. We're now at a point in the development where we should leverage one of our first recommended practices: using parameters and variables!
+See how we are reusing the same CIDR block `10.0.0.0/16` in multiple locations? You may have noticed we are defining the same `location` in two different spots as well. We're now at a point in the development where we should leverage one of our first recommended practices: using parameters and variables!
 
 {{% notice style="tip" %}}
 Use Bicep **variables** to define values that will be constant and reused with your template; use **parameters** anywhere you may need a modifiable value.
@@ -178,7 +178,7 @@ Let's enhance the template by adding variables for the CIDR block and prefix, th
 {{< code file="/content/usage/includes/bicep/VirtualMachineAVM_Example1/steps/step5.bicep" lang="bicep" line_anchors="vm-step-5" hl_lines="1-4 10 12 20 22 36 50 52 54 64" >}}
 {{% /expand %}}
 
-We now have a good basis of infrastructure to be utilized by the rest of the resources in our Architecture. We will come back to our networking in a future step once we are ready to create some Network Security Groups. For now, let's move on to other modules.
+We now have a good basis for the infrastructure to be utilized by the rest of the resources in our Architecture. We will come back to our networking in a future step, once we are ready to create some Network Security Groups. For now, let's move on to other modules.
 
 ### Key Vault
 
@@ -190,9 +190,9 @@ The first step is easy: add the Key Vault AVM module to our `main.bicep` file. I
 {{< code file="/content/usage/includes/bicep/VirtualMachineAVM_Example1/steps/step6.bicep" lang="bicep" line_anchors="vm-step6" hl_lines="71-85" >}}
 {{% /expand %}}
 
-The name of the Key Vault we will deploy uses the `uniqueString()` Bicep function. Key Vault names must be globally unique. We will therefore deviate from our standard naming convention thus far and make an exception for the Key Vault. Note how we are still adding a suffix to the Key Vault name so its name remains recognizable; you can use a combination of concatenating unique strings, prefixes, or suffixes to follow your own naming standard preferences.
+The name of the Key Vault we will deploy uses the `uniqueString()` Bicep function. Key Vault names must be globally unique. We will therefore deviate from our standard naming convention thus far and make an exception for the Key Vault. Note how we are still adding a suffix to the Key Vault name, so its name remains recognizable; you can use a combination of concatenating unique strings, prefixes, or suffixes to follow your own naming standard preferences.
 
-When we generate our unique string, we will pass in the `resourceGroup().id` as the seed for the `uniqueString()` function so that every time you deploy this `main.bicep` to the same resource group, it will use the same randomly-generated name for your Key Vault (since `resourceGroup().id` will be the same).
+When we generate our unique string, we will pass in the `resourceGroup().id` as the seed for the `uniqueString()` function so that every time you deploy this `main.bicep` to the same resource group, it will use the same randomly generated name for your Key Vault (since `resourceGroup().id` will be the same).
 
 {{% notice style="tip" %}}
 Bicep has many built-in functions available. We used two here: `uniqueString()` and `resourceGroup()`. The `resourceGroup()`, `subscription()`, and `deployment()` functions are very useful when seeding `uniqueString()` or `guid()` functions. Just be cautious about name length limitations for each Azure service! Visit [this page](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-functions) to learn more about Bicep functions.
@@ -285,7 +285,7 @@ The last major component we need to add is a Storage Account. Because this Stora
 
 We now have all the major components of our Architecture diagram built!
 
-The last steps we need to take to meet our Business and Technical requirements is to ensure our networking resources are secure and that we are using least privileged access by leveraging Role-Based Access Control (RBAC). Let's get to it!
+The last steps we need to take to meet our requirements is to ensure our networking resources are secure and that we are using least privileged access by leveraging Role-Based Access Control (RBAC). Let's get to it!
 
 ### Network Security Groups
 
@@ -332,12 +332,12 @@ This is accomplished by enabling a System-assigned Managed Identity on the Virtu
 {{% /expand %}}
 
 {{% notice style="info" %}}
-The Azure Subscription owner will have CRUD permissions for the Storage Account but not for the Key Vault. The Key Vault requires explicit RBAC permissions assigned to a user to grant them access: [Provide access to Key Vaults using RBAC](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide?tabs=azure-portal). **Important!**: at this point you will only be able to access the Storage Account from the Bastion Host. Remember, public internet access has been disabled!
+The Azure Subscription owner will have CRUD permissions for the Storage Account but not for the Key Vault. The Key Vault requires explicit RBAC permissions assigned to a user to grant them access: [Provide access to Key Vaults using RBAC](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide?tabs=azure-portal). **Important!**: at this point, you will only be able to access the Storage Account from the Bastion Host. Remember, public internet access has been disabled!
 {{% /notice %}}
 
 The RBAC policies have been successfully applied using a System-assigned Managed Identity on the Virtual Machine. This identity has been granted permissions on both the Key Vault and Storage Account. Now the VM can read secrets from the Key Vault and Read, Create, or Delete blobs in the Storage Account.
 
-In a real production environment, the principle of Least Privileged Access should be applied, providing only the exact permissions each service needs to carry out its functions. Learn more about Microsoft's [recommendations for identity and access management](https://learn.microsoft.com/en-us/azure/well-architected/security/identity-access).
+In a real production environment, the principle of least privileged access should be applied, providing only the exact permissions each service needs to carry out its functions. Learn more about Microsoft's [recommendations for identity and access management](https://learn.microsoft.com/en-us/azure/well-architected/security/identity-access).
 
 ## Conclusion
 
