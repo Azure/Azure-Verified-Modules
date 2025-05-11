@@ -9,6 +9,7 @@ description: Bicep solution development for the Azure Verified Modules (AVM). It
 ## Introduction
 
 Azure Verified Modules (AVM) for Bicep are a powerful tool that leverage the Bicep domain-specific language (DSL), industry knowledge, and an Open Source community, which altogether enable developers to quickly deploy Azure resources that follow Microsoft's recommended practices for Azure.
+In this article, we will walk through the Bicep specific considerations and recommended practices on developing your solution leveraging Azure Verified Modules. We'll review some of the design features and trade-offs and include sample code to illustrate each discussion point.
 
 In this tutorial, we will:
 
