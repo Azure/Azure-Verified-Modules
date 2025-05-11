@@ -494,6 +494,17 @@ This was a long exercise and mistakes can happen. If you're getting errors or a 
 {{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step14-main.tf" lang="terraform" line_anchors="sol-step14" hl_lines="1-190" >}}
 {{% /expand %}}
 
+AVM modules provide several key advantages over writing raw Terraform templates:
+
+1. **Simplified Resource Configuration**: AVM modules handle much of the complex configuration work behind the scenes
+2. **Built-in Recommended Practices**: The modules implement many of Microsoft's recommended practices by default
+3. **Consistent Outputs**: Each module exposes a consistent set of outputs that can be easily referenced
+4. **Reduced Boilerplate Code**: What would normally require hundreds of lines of Terraform code can be accomplished in a fraction of the space
+
+As you continue your journey with Azure and AVM, remember that this approach can be applied to more complex architectures as well. The modular nature of AVM allows you to mix and match components to build solutions that meet your specific needs while adhering to Microsoft's Well-Architected Framework.
+
+By using AVM modules as building blocks, you can focus more on your solution architecture and less on the intricacies of individual resource configurations, ultimately leading to faster development cycles and more reliable deployments.
+
 ### Additional exercises
 
 For additional learning, it can be helpful to experiment with modifying this solution. Here are some ideas you can try if you have time and would like to experiment further.
