@@ -1,0 +1,56 @@
+{{ $file := .Get "file" }}
+{{ $id := .Get "id" | default "" }}
+{{ $lang := .Get "lang" | default (path.Ext $file | strings.TrimPrefix ".") }}
+{{ $hlLines := .Get "hl_lines" | default "" }}
+{{ $lineAnchors := .Get "line_anchors" | default "" }}
+
+{{ with $file | readFile }}
+  {{ $snippet := . }}
+
+  {{ if $id }}
+    {{ $lines := split $snippet "\n" }}
+
+    {{ $startTag := printf "START %s" $id }}
+    {{ $endTag := printf "END %s" $id }}
+
+    {{ $startl := -1 }}
+    {{ $endl := -1 }}
+
+    {{/* Find the lines that contain the start and end tags. */}}
+    {{ range $index, $line := $lines }}
+      {{ if hasSuffix $line $startTag }}
+        {{ $startl = $index }}
+      {{ else if hasSuffix $line $endTag }}
+        {{ $endl = $index }}
+      {{ end }}
+    {{ end }}
+
+    {{ if lt $startl 0 }}
+      {{ errorf "Named snippet is missing START tag" }}
+    {{ end }}
+
+    {{ if lt $endl 0 }}
+      {{ errorf "Named snippet is missing END tag" }}
+    {{ end }}
+
+    {{/* Size of the snippet in number of lines. */}}
+    {{ $snippetLen := sub (sub $endl $startl) 1 }}
+
+    {{/* Create slice with only the lines between the tags. */}}
+    {{ $includedLines := first $snippetLen (after (add $startl 1) $lines) }}
+
+    {{/* Join the lines into the final snippet. */}}
+    {{ $snippet = delimit $includedLines "\n" }}
+  {{ end }}
+
+  {{/* Build the highlight options */}}
+  {{ $highlightOpts := "lineNos=inline,anchorLineNos=true" }}
+  {{ if $hlLines }}
+    {{ $highlightOpts = printf "%s,hl_lines=%s" $highlightOpts $hlLines }}
+  {{ end }}
+  {{ if $lineAnchors }}
+    {{ $highlightOpts = printf "%s,lineAnchors=%s" $highlightOpts $lineAnchors }}
+  {{ end }}
+
+  {{ highlight $snippet $lang $highlightOpts }}
+{{ end }}
