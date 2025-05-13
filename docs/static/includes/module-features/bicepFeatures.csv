@@ -37,7 +37,7 @@
 36,res/data-protection/backup-vault,✅,✅,✅,,,✅,✅
 37,res/databricks/access-connector,✅,✅,✅,,,,✅
 38,res/databricks/workspace,✅,✅,✅,✅,✅,✅,
-39,res/db-for-my-sql/flexible-server,✅,✅,✅,✅,✅,✅,✅
+39,res/db-for-my-sql/flexible-server,✅,✅,,✅,✅,✅,✅
 40,res/db-for-postgre-sql/flexible-server,✅,✅,✅,✅,✅,✅,✅
 41,res/desktop-virtualization/application-group,✅,✅,✅,✅,,,
 42,res/desktop-virtualization/host-pool,✅,✅,✅,✅,✅,,
@@ -146,8 +146,8 @@
 145,res/sql/instance-pool,,,✅,,,,
 146,res/sql/managed-instance,✅,✅,✅,✅,,,✅
 147,res/sql/server,✅,✅,✅,,✅,✅,✅
-148,res/storage/storage-account,✅,✅,✅,✅,✅,✅,✅
-149,res/synapse/private-link-hub,✅,✅,✅,,✅,,
+148,res/storage/storage-account,✅,✅,,✅,✅,✅,✅
+149,res/synapse/private-link-hub,✅,✅,,,✅,,
 150,res/synapse/workspace,✅,✅,✅,✅,✅,✅,✅
 151,res/virtual-machine-images/image-template,✅,✅,✅,,,,✅
 152,res/web/connection,✅,✅,✅,,,,
@@ -155,4 +155,4 @@
 154,res/web/serverfarm,✅,✅,✅,✅,,,
 155,res/web/site,✅,✅,✅,✅,✅,,✅
 156,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,136,137,148,63,37,23,61
+Sum,,136,137,145,63,37,23,61
