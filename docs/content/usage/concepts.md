@@ -30,7 +30,7 @@ This allows you to leverage the latest and greatest features of the AVM modules,
 
 A private registry - that is hosted in your own environment - can store modules originating from the public registry. Using a private registry still grants you the latest version of AVM modules while allowing you to review each version of each module before admitting them to your private registry. You also have control over who can access your own private registry. Note that using a private registry means that you're still using each module as is, without making any changes.
 
-#### Inner-sourcing (using your own private registry, repositories or other storage options)
+#### Inner-sourcing
 
 Inner-sourcing AVM means maintaining your own, synchronized copy of AVM modules in your own internal private registry, repositories or other storage option. Customers normally look to inner-source AVM modules when they have strict security and compliance requirements, or when they want to publish their own lightly wrapped versions of the modules to meet their specific needs; for example changing some allowed or default values for parameter or variable inputs.
 
