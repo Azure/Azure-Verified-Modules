@@ -66,259 +66,266 @@ In the above example, the module has 5 direct children, 4 of them have direct ch
 #>
 function Get-ModulesFeatureOutline {
 
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseOutputTypeCorrectly', '', Justification = 'It has 3 different output types, not one. It''s a false-positive.')]
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingPositionalParameters', '', Justification = 'For Join-Path it''s very difficult to read the cmdlet without positional parameters.')]
-    [CmdletBinding()]
-    param (
-        [Parameter(Mandatory = $true)]
-        [string] $ModulesFolderPath,
+  [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseOutputTypeCorrectly', '', Justification = 'It has 3 different output types, not one. It''s a false-positive.')]
+  [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingPositionalParameters', '', Justification = 'For Join-Path it''s very difficult to read the cmdlet without positional parameters.')]
+  [CmdletBinding()]
+  param (
+    [Parameter(Mandatory = $true)]
+    [string] $ModulesFolderPath,
 
-        [Parameter(Mandatory = $true)]
-        [string] $ModulesRepoRootPath,
+    [Parameter(Mandatory = $true)]
+    [string] $ModulesRepoRootPath,
 
-        [Parameter(Mandatory = $false)]
-        [ValidateSet('Status', 'RBAC', 'Locks', 'Tags', 'Diag', 'PE', 'PIP', 'CMK', 'Identity')]
-        [string[]] $ColumnsToInclude = @(
-            'Status',
-            'RBAC',
-            'Locks',
-            'Tags',
-            'Diag',
-            'PE',
-            'PIP',
-            'CMK',
-            'Identity'
-        ),
+    [Parameter(Mandatory = $false)]
+    [ValidateSet('Status', 'RBAC', 'Locks', 'Tags', 'Diag', 'PE', 'PIP', 'CMK', 'Identity')]
+    [string[]] $ColumnsToInclude = @(
+      'Status',
+      'RBAC',
+      'Locks',
+      'Tags',
+      'Diag',
+      'PE',
+      'PIP',
+      'CMK',
+      'Identity'
+    ),
 
-        [Parameter(Mandatory = $false)]
-        [ValidateSet('Object', 'Markdown', 'CSV')]
-        [string] $ReturnFormat = 'Object',
+    [Parameter(Mandatory = $false)]
+    [ValidateSet('Object', 'Markdown', 'CSV')]
+    [string] $ReturnFormat = 'Object',
 
-        [Parameter(Mandatory = $false)]
-        [int] $BreakMarkdownModuleNameAt = 2,
+    [Parameter(Mandatory = $false)]
+    [int] $BreakMarkdownModuleNameAt = 2,
 
-        [Parameter(Mandatory = $false)]
-        [int] $SearchDepth,
+    [Parameter(Mandatory = $false)]
+    [int] $SearchDepth,
 
-        [Parameter(Mandatory = $false)]
-        [string] $RepositoryName = 'bicep-registry-modules',
+    [Parameter(Mandatory = $false)]
+    [string] $RepositoryName = 'bicep-registry-modules',
 
-        [Parameter(Mandatory = $false)]
-        [string] $Organization = 'Azure'
-    )
+    [Parameter(Mandatory = $false)]
+    [string] $Organization = 'Azure'
+  )
 
-    # Load external functions
-    . (Join-Path $PSScriptRoot 'Get-PipelineStatusUrl.ps1')
-    . (Join-Path $PSScriptRoot 'Get-PipelineFileName.ps1')
+  # Load external functions
+  . (Join-Path $PSScriptRoot 'Get-PipelineStatusUrl.ps1')
+  . (Join-Path $PSScriptRoot 'Get-PipelineFileName.ps1')
 
-    $childInput = @{
-        Path    = $ModulesFolderPath
-        Recurse = $true
-        File    = $true
-        Filter  = 'main.bicep'
-    }
-    if ($SearchDepth) { $childInput.Depth = $SearchDepth }
-    $moduleTemplatePaths = (Get-ChildItem @childInput).FullName
+  $childInput = @{
+    Path    = $ModulesFolderPath
+    Recurse = $true
+    File    = $true
+    Filter  = 'main.bicep'
+  }
+  if ($SearchDepth) { $childInput.Depth = $SearchDepth }
+  $moduleTemplatePaths = (Get-ChildItem @childInput).FullName
 
-    ####################
-    #   Collect data   #
-    ####################
-    $moduleData = [System.Collections.ArrayList]@()
-    $summaryData = [ordered]@{}
-    if ($ColumnsToInclude -contains 'RBAC') { $summaryData.supportsRBAC = 0 }
-    if ($ColumnsToInclude -contains 'Locks') { $summaryData.supportsLocks = 0 }
-    if ($ColumnsToInclude -contains 'Tags') { $summaryData.supportsTags = 0 }
-    if ($ColumnsToInclude -contains 'Diag') { $summaryData.supportsDiagnostics = $_.Diag }
-    if ($ColumnsToInclude -contains 'PE') { $summaryData.supportsEndpoints = 0 }
-    if ($ColumnsToInclude -contains 'PIP') { $summaryData.supportsPipDeployment = 0 }
-    if ($ColumnsToInclude -contains 'CMK') { $summaryData.supportsCMKDeployment = 0 }
-    if ($ColumnsToInclude -contains 'Identity') { $summaryData.supportsIdentityDeployment = 0 }
+  ####################
+  #   Collect data   #
+  ####################
+  $moduleData = [System.Collections.ArrayList]@()
+  $summaryData = [ordered]@{}
+  if ($ColumnsToInclude -contains 'RBAC') { $summaryData.supportsRBAC = 0 }
+  if ($ColumnsToInclude -contains 'Locks') { $summaryData.supportsLocks = 0 }
+  if ($ColumnsToInclude -contains 'Tags') { $summaryData.supportsTags = 0 }
+  if ($ColumnsToInclude -contains 'Diag') { $summaryData.supportsDiagnostics = $_.Diag }
+  if ($ColumnsToInclude -contains 'PE') { $summaryData.supportsEndpoints = 0 }
+  if ($ColumnsToInclude -contains 'PIP') { $summaryData.supportsPipDeployment = 0 }
+  if ($ColumnsToInclude -contains 'CMK') { $summaryData.supportsCMKDeployment = 0 }
+  if ($ColumnsToInclude -contains 'Identity') { $summaryData.supportsIdentityDeployment = 0 }
 
-    foreach ($moduleTemplatePath in $moduleTemplatePaths) {
+  foreach ($moduleTemplatePath in $moduleTemplatePaths) {
 
-        $fullResourcePath = (((Split-Path $moduleTemplatePath -Parent) -replace '\\', '/') -split '/avm/')[1]
-        $moduleContentString = Get-Content -Path $moduleTemplatePath -Raw
+    $fullResourcePath = (((Split-Path $moduleTemplatePath -Parent) -replace '\\', '/') -split '/avm/')[1]
+    $moduleContentString = Get-Content -Path $moduleTemplatePath -Raw
 
-        $moduleDataItem = [ordered]@{
-            Module = $fullResourcePath
-        }
-
-        # Status Badge
-        $moduleFolderPath = Split-Path $moduleTemplatePath -Parent
-        $relativeFolderPath = Join-Path 'avm' ($moduleFolderPath -split '[\/|\\]{1}avm[\/|\\]{1}')[1]
-        $resourceTypeIdentifier = ($moduleFolderPath -split '[\/|\\]{1}avm[\/|\\]{1}(res|ptn|utl)[\/|\\]{1}')[2] -replace '\\', '/' # avm/res/<provider>/<resourceType>
-        $isTopLevelModule = ($resourceTypeIdentifier -split '[\/|\\]').Count -eq 2
-        if (($ColumnsToInclude -contains 'Status') -and $isTopLevelModule) {
-
-            $statusInputObject = @{
-                RepositoryName      = $RepositoryName
-                Organization        = $Organization
-                PipelineFileName    = Get-PipelineFileName -ResourceIdentifier $relativeFolderPath
-                WorkflowsFolderPath = Join-Path $ModulesRepoRootPath '.github' 'workflows'
-            }
-
-            $moduleDataItem['Status'] = Get-PipelineStatusUrl @statusInputObject
-        }
-
-        # Supports RBAC
-        if ($ColumnsToInclude -contains 'RBAC') {
-            if ([regex]::Match($moduleContentString, '(?m)^\s*param roleAssignments roleAssignment.*Type').Success) {
-                $summaryData.supportsRBAC++
-                $moduleDataItem['RBAC'] = $true
-            } else {
-                $moduleDataItem['RBAC'] = $false
-            }
-        }
-
-        # Supports Locks
-        if ($ColumnsToInclude -contains 'Locks') {
-            if ([regex]::Match($moduleContentString, '(?m)^\s*param lock lock.*Type').Success) {
-                $summaryData.supportsLocks++
-                $moduleDataItem['Locks'] = $true
-            } else {
-                $moduleDataItem['Locks'] = $false
-            }
-        }
-
-        # Supports Tags
-        if ($ColumnsToInclude -contains 'Tags') {
-            if ([regex]::Match($moduleContentString, "(?m)^\s*param tags (object|resourceInput<'.+'>.tags)\?").Success) {
-                $summaryData.supportsTags++
-                $moduleDataItem['Tags'] = $true
-            } else {
-                $moduleDataItem['Tags'] = $false
-            }
-        }
-
-        # Supports Diagnostics
-        if ($ColumnsToInclude -contains 'Diag') {
-            if ([regex]::Match($moduleContentString, '(?m)^\s*param diagnosticSettings diagnosticSetting.*Type').Success) {
-                $summaryData.supportsDiagnostics++
-                $moduleDataItem['Diag'] = $true
-            } else {
-                $moduleDataItem['Diag'] = $false
-            }
-        }
-
-        # Supports Private Endpoints
-        if ($ColumnsToInclude -contains 'PE') {
-            if ([regex]::Match($moduleContentString, '(?m)^\s*param privateEndpoints privateEndpoint.*Type').Success) {
-                $summaryData.supportsEndpoints++
-                $moduleDataItem['PE'] = $true
-            } else {
-                $moduleDataItem['PE'] = $false
-            }
-        }
-
-        # Supports PIPs
-        if ($ColumnsToInclude -contains 'PIP') {
-            if ([regex]::Match($moduleContentString, '(?m)^\s*param publicIPAddressObject object\s*=.+').Success) {
-                $summaryData.supportsPipDeployment++
-                $moduleDataItem['PIP'] = $true
-            } else {
-                $moduleDataItem['PIP'] = $false
-            }
-        }
-
-        # Supports CMK
-        if ($ColumnsToInclude -contains 'CMK') {
-            if ([regex]::Match($moduleContentString, '(?m)^\s*param customerManagedKey customerManagedKey.*Type').Success) {
-                $summaryData.supportsCMKDeployment++
-                $moduleDataItem['CMK'] = $true
-            } else {
-                $moduleDataItem['CMK'] = $false
-            }
-        }
-
-        # Supports Identity
-        if ($ColumnsToInclude -contains 'Identity') {
-            if ([regex]::Match($moduleContentString, '(?m)^\s*param managedIdentities managedIdentit.*Type').Success) {
-                $summaryData.supportsIdentityDeployment++
-                $moduleDataItem['Identity'] = $true
-            } else {
-                $moduleDataItem['Identity'] = $false
-            }
-        }
-
-        # Result
-        $moduleData += $moduleDataItem
+    $moduleDataItem = [ordered]@{
+      Module = $fullResourcePath
     }
 
-    #######################
-    #   Generate output   #
-    #######################
-    switch ($ReturnFormat) {
-        'Object' {
-            return @{
-                data = $moduleData | ForEach-Object {
-                    $resultObject = @{
-                        Module = $_.Module
-                    }
-                    if ($ColumnsToInclude -contains 'Status') { $resultObject.Status = $_.Status }
-                    if ($ColumnsToInclude -contains 'RBAC') { $resultObject.RBAC = $_.RBAC }
-                    if ($ColumnsToInclude -contains 'Locks') { $resultObject.Locks = $_.Locks }
-                    if ($ColumnsToInclude -contains 'Tags') { $resultObject.Tags = $_.Tags }
-                    if ($ColumnsToInclude -contains 'Diag') { $resultObject.Diag = $_.Diag }
-                    if ($ColumnsToInclude -contains 'PE') { $resultObject.PE = $_.PE }
-                    if ($ColumnsToInclude -contains 'PIP') { $resultObject.PIP = $_.PIP }
-                    if ($ColumnsToInclude -contains 'CMK') { $resultObject.CMK = $_.CMK }
-                    if ($ColumnsToInclude -contains 'Identity') { $resultObject.Identity = $_.Identity }
+    # Status Badge
+    $moduleFolderPath = Split-Path $moduleTemplatePath -Parent
+    $relativeFolderPath = Join-Path 'avm' ($moduleFolderPath -split '[\/|\\]{1}avm[\/|\\]{1}')[1]
+    $resourceTypeIdentifier = ($moduleFolderPath -split '[\/|\\]{1}avm[\/|\\]{1}(res|ptn|utl)[\/|\\]{1}')[2] -replace '\\', '/' # avm/res/<provider>/<resourceType>
+    $isTopLevelModule = ($resourceTypeIdentifier -split '[\/|\\]').Count -eq 2
+    if (($ColumnsToInclude -contains 'Status') -and $isTopLevelModule) {
 
-                    # Return result
-                    [PSCustomObject] $resultObject
-                }
-                sum  = $summaryData
-            }
-        }
-        'Markdown' {
-            $markdownTable = [System.Collections.ArrayList]@(
-                '| # | {0} |' -f ($moduleData[0].Keys -join ' | ')
-                '| - | {0} |' -f (($moduleData[0].Keys | ForEach-Object { '-' }) -join ' | ' )
-            )
+      $statusInputObject = @{
+        RepositoryName      = $RepositoryName
+        Organization        = $Organization
+        PipelineFileName    = Get-PipelineFileName -ResourceIdentifier $relativeFolderPath
+        WorkflowsFolderPath = Join-Path $ModulesRepoRootPath '.github' 'workflows'
+      }
 
-            # Format module identifier
-            foreach ($module in $moduleData) {
-                $identifierParts = $module.Module.Replace('\', '/').split('/')
-                if ($identifierParts.Count -gt $BreakMarkdownModuleNameAt) {
-                    $topLevelIdentifier = $identifierParts[0..($BreakMarkdownModuleNameAt - 1)] -join '/'
-                    $module.Module = '{0}<p>{1}' -f $topLevelIdentifier, ($module.Module -replace "$topLevelIdentifier/", '')
-                }
-            }
-
-            # Add table data
-            $counter = 1
-            foreach ($module in ($moduleData | Sort-Object { $_.Module })) {
-                $line = '| {0} | {1} |' -f $counter, (($moduleData[0].Keys | ForEach-Object { $module[$_] }) -join ' | ')
-                $line = $line -replace 'True', '✅'
-                $line = $line -replace 'False', ''
-                $line = $line -replace '\[\]', ''
-                $markdownTable += $line
-                $counter++
-            }
-
-            if ($summaryData.Keys.Count -gt 0) {
-                $markdownTable += '| Sum | | | {0} |' -f (($summaryData.Keys | ForEach-Object { $summaryData[$_] }) -join ' | ')
-            }
-            return $markdownTable | Out-String
-        }
-        'CSV' {
-            $csv = [System.Collections.ArrayList]@( ('#,{0}' -f ($moduleData[0].Keys -join ',') ))
-
-            # Add CSV data
-            $counter = 1
-            foreach ($module in ($moduleData | Sort-Object { $_.Module })) {
-                $line = '{0},{1}' -f $counter, (($moduleData[0].Keys | ForEach-Object { $module[$_] }) -join ',')
-                $line = $line -replace 'True', '✅'
-                $line = $line -replace 'False', ''
-                $line = $line -replace '\[\]', ''
-                $csv += $line
-                $counter++
-            }
-            if ($summaryData.Keys.Count -gt 0) {
-                $csv += 'Sum,{0},{1}' -f (($summaryData.Keys -contains 'Status') ? ',' : ''), (($summaryData.Keys | ForEach-Object { $summaryData[$_] }) -join ',')
-            }
-
-            return $csv
-        }
+      $moduleDataItem['Status'] = Get-PipelineStatusUrl @statusInputObject
     }
+
+    # Supports RBAC
+    if ($ColumnsToInclude -contains 'RBAC') {
+      if ([regex]::Match($moduleContentString, '(?m)^\s*param roleAssignments roleAssignment.*Type').Success) {
+        $summaryData.supportsRBAC++
+        $moduleDataItem['RBAC'] = $true
+      } else {
+        $moduleDataItem['RBAC'] = $false
+      }
+    }
+
+    # Supports Locks
+    if ($ColumnsToInclude -contains 'Locks') {
+      if ([regex]::Match($moduleContentString, '(?m)^\s*param lock lock.*Type').Success) {
+        $summaryData.supportsLocks++
+        $moduleDataItem['Locks'] = $true
+      } else {
+        $moduleDataItem['Locks'] = $false
+      }
+    }
+
+    # Supports Tags
+    if ($ColumnsToInclude -contains 'Tags') {
+      # Matches
+      # - param tags object?
+      # - param tags resourceInput<'...'>.tags?
+      # - param tags {
+      #     @description(...)
+      #     *: string?
+      # }
+      if ([regex]::Match($moduleContentString, "(?m)^\s*param tags (object|resourceInput<'.+'>.tags|\{\n\s*@description.+\n\s*\*: string\?\n\})\?").Success) {
+        $summaryData.supportsTags++
+        $moduleDataItem['Tags'] = $true
+      } else {
+        $moduleDataItem['Tags'] = $false
+      }
+    }
+
+    # Supports Diagnostics
+    if ($ColumnsToInclude -contains 'Diag') {
+      if ([regex]::Match($moduleContentString, '(?m)^\s*param diagnosticSettings diagnosticSetting.*Type').Success) {
+        $summaryData.supportsDiagnostics++
+        $moduleDataItem['Diag'] = $true
+      } else {
+        $moduleDataItem['Diag'] = $false
+      }
+    }
+
+    # Supports Private Endpoints
+    if ($ColumnsToInclude -contains 'PE') {
+      if ([regex]::Match($moduleContentString, '(?m)^\s*param privateEndpoints privateEndpoint.*Type').Success) {
+        $summaryData.supportsEndpoints++
+        $moduleDataItem['PE'] = $true
+      } else {
+        $moduleDataItem['PE'] = $false
+      }
+    }
+
+    # Supports PIPs
+    if ($ColumnsToInclude -contains 'PIP') {
+      if ([regex]::Match($moduleContentString, '(?m)^\s*param publicIPAddressObject object\s*=.+').Success) {
+        $summaryData.supportsPipDeployment++
+        $moduleDataItem['PIP'] = $true
+      } else {
+        $moduleDataItem['PIP'] = $false
+      }
+    }
+
+    # Supports CMK
+    if ($ColumnsToInclude -contains 'CMK') {
+      if ([regex]::Match($moduleContentString, '(?m)^\s*param customerManagedKey customerManagedKey.*Type').Success) {
+        $summaryData.supportsCMKDeployment++
+        $moduleDataItem['CMK'] = $true
+      } else {
+        $moduleDataItem['CMK'] = $false
+      }
+    }
+
+    # Supports Identity
+    if ($ColumnsToInclude -contains 'Identity') {
+      if ([regex]::Match($moduleContentString, '(?m)^\s*param managedIdentities managedIdentit.*Type').Success) {
+        $summaryData.supportsIdentityDeployment++
+        $moduleDataItem['Identity'] = $true
+      } else {
+        $moduleDataItem['Identity'] = $false
+      }
+    }
+
+    # Result
+    $moduleData += $moduleDataItem
+  }
+
+  #######################
+  #   Generate output   #
+  #######################
+  switch ($ReturnFormat) {
+    'Object' {
+      return @{
+        data = $moduleData | ForEach-Object {
+          $resultObject = @{
+            Module = $_.Module
+          }
+          if ($ColumnsToInclude -contains 'Status') { $resultObject.Status = $_.Status }
+          if ($ColumnsToInclude -contains 'RBAC') { $resultObject.RBAC = $_.RBAC }
+          if ($ColumnsToInclude -contains 'Locks') { $resultObject.Locks = $_.Locks }
+          if ($ColumnsToInclude -contains 'Tags') { $resultObject.Tags = $_.Tags }
+          if ($ColumnsToInclude -contains 'Diag') { $resultObject.Diag = $_.Diag }
+          if ($ColumnsToInclude -contains 'PE') { $resultObject.PE = $_.PE }
+          if ($ColumnsToInclude -contains 'PIP') { $resultObject.PIP = $_.PIP }
+          if ($ColumnsToInclude -contains 'CMK') { $resultObject.CMK = $_.CMK }
+          if ($ColumnsToInclude -contains 'Identity') { $resultObject.Identity = $_.Identity }
+
+          # Return result
+          [PSCustomObject] $resultObject
+        }
+        sum  = $summaryData
+      }
+    }
+    'Markdown' {
+      $markdownTable = [System.Collections.ArrayList]@(
+        '| # | {0} |' -f ($moduleData[0].Keys -join ' | ')
+        '| - | {0} |' -f (($moduleData[0].Keys | ForEach-Object { '-' }) -join ' | ' )
+      )
+
+      # Format module identifier
+      foreach ($module in $moduleData) {
+        $identifierParts = $module.Module.Replace('\', '/').split('/')
+        if ($identifierParts.Count -gt $BreakMarkdownModuleNameAt) {
+          $topLevelIdentifier = $identifierParts[0..($BreakMarkdownModuleNameAt - 1)] -join '/'
+          $module.Module = '{0}<p>{1}' -f $topLevelIdentifier, ($module.Module -replace "$topLevelIdentifier/", '')
+        }
+      }
+
+      # Add table data
+      $counter = 1
+      foreach ($module in ($moduleData | Sort-Object { $_.Module })) {
+        $line = '| {0} | {1} |' -f $counter, (($moduleData[0].Keys | ForEach-Object { $module[$_] }) -join ' | ')
+        $line = $line -replace 'True', '✅'
+        $line = $line -replace 'False', ''
+        $line = $line -replace '\[\]', ''
+        $markdownTable += $line
+        $counter++
+      }
+
+      if ($summaryData.Keys.Count -gt 0) {
+        $markdownTable += '| Sum | | | {0} |' -f (($summaryData.Keys | ForEach-Object { $summaryData[$_] }) -join ' | ')
+      }
+      return $markdownTable | Out-String
+    }
+    'CSV' {
+      $csv = [System.Collections.ArrayList]@( ('#,{0}' -f ($moduleData[0].Keys -join ',') ))
+
+      # Add CSV data
+      $counter = 1
+      foreach ($module in ($moduleData | Sort-Object { $_.Module })) {
+        $line = '{0},{1}' -f $counter, (($moduleData[0].Keys | ForEach-Object { $module[$_] }) -join ',')
+        $line = $line -replace 'True', '✅'
+        $line = $line -replace 'False', ''
+        $line = $line -replace '\[\]', ''
+        $csv += $line
+        $counter++
+      }
+      if ($summaryData.Keys.Count -gt 0) {
+        $csv += 'Sum,{0},{1}' -f (($summaryData.Keys -contains 'Status') ? ',' : ''), (($summaryData.Keys | ForEach-Object { $summaryData[$_] }) -join ',')
+      }
+
+      return $csv
+    }
+  }
 }
