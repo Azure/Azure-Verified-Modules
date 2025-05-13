@@ -182,7 +182,7 @@ function Get-ModulesFeatureOutline {
 
         # Supports Tags
         if ($ColumnsToInclude -contains 'Tags') {
-            if ([regex]::Match($moduleContentString, '(?m)^\s*param tags object\?').Success) {
+            if ([regex]::Match($moduleContentString, '(?m)^\s*param tags (object|resourceInput<'.+'>.tags)\?').Success) {
                 $summaryData.supportsTags++
                 $moduleDataItem['Tags'] = $true
             } else {
@@ -219,7 +219,7 @@ function Get-ModulesFeatureOutline {
                 $moduleDataItem['PIP'] = $false
             }
         }
-        
+
         # Supports CMK
         if ($ColumnsToInclude -contains 'CMK') {
             if ([regex]::Match($moduleContentString, '(?m)^\s*param customerManagedKey customerManagedKey.*Type').Success) {
