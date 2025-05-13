@@ -36,7 +36,7 @@ Inner-sourcing AVM means maintaining your own, synchronized copy of AVM modules 
 
 This is a more complex approach and requires more effort to maintain, but it can be beneficial in certain scenarios, however, it should not be the default approach as it can lead to a lot of overhead and maintenance and requires significant skills and resources to set up and maintain.
 
-There are many ways to approach inner-sourcing AVM modules for both Bicep and Terraform. And today the AVM team are yet to provide any specific guidance on how to do this as they are still assessing the best approach whilst working with customers. The AVM team will be publishing guidance on this topic in the future.
+There are many ways to approach inner-sourcing AVM modules for both Bicep and Terraform. The AVM team will be publishing guidance on this topic, based on customer experience and learnings.
 
 {{% notice style="tip" %}}
 
