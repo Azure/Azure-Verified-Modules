@@ -182,7 +182,7 @@ function Get-ModulesFeatureOutline {
 
         # Supports Tags
         if ($ColumnsToInclude -contains 'Tags') {
-            if ([regex]::Match($moduleContentString, '(?m)^\s*param tags (object|resourceInput<'.+'>.tags)\?').Success) {
+            if ([regex]::Match($moduleContentString, "(?m)^\s*param tags (object|resourceInput<'.+'>.tags)\?").Success) {
                 $summaryData.supportsTags++
                 $moduleDataItem['Tags'] = $true
             } else {
