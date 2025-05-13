@@ -39,17 +39,17 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
           keyVaultProperties: {
             keyVaultUri: cMKKeyVault.properties.vaultUri
             keyName: customerManagedKey!.keyName
-            keyVersion: !empty(customerManagedKey.?keyVersion ?? '')
+            keyVersion: !empty(customerManagedKey.?keyVersion)
               ? customerManagedKey!.keyVersion
               : (customerManagedKey.?autoRotationEnabled ?? true)
                 ? null
                 : last(split(cMKKeyVault::cMKKey.properties.keyUriWithVersion, '/'))
-            keyIdentifier: !empty(customerManagedKey.?keyVersion ?? '')
+            keyIdentifier: !empty(customerManagedKey.?keyVersion)
               ? '${cMKKeyVault::cMKKey.properties.keyUri}/${customerManagedKey!.keyVersion}'
               : (customerManagedKey.?autoRotationEnabled ?? true)
                 ? cMKKeyVault::cMKKey.properties.keyUri
                 : cMKKeyVault::cMKKey.properties.keyUriWithVersion
-            identityClientId: !empty(customerManagedKey.?userAssignedIdentityResourceId ?? '')
+            identityClientId: !empty(customerManagedKey.?userAssignedIdentityResourceId)
               ? cMKUserAssignedIdentity.properties.clientId
               : null
             identity: !empty(customerManagedKey.?userAssignedIdentityResourceId)
