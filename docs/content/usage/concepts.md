@@ -30,9 +30,20 @@ This allows you to leverage the latest and greatest features of the AVM modules,
 
 A private registry - that is hosted in your own environment - can store modules originating from the public registry. Using a private registry still grants you the latest version of AVM modules while allowing you to review each version of each module before admitting them to your private registry. You also have control over who can access your own private registry. Note that using a private registry means that you're still using each module as is, without making any changes.
 
-#### Inner-sourcing (using a Private Repository)
+#### Inner-sourcing
 
-Inner-sourcing AVM means forking the BRM repository (Bicep) or the Terraform repositories and you're setting up your own instance of the "AVM production chain" in order to be able to make changes to your version of the modules, test them, and publish them to your own private registry. is a way to use modules that are hosted in a private repository. This allows you to make changes to the modules, but it also means that you need to manage the lifecycle of the modules yourself,
+Inner-sourcing AVM means maintaining your own, synchronized copy of AVM modules in your own internal private registry, repositories or other storage option. Customers normally look to inner-source AVM modules when they have strict security and compliance requirements, or when they want to publish their own lightly wrapped versions of the modules to meet their specific needs; for example changing some allowed or default values for parameter or variable inputs.
+
+This is a more complex approach and requires more effort to maintain, but it can be beneficial in certain scenarios, however, it should not be the default approach as it can lead to a lot of overhead and maintenance and requires significant skills and resources to set up and maintain.
+
+There are many ways to approach inner-sourcing AVM modules for both Bicep and Terraform. The AVM team will be publishing guidance on this topic, based on customer experience and learnings.
+
+{{% notice style="tip" %}}
+
+You can see the AVM team talking about inner-sourcing on the AVM February 2025 community call on [YouTube](https://youtu.be/M2dJetgK2U8?si=R0QmasBUDM0Acs9L).
+
+{{% /notice %}}
+
 
 <!-- ## Bicep-specific concepts
 
