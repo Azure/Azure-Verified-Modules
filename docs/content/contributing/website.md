@@ -72,7 +72,7 @@ winget install --id 'Hugo.Hugo.Extended'
 
 Below are links to a number of useful resources to have when contributing to AVM:
 
-- [Geekdocs Theme (that we use) - Docs](https://geekdocs.de/usage/getting-started/)
+- [Relearn Theme (that we use) - Docs](https://mcshelby.github.io/hugo-theme-relearn/index.html)
 - [Hugo Quick Start](https://gohugo.io/getting-started/quick-start/)
 - [Hugo Docs](https://gohugo.io/documentation/)
 - [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
