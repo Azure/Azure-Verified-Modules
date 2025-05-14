@@ -38,7 +38,7 @@
 37,res/databricks/access-connector,✅,✅,✅,,,,✅
 38,res/databricks/workspace,✅,✅,✅,✅,✅,✅,
 39,res/db-for-my-sql/flexible-server,✅,✅,,✅,✅,✅,✅
-40,res/db-for-postgre-sql/flexible-server,✅,✅,✅,✅,✅,✅,✅
+40,res/db-for-postgre-sql/flexible-server,✅,✅,,✅,✅,✅,✅
 41,res/desktop-virtualization/application-group,✅,✅,✅,✅,,,
 42,res/desktop-virtualization/host-pool,✅,✅,✅,✅,✅,,
 43,res/desktop-virtualization/scaling-plan,✅,✅,✅,✅,,,
@@ -46,7 +46,7 @@
 45,res/dev-ops-infrastructure/pool,✅,✅,✅,✅,,,✅
 46,res/dev-test-lab/lab,✅,✅,✅,,,,✅
 47,res/digital-twins/digital-twins-instance,✅,✅,✅,✅,✅,,✅
-48,res/document-db/database-account,✅,✅,✅,✅,✅,,✅
+48,res/document-db/database-account,✅,✅,,✅,✅,,✅
 49,res/document-db/mongo-cluster,✅,✅,✅,✅,✅,,
 50,res/elastic-san/elastic-san,✅,✅,✅,✅,,,
 51,res/event-grid/domain,✅,✅,✅,✅,✅,,✅
@@ -155,4 +155,4 @@
 154,res/web/serverfarm,✅,✅,✅,✅,,,
 155,res/web/site,✅,✅,✅,✅,✅,,✅
 156,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,136,137,145,63,37,23,61
+Sum,,136,137,143,63,37,23,61
