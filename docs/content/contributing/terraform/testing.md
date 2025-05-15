@@ -88,14 +88,25 @@ If you get failures, you should examine them to understand how you can make your
 
 ### Creating exceptions
 
-In some circumstances, you may need to create an exception for a policy, you can do so by creating a `.rego` file in the `exceptions` sub-directory of your example.
-For example, to exclude the rule called `"configure_aks_default_node_pool_zones"`, create a file called `exceptions/exception.rego` in your example, with the following content:
+As a general rule, exceptions should only be applied to module examples where you are testing valid but non-compliant configurations. Root module defaults should still comply with WAF and Security best practices. However, if you need to create an exception for a policy, you can do so by creating a `.rego` file in the `exceptions` sub-directory of your example.
+
+For example, to exclude the Azure Proactive Resiliency Library policy rule called `"configure_aks_default_node_pool_zones"`, create a file called `exceptions/exception.rego` in your example with the following content:
 
 ```rego
 package Azure_Proactive_Resiliency_Library_v2
 import rego.v1
 exception contains rules if {
   rules = ["configure_aks_default_node_pool_zones"]
+}
+```
+
+To exclude security policy rules the content varies slightly. Instead of using the `Azure_Proactive_Resiliency_Library_v2` package, you will instead need to include the `avmsec` package. An example of this would use the following pattern:
+
+```rego
+package avmsec
+import rego.v1
+exception contains rules if {
+  rules = ["AVM_SEC_178"]
 }
 ```
 
