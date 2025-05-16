@@ -247,8 +247,9 @@ Remind module owner(s) to start or continue working on this module if there was 
 
 - Is an open issue.
 - Had no activity in the last 21 days.
-- Has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#ADD8E6;">Type: New Module Proposal 💡</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; labels added.
-- Does not have the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#B60205;color:white;">Status: Long Term ⏳</mark>&nbsp; label added.
+- Has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#ADD8E6;">Type: New Module Proposal 💡</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; labels assigned.
+- Does not have the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#B60205;color:white;">Status: Long Term ⏳</mark>&nbsp; label assigned.
+- Does not have the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#E99695;color:white;">Needs: Attention 👋</mark>&nbsp; label assigned.
 
 **Action(s):**
 
@@ -331,7 +332,7 @@ When the author replies, remove the &nbsp;<mark style="background-image:none;whi
 **Trigger criteria:**
 
 - Any action on an issue comment or PR comment except closing.
-- Has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#CB6BA2;color:white;">Needs: Author Feedback 👂</mark>&nbsp; label added.
+- Has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#CB6BA2;color:white;">Needs: Author Feedback 👂</mark>&nbsp; label assigned.
 - The activity was initiated by the issue/PR author.
 
 **Action(s):**
