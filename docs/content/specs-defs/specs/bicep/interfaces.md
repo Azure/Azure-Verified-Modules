@@ -219,7 +219,32 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
 {{% /tab %}}
 {{< /tabs >}}
 
-## Secrets export
+## Secrets export (DEPRECATED)
+
+{{% notice style="important" %}}
+
+Since version Bicep `0.35.1`, it is possible to export secrets securely using the `secure()` annotation.
+
+As this approach is fairly simple compared with the below workaround it is highly recommended to use it instead.
+
+Example
+```bicep
+@secure()
+@description('The primary connection string of the service bus namespace.')
+output primaryConnectionString string = listkeys(
+  '${serviceBusNamespace.id}/AuthorizationRules/RootManageSharedAccessKey',
+  '2024-01-01'
+).primaryConnectionString
+
+@secure()
+@description('The primary key of the service bus namespace.')
+output primaryKey string = listkeys(
+  '${serviceBusNamespace.id}/AuthorizationRules/RootManageSharedAccessKey',
+  '2024-01-01'
+).primaryKey
+```
+
+{{% /notice %}}
 
 Secrets used inside a module can be exported to a Key Vault reference provided as per the below schema.
 This implementation provides a secure way around the current limitation of Bicep on providing a secure template output (that can be used for secrets).
