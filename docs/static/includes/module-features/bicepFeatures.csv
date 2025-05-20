@@ -54,7 +54,7 @@
 53,res/event-grid/namespace,✅,✅,✅,✅,✅,,✅
 54,res/event-grid/system-topic,✅,✅,✅,✅,,,✅
 55,res/event-grid/topic,✅,✅,✅,✅,✅,,✅
-56,res/event-hub/namespace,✅,✅,✅,✅,✅,✅,✅
+56,res/event-hub/namespace,✅,✅,,✅,✅,✅,✅
 57,res/fabric/capacity,,✅,✅,,,,
 58,res/health-bot/health-bot,✅,✅,✅,,,,✅
 59,res/healthcare-apis/workspace,✅,✅,✅,,,,
@@ -70,7 +70,7 @@
 69,res/insights/diagnostic-setting,,,,,,,
 70,res/insights/metric-alert,✅,✅,✅,,,,
 71,res/insights/private-link-scope,✅,✅,✅,,✅,,
-72,res/insights/scheduled-query-rule,✅,✅,✅,,,,✅
+72,res/insights/scheduled-query-rule,✅,✅,,,,,✅
 73,res/insights/webtest,✅,✅,✅,,,,
 74,res/key-vault/vault,✅,✅,✅,✅,✅,,
 75,res/kubernetes-configuration/extension,,,,,,,
@@ -142,8 +142,8 @@
 141,res/service-bus/namespace,✅,✅,✅,✅,✅,✅,✅
 142,res/service-fabric/cluster,✅,✅,✅,,,,
 143,res/service-networking/traffic-controller,✅,✅,✅,✅,,,
-144,res/signal-r-service/signal-r,✅,✅,✅,,✅,,✅
-145,res/signal-r-service/web-pub-sub,✅,✅,✅,,✅,,✅
+144,res/signal-r-service/signal-r,✅,✅,,,✅,,✅
+145,res/signal-r-service/web-pub-sub,✅,✅,,,✅,,✅
 146,res/sql/instance-pool,,,✅,,,,
 147,res/sql/managed-instance,✅,✅,✅,✅,,,✅
 148,res/sql/server,✅,✅,✅,,✅,✅,✅
@@ -156,4 +156,4 @@
 155,res/web/serverfarm,✅,✅,✅,✅,,,
 156,res/web/site,✅,✅,✅,✅,✅,,✅
 157,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,137,138,144,63,37,23,61
+Sum,,137,138,140,63,37,23,61
