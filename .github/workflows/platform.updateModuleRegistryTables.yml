@@ -58,6 +58,8 @@ jobs:
           else
             echo "Checkout local branch (create new, track from origin)..."
             git checkout -b ${{ env.branch_name }} --track origin/${{ env.branch_name }}
+
+          git merge origin/main
           fi
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
