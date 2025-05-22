@@ -24,7 +24,14 @@ function Get-AzAdvertizerDataPerType {
 }
 
 function Get-AllAzAdvertizerData {
-  $types = @("PSRule", "AZQR", "Advisor", "APRL")
+  param(
+    [string[]]$AdvisorRecommendationCategories = @('HighAvailability', 'Reliability', 'Security'),
+    [string[]]$AdvisorRecommendationImpact = @('High'),
+    [string[]]$APRLRecommendationImpact = @('High'),
+    [string[]]$PSRulePillars = @('Security', 'Reliability'),
+    [string[]]$PSRuleSeverities = @('Critical', 'Important')
+  )
+  $types = @("PSRule", "Advisor", "APRL")
   $results = @{}
   foreach ($type in $types) {
     $data = Get-AzAdvertizerDataPerType -Type $type
@@ -34,22 +41,19 @@ function Get-AllAzAdvertizerData {
         $include = $false
         switch ($type) {
           'Advisor' {
-            if ($recommendation.recommendationCategory -in @('HighAvailability', 'Reliability', 'Security') -and $recommendation.recommendationImpact -eq 'High') {
+            if ($recommendation.recommendationCategory -in $AdvisorRecommendationCategories -and $recommendation.recommendationImpact -in $AdvisorRecommendationImpact) {
               $include = $true
             }
           }
           'APRL' {
-            if ($recommendation.recommendationImpact -eq 'High') {
+            if ($recommendation.recommendationImpact -in $APRLRecommendationImpact) {
               $include = $true
             }
           }
           'PSRule' {
-            if (($recommendation.pillar -in @('Security', 'Reliability')) -and ($recommendation.severity -in @('Critical', 'Important'))) {
+            if (($recommendation.pillar -in $PSRulePillars) -and ($recommendation.severity -in $PSRuleSeverities)) {
               $include = $true
             }
-          }
-          default {
-            $include = $true
           }
         }
         if ($include) {
@@ -59,7 +63,6 @@ function Get-AllAzAdvertizerData {
           if (-not $results[$resource].ContainsKey($type)) {
             $results[$resource][$type] = New-Object System.Collections.ArrayList
           }
-
           $results[$resource][$type].Add($recommendation)
         }
       }
