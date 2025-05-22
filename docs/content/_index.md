@@ -5,6 +5,12 @@ type: home
 description: 'Azure Verified Modules - The Microsoft IaC Module Strategy'
 ---
 
+{{% notice style="important" %}}
+Get ready to accelerate your Azure platform journey with Azure Verified Modules! In our latest **Microsoft Build** [**session**](https://aka.ms/BUILD25/BRK196), we showcased how AVM streamlines cloud deployment with speed, reliability, and best practices—empowering you to build smarter and faster on Azure.
+
+**You can watch the recording here**: 🎥 [Accelerate your Azure platform journey with Azure Verified Modules](https://aka.ms/BUILD25/BRK196) 🎥
+{{% /notice %}}
+
 ## Introduction
 
 <div style="width:70%; margin: 0 auto;">
