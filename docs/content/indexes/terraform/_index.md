@@ -12,7 +12,7 @@ The following table shows the number of all available, orphaned and planned **Te
 
 {{% moduleStats language="Terraform" moduleType="All" showLanguage=true showClassification=true %}}
 
-{{% notice style="tip" title="Want to contribute to AVM Bicep modules?" %}}
+{{% notice style="tip" title="Want to contribute to AVM Terraform modules?" %}}
 
 | #  | Labels | Link and description |
 | -------- | -------- | -------- |
