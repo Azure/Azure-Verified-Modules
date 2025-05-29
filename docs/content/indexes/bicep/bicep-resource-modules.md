@@ -10,6 +10,15 @@ description: Bicep Resource Module Index showing all available, orphaned and pla
 
 {{% moduleStats language="Bicep" moduleType="Resource" showLanguage=true showClassification=true %}}
 
+{{% notice style="grey" title="Legend" %}}
+- Published modules 🟢 & 👀 - Available and Orphaned modules that are active and usable (with differences in their maintenance).
+- Proposed modules 🆕 - Modules that are proposed and/or being worked on but not published yet.
+- Deprecated modules 🟡 - Modules that reached the end of their lifecycle.
+- All modules 📇 - Including Published, Proposed and Deprecated ones.
+
+See the [Module Lifecycle]({{% siteparam base %}}/specs/shared/module-lifecycle/) page for more details.
+{{% /notice %}}
+
 {{% expand title="➕ Additional information" %}}
 
 {{% notice style="info" %}}
@@ -34,7 +43,7 @@ Modules listed below that aren't shown with the status of **`Module Available �
 
 {{% expand title="➕ Published Modules - Module names, status and owners" expanded="true" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" exclude="Proposed :new:" %}}
+{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" include="Available :green_circle:,Orphaned :eyes:" %}}
 
 {{% /expand %}}
 
@@ -42,7 +51,15 @@ Modules listed below that aren't shown with the status of **`Module Available �
 
 {{% expand title="➕ Proposed Modules - Module names, status and owners" expanded="false" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" exclude="Available :green_circle:,Orphaned :eyes:" %}}
+{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" include="Proposed :new:" %}}
+
+{{% /expand %}}
+
+### Deprecated modules - 🟡
+
+{{% expand title="➕ Deprecated Modules - Module names, status and owners" expanded="false" %}}
+
+{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" include="Deprecated" %}}
 
 {{% /expand %}}
 
@@ -50,7 +67,7 @@ Modules listed below that aren't shown with the status of **`Module Available �
 
 {{% expand title="➕ All Modules - Module names, status and owners" expanded="false" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" %}}
+{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" include="Available :green_circle:,Orphaned :eyes:,Proposed :new:,Deprecated" %}}
 
 {{% /expand %}}
 
