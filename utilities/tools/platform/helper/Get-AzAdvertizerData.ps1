@@ -68,6 +68,72 @@ function Get-AllAzAdvertizerData {
       }
     }
   }
-  return $results
+  # return $results | ConvertTo-Json -Depth 99 -Compress
+  $Data = $results
+  $Path = '.\data.csv'
+  $allTypes = @()
+  foreach ($resource in $Data.Keys) {
+    $allTypes += $Data[$resource].Keys
+  }
+  $allTypes = $allTypes | Select-Object -Unique
+
+  $csvRows = @()
+  foreach ($resource in $Data.Keys) {
+    foreach ($type in $allTypes) {
+      if ($Data[$resource].ContainsKey($type)) {
+        [array]$rules = $Data[$resource][$type] #| ConvertTo-Json -Compress
+        foreach ($rule in $rules) {
+          $row = @{
+            'ResourceType' = $resource
+            'Advisor'      = ''
+            'APRL'         = ''
+            'PSRule'       = ''
+          }
+          switch ($type) {
+            'PSRule' {
+              $row[$type] += '=HYPERLINK("https://azure.github.io/PSRule.Rules.Azure/en/rules/{0}";"{1}")' -f $rule."ruleId", $rule."displayName"
+            }
+            'Advisor' {
+              $row[$type] += '=HYPERLINK("https://portal.azure.com/#view/Microsoft_Azure_Expert/RecommendationList.ReactView/recommendationTypeId/{0}";"{1}")' -f $rule."id", $rule."displayName".Replace('"', '""')
+            }
+            'APRL' {
+              $row[$type] += '=HYPERLINK("https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/azure-resources/{0}/#{1}";"{2}")' -f $rule."recommendationSitePath", $rule."description".ToLower().Replace(' ', '-').Replace('"', ''), $rule."description".Replace('"', '""')
+            }
+          }
+          $csvRows += (New-Object PSObject -Property $row)
+        }
+      }
+    }
+  }
+  $csvRows | Sort-Object -Property 'ResourceType' | Export-Csv -Path $Path -NoTypeInformation -Force
 }
+
+# function Export-AzAdvertizerDataToCsv {
+#   param(
+#     [Parameter(Mandatory = $true)]
+#     [string]$Path
+#   )
+#   $Data = Get-AllAzAdvertizerData | ConvertFrom-Json
+#   $allTypes = @()
+#   foreach ($resource in $Data.Keys) {
+#     $allTypes += $Data[$resource].Keys
+#   }
+#   $allTypes = $allTypes | Select-Object -Unique
+
+#   $csvRows = @()
+#   foreach ($resource in $Data.Keys) {
+#     $row = @{'ResourceType' = $resource }
+#     foreach ($type in $allTypes) {
+#       if ($Data[$resource].ContainsKey($type)) {
+#         $value = $Data[$resource][$type] | ConvertTo-Json -Compress
+#         $row[$type] = $value
+#       }
+#       else {
+#         $row[$type] = ''
+#       }
+#     }
+#     $csvRows += (New-Object PSObject -Property $row)
+#   }
+#   $csvRows | Sort-Object -Property 'ResourceType' | Export-Csv -Path $Path -NoTypeInformation -Force
+# }
 
