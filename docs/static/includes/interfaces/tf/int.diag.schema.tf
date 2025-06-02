@@ -1,4 +1,4 @@
-bledvariable "diagnostic_settings" {
+variable "diagnostic_settings" {
   type = map(object({
     name                                     = optional(string, null)
     log_categories                           = optional(set(string), [])
