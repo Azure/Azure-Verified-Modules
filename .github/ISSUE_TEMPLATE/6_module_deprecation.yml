@@ -1,7 +1,7 @@
-name: Deprecate AVM Module 🟡
+name: Deprecate AVM Module 🔴
 description: Want to deprecate an AVM Module? Let us know!
 title: "[Module Deprecation]: `MODULE_NAME_BETWEEN_BACKTICKS`"
-labels: ["Type: Module Deprecation Request :yellow_circle:", "Needs: Triage :mag:"]
+labels: ["Status: Module Deprecated :red_circle:", "Needs: Triage :mag:"]
 projects: ["Azure/529"]
 body:
   - type: markdown

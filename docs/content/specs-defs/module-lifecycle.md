@@ -9,9 +9,9 @@ This section outlines the different stages of a module's lifecycle:
 {{< mermaid zoom="false">}}
 flowchart LR
     Proposed["1 - Proposed 💡"] --> Available["2 - Available 🟢"]
-    Proposed --> |Acceptence criteria not met| Rejected[Rejected]
-    Available --> |Module temporarily not maintained| Orphaned["3 - Orphaned 👀"]
-    Orphaned --> |End of life| Deprecated["4 - Deprecated 🟡"]
+    Proposed --> |Acceptance criteria not met| Rejected[Rejected]
+    Available --> |Module temporarily not maintained| Orphaned["3 - Orphaned 🟡"]
+    Orphaned --> |End of life| Deprecated["4 - Deprecated 🔴"]
     Orphaned --> |New owner identified| Available
     Available --> |End of life| Deprecated
     style Proposed fill:#ADD8E6,stroke:#333,stroke-width:1px
@@ -77,12 +77,12 @@ Also, the AVM core team will amend the issue automation to auto reply stating th
 
 Once a module reaches the end of its lifecycle (e.g., it's permanently replaced by another module; permanent retirement due to obsolete technology/solution), it needs to be deprecated. A deprecated module will no longer be maintained, and no new features or bug fixes will be implemented for it. The module will indefinitely stay available in the public registry and source code repository for use, but certain measures will take place, such as:
 
-- The module will show as deprecated in the AVM module index.
-- The module will no longer be shown through VS Code IntelliSense.
-- The module's source code will show an archived status (through a, `DEPRECATED.md` and an `ARCHIVED.MD` file and a disclaimer in its `README.md` file).
-- There will be a clear indication on the module's repo that new issues can no longer be submitted for the module:
-  - Bicep: The module will be taken off the list of available modules in related issue templates.
-  - Terraform: The module's repo will be archived.
+1. The module will show as deprecated in the AVM module index.
+2. The module will no longer be shown through VS Code IntelliSense.
+3. The module's source code will show a deprecated status through a, `DEPRECATED.md` file (Bicep only) and a disclaimer in the module's `README.md` file.
+4. It will be a clearly indicated on the module's repo that new issues can no longer be submitted for the module:
+   - Bicep: The module will be taken off the list of available modules in related issue templates.
+   - Terraform: The module's repo will be archived.
 
 It is recommended to migrate to a replacement/alternative version of the module, if available.
 
@@ -98,14 +98,13 @@ The information notice will include the following statement:
 {{% include file="/static/includes/deprecated-module-notice.md" %}}
 {{< /highlight >}}
 
-The `ARCHIVED.md` file will include the following information (Bicep example):
-
-{{< highlight lineNos="false" type="markdown" wrap="true" title="ARCHIVED.md" >}}
-{{% include file="/static/includes/archived-module-notice-example.md" %}}
-{{< /highlight >}}
-
 {{% /notice %}}
 
 {{% notice style="info" %}}
 The module's `-owners-` and `-contributors-` GitHub teams will be retained indefinitely as these grant access to the source code of the module.
+{{% /notice %}}
+
+{{% notice style="info"  %}}
+- [avm/ptn/finops-toolkit/finops-hub/0.1.0](https://github.com/Azure/bicep-registry-modules/releases/tag/avm/ptn/finops-toolkit/finops-hub/0.1.0) - ([source](https://github.com/Azure/bicep-registry-modules/tree/avm/ptn/finops-toolkit/finops-hub/0.1.0/avm/ptn/finops-toolkit/finops-hub))
+- [avm/ptn/finops-toolkit/finops-hub/0.1.1](https://github.com/Azure/bicep-registry-modules/releases/tag/avm/ptn/finops-toolkit/finops-hub/0.1.1) - ([source](ttps://github.com/Azure/bicep-registry-modules/tree/avm/ptn/finops-toolkit/finops-hub/0.1.1/avm/ptn/finops-toolkit/finops-hub))
 {{% /notice %}}

@@ -14,6 +14,10 @@ description: Bicep Pattern Module Index showing all available, orphaned and plan
 
 {{% expand title="➕ Additional information" %}}
 
+{{% notice style="grey" title="Legend" %}}
+{{% include file="/static/includes/module-status-legend.md" %}}
+{{% /notice %}}
+
 {{% notice style="info" %}}
 
 This page contains various views of the module index (catalog) for **Bicep Pattern Modules**. To see these views, **click on the expandable sections** with the "➕" sign below.
@@ -48,7 +52,7 @@ Modules listed below that aren't shown with the status of **`Module Available �
 
 {{% /expand %}}
 
-### Deprecated modules - 🟡
+### Deprecated modules - 🔴
 
 {{% expand title="➕ Deprecated Modules - Module names, status and owners" expanded="false" %}}
 

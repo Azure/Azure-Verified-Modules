@@ -173,7 +173,7 @@
       {{ end }}
     {{ end }}
     {{ $trimmedModuleStatus := replace $item.ModuleStatus "Module " "" }}
-    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Deprecated" "Deprecated :yellow_circle:" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Deprecated" "Deprecated :red_circle:" }}
     {{ $trimmedAlternativeNames := replace $item.AlternativeNames "  " " " }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames ", " "," }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames "," ", " }}
@@ -315,7 +315,7 @@
       {{ end }}
     {{ end }}
     {{ $trimmedModuleStatus := replace $item.ModuleStatus "Module " "" }}
-    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Deprecated" "Deprecated :yellow_circle:" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Deprecated" "Deprecated :red_circle:" }}
     {{ $trimmedAlternativeNames := replace $item.AlternativeNames "  " " " }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames ", " "," }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames "," ", " }}

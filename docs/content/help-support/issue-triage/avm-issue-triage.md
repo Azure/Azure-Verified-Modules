@@ -264,12 +264,12 @@ If a module meets the criteria described in the "[Deprecated Modules]({{% sitepa
 
 A "deprecated module" issue must be submitted. An issue is considered to be a "deprecated module" issue if:
 
-- it was opened through the "[Deprecate AVM Module 🟡](https://aka.ms/avm/DeprecatedModule)" template,
-- it has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#000000;color:white;">Type: Module Deprecation Request 🟡</mark>&nbsp; applied to it, and
+- it was opened through the "[Deprecate AVM Module 🔴](https://aka.ms/avm/DeprecatedModule)" template,
+- it has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#000000;color:white;">Status: Module Deprecated 🔴</mark>&nbsp; applied to it, and
 - it is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project.
 
-1. Create a new issue using the "[Deprecate AVM Module 🟡](https://aka.ms/avm/DeprecatedModule)" issue template.
-2. Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#000000;color:white;">Type: Module Deprecation Request 🟡</mark>&nbsp; labels are assigned to the issue.
+1. Create a new issue using the "[Deprecate AVM Module 🔴](https://aka.ms/avm/DeprecatedModule)" issue template.
+2. Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#000000;color:white;">Status: Module Deprecated 🔴</mark>&nbsp; labels are assigned to the issue.
 3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
 4. Place an information notice as per the below guidelines:
     - In case of a Bicep module:
@@ -277,7 +277,6 @@ A "deprecated module" issue must be submitted. An issue is considered to be a "d
       - Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header.
       - Make sure the content of the `DEPRECATED.md` file is displayed in the `README.md` in its header (right after the title).
     - In case of a Terraform module, place the information notice - with the text below - in the `README.md` file, in the module's root.
-    - In case of both Bicep and Terraform modules, place the an `ARCHIVE.md` file in the module's root, with the content below.
     - Once the information notice is placed, submit a Pull Request.
 
 Place the following indicators in the module's repository:
@@ -288,17 +287,6 @@ Place the following indicators in the module's repository:
 
 {{% include file="/static/includes/deprecated-module-notice.md" %}}
 
-{{< /highlight >}}
-
-Populate the `ARCHIVED.md` file with information about the module's previous releases and place it in the module's root folder.
-
-Bicep example for deprecating the `avm/ptn/finops-toolkit/finops-hub` module:
-
-- To find out what the available versions are, run the following command: `git tag -l "*avm/ptn/finops-toolkit/finops-hub*"`
-- Populate the `ARCHIVED.md` file with the available versions and module name matching the following format:
-
-{{< highlight lineNos="false" type="markdown" wrap="true" title="ARCHIVED.md" >}}
-{{% include file="/static/includes/archived-module-notice-example.md" %}}
 {{< /highlight >}}
 
 {{% /expand %}}

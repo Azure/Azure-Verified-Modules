@@ -22,6 +22,7 @@ Status: No Recent Activity :zzz:,When an issue/PR has not been modified for X am
 Status: Won't Fix :broken_heart:,This will not be worked on,FFFFFF
 Status: Owners Identified :metal:,This module has its owners identified,FBEF2A
 Status: Module Available :green_circle:,The module is published,C8E6C9
+Status: Module Deprecated :red_circle:,This is a request to deprecate a module,000000
 Status: Module Orphaned :eyes:,The module has no owner and is therefore orphaned at this time,F4A460
 Status: Ready For Repository Creation :memo:,"This module is approved and the owner is ready for the repository to be created (Terraform)",136A41
 Status: Repository Created :page_facing_up:,"This module has had it's repository created and configured ready for owner contribution (Terraform)",27AB03
@@ -37,7 +38,6 @@ Type: New Module Proposal :bulb:,A new module for AVM is being proposed,ADD8E6
 Type: Question/Feedback :raising_hand:,Further information is requested or just some feedback,CB6BA2
 Type: Security Bug :lock:,This is a security bug,FFFF00
 Type: AVM :a: :v: :m:,This is an AVM related issue,F0FFFF
-Type: Module Deprecation Request :yellow_circle:,This is a request to deprecate a module,000000
 Language: Terraform :globe_with_meridians:,This is related to the Terraform IaC language,7740B6
 Language: Bicep :muscle:,This is related to the Bicep IaC language,1D73B3
 Class: Resource Module :package:,This is a resource module,D3D3D3
