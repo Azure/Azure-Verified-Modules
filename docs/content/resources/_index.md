@@ -15,6 +15,7 @@ Additional internal content available for Microsoft FTEs only, [here](https://de
 
 - [An Introduction to Azure Verified Modules (AVM)](https://aka.ms/AVM/intro)
 - 🆕[Accelerate your Azure platform journey with Azure Verified Modules](https://aka.ms/BUILD25/BRK196)
+- 🆕[Accelerate your Azure platform journey with AVM, ALZ & Subscription Vending](https://aka.ms/AVM/PSSummit25)
 
 ### Community Videos
 
