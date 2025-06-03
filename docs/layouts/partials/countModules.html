@@ -4,7 +4,7 @@
 {{ $rows := .rows }}
 
 {{ $moduleStatusToCount := .moduleStatusToCount }}
-{{ $moduleStatusToCount_allowedValues := slice "All" "Proposed :new:" "Available :green_circle:" "Orphaned :eyes:" "Deprecated" }}
+{{ $moduleStatusToCount_allowedValues := slice "All" "Proposed" "Available" "Orphaned" "Deprecated" }}
 {{ if not (in $moduleStatusToCount_allowedValues $moduleStatusToCount) }}
   {{ errorf "Invalid value for moduleStatusToCount: %s" $moduleStatusToCount }}
 {{ end }}

@@ -155,7 +155,7 @@
   {{ range $item, $modules }}
   {{ if and (eq $item.FirstPublishedInColumnId $publicationDate) (not ( in $exclude $item.ModuleStatus )) }}
     {{ $moduleLatestVersion = "N/A" }}
-    {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }}
+    {{ if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") }}
       {{ $moduleMcrUrl := printf "https://mcr.microsoft.com/v2/bicep/%s/tags/list" $item.ModuleName }}
       {{ $moduleMcrData := dict }}
       {{ with resources.GetRemote $moduleMcrUrl }}
@@ -183,7 +183,7 @@
     </td>
     <td> {{/* module name and link to the repo */}}
       {{- if $useLinks -}}
-        {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+        {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") -}}
           <a href="{{ $item.RepoURL }}">{{ $item.ModuleName }}</a>
         {{- else -}}
           {{ $item.ModuleName }}
@@ -206,7 +206,7 @@
       {{- end -}}
     </td>
     <td> {{/* availability badge and versions  */}}
-      {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+      {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") -}}
         <a href="https://mcr.microsoft.com/v2/bicep/{{ $item.ModuleName }}/tags/list">
           <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $moduleLatestVersion }}-blue"/>
         </a>
@@ -294,7 +294,7 @@
   {{- range $item, $modules -}}
   {{- if and (eq $item.FirstPublishedInColumnId $publicationDate) (not ( in $exclude $item.ModuleStatus )) -}}
     {{ $moduleLatestVersion = "N/A" }}
-    {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+    {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") -}}
       {{ $repoURLSplit := strings.Split $item.RepoURL "/" }}
       {{ $repoName := index $repoURLSplit (sub (len $repoURLSplit) 1) }}
       {{ $repoNameSplit := strings.Split $repoName "-" }}
@@ -331,7 +331,7 @@
     </td>
     <td> {{/* module name and link to the registry */}}
       {{- if $useLinks -}}
-        {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+        {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") -}}
           <a href="{{ $item.PublicRegistryReference }}">{{ $item.ModuleName }}</a>
         {{- else -}}
           {{ $item.ModuleName }}
@@ -342,7 +342,7 @@
     </td>
     <td style="text-align: center;"> {{/* link to the repo */}}
       {{- if $useLinks -}}
-        {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+        {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") -}}
           <a href="{{ $item.RepoURL }}" style="color: inherit; text-decoration: none; background-color: transparent;">📄</a>
         {{- else -}}
           {{ "n/a" }}
@@ -365,7 +365,7 @@
       {{- end -}}
     </td>
     <td> {{/* availability badge and versions  */}}
-      {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+      {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") -}}
         <a href="{{ $item.PublicRegistryReference }}">
           <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $moduleLatestVersion }}-purple"/>
         </a>

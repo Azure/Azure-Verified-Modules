@@ -34,19 +34,19 @@ Modules listed below that aren't shown with the status of **`Module Available �
 
 {{% /expand %}}
 
-### Published modules - 🟢 & 👀
+### Published modules - 🟢 & 🟡
 
 {{% expand title="➕ Published Modules - Module names, status and owners" expanded="true" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" include="Available :green_circle:,Orphaned :eyes:" %}}
+{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" include="Available,Orphaned" %}}
 
 {{% /expand %}}
 
-### Proposed modules - 🆕
+### Proposed modules - ⚪
 
 {{% expand title="➕ Proposed Modules - Module names, status and owners" expanded="false" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" include="Proposed :new:" %}}
+{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" include="Proposed" %}}
 
 {{% /expand %}}
 
@@ -62,7 +62,7 @@ Modules listed below that aren't shown with the status of **`Module Available �
 
 {{% expand title="➕ All Modules - Module names, status and owners" expanded="false" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" include="Available :green_circle:,Orphaned :eyes:,Proposed :new:,Deprecated" %}}
+{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" include="Available,Orphaned,Proposed,Deprecated" %}}
 
 {{% /expand %}}
 
@@ -70,7 +70,7 @@ Modules listed below that aren't shown with the status of **`Module Available �
 
 {{% expand title="➕ Module Publication History - Module names, status and owners" expanded="false" %}}
 
-{{% moduleHistory header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" exclude="Proposed :new:" monthsToShow=9999 %}}
+{{% moduleHistory header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" exclude="Proposed" monthsToShow=9999 %}}
 
 {{% /expand %}}
 

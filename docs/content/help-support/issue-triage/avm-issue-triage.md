@@ -168,8 +168,8 @@ If a module meets the criteria described in the "[Orphaned Modules]({{% sitepara
 
 An "orphaned module" issue must be submitted. An issue is considered to be an "orphaned module" issue if
 
-- it was opened through the "[Orphaned AVM Module 👀](https://aka.ms/avm/OrphanedModule)" template,
-- it has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 👀</mark>&nbsp; applied to it, and
+- it was opened through the "[Orphaned AVM Module �](https://aka.ms/avm/OrphanedModule)" template,
+- it has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned �</mark>&nbsp; applied to it, and
 - it is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project.
 
 {{% notice style="note" %}}
@@ -180,8 +180,8 @@ Instead, a **new Orphaned Module issue** must be opened that **MUST remain open*
 Once the **Orphaned Module issue** was closed, it **MUST remain closed**. If the module will subsequently become orphaned again, a new Orphaned Module issue must be opened.
 {{% /notice %}}
 
-1. Create a new issue using the "[Orphaned AVM Module 👀](https://aka.ms/AVM/OrphanedModule)" issue template.
-2. Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp;, and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 👀</mark>&nbsp; labels are assigned to the issue.
+1. Create a new issue using the "[Orphaned AVM Module �](https://aka.ms/AVM/OrphanedModule)" issue template.
+2. Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp;, and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned �</mark>&nbsp; labels are assigned to the issue.
 3. Move the issue into the "`Orphaned`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
 4. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
 5. Place an information notice as per the below guidelines:
@@ -211,7 +211,7 @@ Include the following text in the information notice:
 {{% notice style="tip" %}}
 To look for Orphaned Modules:
 
-- Click on the following link to use this saved query ➡️ <a href="https://aka.ms/avm/OrphanedModules">&nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 👀</mark>&nbsp;</a> ⬅️.
+- Click on the following link to use this saved query ➡️ <a href="https://aka.ms/avm/OrphanedModules">&nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned �</mark>&nbsp;</a> ⬅️.
 - Check the `Orphaned` swim lane on the [Module Triage board](https://aka.ms/avm/moduletriage).
 {{% /notice %}}
 
@@ -230,7 +230,7 @@ To look for Orphaned Modules:
 
 2. Once the new module owner candidate has confirmed they understand and accept their roles and responsibilities as an AVM module owner
     - Assign the issue to the confirmed module owner.
-    - Remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 👀</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; labels from the issue.
+    - Remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned �</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; labels from the issue.
     - Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#C8E6C9;">Status: Module Available 🟢</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; labels to the issue.
     - Move the issue into the "`Done`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
 3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).

@@ -8,7 +8,7 @@ This section outlines the different stages of a module's lifecycle:
 
 {{< mermaid zoom="false">}}
 flowchart LR
-    Proposed["1 - Proposed 💡"] --> Available["2 - Available 🟢"]
+    Proposed["1 - Proposed ⚪"] --> Available["2 - Available 🟢"]
     Proposed --> |Acceptance criteria not met| Rejected[Rejected]
     Available --> |Module temporarily not maintained| Orphaned["3 - Orphaned 🟡"]
     Orphaned --> |End of life| Deprecated["4 - Deprecated 🔴"]

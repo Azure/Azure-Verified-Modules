@@ -23,7 +23,7 @@ Status: Won't Fix :broken_heart:,This will not be worked on,FFFFFF
 Status: Owners Identified :metal:,This module has its owners identified,FBEF2A
 Status: Module Available :green_circle:,The module is published,C8E6C9
 Status: Module Deprecated :red_circle:,This is a request to deprecate a module,000000
-Status: Module Orphaned :eyes:,The module has no owner and is therefore orphaned at this time,F4A460
+Status: Module Orphaned :yellow_circle:,The module has no owner and is therefore orphaned at this time,F4A460
 Status: Ready For Repository Creation :memo:,"This module is approved and the owner is ready for the repository to be created (Terraform)",136A41
 Status: Repository Created :page_facing_up:,"This module has had it's repository created and configured ready for owner contribution (Terraform)",27AB03
 Status: Response Overdue :triangular_flag_on_post:,When an issue/PR has not been responded to for X amount of days,850000
