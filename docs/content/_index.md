@@ -6,6 +6,16 @@ description: 'Azure Verified Modules - The Microsoft IaC Module Strategy'
 ---
 
 {{% notice style="important" %}}
+
+Join the AVM team for our next **external community call**, held on **July 1st, 2025**! 🎉
+
+**Register here to attend**: [https://aka.ms/AVM/CommunityCall](https://aka.ms/AVM/CommunityCall)
+
+To find out more about future calls and watch the recordings of previous ones, see the [Community Calls page](/Azure-Verified-Modules/resources/community)!
+
+{{% /notice %}}
+
+{{% notice style="important" %}}
 Get ready to accelerate your Azure platform journey with Azure Verified Modules! In our latest **Microsoft Build** [**session**](https://aka.ms/BUILD25/BRK196), we showcased how AVM streamlines cloud deployment with speed, reliability, and best practices—empowering you to build smarter and faster on Azure.
 
 **You can watch the recording here**: 🎥 [Accelerate your Azure platform journey with Azure Verified Modules](https://aka.ms/BUILD25/BRK196) 🎥
