@@ -1,0 +1,68 @@
+name: Deprecate AVM Module 🔴
+description: Want to deprecate an AVM Module? Let us know!
+title: "[Module Deprecation]: `MODULE_NAME_BETWEEN_BACKTICKS`"
+labels: ["Status: Module Deprecated :red_circle:", "Needs: Triage :mag:"]
+projects: ["Azure/529"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        By filling this issue template, you're requesting a given AVM module to be [deprecated](https://azure.github.io/Azure-Verified-Modules/specs/shared/module-lifecycle/#deprecated-modules).
+
+        This request should primarily be submitted by the module owner, but can be submitted by anyone. The module owner will be contacted to confirm the deprecation request.
+
+  - type: checkboxes
+    id: existing-checks
+    attributes:
+      label: Check for previous/existing GitHub issues/deprecation requests
+      description: By submitting this issue, you confirm that you have [searched for previous/existing GitHub issues/module deprecation requests](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue+sort%3Aupdated-desc+) to avoid creating a duplicate.
+      options:
+        - label: I have checked for previous/existing GitHub issues/module deprecation requests.
+          required: true
+  - type: checkboxes
+    id: existing-module-from-elsewhere
+    attributes:
+      label: Check this module isn't already deprecated in the module indexes
+      description: By submitting this issue, you confirm that you have checked the [Bicep](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/) or [Terraform](https://azure.github.io/Azure-Verified-Modules/indexes/terraform/) module indexes for the module you are requesting to be deprecated.
+      options:
+        - label: I have checked for that this module isn't already deprecated.
+          required: true
+  - type: dropdown
+    id: language
+    attributes:
+      label: Bicep or Terraform?
+      description: Is this a Bicep or a Terraform module? (Please submit a separate deprecation request for each language!)
+      options:
+        - Bicep
+        - Terraform
+    validations:
+      required: true
+  - type: input
+    id: module-name
+    attributes:
+      label: Module Name
+      description: |
+        Please provide the exact name of the module you're requesting to be deprecated.
+      placeholder: '<Module name>'
+    validations:
+      required: true
+  - type: textarea
+    id: module-details
+    attributes:
+      label: Module Details
+      description: Let us know why this module should be deprecated!
+    validations:
+      required: true
+  - type: input
+    id: owner-gh-un
+    attributes:
+      label: Module Owner's GitHub Username (handle)
+      description: Please provide the GitHub handle of the current module owner!
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        > **NOTE**:
+        >
+        > - This module deprecation request issue **MUST remain open** until the module deprecation process if fully completed. **Do NOT close** the issue before receiving confirmation from the AVM Core team!

@@ -136,7 +136,7 @@
     </td>
     <td> {{/* module name and link to the repo */}}
       {{- if $useLinks -}}
-        {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+        {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") -}}
           <a href="{{ $item.RepoURL }}">{{ $item.ModuleName }}</a>
         {{- else -}}
           {{ $item.ModuleName }}
@@ -195,7 +195,7 @@
     </td>
     <td> {{/* module name and link to the repo */}}
       {{- if $useLinks -}}
-        {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+        {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") -}}
           <a href="{{ $item.PublicRegistryReference }}">{{ $item.ModuleName }}</a>
         {{- else -}}
           {{ $item.ModuleName }}
