@@ -79,7 +79,7 @@ Once a module reaches the end of its lifecycle (e.g., it's permanently replaced 
 
 1. The module will show as deprecated in the AVM module index.
 2. The module will no longer be shown through VS Code IntelliSense.
-3. The module's source code will show a deprecated status through a, `DEPRECATED.md` file (Bicep only) and a disclaimer in the module's `README.md` file.
+3. The module's source code will be kept in its repository but it will show a deprecated status through a `DEPRECATED.md` file (Bicep only) and a disclaimer in the module's `README.md` file.
 4. It will be a clearly indicated on the module's repo that new issues can no longer be submitted for the module:
    - Bicep: The module will be taken off the list of available modules in related issue templates.
    - Terraform: The module's repo will be archived.
@@ -92,7 +92,7 @@ When a module becomes deprecated, the AVM core team will communicate this throug
 - In case of a Bicep module, the information notice will be placed in a `DEPRECATED.md` file and in the header of the module's `README.md` - both residing in the module's root.
 - In case of a Terraform module, the information notice will be placed in the header of the `README.md` file, in the module's root.
 
-The information notice will include the following statement:
+The information notice **MUST** include the following statement:
 
 {{< highlight lineNos="false" type="markdown" wrap="true" title="DEPRECATED.md" >}}
 {{% include file="/static/includes/deprecated-module-notice.md" %}}
@@ -104,7 +104,18 @@ The information notice will include the following statement:
 The module's `-owners-` and `-contributors-` GitHub teams will be retained indefinitely as these grant access to the source code of the module.
 {{% /notice %}}
 
-{{% notice style="info"  %}}
-- [avm/ptn/finops-toolkit/finops-hub/0.1.0](https://github.com/Azure/bicep-registry-modules/releases/tag/avm/ptn/finops-toolkit/finops-hub/0.1.0) - ([source](https://github.com/Azure/bicep-registry-modules/tree/avm/ptn/finops-toolkit/finops-hub/0.1.0/avm/ptn/finops-toolkit/finops-hub))
-- [avm/ptn/finops-toolkit/finops-hub/0.1.1](https://github.com/Azure/bicep-registry-modules/releases/tag/avm/ptn/finops-toolkit/finops-hub/0.1.1) - ([source](ttps://github.com/Azure/bicep-registry-modules/tree/avm/ptn/finops-toolkit/finops-hub/0.1.1/avm/ptn/finops-toolkit/finops-hub))
-{{% /notice %}}
+{{% expand title="➕ Retrieve the available versions of a deprecated module" %}}
+
+To find all previous versions of a Bicep module, the following steps need to be performed (assuming the `avm/ptn/finops-toolkit/finops-hub` module has been deprecated):
+
+1. To find out the all the versions the module has ever been published under, perform one of these steps:
+   1. navigate to Bicep Public Registry's [JSON index](https://aka.ms/avm/brmmoduleindex) and look for the module's name,
+   2. OR visit https://mcr.microsoft.com/v2/bicep/avm/ptn/finops-toolkit/finops-hub/tags/list.
+   3. OR clone the [Bicep Public Registry repository](https://aka.ms/BRM) and run the following command in the root of the repository: `git tag -l 'avm/ptn/finops-toolkit/finops-hub/*'`. This will list all the tags that match the module's name.
+2. Identify the available versions of the module, e.g., `0.1.0`, `0.1.1`, etc.
+3. To download the content, construct and navigate to the following URL: [https://github.com/Azure/bicep-registry-modules/releases/tag/avm/ptn/finops-toolkit/finops-hub/0.1.0](https://github.com/Azure/bicep-registry-modules/releases/tag/avm/ptn/finops-toolkit/finops-hub/0.1.0)
+4. To see the content in the folder hierarchy, construct and navigate to the following URL: [https://github.com/Azure/bicep-registry-modules/tree/avm/ptn/finops-toolkit/finops-hub/0.1.0/avm/ptn/finops-toolkit/finops-hu](https://github.com/Azure/bicep-registry-modules/tree/avm/ptn/finops-toolkit/finops-hub/0.1.0/avm/ptn/finops-toolkit/finops-hu)
+
+Terraform modules will be listed in the HashiCorp Terraform Registry indefinitely.
+
+{{% /expand %}}
