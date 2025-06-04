@@ -269,6 +269,7 @@ If a module meets the criteria described in the "[Deprecated Modules]({{% sitepa
       - Place the information notice - with the text below - in the `README.md` file, in the module's root.
       - Archive the module's repository on GitHub.
     - Once the information notice is placed, submit a Pull Request.
+5. Keep the module's `-owners-` and `-contributors-` GitHub teams, as these will keep granting access to the source code of the module.
 
 Place the following information notice in the module's repository:
 
