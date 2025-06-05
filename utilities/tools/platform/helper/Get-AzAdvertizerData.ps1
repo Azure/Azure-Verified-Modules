@@ -114,3 +114,22 @@ function Export-AzAdvertizerDataToCsv {
   $csvRows | Sort-Object -Property 'ResourceType' | Export-Csv -Path $Path -NoTypeInformation -Force
 }
 
+function Import-AzAdvertizerDataFromCsv {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Path
+    )
+    if (-Not (Test-Path $Path)) {
+        throw "File not found: $Path"
+    }
+
+    $data = Import-Csv -Path $Path
+
+    $data | ForEach-Object {
+        $_.Advisor = if ($_.Advisor -ne '') { $_.Advisor -replace '^=HYPERLINK\("https://portal\.azure\.com/#view/Microsoft_Azure_Expert/RecommendationList\.ReactView/recommendationTypeId/([^"\)]+)"\s*;\s*"[^"]*"\)$', '$1' } else { '' }
+        $_.APRL = if ($_.APRL -ne '') { $_.APRL -replace '^=HYPERLINK\("([^"]+)"\s*;\s*"([^"]+)"\)$', '$2' } else { '' }
+        $_.PSRule = if ($_.PSRule -ne '') { $_.PSRule -replace '^=HYPERLINK\("https://azure\.github\.io/PSRule\.Rules\.Azure/en/rules/([^"]+)"\s*;\s*"[^"]*"\)$', '$1' } else { '' }
+    }
+
+    return $data
+}
