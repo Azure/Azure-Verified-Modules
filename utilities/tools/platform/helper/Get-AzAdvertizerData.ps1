@@ -123,13 +123,29 @@ function Import-AzAdvertizerDataFromCsv {
         throw "File not found: $Path"
     }
 
-    $data = Import-Csv -Path $Path
+    $oldData = Import-Csv -Path $Path
 
-    $data | ForEach-Object {
+    $oldData | ForEach-Object {
         $_.Advisor = if ($_.Advisor -ne '') { $_.Advisor -replace '^=HYPERLINK\("https://portal\.azure\.com/#view/Microsoft_Azure_Expert/RecommendationList\.ReactView/recommendationTypeId/([^"\)]+)"\s*;\s*"[^"]*"\)$', '$1' } else { '' }
         $_.APRL = if ($_.APRL -ne '') { $_.APRL -replace '^=HYPERLINK\("([^"]+)"\s*;\s*"([^"]+)"\)$', '$2' } else { '' }
         $_.PSRule = if ($_.PSRule -ne '') { $_.PSRule -replace '^=HYPERLINK\("https://azure\.github\.io/PSRule\.Rules\.Azure/en/rules/([^"]+)"\s*;\s*"[^"]*"\)$', '$1' } else { '' }
     }
 
-    return $data
+    $oldDataHash = @{}
+    foreach ($row in $oldData) {
+        if (-not $oldDataHash.ContainsKey($row.ResourceType)) {
+            $oldDataHash[$row.ResourceType] = @{
+                AdvisorId = @()
+                APRLDescription = @()
+                PSRuleId = @()
+            }
+        }
+        if ($row.Advisor -ne '') { $oldDataHash[$row.ResourceType].AdvisorId += $row.Advisor }
+        if ($row.APRL -ne '') { $oldDataHash[$row.ResourceType].APRLDescription += $row.APRL }
+        if ($row.PSRule -ne '') { $oldDataHash[$row.ResourceType].PSRuleId += $row.PSRule }
+    }
+
+    $CurrentData = Get-AllAzAdvertizerData
+
+    return $oldDataHash
 }
