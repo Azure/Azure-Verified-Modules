@@ -71,18 +71,6 @@ function Get-AllAzAdvertizerData {
   return $results
 }
 
-function Parse-TextFile {
-  param(
-    [Parameter(Mandatory = $true)]
-    [string]$Path
-  )
-  if (-not (Test-Path $Path)) {
-    throw "File not found: $Path"
-  }
-  $lines = Get-Content -Path $Path
-  return $lines
-}
-
 function Export-AzAdvertizerDataToCsv {
   param(
     [Parameter(Mandatory = $true)]
