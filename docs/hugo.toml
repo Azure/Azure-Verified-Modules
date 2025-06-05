@@ -126,6 +126,30 @@ params = { alwaysopen = true, collapsibleMenu = true }
       weight = 2
       params = { alwaysopen = false, collapsibleMenu = true }
 
+  [[menu.defined]]
+    identifier = 'pipeline-automation'
+    parent = 'usage'
+    name = 'Pipeline Automation'
+    pageRef = '/usage/pipeline-automation'
+    weight = 3
+    params = { alwaysopen = false, collapsibleMenu = true }
+
+    [[menu.defined]]
+      identifier = 'bicep-pipeline-automation'
+      parent = 'pipeline-automation'
+      name = 'Bicep'
+      pageRef = '/usage/pipeline-automation/bicep'
+      weight = 1
+      params = { alwaysopen = false, collapsibleMenu = true }
+
+    [[menu.defined]]
+      identifier = 'terraform-pipeline-automation'
+      parent = 'pipeline-automation'
+      name = 'Terraform'
+      pageRef = '/usage/pipeline-automation/terraform'
+      weight = 2
+      params = { alwaysopen = false, collapsibleMenu = true }
+
   # [[menu.defined]]
   #   identifier = 'concepts'
   #   parent = 'usage'
