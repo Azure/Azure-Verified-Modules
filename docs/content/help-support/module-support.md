@@ -3,6 +3,14 @@ title: Module Support
 description: Module Support for the Azure Verified Modules (AVM) program
 ---
 
+{{% notice style="warning" title="Recent Changes to Support Statements" %}}
+
+The AVM support statements and targets have been updated as of **June 2025**. To understand the changes, please review the below updates on this page.
+
+For more information and reasoning behind the changes, please refer to the blog post we published on this topic: [Tech Community: Azure Verified Modules: Support Statement & Target Response Times Update](https://techcommunity.microsoft.com/blog/azuretoolsblog/azure-verified-modules-support-statement--target-response-times-update/4421489)
+
+{{% /notice %}}
+
 As mentioned on the [Introduction]({{% siteparam base %}}/overview/introduction) page, we understand that long-term support from Microsoft in an initiative like AVM is critical to its adoption by consumers and therefore the success of AVM. Therefore we have aligned and provide the below support statement/process for AVM modules:
 
 ## Support Statements
@@ -26,6 +34,8 @@ Module owners do go on holiday or have periods of leave from time to time, durin
 {{% notice style="caution" title="AVM is Open-Source" %}}
 
 AVM is open-source, therefore, contributions are welcome via Pull Requests or comments in Issues from anyone in the world at any time on any Pull Request or Issues to assist AVM module owners 🌐
+
+Review the [contribution guidance]({{% siteparam base %}}/contributing) to get involved!
 
 {{% /notice %}}
 
