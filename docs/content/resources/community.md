@@ -18,16 +18,29 @@ Let's make each community call a celebration of connection and collaboration!
 
 ## Upcoming Events
 
-Stay tuned, to be announced! 👂
+<!-- Stay tuned, to be announced! 👂 -->
 
-<!-- {{% notice style="note" %}}
+### 1st July 2025
 
-This occurrence is optimized for EMEA/APAC time zones.
+{{% notice style="note" %}}
+
+This occurrence is optimized for EMEA/ATZ time zones.
 
 {{% /notice %}}
 
-- [Registration]()
-- [GitHub Issue for Q&A section]() -->
+#### High level agenda (WIP)
+
+- Road to AVM v1
+- AVM integration to Copilot experiences
+- Website Updates
+- Terraform Migration tool
+- Guest speakers (MVPs, Partner, Customer and/or PG teams)
+- Q&A / Open discussion: attendees can ask questions, share experiences/stories, provide feedback and suggestions
+
+#### Call to action
+
+- [Register](https://aka.ms/AVM/CommunityCall) for this event
+- Lave a comment on this [GitHub Issue for the Q&A section](https://github.com/Azure/Azure-Verified-Modules/issues/2109)
 
 ## Previous Events
 
