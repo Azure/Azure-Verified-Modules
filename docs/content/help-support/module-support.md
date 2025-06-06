@@ -3,19 +3,37 @@ title: Module Support
 description: Module Support for the Azure Verified Modules (AVM) program
 ---
 
-As mentioned on the [Introduction]({{% siteparam base %}}/overview/introduction) page, we understand that long-term support from Microsoft in an initiative like AVM is critical to its adoption by consumers and therefore the success of AVM. Therefore we have aligned and provide the below support statement/process for AVM modules.
+As mentioned on the [Introduction]({{% siteparam base %}}/overview/introduction) page, we understand that long-term support from Microsoft in an initiative like AVM is critical to its adoption by consumers and therefore the success of AVM. Therefore we have aligned and provide the below support statement/process for AVM modules:
 
-## Support Mechanism
+## Support Statements
 
-Azure Verified Modules are supported by the AVM teams, as defined [here]({{% siteparam base %}}/specs/shared/team-definitions/), using GitHub issues in the following order of precedence:
+{{% notice style="info" %}}
 
-1. Module owners/contributors
-2. If there is no response within 3 business days, then the AVM core team will step in by:
-    - First attempting to contact the module owners/contributors to prompt them to act.
-    - If there is no response within a further 24 hours (on business days), the AVM core team will take ownership, triage, and provide a response within a further 2 business days.
-3. In the event of a security issue being unaddressed after 5 business days, escalation to the product group (Bicep/Terraform) to assist the AVM core team, will occur to provide additional support towards resolution; if required.
+Module owners do go on holiday or have periods of leave from time to time, during these times the AVM core team will attempt to triage issues based on the below on behalf of module owners. 👍
+
+{{% /notice %}}
+
+### For bugs/security issues
+
+- 5 business days for a triage, meaningful response, and ETA to be provided for fix/resolution by module owner (which could be past the 5 days)
+  - For issues that breach the 5 business days, the AVM core team will be notified and will respond to the issue within an additional 5 business days to assist in triage.
+  - For security issues, the Bicep or Terraform Product Groups **MAY** step in to resolve security issues, if unresolved, after a further additional 5 business days.
+
+### For feature requests
+
+- 15 business days for a meaningful response and initial triage to understand the feature request. An ETA **MAY** be provided by the module owner if possible.
+
+{{% notice style="caution" title="AVM is Open-Source" %}}
+
+AVM is open-source, therefore, contributions are welcome via Pull Requests or comments in Issues from anyone in the world at any time on any Pull Request or Issues to assist AVM module owners 🌐
+
+{{% /notice %}}
+
+{{% notice style="info" %}}
 
 All of this will be automated via the use of the Resource Management feature of the [Microsoft GitHub Policy Service](https://github.com/apps/microsoft-github-policy-service) and GitHub Actions, where possible and appropriate.
+
+{{% /notice %}}
 
 {{% notice style="note" %}}
 
@@ -23,21 +41,15 @@ Please note that the durations stated above are for a reasonable and useful resp
 
 {{% /notice %}}
 
-{{% notice style="important" %}}
-
-Issues with an AVM module should be raised on the repo they are hosted on, not the AVM Central (`Azure/Azure-Verified-Modules`) repo!
-
-*Not an issue if you raise in the wrong place, we will transfer it to it's correct home 👍*
-
-{{% /notice %}}
-
-{{% notice style="important" %}}
+{{% notice style="tip" %}}
 
 Issues that are likely related to an AVM module should be directly submitted on the module's GitHub repository as an "*AVM - Module Issue*". To identify the correct code repository, see the AVM [module indexes]({{% siteparam base %}}/indexes).
 
-If an issue is likely related to the Azure platform, its APIs or configuration, script or programming languages, etc., you need to raise a ticket with Microsoft CSS (Microsoft Customer Services & Support) where your ticket will be triaged for any platform issues. If deemed a platform issue, the ticket will be addressed accordingly. In case it's deemed not a platform but a module issue, you will be redirected to submit a module issue on GitHub.
+If an issue is likely related to the Azure platform, its APIs or configuration, script or programming languages, etc., you need to [raise a ticket with Microsoft CSS (Microsoft Customer Services & Support)](https://azure.microsoft.com/support/create-ticket) where your ticket will be triaged for any platform issues. If deemed a platform issue, the ticket will be addressed accordingly. In case it's deemed not a platform but a module issue, you will be redirected to submit a module issue on GitHub.
 
 {{% /notice %}}
+
+---
 
 ## Orphaned Modules
 
