@@ -25,11 +25,11 @@ Module owners do go on holiday or have periods of leave from time to time, durin
 
 - 5 business days for a triage, meaningful response, and ETA to be provided for fix/resolution by module owner (which could be past the 5 days)
   - For issues that breach the 5 business days, the AVM core team will be notified and will attempt to respond to the issue within an additional 5 business days to assist in triage.
-  - For security issues, the Bicep or Terraform Product Groups **MAY** step in to resolve security issues, if unresolved, after a further additional 5 business days.
+  - For security issues, the Bicep or Terraform Product Groups may step in to resolve security issues, if unresolved, after a further additional 5 business days.
 
 ### For feature requests
 
-- 15 business days for a meaningful response and initial triage to understand the feature request. An ETA **MAY** be provided by the module owner if possible.
+- 15 business days for a meaningful response and initial triage to understand the feature request. An ETA may be provided by the module owner if possible.
 
 {{% notice style="caution" title="AVM is Open-Source" %}}
 
