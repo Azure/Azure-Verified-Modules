@@ -21,4 +21,4 @@ priority: 1140
 
 ## ID: SNFR11 - Category: Contribution/Support - Issues Response Times
 
-A module owner **MUST** respond to logged issues within 3 business days. See [Module Support]({{% siteparam base %}}/help-support/module-support/) for more information.
+A module owner **MUST** respond to logged issues as defined in the [support statement]({{% siteparam base %}}/help-support/module-support/#support-statements). See [Module Support]({{% siteparam base %}}/help-support/module-support/) for more information.

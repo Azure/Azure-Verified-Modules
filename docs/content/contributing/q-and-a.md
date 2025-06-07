@@ -180,7 +180,7 @@ During initial module development module owners/developers need to use your own 
 
 ### I'm already using a module today, but its missing a feature, what should I do?
 
-You should use GitHub issues to propose changes or improvements for specific module. Issue request will be router to module owner that **MUST** respond to logged issues within 3 business days. In case that module currently don't have owner, [AVM Core Team]({{% siteparam base %}}/specs/shared/team-definitions/#avm-core-team) will handle request.
+You should use GitHub issues to propose changes or improvements for specific module. Issue request will be routed to module owner that **MUST** respond to logged issues as per the defined [support statement]({{% siteparam base %}}/help-support/module-support/#support-statements). In case that module currently don't have owner, [AVM Core Team]({{% siteparam base %}}/specs/shared/team-definitions/#avm-core-team) will handle request.
 
 ---
 

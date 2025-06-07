@@ -331,6 +331,12 @@ However, it is important to note that this does not mean that the modules cannot
 
 ---
 
+### Why did the AVM team change the support statements and targets in June 2025?
+
+The AVM team has updated the support statements and targets to better align with the current state of the AVM initiative and to ensure that module owners can provide meaningful responses and resolutions to issues raised by consumers. The changes were made to improve clarity, set realistic expectations, and enhance the overall support experience for AVM modules and their consumers.
+
+More information about the changes can be found in the blog post, [Tech Community: Azure Verified Modules: Support Statement & Target Response Times Update](https://techcommunity.microsoft.com/blog/azuretoolsblog/azure-verified-modules-support-statement--target-response-times-update/4421489), we published on this topic.
+
 ## Technical questions
 
 ### Should pattern modules leverage resource modules? What if (some of) the required resource modules are not available?
