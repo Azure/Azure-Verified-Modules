@@ -114,38 +114,86 @@ function Export-AzAdvertizerDataToCsv {
   $csvRows | Sort-Object -Property 'ResourceType' | Export-Csv -Path $Path -NoTypeInformation -Force
 }
 
-function Import-AzAdvertizerDataFromCsv {
-    param(
-        [Parameter(Mandatory = $true)]
-        [string]$Path
-    )
-    if (-Not (Test-Path $Path)) {
-        throw "File not found: $Path"
+function Get-AzAdvertizerDataDiff {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$Path
+  )
+  if (-Not (Test-Path $Path)) {
+    throw "File not found: $Path"
+  }
+
+  $oldData = Import-Csv -Path $Path
+
+  $oldData | ForEach-Object {
+    $_.Advisor = if ($_.Advisor -ne '') { $_.Advisor -replace '^=HYPERLINK\("https://portal\.azure\.com/#view/Microsoft_Azure_Expert/RecommendationList\.ReactView/recommendationTypeId/([^"\)]+)"\s*;\s*"[^"]*"\)$', '$1' } else { '' }
+    $_.APRL = if ($_.APRL -ne '') { $_.APRL -replace '^=HYPERLINK\("([^"]+)"\s*;\s*"([^"]+)"\)$', '$2' } else { '' }
+    $_.PSRule = if ($_.PSRule -ne '') { $_.PSRule -replace '^=HYPERLINK\("https://azure\.github\.io/PSRule\.Rules\.Azure/en/rules/([^"]+)"\s*;\s*"[^"]*"\)$', '$1' } else { '' }
+  }
+
+  $oldDataHash = @{}
+  foreach ($row in $oldData) {
+    if (-not $oldDataHash.ContainsKey($row.ResourceType)) {
+      $oldDataHash[$row.ResourceType] = @{
+        AdvisorId       = @()
+        APRLDescription = @()
+        PSRuleId        = @()
+      }
     }
+    if ($row.Advisor -ne '') { $oldDataHash[$row.ResourceType].AdvisorId += $row.Advisor }
+    if ($row.APRL -ne '') { $oldDataHash[$row.ResourceType].APRLDescription += $row.APRL }
+    if ($row.PSRule -ne '') { $oldDataHash[$row.ResourceType].PSRuleId += $row.PSRule }
+  }
 
-    $oldData = Import-Csv -Path $Path
+  $CurrentData = Get-AllAzAdvertizerData
 
-    $oldData | ForEach-Object {
-        $_.Advisor = if ($_.Advisor -ne '') { $_.Advisor -replace '^=HYPERLINK\("https://portal\.azure\.com/#view/Microsoft_Azure_Expert/RecommendationList\.ReactView/recommendationTypeId/([^"\)]+)"\s*;\s*"[^"]*"\)$', '$1' } else { '' }
-        $_.APRL = if ($_.APRL -ne '') { $_.APRL -replace '^=HYPERLINK\("([^"]+)"\s*;\s*"([^"]+)"\)$', '$2' } else { '' }
-        $_.PSRule = if ($_.PSRule -ne '') { $_.PSRule -replace '^=HYPERLINK\("https://azure\.github\.io/PSRule\.Rules\.Azure/en/rules/([^"]+)"\s*;\s*"[^"]*"\)$', '$1' } else { '' }
-    }
+  # check if the data has changed
+  $addedData = @{}
 
-    $oldDataHash = @{}
-    foreach ($row in $oldData) {
-        if (-not $oldDataHash.ContainsKey($row.ResourceType)) {
-            $oldDataHash[$row.ResourceType] = @{
-                AdvisorId = @()
-                APRLDescription = @()
-                PSRuleId = @()
+  foreach ($resource in $CurrentData.Keys) {
+    foreach ($type in $CurrentData[$resource].Keys) {
+      foreach ($rule in $CurrentData[$resource][$type]) {
+        switch ($type) {
+          'Advisor' {
+            if ($rule.id -notin $oldDataHash[$resource].AdvisorId) {
+              if (-not $addedData.ContainsKey($resource)) {
+                $addedData[$resource] = @{
+                  AdvisorId = @()
+                  APRLGuid  = @()
+                  PSRuleId  = @()
+                }
+              }
+              $addedData[$resource].AdvisorId += $rule.id
             }
+          }
+          'APRL' {
+            if ($rule.description -notin $oldDataHash[$resource].APRLDescription) {
+              if (-not $addedData.ContainsKey($resource)) {
+                $addedData[$resource] = @{
+                  AdvisorId = @()
+                  APRLGuid  = @()
+                  PSRuleId  = @()
+                }
+              }
+              $addedData[$resource].APRLGuid += $rule.aprlGuid
+            }
+          }
+          'PSRule' {
+            if ($rule.ruleId -notin $oldDataHash[$resource].PSRuleId) {
+              if (-not $addedData.ContainsKey($resource)) {
+                $addedData[$resource] = @{
+                  AdvisorId = @()
+                  APRLGuid  = @()
+                  PSRuleId  = @()
+                }
+              }
+              $addedData[$resource].PSRuleId += $rule.ruleId
+            }
+          }
         }
-        if ($row.Advisor -ne '') { $oldDataHash[$row.ResourceType].AdvisorId += $row.Advisor }
-        if ($row.APRL -ne '') { $oldDataHash[$row.ResourceType].APRLDescription += $row.APRL }
-        if ($row.PSRule -ne '') { $oldDataHash[$row.ResourceType].PSRuleId += $row.PSRule }
+      }
     }
+  }
 
-    $CurrentData = Get-AllAzAdvertizerData
-
-    return $oldDataHash
+  return $addedData
 }
