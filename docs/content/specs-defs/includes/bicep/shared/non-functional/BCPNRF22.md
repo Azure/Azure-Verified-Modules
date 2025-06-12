@@ -40,20 +40,20 @@ For each new version, an entry **MUST** be created above all existing versions i
 
 ### Changes
 
-- this changed
-- and this also
+- This changed
+- And this also
 
 ### Breaking Changes
 
-- none
+- None
 ```
 
 Each version's entry:
 
-- **MUST** contain two sections: `Changes` and `Breaking Changes`. At least one of them must have a meaningful entry and sections must not be left empty. A `- none` may be added as content for a section.
+- **MUST** contain two sections: `Changes` and `Breaking Changes`. At least one of them must have a meaningful entry and sections must not be left empty. A `- None` may be added as content for a section.
 - **MUST** exist only once.
 
-All versions appear in decending order, which puts the most recent changes at the top.
+All versions appear in descending order, which puts the most recent changes at the top.
 
   {{% notice style="note" %}}
 
@@ -78,7 +78,7 @@ The latest version of the changelog can be found [here](/Azure/bicep-registry-mo
 
 ### Breaking Changes
 
-- none
+- None
 
 ## 0.2.0
 
@@ -100,16 +100,18 @@ The latest version of the changelog can be found [here](/Azure/bicep-registry-mo
 
 ### Breaking Changes
 
-- none
+- None
 
 ```
+
+Each bullet point should start with a capital letter.
 
 ### Manual Editing
 
 It is possible to modify the changelog content any time, e.g., to add missing versions, which will not create a new release of the module itself. Please note the following requirements in all cases:
 
-- all versions in the file, need to be valid and available as published version
-- every version needs the two sections `## Changes` and `## Breaking Changes` with content
+- All versions in the file, need to be valid and available as published version
+- Every version needs the two sections `## Changes` and `## Breaking Changes` with content
 
 {{% notice style="note" %}}
 
