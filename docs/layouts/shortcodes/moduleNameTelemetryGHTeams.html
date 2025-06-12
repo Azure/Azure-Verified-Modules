@@ -182,7 +182,6 @@
     <tr>
       <th>No.</th>
       <th>Module Name</th>
-      <th>Telemetry ID prefix</th>
       <th>GitHub Teams for Module Owners and Contributors</th>
     </tr>
   </thead>
@@ -203,9 +202,6 @@
       {{- else -}}
         {{ $item.ModuleName }}
       {{- end -}}
-    </td>
-    <td> {{/* telemetry ID prefix */}}
-      <code style="white-space:normal;">{{ $item.TelemetryIdPrefix }}</code>
     </td>
     <td> {{/* GH teams */}}
       {{- if eq $item.ParentModule "n/a" -}}
