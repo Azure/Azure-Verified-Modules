@@ -52,6 +52,10 @@ The following information notice is automatically added at the bottom of the `RE
 
 ### Bicep
 
+{{% notice style="important" %}}
+The value you need to use for your module is defined in the related module index. You can look it up on the index pages for [Resource Modules]({{% siteparam base %}}/indexes/bicep/bicep-resource-modules/#module-name-telemetry-id-prefix-github-teams-for-owners--contributors), [Pattern Modules]({{% siteparam base %}}/indexes/bicep/bicep-pattern-modules/#module-name-telemetry-id-prefix-github-teams-for-owners--contributors) and [Utility Modules]({{% siteparam base %}}/indexes/bicep/bicep-utility-modules/#module-name-telemetry-id-prefix-github-teams-for-owners--contributors).
+{{% /notice %}}
+
 The ARM deployment name used for the telemetry **MUST** follow the pattern and **MUST** be no longer than 64 characters in length: `46d3xbcp.<res/ptn>.<(short) module name>.<version>.<uniqueness>`
 
 - `<res/ptn>` == AVM Resource or Pattern Module
