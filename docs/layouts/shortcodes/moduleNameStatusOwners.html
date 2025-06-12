@@ -132,6 +132,7 @@
   </thead>
   {{ end }}
   {{ range $item, $maps }}
+  {{ $hasListableModules = false }}
   {{ if in $include $item.ModuleStatus }}
     {{ $moduleLatestVersion = "N/A" }}
     {{ if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") }}
@@ -171,7 +172,7 @@
         {{/* Set $moduleLatestVersion to the first element of $sortedSemVers, which is the latest version */}}
         {{ $moduleLatestVersion = index $originalSortedVersions (sub (len $originalSortedVersions) 1) }}
       {{ end }}
-    {{ end }}
+    {{ end }} {{/* end of if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") */}}
     {{ $trimmedModuleStatus := replace $item.ModuleStatus "Module " "" }}
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Deprecated" "Deprecated :red_circle:" }}
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Available" "Available :green_circle:" }}
@@ -235,7 +236,7 @@
           <a href="">
             <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-N/A-blue"/>
           </a>
-        {{- end -}}
+        {{- end -}} {{/* {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") -}} */}}
       </td>
       <td> {{/* module owners */}}
         {{- if ne $item.PrimaryModuleOwnerGHHandle "" -}}
@@ -245,8 +246,8 @@
           {{- if and (ne $item.PrimaryModuleOwnerGHHandle "") (ne $item.PrimaryModuleOwnerDisplayName "") -}}
             <br>
             {{ $item.PrimaryModuleOwnerDisplayName }}
-          {{- end -}}
-        {{- end -}}
+          {{- end -}} {{/* {{- if and (ne $item.PrimaryModuleOwnerGHHandle "") (ne $item.PrimaryModuleOwnerDisplayName "") -}} */}}
+        {{- end -}} {{/* {{- if ne $item.PrimaryModuleOwnerGHHandle "" -}} */}}
         <br>
         {{- if ne $item.SecondaryModuleOwnerGHHandle "" -}}
           <a href="https://github.com/{{ $item.SecondaryModuleOwnerGHHandle }}">
@@ -255,14 +256,14 @@
           {{- if and (ne $item.SecondaryModuleOwnerGHHandle "") (ne $item.SecondaryModuleOwnerDisplayName "") -}}
             <br>
             {{ $item.SecondaryModuleOwnerDisplayName }}
-          {{- end -}}
-        {{- end -}}
+          {{- end -}} {{/* {{- if and (ne $item.SecondaryModuleOwnerGHHandle "") (ne $item.SecondaryModuleOwnerDisplayName "") -}}  */}}
+        {{- end -}} {{/* {{- if ne $item.SecondaryModuleOwnerGHHandle "" -}} */}}
       </td>
-    {{- end -}}
+    {{- end -}} {{/* end of if moduleType */}}
   </tr>
   {{ $hasListableModules = true }}
-  {{ end }}
-  {{ end }}
+  {{ end }} {{/* end of if in include */}}
+  {{ end }} {{/* end of range */}}
   {{ if not $hasListableModules }}
   <tr>
     <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
@@ -271,7 +272,7 @@
     <td>❌ None listed</td>
     <td>❌ None listed</td>
   </tr>
-  {{ end }}
+  {{ end }} {{/* end of if not hasListableModules */}}
 </table>
 <br>
 {{ else if eq $language "Terraform" }}
@@ -289,6 +290,7 @@
   </thead>
   {{ end }}
   {{ range $item, $maps }}
+  {{ $hasListableModules = false }}
   {{ if in $include $item.ModuleStatus }}
   {{ $moduleLatestVersion = "N/A" }}
     {{ if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") }}
