@@ -175,7 +175,7 @@ To get a head start on developing your module, consider using the tooling recomm
 
 {{% notice style="important" %}}
 
-Make sure you have **Docker** installed and running on your machine.
+Make sure you have **Docker** or **Podman** installed and running on your machine. If you're using Podman, please ensure that you have set the environment variable `CONTAINER_RUNTIME` to `podman` before running the commands below.
 
 {{% /notice %}}
 

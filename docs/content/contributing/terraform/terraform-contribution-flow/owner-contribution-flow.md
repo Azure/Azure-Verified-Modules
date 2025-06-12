@@ -69,18 +69,18 @@ You can see [here](https://github.com/Azure/Azure-Verified-Modules-Grept/blob/ma
 Set environment variables and run Grept:
 
 ```bash
-export GITHUB_REPOSITORY_OWNER=Azure
-export GITHUB_REPOSITORY=Azure/terraform-azurerm-avm-res-<RP>-<modulename>"
+export GITHUB_TOKEN=<YOUR_GITHUB_PAT>
 
 ./avm grept-apply
 ```
 
 ```pwsh
-$env:GITHUB_REPOSITORY_OWNER="Azure"
-$env:GITHUB_REPOSITORY="Azure/terraform-azurerm-avm-res-<RP>-<modulename>"
+$env:GITHUB_TOKEN=<YOUR_GITHUB_PAT>
 
 ./avm grept-apply
 ```
+
+The env `GITHUB_TOKEN` is not required but it is recommended to set it to avoid rate limiting issues when running Grept.
 
 #### Custom Variables and Secrets for end to end tests
 
