@@ -52,14 +52,18 @@ Each version's entry:
 
 - **MUST** contain two sections: `Changes` and `Breaking Changes`. At least one of them must have a meaningful entry and sections must not be left empty. A `- None` may be added as content for a section.
 - **MUST** exist only once.
+- All versions appear in descending order, which puts the most recent changes at the top.
 
-All versions appear in descending order, which puts the most recent changes at the top.
+What **SHOULD** be listed in the (Breaking) Changes section:
 
-  {{% notice style="note" %}}
+- Relevant changes for the module
+- Changes in tests do *not* need to be added
 
-  The versioning is following the [SNFR17 - Semantic Versioning]({{% siteparam base %}}/spec/SNFR17/) spec.
+{{% notice style="note" %}}
 
-  {{% /notice %}}
+The versioning is following the [SNFR17 - Semantic Versioning]({{% siteparam base %}}/spec/SNFR17/) spec.
+
+{{% /notice %}}
 
 ### Example content of the CHANGELOG.md
 
