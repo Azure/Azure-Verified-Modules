@@ -1,7 +1,7 @@
 ---
-title: BCPNRF22 - Bicep Module Changelog
+title: BCPNFR22 - Bicep Module Changelog
 description: Module changes are written to a changelog
-url: /spec/BCPNRF22
+url: /spec/BCPNFR22
 type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -20,7 +20,7 @@ tags: [
 priority: 11016
 ---
 
-## ID: BCPNRF22 - Category: Publishing - Changelog
+## ID: BCPNFR22 - Category: Publishing - Changelog
 
 When a module to be published (i.e., that has a `version.json` file) is changed, an entry **MUST** be created in the `CHANGELOG.md` file in the module folder. A link to the latest version of the changelog file has to be included at the top of the file, just below the `# Changelog` line. It is surrounded by empty lines.
 
