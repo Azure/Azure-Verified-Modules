@@ -89,3 +89,23 @@ An example deployment name for a shortened module name would be: `46d3xbcp.res.d
 - [Terraform]({{% siteparam base %}}/contributing/terraform/)
 
 {{% /notice %}}
+
+### Terraform
+
+To enable telemetry data collection for Terraform modules, the [modtm](https://registry.terraform.io/providers/Azure/modtm/latest) telemetry provider **MUST** be used. This lightweight telemetry provider sends telemetry data to Azure Application Insights via a HTTP POST front end service.
+
+The `modtm` telemetry provider is included in all Terraform modules and is enabled by default through the [main.telemetry.tf](https://github.com/Azure/terraform-azurerm-avm-template/blob/main/main.telemetry.tf) file being automatically distributed from the template repo.
+
+The `modtm` provider **MUST** be listed under the `required_providers` section in the module's `terraform.tf` file using the following entry. This is also validated by the linter.
+
+```terraform
+terraform {
+  required_providers {
+    # .. other required providers as needed
+    modtm = {
+      source = "Azure/modtm"
+      version = "~> 0.3"
+    }
+  }
+}
+```

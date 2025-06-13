@@ -159,16 +159,11 @@ Please refer to the [Terraform Interfaces]({{% siteparam base %}}/specs/tf/inter
 
 ## Telemetry
 
-To meet [SFR3]({{% siteparam base %}}/spec/SFR3) & [SFR4]({{% siteparam base %}}/spec/SFR4).
-We use a telemetry provider [modtm](https://registry.terraform.io/providers/Azure/modtm/latest).
-This is a lightweight telemetry provider that sends telemetry data to Azure Application Insights via a HTTP POST front end service.
+To meet the requirements of [SFR3]({{% siteparam base %}}/spec/SFR3) & [SFR4]({{% siteparam base %}}/spec/SFR4), we use the [modtm](https://registry.terraform.io/providers/Azure/modtm/latest) telemetry provider. This lightweight telemetry provider sends telemetry data to Azure Application Insights via a HTTP POST front end service.
 
-The telemetry provider is included in the module by default and is enabled by default.
-You do not need to change the configuration included in the [template repo](https://github.com/Azure/terraform-azurerm-avm-template/blob/main/main.telemetry.tf).
+The `modtm` telemetry provider is included in all Terraform modules and is enabled by default through the [main.telemetry.tf](https://github.com/Azure/terraform-azurerm-avm-template/blob/main/main.telemetry.tf) file being automatically distributed from the template repo. You do not need to change this configuration.
 
-You must make sure to have the `modtm` provider in your `required_providers`.
-The linter will check this for you.
-However, inside your `terraform.tf` file please make sure you have this entry:
+Make sure that the `modtm` provider is listed under the `required_providers` section in the module's `terraform.tf` file using the following entry. This is also validated by the linter.
 
 ```terraform
 terraform {
@@ -181,8 +176,6 @@ terraform {
   }
 }
 ```
-
-{{% include file="/static/includes/sample.telem.tf" language="terraform" options="linenos=false" %}}
 
 ## Eventual Consistency
 
