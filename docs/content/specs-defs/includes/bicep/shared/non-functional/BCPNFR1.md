@@ -1,5 +1,5 @@
 ---
-title: BCPNFR1 - User-defined types - General
+title: BCPNFR1 - Complex data types - General
 description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/BCPNFR1
 type: default
@@ -18,22 +18,22 @@ tags: [
 priority: 11010
 ---
 
-## ID: BCPNFR1 - Inputs - User-defined types - General
+## ID: BCPNFR1 - Inputs - Complex data types - General
 
-To simplify the consumption experience for module consumers when interacting with complex data types input parameters, mainly objects and arrays, the Bicep feature of [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) **MUST** be used and declared.
+To simplify the consumption experience for module consumers when interacting with complex data types input parameters, mainly objects and arrays, the Bicep features of Resource-Derived Types or [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) **MUST** be used and declared.
 
 {{% notice style="tip" %}}
 
-User-Defined Types are GA in Bicep as of version v0.21.1, please ensure you have this version installed as a minimum.
+User-Defined Types are GA in Bicep as of version v0.21.1, Resource-Derived Types are GA as of version v0.34.1, please ensure you have this version(s) installed as a minimum.
 
 {{% /notice %}}
 
-[User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) allow intellisense support in supported IDEs (e.g. Visual Studio Code) for complex input parameters using arrays and objects.
+Resource-Derived Types and User-Defined Types allow intellisense support in supported IDEs (e.g. Visual Studio Code) for complex input parameters using objects and array of objects.
 
-{{% notice style="important" title="CARML Migration Exemption" %}}
+{{% notice style="important" title="v0.x Exemption" %}}
 
-While the [transition of CARML]({{% siteparam base %}}/faq/#carml-evolution) modules into AVM is complete, retrofitting [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) for all modules will take a considerable amount of time.
+While we allow the release of major versions, starting with v1.0.0, retrofitting Resource-Derived Types and User-Defined Types for all modules will take a considerable amount of time.
 
-Therefore, the addition of [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) is currently **NOT** mandated/enforced. However, past their initial release, all modules **MUST** implement [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) prior to the release of their next version.
+Therefore, the addition of these features is currently **NOT** mandated/enforced. However, all modules **MUST** implement Resource-Derived Types and User-Defined Types prior to the release of their v1.0.0 version.
 
 {{% /notice %}}
