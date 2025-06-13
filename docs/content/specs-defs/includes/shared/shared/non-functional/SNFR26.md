@@ -21,10 +21,10 @@ priority: 1250
 
 ## ID: SNFR26 - Output-Parameters - Decorators
 
-Output parameters MUST implement:
+Output parameters **MUST** implement:
 
 - [Decorators in Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#use-decorators) such as `description` & `secure` (if sensitive)
-- [Optional Arguments in Terraform](https://developer.hashicorp.com/terraform/language/values/outputs#optional-arguments) such as `description` & `sensitive` (if sensitive)
+- [Arguments in Terraform](https://developer.hashicorp.com/terraform/language/values/outputs#optional-arguments) such as `description` & `sensitive` (if sensitive)
 
 {{% tabs title="Output parameters" groupid="scriptlanguage" %}}
   {{% tab title="Bicep" %}}
