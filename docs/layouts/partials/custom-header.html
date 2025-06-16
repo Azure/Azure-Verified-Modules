@@ -8,16 +8,16 @@
 </style>
 
 <script type="text/javascript">
-  if (window.location.hostname!=='localhost') {
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "{{ .Site.Params.clarityId }}");
-  }
-  const paramsBase = '{{ .Site.Params.base }}';
+if (window.location.hostname!=='localhost') {
+  (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "{{ .Site.Params.clarityId }}");
+}
+const paramsBase = '{{ .Site.Params.base }}';
 </script>
 
 {{ range .Site.Params.custom_js -}}
-    <script type="text/javascript" src="{{ . | absURL }}"></script>
+<script type="text/javascript" src="{{ . | absURL }}"></script>
 {{- end }}
