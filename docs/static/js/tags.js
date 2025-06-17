@@ -8,7 +8,7 @@ function getCachedTaglist() {
     const { data, timestamp } = JSON.parse(cached);
     const params = new URLSearchParams(window.location.search);
 
-    if (Date.now() - timestamp < TAGLIST_CACHE_TTL && !params.has('taglistCache')) {
+    if (Date.now() - timestamp < TAGLIST_CACHE_TTL && !params.has(TAGLIST_CACHE_KEY)) {
       return data;
     }
   }
