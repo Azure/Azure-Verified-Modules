@@ -1,8 +1,7 @@
 const TAGLIST_CACHE_KEY = 'taglistCache';
 const TAGLIST_CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
-// TODO add a URL parameter to force reload the taglist.json file
-// e.g. ?reloadTaglist=1
+// the URL parameter ?reloadTaglist will force a reload of the taglist
 function getCachedTaglist() {
   const cached = localStorage.getItem(TAGLIST_CACHE_KEY);
   if (cached) {
@@ -28,7 +27,7 @@ function loadTaglist() {
   if (cachedData) {
     return Promise.resolve(cachedData);
   } else {
-    var tagListUrl = paramsBase + '/js/taglist.json';
+    var tagListUrl = window.relearn.absBaseUri + '/js/taglist.json';
     return fetch(tagListUrl)
       .then(response => {
         if (!response.ok) throw new Error('Network response was not ok');
