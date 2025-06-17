@@ -1,14 +1,14 @@
 const TAGLIST_CACHE_KEY = 'taglistCache';
 const TAGLIST_CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
-// the URL parameter ?reloadTaglist will force a reload of the taglist
+// the URL parameter ?taglistCache will force a reload of the taglist
 function getCachedTaglist() {
   const cached = localStorage.getItem(TAGLIST_CACHE_KEY);
   if (cached) {
     const { data, timestamp } = JSON.parse(cached);
     const params = new URLSearchParams(window.location.search);
 
-    if (Date.now() - timestamp < TAGLIST_CACHE_TTL && !params.has('reloadTaglist')) {
+    if (Date.now() - timestamp < TAGLIST_CACHE_TTL && !params.has('taglistCache')) {
       return data;
     }
   }
