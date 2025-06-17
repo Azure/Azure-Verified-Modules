@@ -37,7 +37,7 @@ alwaysopen = true
 collapsibleMenu = false
 disableRootBreadcrumb = false
 # clarityId = 'prb1m4vask' # AVM-Test
-clarityId = 'p0l7yeco82'   # Azure-Verified-Modules
+clarityId = 'p0l7yeco82' # Azure-Verified-Modules
 custom_js = ['js/tags.js']
 
 [module]
@@ -103,37 +103,37 @@ pageRef = '/indexes'
 weight = 2
 params = { alwaysopen = true, collapsibleMenu = true }
 
-[[menu.defined]]
-identifier = 'solution-development'
-parent = 'usage'
-name = 'Solution Development'
-pageRef = '/usage/solution-development'
-weight = 2
-params = { alwaysopen = false, collapsibleMenu = true }
+  [[menu.defined]]
+    identifier = 'solution-development'
+    parent = 'usage'
+    name = 'Solution Development'
+    pageRef = '/usage/solution-development'
+    weight = 2
+    params = { alwaysopen = false, collapsibleMenu = true }
 
-[[menu.defined]]
-identifier = 'bicep-solution-development'
-parent = 'solution-development'
-name = 'Bicep'
-pageRef = '/usage/solution-development/bicep'
-weight = 1
-params = { alwaysopen = false, collapsibleMenu = true }
+    [[menu.defined]]
+      identifier = 'bicep-solution-development'
+      parent = 'solution-development'
+      name = 'Bicep'
+      pageRef = '/usage/solution-development/bicep'
+      weight = 1
+      params = { alwaysopen = false, collapsibleMenu = true }
 
-[[menu.defined]]
-identifier = 'terraform-solution-development'
-parent = 'solution-development'
-name = 'Terraform'
-pageRef = '/usage/solution-development/terraform'
-weight = 2
-params = { alwaysopen = false, collapsibleMenu = true }
+    [[menu.defined]]
+      identifier = 'terraform-solution-development'
+      parent = 'solution-development'
+      name = 'Terraform'
+      pageRef = '/usage/solution-development/terraform'
+      weight = 2
+      params = { alwaysopen = false, collapsibleMenu = true }
 
-# [[menu.defined]]
-#   identifier = 'concepts'
-#   parent = 'usage'
-#   name = 'Concepts'
-#   pageRef = '/usage/concepts'
-#   weight = 3
-#   params = { alwaysopen = false, collapsibleMenu = true }
+  # [[menu.defined]]
+  #   identifier = 'concepts'
+  #   parent = 'usage'
+  #   name = 'Concepts'
+  #   pageRef = '/usage/concepts'
+  #   weight = 3
+  #   params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
 identifier = 'bicep-module-indexes'
