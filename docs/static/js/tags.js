@@ -18,10 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var tagName = tag.textContent.trim();
         var tagEnrichment = taglist[tagName];
         if (tagEnrichment !== undefined) {
-          tag.title = tagEnrichment.name;
-          if (tagEnrichment.description) {
-            tag.title += ' - ' + tagEnrichment.description;
-          }
+          tag.title = tagEnrichment;
         }
       } catch (error) {
         console.error('Error getting current script URL:', error);

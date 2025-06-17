@@ -1,10 +1,4 @@
 {
-  "BAU": {
-    "name": "Business as Usual",
-    "description": "In regular operations, this tag indicates that the task is part of the standard workflow without any special considerations."
-  },
-  "EOU":{
-    "name": "End of Use",
-    "description": "This tag is used when a task or item is at the end of its lifecycle, indicating it should be archived or disposed of."
-  }
+  "BAU": "Business as Usual - In regular operations, this tag indicates that the task is part of the standard workflow without any special considerations.",
+  "EOL": "End of Life - This tag is used when a task or item is at the end of its lifecycle."
 }
