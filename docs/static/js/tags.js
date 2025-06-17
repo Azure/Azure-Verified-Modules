@@ -1,4 +1,4 @@
-const TAGLIST_CACHE_KEY = 'taglistCache';
+const TAGLIST_CACHE_KEY = 'taglistCache'; // the value is also used as URL parameter to force a reload
 const TAGLIST_CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
 // the URL parameter ?taglistCache will force a reload of the taglist
@@ -27,7 +27,7 @@ function loadTaglist() {
   if (cachedData) {
     return Promise.resolve(cachedData);
   } else {
-    var tagListUrl = window.relearn.absBaseUri + '/js/taglist.json';
+    var tagListUrl = window.relearn.absBaseUri + '/js/taglist.json'; // this relies on the relearn theme to provide the correct base URI
     return fetch(tagListUrl)
       .then(response => {
         if (!response.ok) throw new Error('Network response was not ok');
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
             tag.title = tagEnrichment;
           }
         } catch (error) {
-          console.error('Error getting current script URL:', error);
+          console.error('Error enriching tag tooltip:', error);
         }
       });
     }
