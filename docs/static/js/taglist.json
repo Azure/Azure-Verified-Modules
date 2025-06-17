@@ -1,4 +1,12 @@
 {
-  "BAU": "Business as Usual - In regular operations, this tag indicates that the task is part of the standard workflow without any special considerations.",
-  "EOL": "End of Life - This tag is used when a task or item is at the end of its lifecycle."
+  "MUST": "Must - This tag indicates that the specification is mandatory and enforced.",
+  "SHOULD": "Should - This tag indicates that the specification is recommended but not strictly enforced.",
+  "MAY": "May - This tag indicates that the specification is optional and can be skipped if not applicable.",
+
+  "Owner": "Owner - This specification is relevant for module owners.",
+  "Contributor": "Contributor - This specification is relevant for contributors to the module, who do routine maintenance and updates tasks.",
+
+  "Initial": "Initial - When creating a module, this specification is relevant.",
+  "BAU": "Business as Usual - In regular operations, this tag indicates that the specification is relevant.",
+  "EOL": "End of Life - For modules, that are moved to EOL, please follow this specification."
 }
