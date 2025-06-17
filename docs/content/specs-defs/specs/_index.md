@@ -19,11 +19,17 @@ This section documents all the specifications for Azure Verified Modules (AVM) a
 
 ## How to navigate the specifications?
 
-The "Module Specifications" section uses tags to dynamically render content based on the selected attributes, such as the IaC language, module classification, category, severity and more. The tags are defined in hidden header of each specification page.
+The "Module Specifications" section uses tags to dynamically render content based on the selected attributes, such as the IaC language, module classification, category, severity and more. The tags are defined in header of each specification page.
 
 To make it easier for module owners and contributors to navigate the documentation, the specifications are grouped to distinct pages by the IaC language (`Bicep` | `Terraform`) and module classification ( `resource` | `pattern` | `utility`). The specifications on each page are further ordered by the category (e.g., `Composition`, `CodeStyle`, `Testing`, etc.), severity of the requirements (`MUST` | `SHOULD` | `MAY`) and at what stage of the module's lifecycle the specification is typically applicable (`Initial` | `BAU` | `EOL`).
 
-To find what you need, simply decide which IaC language you'd like develop in, and what classification your module falls under. Then, navigate to the respective page to find the specifications that are relevant to you.
+To find what you need, simply decide which IaC language you'd like develop in and what classification your module falls under, then navigate to the respective page to find the specifications that are relevant to you.
+
+{{% notice style="info" %}}
+
+All specifications have a 4-9 character long unique ID - a combination of letters and numbers. These letters only carry legacy meaning only leveraged by the AVM core team and are no longer used to group the specifications in any visible way. The ID is used to reference the specification in the code, documentation, and discussions.
+
+{{% /notice %}}
 
 ### Specification Tags
 
@@ -58,7 +64,7 @@ When is this specification mostly relevant?
 
 - The `Initial` stage is when the module is being developed first - e.g., naming related specs are labeled with `Lifecycle-Initial` as the naming of the module only happens once: at the beginning of their life.
 - The `BAU` (business as usual) stage is at any time during the module's typical lifecycle - e.g., specs that describe coding standards are relevant throughout the module's life, for any time a new module version is released.
-- The `EOL` stage is when the module is being decommissioned - e.g., specs describing how a module should be retired are labeled with `Lifecycle-EOL`.
+- The `EOL` (end of life) stage is when the module is being decommissioned - e.g., specs describing how a module should be retired are labeled with `Lifecycle-EOL`.
 
 **Validation**
 

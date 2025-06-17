@@ -24,6 +24,6 @@ Module owners **MAY** cross-references other modules to build either Resource or
 
 However, they **MUST** be referenced only by a public registry reference to a pinned version e.g. `br/public:avm/[res|ptn|utl]/<publishedModuleName>:>version<`. They **MUST NOT** use local parent path references to a module e.g. `../../xxx/yyy.bicep`.
 
-The **only** exception to this rule are child modules as documented in [BCPFR6]({{% siteparam base %}}/specs-defs/includes/bicep/shared/functional/BCPFR6).
+The **only** exception to this rule are child modules as documented in [BCPFR6]({{% siteparam base %}}/spec/BCPFR6).
 
 Modules **MUST NOT** contain references to non-AVM modules.

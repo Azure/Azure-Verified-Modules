@@ -1,7 +1,7 @@
 ---
-title: BCPNRF22 - Bicep Module Changelog
+title: BCPNFR22 - Bicep Module Changelog
 description: Module changes are written to a changelog
-url: /spec/BCPNRF22
+url: /spec/BCPNFR22
 type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -20,7 +20,7 @@ tags: [
 priority: 11016
 ---
 
-## ID: BCPNRF22 - Category: Publishing - Changelog
+## ID: BCPNFR22 - Category: Publishing - Changelog
 
 When a module to be published (i.e., that has a `version.json` file) is changed, an entry **MUST** be created in the `CHANGELOG.md` file in the module folder. A link to the latest version of the changelog file has to be included at the top of the file, just below the `# Changelog` line. It is surrounded by empty lines.
 
@@ -40,26 +40,30 @@ For each new version, an entry **MUST** be created above all existing versions i
 
 ### Changes
 
-- this changed
-- and this also
+- This changed
+- And this also
 
 ### Breaking Changes
 
-- none
+- None
 ```
 
 Each version's entry:
 
-- **MUST** contain two sections: `Changes` and `Breaking Changes`. At least one of them must have a meaningful entry and sections must not be left empty. A `- none` may be added as content for a section.
+- **MUST** contain two sections: `Changes` and `Breaking Changes`. At least one of them must have a meaningful entry and sections must not be left empty. A `- None` may be added as content for a section.
 - **MUST** exist only once.
+- All versions appear in descending order, which puts the most recent changes at the top.
 
-All versions appear in decending order, which puts the most recent changes at the top.
+What **SHOULD** be listed in the (Breaking) Changes section:
 
-  {{% notice style="note" %}}
+- Relevant changes for the module
+- Changes in tests do *not* need to be added
 
-  The versioning is following the [SNFR17 - Semantic Versioning]({{% siteparam base %}}/spec/SNFR17/) spec.
+{{% notice style="note" %}}
 
-  {{% /notice %}}
+The versioning is following the [SNFR17 - Semantic Versioning]({{% siteparam base %}}/spec/SNFR17/) spec.
+
+{{% /notice %}}
 
 ### Example content of the CHANGELOG.md
 
@@ -78,7 +82,7 @@ The latest version of the changelog can be found [here](/Azure/bicep-registry-mo
 
 ### Breaking Changes
 
-- none
+- None
 
 ## 0.2.0
 
@@ -100,16 +104,18 @@ The latest version of the changelog can be found [here](/Azure/bicep-registry-mo
 
 ### Breaking Changes
 
-- none
+- None
 
 ```
+
+Each bullet point should start with a capital letter.
 
 ### Manual Editing
 
 It is possible to modify the changelog content any time, e.g., to add missing versions, which will not create a new release of the module itself. Please note the following requirements in all cases:
 
-- all versions in the file, need to be valid and available as published version
-- every version needs the two sections `## Changes` and `## Breaking Changes` with content
+- All versions in the file, need to be valid and available as published version
+- Every version needs the two sections `## Changes` and `## Breaking Changes` with content
 
 {{% notice style="note" %}}
 
