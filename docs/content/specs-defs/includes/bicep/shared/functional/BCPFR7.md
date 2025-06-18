@@ -35,7 +35,7 @@ For pattern modules, [SFR4]({{% siteparam base %}}/spec/SFR4/) still applies.
 A variable named `enableReferencedModulesTelemetry` is created in the main.bicep file of the module, that cross-references other published modules, and set to `false`. This variable is used to set the `enableTelemetry` parameter of cross-referenced modules.
 
 ```Bicep
-var enableReferencedModulesTelemetry bool = false
+var enableReferencedModulesTelemetry = false
 
 // local referencing
 module virtualNetwork_subnets 'subnet/main.bicep' = [
