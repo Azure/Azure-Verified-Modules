@@ -31,11 +31,11 @@ This contribution flow is for **AVM Core Team members** only.
 ### 2. Create the repository
 
 1. Open a PowerShell terminal
-1. Clone the <https://github.com/Azure/terraform-azure-modules> repository and navigate to the `repository_creation_helper` folder
+1. Clone the <https://github.com/Azure/avm-terraform-governance> repository and navigate to the `tf-repo-mgmt/repository_creation_helper` folder
 
     ```pwsh
-    git clone "https://github.com/Azure/terraform-azure-modules"
-    cd ./terraform-azure-modules/repository_creation_helper
+    git clone "https://github.com/Azure/avm-terraform-governance"
+    cd ./tf-repo-mgmt/repository_creation_helper
     ```
 
 1. Install the GitHub CLI if you don't already have it installed: <https://cli.github.com>
@@ -61,7 +61,6 @@ This contribution flow is for **AVM Core Team members** only.
 
     # Optional Metadata Inputs
     $moduleAlternativeNames = "<alternative names>" # Replace with a comma separated list of alternative names for the module
-    $moduleComments = "<comments>" # Replace with any comments you want to add to the module
     $ownerSecondaryGitHubHandle = "<github user handle>" # Replace with the GitHub handle of the module owner
     $ownerSecondaryDisplayName = "<user display name>" # Replace with the display name of the module owner
 
@@ -74,7 +73,6 @@ This contribution flow is for **AVM Core Team members** only.
         -ownerPrimaryGitHubHandle $ownerPrimaryGitHubHandle `
         -ownerPrimaryDisplayName $ownerPrimaryDisplayName `
         -moduleAlternativeNames $moduleAlternativeNames `
-        -moduleComments $moduleComments `
         -ownerSecondaryGitHubHandle $ownerSecondaryGitHubHandle `
         -ownerSecondaryDisplayName $ownerSecondaryDisplayName
 
@@ -94,7 +92,6 @@ This contribution flow is for **AVM Core Team members** only.
 
     # Optional Metadata Inputs
     $moduleAlternativeNames = "VNet" # Replace with a comma separated list of alternative names for the module
-    $moduleComments = "" # Replace with any comments you want to add to the module
     $ownerSecondaryGitHubHandle = "" # Replace with the GitHub handle of the module owner
     $ownerSecondaryDisplayName = "" # Replace with the display name of the module owner
 
@@ -107,7 +104,6 @@ This contribution flow is for **AVM Core Team members** only.
         -ownerPrimaryGitHubHandle $ownerPrimaryGitHubHandle `
         -ownerPrimaryDisplayName $ownerPrimaryDisplayName `
         -moduleAlternativeNames $moduleAlternativeNames `
-        -moduleComments $moduleComments `
         -ownerSecondaryGitHubHandle $ownerSecondaryGitHubHandle `
         -ownerSecondaryDisplayName $ownerSecondaryDisplayName
 
@@ -240,3 +236,9 @@ This contribution flow is for **AVM Core Team members** only.
 
 1. Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#27AB03;color:white;">Status: Repository Created 📄</mark>&nbsp; label to the issue
 1. Remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#136A41;color:white;">Status: Ready For Repository Creation 📝</mark>&nbsp; label from the issue
+
+### 5. Merge the Pull Request for the metadata CSV file
+
+1. Open the pull request for the metadata CSV file shown in the script output look [here](https://github.com/Azure/avm-terraform-governance/pulls) if you lost the link
+1. Review the changes to ensure they are correct and only adding 1 new line for the module you just created
+1. If everything looks good, merge the pull request
