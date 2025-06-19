@@ -18,7 +18,7 @@ tags: [
 priority: 11010
 ---
 
-## ID: BCPNFR1 - Inputs - Complex data types - General
+## ID: BCPNFR1 - Category: Inputs - Complex data types - General
 
 To simplify the consumption experience for module consumers when interacting with complex data types input parameters, mainly objects and arrays, the Bicep features of Resource-Derived Types or [User-Defined Types](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/user-defined-data-types) **MUST** be used and declared.
 
