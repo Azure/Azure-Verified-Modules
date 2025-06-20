@@ -76,10 +76,11 @@ If requestor is interested in becoming a module owner, but is not a Microsoft FT
 {{% /notice %}}
 
 1. If the requestor indicated they didn't want to or can't become a module owner (or is not a Microsoft FTE), make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; label is assigned to the issue. Note: the GitHub Policy Service Bot should automatically do this, based on how the issue author responded to the related question.
-2. Move the issue to the "`Looking for owners`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub project board.
-3. Find module owners - if the requestor didn't volunteer in the module proposal OR the requestor does not want or cannot be owner of the module:
+1. Move the issue to the "`Looking for owners`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub project board.
+1. Add a comment on the issue with the `#RFRC` tag to indicate that the repository should be created. This allows the module to be added the module indexes in the `Proposed` state, so that it can be found by the community and potential module owners.
+1. Find module owners - if the requestor didn't volunteer in the module proposal OR the requestor does not want or cannot be owner of the module:
     - Try to find an owner from the AVM communities or await a module owner to comment and propose themselves on the proposal issue.
-4. When a new potential owner is identified, continue with the steps described [as follows](#scenario-2-requestor-wants-to-and-can-become-module-owner).
+1. When a new potential owner is identified, continue with the steps described [as follows](#scenario-2-requestor-wants-to-and-can-become-module-owner).
 
 ### Scenario 2: Requestor wants to and can become module owner
 
@@ -104,6 +105,7 @@ You **MUST** still confirm that the requestor is a Microsoft FTE and that they u
 3. Once module owner identified has confirmed they understand and accept their roles and responsibilities as an AVM module owner
     - Make sure the issue is assigned to the confirmed module owner.
     - Move the issue into the "`In development`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
+    - Add a comment on the issue with the `#RFRC` tag to indicate that the repository should be created. This allows the module to be added the module indexes in the `Proposed` state, so that it can be found by the community.
     - Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; label is added to the issue.
       - If applied earlier, remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; label from the issue.
     - Remove the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#E4E669;">Status: In Triage 🔍</mark>&nbsp; to indicate you're done with triaging the issue.
@@ -164,13 +166,7 @@ Once module is developed and `v0.1.0` has been published to the relevant registr
 
 ### When a module becomes orphaned
 
-If a module meets the criteria described in the "[Orphaned AVM Modules]({{% siteparam base %}}/specs/shared/module-lifecycle/#orphaned-avm-modules)" chapter, the modules is considered to be orphaned and the below steps must be performed.
-
-An issue is considered to be an orphaned module if
-
-- it was opened through the "[Orphaned AVM Module 👀](https://aka.ms/avm/OrphanedModule)" template,
-- it has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 👀</mark>&nbsp; applied to it, and
-- it is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project.
+If a module meets the criteria described in the "[Orphaned Modules]({{% siteparam base %}}/specs/shared/module-lifecycle/#3-orphaned-avm-modules)" chapter, the module is considered to be orphaned and the below steps must be performed.
 
 {{% notice style="note" %}}
 The original **Module Proposal issue** related to the module in question **MUST remain closed and intact**.
@@ -180,8 +176,8 @@ Instead, a **new Orphaned Module issue** must be opened that **MUST remain open*
 Once the **Orphaned Module issue** was closed, it **MUST remain closed**. If the module will subsequently become orphaned again, a new Orphaned Module issue must be opened.
 {{% /notice %}}
 
-1. Create a new issue using the "[Orphaned AVM Module 👀](https://aka.ms/AVM/OrphanedModule)" issue template.
-2. Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp;, and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 👀</mark>&nbsp; labels are assigned to the issue.
+1. Submit an "orphaned module" issue by using the "[Orphaned AVM Module 🟡](https://aka.ms/AVM/OrphanedModule)" issue template.
+2. Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp;, and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 🟡</mark>&nbsp; labels are assigned to the issue and it is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project.
 3. Move the issue into the "`Orphaned`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
 4. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
 5. Place an information notice as per the below guidelines:
@@ -196,7 +192,7 @@ Include the following text in the information notice:
 
 {{% expand title="➕ Orphaned module notice for module README file" %}}
 
-{{< highlight lineNos="false" type="markdown" wrap="true" title="" >}}
+{{< highlight lineNos="false" type="markdown" wrap="true" title="ORPHANED.md" >}}
 
 {{% include file="/static/includes/orphaned-module-notice.md" %}}
 
@@ -211,7 +207,7 @@ Include the following text in the information notice:
 {{% notice style="tip" %}}
 To look for Orphaned Modules:
 
-- Click on the following link to use this saved query ➡️ <a href="https://aka.ms/avm/OrphanedModules">&nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 👀</mark>&nbsp;</a> ⬅️.
+- Click on the following link to use this saved query ➡️ <a href="https://aka.ms/avm/OrphanedModules">&nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 🟡</mark>&nbsp;</a> ⬅️.
 - Check the `Orphaned` swim lane on the [Module Triage board](https://aka.ms/avm/moduletriage).
 {{% /notice %}}
 
@@ -230,7 +226,7 @@ To look for Orphaned Modules:
 
 2. Once the new module owner candidate has confirmed they understand and accept their roles and responsibilities as an AVM module owner
     - Assign the issue to the confirmed module owner.
-    - Remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 👀</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; labels from the issue.
+    - Remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 🟡</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; labels from the issue.
     - Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#C8E6C9;">Status: Module Available 🟢</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; labels to the issue.
     - Move the issue into the "`Done`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
 3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
@@ -255,6 +251,39 @@ To look for Orphaned Modules:
 {{% /expand %}}
 
 7. Close the Orphaned Module issue.
+
+## Deprecated modules
+
+### When a module becomes deprecated
+
+If a module meets the criteria described in the "[Deprecated Modules]({{% siteparam base %}}/specs/shared/module-lifecycle/#4-deprecated-modules)" chapter, the module is considered to be deprecated and the below steps must be performed.
+
+1. Submit a "deprecated module" issue by using the "[Deprecate AVM Module 🔴](https://aka.ms/avm/DeprecatedModule)" issue template.
+2. Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#000000;color:white;">Status: Module Deprecated 🔴</mark>&nbsp; labels are assigned to the issue and it is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project.
+3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
+4. Place an information notice as per the below guidelines:
+    - In case of a Bicep module:
+      - Place the information notice - with the text below - in an `DEPRECATED.md` file, in the module's root.
+      - Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header.
+      - Make sure the content of the `DEPRECATED.md` file is displayed in the `README.md` in its header (right after the title).
+      - Publish a new patch version, having the updated `README.md` stating the module is deprecated.
+    - In case of a Terraform module:
+      - Place the information notice - with the text below - in the `README.md` file, in the module's root.
+      - Archive the module's repository on GitHub.
+    - Once the information notice is placed, submit a Pull Request.
+5. Keep the module's `-owners-` and `-contributors-` GitHub teams, as these will keep granting access to the source code of the module.
+
+Place the following information notice in the module's repository:
+
+{{% expand title="➕ Deprecated module indicators" %}}
+
+{{< highlight lineNos="false" type="markdown" wrap="true" title="DEPRECATED.md" >}}
+
+{{% include file="/static/includes/deprecated-module-notice.md" %}}
+
+{{< /highlight >}}
+
+{{% /expand %}}
 
 ## General feedback/question, documentation update and other standard issues
 

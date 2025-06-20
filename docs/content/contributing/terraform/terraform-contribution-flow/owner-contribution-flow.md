@@ -104,6 +104,7 @@ Ensure your module is ready for publishing:
     - Ensure that the `Target` is set to the `main` branch.
     - Select `Choose a tag` and type in a new tag, such as `0.1.0` Make sure to create the tag from the `main` branch.
     - Generate the release notes using the `Generate release notes` button.
+    - If this is a community contribution be sure to update the 'Release Notes` to provide appropriate credit to the contributors.
 
     ![DeploymentProtectionRules]({{% siteparam base %}}/images/contribution/gitTag.png "GitHub Release")
 

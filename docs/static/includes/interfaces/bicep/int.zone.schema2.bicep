@@ -18,6 +18,6 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
   name: '>exampleResource<'
   properties: {
     ... // other properties
-    zones: map(availabilityZones ?? [], zone => '${zone}')
+    zones: map(availabilityZones, zone => '${zone}')
   }
 }
