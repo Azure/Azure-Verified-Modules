@@ -1,4 +1,3 @@
-
 // ============== //
 //   Parameters   //
 // ============== //
@@ -15,7 +14,9 @@ resource >singularMainResourceType<_lock 'Microsoft.Authorization/locks@2020-05-
   name: lock.?name ?? 'lock-${name}'
   properties: {
     level: lock.?kind ?? ''
-    notes: lock.?kind == 'CanNotDelete' ? 'Cannot delete resource or child resources.' : 'Cannot delete or modify the resource or child resources.'
+    notes: lock.?notes ?? (lock.?kind == 'CanNotDelete'
+      ? 'Cannot delete resource or child resources.'
+      : 'Cannot delete or modify the resource or child resources.')
   }
   scope: >singularMainResourceType<
 }
