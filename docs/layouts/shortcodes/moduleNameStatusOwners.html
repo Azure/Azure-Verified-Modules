@@ -135,7 +135,7 @@
   {{ $hasListableModules = false }}
   {{ if in $include $item.ModuleStatus }}
     {{ $moduleLatestVersion = "N/A" }}
-    {{ if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") }}
+    {{ if and (or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated")) (ne $item.PublicRegistryReference "n/a") }}
       {{ $moduleMcrUrl := printf "https://mcr.microsoft.com/v2/bicep/%s/tags/list" $item.ModuleName }}
       {{ $moduleMcrData := dict }}
       {{ with resources.GetRemote $moduleMcrUrl }}
@@ -228,7 +228,7 @@
         {{- end -}}
       </td>
       <td> {{/* availability badge and versions  */}}
-        {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") -}}
+        {{- if and (or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated")) (ne $item.PublicRegistryReference "n/a") -}}
           <a href="https://mcr.microsoft.com/v2/bicep/{{ $item.ModuleName }}/tags/list">
             <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $moduleLatestVersion }}-blue"/>
           </a>
