@@ -153,8 +153,9 @@
   {{ end }}
 
   {{ range $item, $modules }}
-  {{ if and (eq $item.FirstPublishedInColumnId $publicationDate) (not ( in $exclude $item.ModuleStatus )) }}
+  {{ if and (eq $item.FirstPublishedInColumnId $publicationDate) (not ( in $exclude $item.ModuleStatus )) (ne $item.PublicRegistryReference "n/a") }}
     {{ $moduleLatestVersion = "N/A" }}
+
     {{ if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") }}
       {{ $moduleMcrUrl := printf "https://mcr.microsoft.com/v2/bicep/%s/tags/list" $item.ModuleName }}
       {{ $moduleMcrData := dict }}
@@ -172,7 +173,12 @@
           {{ $moduleLatestVersion = index $moduleVersions (sub (len $moduleVersions) 1) }}
       {{ end }}
     {{ end }}
+
     {{ $trimmedModuleStatus := replace $item.ModuleStatus "Module " "" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Deprecated" "Deprecated :red_circle:" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Available" "Available :green_circle:" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Orphaned" "Orphaned :yellow_circle:" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Proposed" "Proposed :white_circle:" }}
     {{ $trimmedAlternativeNames := replace $item.AlternativeNames "  " " " }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames ", " "," }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames "," ", " }}
@@ -206,7 +212,7 @@
       {{- end -}}
     </td>
     <td> {{/* availability badge and versions  */}}
-      {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") -}}
+      {{- if and (or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned")) (ne $item.PublicRegistryReference "n/a") -}}
         <a href="https://mcr.microsoft.com/v2/bicep/{{ $item.ModuleName }}/tags/list">
           <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $moduleLatestVersion }}-blue"/>
         </a>
@@ -318,9 +324,14 @@
       {{- end -}}
       {{- if $moduleVersions -}}
           {{ $moduleLatestVersion = index $moduleVersions (sub (len $moduleVersions) 1) }}
-      {{- end -}}
     {{- end -}}
+    {{- end -}}
+
     {{ $trimmedModuleStatus := replace $item.ModuleStatus "Module " "" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Deprecated" "Deprecated :red_circle:" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Available" "Available :green_circle:" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Orphaned" "Orphaned :yellow_circle:" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Proposed" "Proposed :white_circle:" }}
     {{ $trimmedAlternativeNames := replace $item.AlternativeNames "  " " " }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames ", " "," }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames "," ", " }}
