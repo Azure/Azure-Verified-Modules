@@ -298,7 +298,7 @@
   </thead>
   {{- end -}}
   {{- range $item, $modules -}}
-  {{- if and (eq $item.FirstPublishedInColumnId $publicationDate) (not ( in $exclude $item.ModuleStatus )) (ne $item.PublicRegistryReference "n/a") -}}
+  {{- if and (eq $item.FirstPublishedInColumnId $publicationDate) (not ( in $exclude $item.ModuleStatus )) -}}
     {{ $moduleLatestVersion = "N/A" }}
     {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") -}}
       {{ $repoURLSplit := strings.Split $item.RepoURL "/" }}
@@ -326,6 +326,7 @@
           {{ $moduleLatestVersion = index $moduleVersions (sub (len $moduleVersions) 1) }}
     {{- end -}}
     {{- end -}}
+
     {{ $trimmedModuleStatus := replace $item.ModuleStatus "Module " "" }}
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Deprecated" "Deprecated :red_circle:" }}
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Available" "Available :green_circle:" }}
