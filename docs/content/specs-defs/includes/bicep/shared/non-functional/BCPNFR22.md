@@ -29,7 +29,7 @@ When a module to be published (i.e., that has a `version.json` file) is changed,
 ```text
 # Changelog
 
-The latest version of the changelog can be found [here](/Azure/bicep-registry-modules/blob/main/avm/<ptn|res|utl>/<namespace/modulename[/submodulePath]>/main.json).
+The latest version of the changelog can be found [here](/Azure/bicep-registry-modules/blob/main/avm/<ptn|res|utl>/<namespace/modulename[/submodulePath]>/CHANGELOG.md).
 
 ```
 
@@ -72,7 +72,7 @@ A `CHANGELOG.md` file in the module's root folder **MUST** start with the `# Cha
 ```text
 # Changelog
 
-The latest version of the changelog can be found [here](/Azure/bicep-registry-modules/blob/main/avm/res/aad/domain-service/main.json).
+The latest version of the changelog can be found [here](/Azure/bicep-registry-modules/blob/main/avm/res/aad/domain-service/CHANGELOG.md).
 
 ## 0.2.1
 
