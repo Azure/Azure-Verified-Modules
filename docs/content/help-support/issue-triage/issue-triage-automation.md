@@ -651,13 +651,12 @@ Add a comment to a PR that modifies these files based on the regex pattern, advi
 
 - A comment is added to an PR that modifies these files as per below
 
+  ```txt
+  [!WARNING]
+  **FAO: AVM Core Team**
+  
+  When merging this PR it will trigger **all** AVM modules to be triggered! Please consider disabling the GitHub actions prior to merging and then re-enable once merged.
   ```
-   > [!WARNING]
-   > **FAO: AVM Core Team**
-   > 
-   > When merging this PR it will trigger **all** AVM modules to be triggered! Please consider disabling the GitHub actions prior to merging and then re-enable once merged.
-  ```
-
 
 ---
 
