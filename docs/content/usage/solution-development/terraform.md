@@ -242,7 +242,7 @@ Finally, we should now be able to complete our plan operation by re-running `ter
 
 ##### Deploy the resource group
 
-We can complete testing by implementing the resource group. Run `terraform apply -var-file=development.tfvars` and type `yes` and press `enter` when prompted to accept the changes. Terraform will create the resource group and notify you with a `Apply complete` message and a summary of the resources that were added, changed, and destroyed.
+We can complete testing by implementing the resource group. Run `terraform apply -var-file="development.tfvars"` and type `yes` and press `enter` when prompted to accept the changes. Terraform will create the resource group and notify you with a `Apply complete` message and a summary of the resources that were added, changed, and destroyed.
 
 #### Deploy the Log Analytics Workspace
 
@@ -266,7 +266,7 @@ The Log Analytics module content should look like the following code block. For 
 
 Again, we will need to run `terraform init` to allow Terraform to initialize a copy of the AVM Log Analytics module.
 
-Now, we can deploy the Log Analytics workspace by running `terraform apply -var-file=development.tfvars`, typing `yes` and pressing `enter`. Note that Terraform will only create the new Log Analytics resources since the resource group already exists. This is one of the key benefits of deploying using Infrastructure as Code (IAC) tools like Terraform.
+Now, we can deploy the Log Analytics workspace by running `terraform apply -var-file="development.tfvars"`, typing `yes` and pressing `enter`. Note that Terraform will only create the new Log Analytics resources since the resource group already exists. This is one of the key benefits of deploying using Infrastructure as Code (IAC) tools like Terraform.
 
 {{% notice style="note" %}}
 Note that we ran the `terraform apply` command without first running `terraform plan`. Because `terraform apply` runs a `plan` before prompting for the `apply`, we opted to shorten the instructions by skipping the explicit plan step. If you are testing in a live environment, you may want to run the plan step and save the plan as part of your governance or change control processes.
@@ -326,7 +326,7 @@ Your Key Vault module definition should now look like the following:
 One of the core values of AVM is the standard configuration for interfaces across modules. The Role Assignments interface we used as part of the Key Vault deployment is a good example of this.
 {{% /notice %}}
 
-Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file=development.tfvars` sequence.
+Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file="development.tfvars"` sequence.
 
 #### Deploy the NAT Gateway
 
@@ -344,7 +344,7 @@ Review the following code to see each of these changes.
 {{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step10-natgw.tf" lang="terraform" line_anchors="sol-step10" hl_lines="1-20" >}}
 {{% /expand %}}
 
-Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file=development.tfvars` sequence.
+Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file="development.tfvars"` sequence.
 
 #### Deploy the Network Security Group
 
@@ -367,7 +367,7 @@ Upon completion the code for the NSG module should be as follows:
 {{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step17-nsg.tf" lang="terraform" line_anchors="sol-step17" hl_lines="1-21" >}}
 {{% /expand %}}
 
-Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file=development.tfvars` sequence.
+Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file="development.tfvars"` sequence.
 
 #### Deploy the Virtual Network
 
@@ -394,7 +394,7 @@ After making these changes our virtual network module call code will be as follo
 Note how the Log Analytics workspace reference ends in `resource_id`. Each AVM module is required to export its Azure resource ID with the `resource_id` name to allow for consistent references.
 {{% /notice %}}
 
-Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file=development.tfvars` sequence.
+Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file="development.tfvars"` sequence.
 
 #### Deploy the Bastion service
 
@@ -423,7 +423,7 @@ The new code we added for the Bastion resource will be as follows:
 Pay attention to the `subnet_id` syntax. In the virtual network module, the subnets are created as a sub-module allowing us to reference each of them using the map key that was defined in the `subnets` input. Again, we see the consistent output naming with the `resource_id` output for the sub-module.
 {{% /notice %}}
 
-Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file=development.tfvars` sequence.
+Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file="development.tfvars"` sequence.
 
 #### Deploy the virtual machine
 
@@ -451,7 +451,7 @@ The new code we added for the virtual machine resource will be as follows:
 {{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step13-virtualmachine.tf" lang="terraform" line_anchors="sol-step13" hl_lines="1-39" >}}
 {{% /expand %}}
 
-Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file=development.tfvars` sequence.
+Continue the incremental testing of your module by running another `terraform init` and `terraform apply -var-file="development.tfvars"` sequence.
 
 ### Creating the outputs.tf file
 
@@ -467,7 +467,7 @@ The new code we added for the outputs will be as follows:
 {{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step15-outputs.tf" lang="terraform" line_anchors="sol-step15" hl_lines="1-9" >}}
 {{% /expand %}}
 
-Because no new modules were created, we don't need to run `terraform init` to test this change. Run `terraform apply -var-file=development.tfvars` to see the new outputs that have been created.
+Because no new modules were created, we don't need to run `terraform init` to test this change. Run `terraform apply -var-file="development.tfvars"` to see the new outputs that have been created.
 
 ### Update the terraform.tf file
 
