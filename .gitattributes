@@ -1,2 +1,5 @@
 # https://code.visualstudio.com/docs/devcontainers/tips-and-tricks#_resolving-git-line-ending-issues-in-containers-resulting-in-many-modified-files
-* text=auto eol=lf
+*     text eol=lf
+
+# CSV files must use CRLF per the standards
+*.csv text eol=crlf
