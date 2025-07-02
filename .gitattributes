@@ -3,3 +3,4 @@
 
 # CSV files must use CRLF per the standards
 *.csv text eol=crlf
+*.pdf binary
