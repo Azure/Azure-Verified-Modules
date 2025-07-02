@@ -18,31 +18,19 @@ Let's make each community call a celebration of connection and collaboration!
 
 ## Upcoming Events
 
-<!-- Stay tuned, to be announced! 👂 -->
+Stay tuned, to be announced! 👂
+
+## Previous Events
 
 ### 1st July 2025
 
-{{% notice style="note" %}}
+<!-- - [Registration](https://msit.events.teams.microsoft.com/event/67b709f3-b3b5-4b5d-943e-34fe22714bf2@72f988bf-86f1-41af-91ab-2d7cd011db47) -->
+- [GitHub Issue for Q&A section](https://github.com/Azure/Azure-Verified-Modules/issues/2109)
+- [AVM Community Call July 2025 Slides]({{% siteparam base %}}/community/avm-community-call-july25.pdf)
 
-This occurrence is optimized for EMEA/ATZ time zones.
-
-{{% /notice %}}
-
-#### High level agenda (WIP)
-
-- Road to AVM v1
-- AVM integration to Copilot experiences
-- Website Updates
-- Terraform Migration tool
-- Guest speakers (MVPs, Partner, Customer and/or PG teams)
-- Q&A / Open discussion: attendees can ask questions, share experiences/stories, provide feedback and suggestions
-
-#### Call to action
-
-- [Register](https://aka.ms/AVM/CommunityCall) for this event
-- Lave a comment on this [GitHub Issue for the Q&A section](https://github.com/Azure/Azure-Verified-Modules/issues/2109)
-
-## Previous Events
+<div style="width:70%; margin: 0 auto;">
+{{< youtube id="cHdShYNkyRk" title="Azure Verified Modules (AVM) - July 2025 - External Community Call" >}}
+</div>
 
 ### 6th February 2025
 
