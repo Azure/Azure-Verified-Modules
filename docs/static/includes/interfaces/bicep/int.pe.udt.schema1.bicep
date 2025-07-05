@@ -7,7 +7,7 @@ import { privateEndpointSingleServiceType } from 'br/public:avm/utl/types/avm-co
 @description('Optional. Configuration details for private endpoints. For security reasons, it is recommended to use private endpoints whenever possible.')
 param privateEndpoints privateEndpointSingleServiceType[]?
 
-var enableReferencedModulesTelemetry = false // resource module
+var enableReferencedModulesTelemetry bool = false // resource module
 
 // ============= //
 //   Resources   //
