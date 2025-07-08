@@ -633,6 +633,32 @@ Add a label for the AVM Core Team to query called &nbsp;<mark style="background-
 
 ---
 
+### ITA27
+
+Add a comment to a PR that modifies these files based on the regex pattern, advising to disable GitHub Actions prior to merging:
+
+- ".github/actions/templates/avm-**"
+- ".github/workflows/avm.template.module.yml"
+- "utilities/pipelines/**"
+- "!utilities/pipelines/platform/**"
+
+
+**Trigger criteria:**
+
+- A comment is added to an PR that modifies these files (above)
+
+**Action(s):**
+
+- A comment is added to an PR that modifies these files as per below
+
+  ```txt
+  [!WARNING]
+  **FAO: AVM Core Team**
+  When merging this PR it will trigger **all** AVM modules to be triggered! Please consider disabling the GitHub actions prior to merging and then re-enable once merged.
+  ```
+
+---
+
 ## Where to apply these rules?
 
 The below table details which repositories the above rules are applied to.
@@ -680,3 +706,4 @@ The ITA05 rule is currently disabled in the AVM and BRM repositories.
 | [ITA23](#ita23)             |          ✔️         |                |        ✔️       |
 | [ITA25](#ita25)             |                    |        ✔️        |               |
 | [ITA26](#ita26)             |              ✔️      |                 |              |
+| [ITA27](#ita27)             |                    |         ✔️        |              |
