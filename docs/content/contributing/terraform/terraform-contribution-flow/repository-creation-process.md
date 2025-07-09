@@ -31,11 +31,11 @@ This contribution flow is for **AVM Core Team members** only.
 ### 2. Create the repository
 
 1. Open a PowerShell terminal
-1. Clone the <https://github.com/Azure/avm-terraform-governance> repository and navigate to the `tf-repo-mgmt/repository_creation_helper` folder
+1. Clone the <https://github.com/Azure/avm-terraform-governance> repository and navigate to the `tf-repo-mgmt` folder
 
     ```pwsh
     git clone "https://github.com/Azure/avm-terraform-governance"
-    cd ./tf-repo-mgmt/repository_creation_helper
+    cd ./tf-repo-mgmt
     ```
 
 1. Install the GitHub CLI if you don't already have it installed: <https://cli.github.com>
@@ -109,8 +109,7 @@ This contribution flow is for **AVM Core Team members** only.
 
     ```
 
-1. The script will stop and prompt you to fill out the Microsoft Open Source details,
-
+1. The script will stop and prompt you to fill out the Microsoft Open Source details.
 1. Open the Open Source Portal using the link in the script output.
 1. Click `Complete Setup`, then use the following table to provide the settings:
 
@@ -242,3 +241,17 @@ This contribution flow is for **AVM Core Team members** only.
 1. Open the pull request for the metadata CSV file shown in the script output look [here](https://github.com/Azure/avm-terraform-governance/pulls) if you lost the link
 1. Review the changes to ensure they are correct and only adding 1 new line for the module you just created
 1. If everything looks good, merge the pull request
+
+### 6. Wait for the GitHub App to be installed
+
+Once the GitHub App has been installed, the sync to create the environment and credentials will be triggered automatically at 15:30 UTC on week days. However, you can also trigger it manually by running the following command in the `tf-repo-mgmt` folder:
+
+```pwsh
+$moduleName = "avm-res-network-virtualnetwork" # Replace with the module name (do not include the "terraform-azurerm" prefix)
+
+./scripts/Invoke-WorkflowDispatch.ps1 `
+  -inputs @{
+    repositories = "$moduleName"
+    plan_only = $false
+  }
+```
