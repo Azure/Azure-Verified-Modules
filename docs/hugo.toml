@@ -44,18 +44,23 @@ clarityId = 'p0l7yeco82' # Azure-Verified-Modules
 path = 'github.com/McShelby/hugo-theme-relearn'
 
 [outputs]
-home = ['html', 'rss', 'print']
-page = ['html', 'rss', 'print']
-section = ['html', 'rss', 'print']
+home = ['html', 'rss', 'print', 'TXT']
+page = ['html', 'rss', 'print', 'TXT']
+section = ['html', 'rss', 'print', 'TXT']
 
 [outputFormats]
-[outputFormats.print]
-baseName = 'print'
-isHTML = true
-mediaType = 'text/html'
-name = 'print'
-noUgly = true
-permalinkable = false
+  [outputFormats.print]
+    baseName = 'print'
+    isHTML = true
+    mediaType = 'text/html'
+    name = 'print'
+    noUgly = true
+    permalinkable = false
+
+  [outputFormats.TXT]
+    mediaType = "text/plain"
+    baseName = "llms"
+    isPlainText = true
 
 [markup]
 defaultMarkdownHandler = 'goldmark'
