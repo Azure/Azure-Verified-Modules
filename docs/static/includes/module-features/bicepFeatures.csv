@@ -4,7 +4,7 @@
 3,res/analysis-services/server,✅,✅,✅,✅,,,
 4,res/api-management/service,✅,✅,✅,✅,,,✅
 5,res/app-configuration/configuration-store,✅,✅,✅,✅,✅,✅,✅
-6,res/app/container-app,✅,✅,✅,,,,✅
+6,res/app/container-app,✅,✅,✅,✅,,,✅
 7,res/app/job,✅,✅,✅,,,,✅
 8,res/app/managed-environment,✅,✅,✅,,,,✅
 9,res/app/session-pool,✅,✅,✅,,,,✅
@@ -163,4 +163,4 @@
 162,res/web/serverfarm,✅,✅,✅,✅,,,
 163,res/web/site,✅,✅,✅,✅,✅,,✅
 164,res/web/static-site,✅,✅,✅,,✅,,✅
-Sum,,142,141,153,64,38,23,64
+Sum,,142,141,153,65,38,23,64
