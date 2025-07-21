@@ -20,7 +20,7 @@ priority: 13030
 ## ID: BCPRMNFR4 - Implementing multi-scope modules
 
 Several resource types in Azure (e.g., role-assignments, budgets, etc.) may be deployed to more than one scope (e.g., subscription, management-group, etc.).
-In AVM, such modules can either be implemented in one of two ways:
+In AVM, such modules can be implemented in one of two ways:
 1. As **pattern modules** with one 'orchestrating' parent module using scoped sub-modules based on the input parameters provided
    `/main.bicep`: Orchestrating module with the highest target scope (e.g., management-group), accepting parameters like 'subscriptionId' to deploy to lower scopes
    - `/main.json`: The ARM JSON file of the module
@@ -37,6 +37,8 @@ In AVM, such modules can either be implemented in one of two ways:
    > **Example:** [avm/<b>ptn</b>/authorization/role-assignment](https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/authorization/role-assignment)
 1. As **resource modules** where each scope is implemented as a child-module of a non-published parent.
    - `/main.bicep`: Empty parent template with a disclaimer referring to the child-modules.
+   - `/main.json`: The ARM JSON version of the `main.bicep` template.
+   - `/README.md`: The baseline readme, surfacing the metadata of the `main.bicep` file
    - `/mg-scope`: Nested child-module folder hosting the files of the management-group-scoped child-module (if applicable)
      - `/main.bicep`: The management-group-scoped child-module template
      - `/main.json`: The ARM JSON file of the module
@@ -59,7 +61,7 @@ In AVM, such modules can either be implemented in one of two ways:
    >
    > **Example:** [avm/<b>res</b>/authorization/role-assignment](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/authorization/role-assignment)
 
-{{% notice style="important" %}}
+{{% notice style="tip" %}}
 
 It is **highly** recommended to publish multi-scoped modules as resource modules as the solution provides the best user experience.
 
@@ -73,6 +75,15 @@ To successfully implement a multi-scoped module as a resource modules you have t
 
 
 - The parent folder MUST contain a `README.md`, `main.bicep`, `main.json` file, the `tests` folder and one folder per each scope the resource provider can deploy to (either `mg-scope`, `sub-scope` or `rg-scope`).
+- Each child-module folder MUST be implemented as a proper child module, with a
+  - `main.bicep`
+  - `main.json`
+  - `version.json`
+  - `README.md`
+  - `CHANGELOG.md`
+
+  file. Each child-module is maintained and versioned independently of the others.
+
 - The parent `main.bicep` MUST contain the following information
 
   ```bicep
