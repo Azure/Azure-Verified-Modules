@@ -1,3 +1,8 @@
+---
+title: "Bicep Prerequisites"
+description: "Learn about the prerequisites for using Bicep to deploy Azure Verified Modules or develop them."
+---
+
 You will need the following tools and components to complete this guide:
 
 - [Visual Studio Code (VS Code)](https://code.visualstudio.com/download) to develop your solution.

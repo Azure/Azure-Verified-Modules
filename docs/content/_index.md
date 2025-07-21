@@ -4,21 +4,14 @@ linktitle: Azure Verified Modules
 type: home
 description: 'Azure Verified Modules - The Microsoft IaC Module Strategy'
 ---
-
 {{% notice style="important" %}}
 
-Join the AVM team for our next **external community call**, held on **July 1st, 2025**! 🎉
+We are aware of an issue impacting the [Terraform AVM module `avm-res-network-virtualnetwork`](https://github.com/Azure/terraform-azurerm-avm-res-network-virtualnetwork) that started at approximately midnight (UTC) on Thursday 3 July 2025.
 
-**Register here to attend**: [https://aka.ms/AVM/CommunityCall](https://aka.ms/AVM/CommunityCall)
+**We are pleased to confirm that the issue has been resolved and the module is now available again 👍**
 
-To find out more about future calls and watch the recordings of previous ones, see the [Community Calls page](/Azure-Verified-Modules/resources/community)!
+For more information and any assistance required please refer to this [GitHub issue](https://github.com/Azure/Azure-Verified-Modules/issues/2196)
 
-{{% /notice %}}
-
-{{% notice style="important" %}}
-Get ready to accelerate your Azure platform journey with Azure Verified Modules! In our latest **Microsoft Build** [**session**](https://aka.ms/BUILD25/BRK196), we showcased how AVM streamlines cloud deployment with speed, reliability, and best practices—empowering you to build smarter and faster on Azure.
-
-**You can watch the recording here**: 🎥 [Accelerate your Azure platform journey with Azure Verified Modules](https://aka.ms/BUILD25/BRK196) 🎥
 {{% /notice %}}
 
 ## Introduction
