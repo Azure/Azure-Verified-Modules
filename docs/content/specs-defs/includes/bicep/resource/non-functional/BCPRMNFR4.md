@@ -22,7 +22,7 @@ priority: 13030
 Several resource types in Azure (e.g., role-assignments, budgets, etc.) may be deployed to more than one scope (e.g., subscription, management-group, etc.).
 In AVM, such modules can be implemented in one of two ways:
 1. As **pattern modules** with one 'orchestrating' parent module using scoped sub-modules based on the input parameters provided
-   `/main.bicep`: Orchestrating module with the highest target scope (e.g., management-group), accepting parameters like 'subscriptionId' to deploy to lower scopes
+   - `/main.bicep`: Orchestrating module with the highest target scope (e.g., management-group), accepting parameters like 'subscriptionId' to deploy to lower scopes
    - `/main.json`: The ARM JSON file of the module
    - `/version.json`: The version file of the module
    - `/README.md`: The readme of the module
