@@ -42,6 +42,7 @@ It is **highly** recommended to publish multi-scoped modules as resource modules
 > **Note:** The following instructions consider all deployment scopes. Your module may only deploy to a subset of the same and you should map the conventions to your case.
 
 To successfully implement a multi-scoped module as a pattern modules you have to adhere to the following convention:
+
 - The parent module MUST be implemented in the highest scope the resource provider supports (e.g., management-group)
 - The parent module MUST have one sub-module for each scope that the resource provider supports (e.g., management-group, subscription & resource-group)
 - Each sub-module MUST be implemented for the scope it is intended
