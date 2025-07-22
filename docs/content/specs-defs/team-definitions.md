@@ -20,18 +20,16 @@ GitHub Team: [`@Azure/avm-core-team`](https://github.com/orgs/Azure/teams/avm-co
 
 The AVM core team are responsible for:
 
-- Specifications
-  - Shared
-  - Language Specific
-- Contribution Guidance
-- Test Frameworks & Tooling
-- Initiative Governance
-  - Module Lifecycle
-  - Test Enforcement
-  - Module Support SLAs
-- Anything else not defined below for another team or in the RACI 👍
+1. **Managing the AVM Solution**: Leading and managing AVM from a technical standpoint, ensuring the maintenance and growth of the Public Bicep Registry's repository and the Terraform Registry. Governing the lifecycle and support SLAs for all AVM modules, as well as providing overall governance and overseeing/facilitating the contribution process.
+2. **Testing and quality enforcement**: Developing, operating and enforcing the test framework and related tooling with all its quality gates. Providing initial reviews for all modules, making sure all standards are met.
+3. **Documentation**: Defining and refining principles, contribution and consumption guidelines, specifications and procedures related to AVM modules, maintaining and publishing all related documentation on the program's public website.
+4. **Community Engagement**: Organizing internal and external events, such as hackathons, office hours, community calls and training events for current and future module owners and contributors. Presenting in live events both publicly and internally; publishing blog posts and videos on YouTube, etc.
+5. **Security Enhancements**: Facilitating the implementation and/or implementing security enhancements across all AVM repositories - through the WAF (Well-Architected Framework) framework.
+6. **Supporting Module Owners**: Providing day-to-day support for module owners, helping troubleshoot and manage security fixes for orphaned modules.
+7. **Improving Processes and Gathering Insights**: Improving automation for issue triage and management processes and lead the development of internal dashboards to gain insights into contribution and consumption metrics.
+8. **Undefined tasks**: Anything else not defined below for another team or in the RACI 👍
 
-The team is made up of both technical and non-technical team members that are all Microsoft FTEs.
+The team includes both technical and non-technical team members who are all Microsoft FTEs.
 
 ### Module Owners
 
@@ -43,13 +41,20 @@ Today, module owners **MUST** be Microsoft FTEs. This is to ensure that within A
 
 Module owners are responsible for:
 
-- Module Creation
-- Module Maintenance (proactive & reactive)
-- Module Issue/Pull Request Triage & Resolution
-- Module Feature Request Triage & Additions
-- Managing Module Contributors
+1. **Initial module development**
+2. **Module Maintenance (proactive & reactive)**
+    - Regular updates to ensure compatibility with the latest Azure services (including supporting new API versions and referencing the newest AVM modules when applicable).
+    - WAF Reliability & Security alignment
+    - Bug fixes, security patches and feature improvements.
+    - Ensuring long term compliance with AVM specifications
+    - Implementing and improving automated testing and validation tools for new modules.
+    - Improving documentation through rich examples.
+3. **Ongoing module support**
+    - Module Issue/Pull Request Triage & Resolution
+    - Module Feature Request Triage & Additions
+4. **Managing additional module contributors**
 
-Ideally there **SHOULD** be at least 2 module owners per module and **MUST** be in a [GitHub Team in the `Azure` organization.](https://github.com/orgs/Azure/teams/)
+Ideally there **SHOULD** be at least 2 module owners per module who **MUST** be added to a [GitHub Team in the `Azure` organization.]({{%siteparam base%}}/spec/SNFR20/)
 
 ### Module Contributors
 
@@ -63,7 +68,7 @@ Module Contributors are responsible for:
 
 - Assisting the Module Owners with their responsibilities
 
-Module Contributors **MUST** be in a separate [GitHub Team in the `Azure` organization](https://github.com/orgs/Azure/teams/), that the Module Owners manage and are maintainers of.
+Module Contributors **MUST** be added to a separate [GitHub Team in the `Azure` organization]({{%siteparam base%}}/spec/SNFR20/) that the Module Owners manage and are maintainers of.
 
 ### Product Groups
 
@@ -98,7 +103,7 @@ We are investigating working with all Azure Product Groups as a future investmen
 
 {{% /notice %}}
 
-The below table defines a RACI that is proposed to be adopted by AVM and all parties referenced in the table. This will give consumers faith and trust in these modules so that they can consume and contribute to the initiative at scale.
+The below table defines a RACI to be adopted by all parties referenced in the table to ensure customers can trust these modules and can consume and contribute to the initiative at scale.
 
 | Action/Task/Responsibility                                                                       | Module Owners | Module Contributors | AVM Core Team | Product Groups | Notes |
 | ------------------------------------------------------------------------------------------------ | ------------- | ------------------- | ------------- | -------------- | ----- |
