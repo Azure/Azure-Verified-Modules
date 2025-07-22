@@ -24,13 +24,10 @@ In AVM, such modules can be implemented in one of two ways:
 1. As **pattern modules** with one 'orchestrating' parent module using scoped sub-modules based on the input parameters provided
 
    > **Note: Only** the parent module is published. I.e., it is not possible to target e.g., the resource-group scoped sub-module directly.
-   >
-   > **Example:** [avm/<b>ptn</b>/authorization/role-assignment](https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/authorization/role-assignment)
+
 1. As **resource modules** where each scope is implemented as a child-module of a non-published parent.
 
    > **Note: Each** child module is published, but not the parent. I.e., it is possible to target e.g., the resource-group scoped sub-module directly.
-   >
-   > **Example:** [avm/<b>res</b>/authorization/role-assignment](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/authorization/role-assignment)
 
 {{% notice style="tip" %}}
 
@@ -40,23 +37,43 @@ It is **highly** recommended to publish multi-scoped modules as resource modules
 
 ### Considerations when published as a pattern module
 
+> **Example:** [avm/<b>ptn</b>/authorization/role-assignment](https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/authorization/role-assignment)
+
+> **Note:** The following instructions consider all deployment scopes. Your module may only deploy to a subset of the same and you should map the conventions to your case.
+
 To successfully implement a multi-scoped module as a pattern modules you have to adhere to the following convention:
 - The parent module MUST be implemented in the highest scope the resource provider supports (e.g., management-group)
 - The parent module MUST have one sub-module for each scope that the resource provider supports (e.g., management-group, subscription & resource-group)
 - Each sub-module MUST be implemented for the scope it is intended
 - The parent module MUST invoke each sub-module in the scope it is written for, using input parameters needed to target set scope (e.g., a subscription-id to invoke a module for set scope)
 - The parent module MUST have test cases to validate each sub-module
+- The parent module is the one that is versioned, published and maintains a changelog
 
 The full folder structure may look like
-- `/main.bicep`: Orchestrating module with the highest target scope (e.g., management-group), accepting parameters like 'subscriptionId' to deploy to lower scopes
-- `/main.json`: The ARM JSON file of the module
-- `/version.json`: The version file of the module
-- `/README.md`: The readme of the module
-- `/CHANGELOG.md`: The changelog of the module
-- `/modules`: Sub-folder to hosted the scoped sub-modules
-  - `/management-group.bicep`: Nested sub-module that's deployed to the management-group scope (if applicable)
-  - `/subscription.bicep`: Nested sub-module that's deployed to the subscription scope (if applicable)
-  - `/resource-group.bicep`: Nested sub-module that's deployed to the resource-group scope (if applicable)
+```txt
+📄main.bicep                 [Orchestrating module]
+📄main.json                  [ARM JSON file of the module]
+📄version.json               [Version file of the module]
+📄README.md                  [Readme of the module]
+📄CHANGELOG.md               [The changelog of the module]
+┣ 📂modules
+┃ ┣ 📄management-group.bicep [Sub-module deploying to the mgmt-group scope (if applicable)]
+┃ ┣ 📄subscription.bicep     [Sub-module deploying to the subscription scope (if applicable)]
+┃ ┗ 📄resource-group.bicep   [Sub-module deploying to the resource-group scope (if applicable)]
+┗ 📂tests/e2e
+  ┣ 📂 mg.defaults
+  ┃ ┗ 📄main.test.bicep      [deploys parent template]
+  ┣ 📂 mg.waf-aligned
+  ┃ ┗ 📄main.test.bicep      [deploys parent template]
+  ┣ 📂 sub.defaults
+  ┃ ┗ 📄main.test.bicep      [deploys parent template with `subscriptionId` param]
+  ┣ 📂 sub.waf-aligned
+  ┃ ┗ 📄main.test.bicep      [deploys parent template with `subscriptionId` param]
+  ┣ 📂 rg.defaults
+  ┃ ┗ 📄main.test.bicep      [deploys parent template with `subscriptionId` & `resourceGroupName` params]
+  ┗ 📂 rg.waf-aligned
+    ┗ 📄main.test.bicep      [deploys parent template with `subscriptionId` & `resourceGroupName` params]
+```
 
 {{% notice style="warning" %}}
 
@@ -68,11 +85,18 @@ Example: To use a role-assignment pattern module (which would be written for all
 
 ### Considerations when published as a resource module
 
-To successfully implement a multi-scoped module as a resource modules you have to adhere to the following convention:
+> **Example:** [avm/<b>res</b>/authorization/role-assignment](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/authorization/role-assignment)
 
 > **Note:** The following instructions consider all deployment scopes. Your module may only deploy to a subset of the same and you should map the conventions to your case.
 
-- The parent folder MUST contain a `README.md`, `main.bicep`, `main.json` file, the `tests` folder and one folder per each scope the resource provider can deploy to (either `mg-scope`, `sub-scope` or `rg-scope`).
+To successfully implement a multi-scoped module as a resource modules you have to adhere to the following convention:
+
+- The parent folder MUST contain a
+  - `main.bicep` file
+  - `main.json` file
+  - `README.md` file
+  - `tests/e2e` folder
+  - One folder per each scope the resource provider can deploy to (either `mg-scope`, `sub-scope` or `rg-scope`).
 - Each child-module folder MUST be implemented as a proper child module, with a
   - `main.bicep`
   - `main.json`
@@ -99,47 +123,47 @@ To successfully implement a multi-scoped module as a resource modules you have t
 
   updated with your module's specifics
 
-- The `tests/e2e` folder MUST contain one instance of the require test cases per each scope, and MAY contain any additional test you see fit. In each case, the scope MUST be a prefix for the folder name. Each test case MUST reference the corresponding child module directly. For example
-  ```txt
-  📂tests/e2e
-  ┣ 📂mg-scope.defaults [mg-scope]
-  ┃ ┗📄main.test.bicep [references the 'mg-scope' child module template: '../../../mg-scope/main.bicep']
-  ┣ 📂mg-scope.waf-aligned [mg-scope]
-  ┃ ┗📄main.test.bicep [references the 'mg-scope' child module template: '../../../mg-scope/main.bicep']
-  ┣ 📂mg-scope.max [mg-scope]
-  ┃ ┗📄main.test.bicep [references the 'mg-scope' child module template: '../../../mg-scope/main.bicep']
-  ┣ 📂sub-scope.defaults [sub-scope]
-  ┃ ┗📄main.test.bicep [references the 'sub-scope' child module template: '../../../sub-scope/main.bicep']
-  ┣ 📂sub-scope.waf-aligned [sub-scope]
-  ┃ ┗📄main.test.bicep [references the 'sub-scope' child module template: '../../../sub-scope/main.bicep']
-  ┣ 📂rg-scope.defaults [rg-scope]
-  ┃ ┗📄main.test.bicep [references the 'rg-scope' child module template: '../../../rg-scope/main.bicep']
-  ┗ 📂rg-scope.waf-aligned [rg-scope]
-    ┗📄main.test.bicep [references the 'rg-scope' child module template: '../../../rg-scope/main.bicep']
-  ```
+- The `tests/e2e` folder MUST contain one instance of the require test cases per each scope, and MAY contain any additional test you see fit. In each case, the scope MUST be a prefix for the folder name. Each test case MUST reference the corresponding child module directly.
 
 The full folder structure may look like
-- `/main.bicep`: Empty parent template with a disclaimer referring to the child-modules.
-- `/main.json`: The ARM JSON version of the `main.bicep` template.
-- `/README.md`: The baseline readme, surfacing the metadata of the `main.bicep` file
-- `/mg-scope`: Nested child-module folder hosting the files of the management-group-scoped child-module (if applicable)
-  - `/main.bicep`: The management-group-scoped child-module template
-  - `/main.json`: The ARM JSON file of the module
-  - `/version.json`: The version file of the module
-  - `/README.md`: The readme of the module
-  - `/CHANGELOG.md`: The changelog of the module
-- `/sub-scope`: Nested child-module folder hosting the files of the subscription-scoped child-module (if applicable)
-  - `/main.bicep`: The subscription-scoped child-module template
-  - `/main.json`: The ARM JSON file of the module
-  - `/version.json`: The version file of the module
-  - `/README.md`: The readme of the module
-  - `/CHANGELOG.md`: The changelog of the module
-- `/rg-scope`: Nested child-module folder hosting the files of the resource-group-scoped child-module (if applicable)
-  - `/main.bicep`: The resource-group-scoped child-module template
-  - `/main.json`: The ARM JSON file of the module
-  - `/version.json`: The version file of the module
-  - `/README.md`: The readme of the module
-  - `/CHANGELOG.md`: The changelog of the module
+```txt
+📄main.bicep                [Skeleton module with disclaimer referring to the child-modules]
+📄main.json                 [ARM JSON file of the module]
+📄README.md                 [The baseline readme, surfacing the metadata of the main.bicep file]
+┣ 📂mg-scope
+┃ ┣📄main.bicep             [Module deploying to mg-scope]
+┃ ┣📄main.json              [ARM JSON file of the module]
+┃ ┣📄README.md              [Readme of the module]
+┃ ┣📄version.json           [Version file of the module]
+┃ ┗📄CHANGELOG.md           [The changelog of the module]
+┣ 📂sub-scope
+┃ ┣📄main.bicep             [Module deploying to sub-scope]
+┃ ┣📄main.json              [ARM JSON file of the module]
+┃ ┣📄README.md              [Readme of the module]
+┃ ┣📄version.json           [Version file of the module]
+┃ ┗📄CHANGELOG.md           [The changelog of the module]
+┣ 📂rg-scope
+┃ ┣📄main.bicep             [Module deploying to rg-scope]
+┃ ┣📄main.json              [ARM JSON file of the module]
+┃ ┣📄README.md              [Readme of the module]
+┃ ┣📄version.json           [Version file of the module]
+┃ ┗📄CHANGELOG.md           [The changelog of the module]
+┗ 📂tests/e2e
+  ┣ 📂mg-scope.defaults
+  ┃ ┗📄main.test.bicep      [references the 'mg-scope' child module template: '../../../mg-scope/main.bicep']
+  ┣ 📂mg-scope.waf-aligned
+  ┃ ┗📄main.test.bicep      [references the 'mg-scope' child module template: '../../../mg-scope/main.bicep']
+  ┣ 📂mg-scope.max
+  ┃ ┗📄main.test.bicep      [references the 'mg-scope' child module template: '../../../mg-scope/main.bicep']
+  ┣ 📂sub-scope.defaults
+  ┃ ┗📄main.test.bicep      [references the 'sub-scope' child module template: '../../../sub-scope/main.bicep']
+  ┣ 📂sub-scope.waf-aligned
+  ┃ ┗📄main.test.bicep      [references the 'sub-scope' child module template: '../../../sub-scope/main.bicep']
+  ┣ 📂rg-scope.defaults
+  ┃ ┗📄main.test.bicep      [references the 'rg-scope' child module template: '../../../rg-scope/main.bicep']
+  ┗ 📂rg-scope.waf-aligned
+    ┗📄main.test.bicep      [references the 'rg-scope' child module template: '../../../rg-scope/main.bicep']
+```
 
 
 {{% notice style="important" %}}
