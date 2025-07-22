@@ -22,41 +22,12 @@ priority: 13030
 Several resource types in Azure (e.g., role-assignments, budgets, etc.) may be deployed to more than one scope (e.g., subscription, management-group, etc.).
 In AVM, such modules can be implemented in one of two ways:
 1. As **pattern modules** with one 'orchestrating' parent module using scoped sub-modules based on the input parameters provided
-   - `/main.bicep`: Orchestrating module with the highest target scope (e.g., management-group), accepting parameters like 'subscriptionId' to deploy to lower scopes
-   - `/main.json`: The ARM JSON file of the module
-   - `/version.json`: The version file of the module
-   - `/README.md`: The readme of the module
-   - `/CHANGELOG.md`: The changelog of the module
-   - `/modules`: Sub-folder to hosted the scoped sub-modules
-     - `/management-group.bicep`: Nested sub-module that's deployed to the management-group scope (if applicable)
-     - `/subscription.bicep`: Nested sub-module that's deployed to the subscription scope (if applicable)
-     - `/resource-group.bicep`: Nested sub-module that's deployed to the resource-group scope (if applicable)
 
    > **Note: Only** the parent module is published. I.e., it is not possible to target e.g., the resource-group scoped sub-module directly.
    >
    > **Example:** [avm/<b>ptn</b>/authorization/role-assignment](https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/authorization/role-assignment)
 1. As **resource modules** where each scope is implemented as a child-module of a non-published parent.
-   - `/main.bicep`: Empty parent template with a disclaimer referring to the child-modules.
-   - `/main.json`: The ARM JSON version of the `main.bicep` template.
-   - `/README.md`: The baseline readme, surfacing the metadata of the `main.bicep` file
-   - `/mg-scope`: Nested child-module folder hosting the files of the management-group-scoped child-module (if applicable)
-     - `/main.bicep`: The management-group-scoped child-module template
-     - `/main.json`: The ARM JSON file of the module
-     - `/version.json`: The version file of the module
-     - `/README.md`: The readme of the module
-     - `/CHANGELOG.md`: The changelog of the module
-   - `/sub-scope`: Nested child-module folder hosting the files of the subscription-scoped child-module (if applicable)
-     - `/main.bicep`: The subscription-scoped child-module template
-     - `/main.json`: The ARM JSON file of the module
-     - `/version.json`: The version file of the module
-     - `/README.md`: The readme of the module
-     - `/CHANGELOG.md`: The changelog of the module
-   - `/rg-scope`: Nested child-module folder hosting the files of the resource-group-scoped child-module (if applicable)
-     - `/main.bicep`: The resource-group-scoped child-module template
-     - `/main.json`: The ARM JSON file of the module
-     - `/version.json`: The version file of the module
-     - `/README.md`: The readme of the module
-     - `/CHANGELOG.md`: The changelog of the module
+
    > **Note: Each** child module is published, but not the parent. I.e., it is possible to target e.g., the resource-group scoped sub-module directly.
    >
    > **Example:** [avm/<b>res</b>/authorization/role-assignment](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/authorization/role-assignment)
@@ -67,12 +38,39 @@ It is **highly** recommended to publish multi-scoped modules as resource modules
 
 {{% /notice %}}
 
-### Additional considerations when published as a resource module
+### Considerations when published as a pattern module
+
+To successfully implement a multi-scoped module as a pattern modules you have to adhere to the following convention:
+- The parent module MUST be implemented in the highest scope the resource provider supports (e.g., management-group)
+- The parent module MUST have one sub-module for each scope that the resource provider supports (e.g., management-group, subscription & resource-group)
+- Each sub-module MUST be implemented for the scope it is intended
+- The parent module MUST invoke each sub-module in the scope it is written for, using input parameters needed to target set scope (e.g., a subscription-id to invoke a module for set scope)
+- The parent module MUST have test cases to validate each sub-module
+
+The full folder structure may look like
+- `/main.bicep`: Orchestrating module with the highest target scope (e.g., management-group), accepting parameters like 'subscriptionId' to deploy to lower scopes
+- `/main.json`: The ARM JSON file of the module
+- `/version.json`: The version file of the module
+- `/README.md`: The readme of the module
+- `/CHANGELOG.md`: The changelog of the module
+- `/modules`: Sub-folder to hosted the scoped sub-modules
+  - `/management-group.bicep`: Nested sub-module that's deployed to the management-group scope (if applicable)
+  - `/subscription.bicep`: Nested sub-module that's deployed to the subscription scope (if applicable)
+  - `/resource-group.bicep`: Nested sub-module that's deployed to the resource-group scope (if applicable)
+
+{{% notice style="warning" %}}
+
+Even if a consumer wants to deploy to one of the sub-scopes (e.g., subscription), the module **must** be deployed via its parent (e.g., management-group). This can be confusing for consumers at first and should be considered when implementing the solution.
+
+Example: To use a role-assignment pattern module (which would be written for all scopes, with the parent targeting the management-group scope) to deploy role assignments to a resource group, a user would need to invoke `New-AzManagementGroupDeployment` and provide the parameters for both the subscription & resource-group to target. I.e., the user **must** have permissions to deploy to each scope.
+
+{{% /notice %}}
+
+### Considerations when published as a resource module
 
 To successfully implement a multi-scoped module as a resource modules you have to adhere to the following convention:
 
 > **Note:** The following instructions consider all deployment scopes. Your module may only deploy to a subset of the same and you should map the conventions to your case.
-
 
 - The parent folder MUST contain a `README.md`, `main.bicep`, `main.json` file, the `tests` folder and one folder per each scope the resource provider can deploy to (either `mg-scope`, `sub-scope` or `rg-scope`).
 - Each child-module folder MUST be implemented as a proper child module, with a
@@ -119,6 +117,30 @@ To successfully implement a multi-scoped module as a resource modules you have t
   ┗ 📂rg-scope.waf-aligned [rg-scope]
     ┗📄main.test.bicep [references the 'rg-scope' child module template: '../../../rg-scope/main.bicep']
   ```
+
+The full folder structure may look like
+- `/main.bicep`: Empty parent template with a disclaimer referring to the child-modules.
+- `/main.json`: The ARM JSON version of the `main.bicep` template.
+- `/README.md`: The baseline readme, surfacing the metadata of the `main.bicep` file
+- `/mg-scope`: Nested child-module folder hosting the files of the management-group-scoped child-module (if applicable)
+  - `/main.bicep`: The management-group-scoped child-module template
+  - `/main.json`: The ARM JSON file of the module
+  - `/version.json`: The version file of the module
+  - `/README.md`: The readme of the module
+  - `/CHANGELOG.md`: The changelog of the module
+- `/sub-scope`: Nested child-module folder hosting the files of the subscription-scoped child-module (if applicable)
+  - `/main.bicep`: The subscription-scoped child-module template
+  - `/main.json`: The ARM JSON file of the module
+  - `/version.json`: The version file of the module
+  - `/README.md`: The readme of the module
+  - `/CHANGELOG.md`: The changelog of the module
+- `/rg-scope`: Nested child-module folder hosting the files of the resource-group-scoped child-module (if applicable)
+  - `/main.bicep`: The resource-group-scoped child-module template
+  - `/main.json`: The ARM JSON file of the module
+  - `/version.json`: The version file of the module
+  - `/README.md`: The readme of the module
+  - `/CHANGELOG.md`: The changelog of the module
+
 
 {{% notice style="important" %}}
 
