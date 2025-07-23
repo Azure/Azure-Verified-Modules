@@ -267,16 +267,16 @@ If a module meets the criteria described in the "[Deprecated Modules]({{% sitepa
 **Bicep specific steps**
 
 4. Place an information notice as per the below guidelines:
-   1. Place the information notice - with the text below - in an `DEPRECATED.md` file, in the module's root.
-   2. Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header.
-   3. Make sure the content of the `DEPRECATED.md` file is displayed in the `README.md` in its header (right after the title).
-   4. Publish a new patch version, having the updated `README.md` stating the module is deprecated.
+    1. Place the information notice - with the text below - in an `DEPRECATED.md` file, in the module's root.
+    2. Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header.
+    3. Make sure the content of the `DEPRECATED.md` file is displayed in the `README.md` in its header (right after the title).
+    4. Publish a new patch version, having the updated `README.md` stating the module is deprecated.
 5. Once the information notice is placed, submit a Pull Request (the first one of the 2 required).
 6. Once the first PR is merged,
-   1. Remove the module workflow from the [`workflows`](https://github.com/Azure/bicep-registry-modules/tree/main/.github/workflows) folder.
-   2. Make sure the module is removed from the [`avm_module_issue.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/ISSUE_TEMPLATE/avm_module_issue.yml) issue template.
-   3. Remove the module from the [`CODEOWNERS`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) file.
-   4. Submit a Pull Request (the second and final one of the 2 required)
+    1. Remove the module workflow from the [`workflows`](https://github.com/Azure/bicep-registry-modules/tree/main/.github/workflows) folder.
+    2. Make sure the module is removed from the [`avm_module_issue.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/ISSUE_TEMPLATE/avm_module_issue.yml) issue template.
+    3. Remove the module from the [`CODEOWNERS`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) file.
+    4. Submit a Pull Request (the second and final one of the 2 required)
 7. Keep the module's `-owners-` and `-contributors-` GitHub teams, as these will keep granting access to the source code of the module.
 
 **Terraform specific steps**
