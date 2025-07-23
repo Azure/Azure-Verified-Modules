@@ -258,22 +258,34 @@ To look for Orphaned Modules:
 
 If a module meets the criteria described in the "[Deprecated Modules]({{% siteparam base %}}/specs/shared/module-lifecycle/#4-deprecated-modules)" chapter, the module is considered to be deprecated and the below steps must be performed.
 
+**Language agnostic steps**
+
 1. Submit a "deprecated module" issue by using the "[Deprecate AVM Module 🔴](https://aka.ms/avm/DeprecatedModule)" issue template.
 2. Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#000000;color:white;">Status: Module Deprecated 🔴</mark>&nbsp; labels are assigned to the issue and it is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project.
 3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
-4. Place an information notice as per the below guidelines:
-    - In case of a Bicep module:
-      - Place the information notice - with the text below - in an `DEPRECATED.md` file, in the module's root.
-      - Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header.
-      - Make sure the content of the `DEPRECATED.md` file is displayed in the `README.md` in its header (right after the title).
-      - Publish a new patch version, having the updated `README.md` stating the module is deprecated.
-    - In case of a Terraform module:
-      - Place the information notice - with the text below - in the `README.md` file, in the module's root.
-      - Archive the module's repository on GitHub.
-    - Once the information notice is placed, submit a Pull Request.
-5. Keep the module's `-owners-` and `-contributors-` GitHub teams, as these will keep granting access to the source code of the module.
 
-Place the following information notice in the module's repository:
+**Bicep specific steps**
+
+4. Place an information notice as per the below guidelines:
+   1. Place the information notice - with the text below - in an `DEPRECATED.md` file, in the module's root.
+   2. Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header.
+   3. Make sure the content of the `DEPRECATED.md` file is displayed in the `README.md` in its header (right after the title).
+   4. Publish a new patch version, having the updated `README.md` stating the module is deprecated.
+5. Once the information notice is placed, submit a Pull Request (the first one of the 2 required).
+6. Once the first PR is merged,
+   1. Remove the module workflow from the [`workflows`](https://github.com/Azure/bicep-registry-modules/tree/main/.github/workflows) folder.
+   2. Make sure the module is removed from the [`avm_module_issue.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/ISSUE_TEMPLATE/avm_module_issue.yml) issue template.
+   3. Remove the module from the [`CODEOWNERS`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) file.
+   4. Submit a Pull Request (the second and final one of the 2 required)
+7. Keep the module's `-owners-` and `-contributors-` GitHub teams, as these will keep granting access to the source code of the module.
+
+**Terraform specific steps**
+
+4. Place the information notice - with the text below - in the `README.md` file, in the module's root.
+5. Archive the module's repository on GitHub.
+6. Keep the module's `-owners-` and `-contributors-` GitHub teams, as these will keep granting access to the source code of the module.
+
+**Deprecation information notice** (to be place in the module's repository as described above)
 
 {{% expand title="➕ Deprecated module indicators" %}}
 
