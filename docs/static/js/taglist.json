@@ -1,0 +1,16 @@
+{
+  "MUST": "Must - This tag indicates that the specification is mandatory and is enforced.",
+  "SHOULD": "Should - This tag indicates that the specification should be followed, unless there's a legitimate reason not to. These specifciations are not strictly enforced.",
+  "MAY": "May - This tag indicates that the specification is a recommendation (optional) and can be skipped if not applicable.",
+
+  "Owner": "Owner - This specification is relevant for the module owner persona.",
+  "Contributor": "Contributor - This specification is relevant for the contributor persona, who does routine maintenance and updates tasks.",
+
+  "Initial": "Initial - This specification is relevant at the beginning of the module's lifecicyle.",
+  "BAU": "Business as Usual - This specification is relevant in regular operations, throughout the module's lifecycle.",
+  "EOL": "End of Life - This specification is relevant at the end of the module's lifecycle - i.e., when it's being deprecated.",
+
+  "Manual": "Manual - The specification is manually enforced at the time of the initial module review (when the module is first published).",
+  "CI/Informational": "CI/Informational - The the module is checked against the specification by a CI pipeline, but non-compliance with the test results in an informational warning only - i.e., it does not cause the pipeline to fail and doesn’t block the module's release.",
+  "CI/Enforced": "CI/Enforced - The the specification is automatically enforced by a CI pipeline, and the failure blocks the module's release."
+}

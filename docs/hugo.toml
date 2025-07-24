@@ -38,6 +38,7 @@ collapsibleMenu = false
 disableRootBreadcrumb = false
 # clarityId = 'prb1m4vask' # AVM-Test
 clarityId = 'p0l7yeco82' # Azure-Verified-Modules
+custom_js = ['js/tags.js']
 
 [module]
 [[module.imports]]
