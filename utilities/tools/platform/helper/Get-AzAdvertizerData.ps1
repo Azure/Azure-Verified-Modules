@@ -197,3 +197,23 @@ function Get-AzAdvertizerDataDiff {
 
   return $addedData
 }
+
+function Export-PSRuleDataToCsv {
+  $rawPsRules = Get-AzAdvertizerDataPerType -Type 'PSRule'
+  $csvRows = @()
+
+  foreach ($resource in $rawPsRules.PSObject.Properties.Name) {
+    $rules = $rawPsRules.$resource
+    foreach ($rule in $rules) {
+      $csvRows += [PSCustomObject]@{
+        Severity       = $rule.severity
+        Pillar         = $rule.pillar
+        ResourceType   = $rule.resourceType
+        RuleId        = $rule.ruleId
+        DisplayName    = $rule.displayName
+      }
+    }
+  }
+
+  $csvRows | Sort-Object -Property 'RuleId' | Export-Csv -Path "PSRule.csv" -NoTypeInformation -Force
+}
