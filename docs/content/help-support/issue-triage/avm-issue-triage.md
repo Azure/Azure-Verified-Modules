@@ -277,7 +277,7 @@ If a module meets the criteria described in the "[Deprecated Modules]({{% sitepa
     2. Make sure the module is removed from the [`avm_module_issue.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/ISSUE_TEMPLATE/avm_module_issue.yml) issue template.
     3. Remove the module from the [`CODEOWNERS`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) file.
     4. Submit a Pull Request (the second and final one of the 2 required)
-7. Keep the module's `-owners-` and `-contributors-` GitHub teams, as these will keep granting access to the source code of the module.
+7. Delete the module's `-owners-` and `-contributors-` GitHub teams.
 
 **Terraform specific steps**
 
