@@ -169,6 +169,8 @@ The full folder structure may look like
 
 {{% notice style="important" %}}
 
-Because each child-module is published on its own, you **must** ensure that each is registered in the [MAR-file](https://github.com/microsoft/mcr/blob/main/teams/bicep/bicep.yml) before the modules can be published. Please highlight the nature of your module in the [issue](https://github.com/Azure/Azure-Verified-Modules/issues/new?template=3_module_proposal_avm.yml) when proposing it to AVM.
+Because each child-module is published on its own, you **must** ensure that each is registered in the [MAR-file](https://github.com/microsoft/mcr/blob/main/teams/bicep/bicep.yml) before the modules can be published. The MAR-file can only be accessed by Microsoft FTEs.
+
+Please highlight the nature of your module in the [issue](https://github.com/Azure/Azure-Verified-Modules/issues/new?template=3_module_proposal_avm.yml) when proposing it to AVM.
 
 {{% /notice %}}

@@ -430,9 +430,14 @@ Resource modules are multi-purpose; therefore, they contain a lot of dynamic exp
 
 ### Can I call a Bicep child module directly? E.g., can I update or add a secret in an existing Key Vault, or a route in an existing route table?
 
-As per the way the Public Registry is implemented today, it is not possible to publish child-modules separate from its parents. As such, you cannot reference e.g. a `avm/res/key-vault/vault/key` module directly from the registry, but can only deploy it through its parent `avm/res/key-vault/vault` - UNLESS you actually grab the module folder locally.
+You can reference Bicep child modules that have been explicitly published to the public bicep registry.
 
-However, we kept the door open to make this possible in the future if there is a demand for it.
+Today, publishing child-modules separately from its parents does not happen by default, and follows an on-demand process, meaning only child modules explicitly allowed for publishing can be referenced from the registy.
+The process is currently in a pilot phase, and documented [here]().
+
+If not directly, you can still reference child modules via their parents. You can reference e.g. a `avm/res/key-vault/vault/key` through its parent `avm/res/key-vault/vault`. Alternatively, you can grab the module folder locally, although this is a workaround and not recommended.
+
+---
 
 ### If I use AVM modules in my solution, do I need to have the MIT license in my own repo also? Do I need to add or reference AVM's license in my solution?
 
