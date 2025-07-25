@@ -15,11 +15,14 @@ This page is a work in progress and will be updated as we improve & finalize the
 
 ## Introduction
 
-When developing Azure solutions using Azure Verified Modules (AVM), there are several approaches you can take:
+When developing Azure solutions using Azure Verified Modules (AVM), there are several areas that GitHub Copilot can help you be more productive when working with Infrastructure as Code (IaC) for both Bicep and Terraform.:
 
-1. Hand-coding the solution from scratch
-1. Copying existing AVM code snippets and examples
-1. Using GitHub Copilot to assist in the end-to-end creation of your AVM infrastructure code
+1. Creation of your AVM IaC from scratch
+1. Copying and adapting existing AVM code snippets and examples
+1. Converting non-AVM IaC to use AVM
+1. Refactoring existing IaC that uses AVM to use different technologies or architectures, e.g. moving to zero trust architectures.
+1. Updating existing AVM modules to use the latest version of the module
+1. Creating documentation for your AVM IaC, such as design documentation and architecture diagrams (e.g. Mermaid)
 
 Using GitHub Copilot in Visual Studio Code (VS Code) will have a significant benefit in productivity across all three of these areas.
 
