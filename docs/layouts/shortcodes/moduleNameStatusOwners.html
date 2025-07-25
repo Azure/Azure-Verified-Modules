@@ -6,7 +6,7 @@
 {{ $useLinks := .Get "useLinks" | default true }}
 {{ $language := .Get "language" }}
 {{ $moduleType := .Get "moduleType" }}
-{{ $exclude := .Get "exclude" }}
+{{ $include := .Get "include" }}
 {{ $ProviderNamespaceColumnId := 0 }}
 {{ $ResourceTypeColumnId := 0 }}
 {{ $ModuleDisplayNameColumnId := 0 }}
@@ -25,7 +25,7 @@
 {{ $ModuleContributorsGHTeamColumnId := 0 }}
 {{ $DescriptionColumnId := 0 }}
 {{ $CommentsColumnId := 0 }}
-{{ $hasModulesAvailable := false }}
+{{ $hasListableModules := false }}
 {{ $maps := slice }}
 {{ $i := 0 }}
 {{ $moduleLatestVersion := "" }}
@@ -132,9 +132,10 @@
   </thead>
   {{ end }}
   {{ range $item, $maps }}
-  {{ if not (in $exclude $item.ModuleStatus) }}
+  {{ $hasListableModules = false }}
+  {{ if in $include $item.ModuleStatus }}
     {{ $moduleLatestVersion = "N/A" }}
-    {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }}
+    {{ if and (or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated")) (ne $item.PublicRegistryReference "n/a") }}
       {{ $moduleMcrUrl := printf "https://mcr.microsoft.com/v2/bicep/%s/tags/list" $item.ModuleName }}
       {{ $moduleMcrData := dict }}
       {{ with resources.GetRemote $moduleMcrUrl }}
@@ -171,8 +172,12 @@
         {{/* Set $moduleLatestVersion to the first element of $sortedSemVers, which is the latest version */}}
         {{ $moduleLatestVersion = index $originalSortedVersions (sub (len $originalSortedVersions) 1) }}
       {{ end }}
-    {{ end }}
+    {{ end }} {{/* end of if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") */}}
     {{ $trimmedModuleStatus := replace $item.ModuleStatus "Module " "" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Deprecated" "Deprecated :red_circle:" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Available" "Available :green_circle:" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Orphaned" "Orphaned :yellow_circle:" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Proposed" "Proposed :white_circle:" }}
     {{ $trimmedAlternativeNames := replace $item.AlternativeNames "  " " " }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames ", " "," }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames "," ", " }}
@@ -185,7 +190,7 @@
       </td>
       <td> {{/* module name and link to the repo */}}
         {{ if $useLinks }}
-          {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+          {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") -}}
             <a href="{{ $item.RepoURL }}">
               {{ $item.ModuleName }}
             </a>
@@ -200,7 +205,7 @@
           {{- if (eq $element.ParentModule $item.ModuleName) -}}
             {{ $child := trim (replace $element.ModuleName (print $item.ModuleName "/") "") "/" }}
             {{ if $useLinks }}
-              {{- if or (eq $element.ModuleStatus "Available :green_circle:") (eq $element.ModuleStatus "Orphaned :eyes:") -}}
+              {{- if or (eq $element.ModuleStatus "Available") (eq $element.ModuleStatus "Orphaned") -}}
                 <li style="margin-left: 20px;">
                   <a href="{{ $element.RepoURL }}" title="{{ $element.ModuleDisplayName }} | {{ $element.ModuleName }}">{{ $child }}</a>
                 </li>
@@ -223,7 +228,7 @@
         {{- end -}}
       </td>
       <td> {{/* availability badge and versions  */}}
-        {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+        {{- if and (or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated")) (ne $item.PublicRegistryReference "n/a") -}}
           <a href="https://mcr.microsoft.com/v2/bicep/{{ $item.ModuleName }}/tags/list">
             <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $moduleLatestVersion }}-blue"/>
           </a>
@@ -231,7 +236,7 @@
           <a href="">
             <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-N/A-blue"/>
           </a>
-        {{- end -}}
+        {{- end -}} {{/* {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") -}} */}}
       </td>
       <td> {{/* module owners */}}
         {{- if ne $item.PrimaryModuleOwnerGHHandle "" -}}
@@ -241,8 +246,8 @@
           {{- if and (ne $item.PrimaryModuleOwnerGHHandle "") (ne $item.PrimaryModuleOwnerDisplayName "") -}}
             <br>
             {{ $item.PrimaryModuleOwnerDisplayName }}
-          {{- end -}}
-        {{- end -}}
+          {{- end -}} {{/* {{- if and (ne $item.PrimaryModuleOwnerGHHandle "") (ne $item.PrimaryModuleOwnerDisplayName "") -}} */}}
+        {{- end -}} {{/* {{- if ne $item.PrimaryModuleOwnerGHHandle "" -}} */}}
         <br>
         {{- if ne $item.SecondaryModuleOwnerGHHandle "" -}}
           <a href="https://github.com/{{ $item.SecondaryModuleOwnerGHHandle }}">
@@ -251,24 +256,25 @@
           {{- if and (ne $item.SecondaryModuleOwnerGHHandle "") (ne $item.SecondaryModuleOwnerDisplayName "") -}}
             <br>
             {{ $item.SecondaryModuleOwnerDisplayName }}
-          {{- end -}}
-        {{- end -}}
+          {{- end -}} {{/* {{- if and (ne $item.SecondaryModuleOwnerGHHandle "") (ne $item.SecondaryModuleOwnerDisplayName "") -}}  */}}
+        {{- end -}} {{/* {{- if ne $item.SecondaryModuleOwnerGHHandle "" -}} */}}
       </td>
-    {{- end -}}
+    {{- end -}} {{/* end of if moduleType */}}
   </tr>
-  {{ $hasModulesAvailable = true }}
-  {{ end }}
-  {{ end }}
-  {{ if not $hasModulesAvailable }}
+  {{ $hasListableModules = true }}
+  {{ end }} {{/* end of if in include */}}
+  {{ end }} {{/* end of range */}}
+  {{ if not $hasListableModules }}
   <tr>
     <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
-    <td>❌ None available</td>
-    <td>❌ None available</td>
-    <td>❌ None available</td>
-    <td>❌ None available</td>
+    <td>❌ None listed</td>
+    <td>❌ None listed</td>
+    <td>❌ None listed</td>
+    <td>❌ None listed</td>
   </tr>
-  {{ end }}
+  {{ end }} {{/* end of if not hasListableModules */}}
 </table>
+<br>
 {{ else if eq $language "Terraform" }}
 <table>
   {{ if $useHeaderRow }}
@@ -284,9 +290,10 @@
   </thead>
   {{ end }}
   {{ range $item, $maps }}
-  {{ if not ( in $exclude $item.ModuleStatus ) }}
+  {{ $hasListableModules = false }}
+  {{ if in $include $item.ModuleStatus }}
   {{ $moduleLatestVersion = "N/A" }}
-    {{ if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") }}
+    {{ if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") }}
       {{ $repoURLSplit := strings.Split $item.RepoURL "/" }}
       {{ $repoName := index $repoURLSplit (sub (len $repoURLSplit) 1) }}
       {{ $repoNameSplit := strings.Split $repoName "-" }}
@@ -313,6 +320,11 @@
       {{ end }}
     {{ end }}
     {{ $trimmedModuleStatus := replace $item.ModuleStatus "Module " "" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Deprecated" "Deprecated :red_circle:" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Deprecated" "Deprecated :red_circle:" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Available" "Available :green_circle:" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Orphaned" "Orphaned :yellow_circle:" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Proposed" "Orphaned :white_circle:" }}
     {{ $trimmedAlternativeNames := replace $item.AlternativeNames "  " " " }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames ", " "," }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames "," ", " }}
@@ -324,7 +336,7 @@
       </td>
       <td> {{/* module name and link to the registry */}}
         {{- if $useLinks -}}
-          {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+          {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") -}}
             <a href="{{ $item.PublicRegistryReference }}">
               {{ $item.ModuleName }}
             </a>
@@ -339,7 +351,7 @@
           {{- if (eq $element.ParentModule $item.ModuleName) -}}
             {{ $child := trim (replace $element.ModuleName (print $item.ModuleName "/") "") "/" }}
             {{ if $useLinks }}
-              {{- if or (eq $element.ModuleStatus "Available :green_circle:") (eq $element.ModuleStatus "Orphaned :eyes:") -}}
+              {{- if or (eq $element.ModuleStatus "Available") (eq $element.ModuleStatus "Orphaned") -}}
                 <li style="margin-left: 20px;">
                   <a href="{{ $element.PublicRegistryReference }}" title="{{ $element.ModuleDisplayName }} | {{ $element.ModuleName }}">{{ $child }}</a>
                 </li>
@@ -354,7 +366,7 @@
       </td>
       <td style="text-align: center;"> {{/* link to the source code repo */}}
         {{- if $useLinks -}}
-          {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+          {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") -}}
             <a href="{{ $item.RepoURL }}" style="color: inherit; text-decoration: none; background-color: transparent;">📄</a>
           {{- else -}}
             {{ "n/a" }}
@@ -373,7 +385,7 @@
         {{- end -}}
       </td>
       <td> {{/* availability badge and versions  */}}
-        {{- if or (eq $item.ModuleStatus "Available :green_circle:") (eq $item.ModuleStatus "Orphaned :eyes:") -}}
+        {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") -}}
           <a href="{{ $item.PublicRegistryReference }}">
             <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $moduleLatestVersion }}-purple"/>
           </a>
@@ -406,20 +418,21 @@
       </td>
     {{- end -}}
   </tr>
-  {{ $hasModulesAvailable = true }}
+  {{ $hasListableModules = true }}
   {{ end }}
   {{ end }}
-  {{ if not $hasModulesAvailable }}
+  {{ if not $hasListableModules }}
   <tr>
     <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
-    <td>❌ None available</td>
-    <td>❌ None available</td>
-    <td>❌ None available</td>
-    <td>❌ None available</td>
-    <td>❌ None available</td>
+    <td>❌ None listed</td>
+    <td>❌ None listed</td>
+    <td>❌ None listed</td>
+    <td>❌ None listed</td>
+    <td>❌ None listed</td>
   </tr>
   {{ end }}
 </table>
+<br>
 {{ else }}
   {{ errorf "The %q shortcode requires a language parameter to be set either 'Bicep' or 'Terraform'. See %s" .Name .Position }}
 {{ end }}

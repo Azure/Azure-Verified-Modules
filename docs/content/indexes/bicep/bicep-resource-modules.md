@@ -12,6 +12,10 @@ description: Bicep Resource Module Index showing all available, orphaned and pla
 
 {{% expand title="➕ Additional information" %}}
 
+{{% notice style="grey" title="Legend" %}}
+{{% include file="/static/includes/module-status-legend.md" %}}
+{{% /notice %}}
+
 {{% notice style="info" %}}
 
 This page contains various views of the module index (catalog) for **Bicep Resource Modules**. To see these views, **click on the expandable sections** with the "➕" sign below.
@@ -30,19 +34,27 @@ Modules listed below that aren't shown with the status of **`Module Available �
 
 {{% /expand %}}
 
-### Published modules - 🟢 & 👀
+### Published modules - 🟢 & 🟡
 
 {{% expand title="➕ Published Modules - Module names, status and owners" expanded="true" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" exclude="Proposed :new:" %}}
+{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" include="Available,Orphaned" %}}
 
 {{% /expand %}}
 
-### Proposed modules - 🆕
+### Proposed modules - ⚪
 
 {{% expand title="➕ Proposed Modules - Module names, status and owners" expanded="false" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" exclude="Available :green_circle:,Orphaned :eyes:" %}}
+{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" include="Proposed" %}}
+
+{{% /expand %}}
+
+### Deprecated modules - 🔴
+
+{{% expand title="➕ Deprecated Modules - Module names, status and owners" expanded="false" %}}
+
+{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" include="Deprecated" %}}
 
 {{% /expand %}}
 
@@ -50,7 +62,7 @@ Modules listed below that aren't shown with the status of **`Module Available �
 
 {{% expand title="➕ All Modules - Module names, status and owners" expanded="false" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" %}}
+{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" include="Available,Orphaned,Proposed,Deprecated" %}}
 
 {{% /expand %}}
 
@@ -58,7 +70,7 @@ Modules listed below that aren't shown with the status of **`Module Available �
 
 {{% expand title="➕ Module Publication History - Module names, status and owners" expanded="false" %}}
 
-{{% moduleHistory header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" exclude="Proposed :new:" monthsToShow=9999 %}}
+{{% moduleHistory header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" exclude="Proposed" monthsToShow=9999 %}}
 
 {{% /expand %}}
 

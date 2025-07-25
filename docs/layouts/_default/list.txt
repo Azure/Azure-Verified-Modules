@@ -1,0 +1,15 @@
+# {{ .Title }}
+
+{{- $baseGithubURL := "https://raw.githubusercontent.com/Azure/Azure-Verified-Modules/refs/heads/main/docs/content" }}
+
+{{ if .Description }}{{ .Description | plainify }}{{ end }}
+
+{{ .Content | plainify | safeHTML }}
+
+## Pages in this section:
+{{ range .RegularPages }}- [{{ .Title }}]({{ $baseGithubURL }}/{{ .File.Path | replaceRE "^/?(.+)\\.md$" "$1.md" | replaceRE "\\\\" "/" }})
+{{ end }}
+
+---
+Source: {{ $baseGithubURL }}/{{ .File.Path | replaceRE "^/?(.+)\\.md$" "$1.md" | replaceRE "\\\\" "/" }}
+Last Modified: {{ .Date.Format "2006-01-02" }}

@@ -31,7 +31,7 @@ Resource modules **MUST** follow the below naming conventions (all lower case):
 
 ### Bicep Resource Module Naming
 
-- Naming convention: `avm/res/<hyphenated resource provider name>/<hyphenated ARM resource type>` (module name for registry)
+- Naming convention (module name for registry): `avm/res/<hyphenated resource provider name>/<hyphenated ARM resource type>`
 - Example: `avm/res/compute/virtual-machine` or `avm/res/managed-identity/user-assigned-identity`
 - Segments:
   - `res` defines this is a resource module
@@ -40,7 +40,8 @@ Resource modules **MUST** follow the below naming conventions (all lower case):
 
 #### Bicep Child Module Naming
 
-- Naming convention: `avm/res/<hyphenated resource provider name>/<hyphenated ARM resource type>/<hyphenated child resource type/<hyphenated grandchild resource type>/<hyphenated great grandchild resource type>/<etc.>` (module name for registry)
+- Naming convention (module name for registry):`avm/res/<hyphenated resource provider name>/<hyphenated ARM resource type>/` `<hyphenated child resource type/<hyphenated grandchild resource type>/<etc.>`
+
 - Example: `avm/res/network/virtual-network/subnet` or `avm/res/storage/storage-account/blob-service/container`
 - Segments:
   - `res` defines this is a resource module
