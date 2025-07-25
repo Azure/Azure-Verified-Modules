@@ -87,7 +87,7 @@ function Export-AzAdvertizerDataToCsv {
   foreach ($resource in $Data.Keys) {
     foreach ($type in $allTypes) {
       if ($Data[$resource].ContainsKey($type)) {
-        [array]$rules = $Data[$resource][$type] #| ConvertTo-Json -Compress
+        [array]$rules = $Data[$resource][$type]
         foreach ($rule in $rules) {
           $row = @{
             'ResourceType' = $resource
