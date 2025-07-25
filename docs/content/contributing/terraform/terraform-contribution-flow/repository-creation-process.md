@@ -64,7 +64,7 @@ This contribution flow is for **AVM Core Team members** only.
     $ownerSecondaryGitHubHandle = "<github user handle>" # Replace with the GitHub handle of the module owner
     $ownerSecondaryDisplayName = "<user display name>" # Replace with the display name of the module owner
 
-    ./New-Repository.ps1 `
+    ./scripts/New-Repository.ps1 `
         -moduleProvider $moduleProvider `
         -moduleName $moduleName `
         -moduleDisplayName $moduleDisplayName `
@@ -95,7 +95,7 @@ This contribution flow is for **AVM Core Team members** only.
     $ownerSecondaryGitHubHandle = "" # Replace with the GitHub handle of the module owner
     $ownerSecondaryDisplayName = "" # Replace with the display name of the module owner
 
-    ./New-Repository.ps1 `
+    ./scripts/New-Repository.ps1 `
         -moduleProvider $moduleProvider `
         -moduleName $moduleName `
         -moduleDisplayName $moduleDisplayName `
