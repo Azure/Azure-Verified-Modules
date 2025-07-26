@@ -136,7 +136,7 @@ WAF == [Well-Architected Framework](https://learn.microsoft.com/en-us/azure/well
 
 {{% /notice %}}
 
-At a high-level "WAF Aligned" means, where possible and appropriate, AVM Modules will align to recommendations and default input parameters/variables to values that algin to **high impact/priority/severity recommendations** in the following frameworks and resources:
+At a high-level "WAF Aligned" means, where possible and appropriate, AVM Modules will align to recommendations and default input parameters/variables to values that align to **high impact/priority/severity recommendations** in the following frameworks and resources:
 
 - [Well-Architected Framework (WAF)](https://learn.microsoft.com/azure/well-architected/what-is-well-architected-framework)
 - [Reliability Hub](https://learn.microsoft.com/azure/reliability/overview-reliability-guidance)

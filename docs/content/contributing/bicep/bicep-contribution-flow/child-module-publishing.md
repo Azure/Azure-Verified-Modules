@@ -38,7 +38,7 @@ Supporting child module publishing for other module categories, such as pattern 
   * **Parent module template**: In the main.bicep template of the child module direct parent, add `enableReferencedModulesTelemetry` variable and pass it as `enableTelemetry` value down to the child module deployment.
   * **Version**: Add the version.json to the child module folder, set version to `0.1`.
   * **Changelog**: Add a new CHANGELOG.md to the child module folder and update the changelog of all its versioned parents with a new patch version, up to the top-level parent.
-  * **Set-AVMModule**: Run [Set-AVMModule`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1), test your changes, raise a PR.
+  * **Set-AVMModule**: Run [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1), test your changes, raise a PR.
 
 For more detailed guidance, please refer below.
 
@@ -134,7 +134,7 @@ Please follow the steps below:
     "version": "0.1"
   }
   ```
-- Update Chengelogs
+- Update Changelogs
   - Add a new CHANGELOG.md to the child module folder, with the following sample content. Make sure to replace the `<avm/res/path/to/child-module>` placeholder with the name of the child module.
     ```markdown
     # Changelog
@@ -164,7 +164,7 @@ Please follow the steps below:
       - None
 
     ```
-- As per usual pull request process, Run [Set-AVMModule`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1), test your changes locally and/or via the top-level module pipeline, raise a PR and attach a status badge proving successful validation.
+- As per usual pull request process, Run [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1), test your changes locally and/or via the top-level module pipeline, raise a PR and attach a status badge proving successful validation.
 
 {{% notice style="tip" %}}
 
