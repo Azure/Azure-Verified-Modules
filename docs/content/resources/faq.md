@@ -432,7 +432,7 @@ Resource modules are multi-purpose; therefore, they contain a lot of dynamic exp
 
 You can reference Bicep child modules that have been explicitly published to the public bicep registry.
 
-Today, publishing child-modules separately from its parents does not happen by default, and follows an on-demand process, meaning only child modules explicitly allowed for publishing can be referenced from the registy.
+Today, publishing child-modules separately from their parents does not happen by default, and follows an on-demand process. Only child modules explicitly allowed for publishing can be referenced from the registy.
 The process is currently in a pilot phase, and documented [here]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/child-module-publishing).
 
 If not directly, you can still reference child modules via their parents. You can reference e.g. a `avm/res/key-vault/vault/key` through its parent `avm/res/key-vault/vault`. Alternatively, you can grab the module folder locally, although this is a workaround and not recommended.

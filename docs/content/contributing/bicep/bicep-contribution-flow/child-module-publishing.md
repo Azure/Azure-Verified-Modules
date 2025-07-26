@@ -125,7 +125,6 @@ Please follow the steps below:
     ```
   - Pass the `enableReferencedModulesTelemetry` variable as the `enableTelemetry` value down to the child module deployment.
     ```bicep
-    ...
     enableTelemetry: enableReferencedModulesTelemetry
     ```
 - Add the version.json file to the child module folder and set version to `0.1`.
