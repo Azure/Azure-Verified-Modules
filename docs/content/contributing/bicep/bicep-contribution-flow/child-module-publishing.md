@@ -164,7 +164,7 @@ Please follow the steps below:
       - None
 
     ```
-- As per usual pull request process, Run [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1), test your changes locally and/or via the top-level module pipeline, raise a PR and attach a status badge proving successful validation.
+- As per usual pull request process, run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) script, test your changes locally and/or via the top-level module pipeline, raise a PR and attach a status badge proving successful validation.
 
 {{% notice style="tip" %}}
 
