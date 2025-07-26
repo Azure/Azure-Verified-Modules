@@ -31,7 +31,7 @@ This page will help you use GitHub Copilot in Visual Studio Code to get an AI ac
 > [!NOTE]
 > We recommend using Visual Studio Code. This guide focuses on GitHub Copilot & GitHub Copilot Chat in Visual Studio Code. Many of the concepts and approaches may be available in other IDEs that support GitHub Copilot, such as JetBrains IDEs and Visual Studio. But at the time of writing this Guide, Visual Studio Code provides the most complete feature set for GitHub Copilot users.
 
-## Getting Setup
+## Setting up your Environment
 
 To get started with using GitHub Copilot for AVM module development, you'll need to have the following prerequisites in place:
 
@@ -41,12 +41,33 @@ To get started with using GitHub Copilot for AVM module development, you'll need
 > You can also use GitHub Codespaces to work on thees repos without needing to install anything locally. For example, open the [https://github.com/Azure/bicep-registry-modules](https://github.com/Azure/bicep-registry-modules) repository in GitHub Codespaces by clicking the button below:
 > [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Azure/bicep-registry-modules)
 
-1. GitHub Copilot extension installed and configured
-1. Basic understanding of AVM modules and their structure
+1. Install and configure the GitHub Copilot and GitHub Copilot Chat extensions, and optional, but recommended the GitHub Copilot for Azure extension.
 
-Topics/concepts that are relevant and applicable for both Bicep and Terraform.
+   | Extension | Install VS Code | Install VS Code Insiders |
+   |-----------|-----------------|--------------------------|
+   | GitHub Copilot | [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect?url=vscode%3Aextension%2FGitHub.copilot) | [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Aextension%2FGitHub.copilot) |
+   | GitHub Copilot Chat | [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect?url=vscode%3Aextension%2FGitHub.copilot-chat) | [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Aextension%2FGitHub.copilot-chat) |
+   | GitHub Copilot for Azure | [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect?url=vscode%3Aextension%2Fms-azuretools.vscode-azure-github-copilot) | [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Aextension%2Fms-azuretools.vscode-azure-github-copilot) |
+
+> [!NOTE]
+> If you are using GitHub Codespaces, these extensions are already installed and configured for you.
+
+1. Open Visual Studio Code or Visual Studio Code Insiders and sign in to GitHub Copilot using your GitHub account. See [Set up Copilot in VS Code](https://code.visualstudio.com/docs/copilot/setup) for more information.
+
+> [!NOTE]
+> Although a GitHub free account is sufficient to use GitHub Copilot to work with AVM, a GitHub Copilot Business or Pro subscription will provide acess to premium models, which enabled more reliably dealing with more complex AVM scenarios.
 
 ### Configuring MCP Servers
+
+Now that you've enabled GitHub Copilot, you can give it access to **tools**, such as searching _Microsoft Learn_ or getting _Azure Bicep Best practices_. Some VS Code extentions automatically provide you access to tools when you install them (for example, the [Github Copilot for Azure](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azure-github-copilot) extension. But other tools may be provided by [Model Context Protocol](https://modelcontextprotocol.io/introduction) (MCP) servers.
+
+You should enable GitHub Copilot to access the following MCP Servers:
+
+| MCP Server | Description | Install VS Code | Install VS Code Insiders |
+|------------|-------------|-----------------|--------------------------|
+| Microsoft Docs | Search and retrieve content from Microsoft Learn, Azure documentation, and official Microsoft technical resources. | [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](vscode:mcp/install?%7B%22name%22%3A%22microsoft-docs%22%2C%22gallery%22%3Atrue%2C%22url%22%3A%22https%3A%2F%2Flearn.microsoft.com%2Fapi%2Fmcp%22%7D) | [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](vscode-insiders:mcp/install?%7B%22name%22%3A%22microsoft-docs%22%2C%22gallery%22%3Atrue%2C%22url%22%3A%22https%3A%2F%2Flearn.microsoft.com%2Fapi%2Fmcp%22%7D) |
+
+There are many other MCP Servers that you can configure GitHub Copilot to use, such as [GitHub](vscode:mcp/install?%7B%22name%22%3A%22github%22%2C%22gallery%22%3Atrue%2C%22url%22%3A%22https%3A%2F%2Fapi.githubcopilot.com%2Fmcp%2F%22%7D), but these aren't required to get started with AVM module development. You can find a list of MCP Servers that are curated by the Visual Studio Code team on the [MCP Servers for agent mode](https://code.visualstudio.com/mcp) page.
 
 ### Adding Prompt Files
 

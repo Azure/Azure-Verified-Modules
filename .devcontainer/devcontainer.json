@@ -24,7 +24,8 @@
         "streetsidesoftware.code-spell-checker",
         "GitHub.codespaces",
         "GitHub.copilot",
-        "GitHub.copilot-chat"
+        "GitHub.copilot-chat",
+        "ms-azuretools.vscode-azure-github-copilot"
       ]
     }
   },
