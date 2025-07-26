@@ -20,7 +20,7 @@ priority: 10030
 
 ## ID: BCPFR4 - Category: Composition - Telemetry Enablement
 
-To comply with specifications outlined in [SFR3]({{% siteparam base %}}/spec/SFR3) & [SFR4]({{% siteparam base %}}/spec/SFR4) you **MUST** incorporate the following code snippet into your modules. Place this code sample in the "top level" `main.bicep` file; it is not necessary to include it in any nested Bicep files (child modules).
+To comply with specifications outlined in [SFR3]({{% siteparam base %}}/spec/SFR3) & [SFR4]({{% siteparam base %}}/spec/SFR4) you **MUST** incorporate the following code snippet into your modules. Place this code sample in the "top level" `main.bicep` file; it is not necessary to include it in any nested Bicep files (child modules), unless they are marked for direct publishing (Ref [Child module publishing]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/child-module-publishing)).
 
 {{< highlight lineNos="false" type="bicep" wrap="true" title="sample.telem.bicep" >}}
   {{% include file="/static/includes/sample.telem.bicep" %}}

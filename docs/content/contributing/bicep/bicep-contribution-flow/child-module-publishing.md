@@ -29,9 +29,18 @@ Supporting child module publishing for other module categories, such as pattern 
 
 ## Quick guide
 
-TLDR
+*TLDR*
 
+* **Check prerequisites**: Existing [issue in AVM](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Class%3A%20Child%20Module%20%3Apackage%3A%22%20label%3A%22Language%3A%20Bicep%20%3Amuscle%3A%22), telemetry ID prefix assigned in [CSV {{% icon icon="download" %}}]({{% siteparam base %}}/module-indexes/BicepResourceModules.csv), module registered in the [MAR-file](https://github.com/microsoft/mcr/blob/main/teams/bicep/bicep.yml).
+* Implement required changes in your fork:
+  * **Allowed list**: If not present, add child module to [child-module-publish-allowed-list.json](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/staticValidation/compliance/helper/child-module-publish-allowed-list.json).
+  * **Child module template**: Add `enableTelemetry` parameter and `avmTelemetry` deployment to child main.bicep template.
+  * **Parent module template**: In the main.bicep template of the child module direct parent, add `enableReferencedModulesTelemetry` variable and pass it as `enableTelemetry` value down to the child module deployment.
+  * **Version**: Add the version.json to the child module folder, set version to `0.1`.
+  * **Changelog**: Add a new CHANGELOG.md to the child module folder and update the changelog of all its versioned parents with a new patch version, up to the top-level parent.
+  * **Set-AVMModule**: Run [Set-AVMModule`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1), test your changes, raise a PR.
 
+For more detailed guidance, please refer below.
 
 ## Prerequisites
 
@@ -39,13 +48,13 @@ Before jumping into the implementation, make sure the following prerequisites ar
 
 ### Bicep Child Module Proposal issue
 
-Ensure there is an AVM issue open already, proposing the child module to be published. If not, please create one using the [Bicep Child Module Proposal issue template](https://github.com/Azure/Azure-Verified-Modules/issues/new?template=4_module_proposal_bicep_child.yml).
+Ensure there is an [AVM issue open](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Class%3A%20Child%20Module%20%3Apackage%3A%22%20label%3A%22Language%3A%20Bicep%20%3Amuscle%3A%22) already, proposing the child module to be published. If not, please create one using the [Bicep Child Module Proposal issue template](https://github.com/Azure/Azure-Verified-Modules/issues/new?template=4_module_proposal_bicep_child.yml).
 
 {{% notice style="note" %}}
 
 Please understand the difference between publishing an existing child module and extending a parent module with a not yet implemented child module functionality.
 
-The Bicep Child Module Proposal issue intends to cover the former, so the intended child module must already exist in the [BRM (Bicep Registry Modules)](https://aka.ms/BRM) repository source code.
+The Bicep Child Module Proposal issue intends to cover the former, so the intended child module MUST already exist in the [BRM (Bicep Registry Modules)](https://aka.ms/BRM) repository source code.
 
 {{% /notice %}}
 
@@ -77,56 +86,89 @@ The MAR-file can only be accessed by Microsoft FTEs. If you are missing access, 
 
 ## Implementation
 
-everyone's contribution is welcome. you can implement via the following steps
+The quickest way to get the child module published is to enable it yourself, contributing via a pull request to the [BRM](https://aka.ms/BRM) repository.
 
-- until pilot phase make sure child module name listed in the allowed list, if not add, keeping alphab order
-- add version.json at 0.1
-- add changelog initial version
-- update parent changelog, example
-- update child module main with
-    - telemetry
-    - enable telemetry parameter
--
+Please follow the steps below:
 
-## Verify the publishing
+- Make sure the child module name is listed in the publishing allowed list [child-module-publish-allowed-list.json](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/staticValidation/compliance/helper/child-module-publish-allowed-list.json). If not, add it to the file, keeping an alphabetical order. This step is relevant until the process is in a pilot phase.
+- Update child module main.bicep template to support telemetry, as per [SFR4]({{% siteparam base %}}/spec/SFR4), [SFR3]({{% siteparam base %}}/spec/SFR3) and [BCPFR4]({{% siteparam base %}}/spec/BCPFR4)
+  - Add the `enableTelemetry` parameter with a default value of `true`.
+    ```bicep
+    @description('Optional. Enable/Disable usage telemetry for module.')
+    param enableTelemetry bool = true
+    ```
+  - Add the `avmTelemetry` deployment, referencing below template. Make sure to replace the `<ReplaceWith-TelemetryIdPrefix>` placeholder with the assigned telemetry ID prefix value that you noted down when checking prerequisites.
+    ```bicep
+      #disable-next-line no-deployments-resources
+      resource avmTelemetry 'Microsoft.Resources/deployments@2024-03-01' = if (enableTelemetry) {
+        name: '<ReplaceWith-TelemetryIdPrefix>.${replace('-..--..-', '.', '-')}.${substring(uniqueString(deployment().name), 0, 4)}'
+        properties: {
+          mode: 'Incremental'
+          template: {
+            '$schema': 'https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#'
+            contentVersion: '1.0.0.0'
+            resources: []
+            outputs: {
+              telemetry: {
+                type: 'String'
+                value: 'For more information, see https://aka.ms/avm/TelemetryInfo'
+              }
+            }
+          }
+        }
+      }
+    ```
+- Update the main.bicep template of the child module direct parent, as per [BCPFR7]({{% siteparam base %}}/spec/BCPFR7).
+  - Add the `enableReferencedModulesTelemetry` variable with a default value of `false`.
+    ```bicep
+    var enableReferencedModulesTelemetry = false
+    ```
+  - Pass the `enableReferencedModulesTelemetry` variable as the `enableTelemetry` value down to the child module deployment.
+    ```bicep
+    ...
+    enableTelemetry: enableReferencedModulesTelemetry
+    ```
+- Add the version.json file to the child module folder and set version to `0.1`.
+  ```json
+  {
+    "$schema": "https://aka.ms/bicep-registry-module-version-file-schema#",
+    "version": "0.1"
+  }
+  ```
+- Update Chengelogs
+  - Add a new CHANGELOG.md to the child module folder, with the following sample content. Make sure to replace the `<avm/res/path/to/child-module>` placeholder with the name of the child module.
+    ```markdown
+    # Changelog
 
-### Ref PRs
+    The latest version of the changelog can be found [here](https://github.com/Azure/bicep-registry-modules/blob/main/<avm/res/path/to/child-module>/CHANGELOG.md).
 
-You can reference the follwing pull requests proposing a child module for publishing
+    ## 0.1.0
 
-ref one direct child
-ref one indirect child
+    ### Changes
 
-#### notes - delete
+    - Initial version
 
-Until they are being published directly they can however be consumed via their top-level parents.
+    ### Breaking Changes
 
-For example, using a storage account module allows to also deploy file shares and blob containers. If the file share child module is also directly published, it is possible, in addition, to directly consume the file share child module from the registry
+    - None
+    ```
+  - Update the changelog of all the child module versioned parents with a new patch version, up to the top-level parent. Refer below for an example content section:
+    ```markdown
+      ## <CurrentMajor>.<CurrentMinor>.<CurrentPatch+1>
 
+      ### Changes
 
+      - Enabling child module `<avm/res/path/to/child-module>` for publishing (added telemetry option)
 
-There is no . At this time publishing child modules happens on demand
+      ### Breaking Changes
 
-but can only be consumed via their top level parents.
+      - None
 
-For example, without being published explicitly, a sql server database can be created via its parent, but cannot be referenced via the registry on its own
+    ```
+- As per usual pull request process, Run [Set-AVMModule`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1), test your changes locally and/or via the top-level module pipeline, raise a PR and attach a status badge proving successful validation.
 
+{{% notice style="tip" %}}
 
-{{% notice style="note" %}}
-
-Understand the difference between publishing an existing child module and extending a parent module with a not yet implemented child module functionality.
-
-This page details the process covering the former.
+Reference [This pull request](https://github.com/Azure/bicep-registry-modules/pull/5503) as an example for proposing a child module for publishing.
 
 {{% /notice %}}
-
-
-Before covering the step by step process to enable a bicep child module for publishing, it is important to note that publishing an existing child module is different than extending a parent module with a not yet existing child module functionality.
-
-In the former case, we are looking at code already existing in the brm repo, and already consumable via the registry, but only via its top-level parent module.
-
-In the latter case instead, we are looking at a missing functionality for
-
-If looking for the latter, i.e. extending a module functionality, you must instead open a feature request in the BRM repo
-
-
