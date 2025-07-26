@@ -37,17 +37,17 @@ To get started with using GitHub Copilot for AVM module development, you'll need
 
 1. [Visual Studio Code](https://code.visualstudio.com/download) or [Visual Studio Code Insiders](https://code.visualstudio.com/insiders/) installed.
 
-> [!NOTE]
-> You can also use GitHub Codespaces to work on thees repos without needing to install anything locally. For example, open the [https://github.com/Azure/bicep-registry-modules](https://github.com/Azure/bicep-registry-modules) repository in GitHub Codespaces by clicking the button below:
-> [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Azure/bicep-registry-modules)
+  > [!NOTE]
+  > You can also use GitHub Codespaces to work on thees repos without needing to install anything locally. For example, open the [https://github.com/Azure/bicep-registry-modules](https://github.com/Azure/bicep-registry-modules) repository in GitHub Codespaces by clicking the button below:
+  > [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Azure/bicep-registry-modules)
 
 1. Install and configure the GitHub Copilot and GitHub Copilot Chat extensions, and optional, but recommended the GitHub Copilot for Azure extension.
 
-   | Extension | Install VS Code | Install VS Code Insiders |
-   |-----------|-----------------|--------------------------|
-   | GitHub Copilot | [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect?url=vscode%3Aextension%2FGitHub.copilot) | [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Aextension%2FGitHub.copilot) |
-   | GitHub Copilot Chat | [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect?url=vscode%3Aextension%2FGitHub.copilot-chat) | [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Aextension%2FGitHub.copilot-chat) |
-   | GitHub Copilot for Azure | [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect?url=vscode%3Aextension%2Fms-azuretools.vscode-azure-github-copilot) | [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Aextension%2Fms-azuretools.vscode-azure-github-copilot) |
+  | Extension | Install VS Code | Install VS Code Insiders |
+  |-----------|-----------------|--------------------------|
+  | GitHub Copilot | [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect?url=vscode%3Aextension%2FGitHub.copilot) | [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Aextension%2FGitHub.copilot) |
+  | GitHub Copilot Chat | [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect?url=vscode%3Aextension%2FGitHub.copilot-chat) | [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Aextension%2FGitHub.copilot-chat) |
+  | GitHub Copilot for Azure | [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect?url=vscode%3Aextension%2Fms-azuretools.vscode-azure-github-copilot) | [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Aextension%2Fms-azuretools.vscode-azure-github-copilot) |
 
 > [!NOTE]
 > If you are using GitHub Codespaces, these extensions are already installed and configured for you.
