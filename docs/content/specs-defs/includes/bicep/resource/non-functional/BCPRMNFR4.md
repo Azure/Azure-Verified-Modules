@@ -39,7 +39,11 @@ It is **highly** recommended to publish multi-scoped modules as resource modules
 
   > **Example:** [avm/<b>ptn</b>/authorization/role-assignment](https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/authorization/role-assignment)
 
-  > **Note:** The following instructions consider all deployment scopes. Your module may only deploy to a subset of the same and you should map the conventions to your case.
+{{% notice style="note" %}}
+
+The following instructions consider all deployment scopes. Your module may only deploy to a subset of the same and you should map the conventions to your case.
+
+{{% /notice %}}
 
 To successfully implement a multi-scoped module as a pattern modules you have to adhere to the following convention:
 
@@ -88,7 +92,11 @@ Example: To use a role-assignment pattern module (which would be written for all
 
   > **Example:** [avm/<b>res</b>/authorization/role-assignment](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/authorization/role-assignment)
 
-  > **Note:** The following instructions consider all deployment scopes. Your module may only deploy to a subset of the same and you should map the conventions to your case.
+{{% notice style="note" %}}
+
+The following instructions consider all deployment scopes. Your module may only deploy to a subset of the same and you should map the conventions to your case.
+
+{{% /notice %}}
 
 To successfully implement a multi-scoped module as a resource modules you have to adhere to the following convention:
 
