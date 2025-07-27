@@ -89,7 +89,35 @@ Chat modes in Visual Studio Code let you customize how GitHub Copilot Chat respo
 
 To prevent these issues we can set up custom chat modes that give GitHub Copilot clear guidance and context for AVM scenarios. This includes providing clear instructions on how GitHub Copilot should retrieve AVM best practices, module documentation and the current versions of each module.
 
+| IaC Type | Title | Description | Install |
+| -------- | ----- | ----------- | ------- |
+| Bicep | [Azure AVM Bicep mode](chatmodes/azure-verified-modules-bicep.chatmode.md) | Create, update, or review Azure IaC in Bicep using Azure Verified Modules (AVM). | [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect?url=vscode%3Achat-chatmode%2Finstall%3Furl%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2Fgithub%2Fawesome-copilot%2Fmain%2Fchatmodes%2Fazure-verified-modules-bicep.chatmode.md) [![Install in VS Code](https://img.shields.io/badge/VS_Code_Insiders-Install-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Achat-chatmode%2Finstall%3Furl%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2Fgithub%2Fawesome-copilot%2Fmain%2Fchatmodes%2Fazure-verified-modules-bicep.chatmode.md) |
+| Terraform | [Azure AVM Terraform mode](chatmodes/azure-verified-modules-terraform.chatmode.md) | Create, update, or review Azure IaC in Terraform using Azure Verified Modules (AVM). | [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect?url=vscode%3Achat-chatmode%2Finstall%3Furl%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2Fgithub%2Fawesome-copilot%2Fmain%2Fchatmodes%2Fazure-verified-modules-terraform.chatmode.md) [![Install in VS Code](https://img.shields.io/badge/VS_Code_Insiders-Install-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Achat-chatmode%2Finstall%3Furl%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2Fgithub%2Fawesome-copilot%2Fmain%2Fchatmodes%2Fazure-verified-modules-terraform.chatmode.md) |
+
+{{% notice style="note" title="Awesome-Copilot Repository on GitHub" %}}
+
+These custom chat modes are available in the [GitHub Awesome Copilot repository](https://github.com/github/awesome-copilot).
+
+{{% /notice %}}
+
 For more information on creating custom chat modes in Visual Studio Code, see [Custom chat modes](https://code.visualstudio.com/docs/copilot/chat/chat-modes#_custom-chat-modes) page in the Visual Studio Code documentation.
+
+#### To install a custom chat mode
+
+1. Click the custom chat mode to install from the table above.
+1. Confirm that you want to install the custom chat mode:
+
+  <img src="{{% siteparam base %}}/images/usage/quickstart/github-copilot/github-copilot-chat-mode-install-confirm.png" alt="Confirm installation of Prompt File into VS Code" style="max-width:800px;" />
+
+1. Select whether to install the custom chat mode into this workspace (`.github/chatmode/`) or into your global user account, making it available to every workspace you work on.
+
+  <img src="{{% siteparam base %}}/images/usage/quickstart/github-copilot/github-copilot-chat-mode-install-location.png" alt="Select scope of Prompt File" style="max-width:800px;" />
+
+1. You can choose a name for the custom chat mode, or leave it as the default name.
+
+  <img src="{{% siteparam base %}}/images/usage/quickstart/github-copilot/github-copilot-chat-mode-install-name.png" alt="Select scope of Prompt File" style="max-width:800px;" />
+
+Once the custom chat mode is installed, you can switch to it in the GitHub Copilot chat box by clicking the `Agent` dropdown and selecting the custom chat mode from the list of available chat modes.
 
 ### Custom Prompt Files
 
