@@ -28,8 +28,11 @@ Using GitHub Copilot in Visual Studio Code (VS Code) will have a significant ben
 
 This page will help you use GitHub Copilot in Visual Studio Code to get an AI accelerated benefit when building your scenarios. It will also cover common concepts, approaches and tips that will help you get the most out of GitHub Copilot when working with AVM modules for both Bicep and Terraform.
 
-> [!NOTE]
-> We recommend using Visual Studio Code. This guide focuses on GitHub Copilot & GitHub Copilot Chat in Visual Studio Code. Many of the concepts and approaches may be available in other IDEs that support GitHub Copilot, such as JetBrains IDEs and Visual Studio. But at the time of writing this Guide, Visual Studio Code provides the most complete feature set for GitHub Copilot users.
+{{% notice style="Visual Studio Code Recommended" %}}
+
+We currently recommend using Visual Studio Code. This guide focuses on GitHub Copilot & GitHub Copilot Chat in Visual Studio Code. Many of the concepts and approaches may be available in other IDEs that support GitHub Copilot, such as JetBrains IDEs and Visual Studio. But at the time of writing this Guide, Visual Studio Code provides the most complete feature set for GitHub Copilot users.
+
+{{% /notice %}}
 
 ## Setting up your Environment
 
@@ -37,9 +40,12 @@ To get started with using GitHub Copilot for AVM module development, you'll need
 
 1. [Visual Studio Code](https://code.visualstudio.com/download) or [Visual Studio Code Insiders](https://code.visualstudio.com/insiders/) installed.
 
-  > [!NOTE]
-  > You can also use GitHub Codespaces to work on thees repos without needing to install anything locally. For example, open the [https://github.com/Azure/bicep-registry-modules](https://github.com/Azure/bicep-registry-modules) repository in GitHub Codespaces by clicking the button below:
-  > [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Azure/bicep-registry-modules)
+  {{% notice style="note" title="GitHub Codespaces" %}}
+
+  You can also use GitHub Codespaces to work on thees repos without needing to install anything locally. For example, open the [https://github.com/Azure/bicep-registry-modules](https://github.com/Azure/bicep-registry-modules) repository in GitHub Codespaces by clicking the button below:
+  [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Azure/bicep-registry-modules)
+
+  {{% /notice %}}
 
 1. Install and configure the GitHub Copilot and GitHub Copilot Chat extensions, and optional, but recommended the GitHub Copilot for Azure extension.
 
@@ -49,13 +55,19 @@ To get started with using GitHub Copilot for AVM module development, you'll need
   | GitHub Copilot Chat | [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect?url=vscode%3Aextension%2FGitHub.copilot-chat) | [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Aextension%2FGitHub.copilot-chat) |
   | GitHub Copilot for Azure | [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect?url=vscode%3Aextension%2Fms-azuretools.vscode-azure-github-copilot) | [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Aextension%2Fms-azuretools.vscode-azure-github-copilot) |
 
-> [!NOTE]
-> If you are using GitHub Codespaces, these extensions are already installed and configured for you.
+{{% notice style="note" title="GitHub Codespaces" %}}
+
+If you are using GitHub Codespaces, these extensions are already installed and configured for you.
+
+{{% /notice %}}
 
 1. Open Visual Studio Code or Visual Studio Code Insiders and sign in to GitHub Copilot using your GitHub account. See [Set up Copilot in VS Code](https://code.visualstudio.com/docs/copilot/setup) for more information.
 
-> [!NOTE]
-> Although a GitHub free account is sufficient to use GitHub Copilot to work with AVM, a GitHub Copilot Business or Pro subscription will provide acess to premium models, which enabled more reliably dealing with more complex AVM scenarios.
+{{% notice style="note" title="GitHub Copilot Account" %}}
+
+Although a GitHub free account is sufficient to use GitHub Copilot to work with AVM, a GitHub Copilot Business or Pro subscription will provide acess to premium models, which enabled more reliably dealing with more complex AVM scenarios.
+
+{{% /notice %}}
 
 ### Configuring MCP Servers
 
@@ -69,11 +81,51 @@ You should enable GitHub Copilot to access the following MCP Servers:
 
 There are many other MCP Servers that you can configure GitHub Copilot to use, such as [GitHub](vscode:mcp/install?%7B%22name%22%3A%22github%22%2C%22gallery%22%3Atrue%2C%22url%22%3A%22https%3A%2F%2Fapi.githubcopilot.com%2Fmcp%2F%22%7D), but these aren't required to get started with AVM module development. You can find a list of MCP Servers that are curated by the Visual Studio Code team on the [MCP Servers for agent mode](https://code.visualstudio.com/mcp) page.
 
-### Adding Prompt Files
+### Instruction Files
 
-### Adding Modes
+TBC - currently no AVM specific instruction files are available (there are TF and Bicep ones though)
+
+### Custom Chat Modes
+
+TBC
+
+### Custom Prompt Files
+
+Custom prompt files allow you to define reusable prompts that can be used with GitHub Copilot Chat to perform complex mulit-step tasks. These prompts can be used to help you with common tasks when working with AVM modules, such as updating your Bicep files to use the latest versions of Azure Verified Modules (AVM).
+
+It is recommended to install the following prompt files to help you perform common tasks when working with AVM modules:
+
+| IaC Type | Title | Description | Install |
+| -------- | ----- | ----------- | ------- |
+| Bicep | [Update Azure Verified Modules in Bicep Files](prompts/update-avm-modules-in-bicep.prompt.md) | Update all the Azure Verified Modules (AVM) in the selected Bicep files to the latest versions. | [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect?url=vscode%3Achat-prompt%2Finstall%3Furl%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2Fgithub%2Fawesome-copilot%2Fmain%2Fprompts%2Fupdate-avm-modules-in-bicep.prompt.md) [![Install in VS Code](https://img.shields.io/badge/VS_Code_Insiders-Install-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Achat-prompt%2Finstall%3Furl%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2Fgithub%2Fawesome-copilot%2Fmain%2Fprompts%2Fupdate-avm-modules-in-bicep.prompt.md) |
+| Terraform | Update Azure Verified Modules in Terraform Files | Not yet available | Coming soon |
+
+{{% notice style="note" title="Awesome-Copilot Repository on GitHub" %}}
+
+These prompt files are available in the [GitHub Awesome Copilot repository](https://github.com/github/awesome-copilot).
+
+{{% /notice %}}
+
+#### To install a prompt file
+
+1. Click the prompt file to install from the table.
+1. Confirm that you want to install the prompt file:
+
+  <img src="{{% siteparam base %}}/images/usage/quickstart/github-copilot/github-copilot-prompt-file-install-confirm.png" alt="Confirm installation of Prompt File into VS Code" style="max-width:800px;" />
+
+1. Select whether to install the prompt file into this workspace (`.github/prompts/`) or into your global user account, making it available to every workspace you work on.
+
+  <img src="{{% siteparam base %}}/images/usage/quickstart/github-copilot/github-copilot-prompt-file-install-location.png" alt="Select scope of Prompt File" style="max-width:800px;" />
+
+1. You can choose a name for the prompt file, or leave it as the default name.
+
+  <img src="{{% siteparam base %}}/images/usage/quickstart/github-copilot/github-copilot-prompt-file-install-name.png" alt="Select scope of Prompt File" style="max-width:800px;" />
+
+Once the prompt file is installed, you can use it by typing `/` in the GitHub Copilot Agent input box and selecting the prompt file from the list of available prompts.
 
 ## Using GitHub Copilot with AVM IaC
+
+GitHub Copilot can significantly enhance your productivity when working with Azure Verified Modules (AVM) for both Bicep and Terraform. It can assist you in various tasks, such as creating new AVM IaC from scratch, copying and adapting existing AVM code snippets, converting non-AVM IaC to use AVM, refactoring existing AVM IaC to use different technologies or architectures, updating existing AVM modules to use the latest version, and creating documentation for your AVM IaC.
 
 ### Creating AVM IaC from Scratch
 
