@@ -69,7 +69,7 @@ Although a GitHub free account is sufficient to use GitHub Copilot to work with 
 
 {{% /notice %}}
 
-### Configuring MCP Servers
+### Adding MCP Servers
 
 Now that you've enabled GitHub Copilot, you can give it access to **tools**, such as searching _Microsoft Learn_ or getting _Azure Bicep Best practices_. Some VS Code extentions automatically provide you access to tools when you install them (for example, the [Github Copilot for Azure](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azure-github-copilot) extension. But other tools may be provided by [Model Context Protocol](https://modelcontextprotocol.io/introduction) (MCP) servers.
 
@@ -81,13 +81,15 @@ You should enable GitHub Copilot to access the following MCP Servers:
 
 There are many other MCP Servers that you can configure GitHub Copilot to use, such as [GitHub](vscode:mcp/install?%7B%22name%22%3A%22github%22%2C%22gallery%22%3Atrue%2C%22url%22%3A%22https%3A%2F%2Fapi.githubcopilot.com%2Fmcp%2F%22%7D), but these aren't required to get started with AVM module development. You can find a list of MCP Servers that are curated by the Visual Studio Code team on the [MCP Servers for agent mode](https://code.visualstudio.com/mcp) page.
 
-### Instruction Files
-
-TBC - currently no AVM specific instruction files are available (there are TF and Bicep ones though)
+For more information on configuring MCP Servers in Visual Studio Code, see the [Model Context Protocol](https://code.visualstudio.com/docs/copilot/chat/mcp-servers) page in the Visual Studio Code documentation.
 
 ### Custom Chat Modes
 
-TBC
+Chat modes in Visual Studio Code let you customize how GitHub Copilot Chat responds for different tasks—like answering questions, editing code, or running automated workflows. You can easily switch between modes in the Chat view to match what you need to do. The default Agent chat mode is great for general tasks, but often makes mistakes or assumptions when it comes to building IaC using AVM modules. For example, it is extremely common for GitHub Copilot to use older or even hallucinated AVM modules.
+
+To prevent these issues we can set up custom chat modes that give GitHub Copilot clear guidance and context for AVM scenarios. This includes providing clear instructions on how GitHub Copilot should retrieve AVM best practices, module documentation and the current versions of each module.
+
+For more information on creating custom chat modes in Visual Studio Code, see [Custom chat modes](https://code.visualstudio.com/docs/copilot/chat/chat-modes#_custom-chat-modes) page in the Visual Studio Code documentation.
 
 ### Custom Prompt Files
 
@@ -123,7 +125,11 @@ These prompt files are available in the [GitHub Awesome Copilot repository](http
 
 Once the prompt file is installed, you can use it by typing `/` in the GitHub Copilot Agent input box and selecting the prompt file from the list of available prompts.
 
-## Using GitHub Copilot with AVM IaC
+### Instruction Files
+
+TBC - currently no AVM specific instruction files are available (there are TF and Bicep ones though)
+
+## How to use GitHub Copilot with AVM
 
 GitHub Copilot can significantly enhance your productivity when working with Azure Verified Modules (AVM) for both Bicep and Terraform. It can assist you in various tasks, such as creating new AVM IaC from scratch, copying and adapting existing AVM code snippets, converting non-AVM IaC to use AVM, refactoring existing AVM IaC to use different technologies or architectures, updating existing AVM modules to use the latest version, and creating documentation for your AVM IaC.
 
