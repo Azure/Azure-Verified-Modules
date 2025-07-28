@@ -55,8 +55,9 @@ function New-AzAdvertizerDiffIssue {
   $artifact = gh run download $latestWorkflowRunId --repo $Repo --dir /old --name 'AzAdvertizerData.csv'
 
   if ($artifact -ne 'no valid artifacts found to download') {
+    Write-Host "Downloaded artifact: $artifact"
     $issuesCreated = 0
-    $addedData = Get-AzAdvertizerDataDiff -Path 'AzAdvertizerData.csv'
+    $addedData = Get-AzAdvertizerDataDiff -Path '/old/AzAdvertizerData.csv'
 
     if ($addedData.Count -gt 0) {
       $issueName = "AzAdvertizer data changes detected"
