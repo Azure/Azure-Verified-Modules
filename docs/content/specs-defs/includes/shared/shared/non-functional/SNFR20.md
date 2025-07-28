@@ -29,10 +29,10 @@ There **MUST NOT** be any GitHub repository permissions assigned to individual u
 {{% notice style="note" %}}
 The names for the GitHub teams for each approved module are already defined in the respective [Module Indexes]({{% siteparam base %}}/indexes/). These teams **MUST** be created (and used) for each module.
 
-- [Bicep Resource Modules]({{% siteparam base %}}/indexes/bicep/bicep-resource-modules/#module-name-telemetry-id-prefix-github-teams-for-owners--contributors)
-- [Bicep Pattern Modules]({{% siteparam base %}}/indexes/bicep/bicep-pattern-modules/#module-name-telemetry-id-prefix-github-teams-for-owners--contributors)
-- [Terraform Resource Modules]({{% siteparam base %}}/indexes/terraform/tf-resource-modules/#module-name-telemetry-id-prefix-github-teams-for-owners--contributors)
-- [Terraform Pattern Modules]({{% siteparam base %}}/indexes/terraform/tf-pattern-modules/#module-name-telemetry-id-prefix-github-teams-for-owners--contributors)
+- [Bicep Resource Modules]({{% siteparam base %}}/indexes/bicep/bicep-resource-modules/#module-name-telemetry-id-prefix-github-teams-for-owners)
+- [Bicep Pattern Modules]({{% siteparam base %}}/indexes/bicep/bicep-pattern-modules/#module-name-telemetry-id-prefix-github-teams-for-owners)
+- [Terraform Resource Modules]({{% siteparam base %}}/indexes/terraform/tf-resource-modules/#module-name-telemetry-id-prefix-github-teams-for-owners)
+- [Terraform Pattern Modules]({{% siteparam base %}}/indexes/terraform/tf-pattern-modules/#module-name-telemetry-id-prefix-github-teams-for-owners)
 
 The `@Azure` prefix in the last column of the tables linked above represents the "Azure" GitHub organization all AVM-related repositories exist in. **DO NOT** include this segment in the team's name!
 
@@ -46,8 +46,8 @@ Non-FTE / external contributors (subject matter experts that aren't Microsoft em
 
 The naming convention for the GitHub teams **MUST** follow the below pattern:
 
-- `<hyphenated module name>-module-owners-<bicep/tf>` - to be assigned as the GitHub repository's `Module Owners` team
-- `<hyphenated module name>-module-contributors-<bicep/tf>` - to be assigned as the GitHub repository's `Module Contributors` team
+- `<hyphenated module name>-module-owners-<bicep/tf>` - to grant permissions for module owners
+- `<hyphenated module name>-module-contributors-tf` - to grant permissions for module contributors (for Terraform modules only)
 
 {{% notice style="note" %}}
 The naming convention for Bicep modules is slightly different than the naming convention for their respective GitHub teams.
@@ -70,7 +70,7 @@ Examples:
 
 All officially documented module owner(s) **MUST** be added to the `-module-owners-` team. The `-module-owners-` team **MUST NOT** have any other members.
 
-Any additional module contributors whom the module owner(s) agreed to work with **MUST** be added to the `-module-contributors-` team.
+In case of Terraform modules, any additional module contributors whom the module owner(s) agreed to work with **MUST** be added to the `-module-contributors-` team.
 
 Unless explicitly requested and agreed, members of the AVM core team or any PG teams **MUST NOT** be added to the `-module-owners-` or `-module-contributors-` teams as permissions for them are granted through the teams described in [SNFR9]({{% siteparam base %}}/spec/SNFR9).
 
@@ -84,17 +84,15 @@ In case of Bicep modules, permissions to the [BRM](https://aka.ms/BRM) repositor
 
 {{% /notice %}}
 
-Module owners **MUST** create their `-module-owners-` and `-module-contributors-` teams and as part of the provisioning process, they **MUST** request the addition of these teams to their respective parent teams (see the table below for details).
+Module owners **MUST** create their `-module-owners-` team and as part of the provisioning process, they **MUST** request the addition of this team to its respective parent teams (see the table below for details).
 
 | GitHub Team Name                                     | Description                                    | Permissions | Permissions granted through                                        | Where to work?          |
 |------------------------------------------------------|------------------------------------------------|-------------|--------------------------------------------------------------------|-------------------------|
 | `<hyphenated module name>-module-owners-bicep`       | AVM Bicep Module Owners - \<module name>       | **Write**   | Assignment to the **`avm-technical-reviewers-bicep`** parent team. | Need to work in a fork. |
-| `<hyphenated module name>-module-contributors-bicep` | AVM Bicep Module Contributors - \<module name> | **Triage**  | **`avm-module-contributors-bicep`** parent team.                   | Need to work in a fork. |
 
-Examples - GitHub teams required for the Bicep resource module of Azure Virtual Network (`avm/res/network/virtual-network`):
+Example - GitHub team required for the Bicep resource module of Azure Virtual Network (`avm/res/network/virtual-network`):
 
 - `avm-res-network-virtualnetwork-module-owners-bicep` --> assign to the `avm-technical-reviewers-bicep` parent team.
-- `avm-res-network-virtualnetwork-module-contributors-bicep` --> assign to the `avm-module-contributors-bicep` parent team.
 
 {{% notice style="tip" %}}
 Direct link to create a new GitHub team and assign it to its parent: [Create new team](https://github.com/orgs/Azure/new-team)
