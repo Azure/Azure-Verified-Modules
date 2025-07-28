@@ -52,22 +52,23 @@ function New-AzAdvertizerDiffIssue {
   }
 
   # get artifact (AzAdvertizerData.csv) from the latest workflow run
-  gh run download $latestWorkflowRunId --repo $Repo --dir /old --name 'AzAdvertizerData.csv'
+  $artifact = gh run download $latestWorkflowRunId --repo $Repo --dir /old --name 'AzAdvertizerData.csv'
 
-  $issuesCreated = 0
-  $addedData = Get-AzAdvertizerDataDiff -Path 'AzAdvertizerData.csv'
+  if ($artifact -ne 'no valid artifacts found to download') {
+    $issuesCreated = 0
+    $addedData = Get-AzAdvertizerDataDiff -Path 'AzAdvertizerData.csv'
 
-  if ($addedData.Count -gt 0) {
-    $issueName = "AzAdvertizer data changes detected"
-    $body = Format-AzAdvertizerDataDiff -DiffData $addedData
+    if ($addedData.Count -gt 0) {
+      $issueName = "AzAdvertizer data changes detected"
+      $body = Format-AzAdvertizerDataDiff -DiffData $addedData
 
-    if ($PSCmdlet.ShouldProcess("Issue [$issueName]", 'Create')) {
-      $issueUrl = gh issue create --title $issueName --body $body --repo $repo
-      gh issue assign $issueUrl --repo $repo --assignee 'rahalan'
+      if ($PSCmdlet.ShouldProcess("Issue [$issueName]", 'Create')) {
+        $issueUrl = gh issue create --title $issueName --body $body --repo $repo
+        gh issue assign $issueUrl --repo $repo --assignee 'rahalan'
+      }
+      $issuesCreated++
     }
-    $issuesCreated++
   }
-
   Write-Verbose ('[{0}] issue(s){1} created' -f $issuesCreated, ($WhatIfPreference ? ' would have been' : '')) -Verbose
 
   # download new AzAdvertizer data for artifact step
