@@ -1,1 +1,2 @@
-
+on:
+  workflow_dispatch: {}
