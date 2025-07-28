@@ -324,7 +324,7 @@
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Deprecated" "Deprecated :red_circle:" }}
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Available" "Available :green_circle:" }}
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Orphaned" "Orphaned :yellow_circle:" }}
-    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Proposed" "Orphaned :white_circle:" }}
+    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Proposed" "Proposed :white_circle:" }}
     {{ $trimmedAlternativeNames := replace $item.AlternativeNames "  " " " }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames ", " "," }}
     {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames "," ", " }}
