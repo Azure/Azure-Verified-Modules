@@ -198,6 +198,65 @@ function Get-AzAdvertizerDataDiff {
   return $addedData
 }
 
+function Format-AzAdvertizerDataDiff {
+  param(
+    [Parameter(Mandatory = $true)]
+    [hashtable]$DiffData
+  )
+
+  if ($DiffData.Count -eq 0) {
+    return "No new recommendations found."
+  }
+
+  $output = @()
+  $output += "=" * 80
+  $output += "Azure Advertizer Data Diff Report"
+  $output += "=" * 80
+  $output += ""
+
+  foreach ($resourceType in ($DiffData.Keys | Sort-Object)) {
+    $resource = $DiffData[$resourceType]
+    $hasNewItems = ($resource.AdvisorId.Count -gt 0) -or ($resource.APRLGuid.Count -gt 0) -or ($resource.PSRuleId.Count -gt 0)
+
+    if ($hasNewItems) {
+      $output += "Resource Type: $resourceType"
+      $output += "-" * 50
+
+      if ($resource.AdvisorId.Count -gt 0) {
+        $output += "  New Advisor Recommendations:"
+        foreach ($advisorId in $resource.AdvisorId) {
+          $output += "    - $advisorId"
+        }
+        $output += ""
+      }
+
+      if ($resource.APRLGuid.Count -gt 0) {
+        $output += "  New APRL Recommendations:"
+        foreach ($aprlGuid in $resource.APRLGuid) {
+          $output += "    - $aprlGuid"
+        }
+        $output += ""
+      }
+
+      if ($resource.PSRuleId.Count -gt 0) {
+        $output += "  New PSRule Recommendations:"
+        foreach ($psRuleId in $resource.PSRuleId) {
+          $output += "    - $psRuleId"
+        }
+        $output += ""
+      }
+
+      $output += ""
+    }
+  }
+
+  if ($output.Count -eq 4) {
+    return "No new recommendations found for any resource types."
+  }
+
+  return $output -join "`n"
+}
+
 function Export-PSRuleDataToCsv {
   $rawPsRules = Get-AzAdvertizerDataPerType -Type 'PSRule'
   $csvRows = @()

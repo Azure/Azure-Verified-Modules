@@ -16,27 +16,10 @@ env:
   workflowPath: ".github/workflows/platform.new-AzAdvertizer-diff-issue.yml"
 
 jobs:
-  job_initialize_pipeline:
-    runs-on: ubuntu-latest
-    name: "Initialize pipeline"
-    steps:
-      - name: "Checkout"
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: "Set input parameters to output variables"
-        id: get-workflow-param
-        uses: ./.github/actions/templates/avm-getWorkflowInput
-        with:
-          workflowPath: "${{ env.workflowPath}}"
-    outputs:
-      workflowInput: ${{ steps.get-workflow-param.outputs.workflowInput }}
-  manage-issues:
+  create-diff-issue:
     runs-on: ubuntu-latest
     permissions:
       issues: write
-    needs:
-      - job_initialize_pipeline
     steps:
       - name: "Checkout"
         uses: actions/checkout@v4
@@ -47,7 +30,7 @@ jobs:
         with:
           app_id: ${{ secrets.TEAM_LINTER_APP_ID }}
           private_key: ${{ secrets.TEAM_LINTER_PRIVATE_KEY }}
-      - name: Manage issues
+      - name: Create diff issue
         shell: pwsh
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
@@ -67,3 +50,7 @@ jobs:
           Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
 
           New-AzAdvertizerDiffIssue @functionInput
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AzAdvertizerData.csv
+          path: /new/AzAdvertizerData.csv

@@ -14,16 +14,13 @@ Optional. The GitHub repository to run the workfows in.
 .PARAMETER RepoRoot
 Optional. Path to the root of the repository.
 
-.PARAMETER PersonalAccessToken
-Optional. The PAT to use to interact with either GitHub. If not provided, the script will use the GitHub CLI to authenticate.
-
-.PARAMETER WorkflowId
-Optional. The ID of the workflow to create the issue for.
+.PARAMETER Workflow
+Optional. The name of the workflow file to create the issue for.
 
 .EXAMPLE
-New-AzAdvertizerDiffIssue -Repo 'owner/repo01'
+New-AzAdvertizerDiffIssue -RepositoryOwner 'Azure' -RepositoryName 'Azure-Verified-Modules' -Workflow 'platform.new-AzAdvertizer-diff-issue.yml'
 
-Check the last 100 workflow runs in the repository 'owner/repo01' that happened in the last 2 days. If the workflow name is 'Pipeline 01', then ignore the workflow run.
+TODO: Check the last 100 workflow runs in the repository 'owner/repo01' that happened in the last 2 days. If the workflow name is 'Pipeline 01', then ignore the workflow run.
 
 .NOTES
 Will be triggered by the workflow platform.new-AzAdvertizer-diff-issue.yml
@@ -31,9 +28,6 @@ Will be triggered by the workflow platform.new-AzAdvertizer-diff-issue.yml
 function New-AzAdvertizerDiffIssue {
   [CmdletBinding(SupportsShouldProcess)]
   param (
-    [Parameter(Mandatory = $false)]
-    [string] $PersonalAccessToken,
-
     [Parameter(Mandatory = $false)]
     [string] $RepositoryOwner = 'Azure',
 
@@ -44,32 +38,38 @@ function New-AzAdvertizerDiffIssue {
     [string] $RepoRoot = (Get-Item -Path $PSScriptRoot).parent.parent.parent.FullName,
 
     [Parameter(Mandatory = $true)]
-    [string] $WorkflowId = '?????' # ID of the platform.new-AzAdvertizer-diff-issue.yml workflow
+    [string] $Workflow = 'platform.new-AzAdvertizer-diff-issue.yml'
   )
 
   # Loading helper functions
   . (Join-Path $RepoRoot 'utilities' 'pipelines' 'platform' 'helper' 'Get-AzAdvertizerData.ps1')
-  . (Join-Path $RepoRoot 'utilities' 'pipelines' 'platform' 'helper' 'Get-GitHubWorkflowLatestRun.ps1')
 
-  $baseInputObject = @{
-    RepositoryOwner = $RepositoryOwner
-    RepositoryName  = $RepositoryName
-  }
-  if ($PersonalAccessToken) {
-    $baseInputObject['PersonalAccessToken'] = @{
-      PersonalAccessToken = $PersonalAccessToken
-    }
+  $Repo = "$RepositoryOwner/$RepositoryName"
+  $latestWorkflowRunId = gh run list --repo $Repo --workflow $Workflow --branch 'main' --limit 1 --json 'databaseId' | ConvertFrom-JSON | Select-Object -First 1 -ExpandProperty 'databaseId'
+
+  if (-not $latestWorkflowRunId) {
+    throw "No workflow run found for workflow '$Workflow' in repository '$Repo'."
   }
 
-  $latestWorkflowRun = Get-GitHubWorkflowLatestRun @baseInputObject -WorkflowId $WorkflowId
-  $repo = "$RepositoryOwner/$RepositoryName"
+  # get artifact (AzAdvertizerData.csv) from the latest workflow run
+  gh run download $latestWorkflowRunId --repo $Repo --dir /old --name 'AzAdvertizerData.csv'
 
   $issuesCreated = 0
+  $addedData = Get-AzAdvertizerDataDiff -Path 'AzAdvertizerData.csv'
 
-  if ($PSCmdlet.ShouldProcess("Issue [$issueName]", 'Create')) {
-    $issueUrl = gh issue create --title $issueName --body $failedRunText --label "$avmLabel,$bugLabel" --repo $repo
+  if ($addedData.Count -gt 0) {
+    $issueName = "AzAdvertizer data changes detected"
+    $body = Format-AzAdvertizerDataDiff -DiffData $addedData
+
+    if ($PSCmdlet.ShouldProcess("Issue [$issueName]", 'Create')) {
+      $issueUrl = gh issue create --title $issueName --body $body --repo $repo
+      gh issue assign $issueUrl --repo $repo --assignee 'rahalan'
+    }
+    $issuesCreated++
   }
-  $issuesCreated++
 
   Write-Verbose ('[{0}] issue(s){1} created' -f $issuesCreated, ($WhatIfPreference ? ' would have been' : '')) -Verbose
+
+  # download new AzAdvertizer data for artifact step
+  Export-AzAdvertizerDataToCsv -Path '/new/AzAdvertizerData.csv'
 }
