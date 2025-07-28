@@ -67,7 +67,9 @@ It is critical to the consumers experience that modules continue to be maintaine
 
 {{% notice style="info" %}}
 
-To **orphan a module**, submit an [orphaned module](https://aka.ms/AVM/OrphanedModule) issue in the AVM repository.
+To **orphan a module**, submit an [orphaned module](https://aka.ms/AVM/OrphanedModule) issue in the AVM repository. For the required steps, review the related article: [When a module becomes orphaned]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-orphaned).
+
+[When a new owner is identified]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified), follow the related guidance.
 
 {{% /notice %}}
 
@@ -99,7 +101,6 @@ Once a module reaches the end of its lifecycle (e.g., it's permanently replaced 
 4. It will be a clearly indicated on the module's repo that new issues can no longer be submitted for the module:
     - Bicep: The module will be taken off the list of available modules in related issue templates.
     - Terraform: The module's repo will be archived.
-5. The module's `-owners-` and `-contributors-` GitHub teams will be retained indefinitely as these grant access to the source code of the module.
 
 It is recommended to migrate to a replacement/alternative version of the module, if available.
 
@@ -119,7 +120,7 @@ The information notice **MUST** include the following statement:
 
 {{% notice style="info" %}}
 
-To **deprecate a module**, submit a [deprecated module](https://aka.ms/AVM/DeprecatedModule) issue in the AVM repository.
+To **deprecate a module**, submit a [deprecated module](https://aka.ms/AVM/DeprecatedModule) issue in the AVM repository. For the required steps, review the related article: [When a module becomes deprecated]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-deprecated).
 
 {{% /notice %}}
 
