@@ -37,7 +37,7 @@ function New-AzAdvertizerDiffIssue {
     [Parameter(Mandatory = $false)]
     [string] $RepoRoot = (Get-Item -Path $PSScriptRoot).parent.parent.parent.FullName,
 
-    [Parameter(Mandatory = $true)]
+    [Parameter(Mandatory = $false)]
     [string] $Workflow = 'platform.new-AzAdvertizer-diff-issue.yml'
   )
 
