@@ -73,5 +73,6 @@ function New-AzAdvertizerDiffIssue {
   Write-Verbose ('[{0}] issue(s){1} created' -f $issuesCreated, ($WhatIfPreference ? ' would have been' : '')) -Verbose
 
   # download new AzAdvertizer data for artifact step
+  mkdir new
   Export-AzAdvertizerDataToCsv -Path '/new/AzAdvertizerData.csv'
 }
