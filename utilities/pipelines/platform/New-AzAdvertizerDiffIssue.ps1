@@ -45,7 +45,7 @@ function New-AzAdvertizerDiffIssue {
   . (Join-Path $RepoRoot 'utilities' 'pipelines' 'platform' 'helper' 'Get-AzAdvertizerData.ps1')
 
   $Repo = "$RepositoryOwner/$RepositoryName"
-  $latestWorkflowRunId = gh run list --repo $Repo --workflow $Workflow --branch 'Automation' --limit 1 --json 'databaseId' | ConvertFrom-JSON | Select-Object -First 1 -ExpandProperty 'databaseId'
+  $latestWorkflowRunId = gh run list --repo $Repo --workflow $Workflow --branch 'users/rahalan/Automation' --limit 1 --json 'databaseId' | ConvertFrom-JSON | Select-Object -First 1 -ExpandProperty 'databaseId'
 
   if (-not $latestWorkflowRunId) {
     throw "No workflow run found for workflow '$Workflow' in repository '$Repo'."
