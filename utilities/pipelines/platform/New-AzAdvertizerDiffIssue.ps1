@@ -56,7 +56,7 @@ function New-AzAdvertizerDiffIssue {
 
   Write-Host $latestWorkflowRunId
 
-  if ($artifact.ToString() -ne 'no valid artifacts found to download') {
+  if ($null -eq $artifact) {
     Write-Host "Downloaded artifact: $artifact"
     $issuesCreated = 0
     $addedData = Get-AzAdvertizerDataDiff -Path './old/AzAdvertizerData.csv'
