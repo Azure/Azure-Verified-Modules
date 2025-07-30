@@ -36,7 +36,7 @@ For a step-by-step explanation with detailed instructions, refer to the followin
 * Implement required changes in your fork:
   * **Allowed list**: If not present, add child module to [child-module-publish-allowed-list.json](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/staticValidation/compliance/helper/child-module-publish-allowed-list.json).
   * **Child module template**: Add `enableTelemetry` parameter and `avmTelemetry` deployment to child main.bicep template.
-  * **Parent module template**: In the main.bicep template of the child module direct parent, add `enableReferencedModulesTelemetry` variable and pass it as `enableTelemetry` value down to the child module deployment.
+  * **Parent module template**: In the `main.bicep` template of the child module direct parent, add a `enableReferencedModulesTelemetry` variable with a value of `false`, and pass it as the `enableTelemetry` value down to the child module deployment.
   * **Version**: Add the `version.json` file to the child module folder and set version to `0.1`.
   * **Changelog**: Add a new `CHANGELOG.md` file to the child module folder and update the changelog of all its versioned parents with a new patch version, up to the top-level parent.
   * **Set-AVMModule**: Run [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1), test your changes, raise a PR.
@@ -92,7 +92,7 @@ The quickest way to get the child module published is to enable it yourself, con
 Please follow the steps below:
 
 - Make sure the child module name is listed in the publishing allowed list [child-module-publish-allowed-list.json](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/staticValidation/compliance/helper/child-module-publish-allowed-list.json). If not, add it to the file, keeping an alphabetical order. This step is relevant until the process is in a pilot phase.
-- Update child module main.bicep template to support telemetry, as per [SFR4]({{% siteparam base %}}/spec/SFR4), [SFR3]({{% siteparam base %}}/spec/SFR3) and [BCPFR4]({{% siteparam base %}}/spec/BCPFR4)
+- Update the child module `main.bicep` template to support telemetry, as per [SFR4]({{% siteparam base %}}/spec/SFR4), [SFR3]({{% siteparam base %}}/spec/SFR3) and [BCPFR4]({{% siteparam base %}}/spec/BCPFR4)
   - Add the `enableTelemetry` parameter with a default value of `true`.
     ```bicep
     @description('Optional. Enable/Disable usage telemetry for module.')
@@ -119,7 +119,7 @@ Please follow the steps below:
         }
       }
     ```
-- Update the main.bicep template of the child module direct parent, as per [BCPFR7]({{% siteparam base %}}/spec/BCPFR7).
+- Update the `main.bicep` template of the child module direct parent, as per [BCPFR7]({{% siteparam base %}}/spec/BCPFR7).
   - Add the `enableReferencedModulesTelemetry` variable with a default value of `false`.
     ```bicep
     var enableReferencedModulesTelemetry = false
