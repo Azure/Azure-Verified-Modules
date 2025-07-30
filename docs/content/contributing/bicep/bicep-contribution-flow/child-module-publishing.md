@@ -39,7 +39,7 @@ For a step-by-step explanation with detailed instructions, refer to the followin
   * **Parent module template**: In the `main.bicep` template of the child module direct parent, add a `enableReferencedModulesTelemetry` variable with a value of `false`, and pass it as the `enableTelemetry` value down to the child module deployment.
   * **Version**: Add the `version.json` file to the child module folder and set version to `0.1`.
   * **Changelog**: Add a new `CHANGELOG.md` file to the child module folder and update the changelog of all its versioned parents with a new patch version, up to the top-level parent.
-  * **Set-AVMModule**: Run [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1), test your changes, raise a PR.
+  * **Set-AVMModule**: Run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility using the `-Recurse` flag and the path to the top-level module, test your changes and raise a PR.
 
 For more detailed guidance, please refer below.
 
@@ -101,7 +101,7 @@ Please follow the steps below:
   - Add the `avmTelemetry` deployment, referencing below template. Make sure to replace the `<ReplaceWith-TelemetryIdPrefix>` placeholder with the assigned telemetry ID prefix value that you noted down when checking prerequisites.
     ```bicep
       #disable-next-line no-deployments-resources
-      resource avmTelemetry 'Microsoft.Resources/deployments@2024-03-01' = if (enableTelemetry) {
+      resource avmTelemetry 'Microsoft.Resources/deployments@2025-04-01' = if (enableTelemetry) {
         name: '<ReplaceWith-TelemetryIdPrefix>.${replace('-..--..-', '.', '-')}.${substring(uniqueString(deployment().name), 0, 4)}'
         properties: {
           mode: 'Incremental'
@@ -152,7 +152,7 @@ Please follow the steps below:
 
     - None
     ```
-  - Update the changelog of all the child module versioned parents with a new patch version, up to the top-level parent. Refer below for an example content section:
+  - Update the changelog of all the child module's versioned parents with a new patch version, up to the top-level parent. Refer below for an example content section:
     ```markdown
       ## <CurrentMajor>.<CurrentMinor>.<CurrentPatch+1>
 
@@ -165,7 +165,7 @@ Please follow the steps below:
       - None
 
     ```
-- As per usual pull request process, run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) script, test your changes locally and/or via the top-level module pipeline, raise a PR and attach a status badge proving successful validation.
+- As per usual pull request process, run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility using the `-Recurse` flag and top-level parent's folder path. Then test your changes locally and/or via the top-level module pipeline, raise a PR and attach a status badge proving successful validation.
 
 {{% notice style="tip" %}}
 
