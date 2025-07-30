@@ -7,13 +7,13 @@ Child resources are resources that exist only within the scope of another resour
 
 In the context of AVM, particularly AVM Bicep resource modules, child modules are modules deploying child resources. They are implemented within the scope of their corresponding parent resource modules. For example, the module `avm/res/network/virtual-network/subnet` deploys a virtual network subnet and is a child module of its parent virtual network module `avm/res/network/virtual-network`.
 
-By default, child modules are not published to the public bicep registry independently from their top-level parents. They need to be explicitly enabled for publishing to be directly referenced from the registry.
+By default, child modules are not published to the public bicep registry independently from their parents. They need to be explicitly enabled for publishing to be directly referenced from the registry.
 
 This page covers step-by-step guidelines to publish a bicep child module.
 
 {{% notice style="important" %}}
 
-The child module publishing process is currently in a pilot/preview phase. This means it may not be as smooth as expected.
+The child module publishing process is currently in a pilot/preview phase. This means it may not be as smooth as the general module publishing.
 
 The core team is currently working on additional automation, with the goal of improving efficiency in addressing child module publishing requests.
 
