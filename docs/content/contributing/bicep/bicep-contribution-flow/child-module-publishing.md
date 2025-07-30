@@ -38,7 +38,7 @@ For a step-by-step explanation with detailed instructions, refer to the followin
   * **Child module template**: Add `enableTelemetry` parameter and `avmTelemetry` deployment to child main.bicep template.
   * **Parent module template**: In the main.bicep template of the child module direct parent, add `enableReferencedModulesTelemetry` variable and pass it as `enableTelemetry` value down to the child module deployment.
   * **Version**: Add the `version.json` file to the child module folder and set version to `0.1`.
-  * **Changelog**: Add a new `CHANGELOG.md` to the child module folder and update the changelog of all its versioned parents with a new patch version, up to the top-level parent.
+  * **Changelog**: Add a new `CHANGELOG.md` file to the child module folder and update the changelog of all its versioned parents with a new patch version, up to the top-level parent.
   * **Set-AVMModule**: Run [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1), test your changes, raise a PR.
 
 For more detailed guidance, please refer below.
@@ -136,7 +136,7 @@ Please follow the steps below:
   }
   ```
 - Update Changelogs
-  - Add a new `CHANGELOG.md` to the child module folder, with the following sample content. Make sure to replace the `<avm/res/path/to/child-module>` placeholder with the name of the child module.
+  - Add a new `CHANGELOG.md` file to the child module folder, with the following sample content. Make sure to replace the `<avm/res/path/to/child-module>` placeholder with the name of the child module.
     ```markdown
     # Changelog
 
