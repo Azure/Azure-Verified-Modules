@@ -13,7 +13,7 @@ This page covers step-by-step guidelines to publish a bicep child module.
 
 {{% notice style="important" %}}
 
-The child module publishing process is currently in a pilot/preview phase. This means it may not be as smooth as expected.
+The child module publishing process is currently in a pilot/preview phase. This means it may not be as smooth as the general module publishing.
 
 The core team is currently working on additional automation, with the goal of improving efficiency in addressing child module publishing requests.
 
