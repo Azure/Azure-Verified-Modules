@@ -1,6 +1,6 @@
 ---
 title: Child Module Publishing
-description: How to set up a child module for publishing so that it can be directly referenced from the Bicep public registry
+description: How to set up a child module for publishing so that it can be directly referenced from the public bicep registry
 ---
 
 Child resources are resources that exist only within the scope of another resource. For example, a virtual network subnet cannot exist without a virtual network. The subnet is a child resource of the virtual network.
