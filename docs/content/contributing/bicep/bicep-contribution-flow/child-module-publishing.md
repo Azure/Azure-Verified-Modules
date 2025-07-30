@@ -35,13 +35,11 @@ For a step-by-step explanation with detailed instructions, refer to the followin
 * **Check prerequisites**: Existing [issue in AVM](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Class%3A%20Child%20Module%20%3Apackage%3A%22%20label%3A%22Language%3A%20Bicep%20%3Amuscle%3A%22), telemetry ID prefix assigned in [Bicep Module Index CSV](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/BicepResourceModules.csv), module registered in the [MAR-file](https://github.com/microsoft/mcr/blob/main/teams/bicep/bicep.yml).
 * Implement required changes in your fork:
   * **Allowed list**: If not present, add child module to [child-module-publish-allowed-list.json](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/staticValidation/compliance/helper/child-module-publish-allowed-list.json).
-  * **Child module template**: Add `enableTelemetry` parameter and `avmTelemetry` deployment to child main.bicep template.
+  * **Child module template**: Add `enableTelemetry` parameter and `avmTelemetry` deployment to child `main.bicep` template.
   * **Parent module template**: In the `main.bicep` template of the child module direct parent, add a `enableReferencedModulesTelemetry` variable with a value of `false`, and pass it as the `enableTelemetry` value down to the child module deployment.
   * **Version**: Add the `version.json` file to the child module folder and set version to `0.1`.
   * **Changelog**: Add a new `CHANGELOG.md` file to the child module folder and update the changelog of all its versioned parents with a new patch version, up to the top-level parent.
   * **Set-AVMModule**: Run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility using the `-Recurse` flag and the path to the top-level module, test your changes and raise a PR.
-
-For more detailed guidance, please refer below.
 
 ## Prerequisites
 
@@ -69,8 +67,7 @@ If the Bicep Child Module Proposal issue was just created, please allow a few da
 
 {{% /notice %}}
 
-1. Check the online Bicep resource module index source CSV file [here]({{% siteparam base %}}/module-indexes/BicepResourceModules.csv
-https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/BicepResourceModules.csv).
+1. Check the online Bicep resource module index source CSV file [here](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/BicepResourceModules.csv).
 1. Search for the child module name in the `ModuleName` field.
 1. Verify if the corresponding value exists in the `TelemetryIdPrefix` field. Note down the value as you will need it in the implementation phase.
 1. If not found, please reach out to the core team, mentioning the `@Azure/avm-core-team-technical-bicep` via the Bicep Child Module Proposal issue.
