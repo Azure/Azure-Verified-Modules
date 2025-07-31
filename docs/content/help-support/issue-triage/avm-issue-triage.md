@@ -268,16 +268,13 @@ If a module meets the criteria described in the "[Deprecated Modules]({{% sitepa
 
 4. Place an information notice as per the below guidelines:
     1. Place the information notice - with the text below - in an `DEPRECATED.md` file, in the module's root.
-    1. Add a 'DEPRECATED - ' prefix to the `main.bicep`'s metadata description. For example, `metadata description = 'DEPRECATED - This module deploys a XYZ'` - i.e, add the 'DEPRECATED' prefix while keeping your original description. This description will be displayed to users of the VS-Code Bicep extension when searching for the module.
-    1. Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header. For more instructions on how to use the script, please refer to the corresponding section in the [Contribution Guide](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/).
-    2. Make sure the content of the `DEPRECATED.md` file is displayed in the `README.md` in its header (right after the title).
-    3. Publish a new patch version, having the updated `README.md` stating the module is deprecated.
-5. Once the information notice is placed, submit a Pull Request (the first one of the 2 required).
-6. Once the first PR is merged,
+    1. Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path & `-SkipBuild` switch as an input. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header. For more instructions on how to use the script, please refer to the corresponding section in the [Contribution Guide](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/).
+    1. Make sure the content of the `DEPRECATED.md` file is displayed in the `README.md` in its header (right after the title).
+    1. Add the the notice `NOTE: This is the last published version and the module has since been deprecated.` to the top-most `### Changes` section of the module's `CHANGELOG.md` file
     1. Remove the module workflow from the [`workflows`](https://github.com/Azure/bicep-registry-modules/tree/main/.github/workflows) folder.
-    2. Make sure the module is removed from the [`avm_module_issue.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/ISSUE_TEMPLATE/avm_module_issue.yml) issue template.
-    3. Remove the module from the [`CODEOWNERS`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) file.
-    4. Submit a Pull Request (the second and final one of the 2 required)
+    1. Make sure the module is removed from the [`avm_module_issue.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/ISSUE_TEMPLATE/avm_module_issue.yml) issue template.
+    1. Remove the module from the [`CODEOWNERS`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) file.
+    1. Submit a Pull Request
 7. Delete the module's `-owners-` and `-contributors-` GitHub teams.
 
 **Terraform specific steps**
