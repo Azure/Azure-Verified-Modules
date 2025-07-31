@@ -163,7 +163,7 @@ Please follow the steps below:
       - None
 
     ```
-- As per the defaultc pull request process, run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility using the `-Recurse` flag and top-level parent's folder path. Then test your changes locally and/or via the top-level module pipeline, raise a PR and attach a status badge proving successful validation.
+- As per the default pull request process, run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility using the `-Recurse` flag and top-level parent's folder path. Then test your changes locally and/or via the top-level module pipeline, raise a PR and attach a status badge proving successful validation.
 
 {{% notice style="tip" %}}
 
