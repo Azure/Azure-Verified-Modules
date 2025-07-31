@@ -9,7 +9,7 @@ body:
       value: |
         Thank you for proposing a Bicep child module to be published in the Public Bicep Registry! Please create a separate proposal for each child module.
 
-        This issue will be automatically assigned to the owner of the parent module unless the module is currently orphaned. If you're looking to publish an existing child module and you're willing to contribute please let the module owner know in this issue and refer to the [Child module publishing contribution guidelines]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/child-module-publishing) to implement the change.
+        This issue will be automatically assigned to the owner of the parent module unless the module is currently orphaned. If you're looking to publish an existing child module and you're willing to contribute please let the module owner know in this issue and refer to the [Child module publishing contribution guidelines](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/child-module-publishing) to implement the change.
   - type: checkboxes
     id: existing-checks
     attributes:
