@@ -51,8 +51,7 @@ You'll need to gather the following information from the module request issue an
     ```pwsh
     cd ~
     git clone "https://github.com/Azure/avm-terraform-governance"
-    cd avm-terraform-governance
-    cd ./tf-repo-mgmt
+    cd ./avm-terraform-governance/tf-repo-mgmt
     ```
 
 1. Install the GitHub CLI if you don't already have it installed: <https://cli.github.com>
