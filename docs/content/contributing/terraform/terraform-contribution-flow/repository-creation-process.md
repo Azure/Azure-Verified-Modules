@@ -49,7 +49,9 @@ You'll need to gather the following information from the module request issue an
 1. Clone the <https://github.com/Azure/avm-terraform-governance> repository and navigate to the `tf-repo-mgmt` folder
 
     ```pwsh
+    cd ~
     git clone "https://github.com/Azure/avm-terraform-governance"
+    cd avm-terraform-governance
     cd ./tf-repo-mgmt
     ```
 
