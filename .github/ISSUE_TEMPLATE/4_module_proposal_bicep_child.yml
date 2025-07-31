@@ -29,7 +29,7 @@ body:
   - type: dropdown
     id: publish-and-or-implement-functionality
     attributes:
-      label: Do you want to implement the child module functionality, publish an existing child module or both?
+      label: Do you want to add new functionality to an existing module, publish an existing child module or both?
       description: Please check the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) (BRM) repository source code for the module you are proposing to verify if it is available to be enabled for publishing
       options:
         - I want to add the functionality in source code only, because the current module doesn't implement it yet
