@@ -266,7 +266,7 @@ If a module meets the criteria described in the "[Deprecated Modules]({{% sitepa
 
 **Bicep specific steps**
 
-4. Place an information notice as per the below guidelines:
+4. Update the module and connected files as per the below guidelines:
     1. Place the information notice - with the text below - in an `DEPRECATED.md` file, in the module's root.
     1. Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path & `-SkipBuild` switch as an input. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header. For more instructions on how to use the script, please refer to the corresponding section in the [Contribution Guide](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/).
     1. Make sure the content of the `DEPRECATED.md` file is displayed in the `README.md` in its header (right after the title).
