@@ -53,7 +53,7 @@ Ensure there is an [AVM issue open](https://github.com/Azure/Azure-Verified-Modu
 
 Please understand the difference between publishing an existing child module and extending a parent module with a not yet implemented child module functionality.
 
-The Bicep Child Module Proposal issue intends to cover the former, so the intended child module MUST already exist in the [BRM (Bicep Registry Modules)](https://aka.ms/BRM) repository source code.
+The Bicep Child Module Proposal issue primarily intends to cover the former, i.e. to publish a child module already existing in the [BRM (Bicep Registry Modules)](https://aka.ms/BRM) repository source code. The same issue allows also to request the development of the child module functionality, although the best way to address new functionality is to raise a feature request via the the [AVM Module issue](https://github.com/Azure/bicep-registry-modules/issues/new?template=avm_module_issue.yml).
 
 {{% /notice %}}
 
