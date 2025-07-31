@@ -29,7 +29,7 @@ Supporting child module publishing for other module categories, such as pattern 
 
 ## Quick guide
 
-**TL;DR**: Use this section for a fast overview on how to publish a child module.
+Use this section for a fast overview on how to publish a child module.
 For a step-by-step explanation with detailed instructions, refer to the following sections.
 
 * **Check prerequisites**: Existing [issue in AVM](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Class%3A%20Child%20Module%20%3Apackage%3A%22%20label%3A%22Language%3A%20Bicep%20%3Amuscle%3A%22), telemetry ID prefix assigned in [Bicep Module Index CSV](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/BicepResourceModules.csv), module registered in the [MAR-file](https://github.com/microsoft/mcr/blob/main/teams/bicep/bicep.yml).
@@ -163,7 +163,7 @@ Please follow the steps below:
       - None
 
     ```
-- As per the default pull request process, run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility using the `-Recurse` flag and top-level parent's folder path. Then test your changes locally and/or via the top-level module pipeline, raise a PR and attach a status badge proving successful validation.
+- As per the defaultc pull request process, run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility using the `-Recurse` flag and top-level parent's folder path. Then test your changes locally and/or via the top-level module pipeline, raise a PR and attach a status badge proving successful validation.
 
 {{% notice style="tip" %}}
 
