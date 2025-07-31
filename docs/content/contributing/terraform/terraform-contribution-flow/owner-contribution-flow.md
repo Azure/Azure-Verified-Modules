@@ -23,7 +23,7 @@ Make sure module authors/contributors tested their module in their environment b
 ### 1. Owner Activities and Responsibilities
 
 <!-- TODO: Add TF Issue Triage once done -->
-Familiarise yourself with the responsibilities as **Module Owner** outlined in [Team Definitions & RACI]({{% siteparam base %}}/specs/shared/team-definitions/#module-owners) and in the [TF Issue Triage]({{% siteparam base %}}/help-support/issue-triage/).
+Familiarize yourself with the responsibilities as **Module Owner** outlined in [Team Definitions & RACI]({{% siteparam base %}}/specs/shared/team-definitions/#module-owners) and in the [TF Issue Triage]({{% siteparam base %}}/help-support/issue-triage/).
 
 1. Watch Pull Request (PR) and issue (questions/feedback) activity for your module(s) in your repository and ensure that PRs are reviewed and merged in a timely manner as outlined in [SNFR11]({{% siteparam base %}}/spec/SNFR11).
 
@@ -35,15 +35,9 @@ Make sure module authors/contributors tested their module in their environment b
 
 ### 2. GitHub repository creation and configuration
 
-Once your module has been approved and you are ready to start development, you need to request that a new repository be created for your module.
+Once your module has been approved and you are ready to start development, you need to create your new repository.
 
-You do that by adding a comment to the [issue](https://github.com/Azure/Azure-Verified-Modules/issues) with the `#RFRC` tag. The &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#136A41;color:white;">Status: Ready For Repository Creation 📝</mark>&nbsp; label will then be applied. This will trigger the creation of the repository and the configuration of the repository with the required settings.
-
-{{% notice style="info" %}}
-If you need your repository to be created urgently, please message the AVM Core team in the AVM Teams channel.
-{{% /notice %}}
-
-Once your module is ready for development, the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#27AB03;color:white;">Status: Repository Created 📄</mark>&nbsp; label will be added to the issue and you'll be notified it is ready.
+Follow the [Repository Creation Process]({{% siteparam base %}}/contributing/terraform/terraform-contribution-flow/repository-creation-process/) to create your new repository.
 
 ### 3. Module Development Activities
 
@@ -57,7 +51,7 @@ You can raise a pull request anytime, don't wait until the end of the developmen
 
 You can then use the PR to run end to end tests, check linting, etc.
 
-Once readdy for review, you can request a review per step 4.
+Once ready for review, you can request a review per step 4.
 
 #### Grept
 
@@ -84,9 +78,9 @@ $env:GITHUB_REPOSITORY="Azure/terraform-azurerm-avm-res-<RP>-<modulename>"
 
 #### Custom Variables and Secrets for end to end tests
 
-The respoitory has an environment called `test`, it has have approvals and secrets applied to it ready to run end to end tests.
+The respository has an environment called `test`, it has have approvals and secrets applied to it ready to run end to end tests.
 
-- In the unusual cicumstance that you need to use your own tenant and subscription for end to end tests, you can override the secrets by setting `ARM_TENANT_ID_OVERRIDE`, `ARM_SUBSCRIPTION_ID_OVERRIDE`, and `ARM_CLIENT_ID_OVERRIDE` secrets.
+- In the unusual circumstance that you need to use your own tenant and subscription for end to end tests, you can override the secrets by setting `ARM_TENANT_ID_OVERRIDE`, `ARM_SUBSCRIPTION_ID_OVERRIDE`, and `ARM_CLIENT_ID_OVERRIDE` secrets.
 - If you need to supply additional secrets or variables for your end to end tests, you can add them to the `test` environment. They must be prefixed with `TF_VAR_`, otherwise they will be ignored.
 
 ### 4. Review the module
