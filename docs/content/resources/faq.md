@@ -136,7 +136,7 @@ WAF == [Well-Architected Framework](https://learn.microsoft.com/en-us/azure/well
 
 {{% /notice %}}
 
-At a high-level "WAF Aligned" means, where possible and appropriate, AVM Modules will align to recommendations and default input parameters/variables to values that algin to **high impact/priority/severity recommendations** in the following frameworks and resources:
+At a high-level "WAF Aligned" means, where possible and appropriate, AVM Modules will align to recommendations and default input parameters/variables to values that align to **high impact/priority/severity recommendations** in the following frameworks and resources:
 
 - [Well-Architected Framework (WAF)](https://learn.microsoft.com/azure/well-architected/what-is-well-architected-framework)
 - [Reliability Hub](https://learn.microsoft.com/azure/reliability/overview-reliability-guidance)
@@ -430,9 +430,14 @@ Resource modules are multi-purpose; therefore, they contain a lot of dynamic exp
 
 ### Can I call a Bicep child module directly? E.g., can I update or add a secret in an existing Key Vault, or a route in an existing route table?
 
-As per the way the Public Registry is implemented today, it is not possible to publish child-modules separate from its parents. As such, you cannot reference e.g. a `avm/res/key-vault/vault/key` module directly from the registry, but can only deploy it through its parent `avm/res/key-vault/vault` - UNLESS you actually grab the module folder locally.
+You can reference Bicep child modules that have been explicitly published to the public bicep registry.
 
-However, we kept the door open to make this possible in the future if there is a demand for it.
+Today, publishing child-modules separately from their parents does not happen by default, and follows an on-demand process. Only child modules explicitly allowed for publishing can be referenced from the registy.
+The process is currently in a pilot phase, and documented [here]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/child-module-publishing).
+
+If not directly, you can still reference child modules via their parents. You can reference e.g. a `avm/res/key-vault/vault/key` through its parent `avm/res/key-vault/vault`'s `keys` parameter. Alternatively, you can grab the module folder locally, although this is a workaround and not recommended.
+
+---
 
 ### If I use AVM modules in my solution, do I need to have the MIT license in my own repo also? Do I need to add or reference AVM's license in my solution?
 

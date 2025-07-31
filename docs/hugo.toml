@@ -38,6 +38,7 @@ collapsibleMenu = false
 disableRootBreadcrumb = false
 # clarityId = 'prb1m4vask' # AVM-Test
 clarityId = 'p0l7yeco82' # Azure-Verified-Modules
+custom_js = ['js/tags.js']
 
 [module]
 [[module.imports]]
@@ -555,11 +556,19 @@ weight = 2
 params = { alwaysopen = true, collapsibleMenu = true }
 
 [[menu.defined]]
+identifier = 'child-module-publishing'
+parent = 'bicep-contribution-flow'
+name = 'Child Module Publishing'
+pageRef = '/contributing/bicep/bicep-contribution-flow/child-module-publishing'
+weight = 3
+params = { alwaysopen = true, collapsibleMenu = true }
+
+[[menu.defined]]
 identifier = 'validate-module-locally'
 parent = 'bicep-contribution-flow'
 name = 'Validate Module Locally'
 pageRef = '/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally'
-weight = 3
+weight = 4
 params = { alwaysopen = true, collapsibleMenu = true }
 
 [[menu.defined]]
@@ -567,7 +576,7 @@ identifier = 'enable-disable-workflows'
 parent = 'bicep-contribution-flow'
 name = 'Enable or Disable Workflows'
 pageRef = '/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows'
-weight = 4
+weight = 5
 params = { alwaysopen = true, collapsibleMenu = true }
 
 [[menu.defined]]
@@ -575,7 +584,7 @@ identifier = 'custom-ci-secrets'
 parent = 'bicep-contribution-flow'
 name = 'Custom CI Secrets'
 pageRef = '/contributing/bicep/bicep-contribution-flow/custom-ci-secrets'
-weight = 5
+weight = 6
 params = { alwaysopen = true, collapsibleMenu = true }
 
 [[menu.defined]]
