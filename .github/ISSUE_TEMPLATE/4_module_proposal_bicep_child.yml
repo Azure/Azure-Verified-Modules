@@ -9,7 +9,7 @@ body:
       value: |
         Thank you for proposing a Bicep child module to be published in the Public Bicep Registry! Please create a separate proposal for each child module.
 
-        This issue will be automatically assigned to the owner of the parent module unless the module is currently orphaned.
+        This issue will be automatically assigned to the owner of the parent module unless the module is currently orphaned. If you're looking to publish an existing child module and you're willing to contribute please let the module owner know in this issue and refer to the [Child module publishing contribution guidelines](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/child-module-publishing) to implement the change.
   - type: checkboxes
     id: existing-checks
     attributes:
@@ -26,6 +26,17 @@ body:
       options:
         - label: I have checked for that this module doesn't already exist in the module indexes.
           required: true
+  - type: dropdown
+    id: publish-and-or-implement-functionality
+    attributes:
+      label: Do you want to add new functionality to an existing module, publish an existing child module or both?
+      description: Please check the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) (BRM) repository source code for the module you are proposing to verify if it is available to be enabled for publishing
+      options:
+        - I want to add the functionality in source code only, because the current module doesn't implement it yet
+        - The functionality exists already and I want to make it available as a published child module independent from its parent module
+        - I want to implement the functionality AND make it available as a published child module
+    validations:
+      required: true
   - type: dropdown
     id: parentmodule
     attributes:
