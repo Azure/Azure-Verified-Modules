@@ -42,7 +42,10 @@ You'll need to gather the following information from the module request issue an
 
 ### 3. Create the repository
 
-1. Open a PowerShell terminal
+1. Check you have the latest version of the Terraform CLI installed. You can do this by running `terraform -version` in a terminal. If you don't have it installed, you can download it from the [Terraform website](https://developer.hashicorp.com/terraform/install).
+1. Check you have the latest version of the Azure CLI installed. You can do this by running `az --version` in a terminal. If you don't have it installed, you can download it from the [Azure CLI website](https://learn.microsoft.com/cli/azure/install-azure-cli).
+1. Check you have the latest version of the PowerShell Core installed. You can do this by running `pwsh -version` in a terminal. If you don't have it installed, you can download it from the [PowerShell website](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell).
+1. Open a PowerShell core terminal
 1. Clone the <https://github.com/Azure/avm-terraform-governance> repository and navigate to the `tf-repo-mgmt` folder
 
     ```pwsh
