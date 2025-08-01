@@ -81,7 +81,7 @@ Explore the Key Vault module's documentation and usage examples to understand it
 - Explore the [**Outputs**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest?tab=outputs) tab and review each of the outputs that are exported by the AVM module for use by other modules in your deployment.
 - Finally, review the [**Resources**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest?tab=resources) tab to get a better understanding of the resources defined in the module.
 
-In this example, your will to deploy a secret in a new Key Vault instance without needing to provide other parameters. The AVM Key Vault resource module provides these capabilities and does so with security and reliability being core principles. The default settings of the module also apply the recommendations of the Well Architected Framework where possible and appropriate.
+In this example, you will deploy a secret in a new Key Vault instance without needing to provide other parameters. The AVM Key Vault resource module provides these capabilities and does so with security and reliability being core principles. The default settings of the module also apply the recommendations of the Well Architected Framework where possible and appropriate.
 
 Note how the [**create-key**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest/examples/create-key) example seems to do what you need to achieve.
 
