@@ -1,10 +1,10 @@
 ---
-draft: true
+draft: false
 title: Using AVM with GitHub Copilot
 linktitle: Using AVM with GitHub Copilot
 type: default
-weight: 3
-description: How to use GitHub Copilot to accelerate creation and maintainance of Azure Verified Modules (AVM) for both Bicep and Terraform.
+weight: 1
+description: How to use GitHub Copilot to accelerate creation and maintenance of Azure Verified Modules (AVM) for both Bicep and Terraform.
 ---
 
 {{% notice style="note" %}}
@@ -107,7 +107,7 @@ For more information on creating custom chat modes in Visual Studio Code, see [C
 1. Click the custom chat mode to install from the table above.
 1. Confirm that you want to install the custom chat mode:
 
-  <img src="{{% siteparam base %}}/images/usage/quickstart/github-copilot/github-copilot-chat-mode-install-confirm.png" alt="Confirm installation of Prompt File into VS Code" style="max-width:800px;" />
+  <img src="{{% siteparam base %}}/images/usage/gh-copilot/github-copilot-chat-mode-install-confirm.png" alt="Confirm installation of Prompt File into VS Code" style="max-width:800px;" />
 
 1. Select whether to install the custom chat mode into this workspace (`.github/chatmode/`) or into your global user account, making it available to every workspace you work on.
 

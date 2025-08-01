@@ -16,3 +16,5 @@ This section describes usage guidance.
 - [Solution Development]({{% siteparam base %}}/usage/solution-development/)
   - [Bicep]({{% siteparam base %}}/usage/solution-development/bicep/)
   - [Terraform]({{% siteparam base %}}/usage/solution-development/terraform/)
+- [GitHub Copilot + AVM]({{% siteparam base %}}/usage/gh-copilot/)
+  - [Using AVM with GitHub Copilot]({{% siteparam base %}}/usage/gh-copilot/using-avm-with-gh-copilot/)
