@@ -63,6 +63,12 @@ You'll need to gather the following information from the module request issue an
 
     Follow the prompts to login to your GitHub account.
 
+1. If you are not already logged in to the Azure CLI, you'll need to be to avoid an error. You don't need to be connected to any specific subscription or tenant, just a valid session. If you are not logged in, you can run the following command to login to a non specific session:
+
+    ```pwsh
+    az login --scope https://graph.microsoft.com/.default --allow-no-subscriptions
+    ```
+
 1. Run the following command, replacing the values with the details you collected in step 2
 
     ```pwsh
