@@ -50,6 +50,7 @@ Microsoft.DevOpsInfrastructure,Pools,DevOps Pools,,avm-res-devopsinfrastructure-
 Microsoft.DevTestLab,labs,Digital Twins Instance,,avm-res-devtestlab-lab,Proposed,AVM resource Module for Digital Twins Instance,,sharmilamusunuru,Sharmila Musunuru,,,
 Microsoft.DigitalTwins,digitalTwinsInstances,Digital Twins Instance,,avm-res-digitaltwins-digitaltwinsinstance,Proposed,AVM resource Module for Digital Twins Instance,,,,,,
 Microsoft.DocumentDB,databaseAccount,CosmosDB Database Account,,avm-res-documentdb-databaseaccount,Available,AVM resource Module for CosmosDB Database Account,https://registry.terraform.io/modules/Azure/avm-res-documentdb-databaseaccount/azurerm/latest,bryansan-msft,Bryan Sanchez Pernia,,,2025-05
+Microsoft.DocumentDB,mongoClusters,Cosmos DB for MongoDB (vCore),,avm-res-documentdb-mongocluster,Proposed,AVM resource Module for Cosmos DB for MongoDB (vCore),,sujaypillai,Sujay Pillai,,,
 Microsoft.Edge,sites,Azure Arc Site manager,,avm-res-edge-site,Available,AVM resource Module for Azure Arc Site manager,https://registry.terraform.io/modules/Azure/avm-res-edge-site/azurerm/latest,xhy8759,Hangyu Xu,,,2024-09
 Microsoft.EventGrid,domains,EventGrid Domain,,avm-res-eventgrid-domain,Proposed,AVM resource Module for EventGrid Domain,,fafriha,Farouk Friha,,,
 Microsoft.EventGrid,namespaces,EventGrid Namespace,,avm-res-eventgrid-namespace,Proposed,AVM resource Module for EventGrid Namespace,,dassbernd,Berna Sandalli,,,
