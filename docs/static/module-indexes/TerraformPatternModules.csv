@@ -1,5 +1,5 @@
 ModuleDisplayName,AlternativeNames,ModuleName,ModuleStatus,ModuleDescription,PublicRegistryReference,PrimaryModuleOwnerGHHandle,PrimaryModuleOwnerDisplayName,SecondaryModuleOwnerGHHandle,SecondaryModuleOwnerDisplayName,FirstPublishedIn
-,,avm-ptn-aca-lza-hosting-environment,Proposed,AVM pattern Module for ,,sam-cogan,Sam Cogan,,,
+Azure Container Apps LZA Hosting Environment,,avm-ptn-aca-lza-hosting-environment,Proposed,AVM pattern Module for Azure Container Apps LZA Hosting Environment,,sam-cogan,Sam Cogan,,,
 Azure AI Foundry Pattern,,avm-ptn-aiml-ai-foundry,Available,AVM pattern Module for Azure AI Foundry Pattern,https://registry.terraform.io/modules/Azure/avm-ptn-aiml-ai-foundry/azurerm/latest,mikestiers,Mike Stiers,,,2025-07
 Azure AI and ML Landing Zone,,avm-ptn-aiml-landing-zone,Proposed,AVM pattern Module for Azure AI and ML Landing Zone,,mbilalamjad,Bilal Amjad,,,
 AKS dev,,avm-ptn-aks-dev,Available,AVM pattern Module for AKS dev,https://registry.terraform.io/modules/Azure/avm-ptn-aks-dev/azurerm/latest,ms-henglu,Heng Lu,,,2025-03
