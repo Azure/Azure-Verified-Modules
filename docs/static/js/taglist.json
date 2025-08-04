@@ -1,4 +1,3 @@
-taglist.json
 {
   "MUST": "Must - This tag indicates that the specification is mandatory and is enforced.",
   "SHOULD": "Should - This tag indicates that the specification should be followed, unless there's a legitimate reason not to. These specifications are not strictly enforced.",
