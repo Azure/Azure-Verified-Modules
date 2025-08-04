@@ -50,7 +50,9 @@ var enrichTags = function(){
       // find all tags, that should be enriched with a tooltip
       var filterTags = document.querySelectorAll('span.taxonomy-tags');
       var codeTags = document.querySelectorAll('code');
-      var elementsWithTags = Array.from(filterTags).concat(Array.from(codeTags));
+      var termTags = document.querySelectorAll('a.term-link');
+      // aggregate all tags
+      var elementsWithTags = Array.from(filterTags).concat(Array.from(codeTags)).concat(Array.from(termTags));
 
       // load and add all tags
       loadTaglist().then(taglist => {
