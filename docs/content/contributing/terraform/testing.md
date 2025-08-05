@@ -109,8 +109,8 @@ We use a custom ruleset for TFLint to check for AVM compliance: <https://github.
 If you need to exclude a rule from TFLint, you can do so by creating one of the following in the root of your module:
 
 - `avm.tflint.override.hcl` - to override the rules for the root module
-- `avm.tflint.override_module.hcl` - to override the rules for submodules
-- `avm.tflint.override_example.hcl` - to override the rules for examples
+- `avm.tflint.override.module.hcl` - to override the rules for submodules
+- `avm.tflint.override.example.hcl` - to override the rules for examples
 
 These files are HCL files that contain the rules that you want to override.
 Here is some example syntax:
