@@ -150,14 +150,21 @@ function Get-ModulesFeatureOutline {
     $isTopLevelModule = ($resourceTypeIdentifier -split '[\/|\\]').Count -eq 2
     if (($ColumnsToInclude -contains 'Status') -and $isTopLevelModule) {
 
-      $statusInputObject = @{
-        RepositoryName      = $RepositoryName
-        Organization        = $Organization
-        PipelineFileName    = Get-PipelineFileName -ResourceIdentifier $relativeFolderPath
-        WorkflowsFolderPath = Join-Path $ModulesRepoRootPath '.github' 'workflows'
-      }
+      $isDeprecatedModule = Test-Path -Path (Join-Path $moduleFolderPath 'DEPRECATED.md')
 
-      $moduleDataItem['Status'] = Get-PipelineStatusUrl @statusInputObject
+      if ($isDeprecatedModule) {
+        $moduleDataItem['Status'] = 'Deprecated'
+      }
+      else {
+        $statusInputObject = @{
+          RepositoryName      = $RepositoryName
+          Organization        = $Organization
+          PipelineFileName    = Get-PipelineFileName -ResourceIdentifier $relativeFolderPath
+          WorkflowsFolderPath = Join-Path $ModulesRepoRootPath '.github' 'workflows'
+        }
+
+        $moduleDataItem['Status'] = Get-PipelineStatusUrl @statusInputObject
+      }
     }
 
     # Supports RBAC
