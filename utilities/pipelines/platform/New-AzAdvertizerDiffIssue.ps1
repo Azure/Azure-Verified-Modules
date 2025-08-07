@@ -42,7 +42,7 @@ function New-AzAdvertizerDiffIssue {
   )
 
   # Loading helper functions
-  . (Join-Path $RepoRoot 'utilities' 'pipelines' 'platform' 'helper' 'Get-AzAdvertizerData.ps1')
+  . (Join-Path $RepoRoot 'utilities' 'tools' 'platform' 'helper' 'Get-AzAdvertizerData.ps1')
 
   $Repo = "$RepositoryOwner/$RepositoryName"
   $latestWorkflowRunId = gh run list --repo $Repo --workflow $Workflow --branch 'users/rahalan/Automation' --limit 2 --json 'databaseId' | ConvertFrom-JSON | Select-Object -Last 1 -ExpandProperty 'databaseId'
