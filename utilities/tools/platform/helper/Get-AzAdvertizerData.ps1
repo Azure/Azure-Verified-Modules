@@ -209,10 +209,11 @@ function Format-AzAdvertizerDataDiff {
   }
 
   $output = @()
-  $output += "=" * 80
   $output += "Azure Advertizer Data Diff Report"
-  $output += "=" * 80
   $output += ""
+
+  # Get current data to resolve titles and URLs
+  $currentData = Get-AllAzAdvertizerData
 
   foreach ($resourceType in ($DiffData.Keys | Sort-Object)) {
     $resource = $DiffData[$resourceType]
@@ -225,7 +226,13 @@ function Format-AzAdvertizerDataDiff {
       if ($resource.AdvisorId.Count -gt 0) {
         $output += "  New Advisor Recommendations:"
         foreach ($advisorId in $resource.AdvisorId) {
-          $output += "    - $advisorId"
+          $advisorUrl = "https://portal.azure.com/#view/Microsoft_Azure_Expert/RecommendationList.ReactView/recommendationTypeId/$advisorId"
+          $advisorText = $advisorId
+          if ($currentData.ContainsKey($resourceType) -and $currentData[$resourceType].ContainsKey('Advisor')) {
+            $advisorRec = $currentData[$resourceType]['Advisor'] | Where-Object { $_.id -eq $advisorId } | Select-Object -First 1
+            if ($advisorRec) { $advisorText = $advisorRec.displayName }
+          }
+          $output += "    - [$advisorText]($advisorUrl)"
         }
         $output += ""
       }
@@ -233,7 +240,22 @@ function Format-AzAdvertizerDataDiff {
       if ($resource.APRLGuid.Count -gt 0) {
         $output += "  New APRL Recommendations:"
         foreach ($aprlGuid in $resource.APRLGuid) {
-          $output += "    - $aprlGuid"
+          $aprlUrl = $null
+          $aprlText = $null
+          if ($currentData.ContainsKey($resourceType) -and $currentData[$resourceType].ContainsKey('APRL')) {
+            $aprlRec = $currentData[$resourceType]['APRL'] | Where-Object { $_.aprlGuid -eq $aprlGuid } | Select-Object -First 1
+            if ($aprlRec) {
+              $anchor = $aprlRec.description.ToLower().Replace(' ', '-').Replace('"','')
+              $aprlUrl = "https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/azure-resources/{0}/#{1}" -f $aprlRec.recommendationSitePath, $anchor
+              $aprlText = $aprlRec.description
+            }
+          }
+          if ($aprlUrl -and $aprlText) {
+            $output += "    - [$aprlText]($aprlUrl)"
+          }
+          else {
+            $output += "    - APRL GUID not found: $aprlGuid"
+          }
         }
         $output += ""
       }
@@ -241,7 +263,13 @@ function Format-AzAdvertizerDataDiff {
       if ($resource.PSRuleId.Count -gt 0) {
         $output += "  New PSRule Recommendations:"
         foreach ($psRuleId in $resource.PSRuleId) {
-          $output += "    - $psRuleId"
+          $psRuleUrl = "https://azure.github.io/PSRule.Rules.Azure/en/rules/$psRuleId"
+          $psRuleText = $psRuleId
+          if ($currentData.ContainsKey($resourceType) -and $currentData[$resourceType].ContainsKey('PSRule')) {
+            $psRec = $currentData[$resourceType]['PSRule'] | Where-Object { $_.ruleId -eq $psRuleId } | Select-Object -First 1
+            if ($psRec) { $psRuleText = $psRec.displayName }
+          }
+          $output += "    - [$psRuleText]($psRuleUrl)"
         }
         $output += ""
       }

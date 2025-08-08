@@ -54,8 +54,6 @@ function New-AzAdvertizerDiffIssue {
   # get artifact (AzAdvertizerData.csv) from the latest workflow run
   $artifact = gh run download $latestWorkflowRunId --repo $Repo --dir './old' --name 'AzAdvertizerData.csv' 2>&1
 
-  Write-Host $latestWorkflowRunId
-
   if ($null -eq $artifact) {
     Write-Host "Downloaded artifact: $artifact"
     $issuesCreated = 0
