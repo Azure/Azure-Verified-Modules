@@ -65,7 +65,7 @@ function New-AzAdvertizerDiffIssue {
 
       if ($PSCmdlet.ShouldProcess("Issue [$issueName]", 'Create')) {
         $issueUrl = gh issue create --title $issueName --body $body --repo $repo
-        gh issue edit $issueUrl --repo $repo --add-assignee 'rahalan'
+        gh issue edit $issueUrl --repo $repo --add-assignee 'jeanchg'
       }
       $issuesCreated++
     }
