@@ -80,13 +80,13 @@ Modules listed below that aren't shown with the status of **`Module Available �
 
 {{% notice style="note" %}}
 
-This section is mainly intended **for module owners and contributors** as it contains information important for module development, such as **telemetry ID prefix, and GitHub Teams for Owners & Contributors**.
+This section is mainly intended **for module owners and contributors** as it contains information important for module development, such as **telemetry ID prefix, and GitHub Teams for Owners**.
 
 {{% /notice %}}
 
-### Module name, Telemetry ID prefix, GitHub Teams for Owners & Contributors
+### Module name, Telemetry ID prefix, GitHub Teams for Owners
 
-{{% expand title="➕ All Modules - Module name, Telemetry ID prefix, GitHub Teams for Owners & Contributors" expanded="false" %}}
+{{% expand title="➕ All Modules - Module name, Telemetry ID prefix, GitHub Teams for Owners" expanded="false" %}}
 
 {{% moduleNameTelemetryGHTeams header=true csv="/static/module-indexes/BicepPatternModules.csv" language="Bicep" moduleType="pattern" %}}
 
