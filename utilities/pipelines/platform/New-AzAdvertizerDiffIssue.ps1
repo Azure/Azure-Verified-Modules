@@ -26,6 +26,7 @@ TODO: Check the last 100 workflow runs in the repository 'owner/repo01' that hap
 Will be triggered by the workflow platform.new-AzAdvertizer-diff-issue.yml
 #>
 function New-AzAdvertizerDiffIssue {
+  [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingPositionalParameters", "", Justification = "Better readability")]
   [CmdletBinding(SupportsShouldProcess)]
   param (
     [Parameter(Mandatory = $false)]
@@ -42,7 +43,7 @@ function New-AzAdvertizerDiffIssue {
   )
 
   # Loading helper functions
-  . (Join-Path -Path $RepoRoot -ChildPath 'utilities' -AdditionalChildPath @('tools','platform','helper','Get-AzAdvertizerData.ps1'))
+  . (Join-Path -Path $RepoRoot 'utilities' 'tools' 'platform' 'helper' 'Get-AzAdvertizerData.ps1')
 
   $Repo = "$RepositoryOwner/$RepositoryName"
   $latestWorkflowRunId = gh run list --repo $Repo --workflow $Workflow --branch 'main' --limit 2 --json 'databaseId' | ConvertFrom-JSON | Select-Object -Last 1 -ExpandProperty 'databaseId'
