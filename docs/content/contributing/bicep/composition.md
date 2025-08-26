@@ -18,58 +18,9 @@ Before jumping on implementing your contribution, please review the AVM Module s
 
 ## Directory and File Structure
 
-Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) (BRM) repository in the `avm` directory will have the following directories and files:
+Each Bicep AVM module of the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) (BRM) repository must be implemented as per the structure described in [BCPNFR23]({{% siteparam base %}}/spec/BCPNFR23).
 
-- `tests/` - (for unit tests and additional E2E/integration if required - e.g. Pester etc.)
-  - `e2e/` - (all examples must deploy successfully - these will be used to automatically generate the examples in the README.md for the module)
-- `modules/` - (for sub-modules only if used and NOT children of the primary resource. e.g. RBAC role assignments)
-- `/...` - (Module files that live in the root of module directory)
-  - `main.bicep` (AVM Module main `.bicep` file and entry point/orchestration module)
-  - `main.json` (auto generated and what is published to the MCR via BRM)
-  - `version.json` (BRM requirement)
-  - `README.md` (auto generated AVM Module documentation)
-
-### Directory and File Structure Example
-
-```txt
-/ Root of Azure/bicep-registry-modules
-│
-├───avm
-│   ├───ptn
-│   │   └───apptiervmss
-│   │       │   main.bicep
-│   │       │   main.json
-│   │       │   README.md
-│   │       │   version.json
-│   │       │
-│   │       ├───modules
-│   │       └───tests
-│   │           ├───unit (optional)
-│   │           └───e2e
-│   │               ├───defaults
-│   │               ├───waf-aligned
-│   │               └───max
-│   │
-│   └───res
-│       └───compute
-│           └───virtual-machine
-│               │   main.bicep
-│               │   main.json
-│               │   README.md
-│               │   version.json
-│               │
-│               ├───modules
-│               └───tests
-│                   ├───unit (optional)
-│                   └───e2e
-│                       ├───defaults
-│                       ├───waf-aligned
-│                       └───max
-├───other repo dirs...
-└───other repo files...
-```
-
-For a new module (res or ptn), the files can be created automatically, once the parent folder exists. This example shows how to create a res module `res/compute/virtual-machine`.
+For a new modules, the files can be created automatically, once the parent folder exists. This example shows how to create a res module `res/compute/virtual-machine`.
 
 ```powershell
 Set-Location -Path ".\avm\"
