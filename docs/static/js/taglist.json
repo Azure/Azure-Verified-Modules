@@ -1,16 +1,48 @@
 {
   "MUST": "Must - This tag indicates that the specification is mandatory and is enforced.",
-  "SHOULD": "Should - This tag indicates that the specification should be followed, unless there's a legitimate reason not to. These specifciations are not strictly enforced.",
+  "SHOULD": "Should - This tag indicates that the specification should be followed, unless there's a legitimate reason not to. These specifications are not strictly enforced.",
   "MAY": "May - This tag indicates that the specification is a recommendation (optional) and can be skipped if not applicable.",
+  "Severity-MUST": "MUST - This tag indicates that the specification is mandatory and is enforced.",
+  "Severity-SHOULD": "SHOULD - This tag indicates that the specification should be followed, unless there's a legitimate reason not to. These specifications are not strictly enforced.",
+  "Severity-MAY": "MAY - This tag indicates that the specification is a recommendation (optional) and can be skipped if not applicable.",
 
   "Owner": "Owner - This specification is relevant for the module owner persona.",
   "Contributor": "Contributor - This specification is relevant for the contributor persona, who does routine maintenance and updates tasks.",
+  "Persona-Owner": "Owner - This specification is relevant for the module owner persona.",
+  "Persona-Contributor": "Contributor - This specification is relevant for the contributor persona, who does routine maintenance and updates tasks.",
 
-  "Initial": "Initial - This specification is relevant at the beginning of the module's lifecicyle.",
+  "Initial": "Initial - This specification is relevant at the beginning of the module's lifecycle.",
   "BAU": "Business as Usual - This specification is relevant in regular operations, throughout the module's lifecycle.",
   "EOL": "End of Life - This specification is relevant at the end of the module's lifecycle - i.e., when it's being deprecated.",
+  "Lifecycle-Initial": "Initial - This specification is relevant at the beginning of the module's lifecycle.",
+  "Lifecycle-BAU": "Business as Usual - This specification is relevant in regular operations, throughout the module's lifecycle.",
+  "Lifecycle-EOL": "End of Life - This specification is relevant at the end of the module's lifecycle - i.e., when it's being deprecated.",
 
   "Manual": "Manual - The specification is manually enforced at the time of the initial module review (when the module is first published).",
   "CI/Informational": "CI/Informational - The the module is checked against the specification by a CI pipeline, but non-compliance with the test results in an informational warning only - i.e., it does not cause the pipeline to fail and doesn’t block the module's release.",
-  "CI/Enforced": "CI/Enforced - The the specification is automatically enforced by a CI pipeline, and the failure blocks the module's release."
+  "CI/Enforced": "CI/Enforced - The the specification is automatically enforced by a CI pipeline, and the failure blocks the module's release.",
+
+  "Class-Pattern": "Pattern Modules - This specification is relevant for the class pattern type.",
+  "Class-Resource": "Resource Modules - This specification is relevant for the class resource type.",
+  "Class-Utility": "Utility Modules - This specification is relevant for the class utility type.",
+
+  "Type-Functional": "Functional - This specification is relevant for functional modules.",
+  "Type-NonFunctional": "Non-Functional - This specification is relevant for non-functional modules.",
+
+  "Category-Testing": "Testing - This specification is relevant for testing modules.",
+  "Category-Telemetry": "Telemetry - This specification is relevant for telemetry modules.",
+  "Category-Contribution/Support": "Contribution/Support - This specification is relevant for contribution and support modules.",
+  "Category-Documentation": "Documentation - This specification is relevant for documentation modules.",
+  "Category-CodeStyle": "Code Style - This specification is relevant for code style modules.",
+  "Category-Naming/Composition": "Naming/Composition - This specification is relevant for naming and composition modules.",
+  "Category-Inputs/Outputs": "Inputs/Outputs - This specification is relevant for inputs and outputs modules.",
+  "Category-Release/Publishing": "Release/Publishing - This specification is relevant for release and publishing modules.",
+
+  "Language-Bicep": "Bicep - This specification is relevant for Bicep modules.",
+  "Language-Terraform": "Terraform - This specification is relevant for Terraform modules.",
+
+  "Validation-TBD": "Validation - This specification is relevant for validation modules, which are not yet implemented.",
+  "Validation-BCP/Manual": "Validation - This specification is relevant for validation modules, which are manually enforced.",
+  "Validation-BCP/CI/Informational": "Validation - This specification is relevant for validation modules, which are checked by a CI pipeline but do not block the module's release.",
+  "Validation-BCP/CI/Enforced": "Validation - This specification is relevant for validation modules, which are automatically enforced by a CI pipeline and block the module's release."
 }

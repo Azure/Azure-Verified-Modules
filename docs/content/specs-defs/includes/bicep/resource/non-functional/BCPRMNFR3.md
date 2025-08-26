@@ -35,7 +35,7 @@ There are several reasons to structure a module in this way. For example:
 - It allows a separation of concerns where each module can focus on its own properties and logic, while delegating most of a child-resource's logic to its separate child module
 - It's consistent with the provider namespace structure and makes modules easier to understand not only because they're more aligned with set structure, but also are aligned with one another
 - As each module is its own 'deployment', it reduces limitations around nested loops
-- Once the feature is enabled, it will enable module owners to publish set child-modules as separate modules to the public registry, allowing consumers to make use of them directly.
+- It enables module owners to publish child-modules as separate modules to the public registry, allowing consumers to make use of them directly [Ref [child module publishing guidelines]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/child-module-publishing) for details].
 
 {{% notice style="note" %}}
 
