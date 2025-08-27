@@ -114,6 +114,54 @@ Recommendations
 
 <details>
 <summary>Split the solution template</summary>
+
+Probably the most uncomfortable option. If you cannot deploy your solution in one go, it may make sense to split it into logical chunks that you can deploy separately and optionally in sequence (e.g., in your workflow).
+
+This approach comes with a few drawbacks such as the potentially longer deployment time and less intuitive resolution of interdependencies. In other words, if many of your module deployments use each other's outputs and you split them into multiple templates you'd need to create 'existing' references in the later deployments.
+
+For example, splitting the following two resources
+```bicep
+
+module acr 'br/public:avm/res/container-registry/registry:0.9.3' = {
+  params: {
+    name: 'myContainerRegistry'
+  }
+}
+
+module key 'br/public:avm/res/key-vault/vault/key:0.1.0'= {
+  params: {
+    name: 'myKey'
+    keyVaultName: 'keyVaultName'
+    roleAssignments: [
+      {
+        principalId: acr.outputs.systemAssignedMIPrincipalId!
+        roleDefinitionIdOrName: 'Key Vault Crypto Service Encryption User'
+      }
+    ]
+  }
+}
+```
+in two template requires you to either add an output for the first resource's identity to the template and pass it to the subsequent deployment, or create an `existing`  reference in the second template like
+
+```bicep
+resource acr 'Microsoft.ContainerRegistry/registries@2025-04-01' existing = {
+  name: 'myContainerRegistry'
+}
+
+module key 'br/public:avm/res/key-vault/vault/key:0.1.0'= {
+  params: {
+    name: 'myKey'
+    keyVaultName: 'keyVaultName'
+    roleAssignments: [
+      {
+        principalId: acr.identity.principalId
+        roleDefinitionIdOrName: 'Key Vault Crypto Service Encryption User'
+      }
+    ]
+  }
+}
+```
+
 </details>
 
 ## Terraform
