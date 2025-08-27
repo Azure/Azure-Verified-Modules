@@ -45,8 +45,7 @@ A well-known limitation of ARM and in extension Bicep is its template size const
 
 In the following we provide you with a list of options you should be aware of:
 
-<details>
-<summary>Use loops for multi-instance deployments</summary>
+{{% expand title="➕ Use loops for multi-instance deployments" expanded="false" %}}
 
 If you deploy multiple instances of the same module (e.g., DNS entries) you should invoke the module using a loop once, as opposed to separate references to the same module. The reason comes down the way that ARM interprets these references: Each reference of a module is restored to its full ARM size. That means, if you invoke the same module 3 separate time, you will find that this module's template is added 3 times as a nested deployment. If you use a loop instead, the reference is only added once and invoked as many times as your loop as entries.
 
@@ -93,11 +92,9 @@ module testDeployment 'br/public:avm/res/authorization/role-assignment/sub-scope
 ```
 instead. I this particular example, the compiled JSON for first example has a size of `18kb`, the second using a loop `10kb`.
 
-</details>
+{{% /expand %}}
 
-
-<details>
-<summary>Only use AVM if you benefit from its features</summary>
+{{% expand title="➕ Only use AVM if you benefit from its features" expanded="false" %}}
 
 Using AVM modules can come with a lot of advantages compared to a native resource deployment. This can be as simple as being a 'module' deployment, enabling you to deploy to multiple scopes at once in the same template, all the way to encapsulating entire solution into a single invocation and hence drastically reducing the complexity of your own template.
 
@@ -110,10 +107,9 @@ Recommendations
 - Only use the `br/public/avm/res|ptn/authorization/(...)` modules if you benefit from their scope flexibility
 - When facing challenges with the template size, start replacing individual module references with their native counter-part under consideration of the size-reduction (considering large modules like API-Management, Storage Account, etc.) and the complexity of re-implementing the required features yourself. The good news: You can cherry-pick the parts of the AVM template you need.
 
-</details>
+{{% /expand %}}
 
-<details>
-<summary>Split the solution template</summary>
+{{% expand title="➕ Split the solution template" expanded="false" %}}
 
 Probably the most uncomfortable option. If you cannot deploy your solution in one go, it may make sense to split it into logical chunks that you can deploy separately and optionally in sequence (e.g., in your workflow).
 
@@ -162,7 +158,7 @@ module key 'br/public:avm/res/key-vault/vault/key:0.1.0'= {
 }
 ```
 
-</details>
+{{% /expand %}}
 
 ## Terraform
 
