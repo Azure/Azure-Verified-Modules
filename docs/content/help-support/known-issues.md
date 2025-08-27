@@ -98,6 +98,18 @@ instead. I this particular example, the compiled JSON for first example has a si
 
 <details>
 <summary>Only use AVM if you benefit from its features</summary>
+
+Using AVM modules can come with a lot of advantages compared to a native resource deployment. This can be as simple as being a 'module' deployment, enabling you to deploy to multiple scopes at once in the same template, all the way to encapsulating entire solution into a single invocation and hence drastically reducing the complexity of your own template.
+
+However, they also come with certain limitations. For one, that you're dependent on the module providing you all the features you need, but moreover, that the very same features are always part of the module, whether you use them or not, hence contributing to your solution template's size.
+
+With this in mind, our recommendation is to only use AVM modules if you use any of its features, hence justifying the contribution to your template's size.
+
+Recommendations
+- Only use the `br/public:avm/res/resources/resource-group` resource if you deploy resource groups with role assignments
+- Only use the `br/public/avm/res|ptn/authorization/(...)` modules if you benefit from their scope flexibility
+- When facing challenges with the template size, start replacing individual module references with their native counter-part under consideration of the size-reduction (considering large modules like API-Management, Storage Account, etc.) and the complexity of re-implementing the required features yourself. The good news: You can cherry-pick the parts of the AVM template you need.
+
 </details>
 
 <details>
