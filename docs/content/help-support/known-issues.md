@@ -39,6 +39,71 @@ While this isn't an AVM issue, we understand that consumers of AVM Bicep modules
 
 {{% /notice %}}
 
+### 4MB limitation
+
+A well-known limitation of ARM and in extension Bicep is its template size constraint of 4MB (which roughly translates to the size of the compiled ARM template). While there is not anything one can do to change this limit there are actions you can take to reduce your template's size and make it less likely to run into this issue.
+
+In the following we provide you with a list of options you should be aware of:
+
+<details>
+<summary>Use loops for multi-instance deployments</summary>
+
+If you deploy multiple instances of the same module (e.g., DNS entries) you should invoke the module using a loop once, as opposed to separate references to the same module. The reason comes down the way that ARM interprets these references: Each reference of a module is restored to its full ARM size. That means, if you invoke the same module 3 separate time, you will find that this module's template is added 3 times as a nested deployment. If you use a loop instead, the reference is only added once and invoked as many times as your loop as entries.
+
+For example, you should refactor the code
+```bicep
+targetScope = 'subscription'
+
+@description('The principal to assign the roles to.')
+param principalId string
+
+module testDeployment1 'br/public:avm/res/authorization/role-assignment/sub-scope:0.1.0' = {
+  params: {
+    principalId: principalId
+    roleDefinitionIdOrName: 'Contributor'
+  }
+}
+module testDeployment2 'br/public:avm/res/authorization/role-assignment/sub-scope:0.1.0' = {
+  params: {
+    principalId: principalId
+    roleDefinitionIdOrName: 'Role Based Access Control Administrator'
+  }
+}
+```
+to
+```bicep
+targetScope = 'subscription'
+
+@description('The principal to assign the roles to.')
+param principalId string
+
+var rolesToAssign = [
+  'Contributor'
+  'Role Based Access Control Administrator'
+]
+
+module testDeployment 'br/public:avm/res/authorization/role-assignment/sub-scope:0.1.0' = [
+  for role in rolesToAssign: {
+    params: {
+      principalId: principalId
+      roleDefinitionIdOrName: role
+    }
+  }
+]
+```
+instead. I this particular example, the compiled JSON for first example has a size of `18kb`, the second using a loop `10kb`.
+
+</details>
+
+
+<details>
+<summary>Only use AVM if you benefit from its features</summary>
+</details>
+
+<details>
+<summary>Split the solution template</summary>
+</details>
+
 ## Terraform
 
 Currently there are no known issues for AVM Terraform modules. 🥳
