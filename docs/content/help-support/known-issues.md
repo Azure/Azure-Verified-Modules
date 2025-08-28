@@ -41,7 +41,7 @@ While this isn't an AVM issue, we understand that consumers of AVM Bicep modules
 
 ### 4MB limitation
 
-A well-known limitation of ARM, and in extension Bicep, is its compiled ARM template size constraint of 4MB. While there is not anything one can do to change this limit there are actions you can take to reduce your template's size and make it less likely to run into this issue.
+A well-known [limitation of ARM](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/best-practices#template-limits), and in extension Bicep, is its compiled ARM template size constraint of 4MB. While there is not anything one can do to change this limit there are actions you can take to reduce your template's size and make it less likely to run into this issue.
 
 In the following we provide you with a list of options you should be aware of:
 
