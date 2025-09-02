@@ -20,7 +20,7 @@ Before jumping on implementing your contribution, please review the AVM Module s
 
 Each Bicep AVM module of the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) (BRM) repository must be implemented as per the structure described in [BCPNFR23]({{% siteparam base %}}/spec/BCPNFR23).
 
-For a new modules, the files can be created automatically, once the parent folder exists. This example shows how to create a res module `res/compute/virtual-machine`.
+For new modules, the files can be created automatically, once the parent folder exists. This example shows how to create a res module `res/compute/virtual-machine`.
 
 ```powershell
 Set-Location -Path ".\avm\"
