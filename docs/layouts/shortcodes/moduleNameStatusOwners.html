@@ -204,13 +204,17 @@
           {{- if (eq $element.ParentModule $item.ModuleName) -}}
             {{ $child := trim (replace $element.ModuleName (print $item.ModuleName "/") "") "/" }}
             {{ if $useLinks }}
-              {{- if or (eq $element.ModuleStatus "Available") (eq $element.ModuleStatus "Orphaned") -}}
+              {{- if eq $element.ModuleStatus "Available" -}}
                 <li style="margin-left: 20px;">
-                  <a href="{{ $element.RepoURL }}" title="{{ $element.ModuleDisplayName }} | {{ $element.ModuleName }}">{{ $child }}</a>
+                  <a href="{{ $element.RepoURL }}" title="[Available 🟢] {{ $element.ModuleDisplayName }} | {{ $element.ModuleName }}">{{ $child }}</a>
+                </li>
+              {{- else if eq $element.ModuleStatus "Orphaned" -}}
+                <li style="margin-left: 20px;">
+                  <span title="[Orphaned 🟡] {{ $element.ModuleDisplayName }} ({{ $element.ModuleName }})">{{ $child }}</span>
                 </li>
               {{- else -}}
                 <li style="margin-left: 20px;">
-                  <span title="{{ $element.ModuleDisplayName }} ({{ $element.ModuleName }})">{{ $child }}</span>
+                  <span title="[Proposed ⚪] {{ $element.ModuleDisplayName }} ({{ $element.ModuleName }})">{{ $child }}</span>
                 </li>
               {{- end -}}
             {{- end -}}
@@ -349,13 +353,17 @@
           {{- if (eq $element.ParentModule $item.ModuleName) -}}
             {{ $child := trim (replace $element.ModuleName (print $item.ModuleName "/") "") "/" }}
             {{ if $useLinks }}
-              {{- if or (eq $element.ModuleStatus "Available") (eq $element.ModuleStatus "Orphaned") -}}
+              {{- if eq $element.ModuleStatus "Available" -}}
                 <li style="margin-left: 20px;">
-                  <a href="{{ $element.PublicRegistryReference }}" title="{{ $element.ModuleDisplayName }} | {{ $element.ModuleName }}">{{ $child }}</a>
+                  <a href="[Available 🟢] {{ $element.PublicRegistryReference }}" title="{{ $element.ModuleDisplayName }} | {{ $element.ModuleName }}">{{ $child }}</a>
+                </li>
+              {{- else if eq $element.ModuleStatus "Orphaned" -}}
+                <li style="margin-left: 20px;">
+                  <span title="[Orphaned 🟡] {{ $element.ModuleDisplayName }} ({{ $element.ModuleName }})">{{ $child }}</span>
                 </li>
               {{- else -}}
                 <li style="margin-left: 20px;">
-                  <span title="{{ $element.ModuleDisplayName }} ({{ $element.ModuleName }})">{{ $child }}</span>
+                  <span title="[Proposed ⚪️] {{ $element.ModuleDisplayName }} ({{ $element.ModuleName }})">{{ $child }}</span>
                 </li>
               {{- end -}}
             {{- end -}}
