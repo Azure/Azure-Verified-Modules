@@ -132,7 +132,6 @@
   </thead>
   {{ end }}
   {{ range $item, $maps }}
-  {{ $hasListableModules = false }}
   {{ if in $include $item.ModuleStatus }}
     {{ $moduleLatestVersion = "N/A" }}
     {{ if and (or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated")) (ne $item.PublicRegistryReference "n/a") }}
@@ -290,7 +289,6 @@
   </thead>
   {{ end }}
   {{ range $item, $maps }}
-  {{ $hasListableModules = false }}
   {{ if in $include $item.ModuleStatus }}
   {{ $moduleLatestVersion = "N/A" }}
     {{ if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") }}
