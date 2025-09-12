@@ -242,12 +242,3 @@ configuration:
         then:
           - removeLabel:
               label: "Status: In PR :point_right:"
-
-      - description: 'ITA26 - When owner is ready for repository creation, add the "Status: Ready For Repository Creation :memo:" label'
-        if:
-          - payloadType: Issue_Comment
-          - commentContains:
-              pattern: "#RFRC"
-        then:
-          - addLabel:
-              label: "Status: Ready For Repository Creation :memo:"

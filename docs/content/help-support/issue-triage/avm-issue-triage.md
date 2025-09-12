@@ -77,7 +77,6 @@ If requestor is interested in becoming a module owner, but is not a Microsoft FT
 
 1. If the requestor indicated they didn't want to or can't become a module owner (or is not a Microsoft FTE), make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; label is assigned to the issue. Note: the GitHub Policy Service Bot should automatically do this, based on how the issue author responded to the related question.
 1. Move the issue to the "`Looking for owners`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub project board.
-1. Add a comment on the issue with the `#RFRC` tag to indicate that the repository should be created. This allows the module to be added the module indexes in the `Proposed` state, so that it can be found by the community and potential module owners.
 1. Find module owners - if the requestor didn't volunteer in the module proposal OR the requestor does not want or cannot be owner of the module:
     - Try to find an owner from the AVM communities or await a module owner to comment and propose themselves on the proposal issue.
 1. When a new potential owner is identified, continue with the steps described [as follows](#scenario-2-requestor-wants-to-and-can-become-module-owner).
@@ -105,7 +104,6 @@ You **MUST** still confirm that the requestor is a Microsoft FTE and that they u
 3. Once module owner identified has confirmed they understand and accept their roles and responsibilities as an AVM module owner
     - Make sure the issue is assigned to the confirmed module owner.
     - Move the issue into the "`In development`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
-    - Add a comment on the issue with the `#RFRC` tag to indicate that the repository should be created. This allows the module to be added the module indexes in the `Proposed` state, so that it can be found by the community.
     - Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; label is added to the issue.
       - If applied earlier, remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; label from the issue.
     - Remove the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#E4E669;">Status: In Triage 🔍</mark>&nbsp; to indicate you're done with triaging the issue.
