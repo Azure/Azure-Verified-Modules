@@ -7,17 +7,14 @@ Compares Azure Verified Modules Module Indexes with existing GitHub Teams config
 
 .PARAMETER ModuleIndex
 Required. Modules Index to use as source, allowed strings are:
-'Bicep-Resource', 'Bicep-Pattern', 'Terraform-Resource', 'Terraform-Pattern'
+'Bicep-Resource', 'Bicep-Pattern'
 
 .PARAMETER TeamFilter
 Required. Teams to filter on, allowed strings are:
-'AllTeams', 'AllResource', 'AllPattern', 'AllBicep', 'AllBicepResource', 'BicepResourceOwners', 'BicepResourceContributors', 'AllBicepPattern', 'BicepPatternOwners', 'BicepPatternContributors', 'AllTerraform', 'AllTerraformResource', 'TerraformResourceOwners', 'TerraformResourceContributors', 'AllTerraformPattern', 'TerraformPatternOwners', 'TerraformPatternContributors'
+'AllTeams', 'AllResource', 'AllPattern', 'AllBicep', 'AllBicepResource', 'BicepResourceOwners', 'BicepResourceContributors', 'AllBicepPattern', 'BicepPatternOwners', 'BicepPatternContributors'
 
 .PARAMETER ValidateBicepParentConfiguration
 Optional. Validate if Parent Team is configured for Owners Team
-
-.PARAMETER ValidateTerraformTeamsPermissons
-Optional. Validate if correct permissions are configured for Terraform Teams
 
 .PARAMETER CreateIssues
 Optional. Create GitHub Issues for unmatched teams
@@ -26,11 +23,6 @@ Optional. Create GitHub Issues for unmatched teams
 Invoke-AvmGitHubTeamLinter -ModuleIndex Bicep-Resource -TeamFilter AllBicepResource -ValidateBicepParentConfiguration -Verbose -CreateIssues
 
 Compares all bicep resource modules with GitHub Teams and validates if Parent Team is configured for Owners Team. Verbose output is displayed and GitHub Issues are created for unmatched teams.
-
-.EXAMPLE
-Invoke-AvmGitHubTeamLinter -ModuleIndex Terraform-Resource -TeamFilter AllTerraformResource -ValidateTerraformTeamsPermissons -Verbose -CreateIssues
-
-Compares all terraform resource modules with GitHub Teams and validates if Teams have correct permissions on repository. Verbose output is displayed and GitHub Issues are created for unmatched teams.
 
 .EXAMPLE
 Invoke-AvmGitHubTeamLinter -ModuleIndex Bicep-Pattern -TeamFilter AllBicepPattern -ValidateBicepParentConfiguration -Verbose
@@ -43,30 +35,18 @@ Function Invoke-AvmGitHubTeamLinter {
   [CmdletBinding()]
   param (
       [Parameter(Mandatory)]
-      [ValidateSet('Bicep-Resource', 'Bicep-Pattern', 'Terraform-Resource', 'Terraform-Pattern')]
+      [ValidateSet('Bicep-Resource', 'Bicep-Pattern')]
       [string]$ModuleIndex,
 
       [Parameter(Mandatory)]
-      [ValidateSet('AllTeams', 'AllResource', 'AllPattern', 'AllBicep', 'AllBicepResource', 'BicepResourceOwners', 'BicepResourceContributors', 'AllBicepPattern', 'BicepPatternOwners', 'BicepPatternContributors', 'AllTerraform', 'AllTerraformResource', 'TerraformResourceOwners', 'TerraformResourceContributors', 'AllTerraformPattern', 'TerraformPatternOwners', 'TerraformPatternContributors' )]
+      [ValidateSet('AllTeams', 'AllResource', 'AllPattern', 'AllBicep', 'AllBicepResource', 'BicepResourceOwners', 'BicepResourceContributors', 'AllBicepPattern', 'BicepPatternOwners', 'BicepPatternContributors' )]
       [string]$TeamFilter,
 
       [Parameter(Mandatory = $false)]
       [switch]$ValidateBicepParentConfiguration,
 
       [Parameter(Mandatory = $false)]
-      [switch]$ValidateTerraformTeamsPermissons,
-
-      [Parameter(Mandatory = $false)]
-      [switch]$validateTerraformAdminPermissions,
-
-      [Parameter(Mandatory = $false)]
-      [switch]$CreateIssues,
-
-      [Parameter(Mandatory = $false)]
-      [array]$TerraformAdminTeamList = @(
-        'terraform-avm',
-        'avm-core-team-technical-terraform'
-      )
+      [switch]$CreateIssues
   )
 
   # Load used functions
@@ -149,36 +129,6 @@ Function Invoke-AvmGitHubTeamLinter {
                           break
                       }
                   }
-                  elseif ($ValidateTerraformTeamsPermissons -and $matchFound) {
-                      Write-Verbose "Found team: $($module.ModuleOwnersGHTeam) Checking Permissions configuration"
-                      if ($module.ModuleOwnersGHTeam -like "*-tf") {
-                          $repoName = "terraform-azurerm-$($module.ModuleName)"
-                          $repoConfiguration = Test-AvmGitHubTeamPermission -Organization Azure -TeamName $module.ModuleOwnersGHTeam -RepoName $repoName -ExpectedPermission "Admin"
-                          if ($repoConfiguration -match "Success") {
-                              Write-Verbose "Good News! Team: [$($module.ModuleOwnersGHTeam)] is configured with the expected permission: [admin] on Repo: [$repoName] "
-                              Write-Verbose "Checking if an issue exists for the team: [$($ghTeam.name)]..."
-                              Close-ResolvedGithubIssue -title "[GitHub Team Issue] ``$($ghTeam.name)``"
-                          }
-                          else {
-                              Write-Verbose "Uh-oh no correct permissions configured for $($module.ModuleOwnersGHTeam) ($($module.PrimaryModuleOwnerDisplayName))"
-                              # Create a custom object for the unmatched team
-                              $unmatchedTeam = [PSCustomObject]@{
-                                  TeamName       = $module.ModuleOwnersGHTeam
-                                  Validation     = "No correct permissions assigned."
-                                  Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
-                                  GitHubTeamName = $ghTeam.name
-                                  Resolution     = "Please assign the correct permissions to the team: $($module.ModuleOwnersGHTeam). This can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/spec/SNFR20)."
-                              }
-                              # Add the custom object to the array
-                              $unmatchedTeams += $unmatchedTeam
-                              break
-                          }
-                      }
-                      else {
-                          Write-Verbose "Skipping non Terraform module: $($module.ModuleOwnersGHTeam)"
-                          break
-                      }
-                  }
                   elseif ($matchFound) {
                       # Write verbose output without parent check
                       Write-Verbose "Found team: $($module.ModuleOwnersGHTeam) ($($module.PrimaryModuleOwnerDisplayName))"
@@ -251,36 +201,6 @@ Function Invoke-AvmGitHubTeamLinter {
                           $unmatchedTeams += $unmatchedTeam
                       }
                   }
-                  elseif ($ValidateTerraformTeamsPermissons -and $matchFound) {
-                      Write-Verbose "Found team: $($module.ModuleContributorsGHTeam) Checking Permissions configuration"
-                      if ($module.ModuleContributorsGHTeam -like "*-tf") {
-                          $repoName = "terraform-azurerm-$($module.ModuleName)"
-                          $repoConfiguration = Test-AvmGitHubTeamPermission -Organization Azure -TeamName $module.ModuleContributorsGHTeam -RepoName $repoName -ExpectedPermission "Write"
-                          if ($repoConfiguration -match "Success") {
-                              Write-Verbose "Good News! Team: [$($module.ModuleOwnersGHTeam)] is configured with the expected permission: [write] on Repo: [$repoName] "
-                              Write-Verbose "Checking if an issue exists for the team: [$($ghTeam.name)]..."
-                              Close-ResolvedGithubIssue -title "[GitHub Team Issue] ``$($ghTeam.name)``"
-                            }
-                          else {
-                              Write-Verbose "Uh-oh no correct permissions configured for $($module.ModuleContributorsGHTeam) ($($module.PrimaryModuleOwnerDisplayName))"
-                              # Create a custom object for the unmatched team
-                              $unmatchedTeam = [PSCustomObject]@{
-                                  TeamName       = $module.ModuleContributorsGHTeam
-                                  Validation     = "No correct permissions assigned."
-                                  Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
-                                  GitHubTeamName = $ghTeam.name
-                                  Resolution     = "Please assign the correct permissions to the team: $($module.ModuleContributorsGHTeam). This can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/spec/SNFR20)."
-                              }
-                              # Add the custom object to the array
-                              $unmatchedTeams += $unmatchedTeam
-                              break
-                          }
-                      }
-                      else {
-                          Write-Verbose "Skipping non Terraform module: $($module.ModuleContributorsGHTeam)"
-                          break
-                      }
-                  }
                   elseif ($matchFound) {
                       Write-Verbose "Found team: $($module.ModuleContributorsGHTeam) ($($module.PrimaryModuleOwnerDisplayName))"
                       break
@@ -325,35 +245,6 @@ Function Invoke-AvmGitHubTeamLinter {
                   $unmatchedTeams += $unmatchedTeam
               }
           }
-      }
-
-      if ($validateTerraformAdminPermissions -Or $validateAll) {
-        foreach ($tfAdminteam in $TerraformAdminTeamList) {
-          if ($module.ModuleOwnersGHTeam -like "*-tf") {
-
-            $repoName = "terraform-azurerm-$($module.ModuleName)"
-            $teamTest = Test-AvmGitHubTeamPermission -Organization Azure -TeamName $tfAdminteam -RepoName $repoName -ExpectedPermission "Admin"
-            if ($teamTest -match "Success") {
-              Write-Verbose "Good News! Team: [$tfAdminteam] is configured with the expected permission: [admin] on Repo: [$repoName] "
-              Write-Verbose "Checking if an issue exists for the team: [$($ghTeam.name)]..."
-              Close-ResolvedGithubIssue -title "[GitHub Team Issue] ``$($ghTeam.name)``"
-            }
-            else {
-              Write-Verbose "Uh-oh no correct permissions configured for [$tfAdminteam]"
-              # Create a custom object for the unmatched team
-              $unmatchedTeam = [PSCustomObject]@{
-                  TeamName       = $module.ModuleContributorsGHTeam
-                  Validation     = "No correct permissions assigned."
-                  Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
-                  GitHubTeamName = $tfAdminteam
-                  Resolution     = "Please assign the correct permissions to the team: [$tfAdminteam]. This can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/spec/SNFR20)."
-              }
-              # Add the custom object to the array
-              $unmatchedTeams += $unmatchedTeam
-              break
-            }
-          }
-        }
       }
   }
   # Check if $unmatchedTeams is empty

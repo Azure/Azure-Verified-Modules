@@ -9,11 +9,10 @@ tags: [
   Type-NonFunctional, # SINGLE VALUE: this can be "Type-Functional" OR "Type-NonFunctional"
   Category-Contribution/Support, # SINGLE VALUE: this can be "Category-Testing" OR "Category-Telemetry" OR "Category-Contribution/Support" OR "Category-Documentation" OR "Category-CodeStyle" OR "Category-Naming/Composition" OR "Category-Inputs/Outputs" OR "Category-Release/Publishing"
   Language-Bicep, # MULTIPLE VALUES: this can be "Language-Bicep" AND/OR "Language-Terraform"
-  Language-Terraform, # MULTIPLE VALUES: this can be "Language-Bicep" AND/OR "Language-Terraform"
   Severity-MUST, # SINGLE VALUE: this can be "Severity-MUST" OR "Severity-SHOULD" OR "Severity-MAY"
   Persona-Owner, # MULTIPLE VALUES: this can be "Persona-Owner" AND/OR "Persona-Contributor"
   Lifecycle-Initial, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
-  Validation-TBD # SINGLE VALUE (PER LANGUAGE): for Bicep, this can be "Validation-BCP/Manual" OR "Validation-BCP/CI/Informational" OR "Validation-BCP/CI/Enforced" and for Terraform, this can be "Validation-TF/Manual" OR "Validation-TF/CI/Informational" OR "Validation-TF/CI/Enforced"
+  Validation-TBD # SINGLE VALUE (PER LANGUAGE): this can be "Validation-BCP/Manual" OR "Validation-BCP/CI/Informational" OR "Validation-BCP/CI/Enforced" and for Terraform, this can be "Validation-TF/Manual" OR "Validation-TF/CI/Informational" OR "Validation-TF/CI/Enforced"
 ]
 priority: 1110
 ---
@@ -31,8 +30,6 @@ The names for the GitHub teams for each approved module are already defined in t
 
 - [Bicep Resource Modules]({{% siteparam base %}}/indexes/bicep/bicep-resource-modules/#module-name-telemetry-id-prefix-github-teams-for-owners--contributors)
 - [Bicep Pattern Modules]({{% siteparam base %}}/indexes/bicep/bicep-pattern-modules/#module-name-telemetry-id-prefix-github-teams-for-owners--contributors)
-- [Terraform Resource Modules]({{% siteparam base %}}/indexes/terraform/tf-resource-modules/#module-name-telemetry-id-prefix-github-teams-for-owners--contributors)
-- [Terraform Pattern Modules]({{% siteparam base %}}/indexes/terraform/tf-pattern-modules/#module-name-telemetry-id-prefix-github-teams-for-owners--contributors)
 
 The `@Azure` prefix in the last column of the tables linked above represents the "Azure" GitHub organization all AVM-related repositories exist in. **DO NOT** include this segment in the team's name!
 
@@ -46,8 +43,8 @@ Non-FTE / external contributors (subject matter experts that aren't Microsoft em
 
 The naming convention for the GitHub teams **MUST** follow the below pattern:
 
-- `<hyphenated module name>-module-owners-<bicep/tf>` - to be assigned as the GitHub repository's `Module Owners` team
-- `<hyphenated module name>-module-contributors-<bicep/tf>` - to be assigned as the GitHub repository's `Module Contributors` team
+- `<hyphenated module name>-module-owners-bicep` - to be assigned as the GitHub repository's `Module Owners` team
+- `<hyphenated module name>-module-contributors-bicep` - to be assigned as the GitHub repository's `Module Contributors` team
 
 {{% notice style="note" %}}
 The naming convention for Bicep modules is slightly different than the naming convention for their respective GitHub teams.
@@ -59,12 +56,12 @@ Segments:
   - See [RMNFR1]({{% siteparam base %}}/spec/RMNFR1) for AVM Resource Module Naming
   - See [PMNFR1]({{% siteparam base %}}/spec/PMNFR1) for AVM Pattern Module Naming
 - `module-owners` or `module-contributors` == the role the GitHub Team is assigned to
-- `<bicep/tf>` == the language the module is written in
+- `bicep` == the language the module is written in
 
 Examples:
 
 - `avm-res-compute-virtualmachine-module-owners-bicep`
-- `avm-res-compute-virtualmachine-module-contributors-tf`
+- `avm-res-compute-virtualmachine-module-contributors-bicep`
 
 ### Add Team Members
 
@@ -124,16 +121,7 @@ Every `CODEOWNERS` entry (line) **MUST** include the following segments separate
 
 Example - `CODEOWNERS` entry for the Bicep resource module of Azure Virtual Network (`avm/res/network/virtual-network`):
 
-- `/avm/res/network/virtual-network/ @Azure/avm-res-network-virtualnetwork-module-owners-bicep @Azure/avm-module-reviewers-bicep`
-
-### Grant Permissions - Terraform
-
-Module owners **MUST** assign the `-module-owners-`and `-module-contributors-` teams the necessary permissions on their Terraform module repository per the guidance below.
-
-| GitHub Team Name                       | Description                                       | Permissions | Permissions granted through | Where to work?                                                                                |
-|----------------------------------------|---------------------------------------------------|-------------|-----------------------------|-----------------------------------------------------------------------------------------------|
-| `<module name>-module-owners-tf`       | AVM Terraform Module Owners - \<module name>       | **Admin**   | Direct assignment to repo   | Module owner can decide whether they want to work in a branch local to the repo or in a fork. |
-| `<module name>-module-contributors-tf` | AVM Terraform Module Contributors - \<module name> | **Write**   | Direct assignment to repo   | Need to work in a fork.                                                                       |
+- `/avm/res/network/virtual-network/ @Azure/avm-res-network-virtualnetwork-module-owners-bicep @Azure/avm-module-reviewers-bicep`                                                                   |
 
 {{% notice style="tip" %}}
 Direct link to create a new GitHub team: [Create new team](https://github.com/orgs/Azure/new-team)
