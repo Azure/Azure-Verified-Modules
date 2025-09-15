@@ -159,7 +159,7 @@ AVM performs end-to-end (e2e) test deployments of all modules in Azure for valid
     $env:ARM_CLIENT_SECRET = "<service_principal_password>"
     ```
 
-2. Change to the root of your module repository and run `./avm docscheck` (Linux/MacOs) / `avm.bat docscheck` (Windows) to verify the container image is working as expected or needs to be pulled first. You will need this later.
+2. Change to the root of your module repository and run `./avm docscheck` (Linux/MacOs) / `./avm docscheck` (Windows) to verify the container image is working as expected or needs to be pulled first. You will need this later.
 
     ![PullLatestAzterraformContainerImage]({{% siteparam base %}}/images/contribution/pullImage.png "Pull latest azterraform container image")
 
@@ -201,8 +201,8 @@ The following commands will run all pre-commit checks and the pr-check.
 ./avm pr-check
 
 ## Windows
-avm.bat pre-commit
-avm.bat pr-check
+./avm pre-commit
+./avm pr-check
 ```
 
 #### 4.2 Run e2e tests
@@ -211,7 +211,7 @@ Currently you have two options to run e2e tests:
 
 {{% notice style="note" %}}
 
-With the help of the [avm](https://github.com/Azure/terraform-azurerm-avm-template/blob/main/avm) script and the commands `./avm test-example` (Linux/MacOs) / `avm.bat test-example` (Windows) you will be able to run it in a more simplified way. Currently the `test-example` command is not completely ready yet and will be released soon. Therefore please use the below docker command for now.
+With the help of the [avm](https://github.com/Azure/terraform-azurerm-avm-template/blob/main/avm) script and the commands `./avm test-example` (Linux/MacOs) / `./avm test-example` (Windows) you will be able to run it in a more simplified way. Currently the `test-example` command is not completely ready yet and will be released soon. Therefore please use the below docker command for now.
 
 {{% /notice %}}
 
