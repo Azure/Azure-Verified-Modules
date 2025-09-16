@@ -124,7 +124,7 @@
       <th>No.</th>
       <th>Module Name</th>
       <th>Telemetry ID prefix</th>
-      <th>GitHub Teams for Module Owners and Contributors</th>
+      <th>GitHub Teams for Module Owners (<code>@Azure</code> org)</th>
     </tr>
   </thead>
   {{ end }}
@@ -151,14 +151,10 @@
     <td> {{/* GH teams */}}
       {{- if or (eq $ParentModuleColumnId 0) (eq $item.ParentModule "n/a") -}}
         <code style="white-space:normal;">{{ $item.ModuleOwnersGHTeam }}</code>
-        <br>
-        <code style="white-space:normal;">{{ $item.ModuleContributorsGHTeam }}</code>
       {{- else -}}
         {{- range $element, $maps -}}
           {{- if eq $element.ModuleName $item.ParentModule -}}
             <code style="white-space:normal;">{{ $element.ModuleOwnersGHTeam }}</code>
-            <br>
-            <code style="white-space:normal;">{{ $element.ModuleContributorsGHTeam }}</code>
           {{- end -}}
         {{- end -}}
       {{- end -}}
