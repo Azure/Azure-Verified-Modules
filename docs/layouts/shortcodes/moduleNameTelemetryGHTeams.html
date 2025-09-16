@@ -202,7 +202,7 @@
       {{- end -}}
     </td>
     <td> {{/* GH teams */}}
-      {{- if eq $item.ParentModule "n/a" -}}
+      {{- if or (eq $ParentModuleColumnId 0) (eq $item.ParentModule "n/a") -}}
         {{- $cleanOwnersTeamName := replace $item.ModuleOwnersGHTeam "@Azure/" "" -}}
         {{- $cleanContributorsTeamName := replace $item.ModuleContributorsGHTeam "@Azure/" "" -}}
         <code style="white-space:normal;">{{ $cleanOwnersTeamName }}</code>
