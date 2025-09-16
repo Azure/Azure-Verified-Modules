@@ -150,11 +150,13 @@
     </td>
     <td> {{/* GH teams */}}
       {{- if or (eq $ParentModuleColumnId 0) (eq $item.ParentModule "n/a") -}}
-        <code style="white-space:normal;">{{ $item.ModuleOwnersGHTeam }}</code>
+        {{- $cleanTeamName := replace $item.ModuleOwnersGHTeam "@Azure/" "" -}}
+        <code style="white-space:normal;">{{ $cleanTeamName }}</code>
       {{- else -}}
         {{- range $element, $maps -}}
           {{- if eq $element.ModuleName $item.ParentModule -}}
-            <code style="white-space:normal;">{{ $element.ModuleOwnersGHTeam }}</code>
+            {{- $cleanTeamName := replace $element.ModuleOwnersGHTeam "@Azure/" "" -}}
+            <code style="white-space:normal;">{{ $cleanTeamName }}</code>
           {{- end -}}
         {{- end -}}
       {{- end -}}
@@ -178,7 +180,7 @@
     <tr>
       <th>No.</th>
       <th>Module Name</th>
-      <th>GitHub Teams for Module Owners and Contributors</th>
+      <th>GitHub Teams for Module Owners and Contributors (<code>@Azure</code> org)</th>
     </tr>
   </thead>
   {{ end }}
@@ -201,15 +203,19 @@
     </td>
     <td> {{/* GH teams */}}
       {{- if eq $item.ParentModule "n/a" -}}
-        <code style="white-space:normal;">{{ $item.ModuleOwnersGHTeam }}</code>
+        {{- $cleanOwnersTeamName := replace $item.ModuleOwnersGHTeam "@Azure/" "" -}}
+        {{- $cleanContributorsTeamName := replace $item.ModuleContributorsGHTeam "@Azure/" "" -}}
+        <code style="white-space:normal;">{{ $cleanOwnersTeamName }}</code>
         <br>
-        <code style="white-space:normal;">{{ $item.ModuleContributorsGHTeam }}</code>
+        <code style="white-space:normal;">{{ $cleanContributorsTeamName }}</code>
       {{- else -}}
         {{- range $element, $maps -}}
           {{- if eq $element.ModuleName $item.ParentModule -}}
-            <code style="white-space:normal;">{{ $element.ModuleOwnersGHTeam }}</code>
+            {{- $cleanOwnersTeamName := replace $element.ModuleOwnersGHTeam "@Azure/" "" -}}
+            {{- $cleanContributorsTeamName := replace $element.ModuleContributorsGHTeam "@Azure/" "" -}}
+            <code style="white-space:normal;">{{ $cleanOwnersTeamName }}</code>
             <br>
-            <code style="white-space:normal;">{{ $element.ModuleContributorsGHTeam }}</code>
+            <code style="white-space:normal;">{{ $cleanContributorsTeamName }}</code>
           {{- end -}}
         {{- end -}}
       {{- end -}}
