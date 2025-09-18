@@ -230,7 +230,7 @@ To look for Orphaned Modules:
     - Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#C8E6C9;">Status: Module Available 🟢</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; labels to the issue.
     - Move the issue into the "`Done`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
 3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
-4. Get the new owner(s) and any new contributor(s) added to the related `-module-owners-` or `-module-contributors-` teams as applicable. See [SNFR20]({{% siteparam base %}}/spec/SNFR20) for more details.
+4. Get the new owner(s) added to the related `-module-owners-` team as applicable. See [SNFR20]({{% siteparam base %}}/spec/SNFR20) for more details.
 5. Remove the information notice (i.e., the file that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.` ):
     - In case of a Bicep module:
       - Delete the `ORPHANED.md` file from the module's root.
@@ -276,13 +276,12 @@ If a module meets the criteria described in the "[Deprecated Modules]({{% sitepa
     1. Remove the module from the [`CODEOWNERS`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) file.
     1. Submit a Pull Request
     1. For the AVM maintainers: Once the PR is merged, run the [.Platform - Publish [moduleIndex.json]](https://github.com/Azure/bicep-registry-modules/actions/workflows/platform.publish-module-index-json.yml) workflow with the `regenIndexFromBRM` flag set. This will de-list the module so that it won't show up in the VS-Code Bicep extension going forward.
-7. Delete the module's `-owners-` and `-contributors-` GitHub teams.
+7. Delete the module's `-owners-` GitHub teams.
 
 **Terraform specific steps**
 
 4. Place the information notice - with the text below - in the `README.md` file, in the module's root.
 5. Archive the module's repository on GitHub.
-6. Keep the module's `-owners-` and `-contributors-` GitHub teams, as these will keep granting access to the source code of the module.
 
 **Deprecation information notice** (to be place in the module's repository as described above)
 
