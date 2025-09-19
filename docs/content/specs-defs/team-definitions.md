@@ -54,7 +54,10 @@ Module owners are responsible for:
     - Module Feature Request Triage & Additions
 4. **Managing additional module contributors**
 
-Ideally there **SHOULD** be at least 2 module owners per module who **MUST** be added to a [GitHub Team in the `Azure` organization.]({{%siteparam base%}}/spec/SNFR20/)
+Ideally there **SHOULD** be at least 2 module owners per module:
+
+- Bicep: Owners **MUST** be added to a [GitHub Team in the `Azure` organization.]({{%siteparam base%}}/spec/SNFR20/)
+- Terraform: Owners **MUST** add themselves to the Azure Verified Module Owners Terraform entitlement in Core Identity.
 
 ### Module Contributors
 
@@ -68,7 +71,8 @@ Module Contributors are responsible for:
 
 - Assisting the Module Owners with their responsibilities
 
-Module Contributors **MUST** be added to a separate [GitHub Team in the `Azure` organization]({{%siteparam base%}}/spec/SNFR20/) that the Module Owners manage and are maintainers of.
+- Bicep: Module Contributors **MUST** be added to a separate [GitHub Team in the `Azure` organization]({{%siteparam base%}}/spec/SNFR20/) that the Module Owners manage and are maintainers of.
+- Terraform: Contributors **MUST** add themselves to the Azure Verified Module Owners Terraform entitlement in Core Identity.
 
 ### Product Groups
 
