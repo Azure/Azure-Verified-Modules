@@ -12,12 +12,12 @@ If this process is not followed exactly, it may result in your repository and an
 
 {{% /notice %}}
 
-### 1. Add yourself to the Module Owners Team
+### 1. Add yourself to the Module Owners Team and Open Source orgs
 
 If you have already done this, then you don't need to do it again and can skip this section.
 
 1. Open the [Open Source Portal](https://repos.opensource.microsoft.com/link) and ensure you GitHub account is linked to your Microsoft account
-1. Open the [Open Source Portal](https://repos.opensource.microsoft.com/orgs) and ensure you are a member of the `Azure` organization
+1. Open the [Open Source Portal](https://repos.opensource.microsoft.com/orgs) and ensure you are a member of the `Azure` and `Microsoft` organizations (you need to be a member of both for this process to work)
 1. Navigate to [Core Identity](https://coreidentity.microsoft.com/manage/Entitlement/entitlement/azureverifie-ks5z) and request access to the `Azure Verified Module Owners Terraform` entitlement
 
 {{% notice style="info" %}}
@@ -72,6 +72,11 @@ You'll need to gather the following information from the module request issue an
 1. Run the following command, replacing the values with the details you collected in step 2
 
     ```pwsh
+    if(!(Test-Path -Path "./scripts/New-Repository.ps1")) {
+        Write-Error "This script must be run from the tf-repo-mgmt directoy. Please switch to the tf-repo-mgmt directory and try again."
+        exit 1
+    }
+
     # Required Inputs
     $moduleProvider = "azurerm" # Only change this if you know why you need to change it (Allowed values: azurerm, azapi, azure)
     $moduleName = "<module name>" # Replace with the module name (do not include the "terraform-azurerm" prefix)
@@ -103,6 +108,11 @@ You'll need to gather the following information from the module request issue an
     For example:
 
     ```pwsh
+    if(!(Test-Path -Path "./scripts/New-Repository.ps1")) {
+        Write-Error "This script must be run from the tf-repo-mgmt directoy. Please switch to the tf-repo-mgmt directory and try again."
+        exit 1
+    }
+
     # Required Inputs
     $moduleProvider = "azurerm" # Only change this if you know why you need to change it (Allowed values: azurerm, azapi, azure)
     $moduleName = "avm-res-network-virtualnetwork" # Replace with the module name (do not include the "terraform-azurerm" prefix)
@@ -133,13 +143,17 @@ You'll need to gather the following information from the module request issue an
 
 1. The script will stop and prompt you to fill out the Microsoft Open Source details.
 1. Open the Open Source Portal using the link in the script output.
+1. If you see the `Complete Setup` link, then follow the steps below in 3.1. If you don't see the `Complete Setup` link, then follow the steps in 3.2.
+
+#### 3.1 Complete Setup Link is Present
+
 1. Click `Complete Setup`, then use the following table to provide the settings:
 
     | Question | Answer |
     | --- | --- |
     | Classify the repository | Production |
     | Assign a Service tree or Opt-out | Azure Verified Modules / AVM |
-    | Direct owners | Add the module owner and yourself as direct owners. Add the avm-team-module-owners as security group. |
+    | Direct owners | Add yourself and `jaredholgate` or `mawhi` as the direct owners. Add the `avm-team-module-owners` as the fallback security group. |
     | Is this going to ship as a public open source licensed project | Yes, creating an open source licensed project |
     | What type of open source will this be | Sample code |
     | What license will you be releasing with | MIT |
@@ -161,6 +175,22 @@ You'll need to gather the following information from the module request issue an
 1. Wait for it to process and then click `View repository`
 1. If you don't see the `Elevate your access` button, then refresh the browser window
 1. Click `Elevate your access` and follow the prompts to elevate your access
+
+#### 3.2 Complete Setup Link is Not Present
+
+1. Click on the `Compliance` tab
+1. Fill out the 3 sections as follows, saving each:
+
+    | Question | Answer |
+    | --- | --- |
+    | Direct owners | Add yourself and `jaredholgate` or `mawhi` as the direct owners. Add the `avm-team-module-owners` as the fallback security group. |
+    | Classify the repository | Production |
+    | Assign a Service tree | Azure Verified Modules / AVM |
+
+1. Head back to the `Overview` tab
+1. If you don't see the `Elevate your access` button, this is likely because you already have temporary admin rights from creating the repository. In that case you'll see `You currently have native Administrator permission to this repository on GitHub.` and you can skip the next step
+1. If you do see the `Elevate your access` button, click it and follow the prompts to elevate your access
+
 1. Now head back over to the terminal and type `yes` and hit enter to complete the repository configuration
 1. Open the new repository in GitHub.com and verify it all looks good.
 1. The script will automatically create a pull request to add the module metadata to the `avm-terraform-governance` repository. This will be approved and merged by the core team. You can find it [here](https://github.com/Azure/avm-terraform-governance/pulls) if you lost the link.
