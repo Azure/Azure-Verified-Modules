@@ -4,4 +4,5 @@ AVM Interfaces,,avm-utl-interfaces,Available,AVM utility Module for AVM Interfac
 AVM Naming,,avm-utl-naming,Proposed,AVM utility Module for AVM Naming,,Nepomuceno,Gabriel Monteiro Nepomuceno,,,
 AVM Network IP Addresses,IPv4 CIDR,avm-utl-network-ip-addresses,Available,AVM utility Module for AVM Network IP Addresses,https://registry.terraform.io/modules/Azure/avm-utl-network-ip-addresses/azurerm/latest,jaredfholgate,Jared Holgate,,,2025-03
 Azure Regions Data,,avm-utl-regions,Available,AVM utility Module for Azure Regions Data,https://registry.terraform.io/modules/Azure/avm-utl-regions/azurerm/latest,matt-FFFFFF,Matt White,,,2024-10
+AVM Utility module for role definitions,,avm-utl-roledefinitions,Available,AVM utility Module for AVM Utility module for role definitions,https://registry.terraform.io/modules/Azure/avm-utl-roledefinitions/azure/latest,matt-FFFFFF,Matt White,,,2025-09
 AVM SKU Finder ,Sku,avm-utl-sku-finder,Available,AVM utility Module for AVM SKU Finder ,https://registry.terraform.io/modules/Azure/avm-utl-sku-finder/azapi/latest,jchancellor-ms,Jon Chancellor,,,2024-12
