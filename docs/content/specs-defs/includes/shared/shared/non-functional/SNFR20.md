@@ -127,4 +127,4 @@ Example - `CODEOWNERS` entry for the Bicep resource module of Azure Virtual Netw
 Access management for Terraform repositories now uses a single team, membership of which is managed using an internal entitlement management tool. All module owners are members of [avm-module-owners-terraform](https://github.com/orgs/Azure/teams/avm-module-owners-terraform).
 {{% /notice %}}
 
-Permissions in case of Terraform repositories are granted through...
+Permissions in case of Terraform repositories are granted though an internal tool called Core Identity.
