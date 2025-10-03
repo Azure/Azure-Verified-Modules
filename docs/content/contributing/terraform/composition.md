@@ -31,7 +31,7 @@ See template repo [here](https://github.com/Azure/terraform-azurerm-avm-template
 - `tests/` - (for unit tests and additional tests if required - e.g. tflint etc.)
   - `unit/` - (optional, may use further sub-directories if required)
 - `modules/` - (for sub-modules only if used)
-- `examples/` - (all examples must deploy without successfully without requiring input - these are customer facing)
+- `examples/` - (all examples must deploy successfully without requiring input - these are customer facing)
   - `<at least one folder>` - (at least one example that uses the variable defaults minimum/required parameters/variables only)
   - `<other folders for examples as required>`
 - `/...` - (Module files that live in the root of module directory)
