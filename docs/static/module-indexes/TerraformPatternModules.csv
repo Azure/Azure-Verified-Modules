@@ -22,6 +22,7 @@ Azure Site Recovery VM Replication,,avm-ptn-bcdr-vm-replication,Proposed,AVM pat
 CI CD Agents and Runners,,avm-ptn-cicd-agents-and-runners,Available,AVM pattern Module for CI CD Agents and Runners,https://registry.terraform.io/modules/Azure/avm-ptn-cicd-agents-and-runners/azurerm/latest,jaredfholgate,Jared Holgate,,,2024-08
 CI CD bootstrap,,avm-ptn-cicd-bootstrap,Proposed,AVM pattern Module for CI CD bootstrap,,luke-taylor,Luke Taylor,,,
 Confidential Compute,,avm-ptn-confidential-compute,Proposed,AVM pattern Module for Confidential Compute,,bjornhofer,Björn Höfer,,,
+Microsoft Dev Center Dev Box,,avm-ptn-dev-center-dev-box,Proposed,AVM pattern Module for Microsoft Dev Center Dev Box,,autocloudarc,Preston Parsard,,,
 Example Repository for Testing,,avm-ptn-example-repo,Proposed,AVM pattern Module for Example Repository for Testing,,jaredfholgate,Jared Holgate,,,
 FinOps Toolkit FinOps Hub,,avm-ptn-finopstoolkit-finopshub,Proposed,AVM pattern Module for FinOps Toolkit FinOps Hub,,didayal,Divyadeep Dayal,,,
 Function App and private endpoint-secured Storage,,avm-ptn-function-app-storage-private-endpoints,Available,AVM pattern Module for Function App and private endpoint-secured Storage,https://registry.terraform.io/modules/Azure/avm-ptn-function-app-storage-private-endpoints/azurerm/latest,donovm4,Donovan McCoy,,,2025-04
