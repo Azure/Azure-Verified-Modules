@@ -84,10 +84,11 @@ Function Invoke-AvmGitHubTeamLinter {
   if ($TeamFilter -like '*Owners*') {
       $validateOwnerTeams = $true
   }
-  # TODO: I feel this is not needed (till line 89) because the corresponding one is planned to be removed. 
+  <# TODO: I feel this is not needed (till line 89) because the corresponding one is planned to be removed. 
   if ($TeamFilter -like '*Contributors*') {
       $validateContributorTeams = $true
   }
+      #>
 
     # Retrieve the CSV file
     $sourceData = Get-AvmCsvData -ModuleIndex $ModuleIndex
