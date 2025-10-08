@@ -29,8 +29,10 @@ Function Get-AvmGitHubTeamsData {
   $filterAvmBicepResGhTeams = $filterAvmBicepGhTeams | Where-Object { $_.name -like '*res-*' }
   # Filter AVM Module Teams for Bicep Resource Modules Owners
   $filterAvmBicepResGhTeamsOwners = $filterAvmBicepResGhTeams | Where-Object { $_.name -like '*owners-*' }
+  <#TODO:Not sure if we need to remove this piece
   # Filter AVM Module Teams for Bicep Resource Modules Contributors
   $filterAvmBicepResGhTeamsContributors = $filterAvmBicepResGhTeams | Where-Object { $_.name -like '*contributors-*' }
+  #>
   # Filter AVM Module Teams for Bicep Pattern Modules
   $filterAvmBicepPtnGhTeams = $filterAvmBicepGhTeams | Where-Object { $_.name -like '*ptn-*' }
   # Filter AVM Module Teams for Bicep Pattern Modules Owners
@@ -43,8 +45,10 @@ Function Get-AvmGitHubTeamsData {
   $filterAvmTfResGhTeams = $filterAvmTfGhTeams | Where-Object { $_.name -like '*res-*' }
   # Filter AVM Module Teams for Terraform Resource Modules Owners
   $filterAvmTfResGhTeamsOwners = $filterAvmTfResGhTeams | Where-Object { $_.name -like '*owners-*' }
+  <#TODO:Not sure if we need to remove this piece
   # Filter AVM Module Teams for Terraform Resource Modules Contributors
   $filterAvmTfResGhTeamsContributors = $filterAvmTfResGhTeams | Where-Object { $_.name -like '*contributors-*' }
+  #>
   # Filter AVM Module Teams for Terraform Pattern Modules
   $filterAvmTfPtnGhTeams = $filterAvmTfGhTeams | Where-Object { $_.name -like '*ptn-*' }
   # Filter AVM Module Teams for Terraform Pattern Modules Owners
@@ -58,17 +62,17 @@ Function Get-AvmGitHubTeamsData {
       'AllPattern' { return $filterAvmPtnGhTeams }
       'AllBicep' { return $filterAvmBicepGhTeams }
       'BicepResourceOwners' { return $filterAvmBicepResGhTeamsOwners }
-      'BicepResourceContributors' { return $filterAvmBicepResGhTeamsContributors }
+      #'BicepResourceContributors' { return $filterAvmBicepResGhTeamsContributors }
       'AllBicepResource' { return $filterAvmBicepResGhTeams }
       'AllBicepPattern' { return $filterAvmBicepPtnGhTeams }
       'BicepPatternOwners' { return $filterAvmBicepPtnGhTeamsOwners }
-      'BicepPatternContributors' { return $filterAvmBicepPtnGhTeamsContributors }
+      #'BicepPatternContributors' { return $filterAvmBicepPtnGhTeamsContributors }
       'AllTerraform' { return $filterAvmTfGhTeams }
       'AllTerraformResource' { return $filterAvmTfResGhTeams }
       'TerraformResourceOwners' { return $filterAvmTfResGhTeamsOwners }
-      'TerraformResourceContributors' { return $filterAvmTfResGhTeamsContributors }
+      #'TerraformResourceContributors' { return $filterAvmTfResGhTeamsContributors }
       'AllTerraformPattern' { return $filterAvmTfPtnGhTeams }
       'TerraformPatternOwners' { return $filterAvmTfPtnGhTeamsOwners }
-      'TerraformPatternContributors' { return $filterAvmTfPtnGhTeamsContributors }
+      #'TerraformPatternContributors' { return $filterAvmTfPtnGhTeamsContributors }
   }
 }

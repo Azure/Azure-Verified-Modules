@@ -53,8 +53,10 @@ Function Get-AvmCsvData {
     foreach ($item in $filterCsvAvailableBicepModule) {
         # Remove '@Azure/' from the ModuleOwnersGHTeam property
         $item.ModuleOwnersGHTeam = $item.ModuleOwnersGHTeam -replace '@Azure/', ''
+       <# TODO: Assuming this data will not be in the CSV going forward. Or even if we do not remove from CSV it will not get passed to AvmGitHubTeamLinter.ps1
         # Remove '@Azure/' from the ModuleContributorsGHTeam property
         $item.ModuleContributorsGHTeam = $item.ModuleContributorsGHTeam -replace '@Azure/', ''
+        #>
     }
 
     # Return the filtered and modified data

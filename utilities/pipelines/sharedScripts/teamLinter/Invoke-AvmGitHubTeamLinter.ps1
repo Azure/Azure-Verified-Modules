@@ -84,6 +84,7 @@ Function Invoke-AvmGitHubTeamLinter {
   if ($TeamFilter -like '*Owners*') {
       $validateOwnerTeams = $true
   }
+  # TODO: I feel this is not needed (till line 89) because the corresponding one is planned to be removed. 
   if ($TeamFilter -like '*Contributors*') {
       $validateContributorTeams = $true
   }
@@ -116,7 +117,7 @@ Function Invoke-AvmGitHubTeamLinter {
                     Write-Verbose "Uh-oh no incorrect owner configured for [$($ghTeam.name)]"
                     # Create a custom object for the unmatched team
                     $unmatchedTeam = [PSCustomObject]@{
-                        TeamName       = $module.ModuleContributorsGHTeam
+                        TeamName       = $module.ModuleContributorsGHTeam # ToDO: Should this not be $module.ModuleOwnersGHTeam?
                         Validation     = "Owner Not Assigned in Team."
                         Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
                         GitHubTeamName = $ghTeam.name
@@ -223,6 +224,7 @@ Function Invoke-AvmGitHubTeamLinter {
           }
       }
 
+      <#
       if ($validateContributorTeams -Or $validateAll) {
           # Check each object in $ghTeam for a match
           foreach ($ghTeam in $gitHubTeamsData) {
@@ -326,6 +328,7 @@ Function Invoke-AvmGitHubTeamLinter {
               }
           }
       }
+      #>
 
       if ($validateTerraformAdminPermissions -Or $validateAll) {
         foreach ($tfAdminteam in $TerraformAdminTeamList) {
