@@ -63,15 +63,15 @@ body:
   - type: input
     id: owner-gh-un
     attributes:
-      label: Module Owner's GitHub Username (handle)
+      label: Newly Proposed Module Owner's GitHub Username (handle)
       description: Please provide the proposed module owner's GitHub username, leave blank if unknown
     validations:
       required: false
   - type: input
     id: sec-owner-gh-un
     attributes:
-      label: (Optional) Secondary Module Owner's GitHub Username (handle)
-      description: Please provide the secondary module owner's GitHub username, leave blank if unknown!
+      label: (Optional) Newly Proposed Secondary Module Owner's GitHub Username (handle)
+      description: Please provide the proposed secondary module owner's GitHub username, leave blank if unknown!
     validations:
       required: false
   - type: markdown
