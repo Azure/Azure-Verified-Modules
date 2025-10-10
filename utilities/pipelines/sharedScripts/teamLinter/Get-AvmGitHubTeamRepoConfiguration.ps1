@@ -37,17 +37,7 @@ Function Get-AvmGitHubTeamRepoConfiguration {
             Write-Output "Good News! Repo: $repoName is configured with the expected permission: $expectedPermission"
             $findings = "Success"
         }
-    }<#TODO: This would not be needed as contributor team is removed including the contributors in them.
-    elseif ($teamName -like "*contributors*") {
-        $expectedPermission = "write"
-        if ($filteredJson.role_name -ne $expectedPermission) {
-            $findings = "Team: $TeamName is not configured with the expected permission: $expectedPermission on Repo: $repoName"
-        }
-        else {
-            Write-Output "Good News! Repo: $repoName is configured with the expected permission: $expectedPermission"
-            $findings = "Success"
-        }
-    #>
+    }
     }
     return $findings
 
