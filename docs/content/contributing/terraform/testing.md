@@ -43,9 +43,11 @@ You need to have the following tools installed:
 
 ### Windows
 
+Run the following from a PowerShell 7.x command prompt (e.g. VSCode terminal):
+
 ```powershell
-.\avm.bat pre-commit
-.\avm.bat pr-check
+./avm pre-commit
+./avm pr-check
 ```
 
 Doing so will shorten the development cycle and ensure that your module is compliant with the AVM specifications.

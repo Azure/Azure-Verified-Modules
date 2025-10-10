@@ -73,19 +73,3 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 {{% moduleHistory header=true csv="/static/module-indexes/TerraformResourceModules.csv" language="Terraform" moduleType="resource" exclude="Proposed" monthsToShow=9999 %}}
 
 {{% /expand %}}
-
-## For Module Owners & Contributors
-
-{{% notice style="note" %}}
-
-This section is mainly intended **for module owners and contributors** as it contains information about the **GitHub Teams for Owners & Contributors**.
-
-{{% /notice %}}
-
-### Module name, Telemetry ID prefix, GitHub Teams for Owners & Contributors
-
-{{% expand title="âž• All Modules - Module name, Telemetry ID prefix, GitHub Teams for Owners & Contributors" expanded="false" %}}
-
-{{% moduleNameTelemetryGHTeams header=true csv="/static/module-indexes/TerraformResourceModules.csv" language="Terraform" moduleType="resource" %}}
-
-{{% /expand %}}
