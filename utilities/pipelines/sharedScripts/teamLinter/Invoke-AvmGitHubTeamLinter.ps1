@@ -138,7 +138,7 @@ Function Invoke-AvmGitHubTeamLinter {
                               Validation     = "No parent team assigned."
                               Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
                               GitHubTeamName = $ghTeam.name
-                              Resolution     = "Assign the correct parent team to the team: $($module.ModuleOwnersGHTeam) [here](https://github.com/orgs/Azure/teams/$($module.ModuleContributorsGHTeam)). Parent information can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/spec/SNFR20)."
+                              Resolution     = "Assign the correct parent team to the team: $($module.ModuleOwnersGHTeam). Parent information can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/spec/SNFR20)."
                           }
                           # Add the custom object to the array
                           $unmatchedTeams += $unmatchedTeam
@@ -234,7 +234,7 @@ Function Invoke-AvmGitHubTeamLinter {
               Write-Verbose "Uh-oh no correct permissions configured for [$tfAdminteam]"
               # Create a custom object for the unmatched team
               $unmatchedTeam = [PSCustomObject]@{
-                  TeamName       = $module.ModuleContributorsGHTeam
+                  TeamName       = $module.ModuleOwnersGHTeam
                   Validation     = "No correct permissions assigned."
                   Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
                   GitHubTeamName = $tfAdminteam
