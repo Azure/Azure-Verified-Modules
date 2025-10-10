@@ -33,8 +33,6 @@ Function Get-AvmGitHubTeamsData {
   $filterAvmBicepPtnGhTeams = $filterAvmBicepGhTeams | Where-Object { $_.name -like '*ptn-*' }
   # Filter AVM Module Teams for Bicep Pattern Modules Owners
   $filterAvmBicepPtnGhTeamsOwners = $filterAvmBicepPtnGhTeams | Where-Object { $_.name -like '*owners-*' }
-  # Filter AVM Module Teams for Bicep Pattern Modules Contributors
-  $filterAvmBicepPtnGhTeamsContributors = $filterAvmBicepPtnGhTeams | Where-Object { $_.name -like '*contributors-*' }
   # Filter AVM Module Teams for Terraform
   $filterAvmTfGhTeams = $filterAvmGhTeams | Where-Object { $_.name -like '*tf' }
   # Filter AVM Module Teams for Terraform Resource Modules
@@ -45,8 +43,6 @@ Function Get-AvmGitHubTeamsData {
   $filterAvmTfPtnGhTeams = $filterAvmTfGhTeams | Where-Object { $_.name -like '*ptn-*' }
   # Filter AVM Module Teams for Terraform Pattern Modules Owners
   $filterAvmTfPtnGhTeamsOwners = $filterAvmTfPtnGhTeams | Where-Object { $_.name -like '*owners-*' }
-  # Filter AVM Module Teams for Terraform Pattern Modules Contributors
-  $filterAvmTfPtnGhTeamsContributors = $filterAvmTfPtnGhTeams | Where-Object { $_.name -like '*contributors-*' }
 
   switch ($TeamFilter) {
       'AllTeams' { return $filterAvmGhTeams }

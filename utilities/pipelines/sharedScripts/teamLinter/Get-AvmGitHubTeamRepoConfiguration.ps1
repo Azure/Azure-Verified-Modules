@@ -38,7 +38,5 @@ Function Get-AvmGitHubTeamRepoConfiguration {
             $findings = "Success"
         }
     }
-    }
     return $findings
-
 }
