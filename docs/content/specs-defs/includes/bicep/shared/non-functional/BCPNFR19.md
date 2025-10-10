@@ -1,7 +1,7 @@
 ---
 title: BCPNFR19 - User-defined types - Naming
 description: Module Specification for the Azure Verified Modules (AVM) program
-url: /spec/BCPNFR18
+url: /spec/BCPNFR19
 type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
