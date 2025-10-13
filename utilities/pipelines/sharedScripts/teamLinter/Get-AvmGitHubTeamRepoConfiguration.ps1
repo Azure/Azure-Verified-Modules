@@ -39,4 +39,5 @@ Function Get-AvmGitHubTeamRepoConfiguration {
         }
     }
     return $findings
+    
 }
