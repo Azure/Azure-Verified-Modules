@@ -63,7 +63,7 @@ body:
   - type: input
     id: owner-gh-un
     attributes:
-      label: Newly Proposed Module Owner's GitHub Username (handle)
+      label: Newly proposed Module Owner's GitHub Username (handle)
       description: Please provide the proposed module owner's GitHub username, leave blank if unknown
     validations:
       required: false
