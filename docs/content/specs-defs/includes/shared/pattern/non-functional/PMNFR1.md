@@ -19,7 +19,15 @@ priority: 4020
 
 ## ID: PMNFR1 - Category: Naming - Module Naming
 
-Pattern Modules **MUST** follow the below naming conventions (all lower case):
+Pattern Modules **MUST** follow the below naming conventions (all lower case).
+
+{{% notice style="important" %}}
+
+As part of the module proposal process, the module's approved name is captured both in the module proposal issue AND the related [module index page]({{% siteparam base %}}/indexes) (backed by the corresponding [CSV file](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes)).
+
+Therefore, **module owners don't need to construct the module's name themselves, instead they need use the name prescribed in the module proposal issue or in the related CSV file, at the time of approval.**
+
+{{% /notice %}}
 
 ### Bicep Pattern Module Naming
 
