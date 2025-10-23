@@ -4,7 +4,7 @@ linktitle: Update Module Files
 description: Generate Bicep Module Files for the Azure Verified Modules (AVM) program
 ---
 
-As per the module design structure ([BCPFR3]({{% siteparam base %}}/spec/BCPFR3)), every module in the AVM library requires
+As per the module design structure ([BCPNFR23]({{% siteparam base %}}/spec/BCPNFR23)), every module in the AVM library requires
 
 - a up-to-date ReadMe markdown (`readme.md`) file documenting the set of deployable resource types, input and output parameters and a set of relevant template references from the official Azure Resource Reference documentation
 - an up-to-date compiled template (`main.json`) file
