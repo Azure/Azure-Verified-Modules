@@ -39,7 +39,7 @@ resource hSMCMKKeyVault 'Microsoft.KeyVault/managedHSMs@2024-11-01' existing = i
   )
 
   resource hSMCMKKey 'keys@2024-11-01' existing = if (!empty(customerManagedKey.?keyVaultResourceId) && !empty(customerManagedKey.?keyName)) {
-    name: customerManagedKey.?keyName
+    name: customerManagedKey.?keyName!
   }
 }
 
