@@ -20,7 +20,7 @@ priority: 21180
 
 ## ID: TFNFR18 - Category: Code Style - Variables with Types
 
-`type` **MUST** be defined for every `variable`. `type` **SHOULD** be as precise as possible, `any` **MAY** only be defined with adequate reasons.
+`type` **MUST** be defined for every `variable`. `type` **SHOULD** be as precise as possible. Authors **SHOULD NOT** use `any`.
 
 - Use `bool` instead of `string` or `number` for `true/false`
 - Use `string` for text

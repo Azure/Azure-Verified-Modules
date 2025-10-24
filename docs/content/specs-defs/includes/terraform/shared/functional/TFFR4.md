@@ -1,7 +1,7 @@
 ---
-title: TFFR3 - Providers - Permitted Versions
+title: TFFR4 - AzAPI - response_export_values
 description: Module Specification for the Azure Verified Modules (AVM) program
-url: /spec/TFFR3
+url: /spec/TFFR4
 type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -16,41 +16,50 @@ tags: [
   Lifecycle-BAU, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
   Validation-TF/CI/Enforced # SINGLE VALUE: this can be "Validation-TF/Manual" OR "Validation-TF/CI/Informational" OR "Validation-TF/CI/Enforced"
 ]
-priority: 20030
+priority: 20040
 ---
 
-## ID: TFFR3 - Category: Providers - Permitted Versions
+## ID: TFFR4 - Category: Composition - AzAPI - response_export_values
 
-Authors **MUST** only use the following Azure providers, and versions, in their modules:
-
-| provider              | min version | max version |
-|-----------------------|-------------|-------------|
-| Azure/azapi           | >= 2.0      | < 3.0       |
-
-> The AzureRM provider is permitted for module versions prior to v1.0.0, but **MUST NOT** be used in module versions v1.0.0 and later.
-> Should your module use the AzureRM provider, you **MUST** use version 4.x of the provider, i.e., `~> 4.0`. You MAY also create an exclusion for the TFLint rule:
->
-> ```hcl
-> rule "provider_azurerm_disallowed" {
->   enabled = false
-> }
-> ```
-
-Authors **MUST** use the `required_providers` block in their module to enforce the provider versions.
-
-The following is an example.
-
-- In it we use the [pessimistic version constraint operator](https://developer.hashicorp.com/terraform/language/expressions/version-constraints#operators) `~>`.
-- That is to say that `~> 2.0` is equivalent to `>= 2.0, < 3.0`.
+Authors **MUST** specify the `response_export_values` argument when using the AzAPI provider:
 
 ```terraform
-terraform {
-  required_providers {
-    # Include one or both providers, as needed
-    azapi = {
-      source  = "Azure/azapi"
-      version = "~> 2.0"
+resource "azapi_resource" "example" {
+  type      = "Microsoft.Example/resourceType@2021-01-01"
+  name      = "example-resource"
+  location  = "West US"
+  response_export_values = [] # must be specified, even if empty
+  body = {
+    properties = {
+      exampleProperty = "exampleValue"
     }
   }
+}
+
+If you require read-only properties to be returned from the resource, you SHOULD include them as follows:
+
+```terraform
+resource "azapi_resource" "example" {
+  type      = "Microsoft.Example/resourceType@2021-01-01"
+  name      = "example-resource"
+  location  = "West US"
+  # Example as a list:
+  response_export_values = ["properties.readOnlyProperty"]
+  # Example as a map:
+  # response_export_values = {
+  #   read_only_property = "properties.readOnlyProperty"
+  # }
+  body = {
+    properties = {
+      exampleProperty = "exampleValue"
+    }
+  }
+}
+
+output "read_only_property" {
+  # Example if response_export_values is a list:
+  value = azapi_resource.example.output.properties.readOnlyProperty
+  # Example if response_export_values is a map:
+  # value = azapi_resource.example.output.read_only_property
 }
 ```
