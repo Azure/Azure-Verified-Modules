@@ -26,14 +26,19 @@ Each module **MUST** have a GitHub team assigned for module owners. This team **
 
 There **MUST NOT** be any GitHub repository permissions assigned to individual users.
 
-{{% notice style="important" %}}
+{{% notice style="info" %}}
 Non-FTE / external contributors (subject matter experts that aren't Microsoft employees) can't be members of the teams described in this chapter, hence, they won't gain any extra permissions on AVM repositories, therefore, they need to work in forks.
 {{% /notice %}}
 
 ### Bicep
 
-{{% notice style="note" %}}
-The names for the GitHub teams for each approved module are already defined in the respective [Module Indexes]({{% siteparam base %}}/indexes/). These teams **MUST** be created (and used) for each module.
+{{% notice style="important" %}}
+
+As part of the module proposal process, the name of the GitHub team for each approved module is already defined in the respective [Module Indexes]({{% siteparam base %}}/indexes/) (or [CSV file](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes)). This team **MUST** be created (and used) for each module.
+
+**Module owners don't need to construct the name of the GitHub team for their module themselves, instead they need use the name prescribed in the related CSV file, at the time of approval.**
+
+For a direct link, see the list of related index pages:
 
 - [Bicep Resource Modules]({{% siteparam base %}}/indexes/bicep/bicep-resource-modules/#module-name-telemetry-id-prefix-github-teams-for-owners)
 - [Bicep Pattern Modules]({{% siteparam base %}}/indexes/bicep/bicep-pattern-modules/#module-name-telemetry-id-prefix-github-teams-for-owners)
