@@ -7,18 +7,39 @@ import { customerManagedKeyType } from 'br/public:avm/utl/types/avm-common-types
 param customerManagedKey customerManagedKeyType?
 
 // ============= //
+//   Variables   //
+// ============= //
+
+var keyVaultType = !empty(customerManagedKey.?keyVaultResourceId)
+  ? split(customerManagedKey.?keyVaultResourceId!, '/')[7]
+  : ''
+var isHSMKeyVault = contains(keyVaultType, 'managedHSMs')
+
+// ============= //
 //   Resources   //
 // ============= //
 
-resource cMKKeyVault 'Microsoft.KeyVault/vaults@2023-02-01' existing = if (!empty(customerManagedKey.?keyVaultResourceId)) {
+resource cMKKeyVault 'Microsoft.KeyVault/vaults@2024-11-01' existing = if (!isHSMKeyVault && !empty(customerManagedKey.?keyVaultResourceId)) {
   name: last(split((customerManagedKey.?keyVaultResourceId!), '/'))
   scope: resourceGroup(
     split(customerManagedKey.?keyVaultResourceId!, '/')[2],
     split(customerManagedKey.?keyVaultResourceId!, '/')[4]
   )
 
-  resource cMKKey 'keys@2023-02-01' existing = if (!empty(customerManagedKey.?keyVaultResourceId) && !empty(customerManagedKey.?keyName)) {
+  resource cMKKey 'keys@2024-11-01' existing = if (!empty(customerManagedKey.?keyVaultResourceId) && !empty(customerManagedKey.?keyName)) {
     name: customerManagedKey.?keyName!
+  }
+}
+
+resource hSMCMKKeyVault 'Microsoft.KeyVault/managedHSMs@2024-11-01' existing = if (isHSMKeyVault && !empty(customerManagedKey.?keyVaultResourceId)) {
+  name: last(split((customerManagedKey.?keyVaultResourceId!), '/'))
+  scope: resourceGroup(
+    split(customerManagedKey.?keyVaultResourceId!, '/')[2],
+    split(customerManagedKey.?keyVaultResourceId!, '/')[4]
+  )
+
+  resource hSMCMKKey 'keys@2024-11-01' existing = if (!empty(customerManagedKey.?keyVaultResourceId) && !empty(customerManagedKey.?keyName)) {
+    name: customerManagedKey.?keyName
   }
 }
 
@@ -38,11 +59,14 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
       ? {
           keySource: 'Microsoft.KeyVault'
           keyVaultProperties: {
-            keyVaultUri: cMKKeyVault.properties.vaultUri
+            keyVaultUri: !isHSMKeyVault ? cMKKeyVault!.properties.vaultUri : hSMCMKKeyVault!.properties.hsmUri
             keyName: customerManagedKey!.keyName
             keyVersion: !empty(customerManagedKey.?keyVersion)
               ? customerManagedKey!.keyVersion!
-              : last(split(cMKKeyVault::cMKKey!.properties.keyUriWithVersion, '/'))
+              : !isHSMKeyVault
+                ? last(split(cMKKeyVault::cMKKey!.properties.keyUriWithVersion, '/'))
+                : last(split(hSMCMKKeyVault::hSMCMKKey!.properties.keyUriWithVersion, '/'))
+            // TODO Update keyIdentifier HSM condition
             keyIdentifier: !empty(customerManagedKey.?keyVersion)
               ? '${cMKKeyVault::cMKKey!.properties.keyUri}/${customerManagedKey!.keyVersion!}'
               : cMKKeyVault::cMKKey!.properties.keyUriWithVersion
