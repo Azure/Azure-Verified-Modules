@@ -55,7 +55,7 @@ Follow these steps to triage a module proposal:
     - Check if the GitHub Policy Service Bot has correctly applied the module language label: &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#1D73B3;color:white;">Language: Bicep 💪</mark>&nbsp; or &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#7740B6;color:white;">Language: Terraform 🌐</mark>&nbsp;
 3. Apply relevant labels
 
-    - Module classification (resource/pattern): &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#D3D3D3;">Class: Resource Module 📦</mark>&nbsp; or &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#A9A9A9;">Class: Pattern Module 📦</mark>&nbsp;
+    - Module classification (resource/pattern/utility): &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#D3D3D3;">Class: Resource Module 📦</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#A9A9A9;">Class: Pattern Module 📦</mark>&nbsp; or &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#CAD1DE;">Class: Utility Module 📦</mark>&nbsp;
 
 ### Triaging pattern modules
 
@@ -152,7 +152,20 @@ Once module is developed and `v0.1.0` has been published to the relevant registr
 1. Assign the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#C8E6C9;">Status: Module Available 🟢</mark>&nbsp; label to the issue.
 2. Move the issue into "`Done`" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project.
 3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
-4. Close the issue.
+4. When all development actions are complete and confirmed
+    1. **In case of Bicep modules** - Close the orphaned module issue with the following message:
+
+        {{% expand title="➕ Closing remarks for the New Owner(s) of an Orphaned Module" %}}
+
+{{< highlight lineNos="false" type="markdown" wrap="true" title="" >}}
+
+{{% include file="/static/includes/msg-final-reply-new-orph-mod-owners.md" %}}
+
+{{< /highlight >}}
+
+{{% /expand %}}
+
+    2. **In case of Terraform modules** - Close the issue.
 
 {{% notice style="important" %}}
 
@@ -162,11 +175,9 @@ Once module is developed and `v0.1.0` has been published to the relevant registr
 
 {{% /notice %}}
 
-## Orphaned modules
+## Changing module owners
 
-### When a module becomes orphaned
-
-If a module meets the criteria described in the "[Orphaned Modules]({{% siteparam base %}}/specs/shared/module-lifecycle/#3-orphaned-avm-modules)" chapter, the module is considered to be orphaned and the below steps must be performed.
+There can be several reasons why a module owner change is needed, e.g., the current owner is leaving the company, changing team, or is no longer able to maintain the module. In such cases, the module ownership needs to be transferred to a new owner. While in most cases the module needs to be [marked as orphaned]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#orphaned-modules) until it's taken over by a new module owner, sometimes, the ownership can be transferred through a "[hot swap]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#hot-swapping-module-owners)", where the current owner directly hands over ownership to another person without the module becoming orphaned first.
 
 {{% notice style="note" %}}
 The original **Module Proposal issue** related to the module in question **MUST remain closed and intact**.
@@ -176,16 +187,22 @@ Instead, a **new Orphaned Module issue** must be opened that **MUST remain open*
 Once the **Orphaned Module issue** was closed, it **MUST remain closed**. If the module will subsequently become orphaned again, a new Orphaned Module issue must be opened.
 {{% /notice %}}
 
+### Orphaned modules
+
+If a module meets the criteria described in the "[Orphaned Modules]({{% siteparam base %}}/specs/shared/module-lifecycle/#3-orphaned-avm-modules)" chapter, the module is considered to be orphaned and the below steps must be performed.
+
+#### When a module becomes orphaned
+
 1. Submit an "orphaned module" issue by using the "[Orphaned AVM Module 🟡](https://aka.ms/AVM/OrphanedModule)" issue template.
 2. Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp;, and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 🟡</mark>&nbsp; labels are assigned to the issue and it is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project.
 3. Move the issue into the "`Orphaned`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
 4. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
 5. Place an information notice as per the below guidelines:
-    - In case of a Bicep module:
+    - **In case of a Bicep module**:
       - Place the information notice - with the text below - in an `ORPHANED.md` file, in the module's root.
       - Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header.
       - Make sure the content of the `ORPHANED.md` file is displayed in the `README.md` in its header (right after the title).
-    - In case of a Terraform module, place the information notice - with the text below - in the `README.md` file, in the module's root.
+    - **In case of a Terraform module**, place the information notice - with the text below - in the `README.md` file, in the module's root.
     - Once the information notice is placed, submit a Pull Request.
 
 Include the following text in the information notice:
@@ -202,7 +219,7 @@ Include the following text in the information notice:
 
 6. Try to find a new owner using the AVM communities or await a new module owner to comment and propose themselves on the issue.
 
-### When a new owner is identified
+#### When a new owner is identified
 
 {{% notice style="tip" %}}
 To look for Orphaned Modules:
@@ -250,7 +267,70 @@ To look for Orphaned Modules:
 
 {{% /expand %}}
 
-7. Close the Orphaned Module issue.
+9. When all actions detailed above are complete and confirmed, close the orphaned module issue with the following message:
+
+{{% expand title="➕ Closing remarks for the New Owner(s) of an Orphaned Module" %}}
+
+{{< highlight lineNos="false" type="markdown" wrap="true" title="" >}}
+
+{{% include file="/static/includes/msg-final-reply-new-orph-mod-owners.md" %}}
+
+{{< /highlight >}}
+
+{{% /expand %}}
+
+### Hot swapping module owners
+
+When the module owner needs to be changed without the module becoming orphaned, the overall process described in the [Orphaned modules]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#orphaned-modules) chapter needs to be followed, with a few differences.
+
+1. Submit an "orphaned module" issue by using the "[Orphaned AVM Module 🟡](https://aka.ms/AVM/OrphanedModule)" issue template while indicating the GitHub handle of the new owner.
+2. Clarify the roles and responsibilities of the module owner by replying in a comment to the requestor/proposed owner:
+
+{{% expand title="➕ Standard AVM Core Team Reply to the New Owner(s) of an Orphaned Module" %}}
+
+{{< highlight lineNos="false" type="markdown" wrap="true" title="" >}}
+
+{{% include file="/static/includes/msg-std-reply-new-orph-mod-owners.md" %}}
+
+{{< /highlight >}}
+
+{{% /expand %}}
+
+3. Assign the issue to the new module owner.
+4. Remove these labels:
+    - &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;
+    - &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp;
+    - &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 🟡</mark>&nbsp;
+5. Add these labels to the issue:
+    - &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#E4E669;">Status: In Triage 🔍</mark>&nbsp;
+    - &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#C8E6C9;">Status: Module Available 🟢</mark>&nbsp;
+    - &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; labels to the issue.
+    - Module classification (resource/pattern/utility): &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#D3D3D3;">Class: Resource Module 📦</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#A9A9A9;">Class: Pattern Module 📦</mark>&nbsp; or &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#CAD1DE;">Class: Utility Module 📦</mark>&nbsp;
+6. Make sure the issue is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project, but don't move the issue to the "`Orphaned`" column of this board as it will be automatically moved to the "`Done`" column, once the issue is closed.
+7. Once the new owner provided their written consent in a comment by replying the text quoted in the message above, update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
+8. Use the following text to finalize the new ownership transfer:
+
+{{% expand title="➕ Final Confirmation for the New Owner(s) of an Orphaned Module" %}}
+
+{{< highlight lineNos="false" type="markdown" wrap="true" title="" >}}
+
+{{% include file="/static/includes/msg-final-conf-new-orph-mod-owners.md" %}}
+
+{{< /highlight >}}
+
+{{% /expand %}}
+
+9. When all actions detailed above are complete and confirmed, close the orphaned module issue with the following message:
+
+{{% expand title="➕ Closing remarks for the New Owner(s) of an Orphaned Module" %}}
+
+{{< highlight lineNos="false" type="markdown" wrap="true" title="" >}}
+
+{{% include file="/static/includes/msg-final-reply-new-orph-mod-owners.md" %}}
+
+{{< /highlight >}}
+
+{{% /expand %}}
 
 ## Deprecated modules
 
