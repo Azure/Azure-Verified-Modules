@@ -164,7 +164,7 @@ Once module is developed and `v0.1.0` has been published to the relevant registr
 
 ## Changing module owners
 
-There can be several reasons why a module owner change is needed, e.g., the current owner is leaving the company, changing team, or is no longer able to maintain the module. In such cases, the module ownership needs to be transferred to a new owner.While in most cases the module needs to be [marked as orphaned]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#orphaned-modules), until it's taken by a new module owner, sometimes, the ownership can be transferred through a "[hot swap]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#hot-swapping-module-owners)", where the current owner directly transfers ownership to a new owner without the module becoming orphaned first.
+There can be several reasons why a module owner change is needed, e.g., the current owner is leaving the company, changing team, or is no longer able to maintain the module. In such cases, the module ownership needs to be transferred to a new owner. While in most cases the module needs to be [marked as orphaned]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#orphaned-modules) until it's taken over by a new module owner, sometimes, the ownership can be transferred through a "[hot swap]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#hot-swapping-module-owners)", where the current owner directly hands over ownership to another person without the module becoming orphaned first.
 
 {{% notice style="note" %}}
 The original **Module Proposal issue** related to the module in question **MUST remain closed and intact**.
