@@ -66,10 +66,13 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
               : !isHSMKeyVault
                 ? last(split(cMKKeyVault::cMKKey!.properties.keyUriWithVersion, '/'))
                 : last(split(hSMCMKKeyVault::hSMCMKKey!.properties.keyUriWithVersion, '/'))
-            // TODO Update keyIdentifier HSM condition
             keyIdentifier: !empty(customerManagedKey.?keyVersion)
-              ? '${cMKKeyVault::cMKKey!.properties.keyUri}/${customerManagedKey!.keyVersion!}'
-              : cMKKeyVault::cMKKey!.properties.keyUriWithVersion
+              ? ( !isHSMKeyVault
+                ? '${cMKKeyVault::cMKKey!.properties.keyUri}/${customerManagedKey!.keyVersion!}'
+                : '${hSMCMKKeyVault::hSMCMKKey!.properties.keyUri}/${customerManagedKey!.keyVersion!}')
+              : ( !isHSMKeyVault
+                ? cMKKeyVault::cMKKey!.properties.keyUriWithVersion
+                : hSMCMKKeyVault::hSMCMKKey!.properties.keyUriWithVersion)
             identityClientId: !empty(customerManagedKey.?userAssignedIdentityResourceId)
               ? cMKUserAssignedIdentity!.properties.clientId
               : null
