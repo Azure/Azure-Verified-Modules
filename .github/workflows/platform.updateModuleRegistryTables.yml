@@ -19,7 +19,7 @@ permissions:
 jobs:
   update_status_tables:
     name: Update status tables
-    # if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     environment: platform
     steps:
