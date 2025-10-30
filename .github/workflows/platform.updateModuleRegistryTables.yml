@@ -8,7 +8,7 @@ on:
 env:
   pipelinePrincipalGitUserName: "AVMPipelinePrincipal"
   pipelinePrincipalGitUserEmail: "AVM@noreply.github.com"
-  branch_name: "update-module-features-table_${{ github.event.repository.updated_at}}"
+  branch_name: "update-module-features-table"
   pr_title: "Update module features table (automated)"
   pr_body: "This is an automated ``pull_request`` containing updates to the module status badges table that is stored at ``docs/content/indexes/bicep/_index.md``, as well as the module features CSV stored at ``docs/static/module-features/bicepFeatures.csv``.\nPlease review the ``files changed`` tab to review changes."
 
@@ -50,9 +50,10 @@ jobs:
         shell: pwsh
         run: |
           $rawBranch = '${{ env.branch_name }}'
-          $formattedBranch = $rawBranch -replace ':', '-'
-          Write-Verbose ('Adjusting branch name ${{ env.branch_name }} to [{0}]' -f $formattedBranch) -Verbose
-          Write-Output ('{0}={1}' -f 'branch_name', $formattedBranch) >> $env:GITHUB_OUTPUT
+          $formattedBranch = "$rawBranch_{0}" -f (Get-Date).ToString('yyyy-MM-dd-HH-mm-ss')
+          Write-Verbose "Adjusting branch name [$rawBranch] to [$formattedBranch]" -Verbose
+          # Write-Output ('{0}={1}' -f 'branch_name', $formattedBranch) >> $env:GITHUB_OUTPUT
+          ('{0}={1}' -f 'branch_name', $formattedBranch) | Out-File -FilePath $env:GITHUB_ENV -Encoding 'utf8'
 
       - name: Create and checkout branch
         run: |
