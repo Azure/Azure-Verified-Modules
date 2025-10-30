@@ -50,10 +50,9 @@ jobs:
         shell: pwsh
         run: |
           $rawBranch = '${{ env.branch_name }}'
-          $formattedBranch = "$rawBranch_{0}" -f (Get-Date).ToString('yyyy-MM-dd-HH-mm-ss')
+          $formattedBranch = "{0}_{1}" -f $rawBranch, (Get-Date).ToString('yyyy-MM-dd-HH-mm-ss')
           Write-Verbose "Adjusting branch name [$rawBranch] to [$formattedBranch]" -Verbose
-          # Write-Output ('{0}={1}' -f 'branch_name', $formattedBranch) >> $env:GITHUB_OUTPUT
-          ('{0}={1}' -f 'branch_name', $formattedBranch) | Out-File -FilePath $env:GITHUB_ENV -Encoding 'utf8'
+          ('{0}={1}' -f 'branch_name', $formattedBranch) | Out-File -FilePath $env:GITHUB_ENV -Encoding 'utf8' # Overwrite env variable
 
       - name: Create and checkout branch
         run: |
