@@ -46,6 +46,14 @@ jobs:
           git config --global user.name '${{ env.pipelinePrincipalGitUserEmail }}'
           git config --global user.email '${{ env.pipelinePrincipalGitUserName }}'
 
+      - name: Format branch name
+        shell: pwsh
+        run: |
+          $rawBranch = '${{ env.branch_name }}'
+          $formattedBranch = $rawBranch -replace ':', '-'
+          Write-Verbose ('Adjusting branch name ${{ env.branch_name }} to [{0}]' -f $formattedBranch) -Verbose
+          Write-Output ('{0}={1}' -f 'branch_name', $formattedBranch) >> $env:GITHUB_OUTPUT
+
       - name: Create and checkout branch
         run: |
           BRANCH_URL="repos/${{ github.repository }}/branches"
