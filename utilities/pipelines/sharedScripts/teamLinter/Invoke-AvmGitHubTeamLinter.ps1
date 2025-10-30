@@ -84,10 +84,6 @@ Function Invoke-AvmGitHubTeamLinter {
   if ($TeamFilter -like '*Owners*') {
       $validateOwnerTeams = $true
   }
-  if ($TeamFilter -like '*Contributors*') {
-      $validateContributorTeams = $true
-  }
-
     # Retrieve the CSV file
     $sourceData = Get-AvmCsvData -ModuleIndex $ModuleIndex
     $gitHubTeamsData = Get-AvmGitHubTeamsData -TeamFilter $TeamFilter
@@ -116,7 +112,7 @@ Function Invoke-AvmGitHubTeamLinter {
                     Write-Verbose "Uh-oh no incorrect owner configured for [$($ghTeam.name)]"
                     # Create a custom object for the unmatched team
                     $unmatchedTeam = [PSCustomObject]@{
-                        TeamName       = $module.ModuleContributorsGHTeam
+                        TeamName       = $module.ModuleOwnersGHTeam
                         Validation     = "Owner Not Assigned in Team."
                         Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
                         GitHubTeamName = $ghTeam.name
@@ -142,7 +138,7 @@ Function Invoke-AvmGitHubTeamLinter {
                               Validation     = "No parent team assigned."
                               Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
                               GitHubTeamName = $ghTeam.name
-                              Resolution     = "Assign the correct parent team to the team: $($module.ModuleOwnersGHTeam) [here](https://github.com/orgs/Azure/teams/$($module.ModuleContributorsGHTeam)). Parent information can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/spec/SNFR20)."
+                              Resolution     = "Assign the correct parent team to the team: $($module.ModuleOwnersGHTeam). Parent information can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/spec/SNFR20)."
                           }
                           # Add the custom object to the array
                           $unmatchedTeams += $unmatchedTeam
@@ -223,110 +219,6 @@ Function Invoke-AvmGitHubTeamLinter {
           }
       }
 
-      if ($validateContributorTeams -Or $validateAll) {
-          # Check each object in $ghTeam for a match
-          foreach ($ghTeam in $gitHubTeamsData) {
-              if ($module.ModuleContributorsGHTeam -eq $ghTeam.name) {
-                  # If a match is found, set flag to true and break out of the loop
-                  $matchFound = $true
-
-                  # Validate if Parent Team is configured for Contributors Team
-                  if ($ValidateBicepParentConfiguration -and $matchFound) {
-                      # Check if Parent Team is configured for Contributors Team
-                      if (-not $null -eq $ghTeam.parent -and $ValidateBicepParentConfiguration) {
-                          Write-Verbose "Found team: $($module.ModuleContributorsGHTeam)  with parent: $($ghTeam.parent.name) owned by $($module.PrimaryModuleOwnerDisplayName)"
-                          break
-                      }
-                      else {
-                          Write-Verbose "Uh-oh no parent team configured for $($module.ModuleContributorsGHTeam) ($($module.PrimaryModuleOwnerDisplayName))"
-                          # Create a custom object for the unmatched team
-                          $unmatchedTeam = [PSCustomObject]@{
-                              TeamName       = $module.ModuleContributorsGHTeam
-                              Validation     = "No parent team assigned."
-                              Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
-                              GitHubTeamName = $ghTeam.name
-                              Resolution     = "Assign the correct parent team to the team: $($module.ModuleContributorsGHTeam) [here](https://github.com/orgs/Azure/teams/$($module.ModuleContributorsGHTeam)). Parent information can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/spec/SNFR20)."
-                          }
-                          # Add the custom object to the array
-                          $unmatchedTeams += $unmatchedTeam
-                      }
-                  }
-                  elseif ($ValidateTerraformTeamsPermissons -and $matchFound) {
-                      Write-Verbose "Found team: $($module.ModuleContributorsGHTeam) Checking Permissions configuration"
-                      if ($module.ModuleContributorsGHTeam -like "*-tf") {
-                          $repoName = "terraform-azurerm-$($module.ModuleName)"
-                          $repoConfiguration = Test-AvmGitHubTeamPermission -Organization Azure -TeamName $module.ModuleContributorsGHTeam -RepoName $repoName -ExpectedPermission "Write"
-                          if ($repoConfiguration -match "Success") {
-                              Write-Verbose "Good News! Team: [$($module.ModuleOwnersGHTeam)] is configured with the expected permission: [write] on Repo: [$repoName] "
-                              Write-Verbose "Checking if an issue exists for the team: [$($ghTeam.name)]..."
-                              Close-ResolvedGithubIssue -title "[GitHub Team Issue] ``$($ghTeam.name)``"
-                            }
-                          else {
-                              Write-Verbose "Uh-oh no correct permissions configured for $($module.ModuleContributorsGHTeam) ($($module.PrimaryModuleOwnerDisplayName))"
-                              # Create a custom object for the unmatched team
-                              $unmatchedTeam = [PSCustomObject]@{
-                                  TeamName       = $module.ModuleContributorsGHTeam
-                                  Validation     = "No correct permissions assigned."
-                                  Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
-                                  GitHubTeamName = $ghTeam.name
-                                  Resolution     = "Please assign the correct permissions to the team: $($module.ModuleContributorsGHTeam). This can be found in [SNFR20](https://azure.github.io/Azure-Verified-Modules/spec/SNFR20)."
-                              }
-                              # Add the custom object to the array
-                              $unmatchedTeams += $unmatchedTeam
-                              break
-                          }
-                      }
-                      else {
-                          Write-Verbose "Skipping non Terraform module: $($module.ModuleContributorsGHTeam)"
-                          break
-                      }
-                  }
-                  elseif ($matchFound) {
-                      Write-Verbose "Found team: $($module.ModuleContributorsGHTeam) ($($module.PrimaryModuleOwnerDisplayName))"
-                      break
-                  }
-
-              }
-
-              # Check for match with "@Azure/" prefix
-              # Construct the prefixed team name
-              $prefixedTeamName = "@azure/" + $module.ModuleContributorsGHTeam
-
-              # Check for match with "@Azure/" prefix
-              if ($prefixedTeamName -eq $ghTeam.name) {
-                  $matchFound = $true
-                  Write-Verbose "Uh-oh team found with '@azure/' prefix for: $($ghTeam.name), Current Owner is $($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
-                  $unmatchedTeam = [PSCustomObject]@{
-                      TeamName       = $module.ModuleContributorsGHTeam
-                      Validation     = "@azure/ prefix found."
-                      Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
-                      GitHubTeamName = $ghTeam.name
-                      Resolution     = "Remove the '@azure/' prefix from the team name."
-                  }
-                  # Add the custom object to the array
-                  $unmatchedTeams += $unmatchedTeam
-                  break
-              }
-          }
-
-          # If no match was found, output the item from $csv
-          if (-not $matchFound) {
-              Write-Verbose "No team found for: $($module.ModuleContributorsGHTeam), Current Owner is $($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
-              if (-not $matchFound) {
-                  Write-Verbose "No team found for: $($module.ModuleContributorsGHTeam), Current Owner is $($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
-                  $unmatchedTeam = [PSCustomObject]@{
-                      TeamName       = $module.ModuleContributorsGHTeam
-                      Validation     = "GitHub team not found. "
-                      Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
-                      GitHubTeamName = "N/A"
-                      Resolution     = "Create a new team with the name $($module.ModuleContributorsGHTeam) [here](https://github.com/orgs/Azure/new-team)."
-                  }
-                  # Add the custom object to the array
-                  $unmatchedTeams += $unmatchedTeam
-              }
-          }
-      }
-
       if ($validateTerraformAdminPermissions -Or $validateAll) {
         foreach ($tfAdminteam in $TerraformAdminTeamList) {
           if ($module.ModuleOwnersGHTeam -like "*-tf") {
@@ -342,7 +234,7 @@ Function Invoke-AvmGitHubTeamLinter {
               Write-Verbose "Uh-oh no correct permissions configured for [$tfAdminteam]"
               # Create a custom object for the unmatched team
               $unmatchedTeam = [PSCustomObject]@{
-                  TeamName       = $module.ModuleContributorsGHTeam
+                  TeamName       = $module.ModuleOwnersGHTeam
                   Validation     = "No correct permissions assigned."
                   Owner          = "$($module.PrimaryModuleOwnerGHHandle) ($($module.PrimaryModuleOwnerDisplayName))"
                   GitHubTeamName = $tfAdminteam

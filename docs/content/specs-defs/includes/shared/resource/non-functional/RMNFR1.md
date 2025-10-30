@@ -19,6 +19,16 @@ priority: 3010
 
 ## ID: RMNFR1 - Category: Naming - Module Naming
 
+Resource modules **MUST** follow the below naming conventions (all lower case).
+
+{{% notice style="important" %}}
+
+As part of the module proposal process, the module's approved name is captured both in the module proposal issue AND the related [module index page]({{% siteparam base %}}/indexes) (backed by the corresponding [CSV file](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes)).
+
+Therefore, **module owners don't need to construct the module's name themselves, instead they need use the name prescribed in the module proposal issue or in the related CSV file, at the time of approval.**
+
+{{% /notice %}}
+
 {{% notice style="note" %}}
 
 We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) with the correct singular names for all resource types to enable checks to utilize this list to ensure repos are named correctly. To see the formatted content of these CSV files with additional information, please visit the [AVM Module Indexes]({{% siteparam base %}}/indexes) page.
@@ -26,8 +36,6 @@ We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verif
 This will be updated quarterly, or ad-hoc as new RPs/ Resources are created and highlighted via a check failure.
 
 {{% /notice %}}
-
-Resource modules **MUST** follow the below naming conventions (all lower case):
 
 ### Bicep Resource Module Naming
 
