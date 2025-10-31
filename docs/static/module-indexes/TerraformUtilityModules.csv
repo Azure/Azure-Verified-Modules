@@ -1,5 +1,4 @@
 ModuleDisplayName,AlternativeNames,ModuleName,ModuleStatus,ModuleDescription,PublicRegistryReference,PrimaryModuleOwnerGHHandle,PrimaryModuleOwnerDisplayName,SecondaryModuleOwnerGHHandle,SecondaryModuleOwnerDisplayName,FirstPublishedIn
-AVM ephemeral credentials,,avm-utl-ephemeral-credential,Proposed,AVM utility Module for AVM ephemeral credentials,,lonegunmanb,Zijie He,,,
 AVM Interfaces,,avm-utl-interfaces,Available,AVM utility Module for AVM Interfaces,https://registry.terraform.io/modules/Azure/avm-utl-interfaces/azure/latest,matt-FFFFFF,Matt White,,,2025-01
 AVM Naming,,avm-utl-naming,Proposed,AVM utility Module for AVM Naming,,Nepomuceno,Gabriel Monteiro Nepomuceno,,,
 AVM Network IP Addresses,IPv4 CIDR,avm-utl-network-ip-addresses,Available,AVM utility Module for AVM Network IP Addresses,https://registry.terraform.io/modules/Azure/avm-utl-network-ip-addresses/azurerm/latest,jaredfholgate,Jared Holgate,,,2025-03
