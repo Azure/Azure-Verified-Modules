@@ -37,18 +37,28 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
       ? {
           keySource: 'Microsoft.KeyVault'
           keyVaultProperties: {
-            keyVaultUri: cMKKeyVault.properties.vaultUri
+            keyVaultUri: !isHSMKeyVault
+                ? 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}${environment().suffixes.keyvaultDns}/'
+                : 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}.managedhsm.azure.net/'
             keyName: customerManagedKey!.keyName
-            keyVersion: !empty(customerManagedKey.?keyVersion)
-              ? customerManagedKey!.keyVersion
-              : (customerManagedKey.?autoRotationEnabled ?? true)
-                ? null
-                : last(split(cMKKeyVault::cMKKey!.properties.keyUriWithVersion, '/'))
+            keyversion: !empty(customerManagedKey.?keyVersion)
+                ? customerManagedKey!.keyVersion!
+                : (customerManagedKey.?autoRotationEnabled ?? true)
+                    ? null
+                    : (!isHSMKeyVault
+                        ? last(split(cMKKeyVault::cMKKey!.properties.keyUriWithVersion, '/'))
+                        : fail('Managed HSM CMK encryption requires either keyVersion in input or autorotation to be enabled'))
             keyIdentifier: !empty(customerManagedKey.?keyVersion)
-              ? '${cMKKeyVault::cMKKey.properties.keyUri}/${customerManagedKey!.keyVersion!}'
+              ? (!isHSMKeyVault
+                ? 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}${environment().suffixes.keyvaultDns}/keys/${customerManagedKey!.keyName!}/${customerManagedKey!.keyVersion!}'
+                : 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}.managedhsm.azure.net/keys/${customerManagedKey!.keyName!}/${customerManagedKey!.keyVersion!}')
               : (customerManagedKey.?autoRotationEnabled ?? true)
-                ? cMKKeyVault::cMKKey!.properties.keyUri
-                : cMKKeyVault::cMKKey!.properties.keyUriWithVersion
+                ? (!isHSMKeyVault
+                  ? 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}${environment().suffixes.keyvaultDns}/keys/${customerManagedKey!.keyName!}'
+                  : 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}.managedhsm.azure.net/keys/${customerManagedKey!.keyName!}}')
+                : (!isHSMKeyVault
+                  ? cMKKeyVault::cMKKey!.properties.keyUriWithVersion
+                  : fail('Managed HSM CMK encryption requires either keyVersion in input or autorotation to be enabled'))
             identityClientId: !empty(customerManagedKey.?userAssignedIdentityResourceId)
               ? cMKUserAssignedIdentity!.properties.clientId
               : null
