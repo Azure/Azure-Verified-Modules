@@ -61,7 +61,7 @@ Microsoft.EventGrid,systemTopics,EventGrid System Topic,,avm-res-eventgrid-syste
 Microsoft.EventGrid,topics,EventGrid Topic,,avm-res-eventgrid-topic,Proposed,AVM resource Module for EventGrid Topic,,fafriha,Farouk Friha,,,
 Microsoft.EventHub,namespaces,Event Hub Namespace,,avm-res-eventhub-namespace,Available,AVM resource Module for Event Hub Namespace,https://registry.terraform.io/modules/Azure/avm-res-eventhub-namespace/azurerm/latest,mbilalamjad,Bilal Amjad,,,2025-04
 Microsoft.Fabric,capacities,Fabric Capacity,,avm-res-fabric-capacity,Proposed,AVM resource Module for Fabric Capacity,,DariuszPorowski,Dariusz Porowski,,,
-Microsoft.Features,features,Subcription Feature,,avm-res-features-feature,Proposed,AVM resource Module for Subcription Feature,,lonegunmanb,Zijie He,,,
+Microsoft.Features,features,Subcription Feature,,avm-res-features-feature,Available,AVM resource Module for Subcription Feature,https://registry.terraform.io/modules/Azure/avm-res-features-feature/azurerm/latest,lonegunmanb,Zijie He,,,2025-11
 Microsoft.HealthBot,healthBots,Health Bot,,avm-res-healthbot-healthbot,Proposed,AVM resource Module for Health Bot,,,,,,
 Microsoft.HybridCompute,machines,Hybrid Compute Machine,,avm-res-hybridcompute-machine,Proposed,AVM resource Module for Hybrid Compute Machine,,,,,,
 Microsoft.HybridContainerService,provisionedClusterInstances,AKS Arc,,avm-res-hybridcontainerservice-provisionedclusterinstance,Available,AVM resource Module for AKS Arc,https://registry.terraform.io/modules/Azure/avm-res-hybridcontainerservice-provisionedclusterinstance/azurerm/latest,xhy8759,Hangyu Xu,,,2024-08
