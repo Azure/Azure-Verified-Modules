@@ -10,10 +10,7 @@ param customerManagedKey customerManagedKeyType?
 //   Variables   //
 // ============= //
 
-var keyVaultType = !empty(customerManagedKey.?keyVaultResourceId)
-  ? split(customerManagedKey.?keyVaultResourceId!, '/')[7]
-  : ''
-var isHSMManagedCMK = contains(keyVaultType, 'managedHSMs')
+var isHSMManagedCMK = split(customerManagedKey.?keyVaultResourceId ?? '', '/')[?7] == 'managedHSMs'
 
 // ============= //
 //   Resources   //
