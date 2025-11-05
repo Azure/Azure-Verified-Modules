@@ -6,22 +6,31 @@ import { customerManagedKeyWithAutoRotateType } from 'br/public:avm/utl/types/av
 param customerManagedKey customerManagedKeyWithAutoRotateType?
 
 // ============= //
+//   Variables   //
+// ============= //
+
+var keyVaultType = !empty(customerManagedKey.?keyVaultResourceId)
+  ? split(customerManagedKey.?keyVaultResourceId!, '/')[7]
+  : ''
+var isHSMManagedCMK = contains(keyVaultType, 'managedHSMs')
+
+// ============= //
 //   Resources   //
 // ============= //
 
-resource cMKKeyVault 'Microsoft.KeyVault/vaults@2023-02-01' existing = if (!empty(customerManagedKey.?keyVaultResourceId)) {
+resource cMKKeyVault 'Microsoft.KeyVault/vaults@2025-05-01' existing = if (!empty(customerManagedKey.?keyVaultResourceId)) {
   name: last(split((customerManagedKey.?keyVaultResourceId!), '/'))
   scope: resourceGroup(
     split(customerManagedKey.?keyVaultResourceId!, '/')[2],
     split(customerManagedKey.?keyVaultResourceId!, '/')[4]
   )
 
-  resource cMKKey 'keys@2023-02-01' existing = if (!empty(customerManagedKey.?keyVaultResourceId) && !empty(customerManagedKey.?keyName)) {
+  resource cMKKey 'keys@2025-05-01' existing = if (!empty(customerManagedKey.?keyVaultResourceId) && !empty(customerManagedKey.?keyName)) {
     name: customerManagedKey.?keyName!
   }
 }
 
-resource cMKUserAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' existing = if (!empty(customerManagedKey.?userAssignedIdentityResourceId)) {
+resource cMKUserAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2024-11-30' existing = if (!empty(customerManagedKey.?userAssignedIdentityResourceId)) {
   name: last(split(customerManagedKey.?userAssignedIdentityResourceId!, '/'))
   scope: resourceGroup(
     split(customerManagedKey.?userAssignedIdentityResourceId!, '/')[2],
@@ -37,26 +46,26 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
       ? {
           keySource: 'Microsoft.KeyVault'
           keyVaultProperties: {
-            keyVaultUri: !isHSMKeyVault
-                ? 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}${environment().suffixes.keyvaultDns}/'
+            keyVaultUri: !isHSMManagedCMK
+                ? cMKKeyVault.properties.vaultUri
                 : 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}.managedhsm.azure.net/'
             keyName: customerManagedKey!.keyName
             keyversion: !empty(customerManagedKey.?keyVersion)
                 ? customerManagedKey!.keyVersion!
                 : (customerManagedKey.?autoRotationEnabled ?? true)
                     ? null
-                    : (!isHSMKeyVault
+                    : (!isHSMManagedCMK
                         ? last(split(cMKKeyVault::cMKKey!.properties.keyUriWithVersion, '/'))
                         : fail('Managed HSM CMK encryption requires either specifying the \'keyVersion\' or omitting the \'autoRotationEnabled\' property. Setting \'autoRotationEnabled\' to false without a \'keyVersion\' is not allowed.'))
             keyIdentifier: !empty(customerManagedKey.?keyVersion)
-              ? (!isHSMKeyVault
-                ? 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}${environment().suffixes.keyvaultDns}/keys/${customerManagedKey!.keyName!}/${customerManagedKey!.keyVersion!}'
+              ? (!isHSMManagedCMK
+                ? '${cMKKeyVault::cMKKey!.properties.keyUri}/${customerManagedKey!.keyVersion!}'
                 : 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}.managedhsm.azure.net/keys/${customerManagedKey!.keyName!}/${customerManagedKey!.keyVersion!}')
               : (customerManagedKey.?autoRotationEnabled ?? true)
-                ? (!isHSMKeyVault
-                  ? 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}${environment().suffixes.keyvaultDns}/keys/${customerManagedKey!.keyName!}'
+                ? (!isHSMManagedCMK
+                  ? cMKKeyVault::cMKKey!.properties.keyUri
                   : 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}.managedhsm.azure.net/keys/${customerManagedKey!.keyName!}}')
-                : (!isHSMKeyVault
+                : (!isHSMManagedCMK
                   ? cMKKeyVault::cMKKey!.properties.keyUriWithVersion
                   : fail('Managed HSM CMK encryption requires either specifying the \'keyVersion\' or omitting the \'autoRotationEnabled\' property. Setting \'autoRotationEnabled\' to false without a \'keyVersion\' is not allowed.'))
             identityClientId: !empty(customerManagedKey.?userAssignedIdentityResourceId)

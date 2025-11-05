@@ -13,25 +13,25 @@ param customerManagedKey customerManagedKeyType?
 var keyVaultType = !empty(customerManagedKey.?keyVaultResourceId)
   ? split(customerManagedKey.?keyVaultResourceId!, '/')[7]
   : ''
-var isHSMKeyVault = contains(keyVaultType, 'managedHSMs')
+var isHSMManagedCMK = contains(keyVaultType, 'managedHSMs')
 
 // ============= //
 //   Resources   //
 // ============= //
 
-resource cMKKeyVault 'Microsoft.KeyVault/vaults@2024-11-01' existing = if (!isHSMKeyVault && !empty(customerManagedKey.?keyVaultResourceId)) {
+resource cMKKeyVault 'Microsoft.KeyVault/vaults@2025-05-01' existing = if (!isHSMManagedCMK && !empty(customerManagedKey.?keyVaultResourceId)) {
   name: last(split((customerManagedKey.?keyVaultResourceId!), '/'))
   scope: resourceGroup(
     split(customerManagedKey.?keyVaultResourceId!, '/')[2],
     split(customerManagedKey.?keyVaultResourceId!, '/')[4]
   )
 
-  resource cMKKey 'keys@2024-11-01' existing = if (!empty(customerManagedKey.?keyVaultResourceId) && !empty(customerManagedKey.?keyName)) {
+  resource cMKKey 'keys@2025-05-01' existing = if (!empty(customerManagedKey.?keyVaultResourceId) && !empty(customerManagedKey.?keyName)) {
     name: customerManagedKey.?keyName!
   }
 }
 
-resource cMKUserAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' existing = if (!empty(customerManagedKey.?userAssignedIdentityResourceId)) {
+resource cMKUserAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2024-11-30' existing = if (!empty(customerManagedKey.?userAssignedIdentityResourceId)) {
   name: last(split(customerManagedKey.?userAssignedIdentityResourceId!, '/'))
   scope: resourceGroup(
     split(customerManagedKey.?userAssignedIdentityResourceId!, '/')[2],
@@ -47,20 +47,20 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
       ? {
           keySource: 'Microsoft.KeyVault'
           keyVaultProperties: {
-            keyVaultUri: !isHSMKeyVault
-                ? 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}${environment().suffixes.keyvaultDns}/'
+            keyVaultUri: !isHSMManagedCMK
+                ? cMKKeyVault.properties.vaultUri
                 : 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}.managedhsm.azure.net/'
             keyName: customerManagedKey!.keyName
             keyVersion: !empty(customerManagedKey.?keyVersion)
               ? customerManagedKey!.keyVersion!
-              : !isHSMKeyVault
+              : !isHSMManagedCMK
                 ? last(split(cMKKeyVault::cMKKey!.properties.keyUriWithVersion, '/'))
                 : fail('Managed HSM CMK encryption requires specifying the \'keyVersion\'.')
             keyIdentifier: !empty(customerManagedKey.?keyVersion)
-              ? ( !isHSMKeyVault
-                ? 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}${environment().suffixes.keyvaultDns}/${customerManagedKey!.keyVersion!}'
-                : 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}.managedhsm.azure.net/${customerManagedKey!.keyVersion!}')
-              : ( !isHSMKeyVault
+              ? ( !isHSMManagedCMK
+                ? '${cMKKeyVault::cMKKey!.properties.keyUri}/${customerManagedKey!.keyVersion!}'
+                : 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}.managedhsm.azure.net/keys/${customerManagedKey!.keyName!}/${customerManagedKey!.keyVersion!}')
+              : ( !isHSMManagedCMK
                 ? cMKKeyVault::cMKKey!.properties.keyUriWithVersion
                 : fail('Managed HSM CMK encryption requires specifying the \'keyVersion\'.'))
             identityClientId: !empty(customerManagedKey.?userAssignedIdentityResourceId)
