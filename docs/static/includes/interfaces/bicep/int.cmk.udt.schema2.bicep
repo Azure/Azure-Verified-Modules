@@ -47,7 +47,7 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
                     ? null
                     : (!isHSMKeyVault
                         ? last(split(cMKKeyVault::cMKKey!.properties.keyUriWithVersion, '/'))
-                        : fail('Managed HSM CMK encryption requires either keyVersion in input or autorotation to be enabled'))
+                        : fail('Managed HSM CMK encryption requires either specifying the \'keyVersion\' or omitting the \'autoRotationEnabled\' property. Setting \'autoRotationEnabled\' to false without a \'keyVersion\' is not allowed.'))
             keyIdentifier: !empty(customerManagedKey.?keyVersion)
               ? (!isHSMKeyVault
                 ? 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}${environment().suffixes.keyvaultDns}/keys/${customerManagedKey!.keyName!}/${customerManagedKey!.keyVersion!}'
@@ -58,7 +58,7 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
                   : 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}.managedhsm.azure.net/keys/${customerManagedKey!.keyName!}}')
                 : (!isHSMKeyVault
                   ? cMKKeyVault::cMKKey!.properties.keyUriWithVersion
-                  : fail('Managed HSM CMK encryption requires either keyVersion in input or autorotation to be enabled'))
+                  : fail('Managed HSM CMK encryption requires either specifying the \'keyVersion\' or omitting the \'autoRotationEnabled\' property. Setting \'autoRotationEnabled\' to false without a \'keyVersion\' is not allowed.'))
             identityClientId: !empty(customerManagedKey.?userAssignedIdentityResourceId)
               ? cMKUserAssignedIdentity!.properties.clientId
               : null

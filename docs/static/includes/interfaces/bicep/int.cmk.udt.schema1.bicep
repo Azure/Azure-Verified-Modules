@@ -55,14 +55,14 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
               ? customerManagedKey!.keyVersion!
               : !isHSMKeyVault
                 ? last(split(cMKKeyVault::cMKKey!.properties.keyUriWithVersion, '/'))
-                : fail('Managed HSM CMK encryption requires keyVersion in input')
+                : fail('Managed HSM CMK encryption requires specifying the \'keyVersion\'.')
             keyIdentifier: !empty(customerManagedKey.?keyVersion)
               ? ( !isHSMKeyVault
                 ? 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}${environment().suffixes.keyvaultDns}/${customerManagedKey!.keyVersion!}'
                 : 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}.managedhsm.azure.net/${customerManagedKey!.keyVersion!}')
               : ( !isHSMKeyVault
                 ? cMKKeyVault::cMKKey!.properties.keyUriWithVersion
-                : fail('Managed HSM CMK encryption requires keyVersion in input'))
+                : fail('Managed HSM CMK encryption requires specifying the \'keyVersion\'.'))
             identityClientId: !empty(customerManagedKey.?userAssignedIdentityResourceId)
               ? cMKUserAssignedIdentity!.properties.clientId
               : null
