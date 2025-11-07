@@ -47,7 +47,7 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
                 ? cMKKeyVault!.properties.vaultUri
                 : 'https://${last(split((customerManagedKey!.keyVaultResourceId), '/'))}.managedhsm.azure.net/'
             keyName: customerManagedKey!.keyName
-            keyversion: !empty(customerManagedKey.?keyVersion)
+            keyVersion: !empty(customerManagedKey.?keyVersion)
                 ? customerManagedKey!.keyVersion!
                 : (customerManagedKey.?autoRotationEnabled ?? true)
                     ? null
