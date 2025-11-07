@@ -50,9 +50,9 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
             keyName: customerManagedKey!.keyName
             keyVersion: !empty(customerManagedKey.?keyVersion)
               ? customerManagedKey!.keyVersion!
-              : !isHSMManagedCMK
+              : (!isHSMManagedCMK
                 ? last(split(cMKKeyVault::cMKKey!.properties.keyUriWithVersion, '/'))
-                : fail('Managed HSM CMK encryption requires specifying the \'keyVersion\'.')
+                : fail('Managed HSM CMK encryption requires specifying the \'keyVersion\'.'))
             keyIdentifier: !empty(customerManagedKey.?keyVersion)
               ? ( !isHSMManagedCMK
                 ? '${cMKKeyVault::cMKKey!.properties.keyUri}/${customerManagedKey!.keyVersion!}'
