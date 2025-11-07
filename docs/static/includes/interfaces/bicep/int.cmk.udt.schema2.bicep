@@ -57,7 +57,7 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
             keyIdentifier: !empty(customerManagedKey.?keyVersion)
               ? (!isHSMManagedCMK
                 ? '${cMKKeyVault::cMKKey!.properties.keyUri}/${customerManagedKey!.keyVersion!}'
-                : 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}.managedhsm.azure.net/keys/${customerManagedKey!.keyName!}/${customerManagedKey!.keyVersion!}')
+                : 'https://${last(split((customerManagedKey!.keyVaultResourceId), '/'))}.managedhsm.azure.net/keys/${customerManagedKey!.keyName}/${customerManagedKey!.keyVersion!}')
               : (customerManagedKey.?autoRotationEnabled ?? true)
                 ? (!isHSMManagedCMK
                   ? cMKKeyVault::cMKKey!.properties.keyUri
