@@ -56,7 +56,7 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
             keyIdentifier: !empty(customerManagedKey.?keyVersion)
               ? ( !isHSMManagedCMK
                 ? '${cMKKeyVault::cMKKey!.properties.keyUri}/${customerManagedKey!.keyVersion!}'
-                : 'https://${last(split((customerManagedKey.?keyVaultResourceId!), '/'))}.managedhsm.azure.net/keys/${customerManagedKey!.keyName!}/${customerManagedKey!.keyVersion!}')
+                : 'https://${last(split((customerManagedKey.?keyVaultResourceId), '/'))}.managedhsm.azure.net/keys/${customerManagedKey!.keyName}/${customerManagedKey!.keyVersion!}')
               : ( !isHSMManagedCMK
                 ? cMKKeyVault::cMKKey!.properties.keyUriWithVersion
                 : fail('Managed HSM CMK encryption requires specifying the \'keyVersion\'.'))
