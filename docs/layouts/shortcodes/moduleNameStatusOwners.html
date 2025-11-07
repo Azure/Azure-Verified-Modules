@@ -392,8 +392,10 @@
       </td>
       <td> {{/* availability badge and versions  */}}
         {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") -}}
+          {{/* Replace single hyphens with double hyphens for correct badge rendering for pre-releases - e.g., 0.2.0-pre1 */}}
+          {{- $badgeVersion := replace $moduleLatestVersion "-" "--" -}}
           <a href="{{ $item.PublicRegistryReference }}">
-            <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $moduleLatestVersion }}-purple"/>
+            <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $badgeVersion }}-purple"/>
           </a>
         {{- else -}}
           <a href="">
