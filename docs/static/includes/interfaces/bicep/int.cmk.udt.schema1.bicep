@@ -16,14 +16,14 @@ var isHSMManagedCMK = split(customerManagedKey.?keyVaultResourceId ?? '', '/')[?
 //   Resources   //
 // ============= //
 
-resource cMKKeyVault 'Microsoft.KeyVault/vaults@2025-05-01' existing = if (!isHSMManagedCMK && !empty(customerManagedKey.?keyVaultResourceId)) {
+resource cMKKeyVault 'Microsoft.KeyVault/vaults@2025-05-01' existing = if (!empty(customerManagedKey) && !isHSMManagedCMK) {
   name: last(split((customerManagedKey.?keyVaultResourceId!), '/'))
   scope: resourceGroup(
     split(customerManagedKey.?keyVaultResourceId!, '/')[2],
     split(customerManagedKey.?keyVaultResourceId!, '/')[4]
   )
 
-  resource cMKKey 'keys@2025-05-01' existing = if (!empty(customerManagedKey.?keyVaultResourceId) && !empty(customerManagedKey.?keyName)) {
+  resource cMKKey 'keys@2025-05-01' existing = if (!empty(customerManagedKey) && !isHSMManagedCMK) {
     name: customerManagedKey.?keyName!
   }
 }
@@ -50,9 +50,9 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
             keyName: customerManagedKey!.keyName
             keyVersion: !empty(customerManagedKey.?keyVersion)
               ? customerManagedKey!.keyVersion!
-              : !isHSMManagedCMK
+              : (!isHSMManagedCMK
                 ? last(split(cMKKeyVault::cMKKey!.properties.keyUriWithVersion, '/'))
-                : fail('Managed HSM CMK encryption requires specifying the \'keyVersion\'.')
+                : fail('Managed HSM CMK encryption requires specifying the \'keyVersion\'.'))
             keyIdentifier: !empty(customerManagedKey.?keyVersion)
               ? ( !isHSMManagedCMK
                 ? '${cMKKeyVault::cMKKey!.properties.keyUri}/${customerManagedKey!.keyVersion!}'
