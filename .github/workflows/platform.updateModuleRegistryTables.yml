@@ -89,7 +89,6 @@ jobs:
           Set-BicepModuleStatusBadgesTable @functionInput -Verbose
 
       - name: "Update module features csv"
-        shell: pwsh
         run: |
           # Load used functions
           . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'tools' 'platform' 'Set-BicepModulesFeatureCSV.ps1')
@@ -106,17 +105,23 @@ jobs:
 
       - name: Check for changes
         id: git_status
+        shell: pwsh
         run: |
-          mapfile -t "CHECK_GIT_STATUS" < <(git status -s)
-          printf "%s\n" "${CHECK_GIT_STATUS[@]}"
-          echo "changes=${#CHECK_GIT_STATUS[@]}" >> "$GITHUB_OUTPUT"
-
+          $stats = git diff --stat
+          Write-Verbose ("Diff found:`n{0}" -f ($stats | Out-String)) -Verbose
+          
+          $diff = git diff --name-only
+          if($diff.Count -gt 0) {
+            Write-Output ('{0}={1}' -f 'CHECK_GIT_STATUS', $diff) >> $env:GITHUB_OUTPUT
+          }
       - name: Add files, commit and push
         if: steps.git_status.outputs.changes > 0
         run: |
+          git status
           echo "Pushing changes to origin..."
           git add docs/static/includes/module-features/bicepBadges.md
           git add docs/static/includes/module-features/bicepFeatures.csv
+          git status
           git commit -m '${{ env.pr_title }}'
           git push origin ${{ env.branch_name }}
         env:
