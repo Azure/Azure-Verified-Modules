@@ -116,8 +116,9 @@ jobs:
           }
       - name: Add files, commit and push
         if: steps.git_status.outputs.changes != ''
+        shell: pwsh
         run: |
-          echo "Pushing changes to origin..."
+          Write-Verbose "Pushing changes to origin..." -Verbose
           git add (Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepBadges.md')
           git add (Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepFeatures.csv')
           git commit -m '${{ env.pr_title }}'
