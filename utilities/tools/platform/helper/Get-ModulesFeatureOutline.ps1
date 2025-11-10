@@ -78,7 +78,7 @@ function Get-ModulesFeatureOutline {
     [string] $ModulesRepoRootPath,
 
     [Parameter(Mandatory = $false)]
-    [ValidateSet('Status', 'RBAC', 'Locks', 'Tags', 'Diag', 'PE', 'PIP', 'CMK-HSM', 'Identity')]
+    [ValidateSet('Status', 'RBAC', 'Locks', 'Tags', 'Diag', 'PE', 'PIP', 'CMK', 'CMK-HSM', 'Identity')]
     [string[]] $ColumnsToInclude = @(
       'Status',
       'RBAC',
