@@ -32,6 +32,7 @@ Optional. An array that controls which columns / data points should be added to 
 - PE: Adds a column indicating if the module supports Private Endpoints
 - PIP: Adds a column indicating if the module supports Public IP Addresses
 - CMK: Adds a column indicating if the module supports Customer Managed Keys
+- CMK-HSM: Adds a column indicating if the module supports Customer Managed Keys in Hardware Security Modules (HSM)
 - Identity: Adds a column indicating if the module supports managed identities
 
 .PARAMETER RepositoryName
@@ -77,7 +78,7 @@ function Get-ModulesFeatureOutline {
     [string] $ModulesRepoRootPath,
 
     [Parameter(Mandatory = $false)]
-    [ValidateSet('Status', 'RBAC', 'Locks', 'Tags', 'Diag', 'PE', 'PIP', 'CMK', 'Identity')]
+    [ValidateSet('Status', 'RBAC', 'Locks', 'Tags', 'Diag', 'PE', 'PIP', 'CMK-HSM', 'Identity')]
     [string[]] $ColumnsToInclude = @(
       'Status',
       'RBAC',
@@ -87,6 +88,7 @@ function Get-ModulesFeatureOutline {
       'PE',
       'PIP',
       'CMK',
+      'CMK-HSM',
       'Identity'
     ),
 
@@ -132,6 +134,7 @@ function Get-ModulesFeatureOutline {
   if ($ColumnsToInclude -contains 'PE') { $summaryData.supportsEndpoints = 0 }
   if ($ColumnsToInclude -contains 'PIP') { $summaryData.supportsPipDeployment = 0 }
   if ($ColumnsToInclude -contains 'CMK') { $summaryData.supportsCMKDeployment = 0 }
+  if ($ColumnsToInclude -contains 'CMK-HSM') { $summaryData.supportsCMKHSMDeployment = 0 }
   if ($ColumnsToInclude -contains 'Identity') { $summaryData.supportsIdentityDeployment = 0 }
 
   foreach ($moduleTemplatePath in $moduleTemplatePaths) {
@@ -241,6 +244,17 @@ function Get-ModulesFeatureOutline {
         $moduleDataItem['CMK'] = $true
       } else {
         $moduleDataItem['CMK'] = $false
+      }
+    }
+    # Supports CMK-HSM
+    if ($ColumnsToInclude -contains 'CMK-HSM') {
+      $supportsCMK = [regex]::Match($moduleContentString, '(?m)^\s*param customerManagedKey customerManagedKey.*Type').Success
+      $supportsHSM = [regex]::Match($moduleContentString, '(?m)^\s*var isHSMManagedCMK .+').Success
+      if ($supportsCMK -and $supportsHSM) {
+        $summaryData.supportsCMKHSMDeployment++
+        $moduleDataItem['CMK-HSM'] = $true
+      } else {
+        $moduleDataItem['CMK-HSM'] = $false
       }
     }
 
