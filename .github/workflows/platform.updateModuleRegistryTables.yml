@@ -89,6 +89,7 @@ jobs:
           Set-BicepModuleStatusBadgesTable @functionInput -Verbose
 
       - name: "Update module features csv"
+        shell: pwsh
         run: |
           # Load used functions
           . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'tools' 'platform' 'Set-BicepModulesFeatureCSV.ps1')
