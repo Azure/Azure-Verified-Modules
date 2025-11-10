@@ -115,18 +115,18 @@ jobs:
             Write-Output ('{0}={1}' -f 'changes', $diff) >> $env:GITHUB_OUTPUT
           }
       - name: Add files, commit and push
-        if: steps.git_status.outputs.changes > 0
+        if: steps.git_status.outputs.changes != ''
         run: |
           echo "Pushing changes to origin..."
           git add (Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepBadges.md')
           git add (Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepFeatures.csv')
           git commit -m '${{ env.pr_title }}'
-          git push origin ${{ env.branch_name }}
+          # git push origin ${{ env.branch_name }}
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
 
       # - name: Create pull request
-      #   if: steps.git_status.outputs.changes > 0
+      #   if: steps.git_status.outputs.changes != ''
       #   run: |
       #     HEAD_LABEL="${{ github.repository_owner }}:${{ env.branch_name }}"
       #     BASE_LABEL="${{ github.repository_owner }}:$(echo '${{ github.ref }}' | sed 's:refs/heads/::')"
