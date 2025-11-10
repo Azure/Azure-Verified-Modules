@@ -120,8 +120,8 @@ jobs:
         run: |
           git status
           echo "Pushing changes to origin..."
-          git add docs/static/includes/module-features/bicepBadges.md
-          git add docs/static/includes/module-features/bicepFeatures.csv
+          git add (Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepBadges.md')
+          git add (Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepFeatures.csv')
           git status
           git commit -m '${{ env.pr_title }}'
           git push origin ${{ env.branch_name }}
