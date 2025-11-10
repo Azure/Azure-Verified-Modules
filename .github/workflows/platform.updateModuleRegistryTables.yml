@@ -19,7 +19,7 @@ permissions:
 jobs:
   update_status_tables:
     name: Update status tables
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment: platform
     steps:
@@ -106,24 +106,28 @@ jobs:
 
       - name: Check for changes
         id: git_status
+        shell: pwsh
         run: |
-          mapfile -t "CHECK_GIT_STATUS" < <(git status -s)
-          printf "%s\n" "${CHECK_GIT_STATUS[@]}"
-          echo "changes=${#CHECK_GIT_STATUS[@]}" >> "$GITHUB_OUTPUT"
-
+          $stats = git diff --stat
+          $diff = git diff --name-only
+          if($diff.Count -gt 0) {
+            Write-Verbose ("Diff found:`n{0}" -f ($stats | Out-String)) -Verbose
+            Write-Output ('{0}={1}' -f 'changes', $diff) >> $env:GITHUB_OUTPUT
+          }
       - name: Add files, commit and push
-        if: steps.git_status.outputs.changes > 0
+        if: steps.git_status.outputs.changes != ''
+        shell: pwsh
         run: |
-          echo "Pushing changes to origin..."
-          git add docs/static/includes/module-features/bicepBadges.md
-          git add docs/static/includes/module-features/bicepFeatures.csv
+          Write-Verbose "Pushing changes to origin..." -Verbose
+          git add (Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepBadges.md')
+          git add (Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepFeatures.csv')
           git commit -m '${{ env.pr_title }}'
-          git push origin ${{ env.branch_name }}
+          # git push origin ${{ env.branch_name }}
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
 
       - name: Create pull request
-        if: steps.git_status.outputs.changes > 0
+        if: steps.git_status.outputs.changes != ''
         run: |
           HEAD_LABEL="${{ github.repository_owner }}:${{ env.branch_name }}"
           BASE_LABEL="${{ github.repository_owner }}:$(echo '${{ github.ref }}' | sed 's:refs/heads/::')"
