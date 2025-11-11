@@ -45,7 +45,7 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
           keySource: 'Microsoft.KeyVault'
           keyVaultProperties: {
             keyVaultUri: !isHSMManagedCMK
-                ? cMKKeyVault.properties.vaultUri
+                ? cMKKeyVault!.properties.vaultUri
                 : 'https://${last(split((customerManagedKey!.keyVaultResourceId), '/'))}.managedhsm.azure.net/'
             keyName: customerManagedKey!.keyName
             keyVersion: !empty(customerManagedKey.?keyVersion)
