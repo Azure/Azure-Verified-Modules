@@ -122,7 +122,7 @@ jobs:
           git add (Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepBadges.md')
           git add (Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepFeatures.csv')
           git commit -m '${{ env.pr_title }}'
-          # git push origin ${{ env.branch_name }}
+          git push origin ${{ env.branch_name }}
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
 
