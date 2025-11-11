@@ -29,7 +29,7 @@ Stay tuned, to be announced! 👂
 - [AVM Community Call July 2025 Slides]({{% siteparam base %}}/community/avm-community-call-july25.pdf)
 
 <div style="width:70%; margin: 0 auto;">
-{{< youtube id="cHdShYNkyRk" title="Azure Verified Modules (AVM) - July 2025 - External Community Call" >}}
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/cHdShYNkyRk?si=H7vAcTaModXBtIV7" title="Azure Verified Modules (AVM) - July 2025 - External Community Call" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 ### 6th February 2025
@@ -39,13 +39,13 @@ Stay tuned, to be announced! 👂
 - [AVM Community Call February 2025 Slides]({{% siteparam base %}}/community/avm-community-call-feb25.pdf)
 
 <div style="width:70%; margin: 0 auto;">
-{{< youtube id="M2dJetgK2U8" title="Azure Verified Modules (AVM) - February 2025 - External Community Call" >}}
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/M2dJetgK2U8?si=oVLCiPnnAvyDTBy1" title="Azure Verified Modules (AVM) - February 2025 - External Community Call" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 <br>
 
 <div style="width:70%; margin: 0 auto;">
-{{< youtube id="ifDba74rdG8" title="Azure Verified Modules (AVM) - Website Updates - February 2025" >}}
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ifDba74rdG8?si=vQutGbxEvks7CMrc" title="Azure Verified Modules (AVM) - Website Updates - February 2025" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 ### 24th September 2024
@@ -55,7 +55,7 @@ Stay tuned, to be announced! 👂
 - [AVM Community Call September 2024 Slides]({{% siteparam base %}}/community/avm-community-call-sept24.pdf)
 
 <div style="width:70%; margin: 0 auto;">
-{{< youtube id="to3asqq6X8s" title="Azure Verified Modules (AVM) - September 2024 - External Community Call" >}}
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/to3asqq6X8s?si=tOpGU8mJbsimUTUC" title="Azure Verified Modules (AVM) - September 2024 - External Community Call" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 ### 21st May 2024
@@ -65,5 +65,5 @@ Stay tuned, to be announced! 👂
 - [AVM Community Call May 2024 Slides]({{% siteparam base %}}/community/avm-community-call-may24.pdf)
 
 <div style="width:70%; margin: 0 auto;">
-{{< youtube id="LprWndLjLH0" title="Azure Verified Modules (AVM) - May 2024 - External Community Call" >}}
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LprWndLjLH0?si=EzjrAp-Mbd8XO94K" title="Azure Verified Modules (AVM) - May 2024 - External Community Call" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
