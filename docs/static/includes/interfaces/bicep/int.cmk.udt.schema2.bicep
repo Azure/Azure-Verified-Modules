@@ -47,9 +47,9 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
                 ? cMKKeyVault!.properties.vaultUri
                 : 'https://${last(split((customerManagedKey!.keyVaultResourceId), '/'))}.managedhsm.azure.net/'
             keyName: customerManagedKey!.keyName
-            keyVersion: !empty(customerManagedKey.?keyVersion)
+            keyVersion: !empty(customerManagedKey!.?keyVersion)
                 ? customerManagedKey!.keyVersion!
-                : (customerManagedKey.?autoRotationEnabled ?? true)
+                : (customerManagedKey!.?autoRotationEnabled ?? true)
                     ? null
                     : (!isHSMManagedCMK
                         ? last(split(cMKKeyVault::cMKKey!.properties.keyUriWithVersion, '/'))
@@ -58,17 +58,17 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
               ? (!isHSMManagedCMK
                 ? '${cMKKeyVault::cMKKey!.properties.keyUri}/${customerManagedKey!.keyVersion!}'
                 : 'https://${last(split((customerManagedKey!.keyVaultResourceId), '/'))}.managedhsm.azure.net/keys/${customerManagedKey!.keyName}/${customerManagedKey!.keyVersion!}')
-              : (customerManagedKey.?autoRotationEnabled ?? true)
+              : (customerManagedKey!.?autoRotationEnabled ?? true)
                 ? (!isHSMManagedCMK
                   ? cMKKeyVault::cMKKey!.properties.keyUri
                   : 'https://${last(split((customerManagedKey!.keyVaultResourceId), '/'))}.managedhsm.azure.net/keys/${customerManagedKey!.keyName}}')
                 : (!isHSMManagedCMK
                   ? cMKKeyVault::cMKKey!.properties.keyUriWithVersion
                   : fail('Managed HSM CMK encryption requires either specifying the \'keyVersion\' or omitting the \'autoRotationEnabled\' property. Setting \'autoRotationEnabled\' to false without a \'keyVersion\' is not allowed.'))
-            identityClientId: !empty(customerManagedKey.?userAssignedIdentityResourceId)
+            identityClientId: !empty(customerManagedKey!.?userAssignedIdentityResourceId)
               ? cMKUserAssignedIdentity!.properties.clientId
               : null
-            identity: !empty(customerManagedKey.?userAssignedIdentityResourceId)
+            identity: !empty(customerManagedKey!.?userAssignedIdentityResourceId)
               ? {
                   userAssignedIdentity: cMKUserAssignedIdentity!.id
                 }
