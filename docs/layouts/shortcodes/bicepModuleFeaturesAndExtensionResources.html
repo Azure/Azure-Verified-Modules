@@ -22,8 +22,9 @@
 
 <table>
   {{- /* Process header row if enabled */ -}}
+  {{- $headerRow := slice -}}
   {{- if $useHeaderRow -}}
-    {{- $headerRow := index $featureRows 0 -}}
+    {{- $headerRow = index $featureRows 0 -}}
     {{- $featureRows = after 1 $featureRows -}}
     <thead> <tr> {{- range $headerRow -}} <th>{{- . -}}</th> {{- end -}} </tr> </thead>
   {{- end -}}
@@ -33,6 +34,14 @@
 
   {{- /* Iterate through each data row */ -}}
   {{- range $i, $row := $featureRows -}}
+    {{- /* Repeat header row after every 20 rows (but not before first row or after header) */ -}}
+    {{- if and (gt $i 0) (eq (mod $i 20) 0) (ne $i $lastIndex) -}}
+      <tr class="header-repeat">
+        {{- range $headerRow -}}
+          <th>{{- . -}}</th>
+        {{- end -}}
+      </tr>
+    {{- end -}}
     <tr>
       {{- /* Iterate through each cell in the row */ -}}
       {{- range $colIndex, $cell := $row -}}
