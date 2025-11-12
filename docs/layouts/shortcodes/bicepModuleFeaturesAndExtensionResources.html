@@ -1,3 +1,4 @@
+{{- /* Get input parameters */ -}}
 {{ $useHeaderRow := .Get "header" }}
 {{ $featureMappingCsv := .Get "featureMappingCsv" }}
 {{ $featuresFile := readFile $featureMappingCsv }}
@@ -10,41 +11,54 @@
 {{ $modulesHeader := index $moduleIndexRows 0 }}
 {{ $moduleIndexData := after 1 $moduleIndexRows }}
 
-{{- /* Create a map of module names to RepoURLs */ -}}
+{{- /* Create a map of module names to RepoURLs for hyperlinking */ -}}
+{{- /* Key: module name (e.g., "avm/res/storage/storage-account"), Value: RepoURL */ -}}
 {{ $moduleUrlMap := dict }}
 {{ range $moduleIndexData }}
-  {{ $moduleName := index . 4 }}
-  {{ $repoUrl := index . 7 }}
+  {{ $moduleName := index . 4 }}  {{- /* Column 4: ModuleName */ -}}
+  {{ $repoUrl := index . 7 }}     {{- /* Column 7: RepoURL */ -}}
   {{ $moduleUrlMap = merge $moduleUrlMap (dict $moduleName $repoUrl) }}
 {{ end }}
 
 <table>
+  {{- /* Process header row if enabled */ -}}
   {{- if $useHeaderRow -}}
     {{- $headerRow := index $featureRows 0 -}}
     {{- $featureRows = after 1 $featureRows -}}
     <thead> <tr> {{- range $headerRow -}} <th>{{- . -}}</th> {{- end -}} </tr> </thead>
   {{- end -}}
+
+  {{- /* Calculate the index of the last row (for special formatting - bold) */ -}}
   {{- $lastIndex := sub (len $featureRows) 1 -}}
+
+  {{- /* Iterate through each data row */ -}}
   {{- range $i, $row := $featureRows -}}
     <tr>
+      {{- /* Iterate through each cell in the row */ -}}
       {{- range $colIndex, $cell := $row -}}
-        {{- $content := $cell -}}
-        {{- if and (eq $colIndex 1) (hasPrefix $content "res/") (not (hasPrefix $content "avm/res/")) -}}
-          {{- $content = replaceRE "^res/" "avm/res/" $content -}}
-        {{- end -}}
+        {{- /* Special handling for the last row (Sum row) - make bold */ -}}
         {{- if eq $i $lastIndex -}}
-          <td><strong>{{- emojify $content -}}</strong></td>
-        {{- else -}}
-          {{- if eq $colIndex 1 -}}
-            {{- $url := index $moduleUrlMap $content -}}
-            {{- if $url -}}
-              <td><a href="{{- $url -}}">{{- emojify $content -}}</a></td>
-            {{- else -}}
-              <td>{{- emojify $content -}}</td>
-            {{- end -}}
-          {{- else -}}
-            <td>{{- emojify $content -}}</td>
+          <td style="text-align: center;"><strong>{{- emojify $cell -}}</strong></td>
+        {{- else if eq $colIndex 0 -}}
+          {{- /* Process # column (index 0) - right align */ -}}
+          <td style="text-align: right;">{{- emojify $cell -}}</td>
+        {{- else if eq $colIndex 1 -}}
+          {{- /* Process Module column (index 1) */ -}}
+          {{- $moduleName := $cell -}}
+          {{- /* Replace "res/" with "avm/res/" if not already prefixed */ -}}
+          {{- if and (hasPrefix $moduleName "res/") (not (hasPrefix $moduleName "avm/res/")) -}}
+            {{- $moduleName = replaceRE "^res/" "avm/res/" $moduleName -}}
           {{- end -}}
+          {{- /* Create hyperlink if URL exists */ -}}
+          {{- $url := index $moduleUrlMap $moduleName -}}
+          {{- if $url -}}
+            <td><a href="{{- $url -}}">{{- emojify $moduleName -}}</a></td>
+          {{- else -}}
+            <td>{{- emojify $moduleName -}}</td>
+          {{- end -}}
+        {{- else -}}
+          {{- /* All other columns (checkmarks) - center align */ -}}
+          <td style="text-align: center;">{{- emojify $cell -}}</td>
         {{- end -}}
       {{- end -}}
     </tr>
