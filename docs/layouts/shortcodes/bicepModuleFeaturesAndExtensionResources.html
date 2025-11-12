@@ -3,6 +3,20 @@
 {{ $file := readFile $csv }}
 {{ $rows := $file | transform.Unmarshal }}
 
+{{- /* Load BicepResourceModules.csv to get RepoURLs */ -}}
+{{ $modulesFile := readFile "/static/module-indexes/BicepResourceModules.csv" }}
+{{ $modulesRows := $modulesFile | transform.Unmarshal }}
+{{ $modulesHeader := index $modulesRows 0 }}
+{{ $modulesData := after 1 $modulesRows }}
+
+{{- /* Create a map of module names to RepoURLs */ -}}
+{{ $moduleUrlMap := dict }}
+{{ range $modulesData }}
+  {{ $moduleName := index . 4 }}
+  {{ $repoUrl := index . 7 }}
+  {{ $moduleUrlMap = merge $moduleUrlMap (dict $moduleName $repoUrl) }}
+{{ end }}
+
 <table>
   {{- if $useHeaderRow -}}
     {{- $headerRow := index $rows 0 -}}
@@ -20,7 +34,16 @@
         {{- if eq $i $lastIndex -}}
           <td><strong>{{- emojify $content -}}</strong></td>
         {{- else -}}
-          <td>{{- emojify $content -}}</td>
+          {{- if eq $colIndex 1 -}}
+            {{- $url := index $moduleUrlMap $content -}}
+            {{- if $url -}}
+              <td><a href="{{- $url -}}">{{- emojify $content -}}</a></td>
+            {{- else -}}
+              <td>{{- emojify $content -}}</td>
+            {{- end -}}
+          {{- else -}}
+            <td>{{- emojify $content -}}</td>
+          {{- end -}}
         {{- end -}}
       {{- end -}}
     </tr>
