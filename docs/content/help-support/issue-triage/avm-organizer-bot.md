@@ -14,7 +14,7 @@ The bot operates by authenticating with GitHub using the GitHub App credentials 
 
 ## AVM Repository Scripts
 
-The following scripts are leveraged by the **AVM Organizer Bot** in the [AVM](https://aka.ms/AVM/repo) repository:
+The following scripts are leveraged by the **[AVM Organizer Bot](https://github.com/apps/avm-team-linter)** in the [AVM](https://aka.ms/AVM/repo) repository:
 
 ### 1. Invoke-AvmGitHubTeamLinter.ps1
 
@@ -56,7 +56,7 @@ The following scripts are leveraged by the **AVM Organizer Bot** in the [AVM](ht
 
 ## BRM Repository Scripts
 
-The following scripts are leveraged by the **AVM Organizer Bot** in the [BRM](https://aka.ms/BRM) repository:
+The following scripts are leveraged by the **[AVM Organizer Bot](https://github.com/apps/avm-team-linter)** in the [BRM](https://aka.ms/BRM) repository:
 
 ### 1. Set-AvmGitHubIssueOwnerConfig.ps1
 
@@ -122,6 +122,28 @@ The following scripts are leveraged by the **AVM Organizer Bot** in the [BRM](ht
 **Workflow**: [`platform.manage-workflow-issue.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/platform.manage-workflow-issue.yml) (runs daily at 5:30 AM and on-demand)
 
 **Source Code**: [`Set-AvmGitHubIssueForWorkflow.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/platform/Set-AvmGitHubIssueForWorkflow.ps1)
+
+---
+
+### 4. Sync-AvmModulesList.ps1
+
+**Purpose**: Compares the module list in issue templates with CSV data. If not in sync, it creates an issue to update the template.
+
+**Description**: This script ensures that the module list in the GitHub issue template (`avm_module_issue.yml`) remains synchronized with the AVM CSV data. It compares available and orphaned modules from the CSV indexes (Resource, Pattern, and Utility) against the modules listed in the issue template. When discrepancies are detected (missing modules or unexpected modules), the script creates a GitHub issue detailing the necessary changes to bring the template into alignment with the current module inventory.
+
+**Key Functionality**:
+- Loads module data from AVM CSV indexes for Resources, Patterns, and Utilities
+- Filters for available and orphaned top-level modules
+- Parses the GitHub issue template to extract currently listed modules
+- Identifies missing modules that should be added to the template
+- Identifies unexpected modules that should be removed from the template
+- Creates detailed GitHub issues with lists of required changes
+- Assigns synchronization issues to the AVM project board
+- Ensures issue template stays current as modules are added or deprecated
+
+**Workflow**: [`platform.sync-avm-modules-list.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/platform.sync-avm-modules-list.yml) (runs daily at 4:30 AM and on-demand)
+
+**Source Code**: [`Sync-AvmModulesList.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/platform/Sync-AvmModulesList.ps1)
 
 ---
 
