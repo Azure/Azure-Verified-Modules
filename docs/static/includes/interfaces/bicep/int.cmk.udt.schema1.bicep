@@ -48,22 +48,22 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
                 ? cMKKeyVault!.properties.vaultUri
                 : 'https://${last(split((customerManagedKey!.keyVaultResourceId), '/'))}.managedhsm.azure.net/'
             keyName: customerManagedKey!.keyName
-            keyVersion: !empty(customerManagedKey.?keyVersion)
+            keyVersion: !empty(customerManagedKey!.?keyVersion)
               ? customerManagedKey!.keyVersion!
               : (!isHSMManagedCMK
                 ? last(split(cMKKeyVault::cMKKey!.properties.keyUriWithVersion, '/'))
                 : fail('Managed HSM CMK encryption requires specifying the \'keyVersion\'.'))
-            keyIdentifier: !empty(customerManagedKey.?keyVersion)
+            keyIdentifier: !empty(customerManagedKey!.?keyVersion)
               ? ( !isHSMManagedCMK
                 ? '${cMKKeyVault::cMKKey!.properties.keyUri}/${customerManagedKey!.keyVersion!}'
-                : 'https://${last(split((customerManagedKey.?keyVaultResourceId), '/'))}.managedhsm.azure.net/keys/${customerManagedKey!.keyName}/${customerManagedKey!.keyVersion!}')
+                : 'https://${last(split((customerManagedKey!.keyVaultResourceId), '/'))}.managedhsm.azure.net/keys/${customerManagedKey!.keyName}/${customerManagedKey!.keyVersion!}')
               : ( !isHSMManagedCMK
                 ? cMKKeyVault::cMKKey!.properties.keyUriWithVersion
                 : fail('Managed HSM CMK encryption requires specifying the \'keyVersion\'.'))
-            identityClientId: !empty(customerManagedKey.?userAssignedIdentityResourceId)
+            identityClientId: !empty(customerManagedKey!.?userAssignedIdentityResourceId)
               ? cMKUserAssignedIdentity!.properties.clientId
               : null
-            identity: !empty(customerManagedKey.?userAssignedIdentityResourceId)
+            identity: !empty(customerManagedKey!.?userAssignedIdentityResourceId)
               ? {
                   userAssignedIdentity: cMKUserAssignedIdentity!.id
                 }
