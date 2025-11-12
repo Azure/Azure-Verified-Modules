@@ -20,7 +20,7 @@ The following scripts are leveraged by the **[AVM Organizer Bot](https://github.
 
 **Purpose**: Validates GitHub team configurations against module ownership data from CSV indexes.
 
-**Description**: This script compares Azure Verified Modules module indexes with existing GitHub Teams configurations to ensure proper team setup. It can validate Bicep parent team configurations, Terraform team permissions, and generate GitHub issues for any discrepancies found. The script supports filtering by module type (Resource/Pattern) and language (Bicep/Terraform), and can validate specific team types (Owners/Contributors).
+**Description**: This script compares the module indexes with existing GitHub Teams configuration to ensure proper team setup. It can validate Bicep parent team configurations, Terraform team permissions, and generate GitHub issues for any discrepancies found. The script supports filtering by module type (Resource/Pattern/Utility) and language (Bicep/Terraform), and can validate `-owner-` teams.
 
 **Key Functionality**:
 - Compares module ownership data from CSV files with GitHub team configurations
@@ -56,13 +56,13 @@ The following scripts are leveraged by the **[AVM Organizer Bot](https://github.
 
 ## BRM Repository Scripts
 
-The following scripts are leveraged by the **[AVM Organizer Bot](https://github.com/apps/avm-team-linter)** in the [BRM](https://aka.ms/BRM) repository:
+The following scripts are leveraged by the **[AVM Organizer Bot](https://github.com/apps/avm-team-linter)** in the bicep-registry-modules ([BRM](https://aka.ms/BRM)) repository:
 
 ### 1. Set-AvmGitHubIssueOwnerConfig.ps1
 
 **Purpose**: Automatically assigns issues to appropriate module owners.
 
-**Description**: This script processes GitHub issues in the bicep-registry-modules repository and automatically assigns them to the correct module owners based on the AVM CSV data. It notifies module owners via comments, assigns the issue to them, adds appropriate labels, and assigns issues to the AVM project board. The script handles both individual issue processing (when triggered by issue creation) and batch processing (when run on schedule).
+**Description**: This script processes GitHub issues in the BRM repository and automatically assigns them to the correct module owners based on the AVM CSV data. It notifies module owners via comments, assigns the issue to them, adds appropriate labels, and assigns issues to the AVM project board. The script handles both individual issue processing (when triggered by issue creation) and batch processing (when run on schedule).
 
 **Key Functionality**:
 - Matches issues to modules based on issue content and labels
@@ -91,9 +91,9 @@ The following scripts are leveraged by the **[AVM Organizer Bot](https://github.
 - Identifies module-specific reviewer teams (excluding core teams)
 - Checks if core team is already assigned as reviewer
 - Validates module ownership and team membership
-- Adds "Needs: Core Team" label when module is orphaned or has insufficient owners
-- Adds "Needs: Module Owner" label when module owners can review
-- Adds "Status: Module Orphaned" label for orphaned modules
+- Adds &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label when module is orphaned or has insufficient owners
+- Adds &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; label when module owners can review
+- Adds &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 🟡</mark>&nbsp; label for orphaned modules
 - Automatically adds module team members as reviewers when appropriate
 
 **Workflow**: [`platform.set-avm-github-pr-labels.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/platform.set-avm-github-pr-labels.yml) (runs when PRs are opened or marked ready for review)
