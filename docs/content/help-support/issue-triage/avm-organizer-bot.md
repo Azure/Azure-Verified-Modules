@@ -6,15 +6,15 @@ description: AVM Organizer Bot for the Azure Verified Modules (AVM) program's re
 
 ## Overview
 
-The **AVM Organizer Bot** is represented as a GitHub App currently named **AVM Team Linter** (which will be renamed to **AVM Organizer** in the future). This bot automates various repository management tasks across the Azure Verified Modules program's repositories, including issue triage, pull request labeling, team validation, and documentation updates.
+The **AVM Organizer Bot** is represented as a [GitHub App](https://github.com/apps/avm-team-linter) currently named **AVM Team Linter** (which will be renamed to **AVM Organizer** in the future). This bot automates various repository management tasks across the Azure Verified Modules program's repositories, including issue triage, pull request labeling, team validation, and documentation updates.
 
-The bot operates by authenticating with GitHub using the GitHub App credentials (`TEAM_LINTER_APP_ID` and `TEAM_LINTER_PRIVATE_KEY` secrets in the AVM repository, or `APP_ID` and `APP_PRIVATE_KEY` in the BRM repository) and executing PowerShell scripts through scheduled workflows or event-triggered actions.
+The bot operates by authenticating with GitHub using the GitHub App credentials (`TEAM_LINTER_APP_ID` and `TEAM_LINTER_PRIVATE_KEY`) and executing PowerShell scripts through scheduled workflows and/or event-triggered actions.
 
 ---
 
-## Azure-Verified-Modules Repository Scripts
+## AVM Repository Scripts
 
-The following scripts are leveraged by the AVM Organizer Bot in the [AVM](https://github.com/Azure/Azure-Verified-Modules) repository:
+The following scripts are leveraged by the **AVM Organizer Bot** in the [AVM](https://aka.ms/AVM/repo) repository:
 
 ### 1. Invoke-AvmGitHubTeamLinter.ps1
 
@@ -29,9 +29,9 @@ The following scripts are leveraged by the AVM Organizer Bot in the [AVM](https:
 - Creates GitHub issues for unmatched or misconfigured teams
 - Closes resolved GitHub issues when team configurations are corrected
 
-**Workflow**: `github-teams-check-existance.yml` (runs Monday-Friday at 10:00 AM and on-demand)
+**Workflow**: [`github-teams-check-existence.yml`](https://github.com/Azure/Azure-Verified-Modules/blob/main/.github/workflows/github-teams-check-existence.yml) (runs Monday-Friday at 10:00 AM and on-demand)
 
-**Source Code**: [Invoke-AvmGitHubTeamLinter.ps1](https://github.com/Azure/Azure-Verified-Modules/blob/main/utilities/pipelines/sharedScripts/teamLinter/Invoke-AvmGitHubTeamLinter.ps1)
+**Source Code**: [`Invoke-AvmGitHubTeamLinter.ps1`](https://github.com/Azure/Azure-Verified-Modules/blob/main/utilities/pipelines/sharedScripts/teamLinter/Invoke-AvmGitHubTeamLinter.ps1)
 
 ---
 
@@ -48,72 +48,15 @@ The following scripts are leveraged by the AVM Organizer Bot in the [AVM](https:
 - Creates GitHub issues for new PSRule, APRL, or Azure Advisor data
 - Exports current data as artifacts for future comparisons
 
-**Workflow**: `platform.new-AzAdvertizer-diff-issue.yml` (runs weekly on Sundays at 3:00 AM and on-demand)
+**Workflow**: [`platform.new-AzAdvertizer-diff-issue.yml`](https://github.com/Azure/Azure-Verified-Modules/blob/main/.github/workflows/platform.new-AzAdvertizer-diff-issue.yml) (runs weekly on Sundays at 3:00 AM and on-demand)
 
-**Source Code**: [New-AzAdvertizerDiffIssue.ps1](https://github.com/Azure/Azure-Verified-Modules/blob/main/utilities/pipelines/platform/New-AzAdvertizerDiffIssue.ps1)
-
----
-
-### 3. Set-ApiSpecsFile.ps1
-
-**Purpose**: Updates the Azure API specifications reference file.
-
-**Description**: This script maintains an up-to-date catalog of all Azure Provider Namespaces with their Resource Types and supported API versions. It uses the AzureAPICrawler PowerShell module to fetch the latest API version information from Azure and updates the JSON file that serves as the authoritative reference for API versions across the documentation.
-
-**Key Functionality**:
-- Installs and imports the AzureAPICrawler PowerShell module
-- Fetches comprehensive list of Azure API versions from official sources
-- Optionally includes preview API versions
-- Optionally includes external sources (e.g., Get-AzResourceProvider)
-- Creates or updates the apiSpecsList.json file with structured API version data
-
-**Workflow**: `platform.apiSpecs.yml` (runs weekly on Mondays at 10:00 AM and on-demand)
-
-**Source Code**: [Set-ApiSpecsFile.ps1](https://github.com/Azure/Azure-Verified-Modules/blob/main/utilities/tools/platform/Set-ApiSpecsFile.ps1)
+**Source Code**: [`New-AzAdvertizerDiffIssue.ps1`](https://github.com/Azure/Azure-Verified-Modules/blob/main/utilities/pipelines/platform/New-AzAdvertizerDiffIssue.ps1)
 
 ---
 
-### 4. Set-BicepModuleStatusBadgesTable.ps1
+## BRM Repository Scripts
 
-**Purpose**: Generates module status badges for documentation.
-
-**Description**: This script updates the module status badges table in markdown format by scanning the bicep-registry-modules repository. It analyzes module metadata to determine the status of each AVM module (e.g., published, in development, orphaned) and generates a formatted markdown table with status badges for display in the documentation site.
-
-**Key Functionality**:
-- Scans the AVM modules folder in the bicep-registry-modules repository
-- Extracts module status information from module metadata
-- Generates markdown-formatted status badges table
-- Updates the bicepBadges.md include file for Hugo documentation
-- Supports configurable search depth for module discovery
-
-**Workflow**: `platform.updateModuleRegistryTables.yml` (runs daily at 1:00 AM and on-demand)
-
-**Source Code**: [Set-BicepModuleStatusBadgesTable.ps1](https://github.com/Azure/Azure-Verified-Modules/blob/main/utilities/tools/platform/Set-BicepModuleStatusBadgesTable.ps1)
-
----
-
-### 5. Set-BicepModulesFeatureCSV.ps1
-
-**Purpose**: Generates CSV file documenting module feature support.
-
-**Description**: This script creates a comprehensive CSV file that catalogs which AVM features each Bicep resource module supports. It scans resource modules to detect implementation of optional features like RBAC, resource locks, tags, diagnostic settings, private endpoints, customer-managed keys, and managed identities, providing a feature matrix for documentation and planning purposes.
-
-**Key Functionality**:
-- Scans Bicep resource modules in the bicep-registry-modules repository
-- Detects implementation of AVM optional features (RBAC, Locks, Tags, Diagnostics, Private Endpoints, CMK, Identity)
-- Generates CSV-formatted feature matrix
-- Updates the bicepFeatures.csv file for documentation reference
-- Focuses on resource modules only (not pattern or utility modules)
-
-**Workflow**: `platform.updateModuleRegistryTables.yml` (runs daily at 1:00 AM and on-demand)
-
-**Source Code**: [Set-BicepModulesFeatureCSV.ps1](https://github.com/Azure/Azure-Verified-Modules/blob/main/utilities/tools/platform/Set-BicepModulesFeatureCSV.ps1)
-
----
-
-## Bicep-Registry-Modules Repository Scripts
-
-The following scripts are leveraged by the AVM Organizer Bot in the [Azure/bicep-registry-modules](https://github.com/Azure/bicep-registry-modules) repository:
+The following scripts are leveraged by the **AVM Organizer Bot** in the [BRM](https://aka.ms/BRM) repository:
 
 ### 1. Set-AvmGitHubIssueOwnerConfig.ps1
 
@@ -131,9 +74,9 @@ The following scripts are leveraged by the AVM Organizer Bot in the [Azure/bicep
 - Handles orphaned modules by assigning to core team
 - Tracks statistics on assignments and updates
 
-**Workflow**: `platform.set-avm-github-issue-owner-config.yml` (runs on issue creation, weekly on Sundays at midnight, and on-demand)
+**Workflow**: [`platform.set-avm-github-issue-owner-config.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/platform.set-avm-github-issue-owner-config.yml) (runs on issue creation, weekly on Sundays at midnight, and on-demand)
 
-**Source Code**: [Set-AvmGitHubIssueOwnerConfig.ps1](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/platform/Set-AvmGitHubIssueOwnerConfig.ps1)
+**Source Code**: [`Set-AvmGitHubIssueOwnerConfig.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/platform/Set-AvmGitHubIssueOwnerConfig.ps1)
 
 ---
 
@@ -153,9 +96,9 @@ The following scripts are leveraged by the AVM Organizer Bot in the [Azure/bicep
 - Adds "Status: Module Orphaned" label for orphaned modules
 - Automatically adds module team members as reviewers when appropriate
 
-**Workflow**: `platform.set-avm-github-pr-labels.yml` (runs when PRs are opened or marked ready for review)
+**Workflow**: [`platform.set-avm-github-pr-labels.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/platform.set-avm-github-pr-labels.yml) (runs when PRs are opened or marked ready for review)
 
-**Source Code**: [Set-AvmGitHubPrLabels.ps1](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/platform/Set-AvmGitHubPrLabels.ps1)
+**Source Code**: [`Set-AvmGitHubPrLabels.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/platform/Set-AvmGitHubPrLabels.ps1)
 
 ---
 
@@ -176,9 +119,9 @@ The following scripts are leveraged by the AVM Organizer Bot in the [Azure/bicep
 - Assigns workflow failure issues to GitHub project boards
 - Tracks and reports statistics on issues created, closed, and updated
 
-**Workflow**: `platform.manage-workflow-issue.yml` (runs daily at 5:30 AM and on-demand)
+**Workflow**: [`platform.manage-workflow-issue.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/platform.manage-workflow-issue.yml) (runs daily at 5:30 AM and on-demand)
 
-**Source Code**: [Set-AvmGitHubIssueForWorkflow.ps1](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/platform/Set-AvmGitHubIssueForWorkflow.ps1)
+**Source Code**: [`Set-AvmGitHubIssueForWorkflow.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/platform/Set-AvmGitHubIssueForWorkflow.ps1)
 
 ---
 
