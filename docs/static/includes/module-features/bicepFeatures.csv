@@ -19,7 +19,7 @@
 18,res/azure-stack-hci/virtual-machine-instance,✅,,,,,,,
 19,res/batch/batch-account,✅,✅,✅,✅,✅,✅,,✅
 20,res/cache/redis,✅,✅,✅,✅,✅,,,✅
-21,res/cache/redis-enterprise,✅,✅,✅,✅,✅,✅,,✅
+21,res/cache/redis-enterprise,✅,✅,✅,✅,✅,✅,✅,✅
 22,res/cdn/profile,✅,✅,✅,✅,,,,✅
 23,res/cognitive-services/account,✅,✅,✅,✅,✅,✅,,✅
 24,res/communication/communication-service,✅,✅,✅,✅,,,,✅
@@ -37,7 +37,7 @@
 36,res/container-instance/container-group,,✅,✅,,,✅,,✅
 37,res/container-registry/registry,✅,✅,✅,✅,✅,✅,,✅
 38,res/container-service/managed-cluster,✅,✅,✅,✅,,,,✅
-39,res/data-factory/factory,✅,✅,✅,✅,✅,✅,,✅
+39,res/data-factory/factory,✅,✅,✅,✅,✅,✅,✅,✅
 40,res/data-protection/backup-vault,✅,✅,✅,,,✅,,✅
 41,res/databricks/access-connector,✅,✅,✅,,,,,✅
 42,res/databricks/workspace,✅,✅,✅,✅,✅,✅,✅,
@@ -142,7 +142,7 @@
 141,res/portal/dashboard,✅,✅,✅,,,,,
 142,res/power-bi-dedicated/capacity,✅,✅,✅,,,,,
 143,res/purview/account,✅,✅,✅,✅,,,,✅
-144,res/recovery-services/vault,✅,✅,✅,✅,✅,✅,,✅
+144,res/recovery-services/vault,✅,✅,✅,✅,✅,✅,✅,✅
 145,res/relay/namespace,✅,✅,✅,✅,✅,,,
 146,res/resource-graph/query,✅,✅,✅,,,,,
 147,res/resources/deployment-script,✅,✅,✅,,,,,✅
@@ -157,7 +157,7 @@
 156,res/signal-r-service/web-pub-sub,✅,✅,✅,,✅,,,✅
 157,res/sql/instance-pool,,,✅,,,,,
 158,res/sql/managed-instance,✅,✅,✅,✅,,,,✅
-159,res/sql/server,✅,✅,✅,,✅,✅,,✅
+159,res/sql/server,✅,✅,✅,,✅,✅,✅,✅
 160,res/storage/storage-account,✅,✅,✅,✅,✅,✅,✅,✅
 161,res/synapse/private-link-hub,✅,✅,✅,,✅,,,
 162,res/synapse/workspace,✅,✅,✅,✅,✅,✅,,✅
@@ -167,4 +167,4 @@
 166,res/web/serverfarm,✅,✅,✅,✅,,,,
 167,res/web/site,✅,✅,✅,✅,✅,,,✅
 168,res/web/static-site,✅,✅,✅,,✅,,,✅
-Sum,,144,142,153,66,39,23,4,64
+Sum,,144,142,153,66,39,23,8,64
