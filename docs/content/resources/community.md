@@ -39,7 +39,7 @@ Stay tuned, to be announced! 👂
 - [AVM Community Call February 2025 Slides]({{% siteparam base %}}/community/avm-community-call-feb25.pdf)
 
 <div style="width:70%; margin: 0 auto;">
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/M2dJetgK2U8?si=oVLCiPnnAvyDTBy1" title="Azure Verified Modules (AVM) - February 2025 - External Community Call" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/M2dJetgK2U8?si=oVLCiPnnAvyDTBy1" title="Azure Verified Modules (AVM) - February 2025 - External Community Call" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 <br>
