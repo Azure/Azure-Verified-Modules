@@ -1,17 +1,18 @@
 {{ $useHeaderRow := .Get "header" }}
-{{ $csv := .Get "csv" }}
-{{ $file := readFile $csv }}
-{{ $rows := $file | transform.Unmarshal }}
+{{ $featureMappingCsv := .Get "featureMappingCsv" }}
+{{ $featuresFile := readFile $featureMappingCsv }}
+{{ $featureRows := $featuresFile | transform.Unmarshal }}
 
 {{- /* Load BicepResourceModules.csv to get RepoURLs */ -}}
-{{ $modulesFile := readFile "/static/module-indexes/BicepResourceModules.csv" }}
-{{ $modulesRows := $modulesFile | transform.Unmarshal }}
-{{ $modulesHeader := index $modulesRows 0 }}
-{{ $modulesData := after 1 $modulesRows }}
+{{ $modulesIndexCsv := .Get "modulesIndexCsv" }}
+{{ $modulesIndexFile := readFile $modulesIndexCsv }}
+{{ $moduleIndexRows := $modulesIndexFile | transform.Unmarshal }}
+{{ $modulesHeader := index $moduleIndexRows 0 }}
+{{ $moduleIndexData := after 1 $moduleIndexRows }}
 
 {{- /* Create a map of module names to RepoURLs */ -}}
 {{ $moduleUrlMap := dict }}
-{{ range $modulesData }}
+{{ range $moduleIndexData }}
   {{ $moduleName := index . 4 }}
   {{ $repoUrl := index . 7 }}
   {{ $moduleUrlMap = merge $moduleUrlMap (dict $moduleName $repoUrl) }}
@@ -19,12 +20,12 @@
 
 <table>
   {{- if $useHeaderRow -}}
-    {{- $headerRow := index $rows 0 -}}
-    {{- $rows = after 1 $rows -}}
+    {{- $headerRow := index $featureRows 0 -}}
+    {{- $featureRows = after 1 $featureRows -}}
     <thead> <tr> {{- range $headerRow -}} <th>{{- . -}}</th> {{- end -}} </tr> </thead>
   {{- end -}}
-  {{- $lastIndex := sub (len $rows) 1 -}}
-  {{- range $i, $row := $rows -}}
+  {{- $lastIndex := sub (len $featureRows) 1 -}}
+  {{- range $i, $row := $featureRows -}}
     <tr>
       {{- range $colIndex, $cell := $row -}}
         {{- $content := $cell -}}
