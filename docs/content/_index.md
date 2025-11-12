@@ -8,7 +8,7 @@ description: 'Azure Verified Modules - The Microsoft IaC Module Strategy'
 ## Introduction
 
 <div style="width:70%; margin: 0 auto;">
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/JbIMrJKW5N0?si=SOXVPRZfvcBSOf0K" title="An Introduction to Azure Verified Modules (AVM)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/JbIMrJKW5N0?si=SOXVPRZfvcBSOf0K" title="An Introduction to Azure Verified Modules (AVM)" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 ## Value Proposition
