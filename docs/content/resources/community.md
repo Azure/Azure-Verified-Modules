@@ -45,7 +45,7 @@ Stay tuned, to be announced! 👂
 <br>
 
 <div style="width:70%; margin: 0 auto;">
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ifDba74rdG8?si=vQutGbxEvks7CMrc" title="Azure Verified Modules (AVM) - Website Updates - February 2025" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ifDba74rdG8?si=vQutGbxEvks7CMrc" title="Azure Verified Modules (AVM) - Website Updates - February 2025" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 ### 24th September 2024
