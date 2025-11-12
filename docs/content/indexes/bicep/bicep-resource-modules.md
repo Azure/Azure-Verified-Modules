@@ -74,6 +74,14 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{% /expand %}}
 
+### Consistent Features & Extension Resources (Interfaces)
+
+{{% expand title="âž• Consistent Features & Extension Resources (Interfaces)" expanded="false" %}}
+
+{{% bicepModuleFeaturesAndExtensionResources header=true csv="/static/includes/module-features/bicepFeatures.csv" %}}
+
+{{% /expand %}}
+
 ## For Module Owners & Contributors
 
 {{% notice style="note" %}}

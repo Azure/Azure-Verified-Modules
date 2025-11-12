@@ -1,0 +1,28 @@
+{{ $useHeaderRow := .Get "header" }}
+{{ $csv := .Get "csv" }}
+{{ $file := readFile $csv }}
+{{ $rows := $file | transform.Unmarshal }}
+
+<table>
+  {{- if $useHeaderRow -}}
+    {{- $headerRow := index $rows 0 -}}
+    {{- $rows = after 1 $rows -}}
+    <thead> <tr> {{- range $headerRow -}} <th>{{- . -}}</th> {{- end -}} </tr> </thead>
+  {{- end -}}
+  {{- $lastIndex := sub (len $rows) 1 -}}
+  {{- range $i, $row := $rows -}}
+    <tr>
+      {{- range $colIndex, $cell := $row -}}
+        {{- $content := $cell -}}
+        {{- if and (eq $colIndex 1) (hasPrefix $content "res/") (not (hasPrefix $content "avm/res/")) -}}
+          {{- $content = replaceRE "^res/" "avm/res/" $content -}}
+        {{- end -}}
+        {{- if eq $i $lastIndex -}}
+          <td><strong>{{- emojify $content -}}</strong></td>
+        {{- else -}}
+          <td>{{- emojify $content -}}</td>
+        {{- end -}}
+      {{- end -}}
+    </tr>
+  {{- end -}}
+</table>
