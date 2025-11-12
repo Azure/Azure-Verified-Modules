@@ -26,7 +26,7 @@
   {{- if $useHeaderRow -}}
     {{- $headerRow = index $featureRows 0 -}}
     {{- $featureRows = after 1 $featureRows -}}
-    <thead> <tr> {{- range $headerRow -}} <th>{{- . -}}</th> {{- end -}} </tr> </thead>
+    <thead> <tr> {{- range $colIdx, $header := $headerRow -}} <th{{- if eq $colIdx 0 }} style="text-align: right;"{{- end -}}>{{- $header -}}</th> {{- end -}} </tr> </thead>
   {{- end -}}
 
   {{- /* Calculate the index of the last row (for special formatting - bold) */ -}}
@@ -37,8 +37,8 @@
     {{- /* Repeat header row after every 20 rows (but not before first row or after header) */ -}}
     {{- if and (gt $i 0) (eq (mod $i 20) 0) (ne $i $lastIndex) -}}
       <tr class="header-repeat">
-        {{- range $headerRow -}}
-          <th>{{- . -}}</th>
+        {{- range $colIdx, $header := $headerRow -}}
+          <th{{- if eq $colIdx 0 }} style="text-align: right;"{{- end -}}>{{- $header -}}</th>
         {{- end -}}
       </tr>
     {{- end -}}
