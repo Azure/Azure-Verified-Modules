@@ -74,6 +74,16 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{% /expand %}}
 
+### Consistent Features & Extension Resources (Interfaces)
+
+{{% expand title="âž• Consistent Features & Extension Resources (Interfaces)" expanded="false" %}}
+
+The following table shows which Bicep resource modules have which consistent features and extension resources (interfaces) implemented as defined in the Bicep [Interfaces]({{% siteparam base %}}/specs/bcp/res/interfaces/) specification.
+
+{{% bicepModuleFeaturesAndExtensionResources header=true featureMappingCsv="/static/includes/module-features/bicepFeatures.csv" modulesIndexCsv="/static/module-indexes/BicepResourceModules.csv" %}}
+
+{{% /expand %}}
+
 ## For Module Owners & Contributors
 
 {{% notice style="note" %}}
