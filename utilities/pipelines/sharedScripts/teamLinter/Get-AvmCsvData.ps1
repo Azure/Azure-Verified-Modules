@@ -2,7 +2,7 @@ Function Get-AvmCsvData {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
-        [ValidateSet('Bicep-Resource','Bicep-Pattern', 'Terraform-Resource','Terraform-Pattern')]
+        [ValidateSet('Bicep-Resource','Bicep-Pattern','Bicep-Utility', 'Terraform-Resource','Terraform-Pattern','Terraform-Utility')]
         [string]$ModuleIndex
     )
 
@@ -23,6 +23,14 @@ Function Get-AvmCsvData {
             Write-Error "Unable to retrieve CSV file - Check network connection."
         }
     }
+    elseif ($ModuleIndex -eq 'Bicep-Utility') {
+        try {
+            $unfilteredCSV = Invoke-WebRequest -Uri "https://aka.ms/avm/index/bicep/utl/csv"
+        }
+        catch {
+            Write-Error "Unable to retrieve CSV file - Check network connection."
+        }
+    }
     elseif ($ModuleIndex -eq 'Terraform-Resource') {
         try {
             $unfilteredCSV = Invoke-WebRequest -Uri "https://aka.ms/avm/index/tf/res/csv"
@@ -34,6 +42,14 @@ Function Get-AvmCsvData {
     elseif ($ModuleIndex -eq 'Terraform-Pattern') {
         try {
             $unfilteredCSV = Invoke-WebRequest -Uri "https://aka.ms/avm/index/tf/ptn/csv"
+        }
+        catch {
+            Write-Error "Unable to retrieve CSV file - Check network connection."
+        }
+    }
+    elseif ($ModuleIndex -eq 'Terraform-Utility') {
+        try {
+            $unfilteredCSV = Invoke-WebRequest -Uri "https://aka.ms/avm/index/tf/utl/csv"
         }
         catch {
             Write-Error "Unable to retrieve CSV file - Check network connection."

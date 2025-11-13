@@ -7,11 +7,11 @@ Compares Azure Verified Modules Module Indexes with existing GitHub Teams config
 
 .PARAMETER ModuleIndex
 Required. Modules Index to use as source, allowed strings are:
-'Bicep-Resource', 'Bicep-Pattern', 'Terraform-Resource', 'Terraform-Pattern'
+'Bicep-Resource', 'Bicep-Pattern', 'Bicep-Utility', 'Terraform-Resource', 'Terraform-Pattern', 'Terraform-Utility'
 
 .PARAMETER TeamFilter
 Required. Teams to filter on, allowed strings are:
-'AllTeams', 'AllResource', 'AllPattern', 'AllBicep', 'AllBicepResource', 'BicepResourceOwners', 'BicepResourceContributors', 'AllBicepPattern', 'BicepPatternOwners', 'BicepPatternContributors', 'AllTerraform', 'AllTerraformResource', 'TerraformResourceOwners', 'TerraformResourceContributors', 'AllTerraformPattern', 'TerraformPatternOwners', 'TerraformPatternContributors'
+'AllTeams', 'AllResource', 'AllPattern', 'AllUtility', 'AllBicep', 'AllBicepResource', 'BicepResourceOwners', 'AllBicepPattern', 'BicepPatternOwners', 'AllBicepUtility', 'BicepUtilityOwners', 'AllTerraform', 'AllTerraformResource', 'TerraformResourceOwners', 'AllTerraformPattern', 'TerraformPatternOwners', 'AllTerraformUtility', 'TerraformUtilityOwners'
 
 .PARAMETER ValidateBicepParentConfiguration
 Optional. Validate if Parent Team is configured for Owners Team
@@ -36,6 +36,11 @@ Compares all terraform resource modules with GitHub Teams and validates if Teams
 Invoke-AvmGitHubTeamLinter -ModuleIndex Bicep-Pattern -TeamFilter AllBicepPattern -ValidateBicepParentConfiguration -Verbose
 
 Compares all bicep pattern modules with GitHub Teams and validates if Parent Team is configured for Owners Team. Verbose output is displayed, GitHub Issues are not created for unmatched teams.
+
+.EXAMPLE
+Invoke-AvmGitHubTeamLinter -ModuleIndex Bicep-Utility -TeamFilter AllBicepUtility -ValidateBicepParentConfiguration -Verbose -CreateIssues
+
+Compares all bicep utility modules with GitHub Teams and validates if Parent Team is configured for Owners Team. Verbose output is displayed and GitHub Issues are created for unmatched teams.
 #>
 
 Function Invoke-AvmGitHubTeamLinter {
@@ -43,11 +48,11 @@ Function Invoke-AvmGitHubTeamLinter {
   [CmdletBinding()]
   param (
       [Parameter(Mandatory)]
-      [ValidateSet('Bicep-Resource', 'Bicep-Pattern', 'Terraform-Resource', 'Terraform-Pattern')]
+      [ValidateSet('Bicep-Resource', 'Bicep-Pattern', 'Bicep-Utility', 'Terraform-Resource', 'Terraform-Pattern', 'Terraform-Utility')]
       [string]$ModuleIndex,
 
       [Parameter(Mandatory)]
-      [ValidateSet('AllTeams', 'AllResource', 'AllPattern', 'AllBicep', 'AllBicepResource', 'BicepResourceOwners', 'BicepResourceContributors', 'AllBicepPattern', 'BicepPatternOwners', 'BicepPatternContributors', 'AllTerraform', 'AllTerraformResource', 'TerraformResourceOwners', 'TerraformResourceContributors', 'AllTerraformPattern', 'TerraformPatternOwners', 'TerraformPatternContributors' )]
+      [ValidateSet('AllTeams', 'AllResource', 'AllPattern', 'AllUtility', 'AllBicep', 'AllBicepResource', 'BicepResourceOwners', 'AllBicepPattern', 'BicepPatternOwners', 'AllBicepUtility', 'BicepUtilityOwners', 'AllTerraform', 'AllTerraformResource', 'TerraformResourceOwners', 'AllTerraformPattern', 'TerraformPatternOwners', 'AllTerraformUtility', 'TerraformUtilityOwners' )]
       [string]$TeamFilter,
 
       [Parameter(Mandatory = $false)]

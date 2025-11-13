@@ -72,9 +72,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
 
-      - name: "Compare Bicep Contributor Resource Teams"
+      - name: "Compare Bicep Pattern Teams"
         if: always()
-        id: comparebcpcontrib
+        id: comparebcpptn
         shell: pwsh
         run: |
           # Load used functions
@@ -83,8 +83,8 @@ jobs:
           # Branch check so issues are only opened on main
 
           $functionInput = @{
-            ModuleIndex                       = 'Bicep-Resource'
-            TeamFilter                        = 'BicepResourceContributors'
+            ModuleIndex                       = 'Bicep-Pattern'
+            TeamFilter                        = 'AllBicepPattern'
             ValidateBicepParentConfiguration  = $true
           }
 
@@ -101,9 +101,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
 
-      - name: "Compare Bicep Pattern Teams"
+      - name: "Compare Bicep Utility Teams"
         if: always()
-        id: comparebcpptn
+        id: comparebcputl
         shell: pwsh
         run: |
           # Load used functions
@@ -112,8 +112,8 @@ jobs:
           # Branch check so issues are only opened on main
 
           $functionInput = @{
-            ModuleIndex                       = 'Bicep-Pattern'
-            TeamFilter                        = 'AllBicepPattern'
+            ModuleIndex                       = 'Bicep-Utility'
+            TeamFilter                        = 'AllBicepUtility'
             ValidateBicepParentConfiguration  = $true
           }
 
@@ -168,6 +168,33 @@ jobs:
           $functionInput = @{
             ModuleIndex                       = 'Terraform-Pattern'
             TeamFilter                        = 'AllTerraformPattern'
+            ValidateTerraformTeamsPermissons  = $true
+          }
+
+          $branch = git branch --show-current
+          $branchName = $branch.split('/')[-1]
+          if ($branchName -eq "main"){
+              $functionInput['CreateIssues'] = $true
+          }
+
+          Write-Verbose 'Invoke task with' -Verbose
+          Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
+
+          Invoke-AvmGitHubTeamLinter @functionInput -Verbose
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+
+      - name: "Compare Terraform Utility Teams"
+        if: always()
+        id: comparetfutl
+        shell: pwsh
+        run: |
+          # Load used functions
+          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'teamLinter' 'Invoke-AvmGitHubTeamLinter.ps1')
+
+          $functionInput = @{
+            ModuleIndex                       = 'Terraform-Utility'
+            TeamFilter                        = 'AllTerraformUtility'
             ValidateTerraformTeamsPermissons  = $true
           }
 
