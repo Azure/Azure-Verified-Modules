@@ -26,7 +26,7 @@
 25,res/communication/email-service,✅,✅,✅,,,,,
 26,res/compute/availability-set,✅,✅,✅,,,,,
 27,res/compute/disk,✅,✅,✅,,,,,
-28,res/compute/disk-encryption-set,✅,✅,✅,,,,,✅
+28,res/compute/disk-encryption-set,✅,✅,✅,,,✅,✅,✅
 29,res/compute/gallery,✅,✅,✅,,,,,
 30,res/compute/image,✅,,✅,,,,,
 31,res/compute/proximity-placement-group,✅,✅,✅,,,,,
@@ -168,4 +168,4 @@
 167,res/web/serverfarm,✅,✅,✅,✅,,,,
 168,res/web/site,✅,✅,✅,✅,✅,,,✅
 169,res/web/static-site,✅,✅,✅,,✅,,,✅
-Sum,,145,143,154,66,39,24,9,65
+Sum,,145,143,154,66,39,25,10,65
