@@ -45,7 +45,7 @@ function Set-BicepModulesFeatureCSV {
             'Diag',
             'PE',
             'CMK',
-            'CMK-HSM',
+            'CMK-mHSM',
             'Identity'
         )
     }

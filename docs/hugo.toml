@@ -429,6 +429,14 @@ weight = 4
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
+identifier = 'avm-organizer-bot'
+parent = 'issue-triage'
+name = 'AVM Organizer Bot'
+pageRef = '/help-support/issue-triage/avm-organizer-bot'
+weight = 5
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
 identifier = 'telemetry'
 parent = 'help-support'
 name = 'Telemetry'
