@@ -22,9 +22,9 @@
 {{ $SecondaryModuleOwnerGHHandleColumnId := 0 }}
 {{ $SecondaryModuleOwnerDisplayNameColumnId := 0 }}
 {{ $ModuleOwnersGHTeamColumnId := 0 }}
-{{ $ModuleContributorsGHTeamColumnId := 0 }}
 {{ $DescriptionColumnId := 0 }}
 {{ $CommentsColumnId := 0 }}
+{{ $FirstPublishedInColumnId := 0 }}
 {{ $hasListableModules := false }}
 {{ $maps := slice }}
 {{ $i := 0 }}
@@ -46,9 +46,9 @@
   {{ $SecondaryModuleOwnerGHHandleColumnId = 12 }}
   {{ $SecondaryModuleOwnerDisplayNameColumnId = 13 }}
   {{ $ModuleOwnersGHTeamColumnId = 14 }}
-  {{ $ModuleContributorsGHTeamColumnId = 15 }}
-  {{ $DescriptionColumnId = 16 }}
-  {{ $CommentsColumnId = 17 }}
+  {{ $DescriptionColumnId = 15 }}
+  {{ $CommentsColumnId = 16 }}
+  {{ $FirstPublishedInColumnId = 17 }}
 
   {{ range $row, $rows }}
     {{ $map := dict
@@ -67,9 +67,9 @@
       "SecondaryModuleOwnerGHHandle" (index $row $SecondaryModuleOwnerGHHandleColumnId)
       "SecondaryModuleOwnerDisplayName" (index $row $SecondaryModuleOwnerDisplayNameColumnId)
       "ModuleOwnersGHTeam" (index $row $ModuleOwnersGHTeamColumnId)
-      "ModuleContributorsGHTeam" (index $row $ModuleContributorsGHTeamColumnId)
       "Description" (index $row $DescriptionColumnId)
       "Comments" (index $row $CommentsColumnId)
+      "FirstPublishedInColumnId" (index $row $FirstPublishedInColumnId)
     }}
     {{ $maps = $maps | append $map }}
   {{ end }}
@@ -87,9 +87,9 @@
   {{ $SecondaryModuleOwnerGHHandleColumnId = 9 }}
   {{ $SecondaryModuleOwnerDisplayNameColumnId = 10 }}
   {{ $ModuleOwnersGHTeamColumnId = 11 }}
-  {{ $ModuleContributorsGHTeamColumnId = 12 }}
-  {{ $DescriptionColumnId = 13 }}
-  {{ $CommentsColumnId = 14 }}
+  {{ $DescriptionColumnId = 12 }}
+  {{ $CommentsColumnId = 13 }}
+  {{ $FirstPublishedInColumnId = 14 }}
 
   {{ range $row, $rows }}
     {{ $map := dict
@@ -105,9 +105,9 @@
       "SecondaryModuleOwnerGHHandle" (index $row $SecondaryModuleOwnerGHHandleColumnId)
       "SecondaryModuleOwnerDisplayName" (index $row $SecondaryModuleOwnerDisplayNameColumnId)
       "ModuleOwnersGHTeam" (index $row $ModuleOwnersGHTeamColumnId)
-      "ModuleContributorsGHTeam" (index $row $ModuleContributorsGHTeamColumnId)
       "Description" (index $row $DescriptionColumnId)
       "Comments" (index $row $CommentsColumnId)
+      "FirstPublishedInColumnId" (index $row $FirstPublishedInColumnId)
     }}
     {{ $maps = $maps | append $map }}
   {{ end }}
