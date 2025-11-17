@@ -18,7 +18,30 @@ Let's make each community call a celebration of connection and collaboration!
 
 ## Upcoming Events
 
-Stay tuned, to be announced! 👂
+<!-- Stay tuned, to be announced! 👂 -->
+
+### December 3rd, 2025
+
+{{% notice style="note" %}}
+
+This occurrence is optimized for EMEA/APJ time zones!
+
+{{% /notice %}}
+
+#### High level agenda (WIP)
+
+- Guest speakers (MVPs, Partner, Customer and/or PG teams)
+- IaC Copilot experiences & AVM
+- Road to AVM v1
+- Bicep & Terraform specific updates
+- Inner-sourcing
+- AVM-based Bicep Platform Landing Zone release
+- Q&A / Open discussion: attendees can ask questions, share experiences/stories, provide feedback and suggestions
+
+#### Call to action
+
+- [Register](https://aka.ms/AVM/CommunityCall) for this event
+- Lave a comment on this [GitHub Issue for the Q&A section](https://github.com/Azure/Azure-Verified-Modules/issues/2429)
 
 ## Previous Events
 
