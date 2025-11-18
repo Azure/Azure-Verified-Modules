@@ -21,7 +21,7 @@
 20,res/cache/redis,✅,✅,✅,✅,✅,,,✅
 21,res/cache/redis-enterprise,✅,✅,✅,✅,✅,✅,✅,✅
 22,res/cdn/profile,✅,✅,✅,✅,,,,✅
-23,res/cognitive-services/account,✅,✅,✅,✅,✅,✅,,✅
+23,res/cognitive-services/account,✅,✅,✅,✅,✅,✅,✅,✅
 24,res/communication/communication-service,✅,✅,✅,✅,,,,✅
 25,res/communication/email-service,✅,✅,✅,,,,,
 26,res/compute/availability-set,✅,✅,✅,,,,,
@@ -41,7 +41,7 @@
 40,res/data-protection/backup-vault,✅,✅,✅,,,✅,,✅
 41,res/databricks/access-connector,✅,✅,✅,,,,,✅
 42,res/databricks/workspace,✅,✅,✅,✅,✅,✅,✅,
-43,res/db-for-my-sql/flexible-server,✅,✅,✅,✅,✅,✅,,✅
+43,res/db-for-my-sql/flexible-server,✅,✅,✅,✅,✅,✅,✅,✅
 44,res/db-for-postgre-sql/flexible-server,✅,✅,✅,✅,✅,✅,✅,✅
 45,res/desktop-virtualization/application-group,✅,✅,✅,✅,,,,
 46,res/desktop-virtualization/host-pool,✅,✅,✅,✅,✅,,,
@@ -94,7 +94,7 @@
 93,res/managed-services/registration-definition,,,,,,,,
 94,res/management/management-group,,,,,,,,
 95,res/management/service-group,✅,✅,,,,,,
-96,res/maps/account,✅,,✅,,,✅,,✅
+96,res/maps/account,✅,,✅,,,✅,✅,✅
 97,res/net-app/net-app-account,✅,✅,✅,,,✅,,✅
 98,res/network/application-gateway,✅,✅,✅,✅,✅,,,✅
 99,res/network/application-gateway-web-application-firewall-policy,,,✅,,,,,
@@ -151,7 +151,7 @@
 150,res/search/search-service,✅,✅,✅,✅,✅,,,✅
 151,res/security-insights/data-connector,,,,,,,,
 152,res/security-insights/setting,✅,,,,,,,
-153,res/service-bus/namespace,✅,✅,✅,✅,✅,✅,,✅
+153,res/service-bus/namespace,✅,✅,✅,✅,✅,✅,✅,✅
 154,res/service-fabric/cluster,✅,✅,✅,,,,,
 155,res/service-networking/traffic-controller,✅,✅,✅,✅,,,,
 156,res/signal-r-service/signal-r,✅,✅,✅,✅,✅,,,✅
@@ -168,4 +168,4 @@
 167,res/web/serverfarm,✅,✅,✅,✅,,,,
 168,res/web/site,✅,✅,✅,✅,✅,,,✅
 169,res/web/static-site,✅,✅,✅,,✅,,,✅
-Sum,,145,143,154,66,39,25,10,65
+Sum,,145,143,154,66,39,25,14,65
