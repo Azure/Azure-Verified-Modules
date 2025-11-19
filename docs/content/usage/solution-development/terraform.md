@@ -8,7 +8,7 @@ description: Terraform solution development for the Azure Verified Modules (AVM)
 
 ## Introduction
 
-Azure Verified Modules (AVM) for Terraform are a powerful tool that leverage the Terraform domain-specific language (DSL), industry knowledge, and an Open Source community, which altogether enable developers to quickly deploy Azure resources that follow Microsoft’s recommended practices for Azure.
+Azure Verified Modules (AVM) for Terraform are a powerful tool that leverage the Terraform domain-specific language (DSL), industry knowledge, and an Open Source community, which altogether enable developers to quickly deploy Azure resources that follow Microsoft's recommended practices for Azure.
 In this article, we will walk through the Terraform specific considerations and recommended practices on developing your solution leveraging Azure Verified Modules. We'll review some of the design features and trade-offs and include sample code to illustrate each discussion point.
 
 ## Prerequisites
