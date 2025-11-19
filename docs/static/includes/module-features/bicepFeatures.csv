@@ -38,7 +38,7 @@
 37,res/container-registry/registry,✅,✅,✅,✅,✅,✅,,✅
 38,res/container-service/managed-cluster,✅,✅,✅,✅,,,,✅
 39,res/data-factory/factory,✅,✅,✅,✅,✅,✅,✅,✅
-40,res/data-protection/backup-vault,✅,✅,✅,,,✅,,✅
+40,res/data-protection/backup-vault,✅,✅,✅,,,✅,✅,✅
 41,res/databricks/access-connector,✅,✅,✅,,,,,✅
 42,res/databricks/workspace,✅,✅,✅,✅,✅,✅,✅,
 43,res/db-for-my-sql/flexible-server,✅,✅,✅,✅,✅,✅,✅,✅
@@ -95,7 +95,7 @@
 94,res/management/management-group,,,,,,,,
 95,res/management/service-group,✅,✅,,,,,,
 96,res/maps/account,✅,,✅,,,✅,✅,✅
-97,res/net-app/net-app-account,✅,✅,✅,,,✅,,✅
+97,res/net-app/net-app-account,✅,✅,✅,,,✅,✅,✅
 98,res/network/application-gateway,✅,✅,✅,✅,✅,,,✅
 99,res/network/application-gateway-web-application-firewall-policy,,,✅,,,,,
 100,res/network/application-security-group,✅,✅,✅,,,,,
@@ -168,4 +168,4 @@
 167,res/web/serverfarm,✅,✅,✅,✅,,,,
 168,res/web/site,✅,✅,✅,✅,✅,,,✅
 169,res/web/static-site,✅,✅,✅,,✅,,,✅
-Sum,,145,143,154,66,39,25,14,65
+Sum,,145,143,154,66,39,25,16,65
