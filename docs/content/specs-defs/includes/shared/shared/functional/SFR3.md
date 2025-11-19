@@ -45,7 +45,7 @@ The following information notice is automatically added at the bottom of the `RE
 
 ### Module Class Applicability
 
-This specification applies to all AVM module classes (resource, pattern, utility), however, in  case of utility modules, telemetry collection **MUST** only be added when the utility module deploys any resources (e.g., a deployment script resource). If the utility module does not deploy any resources, telemetry collection **MUST NOT** be added.
+This specification applies to all AVM module classes (resource, pattern, utility), however, in case of utility modules, telemetry collection **MUST** only be added when the utility module deploys any resources (e.g., a deployment script resource). If the utility module does not deploy any resources, telemetry collection **MUST NOT** be added.
 
 ### Bicep
 
