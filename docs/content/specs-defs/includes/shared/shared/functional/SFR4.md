@@ -21,7 +21,7 @@ priority: 40
 
 ## ID: SFR4 - Category: Telemetry - Telemetry Enablement Flexibility
 
-The telemetry collections **MUST** be on/enabled by default, however module consumers **MUST** be allowed to disable it by setting the below parameter/variable value to `false`:
+The telemetry collection **MUST** be on/enabled by default, however module consumers **MUST** be allowed to disable it by setting the below parameter/variable value to `false`:
 
 - Bicep: `enableTelemetry`
 - Terraform: `enable_telemetry`
