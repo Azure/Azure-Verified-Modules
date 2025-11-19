@@ -35,11 +35,14 @@ flowchart TD
     click D "{{% siteparam base %}}/contributing/terraform/terraform-contribution-flow/#4-run-pre-commit-checks"
   E(5 - Create a pull request to the upstream repository)
     click E "{{% siteparam base %}}/contributing/terraform/terraform-contribution-flow/#5-create-a-pull-request-to-the-upstream-repository"
+  F(6 - Get your pull request reviewed & approved)
+    click F "{{% siteparam base %}}/contributing/terraform/terraform-contribution-flow/#6-get-your-pull-request-reviewed-and-approved"
   A --> B
   B --> C
   C --> D
   D -->|yes|E
   D -->|no|C
+  E --> F
 
 {{< /mermaid >}}
 
@@ -278,3 +281,19 @@ These steps are performed by the contributor:
 - `\_header.md` needs to be updated
 - `support.md` needs to be updated
 - Exclude `terraform.tfvars` file from the repository
+
+## 6. Get your pull request reviewed and approved
+
+Each Pull Request (PR) to publish a new module or a new version of an existing module **MUST** be reviewed and approved before being merged and published in the Terraform Registry. **Contributors cannot approve their own PRs.**
+
+This behavior is assisted by policies, bots, through automatic assignment of the expected reviewer(s) and supporting labels.
+
+### 6.1. Publishing a new module
+
+When publishing a net new module for the first time ever, the PR **MUST** be reviewed and approved by a member of the core team.
+
+### 6.2. Publishing a new version of an existing module
+
+When publishing a new version of an existing module (i.e., anything that is not being published for the first time ever), the PR approval logic is the following:
+
+{{% include file="/static/includes/PR-approval-guidance.md" %}}

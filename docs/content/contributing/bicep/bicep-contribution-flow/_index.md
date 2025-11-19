@@ -36,12 +36,15 @@ flowchart TD
     click E "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests"
   F(6 - Create a pull request to the upstream repository)
     click F "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry"
+  G(7 - Get your pull request reviewed & approved)
+    click G "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#7-get-your-pull-request-reviewed-and-approved"
   A --> B
   B --> C
   C --> D
   D --> E
   E -->|yes|F
   E -->|no|D
+  F --> G
 
 {{< /mermaid >}}
 
@@ -546,6 +549,22 @@ Finally, once you are satisfied with your contribution and validated it, open a 
 If you're the **sole owner of the module**, the **AVM core team must review and approve the PR**. To indicate that your PR needs the core team's attention, **apply the** &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; **label on it!**
 
 {{% /notice %}}
+
+## 7. Get your pull request reviewed and approved
+
+Each Pull Request (PR) to publish a new module or a new version of an existing module **MUST** be reviewed and approved before being merged and published in the Public Bicep Registry. **Contributors cannot approve their own PRs.**
+
+This behavior is assisted by policies, bots, through automatic assignment of the expected reviewer(s) and supporting labels.
+
+### 7.1. Publishing a new module
+
+When publishing a net new module for the first time ever, the PR **MUST** be reviewed and approved by a member of the core team.
+
+### 7.2. Publishing a new version of an existing module
+
+When publishing a new version of an existing module (i.e., anything that is not being published for the first time ever), the PR approval logic is the following:
+
+{{% include file="/static/includes/PR-approval-guidance.md" %}}
 
 <!--
 ## Publishing to the Registry
