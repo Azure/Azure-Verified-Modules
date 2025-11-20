@@ -19,6 +19,16 @@ priority: 3010
 
 ## ID: RMNFR1 - Category: Naming - Module Naming
 
+Resource modules **MUST** follow the below naming conventions (all lower case).
+
+{{% notice style="important" %}}
+
+As part of the module proposal process, the module's approved name is captured both in the module proposal issue AND the related [module index page]({{% siteparam base %}}/indexes) (backed by the corresponding [CSV file](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes)).
+
+Therefore, **module owners don't need to construct the module's name themselves, instead they need use the name prescribed in the module proposal issue or in the related CSV file, at the time of approval.**
+
+{{% /notice %}}
+
 {{% notice style="note" %}}
 
 We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) with the correct singular names for all resource types to enable checks to utilize this list to ensure repos are named correctly. To see the formatted content of these CSV files with additional information, please visit the [AVM Module Indexes]({{% siteparam base %}}/indexes) page.
@@ -27,15 +37,13 @@ This will be updated quarterly, or ad-hoc as new RPs/ Resources are created and 
 
 {{% /notice %}}
 
-Resource modules **MUST** follow the below naming conventions (all lower case):
-
 ### Bicep Resource Module Naming
 
 - Naming convention (module name for registry): `avm/res/<hyphenated resource provider name>/<hyphenated ARM resource type>`
 - Example: `avm/res/compute/virtual-machine` or `avm/res/managed-identity/user-assigned-identity`
 - Segments:
   - `res` defines this is a resource module
-  - `<hyphenated resource provider name>` is the resource provider’s name after the `Microsoft` part, with each word starting with a capital letter separated by dashes, e.g., `Microsoft.Compute` = `compute`, `Microsoft.ManagedIdentity` = `managed-identity`.
+  - `<hyphenated resource provider name>` is the resource provider's name after the `Microsoft` part, with each word starting with a capital letter separated by dashes, e.g., `Microsoft.Compute` = `compute`, `Microsoft.ManagedIdentity` = `managed-identity`.
   - `<hyphenated ARM resource type>` is the **singular** version of the word after the resource provider, with each word starting with a capital letter separated by dashes, e.g., `Microsoft.Compute/virtualMachines` = `virtual-machine`, **BUT** `Microsoft.Network/trafficmanagerprofiles` = `trafficmanagerprofile` - since `trafficmanagerprofiles` is all lower case as per the ARM API definition.
 
 #### Bicep Child Module Naming
@@ -45,7 +53,7 @@ Resource modules **MUST** follow the below naming conventions (all lower case):
 - Example: `avm/res/network/virtual-network/subnet` or `avm/res/storage/storage-account/blob-service/container`
 - Segments:
   - `res` defines this is a resource module
-  - `<hyphenated resource provider name>` is the resource provider’s name after the `Microsoft` part, with each word starting with a capital letter separated by dashes, e.g., `Microsoft.Network` = `network`.
+  - `<hyphenated resource provider name>` is the resource provider's name after the `Microsoft` part, with each word starting with a capital letter separated by dashes, e.g., `Microsoft.Network` = `network`.
   - `<hyphenated ARM resource type>` is the **singular** version of the word after the resource provider, with each word starting with a capital letter separated by dashes, e.g., `Microsoft.Network/virtualNetworks` = `virtual-network`.
   - `<hyphenated child resource type (to be repeated for grandchildren, etc.)>` is the **singular** version of the word after the resource provider, with each word starting with a capital letter separated by dashes, e.g., `Microsoft.Network/virtualNetworks/subnets` = `subnet` or `Microsoft.Storage/storageAccounts/blobServices/containers` = `blob-service/container`.
 
@@ -58,5 +66,5 @@ Resource modules **MUST** follow the below naming conventions (all lower case):
 - Segments:
   - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` or `azuread` for resource modules.
   - `res` defines this is a resource module
-  - `<resource provider>` is the resource provider’s name after the `Microsoft` part, e.g., `Microsoft.Compute` = `compute`.
+  - `<resource provider>` is the resource provider's name after the `Microsoft` part, e.g., `Microsoft.Compute` = `compute`.
   - `<ARM resource type>` is the **singular** version of the word after the resource provider, e.g., `Microsoft.Compute/virtualMachines` = `virtualmachine`

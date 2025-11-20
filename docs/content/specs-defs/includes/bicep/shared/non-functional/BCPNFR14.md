@@ -32,5 +32,5 @@ The `version` value is in the form of `MAJOR.MINOR`. The PATCH version will be i
 For example, the `version` value should be:
 
 - `0.1` for new modules, so that they can be released as `v0.1.0`.
-- `1.0` once the module owner signs off the module is stable enough for it’s first Major release of `v1.0.0`.
+- `1.0` once the module owner signs off the module is stable enough for it's first Major release of `v1.0.0`.
 - `0.x` for all feature updates between the first release `v0.1.0` and the first Major release of `v1.0.0`.

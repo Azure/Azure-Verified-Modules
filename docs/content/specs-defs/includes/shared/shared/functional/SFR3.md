@@ -6,6 +6,7 @@ type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
+  Class-Utility, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Type-Functional, # SINGLE VALUE: this can be "Type-Functional" OR "Type-NonFunctional"
   Category-Telemetry, # SINGLE VALUE: this can be "Category-Testing" OR "Category-Telemetry" OR "Category-Contribution/Support" OR "Category-Documentation" OR "Category-CodeStyle" OR "Category-Naming/Composition" OR "Category-Inputs/Outputs" OR "Category-Release/Publishing"
   Language-Bicep, # MULTIPLE VALUES: this can be "Language-Bicep" AND/OR "Language-Terraform"
@@ -19,14 +20,6 @@ priority: 30
 ---
 
 ## ID: SFR3 - Category: Telemetry - Deployment/Usage Telemetry
-
-{{% notice style="important" %}}
-
-We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) with the required TelemetryId prefixes to enable checks to utilize this list to ensure the correct IDs are used. To see the formatted content of these CSV files with additional information, please visit the [AVM Module Indexes]({{% siteparam base %}}/indexes) page.
-
-These will also be provided as a comment on the module proposal, once accepted, from the AVM core team.
-
-{{% /notice %}}
 
 Modules **MUST** provide the capability to collect deployment/usage telemetry as detailed in [Telemetry]({{% siteparam base %}}/help-support/telemetry/) further.
 
@@ -50,9 +43,15 @@ The following information notice is automatically added at the bottom of the `RE
 {{% include file="/static/includes/telemetry-information-notice.md" %}}
 {{< /highlight >}}
 
+### Module Class Applicability
+
+This specification applies to all AVM module classes (resource, pattern, utility), however, in case of utility modules, telemetry collection **MUST** only be added when the utility module deploys any resources (e.g., a deployment script resource). If the utility module does not deploy any resources, telemetry collection **MUST NOT** be added.
+
 ### Bicep
 
 {{% notice style="important" %}}
+We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) with the required TelemetryId prefixes to enable checks to utilize this list to ensure the correct IDs are used. To see the formatted content of these CSV files with additional information, please visit the [AVM Module Indexes]({{% siteparam base %}}/indexes) page.
+
 The value you need to use for your module is defined in the related module index. You can look it up on the index pages for [Resource Modules]({{% siteparam base %}}/indexes/bicep/bicep-resource-modules/#module-name-telemetry-id-prefix-github-teams-for-owners), [Pattern Modules]({{% siteparam base %}}/indexes/bicep/bicep-pattern-modules/#module-name-telemetry-id-prefix-github-teams-for-owners) and [Utility Modules]({{% siteparam base %}}/indexes/bicep/bicep-utility-modules/#module-name-telemetry-id-prefix-github-teams-for-owners).
 {{% /notice %}}
 

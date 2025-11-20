@@ -22,9 +22,9 @@
 {{ $SecondaryModuleOwnerGHHandleColumnId := 0 }}
 {{ $SecondaryModuleOwnerDisplayNameColumnId := 0 }}
 {{ $ModuleOwnersGHTeamColumnId := 0 }}
-{{ $ModuleContributorsGHTeamColumnId := 0 }}
 {{ $DescriptionColumnId := 0 }}
 {{ $CommentsColumnId := 0 }}
+{{ $FirstPublishedInColumnId := 0 }}
 {{ $hasListableModules := false }}
 {{ $maps := slice }}
 {{ $i := 0 }}
@@ -46,9 +46,9 @@
   {{ $SecondaryModuleOwnerGHHandleColumnId = 12 }}
   {{ $SecondaryModuleOwnerDisplayNameColumnId = 13 }}
   {{ $ModuleOwnersGHTeamColumnId = 14 }}
-  {{ $ModuleContributorsGHTeamColumnId = 15 }}
-  {{ $DescriptionColumnId = 16 }}
-  {{ $CommentsColumnId = 17 }}
+  {{ $DescriptionColumnId = 15 }}
+  {{ $CommentsColumnId = 16 }}
+  {{ $FirstPublishedInColumnId = 17 }}
 
   {{ range $row, $rows }}
     {{ $map := dict
@@ -67,9 +67,9 @@
       "SecondaryModuleOwnerGHHandle" (index $row $SecondaryModuleOwnerGHHandleColumnId)
       "SecondaryModuleOwnerDisplayName" (index $row $SecondaryModuleOwnerDisplayNameColumnId)
       "ModuleOwnersGHTeam" (index $row $ModuleOwnersGHTeamColumnId)
-      "ModuleContributorsGHTeam" (index $row $ModuleContributorsGHTeamColumnId)
       "Description" (index $row $DescriptionColumnId)
       "Comments" (index $row $CommentsColumnId)
+      "FirstPublishedInColumnId" (index $row $FirstPublishedInColumnId)
     }}
     {{ $maps = $maps | append $map }}
   {{ end }}
@@ -87,9 +87,9 @@
   {{ $SecondaryModuleOwnerGHHandleColumnId = 9 }}
   {{ $SecondaryModuleOwnerDisplayNameColumnId = 10 }}
   {{ $ModuleOwnersGHTeamColumnId = 11 }}
-  {{ $ModuleContributorsGHTeamColumnId = 12 }}
-  {{ $DescriptionColumnId = 13 }}
-  {{ $CommentsColumnId = 14 }}
+  {{ $DescriptionColumnId = 12 }}
+  {{ $CommentsColumnId = 13 }}
+  {{ $FirstPublishedInColumnId = 14 }}
 
   {{ range $row, $rows }}
     {{ $map := dict
@@ -105,9 +105,9 @@
       "SecondaryModuleOwnerGHHandle" (index $row $SecondaryModuleOwnerGHHandleColumnId)
       "SecondaryModuleOwnerDisplayName" (index $row $SecondaryModuleOwnerDisplayNameColumnId)
       "ModuleOwnersGHTeam" (index $row $ModuleOwnersGHTeamColumnId)
-      "ModuleContributorsGHTeam" (index $row $ModuleContributorsGHTeamColumnId)
       "Description" (index $row $DescriptionColumnId)
       "Comments" (index $row $CommentsColumnId)
+      "FirstPublishedInColumnId" (index $row $FirstPublishedInColumnId)
     }}
     {{ $maps = $maps | append $map }}
   {{ end }}
@@ -204,13 +204,9 @@
           {{- if (eq $element.ParentModule $item.ModuleName) -}}
             {{ $child := trim (replace $element.ModuleName (print $item.ModuleName "/") "") "/" }}
             {{ if $useLinks }}
-              {{- if eq $element.ModuleStatus "Available" -}}
+              {{- if or (eq $element.ModuleStatus "Available") (eq $element.ModuleStatus "Orphaned") -}}
                 <li style="margin-left: 20px;">
-                  <a href="{{ $element.RepoURL }}" title="[Available 🟢] {{ $element.ModuleDisplayName }} | {{ $element.ModuleName }}">{{ $child }}</a>
-                </li>
-              {{- else if eq $element.ModuleStatus "Orphaned" -}}
-                <li style="margin-left: 20px;">
-                  <span title="[Orphaned 🟡] {{ $element.ModuleDisplayName }} ({{ $element.ModuleName }})">{{ $child }}</span>
+                  <a href="{{ $element.RepoURL }}" title="[{{ $element.ModuleStatus }} {{ if eq $element.ModuleStatus "Available" }}🟢{{ else }}🟡{{ end }}] {{ $element.ModuleDisplayName }} | {{ $element.ModuleName }}">{{ $child }}</a>
                 </li>
               {{- else -}}
                 <li style="margin-left: 20px;">
@@ -323,7 +319,6 @@
     {{ end }}
     {{ $trimmedModuleStatus := replace $item.ModuleStatus "Module " "" }}
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Deprecated" "Deprecated :red_circle:" }}
-    {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Deprecated" "Deprecated :red_circle:" }}
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Available" "Available :green_circle:" }}
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Orphaned" "Orphaned :yellow_circle:" }}
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Proposed" "Proposed :white_circle:" }}
@@ -353,13 +348,9 @@
           {{- if (eq $element.ParentModule $item.ModuleName) -}}
             {{ $child := trim (replace $element.ModuleName (print $item.ModuleName "/") "") "/" }}
             {{ if $useLinks }}
-              {{- if eq $element.ModuleStatus "Available" -}}
+              {{- if or (eq $element.ModuleStatus "Available") (eq $element.ModuleStatus "Orphaned") -}}
                 <li style="margin-left: 20px;">
-                  <a href="[Available 🟢] {{ $element.PublicRegistryReference }}" title="{{ $element.ModuleDisplayName }} | {{ $element.ModuleName }}">{{ $child }}</a>
-                </li>
-              {{- else if eq $element.ModuleStatus "Orphaned" -}}
-                <li style="margin-left: 20px;">
-                  <span title="[Orphaned 🟡] {{ $element.ModuleDisplayName }} ({{ $element.ModuleName }})">{{ $child }}</span>
+                  <a href="{{ $element.PublicRegistryReference }}" title="[{{ $element.ModuleStatus }} {{ if eq $element.ModuleStatus "Available" }}🟢{{ else }}🟡{{ end }}] {{ $element.ModuleDisplayName }} | {{ $element.ModuleName }}">{{ $child }}</a>
                 </li>
               {{- else -}}
                 <li style="margin-left: 20px;">
@@ -392,8 +383,10 @@
       </td>
       <td> {{/* availability badge and versions  */}}
         {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") -}}
+          {{/* Replace single hyphens with double hyphens for correct badge rendering for pre-releases - e.g., 0.2.0-pre1 */}}
+          {{- $badgeVersion := replace $moduleLatestVersion "-" "--" -}}
           <a href="{{ $item.PublicRegistryReference }}">
-            <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $moduleLatestVersion }}-purple"/>
+            <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $badgeVersion }}-purple"/>
           </a>
         {{- else -}}
           <a href="">

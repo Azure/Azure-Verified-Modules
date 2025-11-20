@@ -4,13 +4,14 @@ linktitle: Azure Verified Modules
 type: home
 description: 'Azure Verified Modules - The Microsoft IaC Module Strategy'
 ---
+
 {{% notice style="important" %}}
 
-We are aware of an issue impacting the [Terraform AVM module `avm-res-network-virtualnetwork`](https://github.com/Azure/terraform-azurerm-avm-res-network-virtualnetwork) that started at approximately midnight (UTC) on Thursday 3 July 2025.
+Join the AVM team for our next **external community call**, held on **December 3rd, 2025**! 🎉
 
-**We are pleased to confirm that the issue has been resolved and the module is now available again 👍**
+**Register here to attend**: [https://aka.ms/AVM/CommunityCall](https://aka.ms/AVM/CommunityCall)
 
-For more information and any assistance required please refer to this [GitHub issue](https://github.com/Azure/Azure-Verified-Modules/issues/2196)
+To find out more about future calls and watch the recordings of previous ones, see the [Community Calls page](/Azure-Verified-Modules/resources/community)!
 
 {{% /notice %}}
 
