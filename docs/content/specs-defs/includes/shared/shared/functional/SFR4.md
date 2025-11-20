@@ -6,6 +6,7 @@ type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
+  Class-Utility, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Type-Functional, # SINGLE VALUE: this can be "Type-Functional" OR "Type-NonFunctional"
   Category-Telemetry, # SINGLE VALUE: this can be "Category-Testing" OR "Category-Telemetry" OR "Category-Contribution/Support" OR "Category-Documentation" OR "Category-CodeStyle" OR "Category-Naming/Composition" OR "Category-Inputs/Outputs" OR "Category-Release/Publishing"
   Language-Bicep, # MULTIPLE VALUES: this can be "Language-Bicep" AND/OR "Language-Terraform"
@@ -20,7 +21,7 @@ priority: 40
 
 ## ID: SFR4 - Category: Telemetry - Telemetry Enablement Flexibility
 
-The telemetry enablement **MUST** be on/enabled by default, however this **MUST** be able to be disabled by a module consumer by setting the below parameter/variable value to `false`:
+The telemetry collection **MUST** be on/enabled by default, however module consumers **MUST** be allowed to disable it by setting the below parameter/variable value to `false`:
 
 - Bicep: `enableTelemetry`
 - Terraform: `enable_telemetry`

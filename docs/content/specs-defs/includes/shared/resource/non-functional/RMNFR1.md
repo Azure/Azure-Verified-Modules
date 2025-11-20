@@ -43,7 +43,7 @@ This will be updated quarterly, or ad-hoc as new RPs/ Resources are created and 
 - Example: `avm/res/compute/virtual-machine` or `avm/res/managed-identity/user-assigned-identity`
 - Segments:
   - `res` defines this is a resource module
-  - `<hyphenated resource provider name>` is the resource provider’s name after the `Microsoft` part, with each word starting with a capital letter separated by dashes, e.g., `Microsoft.Compute` = `compute`, `Microsoft.ManagedIdentity` = `managed-identity`.
+  - `<hyphenated resource provider name>` is the resource provider's name after the `Microsoft` part, with each word starting with a capital letter separated by dashes, e.g., `Microsoft.Compute` = `compute`, `Microsoft.ManagedIdentity` = `managed-identity`.
   - `<hyphenated ARM resource type>` is the **singular** version of the word after the resource provider, with each word starting with a capital letter separated by dashes, e.g., `Microsoft.Compute/virtualMachines` = `virtual-machine`, **BUT** `Microsoft.Network/trafficmanagerprofiles` = `trafficmanagerprofile` - since `trafficmanagerprofiles` is all lower case as per the ARM API definition.
 
 #### Bicep Child Module Naming
@@ -53,7 +53,7 @@ This will be updated quarterly, or ad-hoc as new RPs/ Resources are created and 
 - Example: `avm/res/network/virtual-network/subnet` or `avm/res/storage/storage-account/blob-service/container`
 - Segments:
   - `res` defines this is a resource module
-  - `<hyphenated resource provider name>` is the resource provider’s name after the `Microsoft` part, with each word starting with a capital letter separated by dashes, e.g., `Microsoft.Network` = `network`.
+  - `<hyphenated resource provider name>` is the resource provider's name after the `Microsoft` part, with each word starting with a capital letter separated by dashes, e.g., `Microsoft.Network` = `network`.
   - `<hyphenated ARM resource type>` is the **singular** version of the word after the resource provider, with each word starting with a capital letter separated by dashes, e.g., `Microsoft.Network/virtualNetworks` = `virtual-network`.
   - `<hyphenated child resource type (to be repeated for grandchildren, etc.)>` is the **singular** version of the word after the resource provider, with each word starting with a capital letter separated by dashes, e.g., `Microsoft.Network/virtualNetworks/subnets` = `subnet` or `Microsoft.Storage/storageAccounts/blobServices/containers` = `blob-service/container`.
 
@@ -66,5 +66,5 @@ This will be updated quarterly, or ad-hoc as new RPs/ Resources are created and 
 - Segments:
   - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` or `azuread` for resource modules.
   - `res` defines this is a resource module
-  - `<resource provider>` is the resource provider’s name after the `Microsoft` part, e.g., `Microsoft.Compute` = `compute`.
+  - `<resource provider>` is the resource provider's name after the `Microsoft` part, e.g., `Microsoft.Compute` = `compute`.
   - `<ARM resource type>` is the **singular** version of the word after the resource provider, e.g., `Microsoft.Compute/virtualMachines` = `virtualmachine`

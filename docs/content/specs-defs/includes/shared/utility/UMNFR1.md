@@ -1,10 +1,10 @@
 ---
-title: PMNFR1 - Module Naming
+title: UMNFR1 - Module Naming
 description: Module Specification for the Azure Verified Modules (AVM) program
-url: /spec/PMNFR1
+url: /spec/UMNFR1
 type: default
 tags: [
-  Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
+  Class-Utility, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Type-NonFunctional, # SINGLE VALUE: this can be "Type-Functional" OR "Type-NonFunctional"
   Category-Naming/Composition, # SINGLE VALUE: this can be "Category-Testing" OR "Category-Telemetry" OR "Category-Contribution/Support" OR "Category-Documentation" OR "Category-CodeStyle" OR "Category-Naming/Composition" OR "Category-Inputs/Outputs" OR "Category-Release/Publishing"
   Language-Bicep, # MULTIPLE VALUES: this can be "Language-Bicep" AND/OR "Language-Terraform"
@@ -14,12 +14,12 @@ tags: [
   Lifecycle-Initial, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
   Validation-TBD # SINGLE VALUE (PER LANGUAGE): for Bicep, this can be "Validation-BCP/Manual" OR "Validation-BCP/CI/Informational" OR "Validation-BCP/CI/Enforced" and for Terraform, this can be "Validation-TF/Manual" OR "Validation-TF/CI/Informational" OR "Validation-TF/CI/Enforced"
 ]
-priority: 4020
+priority: 6000
 ---
 
-## ID: PMNFR1 - Category: Naming - Module Naming
+## ID: UMNFR1 - Category: Naming - Module Naming
 
-Pattern Modules **MUST** follow the below naming conventions (all lower case).
+Utility Modules **MUST** follow the below naming conventions (all lower case).
 
 {{% notice style="important" %}}
 
@@ -29,25 +29,22 @@ Therefore, **module owners don't need to construct the module's name themselves,
 
 {{% /notice %}}
 
-### Bicep Pattern Module Naming
+### Bicep Utility Module Naming
 
-- Naming convention: `avm/ptn/<hyphenated grouping/category name>/<hyphenated pattern module name>`
-- Example: `avm/ptn/compute/app-tier-vmss` or `avm/ptn/avd-lza/management-plane` or `avm/ptn/3-tier/web-app`
+- Naming convention: `avm/utl/<hyphenated grouping/category name>/<hyphenated utility module name>`
+- Example: `avm/utl/general/get-environment` or `avm/utl/types/avm-common-types`
 - Segments:
-  - `ptn` defines this as a pattern module
-  - `<hyphenated grouping/category name>` is a hierarchical grouping of pattern modules by category, with each word separated by dashes, such as:
-    - project name, e.g., `avd-lza`,
-    - primary resource provider, e.g., `compute` or `network`, or
-    - architecture, e.g., `3-tier`
-  - `<hyphenated pattern module name>` is a term describing the module's function, with each word separated by dashes, e.g., `app-tier-vmss` = Application Tier VMSS; `management-plane` = Azure Virtual Desktop Landing Zone Accelerator Management Plane
+  - `utl` defines this as a utility module
+  - `<hyphenated grouping/category name>` is a hierarchical grouping of utility modules by category, with each word separated by dashes, such as: `general` or `types`
+  - `<hyphenated utility module name>` is a term describing the module's function, with each word separated by dashes, e.g., `get-environment` = to get environmental details; `avm-common-types` = to use common types.
 
-### Terraform Pattern Module Naming
+### Terraform Utility Module Naming
 
 - Naming convention:
-  - `avm-ptn-<pattern module name>` (Module name for registry)
-  - `terraform-<provider>-avm-ptn-<pattern module name>` (GitHub repository name to meet registry naming requirements)
-- Example: `avm-ptn-apptiervmss` or `avm-ptn-avd-lza-managementplane`
+  - `avm-utl-<utility module name>` (Module name for registry)
+  - `terraform-<provider>-avm-utl-<utility module name>` (GitHub repository name to meet registry naming requirements)
+- Example: `avm-utl-sku-finder` or `avm-utl-naming`
 - Segments:
   - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` or `azuread` for resource modules.
-  - `ptn` defines this as a pattern module
-  - `<pattern module name>` is a term describing the module's function, e.g., `apptiervmss` = Application Tier VMSS; `avd-lza-managementplane` = Azure Virtual Desktop Landing Zone Accelerator Management Plane
+  - `utl` defines this as a utility module
+  - `<utility module name>` is a term describing the module's function, e.g., `sku-finder` = to find available SKUs; `naming` = to handle naming conventions.
