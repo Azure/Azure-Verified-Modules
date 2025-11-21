@@ -36,8 +36,8 @@ flowchart TD
     click E "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests"
   F(6 - Create a pull request to the upstream repository)
     click F "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry"
-  G(7 - Get your pull request reviewed & approved)
-    click G "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#7-get-your-pull-request-reviewed-and-approved"
+  G(7 - Get your pull request approved)
+    click G "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#7-get-your-pull-request-approved"
   A --> B
   B --> C
   C --> D
@@ -550,11 +550,18 @@ If you're the **sole owner of the module**, the **AVM core team must review and 
 
 {{% /notice %}}
 
-## 7. Get your pull request reviewed and approved
+## 7. Get your pull request approved
 
-Each Pull Request (PR) to publish a new module or a new version of an existing module **MUST** be reviewed and approved before being merged and published in the Public Bicep Registry. **Contributors cannot approve their own PRs.**
+To publish a new module or a new version of an existing module, each Pull Request (PR) **MUST** be reviewed and approved before being merged and published in the Public Bicep Registry. **A contributor (the submitter of the PR) cannot approve their own PR.**
 
 This behavior is assisted by policies, bots, through automatic assignment of the expected reviewer(s) and supporting labels.
+
+{{% notice style="important" %}}
+
+As part of the PR review process, the submitter (contributor) **MUST** address any comments raised by the reviewers and request a new review - and repeat this process until the PR is approved.
+Once the PR is merged, the module owner needs to ensure that the related GitHub Actions workflow has successfully published the new version of the module.
+
+{{% /notice %}}
 
 ### 7.1. Publishing a new module
 
