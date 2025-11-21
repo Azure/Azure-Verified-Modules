@@ -559,7 +559,7 @@ This behavior is assisted by policies, bots, through automatic assignment of the
 {{% notice style="important" %}}
 
 As part of the PR review process, the submitter (contributor) **MUST** address any comments raised by the reviewers and request a new review - and repeat this process until the PR is approved.
-Once the PR is merged, the module owner needs to ensure that the related GitHub Actions workflow has successfully published the new version of the module.
+Once the PR is merged, the module owner **MUST** ensure that the related GitHub Actions workflow has successfully published the new version of the module.
 
 {{% /notice %}}
 
