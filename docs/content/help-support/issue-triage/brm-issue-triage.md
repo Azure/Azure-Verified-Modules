@@ -78,7 +78,7 @@ If the issue was opened as a misplaced module proposal, mention the `@Azure/AVM-
     - To indicate that the PR needs the core team's attention, apply the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label.
 2. If the **PR is submitted by a contributor** (other than the module owner), or the **module is owned by at least 2 people**, **one of the module owners should review and approve the PR**.
 3. Apply relevant labels
-    - Make sure the PR is categorized using one of the following type labels:
+    - Categorize the PR using applicable labels, such as:
       - &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#A2EEEF;">Type: Feature Request ➕</mark>&nbsp;
       - &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>&nbsp;
       - &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FFFF00;">Type: Security Bug 🔒</mark>&nbsp;
@@ -91,6 +91,16 @@ If the issue was opened as a misplaced module proposal, mention the `@Azure/AVM-
 - **Prefix**: Start with one of the allowed keywords - `fix:` or `feat:` is the most common for module related changes.
 - **Description**: Add a few words, describing the nature of the change.
 - **Module name**: Add the module's full name between backticks ( ` ) to make it pop.
+
+{{% /notice %}}
+
+{{% notice style="info" title="Who needs to approve the PR?" %}}
+
+The PR approval logic for existing modules is the following:
+
+{{% include file="/static/includes/PR-approval-guidance.md" %}}
+
+This behavior is assisted by bots, through automatic assignment of the expected reviewer(s) and supporting labels.
 
 {{% /notice %}}
 
