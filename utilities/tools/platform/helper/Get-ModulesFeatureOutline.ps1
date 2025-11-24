@@ -32,6 +32,7 @@ Optional. An array that controls which columns / data points should be added to 
 - PE: Adds a column indicating if the module supports Private Endpoints
 - PIP: Adds a column indicating if the module supports Public IP Addresses
 - CMK: Adds a column indicating if the module supports Customer Managed Keys
+- CMK-mHSM: Adds a column indicating if the module supports Customer Managed Keys in Hardware Security Modules (HSM)
 - Identity: Adds a column indicating if the module supports managed identities
 
 .PARAMETER RepositoryName
@@ -77,7 +78,7 @@ function Get-ModulesFeatureOutline {
     [string] $ModulesRepoRootPath,
 
     [Parameter(Mandatory = $false)]
-    [ValidateSet('Status', 'RBAC', 'Locks', 'Tags', 'Diag', 'PE', 'PIP', 'CMK', 'Identity')]
+    [ValidateSet('Status', 'RBAC', 'Locks', 'Tags', 'Diag', 'PE', 'PIP', 'CMK', 'CMK-mHSM', 'Identity')]
     [string[]] $ColumnsToInclude = @(
       'Status',
       'RBAC',
@@ -87,6 +88,7 @@ function Get-ModulesFeatureOutline {
       'PE',
       'PIP',
       'CMK',
+      'CMK-mHSM',
       'Identity'
     ),
 
@@ -132,6 +134,7 @@ function Get-ModulesFeatureOutline {
   if ($ColumnsToInclude -contains 'PE') { $summaryData.supportsEndpoints = 0 }
   if ($ColumnsToInclude -contains 'PIP') { $summaryData.supportsPipDeployment = 0 }
   if ($ColumnsToInclude -contains 'CMK') { $summaryData.supportsCMKDeployment = 0 }
+  if ($ColumnsToInclude -contains 'CMK-mHSM') { $summaryData.supportsCMKHSMDeployment = 0 }
   if ($ColumnsToInclude -contains 'Identity') { $summaryData.supportsIdentityDeployment = 0 }
 
   foreach ($moduleTemplatePath in $moduleTemplatePaths) {
@@ -243,6 +246,17 @@ function Get-ModulesFeatureOutline {
         $moduleDataItem['CMK'] = $false
       }
     }
+    # Supports CMK-mHSM
+    if ($ColumnsToInclude -contains 'CMK-mHSM') {
+      $supportsCMK = [regex]::Match($moduleContentString, '(?m)^\s*param customerManagedKey customerManagedKey.*Type').Success
+      $supportsHSM = [regex]::Match($moduleContentString, '(?m)^\s*var isHSMManagedCMK .+').Success
+      if ($supportsCMK -and $supportsHSM) {
+        $summaryData.supportsCMKHSMDeployment++
+        $moduleDataItem['CMK-mHSM'] = $true
+      } else {
+        $moduleDataItem['CMK-mHSM'] = $false
+      }
+    }
 
     # Supports Identity
     if ($ColumnsToInclude -contains 'Identity') {
@@ -276,6 +290,7 @@ function Get-ModulesFeatureOutline {
           if ($ColumnsToInclude -contains 'PE') { $resultObject.PE = $_.PE }
           if ($ColumnsToInclude -contains 'PIP') { $resultObject.PIP = $_.PIP }
           if ($ColumnsToInclude -contains 'CMK') { $resultObject.CMK = $_.CMK }
+          if ($ColumnsToInclude -contains 'CMK-mHSM') { $resultObject.'CMK-mHSM' = $_.'CMK-mHSM' }
           if ($ColumnsToInclude -contains 'Identity') { $resultObject.Identity = $_.Identity }
 
           # Return result

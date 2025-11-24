@@ -1,5 +1,5 @@
 ---
-name: Github Team - Check Existance
+name: Github Team - Check Existence
 
 on:
   # Runs on schedule
@@ -12,8 +12,8 @@ on:
 permissions: read-all
 
 jobs:
-  Check-Team-Existance:
-    name: Check-Team-Existance
+  Check-Team-Existence:
+    name: Check-Team-Existence
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout"

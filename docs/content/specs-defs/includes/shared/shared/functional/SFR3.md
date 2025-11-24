@@ -6,6 +6,7 @@ type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Class-Pattern, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
+  Class-Utility, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Type-Functional, # SINGLE VALUE: this can be "Type-Functional" OR "Type-NonFunctional"
   Category-Telemetry, # SINGLE VALUE: this can be "Category-Testing" OR "Category-Telemetry" OR "Category-Contribution/Support" OR "Category-Documentation" OR "Category-CodeStyle" OR "Category-Naming/Composition" OR "Category-Inputs/Outputs" OR "Category-Release/Publishing"
   Language-Bicep, # MULTIPLE VALUES: this can be "Language-Bicep" AND/OR "Language-Terraform"
@@ -41,6 +42,10 @@ The following information notice is automatically added at the bottom of the `RE
 
 {{% include file="/static/includes/telemetry-information-notice.md" %}}
 {{< /highlight >}}
+
+### Module Class Applicability
+
+This specification applies to all AVM module classes (resource, pattern, utility), however, in case of utility modules, telemetry collection **MUST** only be added when the utility module deploys any resources (e.g., a deployment script resource). If the utility module does not deploy any resources, telemetry collection **MUST NOT** be added.
 
 ### Bicep
 

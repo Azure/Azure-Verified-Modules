@@ -200,7 +200,7 @@ If a module meets the criteria described in the "[Orphaned Modules]({{% sitepara
 5. Place an information notice as per the below guidelines:
     - **In case of a Bicep module**:
       - Place the information notice - with the text below - in an `ORPHANED.md` file, in the module's root.
-      - Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header.
+      - Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module's `README.md` file, so that the `README.md` file will also contain the same notice in its header.
       - Make sure the content of the `ORPHANED.md` file is displayed in the `README.md` in its header (right after the title).
     - **In case of a Terraform module**, place the information notice - with the text below - in the `README.md` file, in the module's root.
     - Once the information notice is placed, submit a Pull Request.
@@ -251,7 +251,7 @@ To look for Orphaned Modules:
 5. Remove the information notice (i.e., the file that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.` ):
     - In case of a Bicep module:
       - Delete the `ORPHANED.md` file from the module's root.
-      - Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module’s `README.md` file, so that it will no longer contain the orphaned module notice in its header.
+      - Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module's `README.md` file, so that it will no longer contain the orphaned module notice in its header.
       - Double check the previous steps was successful and the `README.md` file no longer has the information notice in its header (right after the title).
     - In case of a Terraform module, remove the information notice from the `README.md` file in the module's root.
     - Once the information notice is removed, submit a Pull Request.
@@ -348,7 +348,7 @@ If a module meets the criteria described in the "[Deprecated Modules]({{% sitepa
 
 4. Update the module and connected files as per the below guidelines:
     1. Place the information notice - with the text below - in an `DEPRECATED.md` file, in the module's root.
-    1. Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path & `-SkipBuild` switch as an input. This re-generates the module’s `README.md` file, so that the `README.md` file will also contain the same notice in its header. For more instructions on how to use the script, please refer to the corresponding section in the [Contribution Guide](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/).
+    1. Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path & `-SkipBuild` switch as an input. This re-generates the module's `README.md` file, so that the `README.md` file will also contain the same notice in its header. For more instructions on how to use the script, please refer to the corresponding section in the [Contribution Guide](https://azure.github.io/Azure-Verified-Modules/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/).
     1. Make sure the content of the `DEPRECATED.md` file is displayed in the `README.md` in its header (right after the title).
     1. Add the the notice `NOTE: This is the last published version and the module has since been deprecated.` to the top-most `### Changes` section of the module's `CHANGELOG.md` file
     1. Remove the module workflow from the [`workflows`](https://github.com/Azure/bicep-registry-modules/tree/main/.github/workflows) folder.
