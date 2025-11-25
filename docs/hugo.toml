@@ -7,6 +7,11 @@ images = ['images/avm_logo.png']
 
 enableGitInfo = true
 
+[privacy]
+  [privacy.youTube]
+    disable = false # Whether to disable the shortcode. Default is false.
+    privacyEnhanced = true # Whether to block YouTube from storing information about visitors on your website unless the user plays the embedded video. Default is false.
+
 [params]
 base = '/Azure-Verified-Modules'
 images = ['images/avm_logo.png']
