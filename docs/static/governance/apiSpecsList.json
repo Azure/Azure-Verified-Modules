@@ -7254,43 +7254,33 @@
   },
   "Microsoft.AzureSphere": {
     "catalogs": [
-      "2022-09-01-preview",
       "2024-04-01"
     ],
     "catalogs/certificates": [
-      "2022-09-01-preview",
       "2024-04-01"
     ],
     "catalogs/images": [
-      "2022-09-01-preview",
       "2024-04-01"
     ],
     "catalogs/products": [
-      "2022-09-01-preview",
       "2024-04-01"
     ],
     "catalogs/products/deviceGroups": [
-      "2022-09-01-preview",
       "2024-04-01"
     ],
     "catalogs/products/deviceGroups/deployments": [
-      "2022-09-01-preview",
       "2024-04-01"
     ],
     "catalogs/products/deviceGroups/devices": [
-      "2022-09-01-preview",
       "2024-04-01"
     ],
     "locations": [
-      "2022-09-01-preview",
       "2024-04-01"
     ],
     "locations/operationStatuses": [
-      "2022-09-01-preview",
       "2024-04-01"
     ],
     "operations": [
-      "2022-09-01-preview",
       "2024-04-01"
     ]
   },
@@ -21775,7 +21765,8 @@
       "2025-01-01-preview",
       "2025-03-15-privatepreview",
       "2025-06-01-preview",
-      "2025-08-01"
+      "2025-08-01",
+      "2026-01-01-preview"
     ],
     "flexibleServers/administrators": [
       "2022-03-08-preview",
@@ -21788,7 +21779,8 @@
       "2024-11-01-preview",
       "2025-01-01-preview",
       "2025-06-01-preview",
-      "2025-08-01"
+      "2025-08-01",
+      "2026-01-01-preview"
     ],
     "flexibleServers/advancedThreatProtectionSettings": [
       "2023-06-01-preview",
@@ -21798,7 +21790,8 @@
       "2024-11-01-preview",
       "2025-01-01-preview",
       "2025-06-01-preview",
-      "2025-08-01"
+      "2025-08-01",
+      "2026-01-01-preview"
     ],
     "flexibleServers/backups": [
       "2024-03-01-preview",
@@ -21806,7 +21799,8 @@
       "2024-11-01-preview",
       "2025-01-01-preview",
       "2025-06-01-preview",
-      "2025-08-01"
+      "2025-08-01",
+      "2026-01-01-preview"
     ],
     "flexibleServers/configurations": [
       "2021-06-01",
@@ -21823,7 +21817,8 @@
       "2024-11-01-preview",
       "2025-01-01-preview",
       "2025-06-01-preview",
-      "2025-08-01"
+      "2025-08-01",
+      "2026-01-01-preview"
     ],
     "flexibleServers/databases": [
       "2020-11-05-preview",
@@ -21840,7 +21835,8 @@
       "2024-11-01-preview",
       "2025-01-01-preview",
       "2025-06-01-preview",
-      "2025-08-01"
+      "2025-08-01",
+      "2026-01-01-preview"
     ],
     "flexibleServers/firewallRules": [
       "2020-02-14-preview",
@@ -21860,7 +21856,8 @@
       "2024-11-01-preview",
       "2025-01-01-preview",
       "2025-06-01-preview",
-      "2025-08-01"
+      "2025-08-01",
+      "2026-01-01-preview"
     ],
     "flexibleServers/keys": [
       "2020-02-14-privatepreview"
@@ -21890,7 +21887,8 @@
       "2025-01-01-preview",
       "2025-03-15-privatepreview",
       "2025-06-01-preview",
-      "2025-08-01"
+      "2025-08-01",
+      "2026-01-01-preview"
     ],
     "flexibleServers/privateEndpointConnections": [
       "2023-06-01-preview",
@@ -21900,7 +21898,8 @@
       "2024-11-01-preview",
       "2025-01-01-preview",
       "2025-06-01-preview",
-      "2025-08-01"
+      "2025-08-01",
+      "2026-01-01-preview"
     ],
     "flexibleServers/virtualendpoints": [
       "2023-06-01-preview",
@@ -21910,7 +21909,8 @@
       "2024-11-01-preview",
       "2025-01-01-preview",
       "2025-06-01-preview",
-      "2025-08-01"
+      "2025-08-01",
+      "2026-01-01-preview"
     ],
     "getPrivateDnsZoneSuffix": [
       "2020-02-14-preview",
@@ -29250,7 +29250,8 @@
       "2022-08-08",
       "2023-05-01",
       "2024-02-01",
-      "2025-05-25"
+      "2025-05-25",
+      "2025-11-01"
     ],
     "Locations": [
       "2020-12-08",
