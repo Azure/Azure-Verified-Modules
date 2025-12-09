@@ -39,7 +39,7 @@ Therefore, **module owners don't need to construct the module's name themselves,
     - project name, e.g., `avd-lza`,
     - primary resource provider, e.g., `compute` or `network`, or
     - architecture, e.g., `3-tier`
-  - `<hyphenated pattern module name>` is a term describing the module’s function, with each word separated by dashes, e.g., `app-tier-vmss` = Application Tier VMSS; `management-plane` = Azure Virtual Desktop Landing Zone Accelerator Management Plane
+  - `<hyphenated pattern module name>` is a term describing the module's function, with each word separated by dashes, e.g., `app-tier-vmss` = Application Tier VMSS; `management-plane` = Azure Virtual Desktop Landing Zone Accelerator Management Plane
 
 ### Terraform Pattern Module Naming
 
@@ -50,4 +50,4 @@ Therefore, **module owners don't need to construct the module's name themselves,
 - Segments:
   - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` or `azuread` for resource modules.
   - `ptn` defines this as a pattern module
-  - `<pattern module name>` is a term describing the module’s function, e.g., `apptiervmss` = Application Tier VMSS; `avd-lza-managementplane` = Azure Virtual Desktop Landing Zone Accelerator Management Plane
+  - `<pattern module name>` is a term describing the module's function, e.g., `apptiervmss` = Application Tier VMSS; `avd-lza-managementplane` = Azure Virtual Desktop Landing Zone Accelerator Management Plane
