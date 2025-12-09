@@ -66,6 +66,27 @@ If the issue was opened as a misplaced module proposal, mention the `@Azure/AVM-
 5. When more detailed plans are available, communicate expected timeline for the update/fix to the requestor (issue author).
 6. Only close the issue, once the next version of the module was fully developed, tested and published.
 
+### Triaging a Module PR
+
+1. If the **PR is submitted by the module owner** and the **module is owned by a single person**, **the AVM core team or the owner of another Terraform module must review and approve the PR**, (as the module owner can't approve their on PR).
+    - To indicate that the PR needs the core team's attention, apply the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label.
+2. If the **PR is submitted by a contributor** (other than the module owner), or the **module is owned by at least 2 people**, **one of the module owners should review and approve the PR**.
+3. Apply relevant labels
+    - Categorize the PR using applicable labels, such as:
+      - &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#A2EEEF;">Type: Feature Request ➕</mark>&nbsp;
+      - &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>&nbsp;
+      - &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FFFF00;">Type: Security Bug 🔒</mark>&nbsp;
+    - For module classification (resource/pattern): &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#D3D3D3;">Class: Resource Module 📦</mark>&nbsp; or &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#A9A9A9;">Class: Pattern Module 📦</mark>&nbsp;
+4. If the module is orphaned (has no owner), make sure the related Orphaned module issue (in the AVM repository) is associated to the PR in a comment, so the new owner can easily identify all related issues and PRs when taking ownership.
+5. Remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; label.
+
+{{% notice style="important" title="Give your PR a meaningful title" %}}
+
+- **Prefix**: Start with one of the allowed keywords - `fix:` or `feat:` is the most common for module related changes.
+- **Description**: Add a few words, describing the nature of the change.
+
+{{% /notice %}}
+
 ## General Question/Feedback and other standard issues
 
 An issue is considered to be an "AVM Question/Feedback" if
