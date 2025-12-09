@@ -544,7 +544,7 @@ Finally, once you are satisfied with your contribution and validated it, open a 
 {{% notice style="note" %}}
 
 If you receive any comments for your pull request, please adhere to the following practices
-- If it is a 'suggestion' that you agree with, you can directly commit it into your branch by selecting the 'Apply suggestion' button, auto-resolving the comment 
+- If it is a 'suggestion' that you agree with, you can directly commit it into your branch by selecting the 'Apply suggestion' button, auto-resolving the comment
 - If it's a regular comment that you agree with, please address its ask and leave a comment indicating the same. Do **not** resolve it yourself as this renders a re-review a lot harder for the reviewer.
 
 {{% /notice %}}
