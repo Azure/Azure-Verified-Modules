@@ -325,7 +325,7 @@ For Microsoft FTEs only: see the **Internal** wiki for support workflow for more
 
 ### Can AVM modules be used in production before they are marked as v1.0?
 
-The AVM framework continues to evolve, and several elements, such as Continuous Integration (CI) processes and specification‑validation coverage, are not yet fully finalized. For this reason, modules are currently published as `0.x.y` minor versions (e.g., `0.1.0`, `0.1.1`, `0.2.0`, etc.).
+The AVM framework continues to evolve, and several elements, such as Continuous Integration (CI) processes, module specifications and specification‑validation coverage, are not yet fully implemented. For this reason, modules are currently published as `0.x.y` minor versions (e.g., `0.1.0`, `0.1.1`, `0.2.0`, etc.).
 
 However, a module does not need to be at version `1.0.0` to be considered production ready. Consumers can use these modules in any environment, including production. Consumers can also raise issues or feature requests as they learn from the usage of the module, and rely on the detailed changelog files (Bicep) and release notes (Terraform) when assessing whether to upgrade to a newer version. Once a module reaches v1.0, semantic versioning will apply fully: breaking changes will be avoided whenever possible, but if they become necessary, they will be introduced through a major version increment.
 
