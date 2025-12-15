@@ -323,11 +323,11 @@ For Microsoft FTEs only: see the **Internal** wiki for support workflow for more
 
 ---
 
-### Can AVM module be used in production before it is marked as "GA" / v1.0?
+### Can AVM modules be used in production before they are marked as v1.0?
 
-As the overall AVM framework is not GA (generally available) yet - the CI framework and test automation is not fully functional and implemented across all supported languages yet - breaking changes are expected, and additional customer feedback is yet to be gathered and incorporated. Hence, modules must not be published at version `1.0.0` or higher at this time. All module must be published as a pre-release version (e.g., `0.1.0`, `0.1.1`, `0.2.0`, etc.) until the AVM framework becomes GA.
+The AVM framework continues to evolve, and several elements, such as Continuous Integration (CI) processes, module specifications and corresponding specification‑validation coverage, are not yet fully implemented. For this reason, modules are currently published as `0.x.y` minor versions (e.g., `0.1.0`, `0.1.1`, `0.2.0`, etc.).
 
-However, it is important to note that this does not mean that the modules cannot be consumed and utilized. They can be leveraged in all types of environments (dev, test, prod etc.). Consumers can treat them just like any other IaC module and raise issues or feature requests against them as they learn from the usage of the module. Consumers should also read the release notes for each version, if considering updating to a more recent version of a module to see if there are any considerations or breaking changes etc.
+However, a module does not need to be at version `1.0.0` to be considered production ready. Consumers can use these modules in any environment, including production. Consumers can also raise issues or feature requests as they learn from the usage of the module, and rely on the detailed changelog files (Bicep) and release notes (Terraform) when assessing whether to upgrade to a newer version. Once a module reaches v1.0, semantic versioning will apply fully: breaking changes will be avoided whenever possible, but if they become necessary, they will be introduced through a major version increment.
 
 ---
 
