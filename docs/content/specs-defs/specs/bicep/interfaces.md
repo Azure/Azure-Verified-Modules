@@ -219,6 +219,16 @@ An example of this is a Key Vault module that has a Private Endpoints enabled. I
 {{% /tab %}}
 {{< /tabs >}}
 
+## Service Group Memberships
+
+{{< highlight lineNos="false" type="bicep" wrap="true" title="User Defined Type, Parameter & Resource Example" >}}
+  {{% include file="/static/includes/interfaces/bicep/int.sg.udt.schema.bicep" %}}
+{{< /highlight >}}
+
+{{< highlight lineNos="false" type="bicep" wrap="true" title="Input Example with Values" >}}
+  {{% include file="/static/includes/interfaces/bicep/int.sg.input.bicep" %}}
+{{< /highlight >}}
+
 ## Secrets export (DEPRECATED)
 
 {{% notice style="important" %}}
