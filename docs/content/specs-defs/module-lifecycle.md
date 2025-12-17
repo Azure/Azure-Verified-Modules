@@ -55,6 +55,22 @@ To **propose a new module**, submit a [module proposal](https://aka.ms/AVM/Modul
 
 Once a module has been fully developed, tested and published in the main branch of the repository and the corresponding public registry (Bicep or Terraform), it is then considered to be "available" and can be used by the community. The module is maintained by the module owner(s). Feature or bug fix requests and related pull requests can be submitted by anyone to the module owner(s) for review.
 
+{{% notice style="info" %}}
+
+To **publish a new version of an existing module** (i.e., anything that is not being published for the first time ever), there's no need to submit any issues in the [AVM repository](https://aka.ms/AVM/repo); contributors can **just submit a Pull Request in the module's repository** with the suggested changes.
+
+{{% expand title="➕ Who needs to approve the PR?" %}}
+
+The PR approval logic for existing modules is the following:
+
+{{% include file="/static/includes/PR-approval-guidance.md" %}}
+
+This behavior is assisted by bots, through automatic assignment of the expected reviewer(s) and supporting labels.
+
+{{% /expand %}}
+
+{{% /notice %}}
+
 ## 3. Orphaned Modules
 
 It is critical to the consumers experience that modules continue to be maintained. In the case where a module owner cannot continue in their role or do not respond to issues as per the defined timescale in the [Module Support page]({{% siteparam base %}}/help-support/module-support/) , the following process will apply:
