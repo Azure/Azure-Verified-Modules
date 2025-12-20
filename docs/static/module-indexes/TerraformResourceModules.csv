@@ -58,7 +58,7 @@ Microsoft.Edge,sites,Azure Arc Site manager,,avm-res-edge-site,Available,AVM res
 Microsoft.EventGrid,domains,EventGrid Domain,,avm-res-eventgrid-domain,Proposed,AVM resource Module for EventGrid Domain,,fafriha,Farouk Friha,,,
 Microsoft.EventGrid,namespaces,EventGrid Namespace,,avm-res-eventgrid-namespace,Proposed,AVM resource Module for EventGrid Namespace,,dassbernd,Berna Sandalli,,,
 Microsoft.EventGrid,systemTopics,EventGrid System Topic,,avm-res-eventgrid-systemtopic,Proposed,AVM resource Module for EventGrid System Topic,,fafriha,Farouk Friha,,,
-Microsoft.EventGrid,topics,EventGrid Topic,,avm-res-eventgrid-topic,Proposed,AVM resource Module for EventGrid Topic,,fafriha,Farouk Friha,,,
+Microsoft.EventGrid,topics,EventGrid Topic,,avm-res-eventgrid-topic,Available,AVM resource Module for EventGrid Topic,https://registry.terraform.io/modules/Azure/avm-res-eventgrid-topic/azurerm/latest,fafriha,Farouk Friha,,,2025-12
 Microsoft.EventHub,namespaces,Event Hub Namespace,,avm-res-eventhub-namespace,Available,AVM resource Module for Event Hub Namespace,https://registry.terraform.io/modules/Azure/avm-res-eventhub-namespace/azurerm/latest,mbilalamjad,Bilal Amjad,,,2025-04
 Microsoft.Fabric,capacities,Fabric Capacity,,avm-res-fabric-capacity,Proposed,AVM resource Module for Fabric Capacity,,DariuszPorowski,Dariusz Porowski,,,
 Microsoft.Features,features,Subcription Feature,,avm-res-features-feature,Available,AVM resource Module for Subcription Feature,https://registry.terraform.io/modules/Azure/avm-res-features-feature/azurerm/latest,lonegunmanb,Zijie He,,,2025-11
