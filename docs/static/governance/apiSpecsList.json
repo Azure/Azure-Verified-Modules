@@ -736,11 +736,6 @@
     ]
   },
   "Microsoft.AgFoodPlatform": {
-    "checkNameAvailability": [
-      "2020-05-12-preview",
-      "2021-09-01-preview",
-      "2023-06-01-preview"
-    ],
     "farmBeats": [
       "2020-05-12-preview",
       "2021-09-01-preview",
@@ -759,26 +754,6 @@
       "2023-06-01-preview"
     ],
     "farmBeats/solutions": [
-      "2021-09-01-preview",
-      "2023-06-01-preview"
-    ],
-    "farmBeatsExtensionDefinitions": [
-      "2020-05-12-preview",
-      "2021-09-01-preview",
-      "2023-06-01-preview"
-    ],
-    "farmBeatsSolutionDefinitions": [
-      "2020-05-12-preview",
-      "2021-09-01-preview",
-      "2023-06-01-preview"
-    ],
-    "locations": [
-      "2020-05-12-preview",
-      "2021-09-01-preview",
-      "2023-06-01-preview"
-    ],
-    "operations": [
-      "2020-05-12-preview",
       "2021-09-01-preview",
       "2023-06-01-preview"
     ]
@@ -4030,6 +4005,15 @@
     "PGSQLSites/PGSQLInstances": [
       "2025-02-01-preview",
       "2025-11-06-preview"
+    ],
+    "StorageSites": [
+      "2025-02-01-preview"
+    ],
+    "StorageSites/agents": [
+      "2025-02-01-preview"
+    ],
+    "StorageSites/FileShares": [
+      "2025-02-01-preview"
     ]
   },
   "Microsoft.AppLink": {
@@ -4926,6 +4910,14 @@
       "2023-12-01",
       "2024-01-01-preview",
       "2024-05-01-preview"
+    ]
+  },
+  "Microsoft.Approvals": {
+    "locations": [
+      "2025-05-01-preview"
+    ],
+    "operations": [
+      "2025-05-01-preview"
     ]
   },
   "Microsoft.ArcContainerStorage": {
@@ -7997,9 +7989,6 @@
     ],
     "locations/updateRoutesOnVirtualNetwork": [
       "2024-06-01-preview"
-    ],
-    "locations/utilization": [
-      "2025-02-01-preview"
     ],
     "operations": [
       "2018-09-01-preview",
@@ -12053,6 +12042,9 @@
     "saferollouts": [
       "2025-03-01-preview"
     ],
+    "saferollouts/steps": [
+      "2025-03-01-preview"
+    ],
     "stagemaps": [
       "2025-03-01-preview",
       "2025-09-01-preview"
@@ -13750,6 +13742,12 @@
     ],
     "galleries/inVMAccessControlProfiles/versions": [
       "2024-03-03",
+      "2025-03-03"
+    ],
+    "galleries/scripts": [
+      "2025-03-03"
+    ],
+    "galleries/scripts/versions": [
       "2025-03-03"
     ],
     "hostGroups": [
@@ -22967,7 +22965,9 @@
       "2025-08-01-preview",
       "2025-09-01-preview",
       "2025-10-10",
-      "2025-11-01-preview"
+      "2025-11-01-preview",
+      "2026-01-01-preview",
+      "2026-02-15-preview"
     ],
     "scalingPlans": [
       "2019-01-23-preview",
@@ -31548,7 +31548,6 @@
       "2022-08-01-preview",
       "2023-03-15-preview",
       "2023-12-01",
-      "2024-01-01-preview",
       "2025-01-01-preview"
     ],
     "scheduledqueryrules/networkSecurityPerimeterAssociationProxies": [
@@ -33046,7 +33045,8 @@
       "2023-12-01-preview",
       "2024-12-01-preview",
       "2025-07-01-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2026-01-01-preview"
     ],
     "loadTestMappings": [
       "2023-12-01-preview",
@@ -33074,7 +33074,8 @@
       "2023-12-01-preview",
       "2024-12-01-preview",
       "2025-07-01-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2026-01-01-preview"
     ],
     "Locations/OperationStatuses": [
       "2022-12-01",
@@ -33083,7 +33084,8 @@
     ],
     "Locations/playwrightQuotas": [
       "2025-07-01-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2026-01-01-preview"
     ],
     "Locations/Quotas": [
       "2022-12-01",
@@ -33095,7 +33097,8 @@
       "2023-12-01-preview",
       "2024-12-01-preview",
       "2025-07-01-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2026-01-01-preview"
     ],
     "playwrightWorkspaces": [
       "2025-07-01-preview",
@@ -33104,14 +33107,16 @@
     ],
     "PlaywrightWorkspaces/quotas": [
       "2025-07-01-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2026-01-01-preview"
     ],
     "registeredSubscriptions": [
       "2022-12-01",
       "2023-12-01-preview",
       "2024-12-01-preview",
       "2025-07-01-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2026-01-01-preview"
     ]
   },
   "Microsoft.Logic": {
@@ -36298,6 +36303,9 @@
     "migrateProjects/privateEndpointConnections": [
       "2020-05-01",
       "2023-01-01"
+    ],
+    "migrateprojects/reports": [
+      "2025-12-15-preview"
     ],
     "migrateProjects/solutions": [
       "2018-09-01-preview",
@@ -47755,7 +47763,8 @@
       "2023-11-13-preview",
       "2025-01-01-preview",
       "2025-08-11-preview",
-      "2025-11-01-preview"
+      "2025-11-01-preview",
+      "2025-12-15-preview"
     ]
   },
   "Microsoft.Quota": {
@@ -49313,7 +49322,8 @@
       "2023-07-01-preview",
       "2023-09-04",
       "2023-11-22",
-      "2024-08-12-preview"
+      "2024-08-12-preview",
+      "2025-07-25"
     ],
     "locations/openshiftversions": [
       "2022-09-04",
@@ -49321,7 +49331,8 @@
       "2023-07-01-preview",
       "2023-09-04",
       "2023-11-22",
-      "2024-08-12-preview"
+      "2024-08-12-preview",
+      "2025-07-25"
     ],
     "locations/operationresults": [
       "2020-04-30",
@@ -49332,7 +49343,8 @@
       "2023-07-01-preview",
       "2023-09-04",
       "2023-11-22",
-      "2024-08-12-preview"
+      "2024-08-12-preview",
+      "2025-07-25"
     ],
     "locations/operationsstatus": [
       "2020-04-30",
@@ -49343,10 +49355,12 @@
       "2023-07-01-preview",
       "2023-09-04",
       "2023-11-22",
-      "2024-08-12-preview"
+      "2024-08-12-preview",
+      "2025-07-25"
     ],
     "locations/platformworkloadidentityrolesets": [
-      "2024-08-12-preview"
+      "2024-08-12-preview",
+      "2025-07-25"
     ],
     "openShiftClusters": [
       "2020-04-30",
@@ -49357,7 +49371,8 @@
       "2023-07-01-preview",
       "2023-09-04",
       "2023-11-22",
-      "2024-08-12-preview"
+      "2024-08-12-preview",
+      "2025-07-25"
     ],
     "openshiftclusters/machinePool": [
       "2022-09-04",
@@ -49397,7 +49412,8 @@
       "2023-07-01-preview",
       "2023-09-04",
       "2023-11-22",
-      "2024-08-12-preview"
+      "2024-08-12-preview",
+      "2025-07-25"
     ]
   },
   "Microsoft.Relationships": {
@@ -66808,7 +66824,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-01-preview"
     ],
     "exadbVmClusters": [
       "2024-12-01-preview",
@@ -66911,7 +66928,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-01-preview"
     ],
     "Locations/dbSystemShapes": [
       "2023-09-01",
@@ -67033,7 +67051,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-01-preview"
     ],
     "Operations": [
       "2023-09-01",
@@ -67073,7 +67092,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-01-preview"
     ]
   },
   "PaloAltoNetworks.Cloudngfw": {
