@@ -66722,7 +66722,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "autonomousDatabases/autonomousDatabaseBackups": [
       "2023-09-01",
@@ -66738,7 +66739,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "cloudExadataInfrastructures": [
       "2023-09-01",
@@ -66754,7 +66756,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "cloudExadataInfrastructures/dbServers": [
       "2023-09-01",
@@ -66770,7 +66773,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "cloudVmClusters": [
       "2023-09-01",
@@ -66786,7 +66790,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "cloudVmClusters/dbNodes": [
       "2023-09-01",
@@ -66802,7 +66807,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "cloudVmClusters/virtualNetworkAddresses": [
       "2023-09-01",
@@ -66818,14 +66824,16 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "dbSystems": [
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
       "2025-09-01",
-      "2025-11-01-preview"
+      "2025-11-01-preview",
+      "2025-11-15-preview"
     ],
     "exadbVmClusters": [
       "2024-12-01-preview",
@@ -66836,7 +66844,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "exadbVmClusters/dbNodes": [
       "2024-12-01-preview",
@@ -66847,7 +66856,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "exascaleDbStorageVaults": [
       "2024-12-01-preview",
@@ -66858,7 +66868,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "Locations": [
       "2023-09-01",
@@ -66874,7 +66885,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "Locations/autonomousDatabaseCharacterSets": [
       "2023-09-01",
@@ -66890,7 +66902,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "Locations/autonomousDatabaseNationalCharacterSets": [
       "2023-09-01",
@@ -66906,7 +66919,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "Locations/autonomousDbVersions": [
       "2023-09-01",
@@ -66922,14 +66936,16 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "Locations/dbSystemDbVersions": [
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
       "2025-09-01",
-      "2025-11-01-preview"
+      "2025-11-01-preview",
+      "2025-11-15-preview"
     ],
     "Locations/dbSystemShapes": [
       "2023-09-01",
@@ -66945,7 +66961,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "Locations/dnsPrivateViews": [
       "2023-09-01",
@@ -66961,7 +66978,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "Locations/dnsPrivateZones": [
       "2023-09-01",
@@ -66977,14 +66995,16 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "Locations/flexComponents": [
       "2025-01-01-preview",
       "2025-03-01",
       "2025-04-01-preview",
       "2025-06-01-preview",
-      "2025-07-01-preview"
+      "2025-07-01-preview",
+      "2025-11-15-preview"
     ],
     "Locations/giVersions": [
       "2023-09-01",
@@ -67000,7 +67020,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "Locations/giVersions/giMinorVersions": [
       "2024-12-01-preview",
@@ -67011,7 +67032,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "Locations/OperationStatuses": [
       "2023-09-01",
@@ -67027,7 +67049,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "Locations/systemVersions": [
       "2023-09-01",
@@ -67043,7 +67066,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "networkAnchors": [
       "2025-04-01-preview",
@@ -67052,7 +67076,8 @@
       "2025-08-01-preview",
       "2025-08-15-preview",
       "2025-09-01",
-      "2025-11-01-preview"
+      "2025-11-01-preview",
+      "2025-11-15-preview"
     ],
     "Operations": [
       "2023-09-01",
@@ -67068,7 +67093,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "oracleSubscriptions": [
       "2023-09-01",
@@ -67084,7 +67110,8 @@
       "2025-07-01-preview",
       "2025-08-01-preview",
       "2025-08-15-preview",
-      "2025-09-01"
+      "2025-09-01",
+      "2025-11-15-preview"
     ],
     "resourceAnchors": [
       "2025-04-01-preview",
@@ -67093,7 +67120,8 @@
       "2025-08-01-preview",
       "2025-08-15-preview",
       "2025-09-01",
-      "2025-11-01-preview"
+      "2025-11-01-preview",
+      "2025-11-15-preview"
     ]
   },
   "PaloAltoNetworks.Cloudngfw": {
