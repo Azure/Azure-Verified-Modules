@@ -62952,15 +62952,6 @@
       "2021-06-01",
       "2021-06-01-preview"
     ],
-    "workspaces/sqlPools/metadataSync": [
-      "2019-06-01-preview",
-      "2020-12-01",
-      "2021-03-01",
-      "2021-04-01-preview",
-      "2021-05-01",
-      "2021-06-01",
-      "2021-06-01-preview"
-    ],
     "workspaces/sqlPools/schemas/tables/columns/sensitivityLabels": [
       "2019-06-01-preview",
       "2020-12-01",
