@@ -9,6 +9,30 @@ param customerManagedKey customerManagedKeyWithAutoRotateType?
 //   Variables   //
 // ============= //
 
+// If user-assiged identities are supported => Adds any user assigned identity specified in the customer managed key definition to the general managed-identity spcification
+var formattedUserAssignedIdentities = reduce(
+  map(
+    union(
+      (managedIdentities.?userAssignedResourceIds ?? []),
+      (!empty(customerManagedKey.?userAssignedIdentityResourceId)
+        ? [customerManagedKey.?userAssignedIdentityResourceId]
+        : [])
+    ),
+    (id) => { '${id}': {} }
+  ),
+  {},
+  (cur, next) => union(cur, next)
+) // Converts the flat array to an object like { '${id1}': {}, '${id2}': {} }
+
+var identity = !empty(managedIdentities) || !empty(formattedUserAssignedIdentities) 
+  ? {
+      type: (managedIdentities.?systemAssigned ?? false)
+        ? (!empty(formattedUserAssignedIdentities) ? 'SystemAssigned, UserAssigned' : 'SystemAssigned')
+        : (!empty(formattedUserAssignedIdentities) ? 'UserAssigned' : null)
+      userAssignedIdentities: !empty(formattedUserAssignedIdentities) ? formattedUserAssignedIdentities : null
+    }
+  : null
+  
 var isHSMManagedCMK = split(customerManagedKey.?keyVaultResourceId ?? '', '/')[?7] == 'managedHSMs'
 
 // ============= //
