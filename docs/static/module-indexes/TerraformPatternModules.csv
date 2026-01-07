@@ -41,4 +41,3 @@ Corporate Line of Business (LoB) ChatBot ,,avm-ptn-openai-cognitivesearch,Propos
 Policy assignment,,avm-ptn-policyassignment,Available,AVM pattern Module for Policy assignment,https://registry.terraform.io/modules/Azure/avm-ptn-policyassignment/azurerm/latest,bjornhofer,Bjorn Hofer,,,2024-09
 Network Security Groups,NSG,avm-ptn-subnets-nsgs-routes,Proposed,AVM pattern Module for Network Security Groups,,swathialuganti,Swathi Aluganti Narasimhulu,,,
 Subscription Service Health Alerts,,avm-ptn-subscription-service-health-alerts,Proposed,AVM pattern Module for Subscription Service Health Alerts,,ASHR4,Rhys Ash,,,
-Virtual WAN,vWAN,avm-ptn-virtualwan,Available,AVM pattern Module for Virtual WAN,https://registry.terraform.io/modules/Azure/avm-ptn-virtualwan/azurerm/latest,khushal08,Khush Kaviraj,,,2023-09
