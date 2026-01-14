@@ -432,7 +432,9 @@ The workflow is configured in a way that it will trigger on any changes in Upstr
 # Only run if not canceled and not in a fork, unless triggered by a workflow_dispatch event
 if: ${{ !cancelled() && !(github.repository != 'Azure/bicep-registry-modules' && github.event_name != 'workflow_dispatch') }}
 ```
-This condition ensures that you don't accidently trigger a large amount of module workflows when e.g., merging changes from upstream into your fork.
+This condition prevents accidentally triggering a large amount of module workflows, e.g., when merging upstream changes into your fork.
+
+In forks, workflow validation remains possible through explicit runs (that is, by using the  `workflow_dispatch`  event).
 
 {{% /notice %}}
 
