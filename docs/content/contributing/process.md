@@ -53,7 +53,7 @@ flowchart TD
         click G "{{% siteparam base %}}/spec/SNFR3"
     G -->|Tests Fail|I(Modules/Tests Fixed <br> To Make Them Pass)
     I -->F
-    G -->|Tests Pass|J[[Pre-Release v0.1.0 created]]
+    G -->|Tests Pass|J[[Version 0.1.0 created]]
     J -->K[[Publish to Bicep/Terraform Registry]]
     K -->L(Take Feedback from v0.1.0 Consumers)
     L -->M{Anything<br>to be resolved <br> before 1.0.0<br>release? }
@@ -80,9 +80,9 @@ When proposing a module, please include the information in the description that 
 
 {{% notice style="important" %}}
 
-As the overall AVM framework is not GA (generally available) yet - the CI framework and test automation is not fully functional and implemented across all supported languages yet - breaking changes are expected, and additional customer feedback is yet to be gathered and incorporated. Hence, modules **MUST NOT** be published at version `1.0.0` or higher at this time.
+The AVM framework continues to evolve, and several elements, such as Continuous Integration (CI) processes, module specifications and corresponding specification‑validation coverage, are not yet fully implemented. Hence, modules **MUST NOT** be published at version `1.0.0` or higher at this time.
 
-All module **MUST** be published as a pre-release version (e.g., `0.1.0`, `0.1.1`, `0.2.0`, etc.) until the AVM framework becomes GA.
+All module **MUST** be published as a `0.x.y` minor version (e.g., `0.1.0`, `0.1.1`, `0.2.0`, etc.) until the AVM team provides guidance that publishing v1.0.0 is allowed.
 
 However, it is important to note that this **DOES NOT** mean that the modules cannot be consumed and utilized. They **CAN** be leveraged in all types of environments (dev, test, prod etc.). Consumers can treat them just like any other IaC module and raise issues or feature requests against them as they learn from the usage of the module. Consumers should also read the release notes for each version, if considering updating to a more recent version of a module to see if there are any considerations or breaking changes etc.
 
