@@ -432,7 +432,9 @@ The workflow is configured to be triggered by any changes in the `main` branch o
 # Only run if not canceled and not in a fork, unless triggered by a workflow_dispatch event
 if: ${{ !cancelled() && !(github.repository != 'Azure/bicep-registry-modules' && github.event_name != 'workflow_dispatch') }}
 ```
-This condition ensures that you don't accidently trigger a large number of module workflows when, for example, you merge changes from upstream into your fork.
+This condition prevents accidentally triggering a large amount of module workflows, e.g., when merging upstream changes into your fork.
+
+In forks, workflow validation remains possible through explicit runs (that is, by using the  `workflow_dispatch`  event).
 
 {{% /notice %}}
 
