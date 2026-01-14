@@ -425,6 +425,20 @@ If you're working on a new module, we'd also ask you to create its corresponding
 
 {{% /expand %}}
 
+{{% notice style="note" %}}
+
+The workflow is configured to be triggered by any changes in the `main` branch of Upstream (i.e., `Azure/bicep-registry-modules`) that could affect the module or its validation. However, in a fork, the workflow is stopped immediately after being triggered due to the condition:
+```yml
+# Only run if not canceled and not in a fork, unless triggered by a workflow_dispatch event
+if: ${{ !cancelled() && !(github.repository != 'Azure/bicep-registry-modules' && github.event_name != 'workflow_dispatch') }}
+```
+This condition prevents accidentally triggering a large amount of module workflows, e.g., when merging upstream changes into your fork.
+
+In forks, workflow validation remains possible through explicit runs (that is, by using the  `workflow_dispatch`  event).
+
+{{% /notice %}}
+
+
 {{% notice style="tip" %}}
 
 After any change to a module and before running tests, we highly recommend running the [Set-AVMModule]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files) utility to update all module files that are auto-generated (e.g., the `main.json` & `readme.md` files).
