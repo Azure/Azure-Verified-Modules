@@ -425,14 +425,14 @@ If you're working on a new module, we'd also ask you to create its corresponding
 
 {{% /expand %}}
 
-{{% notice style="tip" %}}
+{{% notice style="note" %}}
 
-The workflow is configured in a way that it will trigger on any changes in Upstream's (i.e., `Azure/bicep-registry-modules`) `main` branch if they may have an impact on the module or its validation. However, while in a fork, the workflow will stop right after initiation thanks to the condition:
+The workflow is configured to be triggered by any changes in the `main` branch of Upstream (i.e., `Azure/bicep-registry-modules`) that could affect the module or its validation. However, in a fork, the workflow is stopped immediately after being triggered due to the condition:
 ```yml
 # Only run if not canceled and not in a fork, unless triggered by a workflow_dispatch event
 if: ${{ !cancelled() && !(github.repository != 'Azure/bicep-registry-modules' && github.event_name != 'workflow_dispatch') }}
 ```
-This condition ensures that you don't accidently trigger a large amount of module workflows when e.g., merging changes from upstream into your fork.
+This condition ensures that you don't accidently trigger a large number of module workflows when, for example, you merge changes from upstream into your fork.
 
 {{% /notice %}}
 
