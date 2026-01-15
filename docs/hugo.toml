@@ -114,6 +114,102 @@ weight = 2
 params = { alwaysopen = true, collapsibleMenu = true }
 
   [[menu.defined]]
+  identifier = 'bicep-module-indexes'
+  parent = 'module-indexes'
+  name = 'Bicep'
+  pageRef = '/indexes/bicep'
+  weight = 1
+  params = { alwaysopen = true, collapsibleMenu = true }
+
+    [[menu.defined]]
+    identifier = 'bicep-resource-module-indexes'
+    parent = 'bicep-module-indexes'
+    name = 'Resource Modules'
+    pageRef = '/indexes/bicep/bicep-resource-modules'
+    weight = 1
+    params = { alwaysopen = false, collapsibleMenu = true }
+
+    [[menu.defined]]
+    identifier = 'bicep-pattern-module-indexes'
+    parent = 'bicep-module-indexes'
+    name = 'Pattern Modules'
+    pageRef = '/indexes/bicep/bicep-pattern-modules'
+    weight = 2
+    params = { alwaysopen = false, collapsibleMenu = true }
+
+    [[menu.defined]]
+    identifier = 'bicep-utility-module-indexes'
+    parent = 'bicep-module-indexes'
+    name = 'Utility Modules'
+    pageRef = '/indexes/bicep/bicep-utility-modules'
+    weight = 3
+    params = { alwaysopen = false, collapsibleMenu = true }
+
+  [[menu.defined]]
+  identifier = 'terraform-module-indexes'
+  parent = 'module-indexes'
+  name = 'Terraform'
+  pageRef = '/indexes/terraform'
+  weight = 2
+  params = { alwaysopen = true, collapsibleMenu = true }
+
+    [[menu.defined]]
+    identifier = 'terraform-resource-module-indexes'
+    parent = 'terraform-module-indexes'
+    name = 'Resource Modules'
+    pageRef = '/indexes/terraform/tf-resource-modules'
+    weight = 1
+    params = { alwaysopen = false, collapsibleMenu = true }
+
+    [[menu.defined]]
+    identifier = 'terraform-pattern-module-indexes'
+    parent = 'terraform-module-indexes'
+    name = 'Pattern Modules'
+    pageRef = '/indexes/terraform/tf-pattern-modules'
+    weight = 2
+    params = { alwaysopen = false, collapsibleMenu = true }
+
+    [[menu.defined]]
+    identifier = 'terraform-utility-module-indexes'
+    parent = 'terraform-module-indexes'
+    name = 'Utility Modules'
+    pageRef = '/indexes/terraform/tf-utility-modules'
+    weight = 3
+    params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'usage'
+parent = 'home'
+name = 'Usage Guide'
+pageRef = '/usage'
+weight = 3
+params = { alwaysopen = true, collapsibleMenu = true }
+
+  [[menu.defined]]
+  identifier = 'quickstart'
+  parent = 'usage'
+  name = 'Quickstart'
+  pageRef = '/usage/quickstart'
+  weight = 1
+  params = { alwaysopen = false, collapsibleMenu = true }
+
+    [[menu.defined]]
+    identifier = 'bicep-quickstart'
+    parent = 'quickstart'
+    name = 'Bicep'
+    pageRef = '/usage/quickstart/bicep'
+    weight = 1
+    params = { alwaysopen = false, collapsibleMenu = true }
+
+    [[menu.defined]]
+    identifier = 'terraform-quickstart'
+    parent = 'quickstart'
+    name = 'Terraform'
+    pageRef = '/usage/quickstart/terraform'
+    weight = 2
+    params = { alwaysopen = false, collapsibleMenu = true }
+
+  [[menu.defined]]
     identifier = 'solution-development'
     parent = 'usage'
     name = 'Solution Development'
@@ -146,107 +242,59 @@ params = { alwaysopen = true, collapsibleMenu = true }
   #   params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
-identifier = 'bicep-module-indexes'
-parent = 'module-indexes'
-name = 'Bicep'
-pageRef = '/indexes/bicep'
-weight = 1
-params = { alwaysopen = true, collapsibleMenu = true }
-
-[[menu.defined]]
-identifier = 'bicep-resource-module-indexes'
-parent = 'bicep-module-indexes'
-name = 'Resource Modules'
-pageRef = '/indexes/bicep/bicep-resource-modules'
-weight = 1
-params = { alwaysopen = false, collapsibleMenu = true }
-
-[[menu.defined]]
-identifier = 'bicep-pattern-module-indexes'
-parent = 'bicep-module-indexes'
-name = 'Pattern Modules'
-pageRef = '/indexes/bicep/bicep-pattern-modules'
-weight = 2
-params = { alwaysopen = false, collapsibleMenu = true }
-
-[[menu.defined]]
-identifier = 'bicep-utility-module-indexes'
-parent = 'bicep-module-indexes'
-name = 'Utility Modules'
-pageRef = '/indexes/bicep/bicep-utility-modules'
-weight = 3
-params = { alwaysopen = false, collapsibleMenu = true }
-
-[[menu.defined]]
-identifier = 'terraform-module-indexes'
-parent = 'module-indexes'
-name = 'Terraform'
-pageRef = '/indexes/terraform'
-weight = 2
-params = { alwaysopen = true, collapsibleMenu = true }
-
-[[menu.defined]]
-identifier = 'terraform-resource-module-indexes'
-parent = 'terraform-module-indexes'
-name = 'Resource Modules'
-pageRef = '/indexes/terraform/tf-resource-modules'
-weight = 1
-params = { alwaysopen = false, collapsibleMenu = true }
-
-[[menu.defined]]
-identifier = 'terraform-pattern-module-indexes'
-parent = 'terraform-module-indexes'
-name = 'Pattern Modules'
-pageRef = '/indexes/terraform/tf-pattern-modules'
-weight = 2
-params = { alwaysopen = false, collapsibleMenu = true }
-
-[[menu.defined]]
-identifier = 'terraform-utility-module-indexes'
-parent = 'terraform-module-indexes'
-name = 'Utility Modules'
-pageRef = '/indexes/terraform/tf-utility-modules'
-weight = 3
-params = { alwaysopen = false, collapsibleMenu = true }
-
-[[menu.defined]]
-identifier = 'usage'
+identifier = 'experimental'
 parent = 'home'
-name = 'Usage Guide'
-pageRef = '/usage'
-weight = 3
+name = 'Experimental'
+pageRef = '/experimental'
+weight = 4
 params = { alwaysopen = true, collapsibleMenu = true }
 
-[[menu.defined]]
-identifier = 'quickstart'
-parent = 'usage'
-name = 'Quickstart'
-pageRef = '/usage/quickstart'
-weight = 1
-params = { alwaysopen = false, collapsibleMenu = true }
+  [[menu.defined]]
+    identifier = 'ai-assisted-iac'
+    parent = 'experimental'
+    name = 'AI-Assisted IaC'
+    pageRef = '/experimental/ai-assisted-sol-dev'
+    weight = 1
+    params = { alwaysopen = false, collapsibleMenu = true }
 
-[[menu.defined]]
-identifier = 'bicep-quickstart'
-parent = 'quickstart'
-name = 'Bicep'
-pageRef = '/usage/quickstart/bicep'
-weight = 1
-params = { alwaysopen = false, collapsibleMenu = true }
+  [[menu.defined]]
+    identifier = 'sdd'
+    parent = 'ai-assisted-iac'
+    name = 'Spec-Driven Development'
+    pageRef = '/experimental/ai-assisted-sol-dev/sdd'
+    weight = 1
+    params = { alwaysopen = false, collapsibleMenu = true }
 
-[[menu.defined]]
-identifier = 'terraform-quickstart'
-parent = 'quickstart'
-name = 'Terraform'
-pageRef = '/usage/quickstart/terraform'
-weight = 2
-params = { alwaysopen = false, collapsibleMenu = true }
+  [[menu.defined]]
+    identifier = 'spec-kit'
+    parent = 'ai-assisted-iac'
+    name = 'SpecKit'
+    pageRef = '/experimental/ai-assisted-sol-dev/spec-kit'
+    weight = 2
+    params = { alwaysopen = false, collapsibleMenu = true }
+
+  [[menu.defined]]
+    identifier = 'bicep-spec-kit'
+    parent = 'ai-assisted-iac'
+    name = 'Bicep Example'
+    pageRef = '/experimental/ai-assisted-sol-dev/bicep'
+    weight = 3
+    params = { alwaysopen = false, collapsibleMenu = true }
+
+#  [[menu.defined]]
+#    identifier = 'terraform-spec-kit'
+#    parent = 'ai-assisted-iac'
+#    name = 'Terraform Example'
+#    pageRef = '/experimental/ai-assisted-sol-dev/terraform'
+#    weight = 4
+#    params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
 identifier = 'specs-defs'
 parent = 'home'
 name = 'Specifications & Definitions'
 pageRef = '/specs-defs'
-weight = 4
+weight = 5
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
@@ -362,19 +410,11 @@ weight = 4
 params = { alwaysopen = true, collapsibleMenu = true }
 
 [[menu.defined]]
-identifier = 'terraform-specs'
-parent = 'module-specs'
-name = 'Terraform'
-pageRef = '/specs-defs/specs/terraform'
-weight = 2
-params = { alwaysopen = true, collapsibleMenu = true }
-
-[[menu.defined]]
 identifier = 'help-support'
 parent = 'home'
 name = 'Help & Support'
 pageRef = '/help-support'
-weight = 5
+weight = 6
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
@@ -508,7 +548,7 @@ identifier = 'contributing'
 parent = 'home'
 name = 'Contributing'
 pageRef = '/contributing'
-weight = 6
+weight = 7
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
@@ -629,7 +669,7 @@ identifier = 'testing'
 parent = 'terraform-module-contribution'
 name = 'Testing'
 pageRef = '/contributing/terraform/testing'
-weight = 2
+weight = 3
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
@@ -637,7 +677,7 @@ identifier = 'terraform-contribution-flow'
 parent = 'terraform-module-contribution'
 name = 'Contribution Flow'
 pageRef = '/contributing/terraform/terraform-contribution-flow'
-weight = 3
+weight = 4
 params = { alwaysopen = true, collapsibleMenu = true }
 
 [[menu.defined]]
@@ -653,7 +693,7 @@ identifier = 'terraform-repository-creation-process'
 parent = 'terraform-contribution-flow'
 name = 'Repository Creation Process'
 pageRef = '/contributing/terraform/terraform-contribution-flow/repository-creation-process'
-weight = 1
+weight = 2
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
@@ -661,11 +701,11 @@ identifier = 'review'
 parent = 'terraform-module-contribution'
 name = 'Review'
 pageRef = '/contributing/terraform/review'
-weight = 4
+weight = 5
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
-identifier = 'contirbution-qna'
+identifier = 'contribution-qna'
 parent = 'contributing'
 name = 'Contribution Q&A'
 pageRef = '/contributing/q-and-a'
@@ -695,7 +735,7 @@ identifier = 'resources'
 parent = 'home'
 name = 'Resources'
 pageRef = '/resources'
-weight = 7
+weight = 8
 params = { alwaysopen = true, collapsibleMenu = true }
 
 [[menu.defined]]
