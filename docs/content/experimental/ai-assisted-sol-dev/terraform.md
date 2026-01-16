@@ -1,5 +1,5 @@
 ---
-title: Terraform Example for Spec-Kit
+title: Terraform Example for Spec Kit
 linktitle: Terraform Example
 type: default
 weight: 1

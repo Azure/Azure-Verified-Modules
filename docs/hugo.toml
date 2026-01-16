@@ -268,7 +268,7 @@ params = { alwaysopen = true, collapsibleMenu = true }
   [[menu.defined]]
     identifier = 'spec-kit'
     parent = 'ai-assisted-iac'
-    name = 'SpecKit'
+    name = 'Spec Kit'
     pageRef = '/experimental/ai-assisted-sol-dev/spec-kit'
     weight = 2
     params = { alwaysopen = false, collapsibleMenu = true }

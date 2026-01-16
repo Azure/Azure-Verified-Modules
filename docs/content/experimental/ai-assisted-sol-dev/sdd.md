@@ -28,7 +28,7 @@ This contract ensures that as requirements change and as Azure evolves or best p
 2. **Architecture becomes executable**: Architecture and requirements aren't advisory; platforms can enforce them, regenerate code, and detect drift via continuous validation and schema checks.
 3. **Intent > Implementation**: Human authority shifts "upward," focusing on intent, policy, constraints, and ethics, while automation handles consistent implementation.
 4. **Parallelization and consistency**: Because every team consumes the same precise blueprint, SDD eliminates ambiguity and reduces rework.
-5. **AI-native development workflow**: AI coding agents (e.g., GitHub Copilot with Spec-Kit) rely on specifications to generate architecture plans, tests, tasks, and code in a deterministic, repeatable way.
+5. **AI-native development workflow**: AI coding agents (e.g., GitHub Copilot with Spec Kit) rely on specifications to generate architecture plans, tests, tasks, and code in a deterministic, repeatable way.
 
 ## Paradigm Shift
 
