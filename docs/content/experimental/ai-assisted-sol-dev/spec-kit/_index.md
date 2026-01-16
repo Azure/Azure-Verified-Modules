@@ -113,7 +113,7 @@ The specification document (`spec.md`) is used to define the baseline specificat
 
 The specification describes WHAT you want to build and WHY - not how. It is focused on user needs, functional requirements, constraints, and success criteria.
 
-Spec Kit uses `/speckit.specify` to generate the `spec.md` file. Specifications evolve through iterating over the `spec.md` file by either manually editing it or repeatedly fine tuning the prompt used with `/speckit.specify` and leveraging `/speckit.clarify` to review and challenge the specification.
+Spec Kit uses `/speckit.specify` to generate the `spec.md` file. Specifications can be evolved through iterating over the `spec.md` file by either manually editing it or repeatedly fine tuning the prompt used with `/speckit.specify` and leveraging `/speckit.clarify` to review and challenge the specification.
 
 **The specification typically includes:**
 
@@ -163,7 +163,7 @@ Spec Kit uses `/speckit.clarify` to generate adjust information captured in `spe
 
 This step is where the technical requirements for the project are defined. Spec Kit consults the constitution to ensure that the non-negotiable principles are respected. The plan turns the specification into a technical architecture and concrete design. It defines how the system will be built - including technical stack and architecture choices. It also outlines the execution flow, primary dependencies, testing approaches, target platforms, and architecture principles.
 
-Spec Kit uses `/speckit.plan` to generate the `plan.md` file. Plan can be validated and refined by iterating over the `plan.md` file and leveraging `/speckit.checklist` to review and challenge the plan.
+Spec Kit uses `/speckit.plan` to generate the `plan.md` file. The plan can be evolved through iterating over the `plan.md` file by either manually editing it or repeatedly fine tuning the prompt used with `/speckit.plan`, or leveraging `/speckit.checklist` to review/validate and challenge the plan.
 
 **The plan typically includes:**
 
