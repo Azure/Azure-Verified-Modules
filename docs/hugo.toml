@@ -275,10 +275,10 @@ params = { alwaysopen = true, collapsibleMenu = true }
 
   [[menu.defined]]
     identifier = 'bicep-spec-kit'
-    parent = 'ai-assisted-iac'
+    parent = 'spec-kit'
     name = 'Bicep Example'
     pageRef = '/experimental/ai-assisted-sol-dev/bicep'
-    weight = 3
+    weight = 1
     params = { alwaysopen = false, collapsibleMenu = true }
 
 #  [[menu.defined]]
