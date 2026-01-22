@@ -13,7 +13,7 @@ The content in this section represents **experimental explorations** of emerging
 
 ## Overview
 
-**Spec Kit** is a reference implementation of [Specification-Driven Development (SDD)]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/sdd) principles, developed by members of the open-source community, including engineers from Microsoft and Anthropic. It provides a structured, AI-native workflow for translating project requirements into specifications, plans, and executable tasks - demonstrating how SDD concepts can be operationalized.
+**Spec Kit** is a reference implementation of [Specification-Driven Development (SDD)]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/sdd) principles, developed by members of the open-source community, including engineers from Microsoft and Anthropic. It provides a structured, AI-native workflow for translating project requirements into specifications, plans, executable tasks and implemented code - demonstrating how SDD concepts can be operationalized.
 
 **For detailed information (installation instructions, usage guidelines, etc.) visit the official repository**: [https://github.com/github/spec-kit](https://github.com/github/spec-kit)
 
@@ -179,7 +179,7 @@ Spec Kit uses `/speckit.plan` to generate the `plan.md` file. The plan can be ev
 Following our [scenario](#example-scenario), here are some examples for what the prompt used to generate the plan should include:
 
 1. **Chosen Technologies**
-    - AVM Bicep modules
+    - AVM Bicep or Terraform modules
 
 2. **Architecture**
     - Hub/spoke or simple VNet depending on environment.
