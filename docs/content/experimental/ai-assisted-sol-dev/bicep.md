@@ -20,11 +20,9 @@ The content in this section represents **experimental explorations** of emerging
 
 Before you begin, make sure you have these tools installed in your development environment!
 
-
-
 ## Solution Architecture
 
-Before we begin coding, it is important to have details about what the infrastructure architecture will include. For our example, using AVM modules, we will be building a solution that will host a simple application on a Windows virtual machine (VM). The solution must be secure and auditable. The VM must not be accessible from the internet and its logs should be easily accessible. All Azure services should utilize logging tools for auditing purposes.
+Before we begin coding, it is important to have details about what the infrastructure architecture will include. For our example, using AVM modules, we will be building a solution that will host a simple application on a Windows virtual machine (VM). The solution must be secure and auditable. The VM must not be accessible from the internet and its logs should be captured in Log Analytics, included with the solution.
 
 <img src="{{% siteparam base %}}/images/usage/solution-development/avm-virtualmachine-example1.png" alt="Azure VM Solution Architecture" style="max-width:800px;" />
 
@@ -40,24 +38,54 @@ On a Windows PC, to get the **uv package manager CLI** tool required for locally
 
 1. To install Spec Kit locally, run the following command:
 
-```bash
-uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
-```
+    ```bash
+    uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
+    ```
 
-2. Create a new directory for your Spec Kit project and navigate into it:
+2. Create a new directory for your Spec Kit project and navigate into it - this folder ideally already exists as a git repository:
 
-```bash
-mkdir avm-bicep-spec-kit
-cd avm-bicep-spec-kit
-```
+    ```bash
+    mkdir avm-workload
+    cd avm-workload
+    ```
 
 3. Initialize a new Spec Kit project:
 
-```bash
-specify init .
-```
+    ```bash
+    specify init .
+    ```
 
-4. The rest of the steps will be performed using GitHub Copilot Chat in VS Code: Start your VS Code environment, open or add the newly created folder to your workspace, and navigate to GitHub Copilot Chat using the dialog icon on the top of the window or by hitting `CTRL+ALT+I`.
+    If the folder has already been set up as a repository, the specify tool will warn you that the folder is not empty. Just confirm that you want to proceed.
+
+    As we haven't defined the AI assistant in our init command, specify will prompt us to choose one. Select **copilot (GitHub Copilot)** from the list. Similarly, as we haven't defined the script type, specify will prompt us to choose one. Select **ps (PowerShell)** from the list.
+
+    {{% expand title="➕ Expand to see the results" %}}
+
+Click through the tabs to see the details!
+
+{{< tabs title="Initialization" >}}
+{{% tab title="specify init ." %}}
+
+You should see something like this:
+<img src="{{%siteparam base%}}/images/experimental/sdd/specify-bootstrap.png" width=100% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="Folder structure & files" %}}
+
+In your project folder, you should now see the following files and folders created by the specify tool:
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/folder-structure.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+    {{% /expand %}}
+
+1. If you're using git, it is recommended to make an initial commit now to capture the bootstrapped state of your project, with a comment of something like "Initial commit - Spec Kit bootstrap".
+
+2. The rest of the steps will be performed using GitHub Copilot Chat in VS Code: Start your VS Code environment, open or add the newly created folder to your workspace, and navigate to GitHub Copilot Chat using the dialog icon on the top of the window or by hitting `CTRL+ALT+I`.
 
 ## Making it real
 
@@ -93,8 +121,15 @@ To implement our example solution using Bicep and AVM modules, we will walk thro
 
 Changing the LLM does make a difference. We highly encourage you test different models to see which one works best for your needs.
 
-Note: At the time of writing this article, we tested our prompts with Claude Sonnet 4.5.
+**Note**: At the time of writing this article, we tested our prompts with `Claude Sonnet 4.5`.
 
+{{% /notice %}}
+
+{{% notice style="important" %}}
+As Spec Kit uses a set of built-in and system tools/scripts/cmdlets, you will need to approve the execution of each of these steps. **Make sure you understand the impact of these commands before approving and proceeding!**
+Here's an example:
+
+<img src="{{%siteparam base%}}/images/experimental/sdd/running-command-approval-example.png" width=70% alt="Specify Approve Scripts" style="margin:0 auto;padding: 0;">
 {{% /notice %}}
 
 ### 1. Constitution
@@ -107,19 +142,68 @@ To learn more about what the constitution should include, see the [related chapt
 
 {{% /notice %}}
 
-Run the following prompt to generate the constitution for our example:
+{{% expand title="➕ Before running /speckit.constitution (Expand)" %}}
 
-```markdown
-/speckit.constitution Fill the constitution with the typical requirements of a legacy Azure workload (needed to be retained for compliance reasons; no high-availability requirements; no disaster recovery requirements; no scalability requirements), defined as infrastructure-as-code, in Bicep language, built only with Azure Verified Modules (AVM). Always try to implement every feature with Bicep first (using Infra-as-code), and only use custom scripts when it's not possible otherwise. Follow IaC best practices: define everything in a single template, and let ARM manage dependencies and the order of deployment for each Azure resource.
+{{< tabs title="Constitution (pre-run)" >}}
+{{% tab title="constitution.md (template)" %}}
 
-Security and reliability best practices must be followed under all circumstances.
+Notice what the `constitution.md` file looks like before running the related prompt. It is just a template with placeholders, defining the structure:
 
-The naming convention is to use just enough random characters to make the name unique and have the Azure resource type reflected in the name. Resource type specific character and length limitations must be respected.
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/constitution-template.md" >}}
+{{< /highlight >}}
 
-Before running a deployment, always run a validation.
+{{% /tab %}}
+{{< /tabs >}}
 
-Deploy everything to the US West 3 datacenter region.
-```
+{{% /expand %}}
+
+1. Run the following prompt to generate the constitution for our example - should take ~3 minutes to run:
+
+    ```markdown
+    /speckit.constitution Fill the constitution with the typical requirements of a legacy Azure workload (needed to be retained for compliance reasons; no high-availability requirements; no disaster recovery requirements; no scalability requirements), defined as infrastructure-as-code, in Bicep language, built only with Azure Verified Modules (AVM). Always try to implement every feature with Bicep first (using Infra-as-code), and only use custom scripts when it's not possible otherwise. Follow IaC best practices: define everything in a single template, and let ARM manage dependencies and the order of deployment for each Azure resource.
+
+    Security and reliability best practices must be followed under all circumstances.
+
+    The naming convention is to use just enough random characters to make the name unique and have the Azure resource type reflected in the name. Resource type specific character and length limitations must be respected.
+
+    Before running a deployment, always run a validation.
+
+    Deploy everything to the US West 3 datacenter region.
+    ```
+    {{% expand title="➕ Expand to see the results" %}}
+
+Click through the tabs to see the details!
+
+{{< tabs title="Constitution (post-run)" >}}
+{{% tab title="Chat window" %}}
+
+Once Copilot finished running the prompt, you should see something like this in the Copilot chat area:
+
+<img src="{{%siteparam base%}}/images/experimental/sdd/constitution-chat-results.png" width=70% alt="Constitution Chat Results" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="Before Approvals" %}}
+
+In the `constitution.md` file, notice, how changes implemented by Copilot are not final yet, until you review, and approve them by clicking on the "Keep" button. You can either do this on a paragraph-by-paragraph basis, or for the entire document at once by clicking on the "Keep" button in the main Copilot chat window.:
+
+<img src="{{%siteparam base%}}/images/experimental/sdd/constituion-before-approvals.png" width=70% alt="Constitution Before Approvals" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="constitution.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/constitution.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+    {{% /expand %}}
+
+2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
+3. If you're using git, it is recommended to make a commit now to capture the new constitution of your project, with a comment of something like "Add constitution".
 
 ### 2. Specify
 
@@ -131,19 +215,56 @@ To learn more about what the specification should include, see the [related chap
 
 {{% /notice %}}
 
-Run the following prompt to generate the specification for our example:
+1. Run the following prompt to generate the specification for our example - takes ~ 5 minutes to run:
 
-```markdown
-/speckit.specify Create specification, called "01-my-legacy-workload" for a legacy business application, running as a single virtual machine connected to a virtual network. The VM must run Windows Server 2016, needs to have at least 2 CPU cores, 8 GB of RAM, standard HDD and a 500 GB HDD-based data disk attached. It must be remotely accessible via a bastion host and needs to have access to an HDD-backed file share in a storage account connected via a private endpoint. The VM's administrator password (created at the time of deployment) must be stored in a Key Vault, also deployed as part of this solution.
+    ```markdown
+    /speckit.specify Create specification, called "01-my-legacy-workload" for a legacy business application, running as a single virtual machine connected to a virtual network. The VM must run Windows Server 2016, needs to have at least 2 CPU cores, 8 GB of RAM, standard HDD and a 500 GB HDD-based data disk attached. It must be remotely accessible via a bastion host and needs to have access to an HDD-backed file share in a storage account connected via a private endpoint. The VM's administrator password (created at the time of deployment) must be stored in a Key Vault, also deployed as part of this solution.
 
-Always only rely on parameters from the main.bicepparam file. Have the name of the secret used for the admin password captured as a parameter.
+    Always only rely on parameters from the main.bicepparam file. Have the name of the secret used for the admin password captured as a parameter.
 
-When a decision needs to be made on availability zones, always choose a number between 1 and 3 (never choose -1, that explicitly disables this feature).
+    When a decision needs to be made on availability zones, always choose a number between 1 and 3 (never choose -1, that explicitly disables this feature).
 
-Create everything in a single resource group, standing for a production environment.
+    Create everything in a single resource group, standing for a production environment.
 
-Read the documentation (readme.md file) of each module you need to use to find out what parameters, and complex parameter objects you can use. Don't guess the allowed parameters.
-```
+    Read the documentation (readme.md file) of each module you need to use to find out what parameters, and complex parameter objects you can use. Don't guess the allowed parameters.
+
+    The VM must not be accessible from the internet and its logs should be captured in Log Analytics, included with the solution. Configure diagnostic logging plus critical-only alerts (VM stopped, disk full, Key Vault access failures).
+    ```
+
+    {{% expand title="➕ Expand to see the results" %}}
+
+Notice that the execution of the /speckit.specify created a new file called `requirements.md` and a file called `spec.md` in the `specs/001-legacy-vm-workload/` folder. Click through the tabs to see the details!
+
+{{< tabs title="Specify (post-run)" >}}
+{{% tab title="Spec" %}}
+
+Once Copilot finished running the prompt, you should see something like this in the Copilot chat area:
+
+<img src="{{%siteparam base%}}/images/experimental/sdd/spec-1.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/spec-2.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="requirements.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/requirements.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+{{% tab title="spec.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/spec.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+    {{% /expand %}}
+
+2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
+3. If you're using git, it is recommended to make a commit now to capture the clarified specification of your project, with a comment of something like "Specification created".
 
 ### 3. Clarify (Optional)
 
@@ -155,11 +276,51 @@ To learn more about the clarify step, see the [related chapter]({{% siteparam ba
 
 {{% /notice %}}
 
-Run the following prompt to generate clarification questions for our example:
+1. Run the following prompt to generate clarification questions for our example:
 
-```markdown
-/speckit.clarify
+    ```markdown
+    /speckit.clarify
+    ```
+
+    {{% expand title="➕ Expand to see example questions" %}}
+
+This section iterates on the spec.md file by asking questions, making suggestions and capturing the user's feedback. Click through the tabs to see the details!
+
+{{< tabs title="Clarify (post-run)" >}}
+{{% tab title="Analysis" %}}
+
+When running the clarify prompt, Copilot may ask you a number of depth questions to clarify certain aspects of the plan. Here's an example of what that looks like. You can answer in the following format, e.g.: `Q1: E, Q2:A, Q3:A`
+<img src="{{%siteparam base%}}/images/experimental/sdd/clarify-analysis.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="Questions" %}}
+
+In the Copilot chat window, you'll likely see some questions raised, similar to these. You can answer these just like in a normal chat conversation - e.g., by typing the letter standing for the option provided for each question, or by elaborating further if needed.
+
+<img src="{{%siteparam base%}}/images/experimental/sdd/clarify-q1.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/clarify-q2.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/clarify-q3.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="Spec updates" %}}
+
+Examples of clarifications that Copilot may suggest for our scenario (if not already covered in the spec):
+
+```md
+## Clarifications
+
+- Q: How should the Azure file share be mounted on the Windows VM? → A: Post-deployment manual mount by administrator following documented procedure (no automation, aligns with IaC-first principle)
+- Q: What level of monitoring and alerting should be configured for this legacy workload? → A: Diagnostic logging plus critical-only alerts (VM stopped, disk full, Key Vault access failures)
+- Q: If the initial deployment partially fails (e.g., VM creates but Bastion fails), what should the recovery procedure be? → A: Keep existing resources, fix errors in template/parameters, redeploy entire template (ARM incremental mode handles already-deployed resources)
 ```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+    {{% /expand %}}
+
+2. Review and approve the changes suggested by Copilot by clicking on the "Keep" button!
+3. If you're using git, it is recommended to make a commit now to capture the updated specification of your project, with a comment of something like "Specification clarified".
 
 ### 4. Plan
 
@@ -167,19 +328,86 @@ Spec Kit uses `/speckit.plan` to generate the `plan.md` file. The plan can be ev
 
 {{% notice style="info" %}}
 
-To learn more about what the plan should include, see the [related chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#4-plan) in the Spec Kit article.
+To learn more about what the plan should include, see the [related chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#4-plan) in the Spec Kit article. Click through the tabs to see the details!
 
 {{% /notice %}}
 
-Run the following prompt to generate the plan for our example:
+1. Run the following prompt to generate the plan for our example:
 
-```markdown
-/speckit.plan Create a detailed plan for the spec. Build with the latest version of Bicep and the latest available version of each AVM module. Only include direct resource references in the Bicep template if no related AVM resource modules are available. Do not create and reference local modules, or any other bicep files. If a subset of the deployments fail, don't delete anything, just attempt redeploying the whole solution after fixing any bugs. Create a single main.bicep file, with direct references to AVM modules and leverage a single *.bicepparam file for all input parameters.
+    ```markdown
+    /speckit.plan Create a detailed plan for the spec. Build with the latest version of Bicep and the latest available version of each AVM module. Only include direct resource references in the Bicep template if no related AVM resource modules are available. Do not create and reference local modules, or any other bicep files. If a subset of the deployments fail, don't delete anything, just attempt redeploying the whole solution after fixing any bugs. Create a single main.bicep file, with direct references to AVM modules and leverage a single *.bicepparam file for all input parameters.
 
-When generating the admin password for the VM, use the secret feature built into the AVM Key Vault module. Leverage the uniqueString function to generate a new random password and do not use any external helper script (including deployment scripts) for generating the password. Provide this password to the VM module by referencing the Key vault secret that stores it. The template must first generate this password including a random, complex string, using the uniqueString Bicep function, store it in Key Vault and then reference it for the VM to use it as admin password at deployment time.
+    When generating the admin password for the VM, use the secret feature built into the AVM Key Vault module. Leverage the uniqueString function to generate a new random password and do not use any external helper script (including deployment scripts) for generating the password. Provide this password to the VM module by referencing the Key vault secret that stores it. The template must first generate this password including a random, complex string, using the uniqueString Bicep function, store it in Key Vault and then reference it for the VM to use it as admin password at deployment time.
 
-Don't connect the file share to the VM just yet - i.e., no need to extract storage keys or shared access signatures - we'll do this later.
-```
+    Don't connect the file share to the VM just yet - i.e., no need to extract storage keys or shared access signatures - we'll do this later.
+
+    When deciding for resource level locks, always use the built-in AVM "interface" for resource locks, instead of directly deploying the "Microsoft.Authorization/locks" resource.
+    ```
+
+    {{% expand title="➕ Expand to see the results" %}}
+
+Notice how the plan step creates the `plan.md` file and a number of additional helper files. These may very depending on your prompts, the solution you're building, the version of Spec Kit and the LLM used. These typically include: `data-model.md`, `research.md`, `quickstart.md` and optional files in the contracts folder, such as `outputs.md` and `parameters.md`. Click through the tabs to see the details!
+
+{{< tabs title="Plan (post-run)" >}}
+{{% tab title="Chat output" %}}
+
+In the Copilot chat window, you should see results, similar to this:
+<img src="{{%siteparam base%}}/images/experimental/sdd/plan.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="plan.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/plan.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+{{% tab title="data-model.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/data-model.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+
+{{% tab title="research.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/research.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+
+{{% tab title="quickstart.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/quickstart.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+
+{{% tab title="outputs.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/outputs.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+
+{{% tab title="parameters.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/parameters.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+    {{% /expand %}}
+
+2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
+3. If you're using git, it is recommended to make a commit now to capture the changes in your project, with a comment of something like "Plan created".
 
 ### 5.Checklist (Optional)
 
@@ -191,11 +419,43 @@ To learn more about the checklist step, see the [related chapter]({{% siteparam 
 
 {{% /notice %}}
 
-Run the following prompt to generate checklist items for our example:
+1. Run the following prompt to generate checklist items for our example - should take ~2 minutes to run:
 
-```markdown
-/speckit.checklist
-```
+    ```markdown
+    /speckit.checklist
+    ```
+
+    {{% expand title="➕ Expand to see the results" %}}
+
+Click through the tabs to see the details!
+
+{{< tabs title="Checklist (post-run)" >}}
+{{% tab title="Checklist depth questions" %}}
+
+When running the checklist prompt, Copilot may ask you a number of depth questions to clarify certain aspects of the plan. Here's an example of what that looks like. You can answer in the following format, e.g.: `Q1: E, Q2:A, Q3:A`
+<img src="{{%siteparam base%}}/images/experimental/sdd/checklist-depth.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="Chat output" %}}
+
+In the Copilot chat window, you should see results, similar to this:
+<img src="{{%siteparam base%}}/images/experimental/sdd/checklist.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="implementation-readiness.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/implementation-readiness.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+    {{% /expand %}}
+
+2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
+3. If you're using git, it is recommended to make a commit now to capture your new checklist, with a comment of something like "Checklist prepared".
 
 ### 6. Tasks
 
@@ -207,11 +467,36 @@ To learn more about what the tasks should include, see the [related chapter]({{%
 
 {{% /notice %}}
 
-Run the following prompt to generate tasks for our example:
+1. Run the following prompt to generate tasks for our example - should take ~2 minutes to run:
 
-```markdown
-/speckit.tasks
-```
+    ```markdown
+    /speckit.tasks
+    ```
+
+    {{% expand title="➕ Expand to see the results" %}}
+
+Click through the tabs to see the details!
+
+{{< tabs title="Tasks (post-run)" >}}
+{{% tab title="Chat output" %}}
+
+In the Copilot chat window, you should see something like this:
+<img src="{{%siteparam base%}}/images/experimental/sdd/tasks.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="tasks.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/tasks.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+    {{% /expand %}}
+
+2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
+3. If you're using git, it is recommended to make a commit now to capture your task list, with a comment of something like "Tasks generated".
 
 ### 7. Analyze (Optional)
 
@@ -223,11 +508,36 @@ To learn more about the analyze step, see the [related chapter]({{% siteparam ba
 
 {{% /notice %}}
 
-Run the following prompt to generate an analysis report for our example:
+1. Run the following prompt to generate an analysis report for our example - should take ~3 minutes to run:
 
-```markdown
-/speckit.analyze
-```
+    ```markdown
+    /speckit.analyze
+    ```
+
+    {{% expand title="➕ Expand to see the results" %}}
+
+Click through the tabs to see the details!
+
+{{< tabs title="Analyze (post-run)" >}}
+{{% tab title="Chat output" %}}
+
+In the Copilot chat window, you should see something like this:
+<img src="{{%siteparam base%}}/images/experimental/sdd/analysis-report.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="analysis-report.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/analysis-report.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+    {{% /expand %}}
+
+2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
+3. If you're using git, it is recommended to make a commit now to capture your analysis report, with a comment of something like "Analysis report generated".
 
 ### 8. Implement
 
@@ -239,11 +549,53 @@ To learn more about the implement step, see the [related chapter]({{% siteparam 
 
 {{% /notice %}}
 
-Run the following prompt to generate the implementation for our example:
+1. Run the following prompt to generate the implementation for our example:
 
-```markdown
-/speckit.implement
-```
+    ```markdown
+    /speckit.implement
+    ```
+
+    {{% expand title="➕ Expand to see the results" %}}
+
+During the Implement phase, Copilot acts based on the `tasks.md` file (checkboxes next to each completed task get marked with `[X]`). It validates all previously created checklists, such as the `implementation-readiness.md`, `requirements.md` files. As a result of this prompt execution, a number of files get generated, such as:`main.bicep`, `main.bicepparam`, `bicepconfig.json`, `.gitignore`
+
+Click through the tabs to see the details!
+
+{{< tabs title="Implement" >}}
+{{% tab title="Checklist failure" %}}
+<img src="{{%siteparam base%}}/images/experimental/sdd/implement-checklist-failure.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+{{% /tab %}}
+
+{{% tab title="Checklist succeeds" %}}
+<img src="{{%siteparam base%}}/images/experimental/sdd/implement-checklist-success.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+{{% /tab %}}
+
+{{% tab title="Implementation complete" %}}
+<img src="{{%siteparam base%}}/images/experimental/sdd/implement-complete.png" width=50% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+{{% /tab %}}
+
+{{% tab title="main.bicep" %}}
+{{< highlight lineNos="false" type="bicep" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/main.bicep" >}}
+{{< /highlight >}}
+{{% /tab %}}
+
+{{% tab title="main.bicepparam" %}}
+{{< highlight lineNos="false" type="bicep" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/main.bicepparam" >}}
+{{< /highlight >}}
+{{% /tab %}}
+
+{{% tab title="Next steps" %}}
+<img src="{{%siteparam base%}}/images/experimental/sdd/implement-next-steps.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+{{% /tab %}}
+
+{{< /tabs >}}
+    {{% /expand %}}
+
+
+2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
+3. If you're using git, it is recommended to make a commit now to capture your implementation results, with a comment of something like "Implementation complete".
 
 ## Next Steps
 
