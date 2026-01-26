@@ -21,7 +21,11 @@
         "eliostruyf.vscode-hugo-themer",
         "kaellarkin.hugo-shortcode-syntax",
         "davidanson.vscode-markdownlint",
-        "streetsidesoftware.code-spell-checker"
+        "streetsidesoftware.code-spell-checker",
+        "GitHub.codespaces",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "ms-azuretools.vscode-azure-github-copilot"
       ]
     }
   },
