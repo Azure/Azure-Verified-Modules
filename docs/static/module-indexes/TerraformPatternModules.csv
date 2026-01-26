@@ -18,6 +18,7 @@ AVD Insights,Azure Virtual Desktop Insights,avm-ptn-avd-lza-insights,Available,A
 AVD Management Plane,Azure Virtual Desktop Management Plane,avm-ptn-avd-lza-managementplane,Available,AVM pattern Module for AVD Management Plane,https://registry.terraform.io/modules/Azure/avm-ptn-avd-lza-managementplane/azurerm/latest,jensheerin,Jen Sheerin,cshea-msft,Charles Shea,2024-05
 AVD Session Host,Azure Virtual Desktop Session Host,avm-ptn-avd-lza-sessionhosts,Proposed,AVM pattern Module for AVD Session Host,,jensheerin,Jen Sheerin,,,
 IPAM,IP Address Management,avm-ptn-azure-ipam,Proposed,AVM pattern Module for IPAM,,pagyP,Paul Paginton,,,
+Azure Local Azure Migrate Project,saifaldinali,avm-ptn-azure-local-migrate,Proposed,AVM pattern Module for Azure Local Azure Migrate Project,,Saif Al-Din Ali,seswar,SathishKumar Eswaran,,
 Azure Monitor Windows Agent,,avm-ptn-azuremonitorwindowsagent,Available,AVM pattern Module for Azure Monitor Windows Agent,https://registry.terraform.io/modules/Azure/avm-ptn-azuremonitorwindowsagent/azurerm/latest,xhy8759,Hangyu Xu,,,2024-08
 Azure Site Recovery VM Replication,,avm-ptn-bcdr-vm-replication,Proposed,AVM pattern Module for Azure Site Recovery VM Replication,,FreddyAyala,Freddy Ayala,,,
 CI CD Agents and Runners,,avm-ptn-cicd-agents-and-runners,Available,AVM pattern Module for CI CD Agents and Runners,https://registry.terraform.io/modules/Azure/avm-ptn-cicd-agents-and-runners/azurerm/latest,jaredfholgate,Jared Holgate,,,2024-08
