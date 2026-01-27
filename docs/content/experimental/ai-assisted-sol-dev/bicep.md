@@ -22,7 +22,9 @@ Before you begin, make sure you have these tools installed in your development e
 
 ## Solution Architecture
 
-Before we begin coding, it is important to have details about what the infrastructure architecture will include. For our example, using AVM modules, we will be building a solution that will host a simple application on a Windows virtual machine (VM). The solution must be secure and auditable. The VM must not be accessible from the internet and its logs should be captured in Log Analytics, included with the solution.
+Before we begin coding, it is important to have details about what the infrastructure architecture will include. For our example, using AVM modules, we will be building a solution that will host a legacy business application running as a single Windows Server 2016 virtual machine (VM) with at least 2 CPU cores, 8GB RAM, Standard HDD OS disk, and a 500GB data disk.
+
+The VM is accessible via Azure Bastion using secure RDP access (no public IP exposure). The solutions needs an Azure Storage Account with an HDD-backed file share connected via private endpoint, and an Azure Key Vault to securely store the VM administrator password generated at deployment time. The VM must not be accessible from the internet, and all diagnostic logs will be captured in a Log Analytics workspace with critical alerts configured for VM availability, disk utilization, and Key Vault access failures.
 
 <img src="{{% siteparam base %}}/images/usage/solution-development/avm-virtualmachine-example1.png" alt="Azure VM Solution Architecture" style="max-width:800px;" />
 
@@ -59,6 +61,12 @@ On a Windows PC, to get the **uv package manager CLI** tool required for locally
 
     As we haven't defined the AI assistant in our init command, specify will prompt us to choose one. Select **copilot (GitHub Copilot)** from the list. Similarly, as we haven't defined the script type, specify will prompt us to choose one. Select **ps (PowerShell)** from the list.
 
+    Alternatively, you can provide these parameters directly in the init command, like so:
+
+    ```bash
+    specify init . --ai copilot --script ps
+    ```
+
     {{% expand title="➕ Expand to see the results" %}}
 
 Click through the tabs to see the details!
@@ -83,9 +91,9 @@ In your project folder, you should now see the following files and folders creat
 
     {{% /expand %}}
 
-1. If you're using git, it is recommended to make an initial commit now to capture the bootstrapped state of your project, with a comment of something like "Initial commit - Spec Kit bootstrap".
+4. If you're using git, it is recommended to make an initial commit now to capture the bootstrapped state of your project, with a comment of something like `Initial commit - Spec Kit bootstrap`.
 
-2. The rest of the steps will be performed using GitHub Copilot Chat in VS Code: Start your VS Code environment, open or add the newly created folder to your workspace, and navigate to GitHub Copilot Chat using the dialog icon on the top of the window or by hitting `CTRL+ALT+I`.
+5. The rest of the steps will be performed using GitHub Copilot Chat in VS Code: Start your VS Code environment, open or add the newly created folder to your workspace, and navigate to GitHub Copilot Chat using the dialog icon on the top of the window or by hitting `CTRL+ALT+I`.
 
 ## Making it real
 
@@ -158,7 +166,7 @@ Notice what the `constitution.md` file looks like before running the related pro
 
 {{% /expand %}}
 
-1. Run the following prompt to generate the constitution for our example - should take ~3 minutes to run:
+1. Run the following prompt to generate the constitution for our example - *this should take ~2 minutes to run*:
 
     ```markdown
     /speckit.constitution Fill the constitution with the typical requirements of a legacy Azure workload (needed to be retained for compliance reasons; no high-availability requirements; no disaster recovery requirements; no scalability requirements), defined as infrastructure-as-code, in Bicep language, built only with Azure Verified Modules (AVM). Always try to implement every feature with Bicep first (using Infra-as-code), and only use custom scripts when it's not possible otherwise. Follow IaC best practices: define everything in a single template, and let ARM manage dependencies and the order of deployment for each Azure resource.
@@ -203,7 +211,7 @@ In the `constitution.md` file, notice, how changes implemented by Copilot are no
     {{% /expand %}}
 
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
-3. If you're using git, it is recommended to make a commit now to capture the new constitution of your project, with a comment of something like "Add constitution".
+3. If you're using git, it is recommended to make a commit now to capture the new constitution of your project, with a comment of something like `Constitution added`.
 
 ### 2. Specify
 
@@ -215,8 +223,7 @@ To learn more about what the specification should include, see the [related chap
 
 {{% /notice %}}
 
-1. Run the following prompt to generate the specification for our example - takes ~ 5 minutes to run:
-
+1. Run the following prompt to generate the specification for our example - *this should take ~3 minutes to run*:
     ```markdown
     /speckit.specify Create specification, called "01-my-legacy-workload" for a legacy business application, running as a single virtual machine connected to a virtual network. The VM must run Windows Server 2016, needs to have at least 2 CPU cores, 8 GB of RAM, standard HDD and a 500 GB HDD-based data disk attached. It must be remotely accessible via a bastion host and needs to have access to an HDD-backed file share in a storage account connected via a private endpoint. The VM's administrator password (created at the time of deployment) must be stored in a Key Vault, also deployed as part of this solution.
 
@@ -224,7 +231,7 @@ To learn more about what the specification should include, see the [related chap
 
     When a decision needs to be made on availability zones, always choose a number between 1 and 3 (never choose -1, that explicitly disables this feature).
 
-    Create everything in a single resource group, standing for a production environment.
+    Create everything in a single resource group, standing for a production environment. Do not create any additional environments (such as dev, test, staging, etc.).
 
     Read the documentation (readme.md file) of each module you need to use to find out what parameters, and complex parameter objects you can use. Don't guess the allowed parameters.
 
@@ -264,7 +271,7 @@ Once Copilot finished running the prompt, you should see something like this in 
     {{% /expand %}}
 
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
-3. If you're using git, it is recommended to make a commit now to capture the clarified specification of your project, with a comment of something like "Specification created".
+3. If you're using git, it is recommended to make a commit now to capture the clarified specification of your project, with a comment of something like `Specification created`.
 
 ### 3. Clarify (Optional)
 
@@ -276,7 +283,7 @@ To learn more about the clarify step, see the [related chapter]({{% siteparam ba
 
 {{% /notice %}}
 
-1. Run the following prompt to generate clarification questions for our example:
+1. Run the following prompt to generate clarification questions for our example - *this should take ~3 minutes to run*:
 
     ```markdown
     /speckit.clarify
@@ -312,6 +319,8 @@ Examples of clarifications that Copilot may suggest for our scenario (if not alr
 - Q: How should the Azure file share be mounted on the Windows VM? → A: Post-deployment manual mount by administrator following documented procedure (no automation, aligns with IaC-first principle)
 - Q: What level of monitoring and alerting should be configured for this legacy workload? → A: Diagnostic logging plus critical-only alerts (VM stopped, disk full, Key Vault access failures)
 - Q: If the initial deployment partially fails (e.g., VM creates but Bastion fails), what should the recovery procedure be? → A: Keep existing resources, fix errors in template/parameters, redeploy entire template (ARM incremental mode handles already-deployed resources)
+- Q: File share initial quota and growth strategy? → A: 1TB initial quota with documented growth monitoring procedure
+- Q: VM administrator username? → A: administrator (Standard Windows admin account name)
 ```
 
 {{% /tab %}}
@@ -320,7 +329,7 @@ Examples of clarifications that Copilot may suggest for our scenario (if not alr
     {{% /expand %}}
 
 2. Review and approve the changes suggested by Copilot by clicking on the "Keep" button!
-3. If you're using git, it is recommended to make a commit now to capture the updated specification of your project, with a comment of something like "Specification clarified".
+3. If you're using git, it is recommended to make a commit now to capture the updated specification of your project, with a comment of something like `Specification clarified`.
 
 ### 4. Plan
 
@@ -332,16 +341,18 @@ To learn more about what the plan should include, see the [related chapter]({{% 
 
 {{% /notice %}}
 
-1. Run the following prompt to generate the plan for our example:
+1. Run the following prompt to generate the plan for our example - *this should take ~8 minutes to run*:
 
     ```markdown
-    /speckit.plan Create a detailed plan for the spec. Build with the latest version of Bicep and the latest available version of each AVM module. Only include direct resource references in the Bicep template if no related AVM resource modules are available. Do not create and reference local modules, or any other bicep files. If a subset of the deployments fail, don't delete anything, just attempt redeploying the whole solution after fixing any bugs. Create a single main.bicep file, with direct references to AVM modules and leverage a single *.bicepparam file for all input parameters.
+    /speckit.plan Create a detailed plan for the spec. Build with the latest version of Bicep and the latest available version of each AVM module. Use the "Bicep/list_avm_metadata" MCP tool to find out what's the latest version of each module. Only include direct resource references in the Bicep template if no related AVM resource modules are available. Similarly, for diagnostic settings, role assignments, resource locks, tags, managed identities, private endpoints, customer manged keys, etc., always use the related "interface" built-in to each resource module when available. Do not create and reference local modules, or any other bicep files. If a subset of the deployments fail, don't delete anything, just attempt redeploying the whole solution after fixing any bugs. Create a single main.bicep file, with direct references to AVM modules and leverage a single *.bicepparam file for all input parameters.
 
     When generating the admin password for the VM, use the secret feature built into the AVM Key Vault module. Leverage the uniqueString function to generate a new random password and do not use any external helper script (including deployment scripts) for generating the password. Provide this password to the VM module by referencing the Key vault secret that stores it. The template must first generate this password including a random, complex string, using the uniqueString Bicep function, store it in Key Vault and then reference it for the VM to use it as admin password at deployment time.
 
     Don't connect the file share to the VM just yet - i.e., no need to extract storage keys or shared access signatures - we'll do this later.
 
     When deciding for resource level locks, always use the built-in AVM "interface" for resource locks, instead of directly deploying the "Microsoft.Authorization/locks" resource.
+
+    Bicep template must compile without warnings or errors using the latest stable Bicep CLI version. Create a bicepconfig.json file to generate a warning if a not the latest version of an AVM module is used. You can configure this by making sure in the bicepconfig.json file, there is a node under analyzers/core/rules/use-recent-module-versions/level" with the value of "warning". Always fix any warnings or errors related to the AVM module versioning by updating to the latest available version of each module.
     ```
 
     {{% expand title="➕ Expand to see the results" %}}
@@ -407,7 +418,7 @@ In the Copilot chat window, you should see results, similar to this:
     {{% /expand %}}
 
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
-3. If you're using git, it is recommended to make a commit now to capture the changes in your project, with a comment of something like "Plan created".
+3. If you're using git, it is recommended to make a commit now to capture the changes in your project, with a comment of something like `Plan created`.
 
 ### 5.Checklist (Optional)
 
@@ -419,7 +430,7 @@ To learn more about the checklist step, see the [related chapter]({{% siteparam 
 
 {{% /notice %}}
 
-1. Run the following prompt to generate checklist items for our example - should take ~2 minutes to run:
+1. Run the following prompt to generate checklist items for our example - *this should take ~4 minutes to run*:
 
     ```markdown
     /speckit.checklist
@@ -455,7 +466,7 @@ In the Copilot chat window, you should see results, similar to this:
     {{% /expand %}}
 
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
-3. If you're using git, it is recommended to make a commit now to capture your new checklist, with a comment of something like "Checklist prepared".
+3. If you're using git, it is recommended to make a commit now to capture your new checklist, with a comment of something like `Checklist prepared`.
 
 ### 6. Tasks
 
@@ -467,7 +478,7 @@ To learn more about what the tasks should include, see the [related chapter]({{%
 
 {{% /notice %}}
 
-1. Run the following prompt to generate tasks for our example - should take ~2 minutes to run:
+1. Run the following prompt to generate tasks for our example - *this should take ~2 minutes to run*:
 
     ```markdown
     /speckit.tasks
@@ -496,7 +507,7 @@ In the Copilot chat window, you should see something like this:
     {{% /expand %}}
 
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
-3. If you're using git, it is recommended to make a commit now to capture your task list, with a comment of something like "Tasks generated".
+3. If you're using git, it is recommended to make a commit now to capture your task list, with a comment of something like `Tasks generated`.
 
 ### 7. Analyze (Optional)
 
@@ -508,7 +519,7 @@ To learn more about the analyze step, see the [related chapter]({{% siteparam ba
 
 {{% /notice %}}
 
-1. Run the following prompt to generate an analysis report for our example - should take ~3 minutes to run:
+1. Run the following prompt to generate an analysis report for our example - *this should take ~2 minutes to run*:
 
     ```markdown
     /speckit.analyze
@@ -537,7 +548,7 @@ In the Copilot chat window, you should see something like this:
     {{% /expand %}}
 
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
-3. If you're using git, it is recommended to make a commit now to capture your analysis report, with a comment of something like "Analysis report generated".
+3. If you're using git, it is recommended to make a commit now to capture your analysis report, with a comment of something like `Analysis report generated`.
 
 ### 8. Implement
 
@@ -595,7 +606,7 @@ Click through the tabs to see the details!
 
 
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
-3. If you're using git, it is recommended to make a commit now to capture your implementation results, with a comment of something like "Implementation complete".
+3. If you're using git, it is recommended to make a commit now to capture your implementation results, with a comment of something like `Implementation complete`.
 
 ## Next Steps
 
