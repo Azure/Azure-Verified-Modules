@@ -194,7 +194,7 @@ You'll need to gather the following information from the module request issue an
 1. Now head back over to the terminal and type `yes` and hit enter to complete the repository configuration
 1. Open the new repository in GitHub.com and verify it all looks good.
 1. The script will automatically create a pull request to add the module metadata to the `avm-terraform-governance` repository. This will be approved and merged by the core team. You can find it [here](https://github.com/Azure/avm-terraform-governance/pulls) if you lost the link.
-1. The script will automatically create an issue to install the `Azure Verified Modules` GitHub App in the repository. This will be actioned by the open source team. You can find it [here](https://gihub.com/microsoft/github-operations/issues) if you lost the link.
+1. The script will automatically create an issue to install the `Azure Verified Modules` GitHub App in the repository. This will be actioned by the open source team. You can find it [here](https://github.com/microsoft/github-operations/issues) if you lost the link.
 
 ### 4. Update the Issue Status
 
