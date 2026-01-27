@@ -274,20 +274,12 @@ params = { alwaysopen = true, collapsibleMenu = true }
     params = { alwaysopen = false, collapsibleMenu = true }
 
   [[menu.defined]]
-    identifier = 'bicep-spec-kit'
+    identifier = 'spec-kit-example'
     parent = 'spec-kit'
-    name = 'Bicep Example'
-    pageRef = '/experimental/ai-assisted-sol-dev/bicep'
+    name = 'AVM Example'
+    pageRef = '/experimental/ai-assisted-sol-dev/spec-kit/avm-example'
     weight = 1
     params = { alwaysopen = false, collapsibleMenu = true }
-
-#  [[menu.defined]]
-#    identifier = 'terraform-spec-kit'
-#    parent = 'ai-assisted-iac'
-#    name = 'Terraform Example'
-#    pageRef = '/experimental/ai-assisted-sol-dev/terraform'
-#    weight = 4
-#    params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
 identifier = 'specs-defs'

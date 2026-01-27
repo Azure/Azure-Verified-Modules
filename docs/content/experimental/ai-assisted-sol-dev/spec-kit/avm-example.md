@@ -1,9 +1,9 @@
 ---
-title: Bicep Example for Spec Kit
-linktitle: Bicep Example
+title: AVM Example for Spec Kit
+linktitle: AVM Example
 type: default
 weight: 1
-description: Advanced guidance for developing solutions using Azure Verified Modules (AVM) with Bicep, leveraging GitHub Copilot.
+description: Advanced guidance for developing solutions using Azure Verified Modules (AVM), leveraging GitHub Copilot.
 ---
 
 {{% notice style="warning" title="Experimental Content" icon="flask" %}}
@@ -12,11 +12,30 @@ The content in this section represents **experimental explorations** of emerging
 
 {{% /notice %}}
 
+{{% notice style="info" title="Language Coverage" icon="info-circle" %}}
+
+This guide currently covers **Bicep** implementations only. The **Terraform** version is actively being developed and will be added soon. Stay tuned for updates!
+
+{{% /notice %}}
+
+
 ## Prerequisites
+
+{{< tabs groupid="dsl" >}}
+
+    {{% tab title="Bicep" %}}
 
 {{% include file="/content/usage/includes/bicep-prerequisites.md" %}}
 
 - [Spec Kit](https://github.com/github/Spec-Kit)
+    {{% /tab %}}
+    {{% tab title="Terraform" %}}
+
+Coming soon!
+
+    {{% /tab %}}
+
+{{< /tabs >}}
 
 Before you begin, make sure you have these tools installed in your development environment!
 
@@ -71,7 +90,7 @@ On a Windows PC, to get the **uv package manager CLI** tool required for locally
 
 Click through the tabs to see the details!
 
-{{< tabs title="Initialization" >}}
+{{< tabs >}}
 {{% tab title="specify init ." %}}
 
 You should see something like this:
@@ -123,7 +142,7 @@ flowchart LR
     style G fill:#e1f5ff
 ```
 
-To implement our example solution using Bicep and AVM modules, we will walk through each of these steps in details.
+To implement our example solution using AVM modules, we will walk through each of these steps in details.
 
 {{% notice style="tip" %}}
 
@@ -146,13 +165,13 @@ Spec Kit uses `/speckit.constitution` to generate the `constitution.md` file. Th
 
 {{% notice style="info" %}}
 
-To learn more about what the constitution should include, see the [related chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#1-constitution) in the Spec Kit article.
+To learn more about what the constitution should include, see the [Constitution chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#1-constitution) in the Spec Kit article.
 
 {{% /notice %}}
 
 {{% expand title="➕ Before running /speckit.constitution (Expand)" %}}
 
-{{< tabs title="Constitution (pre-run)" >}}
+{{< tabs >}}
 {{% tab title="constitution.md (template)" %}}
 
 Notice what the `constitution.md` file looks like before running the related prompt. It is just a template with placeholders, defining the structure:
@@ -168,22 +187,26 @@ Notice what the `constitution.md` file looks like before running the related pro
 
 1. Run the following prompt to generate the constitution for our example - *this should take ~2 minutes to run*:
 
-    ```markdown
-    /speckit.constitution Fill the constitution with the typical requirements of a legacy Azure workload (needed to be retained for compliance reasons; no high-availability requirements; no disaster recovery requirements; no scalability requirements), defined as infrastructure-as-code, in Bicep language, built only with Azure Verified Modules (AVM). Always try to implement every feature with Bicep first (using Infra-as-code), and only use custom scripts when it's not possible otherwise. Follow IaC best practices: define everything in a single template, and let ARM manage dependencies and the order of deployment for each Azure resource.
+{{< tabs groupid="dsl" >}}
 
-    Security and reliability best practices must be followed under all circumstances.
+{{% tab title="Bicep" %}}
 
-    The naming convention is to use just enough random characters to make the name unique and have the Azure resource type reflected in the name. Resource type specific character and length limitations must be respected.
+```markdown
+/speckit.constitution Fill the constitution with the typical requirements of a legacy Azure workload (needed to be retained for compliance reasons; no high-availability requirements; no disaster recovery requirements; no scalability requirements), defined as infrastructure-as-code, in Bicep language, built only with Azure Verified Modules (AVM). Always try to implement every feature with Bicep first (using Infra-as-code), and only use custom scripts when it's not possible otherwise. Follow IaC best practices: define everything in a single template, and let ARM manage dependencies and the order of deployment for each Azure resource.
 
-    Before running a deployment, always run a validation.
+Security and reliability best practices must be followed under all circumstances.
 
-    Deploy everything to the US West 3 datacenter region.
-    ```
+The naming convention is to use just enough random characters to make the name unique and have the Azure resource type reflected in the name. Resource type specific character and length limitations must be respected.
+
+Before running a deployment, always run a validation.
+
+Deploy everything to the US West 3 datacenter region.
+```
     {{% expand title="➕ Expand to see the results" %}}
 
 Click through the tabs to see the details!
 
-{{< tabs title="Constitution (post-run)" >}}
+{{< tabs >}}
 {{% tab title="Chat window" %}}
 
 Once Copilot finished running the prompt, you should see something like this in the Copilot chat area:
@@ -210,6 +233,16 @@ In the `constitution.md` file, notice, how changes implemented by Copilot are no
 
     {{% /expand %}}
 
+{{% /tab %}}
+{{% tab title="Terraform" %}}
+
+Coming soon!
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
 3. If you're using git, it is recommended to make a commit now to capture the new constitution of your project, with a comment of something like `Constitution added`.
 
@@ -219,30 +252,37 @@ Spec Kit uses `/speckit.specify` to generate the `spec.md` file. Specifications 
 
 {{% notice style="info" %}}
 
-To learn more about what the specification should include, see the [related chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#2-specify) in the Spec Kit article.
+To learn more about what the specification should include, see the [Specification chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#2-specify) in the Spec Kit article.
 
 {{% /notice %}}
 
 1. Run the following prompt to generate the specification for our example - *this should take ~3 minutes to run*:
-    ```markdown
-    /speckit.specify Create specification, called "01-my-legacy-workload" for a legacy business application, running as a single virtual machine connected to a virtual network. The VM must run Windows Server 2016, needs to have at least 2 CPU cores, 8 GB of RAM, standard HDD and a 500 GB HDD-based data disk attached. It must be remotely accessible via a bastion host and needs to have access to an HDD-backed file share in a storage account connected via a private endpoint. The VM's administrator password (created at the time of deployment) must be stored in a Key Vault, also deployed as part of this solution.
 
-    Always only rely on parameters from the main.bicepparam file. Have the name of the secret used for the admin password captured as a parameter.
+{{< tabs groupid="dsl" >}}
 
-    When a decision needs to be made on availability zones, always choose a number between 1 and 3 (never choose -1, that explicitly disables this feature).
+{{% tab title="Bicep" %}}
 
-    Create everything in a single resource group, standing for a production environment. Do not create any additional environments (such as dev, test, staging, etc.).
+```markdown
+/speckit.specify Create specification, called "01-my-legacy-workload" for a legacy business application, running as a single virtual machine connected to a virtual network. The VM must run Windows Server 2016, needs to have at least 2 CPU cores, 8 GB of RAM, standard HDD and a 500 GB HDD-based data disk attached. It must be remotely accessible via a bastion host and needs to have access to an HDD-backed file share in a storage account connected via a private endpoint. The VM must access the internet via a NAT gateway. Network Security Groups (NSGs) must be created for each subnet, and configured and assigned as applicable,restricting traffic to only what's necessary.
 
-    Read the documentation (readme.md file) of each module you need to use to find out what parameters, and complex parameter objects you can use. Don't guess the allowed parameters.
+The VM's administrator password (created at the time of deployment) must be stored in a Key Vault, also deployed as part of this solution. The VM's administrator account must be called "vmadmin". The VM's computer name (netbios name) must be 15 or less characters long.
 
-    The VM must not be accessible from the internet and its logs should be captured in Log Analytics, included with the solution. Configure diagnostic logging plus critical-only alerts (VM stopped, disk full, Key Vault access failures).
-    ```
+Always only rely on parameters from the main.bicepparam file. Have the name of the secret used for the admin password captured as a parameter. Include rich comments in both the main.bicep and main.bicepparam files to explain the purpose of each resource and parameter.
+
+When a decision needs to be made on availability zones, always choose a number between 1 and 3 (never choose -1, that explicitly disables this feature).
+
+Create everything in a single resource group, standing for a production environment. Do not create any additional environments (such as dev, test, staging, etc.).
+
+Read the documentation (readme.md file) of each module you need to use to find out what parameters, and complex parameter objects you can use. Don't guess the allowed parameters.
+
+The VM must not be accessible from the internet and its logs should be captured in Log Analytics, included with the solution. Configure diagnostic logging plus critical-only alerts (VM stopped, disk full, Key Vault access failures).
+```
 
     {{% expand title="➕ Expand to see the results" %}}
 
 Notice that the execution of the /speckit.specify created a new file called `requirements.md` and a file called `spec.md` in the `specs/001-legacy-vm-workload/` folder. Click through the tabs to see the details!
 
-{{< tabs title="Specify (post-run)" >}}
+{{< tabs >}}
 {{% tab title="Spec" %}}
 
 Once Copilot finished running the prompt, you should see something like this in the Copilot chat area:
@@ -270,6 +310,15 @@ Once Copilot finished running the prompt, you should see something like this in 
 
     {{% /expand %}}
 
+{{% /tab %}}
+{{% tab title="Terraform" %}}
+
+Coming soon!
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
 3. If you're using git, it is recommended to make a commit now to capture the clarified specification of your project, with a comment of something like `Specification created`.
 
@@ -279,21 +328,25 @@ Spec Kit uses `/speckit.clarify` to generate adjust information captured in `spe
 
 {{% notice style="info" %}}
 
-To learn more about the clarify step, see the [related chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#3-clarify-optional) in the Spec Kit article.
+To learn more about the clarify step, see the [Clarify chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#3-clarify-optional) in the Spec Kit article.
 
 {{% /notice %}}
 
 1. Run the following prompt to generate clarification questions for our example - *this should take ~3 minutes to run*:
 
-    ```markdown
-    /speckit.clarify
-    ```
+{{< tabs groupid="dsl" >}}
 
-    {{% expand title="➕ Expand to see example questions" %}}
+{{% tab title="Bicep" %}}
 
-This section iterates on the spec.md file by asking questions, making suggestions and capturing the user's feedback. Click through the tabs to see the details!
+```markdown
+/speckit.clarify
+```
 
-{{< tabs title="Clarify (post-run)" >}}
+{{% expand title="➕ Expand to see example questions" %}}
+
+The clarify phase iterates on the spec.md file by asking questions, making suggestions and capturing the user's feedback. Click through the tabs to see the details!
+
+{{< tabs >}}
 {{% tab title="Analysis" %}}
 
 When running the clarify prompt, Copilot may ask you a number of depth questions to clarify certain aspects of the plan. Here's an example of what that looks like. You can answer in the following format, e.g.: `Q1: E, Q2:A, Q3:A`
@@ -328,6 +381,15 @@ Examples of clarifications that Copilot may suggest for our scenario (if not alr
 
     {{% /expand %}}
 
+{{% /tab %}}
+{{% tab title="Terraform" %}}
+
+Coming soon!
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
 2. Review and approve the changes suggested by Copilot by clicking on the "Keep" button!
 3. If you're using git, it is recommended to make a commit now to capture the updated specification of your project, with a comment of something like `Specification clarified`.
 
@@ -337,29 +399,33 @@ Spec Kit uses `/speckit.plan` to generate the `plan.md` file. The plan can be ev
 
 {{% notice style="info" %}}
 
-To learn more about what the plan should include, see the [related chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#4-plan) in the Spec Kit article. Click through the tabs to see the details!
+To learn more about what the plan should include, see the [Plan chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#4-plan) in the Spec Kit article. Click through the tabs to see the details!
 
 {{% /notice %}}
 
 1. Run the following prompt to generate the plan for our example - *this should take ~8 minutes to run*:
 
-    ```markdown
-    /speckit.plan Create a detailed plan for the spec. Build with the latest version of Bicep and the latest available version of each AVM module. Use the "Bicep/list_avm_metadata" MCP tool to find out what's the latest version of each module. Only include direct resource references in the Bicep template if no related AVM resource modules are available. Similarly, for diagnostic settings, role assignments, resource locks, tags, managed identities, private endpoints, customer manged keys, etc., always use the related "interface" built-in to each resource module when available. Do not create and reference local modules, or any other bicep files. If a subset of the deployments fail, don't delete anything, just attempt redeploying the whole solution after fixing any bugs. Create a single main.bicep file, with direct references to AVM modules and leverage a single *.bicepparam file for all input parameters.
+{{< tabs groupid="dsl" >}}
 
-    When generating the admin password for the VM, use the secret feature built into the AVM Key Vault module. Leverage the uniqueString function to generate a new random password and do not use any external helper script (including deployment scripts) for generating the password. Provide this password to the VM module by referencing the Key vault secret that stores it. The template must first generate this password including a random, complex string, using the uniqueString Bicep function, store it in Key Vault and then reference it for the VM to use it as admin password at deployment time.
+{{% tab title="Bicep" %}}
 
-    Don't connect the file share to the VM just yet - i.e., no need to extract storage keys or shared access signatures - we'll do this later.
+```markdown
+/speckit.plan Create a detailed plan for the spec. Build with the latest version of Bicep and the latest available version of each AVM module. Use the "Bicep/list_avm_metadata" MCP tool to find out what's the latest version of each module. Only include direct resource references in the Bicep template if no related AVM resource modules are available. Similarly, for diagnostic settings, role assignments, resource locks, tags, managed identities, private endpoints, customer manged keys, etc., always use the related "interface" built-in to each resource module when available. Do not create and reference local modules, or any other bicep files. If a subset of the deployments fail, don't delete anything, just attempt redeploying the whole solution after fixing any bugs. Create a single main.bicep file, with direct references to AVM modules and leverage a single *.bicepparam file for all input parameters.
 
-    When deciding for resource level locks, always use the built-in AVM "interface" for resource locks, instead of directly deploying the "Microsoft.Authorization/locks" resource.
+When generating the admin password for the VM, use the secret feature built into the AVM Key Vault module. Leverage the uniqueString function to generate a new random password and do not use any external helper script (including deployment scripts) for generating the password. Provide this password to the VM module by referencing the Key vault secret that stores it. The template must first generate this password including a random, complex string, using the uniqueString Bicep function, store it in Key Vault and then reference it for the VM to use it as admin password at deployment time.
 
-    Bicep template must compile without warnings or errors using the latest stable Bicep CLI version. Create a bicepconfig.json file to generate a warning if a not the latest version of an AVM module is used. You can configure this by making sure in the bicepconfig.json file, there is a node under analyzers/core/rules/use-recent-module-versions/level" with the value of "warning". Always fix any warnings or errors related to the AVM module versioning by updating to the latest available version of each module.
-    ```
+Don't connect the file share to the VM just yet - i.e., no need to extract storage keys or shared access signatures - we'll do this later.
+
+When deciding for resource level locks, always use the built-in AVM "interface" for resource locks, instead of directly deploying the "Microsoft.Authorization/locks" resource.
+
+Bicep template must compile without warnings or errors using the latest stable Bicep CLI version. Create a bicepconfig.json file to generate a warning if a not the latest version of an AVM module is used. You can configure this by making sure in the bicepconfig.json file, there is a node under analyzers/core/rules/use-recent-module-versions/level" with the value of "warning". Always fix any warnings or errors related to the AVM module versioning by updating to the latest available version of each module.
+```
 
     {{% expand title="➕ Expand to see the results" %}}
 
 Notice how the plan step creates the `plan.md` file and a number of additional helper files. These may very depending on your prompts, the solution you're building, the version of Spec Kit and the LLM used. These typically include: `data-model.md`, `research.md`, `quickstart.md` and optional files in the contracts folder, such as `outputs.md` and `parameters.md`. Click through the tabs to see the details!
 
-{{< tabs title="Plan (post-run)" >}}
+{{< tabs >}}
 {{% tab title="Chat output" %}}
 
 In the Copilot chat window, you should see results, similar to this:
@@ -417,6 +483,15 @@ In the Copilot chat window, you should see results, similar to this:
 
     {{% /expand %}}
 
+{{% /tab %}}
+{{% tab title="Terraform" %}}
+
+Coming soon!
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
 3. If you're using git, it is recommended to make a commit now to capture the changes in your project, with a comment of something like `Plan created`.
 
@@ -426,21 +501,25 @@ Spec Kit uses `/speckit.checklist` to validate the requirements. The prompt does
 
 {{% notice style="info" %}}
 
-To learn more about the checklist step, see the [related chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#5-checklist-optional) in the Spec Kit article.
+To learn more about the checklist step, see the [Checklist chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#5-checklist-optional) in the Spec Kit article.
 
 {{% /notice %}}
 
 1. Run the following prompt to generate checklist items for our example - *this should take ~4 minutes to run*:
 
-    ```markdown
-    /speckit.checklist
-    ```
+{{< tabs groupid="dsl" >}}
+
+{{% tab title="Bicep" %}}
+
+```markdown
+/speckit.checklist
+```
 
     {{% expand title="➕ Expand to see the results" %}}
 
 Click through the tabs to see the details!
 
-{{< tabs title="Checklist (post-run)" >}}
+{{< tabs >}}
 {{% tab title="Checklist depth questions" %}}
 
 When running the checklist prompt, Copilot may ask you a number of depth questions to clarify certain aspects of the plan. Here's an example of what that looks like. You can answer in the following format, e.g.: `Q1: E, Q2:A, Q3:A`
@@ -465,6 +544,15 @@ In the Copilot chat window, you should see results, similar to this:
 
     {{% /expand %}}
 
+{{% /tab %}}
+{{% tab title="Terraform" %}}
+
+Coming soon!
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
 3. If you're using git, it is recommended to make a commit now to capture your new checklist, with a comment of something like `Checklist prepared`.
 
@@ -474,11 +562,15 @@ Spec Kit uses `/speckit.tasks` to generate the `tasks.md` file. The prompt doesn
 
 {{% notice style="info" %}}
 
-To learn more about what the tasks should include, see the [related chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#6-tasks) in the Spec Kit article.
+To learn more about what the tasks should include, see the [Tasks chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#6-tasks) in the Spec Kit article.
 
 {{% /notice %}}
 
 1. Run the following prompt to generate tasks for our example - *this should take ~2 minutes to run*:
+
+{{< tabs groupid="dsl" >}}
+
+{{% tab title="Bicep" %}}
 
     ```markdown
     /speckit.tasks
@@ -488,7 +580,7 @@ To learn more about what the tasks should include, see the [related chapter]({{%
 
 Click through the tabs to see the details!
 
-{{< tabs title="Tasks (post-run)" >}}
+{{< tabs >}}
 {{% tab title="Chat output" %}}
 
 In the Copilot chat window, you should see something like this:
@@ -506,6 +598,15 @@ In the Copilot chat window, you should see something like this:
 {{< /tabs >}}
     {{% /expand %}}
 
+{{% /tab %}}
+{{% tab title="Terraform" %}}
+
+Coming soon!
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
 3. If you're using git, it is recommended to make a commit now to capture your task list, with a comment of something like `Tasks generated`.
 
@@ -515,11 +616,15 @@ Spec Kit uses `/speckit.analyze` to generate an analysis report. The prompt does
 
 {{% notice style="info" %}}
 
-To learn more about the analyze step, see the [related chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#7-analyze-optional) in the Spec Kit article.
+To learn more about the analyze step, see the [Analyze chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#7-analyze-optional) in the Spec Kit article.
 
 {{% /notice %}}
 
 1. Run the following prompt to generate an analysis report for our example - *this should take ~2 minutes to run*:
+
+{{< tabs groupid="dsl" >}}
+
+{{% tab title="Bicep" %}}
 
     ```markdown
     /speckit.analyze
@@ -529,7 +634,7 @@ To learn more about the analyze step, see the [related chapter]({{% siteparam ba
 
 Click through the tabs to see the details!
 
-{{< tabs title="Analyze (post-run)" >}}
+{{< tabs >}}
 {{% tab title="Chat output" %}}
 
 In the Copilot chat window, you should see something like this:
@@ -547,24 +652,37 @@ In the Copilot chat window, you should see something like this:
 {{< /tabs >}}
     {{% /expand %}}
 
+{{% /tab %}}
+{{% tab title="Terraform" %}}
+
+Coming soon!
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
 3. If you're using git, it is recommended to make a commit now to capture your analysis report, with a comment of something like `Analysis report generated`.
 
 ### 8. Implement
 
-Spec Kit uses `/speckit.implement` to generate the `main.bicep` file along with the `parameters.json` file. The prompt doesn't require any specific inputs as it analyzes the existing plan and tasks to generate the implementation code.
+Spec Kit uses `/speckit.implement` to generate the solution template file along with its parameters file. The prompt doesn't require any specific inputs as it analyzes the existing plan and tasks to generate the implementation code.
 
 {{% notice style="info" %}}
 
-To learn more about the implement step, see the [related chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#8-implement) in the Spec Kit article.
+To learn more about the implement step, see the [Implement chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#8-implement) in the Spec Kit article.
 
 {{% /notice %}}
 
 1. Run the following prompt to generate the implementation for our example:
 
-    ```markdown
-    /speckit.implement
-    ```
+{{< tabs groupid="dsl" >}}
+
+{{% tab title="Bicep" %}}
+
+```markdown
+/speckit.implement
+```
 
     {{% expand title="➕ Expand to see the results" %}}
 
@@ -572,7 +690,7 @@ During the Implement phase, Copilot acts based on the `tasks.md` file (checkboxe
 
 Click through the tabs to see the details!
 
-{{< tabs title="Implement" >}}
+{{< tabs >}}
 {{% tab title="Checklist failure" %}}
 <img src="{{%siteparam base%}}/images/experimental/sdd/implement-checklist-failure.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
 {{% /tab %}}
@@ -604,20 +722,32 @@ Click through the tabs to see the details!
 {{< /tabs >}}
     {{% /expand %}}
 
+{{% /tab %}}
+{{% tab title="Terraform" %}}
+
+Coming soon!
+
+{{% /tab %}}
+
+{{< /tabs >}}
 
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
 3. If you're using git, it is recommended to make a commit now to capture your implementation results, with a comment of something like `Implementation complete`.
 
 ## Next Steps
 
-Congratulations! You've walked through a complete Spec Kit workflow for building Azure infrastructure using Bicep and Azure Verified Modules. By following this structured approach, you've created a deployable IaC solution that is:
+Congratulations! You've walked through a complete Spec Kit workflow for building Azure infrastructure using Azure Verified Modules. By following this structured approach, you've created a deployable IaC solution that is:
 
 - **Well-documented**: Every design decision is captured in the specification and plan.
 - **Secure by default**: The constitution enforces security baselines from the start.
-- **Reproducible**: The generated Bicep templates can be deployed consistently across environments.
+- **Reproducible**: The generated IaC template can be deployed consistently across environments.
 - **Maintainable**: Clear task breakdowns and checklists make future updates straightforward.
 
-From here, you can:
+From here, you can ask Copilot to help you with the deployment and further enhancements or you can manually take the following steps to deploy and manage your solution:
+
+{{< tabs groupid="dsl" >}}
+
+    {{% tab title="Bicep" %}}
 
 1. **Validate with What-If**: Run `az deployment group what-if` to preview changes before deployment.
 2. **Deploy to Azure**: Use the Azure CLI or Bicep CLI to deploy your generated `main.bicep` to a subscription:
@@ -629,5 +759,14 @@ From here, you can:
     ```
 4. **Integrate into CI/CD**: Add the generated templates to your Azure DevOps or GitHub Actions pipelines.
 5. **Extend the solution**: Iterate on the specification to add new capabilities while maintaining alignment with your constitution.
+
+    {{% /tab %}}
+    {{% tab title="Terraform" %}}
+
+Coming soon!
+
+    {{% /tab %}}
+
+{{< /tabs >}}
 
 For more information on Spec Kit and the underlying methodology, see the [Spec Kit overview]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit) or explore the [Specification-Driven Development]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/sdd) concepts.
