@@ -9,34 +9,34 @@
 ### Required Tools
 
 1. **Azure CLI** (v2.65.0 or later)
-   ```powershell
-   # Check version
-   az --version
+  ```powershell
+  # Check version
+  az --version
 
-   # Install/upgrade if needed
-   # Windows: Download from https://aka.ms/installazurecliwindows
-   # Or use winget
-   winget install -e --id Microsoft.AzureCLI
-   ```
+  # Install/upgrade if needed
+  # Windows: Download from https://aka.ms/installazurecliwindows
+  # Or use winget
+  winget install -e --id Microsoft.AzureCLI
+  ```
 
 2. **Bicep CLI** (v0.33.0 or later)
-   ```powershell
-   # Check version
-   az bicep version
+  ```powershell
+  # Check version
+  az bicep version
 
-   # Install/upgrade
-   az bicep install
-   az bicep upgrade
-   ```
+  # Install/upgrade
+  az bicep install
+  az bicep upgrade
+  ```
 
 3. **PowerShell** (v7.4 or later recommended)
-   ```powershell
-   # Check version
-   $PSVersionTable.PSVersion
+  ```powershell
+  # Check version
+  $PSVersionTable.PSVersion
 
-   # Install if needed
-   winget install --id Microsoft.Powershell --source winget
-   ```
+  # Install if needed
+  winget install --id Microsoft.Powershell --source winget
+  ```
 
 ### Azure Permissions
 
@@ -259,8 +259,8 @@ az resource list `
 1. Go to: **Virtual Machines** > **vm-legacyvm-{random}**
 2. Click: **Connect** > **Bastion**
 3. Enter credentials:
-   - **Username**: `vmadmin`
-   - **Password**: Get from Key Vault (see below)
+  - **Username**: `vmadmin`
+  - **Password**: Get from Key Vault (see below)
 4. Click: **Connect**
 
 **Retrieve VM Password**:
@@ -391,22 +391,22 @@ nslookup st{random}.privatelink.file.core.windows.net
 
 **Solutions**:
 1. **Check Bicep CLI version**:
-   ```powershell
-   az bicep version
-   # Should be v0.33.0 or later
-   az bicep upgrade
-   ```
+  ```powershell
+  az bicep version
+  # Should be v0.33.0 or later
+  az bicep upgrade
+  ```
 
 2. **Review analyzer warnings**:
-   - Open `main.bicep` in VS Code with Bicep extension
-   - Fix any red/yellow squiggles
-   - Common issues: outdated module versions, missing required parameters
+  - Open `main.bicep` in VS Code with Bicep extension
+  - Fix any red/yellow squiggles
+  - Common issues: outdated module versions, missing required parameters
 
 3. **Validate bicepconfig.json**:
-   ```powershell
-   # Ensure file exists and is valid JSON
-   Get-Content infra/bicepconfig.json | ConvertFrom-Json
-   ```
+  ```powershell
+  # Ensure file exists and is valid JSON
+  Get-Content infra/bicepconfig.json | ConvertFrom-Json
+  ```
 
 ### Issue: Validation Fails
 
@@ -415,26 +415,26 @@ nslookup st{random}.privatelink.file.core.windows.net
 **Common Errors**:
 
 1. **"Resource provider not registered"**
-   ```powershell
-   # Register required providers
-   az provider register --namespace Microsoft.Compute
-   az provider register --namespace Microsoft.Network
-   az provider register --namespace Microsoft.Storage
-   az provider register --namespace Microsoft.KeyVault
-   az provider register --namespace Microsoft.Insights
+  ```powershell
+  # Register required providers
+  az provider register --namespace Microsoft.Compute
+  az provider register --namespace Microsoft.Network
+  az provider register --namespace Microsoft.Storage
+  az provider register --namespace Microsoft.KeyVault
+  az provider register --namespace Microsoft.Insights
 
-   # Wait for registration to complete (2-5 minutes)
-   az provider show --namespace Microsoft.Compute --query "registrationState"
-   ```
+  # Wait for registration to complete (2-5 minutes)
+  az provider show --namespace Microsoft.Compute --query "registrationState"
+  ```
 
 2. **"Quota exceeded"**
-   - Check Azure subscription quotas
-   - Request quota increase if needed: Portal > Subscriptions > Usage + quotas
+  - Check Azure subscription quotas
+  - Request quota increase if needed: Portal > Subscriptions > Usage + quotas
 
 3. **"Invalid parameter value"**
-   - Review `main.bicepparam` for typos
-   - Ensure `vmSize` is valid for westus3 region
-   - Verify availability zone is 1, 2, or 3
+  - Review `main.bicepparam` for typos
+  - Ensure `vmSize` is valid for westus3 region
+  - Verify availability zone is 1, 2, or 3
 
 ### Issue: Deployment Hangs or Times Out
 
@@ -459,16 +459,16 @@ az deployment operation group list `
 
 **Solutions**:
 1. **VM creation timeout**: May indicate VM extension failures
-   - Check: Portal > VM > Extensions and applications
-   - Solution: Redeploy with `--no-wait` flag, monitor separately
+  - Check: Portal > VM > Extensions and applications
+  - Solution: Redeploy with `--no-wait` flag, monitor separately
 
 2. **Bastion timeout**: Check Public IP allocation
-   - Verify Public IP quota not exceeded
-   - Check NSG rules on Bastion subnet
+  - Verify Public IP quota not exceeded
+  - Check NSG rules on Bastion subnet
 
 3. **Private Endpoint timeout**: DNS propagation delay
-   - Wait additional 5-10 minutes
-   - Verify Private DNS Zone linked to VNet
+  - Wait additional 5-10 minutes
+  - Verify Private DNS Zone linked to VNet
 
 ### Issue: VM Password Not Working
 
@@ -476,31 +476,31 @@ az deployment operation group list `
 
 **Solutions**:
 1. **Re-retrieve password from Key Vault**:
-   ```powershell
-   $kvName = az keyvault list --resource-group rg-legacyvm-prod --query "[0].name" -o tsv
-   $password = az keyvault secret show --name vm-admin-password --vault-name $kvName --query "value" -o tsv
-   Write-Host "Password: $password"
-   ```
+  ```powershell
+  $kvName = az keyvault list --resource-group rg-legacyvm-prod --query "[0].name" -o tsv
+  $password = az keyvault secret show --name vm-admin-password --vault-name $kvName --query "value" -o tsv
+  Write-Host "Password: $password"
+  ```
 
 2. **Check Key Vault access**:
-   ```powershell
-   # Ensure you have Key Vault Secrets User role
-   az role assignment list `
-     --scope /subscriptions/{subscription-id}/resourceGroups/rg-legacyvm-prod/providers/Microsoft.KeyVault/vaults/$kvName `
-     --query "[?principalName=='<your-user-email>']" `
-     --output table
-   ```
+  ```powershell
+  # Ensure you have Key Vault Secrets User role
+  az role assignment list `
+    --scope /subscriptions/{subscription-id}/resourceGroups/rg-legacyvm-prod/providers/Microsoft.KeyVault/vaults/$kvName `
+    --query "[?principalName=='<your-user-email>']" `
+    --output table
+  ```
 
 3. **Reset VM password** (if secret retrieval works but password is wrong):
-   ```powershell
-   # This should not be necessary if deployment succeeded
-   # Only use as last resort
-   az vm user update `
-     --resource-group rg-legacyvm-prod `
-     --name vm-legacyvm-{random} `
-     --username vmadmin `
-     --password "NewP@ssw0rd!123"
-   ```
+  ```powershell
+  # This should not be necessary if deployment succeeded
+  # Only use as last resort
+  az vm user update `
+    --resource-group rg-legacyvm-prod `
+    --name vm-legacyvm-{random} `
+    --username vmadmin `
+    --password "NewP@ssw0rd!123"
+  ```
 
 ### Issue: Bastion Connection Fails
 

@@ -179,19 +179,19 @@ Validation (T054-T061)
 **35 tasks marked [P]** can execute in parallel:
 
 1. **Phase 2 - Foundational** (after Log Analytics + VNet):
-   - T005-T008 (Parameters) - 4 tasks in parallel
-   - T012 (NSG) can overlap with T010-T011
+  - T005-T008 (Parameters) - 4 tasks in parallel
+  - T012 (NSG) can overlap with T010-T011
 
 2. **Phase 3 - MVP** (after Key Vault complete):
-   - T018-T021 (Bastion) parallel with T022-T029 (VM) - both depend on VNet only
+  - T018-T021 (Bastion) parallel with T022-T029 (VM) - both depend on VNet only
 
 3. **Phase 4-5** (after Foundation):
-   - T030-T031 (Data Disk) parallel with T032-T038 (Storage + PE) - no mutual dependency
+  - T030-T031 (Data Disk) parallel with T032-T038 (Storage + PE) - no mutual dependency
 
 4. **Phase 6 - Polish**:
-   - T039-T041 (Alert Rules) - 3 tasks in parallel
-   - T042-T051 (Outputs) - 10 tasks in parallel
-   - T052-T053 (Parameters file) parallel with T039-T051
+  - T039-T041 (Alert Rules) - 3 tasks in parallel
+  - T042-T051 (Outputs) - 10 tasks in parallel
+  - T052-T053 (Parameters file) parallel with T039-T051
 
 **Estimated Parallelization Benefit**: ~30% time reduction (from 8.5 hours to ~6 hours with optimal parallelization)
 

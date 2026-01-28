@@ -187,68 +187,68 @@ All 6 constitution principles are satisfied with no exceptions required. See Con
 **Structure** (700-900 lines estimated):
 
 1. **Header** (lines 1-30):
-   - Metadata: name, description, owner
-   - Target scope: `targetScope = 'resourceGroup'`
-   - Parameters: vmSize, vmAdminUsername, availabilityZone, fileShareQuotaGiB, logAnalyticsRetentionDays
+  - Metadata: name, description, owner
+  - Target scope: `targetScope = 'resourceGroup'`
+  - Parameters: vmSize, vmAdminUsername, availabilityZone, fileShareQuotaGiB, logAnalyticsRetentionDays
 
 2. **Variables** (lines 31-80):
-   - Random suffix: `var suffix = uniqueString(resourceGroup().id)`
-   - Resource names: all following `{type}-{purpose}-${suffix}` pattern
-   - VM password: `var vmPassword = 'P@ssw0rd!${uniqueString(resourceGroup().id, deployment().name)}'`
-   - Network configuration: subnet CIDR blocks, NSG rules
-   - Tags: workload, environment, compliance, managedBy, deploymentDate
+  - Random suffix: `var suffix = uniqueString(resourceGroup().id)`
+  - Resource names: all following `{type}-{purpose}-${suffix}` pattern
+  - VM password: `var vmPassword = 'P@ssw0rd!${uniqueString(resourceGroup().id, deployment().name)}'`
+  - Network configuration: subnet CIDR blocks, NSG rules
+  - Tags: workload, environment, compliance, managedBy, deploymentDate
 
 3. **Log Analytics Workspace** (lines 81-110):
-   ```bicep
-   module logAnalytics 'br/public:avm/res/operational-insights/workspace:0.15.0' = {
-     name: 'deploy-log-analytics'
-     params: {
-       name: 'law-legacyvm-${suffix}'
-       location: location
-       retentionInDays: logAnalyticsRetentionDays
-       tags: tags
-     }
-   }
-   ```
+  ```bicep
+  module logAnalytics 'br/public:avm/res/operational-insights/workspace:0.15.0' = {
+    name: 'deploy-log-analytics'
+    params: {
+      name: 'law-legacyvm-${suffix}'
+      location: location
+      retentionInDays: logAnalyticsRetentionDays
+      tags: tags
+    }
+  }
+  ```
 
 4. **Virtual Network** (lines 111-200):
-   - Module: `avm/res/network/virtual-network:0.7.2`
-   - 3 subnets: VM (10.0.0.0/27), Bastion (10.0.0.64/26), PE (10.0.0.128/27)
-   - Diagnostic settings to Log Analytics
+  - Module: `avm/res/network/virtual-network:0.7.2`
+  - 3 subnets: VM (10.0.0.0/27), Bastion (10.0.0.64/26), PE (10.0.0.128/27)
+  - Diagnostic settings to Log Analytics
 
 5. **Network Security Groups** (lines 201-350):
-   - Module: `avm/res/network/network-security-group:0.5.2` (3 instances)
-   - NSG 1: VM subnet (deny all inbound, allow internet + VNet outbound)
-   - NSG 2: Bastion subnet (standard Azure Bastion rules)
-   - NSG 3: PE subnet (allow VM subnet inbound on 445, allow all outbound)
-   - Associate each NSG with its subnet
-   - Diagnostic settings to Log Analytics
+  - Module: `avm/res/network/network-security-group:0.5.2` (3 instances)
+  - NSG 1: VM subnet (deny all inbound, allow internet + VNet outbound)
+  - NSG 2: Bastion subnet (standard Azure Bastion rules)
+  - NSG 3: PE subnet (allow VM subnet inbound on 445, allow all outbound)
+  - Associate each NSG with its subnet
+  - Diagnostic settings to Log Analytics
 
 6. **NAT Gateway** (lines 351-380):
-   - Module: `avm/res/network/nat-gateway:2.0.1`
-   - Public IP auto-created
-   - Associate with VM subnet
-   - Diagnostic settings to Log Analytics
+  - Module: `avm/res/network/nat-gateway:2.0.1`
+  - Public IP auto-created
+  - Associate with VM subnet
+  - Diagnostic settings to Log Analytics
 
 7. **Azure Bastion** (lines 381-410):
-   - Module: `avm/res/network/bastion-host:0.8.2`
-   - Depends on VNet and Bastion NSG
-   - Public IP auto-created
-   - Diagnostic settings to Log Analytics
+  - Module: `avm/res/network/bastion-host:0.8.2`
+  - Depends on VNet and Bastion NSG
+  - Public IP auto-created
+  - Diagnostic settings to Log Analytics
 
 8. **Key Vault** (lines 411-470):
-   - Module: `avm/res/key-vault/vault:0.13.3`
-   - SKU: Standard
-   - Access model: RBAC
-   - Secret: VM admin password (generated variable)
-   - RBAC assignment: VM managed identity → Key Vault Secrets User role
-   - Diagnostic settings to Log Analytics
+  - Module: `avm/res/key-vault/vault:0.13.3`
+  - SKU: Standard
+  - Access model: RBAC
+  - Secret: VM admin password (generated variable)
+  - RBAC assignment: VM managed identity → Key Vault Secrets User role
+  - Diagnostic settings to Log Analytics
 
 9. **Private DNS Zone** (lines 471-500):
-   - Module: `avm/res/network/private-dns-zone:0.8.0`
-   - Zone name: `privatelink.file.core.windows.net`
-   - VNet link to main VNet
-   - Depends on VNet
+  - Module: `avm/res/network/private-dns-zone:0.8.0`
+  - Zone name: `privatelink.file.core.windows.net`
+  - VNet link to main VNet
+  - Depends on VNet
 
 10. **Storage Account** (lines 501-580):
     - Module: `avm/res/storage/storage-account:0.31.0`
@@ -455,30 +455,30 @@ az deployment group create `
 Follow checklist in [quickstart.md](./quickstart.md):
 
 1. **Resource Count Verification**:
-   ```powershell
-   az resource list --resource-group rg-legacyvm-prod --output table
-   # Expected: 20-25 resources
-   ```
+  ```powershell
+  az resource list --resource-group rg-legacyvm-prod --output table
+  # Expected: 20-25 resources
+  ```
 
 2. **Bastion Connectivity Test**:
-   - Retrieve VM password from Key Vault
-   - Connect to VM via Azure Portal Bastion
-   - Verify Windows Server 2016 desktop loads
+  - Retrieve VM password from Key Vault
+  - Connect to VM via Azure Portal Bastion
+  - Verify Windows Server 2016 desktop loads
 
 3. **Log Analytics Verification**:
-   - Run sample Kusto queries
-   - Verify logs appearing for all resources
-   - Check for any error logs
+  - Run sample Kusto queries
+  - Verify logs appearing for all resources
+  - Check for any error logs
 
 4. **Network Connectivity Tests** (from VM):
-   - Test internet access via NAT Gateway
-   - Verify private endpoint DNS resolution
-   - Ping storage account private IP
+  - Test internet access via NAT Gateway
+  - Verify private endpoint DNS resolution
+  - Ping storage account private IP
 
 5. **Alert Verification**:
-   - Trigger test alert (Key Vault access failure)
-   - Verify alert visible in Azure Portal within 5-10 minutes
-   - Confirm alert severity (Sev 0)
+  - Trigger test alert (Key Vault access failure)
+  - Verify alert visible in Azure Portal within 5-10 minutes
+  - Confirm alert severity (Sev 0)
 
 #### Task 3.3: Documentation Updates
 
@@ -538,30 +538,30 @@ Document compliance controls met:
 Items explicitly out of scope for initial deployment but may be added later:
 
 1. **File Share VM Integration**:
-   - Map file share as network drive in VM
-   - Configure persistent drive mapping via Group Policy or startup script
-   - Document in operational runbooks
+  - Map file share as network drive in VM
+  - Configure persistent drive mapping via Group Policy or startup script
+  - Document in operational runbooks
 
 2. **Advanced Monitoring**:
-   - Custom Log Analytics queries and workbooks
-   - Action Groups for email/SMS notifications
-   - Integration with external monitoring systems
+  - Custom Log Analytics queries and workbooks
+  - Action Groups for email/SMS notifications
+  - Integration with external monitoring systems
 
 3. **Backup Configuration**:
-   - Azure Backup for VM
-   - Azure Files snapshot/backup policies
-   - Backup retention policy aligned with compliance requirements
+  - Azure Backup for VM
+  - Azure Files snapshot/backup policies
+  - Backup retention policy aligned with compliance requirements
 
 4. **High Availability** (if requirements change):
-   - Availability Set or multiple VMs across zones
-   - Load Balancer for multi-VM scenarios
-   - Azure Site Recovery for disaster recovery
+  - Availability Set or multiple VMs across zones
+  - Load Balancer for multi-VM scenarios
+  - Azure Site Recovery for disaster recovery
 
 5. **Security Enhancements**:
-   - Just-In-Time VM Access
-   - Azure Policy assignments
-   - Microsoft Defender for Cloud integration
-   - Network Watcher flow logs
+  - Just-In-Time VM Access
+  - Azure Policy assignments
+  - Microsoft Defender for Cloud integration
+  - Network Watcher flow logs
 
 ---
 

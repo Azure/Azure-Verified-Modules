@@ -349,18 +349,18 @@ This is sufficient to demonstrate foundational workload capabilities. Subsequent
 ### MVP-First Approach
 
 1. **Deliver US1 first** (Phase 3: Core VM Infrastructure)
-   - Provides foundational value: operational VM with networking
-   - Independent testable increment
-   - Validates Bicep template structure and AVM module usage
+  - Provides foundational value: operational VM with networking
+  - Independent testable increment
+  - Validates Bicep template structure and AVM module usage
 
 2. **Add US2 + US3** (Phase 4-5: Storage + Secure Access)
-   - Provides secure operations capabilities
-   - Data storage layer complete
-   - Bastion access operational
+  - Provides secure operations capabilities
+  - Data storage layer complete
+  - Bastion access operational
 
 3. **Add US4 + US5** (Phase 6-7: Network Security + Monitoring)
-   - Production-grade security and observability
-   - Complete infrastructure compliance
+  - Production-grade security and observability
+  - Complete infrastructure compliance
 
 ### Incremental Delivery Value
 

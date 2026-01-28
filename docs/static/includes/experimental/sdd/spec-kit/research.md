@@ -242,24 +242,24 @@ var generatedPassword = 'P@ssw0rd!${uniqueString(resourceGroup().id, deployment(
 ## Open Questions Resolved
 
 1. **How to generate VM password without external scripts?**
-   - **Resolution**: Use Bicep `uniqueString()` function with multiple seeds
-   - **Implementation**: Store generated password in Key Vault using module's `secrets` parameter
+  - **Resolution**: Use Bicep `uniqueString()` function with multiple seeds
+  - **Implementation**: Store generated password in Key Vault using module's `secrets` parameter
 
 2. **How to connect file share to VM?**
-   - **Resolution**: Out of scope for initial deployment per user guidance
-   - **Future**: Will require VM extension or post-deployment script
+  - **Resolution**: Out of scope for initial deployment per user guidance
+  - **Future**: Will require VM extension or post-deployment script
 
 3. **Should we use private endpoint for Key Vault?**
-   - **Resolution**: No, not required for this legacy workload
-   - **Justification**: Adds complexity without clear benefit for single VM scenario
+  - **Resolution**: No, not required for this legacy workload
+  - **Justification**: Adds complexity without clear benefit for single VM scenario
 
 4. **What alert notification channels?**
-   - **Resolution**: Portal notifications only (clarified during specification)
-   - **Implementation**: Create metric alerts without action groups
+  - **Resolution**: Portal notifications only (clarified during specification)
+  - **Implementation**: Create metric alerts without action groups
 
 5. **Module version for optimal features?**
-   - **Resolution**: Always use latest stable version listed in AVM metadata
-   - **Verification**: Confirmed all required features available in latest versions
+  - **Resolution**: Always use latest stable version listed in AVM metadata
+  - **Verification**: Confirmed all required features available in latest versions
 
 ## Next Steps
 

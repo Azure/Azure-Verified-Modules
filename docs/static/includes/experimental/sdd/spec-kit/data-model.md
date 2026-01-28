@@ -419,25 +419,25 @@ Configuration:
 Based on ARM dependency analysis, resources will deploy in this approximate order:
 
 1. **Phase 1: Foundation** (Parallel)
-   - Log Analytics Workspace
-   - Virtual Network (with subnets)
-   - Network Security Groups
+  - Log Analytics Workspace
+  - Virtual Network (with subnets)
+  - Network Security Groups
 
 2. **Phase 2: Network & Security** (Depends on Phase 1)
-   - NAT Gateway (associates with VM subnet)
-   - Azure Bastion (requires subnet and NSG)
-   - Private DNS Zone (requires VNet)
-   - Key Vault (generates and stores password)
+  - NAT Gateway (associates with VM subnet)
+  - Azure Bastion (requires subnet and NSG)
+  - Private DNS Zone (requires VNet)
+  - Key Vault (generates and stores password)
 
 3. **Phase 3: Storage** (Depends on Phase 2)
-   - Storage Account (with file share)
-   - Private Endpoint (requires storage account, VNet, DNS zone)
+  - Storage Account (with file share)
+  - Private Endpoint (requires storage account, VNet, DNS zone)
 
 4. **Phase 4: Compute** (Depends on Phases 1-3)
-   - Virtual Machine (requires VNet, Key Vault secret, zone assignment)
+  - Virtual Machine (requires VNet, Key Vault secret, zone assignment)
 
 5. **Phase 5: Monitoring** (Depends on Phase 4)
-   - Azure Monitor Alerts (require VM and Key Vault to be deployed)
+  - Azure Monitor Alerts (require VM and Key Vault to be deployed)
 
 ## Parameter Data Model
 

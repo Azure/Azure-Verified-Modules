@@ -16,17 +16,17 @@
   for the project. For Azure IaC projects, focus on infrastructure details.
 -->
 
-**IaC Language**: Bicep (latest stable version)  
-**Module Framework**: Azure Verified Modules (AVM) only  
-**Target Region**: westus3 (US West 3)  
-**Deployment Tool**: Azure CLI (`az deployment group`)  
-**Validation Required**: ARM validation + what-if analysis before every deployment  
-**Workload Type**: Legacy compliance-retained workload  
-**High Availability**: Not required  
-**Disaster Recovery**: Not required  
-**Scalability Requirements**: Not required  
-**Security Baseline**: Azure Security Center recommendations + diagnostic logging mandatory  
-**Naming Convention**: {resourceType}-{purpose}-{random4-6chars}  
+**IaC Language**: Bicep (latest stable version)
+**Module Framework**: Azure Verified Modules (AVM) only
+**Target Region**: westus3 (US West 3)
+**Deployment Tool**: Azure CLI (`az deployment group`)
+**Validation Required**: ARM validation + what-if analysis before every deployment
+**Workload Type**: Legacy compliance-retained workload
+**High Availability**: Not required
+**Disaster Recovery**: Not required
+**Scalability Requirements**: Not required
+**Security Baseline**: Azure Security Center recommendations + diagnostic logging mandatory
+**Naming Convention**: {resourceType}-{purpose}-{random4-6chars}
 **Compliance Tags**: [Specify compliance identifiers, e.g., "legacy-retention"]
 
 ## Constitution Check

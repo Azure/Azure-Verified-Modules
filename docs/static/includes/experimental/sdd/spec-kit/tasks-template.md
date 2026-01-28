@@ -25,21 +25,21 @@ description: "Task list template for feature implementation"
 - **Scripts**: `scripts/` (post-deployment, validation - only when Bicep insufficient)
 - **Documentation**: `infra/docs/` (architecture diagrams, deployment guides)
 
-<!-- 
+<!--
   ============================================================================
   IMPORTANT: The tasks below are SAMPLE TASKS for illustration purposes only.
-  
+
   The /speckit.tasks command MUST replace these with actual tasks based on:
   - User stories from spec.md (with their priorities P1, P2, P3...)
   - Feature requirements from plan.md
   - Entities from data-model.md
   - Endpoints from contracts/
-  
+
   Tasks MUST be organized by user story so each story can be:
   - Implemented independently
   - Tested independently
   - Delivered as an MVP increment
-  
+
   DO NOT keep these sample tasks in the generated tasks.md file.
   ============================================================================
 -->
@@ -250,9 +250,9 @@ With multiple developers:
 
 1. Team completes Setup + Foundational together
 2. Once Foundational is done:
-   - Developer A: User Story 1
-   - Developer B: User Story 2
-   - Developer C: User Story 3
+  - Developer A: User Story 1
+  - Developer B: User Story 2
+  - Developer C: User Story 3
 3. Stories complete and integrate independently
 
 ---
