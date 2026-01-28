@@ -1,272 +1,269 @@
-# Research: Legacy Windows Server VM Workload
+# Research: Legacy VM Workload AVM Modules
 
-**Date**: 2026-01-22
-**Purpose**: Resolve technical unknowns and research AVM modules, Bicep patterns, and implementation approaches
+**Date**: 2026-01-27
+**Feature**: [spec.md](../spec.md)
+**Purpose**: Research and document AVM module selections, versions, and configuration approaches
 
-## Phase 0: Research Tasks
+## AVM Module Inventory
 
-### 1. AVM Module Discovery
+### Primary Infrastructure Modules
 
-#### Required Azure Resources
+#### 1. Virtual Network
+- **Module**: `avm/res/network/virtual-network`
+- **Latest Version**: 0.7.2
+- **Documentation**: https://github.com/Azure/bicep-registry-modules/tree/avm/res/network/virtual-network/0.7.2/avm/res/network/virtual-network/README.md
+- **Decision**: Use this module for VNet and subnet deployment
+- **Rationale**: Official AVM module with built-in support for subnets, NSG assignments, NAT gateway association, and diagnostic settings
+- **Key Parameters Needed**:
+  - Address space: 10.0.0.0/24
+  - Subnets: VM (10.0.0.0/27), Bastion (10.0.0.64/26), Private endpoint (10.0.0.128/27)
+  - NSG associations per subnet
+  - NAT gateway assignment to VM subnet
 
-Based on FR-001 through FR-020, the following Azure resources must be deployed:
+#### 2. Virtual Machine
+- **Module**: `avm/res/compute/virtual-machine`
+- **Latest Version**: 0.21.0
+- **Documentation**: https://github.com/Azure/bicep-registry-modules/tree/avm/res/compute/virtual-machine/0.21.0/avm/res/compute/virtual-machine/README.md
+- **Decision**: Use this module for VM deployment
+- **Rationale**: Comprehensive AVM module with built-in support for managed disks, managed identity, diagnostic settings, and guest configuration
+- **Key Parameters Needed**:
+  - VM size: Standard_D2s_v3
+  - OS: Windows Server 2016
+  - Computer name: ≤15 characters
+  - Admin username: vmadmin
+  - Admin password: Reference to Key Vault secret
+  - Managed identity: System-assigned
+  - Data disks: 500GB HDD
+  - Availability zone: 1-3 (parameter-driven)
+  - No public IP
 
-1. **Resource Group** - Logical container (single RG for production)
-2. **Virtual Network** - Network infrastructure with subnets
-3. **Network Security Groups** - Traffic restriction (FR-019)
-4. **Azure Bastion** - Secure RDP access (FR-007)
-5. **Virtual Machine** - Windows Server 2016, 2+ cores, 8GB RAM (FR-001, FR-002, FR-003)
-6. **Managed Disks** - OS disk (Standard HDD) + 500GB data disk (FR-003, FR-004)
-7. **Storage Account** - File share hosting (FR-008)
-8. **Azure Files Share** - HDD-backed file share
-9. **Private Endpoint** - Storage account private connectivity (FR-009)
-10. **Key Vault** - Secret management for VM password (FR-010, FR-011)
-11. **Log Analytics Workspace** - Diagnostic logging destination (FR-018)
-12. **Management Locks** - CanNotDelete locks (FR-017)
-13. **Azure Monitor Alerts** - Critical alerts (FR-021)
+#### 3. Azure Bastion
+- **Module**: `avm/res/network/bastion-host`
+- **Latest Version**: 0.8.2
+- **Documentation**: https://github.com/Azure/bicep-registry-modules/tree/avm/res/network/bastion-host/0.8.2/avm/res/network/bastion-host/README.md
+- **Decision**: Use this module for bastion deployment
+- **Rationale**: AVM module with built-in diagnostic settings and public IP creation
+- **Key Parameters Needed**:
+  - Subnet: Bastion subnet (10.0.0.64/26)
+  - SKU: Basic (cost-effective for legacy workload)
+  - Diagnostic settings to Log Analytics
 
-#### AVM Module Research
+#### 4. Storage Account
+- **Module**: `avm/res/storage/storage-account`
+- **Latest Version**: 0.31.0
+- **Documentation**: https://github.com/Azure/bicep-registry-modules/tree/avm/res/storage/storage-account/0.31.0/avm/res/storage/storage-account/README.md
+- **Decision**: Use this module for storage account and file share
+- **Rationale**: Comprehensive AVM module with built-in file share, private endpoint, diagnostic settings, and network rules support
+- **Key Parameters Needed**:
+  - SKU: Standard_LRS (HDD-based)
+  - File share quota: 1024 GiB
+  - Private endpoint enabled
+  - Public network access disabled
+  - Diagnostic settings to Log Analytics
 
-Based on AVM module index and MCR registry research:
+#### 5. NAT Gateway
+- **Module**: `avm/res/network/nat-gateway`
+- **Latest Version**: 2.0.1
+- **Documentation**: https://github.com/Azure/bicep-registry-modules/tree/avm/res/network/nat-gateway/2.0.1/avm/res/network/nat-gateway/README.md
+- **Decision**: Use this module for NAT gateway
+- **Rationale**: AVM module with public IP creation and zone support
+- **Key Parameters Needed**:
+  - Zone: parameter-driven (1-3)
+  - Public IP: Auto-created by module
 
-| Resource | AVM Module | Registry Path | Latest Version | Notes |
-|----------|-----------|---------------|----------------|-------|
-| Resource Group | avm/res/resources/resource-group | br/public:avm/res/resources/resource-group | 0.4.0 | Includes lock support |
-| Virtual Network | avm/res/network/virtual-network | br/public:avm/res/network/virtual-network | 0.5.2 | Includes subnet, NSG support |
-| Bastion Host | avm/res/network/bastion-host | br/public:avm/res/network/bastion-host | 0.4.0 | Requires dedicated subnet |
-| Virtual Machine | avm/res/compute/virtual-machine | br/public:avm/res/compute/virtual-machine | 0.8.0 | Windows, data disks, managed identity |
-| Storage Account | avm/res/storage/storage-account | br/public:avm/res/storage/storage-account | 0.14.3 | File shares, private endpoints, locks |
-| Key Vault | avm/res/key-vault/vault | br/public:avm/res/key-vault/vault | 0.10.2 | **Secrets feature** for password storage |
-| Log Analytics | avm/res/operational-insights/workspace | br/public:avm/res/operational-insights/workspace | 0.9.1 | Diagnostic log destination |
-| Private Endpoint | (integrated) | N/A - part of storage module | N/A | Storage module handles PE creation |
-| Managed Disks | (integrated) | N/A - part of VM module | N/A | VM module handles disk attachment |
-| NSG | (integrated) | N/A - part of VNet module | N/A | VNet module handles NSG association |
+#### 6. Network Security Group
+- **Module**: `avm/res/network/network-security-group`
+- **Latest Version**: 0.5.2
+- **Documentation**: https://github.com/Azure/bicep-registry-modules/tree/avm/res/network/network-security-group/0.5.2/avm/res/network/network-security-group/README.md
+- **Decision**: Use this module for all three NSGs (VM subnet, bastion subnet, private endpoint subnet)
+- **Rationale**: AVM module with built-in diagnostic settings and security rule definitions
+- **Key Parameters Needed**:
+  - VM subnet NSG: Allow outbound to internet via NAT gateway, deny other traffic
+  - Bastion subnet NSG: Standard bastion rules (inbound 443, outbound to VM subnet)
+  - Private endpoint subnet NSG: Allow traffic from VM subnet only
 
-**Decision**: All required resources have corresponding AVM modules. No custom Bicep resource declarations needed (satisfies FR-014 and Constitution Principle I).
+#### 7. Key Vault
+- **Module**: `avm/res/key-vault/vault`
+- **Latest Version**: 0.13.3
+- **Documentation**: https://github.com/Azure/bicep-registry-modules/tree/avm/res/key-vault/vault/0.13.3/avm/res/key-vault/vault/README.md
+- **Decision**: Use this module for Key Vault and secret storage
+- **Rationale**: AVM module with built-in secret creation using `secrets` parameter array, RBAC support, diagnostic settings, and network rules
+- **Key Features**:
+  - Supports `secrets` parameter for creating secrets at deployment time
+  - Can generate password using `uniqueString()` and store in secret
+  - Built-in RBAC assignments
+  - Private endpoint support (optional for this scenario)
+  - Diagnostic settings interface
+- **Password Generation Approach**:
+  - Use Bicep `uniqueString()` function to generate complex password
+  - Combine multiple seed values for randomness
+  - Store in Key Vault secret via module's `secrets` parameter
+  - Reference secret in VM module
 
-### 2. Password Generation Strategy
+#### 8. Log Analytics Workspace
+- **Module**: `avm/res/operational-insights/workspace`
+- **Latest Version**: 0.15.0
+- **Documentation**: https://github.com/Azure/bicep-registry-modules/tree/avm/res/operational-insights/workspace/0.15.0/avm/res/operational-insights/workspace/README.md
+- **Decision**: Use this module for Log Analytics
+- **Rationale**: AVM module with retention configuration and solution deployment support
+- **Key Parameters Needed**:
+  - Retention days: 30 (default assumption)
+  - SKU: PerGB2018
 
-#### Requirement
-- Generate VM admin password at deployment time (FR-011)
-- Store in Key Vault using configurable secret name (FR-012)
-- No external scripts or deployment scripts (Constitution Principle II)
-- Use uniqueString() Bicep function (per user requirement)
+#### 9. Private Endpoint
+- **Module**: `avm/res/network/private-endpoint`
+- **Latest Version**: 0.11.1
+- **Documentation**: https://github.com/Azure/bicep-registry-modules/tree/avm/res/network/private-endpoint/0.11.1/avm/res/network/private-endpoint/README.md
+- **Decision**: Use this module for storage account file share private endpoint
+- **Rationale**: AVM module with built-in private DNS zone group configuration
+- **Key Parameters Needed**:
+  - Service connection: Storage account file service
+  - Subnet: Private endpoint subnet
+  - Private DNS zone: privatelink.file.core.windows.net (manual creation)
 
-#### Research Findings
+#### 10. Azure Monitor Alerts
+- **Module**: `avm/res/insights/metric-alert`
+- **Latest Version**: 0.4.1
+- **Documentation**: https://github.com/Azure/bicep-registry-modules/tree/avm/res/insights/metric-alert/0.4.1/avm/res/insights/metric-alert/README.md
+- **Decision**: Use this module for all three critical alerts
+- **Rationale**: AVM module supporting metric-based alerts for VM and Key Vault
+- **Alerts to Create**:
+  1. VM stopped/deallocated
+  2. Disk space > 85%
+  3. Key Vault access failures
+- **Note**: Portal-only notifications (no action groups needed for this scenario)
 
-**AVM Key Vault Module Secrets Feature**:
-- The `avm/res/key-vault/vault` module includes a `secrets` parameter array
-- Each secret object structure:
-  ```bicep
-  secrets: [
-    {
-      name: 'secret-name'
-      value: 'secret-value'  // Can be Bicep expression
-      contentType: 'text/plain'
-      attributes: {
-        enabled: true
-      }
-    }
-  ]
-  ```
+### Supporting Modules
 
-**Password Generation Pattern**:
+#### 11. Managed Disk
+- **Included in VM Module**: The Virtual Machine module handles data disk creation inline
+- **No separate module needed**: Data disks are specified as parameters to the VM module
+
+#### 12. Private DNS Zone
+- **Module**: `avm/res/network/private-dns-zone`
+- **Latest Version**: 0.8.0
+- **Documentation**: https://github.com/Azure/bicep-registry-modules/tree/avm/res/network/private-dns-zone/0.8.0/avm/res/network/private-dns-zone/README.md
+- **Decision**: Use this module for private DNS zone for file share private endpoint
+- **Rationale**: Required for DNS resolution of storage account file share through private endpoint
+- **Key Parameters Needed**:
+  - Zone name: privatelink.file.core.windows.net
+  - VNet link to main VNet
+
+## Alternative Approaches Considered
+
+### Alternative 1: Direct Resource Declarations
+- **Approach**: Use direct Bicep resource declarations instead of AVM modules
+- **Rejected**: Violates constitution principle II (AVM-Only Modules)
+- **Trade-offs**: Would provide more control but lose benefits of tested, maintained, secure-by-default configurations
+
+### Alternative 2: Pattern Module for VM Workloads
+- **Approach**: Search for existing AVM pattern module combining VM, networking, and storage
+- **Evaluated**: No suitable pattern module exists for this specific legacy VM scenario
+- **Decision**: Compose solution from resource modules per constitution
+
+### Alternative 3: Deployment Scripts for Password Generation
+- **Approach**: Use Azure Deployment Scripts to generate and store VM password
+- **Rejected**: User requirement specifies using uniqueString() and avoiding external helper scripts
+- **Decision**: Generate password inline using Bicep uniqueString() function and store via Key Vault module's secrets parameter
+
+### Alternative 4: Azure Backup Integration
+- **Approach**: Include Azure Backup configuration for VM
+- **Rejected**: Explicitly out of scope per specification
+- **Note**: Can be added later if requirements change
+
+## Bicep Language Features Required
+
+### Password Generation Pattern
 ```bicep
-// Generate complex password using uniqueString + guid + special chars
-var passwordSeed = uniqueString(resourceGroup().id, deployment().name, 'vmadmin')
-var guidPart = substring(guid(resourceGroup().id, 'password'), 0, 8)
-var vmAdminPassword = '${toUpper(substring(passwordSeed, 0, 1))}${substring(passwordSeed, 1, 10)}${guidPart}!@#'
-
-// Store in Key Vault via AVM module secrets parameter
-module keyVault 'br/public:avm/res/key-vault/vault:0.10.2' = {
-  params: {
-    secrets: [
-      {
-        name: vmAdminSecretName  // From parameter
-        value: vmAdminPassword   // Generated password
-      }
-    ]
-  }
-}
-
-// Reference in VM module
-module virtualMachine 'br/public:avm/res/compute/virtual-machine:0.8.0' = {
-  params: {
-    adminPassword: keyVault.outputs.secrets[0].secretUri  // Reference KV secret
-  }
-}
+// Generate complex password using uniqueString with multiple seeds
+var generatedPassword = 'P@ssw0rd!${uniqueString(resourceGroup().id, deployment().name, utcNow('u'))}'
 ```
 
-**Decision**: Use uniqueString() + guid() + special characters to generate 20+ character complex password. Store via AVM Key Vault secrets array. Reference secret URI in VM module. No deployment scripts required (satisfies Constitution Principle II).
+### Resource Dependency Management
+- Let ARM manage dependencies automatically
+- Explicit `dependsOn` only when implicit dependency isn't detected
+- Use resource symbolic names for references
 
-### 3. Network Architecture
+### Parameter Validation
+- Use decorators: `@minLength()`, `@maxLength()`, `@allowed()`
+- Validate VM computer name length (≤15 chars)
+- Validate storage account name (≤24 chars, lowercase, alphanumeric)
 
-#### Subnet Design
+## Key Configuration Decisions
 
-Based on Azure best practices and Bastion requirements:
+### Resource Naming
+- **Pattern**: {resourceType}-{purpose}-{randomSuffix}
+- **Random Suffix**: Use uniqueString() with 6 characters
+- **Examples**:
+  - VNet: `vnet-legacyvm-${uniqueString(resourceGroup().id)}`
+  - VM: `vm-legacyvm-${uniqueString(resourceGroup().id)}`
+  - Storage: `st${replace(uniqueString(resourceGroup().id), '-', '')}` (no hyphens, ≤24 chars)
+  - Key Vault: `kv-legacyvm-${uniqueString(resourceGroup().id)}`
 
-```text
-Virtual Network: 10.0.0.0/16
-├── AzureBastionSubnet: 10.0.0.0/26 (required name, /26 or larger)
-├── VmSubnet: 10.0.1.0/24 (VM and private endpoints)
-└── (Reserved): 10.0.2.0/23 (future expansion)
-```
+### Network Security
+- **VM Subnet NSG**: Allow outbound internet (via NAT), deny all inbound except from bastion
+- **Bastion Subnet NSG**: Follow Azure Bastion NSG requirements
+- **Private Endpoint Subnet NSG**: Allow inbound from VM subnet on port 445 (SMB)
 
-**Bastion Requirements** (from Azure docs):
-- Subnet name MUST be exactly `AzureBastionSubnet`
-- Minimum size /26 (64 addresses)
-- No NSG on Bastion subnet (Bastion manages its own rules)
+### Diagnostic Settings
+- **Target**: Log Analytics Workspace (centralized)
+- **Resources to Monitor**: VM, Key Vault, Storage Account, NSGs, Bastion
+- **Log Categories**: All available categories
+- **Metrics**: All available metrics
 
-**VM Subnet Requirements**:
-- NSG with restrictive rules (allow Bastion RDP only)
-- Private endpoint for storage account
+### Availability Zones
+- **VM**: Deploy to zone specified by parameter (1, 2, or 3)
+- **NAT Gateway**: Deploy to same zone as VM
+- **Managed Disks**: Automatically zone-aligned with VM
 
-#### NSG Rules (FR-019)
+## Implementation Notes
 
-```text
-VmSubnet NSG:
-- Inbound Priority 100: Allow RDP (3389) from AzureBastionSubnet
-- Inbound Priority 4096: Deny all other inbound
-- Outbound Priority 100: Allow HTTPS (443) to Storage (for private endpoint)
-- Outbound Priority 4096: Deny internet outbound (security best practice)
-```
+### Single Template Approach
+- All resources in main.bicep
+- No nested modules or separate Bicep files
+- ARM dependency management handles deployment order
 
-**Decision**: 2-subnet VNet, Bastion in dedicated subnet (no NSG), VM in separate subnet (restrictive NSG). Private endpoint in VM subnet for storage access.
+### Parameter Management
+- All configurable values in main.bicepparam
+- Rich comments explaining each parameter
+- Default values where appropriate
+- No hardcoded values in template
 
-### 4. Storage Configuration
+### Bicep CLI Version
+- **Minimum**: Latest stable version (0.33.0 or higher at time of writing)
+- **Recommendation**: Always use latest for newest AVM module support
+- **Verification**: Run `bicep --version` before deployment
 
-#### File Share Tier
-- Requirement: HDD-backed file share (FR-008)
-- AVM storage-account module parameter: `fileServices.shares[].accessTier: 'TransactionOptimized'` (Standard tier, HDD-backed)
-- Size: Not specified in requirements; recommend 100GB initial allocation
+### Module Version Pinning
+- **Required**: Always pin to specific versions (never 'latest' tag)
+- **Format**: `br/public:avm/res/network/virtual-network:0.7.2`
+- **Maintenance**: Update versions explicitly when needed
 
-#### Private Endpoint Configuration
-- Storage account `publicNetworkAccess: 'Disabled'` (FR-020)
-- Private endpoint targeting `file` sub-resource
-- DNS integration via private DNS zone (auto-created by AVM module)
-- Private endpoint deployed in VmSubnet
+## Open Questions Resolved
 
-**Decision**: Storage account with TransactionOptimized file share, public access disabled, private endpoint in VM subnet. DNS resolved via private DNS zone.
+1. **How to generate VM password without external scripts?**
+   - **Resolution**: Use Bicep `uniqueString()` function with multiple seeds
+   - **Implementation**: Store generated password in Key Vault using module's `secrets` parameter
 
-### 5. Resource Naming
+2. **How to connect file share to VM?**
+   - **Resolution**: Out of scope for initial deployment per user guidance
+   - **Future**: Will require VM extension or post-deployment script
 
-#### CAF Abbreviations (Constitution Principle V)
+3. **Should we use private endpoint for Key Vault?**
+   - **Resolution**: No, not required for this legacy workload
+   - **Justification**: Adds complexity without clear benefit for single VM scenario
 
-| Resource Type | Abbreviation | Example | Character Limits |
-|---------------|--------------|---------|------------------|
-| Resource Group | rg | rg-legacyvm-x7k9m | 1-90 alphanumeric, hyphens, underscores |
-| Virtual Network | vnet | vnet-legacyvm-x7k9m | 2-64 alphanumeric, hyphens, periods, underscores |
-| Subnet | snet | snet-vm-legacyvm-x7k9m | 1-80 alphanumeric, hyphens, periods, underscores |
-| Network Security Group | nsg | nsg-vm-legacyvm-x7k9m | 1-80 alphanumeric, hyphens, periods, underscores |
-| Bastion Host | bas | bas-legacyvm-x7k9m | 1-80 alphanumeric, hyphens |
-| Virtual Machine | vm | vm-legacyvm-x7k9m | 1-15 alphanumeric, hyphens (Windows limit: 15 chars) |
-| Managed Disk | disk | disk-vm-data-legacyvm-x7k9m | 1-80 alphanumeric, underscores, hyphens |
-| Storage Account | st | stlegacyvmx7k9m | 3-24 lowercase alphanumeric ONLY (no hyphens) |
-| File Share | share | fs-legacyvm | 3-63 lowercase alphanumeric, hyphens |
-| Private Endpoint | pe | pe-st-legacyvm-x7k9m | 2-64 alphanumeric, hyphens, periods, underscores |
-| Key Vault | kv | kv-legacyvm-x7k9m | 3-24 alphanumeric, hyphens (globally unique) |
-| Log Analytics | log | log-legacyvm-x7k9m | 4-63 alphanumeric, hyphens |
+4. **What alert notification channels?**
+   - **Resolution**: Portal notifications only (clarified during specification)
+   - **Implementation**: Create metric alerts without action groups
 
-**Random Suffix Generation**:
-```bicep
-var randomSuffix = toLower(substring(uniqueString(resourceGroup().id, deployment().name), 0, 6))
-var storageAccountName = 'stlegacyvm${replace(randomSuffix, '-', '')}'  // No hyphens for storage
-```
-
-**Decision**: Use CAF abbreviations with 6-character random suffix. Handle storage account naming constraints (lowercase, no hyphens). Parameterize workload name ('legacyvm') for flexibility.
-
-### 6. Availability Zone Selection
-
-#### Requirement
-- FR-015: Availability zone MUST be 1, 2, or 3 (never -1)
-- US West 3 region supports zones 1, 2, 3
-
-#### AVM Module Support
-- VM module: `zone` parameter (single integer: 1, 2, or 3)
-- Storage account: `storageAccountSku: 'Standard_LRS'` (zone-redundant not required for legacy workload)
-- Bastion: No zone support (regional service)
-
-**Decision**: Parameterize zone selection (default: 1). VM deployed to specified zone. Storage uses LRS (locally redundant, HDD-backed). Bastion is regional (no zone parameter).
-
-### 7. Diagnostic Settings & Alerts
-
-#### Diagnostic Logging (FR-018)
-All AVM modules support `diagnosticSettings` parameter array:
-```bicep
-diagnosticSettings: [
-  {
-    name: 'diag-to-law'
-    workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
-    logCategoriesAndGroups: [
-      {
-        categoryGroup: 'allLogs'
-      }
-    ]
-    metricCategories: [
-      {
-        category: 'AllMetrics'
-      }
-    ]
-  }
-]
-```
-
-#### Critical Alerts (FR-021)
-
-Per clarification, configure alerts for:
-1. VM stopped/deallocated state
-2. Data disk space >90% capacity
-3. Key Vault access failures
-
-**Azure Monitor Alert Rules**:
-- VM Power State: Metric alert on `Power State` = `Stopped`
-- Disk Capacity: Metric alert on `Disk Used Percentage` > 90
-- Key Vault Audit: Log alert on `failed` operations in Key Vault audit logs
-
-**Decision**: Deploy Log Analytics workspace first, configure diagnosticSettings on all resources. Create Azure Monitor alert rules as separate resources (AVM may have alerting module - research needed). If no AVM alert module, use direct Bicep resource declaration (justified exception per Constitution).
-
-### 8. Idempotent Deployment Strategy
-
-#### ARM Incremental Mode
-- Default ARM deployment mode: `incremental`
-- Already-deployed resources: skipped (no modification unless properties changed)
-- Missing resources: created
-- Failed resources: can be retried without deleting existing ones
-
-#### Password Secret Handling
-- Key Vault secret with same name: overwritten with new value if template re-run
-- VM password reference: remains valid (secret URI doesn't change)
-- **Risk**: Redeployment generates new password, overwrites secret, VM retains old password in memory
-- **Mitigation**: Document that password changes require VM password reset operation (not automatic)
-
-**Decision**: Use ARM incremental mode (default). Password regeneration on redeploy is acceptable for initial deployments. Document that post-deployment password changes require manual VM admin password update via Azure Portal or PowerShell.
-
-## Research Conclusions
-
-### All Technical Unknowns Resolved
-
-| Unknown | Resolution |
-|---------|------------|
-| AVM module availability | ✅ All resources covered by AVM modules |
-| Password generation | ✅ uniqueString() + guid() + special chars, stored via KV secrets |
-| Network architecture | ✅ 2-subnet VNet (Bastion + VM), restrictive NSG on VM subnet |
-| Storage configuration | ✅ TransactionOptimized file share, private endpoint, DNS integration |
-| Naming convention | ✅ CAF abbreviations + 6-char random suffix, storage account constraints handled |
-| Availability zones | ✅ Parameterized zone 1-3, VM deployed to zone, storage LRS |
-| Diagnostic logging | ✅ diagnosticSettings parameter on all AVM modules → Log Analytics |
-| Alerting | ✅ Azure Monitor alert rules (may need direct resource if no AVM module) |
-| Deployment strategy | ✅ ARM incremental mode, idempotent, no resource deletion on failure |
-
-### Open Questions (None)
-
-All clarifications resolved per spec.md Clarifications section. No remaining [NEEDS CLARIFICATION] items.
+5. **Module version for optimal features?**
+   - **Resolution**: Always use latest stable version listed in AVM metadata
+   - **Verification**: Confirmed all required features available in latest versions
 
 ## Next Steps
 
-Proceed to **Phase 1**:
-1. Create data-model.md (Azure resource entities and relationships)
-2. Define contracts/parameters.md (input parameters for main.bicepparam)
-3. Define contracts/outputs.md (template outputs)
-4. Create quickstart.md (deployment guide)
-5. Update agent context
-6. Re-check constitution compliance
+1. Create data-model.md with network topology and resource relationships
+2. Write deployment quickstart guide
+3. Fill implementation plan template
+4. Create bicepconfig.json with module version analyzer

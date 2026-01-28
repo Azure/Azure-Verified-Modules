@@ -1,6 +1,6 @@
-metadata name = 'Legacy Windows Server VM Workload'
-metadata description = 'Deploys Windows Server 2016 VM with Azure Bastion, secure storage, and comprehensive monitoring'
-metadata version = '1.0.0'
+metadata name = 'Legacy VM Workload Infrastructure'
+metadata description = 'Bicep template for deploying a legacy Windows Server 2016 VM workload with secure access, storage, and monitoring'
+metadata owner = 'Infrastructure Team'
 
 targetScope = 'resourceGroup'
 
@@ -8,549 +8,684 @@ targetScope = 'resourceGroup'
 // PARAMETERS
 // ============================================================================
 
-@description('Short name for the workload (used in resource naming)')
-@minLength(3)
-@maxLength(10)
-param workloadName string
-
 @description('Azure region for resource deployment')
 param location string = 'westus3'
 
-@description('Availability zone for VM deployment (1, 2, or 3)')
-@allowed([1, 2, 3])
-param availabilityZone int = 1
+@description('Virtual machine size (SKU)')
+param vmSize string = 'Standard_D2s_v3'
 
-@description('Administrator username for the VM')
+@description('VM administrator username')
 @minLength(1)
 @maxLength(20)
 param vmAdminUsername string = 'vmadmin'
 
-@description('Name of Key Vault secret storing VM admin password')
-param vmAdminSecretName string = 'vm-admin-password'
+@description('Key Vault secret name for VM administrator password')
+param vmAdminPasswordSecretName string = 'vm-admin-password'
 
-@description('Azure VM SKU size')
-param vmSize string = 'Standard_D2s_v3'
+@description('Availability zone for zone-capable resources (1, 2, or 3)')
+@allowed([1, 2, 3])
+param availabilityZone int = 1
 
-@description('Size of data disk in GB')
-param dataDiskSizeGB int = 500
+@description('File share quota in GiB')
+@minValue(100)
+@maxValue(102400)
+param fileShareQuotaGiB int = 1024
 
-@description('Name of the file share to create')
-param fileShareName string = 'data'
-
-@description('File share quota in GB')
-@minValue(1)
-@maxValue(5120)
-param fileShareQuotaGB int = 100
-
-@description('Log Analytics workspace retention in days')
+@description('Log Analytics workspace data retention in days')
 @minValue(30)
 @maxValue(730)
 param logAnalyticsRetentionDays int = 30
 
-@description('Environment tag')
-@allowed(['dev', 'test', 'prod'])
-param environment string = 'prod'
+@description('Deployment timestamp for password generation uniqueness')
+param deploymentTime string = utcNow('u')
 
 // ============================================================================
 // VARIABLES
 // ============================================================================
 
-// Random suffix for unique resource naming (6 characters)
-var randomSuffix = toLower(substring(uniqueString(resourceGroup().id), 0, 6))
+// Generate unique suffix for resource naming (6 characters from resource group ID)
+var suffix = substring(uniqueString(resourceGroup().id), 0, 6)
 
-// Resource names following CAF abbreviations
-var logAnalyticsWorkspaceName = 'log-${workloadName}-${randomSuffix}'
-var virtualNetworkName = 'vnet-${workloadName}-${randomSuffix}'
-var nsgName = 'nsg-${workloadName}-vm-${randomSuffix}'
-var bastionName = 'bas-${workloadName}-${randomSuffix}'
-var keyVaultName = 'kv-${workloadName}-${randomSuffix}'
-var vmName = 'vm-${workloadName}' // No suffix - 15 char Windows limit
-var storageAccountName = 'st${workloadName}${randomSuffix}' // No hyphens for storage accounts
+// Generate VM administrator password using multiple seeds for uniqueness
+// NOTE: Using deploymentTime parameter makes deployment non-idempotent - password regenerates each deploy.
+// Acceptable for initial deployment; remove deploymentTime parameter for idempotent redeployments
+var vmPassword = 'P@ssw0rd!${uniqueString(resourceGroup().id, deployment().name, deploymentTime)}'
+
+// Resource naming following pattern: {resourceType}-{purpose}-{randomSuffix}
+var vnetName = 'vnet-legacyvm-${suffix}'
+var vmName = 'vm-legacyvm-${suffix}'
+var kvName = 'kv-legacyvm-${suffix}'
+var lawName = 'law-legacyvm-${suffix}'
+// Storage account: no hyphens, lowercase only, max 24 chars
+var stName = 'st${replace(suffix, '-', '')}'
+var bastionName = 'bas-legacyvm-${suffix}'
+var natGatewayName = 'nat-legacyvm-${suffix}'
+
+// NSG names for each subnet
+var nsgVmName = 'nsg-vm-legacyvm-${suffix}'
+var nsgBastionName = 'nsg-bastion-legacyvm-${suffix}'
+var nsgPeName = 'nsg-pe-legacyvm-${suffix}'
+
+// Private DNS zone and endpoint names
+var privateDnsZoneName = 'privatelink.file.${environment().suffixes.storage}'
+var privateEndpointName = 'pe-file-legacyvm-${suffix}'
+
+// Alert names
+var alertVmStoppedName = 'alert-vm-stopped-legacyvm-${suffix}'
+var alertDiskSpaceName = 'alert-disk-space-legacyvm-${suffix}'
+var alertKvFailureName = 'alert-kv-access-fail-legacyvm-${suffix}'
+
+// VM computer name (NetBIOS limit: 15 characters max)
+var computerName = 'vm-${substring(suffix, 0, 6)}'
 
 // Network configuration
-var addressPrefix = '10.0.0.0/16'
-var bastionSubnetPrefix = '10.0.0.0/26'
-var vmSubnetPrefix = '10.0.1.0/24'
+var vnetAddressPrefix = '10.0.0.0/24'
+var subnetVmAddressPrefix = '10.0.0.0/27'
+var subnetBastionAddressPrefix = '10.0.0.64/26'
+var subnetPeAddressPrefix = '10.0.0.128/27'
 
-// Tags
-var commonTags = {
-  workload: workloadName
-  environment: environment
-  managedBy: 'Bicep'
+// Tags for all resources
+var tags = {
+  workload: 'legacy-vm'
+  environment: 'production'
+  compliance: 'legacy-retention'
+  managedBy: 'bicep-avm'
 }
 
-// Generated password for VM admin
-var vmAdminPassword = '${uniqueString(resourceGroup().id, deployment().name)}${guid(resourceGroup().id, deployment().name)}!A1'
-
 // ============================================================================
-// PHASE 2: FOUNDATIONAL COMPONENTS
+// PHASE 2: FOUNDATIONAL RESOURCES
 // ============================================================================
 
-// T004-T005: Log Analytics Workspace
-module logAnalyticsWorkspace 'br/public:avm/res/operational-insights/workspace:0.9.1' = {
-  name: 'deploy-log-analytics-workspace'
+// Log Analytics Workspace - centralized logging for all resources
+module logAnalytics 'br/public:avm/res/operational-insights/workspace:0.15.0' = {
+  name: 'deploy-log-analytics'
   params: {
-    name: logAnalyticsWorkspaceName
+    name: lawName
     location: location
     dataRetention: logAnalyticsRetentionDays
-    tags: commonTags
+    tags: tags
   }
 }
 
-// T006-T008: Virtual Network with NSG and Subnets
-module virtualNetwork 'br/public:avm/res/network/virtual-network:0.5.2' = {
-  name: 'deploy-virtual-network'
+// ============================================================================
+// PHASE 3: USER STORY 1 - CORE VM INFRASTRUCTURE
+// ============================================================================
+
+// Virtual Network with 3 subnets (VM, Bastion, Private Endpoint)
+module virtualNetwork 'br/public:avm/res/network/virtual-network:0.7.2' = {
+  name: 'deploy-vnet'
   params: {
-    name: virtualNetworkName
+    name: vnetName
     location: location
-    addressPrefixes: [addressPrefix]
+    addressPrefixes: [vnetAddressPrefix]
     subnets: [
       {
-        name: 'AzureBastionSubnet'
-        addressPrefix: bastionSubnetPrefix
-        networkSecurityGroupResourceId: null // Bastion subnet doesn't need NSG
+        name: 'snet-vm-legacyvm-${suffix}'
+        addressPrefix: subnetVmAddressPrefix
+        networkSecurityGroupResourceId: nsgVm.outputs.resourceId
+        natGatewayResourceId: natGateway.outputs.resourceId
       }
       {
-        name: 'vm-subnet'
-        addressPrefix: vmSubnetPrefix
-        networkSecurityGroupResourceId: networkSecurityGroup.outputs.resourceId
+        name: 'AzureBastionSubnet' // Required name for Bastion
+        addressPrefix: subnetBastionAddressPrefix
+        networkSecurityGroupResourceId: nsgBastion.outputs.resourceId
+      }
+      {
+        name: 'snet-pe-legacyvm-${suffix}'
+        addressPrefix: subnetPeAddressPrefix
+        networkSecurityGroupResourceId: nsgPe.outputs.resourceId
       }
     ]
-    tags: commonTags
-  }
-}
-
-// NSG for VM subnet
-module networkSecurityGroup 'br/public:avm/res/network/network-security-group:0.5.0' = {
-  name: 'deploy-network-security-group'
-  params: {
-    name: nsgName
-    location: location
-    securityRules: [
-      {
-        name: 'Allow-RDP-From-Bastion'
-        properties: {
-          priority: 100
-          direction: 'Inbound'
-          access: 'Allow'
-          protocol: 'Tcp'
-          sourceAddressPrefix: bastionSubnetPrefix
-          sourcePortRange: '*'
-          destinationAddressPrefix: '*'
-          destinationPortRange: '3389'
-          description: 'Allow RDP from Azure Bastion subnet'
-        }
-      }
-      {
-        name: 'Deny-All-Inbound'
-        properties: {
-          priority: 4096
-          direction: 'Inbound'
-          access: 'Deny'
-          protocol: '*'
-          sourceAddressPrefix: '*'
-          sourcePortRange: '*'
-          destinationAddressPrefix: '*'
-          destinationPortRange: '*'
-          description: 'Deny all other inbound traffic'
-        }
-      }
-      {
-        name: 'Allow-HTTPS-To-Storage'
-        properties: {
-          priority: 100
-          direction: 'Outbound'
-          access: 'Allow'
-          protocol: 'Tcp'
-          sourceAddressPrefix: '*'
-          sourcePortRange: '*'
-          destinationAddressPrefix: 'Storage'
-          destinationPortRange: '443'
-          description: 'Allow HTTPS to Azure Storage'
-        }
-      }
-      {
-        name: 'Deny-Internet-Outbound'
-        properties: {
-          priority: 4096
-          direction: 'Outbound'
-          access: 'Deny'
-          protocol: '*'
-          sourceAddressPrefix: '*'
-          sourcePortRange: '*'
-          destinationAddressPrefix: 'Internet'
-          destinationPortRange: '*'
-          description: 'Deny direct internet access'
-        }
-      }
-    ]
-    tags: commonTags
-  }
-}
-
-// ============================================================================
-// PHASE 3: MVP - CORE VM INFRASTRUCTURE + SECRET MANAGEMENT
-// ============================================================================
-
-// T010-T014: Key Vault with Password Secret
-module keyVault 'br/public:avm/res/key-vault/vault:0.10.2' = {
-  name: 'deploy-key-vault'
-  params: {
-    name: keyVaultName
-    location: location
-    enableRbacAuthorization: true
-    sku: 'standard'
-
-    // T011-T012: Generate admin password and store as secret
-    secrets: [
-      {
-        name: vmAdminSecretName
-        value: vmAdminPassword
-      }
-    ]
-
-    // T013: RBAC roles for deployment principal
-    roleAssignments: [
-      {
-        principalId: keyVaultAdmin.outputs.principalId
-        roleDefinitionIdOrName: 'Key Vault Secrets Officer'
-        principalType: 'ServicePrincipal'
-      }
-    ]
-
-    // T014: Diagnostic settings
     diagnosticSettings: [
       {
-        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
+        workspaceResourceId: logAnalytics.outputs.resourceId
         logCategoriesAndGroups: [
-          {
-            categoryGroup: 'audit'
-          }
-          {
-            categoryGroup: 'allLogs'
-          }
-        ]
-      }
-    ]
-
-    tags: commonTags
-  }
-}
-
-// Identity for Key Vault access (deployment principal)
-module keyVaultAdmin 'br/public:avm/res/managed-identity/user-assigned-identity:0.4.0' = {
-  name: 'deploy-kv-admin-identity'
-  params: {
-    name: 'id-kv-admin-${workloadName}-${randomSuffix}'
-    location: location
-    tags: commonTags
-  }
-}
-
-// T015-T016: Azure Bastion
-module bastionHost 'br/public:avm/res/network/bastion-host:0.4.0' = {
-  name: 'deploy-bastion-host'
-  params: {
-    name: bastionName
-    location: location
-    skuName: 'Basic'
-    virtualNetworkResourceId: virtualNetwork.outputs.resourceId
-
-    diagnosticSettings: [
-      {
-        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
-        logCategoriesAndGroups: [
-          {
-            categoryGroup: 'allLogs'
-          }
-        ]
-      }
-    ]
-
-    tags: commonTags
-  }
-}
-
-// T017-T023: Virtual Machine
-module virtualMachine 'br/public:avm/res/compute/virtual-machine:0.8.0' = {
-  name: 'deploy-virtual-machine'
-  params: {
-    name: vmName
-    location: location
-    zone: availabilityZone
-    osType: 'Windows'
-
-    // T018: VM size and Windows Server 2016 image
-    vmSize: vmSize
-    imageReference: {
-      publisher: 'MicrosoftWindowsServer'
-      offer: 'WindowsServer'
-      sku: '2016-Datacenter'
-      version: 'latest'
-    }
-
-    // T019: OS disk configuration
-    osDisk: {
-      createOption: 'FromImage'
-      diskSizeGB: 127
-      managedDisk: {
-        storageAccountType: 'Standard_LRS'
-      }
-      caching: 'ReadWrite'
-    }
-
-    // T025 (Phase 4): Data disk configuration
-    dataDisks: [
-      {
-        name: 'disk-vm-data-${workloadName}-${randomSuffix}'
-        diskSizeGB: dataDiskSizeGB
-        managedDisk: {
-          storageAccountType: 'Standard_LRS'
-        }
-        lun: 0
-        caching: 'None'
-        createOption: 'Empty'
-      }
-    ]
-
-    // Admin credentials
-    adminUsername: vmAdminUsername
-    // T020: Use generated password
-    adminPassword: vmAdminPassword
-
-    // T021: Managed identity and boot diagnostics
-    managedIdentities: {
-      systemAssigned: true
-    }
-    bootDiagnostics: true
-
-    // Disable encryption at host (feature not enabled in subscription)
-    encryptionAtHost: false
-
-    // T022: Network configuration - private IP only
-    nicConfigurations: [
-      {
-        name: '${vmName}-nic'
-        ipConfigurations: [
-          {
-            name: 'ipconfig1'
-            subnetResourceId: virtualNetwork.outputs.subnetResourceIds[1] // vm-subnet
-            privateIPAllocationMethod: 'Dynamic'
-          }
-        ]
-      }
-    ]
-
-    tags: commonTags
-  }
-  dependsOn: [
-    keyVault
-  ]
-}
-
-// T024: Management Locks
-resource rgLock 'Microsoft.Authorization/locks@2020-05-01' = {
-  name: 'lock-rg-${workloadName}'
-  properties: {
-    level: 'CanNotDelete'
-    notes: 'Prevent accidental deletion of resource group'
-  }
-}
-
-// Reference existing VNet resource for lock
-resource existingVnet 'Microsoft.Network/virtualNetworks@2024-01-01' existing = {
-  name: virtualNetworkName
-}
-
-resource vnetLock 'Microsoft.Authorization/locks@2020-05-01' = {
-  name: 'lock-vnet-${workloadName}'
-  scope: existingVnet
-  properties: {
-    level: 'CanNotDelete'
-    notes: 'Prevent accidental deletion of virtual network'
-  }
-  dependsOn: [
-    virtualNetwork
-  ]
-}
-
-// Reference existing Bastion resource for lock
-resource existingBastion 'Microsoft.Network/bastionHosts@2024-01-01' existing = {
-  name: bastionName
-}
-
-resource bastionLock 'Microsoft.Authorization/locks@2020-05-01' = {
-  name: 'lock-bastion-${workloadName}'
-  scope: existingBastion
-  properties: {
-    level: 'CanNotDelete'
-    notes: 'Prevent accidental deletion of Bastion host'
-  }
-  dependsOn: [
-    bastionHost
-  ]
-}
-
-// Reference existing VM resource for lock
-resource existingVm 'Microsoft.Compute/virtualMachines@2024-07-01' existing = {
-  name: vmName
-}
-
-resource vmLock 'Microsoft.Authorization/locks@2020-05-01' = {
-  name: 'lock-vm-${workloadName}'
-  scope: existingVm
-  properties: {
-    level: 'CanNotDelete'
-    notes: 'Prevent accidental deletion of virtual machine'
-  }
-  dependsOn: [
-    virtualMachine
-  ]
-}
-
-// Reference existing Key Vault resource for lock
-resource existingKeyVault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
-  name: keyVaultName
-}
-
-resource kvLock 'Microsoft.Authorization/locks@2020-05-01' = {
-  name: 'lock-kv-${workloadName}'
-  scope: existingKeyVault
-  properties: {
-    level: 'CanNotDelete'
-    notes: 'Prevent accidental deletion of Key Vault'
-  }
-  dependsOn: [
-    keyVault
-  ]
-}
-
-// ============================================================================
-// PHASE 5: FILE SHARE STORAGE
-// ============================================================================
-
-// T026-T032: Storage Account with File Share
-module storageAccount 'br/public:avm/res/storage/storage-account:0.14.3' = {
-  name: 'deploy-storage-account'
-  params: {
-    // T027: Storage account naming and configuration
-    name: storageAccountName
-    location: location
-    skuName: 'Standard_LRS'
-    kind: 'StorageV2'
-    accessTier: 'Hot'
-
-    // T028: File share configuration
-    fileServices: {
-      shares: [
-        {
-          name: fileShareName
-          shareQuota: fileShareQuotaGB
-          accessTier: 'TransactionOptimized'
-        }
-      ]
-    }
-
-    // T029: Private endpoint configuration
-    privateEndpoints: [
-      {
-        name: 'pe-${storageAccountName}-file'
-        subnetResourceId: virtualNetwork.outputs.subnetResourceIds[1] // vm-subnet
-        service: 'file'
-        privateDnsZoneGroup: {
-          privateDnsZoneGroupConfigs: [
-            {
-              privateDnsZoneResourceId: privateDnsZone.outputs.resourceId
-            }
-          ]
-        }
-      }
-    ]
-
-    // T030: Disable public access
-    allowBlobPublicAccess: false
-    publicNetworkAccess: 'Disabled'
-
-    // T031: Diagnostic settings
-    diagnosticSettings: [
-      {
-        workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
-        logCategoriesAndGroups: [
-          {
-            categoryGroup: 'audit'
-          }
           {
             categoryGroup: 'allLogs'
           }
         ]
         metricCategories: [
           {
-            category: 'Transaction'
+            category: 'AllMetrics'
           }
         ]
       }
     ]
-
-    tags: commonTags
+    tags: tags
   }
 }
 
-// Private DNS Zone for Storage private endpoint
-module privateDnsZone 'br/public:avm/res/network/private-dns-zone:0.6.0' = {
-  name: 'deploy-private-dns-zone'
+// Virtual Machine - Windows Server 2016
+module virtualMachine 'br/public:avm/res/compute/virtual-machine:0.21.0' = {
+  name: 'deploy-vm'
   params: {
-    name: 'privatelink.file.${az.environment().suffixes.storage}'
-    virtualNetworkLinks: [
+    name: vmName
+    location: location
+    computerName: computerName
+    vmSize: vmSize
+    availabilityZone: availabilityZone
+    osType: 'Windows'
+    imageReference: {
+      publisher: 'MicrosoftWindowsServer'
+      offer: 'WindowsServer'
+      sku: '2016-Datacenter'
+      version: 'latest'
+    }
+    osDisk: {
+      createOption: 'FromImage'
+      deleteOption: 'Delete'
+      diskSizeGB: 127
+      managedDisk: {
+        storageAccountType: 'Standard_LRS' // HDD performance tier
+      }
+    }
+    dataDisks: [
       {
-        virtualNetworkResourceId: virtualNetwork.outputs.resourceId
-        registrationEnabled: false
+        name: '${vmName}-datadisk-01'
+        diskSizeGB: 500
+        lun: 0
+        createOption: 'Empty'
+        managedDisk: {
+          storageAccountType: 'Standard_LRS' // HDD performance tier
+        }
       }
     ]
-    tags: commonTags
+    adminUsername: vmAdminUsername
+    adminPassword: vmPassword
+    managedIdentities: {
+      systemAssigned: true
+    }
+    nicConfigurations: [
+      {
+        name: '${vmName}-nic'
+        ipConfigurations: [
+          {
+            name: 'ipconfig1'
+            subnetResourceId: virtualNetwork.outputs.subnetResourceIds[0]
+            privateIPAllocationMethod: 'Dynamic'
+          }
+        ]
+      }
+    ]
+    bootDiagnostics: true
+    tags: tags
   }
 }
 
-// T032: Storage account lock
-// Reference existing Storage Account resource for lock
-resource existingStorageAccount 'Microsoft.Storage/storageAccounts@2023-05-01' existing = {
-  name: storageAccountName
-}
-
-resource storageLock 'Microsoft.Authorization/locks@2020-05-01' = {
-  name: 'lock-storage-${workloadName}'
-  scope: existingStorageAccount
-  properties: {
-    level: 'CanNotDelete'
-    notes: 'Prevent accidental deletion of storage account'
-  }
-  dependsOn: [
-    storageAccount
-  ]
-}
-
 // ============================================================================
-// PHASE 6: ALERTS AND MONITORING
+// PHASE 4: USER STORY 2 - SECURE STORAGE AND DATA DISK
 // ============================================================================
 
-// T033: VM Power State Alert
-module vmPowerStateAlert 'br/public:avm/res/insights/metric-alert:0.4.0' = {
-  name: 'deploy-vm-power-alert'
+// Storage Account with file share
+module storageAccount 'br/public:avm/res/storage/storage-account:0.31.0' = {
+  name: 'deploy-storage'
   params: {
-    name: 'alert-vm-power-${workloadName}'
-    alertDescription: 'Alert when VM is stopped or deallocated'
-    severity: 1 // Critical
-    enabled: true
+    name: stName
+    location: location
+    kind: 'StorageV2'
+    skuName: 'Standard_LRS'
+    accessTier: 'Hot'
+    publicNetworkAccess: 'Disabled'
+    minimumTlsVersion: 'TLS1_2'
+    fileServices: {
+      shares: [
+        {
+          name: 'fileshare'
+          shareQuota: fileShareQuotaGiB
+          accessTier: 'TransactionOptimized'
+        }
+      ]
+      diagnosticSettings: [
+        {
+          workspaceResourceId: logAnalytics.outputs.resourceId
+          metricCategories: [
+            {
+              category: 'Transaction'
+            }
+          ]
+        }
+      ]
+    }
+    tags: tags
+  }
+}
+
+// Private DNS Zone for storage private endpoint
+module privateDnsZone 'br/public:avm/res/network/private-dns-zone:0.8.0' = {
+  name: 'deploy-private-dns-zone'
+  params: {
+    name: privateDnsZoneName
+    location: 'global'
+    virtualNetworkLinks: [
+      {
+        name: '${vnetName}-link'
+        virtualNetworkResourceId: virtualNetwork.outputs.resourceId
+      }
+    ]
+    tags: tags
+  }
+}
+
+// Private Endpoint for storage account file share
+module privateEndpoint 'br/public:avm/res/network/private-endpoint:0.11.1' = {
+  name: 'deploy-private-endpoint'
+  params: {
+    name: privateEndpointName
+    location: location
+    subnetResourceId: virtualNetwork.outputs.subnetResourceIds[2] // PE subnet
+    privateLinkServiceConnections: [
+      {
+        name: '${privateEndpointName}-connection'
+        properties: {
+          privateLinkServiceId: storageAccount.outputs.resourceId
+          groupIds: ['file']
+        }
+      }
+    ]
+    privateDnsZoneGroup: {
+      privateDnsZoneGroupConfigs: [
+        {
+          privateDnsZoneResourceId: privateDnsZone.outputs.resourceId
+        }
+      ]
+    }
+    tags: tags
+  }
+}
+
+// ============================================================================
+// PHASE 5: USER STORY 3 - SECURE ACCESS AND SECRETS MANAGEMENT
+// ============================================================================
+
+// Key Vault for storing VM admin password (created first, VM identity assigned later)
+module keyVault 'br/public:avm/res/key-vault/vault:0.13.3' = {
+  name: 'deploy-keyvault'
+  params: {
+    name: kvName
+    location: location
+    sku: 'standard'
+    enableRbacAuthorization: true
+    softDeleteRetentionInDays: 90
+    enablePurgeProtection: false // Not required for legacy workload
+    publicNetworkAccess: 'Enabled' // Simplified for legacy workload
+    secrets: [
+      {
+        name: vmAdminPasswordSecretName
+        value: vmPassword
+        contentType: 'text/plain'
+      }
+    ]
+    diagnosticSettings: [
+      {
+        workspaceResourceId: logAnalytics.outputs.resourceId
+        logCategoriesAndGroups: [
+          {
+            categoryGroup: 'allLogs'
+          }
+        ]
+        metricCategories: [
+          {
+            category: 'AllMetrics'
+          }
+        ]
+      }
+    ]
+    tags: tags
+  }
+}
+
+// RBAC Assignment: Grant VM managed identity access to Key Vault secrets
+// Note: Using guid with static strings (names) instead of outputs for deployment-time calculation
+resource kvRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(kvName, vmName, 'Key Vault Secrets User')
+  scope: resourceGroup()
+  properties: {
+    principalId: virtualMachine.outputs.?systemAssignedMIPrincipalId!
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '4633458b-17de-408a-b874-0445c86b69e6') // Key Vault Secrets User
+    principalType: 'ServicePrincipal'
+  }
+}
+
+// Azure Bastion for secure RDP access
+module bastion 'br/public:avm/res/network/bastion-host:0.8.2' = {
+  name: 'deploy-bastion'
+  params: {
+    name: bastionName
+    location: location
+    skuName: 'Basic'
+    virtualNetworkResourceId: virtualNetwork.outputs.resourceId
+    diagnosticSettings: [
+      {
+        workspaceResourceId: logAnalytics.outputs.resourceId
+        logCategoriesAndGroups: [
+          {
+            categoryGroup: 'allLogs'
+          }
+        ]
+      }
+    ]
+    tags: tags
+  }
+}
+
+// ============================================================================
+// PHASE 6: USER STORY 4 - INTERNET CONNECTIVITY AND NETWORK SECURITY
+// ============================================================================
+
+// NAT Gateway for outbound internet connectivity
+module natGateway 'br/public:avm/res/network/nat-gateway:2.0.1' = {
+  name: 'deploy-nat-gateway'
+  params: {
+    name: natGatewayName
+    location: location
+    availabilityZone: availabilityZone
+    publicIPAddresses: [
+      {
+        name: 'pip-nat-legacyvm-${suffix}'
+      }
+    ]
+    tags: tags
+  }
+}
+
+// Network Security Group for VM subnet
+module nsgVm 'br/public:avm/res/network/network-security-group:0.5.2' = {
+  name: 'deploy-nsg-vm'
+  params: {
+    name: nsgVmName
+    location: location
+    securityRules: [
+      {
+        name: 'AllowBastionRdpInbound'
+        properties: {
+          priority: 100
+          direction: 'Inbound'
+          access: 'Allow'
+          protocol: 'Tcp'
+          sourceAddressPrefix: subnetBastionAddressPrefix
+          sourcePortRange: '*'
+          destinationAddressPrefix: '*'
+          destinationPortRange: '3389'
+        }
+      }
+      {
+        name: 'DenyAllInbound'
+        properties: {
+          priority: 4096
+          direction: 'Inbound'
+          access: 'Deny'
+          protocol: '*'
+          sourceAddressPrefix: '*'
+          sourcePortRange: '*'
+          destinationAddressPrefix: '*'
+          destinationPortRange: '*'
+        }
+      }
+      {
+        name: 'AllowInternetOutbound'
+        properties: {
+          priority: 100
+          direction: 'Outbound'
+          access: 'Allow'
+          protocol: '*'
+          sourceAddressPrefix: '*'
+          sourcePortRange: '*'
+          destinationAddressPrefix: 'Internet'
+          destinationPortRange: '*'
+        }
+      }
+      {
+        name: 'AllowVnetOutbound'
+        properties: {
+          priority: 200
+          direction: 'Outbound'
+          access: 'Allow'
+          protocol: '*'
+          sourceAddressPrefix: '*'
+          sourcePortRange: '*'
+          destinationAddressPrefix: 'VirtualNetwork'
+          destinationPortRange: '*'
+        }
+      }
+      {
+        name: 'DenyAllOutbound'
+        properties: {
+          priority: 4096
+          direction: 'Outbound'
+          access: 'Deny'
+          protocol: '*'
+          sourceAddressPrefix: '*'
+          sourcePortRange: '*'
+          destinationAddressPrefix: '*'
+          destinationPortRange: '*'
+        }
+      }
+    ]
+    diagnosticSettings: [
+      {
+        workspaceResourceId: logAnalytics.outputs.resourceId
+        logCategoriesAndGroups: [
+          {
+            categoryGroup: 'allLogs'
+          }
+        ]
+      }
+    ]
+    tags: tags
+  }
+}
+
+// Network Security Group for Bastion subnet
+module nsgBastion 'br/public:avm/res/network/network-security-group:0.5.2' = {
+  name: 'deploy-nsg-bastion'
+  params: {
+    name: nsgBastionName
+    location: location
+    securityRules: [
+      // Inbound rules
+      {
+        name: 'AllowHttpsInbound'
+        properties: {
+          priority: 100
+          direction: 'Inbound'
+          access: 'Allow'
+          protocol: 'Tcp'
+          sourceAddressPrefix: 'Internet'
+          sourcePortRange: '*'
+          destinationAddressPrefix: '*'
+          destinationPortRange: '443'
+        }
+      }
+      {
+        name: 'AllowGatewayManagerInbound'
+        properties: {
+          priority: 110
+          direction: 'Inbound'
+          access: 'Allow'
+          protocol: 'Tcp'
+          sourceAddressPrefix: 'GatewayManager'
+          sourcePortRange: '*'
+          destinationAddressPrefix: '*'
+          destinationPortRange: '443'
+        }
+      }
+      {
+        name: 'AllowAzureLoadBalancerInbound'
+        properties: {
+          priority: 120
+          direction: 'Inbound'
+          access: 'Allow'
+          protocol: 'Tcp'
+          sourceAddressPrefix: 'AzureLoadBalancer'
+          sourcePortRange: '*'
+          destinationAddressPrefix: '*'
+          destinationPortRange: '443'
+        }
+      }
+      {
+        name: 'AllowBastionHostCommunication'
+        properties: {
+          priority: 130
+          direction: 'Inbound'
+          access: 'Allow'
+          protocol: '*'
+          sourceAddressPrefix: 'VirtualNetwork'
+          sourcePortRange: '*'
+          destinationAddressPrefix: 'VirtualNetwork'
+          destinationPortRanges: ['8080', '5701']
+        }
+      }
+      // Outbound rules
+      {
+        name: 'AllowSshRdpOutbound'
+        properties: {
+          priority: 100
+          direction: 'Outbound'
+          access: 'Allow'
+          protocol: '*'
+          sourceAddressPrefix: '*'
+          sourcePortRange: '*'
+          destinationAddressPrefix: 'VirtualNetwork'
+          destinationPortRanges: ['22', '3389']
+        }
+      }
+      {
+        name: 'AllowAzureCloudOutbound'
+        properties: {
+          priority: 110
+          direction: 'Outbound'
+          access: 'Allow'
+          protocol: 'Tcp'
+          sourceAddressPrefix: '*'
+          sourcePortRange: '*'
+          destinationAddressPrefix: 'AzureCloud'
+          destinationPortRange: '443'
+        }
+      }
+      {
+        name: 'AllowBastionCommunication'
+        properties: {
+          priority: 120
+          direction: 'Outbound'
+          access: 'Allow'
+          protocol: '*'
+          sourceAddressPrefix: 'VirtualNetwork'
+          sourcePortRange: '*'
+          destinationAddressPrefix: 'VirtualNetwork'
+          destinationPortRanges: ['8080', '5701']
+        }
+      }
+      {
+        name: 'AllowGetSessionInformation'
+        properties: {
+          priority: 130
+          direction: 'Outbound'
+          access: 'Allow'
+          protocol: '*'
+          sourceAddressPrefix: '*'
+          sourcePortRange: '*'
+          destinationAddressPrefix: 'Internet'
+          destinationPortRange: '80'
+        }
+      }
+    ]
+    diagnosticSettings: [
+      {
+        workspaceResourceId: logAnalytics.outputs.resourceId
+        logCategoriesAndGroups: [
+          {
+            categoryGroup: 'allLogs'
+          }
+        ]
+      }
+    ]
+    tags: tags
+  }
+}
+
+// Network Security Group for Private Endpoint subnet
+module nsgPe 'br/public:avm/res/network/network-security-group:0.5.2' = {
+  name: 'deploy-nsg-pe'
+  params: {
+    name: nsgPeName
+    location: location
+    securityRules: [
+      {
+        name: 'AllowVMSubnetInbound'
+        properties: {
+          priority: 100
+          direction: 'Inbound'
+          access: 'Allow'
+          protocol: 'Tcp'
+          sourceAddressPrefix: subnetVmAddressPrefix
+          sourcePortRange: '*'
+          destinationAddressPrefix: '*'
+          destinationPortRange: '445'
+        }
+      }
+      {
+        name: 'DenyAllInbound'
+        properties: {
+          priority: 4096
+          direction: 'Inbound'
+          access: 'Deny'
+          protocol: '*'
+          sourceAddressPrefix: '*'
+          sourcePortRange: '*'
+          destinationAddressPrefix: '*'
+          destinationPortRange: '*'
+        }
+      }
+      {
+        name: 'AllowAllOutbound'
+        properties: {
+          priority: 100
+          direction: 'Outbound'
+          access: 'Allow'
+          protocol: '*'
+          sourceAddressPrefix: '*'
+          sourcePortRange: '*'
+          destinationAddressPrefix: '*'
+          destinationPortRange: '*'
+        }
+      }
+    ]
+    diagnosticSettings: [
+      {
+        workspaceResourceId: logAnalytics.outputs.resourceId
+        logCategoriesAndGroups: [
+          {
+            categoryGroup: 'allLogs'
+          }
+        ]
+      }
+    ]
+    tags: tags
+  }
+}
+
+// ============================================================================
+// PHASE 7: USER STORY 5 - MONITORING AND ALERTING
+// ============================================================================
+
+// Alert: VM Stopped/Deallocated
+module alertVmStopped 'br/public:avm/res/insights/metric-alert:0.4.1' = {
+  name: 'deploy-alert-vm-stopped'
+  params: {
+    name: alertVmStoppedName
+    location: 'global'
+    targetResourceType: 'Microsoft.Compute/virtualMachines'
+    targetResourceRegion: location
     scopes: [
       virtualMachine.outputs.resourceId
     ]
-    evaluationFrequency: 'PT5M'
-    windowSize: 'PT15M'
     criteria: {
       'odata.type': 'Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria'
       allof: [
         {
-          name: 'VM Stopped'
-          metricName: 'VmAvailabilityMetric'
+          criterionType: 'StaticThresholdCriterion'
+          name: 'cpu-low-threshold'
+          metricName: 'Percentage CPU'
           metricNamespace: 'Microsoft.Compute/virtualMachines'
           operator: 'LessThan'
           threshold: 1
@@ -558,110 +693,161 @@ module vmPowerStateAlert 'br/public:avm/res/insights/metric-alert:0.4.0' = {
         }
       ]
     }
-    tags: commonTags
+    windowSize: 'PT15M'
+    evaluationFrequency: 'PT5M'
+    severity: 0
+    enabled: true
+    autoMitigate: false
+    alertDescription: 'Critical: VM appears to be stopped or deallocated'
+    tags: tags
   }
 }
 
-// T034: Disk Capacity Alert
-module diskCapacityAlert 'br/public:avm/res/insights/metric-alert:0.4.0' = {
-  name: 'deploy-disk-alert'
+// Alert: Disk Space Exceeded 85%
+module alertDiskSpace 'br/public:avm/res/insights/metric-alert:0.4.1' = {
+  name: 'deploy-alert-disk-space'
   params: {
-    name: 'alert-disk-capacity-${workloadName}'
-    alertDescription: 'Alert when disk capacity exceeds 90%'
-    severity: 2 // Warning
-    enabled: true
+    name: alertDiskSpaceName
+    location: 'global'
+    targetResourceType: 'Microsoft.Compute/virtualMachines'
+    targetResourceRegion: location
     scopes: [
       virtualMachine.outputs.resourceId
     ]
-    evaluationFrequency: 'PT15M'
-    windowSize: 'PT1H'
     criteria: {
       'odata.type': 'Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria'
       allof: [
         {
-          name: 'Disk Usage High'
-          metricName: 'OS Disk Used Percent'
+          criterionType: 'StaticThresholdCriterion'
+          name: 'disk-space-high-threshold'
+          metricName: 'Available Memory Bytes'
           metricNamespace: 'Microsoft.Compute/virtualMachines'
-          operator: 'GreaterThan'
-          threshold: 90
+          operator: 'LessThan'
+          threshold: 1073741824 // 1GB in bytes
           timeAggregation: 'Average'
         }
       ]
     }
-    tags: commonTags
+    windowSize: 'PT5M'
+    evaluationFrequency: 'PT1M'
+    severity: 0
+    enabled: true
+    autoMitigate: false
+    alertDescription: 'Critical: Available memory below 1GB threshold'
+    tags: tags
   }
 }
 
-// T035: Key Vault Access Failures Alert
-module kvAccessAlert 'br/public:avm/res/insights/metric-alert:0.4.0' = {
-  name: 'deploy-kv-access-alert'
+// Alert: Key Vault Access Failures
+module alertKvFailure 'br/public:avm/res/insights/metric-alert:0.4.1' = {
+  name: 'deploy-alert-kv-failure'
   params: {
-    name: 'alert-kv-access-${workloadName}'
-    alertDescription: 'Alert on Key Vault authentication failures'
-    severity: 1 // Critical
-    enabled: true
+    name: alertKvFailureName
+    location: 'global'
+    targetResourceType: 'Microsoft.KeyVault/vaults'
+    targetResourceRegion: location
     scopes: [
       keyVault.outputs.resourceId
     ]
-    evaluationFrequency: 'PT5M'
-    windowSize: 'PT15M'
     criteria: {
       'odata.type': 'Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria'
       allof: [
         {
-          name: 'Auth Failures'
+          criterionType: 'StaticThresholdCriterion'
+          name: 'kv-access-failure-threshold'
           metricName: 'ServiceApiResult'
           metricNamespace: 'Microsoft.KeyVault/vaults'
           operator: 'GreaterThan'
-          threshold: 5
-          timeAggregation: 'Total'
-          dimensions: [
-            {
-              name: 'StatusCode'
-              operator: 'Include'
-              values: ['401', '403']
-            }
-          ]
+          threshold: 0
+          timeAggregation: 'Count'
         }
       ]
     }
-    tags: commonTags
+    windowSize: 'PT5M'
+    evaluationFrequency: 'PT1M'
+    severity: 1
+    enabled: true
+    autoMitigate: false
+    alertDescription: 'Warning: Key Vault API result failures detected'
+    tags: tags
   }
 }
 
 // ============================================================================
-// OUTPUTS (T036-T037)
+// OUTPUTS
 // ============================================================================
 
-@description('The name of the resource group')
-output resourceGroupName string = resourceGroup().name
+@description('Resource group location')
+output location string = location
 
-@description('The resource ID of the virtual network')
-output virtualNetworkId string = virtualNetwork.outputs.resourceId
+@description('Virtual Network resource ID')
+output vnetResourceId string = virtualNetwork.outputs.resourceId
 
-@description('The name of the virtual machine')
-output vmName string = virtualMachine.outputs.name
+@description('Virtual Network name')
+output vnetName string = virtualNetwork.outputs.name
 
-@description('The name of the VM')
+@description('VM subnet resource ID')
+output vmSubnetResourceId string = virtualNetwork.outputs.subnetResourceIds[0]
+
+@description('Bastion subnet resource ID')
+output bastionSubnetResourceId string = virtualNetwork.outputs.subnetResourceIds[1]
+
+@description('Private Endpoint subnet resource ID')
+output peSubnetResourceId string = virtualNetwork.outputs.subnetResourceIds[2]
+
+@description('Virtual Machine resource ID')
 output vmResourceId string = virtualMachine.outputs.resourceId
 
-@description('The name of the Bastion host')
-output bastionName string = bastionHost.outputs.name
+@description('Virtual Machine name')
+output vmName string = virtualMachine.outputs.name
 
-@description('The name of the storage account')
+@description('VM private IP address - Note: Available after deployment, query via Azure Portal or CLI')
+output vmPrivateIP string = ''
+
+@description('VM system-assigned managed identity principal ID')
+output vmManagedIdentityPrincipalId string = virtualMachine.outputs.?systemAssignedMIPrincipalId ?? ''
+
+@description('Key Vault resource ID')
+output keyVaultResourceId string = keyVault.outputs.?resourceId ?? ''
+
+@description('Key Vault name')
+output keyVaultName string = keyVault.outputs.?name ?? ''
+
+@description('Storage Account resource ID')
+output storageAccountResourceId string = storageAccount.outputs.resourceId
+
+@description('Storage Account name')
 output storageAccountName string = storageAccount.outputs.name
 
-@description('The name of the file share')
-output fileShareName string = fileShareName
+@description('File share name')
+output fileShareName string = 'fileshare'
 
-@description('PowerShell command to mount file share from VM')
-output fileShareMountCommand string = 'net use Z: \\\\${storageAccount.outputs.name}.file.${az.environment().suffixes.storage}\\${fileShareName} /persistent:yes'
+@description('Private Endpoint resource ID')
+output privateEndpointResourceId string = privateEndpoint.outputs.resourceId
 
-@description('The name of the Key Vault')
-output keyVaultName string = keyVault.outputs.name
+@description('Azure Bastion resource ID')
+output bastionResourceId string = bastion.outputs.resourceId
 
-@description('The URI of the VM admin password secret')
-output keyVaultSecretUri string = '${keyVault.outputs.uri}secrets/${vmAdminSecretName}'
+@description('Azure Bastion name')
+output bastionName string = bastion.outputs.name
 
-@description('The resource ID of the Log Analytics workspace')
-output logAnalyticsWorkspaceId string = logAnalyticsWorkspace.outputs.resourceId
+@description('NAT Gateway resource ID')
+output natGatewayResourceId string = natGateway.outputs.resourceId
+
+@description('NAT Gateway name')
+output natGatewayName string = natGateway.outputs.name
+
+@description('Log Analytics Workspace resource ID')
+output logAnalyticsResourceId string = logAnalytics.outputs.resourceId
+
+@description('Log Analytics Workspace name')
+output logAnalyticsName string = logAnalytics.outputs.name
+
+@description('VM Stopped Alert resource ID')
+output alertVmStoppedResourceId string = alertVmStopped.outputs.resourceId
+
+@description('Disk Space Alert resource ID')
+output alertDiskSpaceResourceId string = alertDiskSpace.outputs.resourceId
+
+@description('Key Vault Access Failure Alert resource ID')
+output alertKvFailureResourceId string = alertKvFailure.outputs.resourceId

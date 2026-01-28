@@ -144,6 +144,8 @@ flowchart LR
 
 To implement our example solution using AVM modules, we will walk through each of these steps in detail.
 
+Each of the below steps will typically take 3-8 minutes to complete, depending on the complexity of your specification, the performance of the AI model you are using, and your reaction time to answer any outstanding questions and review and approve the generated content.
+
 {{% notice style="tip" %}}
 
 Changing the LLM does make a difference. We highly encourage you test different models to see which one works best for your needs.
@@ -185,7 +187,7 @@ Notice what the `constitution.md` file looks like before running the related pro
 
 {{% /expand %}}
 
-1. Run the following prompt to generate the constitution for our example - *this should take ~2 minutes to run*:
+1. Run the following prompt to generate the constitution for our example:
 
 {{< tabs groupid="dsl" >}}
 
@@ -203,6 +205,8 @@ Before running a deployment, always run a validation.
 Deploy everything to the US West 3 datacenter region.
 ```
     {{% expand title="➕ Expand to see the results" %}}
+
+The most important artifact created in this phase is the `constitution.md` file. Based on your inputs, additional files may also be created or updated, such as `spec-template.md` , `plan-template.md`, and `tasks-template.md`. These would further improve the quality of the generated artifacts in later phases.
 
 Click through the tabs to see the details!
 
@@ -225,6 +229,27 @@ In the `constitution.md` file, notice, how changes implemented by Copilot are no
 
 {{< highlight lineNos="false" type="md" wrap="true" >}}
 {{< include file="/static/includes/experimental/sdd/spec-kit/constitution.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+{{% tab title="spec-template.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/spec-template.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+{{% tab title="plan-template.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/plan-template.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+{{% tab title="tasks-template.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/tasks-template.md" >}}
 {{< /highlight >}}
 
 {{% /tab %}}
@@ -256,14 +281,14 @@ To learn more about what the specification should include, see the [Specificatio
 
 {{% /notice %}}
 
-1. Run the following prompt to generate the specification for our example - *this should take ~3 minutes to run*:
+1. Run the following prompt to generate the specification for our example:
 
 {{< tabs groupid="dsl" >}}
 
 {{% tab title="Bicep" %}}
 
 ```markdown
-/speckit.specify Create specification, called "01-my-legacy-workload" for a legacy business application, running as a single virtual machine connected to a virtual network. The VM must run Windows Server 2016, needs to have at least 2 CPU cores, 8 GB of RAM, a standard HDD, and a 500 GB HDD-based data disk attached. It must be remotely accessible via a bastion host and needs to have access to an HDD-backed file share in a storage account connected via a private endpoint. The VM must access the internet via a NAT gateway. Network Security Groups (NSGs) must be created for each subnet, configured and assigned as applicable, restricting traffic to only what's necessary.
+/speckit.specify Create specification, called "01-my-legacy-workload" for a legacy business application, running as a single virtual machine connected to a virtual network. The VM must run Windows Server 2016, needs to have at least 2 CPU cores, 8 GB of RAM, a standard HDD, and a 500 GB HDD-based data disk attached. It must be remotely accessible via a bastion host and needs to have access to an HDD-backed file share in a storage account connected via a private endpoint. The VM must access the internet via a NAT gateway. Network Security Groups (NSGs) must be created for each subnet, configured and assigned as applicable, restricting traffic to only what's necessary. VM subnet NSG must allow inbound RDP (port 3389) from Bastion subnet to enable bastion connectivity.
 
 The VM's administrator password (created at the time of deployment) must be stored in a Key Vault, also deployed as part of this solution. The VM's administrator account must be called "vmadmin". The VM's computer name (netbios name) must be 15 or fewer characters long.
 
@@ -280,7 +305,9 @@ The VM must not be accessible from the internet and its logs should be captured 
 
     {{% expand title="➕ Expand to see the results" %}}
 
-Notice that the execution of the /speckit.specify created a new file called `requirements.md` and a file called `spec.md` in the `specs/001-legacy-vm-workload/` folder. Click through the tabs to see the details!
+Notice that the execution of the /speckit.specify created a new file called `requirements.md` and a file called `spec.md` in the `specs/001-legacy-vm-workload/` folder.
+
+Click through the tabs to see the details!
 
 {{< tabs >}}
 {{% tab title="Spec" %}}
@@ -332,7 +359,7 @@ To learn more about the clarify step, see the [Clarify chapter]({{% siteparam ba
 
 {{% /notice %}}
 
-1. Run the following prompt to generate clarification questions for our example - *this should take ~3 minutes to run*:
+1. Run the following prompt to generate clarification questions for our example:
 
 {{< tabs groupid="dsl" >}}
 
@@ -344,7 +371,9 @@ To learn more about the clarify step, see the [Clarify chapter]({{% siteparam ba
 
 {{% expand title="➕ Expand to see example questions" %}}
 
-The clarify phase iterates on the spec.md file by asking questions, making suggestions and capturing the user's feedback. Click through the tabs to see the details!
+The clarify phase iterates on the spec.md file by asking questions, making suggestions and capturing the user's feedback.
+
+Click through the tabs to see the details!
 
 {{< tabs >}}
 {{% tab title="Analysis" %}}
@@ -364,7 +393,7 @@ In the Copilot chat window, you'll likely see some questions raised, similar to 
 {{% /tab %}}
 {{% tab title="Spec updates" %}}
 
-Examples of clarifications that Copilot may suggest for our scenario (if not already covered in the spec):
+See a few examples of clarifying questions Copilot may ask. Copilot typically suggests a few options, but you can always deviate from them as needed, just use the chat to provide your answers.
 
 ```md
 ## Clarifications
@@ -373,7 +402,12 @@ Examples of clarifications that Copilot may suggest for our scenario (if not alr
 - Q: What level of monitoring and alerting should be configured for this legacy workload? → A: Diagnostic logging plus critical-only alerts (VM stopped, disk full, Key Vault access failures)
 - Q: If the initial deployment partially fails (e.g., VM creates but Bastion fails), what should the recovery procedure be? → A: Keep existing resources, fix errors in template/parameters, redeploy entire template (ARM incremental mode handles already-deployed resources)
 - Q: File share initial quota and growth strategy? → A: 1TB initial quota with documented growth monitoring procedure
-- Q: VM administrator username? → A: administrator (Standard Windows admin account name)
+- Q: VM administrator username? → A: vmadmin
+- Q: VNet address space and subnet sizing for VM, bastion, and private endpoint subnets? → A: VNet: 10.0.0.0/24, VM subnet: 10.0.0.0/27, Bastion subnet: 10.0.0.64/26, Private endpoint subnet: 10.0.0.128/27
+- Q: Storage file share quota size? → A: 1024 GiB (1 TiB)
+- Q: Disk space alert threshold percentage? → A: 85% full
+- Q: Alert notification method for critical alerts? → A: Azure Portal notifications only
+- Q: VM size SKU for 2 cores and 8GB RAM requirement? → A: Standard_D2s_v3
 ```
 
 {{% /tab %}}
@@ -399,11 +433,13 @@ Spec Kit uses `/speckit.plan` to generate the `plan.md` file. The plan can be ev
 
 {{% notice style="info" %}}
 
-To learn more about what the plan should include, see the [Plan chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#4-plan) in the Spec Kit article. Click through the tabs to see the details!
+To learn more about what the plan should include, see the [Plan chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#4-plan) in the Spec Kit article.
+
+Click through the tabs to see the details!
 
 {{% /notice %}}
 
-1. Run the following prompt to generate the plan for our example - *this should take ~8 minutes to run*:
+1. Run the following prompt to generate the plan for our example:
 
 {{< tabs groupid="dsl" >}}
 
@@ -423,7 +459,9 @@ Bicep template must compile without warnings or errors using the latest stable B
 
     {{% expand title="➕ Expand to see the results" %}}
 
-Notice how the plan step creates the `plan.md` file and a number of additional helper files. These may very depending on your prompts, the solution you're building, the version of Spec Kit and the LLM used. These typically include: `data-model.md`, `research.md`, `quickstart.md` and optional files in the contracts folder, such as `outputs.md` and `parameters.md`. Click through the tabs to see the details!
+Notice how the plan step creates the `plan.md` file and a number of additional helper files. These may very depending on your prompts, the solution you're building, the version of Spec Kit and the LLM used. These typically include: `data-model.md`, `research.md`, `quickstart.md` and optional files in the contracts folder, such as `outputs.md` and `parameters.md`.
+
+Click through the tabs to see the details!
 
 {{< tabs >}}
 {{% tab title="Chat output" %}}
@@ -463,22 +501,6 @@ In the Copilot chat window, you should see results, similar to this:
 
 {{% /tab %}}
 
-{{% tab title="outputs.md" %}}
-
-{{< highlight lineNos="false" type="md" wrap="true" >}}
-{{< include file="/static/includes/experimental/sdd/spec-kit/outputs.md" >}}
-{{< /highlight >}}
-
-{{% /tab %}}
-
-{{% tab title="parameters.md" %}}
-
-{{< highlight lineNos="false" type="md" wrap="true" >}}
-{{< include file="/static/includes/experimental/sdd/spec-kit/parameters.md" >}}
-{{< /highlight >}}
-
-{{% /tab %}}
-
 {{< /tabs >}}
 
     {{% /expand %}}
@@ -505,7 +527,7 @@ To learn more about the checklist step, see the [Checklist chapter]({{% sitepara
 
 {{% /notice %}}
 
-1. Run the following prompt to generate checklist items for our example - *this should take ~4 minutes to run*:
+1. Run the following prompt to generate checklist items for our example:
 
 {{< tabs groupid="dsl" >}}
 
@@ -532,10 +554,10 @@ In the Copilot chat window, you should see results, similar to this:
 <img src="{{%siteparam base%}}/images/experimental/sdd/checklist.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
 
 {{% /tab %}}
-{{% tab title="implementation-readiness.md" %}}
+{{% tab title="implementation.md" %}}
 
 {{< highlight lineNos="false" type="md" wrap="true" >}}
-{{< include file="/static/includes/experimental/sdd/spec-kit/implementation-readiness.md" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/implementation.md" >}}
 {{< /highlight >}}
 
 {{% /tab %}}
@@ -566,15 +588,15 @@ To learn more about what the tasks should include, see the [Tasks chapter]({{% s
 
 {{% /notice %}}
 
-1. Run the following prompt to generate tasks for our example - *this should take ~2 minutes to run*:
+1. Run the following prompt to generate tasks for our example:
 
 {{< tabs groupid="dsl" >}}
 
 {{% tab title="Bicep" %}}
 
-    ```markdown
-    /speckit.tasks
-    ```
+```markdown
+/speckit.tasks
+```
 
     {{% expand title="➕ Expand to see the results" %}}
 
@@ -620,15 +642,15 @@ To learn more about the analyze step, see the [Analyze chapter]({{% siteparam ba
 
 {{% /notice %}}
 
-1. Run the following prompt to generate an analysis report for our example - *this should take ~2 minutes to run*:
+1. Run the following prompt to generate an analysis report for our example:
 
 {{< tabs groupid="dsl" >}}
 
 {{% tab title="Bicep" %}}
 
-    ```markdown
-    /speckit.analyze
-    ```
+```markdown
+/speckit.analyze
+```
 
     {{% expand title="➕ Expand to see the results" %}}
 
@@ -755,7 +777,7 @@ From here, you can ask Copilot to help you with the deployment and further enhan
     az deployment group create \
       --resource-group <your-resource-group> \
       --template-file main.bicep \
-      --parameters prod.bicepparam
+      --parameters main.bicepparam
     ```
 4. **Integrate into CI/CD**: Add the generated templates to your Azure DevOps or GitHub Actions pipelines.
 5. **Extend the solution**: Iterate on the specification to add new capabilities while maintaining alignment with your constitution.

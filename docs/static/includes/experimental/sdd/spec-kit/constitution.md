@@ -1,129 +1,193 @@
 <!--
-SYNC IMPACT REPORT - Constitution v1.0.0
-Generated: 2026-01-22
+SYNC IMPACT REPORT
+==================
+Version Change: N/A → 1.0.0 (Initial constitution ratification)
 
-VERSION CHANGE: NEW → 1.0.0 (initial ratification)
+Modified Principles:
+- N/A (Initial version)
 
-PRINCIPLES DEFINED:
-- I. AVM-Only Modules (new)
-- II. Infrastructure-as-Code First (new)
-- III. Security & Reliability (NON-NEGOTIABLE) (new)
-- IV. Pre-Deployment Validation (new)
-- V. Resource Naming & Regional Deployment (new)
+Added Sections:
+- Core Principles (6 principles defined)
+- Infrastructure Standards
+- Security & Compliance Requirements
+- Development Workflow
+- Governance
 
-SECTIONS ADDED:
-- Technology Stack & Constraints
-- Deployment Workflow
+Removed Sections:
+- N/A (Initial version)
 
-TEMPLATE STATUS:
-- ✅ plan-template.md - reviewed, aligned with IaC single-template principle
-- ✅ spec-template.md - reviewed, user stories support compliance scenarios
-- ✅ tasks-template.md - reviewed, supports validation and deployment phases
-- ⚠️ checklist-template.md - pending review for AVM/security checklist items
-- ⚠️ agent-file-template.md - not reviewed (no file-specific guidance needed yet)
+Templates Requiring Updates:
+- ✅ plan-template.md: Constitution Check section aligns with principles
+- ✅ spec-template.md: Requirements structure aligns with security principles
+- ✅ tasks-template.md: Task categorization aligns with validation-first workflow
 
-FOLLOW-UP TODOS:
-- None - all required placeholders filled
+Follow-up TODOs:
+- None (all placeholders filled)
+
+Change Rationale:
+- MAJOR version (1.0.0) because this is the initial constitution establishing governance framework
+- Principles focused on legacy workload characteristics: compliance retention, IaC-first with Bicep, AVM-only modules, validation-before-deployment
 -->
 
 # Legacy Azure Workload Constitution
 
 ## Core Principles
 
-### I. AVM-Only Modules
-Every Azure resource MUST be deployed using an Azure Verified Module (AVM) from the official registry (`br/public:avm/...`).
-- No custom Bicep resource declarations allowed unless AVM does not exist for that resource type
-- Module versions MUST be pinned to specific semantic versions (no `latest` tags)
-- Custom wrappers around AVM modules are permitted only when necessary for workload-specific logic
-- Rationale: AVM modules are tested, validated, and follow Azure best practices; they ensure consistency, reduce maintenance burden, and provide compliance-ready configurations
+### I. Infrastructure-as-Code First (NON-NEGOTIABLE)
+All Azure resources MUST be defined in Bicep templates. Manual Azure Portal configurations are STRICTLY PROHIBITED.
 
-### II. Infrastructure-as-Code First
-All infrastructure MUST be defined in Bicep templates; custom scripts are permitted only when IaC cannot accomplish the requirement.
-- Single main template defines all resources; ARM manages dependencies and deployment order automatically
-- Bicep features (variables, parameters, outputs, conditionals, loops) MUST be used to avoid duplication
-- Custom scripts (PowerShell, Azure CLI) allowed only for: post-deployment configuration not supported by ARM, data migration tasks, external system integrations
-- All scripts MUST be idempotent and documented with clear pre-conditions and post-conditions
-- Rationale: Declarative IaC ensures reproducibility, enables auditing for compliance, and leverages ARM's built-in dependency resolution; imperative scripts introduce brittleness and hidden state
+**Rationale**: Ensures compliance auditability, repeatability, and version control for regulatory requirements. Manual changes create configuration drift that violates compliance mandates.
 
-### III. Security & Reliability (NON-NEGOTIABLE)
-Security and reliability best practices MUST be followed under all circumstances.
-- Managed identities MUST be used instead of service principals or keys wherever supported
-- Network isolation via private endpoints and network security groups (NSGs) MUST be implemented for all data-plane resources
-- Encryption at rest MUST be enabled using Azure-managed keys (customer-managed keys if compliance requires)
-- Role-Based Access Control (RBAC) with least-privilege assignments MUST be applied to all resources
-- Diagnostic settings MUST be configured to send logs to Log Analytics workspace or Storage Account
-- Resource locks (CanNotDelete) MUST be applied to production resources to prevent accidental deletion
-- Compliance: This is a legacy workload retained for compliance reasons; audit trails and security posture are mandatory
-- Rationale: Non-compliance risks legal/regulatory penalties; security breaches on legacy systems are common attack vectors
+**Rules**:
+- Every feature starts with Bicep code defining the infrastructure
+- Custom scripts are permitted ONLY when Bicep/ARM capabilities are insufficient
+- All infrastructure changes MUST go through version control
+- Single-template approach: define everything in one main.bicep, let ARM handle dependencies
 
-### IV. Pre-Deployment Validation
-Every deployment MUST be validated before execution; failed validations MUST block deployment.
-- Run `az deployment group validate` or `New-AzResourceGroupDeployment -WhatIf` before every deployment
-- Validation errors MUST be resolved before retrying
-- What-If output MUST be reviewed to confirm expected changes (no unintended deletions or modifications)
-- Integration tests (if available) MUST pass before production deployment
-- Rationale: Legacy workloads are often undocumented; unvalidated changes risk breaking critical compliance-dependent functionality
+### II. AVM-Only Modules
+All Bicep infrastructure MUST use Azure Verified Modules (AVM). Direct resource declarations are permitted only when no AVM module exists.
 
-### V. Resource Naming & Regional Deployment
-Resource names MUST follow a minimal uniqueness convention; all resources MUST deploy to US West 3.
-- Naming pattern: `<resource-type-abbreviation>-<workload>-<random-suffix>`
-  - Example: `st-legacyapp-x7k9m` (storage account), `vm-legacyapp-x7k9m` (virtual machine)
-  - Random suffix: minimum length to satisfy Azure global uniqueness (typically 5-6 alphanumeric chars)
-  - Resource type abbreviations follow Azure CAF recommended abbreviations (https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations)
-- Character and length limits per Azure resource type MUST be respected (e.g., storage accounts: 3-24 lowercase alphanumeric only)
-- Region: `westus3` for all resources unless resource type unavailable in that region (then document exception)
-- Rationale: Legacy workloads need stable naming for troubleshooting; minimal randomness balances uniqueness with human readability; single region reduces complexity (HA/DR not required per user specification)
+**Rationale**: AVM modules are officially maintained, follow security best practices, and are compliance-tested by Microsoft.
 
-## Technology Stack & Constraints
+**Rules**:
+- Search for AVM module first (using `#list_avm_metadata` tool)
+- Use latest stable version of AVM modules
+- Document justification when direct resource declaration is necessary
+- Follow AVM module documentation for parameter configuration
 
-**Language**: Bicep (latest stable version)
-**Module Source**: Azure Verified Modules (AVM) via Microsoft Container Registry (`br/public:avm/...`)
-**Deployment Tool**: Azure CLI (`az deployment group create`) or Azure PowerShell (`New-AzResourceGroupDeployment`)
-**Target Region**: US West 3 (`westus3`)
-**Compliance Requirements**: Audit logging, encryption at rest, RBAC least-privilege, resource locks
-**Excluded Requirements**: High availability (HA), disaster recovery (DR), horizontal scalability, multi-region deployment
-**Performance Goals**: Not applicable (legacy workload maintenance, no performance SLAs)
-**Constraints**: Must retain for compliance; minimize operational cost; single-region acceptable; no active development
+### III. Validation Before Deployment (NON-NEGOTIABLE)
+Every deployment MUST be preceded by ARM validation. Deployments without prior validation are STRICTLY PROHIBITED.
 
-## Deployment Workflow
+**Rationale**: Prevents configuration errors that could impact compliance-required systems. Validation catches issues before they affect production.
 
-**Pre-Deployment**:
-1. Author/update Bicep template using AVM modules
-2. Pin module versions (no wildcards)
-3. Run `az deployment group validate` or `New-AzResourceGroupDeployment -WhatIf`
-4. Review What-If output for unintended changes
-5. Obtain approval if production deployment
+**Rules**:
+- Run `az deployment group validate` before every deployment
+- Run `az deployment group what-if` to preview changes
+- Document validation results in deployment logs
+- Address all validation errors before proceeding
 
-**Deployment**:
-1. Execute `az deployment group create --template-file main.bicep --parameters main.parameters.json`
-2. Monitor deployment progress; capture deployment outputs
-3. Verify resource creation in Azure Portal or via CLI queries
+### IV. Security & Reliability First
+Security and reliability best practices MUST be followed under all circumstances, even for legacy workloads.
 
-**Post-Deployment**:
-1. Validate diagnostic settings are active (logs flowing to Log Analytics)
-2. Verify resource locks applied
-3. Document deployment in compliance log (date, version, approver)
-4. Update runbook or operational documentation if configuration changed
+**Rationale**: Compliance requirements mandate security controls regardless of workload age. Legacy status does not exempt from security obligations.
 
-**Rollback**:
-- Redeploy previous known-good Bicep template version
-- ARM incremental mode by default; use complete mode only with extreme caution
+**Rules**:
+- Enable Azure Monitor and diagnostic logs for all resources
+- Apply network security groups and private endpoints where applicable
+- Use managed identities instead of connection strings/keys
+- Follow principle of least privilege for all access
+- Enable Azure Security Center recommendations
+
+### V. Minimal Naming with Type Identification
+Resource names MUST be concise: minimal random characters for uniqueness + resource type identifier.
+
+**Rationale**: Improves resource identification while respecting Azure naming limitations. Avoids verbose names that exceed character limits.
+
+**Rules**:
+- Format: `{resourceType}-{purpose}-{randomSuffix}`
+- Example: `st-legacyvm-k7m3p` for storage account
+- Respect Azure resource-specific length limits (e.g., storage: 24 chars, lowercase/numbers only)
+- Random suffix: 4-6 alphanumeric characters
+- Document naming pattern in infrastructure documentation
+
+### VI. Region Standardization
+All resources MUST deploy to US West 3 (westus3) region unless technically impossible.
+
+**Rationale**: Centralizes resources for simplified management and cost tracking. Reduces complexity for legacy workloads with no multi-region requirements.
+
+**Rules**:
+- Default region parameter: `westus3`
+- Document exceptions with technical justification
+- Global resources (e.g., Azure Front Door) exempted by nature
+
+## Infrastructure Standards
+
+### Bicep Template Requirements
+- Single main.bicep file as deployment entry point
+- Use main.bicepparam for environment-specific parameters
+- Leverage ARM dependency management (avoid explicit dependsOn unless necessary)
+- Include detailed parameter descriptions and constraints
+- Use Bicep decorators for validation (`@minLength`, `@maxLength`, `@allowed`)
+
+### Module Management
+- Reference AVM modules via Bicep Registry (br/public:avm/...)
+- Pin to specific module versions (never use 'latest')
+- Document module selection rationale in comments
+- Review AVM module documentation for breaking changes during updates
+
+### Documentation Requirements
+- Maintain README.md with deployment instructions
+- Document all parameters in main.bicepparam
+- Include architecture diagram showing resource relationships
+- Record compliance justifications for resource configurations
+
+## Security & Compliance Requirements
+
+### Mandatory Controls
+- **Logging**: Enable diagnostic settings for all resources supporting it
+- **Access Control**: Use Azure RBAC, no shared keys in parameters
+- **Network Security**: Apply NSGs to subnet/NIC resources
+- **Encryption**: Use Azure-managed encryption (minimum); customer-managed keys where compliance requires
+- **Secrets Management**: Store sensitive values in Azure Key Vault, reference via Bicep getSecret()
+
+### Compliance Documentation
+- Tag all resources with compliance identifiers (e.g., `compliance: "legacy-retention"`)
+- Document retention policies for data resources
+- Record security exceptions with business justification
+- Maintain audit trail of all infrastructure changes
+
+### Prohibited Practices
+- Hardcoded secrets or connection strings in Bicep files
+- Public IP addresses without business justification
+- Unrestricted network access (0.0.0.0/0 rules)
+- Disabled diagnostic logging
+
+## Development Workflow
+
+### Pre-Deployment Phase
+1. Research and select appropriate AVM modules
+2. Draft Bicep templates with parameter documentation
+3. Run local Bicep linting (`bicep build`)
+4. Commit code to version control
+
+### Validation Phase (MANDATORY GATE)
+1. Run `az deployment group validate` and resolve all errors
+2. Run `az deployment group what-if` and review changes
+3. Document validation results
+4. Obtain approval for resource changes (if required by organization)
+
+### Deployment Phase
+1. Deploy using validated parameters
+2. Monitor deployment progress
+3. Verify resource creation via Azure Portal/CLI
+4. Test resource functionality
+5. Document deployment outcomes
+
+### Post-Deployment Phase
+1. Verify diagnostic settings are active
+2. Confirm tags applied correctly
+3. Review security recommendations in Azure Security Center
+4. Update documentation with deployed resource details
 
 ## Governance
 
-This constitution supersedes all other development practices and conventions for this project. Any deviation MUST be:
-- Documented with explicit rationale (e.g., "AVM module unavailable for Resource Type X")
-- Approved by compliance officer or designated approver
-- Tracked as technical debt with remediation plan if applicable
+This constitution supersedes all other development practices and guidelines. All infrastructure changes MUST comply with these principles.
 
-All pull requests, code reviews, and deployments MUST verify compliance with these principles. Complexity introduced outside these principles MUST be justified or rejected.
+### Amendment Process
+1. Propose amendment with business/technical justification
+2. Document impact on existing infrastructure
+3. Update constitution with version increment following semantic versioning
+4. Update all dependent templates and documentation
+5. Communicate changes to all stakeholders
 
-Constitution amendments require:
-1. Documented proposal with rationale for change
-2. Approval from project stakeholders and compliance officer
-3. Migration plan if existing resources/templates affected
-4. Version increment per semantic versioning rules (see version history)
+### Versioning Policy
+- **MAJOR**: Breaking changes to core principles (e.g., removing AVM-only requirement)
+- **MINOR**: New principle added or existing principle materially expanded
+- **PATCH**: Clarifications, wording improvements, non-semantic fixes
 
-Compliance review cadence: Quarterly audit of deployed resources against constitution principles (manual checklist or automated policy scan).
+### Compliance Review
+All pull requests MUST verify compliance with this constitution. Constitution violations require explicit justification and approval exception.
 
-**Version**: 1.0.0 | **Ratified**: 2026-01-22 | **Last Amended**: 2026-01-22
+Complexity that deviates from simplicity principles MUST be documented and justified with business or technical rationale.
+
+**Version**: 1.0.0 | **Ratified**: 2026-01-27 | **Last Amended**: 2026-01-27

@@ -1,151 +1,246 @@
-# Feature Specification: Legacy Windows Server VM Workload
+# Feature Specification: Legacy VM Workload Infrastructure
 
 **Feature Branch**: `001-legacy-vm-workload`
-**Created**: 2026-01-22
+**Created**: 2026-01-27
 **Status**: Draft
-**Input**: User description: "legacy business application, running as a single virtual machine connected to a virtual network. The VM must run Windows Server 2016, needs to have at least 2 CPU cores, 8 GB of RAM, standard HDD and a 500 GB HDD-based data disk attached. It must be remotely accessible via a bastion host and needs to have access to an HDD-backed file share in a storage account connected via a private endpoint. The VM's administrator password (created at the time of deployment) must be stored in a Key Vault"
+**Input**: User description: "legacy business application, running as a single virtual machine connected to a virtual network with Windows Server 2016, 2 CPU cores, 8 GB RAM, standard HDD, 500 GB data disk, bastion access, file share via private endpoint, NAT gateway internet access, NSGs, Key Vault for VM password, Log Analytics with diagnostic logging and critical alerts"
 
 ## User Scenarios & Testing *(mandatory)*
 
-### User Story 1 - Deploy Core VM Infrastructure (Priority: P1)
+<!--
+  IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
+  Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
+  you should still have a viable MVP (Minimum Viable Product) that delivers value.
 
-Operations team needs to deploy a Windows Server 2016 virtual machine in an isolated network environment with secure administrative access. The VM must be fully functional for hosting the legacy business application with adequate compute resources.
+  Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
+  Think of each story as a standalone slice of functionality that can be:
+  - Developed independently
+  - Tested independently
+  - Deployed independently
+  - Demonstrated to users independently
+-->
 
-**Why this priority**: Without the core VM infrastructure, no other functionality can be deployed. This is the foundational MVP that delivers a working, accessible virtual machine.
+### User Story 1 - Core VM Infrastructure Deployment (Priority: P1)
 
-**Independent Test**: Deploy the Bicep template and verify: (1) VM is created and running, (2) VM has correct OS version (Windows Server 2016), (3) VM meets resource specifications (2 cores, 8GB RAM, Standard HDD OS disk), (4) VM is connected to the virtual network, (5) Bastion host allows RDP connection to the VM
+Deploy the fundamental infrastructure including virtual network, VM with required specifications, and basic connectivity. This establishes the baseline workload environment.
 
-**Acceptance Scenarios**:
+**Why this priority**: Without the VM and network infrastructure, no other components can function. This is the foundation for the entire workload.
 
-1. **Given** Azure subscription with sufficient quota, **When** Bicep template is deployed with valid parameters, **Then** Windows Server 2016 VM is created in US West 3 with 2 CPU cores and 8GB RAM
-2. **Given** VM is running, **When** administrator connects via Azure Bastion, **Then** RDP session establishes successfully using credentials from Key Vault
-3. **Given** VM deployment completes, **When** checking Azure Portal, **Then** VM status shows as "Running" and all resources are in the same resource group
-4. **Given** VM is deployed, **When** reviewing resource locks, **Then** CanNotDelete lock is applied to prevent accidental deletion
-
----
-
-### User Story 2 - Attach Additional Storage (Priority: P2)
-
-Operations team needs to attach a 500GB HDD-based data disk to the VM to store application data separately from the OS disk, following Azure best practices for data persistence.
-
-**Why this priority**: Application data storage is critical but can be added after the VM is operational. This allows the VM to be tested and validated before adding data storage.
-
-**Independent Test**: After VM is running, deploy the data disk configuration and verify: (1) 500GB HDD data disk is attached to the VM, (2) Disk is visible within Windows Server as an additional volume, (3) Disk performance tier matches Standard HDD specifications
+**Independent Test**: Can be fully tested by deploying the infrastructure and verifying VM is created with correct specifications (Windows Server 2016, 2 cores, 8GB RAM, standard HDD) and can communicate within the VNet.
 
 **Acceptance Scenarios**:
 
-1. **Given** VM is running, **When** data disk deployment completes, **Then** 500GB HDD disk is attached to the VM
-2. **Given** data disk is attached, **When** administrator logs into VM, **Then** additional disk is visible in Disk Management and can be initialized/formatted
-3. **Given** data disk is configured, **When** checking disk properties, **Then** disk uses Standard HDD tier (not Premium SSD)
+1. **Given** no existing infrastructure, **When** deployment is executed, **Then** VM is created with Windows Server 2016, 2 CPU cores, 8GB RAM
+2. **Given** deployment is complete, **When** checking VM configuration, **Then** VM has standard HDD OS disk and is placed in correct VNet
+3. **Given** VM is deployed, **When** checking computer name, **Then** NetBIOS name is 15 characters or fewer
 
 ---
 
-### User Story 3 - Connect to Secure File Share (Priority: P3)
+### User Story 2 - Secure Storage and Data Disk (Priority: P2)
 
-Legacy application needs access to a centralized file share hosted in Azure Storage, accessible only via private network connectivity to meet security and compliance requirements.
+Provision the 500GB data disk for the VM and configure the storage account with file share accessible via private endpoint. This provides the data storage layer for the application.
 
-**Why this priority**: File share connectivity is important for data sharing but the VM can function independently for initial testing. This builds on the network infrastructure from P1.
+**Why this priority**: Data storage is critical for application functionality but depends on the VM infrastructure being in place first.
 
-**Independent Test**: Deploy storage account with file share and private endpoint, then verify: (1) Storage account is created with file share, (2) Private endpoint exists and connects storage to VNet, (3) VM can mount the file share using private IP address, (4) File share uses HDD performance tier
+**Independent Test**: Can be tested by verifying the 500GB HDD data disk is attached to the VM and the file share is accessible from the VM through the private endpoint.
 
 **Acceptance Scenarios**:
 
-1. **Given** VNet and VM exist, **When** storage account with private endpoint is deployed, **Then** storage account is accessible only via private network
-2. **Given** private endpoint is configured, **When** administrator logs into VM and mounts file share, **Then** file share mounts successfully using `\\<private-endpoint-ip>\<share-name>` UNC path
-3. **Given** file share is mounted, **When** administrator creates test file, **Then** file is successfully written to and read from the share
-4. **Given** storage account is deployed, **When** checking network settings, **Then** public network access is disabled and only private endpoint is allowed
+1. **Given** VM infrastructure exists, **When** data disk deployment executes, **Then** 500GB HDD-based managed disk is attached to the VM
+2. **Given** storage account is deployed, **When** checking storage configuration, **Then** HDD-backed file share is created
+3. **Given** private endpoint is deployed, **When** VM attempts to access file share, **Then** connection succeeds through private network without traversing internet
 
 ---
 
-### User Story 4 - Secure Secret Management (Priority: P1)
+### User Story 3 - Secure Access and Secrets Management (Priority: P2)
 
-Administrator password for the VM must be securely generated and stored in Azure Key Vault during deployment to meet compliance requirements, with the secret name configurable via parameters.
+Implement bastion host for secure remote access and Key Vault for storing the VM administrator password. This ensures secure access patterns for operations teams.
 
-**Why this priority**: This is part of the core deployment (P1) because the password is generated at deployment time and must be stored before the VM is created. Security compliance is non-negotiable per constitution.
+**Why this priority**: Secure access is essential for ongoing operations but the infrastructure must exist before access can be configured.
 
-**Independent Test**: Deploy template and verify: (1) Key Vault is created, (2) VM admin password secret is stored in Key Vault with the configured secret name, (3) VM is created successfully using the generated password, (4) Administrator can retrieve password from Key Vault and use it to log in via Bastion
+**Independent Test**: Can be tested by connecting to the VM through bastion host using credentials retrieved from Key Vault.
 
 **Acceptance Scenarios**:
 
-1. **Given** deployment parameters include secret name, **When** Bicep template deploys, **Then** Key Vault is created with the admin password stored using the specified secret name
-2. **Given** Key Vault contains the secret, **When** administrator retrieves the password from Key Vault, **Then** password can be used to successfully authenticate to the VM via Bastion
-3. **Given** Key Vault is deployed, **When** checking access policies, **Then** only authorized identities can read the secret (least-privilege RBAC)
-4. **Given** Key Vault is deployed, **When** checking diagnostic settings, **Then** audit logs are enabled and sent to Log Analytics workspace
+1. **Given** bastion and Key Vault are deployed, **When** VM administrator password is generated at deployment, **Then** password is stored in Key Vault secret
+2. **Given** bastion host is deployed, **When** operator attempts to connect to VM, **Then** connection succeeds through bastion without public IP on VM
+3. **Given** Key Vault access is configured, **When** retrieving VM password, **Then** secret can be accessed only by authorized identities
+4. **Given** VM subnet NSG is configured, **When** bastion attempts RDP connection to VM, **Then** traffic is allowed through NSG rule (port 3389 from Bastion subnet)
 
 ---
+
+### User Story 4 - Internet Connectivity and Network Security (Priority: P3)
+
+Configure NAT gateway for outbound internet access and implement Network Security Groups for all subnets with least-privilege rules.
+
+**Why this priority**: Network security controls are important but the workload can function for testing without full NSG configuration initially.
+
+**Independent Test**: Can be tested by verifying VM can reach internet through NAT gateway and that NSG rules block unauthorized traffic.
+
+**Acceptance Scenarios**:
+
+1. **Given** NAT gateway is deployed, **When** VM initiates outbound internet connection, **Then** traffic routes through NAT gateway
+2. **Given** NSGs are configured, **When** unauthorized traffic attempts to reach VM, **Then** traffic is blocked by NSG rules
+3. **Given** NSGs are deployed, **When** checking subnet associations, **Then** each subnet has appropriate NSG assigned
+
+---
+
+### User Story 5 - Monitoring and Alerting (Priority: P3)
+
+Deploy Log Analytics workspace, configure diagnostic settings for all resources, and set up critical alerts (VM stopped, disk full, Key Vault access failures).
+
+**Why this priority**: Monitoring is important for operations but the workload can function without it. It provides operational visibility rather than core functionality.
+
+**Independent Test**: Can be tested by verifying diagnostic logs are flowing to Log Analytics and triggering test scenarios that generate alerts.
+
+**Acceptance Scenarios**:
+
+1. **Given** Log Analytics workspace is deployed, **When** resources are created, **Then** diagnostic settings send logs to workspace
+2. **Given** alerting is configured, **When** VM is stopped, **Then** critical alert is triggered
+3. **Given** alerting is configured, **When** Key Vault access fails, **Then** critical alert is triggered
+4. **Given** diagnostic logging is active, **When** querying Log Analytics, **Then** logs are available within 5 minutes
+
+---
+
+## Clarifications
+
+### Session 2026-01-27
+
+- Q: VNet address space and subnet sizing for VM, bastion, and private endpoint subnets? → A: VNet: 10.0.0.0/24, VM subnet: 10.0.0.0/27, Bastion subnet: 10.0.0.64/26, Private endpoint subnet: 10.0.0.128/27
+- Q: Storage file share quota size? → A: 1024 GiB (1 TiB)
+- Q: Disk space alert threshold percentage? → A: 85% full
+- Q: Alert notification method for critical alerts? → A: Azure Portal notifications only
+- Q: VM size SKU for 2 cores and 8GB RAM requirement? → A: Standard_D2s_v3
 
 ### Edge Cases
 
-- What happens when the specified availability zone is invalid or unavailable in US West 3? (Deployment should fail with clear error message)
-- How does the system handle if storage account name conflicts with existing global names? (Use sufficient random suffix to ensure uniqueness)
-- What if the Key Vault secret name parameter contains invalid characters? (Validation should fail during deployment with descriptive error)
-- How does the VM handle if the file share is unmounted or storage account is deleted? (Application data access fails; requires manual remediation)
-- What happens if the private endpoint fails to deploy? (Storage account remains inaccessible; deployment should fail or mark as incomplete)
-- How does the system handle if the Bastion host is deleted? (VM becomes inaccessible via Azure Portal; requires recreation of Bastion or alternative access method)
+- What happens when VM computer name parameter would exceed 15 characters? (NetBIOS limit must be enforced)
+- How does deployment handle when Key Vault secret name parameter is not provided or is invalid?
+- What happens when storage account name would exceed 24 characters or contains invalid characters?
+- How does system handle when no availability zone is specified for resources requiring zone selection?
+- What happens when private endpoint deployment fails but storage account succeeds?
+- How does deployment handle if bastion subnet already exists in the VNet from a previous deployment?
 
 ## Requirements *(mandatory)*
 
+<!--
+  ACTION REQUIRED: The content in this section represents placeholders.
+  Fill them out with the right functional requirements.
+-->
+
 ### Functional Requirements
 
-- **FR-001**: System MUST deploy a Windows Server 2016 virtual machine in US West 3 region
-- **FR-002**: Virtual machine MUST have at least 2 CPU cores and 8GB of RAM
-- **FR-003**: Virtual machine MUST use Standard HDD storage tier for the OS disk
-- **FR-004**: System MUST attach a 500GB HDD-based data disk to the virtual machine
-- **FR-005**: System MUST deploy all resources within a single resource group designated for production environment
-- **FR-006**: System MUST create a virtual network for VM connectivity
-- **FR-007**: System MUST deploy an Azure Bastion host for secure RDP access to the VM
-- **FR-008**: System MUST deploy an Azure Storage Account with an HDD-backed file share
-- **FR-009**: System MUST configure a private endpoint connecting the storage account to the virtual network
-- **FR-010**: System MUST deploy an Azure Key Vault to store sensitive credentials
-- **FR-011**: System MUST generate and store the VM administrator password in Key Vault at deployment time
-- **FR-012**: Secret name for the admin password MUST be configurable via a parameter in main.bicepparam file
-- **FR-013**: All resource names MUST follow the naming convention: `<resource-type-abbreviation>-<workload>-<random-suffix>`
-- **FR-014**: All resources MUST be deployed using Azure Verified Modules (AVM) from the official registry
-- **FR-015**: Availability zone selection MUST be a value between 1 and 3 (never -1)
-- **FR-016**: All configuration MUST be driven by parameters defined in main.bicepparam file
-- **FR-017**: System MUST apply CanNotDelete resource locks to all production resources
-- **FR-018**: System MUST enable diagnostic settings for all resources, sending logs to Log Analytics workspace
-- **FR-019**: System MUST configure network security groups (NSGs) to restrict traffic appropriately
-- **FR-020**: System MUST disable public network access to storage account (private endpoint only)
+<!-- NOTE: "Standard HDD" refers to Azure Standard_LRS disk SKU (magnetic disk storage) -->
 
-### Key Entities
+- **FR-001**: Infrastructure MUST provision a Windows Server 2016 Virtual Machine with size Standard_D2s_v3 (2 vCPUs, 8 GiB RAM) using Standard HDD for OS disk
+- **FR-002**: Infrastructure MUST attach a 500GB HDD-based managed disk to the VM as a data disk
+- **FR-003**: Infrastructure MUST create Virtual Network with address space 10.0.0.0/24 containing three subnets: VM subnet (10.0.0.0/27), Bastion subnet (10.0.0.64/26), and private endpoint subnet (10.0.0.128/27)
+- **FR-004**: Infrastructure MUST deploy Azure Bastion for secure remote access to the VM without public IP
+- **FR-005**: Infrastructure MUST provision Storage Account with HDD-backed file share (1024 GiB quota) accessible via private endpoint
+- **FR-006**: Infrastructure MUST deploy NAT Gateway for VM outbound internet connectivity
+- **FR-007**: Infrastructure MUST create Network Security Groups for each subnet with least-privilege rules
+- **FR-008**: Infrastructure MUST deploy Azure Key Vault to store VM administrator password
+- **FR-009**: Infrastructure MUST set VM administrator account name to "vmadmin"
+- **FR-010**: Infrastructure MUST ensure VM computer name (NetBIOS name) is 15 characters or fewer
+- **FR-011**: Infrastructure MUST generate and store VM administrator password in Key Vault at deployment time
+- **FR-012**: Infrastructure MUST accept Key Vault secret name as a parameter from main.bicepparam
+- **FR-013**: Infrastructure MUST deploy all resources to a single resource group representing production environment
+- **FR-014**: Infrastructure MUST select availability zone between 1-3 for zone-capable resources (never use -1)
+- **FR-015**: Infrastructure MUST include rich comments in both main.bicep and main.bicepparam explaining resource purpose and parameters
+- **FR-016**: Infrastructure MUST rely exclusively on parameters defined in main.bicepparam file
 
-- **Virtual Machine**: Windows Server 2016 compute instance with 2+ cores, 8GB RAM, Standard HDD OS disk; hosts legacy business application; connected to VNet; accessible via Bastion
-- **Data Disk**: 500GB Standard HDD managed disk; attached to VM; provides persistent storage for application data separate from OS disk
-- **Virtual Network**: Network infrastructure with appropriate subnets for VM, Bastion, and private endpoints; provides network isolation
-- **Bastion Host**: Azure Bastion service providing secure RDP access to VM without exposing public IP; deployed in dedicated subnet
-- **Storage Account**: Azure Storage account hosting file share; uses HDD performance tier; accessible only via private endpoint; provides shared file storage
-- **File Share**: Azure Files share within storage account; mounted to VM; provides centralized file storage for application
-- **Private Endpoint**: Network interface connecting storage account to VNet; eliminates public internet exposure; provides private IP for storage access
-- **Key Vault**: Azure Key Vault storing VM administrator password; provides secure secret management; configured with RBAC and audit logging
-- **Resource Group**: Logical container for all resources; designated as production environment; single group for simplified management
+### Security & Compliance Requirements (Mandatory for all features)
+
+- **SEC-001**: All resources MUST enable diagnostic settings and send logs to Log Analytics Workspace
+- **SEC-002**: VM MUST use managed identity for Azure resource authentication (no connection strings/keys in configuration)
+- **SEC-003**: Network Security Groups MUST restrict traffic to only necessary ports and protocols per subnet
+- **SEC-003a**: VM subnet NSG MUST allow inbound RDP (port 3389) from Bastion subnet (10.0.0.64/26) to enable bastion connectivity
+- **SEC-004**: All resources MUST be tagged with compliance identifier "legacy-retention"
+- **SEC-005**: VM administrator password MUST be stored in Azure Key Vault, never in code or parameters
+- **SEC-006**: VM MUST NOT have public IP address assigned (access only through bastion)
+- **SEC-007**: Storage account file share MUST be accessible only through private endpoint, not public endpoint
+- **SEC-008**: Key Vault MUST restrict access to only authorized identities using RBAC
+
+### Infrastructure Constraints
+
+- **IC-001**: MUST deploy to westus3 region (US West 3)
+- **IC-002**: MUST use Azure Verified Modules (AVM) exclusively (read module readme.md for parameter documentation)
+- **IC-003**: MUST validate deployment with `az deployment group validate` before applying
+- **IC-004**: MUST run `az deployment group what-if` to preview changes
+- **IC-005**: Resource names MUST follow pattern: {resourceType}-{purpose}-{random4-6chars}
+- **IC-006**: MUST NOT create additional environments (dev, test, staging) - production only
+
+### Monitoring & Alerting Requirements
+
+- **MON-001**: Infrastructure MUST deploy Log Analytics workspace for centralized logging
+- **MON-002**: Infrastructure MUST configure diagnostic logging for VM, Key Vault, Storage Account, and network resources
+- **MON-003**: Infrastructure MUST create critical alert for VM stopped/deallocated condition (Portal notifications)
+- **MON-004**: Infrastructure MUST create critical alert for disk space exceeding 85% threshold (Portal notifications)
+- **MON-005**: Infrastructure MUST create critical alert for Key Vault access failures (Portal notifications)
+
+### Key Azure Resources
+
+- **Virtual Machine**: Windows Server 2016 VM with size Standard_D2s_v3 (2 vCPUs, 8 GiB RAM), Standard HDD OS disk, managed identity enabled
+- **Managed Disk**: 500GB HDD-based data disk attached to VM
+- **Virtual Network**: VNet with subnets for VM, bastion, and private endpoints
+- **Azure Bastion**: Secure RDP access to VM without public IP
+- **Storage Account**: Standard HDD storage with file share
+- **Private Endpoint**: Secure connectivity between VM and storage account file share
+- **NAT Gateway**: Outbound internet connectivity for VM subnet
+- **Network Security Groups**: One per subnet with least-privilege rules
+- **Key Vault**: Stores VM administrator password as secret
+- **Log Analytics Workspace**: Centralized logging for all resources
+- **Azure Monitor Alerts**: Critical alerts for VM stopped, disk full, Key Vault access failures
 
 ## Success Criteria *(mandatory)*
 
+<!--
+  ACTION REQUIRED: Define measurable success criteria.
+  These must be technology-agnostic and measurable.
+-->
+
 ### Measurable Outcomes
 
-- **SC-001**: Infrastructure deployment completes successfully in under 30 minutes from template execution
-- **SC-002**: Administrator can establish RDP connection to VM via Bastion within 2 minutes of deployment completion
-- **SC-003**: VM meets exact specifications: Windows Server 2016, 2 CPU cores minimum, 8GB RAM, Standard HDD
-- **SC-004**: File share mounts successfully on VM and allows read/write operations without errors
-- **SC-005**: All resources are created in US West 3 region with consistent naming convention
-- **SC-006**: Deployment validation (az deployment group validate) completes with zero errors before actual deployment
-- **SC-007**: VM administrator password is retrievable from Key Vault by authorized users only
-- **SC-008**: Storage account is not accessible from public internet (only via private endpoint)
-- **SC-009**: All resources have CanNotDelete locks applied preventing accidental deletion
-- **SC-010**: Diagnostic logs flow successfully to Log Analytics workspace for all deployed resources
-- **SC-011**: Template can be redeployed without errors (idempotent infrastructure-as-code)
-- **SC-012**: Zero custom Bicep resource declarations (100% AVM modules used)
+- **SC-001**: Infrastructure deploys successfully within 20 minutes including all resources
+- **SC-002**: ARM validation (`az deployment group validate`) passes without errors
+- **SC-003**: ARM what-if analysis shows all expected resources will be created
+- **SC-004**: VM is accessible via bastion host within 5 minutes of deployment completion
+- **SC-005**: VM can access file share through private endpoint connection
+- **SC-006**: VM can reach internet through NAT gateway for outbound connections
+- **SC-007**: Diagnostic logs from all resources appear in Log Analytics within 5 minutes
+- **SC-008**: All resources pass Azure Security Center baseline compliance checks
+- **SC-009**: NSG rules successfully block unauthorized traffic in test scenarios
+- **SC-010**: VM administrator password can be retrieved from Key Vault by authorized identities
+- **SC-011**: Critical alerts can be triggered and verified (VM stop, simulated disk full warning, Key Vault access attempt)
 
-## Assumptions *(optional)*
+## Assumptions
 
-- Azure subscription has sufficient quota for VM size and region deployment
-- US West 3 region supports all required resource types (VM, Bastion, Storage, Key Vault)
-- Administrator has appropriate RBAC permissions to deploy resources and access Key Vault
-- Main.bicepparam file will be created to supply all required parameters (no hardcoded values in main.bicep)
-- Legacy business application is compatible with Windows Server 2016 and does not require newer OS versions
-- Standard HDD performance tier is sufficient for application workload (no high IOPS requirements)
-- Single VM without high availability or disaster recovery is acceptable for this compliance workload
-- Availability zones 1, 2, or 3 are all equivalent for this workload (no specific zone preference)
-- Random suffix generation for resource names will be handled by Bicep parameters or functions
-- Network security rules for NSGs will be determined during planning phase based on application requirements
+- Azure subscription has sufficient quota for Standard_D2s_v3 VM size
+- Azure Bastion service is available in westus3 region
+- Windows Server 2016 image is available in Azure Marketplace for westus3 region
+- Log Analytics workspace can be deployed in westus3 region
+- Private endpoint feature is available for storage accounts in westus3 region
+- NAT Gateway is available in westus3 region
+- Deployment is executed by identity with sufficient permissions to create all resource types
+- Resource group name will be provided as parameter in main.bicepparam
+- Random suffix for resource names will be generated or provided as parameter
+- Default log retention period of 30 days is acceptable for Log Analytics (compliance requirement may differ)
+- Standard_LRS storage redundancy is acceptable for this legacy workload
+- VM will be deployed without availability sets or scale sets (single instance acceptable)
+- Availability zone selection (1, 2, or 3) will be provided as parameter
+
+## Out of Scope
+
+- Multi-region deployment or disaster recovery configuration
+- High availability (availability sets, load balancers, multiple VMs)
+- Auto-scaling capabilities
+- Backup and restore automation (Azure Backup configuration)
+- Additional environments (development, test, staging)
+- Application installation or configuration on the VM
+- Custom monitoring dashboards or complex alerting logic beyond critical alerts
+- Network connectivity to on-premises networks (VPN or ExpressRoute)
+- Azure Active Directory domain join
+- Additional data disks beyond the single 500GB disk specified
+- Storage account configuration beyond file share (no blob containers, tables, or queues)
+- Advanced network features (Azure Firewall, Application Gateway, Traffic Manager)
+- Cost optimization recommendations or reserved instance planning
