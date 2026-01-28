@@ -7,7 +7,7 @@ description: Guidance for the Azure Verified Modules (AVM) program on how Spec K
 
 {{% notice style="warning" title="Experimental Content" icon="flask" %}}
 
-The content in this section represents **experimental explorations** of emerging technologies and innovative approaches. To learn more about our experimental content and its implications, please refer to the [Experimental Section Overview]({{% siteparam base %}}/experimental).
+The content in this section represents **experimental exploration** of emerging technologies and innovative approaches. To learn more about our experimental content and its implications, please refer to the [Experimental Section Overview]({{% siteparam base %}}/experimental).
 
 {{% /notice %}}
 

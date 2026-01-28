@@ -7,7 +7,7 @@ description: Experimental features and emerging technologies being explored by t
 
 {{% notice style="warning" title="Experimental Content - No Long-Term Support Guarantee" icon="flask" %}}
 
-The content in this section represents **experimental explorations** of emerging technologies and innovative approaches. The AVM team makes **no guarantees** regarding:
+The content in this section represents **experimental exploration** of emerging technologies and innovative approaches. The AVM team makes **no guarantees** regarding:
 
 - Long-term support or maintenance of solutions described here
 - Future direction or adoption of these approaches into core AVM guidance
