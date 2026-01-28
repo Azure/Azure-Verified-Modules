@@ -1,4 +1,3 @@
-<!-- markdownlint-disable -->
 # Specification Analysis Report
 
 **Feature**: 001-legacy-vm-workload

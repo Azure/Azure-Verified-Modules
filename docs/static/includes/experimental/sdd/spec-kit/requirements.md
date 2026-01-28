@@ -1,4 +1,3 @@
-<!-- markdownlint-disable -->
 # Specification Quality Checklist: Legacy VM Workload Infrastructure
 
 **Purpose**: Validate specification completeness and quality before proceeding to planning

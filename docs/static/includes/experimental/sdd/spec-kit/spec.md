@@ -1,4 +1,3 @@
-<!-- markdownlint-disable -->
 # Feature Specification: Legacy VM Workload Infrastructure
 
 **Feature Branch**: `001-legacy-vm-workload`

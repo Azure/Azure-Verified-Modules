@@ -1,4 +1,3 @@
-<!-- markdownlint-disable -->
 # Data Model: Legacy VM Workload Infrastructure
 
 **Date**: 2026-01-27

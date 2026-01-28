@@ -1,4 +1,3 @@
-<!-- markdownlint-disable -->
 # Implementation Plan Quality Validation Checklist
 
 **Purpose**: Validate quality, completeness, and clarity of implementation plan and supporting documentation  

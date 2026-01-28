@@ -1,0 +1,5 @@
+# Markdown Lint Ignore File
+# Exclude spec-kit template files from markdown linting
+
+# SpecKit experimental templates and examples
+docs/static/includes/experimental/sdd/spec-kit/
