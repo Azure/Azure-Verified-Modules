@@ -525,14 +525,14 @@ az vm get-instance-view `
 
 **Solutions**:
 1. **VM is stopped**: Start the VM
-   ```powershell
-   az vm start --resource-group rg-legacyvm-prod --name vm-legacyvm-{random}
-   ```
+  ```powershell
+  az vm start --resource-group rg-legacyvm-prod --name vm-legacyvm-{random}
+  ```
 
 2. **Bastion NSG rules incorrect**: Verify Bastion subnet NSG
-   - Required: Allow inbound 443 from Internet
-   - Required: Allow outbound 3389/22 to VirtualNetwork
-   - Check: Portal > NSG > nsg-bastion-legacyvm-{random} > Security rules
+  - Required: Allow inbound 443 from Internet
+  - Required: Allow outbound 3389/22 to VirtualNetwork
+  - Check: Portal > NSG > nsg-bastion-legacyvm-{random} > Security rules
 
 3. **Browser issues**: Try different browser or incognito mode
 
@@ -556,18 +556,18 @@ AzureDiagnostics
 **Solutions**:
 1. **Wait longer**: Initial log ingestion can take 10-15 minutes
 2. **Verify diagnostic settings**:
-   ```powershell
-   # Check VM diagnostic settings
-   az monitor diagnostic-settings list `
-     --resource /subscriptions/{subscription-id}/resourceGroups/rg-legacyvm-prod/providers/Microsoft.Compute/virtualMachines/vm-legacyvm-{random} `
-     --query "value[].{Name:name, LogAnalytics:workspaceId}" `
-     --output table
-   ```
+  ```powershell
+  # Check VM diagnostic settings
+  az monitor diagnostic-settings list `
+    --resource /subscriptions/{subscription-id}/resourceGroups/rg-legacyvm-prod/providers/Microsoft.Compute/virtualMachines/vm-legacyvm-{random} `
+    --query "value[].{Name:name, LogAnalytics:workspaceId}" `
+    --output table
+  ```
 
 3. **Manual diagnostic setting creation** (if missing):
-   - Portal > VM > Diagnostic settings > Add diagnostic setting
-   - Select all log categories and metrics
-   - Send to Log Analytics workspace: law-legacyvm-{random}
+  - Portal > VM > Diagnostic settings > Add diagnostic setting
+  - Select all log categories and metrics
+  - Send to Log Analytics workspace: law-legacyvm-{random}
 
 ### Issue: Alerts Not Firing
 
@@ -593,18 +593,18 @@ az monitor metrics alert show `
 1. **Wait for evaluation window**: Alerts evaluate every 1-5 minutes
 2. **Verify alert is enabled**: Should show `"enabled": true`
 3. **Check metric availability**:
-   ```powershell
-   # List available metrics for VM
-   az monitor metrics list-definitions `
-     --resource /subscriptions/{subscription-id}/resourceGroups/rg-legacyvm-prod/providers/Microsoft.Compute/virtualMachines/vm-legacyvm-{random} `
-     --query "[].{Name:name.value, Unit:unit}" `
-     --output table
-   ```
+  ```powershell
+  # List available metrics for VM
+  az monitor metrics list-definitions `
+    --resource /subscriptions/{subscription-id}/resourceGroups/rg-legacyvm-prod/providers/Microsoft.Compute/virtualMachines/vm-legacyvm-{random} `
+    --query "[].{Name:name.value, Unit:unit}" `
+    --output table
+  ```
 
 4. **Review activity log for alert evaluation**:
-   - Portal > Monitor > Activity Log
-   - Filter: Resource Type = "microsoft.insights/metricalerts"
-   - Look for "Evaluate Action" events
+  - Portal > Monitor > Activity Log
+  - Filter: Resource Type = "microsoft.insights/metricalerts"
+  - Look for "Evaluate Action" events
 
 ## Clean Up Resources
 
@@ -634,28 +634,28 @@ az group exists --name rg-legacyvm-prod
 After successful deployment:
 
 1. **Configure VM**:
-   - Install required applications on Windows Server 2016
-   - Map file share as network drive: `\\st{random}.file.core.windows.net\fileshare`
-   - Configure Windows Firewall rules as needed
+  - Install required applications on Windows Server 2016
+  - Map file share as network drive: `\\st{random}.file.core.windows.net\fileshare`
+  - Configure Windows Firewall rules as needed
 
 2. **Set Up Monitoring**:
-   - Configure Log Analytics queries and save as functions
-   - Create custom workbooks in Azure Monitor
-   - Set up action groups for email/SMS notifications (currently Portal-only)
+  - Configure Log Analytics queries and save as functions
+  - Create custom workbooks in Azure Monitor
+  - Set up action groups for email/SMS notifications (currently Portal-only)
 
 3. **Implement Backup** (not in scope of this deployment):
-   - Azure Backup for VM
-   - Azure Files snapshot/backup for file share
+  - Azure Backup for VM
+  - Azure Files snapshot/backup for file share
 
 4. **Security Hardening** (additional measures):
-   - Enable Azure Security Center recommendations
-   - Implement Just-In-Time VM access
-   - Review and tighten NSG rules based on actual traffic
+  - Enable Azure Security Center recommendations
+  - Implement Just-In-Time VM access
+  - Review and tighten NSG rules based on actual traffic
 
 5. **Operational Procedures**:
-   - Document VM maintenance schedules
-   - Create runbooks for common tasks
-   - Establish change management process
+  - Document VM maintenance schedules
+  - Create runbooks for common tasks
+  - Establish change management process
 
 ## Support
 

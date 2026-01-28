@@ -85,7 +85,7 @@
 ### Functional Requirements
 
 - **FR-001**: Infrastructure MUST [specific Azure resource capability, e.g., "provision Virtual Machine with managed disks"]
-- **FR-002**: Infrastructure MUST [security requirement, e.g., "enable diagnostic logging for all resources"]  
+- **FR-002**: Infrastructure MUST [security requirement, e.g., "enable diagnostic logging for all resources"]
 - **FR-003**: Infrastructure MUST [networking requirement, e.g., "isolate resources in dedicated VNet"]
 - **FR-004**: Infrastructure MUST [data requirement, e.g., "provide storage account with blob containers"]
 - **FR-005**: Infrastructure MUST [compliance requirement, e.g., "tag all resources with compliance identifiers"]
