@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 # Quickstart: Deploy Legacy VM Workload
 
 **Date**: 2026-01-27

@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 # Tasks: Legacy VM Workload Infrastructure
 
 **Feature**: [spec.md](./spec.md) | **Plan**: [plan.md](./plan.md)

@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 <!--
 SYNC IMPACT REPORT
 ==================

@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 # Implementation Plan: Legacy VM Workload
 
 **Branch**: `001-legacy-vm-workload` | **Date**: 2026-01-27 | **Spec**: [spec.md](./spec.md)
