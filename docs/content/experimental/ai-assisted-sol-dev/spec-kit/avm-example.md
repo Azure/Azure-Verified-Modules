@@ -43,7 +43,7 @@ Before you begin, make sure you have these tools installed in your development e
 
 Before we begin coding, it is important to have details about what the infrastructure architecture will include. For our example, using AVM modules, we will be building a solution that will host a legacy business application running as a single Windows Server 2016 virtual machine (VM) with at least 2 CPU cores, 8GB RAM, Standard HDD OS disk, and a 500GB data disk.
 
-The VM is accessible via Azure Bastion using secure RDP access (no public IP exposure). The solutions needs an Azure Storage Account with an HDD-backed file share connected via private endpoint, and an Azure Key Vault to securely store the VM administrator password generated at deployment time. The VM must not be accessible from the internet, and all diagnostic logs will be captured in a Log Analytics workspace with critical alerts configured for VM availability, disk utilization, and Key Vault access failures.
+The VM is accessible via Azure Bastion using secure RDP access (no public IP exposure). The solution needs an Azure Storage Account with an HDD-backed file share connected via private endpoint, and an Azure Key Vault to securely store the VM administrator password generated at deployment time. The VM must not be accessible from the internet, and all diagnostic logs will be captured in a Log Analytics workspace with critical alerts configured for VM availability, disk utilization, and Key Vault access failures.
 
 <img src="{{% siteparam base %}}/images/usage/solution-development/avm-virtualmachine-example1.png" alt="Azure VM Solution Architecture" style="max-width:800px;" />
 
@@ -142,7 +142,7 @@ flowchart LR
     style G fill:#e1f5ff
 ```
 
-To implement our example solution using AVM modules, we will walk through each of these steps in details.
+To implement our example solution using AVM modules, we will walk through each of these steps in detail.
 
 {{% notice style="tip" %}}
 
@@ -153,7 +153,7 @@ Changing the LLM does make a difference. We highly encourage you test different 
 {{% /notice %}}
 
 {{% notice style="important" %}}
-As Spec Kit uses a set of built-in and system tools/scripts/cmdlets, you will need to approve the execution of each of these steps. **Make sure you understand the impact of these commands before approving and proceeding!**
+As Spec Kit uses a set of built-in system tools, scripts and cmdlets, you will need to approve the execution of each of these steps. **Make sure you understand the impact of these commands before approving and proceeding!**
 Here's an example:
 
 <img src="{{%siteparam base%}}/images/experimental/sdd/running-command-approval-example.png" width=70% alt="Specify Approve Scripts" style="margin:0 auto;padding: 0;">
@@ -263,17 +263,17 @@ To learn more about what the specification should include, see the [Specificatio
 {{% tab title="Bicep" %}}
 
 ```markdown
-/speckit.specify Create specification, called "01-my-legacy-workload" for a legacy business application, running as a single virtual machine connected to a virtual network. The VM must run Windows Server 2016, needs to have at least 2 CPU cores, 8 GB of RAM, standard HDD and a 500 GB HDD-based data disk attached. It must be remotely accessible via a bastion host and needs to have access to an HDD-backed file share in a storage account connected via a private endpoint. The VM must access the internet via a NAT gateway. Network Security Groups (NSGs) must be created for each subnet, and configured and assigned as applicable,restricting traffic to only what's necessary.
+/speckit.specify Create specification called "01-my-legacy-workload" for a legacy business application, running as a single virtual machine connected to a virtual network. The VM must run Windows Server 2016, needs to have at least 2 CPU cores, 8 GB of RAM, a standard HDD, and a 500 GB HDD-based data disk attached. It must be remotely accessible via a bastion host and needs to have access to an HDD-backed file share in a storage account connected via a private endpoint. The VM must access the internet via a NAT gateway. Network Security Groups (NSGs) must be created for each subnet, configured and assigned as applicable, restricting traffic to only what's necessary.
 
-The VM's administrator password (created at the time of deployment) must be stored in a Key Vault, also deployed as part of this solution. The VM's administrator account must be called "vmadmin". The VM's computer name (netbios name) must be 15 or less characters long.
+The VM's administrator password (created at the time of deployment) must be stored in a Key Vault, also deployed as part of this solution. The VM's administrator account must be called "vmadmin". The VM's computer name (netbios name) must be 15 or fewer characters long.
 
-Always only rely on parameters from the main.bicepparam file. Have the name of the secret used for the admin password captured as a parameter. Include rich comments in both the main.bicep and main.bicepparam files to explain the purpose of each resource and parameter.
+Only rely on parameters from the main.bicepparam file. Have the name of the secret used for the admin password captured as a parameter. Include rich comments in both the main.bicep and main.bicepparam files to explain the purpose of each resource and parameter.
 
 When a decision needs to be made on availability zones, always choose a number between 1 and 3 (never choose -1, that explicitly disables this feature).
 
 Create everything in a single resource group, standing for a production environment. Do not create any additional environments (such as dev, test, staging, etc.).
 
-Read the documentation (readme.md file) of each module you need to use to find out what parameters, and complex parameter objects you can use. Don't guess the allowed parameters.
+Read the documentation (readme.md file) of each module you need to use to find out what parameters and complex parameter objects you can use. Don't guess the allowed parameters.
 
 The VM must not be accessible from the internet and its logs should be captured in Log Analytics, included with the solution. Configure diagnostic logging plus critical-only alerts (VM stopped, disk full, Key Vault access failures).
 ```
@@ -416,9 +416,9 @@ When generating the admin password for the VM, use the secret feature built into
 
 Don't connect the file share to the VM just yet - i.e., no need to extract storage keys or shared access signatures - we'll do this later.
 
-When deciding for resource level locks, always use the built-in AVM "interface" for resource locks, instead of directly deploying the "Microsoft.Authorization/locks" resource.
+When choosing resource-level locks, always use the built-in AVM "interface" for resource locks, instead of directly deploying the "Microsoft.Authorization/locks" resource.
 
-Bicep template must compile without warnings or errors using the latest stable Bicep CLI version. Create a bicepconfig.json file to generate a warning if a not the latest version of an AVM module is used. You can configure this by making sure in the bicepconfig.json file, there is a node under analyzers/core/rules/use-recent-module-versions/level" with the value of "warning". Always fix any warnings or errors related to the AVM module versioning by updating to the latest available version of each module.
+Bicep template must compile without warnings or errors using the latest stable Bicep CLI version. Create a bicepconfig.json file to generate a warning if not the latest version of an AVM module is used. You can configure this by making sure in the bicepconfig.json file, there is a node under analyzers/core/rules/use-recent-module-versions/level" with the value of "warning". Always fix any warnings or errors related to the AVM module versioning by updating to the latest available version of each module.
 ```
 
     {{% expand title="➕ Expand to see the results" %}}
@@ -495,7 +495,7 @@ Coming soon!
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
 3. If you're using git, it is recommended to make a commit now to capture the changes in your project, with a comment of something like `Plan created`.
 
-### 5.Checklist (Optional)
+### 5. Checklist (Optional)
 
 Spec Kit uses `/speckit.checklist` to validate the requirements. The prompt doesn't require any specific inputs as it analyzes the existing plan for gaps.
 
@@ -743,7 +743,7 @@ Congratulations! You've walked through a complete Spec Kit workflow for building
 - **Reproducible**: The generated IaC template can be deployed consistently across environments.
 - **Maintainable**: Clear task breakdowns and checklists make future updates straightforward.
 
-From here, you can ask Copilot to help you with the deployment and further enhancements or you can manually take the following steps to deploy and manage your solution:
+From here, you can ask Copilot to help you with the deployment and further enhancements, or you can manually take the following steps to deploy and manage your solution:
 
 {{< tabs groupid="dsl" >}}
 

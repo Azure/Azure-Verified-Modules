@@ -7,7 +7,7 @@ description: Guidance for the Azure Verified Modules (AVM) program on how Specif
 
 {{% notice style="warning" title="Experimental Content" icon="flask" %}}
 
-The content in this section represents **experimental explorations** of emerging technologies and innovative approaches. To learn more about our experimental content and its implications, please refer to the [Experimental Section Overview]({{% siteparam base %}}/experimental).
+The content in this section represents **experimental exploration** of emerging technologies and innovative approaches. To learn more about our experimental content and its implications, please refer to the [Experimental Section Overview]({{% siteparam base %}}/experimental).
 
 {{% /notice %}}
 
@@ -20,7 +20,7 @@ In this new model, specifications serve as a **machine-enforceable contract** be
 - **AI assistants** that generate code following these requirements
 - **Governance teams** who can trust that deployed infrastructure meets organizational requirements
 
-This contract ensures that as requirements change and as Azure evolves or best practices advance, updates to specifications automatically propagate through AI-assisted development, keeping all solutions aligned with current standards without requiring manual intervention across thousands of code repositories.
+This contract ensures that as requirements change or as Azure evolves and best practices advance, updates to specifications automatically propagate through AI-assisted development, keeping all solutions aligned with current standards without requiring manual intervention across thousands of code repositories.
 
 ## Core Principles
 
@@ -34,7 +34,7 @@ This contract ensures that as requirements change and as Azure evolves or best p
 
 Historically, infrastructure development has been an iterative process of trial and error - developers write code, test it, encounter issues, consult documentation, refine the approach, and repeat. This cycle is time-consuming and error-prone, with each developer potentially interpreting best practices differently, leading to inconsistent implementations across teams and projects.
 
-**Specification-driven development** represents a fundamental shift in how we approach infrastructure coding. Rather than developers manually translating requirements into code while attempting to remember and apply countless best practices, the approach leverages **comprehensive, machine-readable specifications** that define exactly how infrastructure should be structured, configured, and implemented.
+**Specification-driven development** represents a fundamental shift in how we approach infrastructure coding. Rather than developers manually translating requirements into code while attempting to remember and apply countless best practices, this approach leverages **comprehensive, machine-readable specifications** that define exactly how infrastructure should be structured, configured, and implemented.
 
 This paradigm shift elevates the developer's role from code writer to solution architect. Instead of spending time ensuring compliance with specifications manually, developers can:
 
@@ -64,7 +64,7 @@ When GitHub Copilot is equipped with specifications, AI doesn't just suggest cod
 Today's IaC flow often tries to encode architecture through Bicep/Terraform solution templates. In SDD:
 - The infrastructure specification sits above the IaC language.
 - IaC (Bicep, Terraform solution templates) becomes generated artifacts.
-- Updating infra means updating the specification, and regeneration ensures consistency. Code is "the last-mile expression" of the spec.
+- Updating the infra means updating the specification, and regeneration ensures consistency. Code is "the last-mile expression" of the spec.
 
 This reduces cognitive load as focus shifts from "How do I implement this correctly?" to "What do I want to accomplish?"
 
@@ -85,7 +85,7 @@ This reduces cognitive load as focus shifts from "How do I implement this correc
 **4. Stronger governance built-in from day 1**
 
 - Specs can encode: Well-Architected principles, compliance constraints, naming, tagging, and security baselines
-- IaC code is generated to comply automatically as SDD encodes governance in specifications, IaC gets governance-first enforcement.
+- IaC code is generated to comply automatically, as SDD encodes governance in specifications, providing governance-first enforcement from the start.
 
 **5. AI agents can automate infra decisions reliably**
 
@@ -94,10 +94,10 @@ This reduces cognitive load as focus shifts from "How do I implement this correc
 - Generated templates follow a deterministic architecture plan, not LLM "best guesses."
 - Changes are applied by updating the specification, not patching IaC manually.
 
-This is transformative for large-scale infra modernization.
+This is transformative for large-scale infrastructure modernization.
 
 **6. Cross-organizational alignment becomes much easier**
-IaC solution developers work with various teams, often in different organizations - everyone reads specifications differently. SDD solves this as specifications are versioned, reviewable, and auditable, with decisions and trade-offs being stored alongside specifications. This means fewer misinterpretations such as requirement mismatches or lifecycle ambiguities.
+IaC solution developers work with various teams, often in different organizations - everyone reads specifications differently. SDD solves this as specifications are versioned, reviewable, and auditable, with decisions and trade-offs stored alongside specifications. This means fewer misinterpretations, such as requirement mismatches or lifecycle ambiguities.
 
 **7. Infrastructure testing and validation become automated**
 
@@ -105,4 +105,4 @@ Specifications become the basis for testing, including deployment validations, c
 
 ## The Future is Specification-Driven
 
-As AI capabilities continue to advance, the value of comprehensive, well-defined specifications only increases. The combination of AVM's rigorous specification framework, the principles of spec-driven development and GitHub Copilot's AI intelligence represents not just an incremental improvement, but a fundamental re-imagining of how cloud infrastructure development can and should work in the AI era.
+As AI capabilities continue to advance, the value of comprehensive, well-defined specifications only increases. The combination of AVM's rigorous specification framework, the principles of spec-driven development, and GitHub Copilot's AI intelligence represents not just an incremental improvement, but a fundamental re-imagining of how cloud infrastructure development can and should work in the AI era.
