@@ -274,10 +274,10 @@ Following our [scenario](#example-scenario), here are some examples for what the
     - Any additionally required configuration files
 
 2. **Test Artifacts**
-     - Unit tests, integration tests, IaC linting results
-     - What-If validation JSON
-     - PSRule for Azure test configs
-     - Regression tests (if in constitution)
+    - Unit tests, integration tests, IaC linting results
+    - What-If validation JSON
+    - PSRule for Azure test configs
+    - Regression tests (if in constitution)
 
 3. **Documentation**
     - README files

@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 # Research: Legacy VM Workload AVM Modules
 
 **Date**: 2026-01-27

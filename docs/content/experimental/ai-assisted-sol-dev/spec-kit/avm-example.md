@@ -27,7 +27,6 @@ This guide currently covers **Bicep** implementations only. The **Terraform** ve
 
 {{% include file="/content/usage/includes/bicep-prerequisites.md" %}}
 
-- [Spec Kit](https://github.com/github/Spec-Kit)
     {{% /tab %}}
     {{% tab title="Terraform" %}}
 
@@ -57,7 +56,7 @@ On a Windows PC, to get the **uv package manager CLI** tool required for locally
 
 {{% /notice %}}
 
-1. To install Spec Kit locally, run the following command:
+1. To install [Spec Kit](https://github.com/github/Spec-Kit) locally, run the following command:
 
     ```bash
     uv tool install specify-cli --from git+https://github.com/github/spec-kit.git

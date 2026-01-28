@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 avm-workload
 │
 ├───.github
