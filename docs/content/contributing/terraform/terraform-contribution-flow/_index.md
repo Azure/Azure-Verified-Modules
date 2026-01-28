@@ -304,3 +304,5 @@ When publishing a net new module for the first time ever, the PR **MUST** be rev
 When publishing a new version of an existing module (i.e., anything that is not being published for the first time ever), the PR approval logic is the following:
 
 {{% include file="/static/includes/PR-approval-guidance.md" %}}
+
+For more details, please refer to the [Owner Contribution flow]({{% siteparam base %}}/contributing/terraform/terraform-contribution-flow/owner-contribution-flow) section.

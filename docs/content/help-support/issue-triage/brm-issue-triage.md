@@ -102,6 +102,8 @@ The PR approval logic for existing modules is the following:
 
 This behavior is assisted by bots, through automatic assignment of the expected reviewer(s) and supporting labels.
 
+In case of Bicep modules, if the PR includes any changes outside of the "modules/" folder, it first needs the module related code changes need to be reviewed and approved as per the above table, and only then does the PR need to be approved by a member of the core team. This way the core team's approval does not act as a bypass from the actual code review perspective.
+
 {{% /notice %}}
 
 ## General Question/Feedback and other standard issues
