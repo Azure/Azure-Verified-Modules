@@ -231,27 +231,6 @@ In the `constitution.md` file, notice, how changes implemented by Copilot are no
 {{< /highlight >}}
 
 {{% /tab %}}
-{{% tab title="spec-template.md" %}}
-
-{{< highlight lineNos="false" type="md" wrap="true" >}}
-{{< include file="/static/includes/experimental/sdd/spec-kit/spec-template.md" >}}
-{{< /highlight >}}
-
-{{% /tab %}}
-{{% tab title="plan-template.md" %}}
-
-{{< highlight lineNos="false" type="md" wrap="true" >}}
-{{< include file="/static/includes/experimental/sdd/spec-kit/plan-template.md" >}}
-{{< /highlight >}}
-
-{{% /tab %}}
-{{% tab title="tasks-template.md" %}}
-
-{{< highlight lineNos="false" type="md" wrap="true" >}}
-{{< include file="/static/includes/experimental/sdd/spec-kit/tasks-template.md" >}}
-{{< /highlight >}}
-
-{{% /tab %}}
 
 {{< /tabs >}}
 
