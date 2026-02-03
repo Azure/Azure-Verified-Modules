@@ -52,11 +52,13 @@ The VM is accessible via Azure Bastion using secure RDP access (no public IP exp
 
 On a Windows PC, to get the **uv package manager CLI** tool required for locally installing the **Specify CLI**, run the following command:
 
-`winget install astral-sh.uv`
+```bash
+winget install astral-sh.uv
+```
 
 {{% /notice %}}
 
-1. To install [Spec Kit](https://github.com/github/Spec-Kit) locally, run the following command:
+1. To install [Spec Kit](https://github.com/github/Spec-Kit) locally, run the following command in an elevated terminal:
 
     ```bash
     uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
@@ -69,7 +71,13 @@ On a Windows PC, to get the **uv package manager CLI** tool required for locally
     cd avm-workload
     ```
 
-3. Initialize a new Spec Kit project:
+3. Set your default branch to `main` (initializing Spec Kit will configure this working folder as a git repository if it isn't one already):
+
+    ```bash
+    git config --global init.defaultBranch main
+    ```
+
+4. Initialize a new Spec Kit project:
 
     ```bash
     specify init .
@@ -109,9 +117,9 @@ In your project folder, you should now see the following files and folders creat
 
     {{% /expand %}}
 
-4. If you're using git, it is recommended to make an initial commit now to capture the bootstrapped state of your project, with a comment of something like `Initial commit - Spec Kit bootstrap`.
+5. Spec Kit automatically commits this step to the git repository with following comment: `Initial commit from Specify template`.
 
-5. The rest of the steps will be performed using GitHub Copilot Chat in VS Code: Start your VS Code environment, open or add the newly created folder to your workspace, and navigate to GitHub Copilot Chat using the dialog icon on the top of the window or by hitting `CTRL+ALT+I`.
+6. The rest of the steps will be performed using GitHub Copilot Chat in VS Code: Start your VS Code environment, open or add the newly created folder to your workspace, and navigate to GitHub Copilot Chat using the dialog icon on the top of the window or by hitting `CTRL+ALT+I`.
 
 ## Making it real
 
@@ -247,7 +255,7 @@ Coming soon!
 
 
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
-3. If you're using git, it is recommended to make a commit now to capture the new constitution of your project, with a comment of something like `Constitution added`.
+3. It is recommended to make a commit now to capture the new constitution of your project, with a comment of something like `Constitution added`.
 
 ### 2. Specify
 
@@ -325,7 +333,7 @@ Coming soon!
 {{< /tabs >}}
 
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
-3. If you're using git, it is recommended to make a commit now to capture the clarified specification of your project, with a comment of something like `Specification created`.
+3. It is recommended to make a commit now to capture the clarified specification of your project, with a comment of something like `Specification created`.
 
 ### 3. Clarify (Optional)
 
@@ -403,7 +411,7 @@ Coming soon!
 {{< /tabs >}}
 
 2. Review and approve the changes suggested by Copilot by clicking on the "Keep" button!
-3. If you're using git, it is recommended to make a commit now to capture the updated specification of your project, with a comment of something like `Specification clarified`.
+3. It is recommended to make a commit now to capture the updated specification of your project, with a comment of something like `Specification clarified`.
 
 ### 4. Plan
 
@@ -493,7 +501,7 @@ Coming soon!
 {{< /tabs >}}
 
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
-3. If you're using git, it is recommended to make a commit now to capture the changes in your project, with a comment of something like `Plan created`.
+3. It is recommended to make a commit now to capture the changes in your project, with a comment of something like `Plan created`.
 
 ### 5. Checklist (Optional)
 
@@ -554,7 +562,7 @@ Coming soon!
 {{< /tabs >}}
 
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
-3. If you're using git, it is recommended to make a commit now to capture your new checklist, with a comment of something like `Checklist prepared`.
+3. It is recommended to make a commit now to capture your new checklist, with a comment of something like `Checklist prepared`.
 
 ### 6. Tasks
 
@@ -608,7 +616,7 @@ Coming soon!
 {{< /tabs >}}
 
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
-3. If you're using git, it is recommended to make a commit now to capture your task list, with a comment of something like `Tasks generated`.
+3. It is recommended to make a commit now to capture your task list, with a comment of something like `Tasks generated`.
 
 ### 7. Analyze (Optional)
 
@@ -662,7 +670,7 @@ Coming soon!
 {{< /tabs >}}
 
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
-3. If you're using git, it is recommended to make a commit now to capture your analysis report, with a comment of something like `Analysis report generated`.
+3. It is recommended to make a commit now to capture your analysis report, with a comment of something like `Analysis report generated`.
 
 ### 8. Implement
 
@@ -732,7 +740,7 @@ Coming soon!
 {{< /tabs >}}
 
 2. Review and approve all changes suggested by Copilot by clicking on the "Keep" button or tweak them as necessary!
-3. If you're using git, it is recommended to make a commit now to capture your implementation results, with a comment of something like `Implementation complete`.
+3. It is recommended to make a commit now to capture your implementation results, with a comment of something like `Implementation complete`.
 
 ## Next Steps
 
