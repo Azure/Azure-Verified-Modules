@@ -95,6 +95,8 @@ winget install astral-sh.uv
 
     {{% expand title="➕ Expand to see the results" %}}
 
+Note: As Spec Kit evolves, the output may change over time. This example is meant to give you an idea of what the user interface looks like.
+
 Click through the tabs to see the details!
 
 {{< tabs >}}
@@ -153,7 +155,7 @@ To implement our example solution using AVM modules, we will walk through each o
 
 Each of the below steps will typically take 3-8 minutes to complete, depending on the complexity of your specification, the performance of the AI model you are using, and your reaction time to answer any outstanding questions and review and approve the generated content.
 
-{{% notice style="tip" %}}
+{{% notice style="tip" title="Choose your LLM" %}}
 
 Changing the LLM does make a difference. We highly encourage you test different models to see which one works best for your needs.
 
@@ -161,11 +163,13 @@ Changing the LLM does make a difference. We highly encourage you test different 
 
 {{% /notice %}}
 
-{{% notice style="important" %}}
-As Spec Kit uses a set of built-in and system tools and scripts, you will need to approve the execution of each of these steps. **Make sure you understand the impact of these commands before approving and proceeding!**
+{{% notice style="important" title="Know before you go" %}}
+1. As Spec Kit uses a set of built-in and system tools and scripts, you will need to approve the execution of each of these steps. **Make sure you understand the impact of these commands before approving and proceeding!**
 Here's an example:
 
 <img src="{{%siteparam base%}}/images/experimental/sdd/running-command-approval-example.png" width=70% alt="Specify Approve Scripts" style="margin:0 auto;padding: 0;">
+
+2. In some cases, your account might exceed **GitHub's API rate limits** when using GitHub Copilot with Spec Kit. If that happens, please wait for a while (usually an hour or so) and try again.
 {{% /notice %}}
 
 ### 1. Constitution
@@ -184,6 +188,8 @@ To learn more about what the constitution should include, see the [Constitution 
 {{% tab title="constitution.md (template)" %}}
 
 Notice what the `constitution.md` file looks like before running the related prompt. It is just a template with placeholders, defining the structure:
+
+Note: As Spec Kit evolves, the content of this template may change over time. This example is meant to give you an idea of what the starting point looks like.
 
 {{< highlight lineNos="false" type="md" wrap="true" >}}
 {{< include file="/static/includes/experimental/sdd/spec-kit/constitution-template.md" >}}
@@ -214,6 +220,8 @@ Deploy everything to the US West 3 datacenter region.
     {{% expand title="➕ Expand to see the results" %}}
 
 The most important artifact created in this phase is the `constitution.md` file. Based on your inputs, additional files may also be created or updated, such as `spec-template.md` , `plan-template.md`, and `tasks-template.md`. These would further improve the quality of the generated artifacts in later phases.
+
+Note: You may get different results, depending on a number of factors such as your inputs, LLM of choice, the current state of the Spec Kit, etc. This example is meant to give you an idea of what the outputs of this step typically look like.
 
 Click through the tabs to see the details!
 
@@ -293,6 +301,8 @@ The VM must not be accessible from the internet and its logs should be captured 
 
 Notice that the execution of the /speckit.specify created a new file called `requirements.md` and a file called `spec.md` in the `specs/001-legacy-vm-workload/` folder.
 
+Note: You may get different results, depending on a number of factors such as your inputs, LLM of choice, the current state of the Spec Kit, etc. This example is meant to give you an idea of what the outputs of this step typically look like.
+
 Click through the tabs to see the details!
 
 {{< tabs >}}
@@ -359,6 +369,8 @@ To learn more about the clarify step, see the [Clarify chapter]({{% siteparam ba
 
 The clarify phase iterates on the spec.md file by asking questions, making suggestions and capturing the user's feedback.
 
+Note: You may get different results, depending on a number of factors such as your inputs, LLM of choice, the current state of the Spec Kit, etc. This example is meant to give you an idea of what the outputs of this step typically look like.
+
 Click through the tabs to see the details!
 
 {{< tabs >}}
@@ -370,7 +382,7 @@ When running the clarify prompt, Copilot may ask you a number of depth questions
 {{% /tab %}}
 {{% tab title="Questions" %}}
 
-In the Copilot chat window, you'll likely see some questions raised, similar to these. You can answer these just like in a normal chat conversation - e.g., by typing the letter standing for the option provided for each question, or by elaborating further if needed.
+In the Copilot chat window, you will likely see some questions raised, similar to these. You can answer these just like in a normal chat conversation - e.g., by typing the letter standing for the option provided for each question, or by elaborating further if needed.
 
 <img src="{{%siteparam base%}}/images/experimental/sdd/clarify-q1.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
 <img src="{{%siteparam base%}}/images/experimental/sdd/clarify-q2.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
@@ -436,7 +448,7 @@ Click through the tabs to see the details!
 
 When generating the admin password for the VM, use the secret feature built into the AVM Key Vault module. Leverage the uniqueString function to generate a new random password and do not use any external helper script (including deployment scripts) for generating the password. Provide this password to the VM module by referencing the Key vault secret that stores it. The template must first generate this password including a random, complex string, using the uniqueString Bicep function, store it in Key Vault and then reference it for the VM to use it as admin password at deployment time.
 
-Don't connect the file share to the VM just yet - i.e., no need to extract storage keys or shared access signatures - we'll do this later.
+Don't connect the file share to the VM just yet - i.e., no need to extract storage keys or shared access signatures - we will do this later.
 
 If implementing resource level locks, always use the built-in AVM "interface" for resource locks, instead of directly deploying the "Microsoft.Authorization/locks" resource.
 
@@ -445,7 +457,9 @@ Bicep template must compile without warnings or errors using the latest stable B
 
     {{% expand title="➕ Expand to see the results" %}}
 
-Notice how the plan step creates the `plan.md` file and a number of additional helper files. These may very depending on your prompts, the solution you're building, the version of Spec Kit and the LLM used. These typically include: `data-model.md`, `research.md`, `quickstart.md` and optional files in the contracts folder, such as `outputs.md` and `parameters.md`.
+Notice how the plan step creates the `plan.md` file and a number of additional helper files. These may very depending on your prompts, the solution you are building, the version of Spec Kit and the LLM used. These typically include: `data-model.md`, `research.md`, `quickstart.md` and optional files in the contracts folder, such as `outputs.md` and `parameters.md`.
+
+Note: You may get different results, depending on a number of factors such as your inputs, LLM of choice, the current state of the Spec Kit, etc. This example is meant to give you an idea of what the outputs of this step typically look like.
 
 Click through the tabs to see the details!
 
@@ -525,6 +539,8 @@ To learn more about the checklist step, see the [Checklist chapter]({{% sitepara
 
     {{% expand title="➕ Expand to see the results" %}}
 
+Note: You may get different results, depending on a number of factors such as your inputs, LLM of choice, the current state of the Spec Kit, etc. This example is meant to give you an idea of what the outputs of this step typically look like.
+
 Click through the tabs to see the details!
 
 {{< tabs >}}
@@ -586,6 +602,8 @@ To learn more about what the tasks should include, see the [Tasks chapter]({{% s
 
     {{% expand title="➕ Expand to see the results" %}}
 
+Note: You may get different results, depending on a number of factors such as your inputs, LLM of choice, the current state of the Spec Kit, etc. This example is meant to give you an idea of what the outputs of this step typically look like.
+
 Click through the tabs to see the details!
 
 {{< tabs >}}
@@ -639,6 +657,8 @@ To learn more about the analyze step, see the [Analyze chapter]({{% siteparam ba
 ```
 
     {{% expand title="➕ Expand to see the results" %}}
+
+Note: You may get different results, depending on a number of factors such as your inputs, LLM of choice, the current state of the Spec Kit, etc. This example is meant to give you an idea of what the outputs of this step typically look like.
 
 Click through the tabs to see the details!
 
@@ -695,6 +715,8 @@ To learn more about the implement step, see the [Implement chapter]({{% sitepara
     {{% expand title="➕ Expand to see the results" %}}
 
 During the Implement phase, Copilot acts based on the `tasks.md` file (checkboxes next to each completed task get marked with `[X]`). It validates all previously created checklists, such as the `implementation-readiness.md`, `requirements.md` files. As a result of this prompt execution, a number of files get generated, such as:`main.bicep`, `main.bicepparam`, `bicepconfig.json`, `.gitignore`
+
+Note: You may get different results, depending on a number of factors such as your inputs, LLM of choice, the current state of the Spec Kit, etc. This example is meant to give you an idea of what the outputs of this step typically look like.
 
 Click through the tabs to see the details!
 
