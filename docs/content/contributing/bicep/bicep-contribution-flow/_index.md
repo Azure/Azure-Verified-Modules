@@ -595,6 +595,8 @@ When publishing a new version of an existing module (i.e., anything that is not 
 
 {{% include file="/static/includes/PR-approval-guidance.md" %}}
 
+In case of Bicep modules, if the PR includes any changes outside of the "modules/" folder, it first needs the module related code changes need to be reviewed and approved as per the above table, and only then does the PR need to be approved by a member of the core team. This way the core team's approval does not act as a bypass from the actual code review perspective.
+
 <!--
 ## Publishing to the Registry
 

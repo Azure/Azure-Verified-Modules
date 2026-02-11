@@ -36,7 +36,7 @@ Before you begin, make sure you have these tools installed in your development e
 
 ## Solution Architecture
 
-Before we begin coding, it is important to have details about what the infrastructure architecture will include. For our example, we will be building a solution that will host a simple application on a Linux virtual machine (VM). The solution must be secure and auditable. The VM must not be accessible from the internet and its logs should be easily accessible. All azure services should utilize logging tools for auditing purposes.
+Before we begin coding, it is important to have details about what the infrastructure architecture will include. For our example, we will be building a solution that will host a simple application on a Linux virtual machine (VM). The solution must be secure and auditable. The VM must not be accessible from the internet and its logs should be easily accessible. All Azure services should utilize logging tools for auditing purposes.
 
 <img src="{{% siteparam base %}}/images/usage/solution-development/avm-virtualmachine-example1.png" alt="Azure VM Solution Architecture" style="max-width:800px;" />
 
