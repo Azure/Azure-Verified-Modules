@@ -12,13 +12,6 @@ The content in this section represents **experimental exploration** of emerging 
 
 {{% /notice %}}
 
-{{% notice style="info" title="Language Coverage" icon="info-circle" %}}
-
-This guide currently covers **Bicep** implementations only. The **Terraform** version is actively being developed and will be added soon. Stay tuned for updates!
-
-{{% /notice %}}
-
-
 ## Prerequisites
 
 {{< tabs groupid="dsl" >}}
@@ -30,7 +23,7 @@ This guide currently covers **Bicep** implementations only. The **Terraform** ve
     {{% /tab %}}
     {{% tab title="Terraform" %}}
 
-Coming soon!
+{{% include file="/content/usage/includes/terraform-prerequisites.md" %}}
 
     {{% /tab %}}
 
@@ -230,20 +223,20 @@ Click through the tabs to see the details!
 
 Once Copilot finished running the prompt, you should see something like this in the Copilot chat area:
 
-<img src="{{%siteparam base%}}/images/experimental/sdd/constitution-chat-results.png" width=70% alt="Constitution Chat Results" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/bicep-constitution-chat-results.png" width=70% alt="Constitution Chat Results" style="margin:0 auto;padding: 0;">
 
 {{% /tab %}}
 {{% tab title="Before Approvals" %}}
 
 In the `constitution.md` file, notice, how changes implemented by Copilot are not final yet, until you review, and approve them by clicking on the "Keep" button. You can either do this on a paragraph-by-paragraph basis, or for the entire document at once by clicking on the "Keep" button in the main Copilot chat window.:
 
-<img src="{{%siteparam base%}}/images/experimental/sdd/constituion-before-approvals.png" width=70% alt="Constitution Before Approvals" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/bicep-constitution-before-approvals.png" width=70% alt="Constitution Before Approvals" style="margin:0 auto;padding: 0;">
 
 {{% /tab %}}
 {{% tab title="constitution.md" %}}
 
 {{< highlight lineNos="false" type="md" wrap="true" >}}
-{{< include file="/static/includes/experimental/sdd/spec-kit/constitution.md" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/bicep-constitution.md" >}}
 {{< /highlight >}}
 
 {{% /tab %}}
@@ -255,7 +248,52 @@ In the `constitution.md` file, notice, how changes implemented by Copilot are no
 {{% /tab %}}
 {{% tab title="Terraform" %}}
 
-Coming soon!
+```markdown
+/speckit.constitution Fill the constitution with the typical requirements of a legacy Azure workload (needed to be retained for compliance reasons; no high-availability requirements; no disaster recovery requirements; no scalability requirements), defined as infrastructure-as-code, in Terraform language, built only with Azure Verified Modules (AVM). Always try to implement every feature with Terraform first (using Infra-as-code), and only use custom scripts when it's not possible otherwise. Follow IaC best practices: define everything in a single template, and let Terraform manage dependencies and the order of deployment for each Azure resource.
+
+Security and reliability best practices must be followed under all circumstances.
+
+The naming convention is to use just enough random characters to make the name unique and have the Azure resource type reflected in the name. Resource type specific character and length limitations must be respected.
+
+Before running a deployment, always run a validation.
+
+Deploy everything to the US West 3 datacenter region.
+```
+
+    {{% expand title="➕ Expand to see the results" %}}
+
+The most important artifact created in this phase is the `constitution.md` file. Based on your inputs, additional files may also be created or updated, such as `spec-template.md` , `plan-template.md`, and `tasks-template.md`. These would further improve the quality of the generated artifacts in later phases.
+
+Note: You may get different results, depending on a number of factors such as your inputs, LLM of choice, the current state of the Spec Kit, etc. This example is meant to give you an idea of what the outputs of this step typically look like.
+
+Click through the tabs to see the details!
+
+{{< tabs >}}
+{{% tab title="Chat window" %}}
+
+Once Copilot finished running the prompt, you should see something like this in the Copilot chat area:
+
+<img src="{{%siteparam base%}}/images/experimental/sdd/tf-constitution-chat-results.png" width=70% alt="Constitution Chat Results" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="Before Approvals" %}}
+
+In the `constitution.md` file, notice, how changes implemented by Copilot are not final yet, until you review, and approve them by clicking on the "Keep" button. You can either do this on a paragraph-by-paragraph basis, or for the entire document at once by clicking on the "Keep" button in the main Copilot chat window.:
+
+<img src="{{%siteparam base%}}/images/experimental/sdd/tf-constitution-before-approvals.png" width=90% alt="Constitution Before Approvals" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="constitution.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/tf-constitution.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+    {{% /expand %}}
 
 {{% /tab %}}
 
@@ -310,21 +348,21 @@ Click through the tabs to see the details!
 
 Once Copilot finished running the prompt, you should see something like this in the Copilot chat area:
 
-<img src="{{%siteparam base%}}/images/experimental/sdd/spec-1.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
-<img src="{{%siteparam base%}}/images/experimental/sdd/spec-2.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/bicep-spec-1.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/bicep-spec-2.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
 
 {{% /tab %}}
 {{% tab title="requirements.md" %}}
 
 {{< highlight lineNos="false" type="md" wrap="true" >}}
-{{< include file="/static/includes/experimental/sdd/spec-kit/requirements.md" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/bicep-requirements.md" >}}
 {{< /highlight >}}
 
 {{% /tab %}}
 {{% tab title="spec.md" %}}
 
 {{< highlight lineNos="false" type="md" wrap="true" >}}
-{{< include file="/static/includes/experimental/sdd/spec-kit/spec.md" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/bicep-spec.md" >}}
 {{< /highlight >}}
 
 {{% /tab %}}
@@ -336,8 +374,57 @@ Once Copilot finished running the prompt, you should see something like this in 
 {{% /tab %}}
 {{% tab title="Terraform" %}}
 
-Coming soon!
+```markdown
+/speckit.specify Create specification, called "01-my-legacy-workload" for a legacy business application, running as a single virtual machine connected to a virtual network. The VM must run Windows Server 2016, needs to have at least 2 CPU cores, 8 GB of RAM, a standard HDD, and a 500 GB HDD-based data disk attached. It must be remotely accessible via a bastion host and needs to have access to an HDD-backed file share in a storage account connected via a private endpoint. The VM must access the internet via a NAT gateway. Network Security Groups (NSGs) must be created for each subnet, configured and assigned as applicable, restricting traffic to only what's necessary. VM subnet NSG must allow inbound RDP (port 3389) from Bastion subnet to enable bastion connectivity.
 
+The VM's administrator password (created at the time of deployment) must be stored in a Key Vault, also deployed as part of this solution. The VM's administrator account must be called "vmadmin". The VM's computer name (netbios name) must be 15 or fewer characters long.
+
+Always rely on values from the `terraform.tfvars` file only. Have the name of the secret used for the admin password captured as a variable. Include rich comments in both the `main.tf` and `terraform.tfvars` files to explain the purpose of each resource and variable.
+
+When a decision needs to be made on availability zones, always choose a number between 1 and 3 (never choose -1, that explicitly disables this feature).
+
+Create everything in a single resource group, standing for a production environment. Do not create any additional environments (such as dev, test, staging, etc.).
+
+Read the documentation (readme.md file) of each module you need to use to find out what variables and complex variable objects you can use. Don't guess the allowed variables.
+
+The VM must not be accessible from the internet and its logs should be captured in Log Analytics, included with the solution. Configure diagnostic logging plus critical-only alerts (VM stopped, disk full, Key Vault access failures).
+```
+
+    {{% expand title="➕ Expand to see the results" %}}
+
+Notice that the execution of the /speckit.specify created a new file called `requirements.md` and a file called `spec.md` in the `specs/001-legacy-vm-workload/` folder.
+
+Note: You may get different results, depending on a number of factors such as your inputs, LLM of choice, the current state of the Spec Kit, etc. This example is meant to give you an idea of what the outputs of this step typically look like.
+
+Click through the tabs to see the details!
+
+{{< tabs >}}
+{{% tab title="Spec" %}}
+
+Once Copilot finished running the prompt, you should see something like this in the Copilot chat area:
+
+<img src="{{%siteparam base%}}/images/experimental/sdd/tf-spec-1.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/tf-spec-2.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="requirements.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/tf-requirements.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+{{% tab title="spec.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/tf-spec.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+    {{% /expand %}}
 {{% /tab %}}
 
 {{< /tabs >}}
@@ -377,16 +464,16 @@ Click through the tabs to see the details!
 {{% tab title="Analysis" %}}
 
 When running the clarify prompt, Copilot may ask you a number of depth questions to clarify certain aspects of the plan. Here's an example of what that looks like. You can answer in the following format, e.g.: `Q1: E, Q2:A, Q3:A`
-<img src="{{%siteparam base%}}/images/experimental/sdd/clarify-analysis.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/bicep-clarify-analysis.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
 
 {{% /tab %}}
 {{% tab title="Questions" %}}
 
 In the Copilot chat window, you will likely see some questions raised, similar to these. You can answer these just like in a normal chat conversation - e.g., by typing the letter standing for the option provided for each question, or by elaborating further if needed.
 
-<img src="{{%siteparam base%}}/images/experimental/sdd/clarify-q1.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
-<img src="{{%siteparam base%}}/images/experimental/sdd/clarify-q2.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
-<img src="{{%siteparam base%}}/images/experimental/sdd/clarify-q3.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/bicep-clarify-q1.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/bicep-clarify-q2.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/bicep-clarify-q3.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
 
 {{% /tab %}}
 {{% tab title="Spec updates" %}}
@@ -416,7 +503,61 @@ See a few examples of clarifying questions Copilot may ask. Copilot typically su
 {{% /tab %}}
 {{% tab title="Terraform" %}}
 
-Coming soon!
+```markdown
+/speckit.clarify
+```
+
+{{% expand title="➕ Expand to see example questions" %}}
+
+The clarify phase iterates on the spec.md file by asking questions, making suggestions and capturing the user's feedback.
+
+Note: You may get different results, depending on a number of factors such as your inputs, LLM of choice, the current state of the Spec Kit, etc. This example is meant to give you an idea of what the outputs of this step typically look like.
+
+Click through the tabs to see the details!
+
+{{< tabs >}}
+{{% tab title="Analysis" %}}
+
+When running the clarify prompt, Copilot may ask you a number of depth questions to clarify certain aspects of the plan. Here's an example of what that looks like. You can answer in the following format, e.g.: `Q1: E, Q2:A, Q3:A`
+<img src="{{%siteparam base%}}/images/experimental/sdd/tf-clarify-analysis.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="Questions" %}}
+
+In the Copilot chat window, you will likely see some questions raised, similar to these. You can answer these just like in a normal chat conversation - e.g., by typing the letter standing for the option provided for each question, or by elaborating further if needed.
+
+<img src="{{%siteparam base%}}/images/experimental/sdd/tf-clarify-q1.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/tf-clarify-q2.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/tf-clarify-q3.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/tf-clarify-q4.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/tf-clarify-q5.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="Spec updates" %}}
+
+See a few examples of clarifying questions Copilot may ask. Copilot typically suggests a few options, but you can always deviate from them as needed, just use the chat to provide your answers.
+
+```md
+## Clarifications
+
+- Q: Backup & Recovery Strategy - Does the legacy workload require Azure Backup for VM and data disk? → A: No backups needed - VM and data disk are disposable, can be recreated from Terraform
+- Q: VNet Address Space and Subnet Sizing - What specific CIDR allocations should be used for the 3 required subnets? → A: Minimal: 10.0.0.0/24 (VM: /27, Bastion: /26, PrivateEndpoint: /28) - tight fit, no growth
+- Q: VM Size SKU Selection - Which specific Azure VM SKU should be used for the 2-core/8GB requirement? → A: Standard_D2s_v3 (General Purpose) - balanced, widely used, predictable performance
+- Q: Azure Files Share Quota and Performance Tier - What provisioned capacity should the file share have? → A: 1TB Standard tier (LRS) - large capacity for growth
+- Q: Log Analytics Workspace Retention Period - How long should diagnostic logs be retained? → A: 180 days retention - extended compliance coverage, moderate cost increase
+- Q: How should the Azure file share be mounted on the Windows VM? → A: Post-deployment manual mount by administrator following documented procedure (no automation, aligns with IaC-first principle)
+- Q: What level of monitoring and alerting should be configured for this legacy workload? → A: Diagnostic logging plus critical-only alerts (VM stopped, disk full, Key Vault access failures)
+- Q: If the initial deployment partially fails (e.g., VM creates but Bastion fails), what should the recovery procedure be? → A: Keep existing resources, fix errors in template/parameters, redeploy entire template (ARM incremental mode handles already-deployed resources)
+- Q: VM administrator username? → A: vmadmin
+- Q: VNet address space and subnet sizing for VM, bastion, and private endpoint subnets? → A: VNet: 10.0.0.0/24, VM subnet: 10.0.0.0/27, Bastion subnet: 10.0.0.64/26, Private endpoint subnet: 10.0.0.128/27
+- Q: Disk space alert threshold percentage? → A: 85% full
+- Q: Alert notification method for critical alerts? → A: Azure Portal notifications only
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+    {{% /expand %}}
 
 {{% /tab %}}
 
@@ -508,7 +649,17 @@ In the Copilot chat window, you should see results, similar to this:
 {{% /tab %}}
 {{% tab title="Terraform" %}}
 
-Coming soon!
+```markdown
+/speckit.plan Create a detailed plan for the spec. Build with the latest version of Terraform and the latest available version of each AVM module. Use the Terraform MCP server to find out what's the latest version of each module. Only include direct resource references in the Terraform solution template (root module) if no related AVM resource modules are available. Similarly, for diagnostic settings, role assignments, resource locks, tags, managed identities, private endpoints, customer manged keys, etc., always use the related "interface" built-in to each resource module when available. Do not create and reference local modules, or any other Terraform files. If a subset of the deployments fail, don't delete anything, just attempt redeploying the whole solution after fixing any bugs. Follow Terraform best practices to create these files: `terraform.tf` - to hold the provider definitions and versions. `variables.tf` - to contain the input variable definitions and defaults. `outputs.tf` - to contain the outputs and their descriptions for use by any external modules calling this root module. `main.tf` - to contain the core module code for creating the solutions infrastructure. `terraform.tfvars` - to contain the inputs for the instance of the module that is being deployed. Content in this file will vary from instance to instance.
+
+When generating the admin password for the VM, use the secret feature built into the AVM Key Vault module. Leverage the random_password resource in the random provider to generate a new random password and do not use any external helper script (including deployment scripts) for generating the password. Provide this password to the VM module by referencing the Key vault secret that stores it. The solution template (root module) must first generate this password including a random, complex string, using the random_password Terraform resource, store it in Key Vault and then reference it for the VM to use it as admin password at deployment time.
+
+Don't connect the file share to the VM just yet - i.e., no need to extract storage keys or shared access signatures - we will do this later.
+
+If implementing resource level locks, always use the built-in AVM "interface" for resource locks, instead of directly deploying the "Microsoft.Authorization/locks" resource.
+
+Terraform solution template (root module) must validate without warnings or errors using the latest stable Terraform CLI version. Generate a warning when not the latest version of an AVM module is used. Before validating the solution template (root module) or attempting the first deployment, always fix all warnings or errors related to the AVM module versioning by updating to the latest available version of each module.
+```
 
 {{% /tab %}}
 
