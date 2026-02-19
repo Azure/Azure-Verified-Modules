@@ -608,20 +608,20 @@ Click through the tabs to see the details!
 {{% tab title="Chat output" %}}
 
 In the Copilot chat window, you should see results, similar to this:
-<img src="{{%siteparam base%}}/images/experimental/sdd/plan.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/bicep-plan.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
 
 {{% /tab %}}
 {{% tab title="plan.md" %}}
 
 {{< highlight lineNos="false" type="md" wrap="true" >}}
-{{< include file="/static/includes/experimental/sdd/spec-kit/plan.md" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/bicep-plan.md" >}}
 {{< /highlight >}}
 
 {{% /tab %}}
 {{% tab title="data-model.md" %}}
 
 {{< highlight lineNos="false" type="md" wrap="true" >}}
-{{< include file="/static/includes/experimental/sdd/spec-kit/data-model.md" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/bicep-data-model.md" >}}
 {{< /highlight >}}
 
 {{% /tab %}}
@@ -629,7 +629,7 @@ In the Copilot chat window, you should see results, similar to this:
 {{% tab title="research.md" %}}
 
 {{< highlight lineNos="false" type="md" wrap="true" >}}
-{{< include file="/static/includes/experimental/sdd/spec-kit/research.md" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/bicep-research.md" >}}
 {{< /highlight >}}
 
 {{% /tab %}}
@@ -637,7 +637,7 @@ In the Copilot chat window, you should see results, similar to this:
 {{% tab title="quickstart.md" %}}
 
 {{< highlight lineNos="false" type="md" wrap="true" >}}
-{{< include file="/static/includes/experimental/sdd/spec-kit/quickstart.md" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/bicep-quickstart.md" >}}
 {{< /highlight >}}
 
 {{% /tab %}}
@@ -650,7 +650,7 @@ In the Copilot chat window, you should see results, similar to this:
 {{% tab title="Terraform" %}}
 
 ```markdown
-/speckit.plan Create a detailed plan for the spec. Build with the latest version of Terraform and the latest available version of each AVM module. Use the Terraform MCP server to find out what's the latest version of each module. Only include direct resource references in the Terraform solution template (root module) if no related AVM resource modules are available. Similarly, for diagnostic settings, role assignments, resource locks, tags, managed identities, private endpoints, customer manged keys, etc., always use the related "interface" built-in to each resource module when available. Do not create and reference local modules, or any other Terraform files. If a subset of the deployments fail, don't delete anything, just attempt redeploying the whole solution after fixing any bugs. Follow Terraform best practices to create these files: `terraform.tf` - to hold the provider definitions and versions. `variables.tf` - to contain the input variable definitions and defaults. `outputs.tf` - to contain the outputs and their descriptions for use by any external modules calling this root module. `main.tf` - to contain the core module code for creating the solutions infrastructure. `terraform.tfvars` - to contain the inputs for the instance of the module that is being deployed. Content in this file will vary from instance to instance.
+/speckit.plan Create a detailed plan for the spec. Build with the latest version of Terraform and the latest available version of each AVM module. Use the Terraform MCP server to find out what's the latest version of each module - install this MCP server as needed. Do NOT use the "Bicep/list_avm_metadata" MCP tool! Only include direct resource references in the Terraform solution template (root module) if no related AVM resource modules are available. Similarly, for diagnostic settings, role assignments, resource locks, tags, managed identities, private endpoints, customer manged keys, etc., always use the related "interface" built-in to each resource module when available. Do not create and reference local modules, or any other Terraform files. If a subset of the deployments fail, don't delete anything, just attempt redeploying the whole solution after fixing any bugs. Follow Terraform best practices to create these files: `terraform.tf` - to hold the provider definitions and versions. `variables.tf` - to contain the input variable definitions and defaults. `outputs.tf` - to contain the outputs and their descriptions for use by any external modules calling this root module. `main.tf` - to contain the core module code for creating the solutions infrastructure. `terraform.tfvars` - to contain the inputs for the instance of the module that is being deployed. Content in this file will vary from instance to instance.
 
 When generating the admin password for the VM, use the secret feature built into the AVM Key Vault module. Leverage the random_password resource in the random provider to generate a new random password and do not use any external helper script (including deployment scripts) for generating the password. Provide this password to the VM module by referencing the Key vault secret that stores it. The solution template (root module) must first generate this password including a random, complex string, using the random_password Terraform resource, store it in Key Vault and then reference it for the VM to use it as admin password at deployment time.
 
@@ -660,6 +660,33 @@ If implementing resource level locks, always use the built-in AVM "interface" fo
 
 Terraform solution template (root module) must validate without warnings or errors using the latest stable Terraform CLI version. Generate a warning when not the latest version of an AVM module is used. Before validating the solution template (root module) or attempting the first deployment, always fix all warnings or errors related to the AVM module versioning by updating to the latest available version of each module.
 ```
+
+    {{% expand title="➕ Expand to see the results" %}}
+
+Notice how the plan step creates the `plan.md` file and a number of additional helper files. These may very depending on your prompts, the solution you are building, the version of Spec Kit and the LLM used. These typically include: `data-model.md`, `research.md`, `quickstart.md` and optional files in the contracts folder, such as `outputs.md` and `parameters.md`.
+
+Note: You may get different results, depending on a number of factors such as your inputs, LLM of choice, the current state of the Spec Kit, etc. This example is meant to give you an idea of what the outputs of this step typically look like.
+
+Click through the tabs to see the details!
+
+{{< tabs >}}
+{{% tab title="Chat output" %}}
+
+In the Copilot chat window, you should see results, similar to this:
+<img src="{{%siteparam base%}}/images/experimental/sdd/tf-plan.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="plan.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/tf-plan.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+    {{% /expand %}}
 
 {{% /tab %}}
 
@@ -698,19 +725,19 @@ Click through the tabs to see the details!
 {{% tab title="Checklist depth questions" %}}
 
 When running the checklist prompt, Copilot may ask you a number of depth questions to clarify certain aspects of the plan. Here's an example of what that looks like. You can answer in the following format, e.g.: `Q1: E, Q2:A, Q3:A`
-<img src="{{%siteparam base%}}/images/experimental/sdd/checklist-depth.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/bicep-checklist-depth.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
 
 {{% /tab %}}
 {{% tab title="Chat output" %}}
 
 In the Copilot chat window, you should see results, similar to this:
-<img src="{{%siteparam base%}}/images/experimental/sdd/checklist.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/bicep-checklist.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
 
 {{% /tab %}}
 {{% tab title="implementation.md" %}}
 
 {{< highlight lineNos="false" type="md" wrap="true" >}}
-{{< include file="/static/includes/experimental/sdd/spec-kit/implementation.md" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/bicep-implementation.md" >}}
 {{< /highlight >}}
 
 {{% /tab %}}
@@ -722,7 +749,40 @@ In the Copilot chat window, you should see results, similar to this:
 {{% /tab %}}
 {{% tab title="Terraform" %}}
 
-Coming soon!
+```markdown
+/speckit.checklist
+```
+
+    {{% expand title="➕ Expand to see the results" %}}
+
+Note: You may get different results, depending on a number of factors such as your inputs, LLM of choice, the current state of the Spec Kit, etc. This example is meant to give you an idea of what the outputs of this step typically look like.
+
+Click through the tabs to see the details!
+
+{{< tabs >}}
+{{% tab title="Checklist depth questions" %}}
+
+When running the checklist prompt, Copilot may ask you a number of depth questions to clarify certain aspects of the plan. Here's an example of what that looks like.
+<img src="{{%siteparam base%}}/images/experimental/sdd/tf-checklist-depth.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="Chat output" %}}
+
+In the Copilot chat window, you should see results, similar to this:
+<img src="{{%siteparam base%}}/images/experimental/sdd/tf-checklist.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="implementation.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/tf-implementation.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+    {{% /expand %}}
 
 {{% /tab %}}
 
@@ -761,13 +821,13 @@ Click through the tabs to see the details!
 {{% tab title="Chat output" %}}
 
 In the Copilot chat window, you should see something like this:
-<img src="{{%siteparam base%}}/images/experimental/sdd/tasks.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/bicep-tasks.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
 
 {{% /tab %}}
 {{% tab title="tasks.md" %}}
 
 {{< highlight lineNos="false" type="md" wrap="true" >}}
-{{< include file="/static/includes/experimental/sdd/spec-kit/tasks.md" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/bicep-tasks.md" >}}
 {{< /highlight >}}
 
 {{% /tab %}}
@@ -778,7 +838,33 @@ In the Copilot chat window, you should see something like this:
 {{% /tab %}}
 {{% tab title="Terraform" %}}
 
-Coming soon!
+```markdown
+/speckit.tasks
+```
+
+    {{% expand title="➕ Expand to see the results" %}}
+
+Note: You may get different results, depending on a number of factors such as your inputs, LLM of choice, the current state of the Spec Kit, etc. This example is meant to give you an idea of what the outputs of this step typically look like.
+
+Click through the tabs to see the details!
+
+{{< tabs >}}
+{{% tab title="Chat output" %}}
+
+In the Copilot chat window, you should see something like this:
+<img src="{{%siteparam base%}}/images/experimental/sdd/tf-tasks.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+![alt text](image.png)
+{{% /tab %}}
+{{% tab title="tasks.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/tf-tasks.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+    {{% /expand %}}
 
 {{% /tab %}}
 
@@ -817,13 +903,13 @@ Click through the tabs to see the details!
 {{% tab title="Chat output" %}}
 
 In the Copilot chat window, you should see something like this:
-<img src="{{%siteparam base%}}/images/experimental/sdd/analysis-report.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/bicep-analysis-report.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
 
 {{% /tab %}}
 {{% tab title="analysis-report.md" %}}
 
 {{< highlight lineNos="false" type="md" wrap="true" >}}
-{{< include file="/static/includes/experimental/sdd/spec-kit/analysis-report.md" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/bicep-analysis-report.md" >}}
 {{< /highlight >}}
 
 {{% /tab %}}
@@ -834,7 +920,33 @@ In the Copilot chat window, you should see something like this:
 {{% /tab %}}
 {{% tab title="Terraform" %}}
 
-Coming soon!
+```markdown
+/speckit.analyze
+```
+
+    {{% expand title="➕ Expand to see the results" %}}
+
+Note: You may get different results, depending on a number of factors such as your inputs, LLM of choice, the current state of the Spec Kit, etc. This example is meant to give you an idea of what the outputs of this step typically look like.
+
+Click through the tabs to see the details!
+
+{{< tabs >}}
+{{% tab title="Chat output" %}}
+
+In the Copilot chat window, you should see something like this:
+<img src="{{%siteparam base%}}/images/experimental/sdd/tf-analysis-report.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+
+{{% /tab %}}
+{{% tab title="analysis-report.md" %}}
+
+{{< highlight lineNos="false" type="md" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/tf-analysis-report.md" >}}
+{{< /highlight >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+    {{% /expand %}}
 
 {{% /tab %}}
 
@@ -858,6 +970,53 @@ To learn more about the implement step, see the [Implement chapter]({{% sitepara
 {{< tabs groupid="dsl" >}}
 
 {{% tab title="Bicep" %}}
+
+```markdown
+/speckit.implement
+```
+
+    {{% expand title="➕ Expand to see the results" %}}
+
+During the Implement phase, Copilot acts based on the `tasks.md` file (checkboxes next to each completed task get marked with `[X]`). It validates all previously created checklists, such as the `implementation-readiness.md`, `requirements.md` files. As a result of this prompt execution, a number of files get generated, such as:`main.bicep`, `main.bicepparam`, `bicepconfig.json`, `.gitignore`
+
+Note: You may get different results, depending on a number of factors such as your inputs, LLM of choice, the current state of the Spec Kit, etc. This example is meant to give you an idea of what the outputs of this step typically look like.
+
+Click through the tabs to see the details!
+
+{{< tabs >}}
+{{% tab title="Checklist failure" %}}
+<img src="{{%siteparam base%}}/images/experimental/sdd/bicep-implement-checklist-failure.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+{{% /tab %}}
+
+{{% tab title="Checklist succeeds" %}}
+<img src="{{%siteparam base%}}/images/experimental/sdd/bicep-implement-checklist-success.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+{{% /tab %}}
+
+{{% tab title="Implementation complete" %}}
+<img src="{{%siteparam base%}}/images/experimental/sdd/bicep-implement-complete.png" width=50% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+{{% /tab %}}
+
+{{% tab title="main.bicep" %}}
+{{< highlight lineNos="false" type="bicep" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/main.bicep" >}}
+{{< /highlight >}}
+{{% /tab %}}
+
+{{% tab title="main.bicepparam" %}}
+{{< highlight lineNos="false" type="bicep" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/main.bicepparam" >}}
+{{< /highlight >}}
+{{% /tab %}}
+
+{{% tab title="Next steps" %}}
+<img src="{{%siteparam base%}}/images/experimental/sdd/bicep-implement-next-steps.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+{{% /tab %}}
+
+{{< /tabs >}}
+    {{% /expand %}}
+
+{{% /tab %}}
+{{% tab title="Terraform" %}}
 
 ```markdown
 /speckit.implement
@@ -902,11 +1061,6 @@ Click through the tabs to see the details!
 
 {{< /tabs >}}
     {{% /expand %}}
-
-{{% /tab %}}
-{{% tab title="Terraform" %}}
-
-Coming soon!
 
 {{% /tab %}}
 
