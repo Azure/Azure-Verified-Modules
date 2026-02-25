@@ -249,19 +249,7 @@ In the `constitution.md` file, notice, how changes implemented by Copilot are no
 {{% tab title="Terraform" %}}
 
 ```markdown
-/speckit.constitution Fill the constitution with the typical requirements of a legacy Azure workload (needed to be retained for compliance reasons; no high-availability requirements; no disaster recovery requirements; no scalability requirements), defined as infrastructure-as-code, in Terraform language, built only with Azure Verified Modules (AVM). Always use module interfaces for role assignments, diagnostic settings, private endpoints, locks, etc. Always use Terraform, and never use custom scripts. If there is not an Azure Verified Module available, then use `azapi` provider resources, never use the `azurerm` provider directly. Follow IaC best practices: define everything in a single root module using the standard module files of `main.tf`, `variables.tf`, `outputs.tf`, `terraform.tf`, and `terraform.tfvars`. Always build Terraform explicit dependencies to determine order of deployment for each Azure resource, only use explicit dependencies with the `depends_on` meta-argument when it's not possible to otherwise determine the order of deployment. The Azure subscription ID will always be supplied as an env var or via az cli, it should not be exposed as a variable.
-
-Always use snake case for Terraform HCL resource names, module names, variable names, output names, map keys, etc. Never shorten names, always use the full name. E.g. `network_security_group` instead of `nsg`, `virtual_machine` instead of `vm`, etc.
-
-Security and reliability best practices must be followed under all circumstances.
-
-The Azure resource naming convention should follow Azure Cloud Adoption Framework guidance. Resource type specific character and length limitations must be respected. Random character should only be added to resources that must be globally unique like storage accounts. All resource names should be kebab case unless the hyphen is not supported for that resource.
-
-Ephemeral resources and write only attributes should be used for passwords.
-
-Before running a deployment, always run a validation.
-
-Deploy everything to the US West 3 datacenter region.
+/speckit.constitution Fill the constitution with the typical requirements of a legacy Azure workload (needed to be retained for compliance reasons; no high-availability requirements; no disaster recovery requirements; no scalability requirements), defined as infrastructure-as-code, in Terraform language, built only with Azure Verified Modules (AVM). Always use Terraform, and never use custom scripts. Security and reliability best practices must be followed under all circumstances. Before running a deployment, always run a validation. Deploy everything to the US West 3 datacenter region.
 ```
 
     {{% expand title="➕ Expand to see the results" %}}
@@ -392,6 +380,8 @@ Create everything in a single resource group, standing for a production environm
 Read the documentation (readme.md file) of each module you need to use to find out what variables and complex variable objects you can use. Don't guess the allowed variables.
 
 The VM must not be accessible from the internet and its logs should be captured in Log Analytics, included with the solution. Configure diagnostic logging plus critical-only alerts (VM stopped, disk full, Key Vault access failures).
+
+The Azure resource naming convention should follow Azure Cloud Adoption Framework guidance. Resource type specific character and length limitations must be respected. Random character should only be added to resources that must be globally unique like storage accounts. All resource names should be kebab case unless the hyphen is not supported for that resource.
 ```
 
     {{% expand title="➕ Expand to see the results" %}}
@@ -654,7 +644,7 @@ In the Copilot chat window, you should see results, similar to this:
 {{% tab title="Terraform" %}}
 
 ```markdown
-/speckit.plan Create a detailed plan for the spec. Build with the latest version of Terraform and the latest available version of each Azure Verified Module. Use the Terraform MCP server to find out what's the latest version of each module - install this MCP server as needed. Do NOT use the "Bicep/list_avm_metadata" MCP tool! Only include direct resource references in the Terraform solution template (root module) if no related AVM resource modules are available. If referencing a resource directly always use the azapi provider, do not use the azurerm provider directly. Similarly, for diagnostic settings, role assignments, resource locks, tags, managed identities, private endpoints, customer manged keys, etc., always use the related "interface" built-in to each resource module when available. Do not create and reference local modules, or any other Terraform files. If a subset of the deployments fail, don't delete anything, just attempt redeploying the whole solution after fixing any bugs. Follow Terraform best practices to create these files: `terraform.tf` - to hold the provider definitions and versions. `variables.tf` - to contain the input variable definitions and defaults. `outputs.tf` - to contain the outputs and their descriptions for use by any external modules calling this root module. `main.tf` - to contain the core module code for creating the solutions infrastructure. `terraform.tfvars` - to contain the inputs for the instance of the module that is being deployed. Content in this file will vary from instance to instance.
+/speckit.plan Create a detailed plan for the spec. Build with the latest version of Terraform and the latest available version of each Azure Verified Module. Use the Terraform MCP server ("io.github.hashicorp/terraform-mcp-server") to find out what's the latest version of each module - install and configure this MCP server as needed. Do NOT use the "Bicep/list_avm_metadata" MCP tool! Only include direct resource references in the Terraform solution template (root module) if no related AVM resource modules are available. If there is not an Azure Verified Module available, then use `azapi` provider resources, never use the `azurerm` provider directly. Always use module interfaces for diagnostic settings, role assignments, resource locks, tags, managed identities, private endpoints, customer manged keys, etc., always use the related "interface" built-in to each resource module when available. Do not create and reference local modules, or any other Terraform files. If a subset of the deployments fail, don't delete anything, just attempt redeploying the whole solution after fixing any bugs. Follow IaC best practices: define everything in a single root module using the standard module files of `main.tf`, `variables.tf`, `outputs.tf`, `terraform.tf`, and `terraform.tfvars`. Always build Terraform explicit dependencies to determine order of deployment for each Azure resource, only use explicit dependencies with the `depends_on` meta-argument when it's not possible to otherwise determine the order of deployment. The Azure subscription ID will always be supplied as an env var or via az cli, it must not be exposed as a variable.
 
 The subscription ID will be provided at deployment time via environment variable or az cli, it should not be exposed as a variable in the code.
 
@@ -665,6 +655,10 @@ Don't connect the file share to the VM just yet - i.e., no need to extract stora
 If implementing resource level locks, always use the built-in AVM "interface" for resource locks, instead of directly deploying the "Microsoft.Authorization/locks" resource.
 
 Terraform solution template (root module) must validate without warnings or errors using the latest stable Terraform CLI version. Generate a warning when not the latest version of an AVM module is used. Before validating the solution template (root module) or attempting the first deployment, always fix all warnings or errors related to the AVM module versioning by updating to the latest available version of each module.
+
+Always use snake case for Terraform HCL resource names, module names, variable names, output names, map keys, etc. Never shorten names, always use the full name. E.g. `network_security_group` instead of `nsg`, `virtual_machine` instead of `vm`, etc.
+
+Ephemeral resources and write only attributes should be used for passwords.
 ```
 
     {{% expand title="➕ Expand to see the results" %}}
