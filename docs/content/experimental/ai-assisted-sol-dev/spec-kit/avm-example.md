@@ -25,6 +25,8 @@ The content in this section represents **experimental exploration** of emerging 
 
 {{% include file="/content/usage/includes/terraform-prerequisites.md" %}}
 
+- [Terraform MCP Server](https://developer.hashicorp.com/terraform/mcp-server/deploy) to boost the use of Azure Verified Modules (AVM) in Terraform.
+
     {{% /tab %}}
 
 {{< /tabs >}}
@@ -1024,39 +1026,46 @@ Click through the tabs to see the details!
 
     {{% expand title="➕ Expand to see the results" %}}
 
-During the Implement phase, Copilot acts based on the `tasks.md` file (checkboxes next to each completed task get marked with `[X]`). It validates all previously created checklists, such as the `implementation-readiness.md`, `requirements.md` files. As a result of this prompt execution, a number of files get generated, such as:`main.bicep`, `main.bicepparam`, `bicepconfig.json`, `.gitignore`
+During the Implement phase, Copilot acts based on the `tasks.md` file (checkboxes next to each completed task get marked with `[X]`). It validates all previously created checklists, such as the `implementation-readiness.md`, `requirements.md` or `plan-review.md` files. As a result of this prompt execution, a number of files get generated, such as:`main.tf`, `variables.tf`, `terraform.tf`, `terraform.tfvars`, `outputs.tf`, `.gitignore`, `.terraform.lock.hcl`
 
 Note: You may get different results, depending on a number of factors such as your inputs, LLM of choice, the current state of the Spec Kit, etc. This example is meant to give you an idea of what the outputs of this step typically look like.
 
 Click through the tabs to see the details!
 
 {{< tabs >}}
-{{% tab title="Checklist failure" %}}
-<img src="{{%siteparam base%}}/images/experimental/sdd/implement-checklist-failure.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
-{{% /tab %}}
-
-{{% tab title="Checklist succeeds" %}}
-<img src="{{%siteparam base%}}/images/experimental/sdd/implement-checklist-success.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
-{{% /tab %}}
 
 {{% tab title="Implementation complete" %}}
-<img src="{{%siteparam base%}}/images/experimental/sdd/implement-complete.png" width=50% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+<img src="{{%siteparam base%}}/images/experimental/sdd/tf-implement-complete.png" width=50% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
 {{% /tab %}}
 
-{{% tab title="main.bicep" %}}
-{{< highlight lineNos="false" type="bicep" wrap="true" >}}
-{{< include file="/static/includes/experimental/sdd/spec-kit/main.bicep" >}}
+{{% tab title="main.tf" %}}
+{{< highlight lineNos="false" type="terraform" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/main.tf" >}}
 {{< /highlight >}}
 {{% /tab %}}
 
-{{% tab title="main.bicepparam" %}}
-{{< highlight lineNos="false" type="bicep" wrap="true" >}}
-{{< include file="/static/includes/experimental/sdd/spec-kit/main.bicepparam" >}}
+{{% tab title="variables.tf" %}}
+{{< highlight lineNos="false" type="terraform" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/variables.tf" >}}
 {{< /highlight >}}
 {{% /tab %}}
 
-{{% tab title="Next steps" %}}
-<img src="{{%siteparam base%}}/images/experimental/sdd/implement-next-steps.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
+{{% tab title="terraform.tfvars" %}}
+{{< highlight lineNos="false" type="terraform" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/terraform.tfvars" >}}
+{{< /highlight >}}
+{{% /tab %}}
+
+{{% tab title="outputs.tf" %}}
+{{< highlight lineNos="false" type="terraform" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/outputs.tf" >}}
+{{< /highlight >}}
+{{% /tab %}}
+
+{{% tab title="terraform.tf" %}}
+{{< highlight lineNos="false" type="terraform" wrap="true" >}}
+{{< include file="/static/includes/experimental/sdd/spec-kit/terraform.tf" >}}
+{{< /highlight >}}
 {{% /tab %}}
 
 {{< /tabs >}}
@@ -1098,7 +1107,14 @@ From here, you can ask Copilot to help you with the deployment and further enhan
     {{% /tab %}}
     {{% tab title="Terraform" %}}
 
-Coming soon!
+1. **Initialize**: Run `terraform init` to download the required providers and modules.
+2. **Validate with Plan**: Run `terraform plan` to preview changes before deployment.
+3. **Deploy to Azure**: Use the Terraform CLI to deploy your generated configuration to a subscription:
+    ```bash
+    terraform apply
+    ```
+4. **Integrate into CI/CD**: Add the generated templates to your Azure DevOps or GitHub Actions pipelines.
+5. **Extend the solution**: Iterate on the specification to add new capabilities while maintaining alignment with your constitution.
 
     {{% /tab %}}
 
