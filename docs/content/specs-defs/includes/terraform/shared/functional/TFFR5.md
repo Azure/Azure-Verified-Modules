@@ -1,7 +1,7 @@
 ---
-title: TFFR3 - Providers - Permitted Versions
+title: TFFR5 - AzAPI - replace_triggers_refs
 description: Module Specification for the Azure Verified Modules (AVM) program
-url: /spec/TFFR3
+url: /spec/TFFR5
 type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -16,41 +16,26 @@ tags: [
   Lifecycle-BAU, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
   Validation-TF/CI/Enforced # SINGLE VALUE: this can be "Validation-TF/Manual" OR "Validation-TF/CI/Informational" OR "Validation-TF/CI/Enforced"
 ]
-priority: 20030
+priority: 20050
 ---
 
-## ID: TFFR3 - Category: Providers - Permitted Versions
+## ID: TFFR5 - Category: Composition - AzAPI - replace_triggers_refs
 
-Authors **MUST** only use the following Azure providers, and versions, in their modules:
+Authors **MUST** specify the `replace_triggers_refs` argument when using the AzAPI provider. The values should contain the body paths that would cause the resource to be replaced when they change.
 
-| provider              | min version | max version |
-|-----------------------|-------------|-------------|
-| Azure/azapi           | >= 2.0      | < 3.0       |
-
-> The AzureRM provider is permitted for module versions prior to v1.0.0, but **MUST NOT** be used in module versions v1.0.0 and later.
-> Should your module use the AzureRM provider, you **MUST** use version 4.x of the provider, i.e., `~> 4.0`. You MAY also create an exclusion for the TFLint rule:
->
-> ```hcl
-> rule "provider_azurerm_disallowed" {
->   enabled = false
-> }
-> ```
-
-Authors **MUST** use the `required_providers` block in their module to enforce the provider versions.
-
-The following is an example.
-
-- In it we use the [pessimistic version constraint operator](https://developer.hashicorp.com/terraform/language/expressions/version-constraints#operators) `~>`.
-- That is to say that `~> 2.0` is equivalent to `>= 2.0, < 3.0`.
+This is to ensure that changes to properties that require replacement of the resource are handled correctly by Terraform.
 
 ```terraform
-terraform {
-  required_providers {
-    # Include one or both providers, as needed
-    azapi = {
-      source  = "Azure/azapi"
-      version = "~> 2.0"
+resource "azapi_resource" "example" {
+  type      = "Microsoft.Example/resourceType@2021-01-01"
+  name      = "example-resource"
+  location  = "West US"
+  replace_triggers_refs = [
+    "properties.exampleProperty"
+  ] # must be specified, even if empty
+  body = {
+    properties = {
+      exampleProperty = "exampleValue"
     }
   }
 }
-```

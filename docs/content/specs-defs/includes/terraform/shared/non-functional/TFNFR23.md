@@ -21,4 +21,26 @@ priority: 21230
 
 ## ID: TFNFR23 - Category: Code Style - Sensitive Default Value Conditions
 
-A default value **MUST NOT** be set for a sensitive input - e.g., a default password.
+A default value **MUST NOT** be set for a sensitive input, unless it is an empty collection value.
+
+Good example:
+
+```hcl
+variable "example_map" {
+  type        = map(string)
+  default     = {}
+  description = "An example map variable with an empty default value."
+  sensitive   = true
+}
+```
+
+Bad example:
+
+```hcl
+variable "example_string" {
+  type        = string
+  default     = "sensitive_value"
+  description = "An example string variable with a sensitive default value."
+  sensitive   = true
+}
+```
