@@ -154,7 +154,7 @@ Each of the below steps will typically take 3-8 minutes to complete, depending o
 
 Changing the LLM does make a difference. We highly encourage you test different models to see which one works best for your needs.
 
-**Note**: At the time of writing this article, we tested our prompts with `Claude Sonnet 4.5`.
+**Note**: At the time of writing this article, we tested our prompts with `Claude Sonnet 4.5` for Bicep and `Claude Sonnet 4.6` for Terraform. In our experience, using `Claude Opus 4.6` for Terraform typically leads to better, more accurate results, but also costs more tokens.
 
 {{% /notice %}}
 
