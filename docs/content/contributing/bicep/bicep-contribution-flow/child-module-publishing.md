@@ -87,6 +87,12 @@ The MAR-file can only be accessed by Microsoft FTEs. If you are missing access, 
 
 The quickest way to get the child module published is to enable it yourself, contributing via a pull request to the [BRM](https://aka.ms/BRM) repository.
 
+{{% notice style="note" %}}
+
+Publishing a child module does not change the folder hierarchy of the parent and child modules. The child module remains in its existing location within the parent module's folder structure. No files or folders need to be moved or reorganized.
+
+{{% /notice %}}
+
 Please follow the steps below:
 
 - Make sure the child module name is listed in the publishing allowed list [child-module-publish-allowed-list.json](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/staticValidation/compliance/helper/child-module-publish-allowed-list.json). If not, add it to the file, keeping an alphabetical order. This step is relevant until the process is in a pilot phase.
@@ -164,6 +170,12 @@ Please follow the steps below:
 
     ```
 - As per the default pull request process, run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility using the `-Recurse` flag and top-level parent's folder path. Then test your changes locally and/or via the top-level module pipeline, raise a PR and attach a status badge proving successful validation.
+
+{{% notice style="note" %}}
+
+Existing tests for the parent module do not need to be updated when publishing a child module. The changes required for child module publishing (telemetry support, version file, and changelogs) do not affect the module's test cases.
+
+{{% /notice %}}
 
 {{% notice style="tip" %}}
 
