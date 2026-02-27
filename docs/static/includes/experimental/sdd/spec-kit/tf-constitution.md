@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 <!--
 Sync Impact Report - Version 1.0.0 (Initial Release)
 Version: N/A → 1.0.0 (MAJOR - Initial constitution establishment)

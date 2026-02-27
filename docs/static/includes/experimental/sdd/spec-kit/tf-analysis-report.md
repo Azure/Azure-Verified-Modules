@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 # Specification Analysis Report
 
 **Feature**: 001-my-legacy-workload

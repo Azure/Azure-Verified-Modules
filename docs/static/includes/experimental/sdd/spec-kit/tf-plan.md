@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 # Implementation Plan: Legacy Business Application Infrastructure
 
 **Branch**: `001-my-legacy-workload` | **Date**: 2026-02-18 | **Spec**: [spec.md](./spec.md)
