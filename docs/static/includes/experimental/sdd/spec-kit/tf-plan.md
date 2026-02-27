@@ -1859,7 +1859,7 @@ output "bastion_connect_instructions" {
     3. Click "Connect" -> "Bastion"
     4. Username: ${var.vm_admin_username}
     5. Password: Retrieve from Key Vault secret "${var.vm_admin_secret_name}"
-       Command: az keyvault secret show --name ${var.vm_admin_secret_name} --vault-name ${module.key_vault.name} --query value -o tsv
+      Command: az keyvault secret show --name ${var.vm_admin_secret_name} --vault-name ${module.key_vault.name} --query value -o tsv
   EOT
 }
 
