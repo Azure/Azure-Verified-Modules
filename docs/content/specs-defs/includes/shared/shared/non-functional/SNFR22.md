@@ -30,9 +30,9 @@ In that user-defined context, `workspaceId` is not descriptive enough and is amb
 
 ### Special considerations for Bicep
 
-If the property is nested in a parameter and you opt for a **resource-derived** type (that is, a schema defined by the resource provider), this requirement does not apply. We do however recommend to use a **user-defined** type whenever these cases occur to increase the module's usability. 
+If the property is nested in a parameter and you opt for a **resource-derived** type (that is, a schema defined by the resource provider), this requirement does not apply. We do however recommend to use a **user-defined** type whenever these cases occur to increase the module's usability.
 
-Example for the property `subnetArmId` of the Cognitive Service's property `networkInjections`: 
+Example for the property `subnetArmId` of the Cognitive Service's property `networkInjections`:
 
 If using a **user-defined** type, you may define a type for the `networkInjections` parameter like
 ```bicep
