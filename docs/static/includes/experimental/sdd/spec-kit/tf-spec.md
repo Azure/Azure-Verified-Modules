@@ -1,8 +1,8 @@
 # Feature Specification: Legacy Business Application Infrastructure
 
-**Feature Branch**: `001-my-legacy-workload`  
-**Created**: 2026-02-18  
-**Status**: Draft  
+**Feature Branch**: `001-my-legacy-workload`
+**Created**: 2026-02-18
+**Status**: Draft
 **Input**: User description: "Legacy business application running as a single virtual machine with Windows Server 2016, networking (VNet, Bastion, NAT Gateway, NSGs), storage (file share via private endpoint), Key Vault for secrets, and Log Analytics for monitoring"
 
 ## User Scenarios & Testing *(mandatory)*

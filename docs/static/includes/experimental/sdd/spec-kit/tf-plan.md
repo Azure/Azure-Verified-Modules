@@ -1,6 +1,6 @@
 # Implementation Plan: Legacy Business Application Infrastructure
 
-**Branch**: `001-my-legacy-workload` | **Date**: 2026-02-18 | **Spec**: [spec.md](./spec.md)  
+**Branch**: `001-my-legacy-workload` | **Date**: 2026-02-18 | **Spec**: [spec.md](./spec.md)
 **Input**: Feature specification from `/specs/001-my-legacy-workload/spec.md`
 
 **Note**: This plan implements the `/speckit.plan` command workflow.
@@ -10,7 +10,7 @@
 Deploy a legacy Windows Server 2016 business application infrastructure using Terraform and Azure Verified Modules (AVM). The solution includes:
 - **Core Compute**: Standard_D2s_v3 VM with Windows Server 2016, 500GB data disk, managed in isolated VNet
 - **Network Security**: VNet (10.0.0.0/24) with 3 subnets, NSGs with deny-by-default rules, Azure Bastion for secure RDP
-- **Storage**: 1TB Azure Files share accessible via private endpoint  
+- **Storage**: 1TB Azure Files share accessible via private endpoint
 - **Secrets Management**: Azure Key Vault storing VM admin password (generated with random_password resource)
 - **Internet Access**: NAT Gateway for outbound-only connectivity
 - **Observability**: Log Analytics (180-day retention) with diagnostic logging and critical alerts
@@ -19,17 +19,17 @@ Deploy a legacy Windows Server 2016 business application infrastructure using Te
 
 ## Technical Context
 
-**Infrastructure Language**: Terraform >= 1.9.0 (latest stable as of 2026-02-18)  
+**Infrastructure Language**: Terraform >= 1.9.0 (latest stable as of 2026-02-18)
 
-**Required Providers**:  
+**Required Providers**:
 - `hashicorp/azurerm` ~> 4.0 (latest major version with AVM compatibility)
 - `hashicorp/random` ~> 3.6 (for random_password and random_string resources)
 
-**AVM Modules** (versions to be verified from Terraform Registry during Phase 0):  
+**AVM Modules** (versions to be verified from Terraform Registry during Phase 0):
 - `Azure/avm-res-network-virtualnetwork/azurerm` - VNet with 3 subnets
-- `Azure/avm-res-network-networksecuritygroup/azurerm` - NSGs for each subnet  
+- `Azure/avm-res-network-networksecuritygroup/azurerm` - NSGs for each subnet
 - `Azure/avm-res-compute-virtualmachine/azurerm` - Windows Server 2016 VM
-- `Azure/avm-res-network-bastionhost/azurerm` - Azure Bastion  
+- `Azure/avm-res-network-bastionhost/azurerm` - Azure Bastion
 - `Azure/avm-res-keyvault-vault/azurerm` - Key Vault for secrets
 - `Azure/avm-res-storage-storageaccount/azurerm` - Storage account with file share
 - `Azure/avm-res-network-privateendpoint/azurerm` - Private endpoint (if not included in storage module)
@@ -39,14 +39,14 @@ Deploy a legacy Windows Server 2016 business application infrastructure using Te
 
 **Note**: AVM for Terraform modules use naming convention `Azure/avm-res-{service}-{resource}/azurerm`. Exact module names and latest versions must be verified from https://registry.terraform.io/namespaces/Azure during Phase 0 research.
 
-**State Backend**: Azure Storage Account (pre-existing, not managed by this Terraform)  
-**State File**: `my-legacy-workload-prod.tfstate`  
-**Target Region**: westus3  
-**Project Type**: Infrastructure-only (Terraform root module)  
+**State Backend**: Azure Storage Account (pre-existing, not managed by this Terraform)
+**State File**: `my-legacy-workload-prod.tfstate`
+**Target Region**: westus3
+**Project Type**: Infrastructure-only (Terraform root module)
 
-**Deployment Method**: Manual terraform apply via CLI (CI/CD pipeline optional for Phase 2)  
-**Security Tooling**: tfsec >= 1.28, checkov >= 3.0 (for static security analysis)  
-**Complexity**: 12 Azure resources via AVM modules, estimated ~300-400 lines of Terraform  
+**Deployment Method**: Manual terraform apply via CLI (CI/CD pipeline optional for Phase 2)
+**Security Tooling**: tfsec >= 1.28, checkov >= 3.0 (for static security analysis)
+**Complexity**: 12 Azure resources via AVM modules, estimated ~300-400 lines of Terraform
 **Estimated Monthly Cost**: <$200/month (per spec SC-013)
 
 ## Constitution Check
@@ -58,34 +58,34 @@ Based on `.specify/memory/constitution.md` version 1.0.0:
 - [x] **Principle I**: All Azure resources defined in Terraform `.tf` files (no imperative scripts except justified)
   - All 12 resources deployed via Terraform AVM modules
   - No custom PowerShell/CLI scripts for resource deployment
-  
+
 - [x] **Principle II**: All modules sourced from Azure Verified Modules (AVM) Terraform Registry (`Azure/avm-*`)
   - Zero custom/third-party modules
   - All resources use official AVM modules where available
   - Built-in azurerm resources only for resource group and random resources (no AVM module available)
-  
+
 - [x] **Principle III**: Security requirements met:
   - [x] VM managed identity (system-assigned) configured via AVM module interface
-  - [x] VM password generated with random_password, stored in Key Vault via AVM secrets interface  
+  - [x] VM password generated with random_password, stored in Key Vault via AVM secrets interface
   - [x] NSGs with deny-by-default rules, explicit allow for RDP from Bastion only
   - [x] Diagnostic settings enabled via AVM module diagnostic_settings interface
   - [x] Encryption at rest (default Microsoft-managed keys)
   - [x] Resource locks via AVM module lock interface (not direct azurerm_management_lock)
   - [x] No secrets in .tf or .tfvars files (password generated at runtime, stored in Key Vault)
-  
+
 - [x] **Principle IV**: Single root module pattern (all resources in terraform/ directory root)
   - terraform/main.tf contains all module instantiations
   - No local child modules created
   - Terraform dependency graph manages deployment order
-  
+
 - [x] **Principle V**: Deployment includes terraform validate and terraform plan review gates
   - Validation workflow: init → fmt → validate → plan → review → apply
   - Plan file (plan.tfplan) generated and reviewed before apply
-  
+
 - [x] **Deployment Standards**: Target region is `westus3`, naming convention followed (`<type>-avmlegacy-<suffix>`)
   - All resources use location = var.location (default: "westus3")
   - Naming via locals using random_string for uniqueness
-  
+
 - [x] **Project Constraints**: No HA/DR/scalability features added (legacy workload, cost-optimized)
   - Single VM (no availability set, no load balancer)
   - No backup policies (infrastructure disposable per clarification session)
@@ -157,14 +157,14 @@ docs/
 ### Research Tasks
 
 #### Task 1: Verify Latest Terraform Version
-**Research**: Confirm Terraform stable version >= 1.9.0 available  
-**Method**: Check https://developer.hashicorp.com/terraform/downloads or run `terraform version`  
-**Outputs**: Exact Terraform version constraint for terraform.tf  
+**Research**: Confirm Terraform stable version >= 1.9.0 available
+**Method**: Check https://developer.hashicorp.com/terraform/downloads or run `terraform version`
+**Outputs**: Exact Terraform version constraint for terraform.tf
 
-#### Task 2: Verify Azure RM Provider Version  
-**Research**: Confirm azurerm provider version ~> 4.0 compatible with AVM modules  
-**Method**: Check https://registry.terraform.io/providers/hashicorp/azurerm/latest and AVM module documentation  
-**Outputs**: Exact provider version constraint  
+#### Task 2: Verify Azure RM Provider Version
+**Research**: Confirm azurerm provider version ~> 4.0 compatible with AVM modules
+**Method**: Check https://registry.terraform.io/providers/hashicorp/azurerm/latest and AVM module documentation
+**Outputs**: Exact provider version constraint
 
 #### Task 3: Research AVM Module Availability and Versions
 **Research**: For each required Azure resource, identify:
@@ -175,7 +175,7 @@ docs/
 
 **Method**: Visit https://registry.terraform.io/namespaces/Azure and search for:
 - `avm-res-network-virtualnetwork`
-- `avm-res-network-networksecuritygroup`  
+- `avm-res-network-networksecuritygroup`
 - `avm-res-compute-virtualmachine`
 - `avm-res-network-bastionhost`
 - `avm-res-keyvault-vault`
@@ -220,7 +220,7 @@ docs/
 - Allow HTTPS (443) inbound to Bastion subnet (Azure Bastion requirement)
 - Allow SMB (445) from VM subnet to Private Endpoint subnet
 
-**Method**: Review AVM NSG module documentation for security_rules input structure  
+**Method**: Review AVM NSG module documentation for security_rules input structure
 **Outputs**: Document NSG rule schema in research.md
 
 #### Task 5: Research VM Password Flow with Key Vault
@@ -229,22 +229,22 @@ docs/
 2. Pass random_password.result to Key Vault AVM module's `secrets` interface
 3. Reference Key Vault secret in VM AVM module's admin_password input
 
-**Method**: Review AVM Key Vault module's `secrets` interface and VM module's authentication inputs  
+**Method**: Review AVM Key Vault module's `secrets` interface and VM module's authentication inputs
 **Outputs**: Document password generation pattern in research.md
 
 #### Task 6: Research Private Endpoint Integration
-**Research**: Determine if storage account AVM module has built-in private endpoint interface or requires separate private endpoint module  
-**Method**: Check AVM storage account module documentation for `private_endpoints` input variable  
+**Research**: Determine if storage account AVM module has built-in private endpoint interface or requires separate private endpoint module
+**Method**: Check AVM storage account module documentation for `private_endpoints` input variable
 **Outputs**: Decision in research.md - use built-in interface vs separate module
 
 #### Task 7: Research Log Analytics Integration Patterns
-**Research**: How to configure diagnostic settings for VM, Key Vault, Storage Account to send logs to Log Analytics  
-**Method**: Review each AVM module's `diagnostic_settings` interface structure  
+**Research**: How to configure diagnostic settings for VM, Key Vault, Storage Account to send logs to Log Analytics
+**Method**: Review each AVM module's `diagnostic_settings` interface structure
 **Outputs**: Document diagnostic_settings input schema in research.md
 
 #### Task 8: Research Alerting Approach
-**Research**: AVM modules or direct resources for metric alerts (VM stopped, disk >90%, Key Vault access failures)  
-**Method**: Check for AVM alerting/monitoring modules or plan to use azurerm_monitor_metric_alert directly  
+**Research**: AVM modules or direct resources for metric alerts (VM stopped, disk >90%, Key Vault access failures)
+**Method**: Check for AVM alerting/monitoring modules or plan to use azurerm_monitor_metric_alert directly
 **Outputs**: Decision documented in research.md
 
 ### Research Consolidation
@@ -273,7 +273,7 @@ docs/
 ### VNet Module
 [Findings from Task 3...]
 
-### NSG Module  
+### NSG Module
 [Findings from Task 3 and Task 4...]
 
 [etc.]
@@ -353,7 +353,7 @@ docs/
 ### 1. Resource Group
 - **Name**: rg-avmlegacy-wus3
 - **Location**: westus3
-- **Lock**: CanNotDelete  
+- **Lock**: CanNotDelete
 - **Purpose**: Container for all infrastructure resources
 
 ### 2. Virtual Network
@@ -491,28 +491,28 @@ Implicit dependency order (Terraform will resolve):
 ## Prerequisites
 
 1. **Terraform CLI**: Version >= 1.9.0
-   ```bash
-   terraform version
-   # Terraform v1.9.x
-   ```
+  ```bash
+  terraform version
+  # Terraform v1.9.x
+  ```
 
 2. **Azure CLI**: Authenticated with sufficient permissions
-   ```bash
-   az login
-   az account show
-   # Verify correct subscription
-   ```
+  ```bash
+  az login
+  az account show
+  # Verify correct subscription
+  ```
 
 3. **Azure Subscription**: Contributor role on target subscription or resource group
 
 4. **Terraform State Backend**: Pre-existing Azure Storage Account with container for state
-   - Storage Account name: `<your-state-storage>`
-   - Container name: `tfstate`
-   - SAS token or Storage Account Key
+  - Storage Account name: `<your-state-storage>`
+  - Container name: `tfstate`
+  - SAS token or Storage Account Key
 
 5. **Security Tools** (optional but recommended):
-   - tfsec >= 1.28
-   - checkov >= 3.0
+  - tfsec >= 1.28
+  - checkov >= 3.0
 
 ## Setup Steps
 
@@ -643,9 +643,9 @@ Check Azure Portal:
 2. Click "Connect" → "Bastion"
 3. Username: `vmadmin`
 4. Password: Retrieve from Key Vault:
-   ```bash
-   az keyvault secret show --name vm-admin-password --vault-name <kv-name> --query value -o tsv
-   ```
+  ```bash
+  az keyvault secret show --name vm-admin-password --vault-name <kv-name> --query value -o tsv
+  ```
 5. Click "Connect"
 
 ### Mount Azure Files Share
@@ -980,18 +980,18 @@ locals {
   vm_nsg_name              = "nsg-vm-${var.workload_name}-${local.unique_suffix}"
   bastion_nsg_name         = "nsg-bastion-${var.workload_name}-${local.unique_suffix}"
   private_endpoint_nsg_name = "nsg-pe-${var.workload_name}-${local.unique_suffix}"
-  
+
   # VM name must be ≤15 chars for computer name (Windows NetBIOS limit per spec FR-004)
   vm_name_raw = "vm-${var.workload_name}-${local.unique_suffix}"
   vm_name = substr(local.vm_name_raw, 0, min(length(local.vm_name_raw), 15))
   vm_computer_name = local.vm_name  # Same as VM name, truncated to 15 chars
-  
+
   bastion_name             = "bastion-${var.workload_name}-${local.unique_suffix}"
   key_vault_name           = "kv-${var.workload_name}-${local.unique_suffix}"
-  
+
   # Storage account name: lowercase alphanumeric only, max 24 chars
   storage_account_name = "st${var.workload_name}${local.unique_suffix}"  # e.g., "stavmlegacya1b2c3"
-  
+
   private_endpoint_name    = "pe-storage-${var.workload_name}-${local.unique_suffix}"
   nat_gateway_name         = "nat-${var.workload_name}-${local.unique_suffix}"
   nat_public_ip_name       = "pip-nat-${var.workload_name}-${local.unique_suffix}"
@@ -1081,7 +1081,7 @@ module "log_analytics" {
   name                = local.law_name
   resource_group_name = azurerm_resource_group.main.name
   location            = var.location
-  
+
   # Per clarification: 180-day retention
   sku                 = "PerGB2018"
   retention_in_days   = var.log_analytics_retention_days
@@ -1348,7 +1348,7 @@ module "nat_gateway" {
   name                = local.nat_gateway_name
   resource_group_name = azurerm_resource_group.main.name
   location            = var.location
-  
+
   # Public IP for outbound traffic
   public_ip_addresses = [
     {
@@ -1380,12 +1380,12 @@ module "key_vault" {
   name                = local.key_vault_name
   resource_group_name = azurerm_resource_group.main.name
   location            = var.location
-  
+
   tenant_id                  = data.azurerm_client_config.current.tenant_id
   sku_name                   = "standard"
   soft_delete_retention_days = 90
   purge_protection_enabled   = true  # Per spec SEC-012
-  
+
   # Use RBAC authorization (recommended over access policies)
   enable_rbac_authorization = true
 
@@ -1441,17 +1441,17 @@ module "storage_account" {
   name                = local.storage_account_name
   resource_group_name = azurerm_resource_group.main.name
   location            = var.location
-  
+
   account_kind             = "StorageV2"
   account_tier             = "Standard"  # HDD per spec IC-007
   account_replication_type = "LRS"       # No geo-redundancy per constitution IC-004
-  
+
   # Per spec SEC-009: Disable public network access
   public_network_access_enabled = false
-  
+
   # Encryption per spec SEC-013
   enable_infrastructure_encryption = true
-  
+
   # File share configuration
   file_shares = {
     legacy_app_data = {
@@ -1502,13 +1502,13 @@ module "bastion" {
   name                = local.bastion_name
   resource_group_name = azurerm_resource_group.main.name
   location            = var.location
-  
+
   # Bastion subnet (must be exact name "AzureBastionSubnet")
   subnet_id = module.virtual_network.subnets["bastion_subnet"].id
-  
+
   # SKU: Basic or Standard (check cost implications)
   sku = "Basic"  # Or "Standard" for additional features
-  
+
   # Public IP managed by Bastion module
   # (AVM module typically creates this automatically)
 
@@ -1533,16 +1533,16 @@ module "virtual_machine" {
   name                = local.vm_name  # Truncated to 15 chars
   resource_group_name = azurerm_resource_group.main.name
   location            = var.location
-  
+
   # Per spec FR-004: Computer name (NetBIOS) ≤15 chars
   computer_name = local.vm_computer_name
-  
+
   # Per clarification: Standard_D2s_v3
   vm_size = var.vm_size
-  
+
   # Per spec IC-006: Availability zone 1, 2, or 3 (never -1)
   zone = var.availability_zone
-  
+
   # Windows Server 2016 image
   os_profile = {
     windows = {
@@ -1551,14 +1551,14 @@ module "virtual_machine" {
       admin_password = module.key_vault.secrets[var.vm_admin_secret_name].value
     }
   }
-  
+
   source_image_reference = {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
     sku       = "2016-Datacenter"
     version   = "latest"
   }
-  
+
   # Network configuration
   network_interfaces = {
     nic1 = {
@@ -1574,7 +1574,7 @@ module "virtual_machine" {
       }
     }
   }
-  
+
   # OS disk: Standard HDD per spec FR-002
   os_disk = {
     name                 = "${local.vm_name}-osdisk"
@@ -1582,7 +1582,7 @@ module "virtual_machine" {
     storage_account_type = "Standard_LRS"  # Standard HDD
     disk_size_gb         = 127  # Default Windows Server size
   }
-  
+
   # Data disk: 500GB Standard HDD per spec FR-003
   data_disks = {
     data1 = {
@@ -1593,14 +1593,14 @@ module "virtual_machine" {
       disk_size_gb         = var.vm_data_disk_size_gb
     }
   }
-  
+
   # Per constitution SEC-001: System-assigned managed identity
   managed_identities = {
     system_assigned = true
   }
-  
+
   tags = local.common_tags
-  
+
   # Diagnostic settings - Constitution SEC-010
   diagnostic_settings = {
     law_diag = {
@@ -1608,7 +1608,7 @@ module "virtual_machine" {
       workspace_resource_id = module.log_analytics.resource_id
     }
   }
-  
+
   # Lock - Constitution SEC-011
   lock = {
     kind = "CanNotDelete"
@@ -1706,7 +1706,7 @@ resource "azurerm_monitor_metric_alert" "kv_access_failures" {
     aggregation      = "Count"
     operator         = "GreaterThan"
     threshold        = 0
-    
+
     # Filter for failed requests
     dimension {
       name     = "StatusCode"
@@ -1870,7 +1870,7 @@ output "file_share_mount_instructions" {
     1. Open PowerShell as Administrator
     2. Run: net use Z: \\${module.storage_account.name}.privatelink.file.core.windows.net\${var.file_share_name}
     3. Verify: dir Z:
-    
+
     Note: Authentication via private endpoint - no storage key needed for mounted drive
   EOT
 }
@@ -1881,7 +1881,7 @@ output "file_share_mount_instructions" {
 ```hcl
 # Production Environment Configuration
 # Legacy Business Application Infrastructure
-# 
+#
 # Per spec FR-021: All configurable values in this file (not hardcoded in main.tf)
 # Per spec FR-022: Rich comments explaining purpose
 
@@ -2008,12 +2008,12 @@ tags = {
 
 Implementation plan complete with:
 
-✅ **Phase 0 Research**: Documented tasks for verifying Terraform/provider versions and researching 10 AVM modules  
-✅ **Phase 1 Design**: Created data-model.md structure, quickstart guide, and agent context update approach  
-✅ **Terraform Code**: Complete root module with 5 files (terraform.tf, variables.tf, locals.tf, main.tf, outputs.tf, prod.tfvars)  
-✅ **Constitution Compliance**: All 5 principles validated pre and post-design  
-✅ **Security**: VM password via random_password → Key Vault → VM reference flow, NSGs, diagnostic logging, resource locks  
-✅ **Spec Compliance**: All 25 functional requirements addressed in code structure  
+✅ **Phase 0 Research**: Documented tasks for verifying Terraform/provider versions and researching 10 AVM modules
+✅ **Phase 1 Design**: Created data-model.md structure, quickstart guide, and agent context update approach
+✅ **Terraform Code**: Complete root module with 5 files (terraform.tf, variables.tf, locals.tf, main.tf, outputs.tf, prod.tfvars)
+✅ **Constitution Compliance**: All 5 principles validated pre and post-design
+✅ **Security**: VM password via random_password → Key Vault → VM reference flow, NSGs, diagnostic logging, resource locks
+✅ **Spec Compliance**: All 25 functional requirements addressed in code structure
 
 **Next Steps**:
 1. Execute Phase 0 research to verify exact AVM module versions from Terraform Registry

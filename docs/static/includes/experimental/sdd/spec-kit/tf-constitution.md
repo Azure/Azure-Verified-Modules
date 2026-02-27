@@ -65,7 +65,7 @@ All Terraform modules MUST be sourced exclusively from Azure Verified Modules (A
 module "storage_account" {
   source  = "Azure/avm-res-storage-storageaccount/azurerm"
   version = "~> 0.1.0"
-  
+
   # Module inputs per AVM interface
 }
 ```
@@ -180,7 +180,7 @@ resource "random_string" "unique_suffix" {
 locals {
   workload_name = "avmlegacy"
   location_abbr = "wus3"  # westus3 abbreviation
-  
+
   # Resource names following convention
   storage_account_name = "st${local.workload_name}${random_string.unique_suffix.result}"  # max 24 chars
   key_vault_name       = "kv-${local.workload_name}-${random_string.unique_suffix.result}"
@@ -234,9 +234,9 @@ This constitution is the ultimate authority for all infrastructure decisions, ar
 2. Review by infrastructure lead and compliance officer
 3. Approval required before amendment merge
 4. Version incremented per semantic versioning:
-   - **MAJOR**: Principle removal, redefinition, or backward-incompatible governance changes (e.g., switching IaC tools)
-   - **MINOR**: New principle added or materially expanded guidance (e.g., adding new security requirement)
-   - **PATCH**: Clarifications, corrections, non-semantic improvements (e.g., fixing typos, adding examples)
+  - **MAJOR**: Principle removal, redefinition, or backward-incompatible governance changes (e.g., switching IaC tools)
+  - **MINOR**: New principle added or materially expanded guidance (e.g., adding new security requirement)
+  - **PATCH**: Clarifications, corrections, non-semantic improvements (e.g., fixing typos, adding examples)
 5. Migration plan required for MAJOR/MINOR changes affecting existing infrastructure (document in amendment PR)
 6. All dependent templates and documentation updated atomically with constitution
 
