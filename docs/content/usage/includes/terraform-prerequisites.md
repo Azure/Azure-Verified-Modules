@@ -1,8 +1,3 @@
----
-title: "Terraform Prerequisites"
-description: "Learn about the prerequisites for using Terraform to deploy Azure Verified Modules or develop them."
----
-
 You will need the following tools and components to complete this guide:
 
 - [Visual Studio Code (VS Code)](https://code.visualstudio.com/docs/setup/setup-overview) to develop your solution.

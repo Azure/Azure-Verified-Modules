@@ -425,6 +425,20 @@ If you're working on a new module, we'd also ask you to create its corresponding
 
 {{% /expand %}}
 
+{{% notice style="note" %}}
+
+The workflow is configured to be triggered by any changes in the `main` branch of Upstream (i.e., `Azure/bicep-registry-modules`) that could affect the module or its validation. However, in a fork, the workflow is stopped immediately after being triggered due to the condition:
+```yml
+# Only run if not canceled and not in a fork, unless triggered by a workflow_dispatch event
+if: ${{ !cancelled() && !(github.repository != 'Azure/bicep-registry-modules' && github.event_name != 'workflow_dispatch') }}
+```
+This condition prevents accidentally triggering a large amount of module workflows, e.g., when merging upstream changes into your fork.
+
+In forks, workflow validation remains possible through explicit runs (that is, by using the  `workflow_dispatch`  event).
+
+{{% /notice %}}
+
+
 {{% notice style="tip" %}}
 
 After any change to a module and before running tests, we highly recommend running the [Set-AVMModule]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files) utility to update all module files that are auto-generated (e.g., the `main.json` & `readme.md` files).
@@ -580,6 +594,8 @@ When publishing a net new module for the first time ever, the PR **MUST** be rev
 When publishing a new version of an existing module (i.e., anything that is not being published for the first time ever), the PR approval logic is the following:
 
 {{% include file="/static/includes/PR-approval-guidance.md" %}}
+
+In case of Bicep modules, if the PR includes any changes outside of the "modules/" folder, it first needs the module related code changes need to be reviewed and approved as per the above table, and only then does the PR need to be approved by a member of the core team. This way the core team's approval does not act as a bypass from the actual code review perspective.
 
 <!--
 ## Publishing to the Registry

@@ -53,7 +53,7 @@
 52,res/dev-ops-infrastructure/pool,✅,✅,✅,✅,,,,✅
 53,res/dev-test-lab/lab,✅,✅,✅,,,,,✅
 54,res/digital-twins/digital-twins-instance,✅,✅,✅,✅,✅,,,✅
-55,res/document-db/database-account,✅,✅,✅,✅,✅,,,✅
+55,res/document-db/database-account,✅,✅,✅,✅,✅,✅,✅,✅
 56,res/document-db/mongo-cluster,✅,✅,✅,✅,✅,,,
 57,res/elastic-san/elastic-san,✅,✅,✅,✅,,,,
 58,res/event-grid/domain,✅,✅,✅,✅,✅,,,✅
@@ -166,7 +166,7 @@
 165,res/virtual-machine-images/image-template,✅,✅,✅,,,,,✅
 166,res/web/connection,✅,✅,✅,,,,,
 167,res/web/hosting-environment,✅,✅,✅,✅,,,,✅
-168,res/web/serverfarm,✅,✅,✅,✅,,,,
+168,res/web/serverfarm,✅,✅,✅,✅,,,,✅
 169,res/web/site,✅,✅,✅,✅,✅,,,✅
 170,res/web/static-site,✅,✅,✅,,✅,,,✅
-Sum,,146,144,155,67,39,25,16,65
+Sum,,146,144,155,67,39,26,17,66
