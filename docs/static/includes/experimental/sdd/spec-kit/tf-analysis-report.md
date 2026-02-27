@@ -1,8 +1,9 @@
+<!-- markdownlint-disable -->
 # Specification Analysis Report
 
-**Feature**: 001-my-legacy-workload  
-**Analysis Date**: 2026-02-18  
-**Analyzed Artifacts**: spec.md, plan.md, tasks.md, constitution.md  
+**Feature**: 001-my-legacy-workload
+**Analysis Date**: 2026-02-18
+**Analyzed Artifacts**: spec.md, plan.md, tasks.md, constitution.md
 **Status**: ✅ **CRITICAL/HIGH ISSUES RESOLVED** - Ready for Implementation
 
 ---
@@ -11,9 +12,9 @@
 
 Analyzed 3 core artifacts (spec.md, plan.md, tasks.md) and constitution.md before implementation. Found **31 findings** across 6 detection categories.
 
-**Critical Issues**: 2 (resolved)  
-**High Issues**: 4 (resolved)  
-**Medium Issues**: 15 (documented - not blocking)  
+**Critical Issues**: 2 (resolved)
+**High Issues**: 4 (resolved)
+**Medium Issues**: 15 (documented - not blocking)
 **Low Issues**: 10 (documented - not blocking)
 
 **Resolution Status**: All 6 CRITICAL/HIGH issues have been remediated. Implementation can proceed.
@@ -23,34 +24,34 @@ Analyzed 3 core artifacts (spec.md, plan.md, tasks.md) and constitution.md befor
 ## Critical/High Issues - RESOLVED ✅
 
 ### COV1 - Task Count Discrepancy (CRITICAL) ✅ FIXED
-**Location**: tasks.md header  
-**Issue**: Header stated "Total Tasks: 78" but document contained 269 tasks (T001-T269)  
-**Resolution**: Updated header to "Total Tasks: 269" and added Phase 0 prerequisite note  
+**Location**: tasks.md header
+**Issue**: Header stated "Total Tasks: 78" but document contained 269 tasks (T001-T269)
+**Resolution**: Updated header to "Total Tasks: 269" and added Phase 0 prerequisite note
 **Impact**: Eliminated confusion about task scope
 
 ### A1 - Subnet CIDR Conflicts (HIGH) ✅ FIXED
-**Location**: spec.md IC-008 vs Clarifications section  
-**Issue**: 
+**Location**: spec.md IC-008 vs Clarifications section
+**Issue**:
 - IC-008: Bastion=10.0.0.32/26, PrivateEndpoint=10.0.0.96/28
 - Clarifications: Bastion=10.0.0.64/26, PrivateEndpoint=10.0.0.128/27
 
-**Resolution**: Made IC-008 AUTHORITATIVE - updated spec.md clarifications to reference IC-008 values, marked as "SUPERSEDED BY IC-008"  
-**Rationale**: IC-008 values match tasks.md implementation (T047-T050)  
+**Resolution**: Made IC-008 AUTHORITATIVE - updated spec.md clarifications to reference IC-008 values, marked as "SUPERSEDED BY IC-008"
+**Rationale**: IC-008 values match tasks.md implementation (T047-T050)
 **Impact**: Eliminated deployment failures from incorrect CIDR allocations
 
 ### A2 - Disk Alert Threshold Conflict (HIGH) ✅ FIXED
-**Location**: spec.md SC-008 vs Clarifications  
-**Issue**: 
+**Location**: spec.md SC-008 vs Clarifications
+**Issue**:
 - SC-008: ">90%"
 - Clarifications: "85% full"
 
-**Resolution**: Standardized to 90% throughout - updated SC-008 to "disk >90% capacity" and clarifications to "90% (aligns with SC-008)"  
-**Rationale**: 90% matches tasks.md T211 implementation  
+**Resolution**: Standardized to 90% throughout - updated SC-008 to "disk >90% capacity" and clarifications to "90% (aligns with SC-008)"
+**Rationale**: 90% matches tasks.md T211 implementation
 **Impact**: Consistent alert configuration
 
 ### I2 - Circular VM→KeyVault Dependency (HIGH) ✅ FIXED
-**Location**: tasks.md Phase 3 (VM) and Phase 4 (KeyVault)  
-**Issue**: 
+**Location**: tasks.md Phase 3 (VM) and Phase 4 (KeyVault)
+**Issue**:
 - Phase 3 deploys VM with placeholder password
 - Phase 4 deploys KeyVault with real password
 - Phase 4 updates VM to use KeyVault password
@@ -67,19 +68,19 @@ Analyzed 3 core artifacts (spec.md, plan.md, tasks.md) and constitution.md befor
 **Impact**: Eliminated circular dependency, enables atomic deployments
 
 ### I1 - Alert Notification Conflict (HIGH) ✅ FIXED
-**Location**: spec.md Clarifications vs tasks.md T205  
-**Issue**: 
+**Location**: spec.md Clarifications vs tasks.md T205
+**Issue**:
 - Clarifications: "Azure Portal notifications only"
 - Tasks T205: Configure email_receiver with email address
 
-**Resolution**: Updated clarifications to allow email notifications via Action Group with justification: "Azure Portal notifications insufficient for production alerting"  
-**Rationale**: Email notifications are standard practice for critical alerts in production systems  
+**Resolution**: Updated clarifications to allow email notifications via Action Group with justification: "Azure Portal notifications insufficient for production alerting"
+**Rationale**: Email notifications are standard practice for critical alerts in production systems
 **Impact**: Aligns spec with implementation, enables proper alerting
 
 ### U4 - VM Password Deployment Flow Unclear (HIGH) ✅ DOCUMENTED
-**Location**: tasks.md T094, plan.md  
-**Issue**: Placeholder comment in T094 ("use placeholder for now") created ambiguity about VM deployment approach  
-**Resolution**: 
+**Location**: tasks.md T094, plan.md
+**Issue**: Placeholder comment in T094 ("use placeholder for now") created ambiguity about VM deployment approach
+**Resolution**:
 - Removed placeholder comment from T094
 - Updated T094 to directly reference KeyVault: "module.key_vault.secrets[var.vm_admin_secret_name].value from Phase 2"
 - Updated T102 with explicit depends_on: [module.key_vault, azurerm_role_assignment.kv_secrets_deployment]
@@ -92,45 +93,45 @@ Analyzed 3 core artifacts (spec.md, plan.md, tasks.md) and constitution.md befor
 ## Medium/Low Issues - DOCUMENTED (Not Blocking)
 
 ### Constitution Exceptions (MEDIUM) - Documented
-**Finding C1**: Tasks T204-T218 use direct azurerm resources for alerts instead of AVM modules  
-**Finding C2**: Tasks T084-T086 use direct azurerm_subnet_network_security_group_association  
+**Finding C1**: Tasks T204-T218 use direct azurerm resources for alerts instead of AVM modules
+**Finding C2**: Tasks T084-T086 use direct azurerm_subnet_network_security_group_association
 **Documentation**: Added "Constitution Exceptions" section to tasks.md with justifications:
 - C1: No AVM module available for metric alerts (verified as acceptable)
 - C2: VNet module may not expose NSG association interface (requires Phase 0 verification)
 
 ### Terminology Drift (MEDIUM) - Accepted
-**Finding I3**: "NetBIOS name" (spec) vs "computer name" (tasks) used interchangeably  
-**Decision**: Both terms are technically accurate - "computer name" is primary, "NetBIOS name" used for context about 15-char limit  
+**Finding I3**: "NetBIOS name" (spec) vs "computer name" (tasks) used interchangeably
+**Decision**: Both terms are technically accurate - "computer name" is primary, "NetBIOS name" used for context about 15-char limit
 **Action**: No change required - terminology is clear in context
 
 ### Resource Group Naming (MEDIUM) ✅ FIXED
-**Finding I6**: IC-005 referenced "rg-my-legacy-workload-prod-wus3", tasks use "rg-avmlegacy-prod-wus3"  
-**Resolution**: Updated IC-005 to use "rg-avmlegacy-prod-wus3" with note about "workload short name"  
+**Finding I6**: IC-005 referenced "rg-my-legacy-workload-prod-wus3", tasks use "rg-avmlegacy-prod-wus3"
+**Resolution**: Updated IC-005 to use "rg-avmlegacy-prod-wus3" with note about "workload short name"
 **Rationale**: Shorter name, consistent with naming convention throughout
 
 ### Phase 0 Research Tasks (MEDIUM) - Documented
-**Finding COV7**: Plan describes 8 Phase 0 research tasks but tasks.md starts at Phase 1  
-**Resolution**: Added note to tasks.md header: "Phase 0 research tasks (8 tasks from plan.md) are offline prerequisites"  
+**Finding COV7**: Plan describes 8 Phase 0 research tasks but tasks.md starts at Phase 1
+**Resolution**: Added note to tasks.md header: "Phase 0 research tasks (8 tasks from plan.md) are offline prerequisites"
 **Rationale**: Phase 0 is research/discovery phase completed before code implementation begins
 
 ### Missing Coverage for FR-022 (MEDIUM) - Accepted
-**Finding COV4**: FR-022 requires "rich comments" in Terraform files but no explicit task  
-**Decision**: Implicit in all "Implement" and "Configure" tasks - developers add comments during implementation  
+**Finding COV4**: FR-022 requires "rich comments" in Terraform files but no explicit task
+**Decision**: Implicit in all "Implement" and "Configure" tasks - developers add comments during implementation
 **Action**: No task added - standard development practice
 
 ### Duplication of Validation Tasks (LOW) - Accepted
-**Findings D2, D3**: "terraform fmt" and "terraform validate" repeated in every phase  
-**Decision**: Intentional repetition for phase independence - each phase can be validated independently  
+**Findings D2, D3**: "terraform fmt" and "terraform validate" repeated in every phase
+**Decision**: Intentional repetition for phase independence - each phase can be validated independently
 **Action**: No change - accepted duplication for workflow clarity
 
 ### Ambiguous AVM Module Name (MEDIUM) - Documented
-**Finding A3**: Plan states alerting module name is "TBD"  
-**Resolution**: Tasks T204-T218 resolve this by using direct azurerm resources (documented as constitution exception C1)  
+**Finding A3**: Plan states alerting module name is "TBD"
+**Resolution**: Tasks T204-T218 resolve this by using direct azurerm resources (documented as constitution exception C1)
 **Action**: Phase 0 research should confirm no AVM module exists
 
 ### Ambiguous Bastion SKU Selection (MEDIUM) - Documented
-**Finding A6**: T142 says "Basic or Standard based on Phase 0 research"  
-**Decision**: Acceptable - Phase 0 research will determine SKU based on cost/features  
+**Finding A6**: T142 says "Basic or Standard based on Phase 0 research"
+**Decision**: Acceptable - Phase 0 research will determine SKU based on cost/features
 **Action**: No change - research task will resolve
 
 ---
@@ -191,20 +192,20 @@ Validation gates enforced at every phase: fmt → validate → plan → review �
 ## Architectural Decisions
 
 ### Decision 1: KeyVault in Foundational Phase
-**Rationale**: Eliminates circular dependency - VM requires password at creation time  
-**Impact**: Cleaner deployment flow, atomic infrastructure provisioning  
-**Trade-off**: KeyVault deployed before VM (minor cost if VM deployment fails)  
+**Rationale**: Eliminates circular dependency - VM requires password at creation time
+**Impact**: Cleaner deployment flow, atomic infrastructure provisioning
+**Trade-off**: KeyVault deployed before VM (minor cost if VM deployment fails)
 **Benefit**: Simplified task sequencing, reduced error scenarios
 
 ### Decision 2: Direct azurerm Resources for Alerts
-**Rationale**: No AVM module available for metric alerts  
-**Impact**: Constitution exception required  
-**Validation**: Phase 0 research confirms no suitable AVM module  
+**Rationale**: No AVM module available for metric alerts
+**Impact**: Constitution exception required
+**Validation**: Phase 0 research confirms no suitable AVM module
 **Risk**: Minimal - metric alert resources are stable and well-documented
 
 ### Decision 3: Email Notifications for Production Alerts
-**Rationale**: Portal-only notifications insufficient for production critical alerts  
-**Impact**: Updated spec clarifications to allow Action Group with email  
+**Rationale**: Portal-only notifications insufficient for production critical alerts
+**Impact**: Updated spec clarifications to allow Action Group with email
 **Best Practice**: Industry standard for production alerting
 
 ---
@@ -216,10 +217,10 @@ Validation gates enforced at every phase: fmt → validate → plan → review �
 2. ✅ **COMPLETED**: Document constitution exceptions
 3. ✅ **COMPLETED**: Clarify deployment flow for KeyVault and VM
 4. **REQUIRED**: Complete Phase 0 research tasks (8 tasks from plan.md)
-   - Verify AVM module versions and interfaces
-   - Confirm no AVM module exists for alerts
-   - Verify VNet module NSG association capability
-   - Document findings in research.md
+  - Verify AVM module versions and interfaces
+  - Confirm no AVM module exists for alerts
+  - Verify VNet module NSG association capability
+  - Document findings in research.md
 
 ### During Implementation
 1. Follow phase sequence: Phase 0 (offline) → Phase 1 → Phase 2 (with KeyVault) → Phase 3 → Phase 4 → Phase 5 → Phase 6 → Phase 7
@@ -249,8 +250,8 @@ All blocking issues have been resolved:
 
 The specification is internally consistent, fully traced to requirements, and compliant with constitution principles (with 2 documented exceptions). Implementation can proceed through Phase 0 research followed by sequential phase execution.
 
-**Estimated Implementation Time**: 20-30 hours  
-**Estimated Deployment Time**: ~30 minutes  
+**Estimated Implementation Time**: 20-30 hours
+**Estimated Deployment Time**: ~30 minutes
 **Estimated Monthly Cost**: <$200
 
 ---
@@ -304,6 +305,6 @@ The specification is internally consistent, fully traced to requirements, and co
 
 ---
 
-**Report Generated**: 2026-02-18  
-**Next Action**: Begin Phase 0 research (offline prerequisite tasks)  
+**Report Generated**: 2026-02-18
+**Next Action**: Begin Phase 0 research (offline prerequisite tasks)
 **Ready for**: `/speckit.implement` command after Phase 0 completion

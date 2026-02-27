@@ -1,7 +1,7 @@
 # Specification Quality Checklist: Legacy Business Application Infrastructure
 
-**Purpose**: Validate specification completeness and quality before proceeding to planning  
-**Created**: 2026-02-18  
+**Purpose**: Validate specification completeness and quality before proceeding to planning
+**Created**: 2026-02-18
 **Feature**: [001-my-legacy-workload/spec.md](../spec.md)
 
 ## Content Quality
