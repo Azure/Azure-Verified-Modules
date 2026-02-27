@@ -126,7 +126,7 @@ If after an additional 3 business days there's still no update to the issue that
 
 ### ITA03BCP
 
-If there's still no response after 5 days (total from start of issue being raised) on an issue that has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FFFF00;">Type: Security Bug 🔒</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp;, the Bicep PG GitHub Team will be mentioned on the issue to assist. The &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label will also be added.
+If there's still no response after 5 days (total from start of issue being raised) on an issue that has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FFFF00;">Type: Security Bug 🔒</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp;, the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label will be added.
 
 **Schedule:**
 
@@ -140,7 +140,6 @@ If there's still no response after 5 days (total from start of issue being raise
 
 **Action(s):**
 
-- Add a reply, mentioning the `Azure/bicep-admins` team.
 - Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label.
 
 {{% notice style="tip" %}}
