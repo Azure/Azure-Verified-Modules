@@ -177,6 +177,7 @@ Existing tests for the parent module do not need to be updated when publishing a
 
 {{% /notice %}}
 
+
 {{% notice style="tip" %}}
 
 Reference [This pull request](https://github.com/Azure/bicep-registry-modules/pull/5503) as an example for proposing a child module for publishing.
