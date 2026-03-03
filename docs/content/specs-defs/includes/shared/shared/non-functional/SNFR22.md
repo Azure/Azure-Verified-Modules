@@ -22,7 +22,7 @@ priority: 1180
 
 ## ID: SNFR22 - Category: Inputs - Parameters/Variables for Resource IDs
 
-A module parameter/variable that requires a full Azure Resource ID as an input value, e.g. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{keyVaultName}`, **MUST** contain `ResourceId/resource_id` in its parameter/variable name when that parameter/variable is part of a **user-defined** type. This assists users in knowing what value to provide at a glance of the parameter/variable name.
+A module parameter/variable that requires a full Azure Resource ID as an input value, e.g. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{keyVaultName}`, **SHOULD** contain `ResourceId/resource_id` in its parameter/variable name when that parameter/variable is part of a **user-defined** type. This assists users in knowing what value to provide at a glance of the parameter/variable name.
 
 Example for the property `workspaceId` for the Diagnostic Settings resource in a **user-defined** type: in Bicep its parameter name should be `workspaceResourceId` and the variable name in Terraform should be `workspace_resource_id`.
 
