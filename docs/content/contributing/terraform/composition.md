@@ -7,15 +7,7 @@ weight: 3
 
 
 {{% notice style="important" %}}
-While this page describes and summarizes important aspects of the composition of AVM modules, it may not reference _All_ of the shared and language specific requirements.
-
-Therefore, this guide **MUST** be used in conjunction with the [Terraform specifications]({{% siteparam base %}}/specs/tf/). **ALL AVM modules** (Resource and Pattern modules) **MUST meet the respective requirements described in these specifications**!
-{{% /notice %}}
-
-{{% notice style="important" %}}
-
-Before jumping on implementing your contribution, please review the AVM Module specifications, in particular the [Terraform specification]({{% siteparam base %}}/specs/tf/) pages, to make sure your contribution complies with the AVM module's design and principles.
-
+This guide **MUST** be used in conjunction with the [Terraform specifications]({{% siteparam base %}}/specs/tf/). **ALL AVM modules** (Resource and Pattern modules) **MUST meet the respective requirements described in these specifications**!
 {{% /notice %}}
 
 ## Repositories

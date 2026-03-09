@@ -69,7 +69,7 @@ flowchart TD
 ## 1. Fork [optional]
 
 {{% notice style="note" %}}
-This step is only needed if you do **not** have write access to the module repository. Module owners and invited collaborators can skip to [step 1](#1-branch).
+This step is only needed if you do **not** have write access to the module repository. Module owners and invited collaborators can skip to [step 2](#2-branch).
 {{% /notice %}}
 
 A fork is your own copy of the repository under your GitHub account. It lets you make changes without needing write access to the upstream repo. Once your changes are ready, you raise a pull request from your fork back to the original repository.
@@ -203,20 +203,18 @@ We support [terraform test](https://developer.hashicorp.com/terraform/language/t
 
 {{% tab title="External Contributor" %}}
 
-1. Push your branch to your fork.
-2. Navigate to the upstream repository on GitHub and click **New pull request**.
-3. Set the **base repository** to the upstream AVM repo and **base branch** to `main`.
-4. Set your **head repository** and **compare branch** to your fork and branch.
-5. Click **Create pull request**.
+1. Navigate to the upstream repository on GitHub and click **New pull request**.
+2. Set the **base repository** to the upstream AVM repo and **base branch** to `main`.
+3. Set your **head repository** and **compare branch** to your fork and branch.
+4. Click **Create pull request**.
 
 {{% /tab %}}
 
 {{% tab title="Module Owner" %}}
 
-1. Push your branch to the upstream repository.
-2. Navigate to the repository on GitHub and click **New pull request**.
-3. Set the **base branch** to `main` and the **compare branch** to your branch.
-4. Click **Create pull request**.
+1. Navigate to the repository on GitHub and click **New pull request**.
+2. Set the **base branch** to `main` and the **compare branch** to your branch.
+3. Click **Create pull request**.
 
 {{% /tab %}}
 
@@ -262,10 +260,11 @@ When approving a PR from an external contributor:
 3. Change the PR's base branch to the release branch and merge it.
 4. Create a new PR from the release branch to `main` — this triggers pr-check and e2e tests.
 5. Approve the run and wait for results.
+6. If tests fail, send back to the contributor to fix and repeat from step 3.
 
 ### Running e2e for your own contributions
 
-Create a PR to `main` from your branch — pr-check and e2e tests will trigger automatically. Approve the run and wait for results.
+For your own PRs, the tests trigger automatically — approve the run and wait for results.
 
 ---
 

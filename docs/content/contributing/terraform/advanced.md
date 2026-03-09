@@ -115,5 +115,3 @@ These PRs do not change module code, so no new release is needed.
 The Azure Resource Manager API can be eventually consistent. For example, data plane role assignments may not be available immediately after creation.
 
 Use the [AzAPI provider's retry functionality](https://registry.terraform.io/providers/Azure/azapi/latest/docs) to handle eventual consistency instead of arbitrary `time_sleep` delays. The AzAPI provider supports configurable retry with `retry` blocks that can match on specific error codes, providing a more reliable and efficient approach.
-
-See the [composition guide]({{% siteparam base %}}/contributing/terraform/composition/) for more details.
