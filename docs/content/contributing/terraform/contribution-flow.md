@@ -211,7 +211,7 @@ This is especially useful for external contributors, since only module owners ca
 
 We support [terraform test](https://developer.hashicorp.com/terraform/language/tests) for unit and integration testing. Golang tests are **not** supported.
 
-- **Unit tests** — place test files in `tests/unit`. Use [mocked providers](https://developer.hashicorp.com/terraform/language/tests/mocking) to keep them fast and free of external dependencies. Run with `./avm unit-test`.
+- **Unit tests** — place test files in `tests/unit`. Use [mocked providers](https://developer.hashicorp.com/terraform/language/tests/mocking) to keep them fast and free of external dependencies. Run with `./avm tf-test-unit`.
 - **Integration tests** — place test files in `tests/integration`. These deploy real resources and should be run locally. Run with `./avm integration-test`.
 
 ---
