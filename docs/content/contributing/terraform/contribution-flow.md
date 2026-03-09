@@ -74,7 +74,9 @@ This step is only needed if you do **not** have write access to the module repos
 
 A fork is your own copy of the repository under your GitHub account. It lets you make changes without needing write access to the upstream repo. Once your changes are ready, you raise a pull request from your fork back to the original repository.
 
-To create a fork:
+{{< tabs groupid="fork-method" >}}
+
+{{% tab title="GitHub UI" %}}
 
 1. Navigate to the module repository in the [`Azure`](https://github.com/Azure) GitHub organization.
 2. Click the **Fork** button in the top right.
@@ -87,7 +89,6 @@ To create a fork:
     cd terraform-azurerm-avm-res-<rp>-<modulename>
     ```
 
-{{% notice style="tip" %}}
 Keep your fork in sync with the upstream repository before creating a new branch. You can do this from the GitHub UI by clicking **Sync fork** on your fork's main page, or locally:
 
 ```bash
@@ -96,7 +97,29 @@ git fetch upstream
 git checkout main
 git merge upstream/main
 ```
-{{% /notice %}}
+
+{{% /tab %}}
+
+{{% tab title="GitHub CLI" %}}
+
+Use the [GitHub CLI](https://cli.github.com/) to fork and clone in one step. This automatically configures the `upstream` remote for you:
+
+```bash
+gh repo fork Azure/terraform-azurerm-avm-res-<rp>-<modulename> --clone
+cd terraform-azurerm-avm-res-<rp>-<modulename>
+```
+
+Verify the remotes are set up correctly:
+
+```bash
+git remote -v
+# origin    https://github.com/<your-username>/terraform-azurerm-avm-res-<rp>-<modulename>.git (fetch)
+# upstream  https://github.com/Azure/terraform-azurerm-avm-res-<rp>-<modulename>.git (fetch)
+```
+
+{{% /tab %}}
+
+{{< /tabs >}}
 
 ---
 

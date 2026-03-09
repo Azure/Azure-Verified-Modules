@@ -21,9 +21,9 @@ This repo will be created by the Module Owners and the AVM Core team collaborati
 Below is the directory and file structure expected for each AVM Terraform repository/module.
 See template repo [here](https://github.com/Azure/terraform-azurerm-avm-template).
 
-- `tests/` - (for unit tests and additional tests if required - e.g. tflint etc.)
-  - `unit/` - (optional, may use further sub-directories if required)
-  - `integration/` - (optional, may use further sub-directories if required)
+- `tests/` - (for unit tests and integration tests using Terraform test)
+  - `unit/` - (optional .tftest.hcl files for unit testing with Terraform test)
+  - `integration/` - (optional .tftest.hcl files for integration testing with Terraform test)
 - `modules/` - (for sub-modules only if used)
 - `examples/` - (all examples must deploy successfully without requiring input - these are customer facing)
   - `<at least one folder>` - (at least one example that uses the variable defaults minimum/required parameters/variables only)

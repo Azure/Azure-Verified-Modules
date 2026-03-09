@@ -84,7 +84,7 @@ Create a file called `.e2eignore` in the example directory. Its contents should 
 
 If your module requires setup/teardown across **all** examples, create:
 
-- `examples/setup.sh` — runs before all examples.
+- `examples/setup.sh` — (optional) — runs before all examples.
 - `examples/teardown.sh` (optional) — runs after all examples.
 
 These scripts are authorized with the same credentials as the examples.
@@ -95,16 +95,16 @@ These scripts are authorized with the same credentials as the examples.
 
 For example-specific setup/teardown:
 
-- `examples/<example_name>/pre.sh` — runs before the example.
+- `examples/<example_name>/pre.sh` (optional) — runs before the example.
 - `examples/<example_name>/post.sh` (optional) — runs after the example.
 
 These run in the context of the example directory, so relative paths work.
 
 ---
 
-## Grept and repository governance PRs
+## Repository governance PRs
 
-A weekly workflow checks repository contents using [Grept](https://github.com/Azure/grept) and creates a PR if issues are found. If you see a PR titled `chore: repository governance`, review and merge it.
+A weekly workflow checks repository contents creates a PR if new files or updates are available. The PR is automatically merged, so there is no action required. Module owners will be informed if there are any one off PRs that require intervention.
 
 These PRs do not change module code, so no new release is needed.
 
