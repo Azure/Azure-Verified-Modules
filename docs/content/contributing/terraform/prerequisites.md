@@ -1,52 +1,31 @@
 ---
-title: Terraform Contribution Prerequisites
+title: Prerequisites
 linktitle: Prerequisites
-description: Terraform Contribution Prerequisites for the Azure Verified Modules (AVM) program
+description: Prerequisites for contributing to AVM Terraform modules
+weight: 1
 ---
 
+## GitHub Account
 
-## GitHub Account Link and Access
+To contribute, you need a GitHub account. If you are a Microsoft employee, your account must be [linked](https://repos.opensource.microsoft.com/link) to your corporate identity and you must be a member of the [Azure](https://repos.opensource.microsoft.com/orgs/Azure) organization.
 
-To contribute to this project, you need to have a GitHub account which is [linked](https://repos.opensource.microsoft.com/link) to your Microsoft corporate identity account and be a member of the [Azure](https://repos.opensource.microsoft.com/orgs/Azure) organization.
-
-## Tooling
-
-### Required Tooling
+## Required Tooling
 
 {{% notice style="tip" %}}
-
-We recommend to use Linux or MacOS for your development environment. You can use Windows Subsystem for Linux (WSL) if you are using Windows.
-
+We recommend Linux, macOS, or Windows Subsystem for Linux (WSL) for your development environment.
 {{% /notice %}}
-
-To contribute to this project the following tooling is required:
 
 - [Git](https://git-scm.com/downloads)
 
-  If just installed, don't forget to set both your git username & password
-
-  ```PowerShell
-  git config --global user.name "John Doe"
-  git config --global user.email "johndoe@example.com"
+  ```bash
+  git config --global user.name "Your Name"
+  git config --global user.email "you@example.com"
   ```
 
 - [Terraform](https://developer.hashicorp.com/terraform/downloads?product_intent=terraform)
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+- [Docker](https://www.docker.com/pricing/#/download) (or [Podman](https://podman-desktop.io/downloads)) — required for running `./avm` pre-commit and pr-check commands
 - [Visual Studio Code](https://code.visualstudio.com/download)
-  - [Terraform extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=hashicorp.terraform)
-  - [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
-- [Docker](https://www.docker.com/pricing/#/download)
-  - [Azure Verified Terraform Scaffold](https://github.com/Azure/tfmod-scaffold) (`mcr.microsoft.com/azterraform:latest`)
-
-### Recommended Tooling
-
-The following tooling/extensions are recommended to assist you developing for the project:
-
-- [Go (for writing tests)](https://go.dev/doc/install)
-- [tfenv](https://github.com/tfutils/tfenv) - useful when working on multiple modules that use different Terraform versions from the same machine
-
-#### Visual Studio Code Extensions
-
-- [Go extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=golang.go)
-- For visibility of Bracket Pairs:
-  - Inside Visual Studio Code, add `editor.bracketPairColorization.enabled`: true to your `settings.json`, to enable bracket pair colorization.
+  - [HashiCorp Terraform extension](https://marketplace.visualstudio.com/items?itemName=hashicorp.terraform)
+  - [Microsoft Azure Terraform extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureterraform)
+  - [EditorConfig extension](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
