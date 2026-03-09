@@ -2,6 +2,7 @@
 title: Review of Terraform Modules
 linktitle: Review
 description: Terraform Module Review Process for the Azure Verified Modules (AVM) program
+weight: 4
 ---
 
 
