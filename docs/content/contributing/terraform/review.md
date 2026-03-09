@@ -61,11 +61,11 @@ Thank you for requesting a review of your module. The AVM module review process 
 
 {{< highlight lineNos="false" type="markdown" wrap="true" title="" >}}
 
-Thank you for contributing this module and completing the review process per AVM specs. The AVM-Review-PR has been approved and once you merge it that will close this AVM-Review issue. You may proceed with [publishing]({{% siteparam base %}}/contributing/terraform/terraform-contribution-flow/owner-contribution-flow/#7-publish-the-module) this module to the HashiCorp Terraform Registry with an initial minor version of v0.1.0. Please continue publishing future versions in the 0.x.y minor range (e.g., 0.1.0, 0.1.1, 0.2.0, etc.) until the AVM team notifies you that publishing v1.0.0 is allowed.
+Thank you for contributing this module and completing the review process per AVM specs. The AVM-Review-PR has been approved and once you merge it that will close this AVM-Review issue. Please create a release with an initial minor version of `v0.1.0` (tags **MUST** include the `v` prefix) and then contact the AVM core team to publish this module to the HashiCorp Terraform Registry via HCP Terraform. Please continue publishing future versions in the v0.x.y minor range (e.g., `v0.1.0`, `v0.1.1`, `v0.2.0`, etc.) until the AVM team notifies you that publishing `v1.0.0` is allowed.
 
-**Requested Action**: Once published please update your [module proposal](REPLACE WITH THE LINK TO THE MODULE PROPOSAL) with the following comment.
+**Requested Action**: Once the AVM core team has published the module, please update your [module proposal](REPLACE WITH THE LINK TO THE MODULE PROPOSAL) with the following comment.
 
-"The initial review of this module is complete, and the module has been published to the registry. Requesting AVM team to close this module proposal and mark the module available in the module index.
+"The initial review of this module is complete, and the module has been published to the registry by the AVM core team. Requesting AVM team to close this module proposal and mark the module available in the module index.
 Terraform Registry Link: <REPLACE WITH THE LINK OF THE MODULE IN TERRAFORM REGISTRY>
 GitHub Repo Link: <REPLACE WITH THE LINK OF THE MODULE IN GITHUB>"
 

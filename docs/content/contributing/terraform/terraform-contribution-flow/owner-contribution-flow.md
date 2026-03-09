@@ -89,27 +89,24 @@ Once the development of the module has been completed, get the module reviewed f
 
 ### 5. Publish the module
 
-Once a module has been reviewed and the PR is merged to `main`. Follow the below steps to publish the module to the HashiCorp Registry.
+Publishing AVM Terraform modules to the HashiCorp Registry is managed by the AVM core team via HCP Terraform. Module owners should **not** attempt to publish modules themselves.
 
-Ensure your module is ready for publishing:
+Once a module has been reviewed and the PR is merged to `main`, follow the below steps:
 
-1. Create a release with a new tag (e.g. `0.1.0`) via [Github UI](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository).
+1. Create a release with a new tag (e.g. `v0.1.0`) via [Github UI](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository). **Tags MUST include the `v` prefix** (e.g., `v0.1.0`, not `0.1.0`).
     - Go to the releases tab and click on `Draft a new release`.
     - Ensure that the `Target` is set to the `main` branch.
-    - Select `Choose a tag` and type in a new tag, such as `0.1.0` Make sure to create the tag from the `main` branch.
+    - Select `Choose a tag` and type in a new tag, such as `v0.1.0`. Make sure to create the tag from the `main` branch.
     - Generate the release notes using the `Generate release notes` button.
     - If this is a community contribution be sure to update the 'Release Notes` to provide appropriate credit to the contributors.
 
     ![DeploymentProtectionRules]({{% siteparam base %}}/images/contribution/gitTag.png "GitHub Release")
 
-2. Elevate your respository access using the [Open Source Management Portal](https://aka.ms/opensource/portal).
-3. Sign in to the [HashiCorp Registry](https://registry.terraform.io/) using GitHub.
-4. Publish a module by selecting the `Publish` button in the top right corner, then `Module`
-5. Select the repository and accept the terms.
+2. Contact the AVM core team to request publication of the module to the HashiCorp Registry. The core team will handle the publishing process via HCP Terraform.
 
 {{% notice style="info" %}}
 
-Once a module gets updated and becomes a new version/release it will be automatically published with the latest published release version to the HashiCorp Registry.
+Once a module has been initially published by the core team, subsequent version updates (new releases/tags) will be automatically published to the HashiCorp Registry.
 
 {{% /notice %}}
 
