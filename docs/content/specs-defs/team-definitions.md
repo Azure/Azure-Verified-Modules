@@ -109,7 +109,7 @@ The below table defines a RACI to be adopted by all parties referenced in the ta
 | ------------------------------------------------------------------------------------------------ | ------------- | ------------------- | ------------- | -------------- | ----- |
 | Build/Construct an AVM Module                                                                    | R, A          | R, C                | C, I          | I              |       |
 | Publish a Bicep AVM Module to the Bicep Public Registry                                          | R, A          | C, I                | C, I          | I              |       |
-| Publish a Terraform AVM Module to the Terraform Registry                                         | C, I          | I                   | R, A          | I              | Publishing is managed by the AVM core team via HCP Terraform |
+| Publish a Terraform AVM Module to the Terraform Registry                                         | A             | C, I                | R          | I              | Publishing is managed by the AVM core team via HCP Terraform |
 | Manage and maintain tooling/testing frameworks pertaining to module quality                      | C, I          | C, I                | R, A          | C, I           |       |
 | Manage/run the AVM central backlog (module proposals, orphaned modules, test enhancements, etc.) | C, I          | C, I                | R, A          | C, I           |       |
 | Provide day-to-day (BAU) module support                                                          | R, A          | R, C                | I             | I              |       |
