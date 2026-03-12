@@ -1,0 +1,48 @@
+# Workflow for mirroring the MAR file to check Bicep modules against.
+name: Mirror MAR File
+
+on:
+  # Runs everyday at 4 am
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 4 * * *" # Daily Update at 4 am
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch: {}
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  id-token: write
+  contents: read
+
+# Default to bash
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tag
+        uses: actions/checkout@v5
+
+      # create a token
+      - uses: actions/create-github-app-token@v2
+        id: app-token
+        with:
+          owner: ${{ vars.MAR_REPO_OWNER}}
+          repositories: ${{ vars.MAR_REPO_REPOSITORY }}
+          app-id: ${{ vars.MAR_REPO_ACCESS_APPID }}
+          private-key: ${{ secrets.MAR_REPO_ACCESS_APP_PRIVATEKEY }}
+      # ensure the module is in the MAR file before publishing
+      - name: Confirm module in MAR
+        shell: pwsh
+        run: |
+          . './utilities/pipelines/publish/Confirm-ModuleInMAR.ps1'
+          $marModuleList = Confirm-ModuleInMAR -GitHubToken ${{ steps.app-token.outputs.token }} -Owner ${{ vars.MAR_REPO_OWNER}} -Repo ${{ vars.MAR_REPO_REPOSITORY }}
+          $localMARFilePath = Join-Path $env:GITHUB_WORKSPACE 'docs\static\module-indexes\BicepMARModules.json'
+          Set-LocalMARFileContent -LocalMARFilePath $localMARFilePath -FileContent $marModuleList
