@@ -99,7 +99,7 @@
 98,res/maps/account,✅,,✅,,,✅,✅,✅
 99,res/net-app/net-app-account,✅,✅,✅,,,✅,✅,✅
 100,res/network/application-gateway,✅,✅,✅,✅,✅,,,✅
-101,res/network/application-gateway-web-application-firewall-policy,,,✅,,,,,
+101,res/network/application-gateway-web-application-firewall-policy,✅,✅,✅,,,,,
 102,res/network/application-security-group,✅,✅,✅,,,,,
 103,res/network/azure-firewall,✅,✅,✅,✅,,,,
 104,res/network/bastion-host,✅,✅,✅,✅,,,,
@@ -170,4 +170,4 @@
 169,res/web/serverfarm,✅,✅,✅,✅,,,,✅
 170,res/web/site,✅,✅,✅,✅,✅,,,✅
 171,res/web/static-site,✅,✅,✅,,✅,,,✅
-Sum,,147,145,156,68,40,26,17,67
+Sum,,148,146,156,68,40,26,17,67
