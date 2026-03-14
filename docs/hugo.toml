@@ -252,7 +252,7 @@ params = { alwaysopen = true, collapsibleMenu = true }
   [[menu.defined]]
     identifier = 'ai-assisted-iac'
     parent = 'experimental'
-    name = 'AI-Assisted IaC'
+    name = 'AI-Assisted Solution Dev'
     pageRef = '/experimental/ai-assisted-sol-dev'
     weight = 1
     params = { alwaysopen = false, collapsibleMenu = true }
@@ -280,6 +280,30 @@ params = { alwaysopen = true, collapsibleMenu = true }
     pageRef = '/experimental/ai-assisted-sol-dev/spec-kit/avm-example'
     weight = 1
     params = { alwaysopen = false, collapsibleMenu = true }
+
+  [[menu.defined]]
+    identifier = 'ai-assisted-module-dev'
+    parent = 'experimental'
+    name = 'AI-Assisted Module Dev'
+    pageRef = '/experimental/ai-assisted-module-dev'
+    weight = 2
+    params = { alwaysopen = false, collapsibleMenu = true }
+
+  [[menu.defined]]
+    identifier = 'ai-assisted-module-dev-bicep-assets'
+    parent = 'ai-assisted-module-dev'
+    name = 'AVM Bicep AI Assets'
+    pageRef = '/experimental/ai-assisted-module-dev/avm-bicep-ai-assets'
+    weight = 1
+    params = { alwaysopen = false, collapsibleMenu = true }
+
+  # [[menu.defined]]
+  #   identifier = 'ai-assisted-module-dev-terraform-assets'
+  #   parent = 'ai-assisted-module-dev'
+  #   name = 'AVM Terraform AI Assets'
+  #   pageRef = '/experimental/ai-assisted-module-dev/avm-terraform-ai-assets'
+  #   weight = 2
+  #   params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
 identifier = 'specs-defs'
