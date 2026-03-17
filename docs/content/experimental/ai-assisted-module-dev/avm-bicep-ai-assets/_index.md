@@ -17,10 +17,11 @@ This page provides a catalog of all AI-assisted development assets available in 
 
 Custom instructions provide persistent, repository-wide context that shapes how GitHub Copilot generates and reviews code. They are automatically loaded by Copilot when working in the repository.
 
-| Name / Source | Scope | Description |
-|---|---|---|
-| **Global Instructions** [`.github/copilot-instructions.md`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/copilot-instructions.md)| Entire repository | Provides GitHub Copilot with an overview of the AVM Bicep repository structure, critical compliance requirements (including mandatory AVM specification adherence), tool usage guidance, module discovery methods (AVM module index, MCR, Azure Resource Reference), and schema/API version lookup procedures. This is the primary instruction file that ensures all AI-generated code aligns with AVM standards. |
-| **Bicep Module Instructions** [`.github/instructions/avm.bicep.instructions.md`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/instructions/avm.bicep.instructions.md)| `avm/**/*.bicep` | Defines Bicep-specific coding standards and AVM formatting guidelines that Copilot must follow when generating or modifying `.bicep` files. Covers required template structure (metadata blocks, parameter ordering), local validation test execution, README generation via `Set-AVMModule.ps1`, and references to Bicep Quick Starts for code examples. |
+### Global Instructions
+
+Global instructions provide GitHub Copilot with an overview of the AVM Bicep repository structure, critical compliance requirements (including mandatory AVM specification adherence), tool usage guidance, module discovery methods (AVM module index, MCR, Azure Resource Reference), and schema/API version lookup procedures. This is the primary instruction file that ensures all AI-generated code aligns with AVM standards.
+
+See the full content of the global instructions here: [`.github/copilot-instructions.md`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/copilot-instructions.md)
 
 ## Skills
 
