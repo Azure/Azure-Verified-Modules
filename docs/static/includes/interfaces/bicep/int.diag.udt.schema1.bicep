@@ -18,16 +18,24 @@ resource >singularMainResourceType<_diagnosticSettings 'Microsoft.Insights/diagn
     workspaceId: diagnosticSetting.?workspaceResourceId
     eventHubAuthorizationRuleId: diagnosticSetting.?eventHubAuthorizationRuleResourceId
     eventHubName: diagnosticSetting.?eventHubName
-    metrics: [for group in (diagnosticSetting.?metricCategories ?? [ { category: 'AllMetrics' } ]): {
-      category: group.category
-      enabled: group.?enabled ?? true
-      timeGrain: null
-    }]
-    logs: [for group in (diagnosticSetting.?logCategoriesAndGroups ?? [ { categoryGroup: 'allLogs' } ]): {
-      categoryGroup: group.?categoryGroup
-      category: group.?category
-      enabled: group.?enabled ?? true
-    }]
+    metrics: [
+      for group in (diagnosticSetting.?metricCategories ?? (empty(diagnosticSetting.?logCategoriesAndGroups)
+        ? [{ category: 'AllMetrics' }]
+        : [])): {
+        category: group.category
+        enabled: group.?enabled ?? true
+        timeGrain: null
+      }
+    ]
+    logs: [
+      for group in (diagnosticSetting.?logCategoriesAndGroups ?? (empty(diagnosticSetting.?metricCategories)
+        ? [{ categoryGroup: 'allLogs' }]
+        : [])): {
+        categoryGroup: group.?categoryGroup
+        category: group.?category
+        enabled: group.?enabled ?? true
+      }
+    ]
     marketplacePartnerId: diagnosticSetting.?marketplacePartnerResourceId
     logAnalyticsDestinationType: diagnosticSetting.?logAnalyticsDestinationType
   }
