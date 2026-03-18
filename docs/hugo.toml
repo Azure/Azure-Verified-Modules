@@ -649,43 +649,19 @@ weight = 1
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
+identifier = 'terraform-contribution-flow'
+parent = 'terraform-module-contribution'
+name = 'Contribution Flow'
+pageRef = '/contributing/terraform/contribution-flow'
+weight = 2
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
 identifier = 'composition'
 parent = 'terraform-module-contribution'
 name = 'Composition'
 pageRef = '/contributing/terraform/composition'
-weight = 2
-params = { alwaysopen = false, collapsibleMenu = true }
-
-[[menu.defined]]
-identifier = 'testing'
-parent = 'terraform-module-contribution'
-name = 'Testing'
-pageRef = '/contributing/terraform/testing'
 weight = 3
-params = { alwaysopen = false, collapsibleMenu = true }
-
-[[menu.defined]]
-identifier = 'terraform-contribution-flow'
-parent = 'terraform-module-contribution'
-name = 'Contribution Flow'
-pageRef = '/contributing/terraform/terraform-contribution-flow'
-weight = 4
-params = { alwaysopen = true, collapsibleMenu = true }
-
-[[menu.defined]]
-identifier = 'terraform-owner-contribution-flow'
-parent = 'terraform-contribution-flow'
-name = 'Owner Contribution Flow'
-pageRef = '/contributing/terraform/terraform-contribution-flow/owner-contribution-flow'
-weight = 1
-params = { alwaysopen = false, collapsibleMenu = true }
-
-[[menu.defined]]
-identifier = 'terraform-repository-creation-process'
-parent = 'terraform-contribution-flow'
-name = 'Repository Creation Process'
-pageRef = '/contributing/terraform/terraform-contribution-flow/repository-creation-process'
-weight = 2
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
@@ -693,7 +669,23 @@ identifier = 'review'
 parent = 'terraform-module-contribution'
 name = 'Review'
 pageRef = '/contributing/terraform/review'
+weight = 4
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'terraform-advanced'
+parent = 'terraform-module-contribution'
+name = 'Advanced Topics & FAQ'
+pageRef = '/contributing/terraform/advanced'
 weight = 5
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'terraform-repository-creation-process'
+parent = 'terraform-module-contribution'
+name = 'Repository Setup'
+pageRef = '/contributing/terraform/repository-setup'
+weight = 6
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
