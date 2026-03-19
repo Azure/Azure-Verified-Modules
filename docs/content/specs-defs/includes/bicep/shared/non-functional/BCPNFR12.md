@@ -27,8 +27,6 @@ Module owners **MUST** invoke the module in their test using the syntax:
 module testDeployment '../../../main.bicep' =
 ```
 
-Test deployment names **MUST** include the parent resource ID as an additional input to the `uniqueString` function to ensure deterministic and collision-free naming. See [BCPNFR24]({{% siteparam base %}}/spec/BCPNFR24/) for the broader rationale on deterministic deployment naming.
-
 Example 1: Working example with a single deployment
 
 ```bicep
