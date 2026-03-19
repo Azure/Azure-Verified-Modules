@@ -25,7 +25,7 @@ When a module references child, utility, or other modules, the deployment name *
 
 {{% notice style="note" title="Why deterministic?" %}}
 
-Azure Resource Manager enforces an [800-deployment limit](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits#resource-group-limits) per scope (resource group, subscription, management group). Non-deterministic names (e.g., those incorporating timestamps or `utcNow()`) create a new deployment object on every run, quickly exhausting this limit — especially at subscription and management group scopes where cleanup is difficult and unreliable.
+Azure Resource Manager enforces an [800-deployment limit](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-subscription-service-limits#resource-group-limits) per scope (resource group, subscription, management group). Non-deterministic names (e.g., those incorporating timestamps or `utcNow()`) create a new deployment object on every run, quickly exhausting this limit — especially at subscription and management group scopes where cleanup is difficult and unreliable.
 
 Deterministic deployment names cause Azure to **overwrite** the previous deployment object, keeping the deployment count stable regardless of how many times the module is deployed.
 
