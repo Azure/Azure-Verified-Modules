@@ -11,6 +11,12 @@ The content in this section represents **experimental exploration** of emerging 
 
 {{% /notice %}}
 
+{{% notice style="info" title="For End Users" icon="users" %}}
+
+This section covers **solution development scenarios** and is primarily relevant for **end users** aiming to develop complex solutions based on AVM modules using AI. If you are a module owner looking for content on maintaining and developing AVM modules with AI assistance, see [AI-Assisted Module Development]({{% siteparam base %}}/experimental/ai-assisted-module-dev).
+
+{{% /notice %}}
+
 This section explains concepts of developing IaC solution templates using Azure Verified Modules (AVM) with the assistance of AI tools such as GitHub Copilot and covers how AI-assisted development can accelerate the process of building and deploying Azure solutions using AVM modules.
 
 This approach is referred to as **AI-assisted IaC solution development** rather than AI-driven or AI-led because humans remain fully in control of architectural decisions and solution design - AI simply handles the tedious, error-prone tasks of code generation and standards compliance, amplifying human ingenuity rather than replacing it.

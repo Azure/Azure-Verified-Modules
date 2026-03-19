@@ -162,7 +162,7 @@ Please follow the steps below:
 
       ### Changes
 
-      - Enabling child module `<avm/res/path/to/child-module>` for publishing (added telemetry option)
+      - Publishing child module `<child-module-path>`
 
       ### Breaking Changes
 
