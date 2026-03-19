@@ -56,6 +56,18 @@ Using the parent resource's ID as the `uniqueString` seed provides two critical 
 1. **Deterministic** — the same parent resource always produces the same hash, so repeated deployments overwrite rather than accumulate.
 2. **Collision-free** — different parent resource instances produce different hashes, so deploying multiple instances of the same module type within the same scope does not cause naming collisions.
 
+{{% notice style="tip" title="Why not subscription().id and resourceGroup().id separately?" %}}
+
+The parent resource's ID (e.g., `/subscriptions/.../resourceGroups/.../providers/.../resourceName`) already contains the subscription ID and resource group ID as segments. Using `<parentResource>.id` as a single input to `uniqueString` captures all of this context in one value, keeping the code concise and readable rather than passing multiple scope-level values separately.
+
+{{% /notice %}}
+
+{{% notice style="note" title="Supporting multiple deployments of the same module at the same scope" %}}
+
+A common scenario is deploying the same module type more than once within the same scope — for example, two different SQL servers each with their own set of databases, or two user-assigned identities each with their own federated credentials. Because the parent resource ID is unique per resource instance, the resulting deployment names will differ even when the child module type and index are identical. This ensures that parallel deployments of the same module at the same scope do not collide.
+
+{{% /notice %}}
+
 Other approaches fail on one or both of these properties:
 
 | Approach | Deterministic? | Collision-free? | Issue |
