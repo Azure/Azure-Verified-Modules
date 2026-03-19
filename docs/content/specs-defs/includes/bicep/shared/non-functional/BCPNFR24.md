@@ -33,19 +33,19 @@ Deterministic deployment names cause Azure to **overwrite** the previous deploym
 
 ### Requirement
 
-Module owners **MUST** construct deployment names for referenced modules using `uniqueString()` seeded with the **parent resource's ID** (`<parentResource>.id`), rather than `deployment().name`, `subscription().id`, `resourceGroup().id`, `utcNow()`, or other non-deterministic or scope-level values.
+Module owners **MUST** construct deployment names for referenced modules using `uniqueString()` seeded with the **parent resource's ID** (`<parentResource>.id`) and **`location`**, rather than `deployment().name`, `subscription().id`, `resourceGroup().id`, `utcNow()`, or other non-deterministic or scope-level values.
 
 The deployment name **MUST** follow the pattern:
 
 ```text
-'${uniqueString(<parentResource>.id)}-<ChildModuleDescriptor>-${index}'
+'${uniqueString(<parentResource>.id, location)}-<ChildModuleDescriptor>-${index}'
 ```
 
 Where:
 
 | Segment | Description |
 |---|---|
-| `uniqueString(<parentResource>.id)` | A deterministic hash derived from the parent resource's resource ID. This is both unique per resource instance and stable across deployments. |
+| `uniqueString(<parentResource>.id, location)` | A deterministic hash derived from the parent resource's resource ID and deployment location. This is both unique per resource instance and stable across deployments. |
 | `<ChildModuleDescriptor>` | A short, human-readable label identifying the child module being deployed (e.g., `DB`, `Subnet`, `FederatedIdentityCred`). |
 | `${index}` | The loop index variable, included when deploying in a loop. Omit for single (non-looped) deployments. |
 
@@ -63,7 +63,7 @@ Other approaches fail on one or both of these properties:
 | `deployment().name` | ❌ | ✅ | Changes every deployment; hits 800-limit |
 | `utcNow()` / timestamps | ❌ | ✅ | Changes every deployment; hits 800-limit |
 | `subscription().id` + `resourceGroup().id` | ✅ | ❌ | Same hash for all resources in the same RG; collisions when deploying multiple instances |
-| **`<parentResource>.id`** | **✅** | **✅** | **Recommended — stable and unique per instance** |
+| **`<parentResource>.id, location`** | **✅** | **✅** | **Recommended — stable and unique per instance** |
 
 ### Examples
 
@@ -73,7 +73,7 @@ Example 1: Single child module deployment
 resource server 'Microsoft.Sql/servers@2023-05-01-preview' = { ... }
 
 module server_database 'database/main.bicep' = {
-  name: '${uniqueString(server.id)}-Sql-DB'
+  name: '${uniqueString(server.id, location)}-Sql-DB'
   params: {
     serverName: server.name
     (...)
@@ -87,7 +87,7 @@ Example 2: Child module deployment in a loop
 resource server 'Microsoft.Sql/servers@2023-05-01-preview' = { ... }
 
 module server_databases 'database/main.bicep' = [for (database, index) in (databases ?? []): {
-  name: '${uniqueString(server.id)}-Sql-DB-${index}'
+  name: '${uniqueString(server.id, location)}-Sql-DB-${index}'
   params: {
     serverName: server.name
     (...)
@@ -101,7 +101,7 @@ Example 3: Federated identity credentials on a user-assigned managed identity
 resource userAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' = { ... }
 
 module identity_federatedIdentityCredentials 'federated-identity-credential/main.bicep' = [for (credential, index) in (federatedIdentityCredentials ?? []): {
-  name: '${uniqueString(userAssignedIdentity.id)}-UserMSI-FederatedIdentityCred-${index}'
+  name: '${uniqueString(userAssignedIdentity.id, location)}-UserMSI-FederatedIdentityCred-${index}'
   params: {
     userAssignedIdentityName: userAssignedIdentity.name
     (...)

@@ -40,7 +40,7 @@ var enableReferencedModulesTelemetry = false
 // local referencing
 module virtualNetwork_subnets 'subnet/main.bicep' = [
   for (subnet, index) in (subnets ?? []): {
-    name: '${uniqueString(virtualNetwork.id)}-subnet-${index}'
+    name: '${uniqueString(virtualNetwork.id, location)}-subnet-${index}'
     params: {
       (...)
       enableTelemetry: enableReferencedModulesTelemetry
@@ -50,7 +50,7 @@ module virtualNetwork_subnets 'subnet/main.bicep' = [
 
 // published module reference
 module virtualNetwork_subnet 'br/public:avm/res/network/virtual-network/subnet:0.1.0' = {
-  name: '${uniqueString(virtualNetwork.id)}-subnet-${index}'
+  name: '${uniqueString(virtualNetwork.id, location)}-subnet-${index}'
     params: {
       (...)
       enableTelemetry: enableReferencedModulesTelemetry

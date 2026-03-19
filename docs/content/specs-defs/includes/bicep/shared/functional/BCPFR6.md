@@ -30,7 +30,7 @@ param databases databaseType[]?
 resource server 'Microsoft.Sql/servers@(...)' = { (...) }
 
 module server_databases 'database/main.bicep' = [for (database, index) in (databases ?? []): {
-  name: '${uniqueString(server.id)}-Sql-DB-${index}'
+  name: '${uniqueString(server.id, location)}-Sql-DB-${index}'
   params: {
     serverName: server.name
     (...)
