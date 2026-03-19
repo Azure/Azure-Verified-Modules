@@ -27,14 +27,14 @@ Module owners **MUST** invoke the module in their test using the syntax:
 module testDeployment '../../../main.bicep' =
 ```
 
-Test deployment names **MUST** be deterministic. Use `resourceGroup().id` and `location` as the `uniqueString` seed to ensure names are stable across repeated test runs while remaining unique per resource group. See [BCPNFR24]({{% siteparam base %}}/spec/BCPNFR24/) for the broader rationale on deterministic deployment naming.
+Test deployment names **MUST** include the parent resource ID as an additional input to the `uniqueString` function to ensure deterministic and collision-free naming. See [BCPNFR24]({{% siteparam base %}}/spec/BCPNFR24/) for the broader rationale on deterministic deployment naming.
 
 Example 1: Working example with a single deployment
 
 ```bicep
 module testDeployment '../../../main.bicep' = {
   scope: resourceGroup
-  name: '${uniqueString(resourceGroup().id, location)}-test-${serviceShort}'
+  name: '${uniqueString(deployment().name, resourceGroup().id, location)}-test-${serviceShort}'
   params: {
     (...)
   }
@@ -47,7 +47,7 @@ Example 2: Working example using a deployment loop
 @batchSize(1)
 module testDeployment '../../main.bicep' = [for iteration in [ 'init', 'idem' ]: {
   scope: resourceGroup
-  name: '${uniqueString(resourceGroup().id, location)}-test-${serviceShort}-${iteration}'
+  name: '${uniqueString(deployment().name, resourceGroup().id, location)}-test-${serviceShort}-${iteration}'
   params: {
     (...)
   }
