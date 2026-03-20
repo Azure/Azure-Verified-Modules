@@ -25,7 +25,11 @@ When a module references child, utility, or other modules, the deployment name *
 
 {{% notice style="note" title="Why deterministic?" %}}
 
-Azure Resource Manager has an [800-deployment limit](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-subscription-service-limits#resource-group-limits) per scope (resource group, subscription, management group). Non-deterministic names (e.g., those incorporating timestamps or `utcNow()`) create a new deployment object on every run, which can lead to this limit being reached over time. While a cleanup process exists today, it does not yet meet the needs of all scenarios, particularly at subscription and management group scopes. We are actively working with the product team to enhance this process. In the meantime, deterministic deployment names provide a reliable way to keep deployment counts stable.
+Azure Resource Manager has an [800-deployment limit](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-subscription-service-limits#resource-group-limits) per scope (resource group, subscription, management group, tenant). Non-deterministic names (e.g., those incorporating timestamps or `utcNow()`) create a new deployment object on every run, which can lead to this limit being reached over time.
+
+While an automatic cleanup process exists for resource group and subscription scopes, it can take some time to take effect. Due to eventual consistency in the backend, the deployment count may not reflect the cleanup immediately, which can lead to failed deployments even when the actual number of deployments is below the 800 limit. Additionally, automatic cleanup does not apply to management group or tenant scopes.
+
+We are actively working with the product team to enhance the cleanup process. In the meantime, deterministic deployment names provide a reliable way to keep deployment counts stable by overwriting previous deployment objects rather than creating new ones.
 
 Deterministic deployment names cause Azure to **overwrite** the previous deployment object, keeping the deployment count stable regardless of how many times the module is deployed.
 
