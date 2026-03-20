@@ -53,6 +53,12 @@ Where:
 | `<ChildModuleDescriptor>` | A short, human-readable label identifying the child module being deployed (e.g., `DB`, `Subnet`, `FederatedIdentityCred`). |
 | `${index}` | The loop index variable, included when deploying in a loop. Omit for single (non-looped) deployments. |
 
+{{% notice style="important" title="location parameter" %}}
+
+If `location` is not available, for example when deploying a global resource that does not have a location property, it is acceptable to omit it. However, the `<parentResource>.id` **MUST** always be included as the primary seed for `uniqueString`.
+
+{{% /notice %}}
+
 ### Why parent resource ID?
 
 Using the parent resource's ID as the `uniqueString` seed provides two critical properties:
@@ -69,12 +75,6 @@ The parent resource's ID (e.g., `/subscriptions/.../resourceGroups/.../providers
 {{% notice style="note" title="Supporting multiple deployments of the same module at the same scope" %}}
 
 A common scenario is deploying the same module type more than once within the same scope — for example, two different SQL servers each with their own set of databases, or two user-assigned identities each with their own federated credentials. Because the parent resource ID is unique per resource instance, the resulting deployment names will differ even when the child module type and index are identical. This ensures that parallel deployments of the same module at the same scope do not collide.
-
-{{% /notice %}}
-
-{{% notice style="important" title="location parameter" %}}
-
-If `location` is not available, for example when deploying a global resource that does not have a location property, it is acceptable to omit it. However, the `<parentResource>.id` **MUST** always be included as the primary seed for `uniqueString`.
 
 {{% /notice %}}
 
