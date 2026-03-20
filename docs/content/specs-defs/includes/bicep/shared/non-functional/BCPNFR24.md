@@ -68,6 +68,12 @@ A common scenario is deploying the same module type more than once within the sa
 
 {{% /notice %}}
 
+{{% notice style="important" title="location parameter" %}}
+
+If `location` is not available, for example when deploying a global resource that does not have a location property, it is acceptable to omit it. However, the `<parentResource>.id` **MUST** always be included as the primary seed for `uniqueString`.
+
+{{% /notice %}}
+
 Other approaches fail on one or both of these properties:
 
 | Approach | Deterministic? | Collision-free? | Issue |
@@ -106,34 +112,3 @@ module server_databases 'database/main.bicep' = [for (database, index) in (datab
   }
 }]
 ```
-
-Example 3: Federated identity credentials on a user-assigned managed identity
-
-```bicep
-resource userAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' = { ... }
-
-module identity_federatedIdentityCredentials 'federated-identity-credential/main.bicep' = [for (credential, index) in (federatedIdentityCredentials ?? []): {
-  name: '${uniqueString(userAssignedIdentity.id, location)}-UserMSI-FederatedIdentityCred-${index}'
-  params: {
-    userAssignedIdentityName: userAssignedIdentity.name
-    (...)
-  }
-}]
-```
-
-{{% notice style="important" %}}
-
-Do **NOT** use any of the following patterns for deployment names in module references:
-
-```bicep
-// ❌ Non-deterministic — uses deployment().name which changes each run
-name: '${uniqueString(deployment().name, location)}-Sql-DB-${index}'
-
-// ❌ Non-deterministic — uses utcNow()
-name: '${utcNow()}-Sql-DB-${index}'
-
-// ❌ Deterministic but NOT collision-free — same hash for all resources in a scope
-name: '${uniqueString(subscription().id, resourceGroup().id, location)}-Sql-DB-${index}'
-```
-
-{{% /notice %}}

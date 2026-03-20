@@ -32,7 +32,7 @@ Example 1: Working example with a single deployment
 ```bicep
 module testDeployment '../../../main.bicep' = {
   scope: resourceGroup
-  name: '${uniqueString(deployment().name, resourceGroup().id, location)}-test-${serviceShort}'
+  name: '${uniqueString(deployment().name, location)}-test-${serviceShort}'
   params: {
     (...)
   }
@@ -45,7 +45,7 @@ Example 2: Working example using a deployment loop
 @batchSize(1)
 module testDeployment '../../main.bicep' = [for iteration in [ 'init', 'idem' ]: {
   scope: resourceGroup
-  name: '${uniqueString(deployment().name, resourceGroup().id, location)}-test-${serviceShort}-${iteration}'
+  name: '${uniqueString(deployment().name, location)}-test-${serviceShort}-${iteration}'
   params: {
     (...)
   }
