@@ -97,7 +97,7 @@ Please follow the steps below:
 
 - Make sure the child module name is listed in the publishing allowed list [child-module-publish-allowed-list.json](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/staticValidation/compliance/helper/child-module-publish-allowed-list.json). If not, add it to the file, keeping an alphabetical order. This step is relevant until the process is in a pilot phase.
 - Update the child module `main.bicep` template to support telemetry, as per [SFR4]({{% siteparam base %}}/spec/SFR4), [SFR3]({{% siteparam base %}}/spec/SFR3) and [BCPFR4]({{% siteparam base %}}/spec/BCPFR4)
-  - Add the `enableTelemetry` parameter with a default value of `true`.
+  - Add the `enableTelemetry` parameter with a default value of `true`. Place it as the **last `param` declaration**, immediately before the first `var` statement
     ```bicep
     @description('Optional. Enable/Disable usage telemetry for module.')
     param enableTelemetry bool = true
