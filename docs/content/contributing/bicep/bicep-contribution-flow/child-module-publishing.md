@@ -39,7 +39,7 @@ For a step-by-step explanation with detailed instructions, refer to the followin
   * **Parent module template**: In the `main.bicep` template of the child module direct parent, add a `enableReferencedModulesTelemetry` variable with a value of `false`, and pass it as the `enableTelemetry` value down to the child module deployment.
   * **Version**: Add the `version.json` file to the child module folder and set version to `0.1`.
   * **Changelog**: Add a new `CHANGELOG.md` file to the child module folder and update the changelog of all its versioned parents with a new patch version, up to the top-level parent.
-  * **Set-AVMModule**: Run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility using the `-Recurse` flag and the path to the top-level module, test your changes and raise a PR.
+  * **Set-AVMModule**: Run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility explicitly on the affected bicep modules, test your changes and raise a PR.
 
 ## Prerequisites
 
@@ -139,6 +139,35 @@ Please follow the steps below:
     "version": "0.1"
   }
   ```
+- Determine all affected module paths. These are both the child module(s) and all their ancestor modules in the tree.
+
+  Examples:
+
+  - Child module to publish: `avm/res/virtual-network/subnet`
+  - Affected modules:
+    - `avm/res/virtual-network/subnet`
+    - `avm/res/virtual-network`
+
+  - Child module to publish: `avm/res/storage/storage-account/blob-service/container/immutability-policy`
+  - Affected modules:
+    - `avm/res/storage/storage-account/blob-service/container/immutability-policy`
+    - `avm/res/storage/storage-account/blob-service/container`
+    - `avm/res/storage/storage-account/blob-service`
+    - `avm/res/storage/storage-account`
+
+  {{% notice style="tip" title="Retrieve affected module paths programmatically" icon="lightbulb" %}}
+  To retrieve affected module paths programmatically you can leverage the [Get-ParentFolderPathList](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/sharedScripts/Get-ParentFolderPathList.ps1) utility using the `'OnlyModules'` option
+  ```powershell
+    # Dot-source the script
+    . ./utilities/pipelines/sharedScripts/
+
+    # Call the function
+    Get-ParentFolderPathList.ps1
+    $affectedModulePathList = Get-ParentFolderPathList -Path '<path/to/avm/child-module>' -Filter 'OnlyModules'
+  ```
+
+  {{% /notice %}}
+
 - Update Changelogs
   - Add a new `CHANGELOG.md` file to the child module folder, with the following sample content. Make sure to replace the `<avm/res/path/to/child-module>` placeholder with the name of the child module.
     ```markdown
@@ -156,20 +185,32 @@ Please follow the steps below:
 
     - None
     ```
-  - Update the changelog of all the child module's versioned parents with a new patch version, up to the top-level parent. Refer below for an example content section:
+  - Check the list of affected modules. Update the changelog of all the affected modules with a version.json. Add a new patch version for each. Refer below for an example content section:
     ```markdown
       ## <CurrentMajor>.<CurrentMinor>.<CurrentPatch+1>
 
       ### Changes
 
-      - Publishing child module `<child-module-path>`
+      - Publishing child module `<avm/res/path/to/child-module>`
 
       ### Breaking Changes
 
       - None
 
     ```
-- As per the default pull request process, run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility using the `-Recurse` flag and top-level parent's folder path. Then test your changes locally and/or via the top-level module pipeline, raise a PR and attach a status badge proving successful validation.
+
+- Run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility, loading the script with dot sourcing and calling it explicitly on all affected modules.
+  ```powershell
+  # Dot-source the script
+  . ./utilities/tools/Set-AVMModule.ps1
+
+  # Iterate over each path
+  foreach ($modulePath in $affectedModulePaths) {
+    Set-AVMModule -ModuleFolderPath $modulePath
+  }
+  ```
+
+- Test your changes via the top-level module pipeline, raise a PR and attach a status badge proving successful validation.
 
 {{% notice style="note" %}}
 
