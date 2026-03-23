@@ -13,6 +13,7 @@ This section lists all contribution guidance available to module owners and cont
 - [Contribution Q&A]({{% siteparam base %}}/contributing/q-and-a/)
 - [Website Contribution Guide]({{% siteparam base %}}/contributing/website/)
 - [Code of Conduct](https://opensource.microsoft.com/codeofconduct/)
+- [Module Owner Onboarding](https://aka.ms/AVM/Onboarding) (MSFT internal only)
 
 {{% notice style="important" %}}
 
