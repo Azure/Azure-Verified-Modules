@@ -39,7 +39,7 @@ For a step-by-step explanation with detailed instructions, refer to the followin
   * **Parent module template**: In the `main.bicep` template of the child module direct parent, add a `enableReferencedModulesTelemetry` variable with a value of `false`, and pass it as the `enableTelemetry` value down to the child module deployment.
   * **Version**: Add the `version.json` file to the child module folder and set version to `0.1`.
   * **Changelog**: Add a new `CHANGELOG.md` file to the child module folder and update the changelog of all its versioned parents with a new patch version, up to the top-level parent.
-  * **Set-AVMModule**: Run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility explicitly on the affected bicep modules, test your changes and raise a PR.
+  * **Set-AVMModule**: Run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility explicitly on the affected bicep modules, i.e., the child module(s) and all their parent modules up to the top-level module, test your changes and raise a PR.
 
 ## Prerequisites
 
@@ -139,7 +139,7 @@ Please follow the steps below:
     "version": "0.1"
   }
   ```
-- Determine all affected module paths. These are both the child module(s) and all their ancestor modules in the tree.
+- Determine all affected module paths. This includes the child module(s) and all parent modules up to the top-level module.
 
   Examples:
 
@@ -158,7 +158,7 @@ Please follow the steps below:
   {{% notice style="tip" title="Retrieve affected module paths programmatically" icon="lightbulb" %}}
   To retrieve affected module paths programmatically you can leverage the [Get-ParentFolderPathList](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/sharedScripts/Get-ParentFolderPathList.ps1) utility using the `'OnlyModules'` option
   ```powershell
-$affectedModulePathList = Get-ParentFolderPathList -Path '<path/to/avm/child-module>' -Filter 'OnlyModules'
+  $affectedModulePathList = Get-ParentFolderPathList -Path '<path/to/avm/child-module>' -Filter 'OnlyModules'
   ```
 
   {{% /notice %}}
@@ -194,7 +194,7 @@ $affectedModulePathList = Get-ParentFolderPathList -Path '<path/to/avm/child-mod
 
     ```
 
-- Run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility, loading the script with dot sourcing and calling it explicitly on all affected modules.
+- Run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility, calling it explicitly on all affected modules.
   ```powershell
   foreach ($modulePath in $affectedModulePaths) {
     Set-AVMModule -ModuleFolderPath $modulePath
