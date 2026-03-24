@@ -54,17 +54,18 @@ function Get-ModuleNamesFromMAR {
     throw "Failed to fetch MAR file from [$marFileUrl]. Error: $($_.Exception.Message)"
   }
 
-  [string[]] $marFileModuleNames = @()
+  $marFileModuleNames = [System.Collections.Generic.List[string]]::new()
   try {
-    [string[]] $marFileModuleNames = @([regex]::Matches($marFileContent, '(?m)^\s*-\s*name:\s*(?<name>[^\r\n]+)') | ForEach-Object {
-        $_.Groups['name'].Value.Trim() -replace '^public/bicep/', ''
-      })
+    foreach ($match in [regex]::Matches($marFileContent, '(?m)^\s*-\s*name:\s*(?<name>[^\r\n]+)')) {
+      $moduleName = $match.Groups['name'].Value.Trim() -replace '^public/bicep/', ''
+      $null = $marFileModuleNames.Add($moduleName)
+    }
   }
   catch {
     throw "Failed to parse module names from MAR file. Error: $($_.Exception.Message)"
   }
 
-  return $marFileModuleNames
+  return $marFileModuleNames.ToArray()
 }
 
 function Set-LocalMARFileContent {
