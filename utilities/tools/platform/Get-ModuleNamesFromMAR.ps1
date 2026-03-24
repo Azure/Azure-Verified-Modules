@@ -23,6 +23,7 @@ Returns the list of module names in the MAR file as an array of strings.
 function Get-ModuleNamesFromMAR {
 
   [CmdletBinding()]
+  [OutputType([string[]])]
   param (
     [Parameter(Mandatory, HelpMessage = 'Provide a GitHub token (PAT for testing or GitHub App token for production) with read access to the MAR repository (microsoft/mcr).')]
     [string] $GitHubToken,
@@ -53,9 +54,9 @@ function Get-ModuleNamesFromMAR {
     throw "Failed to fetch MAR file from [$marFileUrl]. Error: $($_.Exception.Message)"
   }
 
-  $marFileModuleNames = @()
+  [string[]] $marFileModuleNames = @()
   try {
-    $marFileModuleNames = @([regex]::Matches($marFileContent, '(?m)^\s*-\s*name:\s*(?<name>[^\r\n]+)') | ForEach-Object {
+    [string[]] $marFileModuleNames = @([regex]::Matches($marFileContent, '(?m)^\s*-\s*name:\s*(?<name>[^\r\n]+)') | ForEach-Object {
         $_.Groups['name'].Value.Trim() -replace '^public/bicep/', ''
       })
   }
@@ -67,7 +68,7 @@ function Get-ModuleNamesFromMAR {
 }
 
 function Set-LocalMARFileContent {
-  [CmdletBinding()]
+  [CmdletBinding(SupportsShouldProcess)]
   param (
     [Parameter(Mandatory, HelpMessage = 'Provide the path to the local MAR file copy.')]
     [string] $LocalMARFilePath,
@@ -77,6 +78,8 @@ function Set-LocalMARFileContent {
   )
 
   $jsonContent = $FileContent | ConvertTo-Json
-  New-Item -Path $LocalMARFilePath -Value ($jsonContent | Out-String) -Force
-  Write-Verbose "File [$LocalMARFilePath] updated" -Verbose
+  if ($PSCmdlet.ShouldProcess($LocalMARFilePath, 'Update local MAR file content')) {
+    $null = New-Item -Path $LocalMARFilePath -Value ($jsonContent | Out-String) -Force
+    Write-Verbose "File [$LocalMARFilePath] updated" -Verbose
+  }
 }
