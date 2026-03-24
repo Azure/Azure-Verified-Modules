@@ -42,7 +42,10 @@ jobs:
       - name: Confirm module in MAR
         shell: pwsh
         run: |
-          . './utilities/pipelines/publish/Confirm-ModuleInMAR.ps1'
-          $marModuleList = Confirm-ModuleInMAR -GitHubToken ${{ steps.app-token.outputs.token }} -Owner ${{ vars.MAR_REPO_OWNER}} -Repo ${{ vars.MAR_REPO_REPOSITORY }}
+          . './utilities/tools/platform/Get-ModuleNamesFromMAR.ps1'
+          # get the list of module names in the MAR file as string array
+          $marModuleList = Get-ModuleNamesFromMAR -GitHubToken ${{ steps.app-token.outputs.token }} -Owner ${{ vars.MAR_REPO_OWNER}} -Repo ${{ vars.MAR_REPO_REPOSITORY }}
+
+          # set the content as JSON of the local MAR file to the list of module names retrieved from the MAR file in the repository
           $localMARFilePath = Join-Path $env:GITHUB_WORKSPACE 'docs\static\module-indexes\BicepMARModules.json'
           Set-LocalMARFileContent -LocalMARFilePath $localMARFilePath -FileContent $marModuleList

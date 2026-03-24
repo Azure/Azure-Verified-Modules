@@ -17,6 +17,8 @@ Mandatory. The repository name. Default is "mcr".
 .EXAMPLE
 Get-ModuleNamesFromMAR -GitHubToken $env:MAR_REPO_ACCESS_PAT -Owner 'Microsoft' -Repo 'mcr' -Verbose
 
+Returns the list of module names in the MAR file as an array of strings.
+
 #>
 function Get-ModuleNamesFromMAR {
 
@@ -53,11 +55,6 @@ function Get-ModuleNamesFromMAR {
 
   $marFileModuleNames = @()
   try {
-    # if (Get-Command -Name 'ConvertFrom-Yaml' -ErrorAction SilentlyContinue) {
-    #   $marObject = $marFileContent | ConvertFrom-Yaml -ErrorAction Stop
-    #   $marFileModuleNames = @($marObject.repos | Where-Object { $null -ne $_.name } | ForEach-Object { $_.name -replace '^public/bicep/', '' })
-    # }
-
     $marFileModuleNames = @([regex]::Matches($marFileContent, '(?m)^\s*-\s*name:\s*(?<name>[^\r\n]+)') | ForEach-Object {
         $_.Groups['name'].Value.Trim() -replace '^public/bicep/', ''
       })
@@ -79,10 +76,7 @@ function Set-LocalMARFileContent {
     [string[]] $FileContent
   )
 
-  if ($PSCmdlet.ShouldProcess("File in path [$LocalMARFilePath]", 'Overwrite')) {
-    $jsonContent = $FileContent | ConvertTo-Json
-    # Set-Content -Path $LocalMARFilePath -Value $jsonContent -Encoding utf8 -Force
-    New-Item -Path $LocalMARFilePath -Value ($jsonContent | Out-String) -Force
-    Write-Verbose "File [$LocalMARFilePath] updated" -Verbose
-  }
+  $jsonContent = $FileContent | ConvertTo-Json
+  New-Item -Path $LocalMARFilePath -Value ($jsonContent | Out-String) -Force
+  Write-Verbose "File [$LocalMARFilePath] updated" -Verbose
 }
