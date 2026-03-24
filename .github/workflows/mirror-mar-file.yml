@@ -15,7 +15,7 @@ on:
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   id-token: write
-  contents: read
+  contents: write
 
 # Default to bash
 defaults:
@@ -29,6 +29,9 @@ jobs:
     steps:
       - name: Checkout tag
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
 
       # create a token
       - uses: actions/create-github-app-token@v2
@@ -49,3 +52,23 @@ jobs:
           # set the content as JSON of the local MAR file to the list of module names retrieved from the MAR file in the repository
           $localMARFilePath = Join-Path $env:GITHUB_WORKSPACE 'docs\static\module-indexes\BicepMARModules.json'
           Set-LocalMARFileContent -LocalMARFilePath $localMARFilePath -FileContent $marModuleList
+
+      - name: Check for changes
+        id: git_status
+        shell: pwsh
+        run: |
+          $diff = git diff --name-only -- 'docs/static/module-indexes/BicepMARModules.json'
+          if ($diff.Count -gt 0) {
+            Write-Verbose 'Detected updates to mirrored MAR file.' -Verbose
+            'changes=true' >> $env:GITHUB_OUTPUT
+          }
+
+      - name: Commit and push mirrored MAR file
+        if: steps.git_status.outputs.changes == 'true'
+        shell: pwsh
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 'docs/static/module-indexes/BicepMARModules.json'
+          git commit -m 'Update mirrored MAR file'
+          git push origin HEAD:${{ github.ref_name }}
