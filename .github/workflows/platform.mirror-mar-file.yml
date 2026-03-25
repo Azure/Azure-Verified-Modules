@@ -41,6 +41,7 @@ jobs:
 
       # create a token
       - uses: actions/create-github-app-token@v3
+        name: Create App Token for MAR Repository
         id: mcr-app-token
         with:
           owner: ${{ vars.MAR_REPO_OWNER}}
@@ -49,6 +50,7 @@ jobs:
           private-key: ${{ secrets.MAR_REPO_ACCESS_APP_PRIVATEKEY }}
 
       - uses: actions/create-github-app-token@v3
+        name: Create App Token for AVM Repository (used for PR creation)
         id: avm-app-token
         with:
           app-id: ${{ secrets.APP_ID }}
