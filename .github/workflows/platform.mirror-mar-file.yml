@@ -3,9 +3,6 @@ name: ".Platform: Mirror MAR File"
 
 on:
   # Runs everyday at 4 am
-  push:
-    branches:
-      - main
   schedule:
     - cron: "0 4 * * *" # Daily Update at 4 am
 
