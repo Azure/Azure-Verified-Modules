@@ -65,6 +65,7 @@
   "avm/ptn/security/sentinel",
   "avm/ptn/subscription/service-health-alerts",
   "avm/ptn/virtual-machine-images/azure-image-builder",
+  "avm/res/aad/domain-service",
   "avm/res/alerts-management/action-rule",
   "avm/res/analysis-services/server",
   "avm/res/api-center/service",
