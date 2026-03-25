@@ -1,5 +1,5 @@
 # Workflow for mirroring the MAR file to check Bicep modules against.
-name: Mirror MAR File
+name: ".Platform: Mirror MAR File"
 
 on:
   # Runs everyday at 4 am
@@ -34,7 +34,7 @@ jobs:
           ref: ${{ github.ref_name }}
 
       # create a token
-      - uses: actions/create-github-app-token@v2
+      - uses: actions/create-github-app-token@v3
         id: app-token
         with:
           owner: ${{ vars.MAR_REPO_OWNER}}
