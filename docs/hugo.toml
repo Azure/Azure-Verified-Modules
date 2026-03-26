@@ -737,6 +737,16 @@ pre = '<i class="fa-solid fa-globe"></i> '
 name = 'Code of Conduct'
 url = 'https://opensource.microsoft.com/codeofconduct/'
 weight = 6
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
+identifier = 'onboarding'
+parent = 'contributing'
+pre = '<i class="fa-solid fa-globe"></i> '
+name = 'Module Owner Onboarding'
+url = 'https://aka.ms/AVM/Onboarding'
+weight = 7
+params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
 identifier = 'resources'
