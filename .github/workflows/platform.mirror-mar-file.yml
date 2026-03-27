@@ -1,0 +1,143 @@
+# Workflow for mirroring the MAR file to check Bicep modules against.
+name: ".Platform: Mirror MAR File"
+
+on:
+  # Runs everyday at 4 am
+  schedule:
+    - cron: "0 4 * * *" # Daily Update at 4 am
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch: {}
+
+env:
+  pipelinePrincipalGitUserName: "AVMPipelinePrincipal"
+  pipelinePrincipalGitUserEmail: "AVM@noreply.github.com"
+  branch_name: "update-mar-file"
+  pr_title: "Update mirrored MAR file (automated)"
+  pr_body: "This is an automated ``pull_request`` containing updates to the mirrored MAR file stored at ``docs/static/module-indexes/BicepMARModules.json``.\nPlease review the ``files changed`` tab to review changes."
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
+
+# Default to bash
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  update_mar_file:
+    name: Update MAR file
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    environment: platform
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      # create a token
+      - uses: actions/create-github-app-token@v3
+        name: Create App Token for MAR Repository
+        id: mcr-app-token
+        with:
+          owner: ${{ vars.MAR_REPO_OWNER}}
+          repositories: ${{ vars.MAR_REPO_REPOSITORY }}
+          app-id: ${{ vars.MAR_REPO_ACCESS_APPID }}
+          private-key: ${{ secrets.MAR_REPO_ACCESS_APP_PRIVATEKEY }}
+
+      - uses: actions/create-github-app-token@v3
+        name: Create App Token for AVM Repository (used for PR creation)
+        id: avm-app-token
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      # ensure the module is in the MAR file before publishing
+      - name: Confirm module in MAR
+        shell: pwsh
+        run: |
+          . './utilities/tools/platform/Get-ModuleNamesFromMAR.ps1'
+          # get the list of module names in the MAR file as string array
+          $marModuleList = Get-ModuleNamesFromMAR -GitHubToken ${{ steps.mcr-app-token.outputs.token }} -Owner ${{ vars.MAR_REPO_OWNER}} -Repo ${{ vars.MAR_REPO_REPOSITORY }}
+
+          # set the content as JSON of the local MAR file to the list of module names retrieved from the MAR file in the repository
+          $localMARFilePath = Join-Path $env:GITHUB_WORKSPACE 'docs\static\module-indexes\BicepMARModules.json'
+          Set-LocalMARFileContent -LocalMARFilePath $localMARFilePath -FileContent $marModuleList
+
+      - name: Configure local git
+        run: |
+          git config --global user.name '${{ env.pipelinePrincipalGitUserName }}'
+          git config --global user.email '${{ env.pipelinePrincipalGitUserEmail }}'
+
+      - name: Format branch name
+        shell: pwsh
+        run: |
+          $rawBranch = '${{ env.branch_name }}'
+          $formattedBranch = "{0}_{1}" -f $rawBranch, (Get-Date).ToString('yyyy-MM-dd-HH-mm-ss')
+          Write-Verbose "Adjusting branch name [$rawBranch] to [$formattedBranch]" -Verbose
+          ('{0}={1}' -f 'branch_name', $formattedBranch) | Out-File -FilePath $env:GITHUB_ENV -Encoding 'utf8' # Overwrite env variable
+
+      - name: Create and checkout branch
+        run: |
+          BRANCH_URL="repos/${{ github.repository }}/branches"
+          JQ_FILTER=".[] | select(.name == \"${{ env.branch_name }}\").name"
+          CHECK_BRANCH_ORIGIN=$(gh api $BRANCH_URL | jq -r "$JQ_FILTER")
+          if [ -z "$CHECK_BRANCH_ORIGIN" ]
+          then
+            echo "Checkout local branch (create new, no origin)..."
+            git checkout -b ${{ env.branch_name }}
+          else
+            echo "Checkout local branch (create new, track from origin)..."
+            git checkout -b ${{ env.branch_name }} --track origin/${{ env.branch_name }}
+
+          git merge origin/main
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check for changes
+        id: git_status
+        shell: pwsh
+        run: |
+          $diff = git diff --name-only -- 'docs/static/module-indexes/BicepMARModules.json'
+          if ($diff.Count -gt 0) {
+            Write-Verbose 'Detected updates to mirrored MAR file.' -Verbose
+            'changes=true' >> $env:GITHUB_OUTPUT
+          }
+
+      - name: Add files, commit and push
+        if: steps.git_status.outputs.changes == 'true'
+        shell: pwsh
+        run: |
+          Write-Verbose "Pushing changes to origin..." -Verbose
+          git add (Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'module-indexes' 'BicepMARModules.json')
+          git commit -m '${{ env.pr_title }}'
+          git push origin ${{ env.branch_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create pull request
+        if: steps.git_status.outputs.changes == 'true'
+        run: |
+          HEAD_LABEL="${{ github.repository_owner }}:${{ env.branch_name }}"
+          BASE_LABEL="${{ github.repository_owner }}:$(echo '${{ github.ref }}' | sed 's:refs/heads/::')"
+          PULL_REQUEST_URL="repos/${{ github.repository }}/pulls"
+          JQ_FILTER=".[] | select(.head.label == \"$HEAD_LABEL\") | select(.base.label == \"$BASE_LABEL\") | .url"
+          CHECK_PULL_REQUEST_URL=$(gh api $PULL_REQUEST_URL | jq -r "$JQ_FILTER")
+          if [ -z "$CHECK_PULL_REQUEST_URL" ]
+          then
+            CHECK_PULL_REQUEST_URL=$(gh pr create \
+            --title "${{ env.pr_title }}" \
+            --body "${{ env.pr_body }}" \
+            --base "${{ github.ref }}" \
+            --head "${{ env.branch_name }}")
+            echo "Created new PR: $CHECK_PULL_REQUEST_URL"
+          else
+            echo "Existing PR found: $CHECK_PULL_REQUEST_URL"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ steps.avm-app-token.outputs.token }}
