@@ -36,13 +36,13 @@ Skills encode complex, multi-step domain workflows into structured instructions 
 **Example prompt:**
 
 ```text
-Publish a child module avm/res/network/virtual-network/virtual-network-peering.
+Publish AVM child module avm/res/network/virtual-network/virtual-network-peering
 ```
 
 Note: in some cases, VS Code is not identifying the correct skill based on the above prompt. If this happens, you can try to use the follow prompt that explicitly triggers the correct skill:
 
 ```text
-/AVM-Child-Module-Publishing Publish the child module avm/res/network/virtual-network/subnet!
+/avm-child-module-publishing Publish AVM child module avm/res/network/virtual-network/virtual-network-peering
 ```
 
 ## Prompt Files
