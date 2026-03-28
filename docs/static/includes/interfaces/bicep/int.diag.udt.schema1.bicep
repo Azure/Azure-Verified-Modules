@@ -4,7 +4,7 @@
 // ============== //
 
 import { diagnosticSettingFullType } from 'br/public:avm/utl/types/avm-common-types:>version<'
-@description('Optional. The diagnostic settings of the service. If neither metrics nor logs are specified, all metrics & logs are configured by default. If either one is specified, the other is ignored.')
+@description('Optional. The diagnostic settings of the service. If neither metrics nor logs are specified, all metrics & logs are configured by default. If only one of them is specified, the other one will not be configured.')
 param diagnosticSettings diagnosticSettingFullType[]?
 
 // ============= //
