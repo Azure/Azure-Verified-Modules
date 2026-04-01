@@ -89,7 +89,7 @@ This is not a permanent decision. Generally speaking, the AVM team is open to an
 **What about pattern modules?** Resources from other Microsoft cloud products may still be included in **pattern modules** as native resource declarations, where they add meaningful value to the overall architecture pattern being described. Per the AVM specifications ([PMNFR2]({{% siteparam base %}}/spec/PMNFR2)), pattern modules may use native resource code where necessary. The restriction above applies specifically to **standalone resource modules** for these platforms.
 
 {{% notice style="note" %}}
-If you believe AVM should define a standardisation layer for one of these platforms, please open a [GitHub Issue](https://github.com/Azure/Azure-Verified-Modules/issues) with your proposal and rationale.
+If you believe AVM should define a standardization layer for one of these platforms, please open a [GitHub Issue](https://github.com/Azure/Azure-Verified-Modules/issues) with your proposal and rationale.
 {{% /notice %}}
 
 ---
