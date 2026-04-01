@@ -80,7 +80,7 @@ If the relevant AVM module isn't available to use to assist the Landing Zone Acc
 
 ### Does/will AVM cover other Microsoft cloud products such as Entra ID, Microsoft 365, GitHub, Azure DevOps, or Microsoft Fabric?
 
-Today, the AVM program is scoped specifically to **Azure cloud resources** and does not produce standalone resource modules for other Microsoft cloud products such as Entra ID, Microsoft 365, GitHub, Azure DevOps, or Microsoft Fabric.
+Today, the AVM program is scoped specifically to **Azure cloud resources** and does not produce standalone modules for other Microsoft cloud products such as Entra ID, Microsoft 365, GitHub, Azure DevOps, or Microsoft Fabric.
 
 AVM's core value is the **standardization of Azure resource configurations** via Bicep and Terraform, providing consistent interfaces for things like WAF alignment, RBAC, diagnostic settings, and private networking. We have investigated whether this standardization model can be applied to other Microsoft cloud products (for example, we have spoken to relevant product group teams on Entra ID) and, for today, we have concluded there is no meaningful impact to be had by creating standalone modules for objects such as an Entra ID group.
 
