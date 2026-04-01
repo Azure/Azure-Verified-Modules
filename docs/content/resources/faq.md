@@ -78,11 +78,19 @@ If the relevant AVM module isn't available to use to assist the Landing Zone Acc
 
 ---
 
-### Does/will AVM cover Microsoft 365, Azure DevOps, GitHub, etc.?
+### Does/will AVM cover other Microsoft cloud products such as Entra ID, Microsoft 365, GitHub, Azure DevOps, or Microsoft Fabric?
 
-While the principles and practices of AVM are largely applicable to other clouds and services such as, Microsoft 365 & Azure DevOps, the AVM program (today) only covers Azure cloud resources and architectures.
+Today, the AVM program is scoped specifically to **Azure cloud resources** and does not produce standalone modules for other Microsoft cloud products such as Entra ID, Microsoft 365, GitHub, Azure DevOps, or Microsoft Fabric.
 
-However, if you think this program, or a similar one, should exist to cover these other Microsoft Cloud offerings, please give a 👍 or leave a comment on this [GitHub Issue #71](https://github.com/Azure/Azure-Verified-Modules/issues/71) in the AVM repository.
+AVM's core value is the **standardization of Azure resource configurations** via Bicep and Terraform, providing consistent interfaces for things like WAF alignment, RBAC, diagnostic settings, and private networking. We have investigated whether this standardization model can be applied to other Microsoft cloud products (for example, we have spoken to relevant product group teams on Entra ID) and, for today, we have concluded there is no meaningful impact to be had by creating standalone modules for objects such as an Entra ID group.
+
+This is not a permanent decision. Generally speaking, the AVM team is open to any conversation about expanding scope to cover other Microsoft cloud products. If there are valid reasons to wrap these assets inside AVM modules and a recognized standardization surface can be defined (comparable to what AVM provides for Azure resources today), we are open to that conversation. We encourage the community to raise proposals via a [GitHub Issue](https://github.com/Azure/Azure-Verified-Modules/issues).
+
+**What about pattern modules?** Assets/objects and their configuration from other Microsoft cloud products may still be included in **pattern modules** as native asset/object declarations (e.g., via a supported [Terraform provider](https://registry.terraform.io/search/providers?q=microsoft) or [Bicep extension](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-extension)), where they add meaningful value to the overall architecture pattern being described. Per the AVM specifications ([PMNFR2]({{% siteparam base %}}/spec/PMNFR2)), pattern modules may use native "resource" code where necessary. The restriction above applies specifically to **standalone resource modules** for these platforms.
+
+{{% notice style="note" %}}
+If you believe AVM should define a standardization layer for one of these platforms, please open a [GitHub Issue](https://github.com/Azure/Azure-Verified-Modules/issues) with your proposal and rationale.
+{{% /notice %}}
 
 ---
 
