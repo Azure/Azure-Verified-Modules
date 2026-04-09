@@ -1,0 +1,37 @@
+{{- $maps := .maps -}}
+{{- $parentName := .parentName -}}
+{{- $useLinks := .useLinks -}}
+{{- $language := .language -}}
+{{- $parentPrefix := print $parentName "/" -}}
+{{- $directChildren := slice -}}
+{{- range $item := $maps -}}
+  {{- if hasPrefix $item.ModuleName $parentPrefix -}}
+    {{- $remainder := strings.TrimPrefix $parentPrefix $item.ModuleName -}}
+    {{- if not (strings.Contains $remainder "/") -}}
+      {{- $directChildren = $directChildren | append $item -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if $directChildren -}}
+<ul style="list-style-type: disc; padding-left: 20px; margin: 0;">
+  {{- range $child := $directChildren -}}
+    {{- $childShortName := strings.TrimPrefix $parentPrefix $child.ModuleName -}}
+    <li>
+      {{- if $useLinks -}}
+        {{- if or (eq $child.ModuleStatus "Available") (eq $child.ModuleStatus "Orphaned") -}}
+          {{- $linkUrl := $child.RepoURL -}}
+          {{- if eq $language "Terraform" -}}
+            {{- $linkUrl = $child.PublicRegistryReference -}}
+          {{- end -}}
+          <a href="{{ $linkUrl }}" title="[{{ $child.ModuleStatus }} {{ if eq $child.ModuleStatus "Available" }}🟢{{ else }}🟡{{ end }}] {{ $child.ModuleDisplayName }} | {{ $child.ModuleName }}">{{ $childShortName }}</a>
+        {{- else -}}
+          <span title="[Proposed ⚪] {{ $child.ModuleDisplayName }} ({{ $child.ModuleName }})">{{ $childShortName }}</span>
+        {{- end -}}
+      {{- else -}}
+        {{- $childShortName -}}
+      {{- end -}}
+      {{- partial "render-child-modules.html" (dict "maps" $maps "parentName" $child.ModuleName "useLinks" $useLinks "language" $language) -}}
+    </li>
+  {{- end -}}
+</ul>
+{{- end -}}
