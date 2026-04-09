@@ -2,6 +2,7 @@
 {{- $parentName := .parentName -}}
 {{- $useLinks := .useLinks -}}
 {{- $language := .language -}}
+{{- $depth := .depth | default 0 -}}
 {{- $parentPrefix := print $parentName "/" -}}
 {{/* Collect all descendants of the parent */}}
 {{- $descendants := slice -}}
@@ -24,6 +25,10 @@
   {{- end -}}
 {{- end -}}
 {{- if $effectiveChildren -}}
+{{- if eq $depth 0 -}}
+<details style="display: inline; cursor: pointer;">
+<summary style="display: inline-block; list-style: none; font-size: 0.7em; vertical-align: middle; opacity: 0.6; padding: 0; margin-left: 4px;">&#9654;</summary>
+{{- end -}}
 <ul style="list-style-type: disc; padding-left: 20px; margin: 0;">
   {{- range $child := $effectiveChildren -}}
     {{- $childDisplayName := strings.TrimPrefix $parentPrefix $child.ModuleName -}}
@@ -41,8 +46,11 @@
       {{- else -}}
         {{- $childDisplayName -}}
       {{- end -}}
-      {{- partial "render-child-modules.html" (dict "maps" $maps "parentName" $child.ModuleName "useLinks" $useLinks "language" $language) -}}
+      {{- partial "render-child-modules.html" (dict "maps" $maps "parentName" $child.ModuleName "useLinks" $useLinks "language" $language "depth" 1) -}}
     </li>
   {{- end -}}
 </ul>
+{{- if eq $depth 0 -}}
+</details>
+{{- end -}}
 {{- end -}}
