@@ -40,15 +40,25 @@
   {{ $ModuleStatusColumnId = 6 }}
   {{ $RepoURLColumnId = 7 }}
   {{ $PublicRegistryReferenceColumnId = 8 }}
-  {{ $TelemetryIdPrefixColumnId = 9 }}
-  {{ $PrimaryModuleOwnerGHHandleColumnId = 10 }}
-  {{ $PrimaryModuleOwnerDisplayNameColumnId = 11 }}
-  {{ $SecondaryModuleOwnerGHHandleColumnId = 12 }}
-  {{ $SecondaryModuleOwnerDisplayNameColumnId = 13 }}
-  {{ $ModuleOwnersGHTeamColumnId = 14 }}
-  {{ $DescriptionColumnId = 15 }}
-  {{ $CommentsColumnId = 16 }}
-  {{ $FirstPublishedInColumnId = 17 }}
+  {{ if eq $language "Bicep" }}
+    {{ $TelemetryIdPrefixColumnId = 9 }}
+    {{ $PrimaryModuleOwnerGHHandleColumnId = 10 }}
+    {{ $PrimaryModuleOwnerDisplayNameColumnId = 11 }}
+    {{ $SecondaryModuleOwnerGHHandleColumnId = 12 }}
+    {{ $SecondaryModuleOwnerDisplayNameColumnId = 13 }}
+    {{ $ModuleOwnersGHTeamColumnId = 14 }}
+    {{ $DescriptionColumnId = 15 }}
+    {{ $CommentsColumnId = 16 }}
+    {{ $FirstPublishedInColumnId = 17 }}
+  {{ else }}
+    {{ $PrimaryModuleOwnerGHHandleColumnId = 9 }}
+    {{ $PrimaryModuleOwnerDisplayNameColumnId = 10 }}
+    {{ $SecondaryModuleOwnerGHHandleColumnId = 11 }}
+    {{ $SecondaryModuleOwnerDisplayNameColumnId = 12 }}
+    {{ $DescriptionColumnId = 13 }}
+    {{ $CommentsColumnId = 14 }}
+    {{ $FirstPublishedInColumnId = 15 }}
+  {{ end }}
 
   {{ range $row, $rows }}
     {{ $map := dict
@@ -61,12 +71,10 @@
       "ModuleStatus" (index $row $ModuleStatusColumnId)
       "RepoURL" (index $row $RepoURLColumnId)
       "PublicRegistryReference" (index $row $PublicRegistryReferenceColumnId)
-      "TelemetryIdPrefix" (index $row $TelemetryIdPrefixColumnId)
       "PrimaryModuleOwnerGHHandle" (index $row $PrimaryModuleOwnerGHHandleColumnId)
       "PrimaryModuleOwnerDisplayName" (index $row $PrimaryModuleOwnerDisplayNameColumnId)
       "SecondaryModuleOwnerGHHandle" (index $row $SecondaryModuleOwnerGHHandleColumnId)
       "SecondaryModuleOwnerDisplayName" (index $row $SecondaryModuleOwnerDisplayNameColumnId)
-      "ModuleOwnersGHTeam" (index $row $ModuleOwnersGHTeamColumnId)
       "Description" (index $row $DescriptionColumnId)
       "Comments" (index $row $CommentsColumnId)
       "FirstPublishedInColumnId" (index $row $FirstPublishedInColumnId)
@@ -81,15 +89,25 @@
   {{ $ModuleStatusColumnId = 3 }}
   {{ $RepoURLColumnId = 4 }}
   {{ $PublicRegistryReferenceColumnId = 5 }}
-  {{ $TelemetryIdPrefixColumnId = 6 }}
-  {{ $PrimaryModuleOwnerGHHandleColumnId = 7 }}
-  {{ $PrimaryModuleOwnerDisplayNameColumnId = 8 }}
-  {{ $SecondaryModuleOwnerGHHandleColumnId = 9 }}
-  {{ $SecondaryModuleOwnerDisplayNameColumnId = 10 }}
-  {{ $ModuleOwnersGHTeamColumnId = 11 }}
-  {{ $DescriptionColumnId = 12 }}
-  {{ $CommentsColumnId = 13 }}
-  {{ $FirstPublishedInColumnId = 14 }}
+  {{ if eq $language "Bicep" }}
+    {{ $TelemetryIdPrefixColumnId = 6 }}
+    {{ $PrimaryModuleOwnerGHHandleColumnId = 7 }}
+    {{ $PrimaryModuleOwnerDisplayNameColumnId = 8 }}
+    {{ $SecondaryModuleOwnerGHHandleColumnId = 9 }}
+    {{ $SecondaryModuleOwnerDisplayNameColumnId = 10 }}
+    {{ $ModuleOwnersGHTeamColumnId = 11 }}
+    {{ $DescriptionColumnId = 12 }}
+    {{ $CommentsColumnId = 13 }}
+    {{ $FirstPublishedInColumnId = 14 }}
+  {{ else }}
+    {{ $PrimaryModuleOwnerGHHandleColumnId = 6 }}
+    {{ $PrimaryModuleOwnerDisplayNameColumnId = 7 }}
+    {{ $SecondaryModuleOwnerGHHandleColumnId = 8 }}
+    {{ $SecondaryModuleOwnerDisplayNameColumnId = 9 }}
+    {{ $DescriptionColumnId = 10 }}
+    {{ $CommentsColumnId = 11 }}
+    {{ $FirstPublishedInColumnId = 12 }}
+  {{ end }}
 
   {{ range $row, $rows }}
     {{ $map := dict
@@ -99,12 +117,10 @@
       "ModuleStatus" (index $row $ModuleStatusColumnId)
       "RepoURL" (index $row $RepoURLColumnId)
       "PublicRegistryReference" (index $row $PublicRegistryReferenceColumnId)
-      "TelemetryIdPrefix" (index $row $TelemetryIdPrefixColumnId)
       "PrimaryModuleOwnerGHHandle" (index $row $PrimaryModuleOwnerGHHandleColumnId)
       "PrimaryModuleOwnerDisplayName" (index $row $PrimaryModuleOwnerDisplayNameColumnId)
       "SecondaryModuleOwnerGHHandle" (index $row $SecondaryModuleOwnerGHHandleColumnId)
       "SecondaryModuleOwnerDisplayName" (index $row $SecondaryModuleOwnerDisplayNameColumnId)
-      "ModuleOwnersGHTeam" (index $row $ModuleOwnersGHTeamColumnId)
       "Description" (index $row $DescriptionColumnId)
       "Comments" (index $row $CommentsColumnId)
       "FirstPublishedInColumnId" (index $row $FirstPublishedInColumnId)
@@ -200,22 +216,7 @@
           {{ $item.ModuleName }}
         {{- end -}}
 
-        {{- range $element, $maps -}}
-          {{- if (eq $element.ParentModule $item.ModuleName) -}}
-            {{ $child := trim (replace $element.ModuleName (print $item.ModuleName "/") "") "/" }}
-            {{ if $useLinks }}
-              {{- if or (eq $element.ModuleStatus "Available") (eq $element.ModuleStatus "Orphaned") -}}
-                <li style="margin-left: 20px;">
-                  <a href="{{ $element.RepoURL }}" title="[{{ $element.ModuleStatus }} {{ if eq $element.ModuleStatus "Available" }}🟢{{ else }}🟡{{ end }}] {{ $element.ModuleDisplayName }} | {{ $element.ModuleName }}">{{ $child }}</a>
-                </li>
-              {{- else -}}
-                <li style="margin-left: 20px;">
-                  <span title="[Proposed ⚪] {{ $element.ModuleDisplayName }} ({{ $element.ModuleName }})">{{ $child }}</span>
-                </li>
-              {{- end -}}
-            {{- end -}}
-          {{- end -}}
-        {{- end -}}
+        {{- partial "render-child-modules.html" (dict "maps" $maps "parentName" $item.ModuleName "useLinks" $useLinks "language" $language) -}}
       </td>
       <td> {{/* display name and alternative names  */}}
         {{- with $trimmedAlternativeNames -}}
@@ -344,22 +345,7 @@
           {{ $item.ModuleName }}
         {{- end -}}
 
-        {{- range $element, $maps -}}
-          {{- if (eq $element.ParentModule $item.ModuleName) -}}
-            {{ $child := trim (replace $element.ModuleName (print $item.ModuleName "/") "") "/" }}
-            {{ if $useLinks }}
-              {{- if or (eq $element.ModuleStatus "Available") (eq $element.ModuleStatus "Orphaned") -}}
-                <li style="margin-left: 20px;">
-                  <a href="{{ $element.PublicRegistryReference }}" title="[{{ $element.ModuleStatus }} {{ if eq $element.ModuleStatus "Available" }}🟢{{ else }}🟡{{ end }}] {{ $element.ModuleDisplayName }} | {{ $element.ModuleName }}">{{ $child }}</a>
-                </li>
-              {{- else -}}
-                <li style="margin-left: 20px;">
-                  <span title="[Proposed ⚪️] {{ $element.ModuleDisplayName }} ({{ $element.ModuleName }})">{{ $child }}</span>
-                </li>
-              {{- end -}}
-            {{- end -}}
-          {{- end -}}
-        {{- end -}}
+        {{- partial "render-child-modules.html" (dict "maps" $maps "parentName" $item.ModuleName "useLinks" $useLinks "language" $language) -}}
       </td>
       <td style="text-align: center;"> {{/* link to the source code repo */}}
         {{- if $useLinks -}}

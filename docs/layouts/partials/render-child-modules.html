@@ -1,0 +1,56 @@
+{{- $maps := .maps -}}
+{{- $parentName := .parentName -}}
+{{- $useLinks := .useLinks -}}
+{{- $language := .language -}}
+{{- $depth := .depth | default 0 -}}
+{{- $parentPrefix := print $parentName "/" -}}
+{{/* Collect all descendants of the parent */}}
+{{- $descendants := slice -}}
+{{- range $item := $maps -}}
+  {{- if hasPrefix $item.ModuleName $parentPrefix -}}
+    {{- $descendants = $descendants | append $item -}}
+  {{- end -}}
+{{- end -}}
+{{/* Find effective direct children: descendants with no intermediate ancestor in the data */}}
+{{- $effectiveChildren := slice -}}
+{{- range $desc := $descendants -}}
+  {{- $hasAncestorInList := false -}}
+  {{- range $other := $descendants -}}
+    {{- if and (ne $other.ModuleName $desc.ModuleName) (hasPrefix $desc.ModuleName (print $other.ModuleName "/")) -}}
+      {{- $hasAncestorInList = true -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $hasAncestorInList -}}
+    {{- $effectiveChildren = $effectiveChildren | append $desc -}}
+  {{- end -}}
+{{- end -}}
+{{- if $effectiveChildren -}}
+{{- if eq $depth 0 -}}
+<details style="display: inline; cursor: pointer;">
+<summary style="display: inline-block; list-style: none; font-size: 0.7em; vertical-align: middle; opacity: 0.6; padding: 0; margin-left: 4px;">&#9654;</summary>
+{{- end -}}
+<ul style="list-style-type: disc; padding-left: 20px; margin: 0;">
+  {{- range $child := $effectiveChildren -}}
+    {{- $childDisplayName := strings.TrimPrefix $parentPrefix $child.ModuleName -}}
+    <li>
+      {{- if $useLinks -}}
+        {{- if or (eq $child.ModuleStatus "Available") (eq $child.ModuleStatus "Orphaned") -}}
+          {{- $linkUrl := $child.RepoURL -}}
+          {{- if eq $language "Terraform" -}}
+            {{- $linkUrl = $child.PublicRegistryReference -}}
+          {{- end -}}
+          <a href="{{ $linkUrl }}" title="[{{ $child.ModuleStatus }} {{ if eq $child.ModuleStatus "Available" }}🟢{{ else }}🟡{{ end }}] {{ $child.ModuleDisplayName }} | {{ $child.ModuleName }}">{{ $childDisplayName }}</a>
+        {{- else -}}
+          <span title="[Proposed ⚪] {{ $child.ModuleDisplayName }} ({{ $child.ModuleName }})">{{ $childDisplayName }}</span>
+        {{- end -}}
+      {{- else -}}
+        {{- $childDisplayName -}}
+      {{- end -}}
+      {{- partial "render-child-modules.html" (dict "maps" $maps "parentName" $child.ModuleName "useLinks" $useLinks "language" $language "depth" 1) -}}
+    </li>
+  {{- end -}}
+</ul>
+{{- if eq $depth 0 -}}
+</details>
+{{- end -}}
+{{- end -}}
