@@ -273,15 +273,15 @@ if ($UseOIDC) {
   Write-Host "New UAMI created with a Name of '$($newUAMI.Name)' and an Object ID of '$($newUAMI.PrincipalId)'." -ForegroundColor Green
   Write-Host ''
 
+  Write-Host 'Starting 120 second sleep to allow the UAMI to be created and available for Federated Credential creation and RBAC Role Assignments (eventual consistency) ...' -ForegroundColor Yellow
+  Start-Sleep -Seconds 120
+
   # Create Federated Credentials for UAMI for OIDC
   Write-Host "Creating Federated Credentials for the User-Assigned Managed Identity Name (UAMI) for OIDC ... '$($newUAMI.Name)' for OIDC ..." -ForegroundColor Magenta
   New-AzFederatedIdentityCredentials -ResourceGroupName $newUAMIRsg.ResourceGroupName -IdentityName $newUAMI.Name -Name 'avm-gh-env-validation' -Issuer "https://token.actions.githubusercontent.com" -Subject "repo:$($GitHubOrgAndRepoNameCombined):environment:avm-validation" -ErrorAction Stop
   Write-Host ''
 
   # Create RBAC Role Assignments for UAMI
-  Write-Host 'Starting 120 second sleep to allow the UAMI to be created and available for RBAC Role Assignments (eventual consistency) ...' -ForegroundColor Yellow
-  Start-Sleep -Seconds 120
-
   Write-Host "Creating RBAC Role Assignments of 'Owner' for the User-Assigned Managed Identity Name (UAMI) '$($newUAMI.Name)' on the Subscription with the ID of '$($GitHubSecret_ARM_SUBSCRIPTION_ID)' ..." -ForegroundColor Magenta
   New-AzRoleAssignment -ObjectId $newUAMI.PrincipalId -RoleDefinitionName 'Owner' -Scope "/subscriptions/$($GitHubSecret_ARM_SUBSCRIPTION_ID)" -ErrorAction Stop
   Write-Host "RBAC Role Assignments of 'Owner' for the User-Assigned Managed Identity Name (UAMI) '$($newUAMI.Name)' created successfully on the Subscription with the ID of '$($GitHubSecret_ARM_SUBSCRIPTION_ID)'." -ForegroundColor Green
