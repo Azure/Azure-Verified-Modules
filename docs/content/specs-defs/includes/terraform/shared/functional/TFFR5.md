@@ -21,7 +21,9 @@ priority: 20050
 
 ## ID: TFFR5 - Category: Composition - AzAPI - replace_triggers_refs
 
-Authors **MUST** specify the `replace_triggers_refs` argument when using the AzAPI provider. The values should contain the body paths that would cause the resource to be replaced when they change.
+Authors **MUST** specify the `replace_triggers_refs` argument when using the AzAPI provider.
+The values should contain the body paths that would cause the resource to be replaced when they change.
+You do ***not*** need to include `name`, or `location`, as these already trigger replacement.
 
 This is to ensure that changes to properties that require replacement of the resource are handled correctly by Terraform.
 
