@@ -1,0 +1,49 @@
+{{- $moduleName := .moduleName -}}
+{{- $repoURL := .repoURL -}}
+{{- $moduleStatus := .moduleStatus -}}
+{{- $useLinks := .useLinks -}}
+{{/* Only query the registry API for published modules */}}
+{{- if and (or (eq $moduleStatus "Available") (eq $moduleStatus "Orphaned") (eq $moduleStatus "Deprecated")) (ne $repoURL "") -}}
+  {{/* Extract the provider from the repo URL (e.g., "azurerm" from "terraform-azurerm-...") */}}
+  {{- $repoURLSplit := strings.Split $repoURL "/" -}}
+  {{- $repoName := index $repoURLSplit (sub (len $repoURLSplit) 1) -}}
+  {{- $repoNameSplit := strings.Split $repoName "-" -}}
+  {{- $moduleProvider := index $repoNameSplit 1 -}}
+  {{/* Fetch module details from the Terraform registry API */}}
+  {{- $moduleTfRegApiUrl := printf "https://registry.terraform.io/v1/modules/Azure/%s/%s" $moduleName $moduleProvider -}}
+  {{- $moduleTfRegApiData := dict -}}
+  {{- with resources.GetRemote $moduleTfRegApiUrl -}}
+    {{- with .Err -}}
+    {{- else -}}
+      {{- $moduleTfRegApiData = . | transform.Unmarshal -}}
+    {{- end -}}
+  {{- end -}}
+  {{/* Extract submodules, filtering to only include paths under "modules/" (not examples) */}}
+  {{- $submodules := slice -}}
+  {{- with $moduleTfRegApiData.submodules -}}
+    {{- range . -}}
+      {{- if hasPrefix .path "modules/" -}}
+        {{- $submodules = $submodules | append . -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{/* Render submodules as a flat bullet point list if any exist */}}
+  {{- if $submodules -}}
+<details style="display: inline; cursor: pointer;">
+<summary style="display: inline-block; list-style: none; font-size: 0.7em; vertical-align: middle; opacity: 0.6; padding: 0; margin-left: 4px;">&#9654;</summary>
+<ul style="list-style-type: disc; padding-left: 20px; margin: 0;">
+    {{- range $submodule := $submodules -}}
+      {{- $submoduleDisplayName := strings.TrimPrefix "modules/" $submodule.path -}}
+      {{- $submoduleLink := printf "https://registry.terraform.io/modules/Azure/%s/%s/latest/submodules/%s" $moduleName $moduleProvider $submoduleDisplayName -}}
+  <li>
+        {{- if $useLinks -}}
+    <a href="{{ $submoduleLink }}" title="{{ $submodule.path }}">{{ $submoduleDisplayName }}</a>
+        {{- else -}}
+    {{ $submoduleDisplayName }}
+        {{- end -}}
+  </li>
+    {{- end -}}
+</ul>
+</details>
+  {{- end -}}
+{{- end -}}

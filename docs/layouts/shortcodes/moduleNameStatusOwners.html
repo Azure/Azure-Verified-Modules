@@ -345,7 +345,7 @@
           {{ $item.ModuleName }}
         {{- end -}}
 
-        {{- partial "render-child-modules.html" (dict "maps" $maps "parentName" $item.ModuleName "useLinks" $useLinks "language" $language) -}}
+        {{- partial "render-terraform-submodules.html" (dict "moduleName" $item.ModuleName "repoURL" $item.RepoURL "moduleStatus" $item.ModuleStatus "useLinks" $useLinks) -}}
       </td>
       <td style="text-align: center;"> {{/* link to the source code repo */}}
         {{- if $useLinks -}}
