@@ -76,7 +76,6 @@ if(!(Test-Path -Path "./scripts/New-Repository.ps1")) {
 }
 
 # Required Inputs
-$moduleProvider = "azurerm" # Allowed: azurerm, azapi, azure
 $moduleName = "<module name>" # e.g. avm-res-network-virtualnetwork
 $moduleDisplayName = "<module description>"
 $resourceProviderNamespace = "" # Leave empty for Pattern/Utility modules
@@ -90,7 +89,6 @@ $ownerSecondaryGitHubHandle = ""
 $ownerSecondaryDisplayName = ""
 
 ./scripts/New-Repository.ps1 `
-    -moduleProvider $moduleProvider `
     -moduleName $moduleName `
     -moduleDisplayName $moduleDisplayName `
     -resourceProviderNamespace $resourceProviderNamespace `
