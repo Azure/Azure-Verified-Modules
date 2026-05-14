@@ -27,7 +27,7 @@ An example using AzAPI:
 resource "azapi_resource" "main" {
   type      = "Microsoft.ContainerService/managedClusters@2024-09-01"
   name      = var.name
-  parent_id = var.resource_group_resource_id
+  parent_id = var.parent_id
   location  = var.location
   body = {
     properties = { ... }

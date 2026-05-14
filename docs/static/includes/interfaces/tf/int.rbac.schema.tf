@@ -27,6 +27,14 @@ A map of role assignments to create on the <RESOURCE>. The map key is deliberate
 
 > Note: only set `skip_service_principal_aad_check` to true if you are assigning a role to a service principal.
 DESCRIPTION
+
+  validation {
+    condition = alltrue([
+      for _, v in var.role_assignments :
+      v.delegated_managed_identity_resource_id == null || can(provider::azapi::parse_resource_id("Microsoft.ManagedIdentity/userAssignedIdentities", v.delegated_managed_identity_resource_id))
+    ])
+    error_message = "Each `role_assignments[*].delegated_managed_identity_resource_id` must be a valid user-assigned managed identity resource ID, or null."
+  }
 }
 
 module "avm_interfaces" {

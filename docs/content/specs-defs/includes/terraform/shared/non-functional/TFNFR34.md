@@ -29,7 +29,7 @@ E.g., our previous release was `v1.2.1` and next release would be `v1.3.0`, now 
 resource "azapi_resource" "route_table" {
   type      = "Microsoft.Network/routeTables@2023-11-01"
   name      = coalesce(var.new_route_table_name, "${var.subnet_name}-rt")
-  parent_id = var.resource_group_resource_id
+  parent_id = var.parent_id
   location  = local.location
   body = {
     properties = {}
@@ -53,7 +53,7 @@ resource "azapi_resource" "route_table" {
   count     = var.create_route_table ? 1 : 0
   type      = "Microsoft.Network/routeTables@2023-11-01"
   name      = coalesce(var.new_route_table_name, "${var.subnet_name}-rt")
-  parent_id = var.resource_group_resource_id
+  parent_id = var.parent_id
   location  = local.location
   body = {
     properties = {}

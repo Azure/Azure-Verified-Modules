@@ -8,7 +8,6 @@ tags: [
   Type-Functional, # SINGLE VALUE: this can be "Type-Functional" OR "Type-NonFunctional"
   Category-Naming/Composition, # SINGLE VALUE: this can be "Category-Testing" OR "Category-Telemetry" OR "Category-Contribution/Support" OR "Category-Documentation" OR "Category-CodeStyle" OR "Category-Naming/Composition" OR "Category-Inputs/Outputs" OR "Category-Release/Publishing"
   Language-Bicep, # MULTIPLE VALUES: this can be "Language-Bicep" AND/OR "Language-Terraform"
-  Language-Terraform, # MULTIPLE VALUES: this can be "Language-Bicep" AND/OR "Language-Terraform"
   Severity-MUST, # SINGLE VALUE: this can be "Severity-MUST" OR "Severity-SHOULD" OR "Severity-MAY"
   Persona-Owner, # MULTIPLE VALUES: this can be "Persona-Owner" AND/OR "Persona-Contributor"
   Persona-Contributor, # MULTIPLE VALUES: this can be "Persona-Owner" AND/OR "Persona-Contributor"
@@ -24,7 +23,7 @@ A resource module **MUST NOT** create a Resource Group **for resources that requ
 
 In the case that a Resource Group is required, a module **MUST** have an input (scope or variable):
 
-- In Bicep the `targetScope` **MUST** be set to `resourceGroup` or not specified (which means default to `resourceGroup` scope)
-- In Terraform the `variable` **MUST** be called `resource_group_name`
+- In Bicep the `targetScope` **MUST** be set to `resourceGroup` or not specified (which means default to `resourceGroup` scope).
+- For Terraform, the resource group is supplied via the `parent_id` variable defined by [TFRMFR1]({{% siteparam base %}}/spec/TFRMFR1). Terraform resource modules **MUST NOT** expose a `resource_group_name` (or `resource_group_resource_id`) variable.
 
 Scopes will be covered further in the respective language specific specifications.

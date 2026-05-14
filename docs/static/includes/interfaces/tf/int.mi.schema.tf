@@ -11,6 +11,14 @@ Controls the Managed Identity configuration on this resource. The following prop
 - `system_assigned` - (Optional) Specifies if the System Assigned Managed Identity should be enabled.
 - `user_assigned_resource_ids` - (Optional) Specifies a list of User Assigned Managed Identity resource IDs to be assigned to this resource.
 DESCRIPTION
+
+  validation {
+    condition = alltrue([
+      for id in var.managed_identities.user_assigned_resource_ids :
+      can(provider::azapi::parse_resource_id("Microsoft.ManagedIdentity/userAssignedIdentities", id))
+    ])
+    error_message = "Each entry in `managed_identities.user_assigned_resource_ids` must be a valid user-assigned managed identity resource ID."
+  }
 }
 
 module "avm_interfaces" {

@@ -125,7 +125,7 @@ terraform {
   required_providers {
     azapi = {
       source  = "Azure/azapi"
-      version = "~> 2.5"
+      version = "~> 2.9"
     }
     http = {
       source  = "hashicorp/http"
@@ -173,7 +173,7 @@ module "key_vault" {
   name                          = "<your-keyvault-name>"
   location                      = module.resource_group.resource.location
   enable_telemetry              = var.enable_telemetry
-  resource_group_name           = module.resource_group.name
+  parent_id                     = module.resource_group.resource_id
   tenant_id                     = data.azapi_client_config.current.tenant_id
   public_network_access_enabled = true
   keys = {
@@ -243,7 +243,7 @@ module "avm-res-keyvault-vault" {
   source                        = "Azure/avm-res-keyvault-vault/azure"
   version                       = "1.0.0"
   name                          = "<custom_name_here>"
-  resource_group_name           = module.resource_group.name
+  parent_id                     = module.resource_group.resource_id
   location                      = module.resource_group.resource.location
   tenant_id                     = data.azapi_client_config.current.tenant_id
 

@@ -30,7 +30,7 @@ resource "azapi_resource" "network_security_group" {
   count     = local.create_new_security_group ? 1 : 0
   type      = "Microsoft.Network/networkSecurityGroups@2023-11-01"
   name      = coalesce(var.new_network_security_group_name, "${var.subnet_name}-nsg")
-  parent_id = var.resource_group_resource_id
+  parent_id = var.parent_id
   location  = local.location
   tags      = var.new_network_security_group_tags
   body = {

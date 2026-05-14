@@ -45,7 +45,7 @@ terraform {
   required_providers {
     azapi = {
       source  = "Azure/azapi"
-      version = "~> 2.0"
+      version = "~> 2.9"
     }
   }
 }
@@ -57,7 +57,7 @@ terraform {
   required_providers {
     azapi = {
       source  = "Azure/azapi"
-      version = ">= 2.5.0, < 3.0.0"
+      version = ">= 2.9.0, < 3.0.0"
     }
   }
 }
@@ -69,7 +69,7 @@ terraform {
   required_providers {
     azapi = {
       source  = "Azure/azapi"
-      version = ">= 2.5, < 3.0"
+      version = ">= 2.9, < 3.0"
     }
   }
 }
@@ -83,7 +83,7 @@ terraform {
   required_providers {
     azapi = {
       source  = "Azure/azapi"
-      version = "2.5"
+      version = "2.9"
     }
   }
 }
@@ -97,7 +97,7 @@ terraform {
   required_providers {
     azapi = {
       source  = "Azure/azapi"
-      version = ">= 2.5"
+      version = ">= 2.9"
     }
   }
 }

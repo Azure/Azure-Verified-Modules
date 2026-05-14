@@ -76,6 +76,41 @@ A map of private endpoints to create on the Key Vault. The map key is deliberate
   - `private_ip_address` - The private IP address of the IP configuration.
   - `member_name` - (Optional) The private IP configuration member name.
 DESCRIPTION
+
+  validation {
+    condition = alltrue([
+      for _, v in var.private_endpoints :
+      can(provider::azapi::parse_resource_id("Microsoft.Network/virtualNetworks/subnets", v.subnet_resource_id))
+    ])
+    error_message = "Each `private_endpoints[*].subnet_resource_id` must be a valid subnet resource ID."
+  }
+  validation {
+    condition = alltrue(flatten([
+      for _, v in var.private_endpoints : [
+        for id in v.private_dns_zone_resource_ids :
+        can(provider::azapi::parse_resource_id("Microsoft.Network/privateDnsZones", id))
+      ]
+    ]))
+    error_message = "Each entry in `private_endpoints[*].private_dns_zone_resource_ids` must be a valid private DNS zone resource ID."
+  }
+  validation {
+    condition = alltrue(flatten([
+      for _, v in var.private_endpoints : [
+        for _, asg in v.application_security_group_associations :
+        can(provider::azapi::parse_resource_id("Microsoft.Network/applicationSecurityGroups", asg))
+      ]
+    ]))
+    error_message = "Each value in `private_endpoints[*].application_security_group_associations` must be a valid application security group resource ID."
+  }
+  validation {
+    condition = alltrue(flatten([
+      for _, v in var.private_endpoints : [
+        for _, ra in v.role_assignments :
+        ra.delegated_managed_identity_resource_id == null || can(provider::azapi::parse_resource_id("Microsoft.ManagedIdentity/userAssignedIdentities", ra.delegated_managed_identity_resource_id))
+      ]
+    ]))
+    error_message = "Each `private_endpoints[*].role_assignments[*].delegated_managed_identity_resource_id` must be a valid user-assigned managed identity resource ID, or null."
+  }
 }
 
 module "avm_interfaces" {

@@ -49,6 +49,27 @@ variable "diagnostic_settings" {
     )
     error_message = "At least one of `workspace_resource_id`, `storage_account_resource_id`, `marketplace_partner_resource_id`, or `event_hub_authorization_rule_resource_id`, must be set."
   }
+  validation {
+    condition = alltrue([
+      for _, v in var.diagnostic_settings :
+      v.workspace_resource_id == null || can(provider::azapi::parse_resource_id("Microsoft.OperationalInsights/workspaces", v.workspace_resource_id))
+    ])
+    error_message = "Each `workspace_resource_id` must be a valid Log Analytics workspace resource ID, or null."
+  }
+  validation {
+    condition = alltrue([
+      for _, v in var.diagnostic_settings :
+      v.storage_account_resource_id == null || can(provider::azapi::parse_resource_id("Microsoft.Storage/storageAccounts", v.storage_account_resource_id))
+    ])
+    error_message = "Each `storage_account_resource_id` must be a valid storage account resource ID, or null."
+  }
+  validation {
+    condition = alltrue([
+      for _, v in var.diagnostic_settings :
+      v.event_hub_authorization_rule_resource_id == null || can(provider::azapi::parse_resource_id("Microsoft.EventHub/namespaces/authorizationRules", v.event_hub_authorization_rule_resource_id))
+    ])
+    error_message = "Each `event_hub_authorization_rule_resource_id` must be a valid Event Hub namespace authorization rule resource ID, or null."
+  }
   description = <<DESCRIPTION
 A map of diagnostic settings to create on the resource. The map key is deliberately arbitrary to avoid issues where map keys maybe unknown at plan time.
 

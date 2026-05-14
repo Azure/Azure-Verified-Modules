@@ -27,21 +27,38 @@ Authors **MUST** only use the following Azure providers, and versions, in their 
 |-----------------------|-------------|-------------|
 | Azure/azapi           | >= 2.0      | < 3.0       |
 
-> The AzureRM provider is permitted for module versions prior to v1.0.0, but **MUST NOT** be used in module versions v1.0.0 and later.
-> Should your module use the AzureRM provider, you **MUST** use version 4.x of the provider, i.e., `~> 4.0`. You MAY also create an exclusion for the TFLint rule:
->
-> ```hcl
-> rule "provider_azurerm_disallowed" {
->   enabled = false
-> }
-> ```
+The AzureRM provider **MUST NOT** be used, except where the narrow exception below applies.
+
+### Exception — AzureRM for resources with no AzAPI equivalent
+
+An AVM Terraform module **MAY** declare the AzureRM provider **only** for resources whose functionality is genuinely unavailable through any AzAPI resource — that is, where there is no equivalent in `azapi_resource`, `azapi_data_plane_resource`, `azapi_resource_action`, or `azapi_update_resource`. In practice this is limited to a small set of edge cases, most commonly data-plane operations such as Key Vault secrets and certificates, Storage blobs, and a handful of resources whose `azurerm_*` implementation calls non-ARM APIs.
+
+Where this exception applies the module **MUST**:
+
+- Pin the AzureRM provider to `~> 4.0` in `required_providers`.
+- Use AzAPI for *every* resource that has an AzAPI equivalent. AzureRM **MUST NOT** be used as a convenience alternative to AzAPI.
+- Document the exception in the module's `README.md`, listing each `azurerm_*` resource used, the data-plane / non-ARM API it wraps, why no AzAPI equivalent exists today, and the upstream AzAPI issue or PR tracking the eventual replacement.
+- Replace each `azurerm_*` resource with its AzAPI equivalent as soon as one becomes available, in the next module release after the AzAPI capability ships.
+- Add the following TFLint exclusion (only required because the AzureRM provider is otherwise blocked by AVM tooling):
+
+  ```hcl
+  rule "provider_azurerm_disallowed" {
+    enabled = false
+  }
+  ```
+
+This exception **MUST NOT** be used to:
+
+- Avoid migrating an existing AzureRM resource that *does* have an AzAPI equivalent.
+- Reduce author effort where the AzAPI body schema is more verbose than the AzureRM resource.
+- Side-step any other AzAPI-specific spec (for example [TFFR4]({{% siteparam base %}}/spec/TFFR4), [TFFR5]({{% siteparam base %}}/spec/TFFR5), [TFFR6]({{% siteparam base %}}/spec/TFFR6), or [TFFR7]({{% siteparam base %}}/spec/TFFR7)) — those rules continue to apply to every AzAPI resource the module declares, regardless of whether the module also uses AzureRM under this exception.
 
 Authors **MUST** use the `required_providers` block in their module to enforce the provider versions.
 
 The following is an example.
 
 - In it we use the [pessimistic version constraint operator](https://developer.hashicorp.com/terraform/language/expressions/version-constraints#operators) `~>`.
-- That is to say that `~> 2.0` is equivalent to `>= 2.0, < 3.0`.
+- That is to say that `~> 2.9` is equivalent to `>= 2.9, < 3.0`.
 
 ```terraform
 terraform {
@@ -49,7 +66,7 @@ terraform {
     # Include one or both providers, as needed
     azapi = {
       source  = "Azure/azapi"
-      version = "~> 2.0"
+      version = "~> 2.9"
     }
   }
 }
