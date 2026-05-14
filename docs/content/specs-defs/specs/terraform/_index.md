@@ -17,11 +17,18 @@ Any updates to existing or new specifications for Terraform must be submitted as
 
 {{% /notice %}}
 
-{{% notice style="important" %}}
+## Why AVM Terraform modules favor AzAPI
 
-Provider Versatility: Users have the autonomy to choose between AzureRM, AzAPI, or a combination of both, tailored to the specific complexity of module requirements.
+From v1.0.0 onward, AVM Terraform modules **MUST** use the [AzAPI](https://registry.terraform.io/providers/Azure/azapi/latest) provider. The AzureRM provider is permitted only for module versions prior to v1.0.0 (see [TFFR3](/spec/TFFR3)).
 
-{{% /notice %}}
+This decision is intentional and is driven by the following factors:
+
+- **Built-in retries and error handling.** AzAPI exposes first-class `retry` and `timeouts` blocks, including regex-based error matching, which lets modules handle transient failures (for example, scope locks being removed or eventual-consistency errors) deterministically and without external workarounds.
+- **Pre-flight validation.** AzAPI performs ARM API pre-flight checks at plan time, surfacing many configuration errors *before* an apply is attempted. This produces faster feedback loops and fewer partially-deployed resources.
+- **Day-zero access to the latest Azure features.** Because AzAPI talks directly to the Azure Resource Manager REST API, modules can adopt new resource types, properties and API versions as soon as they ship in Azure — without waiting for an AzureRM provider release.
+- **Alignment with Bicep and ARM.** AzAPI uses the same resource type identifiers (e.g. `Microsoft.KeyVault/vaults@2023-07-01`) and the same property shape as Bicep and ARM templates. This makes it dramatically easier to translate documentation, samples and Bicep modules into Terraform, and keeps Bicep and Terraform AVM modules conceptually aligned.
+- **Close partnership with the Azure engineering teams.** AzAPI is built and maintained in close collaboration with the Azure Resource Provider engineering teams. Issues in AzAPI can be triaged directly against the underlying ARM behavior, and the AVM team works directly with the AzAPI engineering team on roadmap and breaking changes.
+- **Consistency across the AVM ecosystem.** Standardizing on AzAPI means every AVM Terraform module uses the same patterns for identity, diagnostic settings, role assignments, locks and private endpoints — primarily through the [`Azure/avm-utl-interfaces/azure`](https://registry.terraform.io/modules/Azure/avm-utl-interfaces/azure/latest) utility module — which simplifies authoring, review and consumer experience.
 
 ## What changed recently?
 

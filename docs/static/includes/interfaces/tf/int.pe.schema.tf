@@ -12,6 +12,7 @@ variable "private_endpoints" {
   type = map(object({
     name = optional(string, null)
     role_assignments = optional(map(object({
+      name                                   = optional(string, null)
       role_definition_id_or_name             = string
       principal_id                           = string
       description                            = optional(string, null)
@@ -27,7 +28,7 @@ variable "private_endpoints" {
     }), null)
     tags                                    = optional(map(string), null)
     subnet_resource_id                      = string
-    subresource_name                        = optional(string, null) # Do not use this value if you don't to
+    subresource_name                        = optional(string, null) # only required if the parent resource exposes more than one private endpoint sub-resource
     private_dns_zone_group_name             = optional(string, "default")
     private_dns_zone_resource_ids           = optional(set(string), [])
     application_security_group_associations = optional(map(string), {})
@@ -38,6 +39,7 @@ variable "private_endpoints" {
     ip_configurations = optional(map(object({
       name               = string
       private_ip_address = string
+      member_name        = optional(string)
     })), {})
   }))
   default     = {}
@@ -47,6 +49,7 @@ A map of private endpoints to create on the Key Vault. The map key is deliberate
 
 - `name` - (Optional) The name of the private endpoint. One will be generated if not set.
 - `role_assignments` - (Optional) A map of role assignments to create on the private endpoint. The map key is deliberately arbitrary to avoid issues where map keys maybe unknown at plan time. See `var.role_assignments` for more information.
+  - `name` - (Optional) The name of the role assignment. If not set, a random UUID will be generated. Changing this forces the creation of a new resource.
   - `role_definition_id_or_name` - The ID or name of the role definition to assign to the principal.
   - `principal_id` - The ID of the principal to assign the role to.
   - `description` - (Optional) The description of the role assignment.
@@ -67,16 +70,17 @@ A map of private endpoints to create on the Key Vault. The map key is deliberate
 - `private_service_connection_name` - (Optional) The name of the private service connection. One will be generated if not set.
 - `network_interface_name` - (Optional) The name of the network interface. One will be generated if not set.
 - `location` - (Optional) The Azure location where the resources will be deployed. Defaults to the location of the resource group.
-- `resource_group_resource_id` - (Optional) The resource group where the resources will be deployed. Defaults to the resource group of the resource.
+- `resource_group_name` - (Optional) The resource group resource ID where the private endpoint resources will be deployed. Defaults to the resource group of the parent resource.
 - `ip_configurations` - (Optional) A map of IP configurations to create on the private endpoint. If not specified the platform will create one. The map key is deliberately arbitrary to avoid issues where map keys maybe unknown at plan time.
   - `name` - The name of the IP configuration.
   - `private_ip_address` - The private IP address of the IP configuration.
+  - `member_name` - (Optional) The private IP configuration member name.
 DESCRIPTION
 }
 
 module "avm_interfaces" {
-  source  = "azure/avm-utl-interfaces/azure"
-  version = "0.5.0" # check latest version at the time of use
+  source  = "Azure/avm-utl-interfaces/azure"
+  version = "0.6.0" # check latest version at the time of use
 
   private_endpoints                = var.private_endpoints
   private_endpoints_scope          = azapi_resource.this.id
@@ -88,7 +92,7 @@ resource "azapi_resource" "private_endpoints" {
 
   location  = azapi_resource.this.location
   name      = each.value.name
-  parent_id = coalesce(var.private_endpoints[each.key].resource_group_resource_id, azapi_resource.this.parent_id)
+  parent_id = coalesce(var.private_endpoints[each.key].resource_group_name, azapi_resource.this.parent_id)
   type      = each.value.type
   body      = each.value.body
   retry = {

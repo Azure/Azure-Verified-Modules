@@ -33,21 +33,21 @@ E.g.,
 # Resource output, computed attribute.
 output "foo" {
   description = "MyResource foo attribute"
-  value = azurerm_resource_myresource.foo
+  value = azapi_resource.myresource.output.properties.foo
 }
 
 # Resource output for resources that are deployed using `for_each`. Again only computed attributes.
 output "childresource_foos" {
   description = "MyResource children's foo attributes"
   value = {
-    for key, value in azurerm_resource_mychildresource : key => value.foo
+    for key, value in azapi_resource.mychildresource : key => value.output.properties.foo
   }
 }
 
 # Output of a sensitive attribute
 output "bar" {
   description = "MyResource bar attribute"
-  value     = azurerm_resource_myresource.bar
+  value     = azapi_resource.myresource.output.properties.bar
   sensitive = true
 }
 ```

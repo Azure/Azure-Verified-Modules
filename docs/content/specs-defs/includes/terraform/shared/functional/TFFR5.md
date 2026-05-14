@@ -41,3 +41,4 @@ resource "azapi_resource" "example" {
     }
   }
 }
+```

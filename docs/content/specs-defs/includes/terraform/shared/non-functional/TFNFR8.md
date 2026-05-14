@@ -24,7 +24,7 @@ priority: 21080
 There are 3 types of assignment statements in a `resource` or `data` block: argument, meta-argument and nested block. The argument assignment statement is a parameter followed by `=`:
 
 ```terraform
-location = azurerm_resource_group.example.location
+location = azapi_resource.example.location
 ```
 
 or:

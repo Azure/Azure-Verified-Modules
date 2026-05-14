@@ -35,8 +35,9 @@ resource "azapi_resource" "example" {
     }
   }
 }
+```
 
-If you require read-only properties to be returned from the resource, you SHOULD include them as follows:
+If you require read-only properties to be returned from the resource, you **SHOULD** include them as follows:
 
 ```terraform
 resource "azapi_resource" "example" {

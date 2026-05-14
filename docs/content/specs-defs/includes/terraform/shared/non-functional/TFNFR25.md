@@ -39,7 +39,7 @@ Example `terraform.tf` file:
 terraform {
   required_version = "~> 1.6"
   required_providers {
-    azurerm = {
+    azapi = {
       source  = "Azure/azapi"
       version = "~> 2.5"
     }

@@ -35,7 +35,7 @@ The team includes both technical and non-technical team members who are all Micr
 
 {{% notice style="important" %}}
 
-Today, module owners **MUST** be Microsoft FTEs. This is to ensure that within AVM the long-term support for each module can be upheld and honoured.
+Today, module owners **MUST** be Microsoft FTEs. This is to ensure that within AVM the long-term support for each module can be upheld and honored.
 
 {{% /notice %}}
 

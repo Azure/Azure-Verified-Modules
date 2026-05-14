@@ -43,9 +43,9 @@ Good examples:
 terraform {
   required_version = "~> 1.6"
   required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~> 3.0"
+    azapi = {
+      source  = "Azure/azapi"
+      version = "~> 2.0"
     }
   }
 }
@@ -55,9 +55,9 @@ terraform {
 terraform {
   required_version = ">= 1.6.6, < 2.0.0"
   required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = ">= 3.11.1, < 4.0.0"
+    azapi = {
+      source  = "Azure/azapi"
+      version = ">= 2.5.0, < 3.0.0"
     }
   }
 }
@@ -67,9 +67,9 @@ terraform {
 terraform {
   required_version = ">= 1.6, < 2.0"
   required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = ">= 3.11, < 4.0"
+    azapi = {
+      source  = "Azure/azapi"
+      version = ">= 2.5, < 3.0"
     }
   }
 }
@@ -81,9 +81,9 @@ Acceptable example (but not recommended):
 terraform {
   required_version = "1.6"
   required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "3.11"
+    azapi = {
+      source  = "Azure/azapi"
+      version = "2.5"
     }
   }
 }
@@ -95,9 +95,9 @@ Bad example:
 terraform {
   required_version = ">= 1.6"
   required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = ">= 3.11"
+    azapi = {
+      source  = "Azure/azapi"
+      version = ">= 2.5"
     }
   }
 }

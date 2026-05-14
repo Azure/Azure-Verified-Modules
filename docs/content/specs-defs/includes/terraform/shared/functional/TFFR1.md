@@ -25,7 +25,7 @@ Module owners **MAY** cross-references other modules to build either Resource or
 
 ```terraform
 module "other-module" {
-  source  = "Azure/xxx/azurerm"
+  source  = "Azure/xxx/azure"
   version = "1.2.3"
 }
 ```

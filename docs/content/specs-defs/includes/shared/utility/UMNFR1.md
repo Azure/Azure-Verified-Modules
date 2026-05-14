@@ -45,6 +45,6 @@ Therefore, **module owners don't need to construct the module's name themselves,
   - `terraform-<provider>-avm-utl-<utility module name>` (GitHub repository name to meet registry naming requirements)
 - Example: `avm-utl-sku-finder` or `avm-utl-naming`
 - Segments:
-  - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` or `azuread` for resource modules.
+  - `<provider>` is the logical abstraction of various APIs used by Terraform. For AVM modules from v1.0.0 onward this is typically `azure` (the segment used by AzAPI-based modules, for example `Azure/avm-utl-naming/azure`). The `azurerm` and `azuread` segments are also seen on older modules.
   - `utl` defines this as a utility module
   - `<utility module name>` is a term describing the module's function, e.g., `sku-finder` = to find available SKUs; `naming` = to handle naming conventions.

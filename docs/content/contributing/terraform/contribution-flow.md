@@ -85,14 +85,14 @@ A fork is your own copy of the repository under your GitHub account. It lets you
 5. Clone your fork locally:
 
     ```bash
-    git clone https://github.com/<your-username>/terraform-azurerm-avm-res-<rp>-<modulename>.git
-    cd terraform-azurerm-avm-res-<rp>-<modulename>
+    git clone https://github.com/<your-username>/terraform-azure-avm-res-<rp>-<modulename>.git
+    cd terraform-azure-avm-res-<rp>-<modulename>
     ```
 
 Keep your fork in sync with the upstream repository before creating a new branch. You can do this from the GitHub UI by clicking **Sync fork** on your fork's main page, or locally:
 
 ```bash
-git remote add upstream https://github.com/Azure/terraform-azurerm-avm-res-<rp>-<modulename>.git
+git remote add upstream https://github.com/Azure/terraform-azure-avm-res-<rp>-<modulename>.git
 git fetch upstream
 git checkout main
 git merge upstream/main
@@ -105,16 +105,16 @@ git merge upstream/main
 Use the [GitHub CLI](https://cli.github.com/) to fork and clone in one step. This automatically configures the `upstream` remote for you:
 
 ```bash
-gh repo fork Azure/terraform-azurerm-avm-res-<rp>-<modulename> --clone
-cd terraform-azurerm-avm-res-<rp>-<modulename>
+gh repo fork Azure/terraform-azure-avm-res-<rp>-<modulename> --clone
+cd terraform-azure-avm-res-<rp>-<modulename>
 ```
 
 Verify the remotes are set up correctly:
 
 ```bash
 git remote -v
-# origin    https://github.com/<your-username>/terraform-azurerm-avm-res-<rp>-<modulename>.git (fetch)
-# upstream  https://github.com/Azure/terraform-azurerm-avm-res-<rp>-<modulename>.git (fetch)
+# origin    https://github.com/<your-username>/terraform-azure-avm-res-<rp>-<modulename>.git (fetch)
+# upstream  https://github.com/Azure/terraform-azure-avm-res-<rp>-<modulename>.git (fetch)
 ```
 
 {{% /tab %}}

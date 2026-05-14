@@ -1,5 +1,6 @@
 variable "role_assignments" {
   type = map(object({
+    name                                   = optional(string, null)
     role_definition_id_or_name             = string
     principal_id                           = string
     description                            = optional(string, null)
@@ -14,6 +15,7 @@ variable "role_assignments" {
   description = <<DESCRIPTION
 A map of role assignments to create on the <RESOURCE>. The map key is deliberately arbitrary to avoid issues where map keys maybe unknown at plan time.
 
+- `name` - (Optional) The name of the role assignment. If not set, a random UUID will be generated. Changing this forces the creation of a new resource.
 - `role_definition_id_or_name` - The ID or name of the role definition to assign to the principal.
 - `principal_id` - The ID of the principal to assign the role to.
 - `description` - (Optional) The description of the role assignment.
@@ -27,20 +29,29 @@ A map of role assignments to create on the <RESOURCE>. The map key is deliberate
 DESCRIPTION
 }
 
-locals {
-  role_definition_resource_substring = "providers/Microsoft.Authorization/roleDefinitions"
+module "avm_interfaces" {
+  source  = "Azure/avm-utl-interfaces/azure"
+  version = "0.6.0" # check latest version at the time of use
+
+  role_assignments                 = var.role_assignments
+  role_assignment_definition_scope = azapi_resource.this.id
 }
 
 # Example resource declaration
-resource "azurerm_role_assignment" "this" {
-  for_each                               = var.role_assignments
-  scope                                  = azurerm_MY_RESOURCE.this.id
-  role_definition_id                     = strcontains(lower(each.value.role_definition_id_or_name), lower(local.role_definition_resource_substring)) ? each.value.role_definition_id_or_name : null
-  role_definition_name                   = strcontains(lower(each.value.role_definition_id_or_name), lower(local.role_definition_resource_substring)) ? null : each.value.role_definition_id_or_name
-  principal_id                           = each.value.principal_id
-  condition                              = each.value.condition
-  condition_version                      = each.value.condition_version
-  skip_service_principal_aad_check       = each.value.skip_service_principal_aad_check
-  delegated_managed_identity_resource_id = each.value.delegated_managed_identity_resource_id
-  principal_type                         = each.value.principal_type
+resource "azapi_resource" "role_assignments" {
+  for_each = module.avm_interfaces.role_assignments_azapi
+
+  type      = each.value.type
+  name      = each.value.name
+  parent_id = each.value.parent_id
+  body      = each.value.body
+  retry = {
+    error_message_regex  = ["ScopeLocked"] # retry if a lock is in place on the scope and has only just been removed
+    interval_seconds     = 15
+    max_interval_seconds = 60
+  }
+
+  timeouts {
+    delete = "5m"
+  }
 }

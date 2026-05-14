@@ -173,7 +173,7 @@ If there's still no response after 5 days (total from start of issue being raise
 
 ### ITA04
 
-If an issue/PR has been labelled with &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#CB6BA2;color:white;">Needs: Author Feedback 👂</mark>&nbsp; and hasn't had a response in 4 days, label with &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#808080;color:white;">Status: No Recent Activity 💤</mark>&nbsp; and add a comment.
+If an issue/PR has been labeled with &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#CB6BA2;color:white;">Needs: Author Feedback 👂</mark>&nbsp; and hasn't had a response in 4 days, label with &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#808080;color:white;">Status: No Recent Activity 💤</mark>&nbsp; and add a comment.
 
 **Schedule:**
 
@@ -209,7 +209,7 @@ This rule is currently disabled in the AVM and BRM repositories.
 
 {{% /notice %}}
 
-If an issue/PR has been labelled with &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#808080;color:white;">Status: No Recent Activity 💤</mark>&nbsp; and hasn't had any update in 3 days from that point, automatically close it and comment, unless the issue/PR has a &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#B60205;color:white;">Status: Long Term ⏳</mark>&nbsp; - in which case, do not close it.
+If an issue/PR has been labeled with &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#808080;color:white;">Status: No Recent Activity 💤</mark>&nbsp; and hasn't had any update in 3 days from that point, automatically close it and comment, unless the issue/PR has a &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#B60205;color:white;">Status: Long Term ⏳</mark>&nbsp; - in which case, do not close it.
 
 **Schedule:**
 
