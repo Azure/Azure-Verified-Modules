@@ -46,13 +46,13 @@ output sampleResourceKey string = sampleResource.key
 # Resource output
 output "foo" {
   description = "MyResource foo attribute"
-  value = azurerm_resource_myresource.foo
+  value = azapi_resource.myresource.output.properties.foo
 }
 
 # Output of a sensitive attribute
 output "bar" {
   description = "MyResource bar attribute"
-  value     = azurerm_resource_myresource.bar
+  value     = azapi_resource.myresource.output.properties.bar
   sensitive = true
 }
 ```

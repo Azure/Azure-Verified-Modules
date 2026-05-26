@@ -1,7 +1,7 @@
 ---
-title: TFFR1 - Cross-Referencing Modules
+title: TFFR5 - AzAPI - replace_triggers_refs
 description: Module Specification for the Azure Verified Modules (AVM) program
-url: /spec/TFFR1
+url: /spec/TFFR5
 type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
@@ -14,38 +14,31 @@ tags: [
   Persona-Owner, # MULTIPLE VALUES: this can be "Persona-Owner" AND/OR "Persona-Contributor"
   Persona-Contributor, # MULTIPLE VALUES: this can be "Persona-Owner" AND/OR "Persona-Contributor"
   Lifecycle-BAU, # SINGLE VALUE: this can be "Lifecycle-Initial" OR "Lifecycle-BAU" OR "Lifecycle-EOL"
-  Validation-TBD # SINGLE VALUE: this can be "Validation-TF/Manual" OR "Validation-TF/CI/Informational" OR "Validation-TF/CI/Enforced"
+  Validation-TF/CI/Enforced # SINGLE VALUE: this can be "Validation-TF/Manual" OR "Validation-TF/CI/Informational" OR "Validation-TF/CI/Enforced"
 ]
-priority: 20010
+priority: 20050
 ---
 
-## ID: TFFR1 - Category: Composition - Cross-Referencing Modules
+## ID: TFFR5 - Category: Composition - AzAPI - replace_triggers_refs
 
-Module owners **MAY** cross-references other modules to build either Resource or Pattern modules. However, they **MUST** be referenced only by a HashiCorp Terraform registry reference to a pinned version e.g.,
+Authors **MUST** specify the `replace_triggers_refs` argument when using the AzAPI provider.
+The values should contain the body paths that would cause the resource to be replaced when they change.
+You do ***not*** need to include `name`, or `location`, as these already trigger replacement.
 
-```terraform
-module "other-module" {
-  source  = "Azure/xxx/azure"
-  version = "1.2.3"
-}
-```
-
-They **MUST NOT** use git reference to a module.
+This is to ensure that changes to properties that require replacement of the resource are handled correctly by Terraform.
 
 ```terraform
-module "other-module" {
-  source = "git::https://xxx.yyy/xxx.git"
+resource "azapi_resource" "example" {
+  type      = "Microsoft.Example/resourceType@2021-01-01"
+  name      = "example-resource"
+  location  = "West US"
+  replace_triggers_refs = [
+    "properties.exampleProperty"
+  ] # must be specified, even if empty
+  body = {
+    properties = {
+      exampleProperty = "exampleValue"
+    }
+  }
 }
 ```
-
-```terraform
-module "other-module" {
-  source = "github.com/xxx/yyy"
-}
-```
-
-Modules **MUST NOT** contain references to non-AVM modules.
-
-{{% notice style="tip" %}}
-See [Module Sources](https://developer.hashicorp.com/terraform/language/modules/sources) for more information.
-{{% /notice %}}

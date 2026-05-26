@@ -26,10 +26,15 @@ A toggle variable **MUST** be used to allow users to avoid the creation of a new
 E.g., our previous release was `v1.2.1` and next release would be `v1.3.0`, now we'd like to submit a pull request which contains such new `resource`:
 
 ```terraform
-resource "azurerm_route_table" "this" {
-  location            = local.location
-  name                = coalesce(var.new_route_table_name, "${var.subnet_name}-rt")
-  resource_group_name = var.resource_group_name
+resource "azapi_resource" "route_table" {
+  type      = "Microsoft.Network/routeTables@2023-11-01"
+  name      = coalesce(var.new_route_table_name, "${var.subnet_name}-rt")
+  parent_id = var.parent_id
+  location  = local.location
+  body = {
+    properties = {}
+  }
+  response_export_values = []
 }
 ```
 
@@ -44,10 +49,15 @@ variable "create_route_table" {
   nullable = false
 }
 
-resource "azurerm_route_table" "this" {
-  count               = var.create_route_table ? 1 : 0
-  location            = local.location
-  name                = coalesce(var.new_route_table_name, "${var.subnet_name}-rt")
-  resource_group_name = var.resource_group_name
+resource "azapi_resource" "route_table" {
+  count     = var.create_route_table ? 1 : 0
+  type      = "Microsoft.Network/routeTables@2023-11-01"
+  name      = coalesce(var.new_route_table_name, "${var.subnet_name}-rt")
+  parent_id = var.parent_id
+  location  = local.location
+  body = {
+    properties = {}
+  }
+  response_export_values = []
 }
 ```

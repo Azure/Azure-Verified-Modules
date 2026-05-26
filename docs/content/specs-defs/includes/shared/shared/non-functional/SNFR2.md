@@ -57,17 +57,29 @@ Module owners **MUST**:
 #### Terraform
 
 ```terraform
-resource "azurerm_resource_group" "example" {
-  name     = "rsg-test-001"
-  location = "West Europe"
+resource "azapi_resource" "resource_group" {
+  type      = "Microsoft.Resources/resourceGroups@2024-03-01"
+  name      = "rsg-test-001"
+  parent_id = "/subscriptions/${data.azapi_client_config.current.subscription_id}"
+  location  = "West Europe"
+  body      = {}
+  response_export_values = []
 }
 
-resource "azurerm_log_analytics_workspace" "example" {
-  name                = "law-test-001"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
-  sku                 = "PerGB2018"
-  retention_in_days   = 30
+resource "azapi_resource" "log_analytics_workspace" {
+  type      = "Microsoft.OperationalInsights/workspaces@2023-09-01"
+  name      = "law-test-001"
+  parent_id = azapi_resource.resource_group.id
+  location  = azapi_resource.resource_group.location
+  body = {
+    properties = {
+      sku = {
+        name = "PerGB2018"
+      }
+      retentionInDays = 30
+    }
+  }
+  response_export_values = []
 }
 ```
 

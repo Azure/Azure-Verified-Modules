@@ -1,8 +1,18 @@
 diagnostic_settings = {
   diag_setting_1 = {
-    name                                     = "diagSetting1"
-    log_groups                               = ["allLogs"]
-    metric_categories                        = ["AllMetrics"]
+    name = "diagSetting1"
+    logs = [
+      {
+        category_group = "allLogs"
+        enabled        = true
+      }
+    ]
+    metrics = [
+      {
+        category = "AllMetrics"
+        enabled  = true
+      }
+    ]
     log_analytics_destination_type           = "Dedicated"
     workspace_resource_id                    = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}"
     storage_account_resource_id              = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}"

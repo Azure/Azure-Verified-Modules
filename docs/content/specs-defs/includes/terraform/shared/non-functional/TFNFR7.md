@@ -26,12 +26,17 @@ We can use `count` and `for_each` to deploy multiple resources, but the improper
 You can use `count` to create some kind of resources under certain conditions, for example:
 
 ```terraform
-resource "azurerm_network_security_group" "this" {
-  count               = local.create_new_security_group ? 1 : 0
-  name                = coalesce(var.new_network_security_group_name, "${var.subnet_name}-nsg")
-  resource_group_name = var.resource_group_name
-  location            = local.location
-  tags                = var.new_network_security_group_tags
+resource "azapi_resource" "network_security_group" {
+  count     = local.create_new_security_group ? 1 : 0
+  type      = "Microsoft.Network/networkSecurityGroups@2023-11-01"
+  name      = coalesce(var.new_network_security_group_name, "${var.subnet_name}-nsg")
+  parent_id = var.parent_id
+  location  = local.location
+  tags      = var.new_network_security_group_tags
+  body = {
+    properties = {}
+  }
+  response_export_values = []
 }
 ```
 
@@ -40,23 +45,33 @@ The module's owners **MUST** use `map(xxx)` or `set(xxx)` as resource's `for_eac
 Good example:
 
 ```terraform
-resource "azurerm_subnet" "pair" {
-  for_each             = var.subnet_map // `map(string)`, when user call this module, it could be: `{ "subnet0": "subnet0" }`, or `{ "subnet0": azurerm_subnet.subnet0.name }`
-  name                 = "${each.value}"-pair
-  resource_group_name  = azurerm_resource_group.example.name
-  virtual_network_name = azurerm_virtual_network.example.name
-  address_prefixes     = ["10.0.1.0/24"]
+resource "azapi_resource" "subnet_pair" {
+  for_each  = var.subnet_map // `map(string)`, when user call this module, it could be: `{ "subnet0": "subnet0" }`, or `{ "subnet0": azapi_resource.subnet0.name }`
+  type      = "Microsoft.Network/virtualNetworks/subnets@2023-11-01"
+  name      = "${each.value}-pair"
+  parent_id = azapi_resource.virtual_network.id
+  body = {
+    properties = {
+      addressPrefixes = ["10.0.1.0/24"]
+    }
+  }
+  response_export_values = []
 }
 ```
 
 Bad example:
 
 ```terraform
-resource "azurerm_subnet" "pair" {
-  for_each             = var.subnet_name_set // `set(string)`, when user use `toset([azurerm_subnet.subnet0.name])`, it would cause an error.
-  name                 = "${each.value}"-pair
-  resource_group_name  = azurerm_resource_group.example.name
-  virtual_network_name = azurerm_virtual_network.example.name
-  address_prefixes     = ["10.0.1.0/24"]
+resource "azapi_resource" "subnet_pair" {
+  for_each  = var.subnet_name_set // `set(string)`, when user use `toset([azapi_resource.subnet0.name])`, it would cause an error.
+  type      = "Microsoft.Network/virtualNetworks/subnets@2023-11-01"
+  name      = "${each.value}-pair"
+  parent_id = azapi_resource.virtual_network.id
+  body = {
+    properties = {
+      addressPrefixes = ["10.0.1.0/24"]
+    }
+  }
+  response_export_values = []
 }
 ```

@@ -86,6 +86,24 @@ To meet [RMFR4]({{% siteparam base %}}/spec/RMFR4) and [RMFR5]({{% siteparam bas
 
 Please refer to the [Terraform Interfaces]({{% siteparam base %}}/specs/tf/interfaces/) page.
 
+## Required AzAPI patterns
+
+Every Terraform AVM resource module **MUST** implement the following AzAPI patterns. The cross-references point at the normative specs — this section only summarises them so that nothing here is missed during scaffolding.
+
+| Spec                                                       | One-liner                                                                                                                                                                                                                                       |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [TFRMFR1]({{% siteparam base %}}/spec/TFRMFR1)             | Expose the parent scope as a single required `parent_id` string variable. **Do not** expose `resource_group_name` or any other scope-specific input. Validate with `provider::azapi::parse_resource_id` against the expected parent type.       |
+| [TFRMNFR1]({{% siteparam base %}}/spec/TFRMNFR1)           | Implement every ARM subresource as a Terraform submodule under `modules/<subresource-singular-name>/`. Submodules are wired up via `parent_id = azapi_resource.this.id`.                                                                          |
+| [TFRMNFR2]({{% siteparam base %}}/spec/TFRMNFR2)           | Name the primary `azapi_resource` `this`. Satellite resources **MUST** be named after what they represent (e.g. `azapi_resource.lock`, `azapi_resource.role_assignment`, `azapi_resource.diagnostic_setting`, `azapi_resource.private_endpoint`), not `this`. |
+| [TFFR4]({{% siteparam base %}}/spec/TFFR4)                 | Always set `response_export_values` on every AzAPI resource (use `[]` when nothing needs exporting). Include any read-only properties the module's outputs or downstream resources depend on.                                                  |
+| [TFFR5]({{% siteparam base %}}/spec/TFFR5)                 | Always set `replace_triggers_refs` on every AzAPI resource. List the body paths that **MUST** force replacement when they change; `name` and `location` are already triggers, so don't repeat them.                                            |
+| [TFFR6]({{% siteparam base %}}/spec/TFFR6)                 | Source the `type` argument of every AzAPI resource from a single `resource_types` object variable instead of hard-coding type strings. Use one optional key per resource, defaulted to the tested API version, and cascade the relevant subset to each submodule. |
+| [TFFR7]({{% siteparam base %}}/spec/TFFR7)                 | Expose `retry` and `timeouts` variables, apply them to every `azapi_resource`, and cascade them to every submodule.                                                                                                                              |
+| [TFNFR38]({{% siteparam base %}}/spec/TFNFR38)             | Validate every variable (or nested attribute) that holds an Azure ARM resource ID using `can(provider::azapi::parse_resource_id("Microsoft.X/y", value))`. Hand-rolled regex / `startswith` / `length` checks **MUST NOT** be used.              |
+| [TFNFR39]({{% siteparam base %}}/spec/TFNFR39)             | Use the standard file layout (`terraform.tf`, `variables.tf`, `outputs.tf`, `main.tf`, `locals.tf`). Larger modules **MAY** split `main.tf` into `main.<topic>.tf` files.                                                                          |
+
+The interface schema files under `static/includes/interfaces/tf/` are the canonical, copy-pasteable templates for the variables described by these specs. Treat them as authoritative.
+
 ## Telemetry
 
 To meet the requirements of [SFR3]({{% siteparam base %}}/spec/SFR3) & [SFR4]({{% siteparam base %}}/spec/SFR4), we use the [modtm](https://registry.terraform.io/providers/Azure/modtm/latest) telemetry provider. This lightweight telemetry provider sends telemetry data to Azure Application Insights via a HTTP POST front end service.

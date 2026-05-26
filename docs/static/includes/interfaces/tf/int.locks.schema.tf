@@ -17,12 +17,20 @@ DESCRIPTION
   }
 }
 
+module "avm_interfaces" {
+  source  = "Azure/avm-utl-interfaces/azure"
+  version = "0.6.0" # check latest version at the time of use
+
+  lock       = var.lock
+  lock_scope = azapi_resource.this.id
+}
+
 # Example resource implementation
-resource "azurerm_management_lock" "this" {
+resource "azapi_resource" "lock" {
   count = var.lock != null ? 1 : 0
 
-  lock_level = var.lock.kind
-  name       = coalesce(var.lock.name, "lock-${var.lock.kind}")
-  scope      = azurerm_MY_RESOURCE.this.id
-  notes      = var.lock.kind == "CanNotDelete" ? "Cannot delete the resource or its child resources." : "Cannot delete or modify the resource or its child resources."
+  type      = module.avm_interfaces.lock_azapi.type
+  name      = module.avm_interfaces.lock_azapi.name
+  parent_id = module.avm_interfaces.lock_azapi.parent_id
+  body      = module.avm_interfaces.lock_azapi.body
 }

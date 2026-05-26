@@ -64,7 +64,7 @@ This will be updated quarterly, or ad-hoc as new RPs/ Resources are created and 
   - `terraform-<provider>-avm-res-<resource provider>-<ARM resource type>` (GitHub repository name to meet registry naming requirements)
 - Example: `avm-res-compute-virtualmachine` or `avm-res-managedidentity-userassignedidentity`
 - Segments:
-  - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` or `azuread` for resource modules.
+  - `<provider>` is a legacy requirement of the Terraform registry. This must be set to `azure`
   - `res` defines this is a resource module
   - `<resource provider>` is the resource provider's name after the `Microsoft` part, e.g., `Microsoft.Compute` = `compute`.
   - `<ARM resource type>` is the **singular** version of the word after the resource provider, e.g., `Microsoft.Compute/virtualMachines` = `virtualmachine`

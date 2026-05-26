@@ -77,13 +77,13 @@ Explore the Key Vault module's documentation and usage examples to understand it
 
 - Note the **Examples** drop-down list and explore each example
 - Review the **Readme** tab to see module provider minimums, a list of resources and data sources used by the module, a nicely formatted version of the inputs and outputs, and a reference to any submodules that may be called.
-- Explore the [**Inputs**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest?tab=inputs) tab and observe how each input has a detailed description and a type definition for you to use when adding input values to your module configuration.
-- Explore the [**Outputs**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest?tab=outputs) tab and review each of the outputs that are exported by the AVM module for use by other modules in your deployment.
-- Finally, review the [**Resources**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest?tab=resources) tab to get a better understanding of the resources defined in the module.
+- Explore the [**Inputs**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azure/latest?tab=inputs) tab and observe how each input has a detailed description and a type definition for you to use when adding input values to your module configuration.
+- Explore the [**Outputs**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azure/latest?tab=outputs) tab and review each of the outputs that are exported by the AVM module for use by other modules in your deployment.
+- Finally, review the [**Resources**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azure/latest?tab=resources) tab to get a better understanding of the resources defined in the module.
 
 In this example, you will deploy a secret in a new Key Vault instance without needing to provide other parameters. The AVM Key Vault resource module provides these capabilities and does so with security and reliability being core principles. The default settings of the module also apply the recommendations of the Well Architected Framework where possible and appropriate.
 
-Note how the [**create-key**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest/examples/create-key) example seems to do what you need to achieve.
+Note how the [**create-key**](https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azure/latest/examples/create-key) example seems to do what you need to achieve.
 
 ## Create your new solution using AVM
 
@@ -118,16 +118,14 @@ Leverage the following steps as a template for how to leverage examples for boot
 {{% expand title="➕ Click here to copy the sample code from the video." expanded="false" %}}
 
 ``` terraform
-provider "azurerm" {
-  features {}
-}
+provider "azapi" {}
 
 terraform {
   required_version = "~> 1.9"
   required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = ">= 3.71"
+    azapi = {
+      source  = "Azure/azapi"
+      version = "~> 2.9"
     }
     http = {
       source  = "hashicorp/http"
@@ -141,8 +139,8 @@ terraform {
 }
 
 module "regions" {
-  source  = "Azure/avm-utl-regions/azurerm"
-  version = "0.1.0"
+  source  = "Azure/avm-utl-regions/azure"
+  version = "0.5.0"
 }
 
 # This allows us to randomize the region for the resource group.
@@ -151,15 +149,13 @@ resource "random_integer" "region_index" {
   min = 0
 }
 
-# This ensures you have unique CAF compliant names for our resources.
-module "naming" {
-  source  = "Azure/naming/azurerm"
-  version = "0.3.0"
-}
+data "azapi_client_config" "current" {}
 
-resource "azurerm_resource_group" "this" {
+# Deploy the resource group via the AVM resource module.
+module "resource_group" {
+  source   = "Azure/avm-res-resources-resourcegroup/azure"
+  name     = "<your-resource-group-name>"
   location = module.regions.regions[random_integer.region_index.result].name
-  name     = module.naming.resource_group.name_unique
 }
 
 # Get current IP address for use in KV firewall rules
@@ -172,15 +168,13 @@ data "http" "ip" {
   }
 }
 
-data "azurerm_client_config" "current" {}
-
 module "key_vault" {
-  source                        = "Azure/avm-res-keyvault-vault/azurerm"
-  name                          = module.naming.key_vault.name_unique
-  location                      = azurerm_resource_group.this.location
+  source                        = "Azure/avm-res-keyvault-vault/azure"
+  name                          = "<your-keyvault-name>"
+  location                      = module.resource_group.resource.location
   enable_telemetry              = var.enable_telemetry
-  resource_group_name           = azurerm_resource_group.this.name
-  tenant_id                     = data.azurerm_client_config.current.tenant_id
+  parent_id                     = module.resource_group.resource_id
+  tenant_id                     = data.azapi_client_config.current.tenant_id
   public_network_access_enabled = true
   keys = {
     cmk_for_storage_account = {
@@ -200,7 +194,7 @@ module "key_vault" {
   role_assignments = {
     deployment_user_kv_admin = {
       role_definition_id_or_name = "Key Vault Administrator"
-      principal_id               = data.azurerm_client_config.current.object_id
+      principal_id               = data.azapi_client_config.current.object_id
     }
   }
   wait_for_rbac_before_key_operations = {
@@ -221,13 +215,13 @@ module "key_vault" {
 - Once supporting resources such as resource groups have been modified, locate the module call for the AVM module - i.e., `module "keyvault"`.
 - AVM module examples use dot notation for a relative reference that is useful during module testing. However, you will need to replace the relative reference with a source reference that points to the Terraform Registry source location. In most cases, this source reference has been left as a comment in the module example to simplify replacing the existing source dot reference. Perform the following two actions to update the source:
   - Delete the existing source definition that uses a dot reference - i.e., `source = "../../"`.
-  - Uncomment the Terraform Registry source reference by deleting the `#` sign at the start of the commented source line - i.e., `source = "Azure/avm-res-keyvault-vault/azurerm"`.
+  - Uncomment the Terraform Registry source reference by deleting the `#` sign at the start of the commented source line - i.e., `source = "Azure/avm-res-keyvault-vault/azure"`.
 
   {{% notice style="note" %}}
   If the module example does not include a commented Terraform Registry source reference, you will need to copy it from the module's main documentation page. Use the following steps to do so:
   - Use the breadcrumbs to leave the example documentation and return to the module's primary Terraform Registry documentation page.
   - Locate the **Provision Instructions** box on the right side of the module's Terraform Registry page in your web browser.
-  - Select the second line that starts with `source =` from the code block - e.g., `source = "Azure/avm-res-keyvault-vault/azurerm"`. **Copy** it onto the clipboard.
+  - Select the second line that starts with `source =` from the code block - e.g., `source = "Azure/avm-res-keyvault-vault/azure"`. **Copy** it onto the clipboard.
   - Return to your code solution and **Paste** the clipboard's content where you previously deleted the source dot reference - e.g., `source = "../../"`.
   {{% /notice %}}
 
@@ -246,12 +240,12 @@ module "key_vault" {
 
 ```terraform
 module "avm-res-keyvault-vault" {
-  source                        = "Azure/avm-res-keyvault-vault/azurerm"
-  version                       = "0.9.1"
+  source                        = "Azure/avm-res-keyvault-vault/azure"
+  version                       = "1.0.0"
   name                          = "<custom_name_here>"
-  resource_group_name           = azurerm_resource_group.this.name
-  location                      = azurerm_resource_group.this.location
-  tenant_id                     = data.azurerm_client_config.this.tenant_id
+  parent_id                     = module.resource_group.resource_id
+  location                      = module.resource_group.resource.location
+  tenant_id                     = data.azapi_client_config.current.tenant_id
 
   keys = {
     cmk_for_storage_account = {
@@ -271,7 +265,7 @@ module "avm-res-keyvault-vault" {
   role_assignments = {
     deployment_user_kv_admin = {
       role_definition_id_or_name = "Key Vault Administrator"
-      principal_id               = data.azurerm_client_config.current.object_id
+      principal_id               = data.azapi_client_config.current.object_id
     }
   }
   wait_for_rbac_before_key_operations = {
@@ -310,7 +304,7 @@ After completing your solution development, you can move to the deployment stage
 - After logging in, select the **target subscription** from the list of subscriptions that you have access to.
 - Change the path to the directory where your completed terraform solution files reside.
 
-  {{% notice style="note" %}}Many AVM modules depend on the AzureRM 4.0 Terraform provider which mandates that a subscription id is configured. If you receive an error indicating that `subscription_id is a required provider property`, you will need to set a subscription id value for the provider. For Unix based systems (Linux or MacOS) you can configure this by running `export ARM_SUBSCRIPTION_ID=<your subscription guid>` on the command line. On Microsoft Windows, you can perform the same operation by running `set ARM_SUBSCRIPTION_ID="<your subscription guid>"` from the Windows command prompt or by running `$env:ARM_SUBSCRIPTION_ID="<your subscription guid>"` from a powershell prompt. Replace the "\<your subscription id\>" notation in each command with your Azure subscription's unique id value.{{% /notice %}}
+  {{% notice style="note" %}}AVM Terraform modules use the AzAPI provider, which expects an authenticated Azure context (provided by `az login` above) and reads the active subscription from your environment. If you need to target a specific subscription, set `ARM_SUBSCRIPTION_ID` to its GUID. For Unix based systems (Linux or MacOS) you can configure this by running `export ARM_SUBSCRIPTION_ID=<your subscription guid>` on the command line. On Microsoft Windows, you can perform the same operation by running `set ARM_SUBSCRIPTION_ID="<your subscription guid>"` from the Windows command prompt or by running `$env:ARM_SUBSCRIPTION_ID="<your subscription guid>"` from a powershell prompt. Replace the "\<your subscription id\>" notation in each command with your Azure subscription's unique id value.{{% /notice %}}
 
 - Initialize your Terraform project. This command downloads the necessary providers and modules to the working directory.
 

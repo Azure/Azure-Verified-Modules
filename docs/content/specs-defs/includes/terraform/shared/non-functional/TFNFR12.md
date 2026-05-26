@@ -21,20 +21,27 @@ priority: 21120
 
 ## ID: TFNFR12 - Category: Code Style - Dynamic for Optional Nested Objects
 
-An example from the community:
+An example using AzAPI:
 
 ```terraform
-resource "azurerm_kubernetes_cluster" "main" {
-  ...
+resource "azapi_resource" "main" {
+  type      = "Microsoft.ContainerService/managedClusters@2024-09-01"
+  name      = var.name
+  parent_id = var.parent_id
+  location  = var.location
+  body = {
+    properties = { ... }
+  }
+
   dynamic "identity" {
     for_each = var.client_id == "" || var.client_secret == "" ? [1] : []
 
     content {
-      type                      = var.identity_type
-      user_assigned_identity_id = var.user_assigned_identity_id
+      type         = var.identity_type
+      identity_ids = var.user_assigned_identity_ids
     }
   }
-  ...
+  response_export_values = []
 }
 ```
 

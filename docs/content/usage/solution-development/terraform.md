@@ -11,6 +11,10 @@ description: Terraform solution development for the Azure Verified Modules (AVM)
 Azure Verified Modules (AVM) for Terraform are a powerful tool that leverage the Terraform domain-specific language (DSL), industry knowledge, and an Open Source community, which altogether enable developers to quickly deploy Azure resources that follow Microsoft's recommended practices for Azure.
 In this article, we will walk through the Terraform specific considerations and recommended practices on developing your solution leveraging Azure Verified Modules. We'll review some of the design features and trade-offs and include sample code to illustrate each discussion point.
 
+{{% notice style="warning" %}}
+**This lab demonstrates older AVM Terraform modules built on the AzureRM provider.** AVM Terraform modules **MUST** use the [AzAPI](https://registry.terraform.io/providers/Azure/azapi/latest) provider, expose `parent_id` instead of `resource_group_name` (per [TFRMFR1]({{% siteparam base %}}/spec/TFRMFR1)), name their primary resource `this` (per [TFRMNFR2]({{% siteparam base %}}/spec/TFRMNFR2)), and source the AzAPI resource type from `var.resource_types` (per [TFFR6]({{% siteparam base %}}/spec/TFFR6)). The high-level patterns shown below (architecture, composition, dependency wiring) carry over, but the per-module call surface differs on current AzAPI-based modules. For the current call shape see the [Terraform quickstart]({{% siteparam base %}}/usage/quickstart/terraform/) and [Why AVM Terraform modules favor AzAPI]({{% siteparam base %}}/specs/tf/#why-avm-terraform-modules-favor-azapi).
+{{% /notice %}}
+
 ## Prerequisites
 
 {{% include file="/content/usage/includes/terraform-prerequisites.md" %}}

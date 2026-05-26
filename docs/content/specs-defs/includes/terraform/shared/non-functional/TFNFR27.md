@@ -32,10 +32,10 @@ In verified module:
 ```terraform
 terraform {
   required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~> 3.0"
-      configuration_aliases = [ azurerm.alternate ]
+    azapi = {
+      source                = "Azure/azapi"
+      version               = "~> 2.9"
+      configuration_aliases = [azapi.alternate]
     }
   }
 }
@@ -44,20 +44,17 @@ terraform {
 In the root module where we call this verified module:
 
 ````terraform
-provider "azurerm" {
-  features {}
-}
+provider "azapi" {}
 
-provider "azurerm" {
+provider "azapi" {
   alias = "alternate"
-  features {}
 }
 
 module "foo" {
   source = "xxx"
   providers = {
-    azurerm = azurerm
-    azurerm.alternate = azurerm.alternate
+    azapi           = azapi
+    azapi.alternate = azapi.alternate
   }
 }
 ````
@@ -67,7 +64,6 @@ Bad example:
 In verified module:
 
 ```terraform
-provider "azurerm" {
+provider "azapi" {
   # Configuration options
-  features {}
 }

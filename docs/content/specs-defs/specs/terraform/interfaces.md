@@ -140,3 +140,65 @@ In Terraform, locks become part of the resource graph and suitable `depends_on` 
 This interface is a **SHOULD** instead of a **MUST** and therefore the AVM core team have not mandated a interface schema to use.
 
 {{% /notice %}}
+
+## AzAPI resource types
+
+{{% notice style="important" %}}
+
+The keys of the `resource_types` object are module-specific. Each module **MUST** declare one `optional(string, "...")` field per `azapi_resource` (or equivalent AzAPI resource) it owns, defaulting each field to the latest tested API version. See [TFFR6]({{% siteparam base %}}/spec/TFFR6).
+
+{{% /notice %}}
+
+{{< highlight lineNos="false" type="terraform" wrap="true" title="Variable Declaration" >}}
+  {{% include file="/static/includes/interfaces/tf/int.resource_types.schema.tf" %}}
+{{< /highlight >}}
+
+{{< highlight lineNos="false" type="terraform" wrap="true" title="Input Example with Values" >}}
+  {{% include file="/static/includes/interfaces/tf/int.resource_types.input.tf" %}}
+{{< /highlight >}}
+
+**Notes:**
+
+- Parent modules **MUST** cascade the relevant subset of `resource_types` to each submodule they instantiate (see [TFRMNFR1]({{% siteparam base %}}/spec/TFRMNFR1)). Submodules **MUST** declare their own `resource_types` variable using the same pattern.
+- Defaults **MUST** be a stable (non-preview) API version unless the module's primary resource only ships a preview API.
+
+## AzAPI retry
+
+{{< highlight lineNos="false" type="terraform" wrap="true" title="Variable Declaration" >}}
+  {{% include file="/static/includes/interfaces/tf/int.retry.schema.tf" %}}
+{{< /highlight >}}
+
+{{< highlight lineNos="false" type="terraform" wrap="true" title="Input Example with Values" >}}
+  {{% include file="/static/includes/interfaces/tf/int.retry.input.tf" %}}
+{{< /highlight >}}
+
+**Notes:**
+
+- The `retry` variable **MUST** be applied to every `azapi_resource` (and equivalent AzAPI resources) declared by the module.
+- Parent modules **MUST** cascade `retry` to each submodule they instantiate (see [TFFR7]({{% siteparam base %}}/spec/TFFR7) and [TFRMNFR1]({{% siteparam base %}}/spec/TFRMNFR1)).
+- Module owners **MAY** ship module-level defaults when the resource it manages benefits from them. To do so, set the variable's overall `default` to `{}` (not `null`) and provide per-field defaults inside the `optional(...)` wrappers. Consumers **MUST** still be able to override any individual field.
+
+{{< highlight lineNos="false" type="terraform" wrap="true" title="Variable Declaration with Module-level Defaults" >}}
+  {{% include file="/static/includes/interfaces/tf/int.retry.defaults.tf" %}}
+{{< /highlight >}}
+
+## AzAPI timeouts
+
+{{< highlight lineNos="false" type="terraform" wrap="true" title="Variable Declaration" >}}
+  {{% include file="/static/includes/interfaces/tf/int.timeouts.schema.tf" %}}
+{{< /highlight >}}
+
+{{< highlight lineNos="false" type="terraform" wrap="true" title="Input Example with Values" >}}
+  {{% include file="/static/includes/interfaces/tf/int.timeouts.input.tf" %}}
+{{< /highlight >}}
+
+**Notes:**
+
+- `timeouts` is a **block** on `azapi_resource` (not an attribute), so a `dynamic "timeouts"` block is required to honor the variable's `null` default.
+- The `timeouts` variable **MUST** be applied to every `azapi_resource` (and equivalent AzAPI resources) declared by the module.
+- Parent modules **MUST** cascade `timeouts` to each submodule they instantiate (see [TFFR7]({{% siteparam base %}}/spec/TFFR7) and [TFRMNFR1]({{% siteparam base %}}/spec/TFRMNFR1)). Submodules **MAY** additionally expose per-item overrides for cases where individual resources need different settings.
+- Module owners **MAY** ship module-level defaults when the resource it manages benefits from them (for example, longer create / delete timeouts for slow-provisioning resources). To do so, set the variable's overall `default` to `{}` (not `null`) and provide per-field defaults inside the `optional(...)` wrappers. Consumers **MUST** still be able to override any individual field.
+
+{{< highlight lineNos="false" type="terraform" wrap="true" title="Variable Declaration with Module-level Defaults" >}}
+  {{% include file="/static/includes/interfaces/tf/int.timeouts.defaults.tf" %}}
+{{< /highlight >}}

@@ -21,7 +21,7 @@ Additional internal content for **ongoing module maintenance** available for Mic
 
 ## 1. Owner Activities and Responsibilities
 
-Familiarise yourself with the responsibilities as **Module Owner** outlined in [Team Definitions & RACI]({{% siteparam base %}}/specs/shared/team-definitions/#module-owners) and [Module Owner Responsibilities]({{% siteparam base %}}/help-support/issue-triage/brm-issue-triage/#module-owner-responsibilities) in the [BRM Issue Triage]({{% siteparam base %}}/help-support/issue-triage/brm-issue-triage/).
+Familiarize yourself with the responsibilities as **Module Owner** outlined in [Team Definitions & RACI]({{% siteparam base %}}/specs/shared/team-definitions/#module-owners) and [Module Owner Responsibilities]({{% siteparam base %}}/help-support/issue-triage/brm-issue-triage/#module-owner-responsibilities) in the [BRM Issue Triage]({{% siteparam base %}}/help-support/issue-triage/brm-issue-triage/).
 
 1. Create a GitHub team as outlined in [SNFR20]({{% siteparam base %}}/spec/SNFR20) and add it to the respective parent team:
 

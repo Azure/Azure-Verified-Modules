@@ -47,7 +47,7 @@ All of this will be automated via the use of the Resource Management feature of 
 
 {{% notice style="note" %}}
 
-Please note that the durations stated above are for a reasonable and useful response towards resolution of the issue raised, if possible, and **not** for a fix within these durations; although if possible this will of course happen.
+Please note that the durations stated above are for a reasonable and useful response toward resolution of the issue raised, if possible, and **not** for a fix within these durations; although if possible this will of course happen.
 
 {{% /notice %}}
 

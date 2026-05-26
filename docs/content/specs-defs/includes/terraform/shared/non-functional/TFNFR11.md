@@ -30,12 +30,17 @@ variable "security_group_id" {
   type: string
 }
 
-resource "azurerm_network_security_group" "this" {
-  count               = var.security_group_id == null ? 1 : 0
-  name                = coalesce(var.new_network_security_group_name, "${var.subnet_name}-nsg")
-  resource_group_name = var.resource_group_name
-  location            = local.location
-  tags                = var.new_network_security_group_tags
+resource "azapi_resource" "network_security_group" {
+  count     = var.security_group_id == null ? 1 : 0
+  type      = "Microsoft.Network/networkSecurityGroups@2023-11-01"
+  name      = coalesce(var.new_network_security_group_name, "${var.subnet_name}-nsg")
+  parent_id = var.parent_id
+  location  = local.location
+  tags      = var.new_network_security_group_tags
+  body = {
+    properties = {}
+  }
+  response_export_values = []
 }
 ```
 
@@ -44,16 +49,21 @@ The disadvantage of this approach is if the user create a security group directl
 You can't do this:
 
 ```terraform
-resource "azurerm_network_security_group" "foo" {
-  name                = "example-nsg"
-  resource_group_name = "example-rg"
-  location            = "eastus"
+resource "azapi_resource" "foo" {
+  type      = "Microsoft.Network/networkSecurityGroups@2023-11-01"
+  name      = "example-nsg"
+  parent_id = "/subscriptions/.../resourceGroups/example-rg"
+  location  = "eastus"
+  body = {
+    properties = {}
+  }
+  response_export_values = []
 }
 
 module "bar" {
   source = "xxxx"
   ...
-  security_group_id = azurerm_network_security_group.foo.id
+  security_group_id = azapi_resource.foo.id
 }
 ```
 
@@ -71,17 +81,22 @@ variable "security_group" {
 The advantage of doing so is encapsulating the value which is "known after apply" in an object, and the `object` itself can be easily found out if it's `null` or not. Since the `id` of a `resource` cannot be `null`, this approach can avoid the situation we are facing in the first example, like the following:
 
 ```terraform
-resource "azurerm_network_security_group" "foo" {
-  name                = "example-nsg"
-  resource_group_name = "example-rg"
-  location            = "eastus"
+resource "azapi_resource" "foo" {
+  type      = "Microsoft.Network/networkSecurityGroups@2023-11-01"
+  name      = "example-nsg"
+  parent_id = "/subscriptions/.../resourceGroups/example-rg"
+  location  = "eastus"
+  body = {
+    properties = {}
+  }
+  response_export_values = []
 }
 
 module "bar" {
   source = "xxxx"
   ...
   security_group = {
-    id = azurerm_network_security_group.foo.id
+    id = azapi_resource.foo.id
   }
 }
 ```

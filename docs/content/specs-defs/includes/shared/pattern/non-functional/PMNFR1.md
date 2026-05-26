@@ -48,6 +48,6 @@ Therefore, **module owners don't need to construct the module's name themselves,
   - `terraform-<provider>-avm-ptn-<pattern module name>` (GitHub repository name to meet registry naming requirements)
 - Example: `avm-ptn-apptiervmss` or `avm-ptn-avd-lza-managementplane`
 - Segments:
-  - `<provider>` is the logical abstraction of various APIs used by Terraform. In most cases, this is going to be `azurerm` or `azuread` for resource modules.
+  - `<provider>` is a legacy requirement of the Terraform registry. This must be set to `azure`
   - `ptn` defines this as a pattern module
   - `<pattern module name>` is a term describing the module's function, e.g., `apptiervmss` = Application Tier VMSS; `avd-lza-managementplane` = Azure Virtual Desktop Landing Zone Accelerator Management Plane

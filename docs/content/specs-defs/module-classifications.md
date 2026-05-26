@@ -25,7 +25,7 @@ The required automated tests and other workflow elements will be derived from th
 Utility modules will follow the below naming convention:
 
 - Bicep: `avm/utl/<hyphenated grouping/category name>/<hyphenated utility module name>`. Modules will be kept under the `avm/utl` folder in the BRM repository.
-- Terraform: `avm-utl-<utility-module-name>`. Repositories will be named after the utility module (e.g., `terraform-azurerm-avm-utl-<my utility module>`).
+- Terraform: `avm-utl-<utility-module-name>`. Repositories will be named after the utility module (e.g., `terraform-azure-avm-utl-<my utility module>`).
 
 All related documentation (functional and non-functional requirements, etc.) will also be published along the way.
 
