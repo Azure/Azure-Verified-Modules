@@ -19,7 +19,7 @@ Any updates to existing or new specifications for Terraform must be submitted as
 
 ## Why AVM Terraform modules favor AzAPI
 
-From v1.0.0 onward, AVM Terraform modules **MUST** use the [AzAPI](https://registry.terraform.io/providers/Azure/azapi/latest) provider. The AzureRM provider is permitted only for module versions prior to v1.0.0 (see [TFFR3](/spec/TFFR3)).
+AVM Terraform modules **MUST** use the [AzAPI](https://registry.terraform.io/providers/Azure/azapi/latest) provider. The AzureRM provider is only permitted under the narrow exception described in [TFFR3](/spec/TFFR3) (resources that have no AzAPI equivalent, e.g. some data-plane resources).
 
 This decision is intentional and is driven by the following factors:
 

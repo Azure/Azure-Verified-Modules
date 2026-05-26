@@ -32,7 +32,7 @@ Because the same variable describes every possible parent scope, modules **MUST 
 
 `parent_id` **MUST** be validated using the AzAPI provider's [provider-defined functions](https://registry.terraform.io/providers/Azure/azapi/latest/docs/functions), per [TFNFR38]({{% siteparam base %}}/spec/TFNFR38). The required function is [`provider::azapi::parse_resource_id`](https://registry.terraform.io/providers/Azure/azapi/latest/docs/functions/parse_resource_id), called with the *expected parent resource type* for the module's primary resource (for example `Microsoft.Resources/resourceGroups` for resources that live inside a resource group, or `Microsoft.Network/virtualNetworks` for a subnet module). Hand-rolled `regex`, `startswith`, or `length` checks **MUST NOT** be used.
 
-This rule supersedes the Terraform clause of [RMFR3]({{% siteparam base %}}/spec/RMFR3) (which historically required a `resource_group_name` variable in Terraform). RMFR3 still applies to Bicep modules; for Terraform AzAPI v1.0.0+ modules the rules in this spec take precedence.
+This rule supersedes the Terraform clause of [RMFR3]({{% siteparam base %}}/spec/RMFR3) (which historically required a `resource_group_name` variable in Terraform). RMFR3 still applies to Bicep modules; for AVM Terraform modules the rules in this spec take precedence.
 
 ### Variable declaration
 

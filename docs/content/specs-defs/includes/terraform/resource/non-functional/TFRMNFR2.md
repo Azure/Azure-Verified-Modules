@@ -58,7 +58,7 @@ resource "azapi_resource" "role_assignments" {
 
 The `this` rule **MAY** be relaxed only when **all** of the following are true:
 
-- The module is `Class-Utility` (per [Module Classifications]({{% siteparam base %}}/specs/team-definitions/#module-classifications)) **OR** the module's primary functionality is implemented by two or more `azapi_resource` declarations that are *peers* (no resource is the ARM parent of any other, and no resource depends on another resource's ID for its own creation).
+- The module is a **utility module** (per [Module Classifications]({{% siteparam base %}}/specs/team-definitions/#module-classifications)) **OR** the module's primary functionality is implemented by two or more `azapi_resource` declarations that are *peers* (no resource is the ARM parent of any other, and no resource depends on another resource's ID for its own creation).
 - No single `azapi_resource` would, on its own, be a meaningful handle for downstream consumers (i.e. there is no resource whose `id` would be the obvious value of a single canonical `resource_id` output).
 
 A module where one `azapi_resource` is the ARM parent of, or a hard dependency for, another `azapi_resource` is **NOT** exempted — the parent resource is the primary and **MUST** be named `this`.
