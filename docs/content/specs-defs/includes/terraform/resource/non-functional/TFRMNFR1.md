@@ -51,13 +51,17 @@ terraform-azure-avm-res-example-widget/
 └─ examples/
 ```
 
-The parent module **SHOULD** compose its submodules so that the most common scenarios can be expressed through the parent module alone, but each submodule **MUST** also be independently consumable.
+The parent module **MUST** reference and compose its submodules so that supported subresources can be expressed through the parent module, but each submodule **MUST** also be independently consumable.
+
+"Independently consumable" means a caller can source the submodule directly and use it without relying on hidden behavior in the parent module. Therefore, a submodule **MUST** follow the same interface and specification rules as a root AVM Terraform module (as listed below), even when the parent module also instantiates it.
 
 ### Submodule cardinality
 
 Submodules **MUST** deploy exactly one instance of the resource they manage. The submodule's primary `azapi_resource` (or equivalent) **MUST NOT** declare `count` or `for_each`, and the submodule **MUST NOT** otherwise create multiple instances of its primary resource.
 
 Cardinality is the parent module's responsibility: the parent module **MUST** use `count` or `for_each` on its submodule call to control how many instances of the subresource are deployed. This keeps each submodule's variables, outputs and tests focused on a single resource and pushes cardinality concerns up to the consumer.
+
+This rule applies equally when a submodule is consumed through its parent module and when the same submodule is consumed directly by another caller.
 
 For example, a parent module deploying multiple `parts` calls its `part` submodule using `for_each`:
 
@@ -71,6 +75,16 @@ module "part" {
   resource_types = { this = var.resource_types.part }
   retry          = var.retry
   timeouts       = var.timeouts
+}
+```
+
+The following pattern is **NOT** allowed inside a submodule, because it pushes cardinality into the submodule itself:
+
+```terraform
+# modules/part/main.tf (invalid)
+resource "azapi_resource" "this" {
+  for_each = var.parts
+  # ...
 }
 ```
 
