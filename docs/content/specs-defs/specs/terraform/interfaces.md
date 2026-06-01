@@ -145,7 +145,7 @@ This interface is a **SHOULD** instead of a **MUST** and therefore the AVM core 
 
 {{% notice style="important" %}}
 
-The keys of the `resource_types` object are module-specific. Each module **MUST** declare one `optional(string, "...")` field per `azapi_resource` (or equivalent AzAPI resource) it owns, defaulting each field to the latest tested API version. See [TFFR6]({{% siteparam base %}}/spec/TFFR6).
+Each `resource_types` key **MUST** be the snake_case form of the ARM resource type with the `Microsoft.` prefix dropped (for example `Microsoft.Example/widgets/parts` \u2192 `example_widgets_parts`). Each module **MUST** declare one `optional(string, "...")` field per `azapi_resource` (or equivalent AzAPI resource) it owns, defaulting each field to the latest tested API version. See [TFFR6]({{% siteparam base %}}/spec/TFFR6).
 
 {{% /notice %}}
 
@@ -159,7 +159,8 @@ The keys of the `resource_types` object are module-specific. Each module **MUST*
 
 **Notes:**
 
-- Parent modules **MUST** cascade the relevant subset of `resource_types` to each submodule they instantiate (see [TFRMNFR1]({{% siteparam base %}}/spec/TFRMNFR1)). Submodules **MUST** declare their own `resource_types` variable using the same pattern.
+- `resource_types` keys name the AzAPI resource type and are derived deterministically from the ARM type. They are independent of the Terraform resource label (see [TFRMNFR2]({{% siteparam base %}}/spec/TFRMNFR2)) \u2014 `this` is never a valid `resource_types` key.
+- Submodules **MUST** declare their own `resource_types` variable using the same naming rule for the resources they own. The parent **MUST** declare one nested `optional(object({...}), {})` slot per submodule it instantiates, shaped exactly like that submodule's variable, and **MUST** cascade the slot through unchanged (see [TFRMNFR1]({{% siteparam base %}}/spec/TFRMNFR1)). The parent **MUST NOT** repeat the submodule's defaults \u2014 the submodule remains the source of truth for its own tested API versions.
 - Defaults **MUST** be a stable (non-preview) API version unless the module's primary resource only ships a preview API.
 
 ## AzAPI retry
