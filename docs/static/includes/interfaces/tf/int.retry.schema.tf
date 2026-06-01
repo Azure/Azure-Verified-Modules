@@ -20,7 +20,7 @@ DESCRIPTION
 # so the variable is assigned directly. The same pattern applies to every
 # `azapi_resource` declared by the module, including those in submodules.
 resource "azapi_resource" "this" {
-  type      = var.resource_types.this
+  type      = var.resource_types.example_widgets
   name      = var.name
   parent_id = var.parent_id
   body      = { /* ... */ }

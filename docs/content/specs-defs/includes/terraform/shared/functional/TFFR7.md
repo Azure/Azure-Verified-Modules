@@ -73,7 +73,7 @@ DESCRIPTION
 }
 
 resource "azapi_resource" "this" {
-  type      = var.resource_types.this
+  type      = var.resource_types.example_widgets
   name      = var.name
   parent_id = var.parent_id
   body      = { /* ... */ }

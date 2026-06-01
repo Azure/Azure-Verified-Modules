@@ -63,7 +63,7 @@ Cardinality is the parent module's responsibility: the parent module **MUST** us
 
 This rule applies equally when a submodule is consumed through its parent module and when the same submodule is consumed directly by another caller.
 
-For example, a parent module deploying multiple `parts` calls its `part` submodule using `for_each`:
+For example, a parent module deploying multiple `parts` calls its `part` submodule using `for_each`, cascades the matching nested slot from its own `resource_types` (see [TFFR6]({{% siteparam base %}}/spec/TFFR6) for the naming rule and nested-slot pattern), and passes `retry` and `timeouts` through unchanged (see [TFFR7]({{% siteparam base %}}/spec/TFFR7)):
 
 ```terraform
 module "part" {
@@ -72,7 +72,23 @@ module "part" {
 
   name           = each.value.name
   parent_id      = azapi_resource.this.id
-  resource_types = { this = var.resource_types.part }
+  resource_types = var.resource_types.example_widgets_parts
+  retry          = var.retry
+  timeouts       = var.timeouts
+}
+```
+
+When the subresource tree is more than one level deep (for example `Microsoft.Example/widgets/parts/components`), the same pattern recurses: the `part` submodule declares its own `resource_types` with a nested slot for `example_widgets_parts_components`, and cascades that slot through to its sibling `component` submodule unchanged:
+
+```terraform
+# Inside modules/part/main.tf
+module "component" {
+  source   = "../component"
+  for_each = var.components
+
+  name           = each.value.name
+  parent_id      = azapi_resource.this.id
+  resource_types = var.resource_types.example_widgets_parts_components
   retry          = var.retry
   timeouts       = var.timeouts
 }
@@ -133,8 +149,8 @@ Submodules **MUST** meet every requirement that applies to a top-level AVM Terra
   - [TFFR3]({{% siteparam base %}}/spec/TFFR3) — AzAPI provider usage.
   - [TFFR4]({{% siteparam base %}}/spec/TFFR4) — `response_export_values`.
   - [TFFR5]({{% siteparam base %}}/spec/TFFR5) — `replace_triggers_refs`.
-  - [TFFR6]({{% siteparam base %}}/spec/TFFR6) — `resource_types` variable.
-  - [TFFR7]({{% siteparam base %}}/spec/TFFR7) — `retry` and `timeouts` variables (which the parent module **MUST** cascade to each submodule).
+  - [TFFR6]({{% siteparam base %}}/spec/TFFR6) — `resource_types` variable. Each submodule declares its own `resource_types` for the resources it owns; the parent declares a nested `optional(object({...}), {})` slot per submodule that mirrors the submodule's variable exactly, and cascades it through unchanged.
+  - [TFFR7]({{% siteparam base %}}/spec/TFFR7) — `retry` and `timeouts` variables, which the parent module **MUST** cascade to each submodule unchanged.
 - All applicable [interface]({{% siteparam base %}}/specs/tf/interfaces/) specifications (managed identities, role assignments, locks, diagnostic settings, private endpoints, customer-managed keys, tags) — for any interface that is supported by the underlying ARM subresource.
 
 To avoid duplication, this specification deliberately states the requirement once: *every requirement that applies to a top-level resource module applies equally to every one of its submodules*. Where a requirement contradicts the submodule's nature (for example, a submodule that is never published independently still **MUST** include all required documentation files but is not itself listed in the registry), the requirement is interpreted in the context of the submodule.

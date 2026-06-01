@@ -27,9 +27,11 @@ Standardizing on `this` for the primary resource lets consumers, CI checks, and 
 
 ### Example
 
+The resource label (`this`) and the `var.resource_types.<key>` argument supplied to `type =` are independent concerns: the label is governed by this spec, the key by the naming rule in [TFFR6]({{% siteparam base %}}/spec/TFFR6). `this` is therefore never a valid `resource_types` key — the key names the AzAPI resource type, not the Terraform graph node.
+
 ```terraform
 resource "azapi_resource" "this" {
-  type      = var.resource_types.this
+  type      = var.resource_types.example_widgets
   name      = var.name
   parent_id = var.parent_id
   body      = { /* ... */ }
