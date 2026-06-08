@@ -15,11 +15,11 @@ To contribute, you need a GitHub account. If you are a Microsoft employee, your 
 This step is **only required if you are (or are becoming) a Terraform module owner**. External contributors and one-off contributors do not need this access.
 {{% /notice %}}
 
-Access for Terraform module owners is granted via the **AVM Terraform Module Owners** Entra access package. Request access here:
+Access for Terraform module owners is granted via the **Azure Verified Modules (AVM) Module Contributors** Entra access package. Request access here:
 
-- [AVM Terraform Module Owners — Access Package](https://aka.ms/avm/id/access-package/module-contributor)
+- [Azure Verified Modules (AVM) Module Contributors — Access Package](https://aka.ms/avm/id/access-package/module-contributor)
 
-Once approved, you will be added to the [`AVM Terraform Module Owners`](https://aka.ms/avm/id/groups/module-contributors) Entra group, which is the source of truth for who is authorized to own and approve changes on AVM Terraform module repositories.
+Once approved, you will be added to the [`azure-verified-modules-module-contributors`](https://aka.ms/avm/id/groups/module-contributors) Entra group, which is the source of truth for who is authorized to own and approve changes on AVM Terraform module repositories.
 
 {{% notice style="tip" %}}
 Until your access request is approved, you can continue to contribute by using JIT elevation and by raising PRs that are approved by an existing module owner.
