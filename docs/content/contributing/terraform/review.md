@@ -12,7 +12,7 @@ The AVM module review is a critical step before an AVM Terraform module gets pub
 
 2. The module owner submits a pull request (PR) titled `AVM-Review-PR` and ensures that all checks are passing on that PR as that is a pre-requisite to request a review.
 
-3. The module owner assigns the `avm-core-team-technical-terraform` GitHub team as reviewer on the PR.
+3. The module owner assigns the `@Azure/azure-verified-modules-engineering-owners` GitHub team as reviewer on the PR.
 
 4. The module owner leaves the following comment as it is on the module proposal in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project by searching for their module proposal by name there.
 
