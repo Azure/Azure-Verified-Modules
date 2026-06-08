@@ -19,10 +19,10 @@ If you have already completed these steps, skip to step 2.
 
 1. Open the [Open Source Portal](https://repos.opensource.microsoft.com/link) and ensure your GitHub account is linked to your Microsoft account.
 2. Open the [Open Source Portal](https://repos.opensource.microsoft.com/orgs) and ensure you are a member of the `Azure` and `Microsoft` organizations.
-3. Navigate to [Core Identity](https://coreidentity.microsoft.com/manage/Entitlement/entitlement/azureverifie-ks5z) and request access to the `Azure Verified Module Owners Terraform` entitlement.
+3. Request access via the [AVM Terraform Module Owners access package](https://aka.ms/avm/id/access-package/module-contributor). Approval adds you to the [`AVM Terraform Module Owners`](https://aka.ms/avm/id/groups/module-contributors) Entra group, which is the source of truth for AVM Terraform module owners.
 
 {{% notice style="info" %}}
-Until your entitlement request is approved, you can contribute by using JIT elevation.
+Until your access request is approved, you can contribute by using JIT elevation.
 {{% /notice %}}
 
 ## 2. Gather repository information
