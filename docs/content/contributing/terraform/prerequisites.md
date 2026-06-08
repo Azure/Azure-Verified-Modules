@@ -17,9 +17,9 @@ This step is **only required if you are (or are becoming) a Terraform module own
 
 Access for Terraform module owners is granted via the **AVM Terraform Module Owners** Entra access package. Request access here:
 
-- [AVM Terraform Module Owners — Access Package](https://myaccess.microsoft.com/@microsoft.onmicrosoft.com#/access-packages/b45b0231-c5ab-43fe-94b1-1efd0547bd67)
+- [AVM Terraform Module Owners — Access Package](https://aka.ms/avm/id/access-package/module-contributor)
 
-Once approved, you will be added to the [`AVM Terraform Module Owners`](https://entra.microsoft.com/#view/Microsoft_AAD_IAM/GroupDetailsMenuBlade/~/Overview/groupId/006e73c9-4e67-4e08-903e-527b1547262c) Entra group, which is the source of truth for who is authorized to own and approve changes on AVM Terraform module repositories.
+Once approved, you will be added to the [`AVM Terraform Module Owners`](https://aka.ms/avm/id/groups/module-contributors) Entra group, which is the source of truth for who is authorized to own and approve changes on AVM Terraform module repositories.
 
 {{% notice style="tip" %}}
 Until your access request is approved, you can continue to contribute by using JIT elevation and by raising PRs that are approved by an existing module owner.
