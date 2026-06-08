@@ -19,7 +19,7 @@ If you have already completed these steps, skip to step 2.
 
 1. Open the [Open Source Portal](https://repos.opensource.microsoft.com/link) and ensure your GitHub account is linked to your Microsoft account.
 2. Open the [Open Source Portal](https://repos.opensource.microsoft.com/orgs) and ensure you are a member of the `Azure` and `Microsoft` organizations.
-3. Request access via the [AVM Terraform Module Owners access package](https://aka.ms/avm/id/access-package/module-contributor). Approval adds you to the [`AVM Terraform Module Owners`](https://aka.ms/avm/id/groups/module-contributors) Entra group, which is the source of truth for AVM Terraform module owners.
+3. Request access via the [Azure Verified Modules (AVM) Module Contributors access package](https://aka.ms/avm/id/access-package/module-contributor). Approval adds you to the [`azure-verified-modules-module-contributors`](https://aka.ms/avm/id/groups/module-contributors) Entra group.
 
 {{% notice style="info" %}}
 Until your access request is approved, you can contribute by using JIT elevation.
@@ -112,7 +112,7 @@ Click **Complete Setup** and use the following settings:
 | --- | --- |
 | Classify the repository | Production |
 | Assign a Service tree or Opt-out | Azure Verified Modules / AVM |
-| Direct owners | Add yourself and `jaredholgate` or `mawhi`. Add `avm-team-module-owners` as fallback security group. |
+| Direct owners | Add yourself and `jaredholgate`. Add `azure-verified-modules-module-owners` as fallback security group. |
 | Public open source licensed project? | Yes |
 | What type of open source? | Sample code |
 | License | MIT |
@@ -135,7 +135,7 @@ Click **Finish setup + start business review**, then **View repository**, then *
 {{% expand title="➕ If you do NOT see the Complete Setup link" %}}
 
 1. Go to the **Compliance** tab and fill out:
-    - **Direct owners:** Add yourself and `jaredholgate` or `mawhi`. Add `avm-team-module-owners` as fallback.
+    - **Direct owners:** Add yourself and `jaredholgate`. Add `azure-verified-modules-module-owners` as fallback.
     - **Classify the repository:** Production
     - **Service tree:** Azure Verified Modules / AVM
 2. Go back to **Overview** and click **Elevate your access** if available.
@@ -148,11 +148,6 @@ The script will automatically:
 - Create a PR to add module metadata to the `avm-terraform-governance` repository.
 - Create an issue to install the `Azure Verified Modules` GitHub App.
 
-## 4. Update the issue status
-
-1. Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#27AB03;color:white;">Status: Repository Created 📄</mark>&nbsp; label.
-2. Remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#136A41;color:white;">Status: Ready For Repository Creation 📝</mark>&nbsp; label if present.
-
-## 5. Wait for the GitHub App
+## 4. Wait for the GitHub App
 
 Once installed (usually within 24 hours), the environment sync runs automatically at 15:30 UTC on weekdays to complete the repository setup.

@@ -299,7 +299,7 @@ PR approvals are **enforced** on all AVM Terraform module repositories. A PR can
 
 ### Finding an approver
 
-1. **First port of call — find a friendly module owner.** Look up another active Terraform module owner from the [`AVM Terraform Module Owners`](https://aka.ms/avm/id/groups/module-contributors) Entra group and request a review from them directly. This is the fastest path to approval.
+1. **First port of call — find a friendly module owner.** Look up another active Terraform module owner from the [`azure-verified-modules-module-contributors`](https://aka.ms/avm/id/groups/module-contributors) Entra group and request a review from them directly. This is the fastest path to approval.
 2. **If no module owner is available**, fall back to the AVM core team:
     - Assign the `@Azure/azure-verified-modules-engineering-owners` GitHub team as a reviewer on the PR.
     - Apply the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label so the request is picked up during core team triage.
