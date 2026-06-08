@@ -68,8 +68,11 @@ If the issue was opened as a misplaced module proposal, mention the `@Azure/AVM-
 
 ### Triaging a Module PR
 
-1. If the **PR is submitted by the module owner** and the **module is owned by a single person**, **the AVM core team or the owner of another Terraform module must review and approve the PR**, (as the module owner can't approve their on PR).
-    - To indicate that the PR needs the core team's attention, apply the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label.
+PR approvals are **enforced** on all AVM Terraform module repositories. The following rules apply to who must approve:
+
+1. If the **PR is submitted by the module owner** and the **module is owned by a single person**, **another Terraform module owner must review and approve the PR** (the module owner cannot approve their own PR).
+    - **First port of call:** find a friendly module owner from the [`AVM Terraform Module Owners`](https://entra.microsoft.com/#view/Microsoft_AAD_IAM/GroupDetailsMenuBlade/~/Overview/groupId/006e73c9-4e67-4e08-903e-527b1547262c) Entra group and request a review.
+    - **If no owner is available**, assign the `@Azure/azure-verified-modules-engineering-owners` GitHub team as a reviewer and apply the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label so the AVM core team picks it up during triage.
 2. If the **PR is submitted by a contributor** (other than the module owner), or the **module is owned by at least 2 people**, **one of the module owners should review and approve the PR**.
 3. Apply relevant labels
     - Categorize the PR using applicable labels, such as:
