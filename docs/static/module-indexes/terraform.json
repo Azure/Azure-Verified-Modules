@@ -1,0 +1,1127 @@
+{
+  "avm-res-aad-domainservice": {
+    "moduleType": "resource",
+    "displayName": "Azure Active Directory Domain Service",
+    "status": "Proposed"
+  },
+  "avm-res-alertsmanagement-actionrule": {
+    "moduleType": "resource",
+    "displayName": "Action Rules",
+    "status": "Proposed"
+  },
+  "avm-res-analysisservices-server": {
+    "moduleType": "resource",
+    "displayName": "Analysis Services Server",
+    "status": "Proposed"
+  },
+  "avm-res-apimanagement-service": {
+    "moduleType": "resource",
+    "displayName": "API Management Service",
+    "status": "Available"
+  },
+  "avm-res-app-containerapp": {
+    "moduleType": "resource",
+    "displayName": "Container App",
+    "status": "Available"
+  },
+  "avm-res-app-job": {
+    "moduleType": "resource",
+    "displayName": "App Job",
+    "status": "Available"
+  },
+  "avm-res-app-managedenvironment": {
+    "moduleType": "resource",
+    "displayName": "App Managed Environment",
+    "status": "Available"
+  },
+  "avm-res-appconfiguration-configurationstore": {
+    "moduleType": "resource",
+    "displayName": "App Configuration Store",
+    "status": "Available"
+  },
+  "avm-res-authorization-roleassignment": {
+    "moduleType": "resource",
+    "displayName": "Role Assignment",
+    "status": "Available"
+  },
+  "avm-res-automation-automationaccount": {
+    "moduleType": "resource",
+    "displayName": "Automation Account",
+    "status": "Available"
+  },
+  "avm-res-avs-privatecloud": {
+    "moduleType": "resource",
+    "displayName": "AVS Private Cloud",
+    "status": "Available"
+  },
+  "avm-res-azurestackhci-cluster": {
+    "moduleType": "resource",
+    "displayName": "Azure Stack HCI Cluster",
+    "status": "Available"
+  },
+  "avm-res-azurestackhci-logicalnetwork": {
+    "moduleType": "resource",
+    "displayName": "AzureStackHCI logical network",
+    "status": "Available"
+  },
+  "avm-res-azurestackhci-virtualmachineinstance": {
+    "moduleType": "resource",
+    "displayName": "Stack HCI Virtual Machine Instance",
+    "status": "Available"
+  },
+  "avm-res-batch-batchaccount": {
+    "moduleType": "resource",
+    "displayName": "Batch Account",
+    "status": "Available"
+  },
+  "avm-res-botservice-botservice": {
+    "moduleType": "resource",
+    "displayName": "Bot Service",
+    "status": "Available"
+  },
+  "avm-res-cache-redis": {
+    "moduleType": "resource",
+    "displayName": "Redis Cache",
+    "status": "Available"
+  },
+  "avm-res-cache-redisenterprise": {
+    "moduleType": "resource",
+    "displayName": "Azure Managed Redis",
+    "status": "Available"
+  },
+  "avm-res-cdn-profile": {
+    "moduleType": "resource",
+    "displayName": "CDN Profile",
+    "status": "Available"
+  },
+  "avm-res-certificateregistration-certificateorder": {
+    "moduleType": "resource",
+    "displayName": "Certificate Orders",
+    "status": "Available"
+  },
+  "avm-res-cognitiveservices-account": {
+    "moduleType": "resource",
+    "displayName": "Cognitive Service",
+    "status": "Available"
+  },
+  "avm-res-communication-emailservice": {
+    "moduleType": "resource",
+    "displayName": "Email Communication Service",
+    "status": "Available"
+  },
+  "avm-res-compute-capacityreservationgroup": {
+    "moduleType": "resource",
+    "displayName": "Capacity Reservation Group",
+    "status": "Available"
+  },
+  "avm-res-compute-disk": {
+    "moduleType": "resource",
+    "displayName": "Compute Disk",
+    "status": "Available"
+  },
+  "avm-res-compute-diskencryptionset": {
+    "moduleType": "resource",
+    "displayName": "Disk Encryption Set",
+    "status": "Available"
+  },
+  "avm-res-compute-gallery": {
+    "moduleType": "resource",
+    "displayName": "Azure Compute Gallery",
+    "status": "Available"
+  },
+  "avm-res-compute-hostgroup": {
+    "moduleType": "resource",
+    "displayName": "Host Groups",
+    "status": "Available"
+  },
+  "avm-res-compute-image": {
+    "moduleType": "resource",
+    "displayName": "Image",
+    "status": "Proposed"
+  },
+  "avm-res-compute-proximityplacementgroup": {
+    "moduleType": "resource",
+    "displayName": "Proximity Placement Group",
+    "status": "Available"
+  },
+  "avm-res-compute-sshpublickey": {
+    "moduleType": "resource",
+    "displayName": "Public SSH Key",
+    "status": "Available"
+  },
+  "avm-res-compute-virtualmachine": {
+    "moduleType": "resource",
+    "displayName": "Virtual Machine",
+    "status": "Available"
+  },
+  "avm-res-compute-virtualmachinescaleset": {
+    "moduleType": "resource",
+    "displayName": "Virtual Machine Scale Set",
+    "status": "Available"
+  },
+  "avm-res-consumption-budget": {
+    "moduleType": "resource",
+    "displayName": "Consumption Budget",
+    "status": "Proposed"
+  },
+  "avm-res-containerinstance-containergroup": {
+    "moduleType": "resource",
+    "displayName": "Container Instance",
+    "status": "Available"
+  },
+  "avm-res-containerregistry-registry": {
+    "moduleType": "resource",
+    "displayName": "Azure Container Registry (ACR)",
+    "status": "Available"
+  },
+  "avm-res-containerservice-fleet": {
+    "moduleType": "resource",
+    "displayName": "AKS Fleet",
+    "status": "Proposed"
+  },
+  "avm-res-containerservice-managedcluster": {
+    "moduleType": "resource",
+    "displayName": "AKS Managed Cluster",
+    "status": "Available"
+  },
+  "avm-res-dashboard-grafana": {
+    "moduleType": "resource",
+    "displayName": "Azure Managed Grafana",
+    "status": "Proposed"
+  },
+  "avm-res-databricks-accessconnector": {
+    "moduleType": "resource",
+    "displayName": "Azure Databricks Access Connector",
+    "status": "Proposed"
+  },
+  "avm-res-databricks-workspace": {
+    "moduleType": "resource",
+    "displayName": "Azure Databricks Workspace",
+    "status": "Available"
+  },
+  "avm-res-datafactory-factory": {
+    "moduleType": "resource",
+    "displayName": "Data Factory",
+    "status": "Available"
+  },
+  "avm-res-dataprotection-backupvault": {
+    "moduleType": "resource",
+    "displayName": "Data Protection Backup Vault",
+    "status": "Available"
+  },
+  "avm-res-dataprotection-resourceguard": {
+    "moduleType": "resource",
+    "displayName": "Data Protection Resource Guard",
+    "status": "Available"
+  },
+  "avm-res-dbformysql-flexibleserver": {
+    "moduleType": "resource",
+    "displayName": "DB for MySQL Flexible Server",
+    "status": "Available"
+  },
+  "avm-res-dbforpostgresql-flexibleserver": {
+    "moduleType": "resource",
+    "displayName": "DB for Postgre SQL Flexible Server",
+    "status": "Available"
+  },
+  "avm-res-desktopvirtualization-applicationgroup": {
+    "moduleType": "resource",
+    "displayName": "Azure Virtual Desktop (AVD) Application Group",
+    "status": "Available"
+  },
+  "avm-res-desktopvirtualization-hostpool": {
+    "moduleType": "resource",
+    "displayName": "Azure Virtual Desktop (AVD) Host Pool",
+    "status": "Available"
+  },
+  "avm-res-desktopvirtualization-scalingplan": {
+    "moduleType": "resource",
+    "displayName": "Azure Virtual Desktop (AVD) Scaling Plan",
+    "status": "Available"
+  },
+  "avm-res-desktopvirtualization-workspace": {
+    "moduleType": "resource",
+    "displayName": "Azure Virtual Desktop (AVD) Workspace",
+    "status": "Available"
+  },
+  "avm-res-devcenter-devcenter": {
+    "moduleType": "resource",
+    "displayName": "Dev Center",
+    "status": "Available"
+  },
+  "avm-res-deviceregistry-assetendpointprofile": {
+    "moduleType": "resource",
+    "displayName": "Device Registry Asset Endpoint Profile",
+    "status": "Proposed"
+  },
+  "avm-res-devopsinfrastructure-pool": {
+    "moduleType": "resource",
+    "displayName": "DevOps Pools",
+    "status": "Available"
+  },
+  "avm-res-devtestlab-lab": {
+    "moduleType": "resource",
+    "displayName": "DevTest Lab",
+    "status": "Proposed"
+  },
+  "avm-res-digitaltwins-digitaltwinsinstance": {
+    "moduleType": "resource",
+    "displayName": "Digital Twins Instance",
+    "status": "Proposed"
+  },
+  "avm-res-documentdb-databaseaccount": {
+    "moduleType": "resource",
+    "displayName": "CosmosDB Database Account",
+    "status": "Available"
+  },
+  "avm-res-documentdb-mongocluster": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB for MongoDB (vCore)",
+    "status": "Available"
+  },
+  "avm-res-edge-site": {
+    "moduleType": "resource",
+    "displayName": "Azure Arc Site manager",
+    "status": "Available"
+  },
+  "avm-res-eventgrid-domain": {
+    "moduleType": "resource",
+    "displayName": "Event Grid Domain",
+    "status": "Available"
+  },
+  "avm-res-eventgrid-namespace": {
+    "moduleType": "resource",
+    "displayName": "Event Grid Namespace",
+    "status": "Available"
+  },
+  "avm-res-eventgrid-systemtopic": {
+    "moduleType": "resource",
+    "displayName": "Event Grid System Topic",
+    "status": "Proposed"
+  },
+  "avm-res-eventgrid-topic": {
+    "moduleType": "resource",
+    "displayName": "Event Grid Topic",
+    "status": "Available"
+  },
+  "avm-res-eventhub-namespace": {
+    "moduleType": "resource",
+    "displayName": "Event Hub Namespace",
+    "status": "Available"
+  },
+  "avm-res-features-feature": {
+    "moduleType": "resource",
+    "displayName": "Azure Feature Exposure Control (AFEC)",
+    "status": "Available"
+  },
+  "avm-res-healthbot-healthbot": {
+    "moduleType": "resource",
+    "displayName": "Azure Health Bot",
+    "status": "Proposed"
+  },
+  "avm-res-hybridcompute-machine": {
+    "moduleType": "resource",
+    "displayName": "Hybrid Compute Machine",
+    "status": "Proposed"
+  },
+  "avm-res-hybridcontainerservice-provisionedclusterinstance": {
+    "moduleType": "resource",
+    "displayName": "AKS Arc",
+    "status": "Available"
+  },
+  "avm-res-insights-actiongroup": {
+    "moduleType": "resource",
+    "displayName": "Action Group",
+    "status": "Proposed"
+  },
+  "avm-res-insights-activitylogalert": {
+    "moduleType": "resource",
+    "displayName": "Activity log alerts",
+    "status": "Proposed"
+  },
+  "avm-res-insights-autoscalesetting": {
+    "moduleType": "resource",
+    "displayName": "Auto scale settings",
+    "status": "Available"
+  },
+  "avm-res-insights-component": {
+    "moduleType": "resource",
+    "displayName": "Application Insight",
+    "status": "Available"
+  },
+  "avm-res-insights-datacollectionendpoint": {
+    "moduleType": "resource",
+    "displayName": "Data Collection Endpoint",
+    "status": "Available"
+  },
+  "avm-res-insights-datacollectionrule": {
+    "moduleType": "resource",
+    "displayName": "Data Collection Rule",
+    "status": "Available"
+  },
+  "avm-res-insights-logprofile": {
+    "moduleType": "resource",
+    "displayName": "Log profile",
+    "status": "Proposed"
+  },
+  "avm-res-insights-metricalert": {
+    "moduleType": "resource",
+    "displayName": "Metric Alert",
+    "status": "Proposed"
+  },
+  "avm-res-insights-privatelinkscope": {
+    "moduleType": "resource",
+    "displayName": "Azure Monitor Private Link Scope",
+    "status": "Proposed"
+  },
+  "avm-res-insights-scheduledqueryrule": {
+    "moduleType": "resource",
+    "displayName": "Scheduled Query Rule",
+    "status": "Proposed"
+  },
+  "avm-res-iotoperations-instance": {
+    "moduleType": "resource",
+    "displayName": "Azure IoT Operations",
+    "status": "Proposed"
+  },
+  "avm-res-keyvault-vault": {
+    "moduleType": "resource",
+    "displayName": "Key Vault",
+    "status": "Available"
+  },
+  "avm-res-kusto-cluster": {
+    "moduleType": "resource",
+    "displayName": "Kusto Clusters",
+    "status": "Orphaned"
+  },
+  "avm-res-loadtestservice-loadtest": {
+    "moduleType": "resource",
+    "displayName": "Load Testing Service",
+    "status": "Proposed"
+  },
+  "avm-res-logic-workflow": {
+    "moduleType": "resource",
+    "displayName": "Logic Apps (Workflow)",
+    "status": "Available"
+  },
+  "avm-res-machinelearningservices-workspace": {
+    "moduleType": "resource",
+    "displayName": "Machine Learning Services Workspace",
+    "status": "Available"
+  },
+  "avm-res-maintenance-maintenanceconfiguration": {
+    "moduleType": "resource",
+    "displayName": "Maintenance Configuration",
+    "status": "Available"
+  },
+  "avm-res-managedidentity-userassignedidentity": {
+    "moduleType": "resource",
+    "displayName": "User Assigned Identity",
+    "status": "Available"
+  },
+  "avm-res-managedservices-registrationdefinition": {
+    "moduleType": "resource",
+    "displayName": "Registration Definition (Lighthouse)",
+    "status": "Proposed"
+  },
+  "avm-res-management-managementgroup": {
+    "moduleType": "resource",
+    "displayName": "Management Group",
+    "status": "Proposed"
+  },
+  "avm-res-management-servicegroup": {
+    "moduleType": "resource",
+    "displayName": "Management Service Groups",
+    "status": "Available"
+  },
+  "avm-res-netapp-netappaccount": {
+    "moduleType": "resource",
+    "displayName": "Azure NetApp File",
+    "status": "Available"
+  },
+  "avm-res-network-applicationgateway": {
+    "moduleType": "resource",
+    "displayName": "Application Gateway",
+    "status": "Available"
+  },
+  "avm-res-network-applicationgatewaywebapplicationfirewallpolicy": {
+    "moduleType": "resource",
+    "displayName": "Application Gateway Web Application Firewall (WAF) Policy",
+    "status": "Available"
+  },
+  "avm-res-network-applicationsecuritygroup": {
+    "moduleType": "resource",
+    "displayName": "Application Security Group (ASG)",
+    "status": "Available"
+  },
+  "avm-res-network-azurefirewall": {
+    "moduleType": "resource",
+    "displayName": "Azure Firewall",
+    "status": "Available"
+  },
+  "avm-res-network-bastionhost": {
+    "moduleType": "resource",
+    "displayName": "Bastion Host",
+    "status": "Available"
+  },
+  "avm-res-network-connection": {
+    "moduleType": "resource",
+    "displayName": "Virtual Network Gateway Connection",
+    "status": "Available"
+  },
+  "avm-res-network-ddosprotectionplan": {
+    "moduleType": "resource",
+    "displayName": "DDoS Protection",
+    "status": "Available"
+  },
+  "avm-res-network-dnsforwardingruleset": {
+    "moduleType": "resource",
+    "displayName": "DNS Forwarding Ruleset",
+    "status": "Proposed"
+  },
+  "avm-res-network-dnsresolver": {
+    "moduleType": "resource",
+    "displayName": "DNS Resolver",
+    "status": "Available"
+  },
+  "avm-res-network-dnszone": {
+    "moduleType": "resource",
+    "displayName": "Public DNS Zone",
+    "status": "Available"
+  },
+  "avm-res-network-expressroutecircuit": {
+    "moduleType": "resource",
+    "displayName": "ExpressRoute Circuit",
+    "status": "Available"
+  },
+  "avm-res-network-expressrouteport": {
+    "moduleType": "resource",
+    "displayName": "ExpressRoute Port",
+    "status": "Proposed"
+  },
+  "avm-res-network-firewallpolicy": {
+    "moduleType": "resource",
+    "displayName": "Azure Firewall Policy",
+    "status": "Available"
+  },
+  "avm-res-network-frontdoorwebapplicationfirewallpolicy": {
+    "moduleType": "resource",
+    "displayName": "Front Door Web Application Firewall (WAF) Policy",
+    "status": "Available"
+  },
+  "avm-res-network-ipgroup": {
+    "moduleType": "resource",
+    "displayName": "IP Group",
+    "status": "Available"
+  },
+  "avm-res-network-loadbalancer": {
+    "moduleType": "resource",
+    "displayName": "Loadbalancer",
+    "status": "Available"
+  },
+  "avm-res-network-localnetworkgateway": {
+    "moduleType": "resource",
+    "displayName": "Local Network Gateway",
+    "status": "Available"
+  },
+  "avm-res-network-natgateway": {
+    "moduleType": "resource",
+    "displayName": "NAT Gateway",
+    "status": "Available"
+  },
+  "avm-res-network-networkinterface": {
+    "moduleType": "resource",
+    "displayName": "Network Interface",
+    "status": "Available"
+  },
+  "avm-res-network-networkmanager": {
+    "moduleType": "resource",
+    "displayName": "Azure Virtual Network Manager",
+    "status": "Available"
+  },
+  "avm-res-network-networksecuritygroup": {
+    "moduleType": "resource",
+    "displayName": "Network Security Group",
+    "status": "Available"
+  },
+  "avm-res-network-networksecurityperimeter": {
+    "moduleType": "resource",
+    "displayName": "Network Security Perimeter",
+    "status": "Available"
+  },
+  "avm-res-network-networkwatcher": {
+    "moduleType": "resource",
+    "displayName": "Azure Network Watcher",
+    "status": "Available"
+  },
+  "avm-res-network-privatednszone": {
+    "moduleType": "resource",
+    "displayName": "Private DNS Zone",
+    "status": "Available"
+  },
+  "avm-res-network-privateendpoint": {
+    "moduleType": "resource",
+    "displayName": "Private Endpoint",
+    "status": "Available"
+  },
+  "avm-res-network-privatelinkservice": {
+    "moduleType": "resource",
+    "displayName": "Private Link Service",
+    "status": "Proposed"
+  },
+  "avm-res-network-publicipaddress": {
+    "moduleType": "resource",
+    "displayName": "Public IP Address",
+    "status": "Available"
+  },
+  "avm-res-network-publicipprefix": {
+    "moduleType": "resource",
+    "displayName": "Public IP Prefix",
+    "status": "Available"
+  },
+  "avm-res-network-routetable": {
+    "moduleType": "resource",
+    "displayName": "Route Table",
+    "status": "Available"
+  },
+  "avm-res-network-serviceendpointpolicy": {
+    "moduleType": "resource",
+    "displayName": "Service Endpoint Policy",
+    "status": "Proposed"
+  },
+  "avm-res-network-trafficmanagerprofile": {
+    "moduleType": "resource",
+    "displayName": "Traffic Manager Profile",
+    "status": "Available"
+  },
+  "avm-res-network-virtualnetwork": {
+    "moduleType": "resource",
+    "displayName": "Virtual Network",
+    "status": "Available"
+  },
+  "avm-res-network-virtualnetworkgateway": {
+    "moduleType": "resource",
+    "displayName": "Virtual Network Gateway",
+    "status": "Proposed"
+  },
+  "avm-res-network-virtualrouter": {
+    "moduleType": "resource",
+    "displayName": "Route Server",
+    "status": "Proposed"
+  },
+  "avm-res-operationalinsights-workspace": {
+    "moduleType": "resource",
+    "displayName": "Log Analytics workspace",
+    "status": "Available"
+  },
+  "avm-res-operationsmanagement-solution": {
+    "moduleType": "resource",
+    "displayName": "Operations Management Solution",
+    "status": "Proposed"
+  },
+  "avm-res-oracledatabase-cloudexadatainfrastructure": {
+    "moduleType": "resource",
+    "displayName": "Oracle Exadata Infrastructure",
+    "status": "Available"
+  },
+  "avm-res-oracledatabase-cloudvmcluster": {
+    "moduleType": "resource",
+    "displayName": "Oracle VM cluster",
+    "status": "Available"
+  },
+  "avm-res-portal-dashboard": {
+    "moduleType": "resource",
+    "displayName": "Azure Portal Dashboard",
+    "status": "Available"
+  },
+  "avm-res-powerbidedicated-capacity": {
+    "moduleType": "resource",
+    "displayName": "Power BI Dedicated Capacity",
+    "status": "Proposed"
+  },
+  "avm-res-purview-account": {
+    "moduleType": "resource",
+    "displayName": "Purview Account",
+    "status": "Proposed"
+  },
+  "avm-res-recoveryservices-vault": {
+    "moduleType": "resource",
+    "displayName": "Recovery Services Vault",
+    "status": "Available"
+  },
+  "avm-res-redhatopenshift-openshiftcluster": {
+    "moduleType": "resource",
+    "displayName": "OpenShift Cluster",
+    "status": "Available"
+  },
+  "avm-res-relay-namespace": {
+    "moduleType": "resource",
+    "displayName": "Relay Namespace",
+    "status": "Available"
+  },
+  "avm-res-resourcegraph-query": {
+    "moduleType": "resource",
+    "displayName": "Resource Graph Query",
+    "status": "Available"
+  },
+  "avm-res-resources-feature": {
+    "moduleType": "resource",
+    "displayName": "Resource Features",
+    "status": "Proposed"
+  },
+  "avm-res-resources-resourcegroup": {
+    "moduleType": "resource",
+    "displayName": "Resource Group",
+    "status": "Available"
+  },
+  "avm-res-search-searchservice": {
+    "moduleType": "resource",
+    "displayName": "Search Service",
+    "status": "Available"
+  },
+  "avm-res-servicebus-namespace": {
+    "moduleType": "resource",
+    "displayName": "Service Bus Namespace",
+    "status": "Available"
+  },
+  "avm-res-servicefabric-cluster": {
+    "moduleType": "resource",
+    "displayName": "Service Fabric Cluster",
+    "status": "Proposed"
+  },
+  "avm-res-servicenetworking-trafficcontroller": {
+    "moduleType": "resource",
+    "displayName": "Application Gateway for Containers (Traffic Controller)",
+    "status": "Proposed"
+  },
+  "avm-res-signalrservice-signalr": {
+    "moduleType": "resource",
+    "displayName": "SignalR Service SignalR",
+    "status": "Proposed"
+  },
+  "avm-res-sql-instancepool": {
+    "moduleType": "resource",
+    "displayName": "Instance Pools",
+    "status": "Proposed"
+  },
+  "avm-res-sql-managedinstance": {
+    "moduleType": "resource",
+    "displayName": "SQL Managed Instance",
+    "status": "Available"
+  },
+  "avm-res-sql-server": {
+    "moduleType": "resource",
+    "displayName": "Azure SQL Server",
+    "status": "Available"
+  },
+  "avm-res-sqlvirtualmachine-sqlvirtualmachine": {
+    "moduleType": "resource",
+    "displayName": "Sql Virtual Machine",
+    "status": "Available"
+  },
+  "avm-res-storage-storageaccount": {
+    "moduleType": "resource",
+    "displayName": "Storage Account",
+    "status": "Available"
+  },
+  "avm-res-synapse-workspace": {
+    "moduleType": "resource",
+    "displayName": "Synapse Workspace",
+    "status": "Proposed"
+  },
+  "avm-res-virtualmachineimages-imagetemplate": {
+    "moduleType": "resource",
+    "displayName": "Virtual Machine Image Template",
+    "status": "Proposed"
+  },
+  "avm-res-web-connection": {
+    "moduleType": "resource",
+    "displayName": "API Connection",
+    "status": "Available"
+  },
+  "avm-res-web-hostingenvironment": {
+    "moduleType": "resource",
+    "displayName": "App Service Environment",
+    "status": "Available"
+  },
+  "avm-res-web-serverfarm": {
+    "moduleType": "resource",
+    "displayName": "App Service Plan",
+    "status": "Available"
+  },
+  "avm-res-web-site": {
+    "moduleType": "resource",
+    "displayName": "Web/Function App",
+    "status": "Available"
+  },
+  "avm-res-web-staticsite": {
+    "moduleType": "resource",
+    "displayName": "Static Web App",
+    "status": "Available"
+  },
+  "avm-ptn-aca-lza-hosting-environment": {
+    "moduleType": "pattern",
+    "displayName": "Azure Container Apps Landing Zone Accelerator",
+    "status": "Available"
+  },
+  "avm-ptn-ai-platform-baseline": {
+    "moduleType": "pattern",
+    "displayName": "AI platform baseline",
+    "status": "Proposed"
+  },
+  "avm-ptn-aiml-ai-foundry": {
+    "moduleType": "pattern",
+    "displayName": "AI-ML - AI Foundry",
+    "status": "Available"
+  },
+  "avm-ptn-aiml-ai-gateway": {
+    "moduleType": "pattern",
+    "displayName": "AI-ML - Gateway",
+    "status": "Proposed"
+  },
+  "avm-ptn-aiml-landing-zone": {
+    "moduleType": "pattern",
+    "displayName": "AI-ML - Landing Zone (LZ)",
+    "status": "Available"
+  },
+  "avm-ptn-aks-dev": {
+    "moduleType": "pattern",
+    "displayName": "AKS dev",
+    "status": "Available"
+  },
+  "avm-ptn-aks-economy": {
+    "moduleType": "pattern",
+    "displayName": "AKS economy",
+    "status": "Available"
+  },
+  "avm-ptn-aks-enterprise": {
+    "moduleType": "pattern",
+    "displayName": "AKS Enterprise",
+    "status": "Available"
+  },
+  "avm-ptn-aks-production": {
+    "moduleType": "pattern",
+    "displayName": "Azure Kubernetes Service",
+    "status": "Available"
+  },
+  "avm-ptn-alz": {
+    "moduleType": "pattern",
+    "displayName": "Azure Landing Zone Management Groups and Policy",
+    "status": "Available"
+  },
+  "avm-ptn-alz-application-landing-zone-cicd-bootstrap-azure-devops": {
+    "moduleType": "pattern",
+    "displayName": "ALZ Application Landing Zone - CICD Bootstrap for Azure DevOps",
+    "status": "Proposed"
+  },
+  "avm-ptn-alz-application-landing-zone-cicd-bootstrap-github": {
+    "moduleType": "pattern",
+    "displayName": "ALZ Application Landing Zone - CICD Bootstrap for GitHub",
+    "status": "Proposed"
+  },
+  "avm-ptn-alz-application-landing-zone-identity-and-access": {
+    "moduleType": "pattern",
+    "displayName": "ALZ Identity and Access Management ",
+    "status": "Proposed"
+  },
+  "avm-ptn-alz-connectivity-hub-and-spoke-vnet": {
+    "moduleType": "pattern",
+    "displayName": "ALZ Connectivity Hub and Spoke",
+    "status": "Available"
+  },
+  "avm-ptn-alz-connectivity-virtual-wan": {
+    "moduleType": "pattern",
+    "displayName": "ALZ Connectivity vWAN",
+    "status": "Available"
+  },
+  "avm-ptn-alz-identity": {
+    "moduleType": "pattern",
+    "displayName": "ALZ Identity",
+    "status": "Proposed"
+  },
+  "avm-ptn-alz-management": {
+    "moduleType": "pattern",
+    "displayName": "ALZ Management",
+    "status": "Available"
+  },
+  "avm-ptn-alz-policy-exemptions": {
+    "moduleType": "pattern",
+    "displayName": "ALZ Policy Exemptions",
+    "status": "Proposed"
+  },
+  "avm-ptn-alz-sub-vending": {
+    "moduleType": "pattern",
+    "displayName": "ALZ Subscription vending",
+    "status": "Available"
+  },
+  "avm-ptn-app-iaas-vm-cosmosdb-tier-four": {
+    "moduleType": "pattern",
+    "displayName": "Workload - IaaS VM Cosmos DB - Tier 4",
+    "status": "Proposed"
+  },
+  "avm-ptn-app-service-landing-zone": {
+    "moduleType": "pattern",
+    "displayName": "App Service Landing Zone",
+    "status": "Proposed"
+  },
+  "avm-ptn-avd-lza-insights": {
+    "moduleType": "pattern",
+    "displayName": "AVD Insights",
+    "status": "Available"
+  },
+  "avm-ptn-avd-lza-managementplane": {
+    "moduleType": "pattern",
+    "displayName": "AVD Management Plane",
+    "status": "Available"
+  },
+  "avm-ptn-avd-lza-sessionhosts": {
+    "moduleType": "pattern",
+    "displayName": "AVD Session Hosts",
+    "status": "Proposed"
+  },
+  "avm-ptn-azure-aws-s2s-vpn": {
+    "moduleType": "pattern",
+    "displayName": "Azure-AWS S2S VPN",
+    "status": "Proposed"
+  },
+  "avm-ptn-azure-ipam": {
+    "moduleType": "pattern",
+    "displayName": "IPAM",
+    "status": "Proposed"
+  },
+  "avm-ptn-azureimagebuilder": {
+    "moduleType": "pattern",
+    "displayName": "Azure Image Builder",
+    "status": "Proposed"
+  },
+  "avm-ptn-azuremonitorwindowsagent": {
+    "moduleType": "pattern",
+    "displayName": "Azure Monitor Windows Agent",
+    "status": "Available"
+  },
+  "avm-ptn-bcdr-vm-replication": {
+    "moduleType": "pattern",
+    "displayName": "Azure Site Recovery VM Replication",
+    "status": "Proposed"
+  },
+  "avm-ptn-botservice-teamsapp": {
+    "moduleType": "pattern",
+    "displayName": "Bot Service Teams App",
+    "status": "Proposed"
+  },
+  "avm-ptn-cicd-agents-and-runners": {
+    "moduleType": "pattern",
+    "displayName": "CI CD Agents and Runners",
+    "status": "Available"
+  },
+  "avm-ptn-cicd-bootstrap": {
+    "moduleType": "pattern",
+    "displayName": "CI CD bootstrap",
+    "status": "Proposed"
+  },
+  "avm-ptn-cloudshell-vnet": {
+    "moduleType": "pattern",
+    "displayName": "Azure Cloud Shell in a Virtual Network",
+    "status": "Proposed"
+  },
+  "avm-ptn-commercial-marketplace": {
+    "moduleType": "pattern",
+    "displayName": "Commercial Marketplace SaaS Accelerator",
+    "status": "Available"
+  },
+  "avm-ptn-confidential-compute": {
+    "moduleType": "pattern",
+    "displayName": "Azure Confidential Compute",
+    "status": "Proposed"
+  },
+  "avm-ptn-dev-center-dev-box": {
+    "moduleType": "pattern",
+    "displayName": "Microsoft Dev Center Dev Box",
+    "status": "Proposed"
+  },
+  "avm-ptn-ephemeral-credential": {
+    "moduleType": "pattern",
+    "displayName": "Ephemeral Credentials Generator",
+    "status": "Available"
+  },
+  "avm-ptn-function-app-storage-private-endpoints": {
+    "moduleType": "pattern",
+    "displayName": "Function App and private endpoint-secured Storage",
+    "status": "Available"
+  },
+  "avm-ptn-hci-ad-provisioner": {
+    "moduleType": "pattern",
+    "displayName": "Arc for AD registration",
+    "status": "Available"
+  },
+  "avm-ptn-hci-server-provisioner": {
+    "moduleType": "pattern",
+    "displayName": "Arc for Server registration",
+    "status": "Available"
+  },
+  "avm-ptn-hubnetworking": {
+    "moduleType": "pattern",
+    "displayName": "Hub Networking",
+    "status": "Deprecated"
+  },
+  "avm-ptn-lbvmss": {
+    "moduleType": "pattern",
+    "displayName": "Virtual Machine Scale Set",
+    "status": "Proposed"
+  },
+  "avm-ptn-mongodb-atlas-lza": {
+    "moduleType": "pattern",
+    "displayName": "MongoDB Atlas on Azure - Landing Zone (LZ)",
+    "status": "Proposed"
+  },
+  "avm-ptn-monitor-private-link-scope": {
+    "moduleType": "pattern",
+    "displayName": "Private Link Scope",
+    "status": "Proposed"
+  },
+  "avm-ptn-monitoring-amba-alz": {
+    "moduleType": "pattern",
+    "displayName": "AMBA ALZ Pattern",
+    "status": "Available"
+  },
+  "avm-ptn-network-private-link-private-dns-zones": {
+    "moduleType": "pattern",
+    "displayName": "Private Link Private DNS Zones",
+    "status": "Available"
+  },
+  "avm-ptn-network-routeserver": {
+    "moduleType": "pattern",
+    "displayName": "Azure Route Server",
+    "status": "Available"
+  },
+  "avm-ptn-odaa": {
+    "moduleType": "pattern",
+    "displayName": "Oracle Exedata Workload",
+    "status": "Available"
+  },
+  "avm-ptn-odaa-identity": {
+    "moduleType": "pattern",
+    "displayName": "Oracle Identity",
+    "status": "Proposed"
+  },
+  "avm-ptn-openai-cognitivesearch": {
+    "moduleType": "pattern",
+    "displayName": "Corporate Line of Business (LoB) ChatBot ",
+    "status": "Proposed"
+  },
+  "avm-ptn-openai-e2e-baseline": {
+    "moduleType": "pattern",
+    "displayName": "Baseline OpenAI end-to-end chat",
+    "status": "Proposed"
+  },
+  "avm-ptn-oracle-iaas": {
+    "moduleType": "pattern",
+    "displayName": "Oracle Database on Azure",
+    "status": "Proposed"
+  },
+  "avm-ptn-policyassignment": {
+    "moduleType": "pattern",
+    "displayName": "Policy assignment",
+    "status": "Available"
+  },
+  "avm-ptn-purestorage-cbs-array": {
+    "moduleType": "pattern",
+    "displayName": "Pure Storage Cloud Block Store on Azure",
+    "status": "Proposed"
+  },
+  "avm-ptn-sentinel-solutions": {
+    "moduleType": "pattern",
+    "displayName": "Sentinel Solutions",
+    "status": "Proposed"
+  },
+  "avm-ptn-subnets-nsgs-routes": {
+    "moduleType": "pattern",
+    "displayName": "Network Security Groups",
+    "status": "Proposed"
+  },
+  "avm-ptn-subscription-service-health-alerts": {
+    "moduleType": "pattern",
+    "displayName": "Subscriptions Service Health Alerts",
+    "status": "Proposed"
+  },
+  "avm-ptn-virtualwan": {
+    "moduleType": "pattern",
+    "displayName": "Virtual WAN",
+    "status": "Deprecated"
+  },
+  "avm-ptn-vnetgateway": {
+    "moduleType": "pattern",
+    "displayName": "Virtual Network Gateway",
+    "status": "Deprecated"
+  },
+  "avm-utl-compute-linuxvirtualmachine-azapi-replicator": {
+    "moduleType": "utility",
+    "displayName": "Linux VM AzRM to AzAPI Replicator",
+    "status": "Available"
+  },
+  "avm-utl-compute-orchestratedvirtualmachinescaleset-azapi-replicator": {
+    "moduleType": "utility",
+    "displayName": "VMSS AzRM to AzAPI Replicator",
+    "status": "Available"
+  },
+  "avm-utl-compute-windowsvirtualmachine-azapi-replicator": {
+    "moduleType": "utility",
+    "displayName": "Windows VM AzRM to AzAPI Replicator",
+    "status": "Available"
+  },
+  "avm-utl-containerregistry-containerregistry-azapi-replicator": {
+    "moduleType": "utility",
+    "displayName": "Container Registry AzRM to AzAPI Replicator",
+    "status": "Proposed"
+  },
+  "avm-utl-interfaces": {
+    "moduleType": "utility",
+    "displayName": "AVM Interfaces",
+    "status": "Available"
+  },
+  "avm-utl-naming": {
+    "moduleType": "utility",
+    "displayName": "Module Naming",
+    "status": "Proposed"
+  },
+  "avm-utl-network-ip-addresses": {
+    "moduleType": "utility",
+    "displayName": "AVM Network IP Addresses",
+    "status": "Available"
+  },
+  "avm-utl-network-subnet-azapi-replicator": {
+    "moduleType": "utility",
+    "displayName": "Subnet AzRM to AzAPI Replicator",
+    "status": "Proposed"
+  },
+  "avm-utl-network-virtualnetwork-azapi-replicator": {
+    "moduleType": "utility",
+    "displayName": "Virtual Network AzRM to AzAPI Replicator",
+    "status": "Available"
+  },
+  "avm-utl-privatedns-privatednszone-azapi-replicator": {
+    "moduleType": "utility",
+    "displayName": "Private DNS Zone AzRM to AzAPI Replicator",
+    "status": "Available"
+  },
+  "avm-utl-regions": {
+    "moduleType": "utility",
+    "displayName": "Azure Regions Data",
+    "status": "Available"
+  },
+  "avm-utl-resources-resourcegroup-azapi-replicator": {
+    "moduleType": "utility",
+    "displayName": "Resource Group AzRM to AzAPI Replicator",
+    "status": "Available"
+  },
+  "avm-utl-roledefinitions": {
+    "moduleType": "utility",
+    "displayName": "Azure Role Definitions",
+    "status": "Available"
+  },
+  "avm-utl-sku-finder": {
+    "moduleType": "utility",
+    "displayName": "AVM SKU Finder ",
+    "status": "Available"
+  }
+}

@@ -1,0 +1,3002 @@
+{
+  "avm/res/aad/domain-service": {
+    "moduleType": "resource",
+    "displayName": "Azure Active Directory Domain Service",
+    "status": "Available"
+  },
+  "avm/res/alerts-management/action-rule": {
+    "moduleType": "resource",
+    "displayName": "Action Rules",
+    "status": "Available"
+  },
+  "avm/res/analysis-services/server": {
+    "moduleType": "resource",
+    "displayName": "Analysis Services Server",
+    "status": "Orphaned"
+  },
+  "avm/res/api-center/service": {
+    "moduleType": "resource",
+    "displayName": "API Center Service",
+    "status": "Proposed"
+  },
+  "avm/res/api-management/service": {
+    "moduleType": "resource",
+    "displayName": "API Management Service",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/api": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - API",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/api-version-set": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - API Version Set",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/api/diagnostics": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - API Diagnostics",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/api/operation": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - API - Operation",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/api/operation/policy": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - API - Operation - Policy",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/api/policy": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - API Policy",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/authorization-server": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Authorization Server",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/backend": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Backend",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/cache": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Cache",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/diagnostics": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Diagnostics",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/identity-provider": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Identity Provider",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/logger": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Logger",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/named-value": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Named Value",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/policy": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Policy",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/portalsetting": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Portal Setting",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/private-endpoint-connection": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Private Endpoint Connections",
+    "status": "Proposed"
+  },
+  "avm/res/api-management/service/product": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Product",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/product/api": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Product API",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/product/group": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Product Group",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/product/policy": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Product - Policy",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/subscription": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Subscription",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/workspace": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Workspaces",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/workspace/api": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Workspace - API",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/workspace/api-version-set": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Workspace - API Version Set",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/workspace/api/diagnostics": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Workspace - API - Diagnostics",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/workspace/api/operation": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Workspace - API - Operation",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/workspace/api/operation/policy": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Workspace - API - Operation - Policy",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/workspace/api/policy": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Workspace - API - Policy",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/workspace/backend": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Workspace - Backend",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/workspace/diagnostics": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Workspace - Diagnostics",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/workspace/logger": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Workspace - Logger",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/workspace/named-value": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Workspace - Named Value",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/workspace/policy": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Workspace - Policy",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/workspace/product": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Workspace - Product",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/workspace/product/api-link": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Workspace - Product - Api Link",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/workspace/product/group-link": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Workspace - Product - Group Link",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/workspace/product/policy": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Workspace - Product - Policy",
+    "status": "Available"
+  },
+  "avm/res/api-management/service/workspace/subscription": {
+    "moduleType": "resource",
+    "displayName": "API Management Service - Workspace - Subscription",
+    "status": "Available"
+  },
+  "avm/res/app-configuration/configuration-store": {
+    "moduleType": "resource",
+    "displayName": "App Configuration Store",
+    "status": "Available"
+  },
+  "avm/res/app-configuration/configuration-store/key-value": {
+    "moduleType": "resource",
+    "displayName": "App Configuration Store - Key Value",
+    "status": "Available"
+  },
+  "avm/res/app-configuration/configuration-store/replica": {
+    "moduleType": "resource",
+    "displayName": "App Configuration Store - Replica",
+    "status": "Available"
+  },
+  "avm/res/app/agent": {
+    "moduleType": "resource",
+    "displayName": "Azure SRE Agent",
+    "status": "Proposed"
+  },
+  "avm/res/app/container-app": {
+    "moduleType": "resource",
+    "displayName": "Container App",
+    "status": "Available"
+  },
+  "avm/res/app/container-app/auth-config": {
+    "moduleType": "resource",
+    "displayName": "Container App - Auth Config",
+    "status": "Available"
+  },
+  "avm/res/app/job": {
+    "moduleType": "resource",
+    "displayName": "App Job",
+    "status": "Available"
+  },
+  "avm/res/app/managed-environment": {
+    "moduleType": "resource",
+    "displayName": "App Managed Environment",
+    "status": "Available"
+  },
+  "avm/res/app/managed-environment/certificate": {
+    "moduleType": "resource",
+    "displayName": "App Managed Environment - Certificate",
+    "status": "Available"
+  },
+  "avm/res/app/managed-environment/storage": {
+    "moduleType": "resource",
+    "displayName": "App Managed Environment - Storage",
+    "status": "Available"
+  },
+  "avm/res/app/session-pool": {
+    "moduleType": "resource",
+    "displayName": "App Session Pool",
+    "status": "Available"
+  },
+  "avm/res/authorization/policy-assignment": {
+    "moduleType": "resource",
+    "displayName": "Authorization - Policy Assignment",
+    "status": "Available"
+  },
+  "avm/res/authorization/policy-assignment/mg-scope": {
+    "moduleType": "resource",
+    "displayName": "Authorization - Policy Assignment - Management Group Scope",
+    "status": "Available"
+  },
+  "avm/res/authorization/policy-assignment/rg-scope": {
+    "moduleType": "resource",
+    "displayName": "Authorization - Policy Assignment - Resource Group Scope",
+    "status": "Available"
+  },
+  "avm/res/authorization/policy-assignment/sub-scope": {
+    "moduleType": "resource",
+    "displayName": "Authorization - Policy Assignment - Subscription Scope",
+    "status": "Available"
+  },
+  "avm/res/authorization/role-assignment": {
+    "moduleType": "resource",
+    "displayName": "Authorization - Role Assignment",
+    "status": "Available"
+  },
+  "avm/res/authorization/role-assignment/mg-scope": {
+    "moduleType": "resource",
+    "displayName": "Authorization - Role Assignment - Management Group Scope",
+    "status": "Available"
+  },
+  "avm/res/authorization/role-assignment/rg-scope": {
+    "moduleType": "resource",
+    "displayName": "Authorization - Role Assignment - Resource Group Scope",
+    "status": "Available"
+  },
+  "avm/res/authorization/role-assignment/sub-scope": {
+    "moduleType": "resource",
+    "displayName": "Authorization - Role Assignment - Subscription Scope",
+    "status": "Available"
+  },
+  "avm/res/automation/automation-account": {
+    "moduleType": "resource",
+    "displayName": "Automation Account",
+    "status": "Available"
+  },
+  "avm/res/automation/automation-account/credential": {
+    "moduleType": "resource",
+    "displayName": "Automation Account - Credential",
+    "status": "Available"
+  },
+  "avm/res/automation/automation-account/hybrid-runbook-worker-group": {
+    "moduleType": "resource",
+    "displayName": "Automation Account - Hybrid Runbook Worker Group",
+    "status": "Available"
+  },
+  "avm/res/automation/automation-account/hybrid-runbook-worker-group/hybrid-runbook-worker": {
+    "moduleType": "resource",
+    "displayName": "Automation Account - Hybrid Runbook Worker Group - Hybrid Runb Wrkr",
+    "status": "Available"
+  },
+  "avm/res/automation/automation-account/job-schedule": {
+    "moduleType": "resource",
+    "displayName": "Automation Account - Job Schedule",
+    "status": "Available"
+  },
+  "avm/res/automation/automation-account/module": {
+    "moduleType": "resource",
+    "displayName": "Automation Account - Module",
+    "status": "Available"
+  },
+  "avm/res/automation/automation-account/powershell72-module": {
+    "moduleType": "resource",
+    "displayName": "Automation Account - Powershell72 Module",
+    "status": "Available"
+  },
+  "avm/res/automation/automation-account/python2-package": {
+    "moduleType": "resource",
+    "displayName": "Automation Account - Python2 Package",
+    "status": "Available"
+  },
+  "avm/res/automation/automation-account/python3-package": {
+    "moduleType": "resource",
+    "displayName": "Automation Account - Python3 Package",
+    "status": "Available"
+  },
+  "avm/res/automation/automation-account/runbook": {
+    "moduleType": "resource",
+    "displayName": "Automation Account - Runbook",
+    "status": "Available"
+  },
+  "avm/res/automation/automation-account/schedule": {
+    "moduleType": "resource",
+    "displayName": "Automation Account - Schedule",
+    "status": "Available"
+  },
+  "avm/res/automation/automation-account/source-control": {
+    "moduleType": "resource",
+    "displayName": "Automation Account - Source Control",
+    "status": "Available"
+  },
+  "avm/res/automation/automation-account/variable": {
+    "moduleType": "resource",
+    "displayName": "Automation Account - Variable",
+    "status": "Available"
+  },
+  "avm/res/automation/automation-account/webhook": {
+    "moduleType": "resource",
+    "displayName": "Automation Account - Webhook",
+    "status": "Available"
+  },
+  "avm/res/avs/private-cloud": {
+    "moduleType": "resource",
+    "displayName": "AVS Private Cloud",
+    "status": "Proposed"
+  },
+  "avm/res/azure-stack-hci/cluster": {
+    "moduleType": "resource",
+    "displayName": "Azure Stack HCI Cluster",
+    "status": "Available"
+  },
+  "avm/res/azure-stack-hci/cluster/arc-setting/extension": {
+    "moduleType": "resource",
+    "displayName": "Azure Stack HCI Cluster - Arc Settings Extension",
+    "status": "Proposed"
+  },
+  "avm/res/azure-stack-hci/cluster/deployment-setting": {
+    "moduleType": "resource",
+    "displayName": "Azure Stack HCI Cluster - Deployment Setting",
+    "status": "Proposed"
+  },
+  "avm/res/azure-stack-hci/logical-network": {
+    "moduleType": "resource",
+    "displayName": "Azure Stack HCI Logical Network",
+    "status": "Available"
+  },
+  "avm/res/azure-stack-hci/marketplace-gallery-image": {
+    "moduleType": "resource",
+    "displayName": "Azure Stack HCI Marketplace Gallery Image",
+    "status": "Available"
+  },
+  "avm/res/azure-stack-hci/network-interface": {
+    "moduleType": "resource",
+    "displayName": "Azure Stack HCI Network Interface",
+    "status": "Available"
+  },
+  "avm/res/azure-stack-hci/virtual-hard-disk": {
+    "moduleType": "resource",
+    "displayName": "Azure Stack HCI Hard Disk",
+    "status": "Available"
+  },
+  "avm/res/azure-stack-hci/virtual-machine-instance": {
+    "moduleType": "resource",
+    "displayName": "Azure Stack HCI Virtual Machine Instance",
+    "status": "Available"
+  },
+  "avm/res/batch/batch-account": {
+    "moduleType": "resource",
+    "displayName": "Batch Account",
+    "status": "Available"
+  },
+  "avm/res/bot-service/bot-service": {
+    "moduleType": "resource",
+    "displayName": "Bot Service",
+    "status": "Proposed"
+  },
+  "avm/res/cache/redis": {
+    "moduleType": "resource",
+    "displayName": "Redis Cache",
+    "status": "Available"
+  },
+  "avm/res/cache/redis-enterprise": {
+    "moduleType": "resource",
+    "displayName": "Redis Enterprise Cache",
+    "status": "Available"
+  },
+  "avm/res/cache/redis-enterprise/database": {
+    "moduleType": "resource",
+    "displayName": "Redis Enterprise Cache - Database",
+    "status": "Proposed"
+  },
+  "avm/res/cache/redis-enterprise/database/access-policy-assignment": {
+    "moduleType": "resource",
+    "displayName": "Redis Enterprise Cache - Database - Access Policy Assignment",
+    "status": "Proposed"
+  },
+  "avm/res/cdn/profile": {
+    "moduleType": "resource",
+    "displayName": "CDN Profile",
+    "status": "Available"
+  },
+  "avm/res/cdn/profile/afd-endpoint": {
+    "moduleType": "resource",
+    "displayName": "CDN Profile - AFD Endpoint",
+    "status": "Available"
+  },
+  "avm/res/cdn/profile/afd-endpoint/route": {
+    "moduleType": "resource",
+    "displayName": "CDN Profile - AFD Endpoint Route",
+    "status": "Available"
+  },
+  "avm/res/cdn/profile/custom-domain": {
+    "moduleType": "resource",
+    "displayName": "CDN Profile - Custom Domain",
+    "status": "Available"
+  },
+  "avm/res/cdn/profile/endpoint": {
+    "moduleType": "resource",
+    "displayName": "CDN Profile - Endpoint",
+    "status": "Available"
+  },
+  "avm/res/cdn/profile/endpoint/origin": {
+    "moduleType": "resource",
+    "displayName": "CDN Profile - Endpoint - Origin",
+    "status": "Available"
+  },
+  "avm/res/cdn/profile/origin-group": {
+    "moduleType": "resource",
+    "displayName": "CDN Profile - Origin Group",
+    "status": "Available"
+  },
+  "avm/res/cdn/profile/origin-group/origin": {
+    "moduleType": "resource",
+    "displayName": "CDN Profile - Origin Group - Origin",
+    "status": "Available"
+  },
+  "avm/res/cdn/profile/rule-set": {
+    "moduleType": "resource",
+    "displayName": "CDN Profile - Rule Set",
+    "status": "Available"
+  },
+  "avm/res/cdn/profile/rule-set/rule": {
+    "moduleType": "resource",
+    "displayName": "CDN Profile - Rule Set - Rule",
+    "status": "Available"
+  },
+  "avm/res/cdn/profile/secret": {
+    "moduleType": "resource",
+    "displayName": "CDN Profile - Secret",
+    "status": "Available"
+  },
+  "avm/res/cdn/profile/security-policy": {
+    "moduleType": "resource",
+    "displayName": "CDN Profile - Security Policy",
+    "status": "Available"
+  },
+  "avm/res/chaos/experiment": {
+    "moduleType": "resource",
+    "displayName": "Chaos Experiment",
+    "status": "Proposed"
+  },
+  "avm/res/code-signing/code-signing-account": {
+    "moduleType": "resource",
+    "displayName": "Azure Artifact Signing",
+    "status": "Proposed"
+  },
+  "avm/res/cognitive-services/account": {
+    "moduleType": "resource",
+    "displayName": "Azure AI Services (Cognitive Services)",
+    "status": "Available"
+  },
+  "avm/res/cognitive-services/account/project": {
+    "moduleType": "resource",
+    "displayName": "Azure AI Services (Cognitive Services) - Project",
+    "status": "Proposed"
+  },
+  "avm/res/communication/communication-service": {
+    "moduleType": "resource",
+    "displayName": "Communication Service",
+    "status": "Available"
+  },
+  "avm/res/communication/email-service": {
+    "moduleType": "resource",
+    "displayName": "Email Communication Service",
+    "status": "Available"
+  },
+  "avm/res/communication/email-service/domain": {
+    "moduleType": "resource",
+    "displayName": "Email Communication Service - Domain",
+    "status": "Available"
+  },
+  "avm/res/communication/email-service/domain/sender-username": {
+    "moduleType": "resource",
+    "displayName": "Email Communication Service - Domain - Sender Username",
+    "status": "Available"
+  },
+  "avm/res/compute/availability-set": {
+    "moduleType": "resource",
+    "displayName": "Availability Set",
+    "status": "Available"
+  },
+  "avm/res/compute/disk": {
+    "moduleType": "resource",
+    "displayName": "Compute Disk",
+    "status": "Available"
+  },
+  "avm/res/compute/disk-encryption-set": {
+    "moduleType": "resource",
+    "displayName": "Disk Encryption Set",
+    "status": "Available"
+  },
+  "avm/res/compute/gallery": {
+    "moduleType": "resource",
+    "displayName": "Azure Compute Gallery",
+    "status": "Available"
+  },
+  "avm/res/compute/gallery/application": {
+    "moduleType": "resource",
+    "displayName": "Azure Compute Gallery - Application",
+    "status": "Available"
+  },
+  "avm/res/compute/gallery/image": {
+    "moduleType": "resource",
+    "displayName": "Azure Compute Gallery - Image",
+    "status": "Available"
+  },
+  "avm/res/compute/image": {
+    "moduleType": "resource",
+    "displayName": "Image",
+    "status": "Available"
+  },
+  "avm/res/compute/proximity-placement-group": {
+    "moduleType": "resource",
+    "displayName": "Proximity Placement Group",
+    "status": "Available"
+  },
+  "avm/res/compute/ssh-public-key": {
+    "moduleType": "resource",
+    "displayName": "Public SSH Key",
+    "status": "Available"
+  },
+  "avm/res/compute/virtual-machine": {
+    "moduleType": "resource",
+    "displayName": "Virtual Machine",
+    "status": "Available"
+  },
+  "avm/res/compute/virtual-machine-scale-set": {
+    "moduleType": "resource",
+    "displayName": "Virtual Machine Scale Set",
+    "status": "Available"
+  },
+  "avm/res/compute/virtual-machine-scale-set/extension": {
+    "moduleType": "resource",
+    "displayName": "Virtual Machine Scale Set - Extension",
+    "status": "Available"
+  },
+  "avm/res/compute/virtual-machine/extension": {
+    "moduleType": "resource",
+    "displayName": "Virtual Machine - Extension",
+    "status": "Available"
+  },
+  "avm/res/consumption/budget": {
+    "moduleType": "resource",
+    "displayName": "Consumption Budget",
+    "status": "Available"
+  },
+  "avm/res/consumption/budget/mg-scope": {
+    "moduleType": "resource",
+    "displayName": "Consumption Budget - Management Group Scope",
+    "status": "Available"
+  },
+  "avm/res/consumption/budget/rg-scope": {
+    "moduleType": "resource",
+    "displayName": "Consumption Budget - Resource Group Scope",
+    "status": "Available"
+  },
+  "avm/res/consumption/budget/sub-scope": {
+    "moduleType": "resource",
+    "displayName": "Consumption Budget - Subscription Scope",
+    "status": "Available"
+  },
+  "avm/res/container-instance/container-group": {
+    "moduleType": "resource",
+    "displayName": "Container Instance",
+    "status": "Available"
+  },
+  "avm/res/container-registry/registry": {
+    "moduleType": "resource",
+    "displayName": "Azure Container Registry (ACR)",
+    "status": "Available"
+  },
+  "avm/res/container-registry/registry/cache-rule": {
+    "moduleType": "resource",
+    "displayName": "Azure Container Registry (ACR) - Cache Rule",
+    "status": "Available"
+  },
+  "avm/res/container-registry/registry/credential-set": {
+    "moduleType": "resource",
+    "displayName": "Azure Container Registry (ACR) - Credential Set",
+    "status": "Available"
+  },
+  "avm/res/container-registry/registry/replication": {
+    "moduleType": "resource",
+    "displayName": "Azure Container Registry (ACR) - Replication",
+    "status": "Available"
+  },
+  "avm/res/container-registry/registry/scope-map": {
+    "moduleType": "resource",
+    "displayName": "Azure Container Registry (ACR) - Scope Map",
+    "status": "Available"
+  },
+  "avm/res/container-registry/registry/task": {
+    "moduleType": "resource",
+    "displayName": "Azure Container Registry (ACR) - Task",
+    "status": "Available"
+  },
+  "avm/res/container-registry/registry/token": {
+    "moduleType": "resource",
+    "displayName": "Azure Container Registry (ACR) - Token",
+    "status": "Available"
+  },
+  "avm/res/container-registry/registry/webhook": {
+    "moduleType": "resource",
+    "displayName": "Azure Container Registry (ACR) - Webhook",
+    "status": "Available"
+  },
+  "avm/res/container-service/managed-cluster": {
+    "moduleType": "resource",
+    "displayName": "Azure Kubernetes Service (AKS) Managed Cluster",
+    "status": "Available"
+  },
+  "avm/res/container-service/managed-cluster/agent-pool": {
+    "moduleType": "resource",
+    "displayName": "Azure Kubernetes Service (AKS) Managed Cluster - Agent Pool",
+    "status": "Available"
+  },
+  "avm/res/container-service/managed-cluster/maintenance-configuration": {
+    "moduleType": "resource",
+    "displayName": "Azure Kubernetes Service (AKS) Managed Cluster - Maintenance Config",
+    "status": "Available"
+  },
+  "avm/res/dashboard/grafana": {
+    "moduleType": "resource",
+    "displayName": "Azure Managed Grafana",
+    "status": "Proposed"
+  },
+  "avm/res/data-factory/factory": {
+    "moduleType": "resource",
+    "displayName": "Data Factory",
+    "status": "Available"
+  },
+  "avm/res/data-factory/factory/integration-runtime": {
+    "moduleType": "resource",
+    "displayName": "Data Factory - Integration Runtime",
+    "status": "Available"
+  },
+  "avm/res/data-factory/factory/linked-service": {
+    "moduleType": "resource",
+    "displayName": "Data Factory - Linked Service",
+    "status": "Available"
+  },
+  "avm/res/data-factory/factory/managed-virtual-network": {
+    "moduleType": "resource",
+    "displayName": "Data Factory - Managed Virtual Network",
+    "status": "Available"
+  },
+  "avm/res/data-factory/factory/managed-virtual-network/managed-private-endpoint": {
+    "moduleType": "resource",
+    "displayName": "Data Factory - Managed Virtual Network - Managed Private Endpoint",
+    "status": "Available"
+  },
+  "avm/res/data-protection/backup-vault": {
+    "moduleType": "resource",
+    "displayName": "Data Protection Backup Vault",
+    "status": "Available"
+  },
+  "avm/res/data-protection/backup-vault/backup-instance": {
+    "moduleType": "resource",
+    "displayName": "Data Protection Backup Vault - Backup Instance",
+    "status": "Available"
+  },
+  "avm/res/data-protection/backup-vault/backup-policy": {
+    "moduleType": "resource",
+    "displayName": "Data Protection Backup Vault - Backup Policy",
+    "status": "Available"
+  },
+  "avm/res/data-protection/resource-guard": {
+    "moduleType": "resource",
+    "displayName": "Data Protection Resource Guard",
+    "status": "Proposed"
+  },
+  "avm/res/databricks/access-connector": {
+    "moduleType": "resource",
+    "displayName": "Azure Databricks Access Connector",
+    "status": "Available"
+  },
+  "avm/res/databricks/workspace": {
+    "moduleType": "resource",
+    "displayName": "Azure Databricks Workspace",
+    "status": "Available"
+  },
+  "avm/res/db-for-my-sql/flexible-server": {
+    "moduleType": "resource",
+    "displayName": "DB for MySQL Flexible Server",
+    "status": "Available"
+  },
+  "avm/res/db-for-my-sql/flexible-server/administrator": {
+    "moduleType": "resource",
+    "displayName": "DB for MySQL Flexible Server - Administrator",
+    "status": "Available"
+  },
+  "avm/res/db-for-my-sql/flexible-server/advanced-threat-protection": {
+    "moduleType": "resource",
+    "displayName": "DB for MySQL Flexible Server - Advanced Threat Protection",
+    "status": "Available"
+  },
+  "avm/res/db-for-my-sql/flexible-server/configuration": {
+    "moduleType": "resource",
+    "displayName": "DB for MySQL Flexible Server - Configuration",
+    "status": "Available"
+  },
+  "avm/res/db-for-my-sql/flexible-server/database": {
+    "moduleType": "resource",
+    "displayName": "DB for MySQL Flexible Server - Database",
+    "status": "Available"
+  },
+  "avm/res/db-for-my-sql/flexible-server/firewall-rule": {
+    "moduleType": "resource",
+    "displayName": "DB for MySQL Flexible Server - Firewall Rule",
+    "status": "Available"
+  },
+  "avm/res/db-for-postgre-sql/flexible-server": {
+    "moduleType": "resource",
+    "displayName": "DB for Postgre SQL Flexible Server",
+    "status": "Available"
+  },
+  "avm/res/db-for-postgre-sql/flexible-server/administrator": {
+    "moduleType": "resource",
+    "displayName": "DB for Postgre SQL Flexible Server - Administrator",
+    "status": "Available"
+  },
+  "avm/res/db-for-postgre-sql/flexible-server/advanced-threat-protection-setting": {
+    "moduleType": "resource",
+    "displayName": "DB for Postgre SQL Flexible Server - Adv Threat Protection Setting",
+    "status": "Available"
+  },
+  "avm/res/db-for-postgre-sql/flexible-server/configuration": {
+    "moduleType": "resource",
+    "displayName": "DB for Postgre SQL Flexible Server - Configuration",
+    "status": "Available"
+  },
+  "avm/res/db-for-postgre-sql/flexible-server/database": {
+    "moduleType": "resource",
+    "displayName": "DB for Postgre SQL Flexible Server - Database",
+    "status": "Available"
+  },
+  "avm/res/db-for-postgre-sql/flexible-server/firewall-rule": {
+    "moduleType": "resource",
+    "displayName": "DB for Postgre SQL Flexible Server - Firewall Rule",
+    "status": "Available"
+  },
+  "avm/res/desktop-virtualization/application-group": {
+    "moduleType": "resource",
+    "displayName": "Azure Virtual Desktop (AVD) Application Group",
+    "status": "Orphaned"
+  },
+  "avm/res/desktop-virtualization/application-group/application": {
+    "moduleType": "resource",
+    "displayName": "Azure Virtual Desktop (AVD) Application Group - Application",
+    "status": "Available"
+  },
+  "avm/res/desktop-virtualization/host-pool": {
+    "moduleType": "resource",
+    "displayName": "Azure Virtual Desktop (AVD) Host Pool",
+    "status": "Orphaned"
+  },
+  "avm/res/desktop-virtualization/scaling-plan": {
+    "moduleType": "resource",
+    "displayName": "Azure Virtual Desktop (AVD) Scaling Plan",
+    "status": "Orphaned"
+  },
+  "avm/res/desktop-virtualization/workspace": {
+    "moduleType": "resource",
+    "displayName": "Azure Virtual Desktop (AVD) Workspace",
+    "status": "Available"
+  },
+  "avm/res/dev-center/devcenter": {
+    "moduleType": "resource",
+    "displayName": "Dev Center",
+    "status": "Available"
+  },
+  "avm/res/dev-center/devcenter/attachednetwork": {
+    "moduleType": "resource",
+    "displayName": "Dev Center - Attachednetwork",
+    "status": "Available"
+  },
+  "avm/res/dev-center/devcenter/catalog": {
+    "moduleType": "resource",
+    "displayName": "Dev Center - Catalog",
+    "status": "Available"
+  },
+  "avm/res/dev-center/devcenter/devboxdefinition": {
+    "moduleType": "resource",
+    "displayName": "Dev Center - Devboxdefinition",
+    "status": "Available"
+  },
+  "avm/res/dev-center/devcenter/environment-type": {
+    "moduleType": "resource",
+    "displayName": "Dev Center - Environment Type",
+    "status": "Available"
+  },
+  "avm/res/dev-center/devcenter/gallery": {
+    "moduleType": "resource",
+    "displayName": "Dev Center - Gallery",
+    "status": "Available"
+  },
+  "avm/res/dev-center/devcenter/project-policy": {
+    "moduleType": "resource",
+    "displayName": "Dev Center - Project Policy",
+    "status": "Available"
+  },
+  "avm/res/dev-center/network-connection": {
+    "moduleType": "resource",
+    "displayName": "Dev Center Network Connection",
+    "status": "Available"
+  },
+  "avm/res/dev-center/project": {
+    "moduleType": "resource",
+    "displayName": "Dev Center Project",
+    "status": "Available"
+  },
+  "avm/res/dev-center/project/catalog": {
+    "moduleType": "resource",
+    "displayName": "Dev Center Project - Catalog",
+    "status": "Available"
+  },
+  "avm/res/dev-center/project/environment-type": {
+    "moduleType": "resource",
+    "displayName": "Dev Center Project - Environment Type",
+    "status": "Available"
+  },
+  "avm/res/dev-center/project/pool": {
+    "moduleType": "resource",
+    "displayName": "Dev Center Project - Pool",
+    "status": "Available"
+  },
+  "avm/res/dev-center/project/pool/schedule": {
+    "moduleType": "resource",
+    "displayName": "Dev Center Project - Pool - Schedule",
+    "status": "Available"
+  },
+  "avm/res/dev-ops-infrastructure/pool": {
+    "moduleType": "resource",
+    "displayName": "DevOps Infrastructure Pool",
+    "status": "Available"
+  },
+  "avm/res/dev-test-lab/lab": {
+    "moduleType": "resource",
+    "displayName": "DevTest Lab",
+    "status": "Available"
+  },
+  "avm/res/dev-test-lab/lab/artifactsource": {
+    "moduleType": "resource",
+    "displayName": "DevTest Lab - Artifactsource",
+    "status": "Available"
+  },
+  "avm/res/dev-test-lab/lab/cost": {
+    "moduleType": "resource",
+    "displayName": "DevTest Lab - Cost",
+    "status": "Available"
+  },
+  "avm/res/dev-test-lab/lab/notificationchannel": {
+    "moduleType": "resource",
+    "displayName": "DevTest Lab - Notificationchannel",
+    "status": "Available"
+  },
+  "avm/res/dev-test-lab/lab/policyset/policy": {
+    "moduleType": "resource",
+    "displayName": "DevTest Lab - Policyset - Policy",
+    "status": "Available"
+  },
+  "avm/res/dev-test-lab/lab/schedule": {
+    "moduleType": "resource",
+    "displayName": "DevTest Lab - Schedule",
+    "status": "Available"
+  },
+  "avm/res/dev-test-lab/lab/secret": {
+    "moduleType": "resource",
+    "displayName": "DevTest Lab - Secret",
+    "status": "Available"
+  },
+  "avm/res/dev-test-lab/lab/virtualnetwork": {
+    "moduleType": "resource",
+    "displayName": "DevTest Lab - Virtualnetwork",
+    "status": "Available"
+  },
+  "avm/res/devices/iot-hub": {
+    "moduleType": "resource",
+    "displayName": "IoT Hub",
+    "status": "Available"
+  },
+  "avm/res/digital-twins/digital-twins-instance": {
+    "moduleType": "resource",
+    "displayName": "Digital Twins Instance",
+    "status": "Available"
+  },
+  "avm/res/digital-twins/digital-twins-instance/endpoint": {
+    "moduleType": "resource",
+    "displayName": "Digital Twins Instance - Endpoint",
+    "status": "Available"
+  },
+  "avm/res/document-db/database-account": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB Database Account",
+    "status": "Available"
+  },
+  "avm/res/document-db/database-account/cassandra-keyspace": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB Database Account - Cassandra Keyspace",
+    "status": "Proposed"
+  },
+  "avm/res/document-db/database-account/cassandra-keyspace/table": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB Database Account - Cassandra Keyspace - Table",
+    "status": "Proposed"
+  },
+  "avm/res/document-db/database-account/cassandra-keyspace/view": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB Database Account - Cassandra Keyspace - View",
+    "status": "Proposed"
+  },
+  "avm/res/document-db/database-account/cassandra-role-assignment": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB Database Account - Cassandra Role Assignment",
+    "status": "Proposed"
+  },
+  "avm/res/document-db/database-account/cassandra-role-definition": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB Database Account - Cassandra Role Definition",
+    "status": "Proposed"
+  },
+  "avm/res/document-db/database-account/gremlin-database": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB Database Account - Gremlin Database",
+    "status": "Proposed"
+  },
+  "avm/res/document-db/database-account/gremlin-database/graph": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB Database Account - Gremlin Database - Graph",
+    "status": "Proposed"
+  },
+  "avm/res/document-db/database-account/mongodb-database": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB Database Account - Mongodb Database",
+    "status": "Proposed"
+  },
+  "avm/res/document-db/database-account/mongodb-database/collection": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB Database Account - Mongodb Database - Collection",
+    "status": "Proposed"
+  },
+  "avm/res/document-db/database-account/sql-database": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB Database Account - SQL Database",
+    "status": "Proposed"
+  },
+  "avm/res/document-db/database-account/sql-database/container": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB Database Account - Sql Database - Container",
+    "status": "Proposed"
+  },
+  "avm/res/document-db/database-account/sql-role-assignment": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB - SQL Role Assignment",
+    "status": "Available"
+  },
+  "avm/res/document-db/database-account/sql-role-definition": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB - SQL Role Definition",
+    "status": "Available"
+  },
+  "avm/res/document-db/database-account/table": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB Database Account - Table",
+    "status": "Proposed"
+  },
+  "avm/res/document-db/mongo-cluster": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB for MongoDB (vCore)",
+    "status": "Available"
+  },
+  "avm/res/document-db/mongo-cluster/firewall-rule": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB for MongoDB (vCore) - Firewall Rule",
+    "status": "Proposed"
+  },
+  "avm/res/document-db/mongo-cluster/user": {
+    "moduleType": "resource",
+    "displayName": "Cosmos DB for MongoDB (vCore) - User",
+    "status": "Proposed"
+  },
+  "avm/res/durable-task/scheduler": {
+    "moduleType": "resource",
+    "displayName": "Durable Task Scheduler",
+    "status": "Proposed"
+  },
+  "avm/res/edge-order/order-item": {
+    "moduleType": "resource",
+    "displayName": "Edge Order Item",
+    "status": "Proposed"
+  },
+  "avm/res/edge/configuration": {
+    "moduleType": "resource",
+    "displayName": "Edge Configuration",
+    "status": "Proposed"
+  },
+  "avm/res/edge/site": {
+    "moduleType": "resource",
+    "displayName": "Edge Site",
+    "status": "Proposed"
+  },
+  "avm/res/edge/site/rg-scope": {
+    "moduleType": "resource",
+    "displayName": "Edge Site - Resource Group Scope",
+    "status": "Proposed"
+  },
+  "avm/res/edge/site/sub-scope": {
+    "moduleType": "resource",
+    "displayName": "Edge Site - Subscription Scope",
+    "status": "Proposed"
+  },
+  "avm/res/elastic-san/elastic-san": {
+    "moduleType": "resource",
+    "displayName": "Elastic SAN",
+    "status": "Available"
+  },
+  "avm/res/elastic-san/elastic-san/volume-group": {
+    "moduleType": "resource",
+    "displayName": "Elastic SAN - Volume Group",
+    "status": "Available"
+  },
+  "avm/res/elastic-san/elastic-san/volume-group/snapshot": {
+    "moduleType": "resource",
+    "displayName": "Elastic SAN - Volume Group - Snapshot",
+    "status": "Available"
+  },
+  "avm/res/elastic-san/elastic-san/volume-group/volume": {
+    "moduleType": "resource",
+    "displayName": "Elastic SAN - Volume Group - Volume",
+    "status": "Available"
+  },
+  "avm/res/event-grid/domain": {
+    "moduleType": "resource",
+    "displayName": "Event Grid Domain",
+    "status": "Available"
+  },
+  "avm/res/event-grid/domain/event-subscription": {
+    "moduleType": "resource",
+    "displayName": "Event Grid Domain - Event Subscription",
+    "status": "Available"
+  },
+  "avm/res/event-grid/domain/topic": {
+    "moduleType": "resource",
+    "displayName": "Event Grid Domain - Topic",
+    "status": "Available"
+  },
+  "avm/res/event-grid/namespace": {
+    "moduleType": "resource",
+    "displayName": "Event Grid Namespace",
+    "status": "Available"
+  },
+  "avm/res/event-grid/namespace/ca-certificate": {
+    "moduleType": "resource",
+    "displayName": "Event Grid Namespace - Ca Certificate",
+    "status": "Available"
+  },
+  "avm/res/event-grid/namespace/client": {
+    "moduleType": "resource",
+    "displayName": "Event Grid Namespace - Client",
+    "status": "Available"
+  },
+  "avm/res/event-grid/namespace/client-group": {
+    "moduleType": "resource",
+    "displayName": "Event Grid Namespace - Client Group",
+    "status": "Available"
+  },
+  "avm/res/event-grid/namespace/permission-binding": {
+    "moduleType": "resource",
+    "displayName": "Event Grid Namespace - Permission Binding",
+    "status": "Available"
+  },
+  "avm/res/event-grid/namespace/topic": {
+    "moduleType": "resource",
+    "displayName": "Event Grid Namespace - Topic",
+    "status": "Available"
+  },
+  "avm/res/event-grid/namespace/topic-space": {
+    "moduleType": "resource",
+    "displayName": "Event Grid Namespace - Topic Space",
+    "status": "Available"
+  },
+  "avm/res/event-grid/namespace/topic/event-subscription": {
+    "moduleType": "resource",
+    "displayName": "Event Grid Namespace - Topic - Event Subscription",
+    "status": "Available"
+  },
+  "avm/res/event-grid/system-topic": {
+    "moduleType": "resource",
+    "displayName": "Event Grid System Topic",
+    "status": "Available"
+  },
+  "avm/res/event-grid/system-topic/event-subscription": {
+    "moduleType": "resource",
+    "displayName": "Event Grid System Topic - Event Subscription",
+    "status": "Available"
+  },
+  "avm/res/event-grid/topic": {
+    "moduleType": "resource",
+    "displayName": "Event Grid Topic",
+    "status": "Available"
+  },
+  "avm/res/event-grid/topic/event-subscription": {
+    "moduleType": "resource",
+    "displayName": "Event Grid Topic - Event Subscription",
+    "status": "Available"
+  },
+  "avm/res/event-hub/namespace": {
+    "moduleType": "resource",
+    "displayName": "Event Hub Namespace",
+    "status": "Available"
+  },
+  "avm/res/event-hub/namespace/authorization-rule": {
+    "moduleType": "resource",
+    "displayName": "Event Hub Namespace - Authorization Rule",
+    "status": "Available"
+  },
+  "avm/res/event-hub/namespace/disaster-recovery-config": {
+    "moduleType": "resource",
+    "displayName": "Event Hub Namespace - Disaster Recovery Config",
+    "status": "Available"
+  },
+  "avm/res/event-hub/namespace/eventhub": {
+    "moduleType": "resource",
+    "displayName": "Event Hub",
+    "status": "Available"
+  },
+  "avm/res/event-hub/namespace/eventhub/authorization-rule": {
+    "moduleType": "resource",
+    "displayName": "Event Hub Namespace - Eventhub - Authorization Rule",
+    "status": "Available"
+  },
+  "avm/res/event-hub/namespace/eventhub/consumergroup": {
+    "moduleType": "resource",
+    "displayName": "Event Hub Namespace - Eventhub - Consumergroup",
+    "status": "Available"
+  },
+  "avm/res/event-hub/namespace/network-rule-set": {
+    "moduleType": "resource",
+    "displayName": "Event Hub Namespace - Network Rule Set",
+    "status": "Available"
+  },
+  "avm/res/fabric/capacity": {
+    "moduleType": "resource",
+    "displayName": "Fabric",
+    "status": "Available"
+  },
+  "avm/res/health-bot/health-bot": {
+    "moduleType": "resource",
+    "displayName": "Azure Health Bot",
+    "status": "Available"
+  },
+  "avm/res/healthcare-apis/workspace": {
+    "moduleType": "resource",
+    "displayName": "Healthcare API Workspace",
+    "status": "Orphaned"
+  },
+  "avm/res/healthcare-apis/workspace/dicomservice": {
+    "moduleType": "resource",
+    "displayName": "Healthcare API Workspace - Dicomservice",
+    "status": "Orphaned"
+  },
+  "avm/res/healthcare-apis/workspace/fhirservice": {
+    "moduleType": "resource",
+    "displayName": "Healthcare API Workspace - Fhirservice",
+    "status": "Orphaned"
+  },
+  "avm/res/healthcare-apis/workspace/iotconnector": {
+    "moduleType": "resource",
+    "displayName": "Healthcare API Workspace - Iotconnector",
+    "status": "Orphaned"
+  },
+  "avm/res/healthcare-apis/workspace/iotconnector/fhirdestination": {
+    "moduleType": "resource",
+    "displayName": "Healthcare API Workspace - Iotconnector - Fhirdestination",
+    "status": "Orphaned"
+  },
+  "avm/res/hybrid-compute/gateway": {
+    "moduleType": "resource",
+    "displayName": "Hybrid Compute Gateway",
+    "status": "Available"
+  },
+  "avm/res/hybrid-compute/license": {
+    "moduleType": "resource",
+    "displayName": "Hybrid Compute License",
+    "status": "Available"
+  },
+  "avm/res/hybrid-compute/machine": {
+    "moduleType": "resource",
+    "displayName": "Hybrid Compute Machine",
+    "status": "Available"
+  },
+  "avm/res/hybrid-compute/machine/extension": {
+    "moduleType": "resource",
+    "displayName": "Hybrid Compute Machine - Extension",
+    "status": "Available"
+  },
+  "avm/res/hybrid-compute/private-link-scope": {
+    "moduleType": "resource",
+    "displayName": "Hybrid Compute Private Link Scope",
+    "status": "Proposed"
+  },
+  "avm/res/hybrid-compute/setting": {
+    "moduleType": "resource",
+    "displayName": "Hybrid Compute Setting",
+    "status": "Proposed"
+  },
+  "avm/res/hybrid-container-service/provisioned-cluster-instance": {
+    "moduleType": "resource",
+    "displayName": "Hybrid Container Service - Provisioned Cluster Instance",
+    "status": "Available"
+  },
+  "avm/res/insights/action-group": {
+    "moduleType": "resource",
+    "displayName": "Action Group",
+    "status": "Available"
+  },
+  "avm/res/insights/activity-log-alert": {
+    "moduleType": "resource",
+    "displayName": "Activity Log Alert",
+    "status": "Available"
+  },
+  "avm/res/insights/autoscale-setting": {
+    "moduleType": "resource",
+    "displayName": "Insights - Auto Scale Setting",
+    "status": "Proposed"
+  },
+  "avm/res/insights/component": {
+    "moduleType": "resource",
+    "displayName": "Application Insight",
+    "status": "Available"
+  },
+  "avm/res/insights/component/linked-storage-account": {
+    "moduleType": "resource",
+    "displayName": "Application Insight - Linked Storage Account",
+    "status": "Available"
+  },
+  "avm/res/insights/data-collection-endpoint": {
+    "moduleType": "resource",
+    "displayName": "Data Collection Endpoint",
+    "status": "Available"
+  },
+  "avm/res/insights/data-collection-rule": {
+    "moduleType": "resource",
+    "displayName": "Data Collection Rule",
+    "status": "Available"
+  },
+  "avm/res/insights/diagnostic-setting": {
+    "moduleType": "resource",
+    "displayName": "Diagnostic Setting",
+    "status": "Available"
+  },
+  "avm/res/insights/metric-alert": {
+    "moduleType": "resource",
+    "displayName": "Metric Alert",
+    "status": "Available"
+  },
+  "avm/res/insights/private-link-scope": {
+    "moduleType": "resource",
+    "displayName": "Azure Monitor Private Link Scope",
+    "status": "Available"
+  },
+  "avm/res/insights/private-link-scope/scoped-resource": {
+    "moduleType": "resource",
+    "displayName": "Azure Monitor Private Link Scope - Scoped Resource",
+    "status": "Available"
+  },
+  "avm/res/insights/scheduled-query-rule": {
+    "moduleType": "resource",
+    "displayName": "Scheduled Query Rule",
+    "status": "Available"
+  },
+  "avm/res/insights/webtest": {
+    "moduleType": "resource",
+    "displayName": "Web Test",
+    "status": "Available"
+  },
+  "avm/res/iot-operations/instance": {
+    "moduleType": "resource",
+    "displayName": "IoT Operations Instance",
+    "status": "Proposed"
+  },
+  "avm/res/key-vault/managed-hsm": {
+    "moduleType": "resource",
+    "displayName": "Managed HSM",
+    "status": "Proposed"
+  },
+  "avm/res/key-vault/vault": {
+    "moduleType": "resource",
+    "displayName": "Key Vault",
+    "status": "Available"
+  },
+  "avm/res/key-vault/vault/access-policy": {
+    "moduleType": "resource",
+    "displayName": "Key Vault - Access Policy",
+    "status": "Available"
+  },
+  "avm/res/key-vault/vault/key": {
+    "moduleType": "resource",
+    "displayName": "Key Vault - Key",
+    "status": "Available"
+  },
+  "avm/res/key-vault/vault/secret": {
+    "moduleType": "resource",
+    "displayName": "Key Vault - Secret",
+    "status": "Available"
+  },
+  "avm/res/kubernetes-configuration/extension": {
+    "moduleType": "resource",
+    "displayName": "Kubernetes Configuration Extension",
+    "status": "Available"
+  },
+  "avm/res/kubernetes-configuration/flux-configuration": {
+    "moduleType": "resource",
+    "displayName": "Kubernetes Configuration Flux Configuration",
+    "status": "Available"
+  },
+  "avm/res/kubernetes-runtime/bpg-peer": {
+    "moduleType": "resource",
+    "displayName": "Kubernetes Runtime BGP Peer",
+    "status": "Proposed"
+  },
+  "avm/res/kubernetes-runtime/load-balancer": {
+    "moduleType": "resource",
+    "displayName": "Kubernetes Runtime Load Balancer",
+    "status": "Available"
+  },
+  "avm/res/kubernetes-runtime/service": {
+    "moduleType": "resource",
+    "displayName": "Kubernetes Runtime Service",
+    "status": "Proposed"
+  },
+  "avm/res/kubernetes/connected-cluster": {
+    "moduleType": "resource",
+    "displayName": "Kubernetes Connected Cluster",
+    "status": "Available"
+  },
+  "avm/res/kusto/cluster": {
+    "moduleType": "resource",
+    "displayName": "Azure Data Explorer (Kusto) cluster",
+    "status": "Available"
+  },
+  "avm/res/kusto/cluster/database": {
+    "moduleType": "resource",
+    "displayName": "Azure Data Explorer (Kusto) cluster - Database",
+    "status": "Proposed"
+  },
+  "avm/res/kusto/cluster/database/principal-assignment": {
+    "moduleType": "resource",
+    "displayName": "Azure Data Explorer (Kusto) cluster - Database - Principal Assignment",
+    "status": "Proposed"
+  },
+  "avm/res/kusto/cluster/principal-assignment": {
+    "moduleType": "resource",
+    "displayName": "Azure Data Explorer (Kusto) cluster - Principal Assignment",
+    "status": "Proposed"
+  },
+  "avm/res/load-test-service/load-test": {
+    "moduleType": "resource",
+    "displayName": "Load Testing Service",
+    "status": "Available"
+  },
+  "avm/res/logic/integration-account": {
+    "moduleType": "resource",
+    "displayName": "Logic Apps Integration Account",
+    "status": "Available"
+  },
+  "avm/res/logic/integration-account/agreement": {
+    "moduleType": "resource",
+    "displayName": "Logic Apps Integration Account - Agreement",
+    "status": "Available"
+  },
+  "avm/res/logic/integration-account/assembly": {
+    "moduleType": "resource",
+    "displayName": "Logic Apps Integration Account - Assembly",
+    "status": "Available"
+  },
+  "avm/res/logic/integration-account/certificate": {
+    "moduleType": "resource",
+    "displayName": "Logic Apps Integration Account - Certificate",
+    "status": "Available"
+  },
+  "avm/res/logic/integration-account/map": {
+    "moduleType": "resource",
+    "displayName": "Logic Apps Integration Account - Map",
+    "status": "Available"
+  },
+  "avm/res/logic/integration-account/partner": {
+    "moduleType": "resource",
+    "displayName": "Logic Apps Integration Account - Partner",
+    "status": "Available"
+  },
+  "avm/res/logic/integration-account/schema": {
+    "moduleType": "resource",
+    "displayName": "Logic Apps Integration Account - Schema",
+    "status": "Available"
+  },
+  "avm/res/logic/workflow": {
+    "moduleType": "resource",
+    "displayName": "Logic Apps Workflow",
+    "status": "Available"
+  },
+  "avm/res/machine-learning-services/registry": {
+    "moduleType": "resource",
+    "displayName": "Machine Learning Services Registry",
+    "status": "Available"
+  },
+  "avm/res/machine-learning-services/workspace": {
+    "moduleType": "resource",
+    "displayName": "Machine Learning Services Workspace",
+    "status": "Available"
+  },
+  "avm/res/machine-learning-services/workspace/compute": {
+    "moduleType": "resource",
+    "displayName": "Machine Learning Services Workspace - Compute",
+    "status": "Available"
+  },
+  "avm/res/machine-learning-services/workspace/connection": {
+    "moduleType": "resource",
+    "displayName": "Machine Learning Services Workspace - Connection",
+    "status": "Available"
+  },
+  "avm/res/machine-learning-services/workspace/datastore": {
+    "moduleType": "resource",
+    "displayName": "Machine Learning Services Workspace - Datastore",
+    "status": "Available"
+  },
+  "avm/res/maintenance/configuration-assignment": {
+    "moduleType": "resource",
+    "displayName": "Maintenance Configuration Assignment",
+    "status": "Available"
+  },
+  "avm/res/maintenance/maintenance-configuration": {
+    "moduleType": "resource",
+    "displayName": "Maintenance Configuration",
+    "status": "Available"
+  },
+  "avm/res/managed-identity/user-assigned-identity": {
+    "moduleType": "resource",
+    "displayName": "User Assigned Identity",
+    "status": "Available"
+  },
+  "avm/res/managed-identity/user-assigned-identity/federated-identity-credential": {
+    "moduleType": "resource",
+    "displayName": "User Assigned Identity - Federated Identity Credential",
+    "status": "Available"
+  },
+  "avm/res/managed-services/registration-definition": {
+    "moduleType": "resource",
+    "displayName": "Registration Definition (Lighthouse)",
+    "status": "Orphaned"
+  },
+  "avm/res/management/management-group": {
+    "moduleType": "resource",
+    "displayName": "Management Group",
+    "status": "Available"
+  },
+  "avm/res/management/service-group": {
+    "moduleType": "resource",
+    "displayName": "Service Group",
+    "status": "Available"
+  },
+  "avm/res/maps/account": {
+    "moduleType": "resource",
+    "displayName": "Azure Maps Account",
+    "status": "Available"
+  },
+  "avm/res/net-app/net-app-account": {
+    "moduleType": "resource",
+    "displayName": "Azure NetApp File",
+    "status": "Available"
+  },
+  "avm/res/net-app/net-app-account/backup-policy": {
+    "moduleType": "resource",
+    "displayName": "Azure NetApp File - Backup Policy",
+    "status": "Available"
+  },
+  "avm/res/net-app/net-app-account/backup-vault": {
+    "moduleType": "resource",
+    "displayName": "Azure NetApp File - Backup Vault",
+    "status": "Available"
+  },
+  "avm/res/net-app/net-app-account/backup-vault/backup": {
+    "moduleType": "resource",
+    "displayName": "Azure NetApp File - Backup Vault - Backup",
+    "status": "Available"
+  },
+  "avm/res/net-app/net-app-account/capacity-pool": {
+    "moduleType": "resource",
+    "displayName": "Azure NetApp File - Capacity Pool",
+    "status": "Available"
+  },
+  "avm/res/net-app/net-app-account/capacity-pool/volume": {
+    "moduleType": "resource",
+    "displayName": "Azure NetApp File - Capacity Pool - Volume",
+    "status": "Available"
+  },
+  "avm/res/net-app/net-app-account/snapshot-policy": {
+    "moduleType": "resource",
+    "displayName": "Azure NetApp File - Snapshot Policy",
+    "status": "Available"
+  },
+  "avm/res/network/application-gateway": {
+    "moduleType": "resource",
+    "displayName": "Application Gateway",
+    "status": "Available"
+  },
+  "avm/res/network/application-gateway-web-application-firewall-policy": {
+    "moduleType": "resource",
+    "displayName": "Application Gateway Web Application Firewall (WAF) Policy",
+    "status": "Available"
+  },
+  "avm/res/network/application-security-group": {
+    "moduleType": "resource",
+    "displayName": "Application Security Group (ASG)",
+    "status": "Available"
+  },
+  "avm/res/network/azure-firewall": {
+    "moduleType": "resource",
+    "displayName": "Azure Firewall",
+    "status": "Available"
+  },
+  "avm/res/network/bastion-host": {
+    "moduleType": "resource",
+    "displayName": "Bastion Host",
+    "status": "Available"
+  },
+  "avm/res/network/connection": {
+    "moduleType": "resource",
+    "displayName": "Virtual Network Gateway Connection",
+    "status": "Available"
+  },
+  "avm/res/network/ddos-protection-plan": {
+    "moduleType": "resource",
+    "displayName": "DDoS Protection Plan",
+    "status": "Available"
+  },
+  "avm/res/network/dns-forwarding-ruleset": {
+    "moduleType": "resource",
+    "displayName": "DNS Forwarding Ruleset",
+    "status": "Available"
+  },
+  "avm/res/network/dns-forwarding-ruleset/forwarding-rule": {
+    "moduleType": "resource",
+    "displayName": "DNS Forwarding Ruleset - Forwarding Rule",
+    "status": "Available"
+  },
+  "avm/res/network/dns-forwarding-ruleset/virtual-network-link": {
+    "moduleType": "resource",
+    "displayName": "DNS Forwarding Ruleset - Virtual Network Link",
+    "status": "Available"
+  },
+  "avm/res/network/dns-resolver": {
+    "moduleType": "resource",
+    "displayName": "DNS Resolver",
+    "status": "Available"
+  },
+  "avm/res/network/dns-resolver/inbound-endpoint": {
+    "moduleType": "resource",
+    "displayName": "DNS Resolver - Inbound Endpoint",
+    "status": "Available"
+  },
+  "avm/res/network/dns-resolver/outbound-endpoint": {
+    "moduleType": "resource",
+    "displayName": "DNS Resolver - Outbound Endpoint",
+    "status": "Available"
+  },
+  "avm/res/network/dns-zone": {
+    "moduleType": "resource",
+    "displayName": "Public DNS Zone",
+    "status": "Available"
+  },
+  "avm/res/network/dns-zone/a": {
+    "moduleType": "resource",
+    "displayName": "Public DNS Zone - A",
+    "status": "Available"
+  },
+  "avm/res/network/dns-zone/aaaa": {
+    "moduleType": "resource",
+    "displayName": "Public DNS Zone - AAAA",
+    "status": "Available"
+  },
+  "avm/res/network/dns-zone/caa": {
+    "moduleType": "resource",
+    "displayName": "Public DNS Zone - CAA",
+    "status": "Available"
+  },
+  "avm/res/network/dns-zone/cname": {
+    "moduleType": "resource",
+    "displayName": "Public DNS Zone - CNAME",
+    "status": "Available"
+  },
+  "avm/res/network/dns-zone/dnssec-config": {
+    "moduleType": "resource",
+    "displayName": "Public DNS Zone - DNSSecConfig",
+    "status": "Available"
+  },
+  "avm/res/network/dns-zone/ds": {
+    "moduleType": "resource",
+    "displayName": "Public DNS Zone - DS",
+    "status": "Proposed"
+  },
+  "avm/res/network/dns-zone/mx": {
+    "moduleType": "resource",
+    "displayName": "Public DNS Zone - MX",
+    "status": "Available"
+  },
+  "avm/res/network/dns-zone/ns": {
+    "moduleType": "resource",
+    "displayName": "Public DNS Zone - NS",
+    "status": "Available"
+  },
+  "avm/res/network/dns-zone/ptr": {
+    "moduleType": "resource",
+    "displayName": "Public DNS Zone - PTR",
+    "status": "Available"
+  },
+  "avm/res/network/dns-zone/soa": {
+    "moduleType": "resource",
+    "displayName": "Public DNS Zone - SOA",
+    "status": "Available"
+  },
+  "avm/res/network/dns-zone/srv": {
+    "moduleType": "resource",
+    "displayName": "Public DNS Zone - SRV",
+    "status": "Available"
+  },
+  "avm/res/network/dns-zone/txt": {
+    "moduleType": "resource",
+    "displayName": "Public DNS Zone - TXT",
+    "status": "Available"
+  },
+  "avm/res/network/express-route-circuit": {
+    "moduleType": "resource",
+    "displayName": "ExpressRoute Circuit",
+    "status": "Available"
+  },
+  "avm/res/network/express-route-gateway": {
+    "moduleType": "resource",
+    "displayName": "Express Route Gateway",
+    "status": "Available"
+  },
+  "avm/res/network/express-route-port": {
+    "moduleType": "resource",
+    "displayName": "ExpressRoute Port",
+    "status": "Available"
+  },
+  "avm/res/network/firewall-policy": {
+    "moduleType": "resource",
+    "displayName": "Firewall Policy",
+    "status": "Available"
+  },
+  "avm/res/network/firewall-policy/rule-collection-group": {
+    "moduleType": "resource",
+    "displayName": "Firewall Policy - Rule Collection Group",
+    "status": "Available"
+  },
+  "avm/res/network/front-door": {
+    "moduleType": "resource",
+    "displayName": "Azure Front Door",
+    "status": "Deprecated"
+  },
+  "avm/res/network/front-door-web-application-firewall-policy": {
+    "moduleType": "resource",
+    "displayName": "Front Door Web Application Firewall (WAF) Policy",
+    "status": "Available"
+  },
+  "avm/res/network/ip-group": {
+    "moduleType": "resource",
+    "displayName": "IP Group",
+    "status": "Available"
+  },
+  "avm/res/network/load-balancer": {
+    "moduleType": "resource",
+    "displayName": "Load Balancer",
+    "status": "Available"
+  },
+  "avm/res/network/load-balancer/backend-address-pool": {
+    "moduleType": "resource",
+    "displayName": "Load Balancer - Backend Address Pool",
+    "status": "Available"
+  },
+  "avm/res/network/load-balancer/inbound-nat-rule": {
+    "moduleType": "resource",
+    "displayName": "Load Balancer - Inbound Nat Rule",
+    "status": "Available"
+  },
+  "avm/res/network/local-network-gateway": {
+    "moduleType": "resource",
+    "displayName": "Local Network Gateway",
+    "status": "Available"
+  },
+  "avm/res/network/nat-gateway": {
+    "moduleType": "resource",
+    "displayName": "NAT Gateway",
+    "status": "Available"
+  },
+  "avm/res/network/network-interface": {
+    "moduleType": "resource",
+    "displayName": "Network Interface",
+    "status": "Available"
+  },
+  "avm/res/network/network-manager": {
+    "moduleType": "resource",
+    "displayName": "Network Manager",
+    "status": "Available"
+  },
+  "avm/res/network/network-manager/connectivity-configuration": {
+    "moduleType": "resource",
+    "displayName": "Network Manager - Connectivity Configuration",
+    "status": "Available"
+  },
+  "avm/res/network/network-manager/network-group": {
+    "moduleType": "resource",
+    "displayName": "Network Manager - Network Group",
+    "status": "Available"
+  },
+  "avm/res/network/network-manager/network-group/static-member": {
+    "moduleType": "resource",
+    "displayName": "Network Manager - Network Group - Static Member",
+    "status": "Available"
+  },
+  "avm/res/network/network-manager/routing-configuration": {
+    "moduleType": "resource",
+    "displayName": "Network Manager - Routing Configuration",
+    "status": "Available"
+  },
+  "avm/res/network/network-manager/routing-configuration/rule-collection": {
+    "moduleType": "resource",
+    "displayName": "Network Manager - Routing Configuration - Rule Collection",
+    "status": "Available"
+  },
+  "avm/res/network/network-manager/routing-configuration/rule-collection/rule": {
+    "moduleType": "resource",
+    "displayName": "Network Manager - Routing Configuration - Rule Collection - Rule",
+    "status": "Available"
+  },
+  "avm/res/network/network-manager/scope-connection": {
+    "moduleType": "resource",
+    "displayName": "Network Manager - Scope Connection",
+    "status": "Available"
+  },
+  "avm/res/network/network-manager/security-admin-configuration": {
+    "moduleType": "resource",
+    "displayName": "Network Manager - Security Admin Configuration",
+    "status": "Available"
+  },
+  "avm/res/network/network-manager/security-admin-configuration/rule-collection": {
+    "moduleType": "resource",
+    "displayName": "Network Manager - Security Admin Configuration - Rule Collection",
+    "status": "Available"
+  },
+  "avm/res/network/network-manager/security-admin-configuration/rule-collection/rule": {
+    "moduleType": "resource",
+    "displayName": "Network Manager - Security Admin Configuration - Rule Coll - Rule",
+    "status": "Available"
+  },
+  "avm/res/network/network-security-group": {
+    "moduleType": "resource",
+    "displayName": "Network Security Group",
+    "status": "Available"
+  },
+  "avm/res/network/network-security-perimeter": {
+    "moduleType": "resource",
+    "displayName": "Network Security Perimeter",
+    "status": "Available"
+  },
+  "avm/res/network/network-security-perimeter/profile": {
+    "moduleType": "resource",
+    "displayName": "Network Security Perimeter - Profile",
+    "status": "Available"
+  },
+  "avm/res/network/network-security-perimeter/profile/access-rule": {
+    "moduleType": "resource",
+    "displayName": "Network Security Perimeter - Profile - Access Rule",
+    "status": "Available"
+  },
+  "avm/res/network/network-watcher": {
+    "moduleType": "resource",
+    "displayName": "Network Watcher",
+    "status": "Available"
+  },
+  "avm/res/network/network-watcher/connection-monitor": {
+    "moduleType": "resource",
+    "displayName": "Network Watcher - Connection Monitor",
+    "status": "Available"
+  },
+  "avm/res/network/network-watcher/flow-log": {
+    "moduleType": "resource",
+    "displayName": "Network Watcher - Flow Log",
+    "status": "Available"
+  },
+  "avm/res/network/p2s-vpn-gateway": {
+    "moduleType": "resource",
+    "displayName": "P2S VPN Gateway",
+    "status": "Available"
+  },
+  "avm/res/network/private-dns-zone": {
+    "moduleType": "resource",
+    "displayName": "Private DNS Zone",
+    "status": "Available"
+  },
+  "avm/res/network/private-dns-zone/a": {
+    "moduleType": "resource",
+    "displayName": "Private DNS Zone - A",
+    "status": "Available"
+  },
+  "avm/res/network/private-dns-zone/aaaa": {
+    "moduleType": "resource",
+    "displayName": "Private DNS Zone - AAAA",
+    "status": "Available"
+  },
+  "avm/res/network/private-dns-zone/cname": {
+    "moduleType": "resource",
+    "displayName": "Private DNS Zone - CNAME",
+    "status": "Available"
+  },
+  "avm/res/network/private-dns-zone/mx": {
+    "moduleType": "resource",
+    "displayName": "Private DNS Zone - MX",
+    "status": "Available"
+  },
+  "avm/res/network/private-dns-zone/ptr": {
+    "moduleType": "resource",
+    "displayName": "Private DNS Zone - PTR",
+    "status": "Available"
+  },
+  "avm/res/network/private-dns-zone/soa": {
+    "moduleType": "resource",
+    "displayName": "Private DNS Zone - SOA",
+    "status": "Available"
+  },
+  "avm/res/network/private-dns-zone/srv": {
+    "moduleType": "resource",
+    "displayName": "Private DNS Zone - SRV",
+    "status": "Available"
+  },
+  "avm/res/network/private-dns-zone/txt": {
+    "moduleType": "resource",
+    "displayName": "Private DNS Zone - TXT",
+    "status": "Available"
+  },
+  "avm/res/network/private-dns-zone/virtual-network-link": {
+    "moduleType": "resource",
+    "displayName": "Virtual Network Links",
+    "status": "Available"
+  },
+  "avm/res/network/private-endpoint": {
+    "moduleType": "resource",
+    "displayName": "Private Endpoint",
+    "status": "Available"
+  },
+  "avm/res/network/private-endpoint/private-dns-zone-group": {
+    "moduleType": "resource",
+    "displayName": "Private Endpoint - Private Dns Zone Group",
+    "status": "Available"
+  },
+  "avm/res/network/private-link-service": {
+    "moduleType": "resource",
+    "displayName": "Private Link Service",
+    "status": "Available"
+  },
+  "avm/res/network/public-ip-address": {
+    "moduleType": "resource",
+    "displayName": "Public IP Address",
+    "status": "Available"
+  },
+  "avm/res/network/public-ip-prefix": {
+    "moduleType": "resource",
+    "displayName": "Public IP Prefix",
+    "status": "Available"
+  },
+  "avm/res/network/route-table": {
+    "moduleType": "resource",
+    "displayName": "Route Table",
+    "status": "Available"
+  },
+  "avm/res/network/service-endpoint-policy": {
+    "moduleType": "resource",
+    "displayName": "Service Endpoint Policy",
+    "status": "Available"
+  },
+  "avm/res/network/trafficmanagerprofile": {
+    "moduleType": "resource",
+    "displayName": "Traffic Manager Profile",
+    "status": "Available"
+  },
+  "avm/res/network/virtual-hub": {
+    "moduleType": "resource",
+    "displayName": "Virtual Hub",
+    "status": "Available"
+  },
+  "avm/res/network/virtual-hub/hub-route-table": {
+    "moduleType": "resource",
+    "displayName": "Virtual Hub - Hub Route Table",
+    "status": "Available"
+  },
+  "avm/res/network/virtual-hub/hub-virtual-network-connection": {
+    "moduleType": "resource",
+    "displayName": "Virtual Hub - Hub Virtual Network Connection",
+    "status": "Available"
+  },
+  "avm/res/network/virtual-hub/route-map": {
+    "moduleType": "resource",
+    "displayName": "Route Map",
+    "status": "Proposed"
+  },
+  "avm/res/network/virtual-hub/routing-intent": {
+    "moduleType": "resource",
+    "displayName": "Virtual Hub - Routing Intent",
+    "status": "Available"
+  },
+  "avm/res/network/virtual-network": {
+    "moduleType": "resource",
+    "displayName": "Virtual Network",
+    "status": "Available"
+  },
+  "avm/res/network/virtual-network-gateway": {
+    "moduleType": "resource",
+    "displayName": "Virtual Network Gateway",
+    "status": "Available"
+  },
+  "avm/res/network/virtual-network-gateway/nat-rule": {
+    "moduleType": "resource",
+    "displayName": "Virtual Network Gateway - Nat Rule",
+    "status": "Available"
+  },
+  "avm/res/network/virtual-network/subnet": {
+    "moduleType": "resource",
+    "displayName": "Virtual Network - Subnet",
+    "status": "Available"
+  },
+  "avm/res/network/virtual-network/virtual-network-peering": {
+    "moduleType": "resource",
+    "displayName": "Virtual Network - Peering",
+    "status": "Available"
+  },
+  "avm/res/network/virtual-wan": {
+    "moduleType": "resource",
+    "displayName": "Virtual WAN",
+    "status": "Available"
+  },
+  "avm/res/network/vpn-gateway": {
+    "moduleType": "resource",
+    "displayName": "VPN Gateway",
+    "status": "Available"
+  },
+  "avm/res/network/vpn-gateway/nat-rule": {
+    "moduleType": "resource",
+    "displayName": "VPN Gateway - Nat Rule",
+    "status": "Available"
+  },
+  "avm/res/network/vpn-gateway/vpn-connection": {
+    "moduleType": "resource",
+    "displayName": "VPN Gateway - Vpn Connection",
+    "status": "Available"
+  },
+  "avm/res/network/vpn-server-configuration": {
+    "moduleType": "resource",
+    "displayName": "VPN Server Configuration",
+    "status": "Available"
+  },
+  "avm/res/network/vpn-site": {
+    "moduleType": "resource",
+    "displayName": "VPN Site",
+    "status": "Available"
+  },
+  "avm/res/operational-insights/cluster": {
+    "moduleType": "resource",
+    "displayName": "Log Analytics Dedicated Cluster",
+    "status": "Available"
+  },
+  "avm/res/operational-insights/workspace": {
+    "moduleType": "resource",
+    "displayName": "Log Analytics Workspace",
+    "status": "Available"
+  },
+  "avm/res/operational-insights/workspace/data-export": {
+    "moduleType": "resource",
+    "displayName": "Log Analytics Workspace - Data Export",
+    "status": "Available"
+  },
+  "avm/res/operational-insights/workspace/data-source": {
+    "moduleType": "resource",
+    "displayName": "Log Analytics Workspace - Data Source",
+    "status": "Available"
+  },
+  "avm/res/operational-insights/workspace/linked-service": {
+    "moduleType": "resource",
+    "displayName": "Log Analytics Workspace - Linked Service",
+    "status": "Available"
+  },
+  "avm/res/operational-insights/workspace/linked-storage-account": {
+    "moduleType": "resource",
+    "displayName": "Log Analytics Workspace - Linked Storage Account",
+    "status": "Available"
+  },
+  "avm/res/operational-insights/workspace/saved-search": {
+    "moduleType": "resource",
+    "displayName": "Log Analytics Workspace - Saved Search",
+    "status": "Available"
+  },
+  "avm/res/operational-insights/workspace/storage-insight-config": {
+    "moduleType": "resource",
+    "displayName": "Log Analytics Workspace - Storage Insight Config",
+    "status": "Available"
+  },
+  "avm/res/operational-insights/workspace/table": {
+    "moduleType": "resource",
+    "displayName": "Log Analytics Workspace - Table",
+    "status": "Available"
+  },
+  "avm/res/operations-management/solution": {
+    "moduleType": "resource",
+    "displayName": "Operations Management Solution",
+    "status": "Available"
+  },
+  "avm/res/portal/dashboard": {
+    "moduleType": "resource",
+    "displayName": "Portal Dashboard",
+    "status": "Available"
+  },
+  "avm/res/power-bi-dedicated/capacity": {
+    "moduleType": "resource",
+    "displayName": "Power BI Dedicated Capacity",
+    "status": "Available"
+  },
+  "avm/res/purview/account": {
+    "moduleType": "resource",
+    "displayName": "Purview Account",
+    "status": "Available"
+  },
+  "avm/res/recovery-services/vault": {
+    "moduleType": "resource",
+    "displayName": "Recovery Services Vault",
+    "status": "Available"
+  },
+  "avm/res/recovery-services/vault/backup-config": {
+    "moduleType": "resource",
+    "displayName": "Recovery Services Vault - Backup Config",
+    "status": "Available"
+  },
+  "avm/res/recovery-services/vault/backup-fabric/protection-container/protected-item": {
+    "moduleType": "resource",
+    "displayName": "Recovery Services Vault - Backup Fabric - Prot Cont - Protected Item",
+    "status": "Available"
+  },
+  "avm/res/recovery-services/vault/backup-policy": {
+    "moduleType": "resource",
+    "displayName": "Recovery Services Vault - Backup Policy",
+    "status": "Available"
+  },
+  "avm/res/recovery-services/vault/replication-alert-setting": {
+    "moduleType": "resource",
+    "displayName": "Recovery Services Vault - Replication Alert Setting",
+    "status": "Available"
+  },
+  "avm/res/recovery-services/vault/replication-fabric": {
+    "moduleType": "resource",
+    "displayName": "Recovery Services Vault - Replication Fabric",
+    "status": "Available"
+  },
+  "avm/res/recovery-services/vault/replication-fabric/replication-protection-container": {
+    "moduleType": "resource",
+    "displayName": "Recovery Services Vault - Repli Fabric - Repl Protection Container",
+    "status": "Available"
+  },
+  "avm/res/recovery-services/vault/replication-fabric/replication-protection-container/replication-protection-container-mapping": {
+    "moduleType": "resource",
+    "displayName": "Recovery Services Vault - Repl Fabric - Repl Prot Cont - Mapping",
+    "status": "Available"
+  },
+  "avm/res/recovery-services/vault/replication-policy": {
+    "moduleType": "resource",
+    "displayName": "Recovery Services Vault - Replication Policy",
+    "status": "Available"
+  },
+  "avm/res/relay/namespace": {
+    "moduleType": "resource",
+    "displayName": "Relay Namespace",
+    "status": "Orphaned"
+  },
+  "avm/res/relay/namespace/authorization-rule": {
+    "moduleType": "resource",
+    "displayName": "Relay Namespace - Authorization Rule",
+    "status": "Orphaned"
+  },
+  "avm/res/relay/namespace/hybrid-connection": {
+    "moduleType": "resource",
+    "displayName": "Relay Namespace - Hybrid Connection",
+    "status": "Orphaned"
+  },
+  "avm/res/relay/namespace/hybrid-connection/authorization-rule": {
+    "moduleType": "resource",
+    "displayName": "Relay Namespace - Hybrid Connection - Authorization Rule",
+    "status": "Orphaned"
+  },
+  "avm/res/relay/namespace/network-rule-set": {
+    "moduleType": "resource",
+    "displayName": "Relay Namespace - Network Rule Set",
+    "status": "Orphaned"
+  },
+  "avm/res/relay/namespace/wcf-relay": {
+    "moduleType": "resource",
+    "displayName": "Relay Namespace - Wcf Relay",
+    "status": "Orphaned"
+  },
+  "avm/res/relay/namespace/wcf-relay/authorization-rule": {
+    "moduleType": "resource",
+    "displayName": "Relay Namespace - Wcf Relay - Authorization Rule",
+    "status": "Orphaned"
+  },
+  "avm/res/resource-graph/query": {
+    "moduleType": "resource",
+    "displayName": "Resource Graph Query",
+    "status": "Available"
+  },
+  "avm/res/resources/deployment-script": {
+    "moduleType": "resource",
+    "displayName": "Deployment Script",
+    "status": "Available"
+  },
+  "avm/res/resources/resource-group": {
+    "moduleType": "resource",
+    "displayName": "Resource Group",
+    "status": "Available"
+  },
+  "avm/res/scom/managed-instance": {
+    "moduleType": "resource",
+    "displayName": "SCOM MI",
+    "status": "Proposed"
+  },
+  "avm/res/search/search-service": {
+    "moduleType": "resource",
+    "displayName": "Search Service",
+    "status": "Available"
+  },
+  "avm/res/search/search-service/shared-private-link-resource": {
+    "moduleType": "resource",
+    "displayName": "Search Service - Shared Private Link Resource",
+    "status": "Available"
+  },
+  "avm/res/security-insights/data-connector": {
+    "moduleType": "resource",
+    "displayName": "Security Insights - Data Connector",
+    "status": "Orphaned"
+  },
+  "avm/res/security-insights/onboarding-state": {
+    "moduleType": "resource",
+    "displayName": "Security Insights - Onboarding State",
+    "status": "Proposed"
+  },
+  "avm/res/security-insights/setting": {
+    "moduleType": "resource",
+    "displayName": "Security Insights - Setting",
+    "status": "Available"
+  },
+  "avm/res/service-bus/namespace": {
+    "moduleType": "resource",
+    "displayName": "Service Bus Namespace",
+    "status": "Available"
+  },
+  "avm/res/service-bus/namespace/authorization-rule": {
+    "moduleType": "resource",
+    "displayName": "Service Bus Namespace - Authorization Rule",
+    "status": "Available"
+  },
+  "avm/res/service-bus/namespace/disaster-recovery-config": {
+    "moduleType": "resource",
+    "displayName": "Service Bus Namespace - Disaster Recovery Config",
+    "status": "Available"
+  },
+  "avm/res/service-bus/namespace/migration-configuration": {
+    "moduleType": "resource",
+    "displayName": "Service Bus Namespace - Migration Configuration",
+    "status": "Available"
+  },
+  "avm/res/service-bus/namespace/network-rule-set": {
+    "moduleType": "resource",
+    "displayName": "Service Bus Namespace - Network Rule Set",
+    "status": "Available"
+  },
+  "avm/res/service-bus/namespace/queue": {
+    "moduleType": "resource",
+    "displayName": "Service Bus Namespace - Queue",
+    "status": "Available"
+  },
+  "avm/res/service-bus/namespace/queue/authorization-rule": {
+    "moduleType": "resource",
+    "displayName": "Service Bus Namespace - Queue - Authorization Rule",
+    "status": "Available"
+  },
+  "avm/res/service-bus/namespace/topic": {
+    "moduleType": "resource",
+    "displayName": "Service Bus Namespace - Topic",
+    "status": "Available"
+  },
+  "avm/res/service-bus/namespace/topic/authorization-rule": {
+    "moduleType": "resource",
+    "displayName": "Service Bus Namespace - Topic - Authorization Rule",
+    "status": "Available"
+  },
+  "avm/res/service-bus/namespace/topic/subscription": {
+    "moduleType": "resource",
+    "displayName": "Service Bus Namespace - Topic - Subscription",
+    "status": "Available"
+  },
+  "avm/res/service-bus/namespace/topic/subscription/rule": {
+    "moduleType": "resource",
+    "displayName": "Service Bus Namespace - Topic - Subscription - Rule",
+    "status": "Available"
+  },
+  "avm/res/service-fabric/cluster": {
+    "moduleType": "resource",
+    "displayName": "Service Fabric Cluster",
+    "status": "Available"
+  },
+  "avm/res/service-fabric/cluster/application-type": {
+    "moduleType": "resource",
+    "displayName": "Service Fabric Cluster - Application Type",
+    "status": "Available"
+  },
+  "avm/res/service-networking/traffic-controller": {
+    "moduleType": "resource",
+    "displayName": "Application Gateway for Containers (Traffic Controller)",
+    "status": "Available"
+  },
+  "avm/res/service-networking/traffic-controller/association": {
+    "moduleType": "resource",
+    "displayName": "Application Gateway for Containers (Traffic Controller) - Association",
+    "status": "Available"
+  },
+  "avm/res/service-networking/traffic-controller/frontend": {
+    "moduleType": "resource",
+    "displayName": "Application Gateway for Containers (Traffic Controller) - Frontend",
+    "status": "Available"
+  },
+  "avm/res/service-networking/traffic-controller/security-policy": {
+    "moduleType": "resource",
+    "displayName": "Application Gateway for Containers (Traffic Controller) - Sec Policy",
+    "status": "Available"
+  },
+  "avm/res/signal-r-service/signal-r": {
+    "moduleType": "resource",
+    "displayName": "SignalR Service SignalR",
+    "status": "Orphaned"
+  },
+  "avm/res/signal-r-service/web-pub-sub": {
+    "moduleType": "resource",
+    "displayName": "SignalR Web PubSub Service",
+    "status": "Orphaned"
+  },
+  "avm/res/sql-virtual-machine/sql-virtual-machine": {
+    "moduleType": "resource",
+    "displayName": "SQL Virtual Machine",
+    "status": "Proposed"
+  },
+  "avm/res/sql/instance-pool": {
+    "moduleType": "resource",
+    "displayName": "SQL Instance Pool",
+    "status": "Available"
+  },
+  "avm/res/sql/managed-instance": {
+    "moduleType": "resource",
+    "displayName": "SQL Managed Instance",
+    "status": "Available"
+  },
+  "avm/res/sql/managed-instance/database": {
+    "moduleType": "resource",
+    "displayName": "SQL Managed Instance - Database",
+    "status": "Available"
+  },
+  "avm/res/sql/managed-instance/database/backup-long-term-retention-policy": {
+    "moduleType": "resource",
+    "displayName": "SQL Managed Instance - Database - Backup Long Term Retention Policy",
+    "status": "Available"
+  },
+  "avm/res/sql/managed-instance/database/backup-short-term-retention-policy": {
+    "moduleType": "resource",
+    "displayName": "SQL Managed Instance - Database - Backup Short Term Retention Policy",
+    "status": "Available"
+  },
+  "avm/res/sql/managed-instance/encryption-protector": {
+    "moduleType": "resource",
+    "displayName": "SQL Managed Instance - Encryption Protector",
+    "status": "Available"
+  },
+  "avm/res/sql/managed-instance/key": {
+    "moduleType": "resource",
+    "displayName": "SQL Managed Instance - Key",
+    "status": "Available"
+  },
+  "avm/res/sql/managed-instance/security-alert-policy": {
+    "moduleType": "resource",
+    "displayName": "SQL Managed Instance - Security Alert Policy",
+    "status": "Available"
+  },
+  "avm/res/sql/managed-instance/vulnerability-assessment": {
+    "moduleType": "resource",
+    "displayName": "SQL Managed Instance - Vulnerability Assessment",
+    "status": "Available"
+  },
+  "avm/res/sql/server": {
+    "moduleType": "resource",
+    "displayName": "Azure SQL Server",
+    "status": "Available"
+  },
+  "avm/res/sql/server/auditing-setting": {
+    "moduleType": "resource",
+    "displayName": "Azure SQL Server - Auditing Setting",
+    "status": "Proposed"
+  },
+  "avm/res/sql/server/database": {
+    "moduleType": "resource",
+    "displayName": "Azure SQL Database",
+    "status": "Available"
+  },
+  "avm/res/sql/server/database/backup-long-term-retention-policy": {
+    "moduleType": "resource",
+    "displayName": "Azure SQL Server - Database - Backup Long Term Retention Policy",
+    "status": "Proposed"
+  },
+  "avm/res/sql/server/database/backup-short-term-retention-policy": {
+    "moduleType": "resource",
+    "displayName": "Azure SQL Server - Database - Backup Short Term Retention Policy",
+    "status": "Proposed"
+  },
+  "avm/res/sql/server/elastic-pool": {
+    "moduleType": "resource",
+    "displayName": "Azure SQL Server - Elastic Pool",
+    "status": "Proposed"
+  },
+  "avm/res/sql/server/encryption-protector": {
+    "moduleType": "resource",
+    "displayName": "Azure SQL Server - Encryption Protector",
+    "status": "Proposed"
+  },
+  "avm/res/sql/server/failover-group": {
+    "moduleType": "resource",
+    "displayName": "Azure SQL Server - Failover Group",
+    "status": "Proposed"
+  },
+  "avm/res/sql/server/firewall-rule": {
+    "moduleType": "resource",
+    "displayName": "Azure SQL Server - Firewall Rule",
+    "status": "Proposed"
+  },
+  "avm/res/sql/server/key": {
+    "moduleType": "resource",
+    "displayName": "Azure SQL Server - Key",
+    "status": "Proposed"
+  },
+  "avm/res/sql/server/security-alert-policy": {
+    "moduleType": "resource",
+    "displayName": "Azure SQL Server - Security Alert Policy",
+    "status": "Proposed"
+  },
+  "avm/res/sql/server/virtual-network-rule": {
+    "moduleType": "resource",
+    "displayName": "Azure SQL Server - Virtual Network Rule",
+    "status": "Proposed"
+  },
+  "avm/res/sql/server/vulnerability-assessment": {
+    "moduleType": "resource",
+    "displayName": "Azure SQL Server - Vulnerability Assessment",
+    "status": "Proposed"
+  },
+  "avm/res/storage/storage-account": {
+    "moduleType": "resource",
+    "displayName": "Storage Account",
+    "status": "Available"
+  },
+  "avm/res/storage/storage-account/blob-service": {
+    "moduleType": "resource",
+    "displayName": "Storage Account - Blob Service",
+    "status": "Available"
+  },
+  "avm/res/storage/storage-account/blob-service/container": {
+    "moduleType": "resource",
+    "displayName": "Storage Account - Blob Container",
+    "status": "Available"
+  },
+  "avm/res/storage/storage-account/blob-service/container/immutability-policy": {
+    "moduleType": "resource",
+    "displayName": "Storage Account - Blob Container Immutability Policy",
+    "status": "Available"
+  },
+  "avm/res/storage/storage-account/file-service": {
+    "moduleType": "resource",
+    "displayName": "Storage Account - File Service",
+    "status": "Available"
+  },
+  "avm/res/storage/storage-account/file-service/share": {
+    "moduleType": "resource",
+    "displayName": "Storage Account - File Share",
+    "status": "Available"
+  },
+  "avm/res/storage/storage-account/local-user": {
+    "moduleType": "resource",
+    "displayName": "Storage Account - Local User",
+    "status": "Available"
+  },
+  "avm/res/storage/storage-account/management-policy": {
+    "moduleType": "resource",
+    "displayName": "Storage Account - Management Policy",
+    "status": "Available"
+  },
+  "avm/res/storage/storage-account/object-replication-policy": {
+    "moduleType": "resource",
+    "displayName": "Storage Account - Object Replication Policy",
+    "status": "Available"
+  },
+  "avm/res/storage/storage-account/object-replication-policy/policy": {
+    "moduleType": "resource",
+    "displayName": "Storage Account - Object Replication Policy - Policy",
+    "status": "Available"
+  },
+  "avm/res/storage/storage-account/queue-service": {
+    "moduleType": "resource",
+    "displayName": "Storage Account - Queue Service",
+    "status": "Available"
+  },
+  "avm/res/storage/storage-account/queue-service/queue": {
+    "moduleType": "resource",
+    "displayName": "Storage Account - Queue",
+    "status": "Available"
+  },
+  "avm/res/storage/storage-account/table-service": {
+    "moduleType": "resource",
+    "displayName": "Storage Account - Table Service",
+    "status": "Available"
+  },
+  "avm/res/storage/storage-account/table-service/table": {
+    "moduleType": "resource",
+    "displayName": "Storage Account - Table",
+    "status": "Available"
+  },
+  "avm/res/stream-analytics/streaming-job": {
+    "moduleType": "resource",
+    "displayName": "Stream Analytics Job",
+    "status": "Proposed"
+  },
+  "avm/res/synapse/private-link-hub": {
+    "moduleType": "resource",
+    "displayName": "Azure Synapse Analytics Private Link Hub",
+    "status": "Available"
+  },
+  "avm/res/synapse/workspace": {
+    "moduleType": "resource",
+    "displayName": "Azure Synapse Analytics Workspace",
+    "status": "Available"
+  },
+  "avm/res/synapse/workspace/administrator": {
+    "moduleType": "resource",
+    "displayName": "Azure Synapse Analytics Workspace - Administrator",
+    "status": "Available"
+  },
+  "avm/res/synapse/workspace/big-data-pool": {
+    "moduleType": "resource",
+    "displayName": "Azure Synapse Analytics Workspace - Big Data Pool",
+    "status": "Available"
+  },
+  "avm/res/synapse/workspace/firewall-rule": {
+    "moduleType": "resource",
+    "displayName": "Azure Synapse Analytics Workspace - Firewall Rule",
+    "status": "Available"
+  },
+  "avm/res/synapse/workspace/integration-runtime": {
+    "moduleType": "resource",
+    "displayName": "Azure Synapse Analytics Workspace - Integration Runtime",
+    "status": "Available"
+  },
+  "avm/res/synapse/workspace/key": {
+    "moduleType": "resource",
+    "displayName": "Azure Synapse Analytics Workspace - Key",
+    "status": "Available"
+  },
+  "avm/res/synapse/workspace/sql-pool": {
+    "moduleType": "resource",
+    "displayName": "Azure Synapse Analytics Workspace - Sql Pool",
+    "status": "Available"
+  },
+  "avm/res/virtual-machine-images/image-template": {
+    "moduleType": "resource",
+    "displayName": "Virtual Machine Image Template",
+    "status": "Available"
+  },
+  "avm/res/web/connection": {
+    "moduleType": "resource",
+    "displayName": "API Connection",
+    "status": "Available"
+  },
+  "avm/res/web/hosting-environment": {
+    "moduleType": "resource",
+    "displayName": "App Service Environment",
+    "status": "Available"
+  },
+  "avm/res/web/hosting-environment/configuration": {
+    "moduleType": "resource",
+    "displayName": "App Service Environment - Configuration",
+    "status": "Proposed"
+  },
+  "avm/res/web/serverfarm": {
+    "moduleType": "resource",
+    "displayName": "App Service Plan",
+    "status": "Available"
+  },
+  "avm/res/web/site": {
+    "moduleType": "resource",
+    "displayName": "Web/Function App",
+    "status": "Available"
+  },
+  "avm/res/web/site/basic-publishing-credentials-policy": {
+    "moduleType": "resource",
+    "displayName": "Web/Function App - Basic Publishing Credentials Policy",
+    "status": "Available"
+  },
+  "avm/res/web/site/config": {
+    "moduleType": "resource",
+    "displayName": "Web Site Configuration",
+    "status": "Available"
+  },
+  "avm/res/web/site/extension": {
+    "moduleType": "resource",
+    "displayName": "Web/Function App - Extension",
+    "status": "Available"
+  },
+  "avm/res/web/site/hybrid-connection-namespace/relay": {
+    "moduleType": "resource",
+    "displayName": "Web/Function App - Hybrid Connection Namespace - Relay",
+    "status": "Available"
+  },
+  "avm/res/web/site/slot": {
+    "moduleType": "resource",
+    "displayName": "Web Site Slot",
+    "status": "Available"
+  },
+  "avm/res/web/site/slot/basic-publishing-credentials-policy": {
+    "moduleType": "resource",
+    "displayName": "Web/Function App - Slot - Basic Publishing Credentials Policy",
+    "status": "Available"
+  },
+  "avm/res/web/site/slot/config": {
+    "moduleType": "resource",
+    "displayName": "Web/Function App - Slot - Config",
+    "status": "Available"
+  },
+  "avm/res/web/site/slot/extension": {
+    "moduleType": "resource",
+    "displayName": "Web/Function App - Slot - Extension",
+    "status": "Available"
+  },
+  "avm/res/web/site/slot/hybrid-connection-namespace/relay": {
+    "moduleType": "resource",
+    "displayName": "Web/Function App - Slot - Hybrid Connection Namespace - Relay",
+    "status": "Available"
+  },
+  "avm/res/web/static-site": {
+    "moduleType": "resource",
+    "displayName": "Static Web App",
+    "status": "Available"
+  },
+  "avm/res/web/static-site/config": {
+    "moduleType": "resource",
+    "displayName": "Static Web App - Config",
+    "status": "Available"
+  },
+  "avm/res/web/static-site/custom-domain": {
+    "moduleType": "resource",
+    "displayName": "Static Web App - Custom Domain",
+    "status": "Available"
+  },
+  "avm/res/web/static-site/linked-backend": {
+    "moduleType": "resource",
+    "displayName": "Static Web App - Linked Backend",
+    "status": "Available"
+  },
+  "avm/ptn/aca-lza/hosting-environment": {
+    "moduleType": "pattern",
+    "displayName": "Azure Container Apps (ACA) LZA - Hosting Environment",
+    "status": "Available"
+  },
+  "avm/ptn/ai-ml/ai-foundry": {
+    "moduleType": "pattern",
+    "displayName": "AI-ML - AI Foundry",
+    "status": "Available"
+  },
+  "avm/ptn/ai-ml/landing-zone": {
+    "moduleType": "pattern",
+    "displayName": "AI-ML - Landing Zone (LZ)",
+    "status": "Proposed"
+  },
+  "avm/ptn/ai-platform/baseline": {
+    "moduleType": "pattern",
+    "displayName": "AI Platform - Baseline",
+    "status": "Available"
+  },
+  "avm/ptn/alz/ama": {
+    "moduleType": "pattern",
+    "displayName": "Azure Landing Zones (ALZ) - Azure Monitoring Agent (AMA)",
+    "status": "Available"
+  },
+  "avm/ptn/alz/empty": {
+    "moduleType": "pattern",
+    "displayName": "Azure Landing Zones (ALZ) - Empty",
+    "status": "Available"
+  },
+  "avm/ptn/app-service-lza/hosting-environment": {
+    "moduleType": "pattern",
+    "displayName": "App Service LZA - Hosting Environment",
+    "status": "Available"
+  },
+  "avm/ptn/app/container-job-toolkit": {
+    "moduleType": "pattern",
+    "displayName": "Container Job Toolkit",
+    "status": "Available"
+  },
+  "avm/ptn/app/cosmos-db-account-container-app": {
+    "moduleType": "pattern",
+    "displayName": "Cosmos DB Account - Container App",
+    "status": "Proposed"
+  },
+  "avm/ptn/app/function-app": {
+    "moduleType": "pattern",
+    "displayName": "Function App",
+    "status": "Proposed"
+  },
+  "avm/ptn/app/iaas-vm-cosmosdb-tier4": {
+    "moduleType": "pattern",
+    "displayName": "Workload - IaaS VM Cosmos DB - Tier 4",
+    "status": "Available"
+  },
+  "avm/ptn/app/mongodb-cluster-container-app": {
+    "moduleType": "pattern",
+    "displayName": "MongoDB Cluster - Container App",
+    "status": "Proposed"
+  },
+  "avm/ptn/app/paas-ase-cosmosdb-tier4": {
+    "moduleType": "pattern",
+    "displayName": "Workload - PaaS ASE Cosmos DB - Tier 4",
+    "status": "Proposed"
+  },
+  "avm/ptn/authorization/pim-role-assignment": {
+    "moduleType": "pattern",
+    "displayName": "Authorization - PIM Role Assignment",
+    "status": "Available"
+  },
+  "avm/ptn/authorization/policy-assignment": {
+    "moduleType": "pattern",
+    "displayName": "Authorization - Policy Assignment",
+    "status": "Available"
+  },
+  "avm/ptn/authorization/policy-exemption": {
+    "moduleType": "pattern",
+    "displayName": "Authorization - Policy Exemption",
+    "status": "Available"
+  },
+  "avm/ptn/authorization/resource-role-assignment": {
+    "moduleType": "pattern",
+    "displayName": "Authorization - Resource Role Assignment",
+    "status": "Available"
+  },
+  "avm/ptn/authorization/role-assignment": {
+    "moduleType": "pattern",
+    "displayName": "Authorization - Role Assignment",
+    "status": "Available"
+  },
+  "avm/ptn/authorization/role-definition": {
+    "moduleType": "pattern",
+    "displayName": "Authorization - Role Definition",
+    "status": "Available"
+  },
+  "avm/ptn/avd-lza/insights": {
+    "moduleType": "pattern",
+    "displayName": "Azure Virtual Desktop (AVD) LZA - Insights",
+    "status": "Proposed"
+  },
+  "avm/ptn/avd-lza/management-plane": {
+    "moduleType": "pattern",
+    "displayName": "Azure Virtual Desktop (AVD) LZA - Management Plane",
+    "status": "Proposed"
+  },
+  "avm/ptn/avd-lza/networking": {
+    "moduleType": "pattern",
+    "displayName": "Azure Virtual Desktop (AVD) LZA - Networking",
+    "status": "Proposed"
+  },
+  "avm/ptn/avd-lza/session-hosts": {
+    "moduleType": "pattern",
+    "displayName": "Azure Virtual Desktop (AVD) LZA - Session Hosts",
+    "status": "Proposed"
+  },
+  "avm/ptn/azd/acr-container-app": {
+    "moduleType": "pattern",
+    "displayName": "AZD - ACR Container App",
+    "status": "Available"
+  },
+  "avm/ptn/azd/aks": {
+    "moduleType": "pattern",
+    "displayName": "AZD - AKS",
+    "status": "Available"
+  },
+  "avm/ptn/azd/aks-automatic-cluster": {
+    "moduleType": "pattern",
+    "displayName": "AZD - AKS Automatic Cluster",
+    "status": "Available"
+  },
+  "avm/ptn/azd/apim-api": {
+    "moduleType": "pattern",
+    "displayName": "AZD - APIM API",
+    "status": "Available"
+  },
+  "avm/ptn/azd/container-app-upsert": {
+    "moduleType": "pattern",
+    "displayName": "AZD - Container App Upsert",
+    "status": "Available"
+  },
+  "avm/ptn/azd/container-apps-stack": {
+    "moduleType": "pattern",
+    "displayName": "AZD - Container Apps Stack",
+    "status": "Available"
+  },
+  "avm/ptn/azd/insights-dashboard": {
+    "moduleType": "pattern",
+    "displayName": "AZD - Insights Dashboard",
+    "status": "Available"
+  },
+  "avm/ptn/azd/ml-ai-environment": {
+    "moduleType": "pattern",
+    "displayName": "AZD - ML AI Environment",
+    "status": "Deprecated"
+  },
+  "avm/ptn/azd/ml-hub-dependencies": {
+    "moduleType": "pattern",
+    "displayName": "AZD - ML Hub Dependencies",
+    "status": "Deprecated"
+  },
+  "avm/ptn/azd/ml-project": {
+    "moduleType": "pattern",
+    "displayName": "AZD - ML Project",
+    "status": "Deprecated"
+  },
+  "avm/ptn/azd/monitoring": {
+    "moduleType": "pattern",
+    "displayName": "AZD - Monitoring",
+    "status": "Available"
+  },
+  "avm/ptn/data/private-analytical-workspace": {
+    "moduleType": "pattern",
+    "displayName": "Private Analytical Workspace",
+    "status": "Available"
+  },
+  "avm/ptn/deployment-script/create-kv-ssh-key-pair": {
+    "moduleType": "pattern",
+    "displayName": "Deployment Script - Create Key Vault SSH Key Pair",
+    "status": "Proposed"
+  },
+  "avm/ptn/deployment-script/import-image-to-acr": {
+    "moduleType": "pattern",
+    "displayName": "Deployment Script - Import Container Image to ACR",
+    "status": "Available"
+  },
+  "avm/ptn/deployment-script/private": {
+    "moduleType": "pattern",
+    "displayName": "Deployment Script - Private Script",
+    "status": "Proposed"
+  },
+  "avm/ptn/dev-center/dev-box": {
+    "moduleType": "pattern",
+    "displayName": "Dev-Box",
+    "status": "Proposed"
+  },
+  "avm/ptn/dev-ops/cicd-agents-and-runners": {
+    "moduleType": "pattern",
+    "displayName": "Azure DevOps and GitHub CI/CD Agents and Runners",
+    "status": "Available"
+  },
+  "avm/ptn/finops-toolkit/finops-hub": {
+    "moduleType": "pattern",
+    "displayName": "FinOps Toolkit - FinOps Hub",
+    "status": "Available"
+  },
+  "avm/ptn/lz/sub-vending": {
+    "moduleType": "pattern",
+    "displayName": "Landing Zone Subscription Vending",
+    "status": "Available"
+  },
+  "avm/ptn/lza-shared/data-services": {
+    "moduleType": "pattern",
+    "displayName": "LZA Shared - Data Services",
+    "status": "Proposed"
+  },
+  "avm/ptn/maintenance/azure-update-manager": {
+    "moduleType": "pattern",
+    "displayName": "Azure Update Manager",
+    "status": "Proposed"
+  },
+  "avm/ptn/mgmt-groups/subscription-placement": {
+    "moduleType": "pattern",
+    "displayName": "Management Groups - Subscription Placement",
+    "status": "Available"
+  },
+  "avm/ptn/monitoring/amba": {
+    "moduleType": "pattern",
+    "displayName": "Azure Monitor Baseline Alerts (AMBA)",
+    "status": "Proposed"
+  },
+  "avm/ptn/monitoring/amba-alz": {
+    "moduleType": "pattern",
+    "displayName": "Azure Monitor Baseline Alerts (AMBA) - ALZ",
+    "status": "Proposed"
+  },
+  "avm/ptn/network/hub-networking": {
+    "moduleType": "pattern",
+    "displayName": "Hub Networking",
+    "status": "Orphaned"
+  },
+  "avm/ptn/network/private-link-private-dns-zones": {
+    "moduleType": "pattern",
+    "displayName": "Private Link Private DNS Zones",
+    "status": "Available"
+  },
+  "avm/ptn/network/virtual-wan": {
+    "moduleType": "pattern",
+    "displayName": "Virtual WAN",
+    "status": "Available"
+  },
+  "avm/ptn/network/vwan-connected-vnets": {
+    "moduleType": "pattern",
+    "displayName": "VNETs peered to Virtual WAN",
+    "status": "Proposed"
+  },
+  "avm/ptn/openai/e2e-baseline": {
+    "moduleType": "pattern",
+    "displayName": "Azure OpenAI End-to-End Baseline Implementation",
+    "status": "Proposed"
+  },
+  "avm/ptn/policy-insights/remediation": {
+    "moduleType": "pattern",
+    "displayName": "Policy Insights Remediation",
+    "status": "Available"
+  },
+  "avm/ptn/sa/build-your-own-copilot": {
+    "moduleType": "pattern",
+    "displayName": "SA - Build your own Copilot",
+    "status": "Deprecated"
+  },
+  "avm/ptn/sa/chat-with-your-data": {
+    "moduleType": "pattern",
+    "displayName": "SA - Chat with your data",
+    "status": "Available"
+  },
+  "avm/ptn/sa/container-migration": {
+    "moduleType": "pattern",
+    "displayName": "SA - Container migration",
+    "status": "Proposed"
+  },
+  "avm/ptn/sa/content-generation": {
+    "moduleType": "pattern",
+    "displayName": "SA - Content Generation",
+    "status": "Proposed"
+  },
+  "avm/ptn/sa/content-processing": {
+    "moduleType": "pattern",
+    "displayName": "SA - Content Processing",
+    "status": "Available"
+  },
+  "avm/ptn/sa/conversation-knowledge-mining": {
+    "moduleType": "pattern",
+    "displayName": "SA - Conversation knowledge mining",
+    "status": "Available"
+  },
+  "avm/ptn/sa/customer-chatbot": {
+    "moduleType": "pattern",
+    "displayName": "SA - Bring your own Customer Chatbot",
+    "status": "Proposed"
+  },
+  "avm/ptn/sa/document-knowledge-mining": {
+    "moduleType": "pattern",
+    "displayName": "SA - Document knowledge mining",
+    "status": "Available"
+  },
+  "avm/ptn/sa/modernize-your-code": {
+    "moduleType": "pattern",
+    "displayName": "SA - Modernize your code",
+    "status": "Available"
+  },
+  "avm/ptn/sa/multi-agent-custom-automation-engine": {
+    "moduleType": "pattern",
+    "displayName": "SA - Multi Agent Custom Automation Engine",
+    "status": "Available"
+  },
+  "avm/ptn/security/security-center": {
+    "moduleType": "pattern",
+    "displayName": "Azure Security Center (Defender for Cloud)",
+    "status": "Available"
+  },
+  "avm/ptn/security/sentinel": {
+    "moduleType": "pattern",
+    "displayName": "Sentinel",
+    "status": "Proposed"
+  },
+  "avm/ptn/subscription/service-health-alerts": {
+    "moduleType": "pattern",
+    "displayName": "Service Health Alerts",
+    "status": "Available"
+  },
+  "avm/ptn/virtual-machine-images/azure-image-builder": {
+    "moduleType": "pattern",
+    "displayName": "Custom Images using Azure Image Builder",
+    "status": "Available"
+  },
+  "avm/utl/general/get-environment": {
+    "moduleType": "utility",
+    "displayName": "Get-Environment",
+    "status": "Proposed"
+  },
+  "avm/utl/types/avm-common-types": {
+    "moduleType": "utility",
+    "displayName": "AVM Common Types",
+    "status": "Available"
+  }
+}
