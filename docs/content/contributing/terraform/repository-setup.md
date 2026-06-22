@@ -148,6 +148,33 @@ The script will automatically:
 - Create a PR to add module metadata to the `avm-terraform-governance` repository.
 - Create an issue to install the `Azure Verified Modules` GitHub App.
 
-## 4. Wait for the GitHub App
+## 4. Upgrade just-in-time access to JITv2
+
+New repositories default to **JIT v1**. AVM repositories must be upgraded to **JIT v2** and tied to the shared `service-AVM-azure-verified-modules-module-owners` rule, so that just-in-time elevation is governed centrally by the AVM team rather than by a repository-specific rule.
+
+This is a one-off manual action in the Open Source Portal. You need Direct Owner access to the repository (configured in the previous step) to complete it.
+
+### Migrate the repository to JIT v2
+
+1. Open the repository overview on the Open Source Portal: `https://repos.opensource.microsoft.com/orgs/Azure/repos/<module name>`.
+2. In the right-hand sidebar, find the **Improved Just-in-time** (`New`) panel and click **Next**.
+3. Review the concepts (Rule Version, Rule, Tie) and click **Next**.
+4. Leave **Require approval for elevation** selected and click **Upgrade `<module name>` now**.
+
+This migrates the repository to JIT v2 and creates a temporary repository-scoped starter rule. Reload the page and confirm the **Just-in-time elevation** section now shows **JIT version: JIT v2**.
+
+### Tie the repository to the shared AVM rule
+
+1. On the repository overview, click **Advanced JIT options**, then select **Propose a new tie**.
+2. Under **Propose tying a new rule to this repository**, enter the Rule ID `service-AVM-azure-verified-modules-module-owners` and click **Review**.
+3. Confirm the details and click **Create tie**.
+
+The tie is created in a **pending approval** state, so the temporary repository-scoped rule stays active until the tie is approved.
+
+{{% notice style="info" %}}
+The pending tie must be approved by an owner of the `service-AVM-azure-verified-modules-module-owners` rule (an AVM core team member). Ask the AVM core team to approve it. Once approved, just-in-time elevation for the repository is governed by the shared AVM rule and the temporary starter rule can be ignored.
+{{% /notice %}}
+
+## 5. Wait for the GitHub App
 
 Once installed (usually within 24 hours), the environment sync runs automatically at 15:30 UTC on weekdays to complete the repository setup.
