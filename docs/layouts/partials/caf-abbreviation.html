@@ -1,0 +1,32 @@
+{{/*
+  caf-abbreviation.html
+
+  Renders the "CAF Abbreviation" table cell content for a single resource module.
+
+  Inputs (dict):
+    - rows : slice of { ns, resource, abbr } produced by partials/caf-abbreviation-map.html
+    - ns   : lower-cased "<ProviderNamespace>/<ResourceType>" for the module
+      (e.g. "microsoft.storage/storageaccounts")
+
+  Output:
+    - no CAF match -> "n/a"
+    - exactly one  -> <code>abbr</code>
+    - more than one -> an unordered list of "<code>abbr</code> (resource name)" entries, in CAF
+      document order. A single resource provider namespace can map to several CAF
+      abbreviations (distinguished by kind/mode), so all options are listed and the
+      reader chooses the one that fits their scenario.
+*/}}
+{{- $rows := .rows -}}
+{{- $ns := .ns -}}
+{{- $candidates := where $rows "ns" $ns -}}
+{{- if eq (len $candidates) 0 -}}
+n/a
+{{- else if eq (len $candidates) 1 -}}
+<code>{{ (index $candidates 0).abbr }}</code>
+{{- else -}}
+<ul style="margin: 0; padding-left: 1.1em;">
+{{- range $i, $c := $candidates -}}
+<li><code>{{ $c.abbr }}</code> ({{ $c.resource }})</li>
+{{- end -}}
+</ul>
+{{- end -}}

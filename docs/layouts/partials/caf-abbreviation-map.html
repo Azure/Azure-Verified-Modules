@@ -1,0 +1,53 @@
+{{/*
+  caf-abbreviation-map.html
+
+  Fetches the Cloud Adoption Framework (CAF) "Abbreviation recommendations for Azure resources"
+  markdown and parses its tables into a slice of dicts, each shaped:
+
+    { "ns": <string>, "resource": <string>, "abbr": <string> }
+
+    - ns       : lower-cased resource provider namespace (e.g. "microsoft.storage/storageaccounts"),
+      with any trailing "(kind: ...)" / "(mode: ...)" qualifier removed.
+    - resource : the human-friendly CAF resource name (e.g. "Storage account").
+    - abbr     : the CAF recommended abbreviation (e.g. "st").
+
+  Rows whose namespace contains no "/" (table headers / separators) and rows whose abbreviation is a
+  placeholder (e.g. "<*descriptive*>", "<DNS domain name>") are skipped.
+
+  Source of truth (live, so abbreviations stay current with CAF):
+  https://raw.githubusercontent.com/MicrosoftDocs/cloud-adoption-framework/refs/heads/main/docs/ready/azure-best-practices/resource-abbreviations.md
+
+  On any fetch error an empty slice is returned so the site build never breaks. The result is intended
+  to be consumed via partialCached so the remote fetch + parse happens once per build.
+
+  Returns: slice of dicts (see above), in CAF document order.
+*/}}
+{{- $url := "https://raw.githubusercontent.com/MicrosoftDocs/cloud-adoption-framework/refs/heads/main/docs/ready/azure-best-practices/resource-abbreviations.md" -}}
+{{- $rows := slice -}}
+{{- with resources.GetRemote $url -}}
+  {{- with .Err -}}
+    {{- warnf "caf-abbreviation-map.html: unable to fetch CAF resource abbreviations (%q): %s" $url . -}}
+  {{- else -}}
+    {{- $content := .Content -}}
+    {{- range $lineIndex, $line := split $content "\n" -}}
+      {{- $l := trim $line " \r\t" -}}
+      {{- if hasPrefix $l "|" -}}
+        {{- $cells := split (trim $l "|") "|" -}}
+        {{- if ge (len $cells) 3 -}}
+          {{- $resource := trim (index $cells 0) " " -}}
+          {{- $nsRaw := trim (index $cells 1) " " -}}
+          {{- $abbrRaw := trim (index $cells 2) " " -}}
+          {{- $nsClean := trim (replace $nsRaw "`" "") " " -}}
+          {{- $nsBase := trim (replaceRE `\(.*?\)` "" $nsClean) " " -}}
+          {{- $abbr := trim (replace $abbrRaw "`" "") " " -}}
+          {{- if and (in $nsBase "/") (ne $abbr "") (not (in $abbr "<")) (not (in $abbr "*")) -}}
+            {{- $rows = $rows | append (dict "ns" (lower $nsBase) "resource" $resource "abbr" $abbr) -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- else -}}
+  {{- warnf "caf-abbreviation-map.html: no response fetching CAF resource abbreviations (%q)" $url -}}
+{{- end -}}
+{{- return $rows -}}

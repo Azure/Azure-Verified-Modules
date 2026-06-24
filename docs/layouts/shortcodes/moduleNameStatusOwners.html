@@ -134,6 +134,12 @@
 {{ $maps = sort $maps "ModuleName" }}
 {{ $i = 1 }}
 
+{{/* CAF recommended abbreviations lookup (resource modules only). Built once per build via partialCached. */}}
+{{ $cafRows := slice }}
+{{ if eq $moduleType "resource" }}
+  {{ $cafRows = partialCached "caf-abbreviation-map.html" . "caf-abbreviation-map" }}
+{{ end }}
+
 {{ if eq $language "Bicep" }}
 <table>
   {{ if $useHeaderRow }}
@@ -142,6 +148,7 @@
       <th>No.</th>
       <th>Module Name</th>
       <th>Display Name</th>
+      {{ if eq $moduleType "resource" }}<th>CAF Abbreviation</th>{{ end }}
       <th>Status & Versions</th>
       <th>Owner(s)</th>
     </tr>
@@ -227,6 +234,12 @@
           <b>{{ $item.ModuleDisplayName }} </b>
         {{- end -}}
       </td>
+      {{- if eq $moduleType "resource" -}}
+      <td> {{/* CAF recommended abbreviation(s) */}}
+        {{- $cafNs := lower (printf "%s/%s" $item.ProviderNamespace $item.ResourceType) -}}
+        {{- partial "caf-abbreviation.html" (dict "rows" $cafRows "ns" $cafNs) -}}
+      </td>
+      {{- end -}}
       <td> {{/* availability badge and versions  */}}
         {{- if and (or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated")) (ne $item.PublicRegistryReference "n/a") -}}
           <a href="https://mcr.microsoft.com/v2/bicep/{{ $item.ModuleName }}/tags/list">
@@ -269,6 +282,7 @@
     <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
     <td>❌ None listed</td>
     <td>❌ None listed</td>
+    {{ if eq $moduleType "resource" }}<td>❌ None listed</td>{{ end }}
     <td>❌ None listed</td>
     <td>❌ None listed</td>
   </tr>
@@ -284,6 +298,7 @@
       <th>Module Name</th>
       <th>Source<br>Code</th>
       <th>Display Name</th>
+      {{ if eq $moduleType "resource" }}<th>CAF Abbreviation</th>{{ end }}
       <th>Status & Versions</th>
       <th>Primary Owner</th>
     </tr>
@@ -367,6 +382,12 @@
           <b>{{ $item.ModuleDisplayName }} </b>
         {{- end -}}
       </td>
+      {{- if eq $moduleType "resource" -}}
+      <td> {{/* CAF recommended abbreviation(s) */}}
+        {{- $cafNs := lower (printf "%s/%s" $item.ProviderNamespace $item.ResourceType) -}}
+        {{- partial "caf-abbreviation.html" (dict "rows" $cafRows "ns" $cafNs) -}}
+      </td>
+      {{- end -}}
       <td> {{/* availability badge and versions  */}}
         {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") -}}
           {{/* Replace single hyphens with double hyphens for correct badge rendering for pre-releases - e.g., 0.2.0-pre1 */}}
@@ -412,6 +433,7 @@
     <td>❌ None listed</td>
     <td>❌ None listed</td>
     <td>❌ None listed</td>
+    {{ if eq $moduleType "resource" }}<td>❌ None listed</td>{{ end }}
     <td>❌ None listed</td>
     <td>❌ None listed</td>
   </tr>
