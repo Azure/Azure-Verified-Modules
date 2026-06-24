@@ -6,15 +6,15 @@
   Inputs (dict):
     - rows : slice of { ns, resource, abbr } produced by partials/caf-abbreviation-map.html
     - ns   : lower-cased "<ProviderNamespace>/<ResourceType>" for the module
-             (e.g. "microsoft.storage/storageaccounts")
+      (e.g. "microsoft.storage/storageaccounts")
 
   Output:
     - no CAF match -> "n/a"
     - exactly one  -> <code>abbr</code>
     - more than one -> an unordered list of "<code>abbr</code> (resource name)" entries, in CAF
-                       document order. A single resource provider namespace can map to several CAF
-                       abbreviations (distinguished by kind/mode), so all options are listed and the
-                       reader chooses the one that fits their scenario.
+      document order. A single resource provider namespace can map to several CAF
+      abbreviations (distinguished by kind/mode), so all options are listed and the
+      reader chooses the one that fits their scenario.
 */}}
 {{- $rows := .rows -}}
 {{- $ns := .ns -}}
