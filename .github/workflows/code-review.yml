@@ -29,6 +29,7 @@
             VALIDATE_JSON: true
             VALIDATE_MARKDOWN: true
             VALIDATE_POWERSHELL: true
+            POWERSHELL_CONFIG_FILE: ".github/linters/.powershell-psscriptanalyzer.psd1"
             VALIDATE_YAML: true
             VALIDATE_BASH: true
             VALIDATE_EDITORCONFIG: true
