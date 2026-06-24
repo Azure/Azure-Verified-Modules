@@ -112,7 +112,7 @@ Click **Complete Setup** and use the following settings:
 | --- | --- |
 | Classify the repository | Production |
 | Assign a Service tree or Opt-out | Azure Verified Modules / AVM |
-| Direct owners | Add yourself and `jaredholgate`. Add `azure-verified-modules-module-owners` as fallback security group. |
+| Direct owners | Add yourself, `jaredholgate`, and `jatracey`. Add `azure-verified-modules-module-owners` as fallback security group. You add yourself temporarily so you can configure JIT in step 4; you will remove yourself afterwards. |
 | Public open source licensed project? | Yes |
 | What type of open source? | Sample code |
 | License | MIT |
@@ -135,7 +135,7 @@ Click **Finish setup + start business review**, then **View repository**, then *
 {{% expand title="➕ If you do NOT see the Complete Setup link" %}}
 
 1. Go to the **Compliance** tab and fill out:
-    - **Direct owners:** Add yourself and `jaredholgate`. Add `azure-verified-modules-module-owners` as fallback.
+    - **Direct owners:** Add yourself, `jaredholgate`, and `jatracey`. Add `azure-verified-modules-module-owners` as fallback. You add yourself temporarily so you can configure JIT in step 4; you will remove yourself afterwards.
     - **Classify the repository:** Production
     - **Service tree:** Azure Verified Modules / AVM
 2. Go back to **Overview** and click **Elevate your access** if available.
@@ -173,6 +173,17 @@ The tie is created in a **pending approval** state, so the temporary repository-
 
 {{% notice style="info" %}}
 The pending tie must be approved by an owner of the `service-AVM-azure-verified-modules-module-owners` rule (an AVM core team member). Ask the AVM core team to approve it. Once approved, just-in-time elevation for the repository is governed by the shared AVM rule and the temporary starter rule can be ignored.
+{{% /notice %}}
+
+### Remove yourself as a Direct Owner
+
+You were added as a Direct Owner so you could perform the JIT configuration above. Once you have finished both the JIT v2 upgrade and the shared-rule tie, remove your own account so that only `jaredholgate` and `jatracey` remain as Direct Owners.
+
+1. On the Open Source Portal, open the repository's **Compliance** tab.
+2. Under **Direct owners**, remove your own account, leaving only `jaredholgate` and `jatracey`.
+
+{{% notice style="info" %}}
+Module owners retain day-to-day access through the `azure-verified-modules-module-owners` security group and just-in-time elevation, so you do not need to remain a Direct Owner.
 {{% /notice %}}
 
 ## 5. Wait for the GitHub App
