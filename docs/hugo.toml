@@ -2,6 +2,7 @@ baseURL = 'https://azure.github.io/Azure-Verified-Modules/'
 languageCode = 'en-us'
 title = 'AVM'
 theme = 'hugo-theme-relearn'
+timeout = 240000
 
 images = ['images/avm_logo.png']
 
