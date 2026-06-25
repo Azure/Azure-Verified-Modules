@@ -27,14 +27,10 @@ on:
     branches:
       - main
     paths:
-      - ".github/actions/templates/avm-**"
-      - ".github/workflows/avm.template.module.yml"
         # >>> UPDATE to for example ".github/workflows/avm.res.key-vault.vault.yml" and remove this comment
       - ".github/workflows/avm.[res|ptn|utl].[provider-namespace].[resource-type].yml"
         # >>> UPDATE to for example "avm/res/key-vault/vault/**" and remove this comment
       - "avm/[res|ptn|utl]/[provider-namespace]/[resource-type]/**"
-      - "utilities/pipelines/**"
-      - "!utilities/pipelines/platform/**"
       - "!*/**/README.md"
 
 env:
