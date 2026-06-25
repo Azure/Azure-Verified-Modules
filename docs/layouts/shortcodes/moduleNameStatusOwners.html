@@ -148,7 +148,9 @@
       <th>No.</th>
       <th>Module Name</th>
       <th>Display Name</th>
-      {{ if eq $moduleType "resource" }}<th>CAF Abbreviation</th>{{ end }}
+      {{- if eq $moduleType "resource" }}
+      <th>CAF Abbreviation</th>
+      {{- end }}
       <th>Status & Versions</th>
       <th>Owner(s)</th>
     </tr>
@@ -282,7 +284,9 @@
     <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
     <td>❌ None listed</td>
     <td>❌ None listed</td>
-    {{ if eq $moduleType "resource" }}<td>❌ None listed</td>{{ end }}
+    {{- if eq $moduleType "resource" }}
+    <td>❌ None listed</td>
+    {{- end }}
     <td>❌ None listed</td>
     <td>❌ None listed</td>
   </tr>
@@ -298,7 +302,9 @@
       <th>Module Name</th>
       <th>Source<br>Code</th>
       <th>Display Name</th>
-      {{ if eq $moduleType "resource" }}<th>CAF Abbreviation</th>{{ end }}
+      {{- if eq $moduleType "resource" }}
+      <th>CAF Abbreviation</th>
+      {{- end }}
       <th>Status & Versions</th>
       <th>Primary Owner</th>
     </tr>
@@ -433,7 +439,9 @@
     <td>❌ None listed</td>
     <td>❌ None listed</td>
     <td>❌ None listed</td>
-    {{ if eq $moduleType "resource" }}<td>❌ None listed</td>{{ end }}
+    {{- if eq $moduleType "resource" }}
+    <td>❌ None listed</td>
+    {{- end }}
     <td>❌ None listed</td>
     <td>❌ None listed</td>
   </tr>
