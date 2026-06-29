@@ -130,7 +130,15 @@ Example - `CODEOWNERS` entry for the Bicep resource module of Azure Virtual Netw
 ### Terraform
 
 {{% notice style="note" %}}
-Access management for Terraform repositories now uses a single team, membership of which is managed using an internal entitlement management tool (Core Identity).
+Access management for Terraform repositories is governed centrally through Microsoft Entra. Module owner access is granted via an Entra **access package** — it is no longer managed through a per-module GitHub team or the legacy Core Identity entitlement.
 {{% /notice %}}
 
-All module owners **MUST** request access to the [`avm-module-owners-terraform`](https://github.com/orgs/Azure/teams/avm-module-owners-terraform) GitHub team via the `Azure Verified Module Owners Terraform` entitlement in Core Identity (Microsoft internal tool).
+All module owners **MUST** request access via the **Azure Verified Modules (AVM) Module Contributors** Entra access package:
+
+- [Azure Verified Modules (AVM) Module Contributors — Access Package](https://aka.ms/avm/id/access-package/module-contributor)
+
+Once approved, you are added to the [`azure-verified-modules-module-contributors`](https://aka.ms/avm/id/groups/module-contributors) Entra group, which is the source of truth for who is authorized to own and approve changes on AVM Terraform module repositories. Day-to-day repository access is then granted through this group together with just-in-time (JIT) elevation.
+
+{{% notice style="tip" %}}
+For the full onboarding process, see the Terraform [Prerequisites]({{% siteparam base %}}/contributing/terraform/prerequisites/) and [Repository Setup]({{% siteparam base %}}/contributing/terraform/repository-setup/) pages.
+{{% /notice %}}
