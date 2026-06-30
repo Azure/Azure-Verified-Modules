@@ -35,7 +35,7 @@ jobs:
           path: bicep-registry-modules
           fetch-depth: 0
 
-      - uses: actions/create-github-app-token@v2
+      - uses: actions/create-github-app-token@v3
         id: generate-token
         with:
           app-id: ${{ secrets.APP_ID }}
