@@ -109,7 +109,7 @@ You **MUST** still confirm that the requestor is a Microsoft FTE and that they u
     - Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; label is added to the issue.
       - If applied earlier, remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; label from the issue.
     - Remove the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#E4E669;">Status: In Triage 🔍</mark>&nbsp; to indicate you're done with triaging the issue.
-4. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
+4. Update the AVM Module Indexes, following the [process documented internally](https://eng.ms/docs/azure-verified-modules-avm/how-to/avm/avm-governance/module-index-update-process.html).
 5. Use the following text to approve module development
 
 {{% expand title="➕ Final Confirmation for Proposed Module Owners - Bicep" %}}
