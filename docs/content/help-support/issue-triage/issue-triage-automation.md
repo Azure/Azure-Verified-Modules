@@ -6,6 +6,12 @@ description: Issue Triage Automation for the Azure Verified Modules (AVM) progra
 
 This page details the automation that is in place to help with the triage of issues and PRs raised against the AVM modules.
 
+{{% notice style="note" %}}
+
+**Some of these automation rules are currently disabled or reduced.** A number of the comment-based automations — the recurring "chase" scheduled searches, and the per-issue/PR triage comment previously posted by [ITA06](#ita06) — have been disabled, or had their commenting removed, to avoid notification fatigue for everyone involved. In their current form they are too noisy, are largely filtered out and ignored by most, and are not having the desired impact. The AVM team plans to **refine and re-enable** these automations in the near future.
+
+{{% /notice %}}
+
 ## Schedule based automation
 
 This section details all automation rules that are based on a schedule.
@@ -318,6 +324,12 @@ This chapter details all automation rules that are based on an event.
 
 When a new issue or PR of any type is created add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; label.
 
+{{% notice style="warning" %}}
+
+The comment (reply) previously posted by this rule has been **removed** to reduce notification fatigue; the rule now only applies the label. See the note at the top of this page — the AVM team plans to refine and re-enable these automations in the near future.
+
+{{% /notice %}}
+
 **Trigger criteria:**
 
 - An issue or PR is opened.
@@ -325,7 +337,6 @@ When a new issue or PR of any type is created add the &nbsp;<mark style="backgro
 **Action(s):**
 
 - Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; label.
-- Add a reply to explain the action(s).
 
 ---
 
