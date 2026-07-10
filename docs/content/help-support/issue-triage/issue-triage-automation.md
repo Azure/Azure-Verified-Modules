@@ -247,7 +247,7 @@ To prevent further actions to take effect, one of the following conditions must 
 
 {{% notice style="warning" %}}
 
-This rule is currently disabled in the AVM and BRM repositories.
+This rule is currently disabled in the AVM Core and BRM repositories, and is not present in the Terraform repositories.
 
 {{% /notice %}}
 
@@ -695,7 +695,7 @@ The below table details which repositories the above rules are applied to.
 | [ITA03BCP](#ita03bcp)       |                     |       [✔️]       |                 |
 | [ITA03TF](#ita03tf)         |                     |                |       [✔️]        |
 | [ITA04](#ita04)             |         [✔️]          |       [✔️]       |       [✔️]        |
-| [ITA05](#ita05)             |         [✔️]          |       [✔️]       |       ✔️        |
+| [ITA05](#ita05)             |         [✔️]          |       [✔️]       |                 |
 | [ITA24](#ita24)             |          [✔️]         |                |                 |
 
 {{% notice style="warning" %}}
