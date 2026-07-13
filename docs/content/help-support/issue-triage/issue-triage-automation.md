@@ -6,6 +6,12 @@ description: Issue Triage Automation for the Azure Verified Modules (AVM) progra
 
 This page details the automation that is in place to help with the triage of issues and PRs raised against the AVM modules.
 
+{{% notice style="note" %}}
+
+**Some of these automation rules are currently disabled or reduced.** A number of the comment-based automations — the recurring "chase" scheduled searches, and the per-issue/PR triage comment previously posted by [ITA06](#ita06) — have been disabled, or had their commenting removed, to avoid notification fatigue for everyone involved. In their current form they are too noisy, are largely filtered out and ignored by most, and are not having the desired impact. The AVM team plans to **refine and re-enable** these automations in the near future.
+
+{{% /notice %}}
+
 ## Schedule based automation
 
 This section details all automation rules that are based on a schedule.
@@ -15,6 +21,12 @@ When calculating the number of business days in the issue/triage automation, the
 {{% /notice %}}
 
 ### ITA01BCP.1 & ITA01BCP.2
+
+{{% notice style="warning" %}}
+
+This rule is currently disabled in the BRM repository.
+
+{{% /notice %}}
 
 If a bug/feature/request/general question that has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; is not responded to after 3 business days, then the issue will be marked with the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; label and the AVM Core team will be mentioned in a comment on the issue to reach out to the module owner.
 
@@ -44,6 +56,12 @@ If a bug/feature/request/general question that has the labels of &nbsp;<mark sty
 
 ### ITA01TF.1 & ITA01TF.2
 
+{{% notice style="warning" %}}
+
+This rule is currently disabled in the Terraform repositories.
+
+{{% /notice %}}
+
 If a bug/feature/request/general question that has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; label added is not responded to after 3 business days, then the issue will be marked with the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; label and the AVM Core team will be mentioned in a comment on the issue to reach out to the module owner.
 
 **Schedule:**
@@ -70,6 +88,12 @@ If a bug/feature/request/general question that has the &nbsp;<mark style="backgr
 ---
 
 ### ITA02BCP.1 & ITA02BCP.2
+
+{{% notice style="warning" %}}
+
+This rule is currently disabled in the BRM repository.
+
+{{% /notice %}}
 
 If after an additional 3 business days there's still no update to the issue that has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp;, the AVM core team will be mentioned on the issue and a further comment stating module owner is unresponsive will be added. The &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label will also be added.
 
@@ -99,6 +123,12 @@ If after an additional 3 business days there's still no update to the issue that
 
 ### ITA02TF.1 & ITA02TF.2
 
+{{% notice style="warning" %}}
+
+This rule is currently disabled in the Terraform repositories.
+
+{{% /notice %}}
+
 If after an additional 3 business days there's still no update to the issue that has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; label added, the AVM core team will be mentioned on the issue and a further comment stating module owner is unresponsive will be added. The &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label will also be added.
 
 **Schedule:**
@@ -126,6 +156,12 @@ If after an additional 3 business days there's still no update to the issue that
 
 ### ITA03BCP
 
+{{% notice style="warning" %}}
+
+This rule is currently disabled in the BRM repository.
+
+{{% /notice %}}
+
 If there's still no response after 5 days (total from start of issue being raised) on an issue that has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FFFF00;">Type: Security Bug 🔒</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp;, the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label will be added.
 
 **Schedule:**
@@ -152,6 +188,12 @@ If there's still no response after 5 days (total from start of issue being raise
 
 ### ITA03TF
 
+{{% notice style="warning" %}}
+
+This rule is currently disabled in the Terraform repositories.
+
+{{% /notice %}}
+
 If there's still no response after 5 days (total from start of issue being raised) on an issue that has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FFFF00;">Type: Security Bug 🔒</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp;, the Terraform PG GitHub Team will be mentioned on the issue to assist. The &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label will also be added.
 
 **Schedule:**
@@ -172,6 +214,12 @@ If there's still no response after 5 days (total from start of issue being raise
 ---
 
 ### ITA04
+
+{{% notice style="warning" %}}
+
+This rule is currently disabled in all AVM repositories.
+
+{{% /notice %}}
 
 If an issue/PR has been labeled with &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#CB6BA2;color:white;">Needs: Author Feedback 👂</mark>&nbsp; and hasn't had a response in 4 days, label with &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#808080;color:white;">Status: No Recent Activity 💤</mark>&nbsp; and add a comment.
 
@@ -205,7 +253,7 @@ To prevent further actions to take effect, one of the following conditions must 
 
 {{% notice style="warning" %}}
 
-This rule is currently disabled in the AVM and BRM repositories.
+This rule is currently disabled in the AVM Core and BRM repositories, and is not present in the Terraform repositories.
 
 {{% /notice %}}
 
@@ -235,6 +283,12 @@ If an issue/PR has been labeled with &nbsp;<mark style="background-image:none;wh
 ---
 
 ### ITA24
+
+{{% notice style="warning" %}}
+
+This rule is currently disabled in the AVM Core repository.
+
+{{% /notice %}}
 
 Remind module owner(s) to start or continue working on this module if there was no activity on the Module Proposal issue for more than 3 weeks. Add &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#E99695;color:white;">Needs: Attention 👋</mark>&nbsp; label.
 
@@ -270,6 +324,12 @@ This chapter details all automation rules that are based on an event.
 
 When a new issue or PR of any type is created add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; label.
 
+{{% notice style="warning" %}}
+
+The comment (reply) previously posted by this rule has been **removed** to reduce notification fatigue; the rule now only applies the label. See the note at the top of this page — the AVM team plans to refine and re-enable these automations in the near future.
+
+{{% /notice %}}
+
 **Trigger criteria:**
 
 - An issue or PR is opened.
@@ -277,7 +337,6 @@ When a new issue or PR of any type is created add the &nbsp;<mark style="backgro
 **Action(s):**
 
 - Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; label.
-- Add a reply to explain the action(s).
 
 ---
 
@@ -640,19 +699,19 @@ The below table details which repositories the above rules are applied to.
 
 | ID                          | AVM Core repository | BRM repository | TF repositories |
 |-----------------------------|:-------------------:|:--------------:|:---------------:|
-| [ITA01BCP1-2](#ita01bcp1--ita01bcp2) |                     |       ✔️       |                 |
-| [ITA01TF1-2](#ita01tf1--ita01tf2)   |                     |                |       ✔️        |
-| [ITA02BCP1-2](#ita02bcp1--ita02bcp2) |                     |       ✔️       |                 |
-| [ITA02TF1-2](#ita02tf1--ita02tf2)   |                     |                |       ✔️        |
-| [ITA03BCP](#ita03bcp)       |                     |       ✔️       |                 |
-| [ITA03TF](#ita03tf)         |                     |                |       ✔️        |
-| [ITA04](#ita04)             |         ✔️          |       ✔️       |       ✔️        |
-| [ITA05](#ita05)             |         [✔️]          |       [✔️]       |       ✔️        |
-| [ITA24](#ita24)             |          ✔️         |                |                 |
+| [ITA01BCP1-2](#ita01bcp1--ita01bcp2) |                     |       [✔️]       |                 |
+| [ITA01TF1-2](#ita01tf1--ita01tf2)   |                     |                |       [✔️]        |
+| [ITA02BCP1-2](#ita02bcp1--ita02bcp2) |                     |       [✔️]       |                 |
+| [ITA02TF1-2](#ita02tf1--ita02tf2)   |                     |                |       [✔️]        |
+| [ITA03BCP](#ita03bcp)       |                     |       [✔️]       |                 |
+| [ITA03TF](#ita03tf)         |                     |                |       [✔️]        |
+| [ITA04](#ita04)             |         [✔️]          |       [✔️]       |       [✔️]        |
+| [ITA05](#ita05)             |         [✔️]          |       [✔️]       |                 |
+| [ITA24](#ita24)             |          [✔️]         |                |                 |
 
 {{% notice style="warning" %}}
 
-The ITA05 rule is currently disabled in the AVM and BRM repositories.
+A check mark in brackets (e.g., [✔️]) indicates that the rule exists in that repository but is currently **disabled**. The following schedule-based rules are currently disabled: ITA01BCP, ITA01TF, ITA02BCP, ITA02TF, ITA03BCP, ITA03TF, and ITA04 (in all the repositories they apply to), ITA05 (in the AVM Core and BRM repositories), and ITA24 (in the AVM Core repository).
 
 {{% /notice %}}
 

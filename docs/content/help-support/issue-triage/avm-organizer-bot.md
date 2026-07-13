@@ -1,12 +1,12 @@
 ---
-title: AVM Organizer Bot
-linktitle: AVM Organizer Bot
-description: AVM Organizer Bot for the Azure Verified Modules (AVM) program's repositories
+title: Azure Verified Modules GitHub App
+linktitle: Azure Verified Modules GitHub App
+description: Azure Verified Modules GitHub App for the Azure Verified Modules (AVM) program's repositories
 ---
 
 ## Overview
 
-The **AVM Organizer Bot** is represented as a [GitHub App](https://github.com/apps/avm-team-linter) currently named **AVM Team Linter** (which will be renamed to **AVM Organizer** in the future). This bot automates various repository management tasks across the Azure Verified Modules program's repositories, including issue triage, pull request labeling, team validation, and documentation updates.
+The **Azure Verified Modules GitHub App** is represented as a [GitHub App](https://github.com/apps/azure-verified-modules). This app automates various repository management tasks across the Azure Verified Modules program's repositories, including issue triage, pull request labeling, team validation, and documentation updates.
 
 The bot operates by authenticating with GitHub using the GitHub App credentials (`TEAM_LINTER_APP_ID` and `TEAM_LINTER_PRIVATE_KEY`) and executing PowerShell scripts through scheduled workflows and/or event-triggered actions.
 
@@ -14,7 +14,7 @@ The bot operates by authenticating with GitHub using the GitHub App credentials 
 
 ## AVM Repository Scripts
 
-The following scripts are leveraged by the **[AVM Organizer Bot](https://github.com/apps/avm-team-linter)** in the [AVM](https://aka.ms/AVM/repo) repository:
+The following scripts are leveraged by the **[Azure Verified Modules GitHub App](https://github.com/apps/azure-verified-modules)** in the [AVM](https://aka.ms/AVM/repo) repository:
 
 ### 1. Invoke-AvmGitHubTeamLinter.ps1
 
@@ -56,7 +56,7 @@ The following scripts are leveraged by the **[AVM Organizer Bot](https://github.
 
 ## BRM Repository Scripts
 
-The following scripts are leveraged by the **[AVM Organizer Bot](https://github.com/apps/avm-team-linter)** in the bicep-registry-modules ([BRM](https://aka.ms/BRM)) repository:
+The following scripts are leveraged by the **[Azure Verified Modules GitHub App](https://github.com/apps/azure-verified-modules)** in the bicep-registry-modules ([BRM](https://aka.ms/BRM)) repository:
 
 ### 1. Set-AvmGitHubIssueOwnerConfig.ps1
 
