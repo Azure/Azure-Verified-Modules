@@ -16,7 +16,7 @@ env:
 permissions:
       id-token: write
       contents: write
-      # pull-requests: write
+      pull-requests: write
 
 jobs:
   job_update_api_specs_file:
@@ -125,7 +125,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
 
-      - name: Create pull request
+      - name: Create pull request and enable auto-merge
         if: steps.git_status.outputs.changes > 0
         run: |
           HEAD_LABEL="${{ github.repository_owner }}:${{ env.branch_name }}"
@@ -141,16 +141,10 @@ jobs:
             --base "${{ github.ref }}" \
             --head "${{ env.branch_name }}")
             echo "Created new PR: $CHECK_PULL_REQUEST_URL"
+            echo "Enabling auto-merge for PR '$CHECK_PULL_REQUEST_URL'..."
+            gh pr merge "$CHECK_PULL_REQUEST_URL" --auto --squash
           else
             echo "Existing PR found: $CHECK_PULL_REQUEST_URL"
           fi
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
-
-      # - name: Enable auto-merge
-      #   if: steps.git_status.outputs.changes > 0
-      #   run: |
-      #     echo "Enabling auto-merge for branch '${{ env.branch_name }}'..."
-      #     gh pr merge "${{ env.branch_name }}" --auto --squash
-      #   env:
-      #     GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
