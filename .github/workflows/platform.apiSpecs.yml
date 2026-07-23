@@ -135,14 +135,26 @@ jobs:
           CHECK_PULL_REQUEST_URL=$(gh api $PULL_REQUEST_URL | jq -r "$JQ_FILTER")
           if [ -z "$CHECK_PULL_REQUEST_URL" ]
           then
+            # >>> TEMP TEST — REVERT BEFORE MERGING <<<
+            # Base is hardcoded to "main" and auto-merge runs unconditionally so the
+            # feature can be tested via workflow_dispatch from a feature branch.
+            # To restore production behavior:
+            #   1. change --base "main" back to --base "${{ github.ref }}"
+            #   2. re-wrap the "gh pr merge" call in the branch guard:
+            #        if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            #          gh pr merge "$CHECK_PULL_REQUEST_URL" --auto --squash
+            #        else
+            #          echo "Base branch is not 'main'; skipping auto-merge."
+            #        fi
             CHECK_PULL_REQUEST_URL=$(gh pr create \
             --title "${{ env.pr_title }}" \
             --body "${{ env.pr_body }}" \
-            --base "${{ github.ref }}" \
+            --base "main" \
             --head "${{ env.branch_name }}")
             echo "Created new PR: $CHECK_PULL_REQUEST_URL"
             echo "Enabling auto-merge for PR '$CHECK_PULL_REQUEST_URL'..."
             gh pr merge "$CHECK_PULL_REQUEST_URL" --auto --squash
+            # >>> END TEMP TEST <<<
           else
             echo "Existing PR found: $CHECK_PULL_REQUEST_URL"
           fi
