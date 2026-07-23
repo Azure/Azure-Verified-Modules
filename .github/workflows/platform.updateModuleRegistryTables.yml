@@ -24,12 +24,12 @@ jobs:
     environment: platform
     steps:
       - name: "Checkout"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
       - name: Checkout tools repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: Azure/bicep-registry-modules
           path: bicep-registry-modules
