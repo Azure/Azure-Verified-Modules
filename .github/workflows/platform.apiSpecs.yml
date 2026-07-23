@@ -16,11 +16,12 @@ env:
 permissions:
       id-token: write
       contents: write
+      pull-requests: write
 
 jobs:
   job_update_api_specs_file:
     name: "Update file"
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment: platform
     steps:
@@ -56,6 +57,14 @@ jobs:
         run: |
           git config --global user.name '${{ env.pipelinePrincipalGitUserEmail }}'
           git config --global user.email '${{ env.pipelinePrincipalGitUserName }}'
+
+      - name: Format branch name
+        shell: pwsh
+        run: |
+          $rawBranch = '${{ env.branch_name }}'
+          $formattedBranch = "{0}_{1}" -f $rawBranch, (Get-Date).ToString('yyyy-MM-dd-HH-mm-ss')
+          Write-Verbose "Adjusting branch name [$rawBranch] to [$formattedBranch]" -Verbose
+          ('{0}={1}' -f 'branch_name', $formattedBranch) | Out-File -FilePath $env:GITHUB_ENV -Encoding 'utf8' # Overwrite env variable
 
       - name: Create and checkout branch
         run: |
@@ -116,7 +125,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
 
-      - name: Create pull request
+      - name: Create pull request and enable auto-merge
         if: steps.git_status.outputs.changes > 0
         run: |
           HEAD_LABEL="${{ github.repository_owner }}:${{ env.branch_name }}"
@@ -132,6 +141,13 @@ jobs:
             --base "${{ github.ref }}" \
             --head "${{ env.branch_name }}")
             echo "Created new PR: $CHECK_PULL_REQUEST_URL"
+            if [ "${{ github.ref }}" = "refs/heads/main" ]
+            then
+              echo "Enabling auto-merge for PR '$CHECK_PULL_REQUEST_URL'..."
+              gh pr merge "$CHECK_PULL_REQUEST_URL" --auto --squash
+            else
+              echo "Base branch is not 'main' (${{ github.ref }}); skipping auto-merge (target branch has no protection rules)."
+            fi
           else
             echo "Existing PR found: $CHECK_PULL_REQUEST_URL"
           fi
