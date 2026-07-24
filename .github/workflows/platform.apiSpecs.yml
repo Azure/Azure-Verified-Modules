@@ -167,7 +167,7 @@ jobs:
           TARGET_BRANCH="$(echo '${{ github.ref }}' | sed 's:refs/heads/::')"
           CURRENT_BRANCH="${{ env.branch_name }}"
           REPO_OWNER="${{ github.repository_owner }}"
-          AUTOMATION_AUTHOR="${{ steps.generate-token.outputs.app-slug }}[bot]"
+          AUTOMATION_AUTHOR="app/${{ steps.generate-token.outputs.app-slug }}"
           PR_TITLE="${{ env.pr_title }}"
           BRANCH_PREFIX="${{ env.branch_name_prefix }}_"
 
