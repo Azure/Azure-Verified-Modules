@@ -200,8 +200,8 @@ jobs:
           echo "$STALE_PRS" | sed 's/^/  - #/'
 
           echo "$STALE_PRS" | while read -r STALE_PR; do
-              echo "[DRY-RUN] Would close superseded PR #$STALE_PR and delete its branch (superseded by ${{ steps.create_pr.outputs.pr_url }})."
-              # gh pr close "$STALE_PR" --delete-branch --comment "Superseded by newer automated PR: ${{ steps.create_pr.outputs.pr_url }}"
+              echo "Closing superseded PR #$STALE_PR and deleting its branch (superseded by ${{ steps.create_pr.outputs.pr_url }})..."
+              gh pr close "$STALE_PR" --delete-branch --comment "Superseded by newer automated PR: ${{ steps.create_pr.outputs.pr_url }}"
             done
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
