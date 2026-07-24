@@ -173,21 +173,6 @@ jobs:
 
           echo "Searching for superseded automated PRs targeting '$TARGET_BRANCH'..."
 
-          # --- DEBUG: show the expected match values and every open PR on the target branch ---
-          echo "::group::Debug - expected match values"
-          echo "branchPrefix   = $BRANCH_PREFIX"
-          echo "currentBranch  = $CURRENT_BRANCH"
-          echo "repoOwner      = $REPO_OWNER"
-          echo "author         = $AUTOMATION_AUTHOR"
-          echo "title          = $PR_TITLE"
-          echo "::endgroup::"
-
-          echo "::group::Debug - open PRs on '$TARGET_BRANCH'"
-          gh pr list --state open --base "$TARGET_BRANCH" --limit 5 \
-            --json number,headRefName,headRepositoryOwner,author,title \
-          | jq -r '.[] | "#\(.number)\tbranch=\(.headRefName)\towner=\(.headRepositoryOwner.login)\tauthor=\(.author.login)\ttitle=\(.title)"'
-          echo "::endgroup::"
-
           # A PR is only considered superseded when ALL safety checks pass (see jq selects below).
           STALE_PRS="$(gh pr list --state open --base "$TARGET_BRANCH" --limit 100 \
             --json number,headRefName,headRepositoryOwner,author,title \
