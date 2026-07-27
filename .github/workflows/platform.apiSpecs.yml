@@ -160,48 +160,43 @@ jobs:
 
       - name: Close superseded pull requests
         if: steps.git_status.outputs.changes > 0
+        shell: pwsh
         run: |
           # Close superseded automated PRs opened against the same target branch and delete their branches.
 
           # Resolve the values used to identify PRs safe to close.
-          TARGET_BRANCH="$(echo '${{ github.ref }}' | sed 's:refs/heads/::')"
-          CURRENT_BRANCH="${{ env.branch_name }}"
-          REPO_OWNER="${{ github.repository_owner }}"
-          AUTOMATION_AUTHOR="app/${{ steps.generate-token.outputs.app-slug }}"
-          PR_TITLE="${{ env.pr_title }}"
-          BRANCH_PREFIX="${{ env.branch_name_prefix }}_"
+          $targetBranch = '${{ github.ref }}' -replace '^refs/heads/', ''
+          $currentBranch = '${{ env.branch_name }}'
+          $repoOwner = '${{ github.repository_owner }}'
+          $automationAuthor = 'app/${{ steps.generate-token.outputs.app-slug }}'
+          $prTitle = '${{ env.pr_title }}'
+          $branchPrefix = '${{ env.branch_name_prefix }}_'
 
-          echo "Searching for superseded automated PRs targeting '$TARGET_BRANCH'..."
+          Write-Host "Searching for superseded automated PRs targeting '$targetBranch'..."
 
-          # A PR is only considered superseded when ALL safety checks pass (see jq selects below).
-          STALE_PRS="$(gh pr list --state open --base "$TARGET_BRANCH" --limit 100 \
-            --json number,headRefName,headRepositoryOwner,author,title \
-          | jq -r \
-              --arg branchPrefix "$BRANCH_PREFIX" \
-              --arg currentBranch "$CURRENT_BRANCH" \
-              --arg repoOwner "$REPO_OWNER" \
-              --arg author "$AUTOMATION_AUTHOR" \
-              --arg title "$PR_TITLE" \
-              '.[]
-                | select(.headRefName | startswith($branchPrefix))         # branch uses the automation prefix
-                | select(.headRefName != $currentBranch)                   # never the PR just created by this run
-                | select(.headRepositoryOwner.login == $repoOwner)         # same repo, not a fork
-                | select(.author.login == $author)                         # opened by this automation (app bot)
-                | select(.title == $title)                                 # exact automated title
-                | .number')"
+          # A PR is only considered superseded when ALL safety checks pass (see filters below).
+          $openPrs = gh pr list --state open --base $targetBranch --limit 100 `
+            --json number,headRefName,headRepositoryOwner,author,title | ConvertFrom-Json
 
-          if [ -z "$STALE_PRS" ]; then
-            echo "No superseded automated PRs found. Nothing to close."
+          $stalePrs = @($openPrs | Where-Object {
+            $_.headRefName.StartsWith($branchPrefix) -and        # branch uses the automation prefix
+            $_.headRefName -ne $currentBranch -and               # never the PR just created by this run
+            $_.headRepositoryOwner.login -eq $repoOwner -and     # same repo, not a fork
+            $_.author.login -eq $automationAuthor -and           # opened by this automation (app bot)
+            $_.title -eq $prTitle                                # exact automated title
+          })
+
+          if ($stalePrs.Count -eq 0) {
+            Write-Host 'No superseded automated PRs found. Nothing to close.'
             exit 0
-          fi
+          }
 
-          STALE_COUNT="$(echo "$STALE_PRS" | wc -l | tr -d ' ')"
-          echo "Found $STALE_COUNT superseded automated PR(s) to close:"
-          echo "$STALE_PRS" | sed 's/^/  - #/'
+          Write-Host "Found $($stalePrs.Count) superseded automated PR(s) to close:"
+          $stalePrs | ForEach-Object { Write-Host "  - #$($_.number)" }
 
-          echo "$STALE_PRS" | while read -r STALE_PR; do
-              echo "Closing superseded PR #$STALE_PR and deleting its branch (superseded by ${{ steps.create_pr.outputs.pr_url }})..."
-              gh pr close "$STALE_PR" --delete-branch --comment "Superseded by newer automated PR: ${{ steps.create_pr.outputs.pr_url }}"
-            done
+          foreach ($stalePr in $stalePrs) {
+            Write-Host "Closing superseded PR #$($stalePr.number) and deleting its branch (superseded by ${{ steps.create_pr.outputs.pr_url }})..."
+            gh pr close $stalePr.number --delete-branch --comment "Superseded by newer automated PR: ${{ steps.create_pr.outputs.pr_url }}"
+          }
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
