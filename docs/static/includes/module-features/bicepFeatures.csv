@@ -7,7 +7,7 @@
 6,res/app-configuration/configuration-store,✅,✅,✅,✅,✅,✅,,✅
 7,res/app/container-app,✅,✅,✅,✅,,,,✅
 8,res/app/job,✅,✅,✅,,,,,✅
-9,res/app/managed-environment,✅,✅,✅,,,,,✅
+9,res/app/managed-environment,✅,✅,✅,✅,✅,,,✅
 10,res/app/session-pool,✅,✅,✅,,,,,✅
 11,res/authorization/policy-assignment,,,,,,,,
 12,res/authorization/role-assignment,,,,,,,,
@@ -172,4 +172,4 @@
 171,res/web/serverfarm,✅,✅,✅,✅,,,,✅
 172,res/web/site,✅,✅,✅,✅,✅,,,✅
 173,res/web/static-site,✅,✅,✅,,✅,,,✅
-Sum,,149,147,157,68,40,26,17,68
+Sum,,149,147,157,69,41,26,17,68
