@@ -597,5 +597,6 @@
   "avm/res/web/static-site/config",
   "avm/res/web/static-site/custom-domain",
   "avm/res/web/static-site/linked-backend",
+  "avm/utl/general/get-environment",
   "avm/utl/types/avm-common-types"
 ]
