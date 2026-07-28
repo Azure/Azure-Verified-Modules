@@ -8,7 +8,7 @@ on:
 env:
   pipelinePrincipalGitUserName: "AVMPipelinePrincipal"
   pipelinePrincipalGitUserEmail: "AVM@noreply.github.com"
-  branch_name_prefix: "update-api-specs"
+  branch_name_prefix: "update-api-specs_"
   pr_title: "Update Azure API Specs List (automated)"
   pr_body:
     "This is an automated ``pull_request`` containing updates to the Azure API Specs List that is stored at ``docs/static/governance/apiSpecsList.json``.\nPlease review the ``files changed`` tab to review changes."
@@ -62,7 +62,7 @@ jobs:
         shell: pwsh
         run: |
           $rawBranch = '${{ env.branch_name_prefix }}'
-          $formattedBranch = "{0}_{1}" -f $rawBranch, (Get-Date).ToString('yyyy-MM-dd-HH-mm-ss')
+          $formattedBranch = "{0}{1}" -f $rawBranch, (Get-Date).ToString('yyyy-MM-dd-HH-mm-ss')
           Write-Verbose "Adjusting branch name [$rawBranch] to [$formattedBranch]" -Verbose
           ('{0}={1}' -f 'branch_name', $formattedBranch) | Out-File -FilePath $env:GITHUB_ENV -Encoding 'utf8' # Set full branch name (prefix + timestamp) for downstream steps
 
@@ -160,48 +160,44 @@ jobs:
 
       - name: Close superseded pull requests
         if: steps.git_status.outputs.changes > 0
+        shell: pwsh
         run: |
           # Close superseded automated PRs opened against the same target branch and delete their branches.
 
           # Resolve the values used to identify PRs safe to close.
-          TARGET_BRANCH="$(echo '${{ github.ref }}' | sed 's:refs/heads/::')"
-          CURRENT_BRANCH="${{ env.branch_name }}"
-          REPO_OWNER="${{ github.repository_owner }}"
-          AUTOMATION_AUTHOR="app/${{ steps.generate-token.outputs.app-slug }}"
-          PR_TITLE="${{ env.pr_title }}"
-          BRANCH_PREFIX="${{ env.branch_name_prefix }}_"
+          $targetBranch = '${{ github.ref }}' -replace '^refs/heads/', ''
+          $currentBranch = '${{ env.branch_name }}'
+          $repoOwner = '${{ github.repository_owner }}'
+          $automationAuthor = 'app/${{ steps.generate-token.outputs.app-slug }}'
+          $prTitle = '${{ env.pr_title }}'
+          $branchPrefix = '${{ env.branch_name_prefix }}'
+          $prUrl = '${{ steps.create_pr.outputs.pr_url }}'
 
-          echo "Searching for superseded automated PRs targeting '$TARGET_BRANCH'..."
+          Write-Verbose ("Searching for superseded automated PRs targeting '{0}'..." -f $targetBranch) -Verbose
 
-          # A PR is only considered superseded when ALL safety checks pass (see jq selects below).
-          STALE_PRS="$(gh pr list --state open --base "$TARGET_BRANCH" --limit 100 \
-            --json number,headRefName,headRepositoryOwner,author,title \
-          | jq -r \
-              --arg branchPrefix "$BRANCH_PREFIX" \
-              --arg currentBranch "$CURRENT_BRANCH" \
-              --arg repoOwner "$REPO_OWNER" \
-              --arg author "$AUTOMATION_AUTHOR" \
-              --arg title "$PR_TITLE" \
-              '.[]
-                | select(.headRefName | startswith($branchPrefix))         # branch uses the automation prefix
-                | select(.headRefName != $currentBranch)                   # never the PR just created by this run
-                | select(.headRepositoryOwner.login == $repoOwner)         # same repo, not a fork
-                | select(.author.login == $author)                         # opened by this automation (app bot)
-                | select(.title == $title)                                 # exact automated title
-                | .number')"
+          # A PR is only considered superseded when ALL safety checks pass (see filters below).
+          $openPrs = gh pr list --state open --base $targetBranch --limit 100 `
+            --json number,headRefName,headRepositoryOwner,author,title | ConvertFrom-Json
 
-          if [ -z "$STALE_PRS" ]; then
-            echo "No superseded automated PRs found. Nothing to close."
+          $stalePrs = @($openPrs | Where-Object {
+            $_.headRefName.StartsWith($branchPrefix) -and        # branch uses the automation prefix
+            $_.headRefName -ne $currentBranch -and               # never the PR just created by this run
+            $_.headRepositoryOwner.login -eq $repoOwner -and     # same repo, not a fork
+            $_.author.login -eq $automationAuthor -and           # opened by this automation (app bot)
+            $_.title -eq $prTitle                                # exact automated title
+          })
+
+          if ($stalePrs.Count -eq 0) {
+            Write-Verbose 'No superseded automated PRs found. Nothing to close.' -Verbose
             exit 0
-          fi
+          }
 
-          STALE_COUNT="$(echo "$STALE_PRS" | wc -l | tr -d ' ')"
-          echo "Found $STALE_COUNT superseded automated PR(s) to close:"
-          echo "$STALE_PRS" | sed 's/^/  - #/'
+          Write-Verbose ('Found {0} superseded automated PR(s) to close:' -f $stalePrs.Count) -Verbose
+          $stalePrs | ForEach-Object { Write-Verbose ('  - #{0}' -f $_.number) -Verbose }
 
-          echo "$STALE_PRS" | while read -r STALE_PR; do
-              echo "Closing superseded PR #$STALE_PR and deleting its branch (superseded by ${{ steps.create_pr.outputs.pr_url }})..."
-              gh pr close "$STALE_PR" --delete-branch --comment "Superseded by newer automated PR: ${{ steps.create_pr.outputs.pr_url }}"
-            done
+          foreach ($stalePr in $stalePrs) {
+            Write-Verbose ('Closing superseded PR #{0} and deleting its branch (superseded by {1})...' -f $stalePr.number, $prUrl) -Verbose
+            gh pr close $stalePr.number --delete-branch --comment ("Superseded by newer automated PR: {0}" -f $prUrl)
+          }
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
