@@ -8,7 +8,7 @@ on:
 env:
   pipelinePrincipalGitUserName: "AVMPipelinePrincipal"
   pipelinePrincipalGitUserEmail: "AVM@noreply.github.com"
-  branch_name_prefix: "update-api-specs"
+  branch_name_prefix: "update-api-specs_"
   pr_title: "Update Azure API Specs List (automated)"
   pr_body:
     "This is an automated ``pull_request`` containing updates to the Azure API Specs List that is stored at ``docs/static/governance/apiSpecsList.json``.\nPlease review the ``files changed`` tab to review changes."
@@ -62,7 +62,7 @@ jobs:
         shell: pwsh
         run: |
           $rawBranch = '${{ env.branch_name_prefix }}'
-          $formattedBranch = "{0}_{1}" -f $rawBranch, (Get-Date).ToString('yyyy-MM-dd-HH-mm-ss')
+          $formattedBranch = "{0}{1}" -f $rawBranch, (Get-Date).ToString('yyyy-MM-dd-HH-mm-ss')
           Write-Verbose "Adjusting branch name [$rawBranch] to [$formattedBranch]" -Verbose
           ('{0}={1}' -f 'branch_name', $formattedBranch) | Out-File -FilePath $env:GITHUB_ENV -Encoding 'utf8' # Set full branch name (prefix + timestamp) for downstream steps
 
@@ -170,9 +170,10 @@ jobs:
           $repoOwner = '${{ github.repository_owner }}'
           $automationAuthor = 'app/${{ steps.generate-token.outputs.app-slug }}'
           $prTitle = '${{ env.pr_title }}'
-          $branchPrefix = '${{ env.branch_name_prefix }}_'
+          $branchPrefix = '${{ env.branch_name_prefix }}'
+          $prUrl = '${{ steps.create_pr.outputs.pr_url }}'
 
-          Write-Host "Searching for superseded automated PRs targeting '$targetBranch'..."
+          Write-Verbose ("Searching for superseded automated PRs targeting '{0}'..." -f $targetBranch) -Verbose
 
           # A PR is only considered superseded when ALL safety checks pass (see filters below).
           $openPrs = gh pr list --state open --base $targetBranch --limit 100 `
@@ -187,16 +188,16 @@ jobs:
           })
 
           if ($stalePrs.Count -eq 0) {
-            Write-Host 'No superseded automated PRs found. Nothing to close.'
+            Write-Verbose 'No superseded automated PRs found. Nothing to close.' -Verbose
             exit 0
           }
 
-          Write-Host "Found $($stalePrs.Count) superseded automated PR(s) to close:"
-          $stalePrs | ForEach-Object { Write-Host "  - #$($_.number)" }
+          Write-Verbose ('Found {0} superseded automated PR(s) to close:' -f $stalePrs.Count) -Verbose
+          $stalePrs | ForEach-Object { Write-Verbose ('  - #{0}' -f $_.number) -Verbose }
 
           foreach ($stalePr in $stalePrs) {
-            Write-Host "Closing superseded PR #$($stalePr.number) and deleting its branch (superseded by ${{ steps.create_pr.outputs.pr_url }})..."
-            gh pr close $stalePr.number --delete-branch --comment "Superseded by newer automated PR: ${{ steps.create_pr.outputs.pr_url }}"
+            Write-Verbose ('Closing superseded PR #{0} and deleting its branch (superseded by {1})...' -f $stalePr.number, $prUrl) -Verbose
+            gh pr close $stalePr.number --delete-branch --comment ("Superseded by newer automated PR: {0}" -f $prUrl)
           }
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
