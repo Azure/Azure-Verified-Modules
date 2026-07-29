@@ -12,7 +12,7 @@ on:
 env:
   pipelinePrincipalGitUserName: "AVMPipelinePrincipal"
   pipelinePrincipalGitUserEmail: "AVM@noreply.github.com"
-  branch_name: "update-mar-file"
+  branch_name_prefix: "update-mar-file_"
   pr_title: "Update mirrored MAR file (automated)"
   pr_body: "This is an automated ``pull_request`` containing updates to the mirrored MAR file stored at ``docs/static/module-indexes/BicepMARModules.json``.\nPlease review the ``files changed`` tab to review changes."
 
@@ -76,10 +76,10 @@ jobs:
       - name: Format branch name
         shell: pwsh
         run: |
-          $rawBranch = '${{ env.branch_name }}'
-          $formattedBranch = "{0}_{1}" -f $rawBranch, (Get-Date).ToString('yyyy-MM-dd-HH-mm-ss')
+          $rawBranch = '${{ env.branch_name_prefix }}'
+          $formattedBranch = "{0}{1}" -f $rawBranch, (Get-Date).ToString('yyyy-MM-dd-HH-mm-ss')
           Write-Verbose "Adjusting branch name [$rawBranch] to [$formattedBranch]" -Verbose
-          ('{0}={1}' -f 'branch_name', $formattedBranch) | Out-File -FilePath $env:GITHUB_ENV -Encoding 'utf8' # Overwrite env variable
+          ('{0}={1}' -f 'branch_name', $formattedBranch) | Out-File -FilePath $env:GITHUB_ENV -Encoding 'utf8' # Set full branch name (prefix + timestamp) for downstream steps
 
       - name: Create and checkout branch
         run: |
@@ -120,7 +120,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create pull request
+      - name: Create pull request and enable auto-merge
+        id: create_pr
         if: steps.git_status.outputs.changes == 'true'
         run: |
           HEAD_LABEL="${{ github.repository_owner }}:${{ env.branch_name }}"
@@ -136,8 +137,62 @@ jobs:
             --base "${{ github.ref }}" \
             --head "${{ env.branch_name }}")
             echo "Created new PR: $CHECK_PULL_REQUEST_URL"
+
+            # Auto-merge only applies to the protected 'main' branch.
+            if [ "${{ github.ref }}" = "refs/heads/main" ]
+            then
+              echo "Enabling auto-merge for PR '$CHECK_PULL_REQUEST_URL'..."
+              gh pr merge "$CHECK_PULL_REQUEST_URL" --auto --squash
+            else
+              echo "Base branch is not 'main' (${{ github.ref }}); skipping auto-merge (target branch has no protection rules)."
+            fi
           else
             echo "Existing PR found: $CHECK_PULL_REQUEST_URL"
           fi
+          echo "pr_url=$CHECK_PULL_REQUEST_URL" >> "$GITHUB_OUTPUT"
+        env:
+          GITHUB_TOKEN: ${{ steps.avm-app-token.outputs.token }}
+
+      - name: Close superseded pull requests
+        if: steps.git_status.outputs.changes == 'true'
+        shell: pwsh
+        run: |
+          # Close superseded automated PRs opened against the same target branch and delete their branches.
+
+          # Resolve the values used to identify PRs safe to close.
+          $targetBranch = '${{ github.ref }}' -replace '^refs/heads/', ''
+          $currentBranch = '${{ env.branch_name }}'
+          $repoOwner = '${{ github.repository_owner }}'
+          $automationAuthor = 'app/${{ steps.avm-app-token.outputs.app-slug }}'
+          $prTitle = '${{ env.pr_title }}'
+          $branchPrefix = '${{ env.branch_name_prefix }}'
+          $prUrl = '${{ steps.create_pr.outputs.pr_url }}'
+
+          Write-Verbose ("Searching for superseded automated PRs targeting '{0}'..." -f $targetBranch) -Verbose
+
+          # A PR is only considered superseded when ALL safety checks pass (see filters below).
+          $openPrs = gh pr list --state open --base $targetBranch --limit 100 `
+            --json number,headRefName,headRepositoryOwner,author,title | ConvertFrom-Json
+
+          $stalePrs = @($openPrs | Where-Object {
+            $_.headRefName.StartsWith($branchPrefix) -and        # branch uses the automation prefix
+            $_.headRefName -ne $currentBranch -and               # never the PR just created by this run
+            $_.headRepositoryOwner.login -eq $repoOwner -and     # same repo, not a fork
+            $_.author.login -eq $automationAuthor -and           # opened by this automation (app bot)
+            $_.title -eq $prTitle                                # exact automated title
+          })
+
+          if ($stalePrs.Count -eq 0) {
+            Write-Verbose 'No superseded automated PRs found. Nothing to close.' -Verbose
+            exit 0
+          }
+
+          Write-Verbose ('Found {0} superseded automated PR(s) to close:' -f $stalePrs.Count) -Verbose
+          $stalePrs | ForEach-Object { Write-Verbose ('  - #{0}' -f $_.number) -Verbose }
+
+          foreach ($stalePr in $stalePrs) {
+            Write-Verbose ('Closing superseded PR #{0} and deleting its branch (superseded by {1})...' -f $stalePr.number, $prUrl) -Verbose
+            gh pr close $stalePr.number --delete-branch --comment ("Superseded by newer automated PR: {0}" -f $prUrl)
+          }
         env:
           GITHUB_TOKEN: ${{ steps.avm-app-token.outputs.token }}
