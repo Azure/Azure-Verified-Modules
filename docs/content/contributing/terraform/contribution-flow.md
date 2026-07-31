@@ -12,6 +12,33 @@ Whether you are a **module owner** or an **external contributor**, the core work
 This guide **MUST** be used in conjunction with the [Terraform specifications]({{% siteparam base %}}/specs/tf/). All AVM modules must meet the requirements described in those specifications.
 {{% /notice %}}
 
+## Prerequisites
+
+Install [PowerShell 7.4 or later](https://learn.microsoft.com/powershell/scripting/install/installing-powershell), start `pwsh`, and install the `Avm.Authoring` module:
+
+```powershell
+Install-Module Avm.Authoring -Scope CurrentUser
+```
+
+The `avm` alias is available inside PowerShell. Run `avm` with no arguments to list the supported verbs, or diagnose your local environment:
+
+```powershell
+avm
+avm doctor
+```
+
+`Avm.Authoring` downloads, verifies, and caches Terraform, TFLint, terraform-docs, Conftest, and mapotf on demand. Docker or Podman is not required. You can inspect or manage the tool cache:
+
+```powershell
+avm tool list
+avm tool which terraform
+avm tool install terraform
+```
+
+{{% notice style="warning" %}}
+When upgrading a module repository, update its branch-protection required checks at the same time. The e2e check name has changed from `End-to-end tests` to `End-to-end tests (<example>)` because tests now run once per example. A repository pinned to the old check name will wait indefinitely for a check that is no longer reported, preventing merges without showing an error.
+{{% /notice %}}
+
 ## Overview
 
 {{< mermaid zoom="false" >}}
@@ -84,14 +111,14 @@ A fork is your own copy of the repository under your GitHub account. It lets you
 4. Click **Create fork**.
 5. Clone your fork locally:
 
-    ```bash
+    ```powershell
     git clone https://github.com/<your-username>/terraform-azure-avm-res-<rp>-<modulename>.git
     cd terraform-azure-avm-res-<rp>-<modulename>
     ```
 
 Keep your fork in sync with the upstream repository before creating a new branch. You can do this from the GitHub UI by clicking **Sync fork** on your fork's main page, or locally:
 
-```bash
+```powershell
 git remote add upstream https://github.com/Azure/terraform-azure-avm-res-<rp>-<modulename>.git
 git fetch upstream
 git checkout main
@@ -104,14 +131,14 @@ git merge upstream/main
 
 Use the [GitHub CLI](https://cli.github.com/) to fork and clone in one step. This automatically configures the `upstream` remote for you:
 
-```bash
+```powershell
 gh repo fork Azure/terraform-azure-avm-res-<rp>-<modulename> --clone
 cd terraform-azure-avm-res-<rp>-<modulename>
 ```
 
 Verify the remotes are set up correctly:
 
-```bash
+```powershell
 git remote -v
 # origin    https://github.com/<your-username>/terraform-azure-avm-res-<rp>-<modulename>.git (fetch)
 # upstream  https://github.com/Azure/terraform-azure-avm-res-<rp>-<modulename>.git (fetch)
@@ -127,7 +154,7 @@ git remote -v
 
 Create a branch from `main` to work on your changes:
 
-```bash
+```powershell
 git checkout -b <your-branch-name>
 ```
 
@@ -145,7 +172,7 @@ Before writing code, review the [Terraform specifications]({{% siteparam base %}
 
 Once you've made your changes, stage, commit, and push them:
 
-```bash
+```powershell
 git add -A
 git commit -m "feat: description of your change"
 git push
@@ -157,17 +184,13 @@ git push
 
 Before raising a pull request, run pre-commit to update your files:
 
-{{% notice style="important" %}}
-You need [Docker](https://www.docker.com/products/docker-desktop) (or [Podman](https://podman-desktop.io/downloads)) installed and running.
-{{% /notice %}}
-
-```bash
-./avm pre-commit
+```powershell
+avm pre-commit
 ```
 
 This automatically updates your code formatting, fixes styling issues, and regenerates documentation to meet AVM standards. If pre-commit made any changes, commit and push again:
 
-```bash
+```powershell
 git add -A
 git commit -m "chore: pre-commit fixes"
 git push
@@ -179,31 +202,22 @@ git push
 
 Before raising a PR (or while iterating on one), you can run the same checks that CI will run:
 
-```bash
-./avm pr-check
+```powershell
+avm pr-check
 ```
 
-This runs static analysis and linting locally so you can catch issues before CI does.
+This runs the full PR validation gauntlet locally so you can catch issues before CI does.
 
 ### Local e2e testing
 
-You can test your examples locally by running Terraform directly in the `examples/` folders:
+Run the e2e test tier to deploy, check idempotency, and destroy resources for each example:
 
-```bash
-cd examples/default
+```powershell
 az login
-terraform init
-terraform plan
-terraform apply
+avm test e2e
 ```
 
-Use Azure CLI (`az login`) to authenticate — no environment variables or service principals are needed for local development.
-
-When you're done, clean up your resources:
-
-```bash
-terraform destroy
-```
+This tier requires real Azure credentials. Azure CLI authentication is sufficient for local development; no environment variables or service principals are needed.
 
 This is especially useful for external contributors, since only module owners can approve CI e2e test runs.
 
@@ -211,8 +225,18 @@ This is especially useful for external contributors, since only module owners ca
 
 We support [terraform test](https://developer.hashicorp.com/terraform/language/tests) for unit and integration testing. Golang tests are **not** supported.
 
-- **Unit tests** — place test files in `tests/unit`. Use [mocked providers](https://developer.hashicorp.com/terraform/language/tests/mocking) to keep them fast and free of external dependencies. Run with `./avm tf-test-unit`.
-- **Integration tests** — place test files in `tests/integration`. These deploy real resources and should be run locally. Run with `./avm tf-test-integration`.
+- **Unit tests** — place test files in `tests/unit`. Use [mocked providers](https://developer.hashicorp.com/terraform/language/tests/mocking) to keep them fast and free of external dependencies.
+
+  ```powershell
+  avm test unit
+  ```
+
+- **Integration tests** — place test files in `tests/integration`. These deploy real resources, require Azure credentials, and should be run locally.
+
+  ```powershell
+  az login
+  avm test integration
+  ```
 
 ---
 
@@ -248,7 +272,7 @@ We support [terraform test](https://developer.hashicorp.com/terraform/language/t
 ## 7. Approve and monitor CI tests
 
 {{% notice style="note" %}}
-Only module owners can approve CI test runs. External contributors should ensure they have run `./avm pr-check` and tested locally before this step.
+Only module owners can approve CI test runs. External contributors should ensure they have run `avm pr-check` and tested locally before this step.
 {{% /notice %}}
 
 Once a PR is created, CI workflows are triggered automatically but require a module owner to approve the run. A centrally managed Azure test subscription is provided — no credential configuration is needed.
@@ -272,7 +296,7 @@ The `pr-check.yml` workflow runs two stages:
 
 ### If tests fail
 
-Go back to step 3 — fix the issue, run `./avm pre-commit` again, push your changes, and the CI tests will re-run automatically on the same PR.
+Go back to step 3 — fix the issue, run `avm pre-commit` again, push your changes, and the CI tests will re-run automatically on the same PR.
 
 ### Running e2e for external contributions
 

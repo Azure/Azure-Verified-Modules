@@ -21,6 +21,6 @@ priority: 21050
 
 ## ID: TFNFR5 - Category: Testing - Test Tooling
 
-Module owners **MUST** use the below test script for unit/linting/static/security analysis tests.
+Module owners **MUST** use the below `Avm.Authoring` command for unit, linting, static, and security analysis tests.
 
-- `./avm pr-check`
+- `avm pr-check`

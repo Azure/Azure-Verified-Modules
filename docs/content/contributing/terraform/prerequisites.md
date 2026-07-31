@@ -33,14 +33,20 @@ We recommend Linux, macOS, or Windows Subsystem for Linux (WSL) for your develop
 
 - [Git](https://git-scm.com/downloads)
 
-  ```bash
+  ```powershell
   git config --global user.name "Your Name"
   git config --global user.email "you@example.com"
   ```
 
-- [Terraform](https://developer.hashicorp.com/terraform/downloads?product_intent=terraform)
+- [PowerShell 7.4 or later](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)
+- [`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring)
+
+  ```powershell
+  Install-Module Avm.Authoring -Scope CurrentUser
+  ```
+
+  The module downloads and caches its managed tools, including Terraform, on demand. Docker and Podman are not required.
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-- [Docker](https://www.docker.com/pricing/#/download) (or [Podman](https://podman-desktop.io/downloads)) — required for running `./avm` pre-commit and pr-check commands
 - [Visual Studio Code](https://code.visualstudio.com/download)
   - [HashiCorp Terraform extension](https://marketplace.visualstudio.com/items?itemName=hashicorp.terraform)
   - [Microsoft Azure Terraform extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureterraform)
