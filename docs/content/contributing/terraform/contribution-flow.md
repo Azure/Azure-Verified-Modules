@@ -178,6 +178,32 @@ git commit -m "feat: description of your change"
 git push
 ```
 
+### Lifecycle hooks
+
+Some examples need setup work before Terraform runs — deploying prerequisites, generating a `terraform.tfvars`, or seeding a random prefix. AVM supports optional hook scripts for this:
+
+| Hook | Location | Runs |
+|------|----------|------|
+| `pre.ps1` | `examples/<name>/` | before the example, during policy checks and e2e tests |
+| `post.ps1` | `examples/<name>/` | after the example |
+| `tflint-pre.ps1` | each lint scope | after `terraform init`, before TFLint |
+| `setup.ps1` | `tests/<tier>/` | before a `terraform test` tier |
+
+{{% notice style="warning" %}}
+Hooks must be PowerShell. Shell hooks are **not** supported, and the tooling rejects them on presence alone — adding a `.ps1` while leaving the `.sh` in place still fails. The check runs before any Terraform command, so the failure is immediate:
+
+```text
+The terraform unit test engine runs PowerShell hooks only.
+Refactor these shell hooks to '.ps1': tests/unit/setup.sh
+```
+
+Delete the `.sh` in the same commit that adds the `.ps1`. This keeps modules working on Windows, Linux, and macOS alike.
+{{% /notice %}}
+
+Each hook runs in its own isolated `pwsh` subprocess, so environment variables it exports do **not** reach subsequent Terraform commands. To pass values through, have the hook write `KEY=VALUE` lines to a `.env` file next to the example; the runner sources that file into every Terraform subprocess.
+
+Because hooks are invoked from an isolated process, anchor paths on `$PSScriptRoot` rather than relying on the current working directory. Note also that PowerShell does not stop on a failed native command the way `set -e` does in bash — check `$LASTEXITCODE` after each Terraform call and `throw` so a failed hook surfaces immediately instead of later as a confusing downstream error.
+
 ---
 
 ## 4. Run avm pre-commit
@@ -385,3 +411,4 @@ Continue publishing in the `v0.x.y` range (e.g., `v0.1.0`, `v0.1.1`, `v0.2.0`) u
 - Do not commit `terraform.lock.hcl` — it is excluded by `.gitignore`.
 - Update `_header.md` and `SUPPORT.md`.
 - Do not commit `terraform.tfvars` files.
+- Do not add shell (`.sh`) lifecycle hooks — see [Lifecycle hooks](#lifecycle-hooks). Leaving a `.sh` alongside a new `.ps1` still fails the build.
