@@ -6,15 +6,14 @@ locals {
 
   cmk_is_managed_hsm = local.cmk == null ? false : can(provider::azapi::parse_resource_id("Microsoft.KeyVault/managedHSMs", local.cmk.key_vault_resource_id))
 
-  cmk_vault_name = local.cmk == null ? null : provider::azapi::parse_resource_id(
+  cmk_vault_name = try(provider::azapi::parse_resource_id(
     local.cmk_is_managed_hsm ? "Microsoft.KeyVault/managedHSMs" : "Microsoft.KeyVault/vaults",
     local.cmk.key_vault_resource_id
-  ).name
+  ).name, null)
 
-  cmk_vault_uri = local.cmk == null ? null : trimsuffix(coalesce(
-    local.cmk.key_vault_uri,
-    "https://${local.cmk_vault_name}.${local.cmk_is_managed_hsm ? "managedhsm.azure.net" : "vault.azure.net"}"
-  ), "/")
+  cmk_derived_vault_uri = local.cmk_vault_name == null ? null : "https://${local.cmk_vault_name}.${local.cmk_is_managed_hsm ? "managedhsm.azure.net" : "vault.azure.net"}"
+
+  cmk_vault_uri = local.cmk == null ? null : trimsuffix(coalesce(local.cmk.key_vault_uri, local.cmk_derived_vault_uri), "/")
 
   # A null `key_version` yields a versionless URI, which enables auto-rotation.
   cmk_key_uri = local.cmk == null ? null : format(
@@ -28,17 +27,25 @@ locals {
   cmk_identity_resource_id = try(local.cmk.user_assigned_identity.resource_id, null)
 }
 
-# Microsoft.ContainerRegistry identifies the encryption identity by client ID, and
-# additionally requires that identity to be assigned to the registry.
-resource "azurerm_container_registry" "this" {
-  # ... other properties
+# `Microsoft.ContainerRegistry/registries` takes a single combined key identifier and
+# identifies the encryption identity by client ID, and additionally requires that
+# identity to be assigned to the registry.
+resource "azapi_resource" "this" {
+  type      = var.resource_types.containerregistry_registries
+  name      = var.name
+  location  = var.location
+  parent_id = var.resource_group_resource_id
 
-  dynamic "encryption" {
-    for_each = local.cmk == null ? [] : ["encryption"]
-
-    content {
-      identity_client_id = local.cmk_identity_client_id
-      key_vault_key_id   = local.cmk_key_uri
+  body = {
+    properties = {
+      # ... other properties
+      encryption = local.cmk == null ? null : {
+        status = "enabled"
+        keyVaultProperties = {
+          keyIdentifier = local.cmk_key_uri
+          identity      = local.cmk_identity_client_id
+        }
+      }
     }
   }
 

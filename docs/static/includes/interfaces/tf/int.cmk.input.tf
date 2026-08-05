@@ -9,3 +9,14 @@ customer_managed_key = {
     client_id   = "{uamiClientId}"
   }
 }
+
+# Alternatively, supply the vault URI directly instead of the vault resource ID. This
+# is required in sovereign clouds, where the DNS suffix cannot be derived.
+#
+# customer_managed_key = {
+#   key_vault_uri = "https://{keyVaultName}.vault.usgovcloudapi.net"
+#   key_name      = "{keyName}"
+#   user_assigned_identity = {
+#     client_id = "{uamiClientId}"
+#   }
+# }

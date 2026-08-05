@@ -1,6 +1,6 @@
 variable "customer_managed_key" {
   type = object({
-    key_vault_resource_id = string
+    key_vault_resource_id = optional(string, null)
     key_vault_uri         = optional(string, null)
     key_name              = string
     key_version           = optional(string, null)
@@ -12,7 +12,11 @@ variable "customer_managed_key" {
   default = null
 
   validation {
-    condition     = var.customer_managed_key == null || can(provider::azapi::parse_resource_id("Microsoft.KeyVault/vaults", var.customer_managed_key.key_vault_resource_id)) || can(provider::azapi::parse_resource_id("Microsoft.KeyVault/managedHSMs", var.customer_managed_key.key_vault_resource_id))
+    condition     = var.customer_managed_key == null || var.customer_managed_key.key_vault_resource_id != null || var.customer_managed_key.key_vault_uri != null
+    error_message = "`customer_managed_key` requires at least one of `key_vault_resource_id` or `key_vault_uri` to be set."
+  }
+  validation {
+    condition     = var.customer_managed_key == null || var.customer_managed_key.key_vault_resource_id == null || can(provider::azapi::parse_resource_id("Microsoft.KeyVault/vaults", var.customer_managed_key.key_vault_resource_id)) || can(provider::azapi::parse_resource_id("Microsoft.KeyVault/managedHSMs", var.customer_managed_key.key_vault_resource_id))
     error_message = "`customer_managed_key.key_vault_resource_id` must be a valid Azure Key Vault or Managed HSM resource ID."
   }
   validation {

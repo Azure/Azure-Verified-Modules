@@ -133,18 +133,24 @@ In Terraform, locks become part of the resource graph and suitable `depends_on` 
   {{% include file="/static/includes/interfaces/tf/int.cmk.input.tf" %}}
 {{< /highlight >}}
 
-{{< highlight lineNos="false" type="terraform" wrap="true" title="Module Implementation Example" >}}
-  {{% include file="/static/includes/interfaces/tf/int.cmk.usage.tf" %}}
+{{< highlight lineNos="false" type="terraform" wrap="true" title="Module Implementation Example - Combined Key URI and Client ID" >}}
+  {{% include file="/static/includes/interfaces/tf/int.cmk.usage1.tf" %}}
+{{< /highlight >}}
+
+{{< highlight lineNos="false" type="terraform" wrap="true" title="Module Implementation Example - Split Key URI and Resource ID" >}}
+  {{% include file="/static/includes/interfaces/tf/int.cmk.usage2.tf" %}}
 {{< /highlight >}}
 
 **Notes:**
 
 - Modules **MUST NOT** use data sources, such as `azurerm_key_vault_key` or `azurerm_user_assigned_identity`, to resolve the key URI or the identity's client ID.
   - Terraform reads a data source during `plan` whenever its arguments are already known. When the key, the vault or the identity is created by the same `terraform apply`, that read happens before the resource exists and the plan fails.
-  - The key URI **MUST** instead be derived from `key_vault_resource_id`, `key_name` and `key_version`, which are known to follow the pattern `https://{keyVaultName}.{dnsSuffix}/keys/{keyName}[/{keyVersion}]`.
+  - The key URI **MUST** instead be derived from the vault, `key_name` and `key_version`, which are known to follow the pattern `https://{keyVaultName}.{dnsSuffix}/keys/{keyName}[/{keyVersion}]`.
 - Omitting `key_version` **MUST** produce a versionless key URI, so that the resource provider follows key rotations automatically.
-- When `key_vault_uri` is omitted, modules **MUST** derive the host as `https://{keyVaultName}.vault.azure.net` for Key Vault, and `https://{managedHsmName}.managedhsm.azure.net` for Managed HSM.
-  - `key_vault_uri` exists so that module consumers in sovereign clouds, which use a different DNS suffix such as `vault.usgovcloudapi.net` or `vault.azure.cn`, can override the derived host. It **MUST NOT** be required in the Azure public cloud.
+- The vault **MUST** be identified by either `key_vault_resource_id` or `key_vault_uri`, and modules **MUST** validate that at least one of them is supplied.
+  - When only `key_vault_resource_id` is supplied, modules **MUST** derive the host as `https://{keyVaultName}.vault.azure.net` for Key Vault, and `https://{managedHsmName}.managedhsm.azure.net` for Managed HSM.
+  - `key_vault_uri` exists so that module consumers in sovereign clouds, which use a different DNS suffix such as `vault.usgovcloudapi.net` or `vault.azure.cn`, can supply the host directly. It **MUST NOT** be required in the Azure public cloud.
+  - `key_vault_resource_id` **MUST NOT** be required, because no resource provider consumes the vault's ARM resource ID for encryption. Where a module needs it for another purpose, such as scoping a role assignment, that module **MUST** validate it separately.
 - `user_assigned_identity` **MUST** accept `resource_id`, `client_id`, or both, and modules **MUST** validate that at least one of them is supplied.
   - Both are exposed because resource providers differ in how they identify the encryption identity. `Microsoft.ContainerRegistry` takes the client ID, whereas `Microsoft.Storage` takes the resource ID, and some providers take both.
   - Modules **MUST** additionally validate that whichever value their resource provider requires has been supplied, and **SHOULD** do so with a `precondition` so that the error names the missing attribute.
