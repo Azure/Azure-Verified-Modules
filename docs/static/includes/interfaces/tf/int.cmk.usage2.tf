@@ -1,9 +1,13 @@
-# The same locals feed a resource provider that takes the vault URI, key name and key
-# version as separate fields, and that identifies the encryption identity by resource
-# ID rather than client ID. `customer_managed_key_vault_uri` and `customer_managed_key_uri`
-# are both exposed so that either shape can be satisfied without a data source.
+# Variant 2 carries exactly the two values the API consumes, so the module performs no
+# resolution at all: no data sources, no URI construction, and no cloud specific DNS
+# suffix handling. The consumer builds the key URI from the key resource they own, and
+# supplies the client ID of the identity that the registry uses to reach the vault.
+#
+# `Microsoft.ContainerRegistry/registries` takes a single combined key identifier and
+# identifies the encryption identity by client ID. A client ID cannot be derived from an
+# identity resource ID without a data source, which is why this variant exists.
 resource "azapi_resource" "this" {
-  type      = var.resource_types.storage_storage_accounts
+  type      = var.resource_types.containerregistry_registries
   name      = var.name
   location  = var.location
   parent_id = var.resource_group_resource_id
@@ -12,14 +16,10 @@ resource "azapi_resource" "this" {
     properties = {
       # ... other properties
       encryption = var.customer_managed_key == null ? null : {
-        keySource = "Microsoft.Keyvault"
-        identity = {
-          userAssignedIdentity = local.customer_managed_key_identity_resource_id
-        }
-        keyvaultproperties = {
-          keyvaulturi = local.customer_managed_key_vault_uri
-          keyname     = var.customer_managed_key.key_name
-          keyversion  = var.customer_managed_key.key_version
+        status = "enabled"
+        keyVaultProperties = {
+          keyIdentifier = var.customer_managed_key.key_vault_key_uri
+          identity      = var.customer_managed_key.user_assigned_identity_client_id
         }
       }
     }
@@ -27,12 +27,8 @@ resource "azapi_resource" "this" {
 
   lifecycle {
     precondition {
-      condition     = var.customer_managed_key == null || local.customer_managed_key_identity_resource_id != null
-      error_message = "`customer_managed_key.user_assigned_identity.resource_id` must be supplied because the Storage API identifies the encryption identity by resource ID."
-    }
-    precondition {
-      condition     = local.customer_managed_key_identity_resource_id == null || contains(var.managed_identities.user_assigned_resource_ids, local.customer_managed_key_identity_resource_id)
-      error_message = "The user assigned managed identity used for customer managed key encryption must also be assigned to the Storage Account via `managed_identities.user_assigned_resource_ids`."
+      condition     = var.customer_managed_key == null || var.customer_managed_key.user_assigned_identity_client_id != null
+      error_message = "`customer_managed_key.user_assigned_identity_client_id` must be supplied because the Container Registry API identifies the encryption identity by client ID."
     }
   }
 }
