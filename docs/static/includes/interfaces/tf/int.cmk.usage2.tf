@@ -19,7 +19,7 @@ resource "azapi_resource" "this" {
         status = "enabled"
         keyVaultProperties = {
           keyIdentifier = var.customer_managed_key.key_vault_key_uri
-          identity      = var.customer_managed_key.user_assigned_identity_client_id
+          identity      = var.customer_managed_key.user_assigned_identity == null ? null : var.customer_managed_key.user_assigned_identity.client_id
         }
       }
     }
@@ -27,8 +27,8 @@ resource "azapi_resource" "this" {
 
   lifecycle {
     precondition {
-      condition     = var.customer_managed_key == null || var.customer_managed_key.user_assigned_identity_client_id != null
-      error_message = "`customer_managed_key.user_assigned_identity_client_id` must be supplied because the Container Registry API identifies the encryption identity by client ID."
+      condition     = var.customer_managed_key == null || var.customer_managed_key.user_assigned_identity != null
+      error_message = "`customer_managed_key.user_assigned_identity` must be supplied because the Container Registry API identifies the encryption identity by client ID."
     }
   }
 }

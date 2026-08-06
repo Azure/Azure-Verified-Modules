@@ -5,5 +5,7 @@ customer_managed_key = {
   # `https://{managedHsmName}.managedhsm.azure.net/keys/{keyName}/{keyVersion}`.
   key_vault_key_uri = "https://{keyVaultName}.vault.azure.net/keys/{keyName}"
 
-  user_assigned_identity_client_id = "{userAssignedIdentityClientId}"
+  user_assigned_identity = {
+    client_id = "{userAssignedIdentityClientId}"
+  }
 }
