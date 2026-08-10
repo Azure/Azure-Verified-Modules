@@ -28,19 +28,27 @@ Until your access request is approved, you can continue to contribute by using J
 ## Required Tooling
 
 {{% notice style="tip" %}}
-We recommend Linux, macOS, or Windows Subsystem for Linux (WSL) for your development environment.
+`Avm.Authoring` supports Windows, Linux, and macOS. Use PowerShell 7.4 or later on every platform.
 {{% /notice %}}
 
 - [Git](https://git-scm.com/downloads)
 
-  ```bash
+  ```powershell
   git config --global user.name "Your Name"
   git config --global user.email "you@example.com"
   ```
 
-- [Terraform](https://developer.hashicorp.com/terraform/downloads?product_intent=terraform)
+- [PowerShell 7.4 or later](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)
+- [`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring)
+
+  ```powershell
+  Install-PSResource Avm.Authoring
+  Import-Module Avm.Authoring
+  avm doctor
+  ```
+
+  `Install-Module Avm.Authoring -Scope CurrentUser` remains available for environments that use PowerShellGet v2. Run `avm update` to upgrade an existing installation. The module downloads, verifies, and caches its managed tools, including Terraform, on demand. Run `avm doctor --install` to preload every supported tool. Docker and Podman are not required.
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-- [Docker](https://www.docker.com/pricing/#/download) (or [Podman](https://podman-desktop.io/downloads)) — required for running `./avm` pre-commit and pr-check commands
 - [Visual Studio Code](https://code.visualstudio.com/download)
   - [HashiCorp Terraform extension](https://marketplace.visualstudio.com/items?itemName=hashicorp.terraform)
   - [Microsoft Azure Terraform extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureterraform)

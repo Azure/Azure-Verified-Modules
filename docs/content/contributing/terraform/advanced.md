@@ -82,12 +82,12 @@ Create a file called `.e2eignore` in the example directory. Its contents should 
 
 ## Global test setup and teardown
 
-If your module requires setup/teardown across **all** examples, create:
+`Avm.Authoring` has no global setup or teardown hook. It does not execute or reject the legacy files:
 
-- `examples/setup.sh` — (optional) — runs before all examples.
-- `examples/teardown.sh` (optional) — runs after all examples.
+- `examples/setup.sh`
+- `examples/teardown.sh`
 
-These scripts are authorized with the same credentials as the examples.
+Move required setup and cleanup into idempotent per-example `pre.ps1` and `post.ps1` hooks. Coordinate removal of legacy global scripts with the repository's centrally managed CI workflow migration because older workflows can still invoke them.
 
 ---
 
@@ -95,10 +95,10 @@ These scripts are authorized with the same credentials as the examples.
 
 For example-specific setup/teardown:
 
-- `examples/<example_name>/pre.sh` (optional) — runs before the example.
-- `examples/<example_name>/post.sh` (optional) — runs after the example.
+- `examples/<example_name>/pre.ps1` (optional) — runs before Terraform commands for the example.
+- `examples/<example_name>/post.ps1` (optional) — always runs after the example, including after a pre-hook or initialization failure.
 
-These run in the context of the example directory, so relative paths work.
+Shell equivalents are rejected. Each PowerShell hook runs in an isolated process; see [Lifecycle hooks]({{% siteparam base %}}/contributing/terraform/contribution-flow/#lifecycle-hooks) for `.env`, path, and error-handling guidance.
 
 ---
 
