@@ -28,6 +28,8 @@ To meet this requirement, the module **MUST** expose two variables:
 - `retry` — an object variable controlling the AzAPI `retry` block.
 - `timeouts` — an object variable controlling the AzAPI `timeouts` block.
 
+Diff suppression via the AzAPI `ignore_body_changes` argument is covered separately by [TFFR8]({{% siteparam base %}}/spec/TFFR8), because its values are scoped to a single resource's `body` and therefore **MUST NOT** be cascaded to submodules unchanged.
+
 Both variables:
 
 - **MAY** define module-level defaults (e.g., a default `error_message_regex` such as `"ScopeLocked"` for resources that race with lock removal, or a default `delete = "5m"`).
