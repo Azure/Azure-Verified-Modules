@@ -21,6 +21,7 @@ priority: 21050
 
 ## ID: TFNFR5 - Category: Testing - Test Tooling
 
-Module owners **MUST** use the below `Avm.Authoring` command for unit, linting, static, and security analysis tests.
+Module owners **MUST** use the following `Avm.Authoring` commands:
 
-- `avm pr-check`
+- `avm pr-check` for linting, formatting and generated-file drift, static and security analysis, and Terraform validation.
+- `avm test unit` for Terraform unit tests.

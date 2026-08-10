@@ -28,7 +28,7 @@ Until your access request is approved, you can continue to contribute by using J
 ## Required Tooling
 
 {{% notice style="tip" %}}
-We recommend Linux, macOS, or Windows Subsystem for Linux (WSL) for your development environment.
+`Avm.Authoring` supports Windows, Linux, and macOS. Use PowerShell 7.4 or later on every platform.
 {{% /notice %}}
 
 - [Git](https://git-scm.com/downloads)
@@ -42,10 +42,12 @@ We recommend Linux, macOS, or Windows Subsystem for Linux (WSL) for your develop
 - [`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring)
 
   ```powershell
-  Install-Module Avm.Authoring -Scope CurrentUser
+  Install-PSResource Avm.Authoring
+  Import-Module Avm.Authoring
+  avm doctor
   ```
 
-  The module downloads and caches its managed tools, including Terraform, on demand. Docker and Podman are not required.
+  `Install-Module Avm.Authoring -Scope CurrentUser` remains available for environments that use PowerShellGet v2. Run `avm update` to upgrade an existing installation. The module downloads, verifies, and caches its managed tools, including Terraform, on demand. Run `avm doctor --install` to preload every supported tool. Docker and Podman are not required.
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 - [Visual Studio Code](https://code.visualstudio.com/download)
   - [HashiCorp Terraform extension](https://marketplace.visualstudio.com/items?itemName=hashicorp.terraform)
