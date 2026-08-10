@@ -264,20 +264,20 @@ For each repository and each semantic version tag:
 3. **Find all module blocks** in `.tf` files (excluding `examples/` folder)
 4. **Convert sources** from Terraform registry format to git references:
 
-   **Before:**
-   ```hcl
-   module "network" {
-     source  = "Azure/avm-res-network-virtualnetwork/azurerm"
-     version = "0.2.0"
-   }
-   ```
+    **Before:**
+    ```hcl
+    module "network" {
+      source  = "Azure/avm-res-network-virtualnetwork/azurerm"
+      version = "0.2.0"
+    }
+    ```
 
-   **After (with default `-local` suffix):**
-   ```hcl
-   module "network" {
-     source = "git::https://github.com/my-org/terraform-azurerm-avm-res-network-virtualnetwork.git?ref=v0.2.0-local"
-   }
-   ```
+    **After (with default `-local` suffix):**
+    ```hcl
+    module "network" {
+      source = "git::https://github.com/my-org/terraform-azurerm-avm-res-network-virtualnetwork.git?ref=v0.2.0-local"
+    }
+    ```
 
 5. **Commit changes** and create a new tag with the configured suffix (e.g., `v0.1.0` → `v0.1.0-local`)
 
@@ -294,7 +294,7 @@ For each repository:
 
 The script creates several outputs in the destination directory:
 
-```
+```text
 ~/avm-modules/
 ├── .sync-state.json                         # Sync state tracking file
 ├── terraform-azurerm-avm-ptn-alz/           # Cloned repository

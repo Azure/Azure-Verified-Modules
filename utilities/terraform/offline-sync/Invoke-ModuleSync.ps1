@@ -172,6 +172,10 @@
     Custom suffix example (with -localTagSuffix '-synced'):
     - Converted: source = "git::https://target-server/org/terraform-azurerm-avm-res-compute-virtualmachine.git?ref=v0.1.0-synced"
 #>
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost', '', Justification = 'Interactive progress and confirmation output is intentional.')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseApprovedVerbs', '', Justification = 'Established internal helper names are retained for migration compatibility.')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '', Justification = 'Destructive operations use explicit confirmation or the skipVerification switch.')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns', '', Justification = 'Established internal helper names are retained for migration compatibility.')]
 param (
     [Parameter(Mandatory = $false, HelpMessage = "Local directory path where repositories will be cloned. Supports ~ expansion.")]
     [string]$destinationDirectoryPath = "~/avm-modules",
@@ -682,7 +686,7 @@ $results = $avmRepos | ForEach-Object -ThrottleLimit $parallelCloneLimit -Parall
                 $result.Message += " + fetched tags from target"
             }
         } catch {
-            # Ignore errors fetching from upstream - repo may not exist there yet
+            Write-Verbose "Unable to fetch tags from target repository '$targetRepoUrl': $_"
         } finally {
             Pop-Location
         }
@@ -759,7 +763,7 @@ function Get-LocalTagName {
 function Get-TerraformFiles {
     param([string]$Path)
     return Get-ChildItem -Path $Path -Filter "*.tf" -Recurse -File -ErrorAction SilentlyContinue |
-           Where-Object { $_.FullName -notmatch '[/\\]examples[/\\]' }
+        Where-Object { $_.FullName -notmatch '[/\\]examples[/\\]' }
 }
 
 # Helper function to filter tags to semver-only (excluding suffixed tags)
@@ -1252,14 +1256,6 @@ if ($orphansToPrompt.Count -gt 0 -and -not $skipOrphanCheck) {
         Write-Host "  Saved $($keptRepos.Count) kept repos to sync state"
     }
 
-    # Refresh the list of destination repos after deletion
-    $existingDestRepos = @()
-    if (Test-Path -Path $destinationPath) {
-        $existingDestRepos = Get-ChildItem -Path $destinationPath -Directory -ErrorAction SilentlyContinue |
-            Where-Object { $_.Name -ne "dependency-graphs" } |
-            Select-Object -ExpandProperty Name |
-            Sort-Object
-    }
 } elseif ($orphanedRepos.Count -gt 0 -and $skipOrphanCheck) {
     Write-Host "`nSkipping orphan check (skipOrphanCheck flag set). $($orphanedRepos.Count) orphaned repos will be kept."
 } elseif ($orphanedRepos.Count -gt 0 -and $orphansToPrompt.Count -eq 0) {
