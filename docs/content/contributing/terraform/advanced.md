@@ -9,6 +9,15 @@ This page covers advanced scenarios and frequently asked questions that go beyon
 
 ---
 
+## Offline and air-gapped module mirroring
+
+The [offline sync utility](https://github.com/Azure/Azure-Verified-Modules/tree/main/utilities/terraform/offline-sync) mirrors AVM Terraform modules and rewrites registry dependencies as git references for offline or air-gapped environments.
+
+> [!WARNING]
+> This utility is an example for advanced users familiar with PowerShell, Git, and Terraform module management. It is provided as-is and is not supported for production use.
+
+---
+
 ## Using a custom Azure test subscription
 
 By default, CI end-to-end tests run against a centrally managed Azure subscription. If your module requires a different environment (e.g. due to quota limits or tenant-level deployments), you can override the defaults.
