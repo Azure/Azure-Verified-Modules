@@ -111,9 +111,9 @@ Shell equivalents are rejected. Each PowerShell hook runs in an isolated process
 
 ---
 
-## Repository governance PRs
+## Repository synchronization PRs
 
-A weekly workflow checks repository contents creates a PR if new files or updates are available. The PR is automatically merged, so there is no action required. Module owners will be informed if there are any one off PRs that require intervention.
+[Repository sync](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/repository-sync) regularly compares each module repository with the shared [managed files](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/managed-files) and opens a PR when updates are available. These PRs are normally merged automatically. Module owners will be informed about one-off PRs that require intervention.
 
 These PRs do not change module code, so no new release is needed.
 

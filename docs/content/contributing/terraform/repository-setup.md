@@ -44,34 +44,31 @@ You'll need the following from the module request issue:
 ## 3. Create the repository
 
 Prerequisites:
-- Latest [Terraform CLI](https://developer.hashicorp.com/terraform/install)
-- Latest [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli)
-- Latest [PowerShell Core](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell)
+- [PowerShell 7.4 or later](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)
+- [Git](https://git-scm.com/downloads)
 - [GitHub CLI](https://cli.github.com)
 
 ### Clone and prepare
 
+Use the [repository creation tooling](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/repository-creation):
+
 ```pwsh
 cd ~
-git clone "https://github.com/Azure/avm-terraform-governance"
-cd ./avm-terraform-governance/tf-repo-mgmt
+git clone "https://github.com/Azure/azure-verified-modules-tools"
+cd ./azure-verified-modules-tools/repository-management/repository-creation
 ```
 
 ### Authenticate
 
 ```pwsh
-# GitHub CLI
-gh auth login -h "github.com" -w -p "https" -s "delete_repo" -s "workflow" -s "read:user" -s "user:email"
-
-# Azure CLI (if not already logged in)
-az login --scope https://graph.microsoft.com/.default --allow-no-subscriptions
+gh auth login -h "github.com" -w -p "https"
 ```
 
 ### Run the creation script
 
 ```pwsh
 if(!(Test-Path -Path "./scripts/New-Repository.ps1")) {
-    Write-Error "This script must be run from the tf-repo-mgmt directory."
+    Write-Error "This script must be run from the repository-creation directory."
     exit 1
 }
 
@@ -145,8 +142,8 @@ Click **Finish setup + start business review**, then **View repository**, then *
 Return to the terminal and type `yes` to complete repository configuration.
 
 The script will automatically:
-- Create a PR to add module metadata to the `avm-terraform-governance` repository.
-- Create an issue to install the `Azure Verified Modules` GitHub App.
+- Create a PR to add module metadata to the [`repository-sync` configuration](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/repository-sync).
+- Create a PR to install the `Azure Verified Modules` GitHub App.
 
 ## 4. Upgrade just-in-time access to JITv2
 
@@ -186,6 +183,6 @@ You were added as a Direct Owner so you could perform the JIT configuration abov
 Module owners retain day-to-day access through the `azure-verified-modules-module-owners` security group and just-in-time elevation, so you do not need to remain a Direct Owner.
 {{% /notice %}}
 
-## 5. Wait for the GitHub App
+## 5. Wait for the GitHub App and repository sync
 
-Once installed (usually within 24 hours), the environment sync runs automatically at 15:30 UTC on weekdays to complete the repository setup.
+After the app is installed, [repository sync](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/repository-sync) applies the shared repository configuration and [managed files](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/managed-files) to complete the setup.

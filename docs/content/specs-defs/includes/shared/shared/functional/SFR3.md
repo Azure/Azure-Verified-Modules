@@ -23,7 +23,7 @@ priority: 30
 
 Modules **MUST** provide the capability to collect deployment/usage telemetry as detailed in [Telemetry]({{% siteparam base %}}/help-support/telemetry/) further.
 
-To highlight that AVM modules use telemetry, an information notice **MUST** be included in the footer of each module's `README.md` file with the below content. (See more details on this requirement, [here](https://docs.opensource.microsoft.com/releasing/general-guidance/telemetry/).)
+To highlight that AVM modules use telemetry, an information notice **MUST** be included in the footer of each module's `README.md` file with the below content. See the [telemetry guidance](https://docs.opensource.microsoft.com/releasing/general-guidance/telemetry/) for more details.
 
 ### Telemetry Information Notice
 
@@ -32,7 +32,7 @@ To highlight that AVM modules use telemetry, an information notice **MUST** be i
 The following information notice is automatically added at the bottom of the `README.md` file of the module when
 
 - **Bicep:** Using the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility
-- **Terraform:** Executing the `make docs` command with the note and header `## Data Collection` being placed in the module's `_footer.md` beforehand
+- **Terraform:** Running [`avm pre-commit`]({{% siteparam base %}}/contributing/terraform/contribution-flow/#4-run-avm-pre-commit) with the note and header `## Data Collection` placed in the module's `_footer.md` beforehand
 
 {{% /notice %}}
 
