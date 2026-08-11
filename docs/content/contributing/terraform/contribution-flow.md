@@ -219,7 +219,7 @@ avm pre-commit
 
 For Terraform modules, this command:
 
-1. Synchronizes centrally governed files, which can add, update, or remove files.
+1. Synchronizes the centrally governed [managed files](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/managed-files), which can add, update, or remove files.
 2. Applies deterministic fixes for AVM convention rules.
 3. Runs mapotf transformations.
 4. Formats Terraform files.
