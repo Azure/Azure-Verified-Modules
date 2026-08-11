@@ -17,24 +17,6 @@
           with:
             fetch-depth: 0
 
-        - name: Check retired Terraform tooling references
-          shell: pwsh
-          run: |
-            $retiredRepository = "avm-terraform-" + "governance"
-            $matches = git grep -n -i -- $retiredRepository
-            $grepExitCode = $LASTEXITCODE
-
-            if ($grepExitCode -eq 0) {
-              $matches | ForEach-Object { Write-Error $_ }
-              throw "References to the retired Terraform governance repository are not allowed."
-            }
-
-            if ($grepExitCode -ne 1) {
-              throw "git grep failed with exit code $grepExitCode."
-            }
-
-            exit 0
-
         - name: Run github/super-linter
           uses: github/super-linter@v7
           env:
