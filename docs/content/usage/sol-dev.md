@@ -6,17 +6,8 @@ weight: 4
 description: Advanced Solution Development guidance for the Azure Verified Modules (AVM) program. It covers the technical decisions and concepts that are important for building and deploying Azure solutions using AVM modules.
 ---
 
-## Considerations and steps of Solution Development
+## Questions to cover
 
-- Decide on the IaC language (Bicep or Terraform)
-- Decide on the module sourcing method (public registry, private registry, inner-sourcing)
-- Decide on the orchestration method (template or pipeline)
-- Identify the resources needed for the solution (are they all available in AVM?)
-- Implement, validate, deploy, test the solution
-
-## Questions to cover on this page
-
-- Pick a realistically complex solution and demonstrate how to build it using AVM modules
 - Best practices for coding (link to official language specific guidance AND AVM specs where/if applicable)
 - Best practices for input and output parameters
 
