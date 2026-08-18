@@ -12,6 +12,36 @@ Whether you are a **module owner** or an **external contributor**, the core work
 This guide **MUST** be used in conjunction with the [Terraform specifications]({{% siteparam base %}}/specs/tf/). All AVM modules must meet the requirements described in those specifications.
 {{% /notice %}}
 
+## Prerequisites
+
+Install [PowerShell 7.4 or later](https://learn.microsoft.com/powershell/scripting/install/installing-powershell), start `pwsh`, and install the `Avm.Authoring` module:
+
+```powershell
+Install-PSResource Avm.Authoring
+Import-Module Avm.Authoring
+```
+
+`Install-Module Avm.Authoring -Scope CurrentUser` is also supported for environments that use PowerShellGet v2. Run `avm` with no arguments to list the supported verbs, then verify the installed version and diagnose your local environment:
+
+```powershell
+avm
+avm version
+avm doctor
+```
+
+Run `avm update` whenever a newer `Avm.Authoring` release is available. `Avm.Authoring` downloads, verifies, and caches Terraform, TFLint, terraform-docs, Conftest, and mapotf on demand. Docker or Podman is not required. You can inspect or manage the tool cache:
+
+```powershell
+avm tool list
+avm tool which terraform
+avm tool install terraform
+avm doctor --install
+```
+
+{{% notice style="warning" %}}
+The local `Avm.Authoring` migration and the centrally managed CI workflow rollout are separate changes. Do not pre-emptively rename required checks. After the updated workflow has run on a pull request, update branch protection to use the exact check names reported by that workflow. Per-example checks are derived from the repository's example folders.
+{{% /notice %}}
+
 ## Overview
 
 {{< mermaid zoom="false" >}}
@@ -40,8 +70,8 @@ flowchart TD
     click B "#3-implement-your-code-change"
   C(4 - Run avm pre-commit)
     click C "#4-run-avm-pre-commit"
-  C2(5 - Run pr-check and e2e tests locally)
-    click C2 "#5-run-pr-check-and-e2e-tests-locally"
+  C2(5 - Run pr-check and test tiers locally)
+    click C2 "#5-run-pr-check-and-test-tiers-locally"
   D(6 - Raise or Update PR)
     click D "#6-raise-or-update-pr"
   E("7 - Approve and monitor CI tests [owner]")
@@ -84,14 +114,14 @@ A fork is your own copy of the repository under your GitHub account. It lets you
 4. Click **Create fork**.
 5. Clone your fork locally:
 
-    ```bash
+    ```powershell
     git clone https://github.com/<your-username>/terraform-azure-avm-res-<rp>-<modulename>.git
     cd terraform-azure-avm-res-<rp>-<modulename>
     ```
 
 Keep your fork in sync with the upstream repository before creating a new branch. You can do this from the GitHub UI by clicking **Sync fork** on your fork's main page, or locally:
 
-```bash
+```powershell
 git remote add upstream https://github.com/Azure/terraform-azure-avm-res-<rp>-<modulename>.git
 git fetch upstream
 git checkout main
@@ -104,14 +134,14 @@ git merge upstream/main
 
 Use the [GitHub CLI](https://cli.github.com/) to fork and clone in one step. This automatically configures the `upstream` remote for you:
 
-```bash
+```powershell
 gh repo fork Azure/terraform-azure-avm-res-<rp>-<modulename> --clone
 cd terraform-azure-avm-res-<rp>-<modulename>
 ```
 
 Verify the remotes are set up correctly:
 
-```bash
+```powershell
 git remote -v
 # origin    https://github.com/<your-username>/terraform-azure-avm-res-<rp>-<modulename>.git (fetch)
 # upstream  https://github.com/Azure/terraform-azure-avm-res-<rp>-<modulename>.git (fetch)
@@ -127,7 +157,7 @@ git remote -v
 
 Create a branch from `main` to work on your changes:
 
-```bash
+```powershell
 git checkout -b <your-branch-name>
 ```
 
@@ -145,11 +175,37 @@ Before writing code, review the [Terraform specifications]({{% siteparam base %}
 
 Once you've made your changes, stage, commit, and push them:
 
-```bash
+```powershell
 git add -A
 git commit -m "feat: description of your change"
 git push
 ```
+
+### Lifecycle hooks
+
+Some examples need setup work before Terraform runs — deploying prerequisites, generating a `terraform.tfvars`, or seeding a random prefix. AVM supports optional hook scripts for this:
+
+| Hook | Location | Runs |
+| --- | --- | --- |
+| `pre.ps1` | `examples/<name>/` | before Terraform commands for the example during policy checks and e2e tests |
+| `post.ps1` | `examples/<name>/` | after the example, including when its pre-hook or Terraform initialization fails |
+| `tflint-pre.ps1` | `examples/<name>/` | after `terraform init`, before TFLint |
+| `setup.ps1` | `tests/<tier>/` or `modules/<name>/tests/<tier>/` | before `terraform init` and `terraform test` for the target |
+
+{{% notice style="warning" %}}
+Hooks must be PowerShell. `Avm.Authoring` rejects per-example `pre.sh`, `post.sh`, and `tflint-pre.sh` files, plus `setup.sh` and `teardown.sh` files under `tests/<tier>/`, on presence alone. Adding a `.ps1` while leaving the corresponding `.sh` in place still fails before Terraform runs:
+
+```text
+The terraform unit test engine runs PowerShell hooks only.
+Refactor these shell hooks to '.ps1': tests/unit/setup.sh
+```
+
+Legacy root-level `examples/setup.sh` and `examples/teardown.sh` files are different: `Avm.Authoring` does not execute or reject them, and there is no global PowerShell equivalent. Move required logic into idempotent per-example `pre.ps1` and `post.ps1` hooks. Coordinate removal of legacy global hooks with the repository's centrally managed CI workflow migration.
+{{% /notice %}}
+
+Each hook runs in its own isolated `pwsh` subprocess, so environment variables it exports do **not** reach subsequent Terraform commands. An e2e `pre.ps1` can pass values by writing `KEY=VALUE` lines to `examples/<name>/.env`; the runner reads the file after the hook and passes the values to the example's Terraform subprocesses. A unit or integration `setup.ps1` uses a `.env` file at its target root: the repository root or `modules/<name>/`. For these test hooks, the `.env` file is two directories above `setup.ps1`, not beside it.
+
+Because hooks are invoked from an isolated process, anchor paths on `$PSScriptRoot` rather than relying on the current working directory. Note also that PowerShell does not stop on a failed native command the way `set -e` does in bash — check `$LASTEXITCODE` after each Terraform call and `throw` so a failed hook surfaces immediately instead of later as a confusing downstream error.
 
 ---
 
@@ -157,17 +213,21 @@ git push
 
 Before raising a pull request, run pre-commit to update your files:
 
-{{% notice style="important" %}}
-You need [Docker](https://www.docker.com/products/docker-desktop) (or [Podman](https://podman-desktop.io/downloads)) installed and running.
-{{% /notice %}}
-
-```bash
-./avm pre-commit
+```powershell
+avm pre-commit
 ```
 
-This automatically updates your code formatting, fixes styling issues, and regenerates documentation to meet AVM standards. If pre-commit made any changes, commit and push again:
+For Terraform modules, this command:
 
-```bash
+1. Synchronizes the centrally governed [managed files](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/managed-files), which can add, update, or remove files.
+2. Applies deterministic fixes for AVM convention rules.
+3. Runs mapotf transformations.
+4. Formats Terraform files.
+5. Regenerates documentation.
+
+The command intentionally updates the working tree. Review every change it makes, then commit and push again:
+
+```powershell
 git add -A
 git commit -m "chore: pre-commit fixes"
 git push
@@ -175,51 +235,63 @@ git push
 
 ---
 
-## 5. Run pr-check and e2e tests locally
+## 5. Run pr-check and test tiers locally
 
-Before raising a PR (or while iterating on one), you can run the same checks that CI will run:
+After committing the pre-commit changes, run the broader pull request checks:
 
-```bash
-./avm pr-check
+```powershell
+az login
+avm pr-check
 ```
 
-This runs static analysis and linting locally so you can catch issues before CI does.
+`avm pr-check` requires a clean Git working tree and Azure credentials because its Conftest policy checks create Terraform plans for the examples. It checks managed-file, formatting, and transformation drift, then runs TFLint, Conftest policy checks, AVM convention checks, `terraform validate`, and documentation drift checks. It does **not** run the Terraform test tiers; those remain separate commands so failures are reported independently.
+
+### Unit testing
+
+AVM convention checks require a unit test fixture under `tests/unit`. Use [mocked providers](https://developer.hashicorp.com/terraform/language/tests/mocking) to keep unit tests fast and free of external dependencies:
+
+```powershell
+avm test unit
+```
+
+The command also runs unit test tiers found under direct `modules/<name>/` submodules.
+
+### Integration testing
+
+Integration tests under `tests/integration` deploy real resources and require Azure credentials:
+
+```powershell
+az login
+avm test integration
+```
+
+The command also runs integration test tiers found under direct `modules/<name>/` submodules. A repository without integration tests reports the tier as skipped rather than passed.
 
 ### Local e2e testing
 
-You can test your examples locally by running Terraform directly in the `examples/` folders:
+Run the e2e test tier to deploy, check idempotency, and destroy resources for each example:
 
-```bash
-cd examples/default
+```powershell
 az login
-terraform init
-terraform plan
-terraform apply
+avm test e2e
 ```
 
-Use Azure CLI (`az login`) to authenticate — no environment variables or service principals are needed for local development.
+This tier requires real Azure credentials. Azure CLI authentication is sufficient for local development; no environment variables or service principals are needed. To run one example while iterating:
 
-When you're done, clean up your resources:
-
-```bash
-terraform destroy
+```powershell
+avm test e2e --example <name>
 ```
 
-This is especially useful for external contributors, since only module owners can approve CI e2e test runs.
+An example containing `.e2eignore` is excluded. Apply failures caused by transient region, SKU capacity, or quota errors are destroyed and retried up to two times by default; use `-MaxRetry 0` to disable retries.
 
-### Terraform test (optional)
-
-We support [terraform test](https://developer.hashicorp.com/terraform/language/tests) for unit and integration testing. Golang tests are **not** supported.
-
-- **Unit tests** — place test files in `tests/unit`. Use [mocked providers](https://developer.hashicorp.com/terraform/language/tests/mocking) to keep them fast and free of external dependencies. Run with `./avm tf-test-unit`.
-- **Integration tests** — place test files in `tests/integration`. These deploy real resources and should be run locally. Run with `./avm tf-test-integration`.
+Local e2e testing is especially useful for external contributors, since only module owners can approve credentialed CI e2e runs.
 
 ---
 
 ## 6. Raise or Update PR
 
 {{% notice style="tip" %}}
-**Raise your PR early** — don't wait until everything is perfect. An early PR lets you run pr-check and e2e tests in CI and get feedback sooner. You can continue pushing commits to the same branch.
+**Raise your PR early** — don't wait until everything is perfect. An early PR lets you run validation and test tiers in CI and get feedback sooner. You can continue pushing commits to the same branch.
 {{% /notice %}}
 
 {{< tabs groupid="persona" >}}
@@ -248,31 +320,25 @@ We support [terraform test](https://developer.hashicorp.com/terraform/language/t
 ## 7. Approve and monitor CI tests
 
 {{% notice style="note" %}}
-Only module owners can approve CI test runs. External contributors should ensure they have run `./avm pr-check` and tested locally before this step.
+Credentialed CI jobs require approval from a module owner. Unit tests do not require Azure credentials, but external contributors should still run `avm pr-check` and all applicable test tiers locally before this step.
 {{% /notice %}}
 
-Once a PR is created, CI workflows are triggered automatically but require a module owner to approve the run. A centrally managed Azure test subscription is provided — no credential configuration is needed.
+Once a PR is created, CI workflows are triggered automatically. A centrally managed Azure test subscription is provided for credentialed jobs, so contributors do not configure CI credentials themselves.
 
 ### What CI runs
 
-The `pr-check.yml` workflow runs two stages:
+The centrally managed workflow keeps validation and test tiers in separate jobs so a failure produces an actionable signal:
 
-**Linting** — static analysis including:
+- **PR validation** — runs the equivalent of `avm pr-check`: managed-file and generated-file drift checks, Terraform formatting, mapotf transformations, TFLint, Conftest policy checks, AVM convention checks, `terraform validate`, and documentation checks.
+- **Unit tests** — runs `avm test unit`.
+- **Integration tests** — runs `avm test integration` when the repository has integration tests.
+- **End-to-end tests** — discovers runnable examples and tests each example independently with the equivalent of `avm test e2e --example <name>`.
 
-- **avmfix** — formatting checks.
-- **terraform-docs** — documentation is up to date.
-- **TFLint** — AVM spec compliance.
-- **Conftest** — checks the plan for Well-Architected Framework compliance using [Conftest](https://www.conftest.dev/) and OPA.
-
-**End-to-end tests** — deploys and validates all module examples:
-
-1. Lists all examples in the `examples/` directory.
-2. Tests each example for idempotency (`terraform apply` then `terraform plan`).
-3. Destroys all resources (`terraform destroy`).
+Each e2e job deploys the example, checks idempotency with `terraform plan`, and destroys the resources. Examples containing `.e2eignore` are excluded.
 
 ### If tests fail
 
-Go back to step 3 — fix the issue, run `./avm pre-commit` again, push your changes, and the CI tests will re-run automatically on the same PR.
+Go back to step 3 — fix the issue, run `avm pre-commit` again, push your changes, and the CI tests will re-run automatically on the same PR.
 
 ### Running e2e for external contributions
 
@@ -281,7 +347,7 @@ When approving a PR from an external contributor:
 1. **Review the code for security** — check for any malicious code or changes to workflow files before running tests. If found, close the PR and report the contributor.
 2. Create a release branch from `main` (e.g. `release/<description>`).
 3. Change the PR's base branch to the release branch and merge it.
-4. Create a new PR from the release branch to `main` — this triggers pr-check and e2e tests.
+4. Create a new PR from the release branch to `main` — this triggers the validation and test jobs.
 5. Approve the run and wait for results.
 6. If tests fail, send back to the contributor to fix and repeat from step 3.
 
@@ -361,3 +427,5 @@ Continue publishing in the `v0.x.y` range (e.g., `v0.1.0`, `v0.1.1`, `v0.2.0`) u
 - Do not commit `terraform.lock.hcl` — it is excluded by `.gitignore`.
 - Update `_header.md` and `SUPPORT.md`.
 - Do not commit `terraform.tfvars` files.
+- Do not commit `.env` files created by lifecycle hooks.
+- Do not add shell (`.sh`) lifecycle hooks — see [Lifecycle hooks](#lifecycle-hooks).

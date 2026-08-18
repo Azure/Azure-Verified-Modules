@@ -25,7 +25,13 @@ Authors **MUST** only use the following Azure providers, and versions, in their 
 
 | provider              | min version | max version |
 |-----------------------|-------------|-------------|
-| Azure/azapi           | >= 2.0      | < 3.0       |
+| Azure/azapi           | >= 2.12     | < 3.0       |
+
+{{% notice style="note" %}}
+
+The AzAPI floor is `2.12` because [TFFR8]({{% siteparam base %}}/spec/TFFR8) requires every module to expose the `ignore_body_changes` argument, which was introduced in `Azure/azapi` v2.12.0. Modules pinned below that version will fail to plan because the argument is absent from the provider schema.
+
+{{% /notice %}}
 
 The AzureRM provider **MUST NOT** be used, except where the narrow exception below applies.
 
@@ -58,7 +64,7 @@ Authors **MUST** use the `required_providers` block in their module to enforce t
 The following is an example.
 
 - In it we use the [pessimistic version constraint operator](https://developer.hashicorp.com/terraform/language/expressions/version-constraints#operators) `~>`.
-- That is to say that `~> 2.9` is equivalent to `>= 2.9, < 3.0`.
+- That is to say that `~> 2.12` is equivalent to `>= 2.12, < 3.0`.
 
 ```terraform
 terraform {
@@ -66,7 +72,7 @@ terraform {
     # Include one or both providers, as needed
     azapi = {
       source  = "Azure/azapi"
-      version = "~> 2.9"
+      version = "~> 2.12"
     }
   }
 }

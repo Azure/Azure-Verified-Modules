@@ -63,18 +63,19 @@ Cardinality is the parent module's responsibility: the parent module **MUST** us
 
 This rule applies equally when a submodule is consumed through its parent module and when the same submodule is consumed directly by another caller.
 
-For example, a parent module deploying multiple `parts` calls its `part` submodule using `for_each`, cascades the matching nested slot from its own `resource_types` (see [TFFR6]({{% siteparam base %}}/spec/TFFR6) for the naming rule and nested-slot pattern), and passes `retry` and `timeouts` through unchanged (see [TFFR7]({{% siteparam base %}}/spec/TFFR7)):
+For example, a parent module deploying multiple `parts` calls its `part` submodule using `for_each`, cascades the matching nested slot from its own `resource_types` (see [TFFR6]({{% siteparam base %}}/spec/TFFR6) for the naming rule and nested-slot pattern), passes `retry` and `timeouts` through unchanged (see [TFFR7]({{% siteparam base %}}/spec/TFFR7)), and cascades the matching nested slot from its own `ignore_body_changes` (see [TFFR8]({{% siteparam base %}}/spec/TFFR8)):
 
 ```terraform
 module "part" {
   source   = "./modules/part"
   for_each = var.parts
 
-  name           = each.value.name
-  parent_id      = azapi_resource.this.id
-  resource_types = var.resource_types.example_widgets_parts
-  retry          = var.retry
-  timeouts       = var.timeouts
+  name                = each.value.name
+  parent_id           = azapi_resource.this.id
+  resource_types      = var.resource_types.example_widgets_parts
+  retry               = var.retry
+  timeouts            = var.timeouts
+  ignore_body_changes = var.ignore_body_changes.example_widgets_parts
 }
 ```
 
@@ -86,11 +87,12 @@ module "component" {
   source   = "../component"
   for_each = var.components
 
-  name           = each.value.name
-  parent_id      = azapi_resource.this.id
-  resource_types = var.resource_types.example_widgets_parts_components
-  retry          = var.retry
-  timeouts       = var.timeouts
+  name                = each.value.name
+  parent_id           = azapi_resource.this.id
+  resource_types      = var.resource_types.example_widgets_parts_components
+  retry               = var.retry
+  timeouts            = var.timeouts
+  ignore_body_changes = var.ignore_body_changes.example_widgets_parts_components
 }
 ```
 
@@ -151,6 +153,7 @@ Submodules **MUST** meet every requirement that applies to a top-level AVM Terra
   - [TFFR5]({{% siteparam base %}}/spec/TFFR5) — `replace_triggers_refs`.
   - [TFFR6]({{% siteparam base %}}/spec/TFFR6) — `resource_types` variable. Each submodule declares its own `resource_types` for the resources it owns; the parent declares a nested `optional(object({...}), {})` slot per submodule that mirrors the submodule's variable exactly, and cascades it through unchanged.
   - [TFFR7]({{% siteparam base %}}/spec/TFFR7) — `retry` and `timeouts` variables, which the parent module **MUST** cascade to each submodule unchanged.
+  - [TFFR8]({{% siteparam base %}}/spec/TFFR8) — `ignore_body_changes` variable. Each submodule declares its own for the resources it owns; the parent declares a nested `optional(object({...}), {})` slot per submodule that mirrors the submodule's variable exactly, and cascades it through unchanged. The parent's own paths **MUST NOT** be cascaded, because they are scoped to the parent's `body`.
 - All applicable [interface]({{% siteparam base %}}/specs/tf/interfaces/) specifications (managed identities, role assignments, locks, diagnostic settings, private endpoints, customer-managed keys, tags) — for any interface that is supported by the underlying ARM subresource.
 
 To avoid duplication, this specification deliberately states the requirement once: *every requirement that applies to a top-level resource module applies equally to every one of its submodules*. Where a requirement contradicts the submodule's nature (for example, a submodule that is never published independently still **MUST** include all required documentation files but is not itself listed in the registry), the requirement is interpreted in the context of the submodule.

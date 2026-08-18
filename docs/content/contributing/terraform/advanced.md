@@ -9,6 +9,15 @@ This page covers advanced scenarios and frequently asked questions that go beyon
 
 ---
 
+## Offline and air-gapped module mirroring
+
+The [offline sync utility](https://github.com/Azure/Azure-Verified-Modules/tree/main/utilities/terraform/offline-sync) mirrors AVM Terraform modules and rewrites registry dependencies as git references for offline or air-gapped environments.
+
+> [!WARNING]
+> This utility is an example for advanced users familiar with PowerShell, Git, and Terraform module management. It is provided as-is and is not supported for production use.
+
+---
+
 ## Using a custom Azure test subscription
 
 By default, CI end-to-end tests run against a centrally managed Azure subscription. If your module requires a different environment (e.g. due to quota limits or tenant-level deployments), you can override the defaults.
@@ -82,12 +91,12 @@ Create a file called `.e2eignore` in the example directory. Its contents should 
 
 ## Global test setup and teardown
 
-If your module requires setup/teardown across **all** examples, create:
+`Avm.Authoring` has no global setup or teardown hook. It does not execute or reject the legacy files:
 
-- `examples/setup.sh` — (optional) — runs before all examples.
-- `examples/teardown.sh` (optional) — runs after all examples.
+- `examples/setup.sh`
+- `examples/teardown.sh`
 
-These scripts are authorized with the same credentials as the examples.
+Move required setup and cleanup into idempotent per-example `pre.ps1` and `post.ps1` hooks. Coordinate removal of legacy global scripts with the repository's centrally managed CI workflow migration because older workflows can still invoke them.
 
 ---
 
@@ -95,16 +104,16 @@ These scripts are authorized with the same credentials as the examples.
 
 For example-specific setup/teardown:
 
-- `examples/<example_name>/pre.sh` (optional) — runs before the example.
-- `examples/<example_name>/post.sh` (optional) — runs after the example.
+- `examples/<example_name>/pre.ps1` (optional) — runs before Terraform commands for the example.
+- `examples/<example_name>/post.ps1` (optional) — always runs after the example, including after a pre-hook or initialization failure.
 
-These run in the context of the example directory, so relative paths work.
+Shell equivalents are rejected. Each PowerShell hook runs in an isolated process; see [Lifecycle hooks]({{% siteparam base %}}/contributing/terraform/contribution-flow/#lifecycle-hooks) for `.env`, path, and error-handling guidance.
 
 ---
 
-## Repository governance PRs
+## Repository synchronization PRs
 
-A weekly workflow checks repository contents creates a PR if new files or updates are available. The PR is automatically merged, so there is no action required. Module owners will be informed if there are any one off PRs that require intervention.
+[Repository sync](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/repository-sync) regularly compares each module repository with the shared [managed files](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/managed-files) and opens a PR when updates are available. These PRs are normally merged automatically. Module owners will be informed about one-off PRs that require intervention.
 
 These PRs do not change module code, so no new release is needed.
 

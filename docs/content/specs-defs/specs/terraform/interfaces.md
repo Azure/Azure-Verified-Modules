@@ -246,3 +246,28 @@ Each `resource_types` key **MUST** be the snake_case form of the ARM resource ty
 {{< highlight lineNos="false" type="terraform" wrap="true" title="Variable Declaration with Module-level Defaults" >}}
   {{% include file="/static/includes/interfaces/tf/int.timeouts.defaults.tf" %}}
 {{< /highlight >}}
+
+## AzAPI ignore_body_changes
+
+{{% notice style="important" %}}
+
+`ignore_body_changes` is a **write-only** argument that requires the `Azure/azapi` provider v2.12.0 or later, and Terraform 1.11 or later when a non-empty value is supplied. See [TFFR8]({{% siteparam base %}}/spec/TFFR8).
+
+{{% /notice %}}
+
+{{< highlight lineNos="false" type="terraform" wrap="true" title="Variable Declaration" >}}
+  {{% include file="/static/includes/interfaces/tf/int.ignore_body_changes.schema.tf" %}}
+{{< /highlight >}}
+
+{{< highlight lineNos="false" type="terraform" wrap="true" title="Input Example with Values" >}}
+  {{% include file="/static/includes/interfaces/tf/int.ignore_body_changes.input.tf" %}}
+{{< /highlight >}}
+
+**Notes:**
+
+- Unlike `retry` and `timeouts`, `ignore_body_changes` values are dot-notation paths into **one specific resource's** `body`, so the variable **MUST NOT** be cascaded to submodules unchanged. It uses the same per-resource, per-submodule shape and key-naming rule as `resource_types` (see [TFFR6]({{% siteparam base %}}/spec/TFFR6)).
+- The `ignore_body_changes` variable **MUST** be applied to every `azapi_resource` (and equivalent AzAPI resources) declared by the module, and every submodule **MUST** declare its own (see [TFFR8]({{% siteparam base %}}/spec/TFFR8) and [TFRMNFR1]({{% siteparam base %}}/spec/TFRMNFR1)).
+- The assignment **MUST** collapse an empty list to `null` so that the write-only argument is absent when the feature is unused, keeping the module usable on Terraform versions earlier than 1.11.
+- A change to `ignore_body_changes` only takes effect **after** an apply, because the value is held in provider-private state.
+- An ignored path is not merely hidden from the plan — configuration changes at that path are **not sent to Azure** until the path is removed from the list.
+- Module owners **MAY** ship module-level defaults where the resource is known to be mutated outside Terraform, by supplying the default inside the `optional(list(string), [...])` wrapper. Consumers **MUST** still be able to override any individual field.
