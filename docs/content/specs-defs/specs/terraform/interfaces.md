@@ -42,6 +42,8 @@ In the provided example for Diagnostic Settings, both logs and metrics are enabl
 **Details on child, extension and cross-referenced resources:**
 
 - Modules **MUST** support Role Assignments on child, extension and cross-referenced resources as well as the primary resource via parameters/variables
+- The `name` attribute is optional in both the top-level `role_assignments` interface and `private_endpoints[*].role_assignments`. Omitting it remains valid and backward compatible; a random UUID is generated when no name is supplied.
+- During migration, tooling **MAY** temporarily accept the older exact type declaration without the `name` attribute. New and updated modules **SHOULD** use the canonical schema, including `name = optional(string, null)`.
 
 ## Resource Locks
 
