@@ -21,7 +21,18 @@ priority: 20060
 
 ## ID: TFFR6 - Category: Inputs/Outputs - AzAPI - resource_types variable
 
-Authors **MUST NOT** hard-code the `type` argument of an `azapi_resource` (or `azapi_data_plane_resource`, `azapi_resource_action`, `azapi_update_resource`) inline.
+### Applicability
+
+TFFR6, TFFR7, and TFFR8 apply independently to each module and submodule scope. Together they require `resource_types`, `retry`, `timeouts`, and `ignore_body_changes` only when that scope directly declares at least one managed `resource` block of a supported AzAPI type:
+
+- `azapi_resource`
+- `azapi_data_plane_resource`
+- `azapi_resource_action`
+- `azapi_update_resource`
+
+A provider declaration alone, AzAPI data sources alone (including `data "azapi_client_config"` and `data "azapi_resource"`), or supported AzAPI resources declared only inside a child module do not trigger these requirements in the parent scope. Each submodule is evaluated independently and triggers when it directly declares a supported block. A `count` or `for_each` condition does not exempt a directly declared block.
+
+Within an applicable scope, authors **MUST NOT** hard-code the `type` argument of a supported AzAPI resource inline.
 
 Instead, every AzAPI resource type string used by the module **MUST** be sourced from a single object variable named `resource_types`.
 
@@ -73,7 +84,7 @@ The `resource_types` variable **MUST**:
 - Default the variable itself to `{}` so consumers only need to supply the keys they wish to override.
 - Be `nullable = false`.
 - Declare one `optional(string, "<provider>/<resource>@<api-version>")` field for every AzAPI resource the module itself declares, defaulting each to the latest API version the module has been tested against. The default **MUST** be a stable (non-preview) API version unless the module's primary resource only ships a preview API.
-- Declare one nested `optional(object({...}), {})` field for every submodule the module instantiates (see [TFRMNFR1]({{% siteparam base %}}/spec/TFRMNFR1)). The shape of the nested object **MUST** match that submodule's own `resource_types` variable exactly. The parent **MUST NOT** repeat the submodule's defaults — the inner string attributes are declared as `optional(string)` (no default) so the submodule remains the single source of truth for its own tested API versions.
+- Declare one nested `optional(object({...}), {})` field for every submodule the module instantiates that directly declares a supported AzAPI resource and therefore exposes its own `resource_types` variable (see [TFRMNFR1]({{% siteparam base %}}/spec/TFRMNFR1)). The shape of the nested object **MUST** match that submodule's own `resource_types` variable exactly. The parent **MUST NOT** repeat the submodule's defaults — the inner string attributes are declared as `optional(string)` (no default) so the submodule remains the single source of truth for its own tested API versions.
 - Document every field in the variable's `description`.
 
 ### Cascading to submodules
