@@ -21,7 +21,18 @@ priority: 20070
 
 ## ID: TFFR7 - Category: Inputs/Outputs - AzAPI - retry and timeouts variables
 
-The `retry` and `timeouts` blocks of every `azapi_resource` declared by the module **MUST** be configurable by the consumer. Authors **MUST NOT** hard-code values inline that the consumer cannot override.
+### Applicability
+
+TFFR6, TFFR7, and TFFR8 apply independently to each module and submodule scope. Together they require `resource_types`, `retry`, `timeouts`, and `ignore_body_changes` only when that scope directly declares at least one managed `resource` block of a supported AzAPI type:
+
+- `azapi_resource`
+- `azapi_data_plane_resource`
+- `azapi_resource_action`
+- `azapi_update_resource`
+
+A provider declaration alone, AzAPI data sources alone (including `data "azapi_client_config"` and `data "azapi_resource"`), or supported AzAPI resources declared only inside a child module do not trigger these requirements in the parent scope. Each submodule is evaluated independently and triggers when it directly declares a supported block. A `count` or `for_each` condition does not exempt a directly declared block.
+
+Within an applicable scope, the `retry` and `timeouts` blocks of every supported AzAPI resource **MUST** be configurable by the consumer. Authors **MUST NOT** hard-code values inline that the consumer cannot override.
 
 To meet this requirement, the module **MUST** expose two variables:
 
@@ -35,7 +46,7 @@ Both variables:
 - **MAY** define module-level defaults (e.g., a default `error_message_regex` such as `"ScopeLocked"` for resources that race with lock removal, or a default `delete = "5m"`).
 - **MUST** allow the consumer to override the defaults — either by supplying a non-`null` value at the variable level, or by allowing per-field overrides through `optional(...)` attributes.
 - **MUST** be applied to every `azapi_resource` (and equivalent AzAPI resources) declared by the module.
-- **MUST** cascade to submodules — the parent module's `retry` and `timeouts` values **MUST** be passed through to each submodule it instantiates (see [TFRMNFR1]({{% siteparam base %}}/spec/TFRMNFR1)). Submodules **MAY** additionally expose per-item overrides for cases where individual resources need different settings.
+- **MUST** cascade to applicable submodules — the parent module's `retry` and `timeouts` values **MUST** be passed through to each submodule it instantiates that directly declares a supported AzAPI resource (see [TFRMNFR1]({{% siteparam base %}}/spec/TFRMNFR1)). Submodules **MAY** additionally expose per-item overrides for cases where individual resources need different settings.
 
 ```terraform
 variable "retry" {
@@ -46,7 +57,7 @@ variable "retry" {
   })
   default     = null
   description = <<DESCRIPTION
-Retry configuration applied to every `azapi` resource managed by the module (root resource and all submodules). Defaults to `null` (no custom retry).
+Retry configuration applied to every supported AzAPI resource declared by the module and its applicable submodules. Defaults to `null` (no custom retry).
 
 - `error_message_regex`  - (Optional) A list of regex patterns matching error messages that trigger a retry.
 - `interval_seconds`     - (Optional) Initial interval between retries in seconds.
@@ -65,7 +76,7 @@ variable "timeouts" {
   })
   default     = null
   description = <<DESCRIPTION
-Default per-operation timeouts applied to every `azapi` resource managed by the module. Defaults to `null` (provider defaults). Each value is a Go duration string (e.g. `30m`, `1h`).
+Default per-operation timeouts applied to every supported AzAPI resource declared by the module and its applicable submodules. Defaults to `null` (provider defaults). Each value is a Go duration string (e.g. `30m`, `1h`).
 
 - `create` - (Optional) Timeout for create operations.
 - `read`   - (Optional) Timeout for read operations.

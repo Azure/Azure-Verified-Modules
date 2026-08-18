@@ -42,6 +42,8 @@ In the provided example for Diagnostic Settings, both logs and metrics are enabl
 **Details on child, extension and cross-referenced resources:**
 
 - Modules **MUST** support Role Assignments on child, extension and cross-referenced resources as well as the primary resource via parameters/variables
+- The `name` attribute is optional in both the top-level `role_assignments` interface and `private_endpoints[*].role_assignments`. Omitting it remains valid and backward compatible; a random UUID is generated when no name is supplied.
+- During migration, tooling **MAY** temporarily accept the older exact type declaration without the `name` attribute. New and updated modules **SHOULD** use the canonical schema, including `name = optional(string, null)`.
 
 ## Resource Locks
 
@@ -125,13 +127,56 @@ In Terraform, locks become part of the resource graph and suitable `depends_on` 
 
 ## Customer Managed Keys
 
-{{< highlight lineNos="false" type="terraform" wrap="true" title="Variable Declaration" >}}
-  {{% include file="/static/includes/interfaces/tf/int.cmk.schema.tf" %}}
-{{< /highlight >}}
+A module **MUST** implement exactly one of the two variants below. Which one applies is determined by the resource provider's API, not by module owner preference. Linting accepts either shape.
 
-{{< highlight lineNos="false" type="terraform" wrap="true" title="Input Example with Values" >}}
-  {{% include file="/static/includes/interfaces/tf/int.cmk.input.tf" %}}
-{{< /highlight >}}
+{{< tabs title="Customer Managed Keys" >}}
+{{% tab title="Variant 1: For providers that identify the encryption identity by resource ID" %}}
+
+  {{< highlight lineNos="false" type="terraform" wrap="true" title="Variable Declaration" >}}
+    {{% include file="/static/includes/interfaces/tf/int.cmk.schema1.tf" %}}
+  {{< /highlight >}}
+
+  {{< highlight lineNos="false" type="terraform" wrap="true" title="Input Example with Values" >}}
+    {{% include file="/static/includes/interfaces/tf/int.cmk.input1.tf" %}}
+  {{< /highlight >}}
+
+  {{< highlight lineNos="false" type="terraform" wrap="true" title="Module Implementation Example" >}}
+    {{% include file="/static/includes/interfaces/tf/int.cmk.usage1.tf" %}}
+  {{< /highlight >}}
+
+{{% /tab %}}
+{{% tab title="Variant 2: For providers that require the encryption identity client ID" %}}
+
+  {{< highlight lineNos="false" type="terraform" wrap="true" title="Variable Declaration" >}}
+    {{% include file="/static/includes/interfaces/tf/int.cmk.schema2.tf" %}}
+  {{< /highlight >}}
+
+  {{< highlight lineNos="false" type="terraform" wrap="true" title="Input Example with Values" >}}
+    {{% include file="/static/includes/interfaces/tf/int.cmk.input2.tf" %}}
+  {{< /highlight >}}
+
+  {{< highlight lineNos="false" type="terraform" wrap="true" title="Module Implementation Example" >}}
+    {{% include file="/static/includes/interfaces/tf/int.cmk.usage2.tf" %}}
+  {{< /highlight >}}
+
+{{% /tab %}}
+{{< /tabs >}}
+
+**Notes:**
+
+- Modules **MUST NOT** use a data source to resolve the key URI or the encryption identity's client ID.
+  - Terraform reads a data source during `plan` whenever its arguments are already known. `azurerm_key_vault_key` takes a vault resource ID and a key name, and `azurerm_user_assigned_identity` takes a name and a resource group name. Those arguments are known literals even when the key or the identity is created by the same `terraform apply`, so the read runs before the resource exists and the plan fails.
+  - A module **MAY** read the Key Vault itself by `key_vault_resource_id`, because that argument is unknown at plan time whenever the vault is created by the same apply, which defers the read to apply time.
+- Variant 1 **MUST** be used where the resource provider takes the vault URI, the key name and the key version as separate fields, and identifies the encryption identity by resource ID, such as `Microsoft.Storage/storageAccounts`.
+  - Omitting `key_version` **MUST** leave the resource provider following key rotations automatically.
+  - Where the resource provider requires a versioned key, such as `Microsoft.Compute/diskEncryptionSets`, the module **MUST** validate that `key_version` has been supplied.
+- Variant 2 **MUST** be used where the resource provider requires the encryption identity's client ID, such as `Microsoft.ContainerRegistry/registries`, because a client ID cannot be resolved from an identity resource ID without a data source.
+  - `key_vault_key_uri` carries the entire key identifier, so the consumer owns the host. The same input shape therefore works unchanged in sovereign clouds and against Managed HSM, and the module **MUST NOT** construct a DNS suffix of its own.
+  - Omitting the trailing version segment **MUST** leave the resource provider following key rotations automatically.
+  - Consumers **SHOULD** build `key_vault_key_uri` from the key resource they own, rather than from a data source, so that the value stays known at plan time.
+  - Variant 2 deliberately carries no vault resource ID and no identity resource ID. A module **MUST NOT** require either, and **MUST NOT** attempt to cross-check the identity against `managed_identities`.
+- Modules **MUST** validate that whichever identity value their resource provider requires has been supplied, and **SHOULD** do so with a `precondition` so that the error names the missing attribute.
+- Where the resource provider also requires the identity to be assigned to the primary resource, modules **MUST** document that the consumer supplies the same identity through `managed_identities.user_assigned_resource_ids`.
 
 ## Azure Monitor Alerts
 
