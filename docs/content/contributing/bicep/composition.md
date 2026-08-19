@@ -61,7 +61,7 @@ Modules enable you to reuse code from a Bicep file in other Bicep files. As such
 Make sure to review all specifications covering module properties and usage.
 
 {{% notice style="tip" %}}
-See examples in specifications [BCPFR1]({{% siteparam base %}}/spec/BCPFR1) for resource modules and [PMNFR2](/{{% siteparam base %}}/spec/PMNFR2) for pattern modules.
+See examples in specifications [BCPFR1]({{% siteparam base %}}/spec/BCPFR1) for resource modules and [PMNFR2]({{% siteparam base %}}/spec/PMNFR2) for pattern modules.
 {{% /notice %}}
 
 ### Outputs

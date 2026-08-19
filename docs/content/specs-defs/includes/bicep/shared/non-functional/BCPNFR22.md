@@ -119,6 +119,6 @@ It is possible to modify the changelog content any time, e.g., to add missing ve
 
 {{% notice style="note" %}}
 
-Azure Verified Modules are artifacts in the Microsoft Container Registry (MCR). Every version of a module exists as a tag in the Container Registry and can be listed as tags for each module [https://mcr.microsoft.com/v2/bicep/avm/(res|ptn|utl)/<namespace/modulename>/tags/list](https://mcr.microsoft.com/v2/bicep/avm/$moduleType/$moduleFolderName/tags/list)
+Azure Verified Modules are artifacts in the Microsoft Container Registry (MCR). Every version of a module exists as a tag in the Container Registry and can be listed at `https://mcr.microsoft.com/v2/bicep/avm/(res|ptn|utl)/<namespace/modulename>/tags/list`. For example, see the [FinOps hub module tags](https://mcr.microsoft.com/v2/bicep/avm/ptn/finops-toolkit/finops-hub/tags/list).
 
 {{% /notice %}}

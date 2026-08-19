@@ -5,9 +5,12 @@ description: Terraform Composition description for the Azure Verified Modules (A
 weight: 3
 ---
 
-
 {{% notice style="important" %}}
-This guide **MUST** be used in conjunction with the [Terraform specifications]({{% siteparam base %}}/specs/tf/). **ALL AVM modules** (Resource and Pattern modules) **MUST meet the respective requirements described in these specifications**!
+**AzAPI is the only supported foundation for AVM Terraform modules.** Every new resource, pattern, or utility module **MUST** be built with the [`Azure/azapi`](https://registry.terraform.io/providers/Azure/azapi/latest) provider. Do not build a new module on the AzureRM provider; an AzureRM-based module is non-compliant and will not be accepted.
+
+[TFFR3]({{% siteparam base %}}/spec/TFFR3) permits AzureRM only for a specific resource whose functionality has no AzAPI equivalent. That narrow exception never permits the module's primary resource or overall implementation to be AzureRM-based.
+
+This guide **MUST** be used in conjunction with the [Terraform specifications]({{% siteparam base %}}/specs/tf/). **All AVM modules MUST meet the applicable requirements in those specifications.**
 {{% /notice %}}
 
 ## Repositories
@@ -19,7 +22,7 @@ This repo will be created by the Module Owners and the AVM Core team collaborati
 ## Directory and File Structure
 
 Below is the directory and file structure expected for each AVM Terraform repository/module.
-See the [Terraform AVM template repository](https://github.com/Azure/terraform-azurerm-avm-template).
+See the [Terraform AVM template repository](https://github.com/Azure/terraform-azurerm-avm-template). The `azurerm` segment in this legacy repository name is not a provider choice; modules created from the template **MUST** use AzAPI.
 
 - `tests/` - (for unit tests and integration tests using Terraform test)
   - `unit/` - (.tftest.hcl files for required unit testing with Terraform test)
@@ -94,9 +97,9 @@ To meet [RMFR4]({{% siteparam base %}}/spec/RMFR4) and [RMFR5]({{% siteparam bas
 
 Please refer to the [Terraform Interfaces]({{% siteparam base %}}/specs/tf/interfaces/) page.
 
-## Required AzAPI patterns
+## Mandatory AzAPI patterns
 
-Every Terraform AVM resource module **MUST** implement the following AzAPI patterns. The cross-references point at the normative specs — this section only summarises them so that nothing here is missed during scaffolding.
+Every Terraform AVM module **MUST** be built with AzAPI, and every resource module **MUST** implement the following AzAPI patterns. The cross-references point at the normative specs — this section only summarises them so that nothing here is missed during scaffolding.
 
 | Spec | One-liner |
 | --- | --- |
@@ -117,7 +120,7 @@ The interface schema files under `static/includes/interfaces/tf/` are the canoni
 
 To meet the requirements of [SFR3]({{% siteparam base %}}/spec/SFR3) & [SFR4]({{% siteparam base %}}/spec/SFR4), we use the [modtm](https://registry.terraform.io/providers/Azure/modtm/latest) telemetry provider. This lightweight telemetry provider sends telemetry data to Azure Application Insights via a HTTP POST front end service.
 
-The `modtm` telemetry provider is included in all Terraform modules and is enabled by default through the [main.telemetry.tf](https://github.com/Azure/terraform-azurerm-avm-template/blob/main/main.telemetry.tf) file being automatically distributed from the template repo. You do not need to change this configuration.
+The `modtm` telemetry provider is included in all Terraform modules and enabled by default through `main.telemetry.tf`, which is generated and maintained by [`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring). You do not need to change this configuration.
 
 Make sure that the `modtm` provider is listed under the `required_providers` section in the module's `terraform.tf` file using the following entry. This is also validated by the linter.
 

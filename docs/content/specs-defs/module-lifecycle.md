@@ -152,7 +152,7 @@ To find all previous versions of a Bicep module, the following steps need to be 
     3. OR clone the [Bicep Public Registry repository](https://aka.ms/BRM) and run the following command in the root of the repository: `git tag -l 'avm/ptn/finops-toolkit/finops-hub/*'`. This will list all the tags that match the module's name.
 2. Identify the available versions of the module, e.g., `0.1.0`, `0.1.1`, etc.
 3. To download the content, construct and navigate to the following URL: [https://github.com/Azure/bicep-registry-modules/releases/tag/avm/ptn/finops-toolkit/finops-hub/0.1.0](https://github.com/Azure/bicep-registry-modules/releases/tag/avm/ptn/finops-toolkit/finops-hub/0.1.0)
-4. To see the content in the folder hierarchy, construct and navigate to the following URL: [https://github.com/Azure/bicep-registry-modules/tree/avm/ptn/finops-toolkit/finops-hub/0.1.0/avm/ptn/finops-toolkit/finops-hu](https://github.com/Azure/bicep-registry-modules/tree/avm/ptn/finops-toolkit/finops-hub/0.1.0/avm/ptn/finops-toolkit/finops-hu)
+4. To see the content in the folder hierarchy, construct and navigate to the following URL: [https://github.com/Azure/bicep-registry-modules/tree/avm/ptn/finops-toolkit/finops-hub/0.1.0/avm/ptn/finops-toolkit/finops-hub](https://github.com/Azure/bicep-registry-modules/tree/avm/ptn/finops-toolkit/finops-hub/0.1.0/avm/ptn/finops-toolkit/finops-hub)
 
 Terraform modules will be listed in the HashiCorp Terraform Registry indefinitely.
 

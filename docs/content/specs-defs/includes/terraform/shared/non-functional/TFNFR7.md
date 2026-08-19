@@ -21,7 +21,7 @@ priority: 21070
 
 ## ID: TFNFR7 - Category: Code Style - count & for_each Use
 
-We can use `count` and `for_each` to deploy multiple resources, but the improper use of `count` can lead to [anti pattern](https://github.com/Azure/terraform-robust-module-design/tree/main/looping_for_resources_or_modules/count_index_antipattern).
+We can use `count` and `for_each` to deploy multiple resources, but using `count` with an ordered collection can create an index anti-pattern where removing one item unexpectedly changes other resource addresses.
 
 You can use `count` to create some kind of resources under certain conditions, for example:
 

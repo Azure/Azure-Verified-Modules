@@ -13,7 +13,7 @@
       "pattern": "/shortcodes/code/"
     },
     {
-      "pattern": "/Azure-Verified-Modules/"
+      "pattern": "^(?:\\.\\.?/)+(?:spec|plan|research|data-model|quickstart|checklists/requirements|\\.specify/memory/constitution)\\.md$"
     },
     {
       "pattern": "docs/themes/hugo-theme-relearn"
@@ -23,6 +23,20 @@
     },
     {
       "pattern": "^https://aka.ms/opensource/security/"
+    }
+  ],
+  "replacementPatterns": [
+    {
+      "pattern": "\\{\\{%\\s*siteparam\\s+base\\s*%\\}\\}",
+      "replacement": "https://azure.github.io/Azure-Verified-Modules"
+    },
+    {
+      "pattern": "\\{\\{%\\s*siteparam\\s+baseURL\\s*%\\}\\}",
+      "replacement": "https://github.com/Azure/Azure-Verified-Modules/"
+    },
+    {
+      "pattern": "^/",
+      "replacement": "https://azure.github.io/"
     }
   ],
   "httpHeaders": [
