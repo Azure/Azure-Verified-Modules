@@ -22,6 +22,9 @@
       "pattern": "^https://drone.thegeeklab.de"
     },
     {
+      "pattern": "^https://github\\.com/microsoft/mcr/blob/main/teams/bicep/bicep\\.yml$"
+    },
+    {
       "pattern": "^https://aka.ms/opensource/security/"
     }
   ],
