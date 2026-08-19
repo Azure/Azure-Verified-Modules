@@ -10,6 +10,10 @@ This page is for **module owners only**. If you are an external contributor, ski
 {{% /notice %}}
 
 {{% notice style="important" %}}
+Every repository created through this process **MUST** contain an AzAPI-based module. New AzureRM-based modules are not supported and will not be accepted. The narrow [TFFR3]({{% siteparam base %}}/spec/TFFR3) exception permits AzureRM only for a specific resource with no AzAPI equivalent; it does not permit the module's primary resource or overall implementation to use AzureRM.
+{{% /notice %}}
+
+{{% notice style="important" %}}
 If this process is not followed exactly, it may result in your repository and any in-progress code being permanently deleted.
 {{% /notice %}}
 
@@ -185,4 +189,4 @@ Module owners retain day-to-day access through the `azure-verified-modules-modul
 
 ## 5. Wait for the GitHub App and repository sync
 
-After the app is installed, [repository sync](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/repository-sync) applies the shared repository configuration and [managed files](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/managed-files) to complete the setup.
+After the app is installed, [repository sync](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/repository-sync) applies the shared repository configuration and [managed files](https://github.com/Azure/azure-verified-modules-managed-files) to complete the setup.

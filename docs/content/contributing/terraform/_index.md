@@ -6,9 +6,11 @@ description: Terraform Contribution Guidance for the Azure Verified Modules (AVM
 
 
 {{% notice style="important" %}}
+**Every new AVM Terraform module MUST be built with AzAPI.** AzureRM is not a supported foundation for resource, pattern, or utility modules. The narrow [TFFR3]({{% siteparam base %}}/spec/TFFR3) exception applies only to a specific resource with no AzAPI equivalent and never permits an AzureRM-based module.
+
 While this page describes and summarizes important aspects of contributing to AVM, it only references _some_ of the shared and language specific requirements.
 
-Therefore, this contribution guide **MUST** be used in conjunction with the [Terraform specifications]({{% siteparam base %}}/specs/tf/). **ALL AVM modules** (Resource and Pattern modules) **MUST meet the respective requirements described in these specifications**!
+Therefore, this contribution guide **MUST** be used in conjunction with the [Terraform specifications]({{% siteparam base %}}/specs/tf/). **All AVM modules MUST meet the applicable requirements in those specifications.**
 {{% /notice %}}
 
 ## Summary

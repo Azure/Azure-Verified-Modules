@@ -328,7 +328,7 @@ Create the following environment secrets in the `avm-validation` GitHub environm
 
 | Secret Name | Example | Description |
 | - | - | - |
-| `VALIDATE_CLIENT_ID` | `44444444-4444-4444-4444-444444444444` | The login credentials of the deployment principal used to log into the target Azure environment to test in. The format is described [here](https://github.com/Azure/login#configure-deployment-credentials). |
+| `VALIDATE_CLIENT_ID` | `44444444-4444-4444-4444-444444444444` | The login credentials of the deployment principal used to log into the target Azure environment to test in. See the [deployment credentials format](https://github.com/Azure/login#configure-deployment-credentials). |
 | `VALIDATE_SUBSCRIPTION_ID` | `22222222-2222-2222-2222-222222222222` | Same as the `ARM_SUBSCRIPTION_ID` repository secret set up above. The ID of the subscription to test-deploy modules in. Is needed for resources that are deployed to the subscription scope. |
 | `VALIDATE_TENANT_ID` | `33333333-3333-3333-3333-333333333333` | Same as the `ARM_TENANT_ID` repository secret set up above. The tenant ID of the Azure Active Directory tenant to test-deploy modules in. Is needed for resources that are deployed to the tenant scope. |
 
@@ -361,9 +361,9 @@ Create the following environment secrets in the `avm-validation` GitHub environm
 
 Create the following environment repository secret:
 
-| Secret Name  | Example | Description |
+| Secret Name | Example | Description |
 | - | - | - |
-| `AZURE_CREDENTIALS` | `{"clientId": "44444444-4444-4444-4444-444444444444", "clientSecret": "<placeholder>", "subscriptionId": "22222222-2222-2222-2222-222222222222", "tenantId": "33333333-3333-3333-3333-333333333333" }` | The login credentials of the deployment principal used to log into the target Azure environment to test in. The format is described [here](https://github.com/Azure/login#configure-deployment-credentials). For more information, see the `[Special case: AZURE_CREDENTIALS]` note below. |
+| `AZURE_CREDENTIALS` | `{"clientId": "44444444-4444-4444-4444-444444444444", "clientSecret": "<placeholder>", "subscriptionId": "22222222-2222-2222-2222-222222222222", "tenantId": "33333333-3333-3333-3333-333333333333" }` | The login credentials of the deployment principal used to log into the target Azure environment to test in. See the [deployment credentials format](https://github.com/Azure/login#configure-deployment-credentials). For more information, see the `[Special case: AZURE_CREDENTIALS]` note below. |
 
 {{% notice style="important" title="Special case: AZURE_CREDENTIALS" %}}
 
@@ -373,7 +373,7 @@ This secret represent the service connection to Azure, and its value is a compre
 {"clientId": "<client_id>", "clientSecret": "<client_secret>", "subscriptionId": "<subscriptionId>", "tenantId": "<tenant_id>" }
 ```
 
-**Make sure you create this object as one continuous string as shown above** - using the information you collected during [Step 2](#2-configure-a-deployment-identity-in-azure). Failing to format the secret as above, causes GitHub to consider each line of the JSON object as a separate secret string. If you're interested, you can find more information about this object [here](https://github.com/Azure/login#configure-deployment-credentials).
+**Make sure you create this object as one continuous string as shown above** - using the information you collected during [Step 2](#2-configure-a-deployment-identity-in-azure). Failing to format the secret as above, causes GitHub to consider each line of the JSON object as a separate secret string. See the [deployment credentials format](https://github.com/Azure/login#configure-deployment-credentials) for more information.
 
 {{% /notice %}}
 
@@ -511,7 +511,7 @@ Dependency file (`dependencies.bicep`) guidelines:
 
   {{% notice style="tip" %}}
 
-  📜 [Example of test using purge protected Key Vault dependency](https://github.com/Azure/bicep-registry-modules/blob/main/avm/res/cognitive-services/account/tests/e2e/system-assigned-cmk-encryption/main.test.bicep#L43)
+  📜 [Example of test using purge protected Key Vault dependency](https://github.com/Azure/bicep-registry-modules/blob/main/avm/res/cognitive-services/account/tests/e2e/cmk-sami/main.test.bicep#L43)
 
   {{% /notice %}}
 
@@ -523,7 +523,7 @@ Dependency file (`dependencies.bicep`) guidelines:
 
 ### Reusable assets
 
-There are a number of additional scripts and utilities available [here](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/e2e-template-assets) that may be of use to module owners/contributors. These contain both scripts and Bicep templates that you can re-use in your test files (e.g., to deploy standadized dependencies, or to generate keys using deployment scripts).
+The [e2e template assets](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/e2e-template-assets) provide additional scripts and utilities that may be of use to module owners/contributors. These contain both scripts and Bicep templates that you can re-use in your test files (e.g., to deploy standadized dependencies, or to generate keys using deployment scripts).
 
 <u><b>Example:</b> Certificate creation script</u>
 

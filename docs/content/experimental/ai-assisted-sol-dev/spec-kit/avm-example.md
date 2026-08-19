@@ -646,7 +646,10 @@ In the Copilot chat window, you should see results, similar to this:
 {{% tab title="Terraform" %}}
 
 ```markdown
-/speckit.plan Create a detailed plan for the spec. Build with the latest version of Terraform and the latest available version of each Azure Verified Module. Use the Terraform MCP server ("io.github.hashicorp/terraform-mcp-server") to find out what's the latest version of each module - install and configure this MCP server as needed. Do NOT use the "Bicep/list_avm_metadata" MCP tool! Only include direct resource references in the Terraform solution template (root module) if no related AVM resource modules are available. If there is not an Azure Verified Module available, then use `azapi` provider resources, never use the `azurerm` provider directly. Always use module interfaces for diagnostic settings, role assignments, resource locks, tags, managed identities, private endpoints, customer manged keys, etc., always use the related "interface" built-in to each resource module when available. Do not create and reference local modules, or any other Terraform files. If a subset of the deployments fail, don't delete anything, just attempt redeploying the whole solution after fixing any bugs. Follow IaC best practices: define everything in a single root module using the standard module files of `main.tf`, `variables.tf`, `outputs.tf`, `terraform.tf`, and `terraform.tfvars`. Always build Terraform explicit dependencies to determine order of deployment for each Azure resource, only use explicit dependencies with the `depends_on` meta-argument when it's not possible to otherwise determine the order of deployment. The Azure subscription ID will always be supplied as an env var or via az cli, it must not be exposed as a variable.
+/speckit.plan Create a detailed plan for the spec. Build with the latest version of Terraform and the latest available version of each Azure Verified Module. Use the Terraform MCP server ("io.github.hashicorp/terraform-mcp-server") to find out what's the latest version of each module - install and configure this MCP server as needed. Do NOT use the "Bicep/list_avm_metadata" MCP tool!
+Only include direct resource references in the Terraform solution template (root module) if no related AVM resource modules are available. If there is not an Azure Verified Module available, then use `azapi` provider resources, never use the `azurerm` provider directly. Always use module interfaces for diagnostic settings, role assignments, resource locks, tags, managed identities, private endpoints, customer manged keys, etc., always use the related "interface" built-in to each resource module when available.
+Do not create and reference local modules, or any other Terraform files. If a subset of the deployments fail, don't delete anything, just attempt redeploying the whole solution after fixing any bugs. Follow IaC best practices: define everything in a single root module using the standard module files of `main.tf`, `variables.tf`, `outputs.tf`, `terraform.tf`, and `terraform.tfvars`.
+Always build Terraform explicit dependencies to determine order of deployment for each Azure resource, only use explicit dependencies with the `depends_on` meta-argument when it's not possible to otherwise determine the order of deployment. The Azure subscription ID will always be supplied as an env var or via az cli, it must not be exposed as a variable.
 
 The subscription ID will be provided at deployment time via environment variable or az cli, it should not be exposed as a variable in the code.
 
@@ -855,7 +858,6 @@ Click through the tabs to see the details!
 
 In the Copilot chat window, you should see something like this:
 <img src="{{%siteparam base%}}/images/experimental/sdd/tf-tasks.png" width=70% alt="Specify Bootstrap" style="margin:0 auto;padding: 0;">
-![alt text](image.png)
 {{% /tab %}}
 {{% tab title="tasks.md" %}}
 

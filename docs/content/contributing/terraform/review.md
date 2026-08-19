@@ -8,6 +8,10 @@ weight: 4
 
 The AVM module review is a critical step before an AVM Terraform module gets published to the [Terraform Registry](https://registry.terraform.io/) and made publicly available for customers, partners and wider community to consume and contribute to. It serves as a quality assurance step to ensure that the AVM Terraform module complies with the [Terraform specifications]({{% siteparam base %}}/specs/tf/) of AVM. The below process outlines the steps that both the module owner and module reviewer need to follow.
 
+{{% notice style="important" %}}
+A new module is not eligible for review or publication unless it is built with AzAPI. Reviewers **MUST** reject a module whose primary resource or overall implementation is built with AzureRM. Any individual AzureRM resource **MUST** satisfy and document the narrow [TFFR3]({{% siteparam base %}}/spec/TFFR3) exception.
+{{% /notice %}}
+
 1. The module owner completes the development of the module in their branch or fork.
 
 2. The module owner submits a pull request (PR) titled `AVM-Review-PR` and ensures that all checks are passing on that PR as that is a pre-requisite to request a review.

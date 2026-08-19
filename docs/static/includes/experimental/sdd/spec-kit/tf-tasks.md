@@ -492,7 +492,7 @@
 - [ ] T224 [US4] Run terraform apply us4.tfplan
 - [ ] T225 [US4] Verify NAT Gateway deployed with public IP
 - [ ] T226 [US4] Verify NAT Gateway associated with vm_subnet
-- [ ] T227 [US4] Test outbound internet connectivity from VM via Bastion RDP session (Invoke-WebRequest -Uri "https://www.microsoft.com" -UseBasicParsing)
+- [ ] T227 [US4] Test outbound internet connectivity from VM via Bastion RDP session (`Invoke-WebRequest -Uri "https://www.microsoft.com" -UseBasicParsing`)
 - [ ] T228 [US4] Verify VM cannot receive inbound connections from internet (remains inaccessible)
 - [ ] T229 [US4] Verify diagnostic logs from VM in Log Analytics (run query: Perf | where Computer startswith "vm-avmlegacy" | take 10)
 - [ ] T230 [US4] Verify diagnostic logs from Key Vault in Log Analytics (run query: AzureDiagnostics | where ResourceType == "VAULTS" | take 10)
@@ -587,7 +587,7 @@
 ## Dependencies Summary
 
 ### Phase Dependencies
-```
+```text
 Phase 1 (Setup)
   ↓
 Phase 2 (Foundational) [BLOCKS all user stories]

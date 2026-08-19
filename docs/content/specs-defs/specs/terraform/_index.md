@@ -17,11 +17,13 @@ Any updates to existing or new specifications for Terraform must be submitted as
 
 {{% /notice %}}
 
-## Why AVM Terraform modules favor AzAPI
+## AzAPI is mandatory for AVM Terraform modules
 
-AVM Terraform modules **MUST** use the [AzAPI](https://registry.terraform.io/providers/Azure/azapi/latest) provider. The AzureRM provider is only permitted under the narrow exception described in [TFFR3](/spec/TFFR3) (resources that have no AzAPI equivalent, e.g. some data-plane resources).
+Every AVM Terraform module — resource, pattern, or utility — **MUST** be built with the [AzAPI](https://registry.terraform.io/providers/Azure/azapi/latest) provider. New modules built on the AzureRM provider are not supported and will not be accepted into AVM.
 
-This decision is intentional and is driven by the following factors:
+The only permitted AzureRM use is for a specific resource whose functionality has no AzAPI equivalent, under the narrow exception in [TFFR3]({{% siteparam base %}}/spec/TFFR3). This exception never permits a module's primary resource or overall implementation to be AzureRM-based.
+
+This requirement is intentional and is driven by the following factors:
 
 - **Built-in retries and error handling.** AzAPI exposes first-class `retry` and `timeouts` blocks, including regex-based error matching, which lets modules handle transient failures (for example, scope locks being removed or eventual-consistency errors) deterministically and without external workarounds.
 - **Pre-flight validation.** AzAPI performs ARM API pre-flight checks at plan time, surfacing many configuration errors *before* an apply is attempted. This produces faster feedback loops and fewer partially-deployed resources.

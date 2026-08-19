@@ -64,9 +64,9 @@ winget install --id 'Hugo.Hugo.Extended'
 
 ### Other requirements
 
-- [A GitHub profile/account](https://github.com/join)
+- [A GitHub profile/account](https://docs.github.com/get-started/start-your-journey/creating-an-account-on-github)
 - A fork of the [`Azure/Azure-Verified-Modules` repo](https://aka.ms/avm/repo) into your GitHub org/account and cloned locally to your .
-  - Instructions on forking a repo and then cloning it can be found [here](https://docs.github.com/get-started/quickstart/fork-a-repo).
+  - Follow GitHub's [forking and cloning instructions](https://docs.github.com/get-started/quickstart/fork-a-repo).
 
 ## Useful Resources
 

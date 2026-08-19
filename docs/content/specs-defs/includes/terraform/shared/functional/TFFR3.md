@@ -21,6 +21,12 @@ priority: 20030
 
 ## ID: TFFR3 - Category: Providers - Permitted Versions
 
+{{% notice style="important" %}}
+
+Every AVM Terraform module — resource, pattern, or utility — **MUST** declare and use `Azure/azapi` as its foundation. A new module whose primary resource or overall implementation is built with AzureRM is non-compliant and **MUST NOT** be accepted into AVM.
+
+{{% /notice %}}
+
 Authors **MUST** only use the following Azure providers, and versions, in their modules:
 
 | provider              | min version | max version |
@@ -33,14 +39,15 @@ The AzAPI floor is `2.12` because [TFFR8]({{% siteparam base %}}/spec/TFFR8) req
 
 {{% /notice %}}
 
-The AzureRM provider **MUST NOT** be used, except where the narrow exception below applies.
+The AzureRM provider **MUST NOT** be used as a module's foundation or to implement its primary resource. It is permitted only for the individual resources covered by the narrow exception below.
 
 ### Exception — AzureRM for resources with no AzAPI equivalent
 
-An AVM Terraform module **MAY** declare the AzureRM provider **only** for resources whose functionality is genuinely unavailable through any AzAPI resource — that is, where there is no equivalent in `azapi_resource`, `azapi_data_plane_resource`, `azapi_resource_action`, or `azapi_update_resource`. In practice this is limited to a small set of edge cases, most commonly data-plane operations such as Key Vault secrets and certificates, Storage blobs, and a handful of resources whose `azurerm_*` implementation calls non-ARM APIs.
+An AVM Terraform module that is otherwise built with AzAPI **MAY** declare the AzureRM provider **only** for a specific resource whose functionality is genuinely unavailable through any AzAPI resource — that is, where there is no equivalent in `azapi_resource`, `azapi_data_plane_resource`, `azapi_resource_action`, or `azapi_update_resource`. In practice this is limited to a small set of edge cases, most commonly data-plane operations such as Key Vault secrets and certificates, Storage blobs, and a handful of resources whose `azurerm_*` implementation calls non-ARM APIs.
 
 Where this exception applies the module **MUST**:
 
+- Continue to declare and use AzAPI as its required, primary provider.
 - Pin the AzureRM provider to `~> 4.0` in `required_providers`.
 - Use AzAPI for *every* resource that has an AzAPI equivalent. AzureRM **MUST NOT** be used as a convenience alternative to AzAPI.
 - Document the exception in the module's `README.md`, listing each `azurerm_*` resource used, the data-plane / non-ARM API it wraps, why no AzAPI equivalent exists today, and the upstream AzAPI issue or PR tracking the eventual replacement.
@@ -69,7 +76,7 @@ The following is an example.
 ```terraform
 terraform {
   required_providers {
-    # Include one or both providers, as needed
+    # AzAPI is required for every AVM Terraform module.
     azapi = {
       source  = "Azure/azapi"
       version = "~> 2.12"

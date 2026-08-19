@@ -9,6 +9,8 @@ This guide covers the end-to-end contribution flow for AVM Terraform modules.
 Whether you are a **module owner** or an **external contributor**, the core workflow is the same — the key differences are called out using tabs below.
 
 {{% notice style="important" %}}
+Every new AVM Terraform module **MUST** be built with AzAPI. Do not implement a module's primary resource or overall design with AzureRM. The narrow [TFFR3]({{% siteparam base %}}/spec/TFFR3) exception applies only to a specific resource with no AzAPI equivalent; it does not permit an AzureRM-based module.
+
 This guide **MUST** be used in conjunction with the [Terraform specifications]({{% siteparam base %}}/specs/tf/). All AVM modules must meet the requirements described in those specifications.
 {{% /notice %}}
 
@@ -171,7 +173,7 @@ If the module repository does not exist yet, check the [Terraform Resource Modul
 
 ## 3. Implement your code change
 
-Before writing code, review the [Terraform specifications]({{% siteparam base %}}/specs/tf/) and [composition guidelines]({{% siteparam base %}}/contributing/terraform/composition/) to ensure your contribution complies with AVM's design principles.
+Before writing code, review the [Terraform specifications]({{% siteparam base %}}/specs/tf/) and [composition guidelines]({{% siteparam base %}}/contributing/terraform/composition/) to ensure your contribution complies with AVM's design principles. For a new module, confirm first that the design uses AzAPI throughout and does not use AzureRM as the module foundation.
 
 Once you've made your changes, stage, commit, and push them:
 
@@ -219,7 +221,7 @@ avm pre-commit
 
 For Terraform modules, this command:
 
-1. Synchronizes the centrally governed [managed files](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/managed-files), which can add, update, or remove files.
+1. Synchronizes the centrally governed [managed files](https://github.com/Azure/azure-verified-modules-managed-files), which can add, update, or remove files.
 2. Applies deterministic fixes for AVM convention rules.
 3. Runs mapotf transformations.
 4. Formats Terraform files.
