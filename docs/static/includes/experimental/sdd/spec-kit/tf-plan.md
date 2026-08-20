@@ -39,7 +39,7 @@ Deploy a legacy Windows Server 2016 business application infrastructure using Te
 - `Azure/avm-res-network-natgateway/azurerm` - NAT Gateway
 - `Azure/avm-res-operationalinsights-workspace/azurerm` - Log Analytics Workspace
 
-**Note**: Exact module names and latest versions must be verified from https://registry.terraform.io/namespaces/Azure during Phase 0 research. If no AVM module exists, use AzAPI directly; never add AzureRM.
+**Note**: Exact module names and latest versions must be verified from https://registry.terraform.io/namespaces/Azure during Phase 0 research. If no AVM module exists, use AzAPI directly. AzureRM is permitted only for a specific data-plane/non-ARM operation that AzAPI cannot implement, never for a control-plane resource.
 
 **State Backend**: Azure Storage Account (pre-existing, not managed by this Terraform)
 **State File**: `my-legacy-workload-prod.tfstate`

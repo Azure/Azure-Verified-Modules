@@ -10,7 +10,7 @@ This page is for **module owners only**. If you are an external contributor, ski
 {{% /notice %}}
 
 {{% notice style="important" %}}
-Every repository created through this process **MUST** use AzAPI for all Azure resource interactions. Do not declare or configure the AzureRM provider, and do not use `azurerm_*` resources or data sources in the root module, submodules, examples, end-to-end tests, Terraform tests, fixtures, or documentation snippets. There is no fallback exception for unsupported AzAPI operations. See [TFFR3]({{% siteparam base %}}/spec/TFFR3).
+Every repository created through this process **MUST** use AzAPI for every control-plane resource and supported data-plane operation. AzureRM is permitted only for a specific unsupported data-plane/non-ARM API operation under the narrow [TFFR3]({{% siteparam base %}}/spec/TFFR3) exception. The exception must be documented and applies only to that operation in the root module, submodules, examples, end-to-end tests, Terraform tests, fixtures, and documentation snippets.
 {{% /notice %}}
 
 {{% notice style="important" %}}

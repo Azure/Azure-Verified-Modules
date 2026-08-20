@@ -23,7 +23,7 @@ priority: 21360
 
 {{% notice style="warning" %}}
 
-This specification applies only to existing legacy modules that still use AzureRM while they are being migrated. New modules **MUST NOT** declare or configure AzureRM in module code, examples, end-to-end tests, Terraform tests, or fixtures. See [TFFR3]({{% siteparam base %}}/spec/TFFR3).
+This specification applies only to existing legacy modules that still use AzureRM while they are being migrated. It does not apply to a new module that uses AzureRM solely for the narrow unsupported data-plane/non-ARM API exception in [TFFR3]({{% siteparam base %}}/spec/TFFR3), because that exception does not permit AzureRM resource-group management.
 
 {{% /notice %}}
 

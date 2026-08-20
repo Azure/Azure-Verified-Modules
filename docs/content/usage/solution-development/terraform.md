@@ -12,8 +12,8 @@ Azure Verified Modules (AVM) for Terraform are a powerful tool that leverage the
 In this article, we will walk through the Terraform specific considerations and recommended practices on developing your solution leveraging Azure Verified Modules. We'll review some of the design features and trade-offs and include sample code to illustrate each discussion point.
 
 {{% notice style="warning" %}}
-**This is a solution-composition lab, not a template for authoring an AVM module.** Every new AVM Terraform module **MUST** use [AzAPI](https://registry.terraform.io/providers/Azure/azapi/latest) for all Azure resources it declares.
-In a new AVM module repository, do not declare or configure AzureRM, or use an `azurerm_*` resource or data source, in the root module, submodules, examples/end-to-end tests, Terraform tests, fixtures, or documentation snippets.
+**This is a solution-composition lab, not a template for authoring an AVM module.** Every new AVM Terraform module **MUST** use [AzAPI](https://registry.terraform.io/providers/Azure/azapi/latest) for every control-plane resource and supported data-plane operation it declares.
+In a new AVM module repository, AzureRM is permitted only for a specific documented data-plane/non-ARM operation that AzAPI cannot implement. It must not be used for control-plane resources in the root module, submodules, examples/end-to-end tests, Terraform tests, fixtures, or documentation snippets.
 A solution root may configure AzureRM only when a currently published AVM dependency requires it; direct supporting Azure resources must still use AzAPI.
 Current modules expose `parent_id` instead of `resource_group_name` (per [TFRMFR1]({{% siteparam base %}}/spec/TFRMFR1)), name their primary resource `this` (per [TFRMNFR2]({{% siteparam base %}}/spec/TFRMNFR2)), and source the AzAPI resource type from `var.resource_types` (per [TFFR6]({{% siteparam base %}}/spec/TFFR6)).
 For a concise current example, use the [Terraform quickstart]({{% siteparam base %}}/usage/quickstart/terraform/) and follow [TFFR3]({{% siteparam base %}}/spec/TFFR3).
