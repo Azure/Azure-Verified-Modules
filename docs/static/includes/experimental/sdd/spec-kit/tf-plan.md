@@ -23,10 +23,12 @@ Deploy a legacy Windows Server 2016 business application infrastructure using Te
 **Infrastructure Language**: Terraform >= 1.9.0 (latest stable as of 2026-02-18)
 
 **Required Providers**:
-- `hashicorp/azurerm` ~> 4.0 (latest major version with AVM compatibility)
+- `Azure/azapi` ~> 2.12 (required for all direct Azure resource interactions)
+- `hashicorp/azurerm` ~> 4.0 (required transitively by currently published AVM modules)
 - `hashicorp/random` ~> 3.6 (for random_password and random_string resources)
 
 **AVM Modules** (versions to be verified from Terraform Registry during Phase 0):
+- `Azure/avm-res-resources-resourcegroup/azurerm` - Resource group
 - `Azure/avm-res-network-virtualnetwork/azurerm` - VNet with 3 subnets
 - `Azure/avm-res-network-networksecuritygroup/azurerm` - NSGs for each subnet
 - `Azure/avm-res-compute-virtualmachine/azurerm` - Windows Server 2016 VM
@@ -36,9 +38,8 @@ Deploy a legacy Windows Server 2016 business application infrastructure using Te
 - `Azure/avm-res-network-privateendpoint/azurerm` - Private endpoint (if not included in storage module)
 - `Azure/avm-res-network-natgateway/azurerm` - NAT Gateway
 - `Azure/avm-res-operationalinsights-workspace/azurerm` - Log Analytics Workspace
-- `Azure/avm-res-insights-metricgroup/azurerm` or similar - Metric alerts (module name TBD)
 
-**Note**: AVM for Terraform modules use naming convention `Azure/avm-res-{service}-{resource}/azurerm`. Exact module names and latest versions must be verified from https://registry.terraform.io/namespaces/Azure during Phase 0 research.
+**Note**: Exact module names and latest versions must be verified from https://registry.terraform.io/namespaces/Azure during Phase 0 research. If no AVM module exists, use AzAPI directly. AzureRM is permitted only for a specific data-plane/non-ARM operation that AzAPI cannot implement, never for a control-plane resource.
 
 **State Backend**: Azure Storage Account (pre-existing, not managed by this Terraform)
 **State File**: `my-legacy-workload-prod.tfstate`
@@ -63,7 +64,7 @@ Based on `.specify/memory/constitution.md` version 1.0.0:
 - [x] **Principle II**: All modules sourced from Azure Verified Modules (AVM) Terraform Registry (`Azure/avm-*`)
   - Zero custom/third-party modules
   - All resources use official AVM modules where available
-  - Built-in azurerm resources only for resource group and random resources (no AVM module available)
+  - Direct Azure resources use AzAPI only when no AVM module is available
 
 - [x] **Principle III**: Security requirements met:
   - [x] VM managed identity (system-assigned) configured via AVM module interface
@@ -71,7 +72,7 @@ Based on `.specify/memory/constitution.md` version 1.0.0:
   - [x] NSGs with deny-by-default rules, explicit allow for RDP from Bastion only
   - [x] Diagnostic settings enabled via AVM module diagnostic_settings interface
   - [x] Encryption at rest (default Microsoft-managed keys)
-  - [x] Resource locks via AVM module lock interface (not direct azurerm_management_lock)
+  - [x] Resource locks via AVM module lock interface
   - [x] No secrets in .tf or .tfvars files (password generated at runtime, stored in Key Vault)
 
 - [x] **Principle IV**: Single root module pattern (all resources in terraform/ directory root)
@@ -162,9 +163,9 @@ docs/
 **Method**: Check https://developer.hashicorp.com/terraform/downloads or run `terraform version`
 **Outputs**: Exact Terraform version constraint for terraform.tf
 
-#### Task 2: Verify Azure RM Provider Version
-**Research**: Confirm azurerm provider version ~> 4.0 compatible with AVM modules
-**Method**: Check https://registry.terraform.io/providers/hashicorp/azurerm/latest and AVM module documentation
+#### Task 2: Verify AzAPI Provider Version
+**Research**: Confirm the latest AzAPI 2.x provider version compatible with AVM requirements
+**Method**: Check https://registry.terraform.io/providers/Azure/azapi/latest and AVM module documentation
 **Outputs**: Exact provider version constraint
 
 #### Task 3: Research AVM Module Availability and Versions
@@ -244,8 +245,8 @@ docs/
 **Outputs**: Document diagnostic_settings input schema in research.md
 
 #### Task 8: Research Alerting Approach
-**Research**: AVM modules or direct resources for metric alerts (VM stopped, disk >90%, Key Vault access failures)
-**Method**: Check for AVM alerting/monitoring modules or plan to use azurerm_monitor_metric_alert directly
+**Research**: AVM modules or direct AzAPI resources for metric alerts (VM stopped, disk >90%, Key Vault access failures)
+**Method**: Check for AVM alerting/monitoring modules; if none exists, use AzAPI `Microsoft.Insights/metricAlerts`
 **Outputs**: Decision documented in research.md
 
 ### Research Consolidation
@@ -754,7 +755,7 @@ This updates .github/copilot-instructions.md or similar with:
 
 ```hcl
 # Terraform and Provider Configuration
-# Constitution Principle I & V: Use latest stable Terraform and Azure provider
+# Constitution Principle I & V: Use latest stable Terraform and AzAPI provider
 
 terraform {
   required_version = ">= 1.9.0"
@@ -763,6 +764,10 @@ terraform {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = "~> 4.0"
+    }
+    azapi = {
+      source  = "Azure/azapi"
+      version = "~> 2.12"
     }
     random = {
       source  = "hashicorp/random"
@@ -781,16 +786,12 @@ terraform {
   }
 }
 
+provider "azapi" {
+  enable_preflight = true
+}
+
 provider "azurerm" {
-  features {
-    resource_group {
-      prevent_deletion_if_contains_resources = true
-    }
-    key_vault {
-      purge_soft_delete_on_destroy = false
-      recover_soft_deleted_key_vaults = true
-    }
-  }
+  features {}
 }
 
 provider "random" {}
@@ -1051,22 +1052,17 @@ resource "random_password" "vm_admin_password" {
 # Constitution IC-005: Single resource group for all resources
 #############################################################################
 
-resource "azurerm_resource_group" "main" {
+module "resource_group" {
+  source  = "Azure/avm-res-resources-resourcegroup/azurerm"
+  version = "~> 0.2"
+
   name     = local.resource_group_name
   location = var.location
   tags     = local.common_tags
-
-  lifecycle {
-    prevent_destroy = false  # Set to true for production safety
+  lock = {
+    kind = "CanNotDelete"
+    name = "rg-lock-do-not-delete"
   }
-}
-
-# Resource Group Lock - Constitution SEC-011
-resource "azurerm_management_lock" "resource_group" {
-  name       = "rg-lock-do-not-delete"
-  scope      = azurerm_resource_group.main.id
-  lock_level = "CanNotDelete"
-  notes      = "Prevents accidental deletion of legacy workload infrastructure"
 }
 
 #############################################################################
@@ -1080,7 +1076,7 @@ module "log_analytics" {
   version = "~> 0.1.0"  # VERIFY LATEST VERSION from Terraform Registry
 
   name                = local.law_name
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = module.resource_group.name
   location            = var.location
 
   # Per clarification: 180-day retention
@@ -1108,24 +1104,26 @@ module "virtual_network" {
   version = "~> 0.1.0"  # VERIFY LATEST VERSION
 
   name                = local.vnet_name
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = module.resource_group.name
   location            = var.location
   address_space       = var.vnet_address_space
 
   # Define 3 subnets per spec FR-007
   subnets = {
     vm_subnet = {
-      name             = local.vm_subnet_name
-      address_prefixes = [var.vm_subnet_cidr]
-      # NSG association (if supported by module) or separate azurerm_subnet_network_security_group_association
+      name                               = local.vm_subnet_name
+      address_prefixes                   = [var.vm_subnet_cidr]
+      network_security_group_resource_id = module.vm_nsg.resource_id
     }
     bastion_subnet = {
-      name             = local.bastion_subnet_name  # Must be exact name per Azure requirement
-      address_prefixes = [var.bastion_subnet_cidr]
+      name                               = local.bastion_subnet_name  # Must be exact name per Azure requirement
+      address_prefixes                   = [var.bastion_subnet_cidr]
+      network_security_group_resource_id = module.bastion_nsg.resource_id
     }
     private_endpoint_subnet = {
-      name             = local.private_endpoint_subnet_name
-      address_prefixes = [var.private_endpoint_subnet_cidr]
+      name                               = local.private_endpoint_subnet_name
+      address_prefixes                   = [var.private_endpoint_subnet_cidr]
+      network_security_group_resource_id = module.private_endpoint_nsg.resource_id
       # Per spec IC-009: Disable network policies for private endpoints
       private_endpoint_network_policies_enabled = false
     }
@@ -1161,7 +1159,7 @@ module "vm_nsg" {
   version = "~> 0.1.0"  # VERIFY LATEST VERSION
 
   name                = local.vm_nsg_name
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = module.resource_group.name
   location            = var.location
 
   # Spec FR-009: Allow RDP from Bastion subnet only
@@ -1208,7 +1206,7 @@ module "bastion_nsg" {
   version = "~> 0.1.0"
 
   name                = local.bastion_nsg_name
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = module.resource_group.name
   location            = var.location
 
   # Bastion NSG rules per Azure Bastion requirements
@@ -1280,7 +1278,7 @@ module "private_endpoint_nsg" {
   version = "~> 0.1.0"
 
   name                = local.private_endpoint_nsg_name
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = module.resource_group.name
   location            = var.location
 
   # Spec SEC-007: Allow SMB from VM subnet
@@ -1321,22 +1319,6 @@ module "private_endpoint_nsg" {
   }
 }
 
-# NSG Associations (if not handled by VNet module)
-resource "azurerm_subnet_network_security_group_association" "vm_subnet" {
-  subnet_id                 = module.virtual_network.subnets["vm_subnet"].id
-  network_security_group_id = module.vm_nsg.resource_id
-}
-
-resource "azurerm_subnet_network_security_group_association" "bastion_subnet" {
-  subnet_id                 = module.virtual_network.subnets["bastion_subnet"].id
-  network_security_group_id = module.bastion_nsg.resource_id
-}
-
-resource "azurerm_subnet_network_security_group_association" "private_endpoint_subnet" {
-  subnet_id                 = module.virtual_network.subnets["private_endpoint_subnet"].id
-  network_security_group_id = module.private_endpoint_nsg.resource_id
-}
-
 #############################################################################
 # NAT Gateway
 # Spec FR-012: NAT Gateway for outbound internet access
@@ -1347,7 +1329,7 @@ module "nat_gateway" {
   version = "~> 0.1.0"  # VERIFY LATEST VERSION
 
   name                = local.nat_gateway_name
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = module.resource_group.name
   location            = var.location
 
   # Public IP for outbound traffic
@@ -1374,15 +1356,17 @@ module "nat_gateway" {
 # Constitution SEC-002: Store secrets in Key Vault
 #############################################################################
 
+data "azapi_client_config" "current" {}
+
 module "key_vault" {
   source  = "Azure/avm-res-keyvault-vault/azurerm"
   version = "~> 0.1.0"  # VERIFY LATEST VERSION
 
   name                = local.key_vault_name
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = module.resource_group.name
   location            = var.location
 
-  tenant_id                  = data.azurerm_client_config.current.tenant_id
+  tenant_id                  = data.azapi_client_config.current.tenant_id
   sku_name                   = "standard"
   soft_delete_retention_days = 90
   purge_protection_enabled   = true  # Per spec SEC-012
@@ -1416,17 +1400,14 @@ module "key_vault" {
     name = "kv-lock-do-not-delete"
   }
 
+  role_assignments = {
+    deployment_identity_secrets_officer = {
+      role_definition_id_or_name = "Key Vault Secrets Officer"
+      principal_id               = data.azapi_client_config.current.object_id
+    }
+  }
+
   depends_on = [random_password.vm_admin_password]
-}
-
-# Grant current deployment identity access to Key Vault for deployment
-# (If using RBAC, assign Key Vault Secrets Officer or similar role)
-data "azurerm_client_config" "current" {}
-
-resource "azurerm_role_assignment" "kv_secrets_deployment" {
-  scope                = module.key_vault.resource_id
-  role_definition_name = "Key Vault Secrets Officer"
-  principal_id         = data.azurerm_client_config.current.object_id
 }
 
 #############################################################################
@@ -1440,7 +1421,7 @@ module "storage_account" {
   version = "~> 0.1.0"  # VERIFY LATEST VERSION
 
   name                = local.storage_account_name
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = module.resource_group.name
   location            = var.location
 
   account_kind             = "StorageV2"
@@ -1501,7 +1482,7 @@ module "bastion" {
   version = "~> 0.1.0"  # VERIFY LATEST VERSION
 
   name                = local.bastion_name
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = module.resource_group.name
   location            = var.location
 
   # Bastion subnet (must be exact name "AzureBastionSubnet")
@@ -1532,7 +1513,7 @@ module "virtual_machine" {
   version = "~> 0.1.0"  # VERIFY LATEST VERSION
 
   name                = local.vm_name  # Truncated to 15 chars
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = module.resource_group.name
   location            = var.location
 
   # Per spec FR-004: Computer name (NetBIOS) ≤15 chars
@@ -1616,10 +1597,7 @@ module "virtual_machine" {
     name = "vm-lock-do-not-delete"
   }
 
-  depends_on = [
-    module.key_vault,
-    azurerm_role_assignment.kv_secrets_deployment
-  ]
+  depends_on = [module.key_vault]
 }
 
 #############################################################################
@@ -1628,102 +1606,142 @@ module "virtual_machine" {
 #############################################################################
 
 # Action Group for Alert Notifications
-resource "azurerm_monitor_action_group" "main" {
-  name                = local.action_group_name
-  resource_group_name = azurerm_resource_group.main.name
-  short_name          = "avmalerts"
-
-  email_receiver {
-    name          = "admin-email"
-    email_address = var.alert_action_group_email
-  }
-
-  tags = local.common_tags
-}
-
-# Alert 1: VM Stopped/Deallocated
-resource "azurerm_monitor_metric_alert" "vm_stopped" {
-  name                = "alert-vm-stopped-${local.vm_name}"
-  resource_group_name = azurerm_resource_group.main.name
-  scopes              = [module.virtual_machine.resource_id]
-  description         = "Alert when VM is stopped or deallocated"
-  severity            = 0  # Critical
-
-  criteria {
-    metric_namespace = "Microsoft.Compute/virtualMachines"
-    metric_name      = "VmAvailabilityMetric"  # Or "Percentage CPU" = 0 for extended period
-    aggregation      = "Average"
-    operator         = "LessThan"
-    threshold        = 1  # VM unavailable
-  }
-
-  frequency   = "PT5M"
-  window_size = "PT5M"
-
-  action {
-    action_group_id = azurerm_monitor_action_group.main.id
-  }
-
-  tags = local.common_tags
-}
-
-# Alert 2: VM Disk Usage >90%
-resource "azurerm_monitor_metric_alert" "vm_disk_usage" {
-  name                = "alert-vm-disk-usage-${local.vm_name}"
-  resource_group_name = azurerm_resource_group.main.name
-  scopes              = [module.virtual_machine.resource_id]
-  description         = "Alert when VM disk usage exceeds 90%"
-  severity            = 0  # Critical
-
-  criteria {
-    metric_namespace = "Microsoft.Compute/virtualMachines"
-    metric_name      = "OS Disk Used Percent"  # May need custom metric or Log Analytics query
-    aggregation      = "Average"
-    operator         = "GreaterThan"
-    threshold        = 90
-  }
-
-  frequency   = "PT15M"
-  window_size = "PT15M"
-
-  action {
-    action_group_id = azurerm_monitor_action_group.main.id
-  }
-
-  tags = local.common_tags
-}
-
-# Alert 3: Key Vault Access Failures
-resource "azurerm_monitor_metric_alert" "kv_access_failures" {
-  name                = "alert-kv-access-failures-${local.key_vault_name}"
-  resource_group_name = azurerm_resource_group.main.name
-  scopes              = [module.key_vault.resource_id]
-  description         = "Alert when Key Vault access failures occur"
-  severity            = 0  # Critical
-
-  criteria {
-    metric_namespace = "Microsoft.KeyVault/vaults"
-    metric_name      = "ServiceApiResult"
-    aggregation      = "Count"
-    operator         = "GreaterThan"
-    threshold        = 0
-
-    # Filter for failed requests
-    dimension {
-      name     = "StatusCode"
-      operator = "Include"
-      values   = ["403"]  # Forbidden/access denied
+resource "azapi_resource" "action_group" {
+  type      = "Microsoft.Insights/actionGroups@2023-01-01"
+  name      = local.action_group_name
+  parent_id = module.resource_group.resource_id
+  location  = "global"
+  tags      = local.common_tags
+  body = {
+    properties = {
+      enabled        = true
+      groupShortName = "avmalerts"
+      emailReceivers = [
+        {
+          name                 = "admin-email"
+          emailAddress         = var.alert_action_group_email
+          useCommonAlertSchema = true
+        }
+      ]
     }
   }
 
-  frequency   = "PT5M"
-  window_size = "PT5M"
+  response_export_values = []
+}
 
-  action {
-    action_group_id = azurerm_monitor_action_group.main.id
+# Alert 1: VM Stopped/Deallocated
+resource "azapi_resource" "vm_stopped_metric_alert" {
+  type      = "Microsoft.Insights/metricAlerts@2018-03-01"
+  name      = "alert-vm-stopped-${local.vm_name}"
+  parent_id = module.resource_group.resource_id
+  location  = "global"
+  tags      = local.common_tags
+  body = {
+    properties = {
+      description         = "Alert when VM is stopped or deallocated"
+      severity            = 0
+      enabled             = true
+      scopes              = [module.virtual_machine.resource_id]
+      evaluationFrequency = "PT5M"
+      windowSize          = "PT5M"
+      criteria = {
+        "odata.type" = "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
+        allOf = [
+          {
+            name             = "vm_availability"
+            criterionType    = "StaticThresholdCriterion"
+            metricNamespace  = "Microsoft.Compute/virtualMachines"
+            metricName       = "VmAvailabilityMetric"
+            operator         = "LessThan"
+            threshold        = 1
+            timeAggregation  = "Average"
+          }
+        ]
+      }
+      actions = [{ actionGroupId = azapi_resource.action_group.id }]
+    }
   }
 
-  tags = local.common_tags
+  response_export_values = []
+}
+
+# Alert 2: VM Disk Usage >90%
+resource "azapi_resource" "vm_disk_usage_metric_alert" {
+  type      = "Microsoft.Insights/metricAlerts@2018-03-01"
+  name      = "alert-vm-disk-usage-${local.vm_name}"
+  parent_id = module.resource_group.resource_id
+  location  = "global"
+  tags      = local.common_tags
+  body = {
+    properties = {
+      description         = "Alert when VM disk usage exceeds 90%"
+      severity            = 0
+      enabled             = true
+      scopes              = [module.virtual_machine.resource_id]
+      evaluationFrequency = "PT15M"
+      windowSize          = "PT15M"
+      criteria = {
+        "odata.type" = "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
+        allOf = [
+          {
+            name             = "vm_disk_usage"
+            criterionType    = "StaticThresholdCriterion"
+            metricNamespace  = "Microsoft.Compute/virtualMachines"
+            metricName       = "OS Disk Used Percent"
+            operator         = "GreaterThan"
+            threshold        = 90
+            timeAggregation  = "Average"
+          }
+        ]
+      }
+      actions = [{ actionGroupId = azapi_resource.action_group.id }]
+    }
+  }
+
+  response_export_values = []
+}
+
+# Alert 3: Key Vault Access Failures
+resource "azapi_resource" "key_vault_access_failures_metric_alert" {
+  type      = "Microsoft.Insights/metricAlerts@2018-03-01"
+  name      = "alert-kv-access-failures-${local.key_vault_name}"
+  parent_id = module.resource_group.resource_id
+  location  = "global"
+  tags      = local.common_tags
+  body = {
+    properties = {
+      description         = "Alert when Key Vault access failures occur"
+      severity            = 0
+      enabled             = true
+      scopes              = [module.key_vault.resource_id]
+      evaluationFrequency = "PT5M"
+      windowSize          = "PT5M"
+      criteria = {
+        "odata.type" = "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
+        allOf = [
+          {
+            name            = "key_vault_access_failures"
+            criterionType   = "StaticThresholdCriterion"
+            metricNamespace = "Microsoft.KeyVault/vaults"
+            metricName      = "ServiceApiResult"
+            operator        = "GreaterThan"
+            threshold       = 0
+            timeAggregation = "Count"
+            dimensions = [
+              {
+                name     = "StatusCode"
+                operator = "Include"
+                values   = ["403"]
+              }
+            ]
+          }
+        ]
+      }
+      actions = [{ actionGroupId = azapi_resource.action_group.id }]
+    }
+  }
+
+  response_export_values = []
 }
 
 #############################################################################
@@ -1740,12 +1758,12 @@ resource "azurerm_monitor_metric_alert" "kv_access_failures" {
 
 output "resource_group_name" {
   description = "Name of the resource group containing all resources"
-  value       = azurerm_resource_group.main.name
+  value       = module.resource_group.name
 }
 
 output "resource_group_id" {
   description = "ID of the resource group"
-  value       = azurerm_resource_group.main.id
+  value       = module.resource_group.resource_id
 }
 
 output "virtual_network_name" {
@@ -2020,5 +2038,3 @@ Implementation plan complete with:
 1. Execute Phase 0 research to verify exact AVM module versions from Terraform Registry
 2. Run `/speckit.tasks` to generate detailed task breakdown for implementation
 3. Begin implementation with terraform init and validation workflow
-
-

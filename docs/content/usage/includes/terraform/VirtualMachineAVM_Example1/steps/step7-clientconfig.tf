@@ -1,1 +1,1 @@
-data "azurerm_client_config" "this" {}
+data "azapi_client_config" "this" {}

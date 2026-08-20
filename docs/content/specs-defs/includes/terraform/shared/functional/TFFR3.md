@@ -23,15 +23,16 @@ priority: 20030
 
 {{% notice style="important" %}}
 
-Every AVM Terraform module — resource, pattern, or utility — **MUST** declare and use `Azure/azapi` as its foundation. A new module whose primary resource or overall implementation is built with AzureRM is non-compliant and **MUST NOT** be accepted into AVM.
+Every new AVM Terraform module — resource, pattern, or utility — **MUST** use `Azure/azapi` for every Azure control-plane resource and every data-plane operation supported by AzAPI. The AzureRM provider is permitted only for the unsupported data-plane/non-ARM API exception defined below.
 
 {{% /notice %}}
 
 Authors **MUST** only use the following Azure providers, and versions, in their modules:
 
-| provider              | min version | max version |
-|-----------------------|-------------|-------------|
-| Azure/azapi           | >= 2.12     | < 3.0       |
+| provider | min version | max version | permitted use |
+| --- | --- | --- | --- |
+| Azure/azapi | >= 2.12 | < 3.0 | All Azure control-plane resources and supported data-plane operations |
+| hashicorp/azurerm | >= 4.0 | < 5.0 | Only a specific unsupported data-plane/non-ARM API operation under the exception below |
 
 {{% notice style="note" %}}
 
@@ -39,20 +40,28 @@ The AzAPI floor is `2.12` because [TFFR8]({{% siteparam base %}}/spec/TFFR8) req
 
 {{% /notice %}}
 
-The AzureRM provider **MUST NOT** be used as a module's foundation or to implement its primary resource. It is permitted only for the individual resources covered by the narrow exception below.
+This prohibition applies to every Terraform configuration shipped with the module, including:
 
-### Exception — AzureRM for resources with no AzAPI equivalent
+- The root module and all submodules.
+- Every configuration under `examples/`, including examples executed as end-to-end tests.
+- Terraform tests, test fixtures, and supporting setup configurations.
+- Terraform snippets in `_header.md`, `_footer.md`, generated documentation, and other repository documentation.
 
-An AVM Terraform module that is otherwise built with AzAPI **MAY** declare the AzureRM provider **only** for a specific resource whose functionality is genuinely unavailable through any AzAPI resource — that is, where there is no equivalent in `azapi_resource`, `azapi_data_plane_resource`, `azapi_resource_action`, or `azapi_update_resource`. In practice this is limited to a small set of edge cases, most commonly data-plane operations such as Key Vault secrets and certificates, Storage blobs, and a handful of resources whose `azurerm_*` implementation calls non-ARM APIs.
+Supporting control-plane resources needed by an example, end-to-end test, or fixture **MUST** use AzAPI. AzureRM **MUST NOT** be used for resource groups, role assignments, monitoring resources, networking, or any other ARM control-plane resource.
 
-Where this exception applies the module **MUST**:
+### Exception — unsupported data-plane/non-ARM API operations
 
-- Continue to declare and use AzAPI as its required, primary provider.
+An AVM Terraform module that is otherwise built with AzAPI **MAY** declare the AzureRM provider only for a specific data-plane or non-ARM API operation whose functionality is genuinely unavailable through `azapi_data_plane_resource`, `azapi_resource`, `azapi_resource_action`, or `azapi_update_resource`. This exception is intended for isolated operations such as a data-plane resource whose AzureRM implementation calls a service endpoint rather than Azure Resource Manager. It is not a general fallback for a missing or inconvenient AzAPI schema. Every `azurerm_*` block **MUST** independently satisfy this exception; one permitted block does not authorize any other AzureRM use.
+
+Where this exception applies, the module **MUST**:
+
+- Continue to declare and use AzAPI as its required, primary Azure provider.
+- Scope every `azurerm_*` resource or data source to the exact unsupported data-plane/non-ARM operation.
 - Pin the AzureRM provider to `~> 4.0` in `required_providers`.
-- Use AzAPI for *every* resource that has an AzAPI equivalent. AzureRM **MUST NOT** be used as a convenience alternative to AzAPI.
-- Document the exception in the module's `README.md`, listing each `azurerm_*` resource used, the data-plane / non-ARM API it wraps, why no AzAPI equivalent exists today, and the upstream AzAPI issue or PR tracking the eventual replacement.
-- Replace each `azurerm_*` resource with its AzAPI equivalent as soon as one becomes available, in the next module release after the AzAPI capability ships.
-- Add the following TFLint exclusion (only required because the AzureRM provider is otherwise blocked by AVM tooling):
+- Use AzAPI for every control-plane resource and every data-plane operation that AzAPI supports.
+- Document the exception in the module's `README.md`, including each `azurerm_*` block, the data-plane/non-ARM API it wraps, why AzAPI cannot implement it, and the upstream AzAPI issue or pull request tracking support.
+- Replace the `azurerm_*` block with AzAPI in the next module release after the required capability ships.
+- Add the following TFLint exclusion:
 
   ```hcl
   rule "provider_azurerm_disallowed" {
@@ -60,11 +69,16 @@ Where this exception applies the module **MUST**:
   }
   ```
 
+Examples, end-to-end tests, Terraform tests, fixtures, and documentation snippets **MAY** configure or exercise AzureRM only when required by that exact permitted data-plane operation. All supporting control-plane resources in those surfaces **MUST** use AzAPI.
+
 This exception **MUST NOT** be used to:
 
-- Avoid migrating an existing AzureRM resource that *does* have an AzAPI equivalent.
-- Reduce author effort where the AzAPI body schema is more verbose than the AzureRM resource.
-- Side-step any other AzAPI-specific spec (for example [TFFR4]({{% siteparam base %}}/spec/TFFR4), [TFFR5]({{% siteparam base %}}/spec/TFFR5), [TFFR6]({{% siteparam base %}}/spec/TFFR6), or [TFFR7]({{% siteparam base %}}/spec/TFFR7)) — those rules continue to apply to every AzAPI resource the module declares, regardless of whether the module also uses AzureRM under this exception.
+- Implement any ARM control-plane resource.
+- Avoid AzAPI because its body schema is more verbose or less convenient.
+- Avoid raising an AzAPI capability gap for an unsupported control-plane operation.
+- Side-step any AzAPI-specific specification that applies to the module's AzAPI resources.
+
+The `azurerm` remote state backend and the final segment of a published Terraform Registry module address, such as `/azurerm` in an existing AVM module source, are names and are not provider declarations. They **MAY** appear where required for state storage or to reference an existing published AVM module. A dependency's provider implementation is governed by that dependency's own repository; its Registry address does not by itself justify a direct `hashicorp/azurerm` declaration or `azurerm_*` block in the consuming module repository. Any such direct use **MUST** independently satisfy the data-plane exception above.
 
 Authors **MUST** use the `required_providers` block in their module to enforce the provider versions.
 

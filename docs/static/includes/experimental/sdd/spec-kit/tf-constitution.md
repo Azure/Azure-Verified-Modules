@@ -42,7 +42,7 @@ Every Azure resource MUST be defined as Infrastructure-as-Code in Terraform conf
 **Requirements**:
 - All Azure resources declared in Terraform `.tf` files in project root or modules
 - Single root module paradigm - let Terraform manage orchestration and dependencies via implicit resource references
-- Custom scripts require explicit justification documenting why Terraform AzureRM provider cannot solve the need
+- Custom scripts require explicit justification documenting why neither an AVM module nor AzAPI can solve the need; AzureRM is not a fallback
 - All infrastructure changes tracked in version control
 - Terraform state stored remotely in Azure Storage Account with state locking enabled (blob container + lease)
 - Use Terraform workspaces or separate state files for environment separation (dev, prod)
@@ -188,7 +188,10 @@ locals {
   resource_group_name  = "rg-${local.workload_name}-${local.location_abbr}"
 }
 
-resource "azurerm_resource_group" "main" {
+module "resource_group" {
+  source  = "Azure/avm-res-resources-resourcegroup/azurerm"
+  version = "~> 0.2"
+
   name     = local.resource_group_name
   location = "westus3"
 }

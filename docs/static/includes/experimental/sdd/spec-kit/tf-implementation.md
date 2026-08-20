@@ -19,7 +19,7 @@
 - [ ] CHK001 - Are AVM module references specified for all required Azure resources? [Completeness, Spec Infrastructure Requirements]
 - [ ] CHK002 - Are resource naming requirements defined with specific patterns and constraints? [Completeness, Spec IC-003, IC-010]
 - [ ] CHK003 - Are all resource configuration requirements specified (SKUs, tiers, capacity)? [Completeness, Spec FR-001 through FR-025]
-- [ ] CHK004 - Are provider version constraints documented for azurerm and random providers? [Completeness, Plan Technical Context]
+- [ ] CHK004 - Are provider version constraints documented for AzAPI, published AVM dependencies, and random, with direct AzureRM resources explicitly excluded? [Completeness, Plan Technical Context]
 - [ ] CHK005 - Are all 12 Azure resources accounted for in both spec and plan? [Completeness, Cross-reference]
 
 ### Terraform-Specific Requirements

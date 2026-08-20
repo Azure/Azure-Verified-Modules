@@ -148,7 +148,7 @@ Submodules **MUST** meet every requirement that applies to a top-level AVM Terra
 - All shared specifications ([SFR]({{% siteparam base %}}/specs/shared/) and [SNFR]({{% siteparam base %}}/specs/shared/) prefixed specs).
 - All resource module specifications ([RMFR]({{% siteparam base %}}/specs/shared/) and [RMNFR]({{% siteparam base %}}/specs/shared/) prefixed specs).
 - All Terraform specifications ([TFFR]({{% siteparam base %}}/specs/tf/) and [TFNFR]({{% siteparam base %}}/specs/tf/) prefixed specs), including:
-  - [TFFR3]({{% siteparam base %}}/spec/TFFR3) — AzAPI is mandatory for every module and submodule; AzureRM is not a supported module foundation.
+  - [TFFR3]({{% siteparam base %}}/spec/TFFR3) — AzAPI is mandatory for every control-plane resource and supported data-plane operation in every module and submodule; AzureRM is permitted only for the documented unsupported data-plane/non-ARM API exception.
   - [TFFR4]({{% siteparam base %}}/spec/TFFR4) — `response_export_values`.
   - [TFFR5]({{% siteparam base %}}/spec/TFFR5) — `replace_triggers_refs`.
   - [TFFR6]({{% siteparam base %}}/spec/TFFR6) — `resource_types` variable. Each submodule declares its own `resource_types` for the resources it owns; the parent declares a nested `optional(object({...}), {})` slot per submodule that mirrors the submodule's variable exactly, and cascades it through unchanged.

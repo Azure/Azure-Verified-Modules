@@ -15,7 +15,7 @@ Please use the comments columns to provide additional details especially if the 
 - [ ] Address comments on AVM-Review-PR if any
 - [ ] Ensure that all checks on AVM-Review-PR are passing
 - [ ] Make sure you have run [`avm pre-commit`](https://azure.github.io/Azure-Verified-Modules/contributing/terraform/contribution-flow/#4-run-avm-pre-commit).
-- [ ] Confirm the module is built with AzAPI, not AzureRM. Any individual AzureRM resource must satisfy and document the narrow [TFFR3 exception](https://azure.github.io/Azure-Verified-Modules/spec/TFFR3).
+- [ ] Confirm every control-plane resource and supported data-plane operation uses AzAPI across the root module, submodules, examples/e2e tests, Terraform tests, fixtures, and documentation snippets. Any AzureRM block must implement and document the narrow [TFFR3 unsupported data-plane exception](https://azure.github.io/Azure-Verified-Modules/spec/TFFR3).
 - [ ] Tick this to acknowledge specs with comment "Module Owner to action this spec post-publish as appropriate" in the table below.
 - [ ] Please update the _header.md file as it contains instructions which - once actioned - need to be replaced with Module Name and Description.
 

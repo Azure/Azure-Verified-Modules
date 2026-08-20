@@ -124,7 +124,7 @@ Enable outbound internet access via NAT Gateway for Windows Updates and patches,
 ### Infrastructure Requirements *(for Terraform IaC projects)*
 
 **Azure Resources Required**:
-- **Resource 1**: Resource Group for all resources - Built-in: `azurerm_resource_group`
+- **Resource 1**: Resource Group for all resources - AVM Module: `Azure/avm-res-resources-resourcegroup/azurerm`
 - **Resource 2**: Virtual Network with 3+ subnets - AVM Module: `Azure/avm-res-network-virtualnetwork/azurerm`
 - **Resource 3**: Network Security Groups (3 minimum) - AVM Module: `Azure/avm-res-network-networksecuritygroup/azurerm`
 - **Resource 4**: Windows Server 2016 Virtual Machine - AVM Module: `Azure/avm-res-compute-virtualmachine/azurerm`
@@ -134,7 +134,7 @@ Enable outbound internet access via NAT Gateway for Windows Updates and patches,
 - **Resource 8**: Private Endpoint for storage - AVM Module: `Azure/avm-res-network-privateendpoint/azurerm` (or part of storage module)
 - **Resource 9**: NAT Gateway - AVM Module: `Azure/avm-res-network-natgateway/azurerm`
 - **Resource 10**: Log Analytics Workspace - AVM Module: `Azure/avm-res-operationalinsights-workspace/azurerm`
-- **Resource 11**: Alerts/Action Groups - AVM Module: `Azure/avm-res-insights-actiongroup/azurerm` and alert resources
+- **Resource 11**: Alerts/Action Groups - use AzAPI `Microsoft.Insights/actionGroups` and `Microsoft.Insights/metricAlerts` resources
 - **Resource 12**: Random string for naming suffix - Built-in: `random_string` from random provider
 
 **Infrastructure Constraints**:
@@ -239,7 +239,7 @@ Enable outbound internet access via NAT Gateway for Windows Updates and patches,
 - **D-006**: Pre-existing Resource Group for Terraform state backend (separate from workload resource group)
 - **D-007**: Azure region westus3 supports all required resource types (VM, Bastion, NAT Gateway, availability zones)
 - **D-008**: AVM module documentation (readme.md) accessible for each module used (refer to Terraform Registry or GitHub)
-- **D-009**: Terraform providers: azurerm (~> 3.75), random (~> 3.5) (specified in versions.tf)
+- **D-009**: Terraform providers: AzAPI (~> 2.12) for direct resources, AzureRM (~> 4.0) as required by published AVM dependencies, and random (~> 3.5)
 - **D-010**: Security scanning tools (tfsec or checkov) installed if enforcing constitution security requirements
 - **D-011**: Windows Server 2016 image available in Azure Marketplace (standard Microsoft image)
 - **D-012**: Understanding of Terraform module composition (reading AVM module documentation to determine input variables and complex objects)

@@ -10,7 +10,7 @@ This page is for **module owners only**. If you are an external contributor, ski
 {{% /notice %}}
 
 {{% notice style="important" %}}
-Every repository created through this process **MUST** contain an AzAPI-based module. New AzureRM-based modules are not supported and will not be accepted. The narrow [TFFR3]({{% siteparam base %}}/spec/TFFR3) exception permits AzureRM only for a specific resource with no AzAPI equivalent; it does not permit the module's primary resource or overall implementation to use AzureRM.
+Every repository created through this process **MUST** use AzAPI for every control-plane resource and supported data-plane operation. AzureRM is permitted only for a specific unsupported data-plane/non-ARM API operation under the narrow [TFFR3]({{% siteparam base %}}/spec/TFFR3) exception. The exception must be documented and applies only to that operation in the root module, submodules, examples, end-to-end tests, Terraform tests, fixtures, and documentation snippets.
 {{% /notice %}}
 
 {{% notice style="important" %}}

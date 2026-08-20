@@ -56,7 +56,7 @@ locals {
 # ─── Data Sources ─────────────────────────────────────────────────────────────
 
 # Required to obtain tenant_id for Key Vault RBAC authorization
-data "azurerm_client_config" "current" {}
+data "azapi_client_config" "current" {}
 
 # ─── Random Resources ────────────────────────────────────────────────────────
 
@@ -71,8 +71,8 @@ resource "random_string" "unique_suffix" {
 # IMPORTANT: random_password.result IS stored in Terraform state (unavoidable
 # for generated values).  The value is ALSO written to Key Vault via the KV
 # module secrets_value argument.  The VM resource itself uses a write-only
-# argument (Terraform 1.10+) so the password does NOT appear in
-# azurerm_windows_virtual_machine state.  See SC-003.
+# argument (Terraform 1.10+) so the password does NOT appear in the virtual
+# machine resource state.  See SC-003.
 resource "random_password" "vm_admin_password" {
   length           = 20
   special          = true
@@ -491,7 +491,7 @@ module "key_vault" {
   name                = local.key_vault_name
   location            = module.resource_group.location
   resource_group_name = module.resource_group.name
-  tenant_id           = data.azurerm_client_config.current.tenant_id
+  tenant_id           = data.azapi_client_config.current.tenant_id
 
   sku_name = var.kv_sku
 
@@ -519,7 +519,7 @@ module "key_vault" {
   role_assignments = {
     deploying_principal = {
       role_definition_id_or_name = "Key Vault Secrets Officer"
-      principal_id               = data.azurerm_client_config.current.object_id
+      principal_id               = data.azapi_client_config.current.object_id
     }
   }
 
@@ -555,7 +555,7 @@ module "key_vault" {
 # Windows Server 2016 VM — no public IP assigned (FR-011, FR-013).
 # Password is passed via write-only account_credentials argument (Terraform
 # 1.10+ GA feature) — the value is applied to Azure but is NOT stored in the
-# azurerm_windows_virtual_machine resource state entry (SC-003).
+# virtual machine resource state entry (SC-003).
 module "virtual_machine" {
   source  = "Azure/avm-res-compute-virtualmachine/azurerm"
   version = "0.20.0"
@@ -688,9 +688,7 @@ module "storage_account" {
     default_action = "Deny"
   }
 
-  # Shared key (SAS) access is disabled.  All data-plane operations (including
-  # file share creation) use Azure AD auth via provider storage_use_azuread = true
-  # (declared in terraform.tf).  See FR-020 and quickstart.md Step 9.
+  # Shared key (SAS) access is disabled. See FR-020 and quickstart.md Step 9.
   shared_access_key_enabled = false
 
   # Azure Files share — 100 GB quota (FR-022)
@@ -738,7 +736,7 @@ module "storage_account" {
 # ─── Observability (US4) ─────────────────────────────────────────────────────
 
 # All diagnostic settings are declared inline with each module call above.
-# This section contains only the three native azurerm alert rule resources
+# This section contains only the three native AzAPI alert rule resources
 # for which no AVM module exists (Constitution Principle II).
 
 # ─── Alerts ──────────────────────────────────────────────────────────────────
@@ -747,27 +745,39 @@ module "storage_account" {
 # VmAvailabilityMetric = 1 when running, 0 when stopped.  A platform metric —
 # no Azure Monitor Agent required.  Fires within alert_vm_metric_window_size
 # of the VM transitioning to stopped/deallocated.
-resource "azurerm_monitor_metric_alert" "vm_stopped" {
-  name                = local.alert_vm_stopped_name
-  resource_group_name = module.resource_group.name
-  scopes              = [module.virtual_machine.resource_id]
-  description         = "Alert fires when the VM is in a stopped/deallocated state."
-  severity            = 1 # Critical
-  enabled             = true
-
-  frequency   = "PT1M"                          # Evaluation frequency: every 1 minute
-  window_size = var.alert_vm_metric_window_size # Configurable window (default PT5M)
-
-  criteria {
-    metric_namespace = "Microsoft.Compute/virtualMachines"
-    metric_name      = "VmAvailabilityMetric"
-    aggregation      = "Average"
-    operator         = "LessThan"
-    threshold        = 1
+resource "azapi_resource" "vm_stopped_metric_alert" {
+  type      = "Microsoft.Insights/metricAlerts@2018-03-01"
+  name      = local.alert_vm_stopped_name
+  parent_id = module.resource_group.resource_id
+  location  = "global"
+  tags      = local.common_tags
+  body = {
+    properties = {
+      description         = "Alert fires when the VM is in a stopped/deallocated state."
+      severity            = 1
+      enabled             = true
+      scopes              = [module.virtual_machine.resource_id]
+      evaluationFrequency = "PT1M"
+      windowSize          = var.alert_vm_metric_window_size
+      criteria = {
+        "odata.type" = "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
+        allOf = [
+          {
+            name            = "vm_availability"
+            criterionType   = "StaticThresholdCriterion"
+            metricNamespace = "Microsoft.Compute/virtualMachines"
+            metricName      = "VmAvailabilityMetric"
+            operator        = "LessThan"
+            threshold       = 1
+            timeAggregation = "Average"
+          }
+        ]
+      }
+      actions = []
+    }
   }
 
-  # No action group — portal-only alerts (clarification Q3)
-  tags = local.common_tags
+  response_export_values = []
 }
 
 # Alert 2: Disk free space < threshold (FR-028)
@@ -775,71 +785,93 @@ resource "azurerm_monitor_metric_alert" "vm_stopped" {
 # "LogicalDisk % Free Space" counter must be deployed on the VM before this
 # alert produces results (FR-030 exception — AMA is a manual post-deploy step,
 # see quickstart.md Step 10).
-resource "azurerm_monitor_scheduled_query_rules_alert_v2" "disk_low" {
-  name                = local.alert_disk_full_name
-  resource_group_name = module.resource_group.name
-  location            = module.resource_group.location
-  scopes              = [module.log_analytics_workspace.resource_id]
-  description         = "Alert fires when VM disk free space drops below ${var.alert_disk_free_threshold_pct}%."
-  severity            = 2 # Warning
-  enabled             = true
-
-  evaluation_frequency = var.alert_disk_query_window
-  window_duration      = var.alert_disk_query_window
-
-  criteria {
-    query = <<-QUERY
-      Perf
-      | where ObjectName == "LogicalDisk"
-          and CounterName == "% Free Space"
-          and InstanceName != "_Total"
-          and InstanceName != "HarddiskVolume3"
-      | where CounterValue < ${var.alert_disk_free_threshold_pct}
-      | project TimeGenerated, Computer, InstanceName, CounterValue
-    QUERY
-
-    time_aggregation_method = "Count"
-    threshold               = 0
-    operator                = "GreaterThan"
-
-    failing_periods {
-      minimum_failing_periods_to_trigger_alert = 1
-      number_of_evaluation_periods             = 1
+resource "azapi_resource" "disk_low_scheduled_query_alert" {
+  type      = "Microsoft.Insights/scheduledQueryRules@2023-12-01"
+  name      = local.alert_disk_full_name
+  parent_id = module.resource_group.resource_id
+  location  = module.resource_group.location
+  tags      = local.common_tags
+  body = {
+    properties = {
+      displayName         = local.alert_disk_full_name
+      description         = "Alert fires when VM disk free space drops below ${var.alert_disk_free_threshold_pct}%."
+      severity            = 2
+      enabled             = true
+      scopes              = [module.log_analytics_workspace.resource_id]
+      evaluationFrequency = var.alert_disk_query_window
+      windowSize          = var.alert_disk_query_window
+      criteria = {
+        allOf = [
+          {
+            query           = <<-QUERY
+              Perf
+              | where ObjectName == "LogicalDisk"
+                  and CounterName == "% Free Space"
+                  and InstanceName != "_Total"
+                  and InstanceName != "HarddiskVolume3"
+              | where CounterValue < ${var.alert_disk_free_threshold_pct}
+              | project TimeGenerated, Computer, InstanceName, CounterValue
+            QUERY
+            timeAggregation = "Count"
+            threshold       = 0
+            operator        = "GreaterThan"
+            failingPeriods = {
+              minimumFailingPeriodsToAlert = 1
+              numberOfEvaluationPeriods    = 1
+            }
+          }
+        ]
+      }
+      actions = {
+        actionGroups = []
+      }
     }
   }
 
-  # No action group — portal-only
-  tags = local.common_tags
+  response_export_values = []
 }
 
 # Alert 3: Key Vault access failures (FR-029)
 # Fires on any non-200 KV API response (auth failures, authorization denials,
 # throttling).  Requires KV audit diagnostic logs enabled (done inline above).
-resource "azurerm_monitor_metric_alert" "kv_access_failures" {
-  name                = local.alert_kv_failures_name
-  resource_group_name = module.resource_group.name
-  scopes              = [module.key_vault.resource_id]
-  description         = "Alert fires when Key Vault API requests result in failure responses."
-  severity            = 2 # Warning
-  enabled             = true
-
-  frequency   = "PT5M"                          # Evaluation frequency: every 5 minutes
-  window_size = var.alert_kv_metric_window_size # Configurable window (default PT15M)
-
-  criteria {
-    metric_namespace = "Microsoft.KeyVault/vaults"
-    metric_name      = "ServiceApiResult"
-    aggregation      = "Count"
-    operator         = "GreaterThan"
-    threshold        = 0
-
-    dimension {
-      name     = "StatusCode"
-      operator = "Exclude"
-      values   = ["200"]
+resource "azapi_resource" "key_vault_access_failures_metric_alert" {
+  type      = "Microsoft.Insights/metricAlerts@2018-03-01"
+  name      = local.alert_kv_failures_name
+  parent_id = module.resource_group.resource_id
+  location  = "global"
+  tags      = local.common_tags
+  body = {
+    properties = {
+      description         = "Alert fires when Key Vault API requests result in failure responses."
+      severity            = 2
+      enabled             = true
+      scopes              = [module.key_vault.resource_id]
+      evaluationFrequency = "PT5M"
+      windowSize          = var.alert_kv_metric_window_size
+      criteria = {
+        "odata.type" = "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
+        allOf = [
+          {
+            name            = "key_vault_access_failures"
+            criterionType   = "StaticThresholdCriterion"
+            metricNamespace = "Microsoft.KeyVault/vaults"
+            metricName      = "ServiceApiResult"
+            operator        = "GreaterThan"
+            threshold       = 0
+            timeAggregation = "Count"
+            dimensions = [
+              {
+                name     = "StatusCode"
+                operator = "Exclude"
+                values   = ["200"]
+              }
+            ]
+          }
+        ]
+      }
+      actions = []
     }
   }
 
-  # No action group — portal-only
-  tags = local.common_tags
+  response_export_values = []
 }

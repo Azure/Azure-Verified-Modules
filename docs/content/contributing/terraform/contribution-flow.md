@@ -9,7 +9,7 @@ This guide covers the end-to-end contribution flow for AVM Terraform modules.
 Whether you are a **module owner** or an **external contributor**, the core workflow is the same — the key differences are called out using tabs below.
 
 {{% notice style="important" %}}
-Every new AVM Terraform module **MUST** be built with AzAPI. Do not implement a module's primary resource or overall design with AzureRM. The narrow [TFFR3]({{% siteparam base %}}/spec/TFFR3) exception applies only to a specific resource with no AzAPI equivalent; it does not permit an AzureRM-based module.
+Every new AVM Terraform module **MUST** use AzAPI for every control-plane resource and supported data-plane operation. AzureRM is permitted only for a specific unsupported data-plane/non-ARM API operation under the narrow [TFFR3]({{% siteparam base %}}/spec/TFFR3) exception. The same rule applies to submodules, examples, end-to-end tests, Terraform tests, fixtures, and documentation snippets.
 
 This guide **MUST** be used in conjunction with the [Terraform specifications]({{% siteparam base %}}/specs/tf/). All AVM modules must meet the requirements described in those specifications.
 {{% /notice %}}
@@ -173,7 +173,7 @@ If the module repository does not exist yet, check the [Terraform Resource Modul
 
 ## 3. Implement your code change
 
-Before writing code, review the [Terraform specifications]({{% siteparam base %}}/specs/tf/) and [composition guidelines]({{% siteparam base %}}/contributing/terraform/composition/) to ensure your contribution complies with AVM's design principles. For a new module, confirm first that the design uses AzAPI throughout and does not use AzureRM as the module foundation.
+Before writing code, review the [Terraform specifications]({{% siteparam base %}}/specs/tf/) and [composition guidelines]({{% siteparam base %}}/contributing/terraform/composition/) to ensure your contribution complies with AVM's design principles. For a new module, confirm first that every control-plane resource and supported data-plane operation uses AzAPI. Any AzureRM block must satisfy and document the unsupported data-plane exception in [TFFR3]({{% siteparam base %}}/spec/TFFR3).
 
 Once you've made your changes, stage, commit, and push them:
 
@@ -186,6 +186,8 @@ git push
 ### Lifecycle hooks
 
 Some examples need setup work before Terraform runs — deploying prerequisites, generating a `terraform.tfvars`, or seeding a random prefix. AVM supports optional hook scripts for this:
+
+Terraform configurations created for examples, end-to-end tests, tests, or fixtures are part of the module repository and **MUST** follow [TFFR3]({{% siteparam base %}}/spec/TFFR3). Use AzAPI for every supporting control-plane resource. AzureRM may be configured or exercised only when the test covers the module's documented unsupported data-plane operation; it must not be used to make setup more convenient.
 
 | Hook | Location | Runs |
 | --- | --- | --- |
