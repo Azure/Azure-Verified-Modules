@@ -197,8 +197,8 @@ The standard Terraform TFLint plugin validates `required_version` and provider r
 | `avm.tflint.override.hcl` | All root-module checks |
 | `avm.tflint_module.override.hcl` | All submodule checks |
 | `avm.tflint_example.override.hcl` | All example checks |
-| `modules/<nested-path>/avm.tflint.override.hcl` | One submodule |
-| `examples/<nested-path>/avm.tflint.override.hcl` | One example |
+| `modules/<name>/avm.tflint.override.hcl` | One direct submodule |
+| `examples/<name>/avm.tflint.override.hcl` | One direct example |
 
 Each file contains normal TFLint rule configuration. For example:
 
@@ -208,4 +208,6 @@ rule "terraform_sensitive_variable_no_default" {
 }
 ```
 
-`Avm.Authoring` merges overrides in this order: the immutable AVM base configuration, the matching repository-root all-scope override, then the target-directory override. A submodule or example override is loaded only for its target directory and takes precedence over the matching all-submodule or all-example file. Use it when an exception is specific to one child module or example; do not weaken the corresponding repository-wide default.
+`Avm.Authoring` merges overrides in this order: the immutable AVM base configuration, the matching repository-root all-scope override, then the target-directory override. A submodule or example override is loaded only for its target directory and takes precedence over the matching all-submodule or all-example file. Use it when an exception is specific to one direct child module or example; do not weaken the corresponding repository-wide default.
+
+AVM permits only one directory layer for Terraform submodule and example roots: `modules/*` and `examples/*`. Nested Terraform module or example roots are prohibited, so target overrides apply only to those direct scopes. `Avm.Authoring` convention validation enforces this structure.

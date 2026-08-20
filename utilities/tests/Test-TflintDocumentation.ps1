@@ -116,8 +116,8 @@ foreach ($path in @(
     'avm.tflint.override.hcl',
     'avm.tflint_module.override.hcl',
     'avm.tflint_example.override.hcl',
-    'modules/<nested-path>/avm.tflint.override.hcl',
-    'examples/<nested-path>/avm.tflint.override.hcl'
+    'modules/<name>/avm.tflint.override.hcl',
+    'examples/<name>/avm.tflint.override.hcl'
   )) {
     if ($content -notmatch [regex]::Escape($override)) {
       throw "'$path' does not document '$override'."
@@ -126,6 +126,27 @@ foreach ($path in @(
 
   if ($guide -notmatch [regex]::Escape('the immutable AVM base configuration, the matching repository-root all-scope override, then the target-directory override')) {
     throw 'The TFLint guide does not document override precedence.'
+  }
+
+  foreach ($requiredText in @(
+    'AVM permits only one directory layer for Terraform submodule and example roots',
+    'Nested Terraform module or example roots are prohibited',
+    'Avm.Authoring` convention validation enforces this structure'
+  )) {
+    if ($guide -notmatch [regex]::Escape($requiredText)) {
+      throw "The TFLint guide does not document '$requiredText'."
+    }
+  }
+
+  $submoduleSpec = Get-Content -Raw (Join-Path $RepositoryRoot 'docs\content\specs-defs\includes\terraform\resource\non-functional\TFRMNFR1.md')
+  foreach ($requiredText in @(
+    'Nested Terraform module roots are prohibited',
+    'Nested example roots are prohibited',
+    'Avm.Authoring` convention validation enforces the direct `modules/*` and `examples/*` scope structure'
+  )) {
+    if ($submoduleSpec -notmatch [regex]::Escape($requiredText)) {
+      throw "TFRMNFR1 does not define '$requiredText'."
+    }
   }
 }
 

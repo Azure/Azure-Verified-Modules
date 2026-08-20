@@ -21,7 +21,11 @@ priority: 23010
 
 Resource modules **MUST** implement each ARM subresource (a child resource type as defined in the API spec, for example `Microsoft.Example/widgets/parts` is a subresource of `Microsoft.Example/widgets`) as a Terraform submodule.
 
-Submodules **MUST** be located under a `modules/<subresource-singular-name>/` directory at the root of the module, where `<subresource-singular-name>` is the singular form of the ARM subresource name as per [PMNFR1]({{% siteparam base %}}/spec/PMNFR1).
+Submodules **MUST** be located in a direct `modules/<subresource-singular-name>/` child directory at the repository root, where `<subresource-singular-name>` is the singular form of the ARM subresource name as per [PMNFR1]({{% siteparam base %}}/spec/PMNFR1). Nested Terraform module roots are prohibited: `modules/<name>/modules/<name>/` is not an AVM module scope.
+
+Terraform example roots follow the same one-layer convention: each example **MUST** be a direct `examples/<name>/` child directory. Nested example roots are prohibited.
+
+`Avm.Authoring` convention validation enforces the direct `modules/*` and `examples/*` scope structure. Consequently, directory-specific TFLint overrides apply only at those direct roots; see [TFLint configuration overrides]({{% siteparam base %}}/contributing/terraform/tflint-rules/#tflint-configuration-overrides).
 
 For example, a resource module for `Microsoft.Example/widgets` would have the following layout:
 
@@ -79,22 +83,7 @@ module "part" {
 }
 ```
 
-When the subresource tree is more than one level deep (for example `Microsoft.Example/widgets/parts/components`), the same pattern recurses: the `part` submodule declares its own `resource_types` with a nested slot for `example_widgets_parts_components`, and cascades that slot through to its sibling `component` submodule unchanged:
-
-```terraform
-# Inside modules/part/main.tf
-module "component" {
-  source   = "../component"
-  for_each = var.components
-
-  name                = each.value.name
-  parent_id           = azapi_resource.this.id
-  resource_types      = var.resource_types.example_widgets_parts_components
-  retry               = var.retry
-  timeouts            = var.timeouts
-  ignore_body_changes = var.ignore_body_changes.example_widgets_parts_components
-}
-```
+When the ARM subresource type is more than one level deep (for example `Microsoft.Example/widgets/parts/components`), its Terraform module root still **MUST** be a direct child of `modules/`. Use a descriptive direct name such as `modules/part-component/`; do not create `modules/part/modules/component/`. The parent module composes all direct submodules and exposes the required nested interface values without creating nested Terraform roots.
 
 The following pattern is **NOT** allowed inside a submodule, because it pushes cardinality into the submodule itself:
 
@@ -117,17 +106,17 @@ module "part" {
 }
 ```
 
-Submodules **MAY** reference sibling submodules using a relative path that traverses up to the shared `modules/` directory and back down into the sibling:
+Submodules **MAY** reference a direct sibling submodule using a relative path:
 
 ```terraform
-# Inside modules/part/main.tf, calling its sibling submodule modules/sub-part/
+# Inside modules/part/main.tf, calling the direct sibling modules/sub-part/
 module "sub_part" {
   source = "../sub-part"
   # ...other arguments...
 }
 ```
 
-This pattern is useful when an ARM resource provider exposes child resources nested more than one level deep — for example `Microsoft.Example/widgets/parts/components`, where the `part` submodule itself needs to instantiate its own `component` submodule.
+This pattern is useful when an ARM resource provider exposes child resources nested more than one level deep, while preserving the required one-layer module-root layout.
 
 Submodules **MUST NOT** reference a sibling submodule via the Terraform Registry (for example `Azure/avm-res-example-widget/azure//modules/part`) or via a Git URL when the sibling lives in the same repository. Using a relative path keeps the entire module tree as a single unit that can be developed, tested and released atomically.
 

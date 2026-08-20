@@ -69,8 +69,8 @@ To override a rule, create one of the following HCL files in the root of your mo
 | `avm.tflint.override.hcl` | Root module |
 | `avm.tflint_module.override.hcl` | Submodules |
 | `avm.tflint_example.override.hcl` | Examples |
-| `modules/<nested-path>/avm.tflint.override.hcl` | One submodule |
-| `examples/<nested-path>/avm.tflint.override.hcl` | One example |
+| `modules/<name>/avm.tflint.override.hcl` | One direct submodule |
+| `examples/<name>/avm.tflint.override.hcl` | One direct example |
 
 Example:
 
@@ -83,7 +83,7 @@ rule "required_output_rmfr7" {
 
 Include a comment explaining why the rule is disabled.
 
-The target-directory override takes precedence over the matching repository-wide scope override and applies only to that submodule or example. Use it instead of weakening an all-submodule or all-example override.
+The target-directory override takes precedence over the matching repository-wide scope override and applies only to that direct submodule or example. AVM permits only `modules/*` and `examples/*` Terraform roots; nested module or example roots are prohibited and rejected by `Avm.Authoring` convention validation. Use a target override instead of weakening an all-submodule or all-example override.
 
 ---
 
