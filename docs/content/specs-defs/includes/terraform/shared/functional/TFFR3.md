@@ -21,6 +21,8 @@ priority: 20030
 
 ## ID: TFFR3 - Category: Providers - Permitted Versions
 
+The AVM provider rules are documented in [provider_azapi_version_constraint]({{% siteparam base %}}/contributing/terraform/tflint-rules/#provider-azapi-version-constraint), [provider_azurerm_disallowed]({{% siteparam base %}}/contributing/terraform/tflint-rules/#provider-azurerm-disallowed), and [provider_azurerm_version_constraint]({{% siteparam base %}}/contributing/terraform/tflint-rules/#provider-azurerm-version-constraint).
+
 {{% notice style="important" %}}
 
 Every new AVM Terraform module — resource, pattern, or utility — **MUST** use `Azure/azapi` for every Azure control-plane resource and every data-plane operation supported by AzAPI. The AzureRM provider is permitted only for the unsupported data-plane/non-ARM API exception defined below.

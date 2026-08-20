@@ -21,6 +21,8 @@ priority: 20040
 
 ## ID: TFFR4 - Category: Composition - AzAPI - response_export_values
 
+This requirement is enforced by [azapi_response_export_values]({{% siteparam base %}}/contributing/terraform/tflint-rules/#azapi-response-export-values) and [azapi_data_response_export_values]({{% siteparam base %}}/contributing/terraform/tflint-rules/#azapi-data-response-export-values).
+
 Authors **MUST** specify the `response_export_values` argument when using the AzAPI provider:
 
 ```terraform

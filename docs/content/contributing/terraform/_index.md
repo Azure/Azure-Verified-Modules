@@ -22,4 +22,5 @@ This section lists AVM's Terraform-specific contribution guidance.
 - [Composition]({{% siteparam base %}}/contributing/terraform/composition/) — module structure, code styling, interfaces
 - [Review]({{% siteparam base %}}/contributing/terraform/review/) — module review process before publishing
 - [Advanced Topics & FAQ]({{% siteparam base %}}/contributing/terraform/advanced/) — custom subscriptions, OPA exceptions, TFLint overrides
+- [AVM TFLint Rules]({{% siteparam base %}}/contributing/terraform/tflint-rules/) — custom rules, their requirements, and supported overrides
 - [Repository Setup]({{% siteparam base %}}/contributing/terraform/repository-setup/) — creating a new module repository (owners only)

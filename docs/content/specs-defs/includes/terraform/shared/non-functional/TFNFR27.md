@@ -21,9 +21,11 @@ priority: 21270
 
 ## ID: TFNFR27 - Category: Code Style - Provider Declarations in Modules
 
-[By rules](https://www.terraform.io/docs/language/modules/develop/providers.html), in the module code `provider` **MUST NOT** be declared. The only exception is when the module indeed need different instances of the same kind of `provider`(Eg. manipulating resources across different `location`s or accounts), you **MUST** declare `configuration_aliases` in `terraform.required_providers`. See details in this [document](https://www.terraform.io/docs/language/providers/configuration.html#alias-multiple-provider-configurations).
+[By rule](https://developer.hashicorp.com/terraform/language/modules/develop/providers), every published AVM module and submodule **MUST NOT** declare a `provider` block. Provider configuration belongs exclusively to the consuming root module.
 
-`provider` block declared in the module **MUST** only be used to differentiate instances used in  `resource` and `data`. Declaration of fields other than `alias` in `provider` block is strictly forbidden. It could lead to module users unable to utilize `count`, `for_each` or `depends_on`. Configurations of the `provider` instance **SHOULD** be passed in by the module users.
+When a module requires an alternate provider instance, it **MUST** declare that alias through `configuration_aliases` in `terraform.required_providers` and the consumer **MUST** pass the configured alias through the module's `providers` map. A provider block containing only `alias` is not permitted in an AVM module.
+
+This is enforced by [terraform_module_provider_declaration]({{% siteparam base %}}/contributing/terraform/tflint-rules/#terraform-module-provider-declaration).
 
 Good examples:
 
@@ -65,5 +67,5 @@ In verified module:
 
 ```terraform
 provider "azapi" {
-  # Configuration options
+  alias = "alternate"
 }

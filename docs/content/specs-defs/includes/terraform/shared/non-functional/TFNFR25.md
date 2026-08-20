@@ -23,7 +23,7 @@ priority: 21250
 
 The `terraform.tf` file **MUST** only contain one `terraform` block.
 
-The first line of the `terraform` block **MUST** define a `required_version` property for the Terraform CLI.
+The first line of the `terraform` block **MUST** define a `required_version` property for the Terraform CLI. The standard Terraform TFLint plugin validates the requirement; MAPOTF keeps it first.
 
 The `required_version` property **MUST** include a constraint on the minimum version of the Terraform CLI. Previous releases of the Terraform CLI can have unexpected behavior.
 
@@ -46,3 +46,5 @@ terraform {
   }
 }
 ```
+
+The AVM [terraform_tf_file]({{% siteparam base %}}/contributing/terraform/tflint-rules/#terraform-tf-file) rule validates the complementary requirement that the module has exactly one `terraform` block in `terraform.tf`.

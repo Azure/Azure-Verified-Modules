@@ -104,4 +104,4 @@ This `dynamic` block will be ranked as a block named `linux_profile`.
 
 Code within a nested block will also be ranked following the rules above.
 
-PS: You can use [`avmfix`](https://github.com/lonegunmanb/azure-verified-module-fix) tool to reformat your code automatically.
+MAPOTF applies this ordering convention and replaces the retired `azurerm_arg_order` and `terraform_resource_data_arg_layout` rules. See [MAPOTF and standard Terraform TFLint coverage]({{% siteparam base %}}/contributing/terraform/tflint-rules/#mapotf-and-standard-terraform-tflint-coverage).

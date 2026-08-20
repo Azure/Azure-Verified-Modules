@@ -27,3 +27,5 @@ Input variables **SHOULD** follow this order:
 2. All optional fields, in alphabetical order
 
 A `variable` without `default` value is a required field, otherwise it's an optional one.
+
+MAPOTF applies this ordering convention. See [MAPOTF and standard Terraform TFLint coverage]({{% siteparam base %}}/contributing/terraform/tflint-rules/#mapotf-and-standard-terraform-tflint-coverage).

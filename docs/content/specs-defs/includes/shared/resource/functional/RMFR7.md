@@ -20,6 +20,8 @@ priority: 2080
 
 ## ID: RMFR7 - Category: Outputs - Minimum Required Outputs
 
+This requirement is enforced for resource-module roots by [required_output_rmfr7]({{% siteparam base %}}/contributing/terraform/tflint-rules/#required-output-rmfr7).
+
 Module owners **MUST** output the following outputs as a minimum in their modules:
 
 | Output                                                                 | Bicep Output Name             | Terraform Output Name             |

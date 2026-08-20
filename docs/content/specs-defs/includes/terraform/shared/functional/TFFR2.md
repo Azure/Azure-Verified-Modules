@@ -21,6 +21,8 @@ priority: 20020
 
 ## ID: TFFR2 - Category: Outputs - Additional Terraform Outputs
 
+The prohibition on outputting an entire provider resource is enforced by [no_entire_resource_output_tffr2]({{% siteparam base %}}/contributing/terraform/tflint-rules/#no-entire-resource-output-tffr2).
+
 Authors **SHOULD NOT** output entire resource objects as these may contain sensitive outputs and the schema can change with API or provider versions.
 Instead, authors **SHOULD** output the *computed* attributes of the resource as discreet outputs.
 This kind of pattern protects against provider schema changes and is known as an [anti-corruption layer](https://learn.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer).

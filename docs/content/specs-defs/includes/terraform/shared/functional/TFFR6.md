@@ -21,6 +21,8 @@ priority: 20060
 
 ## ID: TFFR6 - Category: Inputs/Outputs - AzAPI - resource_types variable
 
+This requirement is enforced by [resource_types]({{% siteparam base %}}/contributing/terraform/tflint-rules/#resource-types).
+
 ### Applicability
 
 TFFR6, TFFR7, and TFFR8 apply independently to each module and submodule scope. Together they require `resource_types`, `retry`, `timeouts`, and `ignore_body_changes` only when that scope directly declares at least one managed `resource` block of a supported AzAPI type:

@@ -60,7 +60,7 @@ exception contains rules if {
 
 ## TFLint rule overrides
 
-[TFLint](https://github.com/terraform-linters/tflint) checks AVM spec compliance using the [AVM custom ruleset](https://github.com/Azure/tflint-ruleset-avm).
+[TFLint](https://github.com/terraform-linters/tflint) checks AVM spec compliance using the [AVM custom ruleset](https://github.com/Azure/tflint-ruleset-avm). See the [AVM TFLint rules guide]({{% siteparam base %}}/contributing/terraform/tflint-rules/) for every enabled AVM rule, its applicability, exact disable block, and override precedence.
 
 To override a rule, create one of the following HCL files in the root of your module:
 
@@ -69,6 +69,8 @@ To override a rule, create one of the following HCL files in the root of your mo
 | `avm.tflint.override.hcl` | Root module |
 | `avm.tflint_module.override.hcl` | Submodules |
 | `avm.tflint_example.override.hcl` | Examples |
+| `modules/<nested-path>/avm.tflint.override.hcl` | One submodule |
+| `examples/<nested-path>/avm.tflint.override.hcl` | One example |
 
 Example:
 
@@ -80,6 +82,8 @@ rule "required_output_rmfr7" {
 ```
 
 Include a comment explaining why the rule is disabled.
+
+The target-directory override takes precedence over the matching repository-wide scope override and applies only to that submodule or example. Use it instead of weakening an all-submodule or all-example override.
 
 ---
 
