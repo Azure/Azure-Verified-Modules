@@ -83,7 +83,7 @@ Analyzed 3 core artifacts (spec.md, plan.md, tasks.md) and constitution.md befor
 **Resolution**:
 - Removed placeholder comment from T094
 - Updated T094 to directly reference KeyVault: "module.key_vault.secrets[var.vm_admin_secret_name].value from Phase 2"
-- Updated T102 with explicit depends_on: [module.key_vault, azurerm_role_assignment.kv_secrets_deployment]
+- Updated T102 with explicit depends_on: [module.key_vault]
 - Added architectural notes in Phase 2 and Phase 3 headers explaining KeyVault-first approach
 
 **Impact**: Clear deployment flow documented, no ambiguity
@@ -92,12 +92,12 @@ Analyzed 3 core artifacts (spec.md, plan.md, tasks.md) and constitution.md befor
 
 ## Medium/Low Issues - DOCUMENTED (Not Blocking)
 
-### Constitution Exceptions (MEDIUM) - Documented
-**Finding C1**: Tasks T204-T218 use direct azurerm resources for alerts instead of AVM modules
-**Finding C2**: Tasks T084-T086 use direct azurerm_subnet_network_security_group_association
-**Documentation**: Added "Constitution Exceptions" section to tasks.md with justifications:
-- C1: No AVM module available for metric alerts (verified as acceptable)
-- C2: VNet module may not expose NSG association interface (requires Phase 0 verification)
+### AzAPI Compliance (MEDIUM) - Resolved
+**Finding C1**: Tasks T204-T218 originally used direct AzureRM resources for alerts instead of AVM modules or AzAPI
+**Finding C2**: Tasks T084-T086 originally used direct AzureRM subnet associations
+**Resolution**:
+- C1: Use AzAPI `Microsoft.Insights/actionGroups` and `Microsoft.Insights/metricAlerts` resources.
+- C2: Use the VNet module's subnet network security group input.
 
 ### Terminology Drift (MEDIUM) - Accepted
 **Finding I3**: "NetBIOS name" (spec) vs "computer name" (tasks) used interchangeably
@@ -126,7 +126,7 @@ Analyzed 3 core artifacts (spec.md, plan.md, tasks.md) and constitution.md befor
 
 ### Ambiguous AVM Module Name (MEDIUM) - Documented
 **Finding A3**: Plan states alerting module name is "TBD"
-**Resolution**: Tasks T204-T218 resolve this by using direct azurerm resources (documented as constitution exception C1)
+**Resolution**: Tasks T204-T218 use direct AzAPI action group and metric alert resources
 **Action**: Phase 0 research should confirm no AVM module exists
 
 ### Ambiguous Bastion SKU Selection (MEDIUM) - Documented
@@ -168,9 +168,9 @@ Analyzed 3 core artifacts (spec.md, plan.md, tasks.md) and constitution.md befor
 ### Principle I: Terraform-First ✅
 All resources defined in Terraform. No violations.
 
-### Principle II: AVM-Only Modules ⚠️ (2 Documented Exceptions)
-- **Exception 1**: Metric alerts (T204-T218) use azurerm resources - No AVM module available
-- **Exception 2**: NSG associations (T084-T086) use azurerm resources - VNet module interface unclear
+### Principle II: AVM-First with AzAPI Fallback ✅
+- Metric alerts (T204-T218) use AzAPI because no AVM metric alert module is available.
+- NSG associations (T084-T086) use the VNet module interface.
 
 ### Principle III: Security & Reliability ✅
 All security requirements met:
@@ -197,9 +197,9 @@ Validation gates enforced at every phase: fmt → validate → plan → review �
 **Trade-off**: KeyVault deployed before VM (minor cost if VM deployment fails)
 **Benefit**: Simplified task sequencing, reduced error scenarios
 
-### Decision 2: Direct azurerm Resources for Alerts
+### Decision 2: Direct AzAPI Resources for Alerts
 **Rationale**: No AVM module available for metric alerts
-**Impact**: Constitution exception required
+**Impact**: Remains compliant without introducing AzureRM
 **Validation**: Phase 0 research confirms no suitable AVM module
 **Risk**: Minimal - metric alert resources are stable and well-documented
 
@@ -248,7 +248,7 @@ All blocking issues have been resolved:
 - Alert notifications aligned
 - Deployment flow documented
 
-The specification is internally consistent, fully traced to requirements, and compliant with constitution principles (with 2 documented exceptions). Implementation can proceed through Phase 0 research followed by sequential phase execution.
+The specification is internally consistent, fully traced to requirements, and compliant with constitution principles. Implementation can proceed through Phase 0 research followed by sequential phase execution.
 
 **Estimated Implementation Time**: 20-30 hours
 **Estimated Deployment Time**: ~30 minutes
@@ -266,7 +266,7 @@ The specification is internally consistent, fully traced to requirements, and co
 ### Ambiguity (6 findings)
 - A1: Subnet CIDR conflict (HIGH - ✅ FIXED)
 - A2: Disk alert threshold conflict (HIGH - ✅ FIXED)
-- A3: AVM module name TBD (MEDIUM - resolved by using azurerm)
+- A3: AVM module name TBD (MEDIUM - resolved by using AzAPI)
 - A4: Zone "-1" unclear (LOW - documentation wording improvement)
 - A5: Storage account verification criteria missing (MEDIUM - accepted)
 - A6: Bastion SKU selection unclear (MEDIUM - Phase 0 research will resolve)
@@ -279,8 +279,8 @@ The specification is internally consistent, fully traced to requirements, and co
 - U5: Phase 0 tasks in plan but not tasks.md (MEDIUM - documented as prerequisite)
 
 ### Constitution (2 findings)
-- C1: Direct azurerm for alerts (MEDIUM - documented exception)
-- C2: Direct azurerm for NSG associations (LOW - Phase 0 verification pending)
+- C1: Direct AzureRM for alerts (MEDIUM - resolved with AzAPI)
+- C2: Direct AzureRM for NSG associations (LOW - resolved with the VNet module interface)
 
 ### Coverage (7 findings)
 - COV1: Task count mismatch (CRITICAL - ✅ FIXED)

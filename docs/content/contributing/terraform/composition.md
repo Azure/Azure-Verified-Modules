@@ -6,9 +6,9 @@ weight: 3
 ---
 
 {{% notice style="important" %}}
-**AzAPI is the only supported foundation for AVM Terraform modules.** Every new resource, pattern, or utility module **MUST** be built with the [`Azure/azapi`](https://registry.terraform.io/providers/Azure/azapi/latest) provider. Do not build a new module on the AzureRM provider; an AzureRM-based module is non-compliant and will not be accepted.
+**AzAPI is the only supported Azure provider for new AVM Terraform modules.** Every new resource, pattern, or utility module **MUST** use the [`Azure/azapi`](https://registry.terraform.io/providers/Azure/azapi/latest) provider for every Azure resource interaction.
 
-[TFFR3]({{% siteparam base %}}/spec/TFFR3) permits AzureRM only for a specific resource whose functionality has no AzAPI equivalent. That narrow exception never permits the module's primary resource or overall implementation to be AzureRM-based.
+Do not declare or configure the AzureRM provider, and do not use `azurerm_*` resources or data sources anywhere in the repository. This prohibition includes submodules, examples, end-to-end tests, Terraform tests, fixtures, and documentation snippets. There is no exception for an operation without an AzAPI equivalent; treat it as an AzAPI capability gap instead. See [TFFR3]({{% siteparam base %}}/spec/TFFR3).
 
 This guide **MUST** be used in conjunction with the [Terraform specifications]({{% siteparam base %}}/specs/tf/). **All AVM modules MUST meet the applicable requirements in those specifications.**
 {{% /notice %}}
@@ -30,7 +30,7 @@ See the [Terraform AVM template repository](https://github.com/Azure/terraform-a
   - `integration/` - (optional .tftest.hcl files for integration testing with Terraform test)
     - `setup.ps1` - (optional setup hook)
 - `modules/` - (for sub-modules only if used)
-- `examples/` - (all examples must deploy successfully without requiring input - these are customer facing)
+- `examples/` - (all examples must deploy successfully without requiring input, use AzAPI for supporting Azure resources, and contain no AzureRM provider, resource, or data source - these are customer facing and run as end-to-end tests)
   - `<at least one folder>` - (at least one example that uses the variable defaults minimum/required parameters/variables only)
     - `pre.ps1` - (optional setup hook)
     - `post.ps1` - (optional cleanup hook)
@@ -103,6 +103,7 @@ Every Terraform AVM module **MUST** be built with AzAPI, and every resource modu
 
 | Spec | One-liner |
 | --- | --- |
+| [TFFR3]({{% siteparam base %}}/spec/TFFR3) | Use `Azure/azapi` for every Azure resource interaction. Do not declare or configure `hashicorp/azurerm`, or use any `azurerm_*` resource or data source, in the module, submodules, examples/e2e tests, Terraform tests, fixtures, or documentation snippets. |
 | [TFRMFR1]({{% siteparam base %}}/spec/TFRMFR1) | Expose the parent scope as a single required `parent_id` string variable. **Do not** expose `resource_group_name` or any other scope-specific input. Validate with `provider::azapi::parse_resource_id` against the expected parent type. |
 | [TFRMNFR1]({{% siteparam base %}}/spec/TFRMNFR1) | Implement every ARM subresource as a Terraform submodule under `modules/<subresource-singular-name>/`. Parent modules **MUST** reference submodules, and submodules **MUST** be independently consumable. Keep submodule primary resources single-instance only (no `count` / `for_each` on `azapi_resource.this`); cardinality belongs at the module call site. |
 | [TFRMNFR2]({{% siteparam base %}}/spec/TFRMNFR2) | Name the primary `azapi_resource` `this`. Satellite resources **MUST** be named after what they represent (e.g. `azapi_resource.lock`, `azapi_resource.role_assignment`, `azapi_resource.diagnostic_setting`, `azapi_resource.private_endpoint`), not `this`. |

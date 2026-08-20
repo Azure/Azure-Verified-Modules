@@ -17,8 +17,8 @@ terraform {
       version = "~> 4.37"
     }
     azapi = {
-      source  = "azure/azapi"
-      version = "~> 2.9"
+      source  = "Azure/azapi"
+      version = "~> 2.12"
     }
     random = {
       source  = "hashicorp/random"
@@ -32,16 +32,13 @@ terraform {
 }
 
 # -----------------------------------------------------------------------------
-# Provider: azurerm
-# features {} block is mandatory even when no sub-features are customised.
-# The azapi + time + random providers require no additional configuration.
+# Providers used by the solution.
 # -----------------------------------------------------------------------------
+provider "azapi" {
+  enable_preflight = true
+}
+
 provider "azurerm" {
   features {}
-
-  # Use Azure AD auth for all storage data-plane operations (queue, blob, file,
-  # table probes) instead of shared-key / SAS.  Required because the storage
-  # account has allowSharedKeyAccess = false, and the provider's Read() function
-  # normally queries queue properties via key auth.
   storage_use_azuread = true
 }

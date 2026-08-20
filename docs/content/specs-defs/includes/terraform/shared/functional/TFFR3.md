@@ -23,7 +23,7 @@ priority: 20030
 
 {{% notice style="important" %}}
 
-Every AVM Terraform module — resource, pattern, or utility — **MUST** declare and use `Azure/azapi` as its foundation. A new module whose primary resource or overall implementation is built with AzureRM is non-compliant and **MUST NOT** be accepted into AVM.
+Every new AVM Terraform module — resource, pattern, or utility — **MUST** use `Azure/azapi` for every Azure resource it declares. The module repository **MUST NOT** declare or configure the `hashicorp/azurerm` provider, or declare any `azurerm_*` resource or data source.
 
 {{% /notice %}}
 
@@ -39,32 +39,18 @@ The AzAPI floor is `2.12` because [TFFR8]({{% siteparam base %}}/spec/TFFR8) req
 
 {{% /notice %}}
 
-The AzureRM provider **MUST NOT** be used as a module's foundation or to implement its primary resource. It is permitted only for the individual resources covered by the narrow exception below.
+This prohibition applies to every Terraform configuration shipped with the module, including:
 
-### Exception — AzureRM for resources with no AzAPI equivalent
+- The root module and all submodules.
+- Every configuration under `examples/`, including examples executed as end-to-end tests.
+- Terraform tests, test fixtures, and supporting setup configurations.
+- Terraform snippets in `_header.md`, `_footer.md`, generated documentation, and other repository documentation.
 
-An AVM Terraform module that is otherwise built with AzAPI **MAY** declare the AzureRM provider **only** for a specific resource whose functionality is genuinely unavailable through any AzAPI resource — that is, where there is no equivalent in `azapi_resource`, `azapi_data_plane_resource`, `azapi_resource_action`, or `azapi_update_resource`. In practice this is limited to a small set of edge cases, most commonly data-plane operations such as Key Vault secrets and certificates, Storage blobs, and a handful of resources whose `azurerm_*` implementation calls non-ARM APIs.
+Authors **MUST NOT** add a `hashicorp/azurerm` entry to `required_providers`, configure an `azurerm` provider block, or use any `azurerm_*` resource or data source in those locations. Supporting Azure resources needed by an example, end-to-end test, or fixture **MUST** use AzAPI.
 
-Where this exception applies the module **MUST**:
+If AzAPI cannot perform a required operation, authors **MUST NOT** fall back to AzureRM. They **MUST** treat the operation as an AzAPI capability gap, raise it with the AzAPI maintainers, and omit or redesign the functionality until an AzAPI implementation is available.
 
-- Continue to declare and use AzAPI as its required, primary provider.
-- Pin the AzureRM provider to `~> 4.0` in `required_providers`.
-- Use AzAPI for *every* resource that has an AzAPI equivalent. AzureRM **MUST NOT** be used as a convenience alternative to AzAPI.
-- Document the exception in the module's `README.md`, listing each `azurerm_*` resource used, the data-plane / non-ARM API it wraps, why no AzAPI equivalent exists today, and the upstream AzAPI issue or PR tracking the eventual replacement.
-- Replace each `azurerm_*` resource with its AzAPI equivalent as soon as one becomes available, in the next module release after the AzAPI capability ships.
-- Add the following TFLint exclusion (only required because the AzureRM provider is otherwise blocked by AVM tooling):
-
-  ```hcl
-  rule "provider_azurerm_disallowed" {
-    enabled = false
-  }
-  ```
-
-This exception **MUST NOT** be used to:
-
-- Avoid migrating an existing AzureRM resource that *does* have an AzAPI equivalent.
-- Reduce author effort where the AzAPI body schema is more verbose than the AzureRM resource.
-- Side-step any other AzAPI-specific spec (for example [TFFR4]({{% siteparam base %}}/spec/TFFR4), [TFFR5]({{% siteparam base %}}/spec/TFFR5), [TFFR6]({{% siteparam base %}}/spec/TFFR6), or [TFFR7]({{% siteparam base %}}/spec/TFFR7)) — those rules continue to apply to every AzAPI resource the module declares, regardless of whether the module also uses AzureRM under this exception.
+The `azurerm` remote state backend and the final segment of a published Terraform Registry module address, such as `/azurerm` in an existing AVM module source, are names and are not provider declarations. They **MAY** appear where required for state storage or to reference an existing published AVM module. A dependency's provider implementation is governed by that dependency's own repository; its Registry address does not permit the consuming module repository to declare or configure `hashicorp/azurerm`, or to add any `azurerm_*` block.
 
 Authors **MUST** use the `required_providers` block in their module to enforce the provider versions.
 

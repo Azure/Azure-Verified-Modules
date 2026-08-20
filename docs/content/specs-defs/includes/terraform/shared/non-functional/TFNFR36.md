@@ -1,5 +1,5 @@
 ---
-title: TFNFR36 - Setting prevent_deletion_if_contains_resources
+title: TFNFR36 - Legacy AzureRM resource group deletion behavior
 description: Module Specification for the Azure Verified Modules (AVM) program
 url: /spec/TFNFR36
 type: default
@@ -19,8 +19,12 @@ tags: [
 priority: 21360
 ---
 
-## ID: TFNFR36 - Category: Code Style - Setting prevent_deletion_if_contains_resources (AzureRM only)
+## ID: TFNFR36 - Category: Code Style - Legacy AzureRM resource group deletion behavior
 
-From Terraform AzureRM 3.0, the default value of `prevent_deletion_if_contains_resources` in `provider` block is `true`. This will lead to an unstable test because the test subscription has some policies applied, and they will add some extra resources during the run, which can cause failures during destroy of resource groups.
+{{% notice style="warning" %}}
 
-Since we cannot guarantee our testing environment won't be applied some [Azure Policy Remediation Tasks](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources?tabs=azure-portal) in the future, for a robust testing environment, `prevent_deletion_if_contains_resources` **SHOULD** be explicitly set to `false`.
+This specification applies only to existing legacy modules that still use AzureRM while they are being migrated. New modules **MUST NOT** declare or configure AzureRM in module code, examples, end-to-end tests, Terraform tests, or fixtures. See [TFFR3]({{% siteparam base %}}/spec/TFFR3).
+
+{{% /notice %}}
+
+In a legacy AzureRM module, the `prevent_deletion_if_contains_resources` provider setting **SHOULD** be set to `false` until the module is migrated. Azure Policy remediation can add resources during a test run, and the provider's default behavior can then prevent cleanup of the test resource group.

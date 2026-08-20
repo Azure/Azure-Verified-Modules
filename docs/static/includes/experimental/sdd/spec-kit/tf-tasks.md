@@ -53,7 +53,7 @@
 
 ### Terraform Configuration Files (Shell)
 
-- [ ] T005 [P] Create terraform/terraform.tf with provider version constraints (Terraform >= 1.9.0, azurerm ~> 4.0, random ~> 3.6)
+- [ ] T005 [P] Create terraform/terraform.tf with provider version constraints (Terraform >= 1.9.0, AzAPI ~> 2.12 for direct resources, AzureRM ~> 4.0 for published AVM dependencies, random ~> 3.6)
 - [ ] T006 [P] Create terraform/variables.tf shell with empty file (will populate in Phase 2)
 - [ ] T007 [P] Create terraform/locals.tf shell with empty file (will populate in Phase 2)
 - [ ] T008 [P] Create terraform/main.tf shell with header comment
@@ -117,8 +117,8 @@
 
 ### Resource Group
 
-- [ ] T031 [US1] Implement azurerm_resource_group in terraform/main.tf (name from locals, location from var.location, tags from locals.common_tags)
-- [ ] T032 [US1] Implement azurerm_management_lock for Resource Group in terraform/main.tf (CanNotDelete per spec SEC-011)
+- [ ] T031 [US1] Implement the Resource Group AVM module in terraform/main.tf (name from locals, location from var.location, tags from locals.common_tags)
+- [ ] T032 [US1] Configure the Resource Group lock through the module lock interface (CanNotDelete per spec SEC-011)
 
 ### Log Analytics Workspace (Required for Diagnostic Settings)
 
@@ -210,9 +210,9 @@
 
 ### NSG-Subnet Associations
 
-- [ ] T084 [P] [US1] Implement azurerm_subnet_network_security_group_association for vm_subnet in terraform/main.tf
-- [ ] T085 [P] [US1] Implement azurerm_subnet_network_security_group_association for bastion_subnet in terraform/main.tf
-- [ ] T086 [P] [US1] Implement azurerm_subnet_network_security_group_association for private_endpoint_subnet in terraform/main.tf
+- [ ] T084 [P] [US1] Configure the VNet module vm_subnet with module.vm_nsg.resource_id
+- [ ] T085 [P] [US1] Configure the VNet module bastion_subnet with module.bastion_nsg.resource_id
+- [ ] T086 [P] [US1] Configure the VNet module private_endpoint_subnet with module.private_endpoint_nsg.resource_id
 
 ### Virtual Machine
 
@@ -291,7 +291,7 @@
 
 - [ ] T121 [US2] Implement module block for Key Vault in terraform/main.tf using Azure/avm-res-keyvault-vault/azurerm
 - [ ] T122 [US2] Configure Key Vault name = locals.key_vault_name (3-24 chars)
-- [ ] T123 [US2] Configure Key Vault tenant_id from data.azurerm_client_config.current
+- [ ] T123 [US2] Configure Key Vault tenant_id from data.azapi_client_config.current
 - [ ] T124 [US2] Configure Key Vault sku_name = standard
 - [ ] T125 [US2] Configure Key Vault soft_delete_retention_days = 90, purge_protection_enabled = true (per spec SEC-012)
 - [ ] T126 [US2] Configure Key Vault enable_rbac_authorization = true (use RBAC vs access policies per plan)
@@ -306,13 +306,13 @@
 
 ### Key Vault RBAC for Deployment Identity
 
-- [ ] T135 [US2] Implement data.azurerm_client_config.current in terraform/main.tf
-- [ ] T136 [US2] Implement azurerm_role_assignment for deployment identity in terraform/main.tf (role: Key Vault Secrets Officer, scope: Key Vault, principal_id: current identity)
+- [ ] T135 [US2] Implement data.azapi_client_config.current in terraform/main.tf
+- [ ] T136 [US2] Configure the Key Vault module role_assignments interface for the deployment identity (role: Key Vault Secrets Officer, principal_id: current identity)
 
 ### Update VM to Reference Key Vault Secret
 
 - [ ] T137 [US2] Update VM module in terraform/main.tf to reference Key Vault secret for admin_password (module.key_vault.secrets[var.vm_admin_secret_name].value)
-- [ ] T138 [US2] Update VM module depends_on to include module.key_vault and azurerm_role_assignment.kv_secrets_deployment
+- [ ] T138 [US2] Update VM module depends_on to include module.key_vault
 
 ### Azure Bastion
 
@@ -463,20 +463,20 @@
 
 ### Action Group for Alerts
 
-- [ ] T204 [US4] Implement azurerm_monitor_action_group in terraform/main.tf (name: locals.action_group_name, short_name: avmalerts)
+- [ ] T204 [US4] Implement an AzAPI `Microsoft.Insights/actionGroups` resource in terraform/main.tf (name: locals.action_group_name, short name: avmalerts)
 - [ ] T205 [US4] Configure action group email_receiver (name: admin-email, email_address: var.alert_action_group_email)
 
 ### Metric Alerts
 
-- [ ] T206 [P] [US4] Implement azurerm_monitor_metric_alert for VM stopped in terraform/main.tf (name: alert-vm-stopped-{vm_name}, scope: VM ID)
+- [ ] T206 [P] [US4] Implement an AzAPI `Microsoft.Insights/metricAlerts` resource for VM stopped in terraform/main.tf (name: alert-vm-stopped-{vm_name}, scope: VM ID)
 - [ ] T207 [US4] Configure VM stopped alert criteria (metric: VmAvailabilityMetric, aggregation: Average, operator: LessThan, threshold: 1, severity: 0)
 - [ ] T208 [US4] Configure VM stopped alert frequency = PT5M, window_size = PT5M
 - [ ] T209 [US4] Configure VM stopped alert action referencing action group
-- [ ] T210 [P] [US4] Implement azurerm_monitor_metric_alert for VM disk usage in terraform/main.tf (name: alert-vm-disk-usage-{vm_name}, scope: VM ID)
+- [ ] T210 [P] [US4] Implement an AzAPI `Microsoft.Insights/metricAlerts` resource for VM disk usage in terraform/main.tf (name: alert-vm-disk-usage-{vm_name}, scope: VM ID)
 - [ ] T211 [US4] Configure VM disk alert criteria (metric: OS Disk Used Percent, aggregation: Average, operator: GreaterThan, threshold: 90, severity: 0)
 - [ ] T212 [US4] Configure VM disk alert frequency = PT15M, window_size = PT15M
 - [ ] T213 [US4] Configure VM disk alert action referencing action group
-- [ ] T214 [P] [US4] Implement azurerm_monitor_metric_alert for Key Vault access failures in terraform/main.tf (name: alert-kv-access-failures-{kv_name}, scope: Key Vault ID)
+- [ ] T214 [P] [US4] Implement an AzAPI `Microsoft.Insights/metricAlerts` resource for Key Vault access failures in terraform/main.tf (name: alert-kv-access-failures-{kv_name}, scope: Key Vault ID)
 - [ ] T215 [US4] Configure Key Vault alert criteria (metric: ServiceApiResult, aggregation: Count, operator: GreaterThan, threshold: 0, severity: 0)
 - [ ] T216 [US4] Configure Key Vault alert dimension filter (name: StatusCode, operator: Include, values: ["403"])
 - [ ] T217 [US4] Configure Key Vault alert frequency = PT5M, window_size = PT5M

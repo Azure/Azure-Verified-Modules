@@ -12,7 +12,11 @@ Azure Verified Modules (AVM) for Terraform are a powerful tool that leverage the
 In this article, we will walk through the Terraform specific considerations and recommended practices on developing your solution leveraging Azure Verified Modules. We'll review some of the design features and trade-offs and include sample code to illustrate each discussion point.
 
 {{% notice style="warning" %}}
-**Do not use this lab as a template for authoring an AVM module.** It demonstrates older modules built on the AzureRM provider. Every new AVM Terraform module **MUST** be built with [AzAPI](https://registry.terraform.io/providers/Azure/azapi/latest); an AzureRM-based module is non-compliant and will not be accepted. Current modules expose `parent_id` instead of `resource_group_name` (per [TFRMFR1]({{% siteparam base %}}/spec/TFRMFR1)), name their primary resource `this` (per [TFRMNFR2]({{% siteparam base %}}/spec/TFRMNFR2)), and source the AzAPI resource type from `var.resource_types` (per [TFFR6]({{% siteparam base %}}/spec/TFFR6)). The high-level patterns shown below (architecture, composition, dependency wiring) carry over, but the per-module call surface differs on current AzAPI-based modules. For the current call shape see the [Terraform quickstart]({{% siteparam base %}}/usage/quickstart/terraform/) and [AzAPI is mandatory for AVM Terraform modules]({{% siteparam base %}}/specs/tf/#azapi-is-mandatory-for-avm-terraform-modules).
+**This is a solution-composition lab, not a template for authoring an AVM module.** Every new AVM Terraform module **MUST** use [AzAPI](https://registry.terraform.io/providers/Azure/azapi/latest) for all Azure resources it declares.
+In a new AVM module repository, do not declare or configure AzureRM, or use an `azurerm_*` resource or data source, in the root module, submodules, examples/end-to-end tests, Terraform tests, fixtures, or documentation snippets.
+A solution root may configure AzureRM only when a currently published AVM dependency requires it; direct supporting Azure resources must still use AzAPI.
+Current modules expose `parent_id` instead of `resource_group_name` (per [TFRMFR1]({{% siteparam base %}}/spec/TFRMFR1)), name their primary resource `this` (per [TFRMNFR2]({{% siteparam base %}}/spec/TFRMNFR2)), and source the AzAPI resource type from `var.resource_types` (per [TFFR6]({{% siteparam base %}}/spec/TFFR6)).
+For a concise current example, use the [Terraform quickstart]({{% siteparam base %}}/usage/quickstart/terraform/) and follow [TFFR3]({{% siteparam base %}}/spec/TFFR3).
 {{% /notice %}}
 
 ## Prerequisites
@@ -209,25 +213,25 @@ Now, replace the `# insert the 2 required variables here` comment with the follo
 Note how we've used the prefix variable and Terraform interpolation syntax to dynamically name the resource group. This allows for module customization and re-use. Also note that even though we chose to use the default module name of avm-res-resources-resourcegroup, we could modify the name of the module if needed.
 {{% /notice %}}
 
-After saving the file, we want to test our new content. To do this, return to the command line and first run `terraform init`. Notice how Terraform has downloaded the module code, as well as providers that the module requires. In this case, you can see the `azurerm`, `random`, and `modtm` providers were downloaded.
+After saving the file, we want to test our new content. To do this, return to the command line and first run `terraform init`. Notice how Terraform has downloaded the module code and its providers. Currently published modules in this solution still require AzureRM, while direct Azure resources should use AzAPI.
 
 Let's now deploy our resource group. First, let's run a plan operation to review what will be created. Type `terraform plan -var-file=development.tfvars` and press `enter` to initiate the plan.
 
-##### Add the features block
+##### Configure the providers
 
-Notice that we get an error indicating that we are `Missing required argument` and that for the `azurerm` provider, we need to provide a features argument. The addition of the resource group AVM resource requires that the `azurerm` provider be installed to provision resources in our module. This provider requires a features block in its provider definition that is missing in our configuration.
+Configure AzAPI explicitly and enable preflight validation. The published AVM modules used by this solution also require an AzureRM provider configuration. This is a dependency of those existing modules and does not permit direct AzureRM resources in a new AVM module repository.
 
-Return to the `terraform.tf` file and add the following content to it. Note how the features block is currently empty. If we needed to activate any feature flags in our module, we could add them here.
+Return to the `terraform.tf` file and add the following content:
 
 {{% expand title="➕ Expand Code" %}}
 {{< code file="/content/usage/includes/terraform/VirtualMachineAVM_Example1/steps/step5-terraform-features.tf" lang="terraform" line_anchors="sol-step5" hl_lines="7-9" >}}
 {{% /expand %}}
 
-Re-run `terraform plan -var-file=development.tfvars` now that we have updated the features block.
+Run `terraform init -upgrade` to install AzAPI and update the lock file, then re-run `terraform plan -var-file=development.tfvars`.
 
-##### Set the subscription ID
+##### Select the subscription
 
-Note that we once again get an error. This time, the error indicates that `subscription_id is a required provider property` for `plan`/`apply` operations. This is a change that was introduced as part of the version 4 release of the AzureRM provider. We need to supply the ID of the deployment subscription where our resources will be created.
+AzAPI uses the active Azure authentication context. Confirm that Azure CLI is signed in to the subscription where the resources should be created.
 
 First, we need to get the subscription ID value. We will use the portal for this exercise, but using the Azure CLI, PowerShell, or the resource graph will also work to retrieve this value.
 
@@ -237,10 +241,13 @@ First, we need to get the subscription ID value. We will use the portal for this
 1. Select the subscription you wish to deploy to, from the list of subscriptions.
 1. Find the `Subscription ID` field on the overview page and click the copy button to copy it to the clipboard.
 
-Secondly, we need to update Terraform so that it can use the subscription ID. There are multiple ways to provide a subscription ID to the provider including adding it to the features block or using environment variables. For this scenario we'll use environment variables to set the values so that we don't have to re-enter them on each run. This also keeps us from storing the subscription ID in our code since it is considered a sensitive value. Select a command from the list below  based on your operating system.
+Set the environment variable required by AzureRM v4 for the currently published AVM dependencies, then select the same subscription in Azure CLI:
 
-1. (Linux/MacOS) - Run the following command with your subscription ID: `export ARM_SUBSCRIPTION_ID=<your ID here>`
-1. (Windows) - Run the following command with your subscription ID: `set ARM_SUBSCRIPTION_ID=<your ID here>`
+```powershell
+$env:ARM_SUBSCRIPTION_ID = "<subscription-id>"
+az account set --subscription "<subscription-id>"
+az account show --query "{name:name,id:id}" --output table
+```
 
 Finally, we should now be able to complete our plan operation by re-running `terraform plan -var-file=development.tfvars`. Note that the plan will create three resources, two for telemetry and one for the resource group.
 

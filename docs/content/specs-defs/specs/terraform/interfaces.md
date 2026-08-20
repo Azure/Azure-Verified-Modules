@@ -165,7 +165,7 @@ A module **MUST** implement exactly one of the two variants below. Which one app
 **Notes:**
 
 - Modules **MUST NOT** use a data source to resolve the key URI or the encryption identity's client ID.
-  - Terraform reads a data source during `plan` whenever its arguments are already known. `azurerm_key_vault_key` takes a vault resource ID and a key name, and `azurerm_user_assigned_identity` takes a name and a resource group name. Those arguments are known literals even when the key or the identity is created by the same `terraform apply`, so the read runs before the resource exists and the plan fails.
+  - Terraform reads a data source during `plan` whenever its arguments are already known. A key or identity lookup whose arguments are known literals can therefore run before a resource created by the same `terraform apply` exists, causing the plan to fail.
   - A module **MAY** read the Key Vault itself by `key_vault_resource_id`, because that argument is unknown at plan time whenever the vault is created by the same apply, which defers the read to apply time.
 - Variant 1 **MUST** be used where the resource provider takes the vault URI, the key name and the key version as separate fields, and identifies the encryption identity by resource ID, such as `Microsoft.Storage/storageAccounts`.
   - Omitting `key_version` **MUST** leave the resource provider following key rotations automatically.
