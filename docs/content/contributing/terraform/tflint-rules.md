@@ -54,43 +54,43 @@ To disable a rule, use the exact HCL shown in the **Disable** column. The config
 
 ## Rule guidance
 
-### azapi_data_response_export_values
+### azapi data response export values
 
 Applies [TFFR4]({{% siteparam base %}}/spec/TFFR4) to AzAPI data sources: declare `response_export_values`, including `[]` when no response fields are needed.
 
-### azapi_replace_triggers_refs
+### azapi replace triggers refs
 
 Applies [TFFR5]({{% siteparam base %}}/spec/TFFR5): declare `replace_triggers_refs` on every applicable managed AzAPI resource, listing body paths that require replacement.
 
-### azapi_resource_tag
+### azapi resource tag
 
 Applies [TFFR9]({{% siteparam base %}}/spec/TFFR9): set `tags = var.tags` exactly on types supported by the shared AzAPI embedded-schema capability source, and omit `tags` for unsupported types. The rule skips dynamic or otherwise unevaluable type expressions.
 
-### azapi_response_export_values
+### azapi response export values
 
 Applies [TFFR4]({{% siteparam base %}}/spec/TFFR4): every applicable managed AzAPI resource declares `response_export_values`, including `[]` when no fields are exported.
 
-### customer_managed_key
+### customer managed key
 
 Validates the [customer-managed key interface]({{% siteparam base %}}/specs/tf/interfaces/#customer-managed-keys).
 
-### deprecated_lock_interface
+### deprecated lock interface
 
 Prevents new use of deprecated shapes in the [resource-lock interface]({{% siteparam base %}}/specs/tf/interfaces/#resource-locks).
 
-### deprecated_private_endpoints_interface
+### deprecated private endpoints interface
 
 Prevents new use of deprecated shapes in the [private-endpoints interface]({{% siteparam base %}}/specs/tf/interfaces/#private-endpoints).
 
-### deprecated_role_assignments_interface
+### deprecated role assignments interface
 
 Prevents new use of deprecated shapes in the [role-assignments interface]({{% siteparam base %}}/specs/tf/interfaces/#role-assignments).
 
-### diagnostic_settings
+### diagnostic settings
 
 Validates the [diagnostic-settings interface]({{% siteparam base %}}/specs/tf/interfaces/#diagnostic-settings).
 
-### ignore_body_changes
+### ignore body changes
 
 Validates the [AzAPI `ignore_body_changes` interface]({{% siteparam base %}}/spec/TFFR8), including its per-resource and per-submodule applicability.
 
@@ -102,51 +102,51 @@ Validates the standard [location interface]({{% siteparam base %}}/specs/tf/inte
 
 Validates the [resource-lock interface]({{% siteparam base %}}/specs/tf/interfaces/#resource-locks).
 
-### managed_identities
+### managed identities
 
 Validates the [managed-identities interface]({{% siteparam base %}}/specs/tf/interfaces/#managed-identities).
 
-### no_entire_resource_output_tffr2
+### no entire resource output tffr2
 
 Applies [TFFR2]({{% siteparam base %}}/spec/TFFR2): output explicit values instead of an entire provider resource.
 
-### private_endpoints
+### private endpoints
 
 Validates the [private-endpoints interface]({{% siteparam base %}}/specs/tf/interfaces/#private-endpoints).
 
-### private_endpoints_manage_dns_zone_group
+### private endpoints manage dns zone group
 
 Validates the DNS-zone-group behavior of the [private-endpoints interface]({{% siteparam base %}}/specs/tf/interfaces/#private-endpoints).
 
-### provider_azapi_version_constraint
+### provider azapi version constraint
 
 Validates the AzAPI constraint required by [TFFR3]({{% siteparam base %}}/spec/TFFR3).
 
-### provider_azurerm_disallowed
+### provider azurerm disallowed
 
 Applies the AzureRM-foundation prohibition in [TFFR3]({{% siteparam base %}}/spec/TFFR3).
 
-### provider_azurerm_version_constraint
+### provider azurerm version constraint
 
 Validates the AzureRM constraint when the narrow [TFFR3]({{% siteparam base %}}/spec/TFFR3) exception is used.
 
-### provider_modtm_version_constraint
+### provider modtm version constraint
 
 Validates the ModTM provider constraint when that provider is used.
 
-### required_module_source_tffr1
+### required module source tffr1
 
 Applies [TFFR1]({{% siteparam base %}}/spec/TFFR1) to AVM module sources.
 
-### required_module_source_tfnfr10
+### required module source tfnfr10
 
 Applies [TFNFR10]({{% siteparam base %}}/spec/TFNFR10) to `ignore_changes` references.
 
-### required_output_rmfr7
+### required output rmfr7
 
 Applies the required-output contract in [RMFR7]({{% siteparam base %}}/spec/RMFR7).
 
-### resource_types
+### resource types
 
 Validates the [AzAPI `resource_types` interface]({{% siteparam base %}}/spec/TFFR6), including its deterministic resource-type keys and cascading shape.
 
@@ -154,7 +154,7 @@ Validates the [AzAPI `resource_types` interface]({{% siteparam base %}}/spec/TFF
 
 Validates the [AzAPI `retry` interface]({{% siteparam base %}}/spec/TFFR7).
 
-### role_assignments
+### role assignments
 
 Validates the [role-assignments interface]({{% siteparam base %}}/specs/tf/interfaces/#role-assignments).
 
@@ -162,19 +162,19 @@ Validates the [role-assignments interface]({{% siteparam base %}}/specs/tf/inter
 
 Validates the [tags interface]({{% siteparam base %}}/specs/tf/interfaces/#tags).
 
-### terraform_heredoc_usage
+### terraform heredoc usage
 
 Applies [TFNFR40]({{% siteparam base %}}/spec/TFNFR40): represent JSON or YAML structured values with `jsonencode` or `yamlencode`.
 
-### terraform_module_provider_declaration
+### terraform module provider declaration
 
 Applies [TFNFR27]({{% siteparam base %}}/spec/TFNFR27): a published module contains no `provider` blocks; aliases are declared only through `configuration_aliases` and configured by its consumer.
 
-### terraform_sensitive_variable_no_default
+### terraform sensitive variable no default
 
 Applies [TFNFR23]({{% siteparam base %}}/spec/TFNFR23): a sensitive variable may default only to an empty collection.
 
-### terraform_tf_file
+### terraform tf file
 
 Applies [TFNFR39]({{% siteparam base %}}/spec/TFNFR39): a module has exactly one `terraform` block and it is in `terraform.tf`.
 

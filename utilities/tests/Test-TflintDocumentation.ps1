@@ -150,4 +150,4 @@ foreach ($path in @(
   }
 }
 
-Write-Host 'TFLint documentation validation passed.'
+Write-Output 'TFLint documentation validation passed.'
