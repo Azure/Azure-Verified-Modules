@@ -21,6 +21,8 @@ priority: 20080
 
 ## ID: TFFR8 - Category: Inputs/Outputs - AzAPI - ignore_body_changes variable
 
+This requirement is enforced by [ignore_body_changes]({{% siteparam base %}}/contributing/terraform/tflint-rules/#ignore-body-changes).
+
 ### Applicability
 
 TFFR6, TFFR7, and TFFR8 apply independently to each module and submodule scope. Together they require `resource_types`, `retry`, `timeouts`, and `ignore_body_changes` only when that scope directly declares at least one managed `resource` block of a supported AzAPI type:

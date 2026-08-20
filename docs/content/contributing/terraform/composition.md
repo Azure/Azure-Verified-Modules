@@ -29,14 +29,14 @@ See the [Terraform AVM template repository](https://github.com/Azure/terraform-a
     - `setup.ps1` - (optional setup hook)
   - `integration/` - (optional .tftest.hcl files for integration testing with Terraform test)
     - `setup.ps1` - (optional setup hook)
-- `modules/` - (for sub-modules only if used)
+- `modules/` - (for sub-modules only if used; each submodule root **MUST** be a direct `modules/<name>/` child)
 - `examples/` - (all examples must deploy successfully without requiring input and use AzAPI for supporting control-plane resources; AzureRM may appear only when exercising the module's documented unsupported data-plane exception - these are customer facing and run as end-to-end tests)
   - `<at least one folder>` - (at least one example that uses the variable defaults minimum/required parameters/variables only)
     - `pre.ps1` - (optional setup hook)
     - `post.ps1` - (optional cleanup hook)
     - `tflint-pre.ps1` - (optional setup hook for TFLint)
     - `.e2eignore` - (optional marker that excludes the example from e2e testing)
-  - `<other folders for examples as required>`
+  - `<other folders for examples as required>` - (each example root **MUST** be a direct `examples/<name>/` child)
 - `/...` - (Module files that live in the root of module directory)
   - `_header.md` - (required for documentation generation)
   - `_footer.md` - (required for documentation generation)
@@ -50,6 +50,8 @@ See the [Terraform AVM template repository](https://github.com/Azure/terraform-a
   - `locals.resource1.tf`
 
 See [Lifecycle hooks]({{% siteparam base %}}/contributing/terraform/contribution-flow/#lifecycle-hooks) for hook execution, environment, and migration guidance.
+
+Nested Terraform module and example roots are prohibited. `Avm.Authoring` convention validation enforces the one-layer `modules/*` and `examples/*` structure; see [TFRMNFR1]({{% siteparam base %}}/spec/TFRMNFR1).
 
 ## Code Styling
 
@@ -105,7 +107,7 @@ Every Terraform AVM module **MUST** be built with AzAPI, and every resource modu
 | --- | --- |
 | [TFFR3]({{% siteparam base %}}/spec/TFFR3) | Use `Azure/azapi` for every control-plane resource and supported data-plane operation in the module, submodules, examples/e2e tests, Terraform tests, fixtures, and documentation snippets. AzureRM is permitted only for a documented data-plane/non-ARM operation that AzAPI cannot implement. |
 | [TFRMFR1]({{% siteparam base %}}/spec/TFRMFR1) | Expose the parent scope as a single required `parent_id` string variable. **Do not** expose `resource_group_name` or any other scope-specific input. Validate with `provider::azapi::parse_resource_id` against the expected parent type. |
-| [TFRMNFR1]({{% siteparam base %}}/spec/TFRMNFR1) | Implement every ARM subresource as a Terraform submodule under `modules/<subresource-singular-name>/`. Parent modules **MUST** reference submodules, and submodules **MUST** be independently consumable. Keep submodule primary resources single-instance only (no `count` / `for_each` on `azapi_resource.this`); cardinality belongs at the module call site. |
+| [TFRMNFR1]({{% siteparam base %}}/spec/TFRMNFR1) | Implement every ARM subresource as a Terraform submodule under a direct `modules/<subresource-singular-name>/` child. Parent modules **MUST** reference submodules, and submodules **MUST** be independently consumable. Keep submodule primary resources single-instance only (no `count` / `for_each` on `azapi_resource.this`); cardinality belongs at the module call site. Nested module roots are prohibited. |
 | [TFRMNFR2]({{% siteparam base %}}/spec/TFRMNFR2) | Name the primary `azapi_resource` `this`. Satellite resources **MUST** be named after what they represent (e.g. `azapi_resource.lock`, `azapi_resource.role_assignment`, `azapi_resource.diagnostic_setting`, `azapi_resource.private_endpoint`), not `this`. |
 | [TFFR4]({{% siteparam base %}}/spec/TFFR4) | Always set `response_export_values` on every AzAPI resource (use `[]` when nothing needs exporting). Include any read-only properties the module's outputs or downstream resources depend on. |
 | [TFFR5]({{% siteparam base %}}/spec/TFFR5) | Always set `replace_triggers_refs` on every AzAPI resource. List the body paths that **MUST** force replacement when they change; `name` and `location` are already triggers, so don't repeat them. |

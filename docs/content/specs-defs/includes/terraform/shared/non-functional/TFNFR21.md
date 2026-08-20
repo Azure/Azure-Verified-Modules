@@ -21,7 +21,7 @@ priority: 21210
 
 ## ID: TFNFR21 - Category: Code Style - Discourage Nullability by Default
 
-`nullable = true` **MUST** be avoided.
+`nullable = true` **MUST** be avoided. MAPOTF removes redundant explicit `nullable = true`; this cleanup is distinct from, and does not satisfy, the requirement to set `nullable = false` where a meaningful zero value exists.
 
 Variables **MUST** be declared with `nullable = false` whenever the variable's type has a meaningful zero value (`{}` for objects/maps, `[]` for lists/sets, `""` for strings where empty has the same meaning as absent, etc.). Consumers should signal "no value" by omitting the input, not by explicitly passing `null`.
 

@@ -23,9 +23,11 @@ priority: 21260
 
 The `terraform` block in `terraform.tf` **MUST** contain the `required_providers` block.
 
-Each provider used directly in the module **MUST** be specified with the `source` and `version` properties. Providers in the `required_providers` block **SHOULD** be sorted in alphabetical order.
+Each provider used directly in the module **MUST** be specified with the `source` and `version` properties. The standard Terraform TFLint plugin validates the used-provider source and version requirements. MAPOTF sorts the `required_providers` entries alphabetically.
 
-Do not add providers to the `required_providers` block that are not directly required by this module. If submodules are used then each submodule **SHOULD** have its own `versions.tf` file.
+See [MAPOTF and standard Terraform TFLint coverage]({{% siteparam base %}}/contributing/terraform/tflint-rules/#mapotf-and-standard-terraform-tflint-coverage).
+
+Do not add providers to the `required_providers` block that are not directly required by this module. If submodules are used then each submodule **SHOULD** declare its requirements in its own `terraform.tf` file.
 
 The `source` property **MUST** be in the format of `namespace/name`. If this is not explicitly specified, it can cause failure.
 

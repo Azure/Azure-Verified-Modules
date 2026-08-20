@@ -21,6 +21,8 @@ priority: 20070
 
 ## ID: TFFR7 - Category: Inputs/Outputs - AzAPI - retry and timeouts variables
 
+These requirements are enforced by [retry]({{% siteparam base %}}/contributing/terraform/tflint-rules/#retry) and [timeouts]({{% siteparam base %}}/contributing/terraform/tflint-rules/#timeouts).
+
 ### Applicability
 
 TFFR6, TFFR7, and TFFR8 apply independently to each module and submodule scope. Together they require `resource_types`, `retry`, `timeouts`, and `ignore_body_changes` only when that scope directly declares at least one managed `resource` block of a supported AzAPI type:
