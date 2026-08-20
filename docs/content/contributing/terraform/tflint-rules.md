@@ -64,11 +64,11 @@ Applies [TFFR5]({{% siteparam base %}}/spec/TFFR5): declare `replace_triggers_re
 
 ### azapi resource tag
 
-Applies [TFFR9]({{% siteparam base %}}/spec/TFFR9): set `tags = var.tags` exactly on types supported by the independent AVM capability snapshot, and omit `tags` for unsupported types. The rule skips dynamic or otherwise unevaluable type expressions.
+Applies [TFFR9]({{% siteparam base %}}/spec/TFFR9): set `tags = var.tags` exactly on types supported by the embedded AVM-generated capability snapshot, and omit `tags` for unsupported types. The rule skips dynamic or otherwise unevaluable type expressions.
 
-The ruleset embeds a baseline capability snapshot and works standalone. It does not consume, import, or query AzAPI. Standalone users can continue with the embedded baseline or configure a generic external snapshot path when they need a newer capability snapshot.
+The ruleset embeds its AVM-generated capability snapshot and works standalone. It does not consume, import, or query AzAPI, and does not accept an external snapshot path.
 
-For managed users, `Avm.Authoring` pins, downloads, verifies, and caches an AVM-owned immutable snapshot, then passes its path to the ruleset. On a cache miss, it fetches the exact pin. Fetch or verification failure is fail-closed: no stale snapshot fallback is used, and `Avm.Authoring` reports preload instructions. This allows managed snapshot updates independently of ruleset releases while preserving an immutable, verified input.
+A weekly ruleset workflow compares the embedded snapshot with upstream data and opens a ruleset pull request when that data changes. Updated capability data ships with the next ruleset release. All users receive snapshot updates by upgrading the ruleset release.
 
 ### azapi response export values
 

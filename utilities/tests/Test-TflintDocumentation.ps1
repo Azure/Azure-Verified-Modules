@@ -95,7 +95,7 @@ foreach ($requiredText in @(
   'conditionally replace, or otherwise transform',
   'statically unsupported resource type',
   'dynamic or otherwise unevaluable',
-  'independent AVM capability snapshot',
+  'embedded AVM-generated capability snapshot',
   'rather than a hand-maintained module allowlist or an AzAPI import'
 )) {
   if ($tagSpec -notmatch [regex]::Escape($requiredText)) {
@@ -106,7 +106,19 @@ foreach ($requiredText in @(
 $tagRuleGuide = $guide -split '### azapi resource tag', 2 | Select-Object -Last 1
 foreach ($requiredText in @(
   'does not consume, import, or query AzAPI',
-  'embeds a baseline capability snapshot and works standalone',
+  'embeds its AVM-generated capability snapshot and works standalone',
+  'does not accept an external snapshot path',
+  'weekly ruleset workflow compares the embedded snapshot with upstream data',
+  'opens a ruleset pull request when that data changes',
+  'Updated capability data ships with the next ruleset release',
+  'upgrading the ruleset release'
+)) {
+  if ($tagRuleGuide -notmatch [regex]::Escape($requiredText)) {
+    throw "The azapi_resource_tag guide does not document '$requiredText'."
+  }
+}
+
+$staleSnapshotTerms = @(
   'generic external snapshot path',
   'pins, downloads, verifies, and caches an AVM-owned immutable snapshot',
   'On a cache miss, it fetches the exact pin',
@@ -114,9 +126,10 @@ foreach ($requiredText in @(
   'no stale snapshot fallback is used',
   'preload instructions',
   'independently of ruleset releases'
-)) {
-  if ($tagRuleGuide -notmatch [regex]::Escape($requiredText)) {
-    throw "The azapi_resource_tag guide does not document '$requiredText'."
+)
+foreach ($staleTerm in $staleSnapshotTerms) {
+  if ($tagRuleGuide -match [regex]::Escape($staleTerm)) {
+    throw "The azapi_resource_tag guide contains superseded snapshot wording: '$staleTerm'."
   }
 }
 
