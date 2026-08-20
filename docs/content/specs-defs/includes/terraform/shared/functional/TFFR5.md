@@ -23,11 +23,15 @@ priority: 20050
 
 This requirement is enforced by [azapi_replace_triggers_refs]({{% siteparam base %}}/contributing/terraform/tflint-rules/#azapi-replace-triggers-refs).
 
-Authors **MUST** specify the `replace_triggers_refs` argument when using the AzAPI provider.
-The values should contain the body paths that would cause the resource to be replaced when they change.
-You do ***not*** need to include `name`, or `location`, as these already trigger replacement.
+Authors **MUST** omit `replace_triggers_refs` when no body properties require replacement.
+When one or more body properties require replacement, authors **MUST** set `replace_triggers_refs` to a non-empty static list of JMESPath expressions that identify those paths.
+
+Each expression **MUST** be valid JMESPath syntax, non-blank, and unique within the list.
+Do not include `name` or `location`, as AzAPI already replaces the resource when either changes.
+When the resource body is statically evaluable, every declared expression **MUST** resolve against that body.
 
 This is to ensure that changes to properties that require replacement of the resource are handled correctly by Terraform.
+Authors remain responsible for identifying every property that actually requires replacement. Current Bicep-generated schemas do not reliably preserve whether a property is create-only or updateable, so the rule validates declared paths but cannot prove that the list is semantically complete.
 
 ```terraform
 resource "azapi_resource" "example" {
@@ -36,7 +40,7 @@ resource "azapi_resource" "example" {
   location  = "West US"
   replace_triggers_refs = [
     "properties.exampleProperty"
-  ] # must be specified, even if empty
+  ]
   body = {
     properties = {
       exampleProperty = "exampleValue"

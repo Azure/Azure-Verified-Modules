@@ -20,7 +20,7 @@ To disable a rule, use the exact HCL shown in the **Disable** column. The config
 | Rule | Enforces | Scope | Disable |
 | --- | --- | --- | --- |
 | [azapi_data_response_export_values](#azapi-data-response-export-values) | AzAPI data sources declare `response_export_values`. | All module scopes | `rule "azapi_data_response_export_values" { enabled = false }` |
-| [azapi_replace_triggers_refs](#azapi-replace-triggers-refs) | Managed AzAPI resources declare replacement-trigger paths. | All module scopes | `rule "azapi_replace_triggers_refs" { enabled = false }` |
+| [azapi_replace_triggers_refs](#azapi-replace-triggers-refs) | Managed AzAPI resources validate declared replacement-trigger paths. | All module scopes | `rule "azapi_replace_triggers_refs" { enabled = false }` |
 | [azapi_resource_tag](#azapi-resource-tag) | Supported AzAPI resource types apply the standard `tags` input; unsupported types omit `tags`. | All module scopes | `rule "azapi_resource_tag" { enabled = false }` |
 | [azapi_response_export_values](#azapi-response-export-values) | Managed AzAPI resources declare `response_export_values`. | All module scopes | `rule "azapi_response_export_values" { enabled = false }` |
 | [customer_managed_key](#customer-managed-key) | The customer-managed key interface follows the AVM contract. | All module scopes | `rule "customer_managed_key" { enabled = false }` |
@@ -60,7 +60,9 @@ Applies [TFFR4]({{% siteparam base %}}/spec/TFFR4) to AzAPI data sources: declar
 
 ### azapi replace triggers refs
 
-Applies [TFFR5]({{% siteparam base %}}/spec/TFFR5): declare `replace_triggers_refs` on every applicable managed AzAPI resource, listing body paths that require replacement.
+Applies [TFFR5]({{% siteparam base %}}/spec/TFFR5). Omit `replace_triggers_refs` when no body paths require replacement. When present, it must be a non-empty static list of valid JMESPath expressions that identify body paths requiring replacement. Entries cannot be blank or duplicated, and cannot include `name` or `location`, because AzAPI already replaces the resource when either changes. When the body is statically evaluable, the rule verifies that each declared path resolves against it.
+
+Authors remain responsible for identifying the properties that actually require replacement. Current Bicep-generated schemas do not reliably preserve create-only versus updateable mutability, so this rule validates declared paths but cannot prove that the list is semantically complete.
 
 ### azapi resource tag
 

@@ -118,6 +118,60 @@ foreach ($requiredText in @(
   }
 }
 
+$replaceTriggersSpec = Get-Content -Raw (Join-Path $RepositoryRoot 'docs\content\specs-defs\includes\terraform\shared\functional\TFFR5.md')
+$compositionGuide = Get-Content -Raw (Join-Path $RepositoryRoot 'docs\content\contributing\terraform\composition.md')
+$replaceTriggersGuide = $guide -split '### azapi replace triggers refs', 2 | Select-Object -Last 1
+foreach ($requiredText in @(
+  'MUST** omit `replace_triggers_refs` when no body properties require replacement',
+  'non-empty static list of JMESPath expressions',
+  'MUST** be valid JMESPath syntax, non-blank, and unique within the list',
+  'Do not include `name` or `location`',
+  'body is statically evaluable, every declared expression **MUST** resolve against that body',
+  'Bicep-generated schemas do not reliably preserve whether a property is create-only or updateable',
+  'cannot prove that the list is semantically complete'
+)) {
+  if ($replaceTriggersSpec -notmatch [regex]::Escape($requiredText)) {
+    throw "TFFR5 does not define '$requiredText'."
+  }
+}
+
+foreach ($requiredText in @(
+  'Omit `replace_triggers_refs` when no body paths require replacement',
+  'non-empty static list of valid JMESPath expressions',
+  'Entries cannot be blank or duplicated',
+  'cannot include `name` or `location`',
+  'body is statically evaluable, the rule verifies that each declared path resolves against it',
+  'Bicep-generated schemas do not reliably preserve create-only versus updateable mutability',
+  'cannot prove that the list is semantically complete'
+)) {
+  if ($replaceTriggersGuide -notmatch [regex]::Escape($requiredText)) {
+    throw "The azapi_replace_triggers_refs guide does not document '$requiredText'."
+  }
+}
+
+foreach ($requiredText in @(
+  'Set `replace_triggers_refs` only when body paths require replacement',
+  'non-empty static list **MUST** contain valid, unique JMESPath expressions',
+  'omit the argument when no paths are needed'
+)) {
+  if ($compositionGuide -notmatch [regex]::Escape($requiredText)) {
+    throw "The Terraform composition guide does not document '$requiredText'."
+  }
+}
+
+foreach ($content in @($replaceTriggersSpec, $replaceTriggersGuide, $compositionGuide)) {
+  foreach ($prohibitedPattern in @(
+    '(?i)must be specified, even if empty',
+    '(?i)always set `replace_triggers_refs`',
+    '(?i)declare `replace_triggers_refs` on every applicable',
+    '(?s)replace_triggers_refs\s*=\s*\[\s*\]'
+  )) {
+    if ($content -match $prohibitedPattern) {
+      throw "replace_triggers_refs documentation contains superseded wording: '$prohibitedPattern'."
+    }
+  }
+}
+
 $staleSnapshotTerms = @(
   'generic external snapshot path',
   'pins, downloads, verifies, and caches an AVM-owned immutable snapshot',
