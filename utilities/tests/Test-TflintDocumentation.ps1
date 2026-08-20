@@ -94,10 +94,29 @@ foreach ($requiredText in @(
   'tags = var.tags',
   'conditionally replace, or otherwise transform',
   'statically unsupported resource type',
-  'dynamic or otherwise unevaluable'
+  'dynamic or otherwise unevaluable',
+  'independent AVM capability snapshot',
+  'rather than a hand-maintained module allowlist or an AzAPI import'
 )) {
   if ($tagSpec -notmatch [regex]::Escape($requiredText)) {
     throw "TFFR9 does not define '$requiredText'."
+  }
+}
+
+$tagRuleGuide = $guide -split '### azapi resource tag', 2 | Select-Object -Last 1
+foreach ($requiredText in @(
+  'does not consume, import, or query AzAPI',
+  'embeds a baseline capability snapshot and works standalone',
+  'generic external snapshot path',
+  'pins, downloads, verifies, and caches an AVM-owned immutable snapshot',
+  'On a cache miss, it fetches the exact pin',
+  'fail-closed',
+  'no stale snapshot fallback is used',
+  'preload instructions',
+  'independently of ruleset releases'
+)) {
+  if ($tagRuleGuide -notmatch [regex]::Escape($requiredText)) {
+    throw "The azapi_resource_tag guide does not document '$requiredText'."
   }
 }
 
