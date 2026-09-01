@@ -13,12 +13,12 @@
       steps:
 
         - name: Checkout code
-          uses: actions/checkout@v4
+          uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
           with:
             fetch-depth: 0
 
         - name: Run github/super-linter
-          uses: github/super-linter@v7
+          uses: github/super-linter@b807e99ddd37e444d189cfd2c2ca1274d8ae8ef1 # v7
           env:
             VALIDATE_ALL_CODEBASE: false
             # Need to define main branch as default is set to master in super-linter
@@ -45,7 +45,7 @@
             fetch-depth: 0
 
         - name: Check links in markdown files
-          uses: gaurav-nelson/github-action-markdown-link-check@1.0.16
+          uses: gaurav-nelson/github-action-markdown-link-check@1b916f2cf6c36510a6059943104e3c42ce6c16bc # 1.0.16
           with:
             config-file: ".github/linters/mlc_config.json"
             use-verbose-mode: "yes"
