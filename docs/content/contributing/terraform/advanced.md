@@ -76,7 +76,7 @@ Example:
 
 ```hcl
 # Disable the required resource id output rule — this is a pattern module.
-rule "required_output_rmfr7" {
+rule "avm_output_resource_id_required" {
   enabled = false
 }
 ```

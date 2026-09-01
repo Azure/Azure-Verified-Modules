@@ -23,7 +23,7 @@ priority: 20090
 
 ### Applicability
 
-This requirement applies independently to every root module and submodule that directly declares a managed AzAPI resource. The [azapi_resource_tag]({{% siteparam base %}}/contributing/terraform/tflint-rules/#azapi-resource-tag) rule determines whether a resource type supports the `tags` argument from its embedded AVM-generated capability snapshot.
+This requirement applies independently to every root module and submodule that directly declares a managed AzAPI resource. The [avm_azapi_resource_tags_required]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_azapi_resource_tags_required) rule determines whether a resource type supports the `tags` argument from its embedded AVM-generated capability snapshot.
 
 ### Requirement
 
@@ -45,4 +45,4 @@ The validation skips dynamic or otherwise unevaluable `type` expressions to avoi
 
 The `tags` input and propagation behavior remain governed by the [standard tags interface]({{% siteparam base %}}/specs/tf/interfaces/#tags). The embedded AVM-generated capability snapshot, rather than a hand-maintained module allowlist or an AzAPI import, is the authority for deciding whether the argument is supported.
 
-See [azapi_resource_tag]({{% siteparam base %}}/contributing/terraform/tflint-rules/#azapi-resource-tag) for enforcement and the supported override.
+See [avm_azapi_resource_tags_required]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_azapi_resource_tags_required) for enforcement and the supported override.

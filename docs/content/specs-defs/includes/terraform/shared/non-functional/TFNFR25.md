@@ -47,4 +47,4 @@ terraform {
 }
 ```
 
-The AVM [terraform_tf_file]({{% siteparam base %}}/contributing/terraform/tflint-rules/#terraform-tf-file) rule validates the complementary requirement that the module has exactly one `terraform` block in `terraform.tf`.
+The AVM [avm_terraform_configuration_file_required]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_terraform_configuration_file_required) rule validates the complementary requirement that the module has exactly one `terraform` block in `terraform.tf`.

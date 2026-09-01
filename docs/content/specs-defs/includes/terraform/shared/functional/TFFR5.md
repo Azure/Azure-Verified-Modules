@@ -21,7 +21,7 @@ priority: 20050
 
 ## ID: TFFR5 - Category: Composition - AzAPI - replace_triggers_refs
 
-This requirement is enforced by [azapi_replace_triggers_refs]({{% siteparam base %}}/contributing/terraform/tflint-rules/#azapi-replace-triggers-refs).
+This requirement is enforced by [avm_azapi_replace_triggers_refs_valid]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_azapi_replace_triggers_refs_valid).
 
 Authors **MUST** omit `replace_triggers_refs` when no body properties require replacement.
 When one or more body properties require replacement, authors **MUST** set `replace_triggers_refs` to a non-empty static list of JMESPath expressions that identify those paths.

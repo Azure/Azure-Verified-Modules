@@ -21,7 +21,7 @@ priority: 20080
 
 ## ID: TFFR8 - Category: Inputs/Outputs - AzAPI - ignore_body_changes variable
 
-This requirement is enforced by [ignore_body_changes]({{% siteparam base %}}/contributing/terraform/tflint-rules/#ignore-body-changes).
+This requirement is enforced by [avm_interface_ignore_body_changes]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_interface_ignore_body_changes).
 
 ### Applicability
 

@@ -23,7 +23,7 @@ priority: 21230
 
 A default value **MUST NOT** be set for a sensitive input, unless it is an empty collection value.
 
-This is enforced by [terraform_sensitive_variable_no_default]({{% siteparam base %}}/contributing/terraform/tflint-rules/#terraform-sensitive-variable-no-default).
+This is enforced by [avm_terraform_sensitive_variable_default_disallowed]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_terraform_sensitive_variable_default_disallowed).
 
 Good example:
 

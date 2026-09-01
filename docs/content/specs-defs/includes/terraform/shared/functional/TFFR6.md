@@ -21,7 +21,7 @@ priority: 20060
 
 ## ID: TFFR6 - Category: Inputs/Outputs - AzAPI - resource_types variable
 
-This requirement is enforced by [resource_types]({{% siteparam base %}}/contributing/terraform/tflint-rules/#resource-types).
+This requirement is enforced by [avm_interface_resource_types]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_interface_resource_types).
 
 ### Applicability
 

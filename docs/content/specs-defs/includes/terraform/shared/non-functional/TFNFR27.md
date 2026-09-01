@@ -25,7 +25,7 @@ priority: 21270
 
 When a module requires an alternate provider instance, it **MUST** declare that alias through `configuration_aliases` in `terraform.required_providers` and the consumer **MUST** pass the configured alias through the module's `providers` map. A provider block containing only `alias` is not permitted in an AVM module.
 
-This is enforced by [terraform_module_provider_declaration]({{% siteparam base %}}/contributing/terraform/tflint-rules/#terraform-module-provider-declaration).
+This is enforced by [avm_terraform_provider_block_disallowed]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_terraform_provider_block_disallowed).
 
 Good examples:
 

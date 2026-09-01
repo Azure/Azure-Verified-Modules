@@ -36,5 +36,4 @@ Terraform interpolation (`${...}`), template directives (`%{...}`), unknown valu
 
 A heredoc **MAY** be used only when the value is not JSON or YAML, or when the receiving system requires opaque source text for a downstream templating engine or syntax that `jsonencode` or `yamlencode` cannot represent without changing its meaning. The heredoc must not use Terraform interpolation to assemble JSON or YAML in that case, and its reason must be clear from the surrounding configuration.
 
-See [terraform_heredoc_usage]({{% siteparam base %}}/contributing/terraform/tflint-rules/#terraform-heredoc-usage) for enforcement and the supported override.
-
+See [avm_terraform_literal_heredoc_disallowed]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_terraform_literal_heredoc_disallowed) for enforcement and the supported override.

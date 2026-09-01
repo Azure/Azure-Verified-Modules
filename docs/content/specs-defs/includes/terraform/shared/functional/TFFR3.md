@@ -21,7 +21,7 @@ priority: 20030
 
 ## ID: TFFR3 - Category: Providers - Permitted Versions
 
-The AVM provider rules are documented in [provider_azapi_version_constraint]({{% siteparam base %}}/contributing/terraform/tflint-rules/#provider-azapi-version-constraint), [provider_azurerm_disallowed]({{% siteparam base %}}/contributing/terraform/tflint-rules/#provider-azurerm-disallowed), and [provider_azurerm_version_constraint]({{% siteparam base %}}/contributing/terraform/tflint-rules/#provider-azurerm-version-constraint).
+The AVM provider rules are documented in [avm_provider_azapi_version_constraint]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_provider_azapi_version_constraint), [avm_provider_azurerm_disallowed]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_provider_azurerm_disallowed), and [avm_provider_azurerm_version_constraint]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_provider_azurerm_version_constraint).
 
 {{% notice style="important" %}}
 
@@ -70,7 +70,7 @@ Where this exception applies, the module **MUST**:
 - Add the following TFLint exclusion:
 
   ```hcl
-  rule "provider_azurerm_disallowed" {
+  rule "avm_provider_azurerm_disallowed" {
     enabled = false
   }
   ```

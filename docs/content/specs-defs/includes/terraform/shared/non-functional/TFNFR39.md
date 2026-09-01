@@ -54,7 +54,7 @@ For larger modules the contents of `main.tf`, `variables.tf`, `outputs.tf`, and 
 
 Standardizing file layout means that any reviewer or consumer can find a module's interface (`variables.tf`, `outputs.tf`), provider constraints (`terraform.tf`), and primary logic (`main.tf` / `main.<topic>.tf`) in the same place across every AVM Terraform module, without having to grep. It also makes the cascade rules in [TFFR6]({{% siteparam base %}}/spec/TFFR6), [TFFR7]({{% siteparam base %}}/spec/TFFR7), and [TFRMNFR1]({{% siteparam base %}}/spec/TFRMNFR1) reviewable at a glance.
 
-MAPOTF places top-level blocks in their canonical files. The [terraform_tf_file]({{% siteparam base %}}/contributing/terraform/tflint-rules/#terraform-tf-file) rule validates the single `terraform` block requirement.
+MAPOTF places top-level blocks in their canonical files. The [avm_terraform_configuration_file_required]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_terraform_configuration_file_required) rule validates the single `terraform` block requirement.
 
 ### Notes
 
