@@ -36,6 +36,10 @@ Authors **MUST** only use the following Azure providers, and versions, in their 
 | Azure/azapi | >= 2.12 | < 3.0 | All Azure control-plane resources and supported data-plane operations |
 | hashicorp/azurerm | >= 4.0 | < 5.0 | Only a specific unsupported data-plane/non-ARM API operation under the exception below |
 
+Pattern modules **MAY** also use other Microsoft-maintained providers when required by the pattern. Examples include `integrations/github`, `microsoft/azuredevops`, `microsoft/fabric`, and `microsoft/msgraph`. Each provider **MUST** be declared with minimum and maximum major version constraints as required by [TFNFR26]({{% siteparam base %}}/spec/TFNFR26).
+
+Resource and utility modules **MUST NOT** use these additional providers. Except for the narrow AzureRM exception below, third-party providers **MUST NOT** be used by any AVM Terraform module, regardless of module classification.
+
 {{% notice style="note" %}}
 
 The AzAPI floor is `2.12` because [TFFR8]({{% siteparam base %}}/spec/TFFR8) requires every module to expose the `ignore_body_changes` argument, which was introduced in `Azure/azapi` v2.12.0. Modules pinned below that version will fail to plan because the argument is absent from the provider schema.
