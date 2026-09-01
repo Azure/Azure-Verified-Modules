@@ -43,7 +43,7 @@ If a bug/feature/request/general question that has the labels of &nbsp;<mark sty
 
 **Action(s):**
 
-- Add a reply, mentioning the `Azure/avm-core-team-technical-bicep` team.
+- Add a reply, mentioning the `Azure/azure-verified-modules-tooling-contributors` team.
 - Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; label.
 
 {{% notice style="tip" %}}
@@ -76,7 +76,7 @@ If a bug/feature/request/general question that has the &nbsp;<mark style="backgr
 
 **Action(s):**
 
-- Add a reply, mentioning the `Azure/avm-core-team-technical-bicep` team.
+- Add a reply, mentioning the `Azure/azure-verified-modules-tooling-contributors` team.
 - Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; label.
 
 {{% notice style="tip" %}}
@@ -110,7 +110,7 @@ If after an additional 3 business days there's still no update to the issue that
 
 **Action(s):**
 
-- Add a reply, mentioning the `Azure/avm-core-team-technical-bicep` team.
+- Add a reply, mentioning the `Azure/azure-verified-modules-tooling-contributors` team.
 - Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label.
 
 {{% notice style="tip" %}}
@@ -143,7 +143,7 @@ If after an additional 3 business days there's still no update to the issue that
 
 **Action(s):**
 
-- Add a reply, mentioning the `Azure/avm-core-team-technical-bicep` team.
+- Add a reply, mentioning the `Azure/azure-verified-modules-tooling-contributors` team.
 - Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label.
 
 {{% notice style="tip" %}}
