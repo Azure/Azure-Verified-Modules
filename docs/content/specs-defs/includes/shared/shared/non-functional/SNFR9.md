@@ -25,7 +25,7 @@ A module owner **MUST** make the following GitHub teams in the Azure GitHub orga
 
 ### Bicep
 
-- [`@Azure/avm-core-team-technical-bicep`](https://github.com/orgs/Azure/teams/avm-core-team-technical-bicep) = AVM Core Team
+- [`@Azure/azure-verified-modules-tooling-contributors`](https://github.com/orgs/Azure/teams/azure-verified-modules-tooling-contributors) = AVM Core Team
 - [`@Azure/bicep-admins`](https://github.com/orgs/Azure/teams/bicep-admins) = Bicep PG team
 
 {{% notice style="note" %}}

@@ -56,7 +56,7 @@ If you're the **sole owner of the module**, the **AVM core team must review and 
 
 Under certain circumstances, you may find yourself unable to continue as the module owner. In such cases, it is advisable to designate a new module owner. The following steps outline this transition:
 
-- Leave a comment on the original module proposal, indicating that you'd like to hand the ownership over to somebody else. Mention the person who originally helped triage the issue or the `@Azure/avm-core-team-technical-bicep` team. You must wait for someone from the AVM Core Team to respond first, as the module index must be updated before you can continue handing over the ownership.
+- Leave a comment on the original module proposal, indicating that you'd like to hand the ownership over to somebody else. Mention the person who originally helped triage the issue or the `@Azure/azure-verified-modules-tooling-contributors` team. You must wait for someone from the AVM Core Team to respond first, as the module index must be updated before you can continue handing over the ownership.
 - Add the new owner's GitHub account as a "maintainer" on your modules GitHub team.
 - Remove your GitHub account from your module's GitHub team.
 
@@ -153,5 +153,5 @@ If you're the **sole owner of the module**, the **AVM core team must review and 
 
 {{% /notice %}}
 
-8. After a pull request has been created, it is important to update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue associated with your module, with a link to the pull request you created in BRM and mention the person who helped triage your module or the `@Azure/avm-core-team-technical-bicep` team.
-9. Once your BRM pull request has been approved and merged into main update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue associated with your module, with a **Merged** comment and mention the person who helped triage your module, or the `@Azure/avm-core-team-technical-bicep` team.
+8. After a pull request has been created, it is important to update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue associated with your module, with a link to the pull request you created in BRM and mention the person who helped triage your module or the `@Azure/azure-verified-modules-tooling-contributors` team.
+9. Once your BRM pull request has been approved and merged into main update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue associated with your module, with a **Merged** comment and mention the person who helped triage your module, or the `@Azure/azure-verified-modules-tooling-contributors` team.

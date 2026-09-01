@@ -20,7 +20,7 @@ Since all modules must pass the tests in the AVM environment, it is important th
 To make this matter not too complicated, we would like to ask you to emphasize this requirement in the description of your PR, for example by adding a text similar to:
 
 ```txt
-- [ ] @avm-core-team-technical-bicep TODO: Add custom secret 'mySecret' to AVM CI
+- [ ] @azure-verified-modules-tooling-contributors TODO: Add custom secret 'mySecret' to AVM CI
 ```
 
 {{% /notice %}}
