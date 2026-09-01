@@ -706,11 +706,19 @@ weight = 5
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
+identifier = 'terraform-tflint-rules'
+parent = 'terraform-module-contribution'
+name = 'TFLint Rules'
+pageRef = '/contributing/terraform/tflint-rules'
+weight = 6
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
 identifier = 'terraform-repository-creation-process'
 parent = 'terraform-module-contribution'
 name = 'Repository Setup'
 pageRef = '/contributing/terraform/repository-setup'
-weight = 6
+weight = 7
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
