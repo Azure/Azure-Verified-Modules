@@ -21,7 +21,7 @@ priority: 20010
 
 ## ID: TFFR1 - Category: Composition - Cross-Referencing Modules
 
-This requirement is enforced by [required_module_source_tffr1]({{% siteparam base %}}/contributing/terraform/tflint-rules/#required-module-source-tffr1).
+This requirement is enforced by [avm_terraform_module_source_required]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_terraform_module_source_required).
 
 Module owners **MAY** cross-references other modules to build either Resource or Pattern modules. However, they **MUST** be referenced only by a HashiCorp Terraform registry reference to a pinned version e.g.,
 

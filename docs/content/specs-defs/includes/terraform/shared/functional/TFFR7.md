@@ -21,7 +21,7 @@ priority: 20070
 
 ## ID: TFFR7 - Category: Inputs/Outputs - AzAPI - retry and timeouts variables
 
-These requirements are enforced by [retry]({{% siteparam base %}}/contributing/terraform/tflint-rules/#retry) and [timeouts]({{% siteparam base %}}/contributing/terraform/tflint-rules/#timeouts).
+These requirements are enforced by [avm_interface_retry]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_interface_retry) and [avm_interface_timeouts]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_interface_timeouts).
 
 ### Applicability
 

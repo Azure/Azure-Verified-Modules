@@ -21,7 +21,7 @@ priority: 21100
 
 ## ID: TFNFR10 - Category: Code Style - No Double Quotes in ignore_changes
 
-This requirement is enforced by [required_module_source_tfnfr10]({{% siteparam base %}}/contributing/terraform/tflint-rules/#required-module-source-tfnfr10).
+This requirement is enforced by [avm_terraform_ignore_changes_unquoted_references]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_terraform_ignore_changes_unquoted_references).
 
 The `ignore_changes` attribute **MUST NOT** be enclosed in double quotes.
 
