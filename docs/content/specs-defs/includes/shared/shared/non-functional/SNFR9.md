@@ -34,7 +34,7 @@ These required GitHub teams are already associated to the [BRM](https://aka.ms/B
 
 ### Terraform
 
-- [`@Azure/avm-core-team-technical-terraform`](https://github.com/orgs/Azure/teams/avm-core-team-technical-terraform) = AVM Core Team
+- [`@Azure/azure-verified-modules-tooling-contributors`](https://github.com/orgs/Azure/teams/azure-verified-modules-tooling-contributors) = AVM Core Team
 - [`@Azure/terraform-avm`](https://github.com/orgs/Azure/teams/terraform-avm) = Terraform PG
 
 {{% notice style="important" %}}

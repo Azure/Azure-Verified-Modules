@@ -52,7 +52,7 @@ An issue is considered to be an "AVM module issue" if
 {{% notice style="note" %}}
 Module issues can only be opened for existing AVM modules. Module issues **MUST NOT** be used to file a module proposal.
 
-If the issue was opened as a misplaced module proposal, mention the `@Azure/AVM-core-team-technical-bicep` team in the comment section and ask them to move the issue to the AVM repository.
+If the issue was opened as a misplaced module proposal, mention the `@Azure/azure-verified-modules-tooling-contributors` team in the comment section and ask them to move the issue to the AVM repository.
 {{% /notice %}}
 
 ### Triaging a Module Issue
