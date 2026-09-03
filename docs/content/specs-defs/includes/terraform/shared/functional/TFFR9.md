@@ -23,11 +23,11 @@ priority: 20090
 
 ### Applicability
 
-This requirement applies independently to every root module and submodule that directly declares a managed AzAPI resource. The [avm_azapi_resource_tags_required]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_azapi_resource_tags_required) rule determines whether a resource type supports the `tags` argument from its embedded AVM-generated capability snapshot.
+This requirement applies independently to every root module and submodule that directly declares a managed AzAPI resource. The [avm_azapi_resource_tags_required]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_azapi_resource_tags_required) rule uses its embedded AVM-generated capability snapshot to classify the resource type's tags property as writable, read-only, or unsupported.
 
 ### Requirement
 
-For every statically supported resource type, the resource **MUST** set the standard AVM tags input exactly as follows:
+For every resource type with a statically writable tags property, the resource **MUST** expose consumer-settable tags through the [standard tags interface]({{% siteparam base %}}/specs/tf/interfaces/#tags) and set the `tags` argument. A direct assignment remains valid for modules that use only the module-wide fallback:
 
 ```terraform
 resource "azapi_resource" "this" {
@@ -37,12 +37,14 @@ resource "azapi_resource" "this" {
 }
 ```
 
-The assignment **MUST NOT** merge, conditionally replace, or otherwise transform `var.tags` at the resource declaration. Apply any approved tag shaping before assigning the standard input.
+When the module exposes the optional `resource_tags` interface, a non-null override for the Terraform resource block label **MUST** replace `var.tags` completely. An omitted or `null` override **MUST** inherit `var.tags`, and an empty map **MUST** remain an intentional empty replacement. The implementation **MUST NOT** merge the fallback and override maps.
 
-For every statically unsupported resource type, the resource **MUST NOT** set a `tags` argument. Do not use a conditional, dynamic value, or an empty map to force tags onto an unsupported type.
+Resource override keys identify Terraform resource block labels, not ARM resource types. Submodule overrides **MUST** use the deterministic typed `resource_tags.modules.<module_label>` shape defined by the standard tags interface. The separate `resources` and `modules` namespaces **MUST** resolve identical resource and module labels without ambiguity.
+
+For every resource type with a statically read-only or unsupported tags property, the resource **MUST NOT** set a `tags` argument. Do not use a conditional, dynamic value, or an empty map to force tags onto these types.
 
 The validation skips dynamic or otherwise unevaluable `type` expressions to avoid false positives. Authors **SHOULD** keep resource types statically resolvable through `var.resource_types` as required by [TFFR6]({{% siteparam base %}}/spec/TFFR6).
 
-The `tags` input and propagation behavior remain governed by the [standard tags interface]({{% siteparam base %}}/specs/tf/interfaces/#tags). The embedded AVM-generated capability snapshot, rather than a hand-maintained module allowlist or an AzAPI import, is the authority for deciding whether the argument is supported.
+The embedded AVM-generated capability snapshot, rather than a hand-maintained module allowlist or an AzAPI import, is the authority for this classification.
 
-See [avm_azapi_resource_tags_required]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_azapi_resource_tags_required) for enforcement and the supported override.
+See [avm_azapi_resource_tags_required]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_azapi_resource_tags_required) for capability enforcement and [avm_interface_resource_tags]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_interface_resource_tags) for validation of the optional override interface.
