@@ -9,38 +9,39 @@ $guidePath = Join-Path $RepositoryRoot 'docs\content\contributing\terraform\tfli
 $guide = Get-Content -Raw $guidePath
 
 $rules = @(
-  'azapi_data_response_export_values',
-  'azapi_replace_triggers_refs',
-  'azapi_resource_tag',
-  'azapi_response_export_values',
-  'customer_managed_key',
-  'deprecated_lock_interface',
-  'deprecated_private_endpoints_interface',
-  'deprecated_role_assignments_interface',
-  'diagnostic_settings',
-  'ignore_body_changes',
-  'location',
-  'lock',
-  'managed_identities',
-  'no_entire_resource_output_tffr2',
-  'private_endpoints',
-  'private_endpoints_manage_dns_zone_group',
-  'provider_azapi_version_constraint',
-  'provider_azurerm_disallowed',
-  'provider_azurerm_version_constraint',
-  'provider_modtm_version_constraint',
-  'required_module_source_tffr1',
-  'required_module_source_tfnfr10',
-  'required_output_rmfr7',
-  'resource_types',
-  'retry',
-  'role_assignments',
-  'tags',
-  'terraform_heredoc_usage',
-  'terraform_module_provider_declaration',
-  'terraform_sensitive_variable_no_default',
-  'terraform_tf_file',
-  'timeouts'
+  'avm_azapi_data_response_export_values_required',
+  'avm_azapi_replace_triggers_refs_valid',
+  'avm_azapi_resource_tags_required',
+  'avm_azapi_response_export_values_required',
+  'avm_interface_customer_managed_key',
+  'avm_interface_lock_deprecated',
+  'avm_interface_private_endpoints_deprecated',
+  'avm_interface_role_assignments_deprecated',
+  'avm_interface_diagnostic_settings',
+  'avm_interface_ignore_body_changes',
+  'avm_interface_location',
+  'avm_interface_lock',
+  'avm_interface_managed_identities',
+  'avm_output_entire_resource_disallowed',
+  'avm_interface_private_endpoints',
+  'avm_interface_private_endpoints_manage_dns_zone_group',
+  'avm_provider_azapi_version_constraint',
+  'avm_provider_azurerm_disallowed',
+  'avm_provider_azurerm_version_constraint',
+  'avm_provider_modtm_version_constraint',
+  'avm_terraform_module_source_required',
+  'avm_terraform_ignore_changes_unquoted_references',
+  'avm_output_resource_id_required',
+  'avm_interface_resource_tags',
+  'avm_interface_resource_types',
+  'avm_interface_retry',
+  'avm_interface_role_assignments',
+  'avm_interface_tags',
+  'avm_terraform_literal_heredoc_disallowed',
+  'avm_terraform_provider_block_disallowed',
+  'avm_terraform_sensitive_variable_default_disallowed',
+  'avm_terraform_configuration_file_required',
+  'avm_interface_timeouts'
 )
 
 foreach ($rule in $rules) {
@@ -62,23 +63,23 @@ foreach ($spec in @('TFFR9', 'TFNFR40', 'TFNFR41')) {
 }
 
 $specRuleLinks = @{
-  'docs\content\specs-defs\includes\shared\resource\functional\RMFR7.md' = '#required-output-rmfr7'
-  'docs\content\specs-defs\includes\terraform\shared\functional\TFFR1.md' = '#required-module-source-tffr1'
-  'docs\content\specs-defs\includes\terraform\shared\functional\TFFR2.md' = '#no-entire-resource-output-tffr2'
-  'docs\content\specs-defs\includes\terraform\shared\functional\TFFR3.md' = '#provider-azapi-version-constraint'
-  'docs\content\specs-defs\includes\terraform\shared\functional\TFFR4.md' = '#azapi-response-export-values'
-  'docs\content\specs-defs\includes\terraform\shared\functional\TFFR5.md' = '#azapi-replace-triggers-refs'
-  'docs\content\specs-defs\includes\terraform\shared\functional\TFFR6.md' = '#resource-types'
-  'docs\content\specs-defs\includes\terraform\shared\functional\TFFR7.md' = '#retry'
-  'docs\content\specs-defs\includes\terraform\shared\functional\TFFR8.md' = '#ignore-body-changes'
-  'docs\content\specs-defs\includes\terraform\shared\functional\TFFR9.md' = '#azapi-resource-tag'
-  'docs\content\specs-defs\includes\terraform\shared\non-functional\TFNFR10.md' = '#required-module-source-tfnfr10'
-  'docs\content\specs-defs\includes\terraform\shared\non-functional\TFNFR23.md' = '#terraform-sensitive-variable-no-default'
-  'docs\content\specs-defs\includes\terraform\shared\non-functional\TFNFR25.md' = '#terraform-tf-file'
+  'docs\content\specs-defs\includes\shared\resource\functional\RMFR7.md' = '#avm_output_resource_id_required'
+  'docs\content\specs-defs\includes\terraform\shared\functional\TFFR1.md' = '#avm_terraform_module_source_required'
+  'docs\content\specs-defs\includes\terraform\shared\functional\TFFR2.md' = '#avm_output_entire_resource_disallowed'
+  'docs\content\specs-defs\includes\terraform\shared\functional\TFFR3.md' = '#avm_provider_azapi_version_constraint'
+  'docs\content\specs-defs\includes\terraform\shared\functional\TFFR4.md' = '#avm_azapi_response_export_values_required'
+  'docs\content\specs-defs\includes\terraform\shared\functional\TFFR5.md' = '#avm_azapi_replace_triggers_refs_valid'
+  'docs\content\specs-defs\includes\terraform\shared\functional\TFFR6.md' = '#avm_interface_resource_types'
+  'docs\content\specs-defs\includes\terraform\shared\functional\TFFR7.md' = '#avm_interface_retry'
+  'docs\content\specs-defs\includes\terraform\shared\functional\TFFR8.md' = '#avm_interface_ignore_body_changes'
+  'docs\content\specs-defs\includes\terraform\shared\functional\TFFR9.md' = '#avm_azapi_resource_tags_required'
+  'docs\content\specs-defs\includes\terraform\shared\non-functional\TFNFR10.md' = '#avm_terraform_ignore_changes_unquoted_references'
+  'docs\content\specs-defs\includes\terraform\shared\non-functional\TFNFR23.md' = '#avm_terraform_sensitive_variable_default_disallowed'
+  'docs\content\specs-defs\includes\terraform\shared\non-functional\TFNFR25.md' = '#avm_terraform_configuration_file_required'
   'docs\content\specs-defs\includes\terraform\shared\non-functional\TFNFR26.md' = '#mapotf-and-standard-terraform-tflint-coverage'
-  'docs\content\specs-defs\includes\terraform\shared\non-functional\TFNFR27.md' = '#terraform-module-provider-declaration'
-  'docs\content\specs-defs\includes\terraform\shared\non-functional\TFNFR39.md' = '#terraform-tf-file'
-  'docs\content\specs-defs\includes\terraform\shared\non-functional\TFNFR40.md' = '#terraform-heredoc-usage'
+  'docs\content\specs-defs\includes\terraform\shared\non-functional\TFNFR27.md' = '#avm_terraform_provider_block_disallowed'
+  'docs\content\specs-defs\includes\terraform\shared\non-functional\TFNFR39.md' = '#avm_terraform_configuration_file_required'
+  'docs\content\specs-defs\includes\terraform\shared\non-functional\TFNFR40.md' = '#avm_terraform_literal_heredoc_disallowed'
   'docs\content\specs-defs\includes\terraform\shared\non-functional\TFNFR41.md' = '#mapotf-and-standard-terraform-tflint-coverage'
 }
 
@@ -92,8 +93,12 @@ foreach ($relativePath in $specRuleLinks.Keys) {
 $tagSpec = Get-Content -Raw (Join-Path $RepositoryRoot 'docs\content\specs-defs\includes\terraform\shared\functional\TFFR9.md')
 foreach ($requiredText in @(
   'tags = var.tags',
-  'conditionally replace, or otherwise transform',
-  'statically unsupported resource type',
+  'non-null override for the Terraform resource block label',
+  'MUST NOT** merge the fallback and override maps',
+  'resource_tags.modules.<module_label>',
+  'separate `resources` and `modules` namespaces',
+  'statically read-only or unsupported tags property',
+  '#avm_interface_resource_tags',
   'dynamic or otherwise unevaluable',
   'embedded AVM-generated capability snapshot',
   'rather than a hand-maintained module allowlist or an AzAPI import'
@@ -103,8 +108,44 @@ foreach ($requiredText in @(
   }
 }
 
-$tagRuleGuide = $guide -split '### azapi resource tag', 2 | Select-Object -Last 1
+$tagInterface = Get-Content -Raw (Join-Path $RepositoryRoot 'docs\content\specs-defs\specs\terraform\interfaces.md')
 foreach ($requiredText in @(
+  'The `tags` variable is the module-wide fallback and common interface',
+  'A module that does not expose per-resource overrides can continue to assign `tags = var.tags` directly',
+  'Modules **MAY** add the typed `resource_tags` variable',
+  '`resources` and `modules` namespaces',
+  'attribute names match Terraform resource block labels',
+  'attribute names match Terraform module block labels',
+  'A supplied map replaces `var.tags` completely',
+  'An empty map therefore deliberately applies no tags',
+  'resource_tags = try(var.resource_tags.modules.child, null)'
+)) {
+  if ($tagInterface -notmatch [regex]::Escape($requiredText)) {
+    throw "The Terraform tags interface does not define '$requiredText'."
+  }
+}
+
+$tagSchema = Get-Content -Raw (Join-Path $RepositoryRoot 'docs\static\includes\interfaces\tf\int.tags.schema.tf')
+foreach ($requiredText in @(
+  'variable "tags"',
+  'type        = map(string)',
+  'default     = null',
+  'variable "resource_tags"',
+  'resources = optional(object({',
+  'modules = optional(object({'
+)) {
+  if ($tagSchema -notmatch [regex]::Escape($requiredText)) {
+    throw "The Terraform tags schema does not define '$requiredText'."
+  }
+}
+
+$tagRuleGuide = ($guide -split '### avm_azapi_resource_tags_required', 2 | Select-Object -Last 1) -split '### avm_azapi_response_export_values_required', 2 | Select-Object -First 1
+foreach ($requiredText in @(
+  'must set `tags` from a consumer-settable expression',
+  'A direct `tags = var.tags` assignment remains valid',
+  'typed `resource_tags` replacement interface',
+  'read-only or unsupported tags must omit the argument',
+  'does not require one exact tags expression',
   'does not consume, import, or query AzAPI',
   'embeds its AVM-generated capability snapshot and works standalone',
   'does not accept an external snapshot path',
@@ -115,6 +156,21 @@ foreach ($requiredText in @(
 )) {
   if ($tagRuleGuide -notmatch [regex]::Escape($requiredText)) {
     throw "The azapi_resource_tag guide does not document '$requiredText'."
+  }
+}
+
+$resourceTagsRuleGuide = ($guide -split '### avm_interface_resource_tags', 2 | Select-Object -Last 1) -split '### avm_interface_resource_types', 2 | Select-Object -First 1
+foreach ($requiredText in @(
+  'optional `resource_tags` variable when it is declared',
+  'default to `null` and permit null values',
+  'optional `resources` and `modules` namespaces without inline defaults',
+  'optional `map(string)` leaves',
+  'recursively use the same shape',
+  'at least one resource leaf',
+  'Terraform resource and module block labels without collisions'
+)) {
+  if ($resourceTagsRuleGuide -notmatch [regex]::Escape($requiredText)) {
+    throw "The avm_interface_resource_tags guide does not document '$requiredText'."
   }
 }
 

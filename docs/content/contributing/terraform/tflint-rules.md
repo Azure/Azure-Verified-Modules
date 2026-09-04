@@ -21,7 +21,7 @@ To disable a rule, use the exact HCL shown in the **Disable** column. The config
 | --- | --- | --- | --- |
 | [avm_azapi_data_response_export_values_required](#avm_azapi_data_response_export_values_required) | AzAPI data sources declare `response_export_values`. | All module scopes | `rule "avm_azapi_data_response_export_values_required" { enabled = false }` |
 | [avm_azapi_replace_triggers_refs_valid](#avm_azapi_replace_triggers_refs_valid) | Managed AzAPI resources validate declared replacement-trigger paths. | All module scopes | `rule "avm_azapi_replace_triggers_refs_valid" { enabled = false }` |
-| [avm_azapi_resource_tags_required](#avm_azapi_resource_tags_required) | Supported AzAPI resource types apply the standard `tags` input; unsupported types omit `tags`. | All module scopes | `rule "avm_azapi_resource_tags_required" { enabled = false }` |
+| [avm_azapi_resource_tags_required](#avm_azapi_resource_tags_required) | Writable AzAPI resource types expose consumer-settable tags; read-only or unsupported types omit `tags`. | All module scopes | `rule "avm_azapi_resource_tags_required" { enabled = false }` |
 | [avm_azapi_response_export_values_required](#avm_azapi_response_export_values_required) | Managed AzAPI resources declare `response_export_values`. | All module scopes | `rule "avm_azapi_response_export_values_required" { enabled = false }` |
 | [avm_interface_customer_managed_key](#avm_interface_customer_managed_key) | The customer-managed key interface follows the AVM contract. | All module scopes | `rule "avm_interface_customer_managed_key" { enabled = false }` |
 | [avm_interface_lock_deprecated](#avm_interface_lock_deprecated) | Deprecated lock-interface shapes are not introduced. | All module scopes | `rule "avm_interface_lock_deprecated" { enabled = false }` |
@@ -42,6 +42,7 @@ To disable a rule, use the exact HCL shown in the **Disable** column. The config
 | [avm_terraform_module_source_required](#avm_terraform_module_source_required) | AVM module references use the required source format. | Module scopes | `rule "avm_terraform_module_source_required" { enabled = false }` |
 | [avm_terraform_ignore_changes_unquoted_references](#avm_terraform_ignore_changes_unquoted_references) | `ignore_changes` uses AVM-compliant references. | All module scopes | `rule "avm_terraform_ignore_changes_unquoted_references" { enabled = false }` |
 | [avm_output_resource_id_required](#avm_output_resource_id_required) | Resource modules expose their required outputs. | Root module | `rule "avm_output_resource_id_required" { enabled = false }` |
+| [avm_interface_resource_tags](#avm_interface_resource_tags) | An exposed `resource_tags` interface uses the typed recursive replacement contract. | All module scopes | `rule "avm_interface_resource_tags" { enabled = false }` |
 | [avm_interface_resource_types](#avm_interface_resource_types) | Applicable AzAPI resources use the `resource_types` interface. | All module scopes | `rule "avm_interface_resource_types" { enabled = false }` |
 | [avm_interface_retry](#avm_interface_retry) | Applicable AzAPI resources expose and apply `retry`. | All module scopes | `rule "avm_interface_retry" { enabled = false }` |
 | [avm_interface_role_assignments](#avm_interface_role_assignments) | The role-assignments interface follows the AVM contract. | All module scopes | `rule "avm_interface_role_assignments" { enabled = false }` |
@@ -120,7 +121,7 @@ Authors remain responsible for identifying the properties that actually require 
 
 ### avm_azapi_resource_tags_required
 
-Applies [TFFR9]({{% siteparam base %}}/spec/TFFR9): set `tags = var.tags` exactly on types supported by the embedded AVM-generated capability snapshot, and omit `tags` for unsupported types. The rule skips dynamic or otherwise unevaluable type expressions.
+Applies [TFFR9]({{% siteparam base %}}/spec/TFFR9): types with writable tags in the embedded AVM-generated capability snapshot must set `tags` from a consumer-settable expression. A direct `tags = var.tags` assignment remains valid, and modules can use the typed `resource_tags` replacement interface documented by the [standard tags interface]({{% siteparam base %}}/specs/tf/interfaces/#tags). Types with read-only or unsupported tags must omit the argument. The rule does not require one exact tags expression and skips dynamic or otherwise unevaluable type expressions.
 
 The ruleset embeds its AVM-generated capability snapshot and works standalone. It does not consume, import, or query AzAPI, and does not accept an external snapshot path.
 
@@ -206,6 +207,10 @@ Applies [TFNFR10]({{% siteparam base %}}/spec/TFNFR10) to `ignore_changes` refer
 
 Applies the required-output contract in [RMFR7]({{% siteparam base %}}/spec/RMFR7).
 
+### avm_interface_resource_tags
+
+Validates the optional `resource_tags` variable when it is declared. The variable must default to `null` and permit null values. Its type must use one or both non-empty, optional `resources` and `modules` namespaces without inline defaults. Resource labels must be optional `map(string)` leaves, module labels must be optional objects that recursively use the same shape, and the complete type must contain at least one resource leaf. The separate namespaces identify Terraform resource and module block labels without collisions.
+
 ### avm_interface_resource_types
 
 Validates the [AzAPI `resource_types` interface]({{% siteparam base %}}/spec/TFFR6), including its deterministic resource-type keys and cascading shape.
@@ -220,7 +225,7 @@ Validates the [role-assignments interface]({{% siteparam base %}}/specs/tf/inter
 
 ### avm_interface_tags
 
-Validates the [tags interface]({{% siteparam base %}}/specs/tf/interfaces/#tags).
+Validates the [tags interface]({{% siteparam base %}}/specs/tf/interfaces/#tags). The backward-compatible `tags` fallback remains a nullable `map(string)`. When a module exposes `resource_tags`, its deterministic typed `resources` and `modules` namespaces provide complete per-resource replacements without merging.
 
 ### avm_terraform_literal_heredoc_disallowed
 

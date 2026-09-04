@@ -82,12 +82,36 @@ In Terraform, locks become part of the resource graph and suitable `depends_on` 
   {{% include file="/static/includes/interfaces/tf/int.tags.input.tf" %}}
 {{< /highlight >}}
 
-**Details on child, extension and cross-referenced resources:**
+The `tags` variable is the module-wide fallback and common interface. It **MUST** remain a `map(string)` with a default of `null`. A module that does not expose per-resource overrides can continue to assign `tags = var.tags` directly.
 
-- Tags **MUST** be automatically applied to child, extension and cross-referenced resources, if tags are applied to the primary resource.
-  - By default, all tags set for the primary resource will automatically be passed down to child, extension and cross-referenced resources.
-  - This **MUST** be able to be overridden by the module consumer so they can specify alternate tags for child, extension and cross-referenced resources, if they desire via a parameter/variable
-    - If overridden by the module consumer, no merge/union of tags will take place from the primary resource and only the tags specified for the child, extension and cross-referenced resources will be applied
+Modules **MAY** add the typed `resource_tags` variable when consumers need to replace tags for individual resources or resources declared by submodules. The variable **MUST** default to `null` and use this canonical shape:
+
+- `resources` is an optional object whose attribute names match Terraform resource block labels in the current module.
+- `modules` is an optional object whose attribute names match Terraform module block labels. Each value repeats that submodule's typed `resource_tags` shape.
+- The `resources` and `modules` namespaces keep identical resource and module labels unambiguous. For example, `resource_tags.resources.child` and `resource_tags.modules.child` identify different blocks.
+- Each module **MUST** declare a deterministic object type containing only its supported resource and submodule labels. Open-ended maps of objects or `any` types **MUST NOT** replace the typed shape.
+- Every namespace, resource label, and module label **MUST** be optional without an inline default. The object **MUST** contain at least one resource label, either directly or below a module label.
+
+For every tag-capable resource, an omitted or `null` resource override inherits `var.tags`. A supplied map replaces `var.tags` completely for that resource; implementations **MUST NOT** merge the two maps. An empty map therefore deliberately applies no tags. A resource block override applies uniformly to every instance created from that block with `count` or `for_each`. This expression implements the required precedence for a resource labeled `this`:
+
+```terraform
+resource "azapi_resource" "this" {
+  tags = try(var.resource_tags.resources.this, null) != null ? var.resource_tags.resources.this : var.tags
+}
+```
+
+Tags **MUST** propagate by default to tag-capable child, extension, and cross-referenced resources. A parent module passes the fallback and the nested override independently:
+
+```terraform
+module "child" {
+  source = "./modules/child"
+
+  tags          = var.tags
+  resource_tags = try(var.resource_tags.modules.child, null)
+}
+```
+
+The child module applies the same precedence to its own resource labels. Omitting `resource_tags.modules.child`, or setting it to `null`, leaves every child resource on the `tags` fallback unless a more specific non-null override is supplied.
 
 ## Managed Identities
 
