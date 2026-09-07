@@ -20,16 +20,60 @@ The [offline sync utility](https://github.com/Azure/Azure-Verified-Modules/tree/
 
 ## Using a custom Azure test subscription
 
-By default, CI end-to-end tests run against a centrally managed Azure subscription. If your module requires a different environment (e.g. due to quota limits or tenant-level deployments), you can override the defaults.
+By default, CI runs against a centrally managed Azure subscription. If your module needs a different environment (quota limits, tenant-level deployments, dedicated tenant), you can override the defaults.
+
+**Understand the environments first.** The managed workflow runs jobs across several GitHub Environments, and the ones that request an Azure token are:
+
+| Environment | Job | Requests Azure token |
+| --- | --- | --- |
+| `pr-check` | `avm pr-check` (incl. `check policy` → `terraform plan`) | Yes |
+| `integration-test` | `avm test integration` | Yes |
+| `examples-test` | `avm test e2e` (one leg per example) | Yes |
+| `no-approval` | subscription selection, unit tests, example discovery | No |
+
+**Steps**
 
 1. Create a user-assigned managed identity in your target Azure environment.
-2. Create GitHub federated credentials for the managed identity, using the module's GitHub organization and repository. Select entity type **environment** and set the name to `test`.
-3. Assign appropriate roles to the managed identity.
-4. Elevate your access via the [Open Source Portal](https://repos.opensource.microsoft.com/orgs/Azure/repos/REPOSITORY-NAME/jit).
-5. Go to the repository **Settings** > **Environments** > `test` and add the following secrets:
-    - `ARM_CLIENT_ID_OVERRIDE` — Client ID of the managed identity.
-    - `ARM_TENANT_ID_OVERRIDE` — Tenant ID.
-    - `ARM_SUBSCRIPTION_ID_OVERRIDE` — Subscription ID.
+
+2. **Create one federated credential per environment.** Azure requires an exact subject match — there are no wildcards, so a single credential cannot cover multiple environments. Use the **Other issuer** (custom) option rather than the "GitHub Actions deploying Azure resources" wizard, because the wizard emits `repo:ORG/REPO:environment:NAME`, which does **not** match what these workflows present.
+
+    - **Issuer:** `https://token.actions.githubusercontent.com`
+    - **Audience:** `api://AzureADTokenExchange`
+    - **Subject** (one credential each, substituting the environment name):
+
+      ```text
+      repository_owner_id:<OWNER_ID>:repository_id:<REPO_ID>:environment:pr-check:job_workflow_ref:Azure/azure-verified-modules-tools/.github/workflows/terraform-module.yml@refs/heads/main
+      repository_owner_id:<OWNER_ID>:repository_id:<REPO_ID>:environment:integration-test:job_workflow_ref:Azure/azure-verified-modules-tools/.github/workflows/terraform-module.yml@refs/heads/main
+      repository_owner_id:<OWNER_ID>:repository_id:<REPO_ID>:environment:examples-test:job_workflow_ref:Azure/azure-verified-modules-tools/.github/workflows/terraform-module.yml@refs/heads/main
+      ```
+
+    {{% notice style="note" %}}
+The subject uses immutable owner/repository **IDs** and a `job_workflow_ref` segment because the module repo calls a *reusable* workflow. The simplest way to get the exact string is to run the workflow once and copy the subject verbatim out of the `AADSTS700213` error message.
+    {{% /notice %}}
+
+    Find your IDs with:
+
+    ```bash
+    gh api repos/<ORG>/<REPO> --jq '{repository_id: .id, repository_owner_id: .owner.id}'
+    ```
+
+3. Assign appropriate Azure roles to the managed identity on the target subscription (and at management-group scope for pattern modules that assign policy or create role assignments).
+
+4. **Add repository secrets** (**Settings** > **Secrets and variables** > **Actions**). Module owners have access to repository secrets by default; environment-scoped configuration is managed by the AVM core team.
+
+    - `ARM_CLIENT_ID` — client ID of the managed identity.
+    - `ARM_TENANT_ID` — tenant ID.
+    - `TEST_SUBSCRIPTION_IDS` — a JSON array of `{ id, name }` objects. The workflow shuffles it and round-robins e2e legs across entries to avoid quota collisions:
+
+      ```json
+      [{"id":"00000000-0000-0000-0000-000000000000","name":"avm-test-01"}]
+      ```
+
+      Must be valid JSON with quoted keys and values. If unset, the workflow falls back to a single `ARM_SUBSCRIPTION_ID` secret or variable.
+
+{{% notice style="tip" %}}
+If one environment authenticates successfully while another fails with `AADSTS700213` using the same identity, that environment may still carry legacy environment-scoped credential overrides from a previous configuration. Module owners cannot view or change these — raise an issue with the AVM core team to have them removed.
+{{% /notice %}}
 
 ---
 
