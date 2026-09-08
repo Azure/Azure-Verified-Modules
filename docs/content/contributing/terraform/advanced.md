@@ -20,16 +20,58 @@ The [offline sync utility](https://github.com/Azure/Azure-Verified-Modules/tree/
 
 ## Using a custom Azure test subscription
 
-By default, CI end-to-end tests run against a centrally managed Azure subscription. If your module requires a different environment (e.g. due to quota limits or tenant-level deployments), you can override the defaults.
+By default, CI runs against a centrally managed Azure subscription. If your module needs a different environment (quota limits, tenant-level deployments, dedicated tenant), you can override the defaults.
+
+**Understand the environments first.** The managed workflow runs jobs across several GitHub Environments:
+
+| Environment | Job | Requests Azure token |
+| --- | --- | --- |
+| `pr-check` | `avm pr-check` (incl. `check policy` → `terraform plan`) | Yes |
+| `integration-test` | `avm test integration` | Yes |
+| `examples-test` | `avm test e2e` (one leg per example) | Yes |
+| `no-approval` | subscription selection, unit tests, example discovery | No |
+
+**Steps**
 
 1. Create a user-assigned managed identity in your target Azure environment.
-2. Create GitHub federated credentials for the managed identity, using the module's GitHub organization and repository. Select entity type **environment** and set the name to `test`.
-3. Assign appropriate roles to the managed identity.
-4. Elevate your access via the [Open Source Portal](https://repos.opensource.microsoft.com/orgs/Azure/repos/REPOSITORY-NAME/jit).
-5. Go to the repository **Settings** > **Environments** > `test` and add the following secrets:
-    - `ARM_CLIENT_ID_OVERRIDE` — Client ID of the managed identity.
-    - `ARM_TENANT_ID_OVERRIDE` — Tenant ID.
-    - `ARM_SUBSCRIPTION_ID_OVERRIDE` — Subscription ID.
+
+1. **Create one federated credential per Azure-authenticated environment** (`pr-check`, `integration-test`, and `examples-test`). The managed identity's federated credentials require an exact subject match, so a single credential cannot cover multiple environments. Use the **Other issuer** (custom) option rather than the "GitHub Actions deploying Azure resources" wizard, because the wizard emits `repo:ORG/REPO:environment:NAME`, which does **not** match what these workflows present.
+
+    - **Issuer:** `https://token.actions.githubusercontent.com`
+    - **Audience:** `api://AzureADTokenExchange`
+    - **Subject** (one credential each, substituting the environment name):
+
+      ```text
+      repository_owner_id:<OWNER_ID>:repository_id:<REPO_ID>:environment:pr-check:job_workflow_ref:Azure/azure-verified-modules-tools/.github/workflows/terraform-module.yml@refs/heads/main
+      repository_owner_id:<OWNER_ID>:repository_id:<REPO_ID>:environment:integration-test:job_workflow_ref:Azure/azure-verified-modules-tools/.github/workflows/terraform-module.yml@refs/heads/main
+      repository_owner_id:<OWNER_ID>:repository_id:<REPO_ID>:environment:examples-test:job_workflow_ref:Azure/azure-verified-modules-tools/.github/workflows/terraform-module.yml@refs/heads/main
+      ```
+
+    {{% notice style="note" %}}
+The repository's centrally managed OIDC configuration includes immutable owner/repository **IDs** and a `job_workflow_ref` segment identifying the *reusable* workflow. If authentication fails with `AADSTS700213`, compare the subject in the error message with the federated credential for that environment.
+    {{% /notice %}}
+
+    Find your IDs with:
+
+    ```powershell
+    gh api 'repos/<ORG>/<REPO>' --jq '{repository_id: .id, repository_owner_id: .owner.id}'
+    ```
+
+1. Assign appropriate Azure roles to the managed identity on the target subscription (and at management-group scope for pattern modules that assign policy or create role assignments).
+
+1. **Add repository Actions variables** (**Settings** > **Secrets and variables** > **Actions** > **Variables** > **New repository variable**). These IDs are non-secret configuration. Module owners can manage repository variables; environment-scoped configuration is managed by the AVM core team.
+
+    - `ARM_CLIENT_ID_OVERRIDE` - client ID of the managed identity.
+    - `ARM_TENANT_ID_OVERRIDE` - tenant ID of the target Azure environment.
+    - `ARM_SUBSCRIPTION_ID_OVERRIDE` - ID of the target Azure subscription.
+
+    Set all three values for the same target Azure environment. The workflow maps nonempty overrides to the corresponding `ARM_*` variables in each Azure-authenticated job. `ARM_SUBSCRIPTION_ID_OVERRIDE` takes precedence over the centrally selected subscription, so all example legs use your subscription instead of distributing deployments across the shared pool.
+
+    Do not change the repository defaults `ARM_CLIENT_ID`, `ARM_TENANT_ID`, or `TEST_SUBSCRIPTION_IDS`; these are managed by repository synchronization. Leave the shared subscription selection configured, because that job still runs before the overrides are applied. There is no `TEST_SUBSCRIPTION_IDS_OVERRIDE`.
+
+{{% notice style="tip" %}}
+`ARM_*_OVERRIDE` remains supported. The workflow merges variables first, then secrets, so a same-named override secret (including an environment secret) masks the variable. If your variables do not take effect, check for conflicting repository override secrets and ask the AVM core team to check for conflicting environment-scoped overrides.
+{{% /notice %}}
 
 ---
 
