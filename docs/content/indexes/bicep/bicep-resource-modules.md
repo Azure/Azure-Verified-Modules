@@ -88,13 +88,17 @@ The following table shows which Bicep resource modules have which consistent fea
 
 {{% notice style="note" %}}
 
-This section is mainly intended **for module owners and contributors** as it contains information important for module development, such as **telemetry ID prefix, and GitHub Teams for Owners**.
+This section is mainly intended **for module owners and contributors** as it contains the **module names and telemetry ID prefixes** needed for module development.
+
+Module owners obtain access through the [AVM Module Contributors access package]({{% siteparam base %}}/spec/SNFR20#bicep), not per-module GitHub teams. Any `ModuleOwnersGHTeam` values in the source CSV are legacy metadata, not teams to create.
 
 {{% /notice %}}
 
-### Module name, Telemetry ID prefix, GitHub Teams for Owners
+<a id="module-name-telemetry-id-prefix-github-teams-for-owners"></a>
 
-{{% expand title="➕ All Modules - Module name, Telemetry ID prefix, GitHub Teams for Owners" expanded="false" %}}
+### Module name and Telemetry ID prefix
+
+{{% expand title="➕ All Modules - Module name and Telemetry ID prefix" expanded="false" %}}
 
 {{% moduleNameTelemetryGHTeams header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" %}}
 

@@ -18,6 +18,10 @@ The following scripts are leveraged by the **[Azure Verified Modules GitHub App]
 
 ### 1. Invoke-AvmGitHubTeamLinter.ps1
 
+{{% notice style="warning" %}}
+This script validates the legacy per-module GitHub team model, not access-package membership. Its team-creation and parent-team checks are no longer module owner onboarding requirements. Follow [SNFR20]({{% siteparam base %}}/spec/SNFR20) instead; the scheduled automation requires separate cleanup.
+{{% /notice %}}
+
 **Purpose**: Validates GitHub team configurations against module ownership data from CSV indexes.
 
 **Description**: This script compares the module indexes with existing GitHub Teams configuration to ensure proper team setup. It can validate Bicep parent team configurations, Terraform team permissions, and generate GitHub issues for any discrepancies found. The script supports filtering by module type (Resource/Pattern/Utility) and language (Bicep/Terraform), and can validate `-owner-` teams.
@@ -81,6 +85,10 @@ The following scripts are leveraged by the **[Azure Verified Modules GitHub App]
 ---
 
 ### 2. Set-AvmGitHubPrLabels.ps1
+
+{{% notice style="warning" %}}
+This reviewer-assignment logic relies on legacy per-module owner teams and requires updating for the shared `CODEOWNERS` team. Membership of the shared Module Contributors team does not identify the owners of an individual module; those owners are recorded in the module indexes.
+{{% /notice %}}
 
 **Purpose**: Automatically labels pull requests based on reviewer requirements.
 

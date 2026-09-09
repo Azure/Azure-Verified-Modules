@@ -21,12 +21,12 @@ priority: 1100
 
 ## ID: SNFR8 - Category: Contribution/Support - Module Owner(s) GitHub
 
-A module **MUST** have an owner that is defined and managed by a GitHub Team in the Azure GitHub organization.
+A module **MUST** have at least one owner recorded in the respective [Module Indexes]({{% siteparam base %}}/indexes/).
 
 Today this is only Microsoft FTEs, but everyone is welcome to contribute. The module just **MUST** be owned by a Microsoft FTE (today) so we can enforce and provide the long-term support required by this initiative.
 
 {{% notice style="note" %}}
 
-The names for the GitHub teams for each approved module are already defined in the respective [Module Indexes]({{% siteparam base %}}/indexes/). These teams **MUST** be created (and used) for each module.
+Module owners **MUST** obtain access through the Entra access package described in [SNFR20]({{% siteparam base %}}/spec/SNFR20). A separate GitHub team for each module is no longer required.
 
 {{% /notice %}}

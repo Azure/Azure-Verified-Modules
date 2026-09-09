@@ -54,7 +54,7 @@ Module owners are responsible for:
     - Module Feature Request Triage & Additions
 4. **Managing additional module contributors**
 
-Ideally there **SHOULD** be at least 2 module owners per module who **MUST** be added to a [GitHub Team in the `Azure` organization.]({{%siteparam base%}}/spec/SNFR20/)
+Ideally there **SHOULD** be at least 2 module owners per module. Each owner **MUST** be recorded in the [module indexes]({{% siteparam base %}}/indexes/) and obtain access through the [AVM Module Contributors access package]({{% siteparam base %}}/spec/SNFR20).
 
 ### Module Contributors
 
@@ -68,7 +68,7 @@ Module Contributors are responsible for:
 
 - Assisting the Module Owners with their responsibilities
 
-Module Contributors **MUST** be added to a separate [GitHub Team in the `Azure` organization]({{%siteparam base%}}/spec/SNFR20/) that the Module Owners manage and are maintainers of.
+Contributing to a module does not require a per-module GitHub team or module owner access. Contributors work in forks and submit changes for review; module owners obtain access as described in [SNFR20]({{% siteparam base %}}/spec/SNFR20).
 
 ### Product Groups
 

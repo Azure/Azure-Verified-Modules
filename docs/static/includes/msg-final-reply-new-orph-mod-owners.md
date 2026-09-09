@@ -1,4 +1,4 @@
-- [x] New owner has been added to the related GitHub team as maintainer.
+- [x] Module Contributors access package approved for all incoming module owners.
 - [x] `ORPHANED` file deleted, `README` file updated.
 
 The module index will be updated soon to reflect this change.

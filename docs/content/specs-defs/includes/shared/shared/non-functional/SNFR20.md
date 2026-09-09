@@ -21,9 +21,9 @@ priority: 1110
 
 ## ID: SNFR20 - Category: Contribution/Support - GitHub Teams Only
 
-All GitHub repositories that AVM module are published from and hosted within **MUST** only assign GitHub repository permissions to GitHub teams only.
+All GitHub repositories that AVM modules are published from and hosted within **MUST** only assign GitHub repository permissions to GitHub teams.
 
-Each module **MUST** have a GitHub team assigned for module owners. This team **MUST** be created in the [Azure organization](https://github.com/orgs/Azure/teams) in GitHub.
+Module ownership **MUST** be recorded in the respective [Module Indexes]({{% siteparam base %}}/indexes/). Per-module GitHub teams are not required; owner access is managed through the access package described below.
 
 There **MUST NOT** be any GitHub repository permissions assigned to individual users.
 
@@ -33,99 +33,25 @@ Non-FTE / external contributors (subject matter experts that aren't Microsoft em
 
 ### Bicep
 
-{{% notice style="important" %}}
-
-As part of the module proposal process, the name of the GitHub team for each approved module is already defined in the respective [Module Indexes]({{% siteparam base %}}/indexes/) (or [CSV file](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes)). This team **MUST** be created (and used) for each module.
-
-**Module owners don't need to construct the name of the GitHub team for their module themselves, instead they need use the name prescribed in the related CSV file, at the time of approval.**
-
-For a direct link, see the list of related index pages:
-
-- [Bicep Resource Modules]({{% siteparam base %}}/indexes/bicep/bicep-resource-modules/#module-name-telemetry-id-prefix-github-teams-for-owners)
-- [Bicep Pattern Modules]({{% siteparam base %}}/indexes/bicep/bicep-pattern-modules/#module-name-telemetry-id-prefix-github-teams-for-owners)
-- [Bicep Utility Modules]({{% siteparam base %}}/indexes/bicep/bicep-utility-modules/#module-name-telemetry-id-prefix-github-teams-for-owners)
-
-The `@Azure` prefix in the last column of the tables linked above represents the "Azure" GitHub organization all AVM-related repositories exist in. **DO NOT** include this segment in the team's name!
-
-{{% /notice %}}
-
-
-
-#### Naming Convention
-
-The naming convention for the GitHub teams **MUST** follow the below pattern:
-
-- `<hyphenated module name>-module-owners-bicep` - to grant permissions for module owners on Bicep modules
-
-Segments:
-
-- `<hyphenated module name>` == the AVM Module's name, with each segment separated by dashes, i.e., `avm-res-<resource provider>-<ARM resource type>`
-  - See [RMNFR1]({{% siteparam base %}}/spec/RMNFR1) for AVM Resource Module Naming
-  - See [PMNFR1]({{% siteparam base %}}/spec/PMNFR1) for AVM Pattern Module Naming
-- `module-owners` == the role the GitHub Team is assigned to
-- `<bicep` == the language the module is written in
-
-Examples:
-
-- `avm-res-compute-virtualmachine-module-owners-bicep`
-
 {{% notice style="note" %}}
-The naming convention for Bicep modules is slightly different than the naming convention for their respective GitHub teams.
+Access management for Bicep module owners is governed centrally through Microsoft Entra. Per-module GitHub teams and parent-team assignments are no longer required.
 {{% /notice %}}
 
-#### Add Team Members
+All Bicep module owners, including primary and secondary owners, **MUST** request and obtain approval through the **[Azure Verified Modules (AVM) Module Contributors access package](https://aka.ms/avm/id/access-package/module-contributor)**.
 
-All officially documented module owner(s) **MUST** be added to the `-module-owners-` team. The `-module-owners-` team **MUST NOT** have any other members.
+Your GitHub account **MUST** be [linked](https://repos.opensource.microsoft.com/link) to your corporate identity and be a member of the [Azure organization](https://repos.opensource.microsoft.com/orgs/Azure).
 
-Unless explicitly requested and agreed, members of the AVM core team or any PG teams **MUST NOT** be added to the `-module-owners-` teams as permissions for them are granted through the teams described in [SNFR9]({{% siteparam base %}}/spec/SNFR9).
+Once approved, access is granted through the [`azure-verified-modules-module-contributors`](https://aka.ms/avm/id/groups/module-contributors) Entra group and the corresponding [`@Azure/azure-verified-modules-module-contributors`](https://github.com/orgs/Azure/teams/azure-verified-modules-module-contributors) GitHub team. This shared access does not replace the individual module ownership and review responsibilities recorded in the module indexes.
 
-#### Grant permissions through team memberships
-
-{{% notice style="note" %}}
-
-In case of Bicep modules, permissions to the [BRM](https://aka.ms/BRM) repository (the repo of the Bicep Registry) are granted via assigning the `-module-owners-` teams to parent teams that already have the required level access configured. While it is the module owner's responsibility to initiate the addition of their team to the respective parent, only the AVM core team can approve this parent-child relationship.
-
-{{% /notice %}}
-
-Module owners **MUST** create their `-module-owners-` team and as part of the provisioning process, they **MUST** request the addition of this team to its respective parent team (see the table below for details).
-
-| GitHub Team Name                                     | Description                                    | Permissions | Permissions granted through                                        | Where to work?          |
-|------------------------------------------------------|------------------------------------------------|-------------|--------------------------------------------------------------------|-------------------------|
-| `<hyphenated module name>-module-owners-bicep`       | AVM Bicep Module Owners - \<module name>       | **Write**   | Assignment to the **`avm-technical-reviewers-bicep`** parent team. | Need to work in a fork. |
-
-Example - GitHub team required for the Bicep resource module of Azure Virtual Network (`avm/res/network/virtual-network`):
-
-- `avm-res-network-virtualnetwork-module-owners-bicep` --> assign to the `avm-technical-reviewers-bicep` parent team.
-
-{{% notice style="tip" %}}
-Direct link to create a new GitHub team and assign it to its parent: [Create new team](https://github.com/orgs/Azure/new-team)
-
-Fill in the values as follows:
-
-- **Team name**: Following the naming convention described above, use the value defined in the module indexes.
-- **Description**: Follow the guidance above (see the Description column in the table above).
-- **Parent team**: Follow the guidance above (see the Permissions granted through column in the table above).
-- **Team visibility**: `Visible`
-- **Team notifications**: `Enabled`
-{{% /notice %}}
+Bicep module owners **MUST** continue to work in forks of the [BRM repository](https://aka.ms/BRM).
 
 #### CODEOWNERS file
 
-As part of the "initial Pull Request" (that publishes the first version of the module), module owners **MUST** add an entry to the `CODEOWNERS` file in the BRM repository ([here](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS)).
+The BRM [`CODEOWNERS` file](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) assigns `/avm/` to the shared `@Azure/azure-verified-modules-module-contributors` team. Module owners no longer need to create a GitHub team, request a parent-team assignment, or add a per-module `CODEOWNERS` entry when publishing or taking ownership of a module.
 
-{{% notice style="note" %}}
-Through this approach, the AVM core team will grant review permission to module owners as part of the standard PR review process.
+{{% notice style="tip" %}}
+For the full onboarding process and ownership handover steps, see the [Bicep Owner Contribution Flow]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/owner-contribution-flow/).
 {{% /notice %}}
-
-Every `CODEOWNERS` entry (line) **MUST** include the following segments separated by a single whitespace character:
-
-- Path of the module, relative to the repo's root, e.g.: `/avm/res/network/virtual-network/`
-- The `-module-owners-`team, with the `@Azure/` prefix, e.g., `@Azure/avm-res-network-virtualnetwork-module-owners-bicep`
-- The GitHub team of the AVM Bicep reviewers, with the `@Azure/` prefix, i.e., `@Azure/azure-verified-modules-module-owners`
-
-Example - `CODEOWNERS` entry for the Bicep resource module of Azure Virtual Network (`avm/res/network/virtual-network`):
-
-- `/avm/res/network/virtual-network/ @Azure/avm-res-network-virtualnetwork-module-owners-bicep @Azure/azure-verified-modules-module-owners`
 
 ### Terraform
 

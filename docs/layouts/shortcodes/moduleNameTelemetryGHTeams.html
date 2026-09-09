@@ -124,7 +124,6 @@
       <th>No.</th>
       <th>Module Name</th>
       <th>Telemetry ID prefix</th>
-      <th>GitHub Teams for Module Owners (<code>@Azure</code> org)</th>
     </tr>
   </thead>
   {{ end }}
@@ -148,26 +147,12 @@
     <td> {{/* telemetry ID prefix */}}
       <code style="white-space:normal;">{{ $item.TelemetryIdPrefix }}</code>
     </td>
-    <td> {{/* GH teams */}}
-      {{- if or (eq $ParentModuleColumnId 0) (eq $item.ParentModule "n/a") -}}
-        {{- $cleanTeamName := replace $item.ModuleOwnersGHTeam "@Azure/" "" -}}
-        <code style="white-space:normal;">{{ $cleanTeamName }}</code>
-      {{- else -}}
-        {{- range $element, $maps -}}
-          {{- if eq $element.ModuleName $item.ParentModule -}}
-            {{- $cleanTeamName := replace $element.ModuleOwnersGHTeam "@Azure/" "" -}}
-            <code style="white-space:normal;">{{ $cleanTeamName }}</code>
-          {{- end -}}
-        {{- end -}}
-      {{- end -}}
-    </td>
   </tr>
   {{ $hasModulesAvailable = true }}
   {{ end }}
   {{ if not $hasModulesAvailable }}
   <tr>
     <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
-    <td>❌ None available</td>
     <td>❌ None available</td>
     <td>❌ None available</td>
   </tr>

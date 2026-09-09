@@ -1,6 +1,5 @@
 - [x] Module published.
-- [x] GitHub teams are available and assigned to their parents.
-- [x] `CODEOWNERS` file updated.
+- [x] Module Contributors access package approved for all module owners.
 - [x] Issue template file updated.
 
 The module index will be updated soon to reflect this change.
