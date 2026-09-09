@@ -100,7 +100,7 @@ The following scripts are leveraged by the **[Azure Verified Modules GitHub App]
 - Adds &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 🟡</mark>&nbsp; label for orphaned modules
 - Automatically adds module team members as reviewers when appropriate
 
-**Workflow**: [`platform.set-avm-github-pr-labels.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/platform.set-avm-github-pr-labels.yml) (runs when PRs are opened or marked ready for review)
+**Workflow**: [`platform.set-avm-github-pr-labels.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/platform.set-avm-github-pr-labels.yml) (currently disabled; when enabled, runs when PRs are opened or marked ready for review). Update its legacy team-based routing before re-enabling it.
 
 **Source Code**: [`Set-AvmGitHubPrLabels.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/platform/Set-AvmGitHubPrLabels.ps1)
 
