@@ -8,7 +8,7 @@ description: Azure Verified Modules GitHub App for the Azure Verified Modules (A
 
 The **Azure Verified Modules GitHub App** is represented as a [GitHub App](https://github.com/apps/azure-verified-modules). This app automates various repository management tasks across the Azure Verified Modules program's repositories, including issue triage, pull request labeling, team validation, and documentation updates.
 
-The bot operates by authenticating with GitHub using the GitHub App credentials (`TEAM_LINTER_APP_ID` and `TEAM_LINTER_PRIVATE_KEY`) and executing PowerShell scripts through scheduled workflows and/or event-triggered actions.
+The bot operates by authenticating with GitHub using the GitHub App credentials (`TEAM_LINTER_APP_ID` and `TEAM_LINTER_PRIVATE_KEY`) and executing PowerShell scripts through scheduled workflows and/or event-triggered actions. Retain these credentials when retiring the team linter: the active AzAdvertizer issue automation also uses them.
 
 {{% notice style="warning" %}}
 The team linter and the issue-assignment, reviewer-assignment, and failed-workflow notification scripts below still rely on legacy per-module GitHub teams and require separate cleanup. Do not recreate those teams to satisfy the automation; module owners must follow [SNFR20]({{% siteparam base %}}/spec/SNFR20) instead. Module-specific routing must use the individual owners recorded in the module indexes, not membership of the shared Module Contributors team.
@@ -33,7 +33,7 @@ The following scripts are leveraged by the **[Azure Verified Modules GitHub App]
 - Creates GitHub issues for unmatched or misconfigured teams
 - Closes resolved GitHub issues when team configurations are corrected
 
-**Workflow**: [`github-teams-check-existence.yml`](https://github.com/Azure/Azure-Verified-Modules/blob/main/.github/workflows/github-teams-check-existence.yml) (runs Monday-Friday at 10:00 AM and on-demand)
+**Workflow**: [`github-teams-check-existence.yml`](https://github.com/Azure/Azure-Verified-Modules/blob/main/.github/workflows/github-teams-check-existence.yml) (currently disabled; when enabled, runs Monday-Friday at 15:00 UTC and on-demand). Update its legacy team checks before re-enabling it; unchanged, it would raise issues asking owners to recreate retired teams, not recreate the teams itself.
 
 **Source Code**: [`Invoke-AvmGitHubTeamLinter.ps1`](https://github.com/Azure/Azure-Verified-Modules/blob/main/utilities/pipelines/sharedScripts/teamLinter/Invoke-AvmGitHubTeamLinter.ps1)
 
