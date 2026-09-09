@@ -49,6 +49,8 @@ Bicep module owners **MUST** continue to work in forks of the [BRM repository](h
 
 The BRM [`CODEOWNERS` file](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) assigns `/avm/` to the shared `@Azure/azure-verified-modules-module-contributors` team. Module owners no longer need to create a GitHub team, request a parent-team assignment, or add a per-module `CODEOWNERS` entry when publishing or taking ownership of a module.
 
+The repository-wide default and the `*avm.core.team.tests.ps1` and `*.e2eignore` overrides remain assigned to `@Azure/azure-verified-modules-tooling-contributors`.
+
 {{% notice style="tip" %}}
 For the full onboarding process and ownership handover steps, see the [Bicep Owner Contribution Flow]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/owner-contribution-flow/).
 {{% /notice %}}
