@@ -10,6 +10,10 @@ The **Azure Verified Modules GitHub App** is represented as a [GitHub App](https
 
 The bot operates by authenticating with GitHub using the GitHub App credentials (`TEAM_LINTER_APP_ID` and `TEAM_LINTER_PRIVATE_KEY`) and executing PowerShell scripts through scheduled workflows and/or event-triggered actions.
 
+{{% notice style="warning" %}}
+The team linter and the issue-assignment, reviewer-assignment, and failed-workflow notification scripts below still rely on legacy per-module GitHub teams and require separate cleanup. Do not recreate those teams to satisfy the automation; module owners must follow [SNFR20]({{% siteparam base %}}/spec/SNFR20) instead. Module-specific routing must use the individual owners recorded in the module indexes, not membership of the shared Module Contributors team.
+{{% /notice %}}
+
 ---
 
 ## AVM Repository Scripts
@@ -17,10 +21,6 @@ The bot operates by authenticating with GitHub using the GitHub App credentials 
 The following scripts are leveraged by the **[Azure Verified Modules GitHub App](https://github.com/apps/azure-verified-modules)** in the [AVM](https://aka.ms/AVM/repo) repository:
 
 ### 1. Invoke-AvmGitHubTeamLinter.ps1
-
-{{% notice style="warning" %}}
-This script validates the legacy per-module GitHub team model, not access-package membership. Its team-creation and parent-team checks are no longer module owner onboarding requirements. Follow [SNFR20]({{% siteparam base %}}/spec/SNFR20) instead; the scheduled automation requires separate cleanup.
-{{% /notice %}}
 
 **Purpose**: Validates GitHub team configurations against module ownership data from CSV indexes.
 
@@ -85,10 +85,6 @@ The following scripts are leveraged by the **[Azure Verified Modules GitHub App]
 ---
 
 ### 2. Set-AvmGitHubPrLabels.ps1
-
-{{% notice style="warning" %}}
-This reviewer-assignment logic relies on legacy per-module owner teams and requires updating for the shared `CODEOWNERS` team. Membership of the shared Module Contributors team does not identify the owners of an individual module; those owners are recorded in the module indexes.
-{{% /notice %}}
 
 **Purpose**: Automatically labels pull requests based on reviewer requirements.
 
