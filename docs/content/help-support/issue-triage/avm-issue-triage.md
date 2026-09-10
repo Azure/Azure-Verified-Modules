@@ -138,9 +138,7 @@ Although, it's not directly part of the module proposal triage process, to begin
 
 1. Update any Azure RBAC permissions for test tenants/subscription, if needed.
 2. In case of **Bicep modules** only:
-    - Look for the module owners confirmation on the related `[Module Proposal]` issue that they have created the required `-module-owners-` GitHub team.
-    - Ensure the `-module-owners-` GitHub team has been assigned to its respective parent team as outlined [here]({{% siteparam base %}}/spec/snfr20/#grant-permissions---bicep).
-    - Ensure the [`CODEOWNERS`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) file in the [BRM repo](https://aka.ms/BRM) has been updated.
+    - Confirm that every module owner has approved access through the [AVM Module Contributors access package](https://aka.ms/avm/id/access-package/module-contributor), as outlined in [SNFR20]({{% siteparam base %}}/spec/SNFR20#bicep). Per-module GitHub teams, parent-team assignments, and `CODEOWNERS` entries are no longer required.
     - Ensure the [`AVM Module Issue template`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/ISSUE_TEMPLATE/avm_module_issue.yml) file in the [BRM repo](https://aka.ms/BRM) has been updated.
 
 {{% /notice %}}
@@ -153,13 +151,13 @@ Once module is developed and `v0.1.0` has been published to the relevant registr
 2. Move the issue into "`Done`" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project.
 3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
 4. When all development actions are complete and confirmed
-    1. **In case of Bicep modules** - Close the orphaned module issue with the following message:
+    1. **In case of Bicep modules** - Close the module proposal issue with the following message:
 
-        {{% expand title="➕ Closing remarks for the New Owner(s) of an Orphaned Module" %}}
+        {{% expand title="➕ Closing remarks for the Owner(s) of a Published Bicep Module" %}}
 
 {{< highlight lineNos="false" type="markdown" wrap="true" title="" >}}
 
-{{% include file="/static/includes/msg-final-reply-new-orph-mod-owners.md" %}}
+{{% include file="/static/includes/msg-final-reply-new-prop-mod-owners-bicep.md" %}}
 
 {{< /highlight >}}
 
@@ -247,7 +245,7 @@ To look for Orphaned Modules:
     - Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#C8E6C9;">Status: Module Available 🟢</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; labels to the issue.
     - Move the issue into the "`Done`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
 3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
-4. Get the new owner(s) added to the related `-module-owners-` team as applicable. See [SNFR20]({{% siteparam base %}}/spec/SNFR20) for more details.
+4. Ensure every new owner has approved access through the [AVM Module Contributors access package](https://aka.ms/avm/id/access-package/module-contributor). See [SNFR20]({{% siteparam base %}}/spec/SNFR20) for the language-specific access requirements. No per-module GitHub team or `CODEOWNERS` changes are needed.
 5. Remove the information notice (i.e., the file that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.` ):
     - In case of a Bicep module:
       - Delete the `ORPHANED.md` file from the module's root.
@@ -307,7 +305,7 @@ When the module owner needs to be changed without the module becoming orphaned, 
     - &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; labels to the issue.
     - Module classification (resource/pattern/utility): &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#D3D3D3;">Class: Resource Module 📦</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#A9A9A9;">Class: Pattern Module 📦</mark>&nbsp; or &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#CAD1DE;">Class: Utility Module 📦</mark>&nbsp;
 6. Make sure the issue is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project, but don't move the issue to the "`Orphaned`" column of this board as it will be automatically moved to the "`Done`" column, once the issue is closed.
-7. Once the new owner provided their written consent in a comment by replying the text quoted in the message above, update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
+7. Once the new owner provided their written consent in a comment by replying the text quoted in the message above, update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process). Confirm every incoming owner has approved access as described in [SNFR20]({{% siteparam base %}}/spec/SNFR20) before finalizing the handover.
 8. Use the following text to finalize the new ownership transfer:
 
 {{% expand title="➕ Final Confirmation for the New Owner(s) of an Orphaned Module" %}}
@@ -353,10 +351,10 @@ If a module meets the criteria described in the "[Deprecated Modules]({{% sitepa
     1. Add the the notice `NOTE: This is the last published version and the module has since been deprecated.` to the top-most `### Changes` section of the module's `CHANGELOG.md` file
     1. Remove the module workflow from the [`workflows`](https://github.com/Azure/bicep-registry-modules/tree/main/.github/workflows) folder.
     1. Make sure the module is removed from the [`avm_module_issue.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/ISSUE_TEMPLATE/avm_module_issue.yml) issue template.
-    1. Remove the module from the [`CODEOWNERS`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) file.
     1. Submit a Pull Request
     1. For the AVM maintainers: Once the PR is merged, run the [.Platform - Publish [moduleIndex.json]](https://github.com/Azure/bicep-registry-modules/actions/workflows/platform.publish-module-index-json.yml) workflow with the `regenIndexFromBRM` flag set. This will de-list the module so that it won't show up in the VS-Code Bicep extension going forward.
-7. Delete the module's `-owners-` GitHub teams.
+
+Deprecating a module does not require changing `CODEOWNERS` or deleting a GitHub team. The shared `/avm/` entry and Module Contributors team are still required by other modules.
 
 **Terraform specific steps**
 

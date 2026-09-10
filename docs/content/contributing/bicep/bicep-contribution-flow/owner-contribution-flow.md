@@ -23,26 +23,12 @@ Additional internal content for **ongoing module maintenance** available for Mic
 
 Familiarize yourself with the responsibilities as **Module Owner** outlined in [Team Definitions & RACI]({{% siteparam base %}}/specs/shared/team-definitions/#module-owners) and [Module Owner Responsibilities]({{% siteparam base %}}/help-support/issue-triage/brm-issue-triage/#module-owner-responsibilities) in the [BRM Issue Triage]({{% siteparam base %}}/help-support/issue-triage/brm-issue-triage/).
 
-1. Create a GitHub team as outlined in [SNFR20]({{% siteparam base %}}/spec/SNFR20) and add it to the respective parent team:
+1. Request and obtain approval for the **[Azure Verified Modules (AVM) Module Contributors access package](https://aka.ms/avm/id/access-package/module-contributor)** as outlined in [SNFR20]({{% siteparam base %}}/spec/SNFR20#bicep). This is required for every primary, secondary, or additional Bicep module owner. Only full-time Microsoft employees can be module owners.
 
-    Naming convention:
+    You no longer need to create a per-module GitHub team, assign a parent team, or add the team to `CODEOWNERS`. Access is managed through the shared `@Azure/azure-verified-modules-module-contributors` team.
 
-    - `avm-res-<RP>-<modulename>-module-owners-bicep`
-
-    Example:
-
-    - `avm-res-compute-virtualmachine-module-owners-bicep` and added `avm-technical-reviewers-bicep` as parent.
-
-    If a secondary or any additional owner is required, add them to the `avm-res-<RP>-<modulename>-module-owners-bicep` team.
-
-    Only fulltime Microsoft employees can be added at this time.
-
-    {{% notice style="info" %}}
-Once the team have been created the AVM Core Team will review the team name and parent team membership for accuracy. A notification will automatically be sent to the AVM Core Team to inform them that their review needs to be completed.
-    {{% /notice %}}
-
-2. Add the `-owners-` team to `CODEOWNERS` file as outlined in [SNFR20]({{% siteparam base %}}/spec/SNFR20).
-3. Ensure your module has been tested before raising a PR. You can do this your own or in another module contributor's environment - if any. Also, once a PR is raised, a GitHub workflow pipeline is required to be run successfully before the PR can be merged. This is to ensure that the module is working as expected and is compliant with the AVM specifications.
+1. Ensure the [module index]({{% siteparam base %}}/indexes/bicep/) records the correct owners for your module. Coordinate ownership changes with the AVM Core Team.
+1. Ensure your module has been tested before raising a PR. You can do this your own or in another module contributor's environment - if any. Also, once a PR is raised, a GitHub workflow pipeline is required to be run successfully before the PR can be merged. This is to ensure that the module is working as expected and is compliant with the AVM specifications.
 {{% notice style="note" %}}
 
 If you're the **sole owner of the module**, the **AVM core team must review and approve the PR**. To indicate that your PR needs the core team's attention, **apply the** &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; **label on it!**
@@ -56,9 +42,10 @@ If you're the **sole owner of the module**, the **AVM core team must review and 
 
 Under certain circumstances, you may find yourself unable to continue as the module owner. In such cases, it is advisable to designate a new module owner. The following steps outline this transition:
 
-- Leave a comment on the original module proposal, indicating that you'd like to hand the ownership over to somebody else. Mention the person who originally helped triage the issue or the `@Azure/azure-verified-modules-tooling-contributors` team. You must wait for someone from the AVM Core Team to respond first, as the module index must be updated before you can continue handing over the ownership.
-- Add the new owner's GitHub account as a "maintainer" on your modules GitHub team.
-- Remove your GitHub account from your module's GitHub team.
+- Follow the [hot-swapping module owners]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#hot-swapping-module-owners) process and wait for the AVM Core Team to confirm the ownership change in the module index.
+- Ensure every incoming owner has approved access through the [Module Contributors access package](https://aka.ms/avm/id/access-package/module-contributor).
+
+No per-module GitHub team membership or `CODEOWNERS` changes are required. Do not remove shared AVM access solely because one module changes owners; it may still be needed for other modules.
 
 If a new module owner cannot be identified then the module will need to be "Orphaned". Please follow the step outlined [when-a-module-becomes-orphaned]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-orphaned).
 

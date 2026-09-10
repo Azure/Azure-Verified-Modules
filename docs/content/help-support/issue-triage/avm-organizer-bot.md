@@ -8,7 +8,11 @@ description: Azure Verified Modules GitHub App for the Azure Verified Modules (A
 
 The **Azure Verified Modules GitHub App** is represented as a [GitHub App](https://github.com/apps/azure-verified-modules). This app automates various repository management tasks across the Azure Verified Modules program's repositories, including issue triage, pull request labeling, team validation, and documentation updates.
 
-The bot operates by authenticating with GitHub using the GitHub App credentials (`TEAM_LINTER_APP_ID` and `TEAM_LINTER_PRIVATE_KEY`) and executing PowerShell scripts through scheduled workflows and/or event-triggered actions.
+The bot operates by authenticating with GitHub using the GitHub App credentials (`TEAM_LINTER_APP_ID` and `TEAM_LINTER_PRIVATE_KEY`) and executing PowerShell scripts through scheduled workflows and/or event-triggered actions. Retain these credentials when retiring the team linter: the active AzAdvertizer issue automation also uses them.
+
+{{% notice style="warning" %}}
+The team linter below still validates legacy per-module GitHub teams and requires separate cleanup. Do not recreate those teams to satisfy the automation; module owners must follow [SNFR20]({{% siteparam base %}}/spec/SNFR20) instead. Legacy CSV team columns remain for compatibility with existing shared-repository consumers.
+{{% /notice %}}
 
 ---
 
@@ -29,7 +33,7 @@ The following scripts are leveraged by the **[Azure Verified Modules GitHub App]
 - Creates GitHub issues for unmatched or misconfigured teams
 - Closes resolved GitHub issues when team configurations are corrected
 
-**Workflow**: [`github-teams-check-existence.yml`](https://github.com/Azure/Azure-Verified-Modules/blob/main/.github/workflows/github-teams-check-existence.yml) (runs Monday-Friday at 10:00 AM and on-demand)
+**Workflow**: [`github-teams-check-existence.yml`](https://github.com/Azure/Azure-Verified-Modules/blob/main/.github/workflows/github-teams-check-existence.yml) (currently disabled; when enabled, runs Monday-Friday at 15:00 UTC and on-demand). Update its legacy team checks before re-enabling it; unchanged, it would raise issues asking owners to recreate retired teams, not recreate the teams itself.
 
 **Source Code**: [`Invoke-AvmGitHubTeamLinter.ps1`](https://github.com/Azure/Azure-Verified-Modules/blob/main/utilities/pipelines/sharedScripts/teamLinter/Invoke-AvmGitHubTeamLinter.ps1)
 
@@ -58,6 +62,8 @@ The following scripts are leveraged by the **[Azure Verified Modules GitHub App]
 
 The following scripts are leveraged by the **[Azure Verified Modules GitHub App](https://github.com/apps/azure-verified-modules)** in the bicep-registry-modules ([BRM](https://aka.ms/BRM)) repository:
 
+Module-specific routing uses the individual owners recorded in the [module indexes]({{% siteparam base %}}/indexes/bicep/), not `ModuleOwnersGHTeam` or membership of the shared Module Contributors team. The `Get-AvmModuleOwnerLogin.ps1` helper resolves `PrimaryModuleOwnerGHHandle` and `SecondaryModuleOwnerGHHandle`, inheriting ownership and orphan status through `ParentModule` for child modules. It normalizes and deduplicates handles and reports missing, duplicate, or invalid ownership metadata rather than treating it as an empty owner list.
+
 ### 1. Set-AvmGitHubIssueOwnerConfig.ps1
 
 **Purpose**: Automatically assigns issues to appropriate module owners.
@@ -67,8 +73,9 @@ The following scripts are leveraged by the **[Azure Verified Modules GitHub App]
 **Key Functionality**:
 - Matches issues to modules based on issue content and labels
 - Retrieves module ownership information from AVM CSV indexes (Resource, Pattern, Utility)
-- Automatically assigns issues to designated module owners
-- Posts notification comments mentioning module owners
+- Automatically assigns issues to indexed individual module owners
+- Preserves manual assignments and unassignments, and does not remove assignees when ownership cannot be resolved
+- Posts notification comments mentioning the resolved individual owners
 - Adds appropriate labels based on module type and status
 - Assigns issues to GitHub project boards for tracking
 - Handles orphaned modules by assigning to core team
@@ -84,19 +91,18 @@ The following scripts are leveraged by the **[Azure Verified Modules GitHub App]
 
 **Purpose**: Automatically labels pull requests based on reviewer requirements.
 
-**Description**: This script evaluates newly created or ready-for-review pull requests and adds appropriate labels to indicate whether the PR can be approved by module owners or requires core team review. It analyzes the requested reviewer teams and module ownership data to determine if a module is orphaned or if the sole module owner is the PR author, both scenarios requiring core team intervention.
+**Description**: This script evaluates non-draft pull requests using their changed files and module index ownership data. It requests individual module owners as reviewers where appropriate and applies labels to distinguish module owner review from core team review. It does not infer module ownership from requested reviewer teams.
 
 **Key Functionality**:
-- Retrieves PR information including author and requested reviewer teams
-- Identifies module-specific reviewer teams (excluding core teams)
-- Checks if core team is already assigned as reviewer
-- Validates module ownership and team membership
-- Adds &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label when module is orphaned or has insufficient owners
+- Skips draft pull requests
+- Retrieves all changed files through pagination, including the original paths of renamed files
+- Resolves module ownership from indexed primary and secondary owner handles, including parent-module inheritance
+- Adds &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label for tooling or protected-file changes, changes spanning multiple modules, unrecognized modules, orphaned modules, or submissions by a module's sole owner
 - Adds &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; label when module owners can review
 - Adds &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 🟡</mark>&nbsp; label for orphaned modules
-- Automatically adds module team members as reviewers when appropriate
+- Requests eligible individual module owners as reviewers, excluding the author and existing reviewers
 
-**Workflow**: [`platform.set-avm-github-pr-labels.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/platform.set-avm-github-pr-labels.yml) (runs when PRs are opened or marked ready for review)
+**Workflow**: [`platform.set-avm-github-pr-labels.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/platform.set-avm-github-pr-labels.yml) (currently disabled; when enabled, runs when PRs are opened or marked ready for review). Index-based routing does not re-enable the workflow; GitHub App authentication for fork-triggered runs must also be addressed before re-enabling it.
 
 **Source Code**: [`Set-AvmGitHubPrLabels.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/platform/Set-AvmGitHubPrLabels.ps1)
 
@@ -113,7 +119,8 @@ The following scripts are leveraged by the **[Azure Verified Modules GitHub App]
 - Filters out ignored workflows (e.g., PSRule checks, PR title checks)
 - Creates new issues for failed workflow runs with detailed information
 - Links issues to the specific failed workflow run
-- Assigns issues to module owners based on workflow name
+- Resolves the affected module from the workflow name, assigns its indexed primary owner, and mentions the resolved individual owners in comments
+- Retains the tooling-team fallback for orphaned modules
 - Automatically closes issues when workflows succeed after previous failures
 - Adds comments to existing issues for repeated failures or successes
 - Assigns workflow failure issues to GitHub project boards

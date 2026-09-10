@@ -4,6 +4,10 @@ linktitle: Contribution Flow
 description: Bicep Contribution Flow for the Azure Verified Modules (AVM) program
 ---
 
+{{% notice style="important" %}}
+If you are a **Bicep module owner**, also complete the [Owner Contribution Flow]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/owner-contribution-flow/), including requesting the [AVM Module Contributors access package](https://aka.ms/avm/id/access-package/module-contributor). Contributors who are not module owners do not need this owner access.
+{{% /notice %}}
+
 ## High-level contribution flow
 
 {{< mermaid zoom="false">}}
