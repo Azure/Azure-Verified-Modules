@@ -73,7 +73,29 @@ Existing setups can retain the `CI_KEY_VAULT_NAME` repository variable, the vaul
 
 ### Migrate existing inputs
 
-1. Inventory the `CI-` secrets used by your test parameters and identify every workflow that depends on the vault.
+1. Inventory the `CI-` secrets used by your test parameters and identify every workflow that depends on the vault. Prefer the [preview-only migration helper](#preview-with-the-migration-helper) for this inventory.
 1. Map each name to a GitHub `CI_` name matching the template parameter. For example, Key Vault secret `CI-mySecret` becomes GitHub secret `CI_MYSECRET`, supplying `mySecret`.
 1. Copy each value privately to the intended repository or environment scope. Default to a GitHub secret; choose a variable only after confirming the value is non-sensitive. Coordinate corresponding upstream inputs with the maintainers.
 1. Confirm that all dependent workflows use the migrated inputs before removing `CI_KEY_VAULT_NAME`. Do not delete the vault or its secrets as part of this change without checking for other consumers.
+
+#### Preview with the migration helper
+
+{{% notice style="warning" title="Support is not released yet" %}}
+
+The GitHub CI parameter support and migration helper are part of [Azure/bicep-registry-modules#7339](https://github.com/Azure/bicep-registry-modules/pull/7339). Wait until the implementation is available in your checkout and dependent workflows before applying a migration.
+
+{{% /notice %}}
+
+The `Copy-CIKeyVaultSecretsToGitHub` helper requires PowerShell 7.2 or later, an authenticated `Az.KeyVault` session, and the GitHub CLI authenticated to `github.com`. From a `bicep-registry-modules` checkout containing the helper, replace the placeholders and preview selected inputs:
+
+```powershell
+. .\utilities\tools\Copy-CIKeyVaultSecretsToGitHub.ps1
+Copy-CIKeyVaultSecretsToGitHub -VaultName '<vault-name>' -Repository '<owner>/<repo>' `
+  -Environment 'avm-validation' `
+  -SecretName 'CI-mySecret', 'CI-deploymentLabel' `
+  -VariableName 'CI_DEPLOYMENTLABEL'
+```
+
+Without `-Apply`, the helper lists names and metadata only: it does not read secret values or change GitHub settings. `-SecretName` is a literal, case-insensitive allowlist of source `CI-` names; omitting it selects all `CI-` entries. `-VariableName` lists target `CI_` names explicitly confirmed as non-sensitive; all other values remain secrets. Omit `-Environment` to target repository scope.
+
+Review the preview and obtain explicit operator approval before adding `-Apply` to copy values. Existing entries of the same kind are skipped unless `-Overwrite` is also specified; opposite-kind collisions are always blocked. The helper never deletes entries and sends version-pinned values through standard input, not command arguments or files. Complete the workflow confirmation above before removing `CI_KEY_VAULT_NAME`.
