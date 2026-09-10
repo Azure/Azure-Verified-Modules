@@ -652,7 +652,7 @@ params = { alwaysopen = true, collapsibleMenu = true }
 [[menu.defined]]
 identifier = 'custom-ci-secrets'
 parent = 'bicep-contribution-flow'
-name = 'Custom CI Secrets'
+name = 'Custom CI Parameters'
 pageRef = '/contributing/bicep/bicep-contribution-flow/custom-ci-secrets'
 weight = 6
 params = { alwaysopen = true, collapsibleMenu = true }

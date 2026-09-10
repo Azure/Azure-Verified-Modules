@@ -383,6 +383,12 @@ This secret represent the service connection to Azure, and its value is a compre
 
 {{% /expand %}}
 
+#### 3.1.3 Custom CI parameters
+
+For test-specific template inputs, create GitHub Actions secrets or variables at repository scope or in the `avm-validation` environment. Prefer readable `CI_` names such as `CI_MY_SECRET` for `mySecret`; underscores after the prefix are ignored. Use `CI__` to preserve literal underscores in parameter names. Use secrets for private values and variables only for clearly non-sensitive configuration. These inputs are separate from the OIDC authentication secrets above.
+
+See [Custom CI parameters]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/custom-ci-secrets) for parameter naming, secure handling, precedence, and migration from the deprecated `CI_KEY_VAULT_NAME` Key Vault fallback.
+
 ### 3.2. Enable actions
 
 Finally, 'GitHub Actions' are disabled by default and hence, must be enabled first.
@@ -521,7 +527,7 @@ Dependency file (`dependencies.bicep`) guidelines:
 
   {{% notice style="tip" %}}
 
-  📜 If your test case requires any value that you cannot / should not specify in the test file itself (e.g., tenant-specific object IDs or secrets), please refer to the [Custom CI secrets]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/custom-ci-secrets) feature.
+  📜 If your test case requires environment-specific inputs (e.g., tenant-specific object IDs or secrets), use [Custom CI parameters]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/custom-ci-secrets) to supply them from GitHub Actions secrets or variables. The CI passes matching values as deployment parameters; it does not substitute them into the test source.
 
   {{% /notice %}}
 
