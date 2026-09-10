@@ -45,7 +45,7 @@ String inputs, including secure strings, are used as supplied. For Boolean, inte
 
 {{% notice style="important" title="Protect sensitive inputs" %}}
 
-Use GitHub secrets for private values, and variables only for clearly non-sensitive configuration. Keep `@secure()` on sensitive Bicep parameters. The CI converts secure parameters to the corresponding PowerShell secure types before deployment, including when an input comes from a GitHub variable. Adding `@secure()` does not make a GitHub variable's stored value private.
+Use GitHub secrets for private values, and variables only for clearly non-sensitive configuration. Keep `@secure()` on sensitive Bicep parameters. The CI converts secure strings to PowerShell `SecureString` values and parses secure objects into dictionaries, preserving the template's ARM `secureObject` declaration. This also applies to inputs from GitHub variables. Neither `@secure()` nor these conversions make a GitHub variable's stored value private.
 
 {{% /notice %}}
 
@@ -56,6 +56,8 @@ Workflows use the resolved GitHub `secrets` and `vars` contexts. Both repository
 If more than one source supplies the same template parameter, the precedence is:
 
 **GitHub secret > GitHub variable > `CI-` Key Vault secret.**
+
+Configured empty GitHub values still take precedence and do not trigger fallback to a lower-priority source.
 
 The CI passes the resolved values through the PowerShell `AdditionalParameters` object to the applicable `Test-Az*Deployment` and `New-Az*Deployment` cmdlets. This is runtime deployment parameter injection, not source token substitution or a `.bicepparam` file mechanism.
 
