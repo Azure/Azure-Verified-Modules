@@ -1,107 +1,77 @@
 ---
-title: Custom CI Secrets
-description: Custom CI Secrets in the Bicep Modules of the Azure Verified Modules (AVM) program
+title: Custom CI Parameters
+description: Custom CI parameters from GitHub Actions secrets and variables for Azure Verified Modules (AVM) Bicep tests
 ---
 
-When working on a module, and more specifically its e2e deployment validation test cases, it may be necessary to leverage tenant-specific information such as:
+Use GitHub Actions secrets or variables to supply environment-specific inputs to your `main.test.bicep` end-to-end tests, such as tenant-specific object IDs or credentials. This avoids hardcoding values that differ between your fork and the upstream AVM test environment. Never commit private values to test files.
 
-- Entra-ID-provided Enterprise Application object ids (e.g., Backup Management Service, Azure Databricks, etc.)
-- (sensitive) principal credentials (e.g., a custom service principal's application id and secret)
+These are additional template inputs, not Azure login credentials. Continue using OIDC with the `avm-validation` environment and its `VALIDATE_CLIENT_ID`, `VALIDATE_TENANT_ID`, and `VALIDATE_SUBSCRIPTION_ID` secrets, as described in [Authentication secrets]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#312-authentication-secrets).
 
-The challenge with the former is that the value would be different from the contributor's test tenant compared to the Upstream AVM one. This requires the contributor to temporarily change the value to their own tenant's value during the contribution's creation & testing, and for the reviewer to make sure the value is changed back before merging a PR in.
-The challenge with the later is more critical as it would require the contributor to store sensitive information in source control and as such publish it.
+{{% notice style="important" title="Forks and upstream validation" %}}
 
-To mitigate this challenge, the AVM CI provides you with the feature to store any such information in a custom Azure Key Vault and automatically pass it into your test cases in a dynamic & secure way.
+Configure values separately in your fork: upstream repository and environment secrets are not inherited. This feature does not bypass GitHub's restrictions on secret availability for workflows triggered by contributions from forks.
 
-{{% notice style="important" %}}
-
-Since all modules must pass the tests in the AVM environment, it is important that you inform the maintainers when you add a new custom secret. The same secret must then also be set up in the upstream environment **before** the pull request is merged.
-
-To make this matter not too complicated, we would like to ask you to emphasize this requirement in the description of your PR, for example by adding a text similar to:
-
-```txt
-- [ ] @azure-verified-modules-tooling-contributors TODO: Add custom secret 'mySecret' to AVM CI
-```
+When adding a required input, ask the maintainers to configure the corresponding GitHub secret or variable in the upstream environment before merging your contribution. Share the parameter name and purpose, never its private value.
 
 {{% /notice %}}
 
-## Example use case
-
-Let's assume you need a tenant-specific value like the object id of Azure's _Backup Management Service_ Enterprise Application for one of your tests. As you want to avoid hardcoding and consequently changing its value each time you want to contribute from your Fork to the main AVM repository, you want to instead have it be automatically pulled into your test cases.
-
-To do so, you create a new parameter in your test case's `main.test.bicep` file that you call, for example,
-
-```bicep
-@secure()
-param backupManagementServiceEnterpriseApplicationObjectId string = ''
-
-```
-
-assuming that it would be provided with the correct value by the AVM CI. You consequently reference it in your test case as you would with any other Bicep parameter.
-
-Next, you create a new secret of the same name with a prefix `CI-` in a previously created Azure Key Vault of your test subscription (e.g., `CI-backupManagementServiceEnterpriseApplicationObjectId`). Its value would be the object id the Enterprise Application has in the tenant of your test subscription.
-
-Assuming that also the `CI_KEY_VAULT_NAME` GitHub Repository variable is configured correctly, you can now run your test pipeline and observe how the CI automatically pulls the secret and passes it into your test cases, IF, they have a parameter with a matching name.
-
 ## Setup
 
-### Pre-Requisites
+Declare the parameters in your `main.test.bicep` file and reference them as normal Bicep parameters. Keep an empty default for these string inputs so PSRule scans have a value for every parameter.
 
-To use this feature, there are really only three prerequisites:
+For example:
 
-1. Create an Azure Key Vault in your test subscription
-1. Grant the principal you use for testing in the CI at least _`Key Vault Secrets User'_ permissions on that Key Vault to enable it to pull secrets from it
-1. Configure the name of that Key Vault as a 'Repository variable' `CI_KEY_VAULT_NAME` in your Fork.
+```bicep
+@description('Required. Credential supplied by the CI_MYSECRET GitHub Actions secret.')
+@secure()
+param mySecret string = ''
 
-The above will enable the CI to identify your Key Vault, look for matching secrets in it, and pull their values as needed.
+@description('Optional. Non-sensitive label used by this test.')
+param deploymentLabel string = ''
+```
 
-![RequiredGitHubVariable]({{% siteparam base %}}/images/contribution/secrets/kvltSecret-ghSetting.png "Required GitHub variable")
+Add the corresponding values under **Settings > Secrets and variables > Actions** in your repository, or under **Settings > Environments > avm-validation** for environment-scoped values:
 
-### Configuring a secret
+| GitHub Actions name | Store as | Template parameter | Value |
+| - | - | - | - |
+| `CI_MYSECRET` | Secret | `mySecret` | Set privately; do not put the value in source control or logs. |
+| `CI_DEPLOYMENTLABEL` | Variable | `deploymentLabel` | For example, the non-sensitive label `avm-ci`. |
 
-Building upon the prerequisites you only have to implement two actions per value to dynamically populate them during deployment validation:
+Use the `CI_` prefix in GitHub; GitHub secret and variable names cannot contain hyphens. The CI strips `CI_` and matches the remaining name to an actual template parameter **case-insensitively**, so `CI_MYSECRET` matches `mySecret`. Only inputs matching parameters declared in the current test template are passed to its deployment, using the declared spelling.
 
-1. Create a `@secure()` parameter in your test file (`main.test.bicep`) that you want to populate and use it as you see fit.
+Underscores in the suffix are preserved, not converted to camelCase: `CI_ADMINMEMBERSSECRET` matches `adminMembersSecret`, whereas `CI_ADMIN_MEMBERS_SECRET` matches only `admin_members_secret`.
 
-  For example:
+String inputs, including secure strings, are used as supplied. For Boolean, integer, array, and object parameters (including secure objects), supply valid JSON matching the compiled template parameter type.
 
-  ```bicep
-  @description('Required. My parameter\'s description. This value is tenant-specific and must be stored in the CI Key Vault in a secret named \'CI-MySecret\'.')
-  @secure()
-  param mySecret string = ''
-  ```
+{{% notice style="important" title="Protect sensitive inputs" %}}
 
-  {{% notice style="important" %}}
+Use GitHub secrets for private values, and variables only for clearly non-sensitive configuration. Keep `@secure()` on sensitive Bicep parameters. The CI converts secure parameters to the corresponding PowerShell secure types before deployment, including when an input comes from a GitHub variable. Adding `@secure()` does not make a GitHub variable's stored value private.
 
-  It is mandatory to declare the parameter as `secure()` as Key Vault secrets will be pulled and passed into the deployment as `SecureString` values.
-
-  Also, it **must** have an empty default to be compatible with the PSRule scans that require a value for all parameters.
-  {{% /notice %}}
-
-1. Configure a secret of the same name, but with a `CI-` prefix and corresponding value in the Azure Key Vault you set up as per the prerequisites.
-
-  ![ExampleSecretsInKeyVault]({{% siteparam base %}}/images/contribution/secrets/kvltSecret-exampleSecrets.png "Example secrets in Key Vault")
+{{% /notice %}}
 
 ## How it works
 
-Assuming you completed both the [prerequisites](#pre-requisites) & [setup](#configuring-a-secret) steps and triggered your module's workflow, the CI will perform the following actions:
+Workflows use the resolved GitHub `secrets` and `vars` contexts. Both repository-scoped and environment-scoped values are supported; GitHub applies its own scope precedence within each context.
 
-1. When approaching the deployment validation steps, the workflow will lookup the `CI_KEY_VAULT_NAME` repository variable
-1. If it has a value, it will subsequently pull all available secret references (not their values!) from that Key Vault, filtered down to only the secrets that match the `CI-` prefix
-1. It will then loop through these secret references and check if any match a parameter in the targeted `test.main.bicep` of the same name, but without the `CI-` prefix
-1. Only for a match, the workflow with then pull the secret from the Key Vault and pass its value as a `SecureString` as a parameter into the template deployment.
+If more than one source supplies the same template parameter, the precedence is:
 
-When reviewing the log during or after a run, you can see each matching and pulled secret is/was added as part of the `AdditionalParameters` object as seen in the following:
+**GitHub secret > GitHub variable > `CI-` Key Vault secret.**
 
-![ExamplePipelineLog]({{% siteparam base %}}/images/contribution/secrets/kvltSecret-pipelineLog.png "Example pipeline log")
+The CI passes the resolved values through the PowerShell `AdditionalParameters` object to the applicable `Test-Az*Deployment` and `New-Az*Deployment` cmdlets. This is runtime deployment parameter injection, not source token substitution or a `.bicepparam` file mechanism.
 
-## Background: Why not simply use GitHub secrets?
+## Legacy Key Vault fallback
 
-When reviewing the above, you may wonder why an Azure Key Vault was used as opposed to simple GitHub secrets.
+{{% notice style="warning" title="CI Key Vault support is deprecated" %}}
 
-While the simplicity of GitHub secrets would be preferred, it unfortunately turned out that they would not provide us with the level of flexibility we need for our purposes.
+`vars.CI_KEY_VAULT_NAME` remains an optional fallback for existing setups. Using it emits a visible GitHub Actions deprecation warning, and support may be removed in a future release. Use GitHub Actions secrets or variables for new setups.
 
-Most notably, GitHub secrets are not automatically available in referenced GitHub actions. Instead, you have to declare every secret you want to use explicitly in the workflow's template, requiring the contributor to update both the module's workflow template as well as test files each time a new value would be added.
-This characteristic is not only unfortunate for our use case, but is also a lot more likely to lead to mistakes.
+{{% /notice %}}
 
-Further, with the use of OIDC via Managed Identities, the hurdle to bootstrap & populate an Azure Key Vault is significantly lowered.
+Existing setups can retain the `CI_KEY_VAULT_NAME` repository variable, the vault, and its `CI-`-prefixed secrets. The CI identity still needs permission to list and read secrets, for example through the `Key Vault Secrets User` role. Matching Key Vault secrets are used only when no GitHub secret or variable supplies that parameter; keep the corresponding Bicep parameters secure.
+
+### Migrate existing inputs
+
+1. Inventory the `CI-` secrets used by your test parameters and identify every workflow that depends on the vault.
+1. Map each name to a GitHub `CI_` name matching the template parameter. For example, Key Vault secret `CI-mySecret` becomes GitHub secret `CI_MYSECRET`, supplying `mySecret`.
+1. Copy each value privately to the intended repository or environment scope. Default to a GitHub secret; choose a variable only after confirming the value is non-sensitive. Coordinate corresponding upstream inputs with the maintainers.
+1. Confirm that all dependent workflows use the migrated inputs before removing `CI_KEY_VAULT_NAME`. Do not delete the vault or its secrets as part of this change without checking for other consumers.
