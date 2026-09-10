@@ -63,15 +63,19 @@ Use GitHub secrets for private values, and variables only for clearly non-sensit
 
 ## How it works
 
-Workflows use the resolved GitHub `secrets` and `vars` contexts. Both repository-scoped and environment-scoped values are supported; GitHub applies its own scope precedence within each context. Use the same GitHub spelling across scopes when overriding an input to avoid duplicate aliases in the resolved context.
+Workflows use the resolved GitHub `secrets` and `vars` contexts. Both repository-scoped and environment-scoped values are supported; GitHub applies its own scope precedence within each context. Use the same GitHub spelling across scopes when overriding an input so GitHub can apply that scope precedence to the override.
 
-If multiple aliases within one source resolve to the same parameter, the CI reports an error rather than choosing a winner. For example, two secrets named `CI_ADMIN_MEMBERS_SECRET` and `CI__ADMINMEMBERSSECRET` conflict; the same rule applies to two variables.
+After name resolution, values for the same template parameter are selected in this order:
 
-After name resolution, if different sources supply the same template parameter, the precedence is the same across either GitHub prefix:
+**`CI_` secret > `CI__` secret > `CI_` variable > `CI__` variable > `CI-` Key Vault secret.**
 
-**GitHub secret > GitHub variable > `CI-` Key Vault secret.**
+Source priority comes first: a `CI__` secret still beats a `CI_` variable. Within one source category (secrets or variables), `CI_` wins over `CI__` when both resolve to the same parameter; for example, secret `CI_FOO` beats secret `CI__FOO` for `foo`.
 
-Configured empty GitHub values still take precedence and do not trigger fallback to a lower-priority source.
+Multiple aliases for the same parameter within a source category's winning prefix remain ambiguous and fail. For example, secrets `CI_ADMIN_MEMBERS_SECRET` and `CI_ADMINMEMBERSSECRET` both resolve to `adminMembersSecret` through `CI_`; neither has priority over the other.
+
+Names resolving to different declared parameters remain independent: `CI_ADMIN_MEMBERS_SECRET` supplies `adminMembersSecret`, while `CI__ADMIN_MEMBERS_SECRET` supplies `admin_members_secret`.
+
+A configured empty winning value, including a `CI_` value, still wins and does not trigger fallback to a lower-priority prefix or source.
 
 The CI passes the resolved values through the PowerShell `AdditionalParameters` object to the applicable `Test-Az*Deployment` and `New-Az*Deployment` cmdlets. This is runtime deployment parameter injection, not source token substitution or a `.bicepparam` file mechanism.
 
@@ -114,6 +118,6 @@ For new entries, the helper generates readable names from camelCase and acronyms
 
 Without `-Apply`, the helper lists names and metadata only: it does not read secret values or change GitHub settings. `-SecretName` is a literal, case-insensitive allowlist of source `CI-` names; omitting it selects all `CI-` entries. `-VariableName` accepts either `CI_` or `CI__` aliases that resolve to selected source parameters explicitly confirmed as non-sensitive; all other values remain secrets. Prefer the planned readable output names, as in the example. Omit `-Environment` to target repository scope.
 
-Review the preview and obtain explicit operator approval before adding `-Apply` to copy values. An existing unambiguous GitHub entry of the same kind is recognized even under a different alias: it is skipped by default, or its existing name is reused when `-Overwrite` is explicitly specified. Ambiguous same-kind aliases and opposite-kind matches for the same parameter are blocked.
+Review the preview and obtain explicit operator approval before adding `-Apply` to copy values. When selecting an existing destination entry of the same kind for a parameter, the helper also prefers `CI_` over `CI__`. It skips the winning entry by default and reuses and overwrites only that entry when `-Overwrite` is explicitly specified. Any losing `CI__` alias is left unchanged, not deleted. Ambiguity within the winning prefix and opposite-kind matches for the same parameter are blocked.
 
 The helper never deletes entries and sends version-pinned values through standard input, not command arguments or files. Complete the workflow confirmation above before removing `CI_KEY_VAULT_NAME`.
