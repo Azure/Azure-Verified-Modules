@@ -22,7 +22,7 @@ Declare the parameters in your `main.test.bicep` file and reference them as norm
 For example:
 
 ```bicep
-@description('Required. Credential supplied by the CI_MYSECRET GitHub Actions secret.')
+@description('Required. Credential supplied by the CI_MY_SECRET GitHub Actions secret.')
 @secure()
 param mySecret string = ''
 
@@ -34,12 +34,24 @@ Add the corresponding values under **Settings > Secrets and variables > Actions*
 
 | GitHub Actions name | Store as | Template parameter | Value |
 | - | - | - | - |
-| `CI_MYSECRET` | Secret | `mySecret` | Set privately; do not put the value in source control or logs. |
-| `CI_DEPLOYMENTLABEL` | Variable | `deploymentLabel` | For example, the non-sensitive label `avm-ci`. |
+| `CI_MY_SECRET` | Secret | `mySecret` | Set privately; do not put the value in source control or logs. |
+| `CI_DEPLOYMENT_LABEL` | Variable | `deploymentLabel` | For example, the non-sensitive label `avm-ci`. |
 
-Use the `CI_` prefix in GitHub; GitHub secret and variable names cannot contain hyphens. The CI strips `CI_` and matches the remaining name to an actual template parameter **case-insensitively**, so `CI_MYSECRET` matches `mySecret`. Only inputs matching parameters declared in the current test template are passed to its deployment, using the declared spelling.
+GitHub secret and variable names cannot contain hyphens. Prefer readable `CI_` names for usual camelCase parameters; reserve `CI__` for literal parameter names, including underscores.
 
-Underscores in the suffix are preserved, not converted to camelCase: `CI_ADMINMEMBERSSECRET` matches `adminMembersSecret`, whereas `CI_ADMIN_MEMBERS_SECRET` matches only `admin_members_secret`.
+With `CI_`, the CI strips the single prefix and removes **all suffix underscores** before matching. With `CI__`, it strips the double prefix and **preserves suffix underscores**. Both modes match actual declared test parameters case-insensitively and pass their canonical Bicep spelling. Only matching parameters are supplied.
+
+These are alternative spellings; choose one name for each input:
+
+| GitHub Actions name | Matching template parameter |
+| - | - |
+| `CI_ADMIN_MEMBERS_SECRET` | `adminMembersSecret` |
+| `CI_ADMINMEMBERSSECRET` | `adminMembersSecret` |
+| `CI__ADMIN_MEMBERS_SECRET` | `admin_members_secret`, not `adminMembersSecret` |
+| `CI__ADMINMEMBERSSECRET` | `adminMembersSecret` |
+| `CI___NAME` | `_name` |
+
+**Reserved name:** `CI_KEY_VAULT_NAME` remains the existing vault selector and is excluded from template input mapping. To supply a test parameter named `keyVaultName`, use `CI__KEYVAULTNAME`.
 
 String inputs, including secure strings, are used as supplied. For Boolean, integer, array, and object parameters (including secure objects), supply valid JSON matching the compiled template parameter type.
 
@@ -51,9 +63,11 @@ Use GitHub secrets for private values, and variables only for clearly non-sensit
 
 ## How it works
 
-Workflows use the resolved GitHub `secrets` and `vars` contexts. Both repository-scoped and environment-scoped values are supported; GitHub applies its own scope precedence within each context.
+Workflows use the resolved GitHub `secrets` and `vars` contexts. Both repository-scoped and environment-scoped values are supported; GitHub applies its own scope precedence within each context. Use the same GitHub spelling across scopes when overriding an input to avoid duplicate aliases in the resolved context.
 
-If more than one source supplies the same template parameter, the precedence is:
+If multiple aliases within one source resolve to the same parameter, the CI reports an error rather than choosing a winner. For example, two secrets named `CI_ADMIN_MEMBERS_SECRET` and `CI__ADMINMEMBERSSECRET` conflict; the same rule applies to two variables.
+
+After name resolution, if different sources supply the same template parameter, the precedence is the same across either GitHub prefix:
 
 **GitHub secret > GitHub variable > `CI-` Key Vault secret.**
 
@@ -69,12 +83,12 @@ The CI passes the resolved values through the PowerShell `AdditionalParameters` 
 
 {{% /notice %}}
 
-Existing setups can retain the `CI_KEY_VAULT_NAME` repository variable, the vault, and its `CI-`-prefixed secrets. The CI identity still needs permission to list and read secrets, for example through the `Key Vault Secrets User` role. Matching Key Vault secrets are used only when no GitHub secret or variable supplies that parameter; keep the corresponding Bicep parameters secure.
+Existing setups can retain the `CI_KEY_VAULT_NAME` repository variable, the vault, and its `CI-`-prefixed secrets. The legacy `CI-` suffix is matched literally and case-insensitively, unchanged by the GitHub naming rules. The CI identity still needs permission to list and read secrets, for example through the `Key Vault Secrets User` role. Matching Key Vault secrets are used only when no GitHub secret or variable supplies that parameter; keep the corresponding Bicep parameters secure.
 
 ### Migrate existing inputs
 
 1. Inventory the `CI-` secrets used by your test parameters and identify every workflow that depends on the vault. Prefer the [preview-only migration helper](#preview-with-the-migration-helper) for this inventory.
-1. Map each name to a GitHub `CI_` name matching the template parameter. For example, Key Vault secret `CI-mySecret` becomes GitHub secret `CI_MYSECRET`, supplying `mySecret`.
+1. Map each source name to a readable GitHub `CI_` name, or a `CI__` name for literal underscores or a reserved-name conflict. For example, Key Vault secret `CI-mySecret` becomes GitHub secret `CI_MY_SECRET`, supplying `mySecret`.
 1. Copy each value privately to the intended repository or environment scope. Default to a GitHub secret; choose a variable only after confirming the value is non-sensitive. Coordinate corresponding upstream inputs with the maintainers.
 1. Confirm that all dependent workflows use the migrated inputs before removing `CI_KEY_VAULT_NAME`. Do not delete the vault or its secrets as part of this change without checking for other consumers.
 
@@ -93,9 +107,13 @@ The `Copy-CIKeyVaultSecretsToGitHub` helper requires PowerShell 7.2 or later, an
 Copy-CIKeyVaultSecretsToGitHub -VaultName '<vault-name>' -Repository '<owner>/<repo>' `
   -Environment 'avm-validation' `
   -SecretName 'CI-mySecret', 'CI-deploymentLabel' `
-  -VariableName 'CI_DEPLOYMENTLABEL'
+  -VariableName 'CI_DEPLOYMENT_LABEL'
 ```
 
-Without `-Apply`, the helper lists names and metadata only: it does not read secret values or change GitHub settings. `-SecretName` is a literal, case-insensitive allowlist of source `CI-` names; omitting it selects all `CI-` entries. `-VariableName` lists target `CI_` names explicitly confirmed as non-sensitive; all other values remain secrets. Omit `-Environment` to target repository scope.
+For new entries, the helper generates readable names from camelCase and acronyms: `CI-mySecret` becomes `CI_MY_SECRET`, `CI-deploymentLabel` becomes `CI_DEPLOYMENT_LABEL`, and `CI-managedHSMResourceId` becomes `CI_MANAGED_HSM_RESOURCE_ID`. Literal underscores or reserved-name conflicts use `CI__` spelling.
 
-Review the preview and obtain explicit operator approval before adding `-Apply` to copy values. Existing entries of the same kind are skipped unless `-Overwrite` is also specified; opposite-kind collisions are always blocked. The helper never deletes entries and sends version-pinned values through standard input, not command arguments or files. Complete the workflow confirmation above before removing `CI_KEY_VAULT_NAME`.
+Without `-Apply`, the helper lists names and metadata only: it does not read secret values or change GitHub settings. `-SecretName` is a literal, case-insensitive allowlist of source `CI-` names; omitting it selects all `CI-` entries. `-VariableName` accepts either `CI_` or `CI__` aliases that resolve to selected source parameters explicitly confirmed as non-sensitive; all other values remain secrets. Prefer the planned readable output names, as in the example. Omit `-Environment` to target repository scope.
+
+Review the preview and obtain explicit operator approval before adding `-Apply` to copy values. An existing unambiguous GitHub entry of the same kind is recognized even under a different alias: it is skipped by default, or its existing name is reused when `-Overwrite` is explicitly specified. Ambiguous same-kind aliases and opposite-kind matches for the same parameter are blocked.
+
+The helper never deletes entries and sends version-pinned values through standard input, not command arguments or files. Complete the workflow confirmation above before removing `CI_KEY_VAULT_NAME`.

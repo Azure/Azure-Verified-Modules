@@ -385,7 +385,7 @@ This secret represent the service connection to Azure, and its value is a compre
 
 #### 3.1.3 Custom CI parameters
 
-For test-specific template inputs, create GitHub Actions secrets or variables prefixed with `CI_` at repository scope or in the `avm-validation` environment. Use secrets for private values and variables only for clearly non-sensitive configuration. These inputs are separate from the OIDC authentication secrets above.
+For test-specific template inputs, create GitHub Actions secrets or variables at repository scope or in the `avm-validation` environment. Prefer readable `CI_` names such as `CI_MY_SECRET` for `mySecret`; underscores after the prefix are ignored. Use `CI__` to preserve literal underscores in parameter names. Use secrets for private values and variables only for clearly non-sensitive configuration. These inputs are separate from the OIDC authentication secrets above.
 
 See [Custom CI parameters]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/custom-ci-secrets) for parameter naming, secure handling, precedence, and migration from the deprecated `CI_KEY_VAULT_NAME` Key Vault fallback.
 
