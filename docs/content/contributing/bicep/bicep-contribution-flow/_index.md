@@ -437,7 +437,9 @@ If you're working on a new module, we'd also ask you to create its corresponding
 
 {{% notice style="note" %}}
 
-The workflow is configured to be triggered by any changes in the `main` branch of Upstream (i.e., `Azure/bicep-registry-modules`) that could affect the module or its validation. However, in a fork, the workflow is stopped immediately after being triggered due to the condition:
+The workflow is configured to be triggered by changes in the `main` branch of Upstream (i.e., `Azure/bicep-registry-modules`) that could affect the module or its validation. Changes limited to `README.md` or `metadata.json` files, including child-module metadata, do not trigger the workflow or a release. To publish a metadata change, including a `telemetryIdPrefix` change, include it with a normal source or version release change.
+
+In a fork, the workflow is stopped immediately after being triggered due to the condition:
 ```yml
 # Only run if not canceled and not in a fork, unless triggered by a workflow_dispatch event
 if: ${{ !cancelled() && !(github.repository != 'Azure/bicep-registry-modules' && github.event_name != 'workflow_dispatch') }}

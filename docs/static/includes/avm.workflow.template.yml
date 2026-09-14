@@ -32,6 +32,7 @@ on:
         # >>> UPDATE to for example "avm/res/key-vault/vault/**" and remove this comment
       - "avm/[res|ptn|utl]/[provider-namespace]/[resource-type]/**"
       - "!*/**/README.md"
+      - "!avm/**/metadata.json"
 
 env:
   # >>> UPDATE to for example "avm/res/key-vault/vault" and remove this comment
