@@ -21,7 +21,7 @@ Although, if you think a known issue is missing from this page please create an 
 
 ### Bicep what-if compatibility with modules
 
-[Bicep/ARM What-If](https://learn.microsoft.com/azure/azure-resource-manager/bicep/deploy-what-if) has a known issue today where it short-circuits whenever a runtime function is used in a nested template. And due to the way [Bicep modules](https://learn.microsoft.com/azure/azure-resource-manager/bicep/modules) work, all module declarations in a Bicep file end up as a resulting nested template deployment in the underlying generated ARM template, thereby invoking this known issue.
+[Bicep/ARM What-If](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if) has a known issue today where it short-circuits whenever a runtime function is used in a nested template. And due to the way [Bicep modules](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules) work, all module declarations in a Bicep file end up as a resulting nested template deployment in the underlying generated ARM template, thereby invoking this known issue.
 
 {{% notice style="note" title="GitHub Issue for Further Information & Discussion" icon="fa-brands fa-github" %}}
 
