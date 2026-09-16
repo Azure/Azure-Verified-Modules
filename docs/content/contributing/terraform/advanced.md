@@ -161,7 +161,9 @@ Shell equivalents are rejected. Each PowerShell hook runs in an isolated process
 
 [Repository sync](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/repository-sync) regularly compares each module repository with the shared [managed files](https://github.com/Azure/azure-verified-modules-managed-files) and opens a PR when updates are available. These PRs are normally merged automatically. Module owners will be informed about one-off PRs that require intervention.
 
-These PRs do not change module code, so no new release is needed.
+Once the [operator backfill update]({{% siteparam base %}}/contributing/module-metadata/#operator-backfill-and-initialization) is adopted, backfill is an optional script call within this full ordinary sync, not an isolated metadata-only run. Normal settings and Azure management, managed-file updates, `pre-commit`, and `CODEOWNERS` handling still run before standard publication and merge. Operators must inspect the complete planned changes and obtain explicit approval before production runs; the backfill option does not disable the standard authorized automation or automatic merge path.
+
+Do not assume the complete sync changes only metadata or cannot change module source. A metadata-only edit does not require a module release; any source changes in the full sync still follow normal validation and release rules. The catalog's separate reviewed publication and human metadata ownership reviews are unchanged.
 
 ---
 

@@ -18,7 +18,7 @@ This process is being introduced; it is not yet the default maintenance process.
 
 Child modules have reduced `metadata.json` files in their own folders. They inherit ownership from the root module, including when nested more than one level deep. **Change owners only in the root file**; child files must not contain `owners`.
 
-Use the existing file as your starting point and preserve unrelated values. Migration backfill creates missing metadata; it does not overwrite existing files or apply later ownership changes. If metadata is missing, ask the AVM core team to confirm the module's readiness rather than inventing values.
+Use the existing file as your starting point and preserve unrelated values. The backfill step creates missing `metadata.json` files and validates existing metadata without overwriting it or applying later ownership changes. The surrounding repository sync can change other files and state, as described under [operator backfill](#operator-backfill-and-initialization). If metadata is missing, ask the AVM core team to confirm the module's readiness rather than inventing values.
 
 ## Fields you can maintain
 
@@ -37,7 +37,19 @@ Module identity, module class, repository paths, and parent relationships are de
 
 There is **no `moduleStatus` or `status` field** in this schema. Follow the existing [proposal and lifecycle processes](#processes-that-remain-separate) rather than adding an unsupported field.
 
+## Operator backfill and initialization
+
+The operator backfill update is pending implementation and rollout approval. Once adopted, backfill is one optional script call within a **full ordinary Terraform repository sync**, followed by the standard preparation, validation, publication, and merge process. It is not an isolated metadata-only run.
+
+The full run still includes normal repository settings and Azure management, managed-file updates, `pre-commit`, and `CODEOWNERS` handling. Review the complete planned changes and obtain explicit approval before running against production. Standard sync authorization and merge behavior apply, including the existing authorized automation path; backfill does not promise review-only publication, no automatic merge, or no state changes.
+
+The Terraform metadata-creation step creates only `metadata.json`; it does not generate `main.metadata.tf` or delete an existing Terraform reader. Keep existing `.tf` files in place when removing that generation option. The **full sync** can still format, transform, or move other Terraform source files under its existing rules. Terraform source and telemetry integration are separate work, and this update introduces no new transformation rule. This Terraform change does not remove optional Bicep reader support.
+
+This operator process does not change the human ownership-review requirements below or the catalog's separate reviewed publication and source-row removal checks.
+
 ## Submit and review a change
+
+These steps apply to human-authored metadata changes. Operator backfill uses the standard authorized sync path described above, rather than a separate metadata publication path.
 
 1. Agree the change with the current owners and the AVM core team. For ownership changes, retain the eligibility checks, incoming owners' written consent, and handover requirements in the [owner-change process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#changing-module-owners).
 1. Edit the relevant `metadata.json` on a branch or in your fork of the module repository. Preserve all owners and other values that are not part of the agreed change.
