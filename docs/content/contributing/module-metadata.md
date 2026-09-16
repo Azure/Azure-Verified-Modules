@@ -16,22 +16,20 @@ This process is being introduced; it is not yet the default maintenance process.
 | Bicep | `avm/{res,ptn,utl}/{group}/{module}/metadata.json` in [Azure/bicep-registry-modules](https://github.com/Azure/bicep-registry-modules). Use the existing module's actual path. |
 | Terraform | `metadata.json` at the root of the module's own repository. Find that repository through the [module indexes]({{% siteparam base %}}/indexes/). |
 
-Child modules have reduced `metadata.json` files in their own folders. They inherit ownership and tier from the root module, including when nested more than one level deep. **Change owners and tier only in the root file**, not in each child file.
+Child modules have reduced `metadata.json` files in their own folders. They inherit ownership from the root module, including when nested more than one level deep. **Change owners only in the root file**; child files must not contain `owners`.
 
 Use the existing file as your starting point and preserve unrelated values. Migration backfill creates missing metadata; it does not overwrite existing files or apply later ownership changes. If metadata is missing, ask the AVM core team to confirm the module's readiness rather than inventing values.
 
 ## Fields you can maintain
 
-The [v1 metadata schema](https://github.com/Azure/azure-verified-modules-tools/blob/72ae0bdd8ecad86685fff3a12cec19d98855c136/src/Avm.Authoring/Resources/Schemas/v1/avm-module-metadata.schema.json) defines the supported fields.
+The versioned schema referenced by the required `$schema` URI defines the supported fields.
 
 | Field | Guidance |
 | --- | --- |
-| `$schema`, `schemaVersion` | Keep the v1 schema reference and `schemaVersion` set to `1`. |
+| `$schema` | Keep the required versioned schema URI. It identifies the module metadata schema. |
 | `moduleDisplayName`, `moduleDescription` | Maintain the module's display name and description. For Bicep, they must match the corresponding literals in `main.bicep`. |
 | `canonicalType` | The ARM resource type, or the approved pattern/utility taxonomy. This is not the module's repository path. |
-| `tier` | Root only: `core` or `maintained`. Agree tier changes with the AVM core team; children inherit the root's tier. |
-| `owners.individuals` | Root only: an array of objects, each containing an approved owner's `githubHandle`, without an `@` prefix. Record every owner, not just the first two. |
-| `owners.team` | Root only: an optional, approved shared GitHub team handle. Do not invent a team or recreate a legacy per-module team. |
+| `owners` | Root only: a flat array of strings. Use bare GitHub handles for individuals and qualified handles such as `@Azure/team-name` for approved existing teams. Record every owner, not just the first two. Do not put display names or nested objects in this array. |
 | `telemetryIdPrefix` | Preserve the assigned identifier where required. Do not generate a replacement identifier as part of an ownership or descriptive edit. |
 | `alternativeNames`, `comments` | Optional root-module aliases and notes. These are public metadata. |
 
@@ -47,7 +45,7 @@ There is **no `moduleStatus` or `status` field** in this schema. Follow the exis
 1. Satisfy the repository's metadata validation and required reviews before merging. Engineering-owner approval is required for metadata changes; another module owner's approval does not replace it. Any code changes in the same pull request still need their normal code review and tests.
 1. Follow the change through catalog generation and reviewed publication. Do not edit the generated CSV or JSON output to duplicate the metadata change.
 
-**Metadata-only changes must not trigger a module release.** Do not change version files or create a release just to update owners, tier, or other metadata. A Bicep name or description correction may also require changing `main.bicep` to keep its literals consistent; that is a source change and must follow normal validation and release rules, not be treated as metadata-only.
+**Metadata-only changes must not trigger a module release.** Do not change version files or create a release just to update owners or other metadata. A Bicep name or description correction may also require changing `main.bicep` to keep its literals consistent; that is a source change and must follow normal validation and release rules, not be treated as metadata-only.
 
 Editing metadata does not grant or revoke repository permissions, create teams, change identities, or provision Azure access. Every incoming owner still needs the separate access approval described in [SNFR20]({{% siteparam base %}}/spec/SNFR20). Do not remove shared access solely because someone stops owning one module.
 
@@ -55,7 +53,7 @@ Editing metadata does not grant or revoke repository permissions, create teams, 
 
 ### Add, remove, or transfer owners
 
-Update `owners.individuals` in the root metadata file. Add the approved incoming handles and remove only the departing handles. Keep every continuing owner, including owners beyond the first two. Review `owners.team` as part of the handover and remove it if that team no longer owns the module.
+Update the `owners` array in the root metadata file. Add the approved incoming handles and remove only the departing handles. Keep every continuing individual or team owner, including owners beyond the first two. Remove a team handle only if that team no longer owns the module. Do not invent a replacement team or recreate a legacy per-module team.
 
 For a direct transfer, follow [hot swapping module owners]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#hot-swapping-module-owners) and make the outgoing and incoming owner changes together, so the module does not pass through an unowned state. Do not reopen a closed module proposal.
 
@@ -63,11 +61,11 @@ For a direct transfer, follow [hot swapping module owners]({{% siteparam base %}
 
 Follow [when a module becomes orphaned]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-orphaned), including its tracking issue and required notices.
 
-In the root metadata file, set `owners.individuals` to `[]` **and remove `owners.team` if present**. Clearing only one of these can leave the module owned. Keep the remaining metadata intact. The catalog calculates `Orphaned` when no owner exists, while preserving an existing `Deprecated` status.
+In the root metadata file, set `"owners": []`, removing all individual and team handles from the array. Keep the remaining metadata intact. The catalog calculates `Orphaned` when no owner exists, while preserving an existing `Deprecated` status.
 
 ### Adopt an orphaned module
 
-Follow [when a new owner is identified]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified). After eligibility and consent are confirmed, add the approved incoming owners to `owners.individuals` in the root metadata file and obtain engineering-owner review.
+Follow [when a new owner is identified]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified). After eligibility and consent are confirmed, add the approved incoming handles to the root metadata's `owners` array and obtain engineering-owner review.
 
 Complete the separate access approval and notice-removal steps before closing the ownership issue. Adding owners does not revive a deprecated module.
 
@@ -85,6 +83,10 @@ Do not assume that a preview publication updates the live website, issue routing
 
 **New proposals:** Keep using the [module proposal and approval process]({{% siteparam base %}}/contributing/process/#new-module-proposal--creation), including repository creation and any required registry approval. Proposals without a repository or module source have no metadata file to edit. Their existing core-team-managed records remain part of the transition until a replacement is agreed; do not create placeholder metadata or discard proposed entries.
 
-**Publication and deprecation:** Registry publication is still required before a module is available. Follow the [deprecation process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-deprecated) to retire a module. Deprecation publication is a rollout dependency and must be aligned with the implemented lifecycle signals before this process is adopted. The v1 metadata schema has no status field; clearing owners is not a substitute for deprecation.
+**Publication:** Registry publication is still required before a module is available. A metadata change does not publish a module.
+
+**Deprecation:** Follow the [deprecation process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-deprecated), including its approval, notices, and language-specific retirement steps. After adoption, the catalog derives `Deprecated` from the existing `DEPRECATED.md` file for Bicep or the repository's `archived` flag for Terraform. Review the generated catalog update rather than editing an index status.
+
+A Bicep `DEPRECATED.md` marker applies to its module and descendants: a root marker covers all children, while a child marker does not deprecate its parent or siblings. Terraform repository archival applies to every module entry in that repository. Existing `Deprecated` entries remain deprecated during the transition; a missing signal does not reactivate them. The v1 metadata schema has no lifecycle or status field, and clearing owners is not a substitute for deprecation.
 
 **Bicep child publishing:** [Telemetry assignment and Microsoft Artifact Registry (MAR) approval]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/child-module-publishing/#prerequisites) remain required. Recording metadata does not grant permission to publish a child module.

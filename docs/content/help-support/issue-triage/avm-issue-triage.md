@@ -8,7 +8,7 @@ description: Issue Triage description for the Azure Verified Modules (AVM) repos
 This page provides guidance for members of the **AVM Core Team** on how to **triage module proposals** and **generic issues** filed in the [AVM repository](https://aka.ms/AVM/repo), as well as how to manage these GitHub issues throughout their lifecycle.
 
 {{% notice style="important" title="Metadata maintenance transition" %}}
-The metadata-file steps below apply only after the [rollout prerequisites]({{% siteparam base %}}/contributing/module-metadata/) are met for the module. Engineering-owner review is required, and index changes need catalog generation and reviewed publication. Preview CSVs do not replace the live indexes. Proposal records without source still need the existing core-team-managed process. Deprecation publication must be aligned with the implemented lifecycle signals before adoption.
+The metadata-file steps below apply only after the [rollout prerequisites]({{% siteparam base %}}/contributing/module-metadata/) are met for the module. Engineering-owner review is required, and index changes need catalog generation and reviewed publication. Preview CSVs do not replace the live indexes. Proposal records without source still need the existing core-team-managed process. Deprecation is derived from the language-specific retirement signals described below, not from a metadata status field.
 {{% /notice %}}
 
 During the AVM Core Team Triage step, the following will be checked, completed and actioned by the AVM Core Team during their triage calls (which are currently twice per week).
@@ -191,7 +191,7 @@ Once the **Orphaned Module issue** was closed, it **MUST remain closed**. If the
 
 ### Adding or removing co-owners
 
-Agree changes with the current owners and the AVM core team. Confirm each incoming owner's eligibility, written acceptance of the role, and separate [access approval]({{% siteparam base %}}/spec/SNFR20). After metadata maintenance is adopted, submit the agreed changes to `owners.individuals` in the module's **root** `metadata.json`, following the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change). Keep every continuing owner and review any `owners.team` value; children inherit the root's ownership.
+Agree changes with the current owners and the AVM core team. Confirm each incoming owner's eligibility, written acceptance of the role, and separate [access approval]({{% siteparam base %}}/spec/SNFR20). After metadata maintenance is adopted, submit the agreed handle changes to the `owners` array in the module's **root** `metadata.json`, following the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change). Use bare handles for individuals and qualified handles for approved existing teams. Keep every continuing individual or team owner; children inherit the root's ownership.
 
 Use the [hot-swap process](#hot-swapping-module-owners) for a handover. If no owners remain, follow the [orphaning process](#when-a-module-becomes-orphaned) instead.
 
@@ -204,7 +204,7 @@ If a module meets the criteria described in the "[Orphaned Modules]({{% sitepara
 1. Submit an "orphaned module" issue by using the "[Orphaned AVM Module 🟡](https://aka.ms/AVM/OrphanedModule)" issue template.
 2. Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp;, and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 🟡</mark>&nbsp; labels are assigned to the issue and it is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project.
 3. Move the issue into the "`Orphaned`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
-1. Include the ownership change in a pull request to the module's root `metadata.json`, linked to the orphaned module issue. Set `owners.individuals` to `[]` and remove `owners.team` if present, following the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#orphan-a-module). Do not edit child ownership or set a status field. The catalog calculates `Orphaned` when no owner exists and preserves an existing `Deprecated` status.
+1. Include the ownership change in a pull request to the module's root `metadata.json`, linked to the orphaned module issue. Set `"owners": []`, removing all individual and team handles, following the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#orphan-a-module). Do not edit child ownership or set a status field. The catalog calculates `Orphaned` when no owner exists and preserves an existing `Deprecated` status.
 5. Place an information notice as per the below guidelines:
     - **In case of a Bicep module**:
       - Place the information notice - with the text below - in an `ORPHANED.md` file, in the module's root.
@@ -254,7 +254,7 @@ To look for Orphaned Modules:
     - Remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 🟡</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; labels from the issue.
     - Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#C8E6C9;">Status: Module Available 🟢</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; labels to the issue.
     - Move the issue into the "`Done`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
-1. Submit a pull request adding the approved incoming owners to `owners.individuals` in the module's root `metadata.json`, linked to the orphaned module issue. Obtain engineering-owner review and merge the change through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#adopt-an-orphaned-module). Do not edit the spreadsheet or CSV owner columns.
+1. Submit a pull request adding the approved incoming handles to the `owners` array in the module's root `metadata.json`, linked to the orphaned module issue. Obtain engineering-owner review and merge the change through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#adopt-an-orphaned-module). Do not edit the spreadsheet or CSV owner columns.
 4. Ensure every new owner has approved access through the [AVM Module Contributors access package](https://aka.ms/avm/id/access-package/module-contributor). See [SNFR20]({{% siteparam base %}}/spec/SNFR20) for the language-specific access requirements. No per-module GitHub team or `CODEOWNERS` changes are needed.
 5. Remove the information notice (i.e., the file that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.` ):
     - In case of a Bicep module:
@@ -315,7 +315,7 @@ When the module owner needs to be changed without the module becoming orphaned, 
     - &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; labels to the issue.
     - Module classification (resource/pattern/utility): &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#D3D3D3;">Class: Resource Module 📦</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#A9A9A9;">Class: Pattern Module 📦</mark>&nbsp; or &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#CAD1DE;">Class: Utility Module 📦</mark>&nbsp;
 6. Make sure the issue is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project, but don't move the issue to the "`Orphaned`" column of this board as it will be automatically moved to the "`Done`" column, once the issue is closed.
-1. Once each incoming owner's eligibility and written consent are confirmed, replace the departing handles with the approved incoming handles in the **same root metadata change**, retaining any continuing owners. Review `owners.team` and remove it if it no longer applies. Obtain engineering-owner review and merge through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#add-remove-or-transfer-owners). Confirm every incoming owner has approved access as described in [SNFR20]({{% siteparam base %}}/spec/SNFR20) before finalizing the handover.
+1. Once each incoming owner's eligibility and written consent are confirmed, replace the departing handles with the approved incoming handles in the root `owners` array in the **same metadata change**, retaining every continuing individual or team owner. Remove team handles only if they no longer apply. Obtain engineering-owner review and merge through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#add-remove-or-transfer-owners). Confirm every incoming owner has approved access as described in [SNFR20]({{% siteparam base %}}/spec/SNFR20) before finalizing the handover.
 8. Use the following text to finalize the new ownership transfer:
 
 {{% expand title="➕ Final Confirmation for the New Owner(s) of an Orphaned Module" %}}
@@ -350,7 +350,7 @@ If a module meets the criteria described in the "[Deprecated Modules]({{% sitepa
 
 1. Submit a "deprecated module" issue by using the "[Deprecate AVM Module 🔴](https://aka.ms/avm/DeprecatedModule)" issue template.
 2. Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#000000;color:white;">Status: Module Deprecated 🔴</mark>&nbsp; labels are assigned to the issue and it is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project.
-3. Update the AVM Module Indexes, following the [process documented internally](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/684/Module-index-update-process).
+1. Record the approved deprecation decision in the issue and complete the language-specific steps below. Do not clear owners to deprecate a module or add a lifecycle/status field to `metadata.json`.
 
 **Bicep specific steps**
 
@@ -370,6 +370,14 @@ Deprecating a module does not require changing `CODEOWNERS` or deleting a GitHub
 
 4. Place the information notice - with the text below - in the `README.md` file, in the module's root.
 5. Archive the module's repository on GitHub.
+
+**Catalog publication**
+
+After the [metadata rollout prerequisites]({{% siteparam base %}}/contributing/module-metadata/) are met, the catalog derives `Deprecated` from the Bicep module's existing `DEPRECATED.md` file or the Terraform repository's `archived` flag. Once the relevant retirement steps are complete, review the generated catalog update instead of editing the spreadsheet or CSV status. Retain existing `Deprecated` entries during the transition even if their source signal has not yet been captured; do not reactivate them because a signal is missing.
+
+A Bicep marker applies to that module and all its descendants. A root marker therefore covers every child; a child marker leaves its parent and siblings unaffected. Terraform archival applies to all module entries in the repository.
+
+The notices, Bicep workflow/issue-template removal and registry-index update, and Terraform repository archival remain separate required actions. Catalog publication does not perform these actions or grant permission to perform them. Preview CSVs leave the canonical indexes unchanged until the separately approved changeover.
 
 **Deprecation information notice** (to be place in the module's repository as described above)
 

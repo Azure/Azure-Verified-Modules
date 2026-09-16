@@ -21,7 +21,7 @@ priority: 1100
 
 ## ID: SNFR8 - Category: Contribution/Support - Module Owner(s) GitHub
 
-A module **MUST** have at least one owner recorded. After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, every approved owner **MUST** be recorded in `owners.individuals` in the module's root `metadata.json`; children inherit that ownership. Changes require engineering-owner review. Until adoption, coordinate ownership records in the [Module Indexes]({{% siteparam base %}}/indexes/) with the AVM core team.
+A module **MUST** have at least one owner recorded. After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, every approved owner **MUST** be recorded in the `owners` array in the module's root `metadata.json`; children inherit that ownership. Use bare individual handles or qualified team handles for approved existing teams. Changes require engineering-owner review. Until adoption, coordinate ownership records in the [Module Indexes]({{% siteparam base %}}/indexes/) with the AVM core team.
 
 Today this is only Microsoft FTEs, but everyone is welcome to contribute. The module just **MUST** be owned by a Microsoft FTE (today) so we can enforce and provide the long-term support required by this initiative.
 

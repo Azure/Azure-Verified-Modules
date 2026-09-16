@@ -27,7 +27,7 @@ Familiarize yourself with the responsibilities as **Module Owner** outlined in [
 
     You no longer need to create a per-module GitHub team, assign a parent team, or add the team to `CODEOWNERS`. Access is managed through the shared `@Azure/azure-verified-modules-module-contributors` team.
 
-1. After the [metadata rollout prerequisites]({{% siteparam base %}}/contributing/module-metadata/) are met, maintain every owner in `owners.individuals` in your module's root `metadata.json`. Coordinate changes with the AVM Core Team and submit them for engineering-owner review, not as spreadsheet or CSV edits. Until adoption, continue to coordinate index corrections with the core team.
+1. After the [metadata rollout prerequisites]({{% siteparam base %}}/contributing/module-metadata/) are met, maintain every approved handle in the `owners` array in your module's root `metadata.json`. Coordinate changes with the AVM Core Team and submit them for engineering-owner review, not as spreadsheet or CSV edits. Until adoption, continue to coordinate index corrections with the core team.
 1. Ensure your module has been tested before raising a PR. You can do this your own or in another module contributor's environment - if any. Also, once a PR is raised, a GitHub workflow pipeline is required to be run successfully before the PR can be merged. This is to ensure that the module is working as expected and is compliant with the AVM specifications.
 {{% notice style="note" %}}
 

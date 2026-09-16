@@ -31,19 +31,24 @@ Until your access request is approved, you can contribute by using JIT elevation
 
 ## 2. Gather repository information
 
-You'll need the following from the module request issue:
+For a new module repository, gather the following approved values from the module request issue. The metadata creation inputs apply after the [metadata rollout prerequisites]({{% siteparam base %}}/contributing/module-metadata/) are met; the existing inventory-only mode keeps its previous minimum inputs.
 
 | Information | Description |
 | --- | --- |
 | Module name | Format: `avm-<type>-<name>` (e.g. `avm-res-network-virtualnetwork`) |
-| Module owner GitHub handle | Your GitHub handle |
-| Module owner display name | `Firstname Lastname` |
-| Module description | Auto-prefixed with `Terraform Azure Verified <module-type> Module for ...` |
-| Resource provider namespace | Resource modules only (e.g. `Microsoft.Network`) |
-| Resource type | Resource modules only (e.g. `virtualNetworks`) |
-| Alternative names | Optional comma-separated list |
-| Secondary owner handle | Optional |
-| Secondary owner display name | Optional |
+| Module display name | Approved display name, passed as `moduleDisplayName` |
+| Module description | Approved description, passed as `moduleDescription` |
+| Canonical type | Approved ARM resource type or pattern/utility taxonomy, passed as `canonicalType` |
+| Resource provider namespace and resource type | For resource modules, `resourceProviderNamespace` plus `resourceType` can be supplied instead of `canonicalType` |
+| Telemetry ID prefix | Assigned `telemetryIdPrefix`; required for resource and pattern modules. Do not invent an identifier. |
+| Primary owner handle | Approved individual handle, passed as `ownerPrimaryGitHubHandle` |
+| Primary owner display name | `ownerPrimaryDisplayName`, for compatibility inventory and Portal records, not the metadata owner array |
+| Secondary owner handle and display name | Optional `ownerSecondaryGitHubHandle` and `ownerSecondaryDisplayName`; the display name is not metadata |
+| Additional owner handles | Optional `ownerGitHubHandles`, a PowerShell string array of approved usernames |
+| Owner team | Optional `ownerTeam`, an approved existing team handle in `@org/team` form |
+| Alternative names | Optional `moduleAlternativeNames`, a comma-separated string; the tooling splits it for JSON metadata |
+
+The creation tooling combines the primary, secondary, additional, and team handles into the flat root metadata `owners` array. These inputs do not grant access. Later ownership changes use the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change), not another repository-creation run.
 
 ## 3. Create the repository
 
@@ -70,36 +75,28 @@ gh auth login -h "github.com" -w -p "https"
 
 ### Run the creation script
 
+The example uses `canonicalType`; resource modules can instead pass `resourceProviderNamespace` and `resourceType`. Supply the assigned telemetry prefix for resource and pattern modules. For a utility module that does not use telemetry, omit the `telemetryIdPrefix` entry.
+
 ```pwsh
-if(!(Test-Path -Path "./scripts/New-Repository.ps1")) {
+if (!(Test-Path -Path ".\scripts\New-Repository.ps1")) {
     Write-Error "This script must be run from the repository-creation directory."
     exit 1
 }
 
-# Required Inputs
-$moduleName = "<module name>" # e.g. avm-res-network-virtualnetwork
-$moduleDisplayName = "<module description>"
-$resourceProviderNamespace = "" # Leave empty for Pattern/Utility modules
-$resourceType = "" # Leave empty for Pattern/Utility modules
-$ownerPrimaryGitHubHandle = "<github handle>"
-$ownerPrimaryDisplayName = "<display name>"
+$parameters = @{
+    moduleName = "<approved module name>"
+    moduleDisplayName = "<approved display name>"
+    moduleDescription = "<approved description>"
+    canonicalType = "<approved ARM resource type or taxonomy>"
+    telemetryIdPrefix = "<assigned telemetry ID prefix>"
+    ownerPrimaryGitHubHandle = "<approved individual handle>"
+    ownerPrimaryDisplayName = "<display name>"
+}
 
-# Optional
-$moduleAlternativeNames = ""
-$ownerSecondaryGitHubHandle = ""
-$ownerSecondaryDisplayName = ""
-
-./scripts/New-Repository.ps1 `
-    -moduleName $moduleName `
-    -moduleDisplayName $moduleDisplayName `
-    -resourceProviderNamespace $resourceProviderNamespace `
-    -resourceType $resourceType `
-    -ownerPrimaryGitHubHandle $ownerPrimaryGitHubHandle `
-    -ownerPrimaryDisplayName $ownerPrimaryDisplayName `
-    -moduleAlternativeNames $moduleAlternativeNames `
-    -ownerSecondaryGitHubHandle $ownerSecondaryGitHubHandle `
-    -ownerSecondaryDisplayName $ownerSecondaryDisplayName
+.\scripts\New-Repository.ps1 @parameters
 ```
+
+Add optional entries to `$parameters` when needed, using the parameter names in the table above. Keep `ownerGitHubHandles` as an array and `moduleAlternativeNames` as a comma-separated string; do not pass a new `owners` parameter.
 
 ### Complete Open Source Portal Setup
 
@@ -150,7 +147,7 @@ The script will automatically:
 - Create a PR to install the `Azure Verified Modules` GitHub App.
 
 {{% notice style="note" %}}
-Repository-creation inputs and `repository-sync` configuration are part of onboarding, not a replacement for module-owned `metadata.json`. Once [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, maintain the module's details and full owner list in its root `metadata.json` through engineering-owner review. This does not change the Open Source Portal, access-package, or JIT requirements below, and owner display names from the creation inputs are not fields in the v1 metadata owner objects.
+Repository-creation inputs and `repository-sync` configuration are part of onboarding, not a replacement for module-owned `metadata.json`. Once [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, maintain the module's details and full `owners` array in its root `metadata.json` through engineering-owner review. That array contains only bare individual handles or qualified handles for approved existing teams, not display names or nested owner objects. This does not change the Open Source Portal, access-package, or JIT requirements below.
 {{% /notice %}}
 
 ## 4. Upgrade just-in-time access to JITv2

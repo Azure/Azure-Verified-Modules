@@ -92,7 +92,9 @@ The AVM core team will then triage the request and get back to you with next ste
 
 For modules that have adopted [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/), submit supported metadata corrections and ownership changes to the module repository's `metadata.json`, not to a spreadsheet or module-index CSV. Ownership is maintained in the root file and requires engineering-owner review.
 
-Catalog generation and reviewed publication then carry the changes to the indexes. During preview, canonical CSVs remain unchanged; their replacement is a separate change. Proposals without source and deprecation decisions still follow the existing core-team-managed processes.
+Catalog generation and reviewed publication then carry the changes to the indexes. During preview, canonical CSVs remain unchanged; their replacement is a separate change. Proposals without source still follow the existing core-team-managed process.
+
+For deprecation, follow the [retirement process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-deprecated). The catalog derives `Deprecated` from Bicep's existing `DEPRECATED.md` or Terraform's repository `archived` flag; there is no metadata status field to edit. Existing deprecated entries are preserved during transition.
 
 ## Developing a module
 
