@@ -88,9 +88,11 @@ Beside of providing program level governance, the [AVM core team]({{% siteparam 
 
 The AVM core team will then triage the request and get back to you with next steps. You can accelerate the process of creating the module by volunteering to be a [module owner]({{% siteparam base %}}/specs/shared/team-definitions/#module-owners).
 
-<!-- ### How will the AVM module index (catalog) be updated?
+### How will the AVM module index (catalog) be updated?
 
-The [AVM core team]({{% siteparam base %}}/specs/shared/team-definitions/#avm-core-team) will maintain the module catalog and update it as new modules are created and published or existing ones are updated or retired. -->
+For modules that have adopted [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/), submit supported metadata corrections and ownership changes to the module repository's `metadata.json`, not to a spreadsheet or module-index CSV. Ownership is maintained in the root file and requires engineering-owner review.
+
+Catalog generation and reviewed publication then carry the changes to the indexes. During preview, canonical CSVs remain unchanged; their replacement is a separate change. Proposals without source and deprecation decisions still follow the existing core-team-managed processes.
 
 ## Developing a module
 
@@ -186,7 +188,7 @@ You should use GitHub issues to propose changes or improvements for specific mod
 
 ### I am using module without owner. What will happened if I need update?
 
-[AVM core team]({{% siteparam base %}}/specs/shared/team-definitions/#avm-core-team) will work to assign owner for every module, but it can happen during a time that there are modules without owner. If you would like to own that module, feel free to ask to take ownership. At this moment, only Microsoft FTEs can be module owners.
+[AVM core team]({{% siteparam base %}}/specs/shared/team-definitions/#avm-core-team) will work to assign owner for every module, but it can happen during a time that there are modules without owner. To volunteer, comment on the module's [orphaned module issue](https://aka.ms/AVM/OrphanedModules) and follow the [adoption process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified). At this moment, only Microsoft FTEs can be module owners. After metadata maintenance is adopted, approved owners are added through a pull request to the root metadata file; access approval remains separate.
 
 ---
 

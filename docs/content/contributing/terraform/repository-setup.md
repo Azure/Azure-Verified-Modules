@@ -149,6 +149,10 @@ The script will automatically:
 - Create a PR to add module metadata to the [`repository-sync` configuration](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/repository-sync).
 - Create a PR to install the `Azure Verified Modules` GitHub App.
 
+{{% notice style="note" %}}
+Repository-creation inputs and `repository-sync` configuration are part of onboarding, not a replacement for module-owned `metadata.json`. Once [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, maintain the module's details and full owner list in its root `metadata.json` through engineering-owner review. This does not change the Open Source Portal, access-package, or JIT requirements below, and owner display names from the creation inputs are not fields in the v1 metadata owner objects.
+{{% /notice %}}
+
 ## 4. Upgrade just-in-time access to JITv2
 
 New repositories default to **JIT v1**. AVM repositories must be upgraded to **JIT v2** and tied to the shared `service-AVM-azure-verified-modules-module-owners` rule, so that just-in-time elevation is governed centrally by the AVM team rather than by a repository-specific rule.

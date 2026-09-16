@@ -17,3 +17,5 @@
   </tr>
 </table>
 <!-- markdownlint-restore -->
+
+For repositories that have adopted [metadata maintenance](https://azure.github.io/Azure-Verified-Modules/contributing/module-metadata/), changes to any `metadata.json` require approval from [`@Azure/azure-verified-modules-engineering-owners`](https://github.com/orgs/Azure/teams/azure-verified-modules-engineering-owners). Another module owner's approval does not replace this requirement. Code changes in the same pull request still need the normal reviews described above.

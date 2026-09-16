@@ -7,12 +7,14 @@ Before starting development, please ensure ALL the following requirements are me
 
 Every module owner must request and obtain approval for the [Azure Verified Modules (AVM) Module Contributors access package](https://aka.ms/avm/id/access-package/module-contributor), as outlined in [SNFR20](https://azure.github.io/Azure-Verified-Modules/spec/SNFR20#bicep). You no longer need to create per-module GitHub teams, assign parent teams, or add entries to `CODEOWNERS`.
 
-**Please use the following values explicitly as provided in the [module index](https://azure.github.io/Azure-Verified-Modules/indexes/) page**:
+**Use the module name and path approved in the proposal, and the assigned telemetry identifier.** The [module index](https://azure.github.io/Azure-Verified-Modules/indexes/) remains a published lookup reference:
 
 - For your module:
   - `ModuleName` - for naming your module
   - `TelemetryIdPrefix` - for your module's [telemetry](https://azure.github.io/Azure-Verified-Modules/spec/SFR3)
   - Folder path are defined in `RepoURL`.
+
+Once the module source exists and [metadata maintenance](https://azure.github.io/Azure-Verified-Modules/contributing/module-metadata/) is adopted, maintain supported fields in `metadata.json` through engineering-owner review, including the assigned `telemetryIdPrefix`. The module name and repository path are derived from the source location; do not add `ModuleName` or `RepoURL` fields to metadata. If an approved value is missing or conflicts with the index, contact the AVM core team rather than inventing a replacement.
 
 Check if this module exists in the other IaC language. If so, collaborate with the other owner for consistency. 👍
 

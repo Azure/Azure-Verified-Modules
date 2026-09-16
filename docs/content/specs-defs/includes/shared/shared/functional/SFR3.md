@@ -50,9 +50,11 @@ This specification applies to all AVM module classes (resource, pattern, utility
 ### Bicep
 
 {{% notice style="important" %}}
-We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) with the required TelemetryId prefixes to enable checks to utilize this list to ensure the correct IDs are used. To see the formatted content of these CSV files with additional information, please visit the [AVM Module Indexes]({{% siteparam base %}}/indexes) page.
+Published CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) remain available for consumers and checks that look up assigned telemetry prefixes. To see their formatted content with additional information, visit the [AVM Module Indexes]({{% siteparam base %}}/indexes) page.
 
-The value you need to use for your module is defined in the related module index. You can look it up on the index pages for [Resource Modules]({{% siteparam base %}}/indexes/bicep/bicep-resource-modules/#module-name-and-telemetry-id-prefix), [Pattern Modules]({{% siteparam base %}}/indexes/bicep/bicep-pattern-modules/#module-name-and-telemetry-id-prefix) and [Utility Modules]({{% siteparam base %}}/indexes/bicep/bicep-utility-modules/#module-name-and-telemetry-id-prefix).
+After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, the assigned prefix is recorded in `telemetryIdPrefix` in the relevant module's `metadata.json`, including a child's own file when applicable. Keep it consistent with the module source and preserve existing identifiers. Corrections need engineering-owner review, not a spreadsheet or CSV edit; assignment of a new identifier still requires the AVM core team.
+
+Before adoption, use the assigned value from the index pages for [Resource Modules]({{% siteparam base %}}/indexes/bicep/bicep-resource-modules/#module-name-and-telemetry-id-prefix), [Pattern Modules]({{% siteparam base %}}/indexes/bicep/bicep-pattern-modules/#module-name-and-telemetry-id-prefix) and [Utility Modules]({{% siteparam base %}}/indexes/bicep/bicep-utility-modules/#module-name-and-telemetry-id-prefix). If metadata and the published index disagree during preview, ask the AVM core team to resolve the discrepancy rather than inventing or replacing an identifier.
 {{% /notice %}}
 
 The ARM deployment name used for the telemetry **MUST** follow the pattern and **MUST** be no longer than 64 characters in length: `46d3xbcp.<res/ptn>.<(short) module name>.<version>.<uniqueness>`

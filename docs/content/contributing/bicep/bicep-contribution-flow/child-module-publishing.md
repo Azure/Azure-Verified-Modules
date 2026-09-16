@@ -32,7 +32,7 @@ Supporting child module publishing for other module categories, such as pattern 
 Use this section for a fast overview on how to publish a child module.
 For a step-by-step explanation with detailed instructions, refer to the following sections.
 
-* **Check prerequisites**: Existing [issue in AVM](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Class%3A%20Child%20Module%20%3Apackage%3A%22%20label%3A%22Language%3A%20Bicep%20%3Amuscle%3A%22), telemetry ID prefix assigned in [Bicep Module Index CSV](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/BicepResourceModules.csv), module registered in the [MAR file](https://github.com/microsoft/mcr/blob/main/teams/bicep/bicep.yml).
+* **Check prerequisites**: Existing [issue in AVM](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Class%3A%20Child%20Module%20%3Apackage%3A%22%20label%3A%22Language%3A%20Bicep%20%3Amuscle%3A%22), [assigned telemetry ID prefix](#telemetry-id-prefix-assigned), module registered in the [MAR file](https://github.com/microsoft/mcr/blob/main/teams/bicep/bicep.yml).
 * Implement required changes in your fork:
   * **Allowed list**: If not present, add child module to [child-module-publish-allowed-list.json](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/staticValidation/compliance/helper/child-module-publish-allowed-list.json).
   * **Child module template**: Add `enableTelemetry` parameter and `avmTelemetry` deployment to child `main.bicep` template.
@@ -67,15 +67,23 @@ If the Bicep Child Module Proposal issue was just created, please allow a few da
 
 {{% /notice %}}
 
+After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, check `telemetryIdPrefix` in the child's own `metadata.json` and keep it consistent with the child module source. Record only the assigned identifier through engineering-owner review. The reduced child file must not contain `owners` or `tier`; those are inherited from the root.
+
+Before adoption, the published CSV remains the lookup source:
+
 1. Check the online [Bicep resource module index source CSV](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/BicepResourceModules.csv).
 1. Search for the child module name in the `ModuleName` field.
 1. Verify if the corresponding value exists in the `TelemetryIdPrefix` field. Note down the value as you will need it in the implementation phase.
 1. If not found, please reach out to the core team, mentioning the `@Azure/azure-verified-modules-tooling-contributors` via the Bicep Child Module Proposal issue.
 
+If the identifier is missing from metadata or conflicts with the index during preview, ask the core team to resolve it. Do not invent an identifier or copy the parent's prefix.
+
 ### Module registered in the MAR-file
 
 Ensure that the child module is registered in the [MAR file](https://github.com/microsoft/mcr/blob/main/teams/bicep/bicep.yml).
 If not, please reach out to the core team, mentioning the `@Azure/azure-verified-modules-tooling-contributors` via the Bicep Child Module Proposal issue.
+
+Metadata approval does not replace MAR registration or approval to publish the child module.
 
 {{% notice style="note" %}}
 

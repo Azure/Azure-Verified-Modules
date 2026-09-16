@@ -19,6 +19,7 @@ This section lists AVM's Terraform-specific contribution guidance.
 
 - [Prerequisites]({{% siteparam base %}}/contributing/terraform/prerequisites/) — tooling and access requirements
 - [Contribution Flow]({{% siteparam base %}}/contributing/terraform/contribution-flow/) — end-to-end guide for owners and contributors (includes testing)
+- [Module Metadata]({{% siteparam base %}}/contributing/module-metadata/) - maintaining module details and ownership after rollout
 - [Composition]({{% siteparam base %}}/contributing/terraform/composition/) — module structure, code styling, interfaces
 - [Review]({{% siteparam base %}}/contributing/terraform/review/) — module review process before publishing
 - [Advanced Topics & FAQ]({{% siteparam base %}}/contributing/terraform/advanced/) — custom subscriptions, OPA exceptions, TFLint overrides

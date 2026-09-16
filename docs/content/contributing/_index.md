@@ -10,6 +10,7 @@ This section lists all contribution guidance available to module owners and cont
 - [Process Overview]({{% siteparam base %}}/contributing/process/)
 - [Bicep Contribution Guide]({{% siteparam base %}}/contributing/bicep/)
 - [Terraform Contribution Guide]({{% siteparam base %}}/contributing/terraform/)
+- [Module Metadata]({{% siteparam base %}}/contributing/module-metadata/) - ownership and metadata maintenance, including rollout prerequisites
 - [Contribution Q&A]({{% siteparam base %}}/contributing/q-and-a/)
 - [Website Contribution Guide]({{% siteparam base %}}/contributing/website/)
 - [Code of Conduct](https://opensource.microsoft.com/codeofconduct/)

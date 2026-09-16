@@ -87,6 +87,8 @@ It is critical to the consumers experience that modules continue to be maintaine
 
 To **orphan a module**, submit an [orphaned module](https://aka.ms/AVM/OrphanedModule) issue in the AVM repository. For the required steps, review the related article: [When a module becomes orphaned]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-orphaned).
 
+After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, record orphaning through an engineering-owner-reviewed change to the root `metadata.json`: empty `owners.individuals` and remove `owners.team`. Do not set a status field or edit the CSV. The issue and required notices still form part of the process; the public index changes through catalog generation and reviewed publication.
+
 [When a new owner is identified]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified), follow the related guidance.
 
 {{% /notice %}}
@@ -139,6 +141,8 @@ The information notice **MUST** include the following statement:
 {{% notice style="info" %}}
 
 To **deprecate a module**, submit a [deprecated module](https://aka.ms/AVM/DeprecatedModule) issue in the AVM repository. For the required steps, review the related article: [When a module becomes deprecated]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-deprecated).
+
+The v1 module metadata schema has no deprecation status field. Do not clear owners to record deprecation or add owners to reactivate a deprecated module. Align deprecation publication with the implemented lifecycle signals before adopting the [metadata maintenance process]({{% siteparam base %}}/contributing/module-metadata/#processes-that-remain-separate).
 
 {{% /notice %}}
 
