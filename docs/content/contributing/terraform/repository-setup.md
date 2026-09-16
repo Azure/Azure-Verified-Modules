@@ -38,8 +38,8 @@ For a new module repository, gather the following approved values from the modul
 | Module name | Format: `avm-<type>-<name>` (e.g. `avm-res-network-virtualnetwork`) |
 | Module display name | Approved display name, passed as `moduleDisplayName` |
 | Module description | Approved description, passed as `moduleDescription` |
-| Canonical type | Approved ARM resource type or pattern/utility taxonomy, passed as `canonicalType` |
-| Resource provider namespace and resource type | For resource modules, `resourceProviderNamespace` plus `resourceType` can be supplied instead of `canonicalType` |
+| Canonical type | Approved ARM resource type or pattern/utility taxonomy, passed as `canonicalType`. For resource modules it is derived from the namespace/type pair; any explicit value must match. |
+| Resource provider namespace and resource type | Resource modules require both `resourceProviderNamespace` and `resourceType` for the default compatibility-inventory step, even when `canonicalType` is supplied. Leave them empty for pattern and utility modules. |
 | Telemetry ID prefix | Assigned `telemetryIdPrefix`; required for resource and pattern modules. Do not invent an identifier. |
 | Primary owner handle | Approved individual handle, passed as `ownerPrimaryGitHubHandle` |
 | Primary owner display name | `ownerPrimaryDisplayName`, for compatibility inventory and Portal records, not the metadata owner array |
@@ -75,7 +75,7 @@ gh auth login -h "github.com" -w -p "https"
 
 ### Run the creation script
 
-The example uses `canonicalType`; resource modules can instead pass `resourceProviderNamespace` and `resourceType`. Supply the assigned telemetry prefix for resource and pattern modules. For a utility module that does not use telemetry, omit the `telemetryIdPrefix` entry.
+For resource modules, fill in both `resourceProviderNamespace` and `resourceType` below. The default compatibility-inventory step requires this pair, and the script rejects an explicit `canonicalType` that conflicts with it. Pattern and utility modules use an explicit `canonicalType` and leave the namespace/type pair empty. Supply the assigned telemetry prefix for resource and pattern modules. For a utility module that does not use telemetry, omit the `telemetryIdPrefix` entry.
 
 ```pwsh
 if (!(Test-Path -Path ".\scripts\New-Repository.ps1")) {
@@ -88,6 +88,8 @@ $parameters = @{
     moduleDisplayName = "<approved display name>"
     moduleDescription = "<approved description>"
     canonicalType = "<approved ARM resource type or taxonomy>"
+    resourceProviderNamespace = ""
+    resourceType = ""
     telemetryIdPrefix = "<assigned telemetry ID prefix>"
     ownerPrimaryGitHubHandle = "<approved individual handle>"
     ownerPrimaryDisplayName = "<display name>"
