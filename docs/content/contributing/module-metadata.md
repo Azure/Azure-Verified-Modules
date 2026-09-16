@@ -79,6 +79,8 @@ Complete the separate access approval and notice-removal steps before closing th
 
 ## Rollout and publication
 
+Catalog rows are generated from valid module metadata. There is no fallback that copies full legacy CSV records when metadata is missing. Source CSVs remain inputs to the row-removal check below, not a substitute for metadata.
+
 Metadata changes reach the public indexes through catalog generation and reviewed publication, not immediately when an owner confirms a change or a metadata pull request is merged.
 
 During preview, catalog generation writes `test-*.csv` files beside the unchanged canonical CSVs and writes the JSON catalog at its normal `v1/modules.json` path. Replacing the canonical CSVs is a **separate future change**. Continue to use the existing [CSV downloads and module indexes]({{% siteparam base %}}/indexes/) until that changeover is approved.
@@ -87,14 +89,20 @@ The compatibility CSVs expose only the first two individual owners in their prim
 
 Do not assume that a preview publication updates the live website, issue routing, or `CODEOWNERS`. The AVM core team must confirm the relevant publication and synchronization have completed before relying on those consumers.
 
+### Source CSV row removals
+
+Generation and publication **fail by default if any row from a source CSV would disappear** from the output. The comparison uses the **source CSV only**, not the existing destination file. Rows found only in an earlier `test-*.csv` preview do not receive this removal protection. The same source-row check applies whether output uses preview filenames or later replaces the canonical CSVs.
+
+Review which source rows would disappear and why. Supply correct metadata where the module should remain; do not invent metadata values or remove source CSV rows just to avoid the check. An explicitly authorized manual force override permits only those row removals. It does **not** permit invalid metadata, bypass other safety checks, or replace normal review and publication approval.
+
 ## Processes that remain separate
 
-**New proposals:** Keep using the [module proposal and approval process]({{% siteparam base %}}/contributing/process/#new-module-proposal--creation), including repository creation and any required registry approval. Proposals without a repository or module source have no metadata file to edit. Their existing core-team-managed records remain part of the transition until a replacement is agreed; do not create placeholder metadata or discard proposed entries.
+**New proposals:** Keep using the [module proposal and approval process]({{% siteparam base %}}/contributing/process/#new-module-proposal--creation), including repository creation and any required registry approval. Proposals without a repository or module source have no metadata file to edit. Keep their existing proposal issues and approvals; do not create placeholder metadata. They cannot generate catalog rows without valid metadata. If a corresponding source CSV row would disappear, the removal check blocks generation and publication unless that removal is explicitly authorized through the manual force override. The AVM core team must resolve how to handle proposals before source exists; this process does not assign them a new metadata location.
 
 **Publication:** Registry publication is still required before a module is available. A metadata change does not publish a module.
 
 **Deprecation:** Follow the [deprecation process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-deprecated), including its approval, notices, and language-specific retirement steps. After adoption, the catalog derives `Deprecated` from the existing `DEPRECATED.md` file for Bicep or the repository's `archived` flag for Terraform. Review the generated catalog update rather than editing an index status.
 
-A Bicep `DEPRECATED.md` marker applies to its module and descendants: a root marker covers all children, while a child marker does not deprecate its parent or siblings. Terraform repository archival applies to every module entry in that repository. Existing `Deprecated` entries remain deprecated during the transition; a missing signal does not reactivate them. The v1 metadata schema has no lifecycle or status field, and clearing owners is not a substitute for deprecation.
+A Bicep `DEPRECATED.md` marker applies to its module and descendants: a root marker covers all children, while a child marker does not deprecate its parent or siblings. Terraform repository archival applies to every module entry in that repository. Preserve existing `Deprecated` status for metadata-backed entries during the transition; a missing retirement signal must not reactivate them. Status preservation does not allow a full legacy row without valid metadata to be retained. Missing source CSV rows are subject to the same removal check as other rows. The v1 metadata schema has no lifecycle or status field, and clearing owners is not a substitute for deprecation.
 
 **Bicep child publishing:** [Telemetry assignment and Microsoft Artifact Registry (MAR) approval]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/child-module-publishing/#prerequisites) remain required. Recording metadata does not grant permission to publish a child module.

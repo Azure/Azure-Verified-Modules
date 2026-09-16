@@ -92,9 +92,11 @@ The AVM core team will then triage the request and get back to you with next ste
 
 For modules that have adopted [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/), submit supported metadata corrections and ownership changes to the module repository's `metadata.json`, not to a spreadsheet or module-index CSV. Ownership is maintained in the root file and requires approval from either metadata code-owner team.
 
-Catalog generation and reviewed publication then carry the changes to the indexes. During preview, canonical CSVs remain unchanged; their replacement is a separate change. Proposals without source still follow the existing core-team-managed process.
+Catalog generation uses valid metadata, not retained full legacy CSV records, and reviewed publication carries the changes to the indexes. Generation and publication fail by default if a source CSV row would disappear. An explicit manual force override permits only those removals, not invalid metadata or other safety bypasses. The [removal check]({{% siteparam base %}}/contributing/module-metadata/#source-csv-row-removals) uses source CSVs, not existing preview destination rows.
 
-For deprecation, follow the [retirement process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-deprecated). The catalog derives `Deprecated` from Bicep's existing `DEPRECATED.md` or Terraform's repository `archived` flag; there is no metadata status field to edit. Existing deprecated entries are preserved during transition.
+During preview, canonical CSVs remain unchanged; their replacement is a separate change. Proposals without source still follow the existing issue-based approval process, but they cannot generate catalog rows without valid metadata.
+
+For deprecation, follow the [retirement process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-deprecated). The catalog derives `Deprecated` from Bicep's existing `DEPRECATED.md` or Terraform's repository `archived` flag; there is no metadata status field to edit. Preserve existing deprecated status for metadata-backed entries during transition; this does not retain rows that lack valid metadata.
 
 ## Developing a module
 

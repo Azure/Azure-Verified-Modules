@@ -146,7 +146,9 @@ After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata
 
 A Bicep marker deprecates its module and all descendants. A child marker does not deprecate the parent or siblings. Archiving a Terraform repository deprecates every module entry in that repository.
 
-The v1 module metadata schema has no lifecycle or status field. Do not clear owners to record deprecation or add owners to reactivate a deprecated module. Existing `Deprecated` entries remain deprecated during the transition, including when their source signal has not yet been captured.
+The v1 module metadata schema has no lifecycle or status field. Do not clear owners to record deprecation or add owners to reactivate a deprecated module. Preserve existing `Deprecated` status for metadata-backed entries during the transition, including when their retirement signal has not yet been captured.
+
+This status preservation does not retain full legacy rows without valid metadata. If a source CSV row would disappear, generation and publication fail by default under the [source-row removal check]({{% siteparam base %}}/contributing/module-metadata/#source-csv-row-removals). An explicit manual force override permits only those removals, not invalid metadata or other safety bypasses.
 
 {{% /notice %}}
 
