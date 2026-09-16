@@ -81,11 +81,15 @@ Complete the separate access approval and notice-removal steps before closing th
 
 Catalog rows are generated from valid module metadata. There is no fallback that copies full legacy CSV records when metadata is missing. Source CSVs remain inputs to the row-removal check below, not a substitute for metadata.
 
+Normal authoring checks retain their missing-metadata warnings. A warning does not supply the valid metadata required to generate a catalog row.
+
 Metadata changes reach the public indexes through catalog generation and reviewed publication, not immediately when an owner confirms a change or a metadata pull request is merged.
 
 During preview, catalog generation writes `test-*.csv` files beside the unchanged canonical CSVs and writes the JSON catalog at its normal `v1/modules.json` path. Replacing the canonical CSVs is a **separate future change**. Continue to use the existing [CSV downloads and module indexes]({{% siteparam base %}}/indexes/) until that changeover is approved.
 
 The compatibility CSVs expose only the first two individual owners in their primary and secondary owner columns. The root metadata and richer JSON catalog retain all owners; do not remove owners to fit the CSV columns.
+
+Existing child CSV `AlternativeNames` and `Comments` values, including blank cells, are preserved for matched metadata-backed records. This compatibility does not retain an entire legacy row when metadata is missing.
 
 Do not assume that a preview publication updates the live website, issue routing, or `CODEOWNERS`. The AVM core team must confirm the relevant publication and synchronization have completed before relying on those consumers.
 
