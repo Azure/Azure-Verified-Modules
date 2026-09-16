@@ -51,6 +51,8 @@ After adoption, the metadata rule in `CODEOWNERS` is:
 metadata.json @Azure/azure-verified-modules-engineering-owners @Azure/azure-verified-modules-module-owners
 ```
 
+Before adoption, authorized repository administrators must confirm that **both teams are visible and have repository write access**, so an eligible member of either team can provide code-owner approval. Access setup is separate from metadata maintenance and does not change environment approval requirements.
+
 **Metadata-only changes must not trigger a module release.** Do not change version files or create a release just to update owners or other metadata. A Bicep name or description correction may also require changing `main.bicep` to keep its literals consistent; that is a source change and must follow normal validation and release rules, not be treated as metadata-only.
 
 Editing metadata does not grant or revoke repository permissions, create teams, change identities, or provision Azure access. Every incoming owner still needs the separate access approval described in [SNFR20]({{% siteparam base %}}/spec/SNFR20). Do not remove shared access solely because someone stops owning one module.

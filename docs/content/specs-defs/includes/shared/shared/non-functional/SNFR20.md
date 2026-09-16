@@ -53,6 +53,8 @@ The repository-wide default and the `*avm.core.team.tests.ps1` and `*.e2eignore`
 
 Once the [metadata review protection]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change) is adopted, changes to any module's `metadata.json` require approval from an eligible member of either `@Azure/azure-verified-modules-engineering-owners` or `@Azure/azure-verified-modules-module-owners`. Either team can satisfy metadata code-owner review; approval from both is not required. Being listed in metadata does not grant review permission. Owners do not need to edit `CODEOWNERS` as part of a metadata ownership change.
 
+As a rollout prerequisite for both Bicep and Terraform, authorized administrators must confirm that both metadata code-owner teams are visible and have repository write access. This separate access setup does not grant environment approval rights or change existing environment approval requirements.
+
 {{% notice style="tip" %}}
 For the full onboarding process and ownership handover steps, see the [Bicep Owner Contribution Flow]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/owner-contribution-flow/).
 {{% /notice %}}
