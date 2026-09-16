@@ -6,7 +6,7 @@ description: Maintaining module metadata and ownership for the Azure Verified Mo
 Module metadata describes a module and records its owners. This page explains how to propose changes in the module's source repository instead of editing a central spreadsheet or module-index CSV.
 
 {{% notice style="important" title="Rollout pending" %}}
-This process is being introduced; it is not yet the default maintenance process. Use it only after the AVM core team confirms that metadata files, engineering-owner review protection, and catalog publication are ready for your module. Until then, coordinate changes with the core team through the existing process. See [rollout and publication](#rollout-and-publication) before expecting an index update.
+This process is being introduced; it is not yet the default maintenance process. Use it only after the AVM core team confirms that metadata files, metadata code-owner review protection, and catalog publication are ready for your module. Until then, coordinate changes with the core team through the existing process. See [rollout and publication](#rollout-and-publication) before expecting an index update.
 {{% /notice %}}
 
 ## Find the correct file
@@ -41,9 +41,15 @@ There is **no `moduleStatus` or `status` field** in this schema. Follow the exis
 
 1. Agree the change with the current owners and the AVM core team. For ownership changes, retain the eligibility checks, incoming owners' written consent, and handover requirements in the [owner-change process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#changing-module-owners).
 1. Edit the relevant `metadata.json` on a branch or in your fork of the module repository. Preserve all owners and other values that are not part of the agreed change.
-1. Submit a pull request to that repository, linking the proposal or ownership-tracking issue when the process requires one. Describe the intended changes and request review from [`@Azure/azure-verified-modules-engineering-owners`](https://github.com/orgs/Azure/teams/azure-verified-modules-engineering-owners).
-1. Satisfy the repository's metadata validation and required reviews before merging. Engineering-owner approval is required for metadata changes; another module owner's approval does not replace it. Any code changes in the same pull request still need their normal code review and tests.
+1. Submit a pull request to that repository, linking the proposal or ownership-tracking issue when the process requires one. Describe the intended changes and request review from either [`@Azure/azure-verified-modules-engineering-owners`](https://github.com/orgs/Azure/teams/azure-verified-modules-engineering-owners) or [`@Azure/azure-verified-modules-module-owners`](https://github.com/orgs/Azure/teams/azure-verified-modules-module-owners).
+1. Satisfy the repository's metadata validation and required reviews before merging. Approval from an eligible member of **either** team satisfies metadata code-owner review; approval from both teams is **not** required. Being listed in the module's `owners` array does not by itself authorize someone to approve. Any code changes in the same pull request still need their normal code review and tests.
 1. Follow the change through catalog generation and reviewed publication. Do not edit the generated CSV or JSON output to duplicate the metadata change.
+
+After adoption, the metadata rule in `CODEOWNERS` is:
+
+```text
+metadata.json @Azure/azure-verified-modules-engineering-owners @Azure/azure-verified-modules-module-owners
+```
 
 **Metadata-only changes must not trigger a module release.** Do not change version files or create a release just to update owners or other metadata. A Bicep name or description correction may also require changing `main.bicep` to keep its literals consistent; that is a source change and must follow normal validation and release rules, not be treated as metadata-only.
 
@@ -65,7 +71,7 @@ In the root metadata file, set `"owners": []`, removing all individual and team 
 
 ### Adopt an orphaned module
 
-Follow [when a new owner is identified]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified). After eligibility and consent are confirmed, add the approved incoming handles to the root metadata's `owners` array and obtain engineering-owner review.
+Follow [when a new owner is identified]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified). After eligibility and consent are confirmed, add the approved incoming handles to the root metadata's `owners` array and obtain approval from either metadata code-owner team.
 
 Complete the separate access approval and notice-removal steps before closing the ownership issue. Adding owners does not revive a deprecated module.
 

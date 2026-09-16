@@ -149,7 +149,7 @@ The script will automatically:
 - Create a PR to install the `Azure Verified Modules` GitHub App.
 
 {{% notice style="note" %}}
-Repository-creation inputs and `repository-sync` configuration are part of onboarding, not a replacement for module-owned `metadata.json`. Once [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, maintain the module's details and full `owners` array in its root `metadata.json` through engineering-owner review. That array contains only bare individual handles or qualified handles for approved existing teams, not display names or nested owner objects. This does not change the Open Source Portal, access-package, or JIT requirements below.
+Repository-creation inputs and `repository-sync` configuration are part of onboarding, not a replacement for module-owned `metadata.json`. Once [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, maintain the module's details and full `owners` array in its root `metadata.json` through metadata code-owner review. That array contains only bare individual handles or qualified handles for approved existing teams, not display names or nested owner objects. This does not change the Open Source Portal, access-package, or JIT requirements below.
 {{% /notice %}}
 
 ## 4. Upgrade just-in-time access to JITv2

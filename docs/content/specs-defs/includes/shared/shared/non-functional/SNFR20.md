@@ -23,7 +23,7 @@ priority: 1110
 
 All GitHub repositories that AVM modules are published from and hosted within **MUST** only assign GitHub repository permissions to GitHub teams.
 
-Module ownership **MUST** be recorded separately from access permissions. After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, maintain owners in the root `metadata.json` through engineering-owner review. Until then, coordinate ownership records in the [Module Indexes]({{% siteparam base %}}/indexes/) with the AVM core team. Per-module GitHub teams are not required; owner access is managed through the access package described below.
+Module ownership **MUST** be recorded separately from access permissions. After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, maintain owners in the root `metadata.json` through metadata code-owner review. Until then, coordinate ownership records in the [Module Indexes]({{% siteparam base %}}/indexes/) with the AVM core team. Per-module GitHub teams are not required; owner access is managed through the access package described below.
 
 There **MUST NOT** be any GitHub repository permissions assigned to individual users.
 
@@ -51,7 +51,7 @@ The BRM [`CODEOWNERS` file](https://github.com/Azure/bicep-registry-modules/blob
 
 The repository-wide default and the `*avm.core.team.tests.ps1` and `*.e2eignore` overrides remain assigned to `@Azure/azure-verified-modules-tooling-contributors`.
 
-Once the [metadata review protection]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change) is adopted, changes to any module's `metadata.json` require review from `@Azure/azure-verified-modules-engineering-owners`. The shared Module Contributors team does not replace that required metadata review. Owners do not need to edit `CODEOWNERS` as part of a metadata ownership change.
+Once the [metadata review protection]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change) is adopted, changes to any module's `metadata.json` require approval from an eligible member of either `@Azure/azure-verified-modules-engineering-owners` or `@Azure/azure-verified-modules-module-owners`. Either team can satisfy metadata code-owner review; approval from both is not required. Being listed in metadata does not grant review permission. Owners do not need to edit `CODEOWNERS` as part of a metadata ownership change.
 
 {{% notice style="tip" %}}
 For the full onboarding process and ownership handover steps, see the [Bicep Owner Contribution Flow]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/owner-contribution-flow/).

@@ -70,7 +70,7 @@ If the issue was opened as a misplaced module proposal, mention the `@Azure/azur
 
 PR approvals are **enforced** on all AVM Terraform module repositories. The following rules apply to who must approve:
 
-After [metadata review protection]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change) is adopted, changes to any `metadata.json` require approval from `@Azure/azure-verified-modules-engineering-owners`; another module owner cannot substitute for that review. The code-review requirements below still apply to other changes in the same pull request.
+After [metadata review protection]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change) is adopted, changes to any `metadata.json` require approval from an eligible member of either `@Azure/azure-verified-modules-engineering-owners` or `@Azure/azure-verified-modules-module-owners`. Approval from both teams is not required, and being named in the module's `owners` array alone does not qualify a reviewer. The code-review requirements below still apply to other changes in the same pull request.
 
 1. If the **PR is submitted by the module owner** and the **module is owned by a single person**, **another Terraform module owner must review and approve the PR** (the module owner cannot approve their own PR).
     - **First port of call:** find a friendly module owner from the [`azure-verified-modules-module-contributors`](https://aka.ms/avm/id/groups/module-contributors) Entra group and request a review.

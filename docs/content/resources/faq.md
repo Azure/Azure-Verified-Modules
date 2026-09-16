@@ -281,7 +281,7 @@ If any of these queries don't return any results, it means that no module in the
 
 For a proposed module, comment on its open [Module Proposal issue](https://aka.ms/AVM/ModuleProposals). For an existing module, follow the [ownership-change process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#changing-module-owners), using the orphaned module issue when adopting an orphaned module. Do not reopen a closed module proposal.
 
-The AVM core team confirms eligibility and acceptance of the role. After the [metadata rollout prerequisites]({{% siteparam base %}}/contributing/module-metadata/) are met, adding, removing, or transferring owners requires a pull request to `owners` in the module's root `metadata.json`, reviewed by the engineering owners. Editing metadata does not grant access; follow [SNFR20]({{% siteparam base %}}/spec/SNFR20) separately.
+The AVM core team confirms eligibility and acceptance of the role. After the [metadata rollout prerequisites]({{% siteparam base %}}/contributing/module-metadata/) are met, adding, removing, or transferring owners requires a pull request to `owners` in the module's root `metadata.json`, approved by either metadata code-owner team. Editing metadata does not grant access or review permission; follow [SNFR20]({{% siteparam base %}}/spec/SNFR20) separately.
 
 Having an understanding of roles & responsibilities is useful as well, you can find this information on the [Team Definitions & RACI | Azure Verified Modules]({{% siteparam base %}}/specs/shared/team-definitions/) page.
 

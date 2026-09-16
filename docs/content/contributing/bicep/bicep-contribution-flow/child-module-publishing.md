@@ -67,7 +67,7 @@ If the Bicep Child Module Proposal issue was just created, please allow a few da
 
 {{% /notice %}}
 
-After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, check `telemetryIdPrefix` in the child's own `metadata.json` and keep it consistent with the child module source. Record only the assigned identifier through engineering-owner review. The reduced child file must not contain `owners`; ownership is inherited from the root.
+After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, check `telemetryIdPrefix` in the child's own `metadata.json` and keep it consistent with the child module source. Record only the assigned identifier through metadata code-owner review. The reduced child file must not contain `owners`; ownership is inherited from the root.
 
 Before adoption, the published CSV remains the lookup source:
 

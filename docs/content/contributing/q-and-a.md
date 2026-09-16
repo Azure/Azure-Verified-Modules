@@ -90,7 +90,7 @@ The AVM core team will then triage the request and get back to you with next ste
 
 ### How will the AVM module index (catalog) be updated?
 
-For modules that have adopted [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/), submit supported metadata corrections and ownership changes to the module repository's `metadata.json`, not to a spreadsheet or module-index CSV. Ownership is maintained in the root file and requires engineering-owner review.
+For modules that have adopted [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/), submit supported metadata corrections and ownership changes to the module repository's `metadata.json`, not to a spreadsheet or module-index CSV. Ownership is maintained in the root file and requires approval from either metadata code-owner team.
 
 Catalog generation and reviewed publication then carry the changes to the indexes. During preview, canonical CSVs remain unchanged; their replacement is a separate change. Proposals without source still follow the existing core-team-managed process.
 

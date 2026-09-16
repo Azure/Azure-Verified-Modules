@@ -392,7 +392,7 @@ For a brand new module being published for the first time, get the module review
 
 ### Owner responsibilities
 
-- After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, keep the root `metadata.json` up to date, including every approved owner. Use the ownership-change process and engineering-owner review rather than editing a spreadsheet or CSV row; access approval remains separate.
+- After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, keep the root `metadata.json` up to date, including every approved owner. Use the ownership-change process and metadata code-owner review rather than editing a spreadsheet or CSV row; access approval remains separate.
 - Watch PR and issue activity for your module and respond in a timely manner as per [SNFR11]({{% siteparam base %}}/spec/SNFR11).
 - Familiarize yourself with [Team Definitions & RACI]({{% siteparam base %}}/specs/shared/team-definitions/#module-owners) and [TF Issue Triage]({{% siteparam base %}}/help-support/issue-triage/).
 

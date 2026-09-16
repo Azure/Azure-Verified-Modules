@@ -87,7 +87,7 @@ It is critical to the consumers experience that modules continue to be maintaine
 
 To **orphan a module**, submit an [orphaned module](https://aka.ms/AVM/OrphanedModule) issue in the AVM repository. For the required steps, review the related article: [When a module becomes orphaned]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-orphaned).
 
-After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, record orphaning through an engineering-owner-reviewed change to the root `metadata.json`: set `"owners": []` to remove all individual and team handles. Do not set a status field or edit the CSV. The issue and required notices still form part of the process; the public index changes through catalog generation and reviewed publication.
+After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, set `"owners": []` in the root `metadata.json` to remove all individual and team handles, and obtain approval from either metadata code-owner team. Do not set a status field or edit the CSV. The issue and required notices still form part of the process; the public index changes through catalog generation and reviewed publication.
 
 [When a new owner is identified]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified), follow the related guidance.
 
