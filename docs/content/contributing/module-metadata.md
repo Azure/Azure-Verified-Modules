@@ -43,6 +43,8 @@ The operator backfill update is pending implementation and rollout approval. Onc
 
 The full run still includes normal repository settings and Azure management, managed-file updates, `pre-commit`, and `CODEOWNERS` handling. Review the complete planned changes and obtain explicit approval before running against production. Standard sync authorization and merge behavior apply, including the existing authorized automation path; backfill does not promise review-only publication, no automatic merge, or no state changes.
 
+The metadata-creation step is intended to use the trusted tools checkout without requiring a new authoring release for that step. Full ordinary sync still needs its normal released authoring module and tools. A metadata failure stops later file publication, but earlier ordinary management actions may already have run and are not automatically rolled back.
+
 The Terraform metadata-creation step creates only `metadata.json`; it does not generate `main.metadata.tf` or delete an existing Terraform reader. Keep existing `.tf` files in place when removing that generation option. The **full sync** can still format, transform, or move other Terraform source files under its existing rules. Terraform source and telemetry integration are separate work, and this update introduces no new transformation rule. This Terraform change does not remove optional Bicep reader support.
 
 This operator process does not change the human ownership-review requirements below or the catalog's separate reviewed publication and source-row removal checks.
