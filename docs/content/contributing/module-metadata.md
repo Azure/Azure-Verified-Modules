@@ -33,6 +33,8 @@ The versioned schema referenced by the required `$schema` URI defines the suppor
 | `telemetryIdPrefix` | Preserve the assigned identifier where required. Do not generate a replacement identifier as part of an ownership or descriptive edit. |
 | `alternativeNames`, `comments` | Optional root-module aliases and notes. These are public metadata. |
 
+Single-segment pattern/utility taxonomy support is pending implementation verification. Once adopted, `canonicalType` can be a single value such as `naming` for `avm-utl-naming`, or `alz` for a pattern. Existing multi-segment values remain valid. Resource modules still require the full ARM resource type, and repository/Bicep folder naming conventions are unchanged.
+
 Module identity, module class, repository paths, and parent relationships are derived from the repository. Do not add fields for them to `metadata.json`. In particular, `moduleDisplayName` is not a way to rename a module or move its repository.
 
 There is **no `moduleStatus` or `status` field** in this schema. Follow the existing [proposal and lifecycle processes](#processes-that-remain-separate) rather than adding an unsupported field.
