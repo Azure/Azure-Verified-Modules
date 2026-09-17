@@ -18,7 +18,7 @@ This process is being introduced; it is not yet the default maintenance process.
 
 Child modules have reduced `metadata.json` files in their own folders. They inherit ownership from the root module, including when nested more than one level deep. **Change owners only in the root file**; child files must not contain `owners`.
 
-Use the existing file as your starting point and preserve unrelated values. The backfill step creates missing `metadata.json` files and validates existing metadata without overwriting it or applying later ownership changes. The surrounding repository sync can change other files and state, as described under [operator backfill](#operator-backfill-and-initialization). If metadata is missing, ask the AVM core team to confirm the module's readiness rather than inventing values.
+Use the existing file as your starting point and preserve unrelated values. Metadata preparation creates missing `metadata.json` files and validates existing metadata without overwriting it or applying later ownership changes. The [reviewed one-off migration](#reviewed-one-off-terraform-migration) is limited to metadata files; the separate [repository-sync backfill facility](#operator-backfill-and-initialization) can change other files and state. If metadata is missing, ask the AVM core team to confirm the module's readiness rather than inventing values.
 
 ## Fields you can maintain
 
@@ -33,15 +33,27 @@ The versioned schema referenced by the required `$schema` URI defines the suppor
 | `telemetryIdPrefix` | Preserve the assigned identifier where required. Do not generate a replacement identifier as part of an ownership or descriptive edit. |
 | `alternativeNames`, `comments` | Optional root-module aliases and notes. These are public metadata. |
 
-Single-segment pattern/utility taxonomy support is pending implementation verification. Once adopted, `canonicalType` can be a single value such as `naming` for `avm-utl-naming`, or `alz` for a pattern. Existing multi-segment values remain valid. Resource modules still require the full ARM resource type, and repository/Bicep folder naming conventions are unchanged.
+With a compatible schema, pattern/utility `canonicalType` can be a single value such as `naming` for `avm-utl-naming`, or `alz` as an illustrative pattern value. Preserve existing explicit mappings and multi-segment values. Resource modules and children use real ARM resource types, not synthetic types formed by prefixing another service's type with the family module's resource type. Repository/Bicep folder naming conventions are unchanged.
+
+Compatibility for real `Oracle.Database` ARM types is pending shared schema, resource-kind, and telemetry-validation updates. Do not rewrite those types to fit current validation. Ordinary repository checks require a compatible installed/released schema; this documentation does not establish that such a release is available.
 
 Module identity, module class, repository paths, and parent relationships are derived from the repository. Do not add fields for them to `metadata.json`. In particular, `moduleDisplayName` is not a way to rename a module or move its repository.
 
 There is **no `moduleStatus` or `status` field** in this schema. Follow the existing [proposal and lifecycle processes](#processes-that-remain-separate) rather than adding an unsupported field.
 
+## Reviewed one-off Terraform migration
+
+The current one-off exercise is agent-led: prepare **metadata-only changes from an explicitly reviewed inventory**, not through full ordinary repository sync. No new migration runner, command, or metadata-only workflow switch has been implemented for this exercise. Inventory approval does not establish that drafts have been prepared or that App authentication, installation, publication, or rollout is ready.
+
+Create missing metadata only for retained entries and validate existing files, leaving valid metadata unchanged. Omit only the exclusions explicitly recorded in the reviewed inventory, such as identified test/example helpers, internal cached-data children, or ancillary wrappers. This is a migration selection, not a blanket rule to ignore submodules or missing metadata. Existing missing-file warnings and failures for invalid present metadata still apply.
+
+Archived repositories remain review-only. Handle missing or proposed repositories and private repositories separately; do not treat them as ready public migration targets.
+
+During draft preparation, generate each required new telemetry prefix once and persist it across retries. Preserve existing valid metadata and telemetry identifiers. Do not add `main.metadata.tf`, change Terraform source or telemetry wiring, or run repository settings/Azure synchronization as part of this exercise. Metadata-file review requirements below and the catalog's separate publication safeguards remain in force.
+
 ## Operator backfill and initialization
 
-The operator backfill update is pending implementation and rollout approval. Once adopted, backfill is one optional script call within a **full ordinary Terraform repository sync**, followed by the standard preparation, validation, publication, and merge process. It is not an isolated metadata-only run.
+The existing optional `metadata_backfill` facility remains one script call within a **full ordinary Terraform repository sync**, followed by the standard preparation, validation, publication, and merge process. It is separate from the reviewed one-off migration above, not an isolated metadata-only run.
 
 The full run still includes normal repository settings and Azure management, managed-file updates, `pre-commit`, and `CODEOWNERS` handling. Review the complete planned changes and obtain explicit approval before running against production. Standard sync authorization and merge behavior apply, including the existing authorized automation path; backfill does not promise review-only publication, no automatic merge, or no state changes.
 
@@ -53,7 +65,7 @@ This operator process does not change the human ownership-review requirements be
 
 ## Submit and review a change
 
-These steps apply to human-authored metadata changes. Operator backfill uses the standard authorized sync path described above, rather than a separate metadata publication path.
+These steps apply to human-authored metadata changes and the review of one-off migration drafts. The separate optional full-sync facility uses its established authorized preparation, publication, and merge path; the reviewed one-off exercise does not change that facility or authorize its use.
 
 1. Agree the change with the current owners and the AVM core team. For ownership changes, retain the eligibility checks, incoming owners' written consent, and handover requirements in the [owner-change process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#changing-module-owners).
 1. Edit the relevant `metadata.json` on a branch or in your fork of the module repository. Preserve all owners and other values that are not part of the agreed change.

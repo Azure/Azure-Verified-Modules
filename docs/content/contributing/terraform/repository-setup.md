@@ -50,7 +50,7 @@ For a new module repository, gather the following approved values from the modul
 
 The creation tooling combines the primary, secondary, additional, and team handles into the flat root metadata `owners` array. These inputs do not grant access. Later ownership changes use the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change), not another repository-creation run.
 
-Under the planned [initialization update]({{% siteparam base %}}/contributing/module-metadata/#operator-backfill-and-initialization), the Terraform metadata-creation step creates only `metadata.json` and validates existing metadata without overwriting it. It does not generate `main.metadata.tf` or delete an existing Terraform reader. The surrounding ordinary sync can still format, transform, or move Terraform source under its existing rules. Source and telemetry integration remain separate work; no new transformation rule or source-update option is introduced by this update.
+The [metadata-creation step]({{% siteparam base %}}/contributing/module-metadata/#operator-backfill-and-initialization) creates only `metadata.json` and validates existing metadata without overwriting it. It does not generate `main.metadata.tf` or delete an existing Terraform reader. When using the separate ordinary-sync facility, the surrounding sync can still format, transform, or move Terraform source under its existing rules. For the [reviewed one-off migration]({{% siteparam base %}}/contributing/module-metadata/#reviewed-one-off-terraform-migration), prepare only the reviewed metadata-file changes; do not rerun repository creation or full settings/Azure sync. Source and telemetry integration remain separate work.
 
 ## 3. Create the repository
 
