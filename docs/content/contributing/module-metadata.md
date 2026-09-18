@@ -75,7 +75,7 @@ The App's existing ruleset bypass for code-owner review and pre-existing test re
 
 The existing optional `metadata_backfill` facility remains one script call within a **full ordinary Terraform repository sync**, followed by the standard preparation, validation, publication, and merge process. It is separate from the reviewed one-off migration above, not an isolated metadata-only run.
 
-Backfill still covers roots and children and reads the canonical public module-index CSVs at a pinned commit. It no longer falls back to the retired tools-local repository inventory CSV. Preserve existing valid metadata and telemetry identifiers; do not infer canonical types or telemetry identifiers from repository names.
+Backfill still covers roots and children and reads the canonical public module-index CSVs at a pinned commit. It no longer falls back to the retired tools-local repository inventory CSV. Preserve existing valid metadata and telemetry identifiers; use validated backfill results and approved values rather than inventing canonical types or telemetry identifiers.
 
 The full run still includes normal repository settings and Azure management, managed-file updates, `pre-commit`, and `CODEOWNERS` handling. Review the complete planned changes and obtain explicit approval before running against production. Standard sync authorization and merge behavior apply, including the existing authorized automation path; backfill does not promise review-only publication, no automatic merge, or no state changes.
 
