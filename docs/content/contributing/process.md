@@ -12,7 +12,7 @@ Each AVM module **MUST** have a [Module Proposal](https://aka.ms/AVM/ModulePropo
 {{% /notice %}}
 
 {{% notice style="note" %}}
-The metadata review step below applies after the [metadata rollout prerequisites]({{% siteparam base %}}/contributing/module-metadata/) are met. Proposals without repository source still use the existing issue-based approval process, but generated catalog rows require valid module metadata. Metadata does not replace proposal approval or create a repository. Existing source CSV rows that cannot be generated are subject to the [source-row removal check]({{% siteparam base %}}/contributing/module-metadata/#source-csv-row-removals), not a legacy-row fallback.
+Record approved details in the proposal issue. Once the repository and module source exist, maintain those details through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/).
 {{% /notice %}}
 
 <!-- markdownlint-disable -->

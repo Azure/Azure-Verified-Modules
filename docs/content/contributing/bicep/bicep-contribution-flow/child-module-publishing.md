@@ -67,16 +67,16 @@ If the Bicep Child Module Proposal issue was just created, please allow a few da
 
 {{% /notice %}}
 
-After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, check `telemetryIdPrefix` in the child's own `metadata.json` and keep it consistent with the child module source. Record only the assigned identifier through metadata code-owner review. The reduced child file must not contain `owners`; ownership is inherited from the root.
+Check `telemetryIdPrefix` in the child's own `metadata.json` and keep it consistent with the child module source. Record only the assigned identifier through [metadata review]({{% siteparam base %}}/contributing/module-metadata/). Ownership is inherited from the root.
 
-Before adoption, the published CSV remains the lookup source:
+You can also look up the assigned prefix in the published index:
 
 1. Check the online [Bicep resource module index source CSV](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/BicepResourceModules.csv).
 1. Search for the child module name in the `ModuleName` field.
 1. Verify if the corresponding value exists in the `TelemetryIdPrefix` field. Note down the value as you will need it in the implementation phase.
 1. If not found, please reach out to the core team, mentioning the `@Azure/azure-verified-modules-tooling-contributors` via the Bicep Child Module Proposal issue.
 
-If the identifier is missing from metadata or conflicts with the index during preview, ask the core team to resolve it. Do not invent an identifier or copy the parent's prefix.
+If the identifier is missing or conflicts with the index, ask the core team to resolve it. Do not invent an identifier or copy the parent's prefix.
 
 ### Module registered in the MAR-file
 

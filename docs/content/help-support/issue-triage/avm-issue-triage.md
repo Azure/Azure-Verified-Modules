@@ -7,10 +7,6 @@ description: Issue Triage description for the Azure Verified Modules (AVM) repos
 
 This page provides guidance for members of the **AVM Core Team** on how to **triage module proposals** and **generic issues** filed in the [AVM repository](https://aka.ms/AVM/repo), as well as how to manage these GitHub issues throughout their lifecycle.
 
-{{% notice style="important" title="Metadata maintenance transition" %}}
-The metadata-file steps below apply only after the [rollout prerequisites]({{% siteparam base %}}/contributing/module-metadata/) are met for the module. Metadata changes require approval from either team listed for metadata in `CODEOWNERS`; being named in the module's `owners` array is not sufficient. Catalog rows require valid metadata and reviewed publication; missing source CSV rows block generation and publication by default. Preview CSVs do not replace the live indexes. Proposal issues remain separate from catalog entries. Deprecation is derived from the language-specific retirement signals described below, not from a metadata status field.
-{{% /notice %}}
-
 During the AVM Core Team Triage step, the following will be checked, completed and actioned by the AVM Core Team during their triage calls (which are currently twice per week).
 
 {{% notice style="note" %}}
@@ -81,7 +77,7 @@ If requestor is interested in becoming a module owner, but is not a Microsoft FT
 
 1. If the requestor indicated they didn't want to or can't become a module owner (or is not a Microsoft FTE), make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; label is assigned to the issue. Note: the GitHub Policy Service Bot should automatically do this, based on how the issue author responded to the related question.
 1. Move the issue to the "`Looking for owners`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub project board.
-1. Add a comment on the issue with the `#RFRC` tag to indicate that the repository should be created. Keep the proposal issue available to the community and potential module owners. Inclusion in the generated catalog also requires valid module metadata; the tag alone does not create a catalog row.
+1. Add a comment on the issue with the `#RFRC` tag to indicate that the repository should be created. Keep the proposal issue available to the community and potential module owners.
 1. Find module owners - if the requestor didn't volunteer in the module proposal OR the requestor does not want or cannot be owner of the module:
     - Try to find an owner from the AVM communities or await a module owner to comment and propose themselves on the proposal issue.
 1. When a new potential owner is identified, continue with the steps described [as follows](#scenario-2-requestor-wants-to-and-can-become-module-owner).
@@ -109,11 +105,11 @@ You **MUST** still confirm that the requestor is a Microsoft FTE and that they u
 3. Once module owner identified has confirmed they understand and accept their roles and responsibilities as an AVM module owner
     - Make sure the issue is assigned to the confirmed module owner.
     - Move the issue into the "`In development`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
-    - Add a comment on the issue with the `#RFRC` tag to indicate that the repository should be created. The proposal issue remains the record of approval; inclusion in the generated catalog also requires valid module metadata.
+    - Add a comment on the issue with the `#RFRC` tag to indicate that the repository should be created.
     - Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; label is added to the issue.
       - If applied earlier, remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; label from the issue.
     - Remove the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#E4E669;">Status: In Triage 🔍</mark>&nbsp; to indicate you're done with triaging the issue.
-1. Keep the approved name, description, and owners in the proposal issue. Once the repository and module source exist and metadata maintenance is adopted, record the supported fields through a [metadata pull request]({{% siteparam base %}}/contributing/module-metadata/). A proposal without valid metadata does not produce a catalog row. If its source CSV row would disappear, follow the [source-row removal review]({{% siteparam base %}}/contributing/module-metadata/#source-csv-row-removals) rather than copying the legacy record into output. Do not invent a metadata status field or placeholder source; handling proposals before source exists remains an AVM core team decision.
+1. Keep the approved name, description, and owners in the proposal issue. Once the repository and module source exist, record the supported fields through a [metadata pull request]({{% siteparam base %}}/contributing/module-metadata/).
 5. Use the following text to approve module development
 
 {{% expand title="➕ Final Confirmation for Proposed Module Owners - Bicep" %}}
@@ -153,7 +149,7 @@ Once module is developed and `v0.1.0` has been published to the relevant registr
 
 1. Assign the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#C8E6C9;">Status: Module Available 🟢</mark>&nbsp; label to the issue.
 2. Move the issue into "`Done`" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project.
-1. Confirm that the module metadata and registry publication are correct, then review the generated catalog update as described in [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/#rollout-and-publication). Correct supported metadata in the module repository, not in a spreadsheet or CSV row. During transition, coordinate publication with the AVM core team; a preview does not update the canonical index.
+1. Confirm that the module metadata and registry publication are correct, then review the [catalog update]({{% siteparam base %}}/contributing/module-metadata/#catalog-updates). Submit any metadata corrections to the module repository.
 4. When all development actions are complete and confirmed
     1. **In case of Bicep modules** - Close the module proposal issue with the following message:
 
@@ -191,7 +187,7 @@ Once the **Orphaned Module issue** was closed, it **MUST remain closed**. If the
 
 ### Adding or removing co-owners
 
-Agree changes with the current owners and the AVM core team. Confirm each incoming owner's eligibility, written acceptance of the role, and separate [access approval]({{% siteparam base %}}/spec/SNFR20). After metadata maintenance is adopted, submit the agreed handle changes to the `owners` array in the module's **root** `metadata.json`, following the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change). Use bare handles for individuals and qualified handles for approved existing teams. Keep every continuing individual or team owner; children inherit the root's ownership.
+Agree changes with the current owners and the AVM core team. Confirm each incoming owner's eligibility, written acceptance of the role, and separate [access approval]({{% siteparam base %}}/spec/SNFR20). Submit the agreed handle changes to the `owners` array in the module's **root** `metadata.json`, following the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change). Use bare handles for individuals and qualified handles for approved existing teams. Keep every continuing individual or team owner; children inherit the root's ownership.
 
 Use the [hot-swap process](#hot-swapping-module-owners) for a handover. If no owners remain, follow the [orphaning process](#when-a-module-becomes-orphaned) instead.
 
@@ -254,8 +250,8 @@ To look for Orphaned Modules:
     - Remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 🟡</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; labels from the issue.
     - Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#C8E6C9;">Status: Module Available 🟢</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; labels to the issue.
     - Move the issue into the "`Done`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
-1. Submit a pull request adding the approved incoming handles to the `owners` array in the module's root `metadata.json`, linked to the orphaned module issue. Obtain approval from either metadata code-owner team and merge the change through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#adopt-an-orphaned-module). Do not edit the spreadsheet or CSV owner columns.
-4. Ensure every new owner has approved access through the [AVM Module Contributors access package](https://aka.ms/avm/id/access-package/module-contributor). See [SNFR20]({{% siteparam base %}}/spec/SNFR20) for the language-specific access requirements. No per-module GitHub team or `CODEOWNERS` changes are needed.
+1. Submit a pull request adding the approved incoming handles to the `owners` array in the module's root `metadata.json`, linked to the orphaned module issue. Obtain approval from either metadata code-owner team and merge the change through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#adopt-an-orphaned-module).
+1. Ensure every new owner has approved access through the [AVM Module Contributors access package](https://aka.ms/avm/id/access-package/module-contributor). See [SNFR20]({{% siteparam base %}}/spec/SNFR20) for the language-specific access requirements.
 5. Remove the information notice (i.e., the file that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.` ):
     - In case of a Bicep module:
       - Delete the `ORPHANED.md` file from the module's root.
@@ -275,7 +271,7 @@ To look for Orphaned Modules:
 
 {{% /expand %}}
 
-1. Once the metadata change is reviewed and merged and all access and notice-removal actions above are complete, close the orphaned module issue with the following message. Track catalog publication separately; do not promise an immediate live-index update.
+1. Once the metadata change is reviewed and merged and all access and notice-removal actions above are complete, close the orphaned module issue with the following message. Track catalog publication separately.
 
 {{% expand title="➕ Closing remarks for the New Owner(s) of an Orphaned Module" %}}
 
@@ -373,13 +369,11 @@ Deprecating a module does not require changing `CODEOWNERS` or deleting a GitHub
 
 **Catalog publication**
 
-After the [metadata rollout prerequisites]({{% siteparam base %}}/contributing/module-metadata/) are met, the catalog derives `Deprecated` from the Bicep module's existing `DEPRECATED.md` file or the Terraform repository's `archived` flag. Once the relevant retirement steps are complete, review the generated catalog update instead of editing the spreadsheet or CSV status. Preserve existing `Deprecated` status for metadata-backed entries during the transition even if their retirement signal has not yet been captured; do not reactivate them because a signal is missing.
-
-Valid metadata is still required to generate a deprecated entry. Do not retain a full legacy row as a fallback. If a source CSV row would disappear, generation and publication stop by default; any explicit manual force override is limited to those removals and does not bypass metadata validation or other safeguards. See the [source-row removal check]({{% siteparam base %}}/contributing/module-metadata/#source-csv-row-removals).
+The catalog derives `Deprecated` from Bicep's `DEPRECATED.md` or Terraform's repository `archived` flag. Complete the retirement steps, then review the [catalog update]({{% siteparam base %}}/contributing/module-metadata/#catalog-updates).
 
 A Bicep marker applies to that module and all its descendants. A root marker therefore covers every child; a child marker leaves its parent and siblings unaffected. Terraform archival applies to all module entries in the repository.
 
-The notices, Bicep workflow/issue-template removal and registry-index update, and Terraform repository archival remain separate required actions. Catalog publication does not perform these actions or grant permission to perform them. Preview CSVs leave the canonical indexes unchanged until the separately approved changeover.
+Catalog publication does not perform the required notices, Bicep workflow/issue-template removal and registry-index update, or Terraform repository archival.
 
 **Deprecation information notice** (to be place in the module's repository as described above)
 

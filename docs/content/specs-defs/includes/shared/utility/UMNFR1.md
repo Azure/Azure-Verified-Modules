@@ -27,7 +27,7 @@ The module's approved name is captured in the module proposal issue. The related
 
 **Module owners must use the name approved in the module proposal, not construct a new one.** If it differs from the index, confirm the correction with the AVM core team.
 
-After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, correct supported descriptive fields through a metadata pull request, not by editing the CSV. Module identity and repository paths are derived from the repository; changing `moduleDisplayName` does not rename the module.
+Correct descriptive fields through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/). Changing `moduleDisplayName` does not rename the module or change its repository path.
 
 {{% /notice %}}
 

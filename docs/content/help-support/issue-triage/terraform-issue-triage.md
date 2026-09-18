@@ -53,7 +53,7 @@ If the issue was opened as a misplaced module proposal, mention the `@Azure/azur
 ### Triaging a Module Issue
 
 1. Check the Module issue:
-    - Use the AVM module indexes to identify the module owner(s) and make sure they are assigned/mentioned/informed. After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, check the root `metadata.json` for the full owner list; CSV owner columns show only the first two individuals. Propose owner corrections in root metadata, not in the index.
+    - Use the AVM module indexes to locate the module and its root `metadata.json` for the full owner list. Make sure the owners are assigned/mentioned/informed. Submit corrections through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/).
     - If the module is orphaned (has no owner), make sure there's an orphaned module issue in the AVM repository.
     - Make sure the module's details are captured correctly in the description - i.e., name, classification (resource/pattern), language (Bicep/Terraform), etc.
     - Make sure the issue is categorized using one of the following type labels:
@@ -70,7 +70,7 @@ If the issue was opened as a misplaced module proposal, mention the `@Azure/azur
 
 PR approvals are **enforced** on all AVM Terraform module repositories. The following rules apply to who must approve:
 
-After [metadata review protection]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change) is adopted, changes to any `metadata.json` require approval from an eligible member of either `@Azure/azure-verified-modules-engineering-owners` or `@Azure/azure-verified-modules-module-owners`. Approval from both teams is not required, and being named in the module's `owners` array alone does not qualify a reviewer. The code-review requirements below still apply to other changes in the same pull request.
+Changes to `metadata.json` require approval from an eligible member of either `@Azure/azure-verified-modules-engineering-owners` or `@Azure/azure-verified-modules-module-owners`, as described in the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change). Approval from both teams is not required, and being named in `owners` alone does not qualify a reviewer. The code-review requirements below apply to other changes in the same pull request.
 
 1. If the **PR is submitted by the module owner** and the **module is owned by a single person**, **another Terraform module owner must review and approve the PR** (the module owner cannot approve their own PR).
     - **First port of call:** find a friendly module owner from the [`azure-verified-modules-module-contributors`](https://aka.ms/avm/id/groups/module-contributors) Entra group and request a review.

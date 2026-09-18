@@ -87,7 +87,7 @@ It is critical to the consumers experience that modules continue to be maintaine
 
 To **orphan a module**, submit an [orphaned module](https://aka.ms/AVM/OrphanedModule) issue in the AVM repository. For the required steps, review the related article: [When a module becomes orphaned]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-orphaned).
 
-After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/) is adopted, set `"owners": []` in the root `metadata.json` to remove all individual and team handles, and obtain approval from either metadata code-owner team. Do not set a status field or edit the CSV. The issue and required notices still form part of the process; the public index changes through catalog generation and reviewed publication.
+Set `"owners": []` in the root `metadata.json` to remove all individual and team handles, following the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/). Complete the issue and required notices; catalog generation and reviewed publication update the public index.
 
 [When a new owner is identified]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified), follow the related guidance.
 
@@ -142,13 +142,11 @@ The information notice **MUST** include the following statement:
 
 To **deprecate a module**, submit a [deprecated module](https://aka.ms/AVM/DeprecatedModule) issue in the AVM repository. For the required steps, review the related article: [When a module becomes deprecated]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-deprecated).
 
-After [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/#processes-that-remain-separate) is adopted, the catalog derives `Deprecated` from the existing `DEPRECATED.md` file for Bicep or the repository's `archived` flag for Terraform. The required notices and other retirement steps above remain unchanged. Review the generated index update rather than editing the CSV status.
+The catalog derives `Deprecated` from Bicep's `DEPRECATED.md` or the Terraform repository's `archived` flag. Complete the notices and other retirement steps above, then review the [catalog update]({{% siteparam base %}}/contributing/module-metadata/#catalog-updates).
 
 A Bicep marker deprecates its module and all descendants. A child marker does not deprecate the parent or siblings. Archiving a Terraform repository deprecates every module entry in that repository.
 
-The v1 module metadata schema has no lifecycle or status field. Do not clear owners to record deprecation or add owners to reactivate a deprecated module. Preserve existing `Deprecated` status for metadata-backed entries during the transition, including when their retirement signal has not yet been captured.
-
-This status preservation does not retain full legacy rows without valid metadata. If a source CSV row would disappear, generation and publication fail by default under the [source-row removal check]({{% siteparam base %}}/contributing/module-metadata/#source-csv-row-removals). An explicit manual force override permits only those removals, not invalid metadata or other safety bypasses.
+Changing owners does not deprecate or reactivate a module.
 
 {{% /notice %}}
 

@@ -90,13 +90,11 @@ The AVM core team will then triage the request and get back to you with next ste
 
 ### How will the AVM module index (catalog) be updated?
 
-For modules that have adopted [metadata maintenance]({{% siteparam base %}}/contributing/module-metadata/), submit supported metadata corrections and ownership changes to the module repository's `metadata.json`, not to a spreadsheet or module-index CSV. Ownership is maintained in the root file and requires approval from either metadata code-owner team.
+Submit module details and ownership changes to the module repository's `metadata.json` through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/). Ownership is maintained in the root file and requires approval from either metadata code-owner team.
 
-Catalog generation uses valid metadata, not retained full legacy CSV records, and reviewed publication carries the changes to the indexes. Generation and publication fail by default if a source CSV row would disappear. An explicit manual force override permits only those removals, not invalid metadata or other safety bypasses. The [removal check]({{% siteparam base %}}/contributing/module-metadata/#source-csv-row-removals) uses source CSVs, not existing preview destination rows.
+Catalog generation and reviewed publication carry changes to the indexes. Merging metadata does not immediately update the published index.
 
-During preview, canonical CSVs remain unchanged; their replacement is a separate change. Proposals without source still follow the existing issue-based approval process, but they cannot generate catalog rows without valid metadata.
-
-For deprecation, follow the [retirement process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-deprecated). The catalog derives `Deprecated` from Bicep's existing `DEPRECATED.md` or Terraform's repository `archived` flag; there is no metadata status field to edit. Preserve existing deprecated status for metadata-backed entries during transition; this does not retain rows that lack valid metadata.
+For deprecation, follow the [retirement process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-deprecated). The catalog derives `Deprecated` from Bicep's `DEPRECATED.md` or Terraform's repository `archived` flag.
 
 ## Developing a module
 
@@ -192,7 +190,7 @@ You should use GitHub issues to propose changes or improvements for specific mod
 
 ### I am using module without owner. What will happened if I need update?
 
-[AVM core team]({{% siteparam base %}}/specs/shared/team-definitions/#avm-core-team) will work to assign owner for every module, but it can happen during a time that there are modules without owner. To volunteer, comment on the module's [orphaned module issue](https://aka.ms/AVM/OrphanedModules) and follow the [adoption process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified). At this moment, only Microsoft FTEs can be module owners. After metadata maintenance is adopted, approved owners are added through a pull request to the root metadata file; access approval remains separate.
+[AVM core team]({{% siteparam base %}}/specs/shared/team-definitions/#avm-core-team) will work to assign owner for every module, but it can happen during a time that there are modules without owner. To volunteer, comment on the module's [orphaned module issue](https://aka.ms/AVM/OrphanedModules) and follow the [adoption process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified). At this moment, only Microsoft FTEs can be module owners. Add approved owners through a pull request to the root metadata file and complete access approval separately.
 
 ---
 

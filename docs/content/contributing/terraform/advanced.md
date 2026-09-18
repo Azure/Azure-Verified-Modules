@@ -161,13 +161,9 @@ Shell equivalents are rejected. Each PowerShell hook runs in an isolated process
 
 [Repository sync](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/repository-sync) regularly compares each module repository with the shared [managed files](https://github.com/Azure/azure-verified-modules-managed-files) and opens a PR when updates are available. These PRs are normally merged automatically. Module owners will be informed about one-off PRs that require intervention.
 
-After the updated sync tooling is verified and adopted, sync uses the default branch's root `metadata.json` for the display name and full owner list, not the retired tools-local repository inventory CSV. GitHub determines whether a repository is archived. See [repository metadata discovery]({{% siteparam base %}}/contributing/module-metadata/#terraform-repository-sync) for missing-file warnings, skipped collaborator cleanup, and error handling. Generated public module-index CSVs are not retired by this change.
+Sync uses the default branch's root `metadata.json` for the display name and full owner list. Submit changes to those values through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change).
 
-The existing [optional metadata backfill facility]({{% siteparam base %}}/contributing/module-metadata/#operator-backfill-and-initialization) is a script call within this full ordinary sync, not an isolated metadata-only run. Normal settings and Azure management, managed-file updates, `pre-commit`, and `CODEOWNERS` handling still run before standard publication and merge. Operators must inspect the complete planned changes and obtain explicit approval before production runs; the backfill option does not disable the standard authorized automation or automatic merge path.
-
-The current [reviewed one-off metadata migration]({{% siteparam base %}}/contributing/module-metadata/#reviewed-one-off-terraform-migration) is different: it is agent-led, uses an explicitly reviewed inventory, and is limited to metadata-file changes. Do not use full sync as its migration runner. This selection does not create a new workflow mode or authorize repository settings/Azure synchronization.
-
-Do not assume the complete sync changes only metadata or cannot change module source. A metadata-only edit does not require a module release; any source changes in the full sync still follow normal validation and release rules. The catalog's separate reviewed publication and human metadata ownership reviews are unchanged.
+A synchronization update can include module source and managed configuration. Review any requested intervention accordingly; source changes need normal validation and release handling. A metadata-only change does not require a module release.
 
 ---
 
