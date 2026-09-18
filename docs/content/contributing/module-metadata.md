@@ -28,12 +28,12 @@ The versioned schema referenced by the required `$schema` URI defines the suppor
 | --- | --- |
 | `$schema` | Keep the required versioned schema URI. It identifies the module metadata schema. |
 | `moduleDisplayName`, `moduleDescription` | Maintain the module's display name and description. For Bicep, they must match the corresponding literals in `main.bicep`. |
-| `canonicalType` | The ARM resource type, or the approved pattern/utility taxonomy. This is not the module's repository path. |
+| `canonicalType` | The ARM resource type, or the approved pattern/utility taxonomy. The pending child-only `helper` marker is described [below](#helper-submodules). This is not the module's repository path. |
 | `owners` | Root only: a flat array of strings. Use bare GitHub handles for individuals and qualified handles such as `@Azure/team-name` for approved existing teams. Record every owner, not just the first two. Do not put display names or nested objects in this array. |
 | `telemetryIdPrefix` | Preserve the assigned identifier where required. Do not generate a replacement identifier as part of an ownership or descriptive edit. |
 | `alternativeNames`, `comments` | Optional root-module aliases and notes. These are public metadata. |
 
-With a compatible schema, pattern/utility `canonicalType` can be a single value such as `naming` for `avm-utl-naming`, or `alz` as an illustrative pattern value. Preserve existing explicit mappings and multi-segment values. Resource modules and children use real ARM resource types, not synthetic types formed by prefixing another service's type with the family module's resource type. Repository/Bicep folder naming conventions are unchanged.
+With a compatible schema, pattern/utility `canonicalType` can be a single value such as `naming` for `avm-utl-naming`, or `alz` as an illustrative pattern value. Preserve existing explicit mappings and multi-segment values. Resource modules and non-helper resource children use real ARM resource types, not synthetic types formed by prefixing another service's type with the family module's resource type. Repository/Bicep folder naming conventions are unchanged.
 
 Compatibility for real `Oracle.Database` ARM types is pending shared schema, resource-kind, and telemetry-validation updates. Do not rewrite those types to fit current validation. Ordinary repository checks require a compatible installed/released schema; this documentation does not establish that such a release is available.
 
@@ -41,15 +41,25 @@ Module identity, module class, repository paths, and parent relationships are de
 
 There is **no `moduleStatus` or `status` field** in this schema. Follow the existing [proposal and lifecycle processes](#processes-that-remain-separate) rather than adding an unsupported field.
 
+### Helper submodules
+
+Support for the literal `"canonicalType": "helper"` marker is pending compatible validation and catalog tooling. Once adopted, previously omitted helper submodules receive `metadata.json` with this exact child-only marker, the required `$schema`, `moduleDisplayName`, and `moduleDescription`, and inherited root ownership. Do not put `owners` in helper metadata or use the marker on a root or a non-helper resource child.
+
+Helper telemetry is not required; any supplied `telemetryIdPrefix` must still pass validation. Preserve existing valid metadata and source rather than rewriting them to add the marker.
+
+The JSON catalog retains helper records with their stable repository/path identity and inherited owners. Their generated ARM `providerNamespace` and `resourceType` are `null`; these are catalog output fields, not additional authored metadata fields. **CSV outputs omit helper records.** Marker adoption must wait for compatible tooling and a separately approved installed/released schema where required; this documentation does not establish release availability.
+
 ## Reviewed one-off Terraform migration
 
-The current one-off exercise is agent-led: prepare **metadata-only changes from an explicitly reviewed inventory**, not through full ordinary repository sync. No new migration runner, command, or metadata-only workflow switch has been implemented for this exercise. Inventory approval does not establish that drafts have been prepared or that App authentication, installation, publication, or rollout is ready.
+The current one-off exercise is agent-led and publishes validated **metadata-only changes from an explicitly reviewed inventory**, not through full ordinary repository sync. Non-helper changes are being published and merged through specifically authorized App automation; helper-marker adoption remains pending. This does not create a new workflow switch or establish readiness for every target.
 
-Create missing metadata only for retained entries and validate existing files, leaving valid metadata unchanged. Omit only the exclusions explicitly recorded in the reviewed inventory, such as identified test/example helpers, internal cached-data children, or ancillary wrappers. This is a migration selection, not a blanket rule to ignore submodules or missing metadata. Existing missing-file warnings and failures for invalid present metadata still apply.
+Create missing metadata for reviewed entries and validate existing files, leaving valid metadata unchanged. Previously omitted helper submodules follow the pending [helper-marker contract](#helper-submodules), rather than remaining metadata-free. Separate root exclusions remain unchanged; this is not blanket root helper marking or a rule to ignore submodules or missing metadata. Existing missing-file rollout warnings are not errors, and invalid present metadata still fails.
 
 Archived repositories remain review-only. Handle missing or proposed repositories and private repositories separately; do not treat them as ready public migration targets.
 
-During draft preparation, generate each required new telemetry prefix once and persist it across retries. Preserve existing valid metadata and telemetry identifiers. Do not add `main.metadata.tf`, change Terraform source or telemetry wiring, or run repository settings/Azure synchronization as part of this exercise. Metadata-file review requirements below and the catalog's separate publication safeguards remain in force.
+During draft preparation, generate each required new telemetry prefix once, collision-check its seven-hex suffix, and persist it across retries. Helpers do not require a new prefix. Preserve existing valid metadata and telemetry identifiers. Do not add `main.metadata.tf`, change Terraform source or telemetry wiring, or run repository settings/Azure synchronization as part of this exercise.
+
+The App's existing ruleset bypass for code-owner review and pre-existing test requirements is specifically authorized for this migration, without changing protections or check statuses. That authorization does not mean normal approvals or tests passed and is not a general contributor exemption. Human metadata reviews and the catalog's separate publication safeguards remain unchanged.
 
 ## Operator backfill and initialization
 
@@ -65,7 +75,7 @@ This operator process does not change the human ownership-review requirements be
 
 ## Submit and review a change
 
-These steps apply to human-authored metadata changes and the review of one-off migration drafts. The separate optional full-sync facility uses its established authorized preparation, publication, and merge path; the reviewed one-off exercise does not change that facility or authorize its use.
+These steps apply to human-authored metadata changes. The one-off migration uses only its specifically authorized App path described above, not a general review exemption. The separate optional full-sync facility retains its established preparation, publication, and merge behavior; the one-off exercise does not authorize its use.
 
 1. Agree the change with the current owners and the AVM core team. For ownership changes, retain the eligibility checks, incoming owners' written consent, and handover requirements in the [owner-change process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#changing-module-owners).
 1. Edit the relevant `metadata.json` on a branch or in your fork of the module repository. Preserve all owners and other values that are not part of the agreed change.
@@ -117,7 +127,7 @@ During preview, catalog generation writes `test-*.csv` files beside the unchange
 
 The compatibility CSVs expose only the first two individual owners in their primary and secondary owner columns. The root metadata and richer JSON catalog retain all owners; do not remove owners to fit the CSV columns.
 
-Existing child CSV `AlternativeNames` and `Comments` values, including blank cells, are preserved for matched metadata-backed records. This compatibility does not retain an entire legacy row when metadata is missing.
+For matched non-helper records that remain in CSVs, existing child `AlternativeNames` and `Comments` values, including blank cells, are preserved. This compatibility does not retain an entire legacy row when metadata is missing; helpers remain in JSON only once marker support is adopted.
 
 Do not assume that a preview publication updates the live website, issue routing, or `CODEOWNERS`. The AVM core team must confirm the relevant publication and synchronization have completed before relying on those consumers.
 
@@ -126,6 +136,8 @@ Do not assume that a preview publication updates the live website, issue routing
 Generation and publication **fail by default if any row from a source CSV would disappear** from the output. The comparison uses the **source CSV only**, not the existing destination file. Rows found only in an earlier `test-*.csv` preview do not receive this removal protection. The same source-row check applies whether output uses preview filenames or later replaces the canonical CSVs.
 
 Review which source rows would disappear and why. Supply correct metadata where the module should remain; do not invent metadata values or remove source CSV rows just to avoid the check. An explicitly authorized manual force override permits only those row removals. It does **not** permit invalid metadata, bypass other safety checks, or replace normal review and publication approval.
+
+Omitting helper records from CSV outputs does not waive this check for helper identities already present in a source CSV, even though JSON retains them.
 
 ## Processes that remain separate
 
