@@ -39,7 +39,7 @@ Compatibility for real `Oracle.Database` ARM types is pending shared schema, res
 
 Module identity, module class, repository paths, and parent relationships are derived from the repository. Do not add fields for them to `metadata.json`. In particular, `moduleDisplayName` is not a way to rename a module or move its repository.
 
-There is **no `moduleStatus` or `status` field** in this schema. Follow the existing [proposal and lifecycle processes](#processes-that-remain-separate) rather than adding an unsupported field.
+There is **no `moduleStatus`, `status`, or `isArchived` field** in this schema. Follow the existing [proposal and lifecycle processes](#processes-that-remain-separate) rather than adding an unsupported field.
 
 ### Helper submodules
 
@@ -48,6 +48,16 @@ Support for the literal `"canonicalType": "helper"` marker is pending compatible
 Helper telemetry is not required; any supplied `telemetryIdPrefix` must still pass validation. Preserve existing valid metadata and source rather than rewriting them to add the marker.
 
 The JSON catalog retains helper records with their stable repository/path identity and inherited owners. Their generated ARM `providerNamespace` and `resourceType` are `null`; these are catalog output fields, not additional authored metadata fields. **CSV outputs omit helper records.** Marker adoption must wait for compatible tooling and a separately approved installed/released schema where required; this documentation does not establish release availability.
+
+## Terraform repository sync
+
+After the AVM core team verifies and adopts the updated tooling, [repository sync](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/repository-sync) reads the root `metadata.json` from each module repository's **default branch**. It uses `moduleDisplayName` and every entry in the flat `owners` array, including qualified team handles. GitHub's `archived` flag is authoritative; archived repositories are skipped rather than relying on an authored metadata flag.
+
+A missing file (`404`) produces a warning and keeps the repository in discovery with no metadata, allowing rollout and backfill to continue. In that case, direct-collaborator cleanup is skipped instead of guessing owners. Invalid present JSON or schema, and other API or authentication failures, produce an error and exclude the repository from sync.
+
+The retired `repository-management/repository-sync/config/repository-metadata.csv` was a tools-local repository inventory, **not** a public module index. Do not register repositories or maintain ownership there. Generated public CSVs such as `TerraformResourceModules.csv` remain available; their [publication and removal safeguards](#rollout-and-publication) are unchanged.
+
+[New repository creation]({{% siteparam base %}}/contributing/terraform/repository-setup/) initializes schema-valid root metadata from approved explicit inputs and publishes it in the first commit to `main`. Existing repositories use the normal reviewed metadata-change process below, not a repository-creation mode.
 
 ## Reviewed one-off Terraform migration
 
@@ -64,6 +74,8 @@ The App's existing ruleset bypass for code-owner review and pre-existing test re
 ## Operator backfill and initialization
 
 The existing optional `metadata_backfill` facility remains one script call within a **full ordinary Terraform repository sync**, followed by the standard preparation, validation, publication, and merge process. It is separate from the reviewed one-off migration above, not an isolated metadata-only run.
+
+Backfill still covers roots and children and reads the canonical public module-index CSVs at a pinned commit. It no longer falls back to the retired tools-local repository inventory CSV. Preserve existing valid metadata and telemetry identifiers; do not infer canonical types or telemetry identifiers from repository names.
 
 The full run still includes normal repository settings and Azure management, managed-file updates, `pre-commit`, and `CODEOWNERS` handling. Review the complete planned changes and obtain explicit approval before running against production. Standard sync authorization and merge behavior apply, including the existing authorized automation path; backfill does not promise review-only publication, no automatic merge, or no state changes.
 
