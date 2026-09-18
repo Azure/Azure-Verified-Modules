@@ -16,6 +16,15 @@ Child modules have reduced `metadata.json` files in their own folders. They inhe
 
 Use the existing file as your starting point and preserve unrelated values. If metadata or an assigned value is missing, ask the AVM core team to confirm the required values.
 
+## Create metadata.json when scaffolding a new module
+
+Every new Bicep or Terraform root module, and every new child module or submodule, **MUST** have a valid `metadata.json` created as part of scaffolding, not added later.
+
+- **Root modules** get the full metadata shape, including the `owners` array.
+- **Child modules and submodules** get the reduced, inherited-owner shape described above; they must not contain `owners`.
+
+Use `avm metadata initialize` from the [`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring) PowerShell module to scaffold the file for either ecosystem. It validates the supplied values against the versioned schema and writes `metadata.json` without overwriting an existing file. Pass `--child-module` when scaffolding a child module or submodule so it produces the reduced, owner-less shape. Validate an existing file with `avm metadata validate`, or inspect one with `avm metadata show`.
+
 ## Fields you can maintain
 
 The versioned schema referenced by the required `$schema` URI defines the supported fields.
