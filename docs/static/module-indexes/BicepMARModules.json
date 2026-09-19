@@ -587,6 +587,7 @@
   "avm/res/web/site/basic-publishing-credentials-policy",
   "avm/res/web/site/config",
   "avm/res/web/site/extension",
+  "avm/res/web/site/host-name-binding",
   "avm/res/web/site/hybrid-connection-namespace/relay",
   "avm/res/web/site/slot",
   "avm/res/web/site/slot/basic-publishing-credentials-policy",
