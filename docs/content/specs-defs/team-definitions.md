@@ -54,7 +54,9 @@ Module owners are responsible for:
     - Module Feature Request Triage & Additions
 4. **Managing additional module contributors**
 
-Ideally there **SHOULD** be at least 2 module owners per module. Each owner **MUST** be recorded in the [module indexes]({{% siteparam base %}}/indexes/) and obtain access through the [AVM Module Contributors access package]({{% siteparam base %}}/spec/SNFR20).
+Ideally there **SHOULD** be at least 2 module owners per module. Every approved owner **MUST** be recorded in the root `metadata.json` file's `owners` array through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/).
+
+Each owner **MUST** also obtain access through the [AVM Module Contributors access package]({{% siteparam base %}}/spec/SNFR20). Recording ownership in metadata does not grant access.
 
 ### Module Contributors
 

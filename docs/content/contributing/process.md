@@ -11,6 +11,10 @@ This page provides an overview of the contribution process for AVM modules.
 Each AVM module **MUST** have a [Module Proposal](https://aka.ms/AVM/ModuleProposal) issue created and approved by the AVM core team before it can be created/migrated!
 {{% /notice %}}
 
+{{% notice style="note" %}}
+Record approved details in the proposal issue. Once the repository and module source exist, maintain those details through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/).
+{{% /notice %}}
+
 <!-- markdownlint-disable -->
 <div style="width: 60%; height: 800px; overflow: hidden; position: relative; margin: 0 auto;margin-bottom: 2px;">
 <!-- <div style="margin-left: 0 !important; text-align: center; resize:both; overflow:auto; margin-bottom: 2px; position:relative; max-height: 600px; max-width: 100%;">  -->
@@ -34,22 +38,24 @@ flowchart TD
     IndexExistenceCheck -->|No|A
     IndexExistenceCheck -->|Yes|EndExistenceCheck(Review existing/proposed AVM module)
     EndExistenceCheck -->OrphanedCheck{ Is the module<br>orphaned? }
-        click OrphanedCheck "{{% siteparam base %}}/specs/shared/module-lifecycle/#orphaned-avm-modules"
+        click OrphanedCheck "{{% siteparam base %}}/specs/shared/module-lifecycle/#3-orphaned-modules"
     OrphanedCheck -->|No|ContactOwner[Contact module owner,<br> via GitHub issues on the related <br>repo, to discuss enhancements/<br>bugs/opportunities to contribute etc.]
     OrphanedCheck -->|Yes|OrphanOwnerYes(Locate the related issue <br> and comment on:<br> - A feature/enhancement suggestion <br> - Indicating you wish to become the owner)
-        click OrphanOwnerYes "{{% siteparam base %}}/specs/shared/module-lifecycle/#orphaned-avm-modules"
+        click OrphanOwnerYes "{{% siteparam base %}}/specs/shared/module-lifecycle/#3-orphaned-modules"
     OrphanOwnerYes -->B
     A[[ Create Module Proposal ]] -->|GitHub Issue/Form Submitted| B{ AVM Core Team<br>Triage }
         click A "https://aka.ms/avm/moduleproposal"
         click B "{{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#avm-core-team-triage-explained"
     B -->|Module Approved for Creation| C[["Module Owner(s) Identified  & assigned to GitHub issue/proposal" ]]
     B -->|Module Rejected| D(Issue closed with reasoning)
-    C -->E[[ Module index CSV files updated by AVM Core Team]]
-        click E "{{% siteparam base %}}/indexes/"
+    C -->E[[ Approved proposal recorded by AVM Core Team]]
+        click E "{{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#module-proposal-triage"
     E -->E1[[Repo/Directory Created following the <br> Contribution Guide ]]
         click E1 "{{% siteparam base %}}/contributing/"
     E1 -->F("Module Developed by Owner(s) & their Contributors")
-    F -->G[[ Module & AVM Compliance Tests ]]
+    F -->E2[[ Module metadata submitted and reviewed ]]
+        click E2 "{{% siteparam base %}}/contributing/module-metadata/"
+    E2 -->G[[ Module & AVM Compliance Tests ]]
         click G "{{% siteparam base %}}/spec/SNFR3"
     G -->|Tests Fail|I(Modules/Tests Fixed <br> To Make Them Pass)
     I -->F

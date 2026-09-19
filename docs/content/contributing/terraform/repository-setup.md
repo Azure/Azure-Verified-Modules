@@ -31,19 +31,21 @@ Until your access request is approved, you can contribute by using JIT elevation
 
 ## 2. Gather repository information
 
-You'll need the following from the module request issue:
+Gather the following approved values from the module request issue. Repository creation uses them to initialize the root `metadata.json`.
 
 | Information | Description |
 | --- | --- |
 | Module name | Format: `avm-<type>-<name>` (e.g. `avm-res-network-virtualnetwork`) |
-| Module owner GitHub handle | Your GitHub handle |
-| Module owner display name | `Firstname Lastname` |
-| Module description | Auto-prefixed with `Terraform Azure Verified <module-type> Module for ...` |
-| Resource provider namespace | Resource modules only (e.g. `Microsoft.Network`) |
-| Resource type | Resource modules only (e.g. `virtualNetworks`) |
-| Alternative names | Optional comma-separated list |
-| Secondary owner handle | Optional |
-| Secondary owner display name | Optional |
+| Module provider | Optional `moduleProvider`; defaults to `azure` |
+| Module display name | Approved display name, passed as `moduleDisplayName` |
+| Module description | Required approved description, passed as `moduleDescription` |
+| Canonical type | Required approved ARM resource type or pattern/utility taxonomy, passed as `canonicalType`. Resource modules can instead supply both fields in the next row. Do not infer the value from the module name. |
+| Resource provider namespace and resource type | For resource modules only, `resourceProviderNamespace` and `resourceType` together are an alternative to `canonicalType` (e.g. `Microsoft.Network` and `virtualNetworks`). They are not required when `canonicalType` is supplied. |
+| Telemetry ID prefix | Assigned `telemetryIdPrefix`; required for resource and pattern modules. Do not invent an identifier. |
+| Owners | `ownerGitHubHandles`, a PowerShell string array of approved bare usernames or qualified `@organization/team-slug` entries |
+| Alternative names | Optional `moduleAlternativeNames`, a comma-separated string; the tooling splits it for JSON metadata |
+
+Record every approved owner. An empty owner array is valid for an unowned module, subject to the proposal and ownership processes. Metadata does not grant access. Later ownership changes use the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change).
 
 ## 3. Create the repository
 
@@ -51,15 +53,17 @@ Prerequisites:
 - [PowerShell 7.4 or later](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)
 - [Git](https://git-scm.com/downloads)
 - [GitHub CLI](https://cli.github.com)
+- AVM core team approval and permission to create the repository, push its contents, and edit its custom properties.
+- A configured Git commit identity.
 
 ### Clone and prepare
 
-Use the [repository creation tooling](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/repository-creation):
+Use a trusted checkout of the [repository creation tooling](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/repository-creation). Its README covers operator prerequisites, additional options, and recovery.
 
 ```pwsh
-cd ~
+Set-Location $HOME
 git clone "https://github.com/Azure/azure-verified-modules-tools"
-cd ./azure-verified-modules-tools/repository-management/repository-creation
+Set-Location .\azure-verified-modules-tools\repository-management\repository-creation
 ```
 
 ### Authenticate
@@ -70,36 +74,31 @@ gh auth login -h "github.com" -w -p "https"
 
 ### Run the creation script
 
+Supply the approved `canonicalType` below. For a resource module, you can instead replace that entry with both `resourceProviderNamespace` and `resourceType`; pattern and utility modules require an explicit `canonicalType`. Supply the assigned telemetry prefix for resource and pattern modules. For a utility module that does not use telemetry, omit the `telemetryIdPrefix` entry. Do not derive telemetry identifiers from repository names or replace existing identifiers.
+
 ```pwsh
-if(!(Test-Path -Path "./scripts/New-Repository.ps1")) {
+if (!(Test-Path -Path ".\scripts\New-Repository.ps1")) {
     Write-Error "This script must be run from the repository-creation directory."
     exit 1
 }
 
-# Required Inputs
-$moduleName = "<module name>" # e.g. avm-res-network-virtualnetwork
-$moduleDisplayName = "<module description>"
-$resourceProviderNamespace = "" # Leave empty for Pattern/Utility modules
-$resourceType = "" # Leave empty for Pattern/Utility modules
-$ownerPrimaryGitHubHandle = "<github handle>"
-$ownerPrimaryDisplayName = "<display name>"
+$parameters = @{
+    moduleName = "<approved module name>"
+    moduleDisplayName = "<approved display name>"
+    moduleDescription = "<approved description>"
+    canonicalType = "<approved ARM resource type or taxonomy>"
+    telemetryIdPrefix = "<assigned telemetry ID prefix>"
+    ownerGitHubHandles = @("<approved individual handle>")
+}
 
-# Optional
-$moduleAlternativeNames = ""
-$ownerSecondaryGitHubHandle = ""
-$ownerSecondaryDisplayName = ""
-
-./scripts/New-Repository.ps1 `
-    -moduleName $moduleName `
-    -moduleDisplayName $moduleDisplayName `
-    -resourceProviderNamespace $resourceProviderNamespace `
-    -resourceType $resourceType `
-    -ownerPrimaryGitHubHandle $ownerPrimaryGitHubHandle `
-    -ownerPrimaryDisplayName $ownerPrimaryDisplayName `
-    -moduleAlternativeNames $moduleAlternativeNames `
-    -ownerSecondaryGitHubHandle $ownerSecondaryGitHubHandle `
-    -ownerSecondaryDisplayName $ownerSecondaryDisplayName
+.\scripts\New-Repository.ps1 @parameters -planOnly
 ```
+
+Add optional entries from the table when needed. Keep `ownerGitHubHandles` as an array, such as `@("first-owner", "@Azure/approved-team")`, and `moduleAlternativeNames` as a comma-separated string.
+
+`-planOnly` and `-WhatIf` validate the inputs and show the plan without making GitHub or filesystem changes. Review the plan and obtain the required approval before running the same command without either switch.
+
+Creation publishes validated root metadata in the first commit to `main`. If creation fails, stop and follow the recovery guidance in the tooling README before retrying.
 
 ### Complete Open Source Portal Setup
 
@@ -145,9 +144,11 @@ Click **Finish setup + start business review**, then **View repository**, then *
 
 Return to the terminal and type `yes` to complete repository configuration.
 
-The script will automatically:
-- Create a PR to add module metadata to the [`repository-sync` configuration](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/repository-sync).
-- Create a PR to install the `Azure Verified Modules` GitHub App.
+The script creates the `Azure Verified Modules` GitHub App installation request.
+
+{{% notice style="note" %}}
+Maintain the module's details and full `owners` array through [metadata code-owner review]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change). Complete the Open Source Portal, access-package, and JIT requirements separately.
+{{% /notice %}}
 
 ## 4. Upgrade just-in-time access to JITv2
 
@@ -190,3 +191,5 @@ Module owners retain day-to-day access through the `azure-verified-modules-modul
 ## 5. Wait for the GitHub App and repository sync
 
 After the app is installed, [repository sync](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/repository-sync) applies the shared repository configuration and [managed files](https://github.com/Azure/azure-verified-modules-managed-files) to complete the setup.
+
+Sync reads the root `metadata.json` from the module repository's default branch for the display name and full owner list.

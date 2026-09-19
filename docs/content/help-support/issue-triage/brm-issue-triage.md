@@ -59,7 +59,7 @@ If the issue was opened as a misplaced module proposal, mention the `@Azure/azur
 
 1. Check the Module issue:
     - Make sure the issue has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>&nbsp; applied to it.
-    - Use the AVM module indexes to identify the module owner(s) and make sure they are assigned/mentioned/informed.
+    - Use the AVM module indexes to locate the module and its root `metadata.json` for the full owner list. Make sure the owners are assigned/mentioned/informed. Submit corrections through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/).
     - If the module is orphaned (has no owner), make sure there's an orphaned module issue in the AVM repository.
     - Make sure the module's details are captured correctly in the description - i.e., name, classification (resource/pattern), language (Bicep/Terraform), etc.
     - Make sure the issue is categorized using one of the following type labels:

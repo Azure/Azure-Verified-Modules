@@ -87,6 +87,8 @@ It is critical to the consumers experience that modules continue to be maintaine
 
 To **orphan a module**, submit an [orphaned module](https://aka.ms/AVM/OrphanedModule) issue in the AVM repository. For the required steps, review the related article: [When a module becomes orphaned]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-orphaned).
 
+Set `"owners": []` in the root `metadata.json` to remove all individual and team handles, following the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/). Complete the issue and required notices; catalog generation and reviewed publication update the public index.
+
 [When a new owner is identified]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified), follow the related guidance.
 
 {{% /notice %}}
@@ -139,6 +141,12 @@ The information notice **MUST** include the following statement:
 {{% notice style="info" %}}
 
 To **deprecate a module**, submit a [deprecated module](https://aka.ms/AVM/DeprecatedModule) issue in the AVM repository. For the required steps, review the related article: [When a module becomes deprecated]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-deprecated).
+
+The catalog derives `Deprecated` from Bicep's `DEPRECATED.md` or the Terraform repository's `archived` flag. Complete the notices and other retirement steps above, then review the [catalog update]({{% siteparam base %}}/contributing/module-metadata/#catalog-updates).
+
+A Bicep marker deprecates its module and all descendants. A child marker does not deprecate the parent or siblings. Archiving a Terraform repository deprecates every module entry in that repository.
+
+Changing owners does not deprecate or reactivate a module.
 
 {{% /notice %}}
 

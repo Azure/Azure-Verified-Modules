@@ -392,6 +392,7 @@ For a brand new module being published for the first time, get the module review
 
 ### Owner responsibilities
 
+- Keep the root `metadata.json` up to date, including every approved owner, through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/). Complete owner access approval separately.
 - Watch PR and issue activity for your module and respond in a timely manner as per [SNFR11]({{% siteparam base %}}/spec/SNFR11).
 - Familiarize yourself with [Team Definitions & RACI]({{% siteparam base %}}/specs/shared/team-definitions/#module-owners) and [TF Issue Triage]({{% siteparam base %}}/help-support/issue-triage/).
 
@@ -404,7 +405,7 @@ For a brand new module being published for the first time, get the module review
 ## 9. Cut a release
 
 {{% notice style="note" %}}
-This step is performed by the **module owner** only.
+This step is performed by the **module owner** only. Skip it for metadata-only changes: updates to `metadata.json` must not trigger a module release. See the [metadata maintenance process]({{% siteparam base %}}/contributing/module-metadata/).
 {{% /notice %}}
 
 After the PR is merged to `main`, create a release via [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository):

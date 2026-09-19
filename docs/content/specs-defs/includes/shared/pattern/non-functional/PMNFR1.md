@@ -23,9 +23,11 @@ Pattern Modules **MUST** follow the below naming conventions (all lower case).
 
 {{% notice style="important" %}}
 
-As part of the module proposal process, the module's approved name is captured both in the module proposal issue AND the related [module index page]({{% siteparam base %}}/indexes) (backed by the corresponding [CSV file](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes)).
+The module's approved name is captured in the module proposal issue. The related [module index page]({{% siteparam base %}}/indexes) and [CSV file](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) remain published lookup references.
 
-Therefore, **module owners don't need to construct the module's name themselves, instead they need use the name prescribed in the module proposal issue or in the related CSV file, at the time of approval.**
+**Module owners must use the name approved in the module proposal, not construct a new one.** If it differs from the index, confirm the correction with the AVM core team.
+
+Correct descriptive fields through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/). Changing `moduleDisplayName` does not rename the module or change its repository path.
 
 {{% /notice %}}
 
