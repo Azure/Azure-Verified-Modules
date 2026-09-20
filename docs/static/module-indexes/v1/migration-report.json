@@ -1,0 +1,3899 @@
+{
+  "schemaVersion": 1,
+  "missingMetadata": [
+    {
+      "ecosystem": "terraform",
+      "repository": "Azure/terraform-azurerm-avm-res-test-repo5",
+      "modulePath": ".",
+      "reason": "metadata-not-present"
+    }
+  ],
+  "unresolvedLegacy": [],
+  "parity": {
+    "bicepOnly": [
+      "Microsoft.ApiCenter/services",
+      "Microsoft.ApiCenter/services/metadataSchemas",
+      "Microsoft.ApiCenter/services/workspaces",
+      "Microsoft.ApiCenter/services/workspaces/apiSources",
+      "Microsoft.ApiCenter/services/workspaces/apis",
+      "Microsoft.ApiCenter/services/workspaces/apis/deployments",
+      "Microsoft.ApiCenter/services/workspaces/apis/versions",
+      "Microsoft.ApiCenter/services/workspaces/apis/versions/definitions",
+      "Microsoft.ApiCenter/services/workspaces/environments",
+      "Microsoft.ApiManagement/service/apiVersionSets",
+      "Microsoft.ApiManagement/service/apis",
+      "Microsoft.ApiManagement/service/apis/diagnostics",
+      "Microsoft.ApiManagement/service/apis/operations",
+      "Microsoft.ApiManagement/service/apis/operations/policies",
+      "Microsoft.ApiManagement/service/apis/policies",
+      "Microsoft.ApiManagement/service/authorizationServers",
+      "Microsoft.ApiManagement/service/backends",
+      "Microsoft.ApiManagement/service/caches",
+      "Microsoft.ApiManagement/service/diagnostics",
+      "Microsoft.ApiManagement/service/identityProviders",
+      "Microsoft.ApiManagement/service/loggers",
+      "Microsoft.ApiManagement/service/namesValues",
+      "Microsoft.ApiManagement/service/policies",
+      "Microsoft.ApiManagement/service/portalsettings",
+      "Microsoft.ApiManagement/service/privateEndpointConnections",
+      "Microsoft.ApiManagement/service/products",
+      "Microsoft.ApiManagement/service/products/apis",
+      "Microsoft.ApiManagement/service/products/groups",
+      "Microsoft.ApiManagement/service/products/policies",
+      "Microsoft.ApiManagement/service/subscriptions",
+      "Microsoft.ApiManagement/service/workspaces",
+      "Microsoft.ApiManagement/service/workspaces/apiVersionSets",
+      "Microsoft.ApiManagement/service/workspaces/apis",
+      "Microsoft.ApiManagement/service/workspaces/apis/diagnostics",
+      "Microsoft.ApiManagement/service/workspaces/apis/operations",
+      "Microsoft.ApiManagement/service/workspaces/apis/operations/policies",
+      "Microsoft.ApiManagement/service/workspaces/apis/policies",
+      "Microsoft.ApiManagement/service/workspaces/backends",
+      "Microsoft.ApiManagement/service/workspaces/diagnostics",
+      "Microsoft.ApiManagement/service/workspaces/loggers",
+      "Microsoft.ApiManagement/service/workspaces/namedValues",
+      "Microsoft.ApiManagement/service/workspaces/policies",
+      "Microsoft.ApiManagement/service/workspaces/products",
+      "Microsoft.ApiManagement/service/workspaces/products/apiLinks",
+      "Microsoft.ApiManagement/service/workspaces/products/groupLinks",
+      "Microsoft.ApiManagement/service/workspaces/products/policies",
+      "Microsoft.ApiManagement/service/workspaces/subscriptions",
+      "Microsoft.App/Jobs",
+      "Microsoft.App/agents",
+      "Microsoft.App/sessionPools",
+      "Microsoft.Authorization/policyAssignments",
+      "Microsoft.Automation/automationAccounts/credentials",
+      "Microsoft.Automation/automationAccounts/hybridRunbookWorkerGroups",
+      "Microsoft.Automation/automationAccounts/hybridRunbookWorkerGroups/hybridRunbookWorkers",
+      "Microsoft.Automation/automationAccounts/jobSchedules",
+      "Microsoft.Automation/automationAccounts/modules",
+      "Microsoft.Automation/automationAccounts/powerShell72Modules",
+      "Microsoft.Automation/automationAccounts/python2Packages",
+      "Microsoft.Automation/automationAccounts/python3Packages",
+      "Microsoft.Automation/automationAccounts/runbooks",
+      "Microsoft.Automation/automationAccounts/schedules",
+      "Microsoft.Automation/automationAccounts/sourceControls",
+      "Microsoft.Automation/automationAccounts/variables",
+      "Microsoft.Automation/automationAccounts/webhooks",
+      "Microsoft.AzureStackHCI/clusters/arcSettings/extensions",
+      "Microsoft.AzureStackHCI/clusters/deploymentSettings",
+      "Microsoft.AzureStackHCI/marketplaceGalleryImages",
+      "Microsoft.AzureStackHCI/networkInterfaces",
+      "Microsoft.AzureStackHCI/virtualHardDisks",
+      "Microsoft.Cache/Redis",
+      "Microsoft.Cache/redis/accessPolicies",
+      "Microsoft.Cache/redis/accessPolicyAssignments",
+      "Microsoft.Cache/redis/firewallRules",
+      "Microsoft.Cache/redis/linkedServers",
+      "Microsoft.Cache/redisEnterprise/databases",
+      "Microsoft.Cache/redisEnterprise/databases/accessPolicyAssignments",
+      "Microsoft.Cdn/profiles/afdEndpoints",
+      "Microsoft.Cdn/profiles/afdEndpoints/routes",
+      "Microsoft.Cdn/profiles/customDomains",
+      "Microsoft.Cdn/profiles/endpoints",
+      "Microsoft.Cdn/profiles/endpoints/origins",
+      "Microsoft.Cdn/profiles/originGroups",
+      "Microsoft.Cdn/profiles/originGroups/origins",
+      "Microsoft.Cdn/profiles/ruleSets",
+      "Microsoft.Cdn/profiles/ruleSets/rules",
+      "Microsoft.Cdn/profiles/secrets",
+      "Microsoft.Cdn/profiles/securityPolicies",
+      "Microsoft.Chaos/experiments",
+      "Microsoft.CodeSigning/codeSigningAccounts",
+      "Microsoft.CognitiveServices/accounts/projects",
+      "Microsoft.Communication/communicationServices",
+      "Microsoft.Compute/availabilitySets",
+      "Microsoft.Compute/galleries/applications",
+      "Microsoft.Compute/galleries/images",
+      "Microsoft.Compute/virtualMachineScaleSets/extensions",
+      "Microsoft.ContainerRegistry/registries/replications",
+      "Microsoft.ContainerRegistry/registries/tasks",
+      "Microsoft.ContainerRegistry/registries/tokens",
+      "Microsoft.ContainerRegistry/registries/webhooks",
+      "Microsoft.DBforMySQL/flexibleServers/administrators",
+      "Microsoft.DBforMySQL/flexibleServers/advancedThreatProtectionSettings",
+      "Microsoft.DBforMySQL/flexibleServers/configurations",
+      "Microsoft.DBforMySQL/flexibleServers/databases",
+      "Microsoft.DBforMySQL/flexibleServers/firewallRules",
+      "Microsoft.DBforPostgreSQL/flexibleServers/administrators",
+      "Microsoft.DBforPostgreSQL/flexibleServers/advancedThreatProtectionSettings",
+      "Microsoft.DBforPostgreSQL/flexibleServers/configurations",
+      "Microsoft.DBforPostgreSQL/flexibleServers/firewallRules",
+      "Microsoft.DataFactory/factories/integrationRuntimes",
+      "Microsoft.DataFactory/factories/linkedservices",
+      "Microsoft.DataFactory/factories/managedVirtualNetworks",
+      "Microsoft.DataFactory/factories/managedVirtualNetworks/managedPrivateEndpoints",
+      "Microsoft.DataProtection/backupVaults/backupPolicies",
+      "Microsoft.DesktopVirtualization/applicationGroups/applications",
+      "Microsoft.DevCenter/devcenters/attachednetworks",
+      "Microsoft.DevCenter/devcenters/projectPolicies",
+      "Microsoft.DevCenter/networkConnections",
+      "Microsoft.DevCenter/projects",
+      "Microsoft.DevCenter/projects/catalogs",
+      "Microsoft.DevCenter/projects/environmentTypes",
+      "Microsoft.DevCenter/projects/pools",
+      "Microsoft.DevCenter/projects/pools/schedules",
+      "Microsoft.DevTestLab/labs/artifactsources",
+      "Microsoft.DevTestLab/labs/costs",
+      "Microsoft.DevTestLab/labs/notificationchannels",
+      "Microsoft.DevTestLab/labs/policysets/policies",
+      "Microsoft.DevTestLab/labs/schedules",
+      "Microsoft.DevTestLab/labs/secrets",
+      "Microsoft.DevTestLab/labs/virtualnetworks",
+      "Microsoft.Devices/IotHubs",
+      "Microsoft.Devices/IotHubs/eventHubEndpoints/ConsumerGroups",
+      "Microsoft.DigitalTwins/digitalTwinsInstances/endpoints",
+      "Microsoft.DocumentDB/databaseAccounts/cassandraKeyspaces",
+      "Microsoft.DocumentDB/databaseAccounts/cassandraKeyspaces/tables",
+      "Microsoft.DocumentDB/databaseAccounts/cassandraKeyspaces/views",
+      "Microsoft.DocumentDB/databaseAccounts/cassandraRoleAssignments",
+      "Microsoft.DocumentDB/databaseAccounts/cassandraRoleDefinitions",
+      "Microsoft.DocumentDB/databaseAccounts/gremlinDatabases",
+      "Microsoft.DocumentDB/databaseAccounts/gremlinDatabases/graphs",
+      "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases",
+      "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
+      "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+      "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
+      "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments",
+      "Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinitions",
+      "Microsoft.DocumentDB/databaseAccounts/tables",
+      "Microsoft.DurableTask/schedulers",
+      "Microsoft.Edge/configurations",
+      "Microsoft.EdgeOrder/orderItems",
+      "Microsoft.ElasticSan/elasticSans",
+      "Microsoft.ElasticSan/elasticSans/volumegroups",
+      "Microsoft.ElasticSan/elasticSans/volumegroups/snapshots",
+      "Microsoft.ElasticSan/elasticSans/volumegroups/volumes",
+      "Microsoft.EventGrid/systemTopics/eventSubscriptions",
+      "Microsoft.EventHub/namespaces/authorizationRules",
+      "Microsoft.EventHub/namespaces/disasterRecoveryConfigs",
+      "Microsoft.EventHub/namespaces/eventhubs",
+      "Microsoft.EventHub/namespaces/eventhubs/authorizationRules",
+      "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
+      "Microsoft.EventHub/namespaces/networkRuleSets",
+      "Microsoft.HealthcareApis/workspaces",
+      "Microsoft.HealthcareApis/workspaces/dicomservices",
+      "Microsoft.HealthcareApis/workspaces/fhirservices",
+      "Microsoft.HealthcareApis/workspaces/iotconnectors",
+      "Microsoft.HealthcareApis/workspaces/iotconnectors/fhirdestinations",
+      "Microsoft.HybridCompute/gateways",
+      "Microsoft.HybridCompute/licenses",
+      "Microsoft.HybridCompute/machines/extensions",
+      "Microsoft.HybridCompute/privateLinkScopes",
+      "Microsoft.HybridCompute/settings",
+      "Microsoft.Insights/components/linkedStorageAccounts",
+      "Microsoft.Insights/diagnosticSettings",
+      "Microsoft.Insights/privateLinkScopes/scopedResources",
+      "Microsoft.Insights/webtests",
+      "Microsoft.KeyVault/vaults/accessPolicies",
+      "Microsoft.Kubernetes/connectedClusters",
+      "Microsoft.KubernetesConfiguration/fluxConfigurations",
+      "Microsoft.KubernetesRuntime/bgpPeers",
+      "Microsoft.KubernetesRuntime/loadBalancers",
+      "Microsoft.KubernetesRuntime/services",
+      "Microsoft.Logic/integrationAccounts",
+      "Microsoft.Logic/integrationAccounts/agreements",
+      "Microsoft.Logic/integrationAccounts/assemblies",
+      "Microsoft.Logic/integrationAccounts/certificates",
+      "Microsoft.Logic/integrationAccounts/maps",
+      "Microsoft.Logic/integrationAccounts/partners",
+      "Microsoft.Logic/integrationAccounts/schemas",
+      "Microsoft.MachineLearningServices/registries",
+      "Microsoft.MachineLearningServices/workspaces/computes",
+      "Microsoft.MachineLearningServices/workspaces/connections",
+      "Microsoft.MachineLearningServices/workspaces/datastores",
+      "Microsoft.Maintenance/configurationAssignments",
+      "Microsoft.ManagedIdentity/userAssignedIdentities/federatedIdentityCredentials",
+      "Microsoft.Maps/accounts",
+      "Microsoft.Mission/approvals",
+      "Microsoft.NetApp/netAppAccounts/backupVaults/backups",
+      "Microsoft.Network/dnsForwardingRulesets/forwardingRules",
+      "Microsoft.Network/dnsResolvers/inboundEndpoints",
+      "Microsoft.Network/dnsResolvers/outboundEndpoints",
+      "Microsoft.Network/dnsZones/A",
+      "Microsoft.Network/dnsZones/AAAA",
+      "Microsoft.Network/dnsZones/CAA",
+      "Microsoft.Network/dnsZones/CNAME",
+      "Microsoft.Network/dnsZones/DS",
+      "Microsoft.Network/dnsZones/MX",
+      "Microsoft.Network/dnsZones/NS",
+      "Microsoft.Network/dnsZones/PTR",
+      "Microsoft.Network/dnsZones/SOA",
+      "Microsoft.Network/dnsZones/SRV",
+      "Microsoft.Network/dnsZones/TXT",
+      "Microsoft.Network/dnsZones/dnssecConfigs",
+      "Microsoft.Network/expressRouteGateways",
+      "Microsoft.Network/expressRoutePorts",
+      "Microsoft.Network/frontDoors",
+      "Microsoft.Network/loadBalancers/backendAddressPools",
+      "Microsoft.Network/loadBalancers/inboundNatRules",
+      "Microsoft.Network/networkManagers/networkGroups/staticMembers",
+      "Microsoft.Network/networkManagers/routingConfigurations/ruleCollections",
+      "Microsoft.Network/networkManagers/routingConfigurations/ruleCollections/rules",
+      "Microsoft.Network/networkManagers/securityAdminConfigurations/ruleCollections",
+      "Microsoft.Network/networkManagers/securityAdminConfigurations/ruleCollections/rules",
+      "Microsoft.Network/networkWatchers/connectionMonitors",
+      "Microsoft.Network/networkWatchers/flowLogs",
+      "Microsoft.Network/p2svpnGateways",
+      "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
+      "Microsoft.Network/virtualHubs",
+      "Microsoft.Network/virtualHubs/hubRouteTables",
+      "Microsoft.Network/virtualHubs/hubVirtualNetworkConnections",
+      "Microsoft.Network/virtualHubs/routeMaps",
+      "Microsoft.Network/virtualHubs/routingIntent",
+      "Microsoft.Network/virtualNetworkGateways/natRules",
+      "Microsoft.Network/virtualWans",
+      "Microsoft.Network/vpnGateways",
+      "Microsoft.Network/vpnGateways/natRules",
+      "Microsoft.Network/vpnGateways/vpnConnections",
+      "Microsoft.Network/vpnServerConfigurations",
+      "Microsoft.Network/vpnSites",
+      "Microsoft.OperationalInsights/clusters",
+      "Microsoft.OperationalInsights/workspaces/dataExports",
+      "Microsoft.OperationalInsights/workspaces/dataSources",
+      "Microsoft.OperationalInsights/workspaces/linkedServices",
+      "Microsoft.OperationalInsights/workspaces/linkedStorageAccounts",
+      "Microsoft.OperationalInsights/workspaces/savedSearches",
+      "Microsoft.OperationalInsights/workspaces/storageInsightConfigs",
+      "Microsoft.OperationalInsights/workspaces/tables",
+      "Microsoft.RecoveryServices/vaults/backupconfig",
+      "Microsoft.RecoveryServices/vaults/replicationAlertSettings",
+      "Microsoft.RecoveryServices/vaults/replicationFabrics",
+      "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers",
+      "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectionContainerMappings",
+      "Microsoft.RecoveryServices/vaults/replicationPolicies",
+      "Microsoft.Relay/namespaces/hybridConnections/authorizationRules",
+      "Microsoft.Relay/namespaces/wcfRelays/authorizationRules",
+      "Microsoft.Resources/deploymentScripts",
+      "Microsoft.Scom/managedInstances",
+      "Microsoft.Search/searchServices/sharedPrivateLinkResources",
+      "Microsoft.SecurityInsights/dataConnectors",
+      "Microsoft.SecurityInsights/onboardingStates",
+      "Microsoft.SecurityInsights/settings",
+      "Microsoft.ServiceBus/namespaces/AuthorizationRules",
+      "Microsoft.ServiceBus/namespaces/disasterRecoveryConfigs",
+      "Microsoft.ServiceBus/namespaces/migrationConfigurations",
+      "Microsoft.ServiceBus/namespaces/networkRuleSets",
+      "Microsoft.ServiceBus/namespaces/queues",
+      "Microsoft.ServiceBus/namespaces/queues/authorizationRules",
+      "Microsoft.ServiceBus/namespaces/topics",
+      "Microsoft.ServiceBus/namespaces/topics/authorizationRules",
+      "Microsoft.ServiceBus/namespaces/topics/subscriptions",
+      "Microsoft.ServiceBus/namespaces/topics/subscriptions/rules",
+      "Microsoft.ServiceFabric/clusters/applicationTypes",
+      "Microsoft.ServiceNetworking/trafficControllers/associations",
+      "Microsoft.ServiceNetworking/trafficControllers/frontends",
+      "Microsoft.ServiceNetworking/trafficControllers/securityPolicies",
+      "Microsoft.SignalRService/webPubSub",
+      "Microsoft.Sql/instancePools",
+      "Microsoft.Sql/managedInstances/databases",
+      "Microsoft.Sql/managedInstances/databases/backupLongTermRetentionPolicies",
+      "Microsoft.Sql/managedInstances/databases/backupShortTermRetentionPolicies",
+      "Microsoft.Sql/managedInstances/encryptionProtector",
+      "Microsoft.Sql/managedInstances/keys",
+      "Microsoft.Sql/managedInstances/securityAlertPolicies",
+      "Microsoft.Sql/managedInstances/vulnerabilityAssessments",
+      "Microsoft.Sql/servers/auditingSettings",
+      "Microsoft.Sql/servers/databases/backupLongTermRetentionPolicies",
+      "Microsoft.Sql/servers/databases/backupShortTermRetentionPolicies",
+      "Microsoft.Sql/servers/encryptionProtector",
+      "Microsoft.Sql/servers/failoverGroups",
+      "Microsoft.Sql/servers/firewallRules",
+      "Microsoft.Sql/servers/keys",
+      "Microsoft.Sql/servers/securityAlertPolicies",
+      "Microsoft.Sql/servers/virtualNetworkRules",
+      "Microsoft.Sql/servers/vulnerabilityAssessments",
+      "Microsoft.Storage/storageAccounts/blobServices/containers/immutabilityPolicies",
+      "Microsoft.Storage/storageAccounts/objectReplicationPolicies",
+      "Microsoft.StreamAnalytics/streamingjobs",
+      "Microsoft.Synapse/privateLinkHubs",
+      "Microsoft.Synapse/workspaces/administrators",
+      "Microsoft.Synapse/workspaces/bigDataPools",
+      "Microsoft.Synapse/workspaces/firewallRules",
+      "Microsoft.Synapse/workspaces/integrationRuntimes",
+      "Microsoft.Synapse/workspaces/keys",
+      "Microsoft.Synapse/workspaces/sqlPools",
+      "Microsoft.Web/connection",
+      "Microsoft.Web/sites/extensions",
+      "Microsoft.Web/sites/hybridConnectionNamespaces/relays",
+      "Microsoft.Web/sites/slots/basicPublishingCredentialsPolicies",
+      "Microsoft.Web/sites/slots/config",
+      "Microsoft.Web/sites/slots/extensions",
+      "Microsoft.Web/sites/slots/hostNameBindings",
+      "Microsoft.Web/sites/slots/hybridConnectionNamespaces/relays",
+      "Microsoft.Web/staticSites/config",
+      "Microsoft.Web/staticSites/customDomains",
+      "Microsoft.Web/staticSites/linkedBackends",
+      "ai-platform/baseline",
+      "alz/ama",
+      "alz/empty",
+      "app/container-job-toolkit",
+      "app/cosmos-db-account-container-app",
+      "app/function-app",
+      "app/iaas-vm-cosmosdb-tier4",
+      "app/mongodb-cluster-container-app",
+      "app/paas-ase-cosmosdb-tier4",
+      "authorization/pim-role-assignment",
+      "authorization/policy-exemption",
+      "authorization/resource-role-assignment",
+      "authorization/role-assignment",
+      "authorization/role-definition",
+      "avd-lza/networking",
+      "avd-lza/session-hosts",
+      "azd/acr-container-app",
+      "azd/aks",
+      "azd/aks-automatic-cluster",
+      "azd/apim-api",
+      "azd/container-app-upsert",
+      "azd/container-apps-stack",
+      "azd/insights-dashboard",
+      "azd/ml-ai-environment",
+      "azd/ml-hub-dependencies",
+      "azd/ml-project",
+      "azd/monitoring",
+      "data/private-analytical-workspace",
+      "deployment-script/create-kv-ssh-key-pair",
+      "deployment-script/import-image-to-acr",
+      "deployment-script/private",
+      "dev-center/dev-box",
+      "finops-toolkit/finops-hub",
+      "general/get-environment",
+      "lza-shared/data-services",
+      "maintenance/azure-update-manager",
+      "mgmt-groups/subscription-placement",
+      "monitoring/amba",
+      "network/vwan-connected-vnets",
+      "openai/e2e-baseline",
+      "policy-insights/remediation",
+      "sa/build-your-own-copilot",
+      "sa/chat-with-your-data",
+      "sa/container-migration",
+      "sa/content-generation",
+      "sa/content-processing",
+      "sa/conversation-knowledge-mining",
+      "sa/customer-chatbot",
+      "sa/document-knowledge-mining",
+      "sa/modernize-your-code",
+      "sa/multi-agent-custom-automation-engine",
+      "security/security-center",
+      "security/sentinel",
+      "subscription/service-health-alerts",
+      "types/avm-common-types"
+    ],
+    "terraformOnly": [
+      "Microsoft.App/jobs",
+      "Microsoft.App/managedEnvironments/daprComponents",
+      "Microsoft.App/managedEnvironments/daprSubscriptions",
+      "Microsoft.App/managedEnvironments/dotNetComponents",
+      "Microsoft.App/managedEnvironments/httpRouteConfigs",
+      "Microsoft.App/managedEnvironments/javaComponents",
+      "Microsoft.App/managedEnvironments/maintenanceConfigurations",
+      "Microsoft.App/managedEnvironments/managedCertificates",
+      "Microsoft.Cache/redis",
+      "Microsoft.CertificateRegistration/certificateOrders",
+      "Microsoft.CognitiveServices/accounts/raiPolicies",
+      "Microsoft.Compute/capacityReservationGroups",
+      "Microsoft.Compute/capacityReservationGroups/capacityReservations",
+      "Microsoft.Compute/hostGroups",
+      "Microsoft.Compute/virtualMachines/runCommands",
+      "Microsoft.ContainerService/fleets",
+      "Microsoft.ContainerService/managedClusters/managedNamespaces",
+      "Microsoft.DeviceRegistry/assetEndpointProfiles",
+      "Microsoft.DocumentDB/mongoClusters/privateEndpointConnections",
+      "Microsoft.EventGrid/domains/topics/eventSubscriptions",
+      "Microsoft.Features/providers/features",
+      "Microsoft.Insights/logProfiles",
+      "Microsoft.Mission/approval",
+      "Microsoft.Network/ExpressRoutePorts",
+      "Microsoft.Network/networkSecurityPerimeters/linkReferences",
+      "Microsoft.Network/networkSecurityPerimeters/links",
+      "Microsoft.Network/networkSecurityPerimeters/resourceAssociations",
+      "Microsoft.Network/routeTables/routes",
+      "Microsoft.Network/trafficmanagerprofiles/AzureEndpoints",
+      "Microsoft.Network/trafficmanagerprofiles/ExternalEndpoints",
+      "Microsoft.Network/trafficmanagerprofiles/NestedEndpoints",
+      "Microsoft.Network/virtualRouters",
+      "Microsoft.OperationalInsights/queryPacks",
+      "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectedItems",
+      "Microsoft.RedHatOpenShift/openShiftClusters",
+      "Microsoft.Relationships/serviceGroupMember",
+      "Microsoft.Resources/features",
+      "Microsoft.Sql/InstancePools",
+      "Microsoft.Web/certificates",
+      "Microsoft.Web/connections",
+      "Oracle.Database/autonomousDatabases",
+      "Oracle.Database/cloudExadataInfrastructures",
+      "Oracle.Database/cloudVmClusters",
+      "aca-lza/hosting-environment/application-gateway",
+      "aca-lza/hosting-environment/container-apps-environment",
+      "aca-lza/hosting-environment/front-door",
+      "aca-lza/hosting-environment/linux-vm",
+      "aca-lza/hosting-environment/naming",
+      "aca-lza/hosting-environment/sample-application",
+      "aca-lza/hosting-environment/spoke",
+      "aca-lza/hosting-environment/supporting-services",
+      "aca-lza/hosting-environment/windows-vm",
+      "ai-foundry-enterprise",
+      "ai-foundry-enterprise/ai-foundry-core",
+      "ai-foundry-enterprise/ai-foundry-identity",
+      "ai-foundry-enterprise/ai-foundry-network",
+      "ai-foundry-enterprise/ai-foundry-services",
+      "ai-foundry-enterprise/ai-foundry-shared-resources",
+      "ai-ml/ai-foundry/ai-foundry-project",
+      "ai-platform-baseline",
+      "aiml-ai-gateway",
+      "aks-dev",
+      "aks-economy",
+      "aks-enterprise",
+      "aks-production",
+      "alz",
+      "alz-application-landing-zone-cicd-bootstrap-azure-devops",
+      "alz-application-landing-zone-cicd-bootstrap-github",
+      "alz-application-landing-zone-identity-and-access",
+      "alz-connectivity-hub-and-spoke-vnet",
+      "alz-connectivity-hub-and-spoke-vnet/dns-resolver-policy",
+      "alz-connectivity-hub-and-spoke-vnet/hub-virtual-network-mesh",
+      "alz-connectivity-hub-and-spoke-vnet/virtual-network-gateway",
+      "alz-connectivity-virtual-wan",
+      "alz-connectivity-virtual-wan/expressroute-gateway",
+      "alz-connectivity-virtual-wan/expressroute-gateway-connection",
+      "alz-connectivity-virtual-wan/firewall",
+      "alz-connectivity-virtual-wan/route-map",
+      "alz-connectivity-virtual-wan/site-to-site-gateway",
+      "alz-connectivity-virtual-wan/site-to-site-gateway-connection",
+      "alz-connectivity-virtual-wan/site-to-site-vpn-site",
+      "alz-connectivity-virtual-wan/virtual-hub",
+      "alz-connectivity-virtual-wan/virtual-network-connection",
+      "alz-connectivity-virtual-wan/virtual-wan",
+      "alz-identity",
+      "alz-management",
+      "alz-policy-exemptions",
+      "app-iaas-vm-cosmosdb-tier-four",
+      "app-paas-ase-cosmosdb-tier-four",
+      "app-service-lza/hosting-environment/naming",
+      "avd-lza-sessionhosts",
+      "azure-aws-s2s-vpn",
+      "azure-ipam",
+      "azure-local-migrate",
+      "azuremonitorwindowsagent",
+      "bcdr-vm-replication",
+      "botservice-teamsapp",
+      "cicd-bootstrap",
+      "cloudshell-vnet",
+      "commercial-marketplace",
+      "confidential-compute",
+      "dev-center-dev-box",
+      "dev-ops/cicd-agents-and-runners/container-app-job",
+      "dev-ops/cicd-agents-and-runners/container-instance",
+      "dev-ops/cicd-agents-and-runners/container-registry",
+      "enterprise-rag",
+      "ephemeral-credential",
+      "example-repo",
+      "finopstoolkit-finopshub",
+      "function-app-storage-private-endpoints",
+      "hci-ad-provisioner",
+      "hci-server-provisioner",
+      "helper",
+      "interfaces",
+      "lbvmss",
+      "lz/sub-vending/budget",
+      "lz/sub-vending/network-security-group",
+      "lz/sub-vending/resource-group",
+      "lz/sub-vending/resource-provider",
+      "lz/sub-vending/role-assignment",
+      "lz/sub-vending/route-table",
+      "lz/sub-vending/subscription",
+      "lz/sub-vending/user-assigned-managed-identity",
+      "lz/sub-vending/virtual-network",
+      "mongodb-atlas-lza",
+      "monitor-private-link-scope",
+      "naming",
+      "network-ip-addresses",
+      "network-routeserver",
+      "network/virtual-wan/expressroute-gateway",
+      "network/virtual-wan/expressroute-gateway-conn",
+      "network/virtual-wan/firewall",
+      "network/virtual-wan/site-to-site-gateway",
+      "network/virtual-wan/site-to-site-gateway-conn",
+      "network/virtual-wan/site-to-site-vpn-site",
+      "network/virtual-wan/virtualhub",
+      "network/virtual-wan/vnet-conn",
+      "odaa",
+      "odaa-identity",
+      "odaa-identity/azure-identity",
+      "odaa/vnet-peerings",
+      "openai-cognitivesearch",
+      "openai-e2e-baseline",
+      "oracle-iaas",
+      "purestorage-cbs-array",
+      "regions",
+      "roledefinitions",
+      "sentinel-solutions",
+      "sku-finder",
+      "subnets-nsgs-routes",
+      "subscription-service-health-alerts",
+      "unified-data-platform",
+      "vnetgateway"
+    ]
+  },
+  "counts": {
+    "catalogEntries": 1050,
+    "adoptedEntries": 1050,
+    "legacyRows": {
+      "BicepResourceModules.csv": 537,
+      "BicepPatternModules.csv": 67,
+      "BicepUtilityModules.csv": 2,
+      "TerraformResourceModules.csv": 158,
+      "TerraformPatternModules.csv": 60,
+      "TerraformUtilityModules.csv": 6
+    },
+    "csvRows": {
+      "BicepResourceModules.csv": 552,
+      "BicepPatternModules.csv": 67,
+      "BicepUtilityModules.csv": 2,
+      "TerraformResourceModules.csv": 288,
+      "TerraformPatternModules.csv": 117,
+      "TerraformUtilityModules.csv": 6
+    }
+  },
+  "sourceCsvRows": {
+    "BicepResourceModules.csv": [
+      {
+        "moduleName": "avm/res/aad/domain-service",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/aad/domain-service"
+      },
+      {
+        "moduleName": "avm/res/alerts-management/action-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/alerts-management/action-rule"
+      },
+      {
+        "moduleName": "avm/res/analysis-services/server",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/analysis-services/server"
+      },
+      {
+        "moduleName": "avm/res/api-center/service",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-center/service"
+      },
+      {
+        "moduleName": "avm/res/api-management/service",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/api",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/api"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/api/diagnostics",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/api/diagnostics"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/api/operation",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/api/operation"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/api/operation/policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/api/operation/policy"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/api/policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/api/policy"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/api-version-set",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/api-version-set"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/authorization-server",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/authorization-server"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/backend",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/backend"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/cache",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/cache"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/diagnostics",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/diagnostics"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/identity-provider",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/identity-provider"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/logger",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/logger"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/named-value",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/named-value"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/policy"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/portalsetting",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/portalsetting"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/private-endpoint-connection",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/private-endpoint-connection"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/product",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/product"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/product/api",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/product/api"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/product/group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/product/group"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/product/policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/product/policy"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/subscription",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/subscription"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/workspace",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/workspace"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/workspace/api",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/workspace/api"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/workspace/api/diagnostics",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/workspace/api/diagnostics"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/workspace/api/operation",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/workspace/api/operation"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/workspace/api/operation/policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/workspace/api/operation/policy"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/workspace/api/policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/workspace/api/policy"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/workspace/api-version-set",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/workspace/api-version-set"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/workspace/backend",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/workspace/backend"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/workspace/diagnostics",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/workspace/diagnostics"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/workspace/logger",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/workspace/logger"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/workspace/named-value",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/workspace/named-value"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/workspace/policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/workspace/policy"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/workspace/product",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/workspace/product"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/workspace/product/api-link",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/workspace/product/api-link"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/workspace/product/group-link",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/workspace/product/group-link"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/workspace/product/policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/workspace/product/policy"
+      },
+      {
+        "moduleName": "avm/res/api-management/service/workspace/subscription",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/api-management/service/workspace/subscription"
+      },
+      {
+        "moduleName": "avm/res/app/agent",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/app/agent"
+      },
+      {
+        "moduleName": "avm/res/app/container-app",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/app/container-app"
+      },
+      {
+        "moduleName": "avm/res/app/container-app/auth-config",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/app/container-app/auth-config"
+      },
+      {
+        "moduleName": "avm/res/app/job",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/app/job"
+      },
+      {
+        "moduleName": "avm/res/app/managed-environment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/app/managed-environment"
+      },
+      {
+        "moduleName": "avm/res/app/managed-environment/certificate",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/app/managed-environment/certificate"
+      },
+      {
+        "moduleName": "avm/res/app/managed-environment/storage",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/app/managed-environment/storage"
+      },
+      {
+        "moduleName": "avm/res/app/session-pool",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/app/session-pool"
+      },
+      {
+        "moduleName": "avm/res/app-configuration/configuration-store",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/app-configuration/configuration-store"
+      },
+      {
+        "moduleName": "avm/res/app-configuration/configuration-store/key-value",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/app-configuration/configuration-store/key-value"
+      },
+      {
+        "moduleName": "avm/res/app-configuration/configuration-store/replica",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/app-configuration/configuration-store/replica"
+      },
+      {
+        "moduleName": "avm/res/authorization/policy-assignment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/authorization/policy-assignment"
+      },
+      {
+        "moduleName": "avm/res/authorization/policy-assignment/mg-scope",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/authorization/policy-assignment/mg-scope"
+      },
+      {
+        "moduleName": "avm/res/authorization/policy-assignment/rg-scope",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/authorization/policy-assignment/rg-scope"
+      },
+      {
+        "moduleName": "avm/res/authorization/policy-assignment/sub-scope",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/authorization/policy-assignment/sub-scope"
+      },
+      {
+        "moduleName": "avm/res/authorization/role-assignment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/authorization/role-assignment"
+      },
+      {
+        "moduleName": "avm/res/authorization/role-assignment/mg-scope",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/authorization/role-assignment/mg-scope"
+      },
+      {
+        "moduleName": "avm/res/authorization/role-assignment/rg-scope",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/authorization/role-assignment/rg-scope"
+      },
+      {
+        "moduleName": "avm/res/authorization/role-assignment/sub-scope",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/authorization/role-assignment/sub-scope"
+      },
+      {
+        "moduleName": "avm/res/automation/automation-account",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/automation/automation-account"
+      },
+      {
+        "moduleName": "avm/res/automation/automation-account/credential",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/automation/automation-account/credential"
+      },
+      {
+        "moduleName": "avm/res/automation/automation-account/hybrid-runbook-worker-group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/automation/automation-account/hybrid-runbook-worker-group"
+      },
+      {
+        "moduleName": "avm/res/automation/automation-account/hybrid-runbook-worker-group/hybrid-runbook-worker",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/automation/automation-account/hybrid-runbook-worker-group/hybrid-runbook-worker"
+      },
+      {
+        "moduleName": "avm/res/automation/automation-account/job-schedule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/automation/automation-account/job-schedule"
+      },
+      {
+        "moduleName": "avm/res/automation/automation-account/module",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/automation/automation-account/module"
+      },
+      {
+        "moduleName": "avm/res/automation/automation-account/powershell72-module",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/automation/automation-account/powershell72-module"
+      },
+      {
+        "moduleName": "avm/res/automation/automation-account/python2-package",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/automation/automation-account/python2-package"
+      },
+      {
+        "moduleName": "avm/res/automation/automation-account/python3-package",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/automation/automation-account/python3-package"
+      },
+      {
+        "moduleName": "avm/res/automation/automation-account/runbook",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/automation/automation-account/runbook"
+      },
+      {
+        "moduleName": "avm/res/automation/automation-account/schedule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/automation/automation-account/schedule"
+      },
+      {
+        "moduleName": "avm/res/automation/automation-account/source-control",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/automation/automation-account/source-control"
+      },
+      {
+        "moduleName": "avm/res/automation/automation-account/variable",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/automation/automation-account/variable"
+      },
+      {
+        "moduleName": "avm/res/automation/automation-account/webhook",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/automation/automation-account/webhook"
+      },
+      {
+        "moduleName": "avm/res/avs/private-cloud",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/avs/private-cloud"
+      },
+      {
+        "moduleName": "avm/res/azure-stack-hci/cluster",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/azure-stack-hci/cluster"
+      },
+      {
+        "moduleName": "avm/res/azure-stack-hci/cluster/arc-setting/extension",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/azure-stack-hci/cluster/arc-setting/extension"
+      },
+      {
+        "moduleName": "avm/res/azure-stack-hci/cluster/deployment-setting",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/azure-stack-hci/cluster/deployment-setting"
+      },
+      {
+        "moduleName": "avm/res/azure-stack-hci/logical-network",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/azure-stack-hci/logical-network"
+      },
+      {
+        "moduleName": "avm/res/azure-stack-hci/marketplace-gallery-image",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/azure-stack-hci/marketplace-gallery-image"
+      },
+      {
+        "moduleName": "avm/res/azure-stack-hci/network-interface",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/azure-stack-hci/network-interface"
+      },
+      {
+        "moduleName": "avm/res/azure-stack-hci/virtual-hard-disk",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/azure-stack-hci/virtual-hard-disk"
+      },
+      {
+        "moduleName": "avm/res/azure-stack-hci/virtual-machine-instance",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/azure-stack-hci/virtual-machine-instance"
+      },
+      {
+        "moduleName": "avm/res/batch/batch-account",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/batch/batch-account"
+      },
+      {
+        "moduleName": "avm/res/bot-service/bot-service",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/bot-service/bot-service"
+      },
+      {
+        "moduleName": "avm/res/cache/redis",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cache/redis"
+      },
+      {
+        "moduleName": "avm/res/cache/redis-enterprise",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cache/redis-enterprise"
+      },
+      {
+        "moduleName": "avm/res/cache/redis-enterprise/database",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cache/redis-enterprise/database"
+      },
+      {
+        "moduleName": "avm/res/cache/redis-enterprise/database/access-policy-assignment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cache/redis-enterprise/database/access-policy-assignment"
+      },
+      {
+        "moduleName": "avm/res/cdn/profile",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cdn/profile"
+      },
+      {
+        "moduleName": "avm/res/cdn/profile/afd-endpoint",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cdn/profile/afd-endpoint"
+      },
+      {
+        "moduleName": "avm/res/cdn/profile/afd-endpoint/route",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cdn/profile/afd-endpoint/route"
+      },
+      {
+        "moduleName": "avm/res/cdn/profile/custom-domain",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cdn/profile/custom-domain"
+      },
+      {
+        "moduleName": "avm/res/cdn/profile/endpoint",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cdn/profile/endpoint"
+      },
+      {
+        "moduleName": "avm/res/cdn/profile/endpoint/origin",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cdn/profile/endpoint/origin"
+      },
+      {
+        "moduleName": "avm/res/cdn/profile/origin-group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cdn/profile/origin-group"
+      },
+      {
+        "moduleName": "avm/res/cdn/profile/origin-group/origin",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cdn/profile/origin-group/origin"
+      },
+      {
+        "moduleName": "avm/res/cdn/profile/rule-set",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cdn/profile/rule-set"
+      },
+      {
+        "moduleName": "avm/res/cdn/profile/rule-set/rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cdn/profile/rule-set/rule"
+      },
+      {
+        "moduleName": "avm/res/cdn/profile/secret",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cdn/profile/secret"
+      },
+      {
+        "moduleName": "avm/res/cdn/profile/security-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cdn/profile/security-policy"
+      },
+      {
+        "moduleName": "avm/res/chaos/experiment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/chaos/experiment"
+      },
+      {
+        "moduleName": "avm/res/code-signing/code-signing-account",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/code-signing/code-signing-account"
+      },
+      {
+        "moduleName": "avm/res/cognitive-services/account",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cognitive-services/account"
+      },
+      {
+        "moduleName": "avm/res/cognitive-services/account/project",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cognitive-services/account/project"
+      },
+      {
+        "moduleName": "avm/res/cognitive-services/account/deployment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/cognitive-services/account/deployment"
+      },
+      {
+        "moduleName": "avm/res/communication/communication-service",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/communication/communication-service"
+      },
+      {
+        "moduleName": "avm/res/communication/email-service",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/communication/email-service"
+      },
+      {
+        "moduleName": "avm/res/communication/email-service/domain",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/communication/email-service/domain"
+      },
+      {
+        "moduleName": "avm/res/communication/email-service/domain/sender-username",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/communication/email-service/domain/sender-username"
+      },
+      {
+        "moduleName": "avm/res/compute/availability-set",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/compute/availability-set"
+      },
+      {
+        "moduleName": "avm/res/compute/disk",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/compute/disk"
+      },
+      {
+        "moduleName": "avm/res/compute/disk-encryption-set",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/compute/disk-encryption-set"
+      },
+      {
+        "moduleName": "avm/res/compute/gallery",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/compute/gallery"
+      },
+      {
+        "moduleName": "avm/res/compute/gallery/application",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/compute/gallery/application"
+      },
+      {
+        "moduleName": "avm/res/compute/gallery/image",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/compute/gallery/image"
+      },
+      {
+        "moduleName": "avm/res/compute/image",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/compute/image"
+      },
+      {
+        "moduleName": "avm/res/compute/proximity-placement-group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/compute/proximity-placement-group"
+      },
+      {
+        "moduleName": "avm/res/compute/ssh-public-key",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/compute/ssh-public-key"
+      },
+      {
+        "moduleName": "avm/res/compute/virtual-machine",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/compute/virtual-machine"
+      },
+      {
+        "moduleName": "avm/res/compute/virtual-machine/extension",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/compute/virtual-machine/extension"
+      },
+      {
+        "moduleName": "avm/res/compute/virtual-machine-scale-set",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/compute/virtual-machine-scale-set"
+      },
+      {
+        "moduleName": "avm/res/compute/virtual-machine-scale-set/extension",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/compute/virtual-machine-scale-set/extension"
+      },
+      {
+        "moduleName": "avm/res/consumption/budget",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/consumption/budget"
+      },
+      {
+        "moduleName": "avm/res/consumption/budget/mg-scope",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/consumption/budget/mg-scope"
+      },
+      {
+        "moduleName": "avm/res/consumption/budget/rg-scope",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/consumption/budget/rg-scope"
+      },
+      {
+        "moduleName": "avm/res/consumption/budget/sub-scope",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/consumption/budget/sub-scope"
+      },
+      {
+        "moduleName": "avm/res/container-instance/container-group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/container-instance/container-group"
+      },
+      {
+        "moduleName": "avm/res/container-registry/registry",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/container-registry/registry"
+      },
+      {
+        "moduleName": "avm/res/container-registry/registry/cache-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/container-registry/registry/cache-rule"
+      },
+      {
+        "moduleName": "avm/res/container-registry/registry/credential-set",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/container-registry/registry/credential-set"
+      },
+      {
+        "moduleName": "avm/res/container-registry/registry/replication",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/container-registry/registry/replication"
+      },
+      {
+        "moduleName": "avm/res/container-registry/registry/scope-map",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/container-registry/registry/scope-map"
+      },
+      {
+        "moduleName": "avm/res/container-registry/registry/task",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/container-registry/registry/task"
+      },
+      {
+        "moduleName": "avm/res/container-registry/registry/token",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/container-registry/registry/token"
+      },
+      {
+        "moduleName": "avm/res/container-registry/registry/webhook",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/container-registry/registry/webhook"
+      },
+      {
+        "moduleName": "avm/res/container-service/managed-cluster",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/container-service/managed-cluster"
+      },
+      {
+        "moduleName": "avm/res/container-service/managed-cluster/agent-pool",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/container-service/managed-cluster/agent-pool"
+      },
+      {
+        "moduleName": "avm/res/container-service/managed-cluster/maintenance-configuration",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/container-service/managed-cluster/maintenance-configuration"
+      },
+      {
+        "moduleName": "avm/res/dashboard/grafana",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dashboard/grafana"
+      },
+      {
+        "moduleName": "avm/res/databricks/access-connector",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/databricks/access-connector"
+      },
+      {
+        "moduleName": "avm/res/databricks/workspace",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/databricks/workspace"
+      },
+      {
+        "moduleName": "avm/res/data-factory/factory",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/data-factory/factory"
+      },
+      {
+        "moduleName": "avm/res/data-factory/factory/integration-runtime",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/data-factory/factory/integration-runtime"
+      },
+      {
+        "moduleName": "avm/res/data-factory/factory/linked-service",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/data-factory/factory/linked-service"
+      },
+      {
+        "moduleName": "avm/res/data-factory/factory/managed-virtual-network",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/data-factory/factory/managed-virtual-network"
+      },
+      {
+        "moduleName": "avm/res/data-factory/factory/managed-virtual-network/managed-private-endpoint",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/data-factory/factory/managed-virtual-network/managed-private-endpoint"
+      },
+      {
+        "moduleName": "avm/res/data-protection/backup-vault",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/data-protection/backup-vault"
+      },
+      {
+        "moduleName": "avm/res/data-protection/backup-vault/backup-instance",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/data-protection/backup-vault/backup-instance"
+      },
+      {
+        "moduleName": "avm/res/data-protection/backup-vault/backup-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/data-protection/backup-vault/backup-policy"
+      },
+      {
+        "moduleName": "avm/res/data-protection/resource-guard",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/data-protection/resource-guard"
+      },
+      {
+        "moduleName": "avm/res/db-for-my-sql/flexible-server",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/db-for-my-sql/flexible-server"
+      },
+      {
+        "moduleName": "avm/res/db-for-my-sql/flexible-server/administrator",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/db-for-my-sql/flexible-server/administrator"
+      },
+      {
+        "moduleName": "avm/res/db-for-my-sql/flexible-server/advanced-threat-protection",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/db-for-my-sql/flexible-server/advanced-threat-protection"
+      },
+      {
+        "moduleName": "avm/res/db-for-my-sql/flexible-server/configuration",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/db-for-my-sql/flexible-server/configuration"
+      },
+      {
+        "moduleName": "avm/res/db-for-my-sql/flexible-server/database",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/db-for-my-sql/flexible-server/database"
+      },
+      {
+        "moduleName": "avm/res/db-for-my-sql/flexible-server/firewall-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/db-for-my-sql/flexible-server/firewall-rule"
+      },
+      {
+        "moduleName": "avm/res/db-for-postgre-sql/flexible-server",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/db-for-postgre-sql/flexible-server"
+      },
+      {
+        "moduleName": "avm/res/db-for-postgre-sql/flexible-server/administrator",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/db-for-postgre-sql/flexible-server/administrator"
+      },
+      {
+        "moduleName": "avm/res/db-for-postgre-sql/flexible-server/advanced-threat-protection-setting",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/db-for-postgre-sql/flexible-server/advanced-threat-protection-setting"
+      },
+      {
+        "moduleName": "avm/res/db-for-postgre-sql/flexible-server/configuration",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/db-for-postgre-sql/flexible-server/configuration"
+      },
+      {
+        "moduleName": "avm/res/db-for-postgre-sql/flexible-server/database",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/db-for-postgre-sql/flexible-server/database"
+      },
+      {
+        "moduleName": "avm/res/db-for-postgre-sql/flexible-server/firewall-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/db-for-postgre-sql/flexible-server/firewall-rule"
+      },
+      {
+        "moduleName": "avm/res/desktop-virtualization/application-group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/desktop-virtualization/application-group"
+      },
+      {
+        "moduleName": "avm/res/desktop-virtualization/application-group/application",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/desktop-virtualization/application-group/application"
+      },
+      {
+        "moduleName": "avm/res/desktop-virtualization/host-pool",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/desktop-virtualization/host-pool"
+      },
+      {
+        "moduleName": "avm/res/desktop-virtualization/scaling-plan",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/desktop-virtualization/scaling-plan"
+      },
+      {
+        "moduleName": "avm/res/desktop-virtualization/workspace",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/desktop-virtualization/workspace"
+      },
+      {
+        "moduleName": "avm/res/dev-center/devcenter",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-center/devcenter"
+      },
+      {
+        "moduleName": "avm/res/dev-center/devcenter/attachednetwork",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-center/devcenter/attachednetwork"
+      },
+      {
+        "moduleName": "avm/res/dev-center/devcenter/catalog",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-center/devcenter/catalog"
+      },
+      {
+        "moduleName": "avm/res/dev-center/devcenter/devboxdefinition",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-center/devcenter/devboxdefinition"
+      },
+      {
+        "moduleName": "avm/res/dev-center/devcenter/environment-type",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-center/devcenter/environment-type"
+      },
+      {
+        "moduleName": "avm/res/dev-center/devcenter/gallery",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-center/devcenter/gallery"
+      },
+      {
+        "moduleName": "avm/res/dev-center/devcenter/project-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-center/devcenter/project-policy"
+      },
+      {
+        "moduleName": "avm/res/dev-center/network-connection",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-center/network-connection"
+      },
+      {
+        "moduleName": "avm/res/dev-center/project",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-center/project"
+      },
+      {
+        "moduleName": "avm/res/dev-center/project/catalog",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-center/project/catalog"
+      },
+      {
+        "moduleName": "avm/res/dev-center/project/environment-type",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-center/project/environment-type"
+      },
+      {
+        "moduleName": "avm/res/dev-center/project/pool",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-center/project/pool"
+      },
+      {
+        "moduleName": "avm/res/dev-center/project/pool/schedule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-center/project/pool/schedule"
+      },
+      {
+        "moduleName": "avm/res/devices/iot-hub",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/devices/iot-hub"
+      },
+      {
+        "moduleName": "avm/res/dev-ops-infrastructure/pool",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-ops-infrastructure/pool"
+      },
+      {
+        "moduleName": "avm/res/dev-test-lab/lab",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-test-lab/lab"
+      },
+      {
+        "moduleName": "avm/res/dev-test-lab/lab/artifactsource",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-test-lab/lab/artifactsource"
+      },
+      {
+        "moduleName": "avm/res/dev-test-lab/lab/cost",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-test-lab/lab/cost"
+      },
+      {
+        "moduleName": "avm/res/dev-test-lab/lab/notificationchannel",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-test-lab/lab/notificationchannel"
+      },
+      {
+        "moduleName": "avm/res/dev-test-lab/lab/policyset/policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-test-lab/lab/policyset/policy"
+      },
+      {
+        "moduleName": "avm/res/dev-test-lab/lab/schedule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-test-lab/lab/schedule"
+      },
+      {
+        "moduleName": "avm/res/dev-test-lab/lab/secret",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-test-lab/lab/secret"
+      },
+      {
+        "moduleName": "avm/res/dev-test-lab/lab/virtualnetwork",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/dev-test-lab/lab/virtualnetwork"
+      },
+      {
+        "moduleName": "avm/res/digital-twins/digital-twins-instance",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/digital-twins/digital-twins-instance"
+      },
+      {
+        "moduleName": "avm/res/digital-twins/digital-twins-instance/endpoint",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/digital-twins/digital-twins-instance/endpoint"
+      },
+      {
+        "moduleName": "avm/res/document-db/database-account",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/document-db/database-account"
+      },
+      {
+        "moduleName": "avm/res/document-db/database-account/cassandra-keyspace",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/document-db/database-account/cassandra-keyspace"
+      },
+      {
+        "moduleName": "avm/res/document-db/database-account/cassandra-keyspace/table",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/document-db/database-account/cassandra-keyspace/table"
+      },
+      {
+        "moduleName": "avm/res/document-db/database-account/cassandra-keyspace/view",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/document-db/database-account/cassandra-keyspace/view"
+      },
+      {
+        "moduleName": "avm/res/document-db/database-account/cassandra-role-assignment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/document-db/database-account/cassandra-role-assignment"
+      },
+      {
+        "moduleName": "avm/res/document-db/database-account/cassandra-role-definition",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/document-db/database-account/cassandra-role-definition"
+      },
+      {
+        "moduleName": "avm/res/document-db/database-account/gremlin-database",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/document-db/database-account/gremlin-database"
+      },
+      {
+        "moduleName": "avm/res/document-db/database-account/gremlin-database/graph",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/document-db/database-account/gremlin-database/graph"
+      },
+      {
+        "moduleName": "avm/res/document-db/database-account/mongodb-database",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/document-db/database-account/mongodb-database"
+      },
+      {
+        "moduleName": "avm/res/document-db/database-account/mongodb-database/collection",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/document-db/database-account/mongodb-database/collection"
+      },
+      {
+        "moduleName": "avm/res/document-db/database-account/sql-database",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/document-db/database-account/sql-database"
+      },
+      {
+        "moduleName": "avm/res/document-db/database-account/sql-database/container",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/document-db/database-account/sql-database/container"
+      },
+      {
+        "moduleName": "avm/res/document-db/database-account/sql-role-assignment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/document-db/database-account/sql-role-assignment"
+      },
+      {
+        "moduleName": "avm/res/document-db/database-account/sql-role-definition",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/document-db/database-account/sql-role-definition"
+      },
+      {
+        "moduleName": "avm/res/document-db/database-account/table",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/document-db/database-account/table"
+      },
+      {
+        "moduleName": "avm/res/document-db/mongo-cluster",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/document-db/mongo-cluster"
+      },
+      {
+        "moduleName": "avm/res/document-db/mongo-cluster/firewall-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/document-db/mongo-cluster/firewall-rule"
+      },
+      {
+        "moduleName": "avm/res/document-db/mongo-cluster/user",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/document-db/mongo-cluster/user"
+      },
+      {
+        "moduleName": "avm/res/durable-task/scheduler",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/durable-task/scheduler"
+      },
+      {
+        "moduleName": "avm/res/edge/configuration",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/edge/configuration"
+      },
+      {
+        "moduleName": "avm/res/edge/site",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/edge/site"
+      },
+      {
+        "moduleName": "avm/res/edge/site/rg-scope",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/edge/site/rg-scope"
+      },
+      {
+        "moduleName": "avm/res/edge/site/sub-scope",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/edge/site/sub-scope"
+      },
+      {
+        "moduleName": "avm/res/edge-order/order-item",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/edge-order/order-item"
+      },
+      {
+        "moduleName": "avm/res/elastic-san/elastic-san",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/elastic-san/elastic-san"
+      },
+      {
+        "moduleName": "avm/res/elastic-san/elastic-san/volume-group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/elastic-san/elastic-san/volume-group"
+      },
+      {
+        "moduleName": "avm/res/elastic-san/elastic-san/volume-group/snapshot",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/elastic-san/elastic-san/volume-group/snapshot"
+      },
+      {
+        "moduleName": "avm/res/elastic-san/elastic-san/volume-group/volume",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/elastic-san/elastic-san/volume-group/volume"
+      },
+      {
+        "moduleName": "avm/res/event-grid/domain",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-grid/domain"
+      },
+      {
+        "moduleName": "avm/res/event-grid/domain/event-subscription",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-grid/domain/event-subscription"
+      },
+      {
+        "moduleName": "avm/res/event-grid/domain/topic",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-grid/domain/topic"
+      },
+      {
+        "moduleName": "avm/res/event-grid/namespace",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-grid/namespace"
+      },
+      {
+        "moduleName": "avm/res/event-grid/namespace/ca-certificate",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-grid/namespace/ca-certificate"
+      },
+      {
+        "moduleName": "avm/res/event-grid/namespace/client",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-grid/namespace/client"
+      },
+      {
+        "moduleName": "avm/res/event-grid/namespace/client-group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-grid/namespace/client-group"
+      },
+      {
+        "moduleName": "avm/res/event-grid/namespace/permission-binding",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-grid/namespace/permission-binding"
+      },
+      {
+        "moduleName": "avm/res/event-grid/namespace/topic",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-grid/namespace/topic"
+      },
+      {
+        "moduleName": "avm/res/event-grid/namespace/topic/event-subscription",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-grid/namespace/topic/event-subscription"
+      },
+      {
+        "moduleName": "avm/res/event-grid/namespace/topic-space",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-grid/namespace/topic-space"
+      },
+      {
+        "moduleName": "avm/res/event-grid/system-topic",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-grid/system-topic"
+      },
+      {
+        "moduleName": "avm/res/event-grid/system-topic/event-subscription",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-grid/system-topic/event-subscription"
+      },
+      {
+        "moduleName": "avm/res/event-grid/topic",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-grid/topic"
+      },
+      {
+        "moduleName": "avm/res/event-grid/topic/event-subscription",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-grid/topic/event-subscription"
+      },
+      {
+        "moduleName": "avm/res/event-hub/namespace",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-hub/namespace"
+      },
+      {
+        "moduleName": "avm/res/event-hub/namespace/authorization-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-hub/namespace/authorization-rule"
+      },
+      {
+        "moduleName": "avm/res/event-hub/namespace/disaster-recovery-config",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-hub/namespace/disaster-recovery-config"
+      },
+      {
+        "moduleName": "avm/res/event-hub/namespace/eventhub",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-hub/namespace/eventhub"
+      },
+      {
+        "moduleName": "avm/res/event-hub/namespace/eventhub/authorization-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-hub/namespace/eventhub/authorization-rule"
+      },
+      {
+        "moduleName": "avm/res/event-hub/namespace/eventhub/consumergroup",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-hub/namespace/eventhub/consumergroup"
+      },
+      {
+        "moduleName": "avm/res/event-hub/namespace/network-rule-set",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/event-hub/namespace/network-rule-set"
+      },
+      {
+        "moduleName": "avm/res/fabric/capacity",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/fabric/capacity"
+      },
+      {
+        "moduleName": "avm/res/health-bot/health-bot",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/health-bot/health-bot"
+      },
+      {
+        "moduleName": "avm/res/healthcare-apis/workspace",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/healthcare-apis/workspace"
+      },
+      {
+        "moduleName": "avm/res/healthcare-apis/workspace/dicomservice",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/healthcare-apis/workspace/dicomservice"
+      },
+      {
+        "moduleName": "avm/res/healthcare-apis/workspace/fhirservice",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/healthcare-apis/workspace/fhirservice"
+      },
+      {
+        "moduleName": "avm/res/healthcare-apis/workspace/iotconnector",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/healthcare-apis/workspace/iotconnector"
+      },
+      {
+        "moduleName": "avm/res/healthcare-apis/workspace/iotconnector/fhirdestination",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/healthcare-apis/workspace/iotconnector/fhirdestination"
+      },
+      {
+        "moduleName": "avm/res/hybrid-compute/gateway",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/hybrid-compute/gateway"
+      },
+      {
+        "moduleName": "avm/res/hybrid-compute/license",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/hybrid-compute/license"
+      },
+      {
+        "moduleName": "avm/res/hybrid-compute/machine",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/hybrid-compute/machine"
+      },
+      {
+        "moduleName": "avm/res/hybrid-compute/machine/extension",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/hybrid-compute/machine/extension"
+      },
+      {
+        "moduleName": "avm/res/hybrid-compute/private-link-scope",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/hybrid-compute/private-link-scope"
+      },
+      {
+        "moduleName": "avm/res/hybrid-compute/setting",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/hybrid-compute/setting"
+      },
+      {
+        "moduleName": "avm/res/hybrid-container-service/provisioned-cluster-instance",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/hybrid-container-service/provisioned-cluster-instance"
+      },
+      {
+        "moduleName": "avm/res/insights/action-group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/insights/action-group"
+      },
+      {
+        "moduleName": "avm/res/insights/activity-log-alert",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/insights/activity-log-alert"
+      },
+      {
+        "moduleName": "avm/res/insights/autoscale-setting",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/insights/autoscale-setting"
+      },
+      {
+        "moduleName": "avm/res/insights/component",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/insights/component"
+      },
+      {
+        "moduleName": "avm/res/insights/component/linked-storage-account",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/insights/component/linked-storage-account"
+      },
+      {
+        "moduleName": "avm/res/insights/data-collection-endpoint",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/insights/data-collection-endpoint"
+      },
+      {
+        "moduleName": "avm/res/insights/data-collection-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/insights/data-collection-rule"
+      },
+      {
+        "moduleName": "avm/res/insights/diagnostic-setting",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/insights/diagnostic-setting"
+      },
+      {
+        "moduleName": "avm/res/insights/metric-alert",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/insights/metric-alert"
+      },
+      {
+        "moduleName": "avm/res/insights/private-link-scope",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/insights/private-link-scope"
+      },
+      {
+        "moduleName": "avm/res/insights/private-link-scope/scoped-resource",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/insights/private-link-scope/scoped-resource"
+      },
+      {
+        "moduleName": "avm/res/insights/scheduled-query-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/insights/scheduled-query-rule"
+      },
+      {
+        "moduleName": "avm/res/insights/webtest",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/insights/webtest"
+      },
+      {
+        "moduleName": "avm/res/iot-operations/instance",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/iot-operations/instance"
+      },
+      {
+        "moduleName": "avm/res/key-vault/managed-hsm",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/managed-hsm"
+      },
+      {
+        "moduleName": "avm/res/key-vault/vault",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault"
+      },
+      {
+        "moduleName": "avm/res/key-vault/vault/access-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault/access-policy"
+      },
+      {
+        "moduleName": "avm/res/key-vault/vault/key",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault/key"
+      },
+      {
+        "moduleName": "avm/res/key-vault/vault/secret",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/key-vault/vault/secret"
+      },
+      {
+        "moduleName": "avm/res/kubernetes/connected-cluster",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/kubernetes/connected-cluster"
+      },
+      {
+        "moduleName": "avm/res/kubernetes-configuration/extension",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/kubernetes-configuration/extension"
+      },
+      {
+        "moduleName": "avm/res/kubernetes-configuration/flux-configuration",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/kubernetes-configuration/flux-configuration"
+      },
+      {
+        "moduleName": "avm/res/kubernetes-runtime/bpg-peer",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/kubernetes-runtime/bpg-peer"
+      },
+      {
+        "moduleName": "avm/res/kubernetes-runtime/load-balancer",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/kubernetes-runtime/load-balancer"
+      },
+      {
+        "moduleName": "avm/res/kubernetes-runtime/service",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/kubernetes-runtime/service"
+      },
+      {
+        "moduleName": "avm/res/kusto/cluster",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/kusto/cluster"
+      },
+      {
+        "moduleName": "avm/res/kusto/cluster/database",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/kusto/cluster/database"
+      },
+      {
+        "moduleName": "avm/res/kusto/cluster/database/principal-assignment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/kusto/cluster/database/principal-assignment"
+      },
+      {
+        "moduleName": "avm/res/kusto/cluster/principal-assignment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/kusto/cluster/principal-assignment"
+      },
+      {
+        "moduleName": "avm/res/load-test-service/load-test",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/load-test-service/load-test"
+      },
+      {
+        "moduleName": "avm/res/logic/integration-account",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/logic/integration-account"
+      },
+      {
+        "moduleName": "avm/res/logic/integration-account/agreement",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/logic/integration-account/agreement"
+      },
+      {
+        "moduleName": "avm/res/logic/integration-account/assembly",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/logic/integration-account/assembly"
+      },
+      {
+        "moduleName": "avm/res/logic/integration-account/certificate",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/logic/integration-account/certificate"
+      },
+      {
+        "moduleName": "avm/res/logic/integration-account/map",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/logic/integration-account/map"
+      },
+      {
+        "moduleName": "avm/res/logic/integration-account/partner",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/logic/integration-account/partner"
+      },
+      {
+        "moduleName": "avm/res/logic/integration-account/schema",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/logic/integration-account/schema"
+      },
+      {
+        "moduleName": "avm/res/logic/workflow",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/logic/workflow"
+      },
+      {
+        "moduleName": "avm/res/machine-learning-services/registry",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/machine-learning-services/registry"
+      },
+      {
+        "moduleName": "avm/res/machine-learning-services/workspace",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/machine-learning-services/workspace"
+      },
+      {
+        "moduleName": "avm/res/machine-learning-services/workspace/compute",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/machine-learning-services/workspace/compute"
+      },
+      {
+        "moduleName": "avm/res/machine-learning-services/workspace/connection",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/machine-learning-services/workspace/connection"
+      },
+      {
+        "moduleName": "avm/res/machine-learning-services/workspace/datastore",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/machine-learning-services/workspace/datastore"
+      },
+      {
+        "moduleName": "avm/res/maintenance/configuration-assignment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/maintenance/configuration-assignment"
+      },
+      {
+        "moduleName": "avm/res/maintenance/maintenance-configuration",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/maintenance/maintenance-configuration"
+      },
+      {
+        "moduleName": "avm/res/managed-identity/user-assigned-identity",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/managed-identity/user-assigned-identity"
+      },
+      {
+        "moduleName": "avm/res/managed-identity/user-assigned-identity/federated-identity-credential",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/managed-identity/user-assigned-identity/federated-identity-credential"
+      },
+      {
+        "moduleName": "avm/res/managed-services/registration-definition",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/managed-services/registration-definition"
+      },
+      {
+        "moduleName": "avm/res/management/management-group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/management/management-group"
+      },
+      {
+        "moduleName": "avm/res/management/service-group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/management/service-group"
+      },
+      {
+        "moduleName": "avm/res/maps/account",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/maps/account"
+      },
+      {
+        "moduleName": "avm/res/mission/approval",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/mission/approval"
+      },
+      {
+        "moduleName": "avm/res/mission/community",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/mission/community"
+      },
+      {
+        "moduleName": "avm/res/mission/virtual-enclave",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/mission/virtual-enclave"
+      },
+      {
+        "moduleName": "avm/res/mission/enclave-connection",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/mission/enclave-connection"
+      },
+      {
+        "moduleName": "avm/res/net-app/net-app-account",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/net-app/net-app-account"
+      },
+      {
+        "moduleName": "avm/res/net-app/net-app-account/backup-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/net-app/net-app-account/backup-policy"
+      },
+      {
+        "moduleName": "avm/res/net-app/net-app-account/backup-vault",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/net-app/net-app-account/backup-vault"
+      },
+      {
+        "moduleName": "avm/res/net-app/net-app-account/backup-vault/backup",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/net-app/net-app-account/backup-vault/backup"
+      },
+      {
+        "moduleName": "avm/res/net-app/net-app-account/capacity-pool",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/net-app/net-app-account/capacity-pool"
+      },
+      {
+        "moduleName": "avm/res/net-app/net-app-account/capacity-pool/volume",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/net-app/net-app-account/capacity-pool/volume"
+      },
+      {
+        "moduleName": "avm/res/net-app/net-app-account/snapshot-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/net-app/net-app-account/snapshot-policy"
+      },
+      {
+        "moduleName": "avm/res/network/application-gateway",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/application-gateway"
+      },
+      {
+        "moduleName": "avm/res/network/application-gateway-web-application-firewall-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/application-gateway-web-application-firewall-policy"
+      },
+      {
+        "moduleName": "avm/res/network/application-security-group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/application-security-group"
+      },
+      {
+        "moduleName": "avm/res/network/azure-firewall",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/azure-firewall"
+      },
+      {
+        "moduleName": "avm/res/network/bastion-host",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/bastion-host"
+      },
+      {
+        "moduleName": "avm/res/network/connection",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/connection"
+      },
+      {
+        "moduleName": "avm/res/network/ddos-protection-plan",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/ddos-protection-plan"
+      },
+      {
+        "moduleName": "avm/res/network/dns-forwarding-ruleset",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-forwarding-ruleset"
+      },
+      {
+        "moduleName": "avm/res/network/dns-forwarding-ruleset/forwarding-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-forwarding-ruleset/forwarding-rule"
+      },
+      {
+        "moduleName": "avm/res/network/dns-forwarding-ruleset/virtual-network-link",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-forwarding-ruleset/virtual-network-link"
+      },
+      {
+        "moduleName": "avm/res/network/dns-resolver",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-resolver"
+      },
+      {
+        "moduleName": "avm/res/network/dns-resolver/inbound-endpoint",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-resolver/inbound-endpoint"
+      },
+      {
+        "moduleName": "avm/res/network/dns-resolver/outbound-endpoint",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-resolver/outbound-endpoint"
+      },
+      {
+        "moduleName": "avm/res/network/dns-zone",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-zone"
+      },
+      {
+        "moduleName": "avm/res/network/dns-zone/a",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-zone/a"
+      },
+      {
+        "moduleName": "avm/res/network/dns-zone/aaaa",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-zone/aaaa"
+      },
+      {
+        "moduleName": "avm/res/network/dns-zone/caa",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-zone/caa"
+      },
+      {
+        "moduleName": "avm/res/network/dns-zone/cname",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-zone/cname"
+      },
+      {
+        "moduleName": "avm/res/network/dns-zone/dnssec-config",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-zone/dnssec-config"
+      },
+      {
+        "moduleName": "avm/res/network/dns-zone/ds",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-zone/ds"
+      },
+      {
+        "moduleName": "avm/res/network/dns-zone/mx",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-zone/mx"
+      },
+      {
+        "moduleName": "avm/res/network/dns-zone/ns",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-zone/ns"
+      },
+      {
+        "moduleName": "avm/res/network/dns-zone/ptr",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-zone/ptr"
+      },
+      {
+        "moduleName": "avm/res/network/dns-zone/soa",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-zone/soa"
+      },
+      {
+        "moduleName": "avm/res/network/dns-zone/srv",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-zone/srv"
+      },
+      {
+        "moduleName": "avm/res/network/dns-zone/txt",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/dns-zone/txt"
+      },
+      {
+        "moduleName": "avm/res/network/express-route-circuit",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/express-route-circuit"
+      },
+      {
+        "moduleName": "avm/res/network/express-route-gateway",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/express-route-gateway"
+      },
+      {
+        "moduleName": "avm/res/network/express-route-port",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/express-route-port"
+      },
+      {
+        "moduleName": "avm/res/network/firewall-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/firewall-policy"
+      },
+      {
+        "moduleName": "avm/res/network/firewall-policy/rule-collection-group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/firewall-policy/rule-collection-group"
+      },
+      {
+        "moduleName": "avm/res/network/front-door",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/front-door"
+      },
+      {
+        "moduleName": "avm/res/network/front-door-web-application-firewall-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/front-door-web-application-firewall-policy"
+      },
+      {
+        "moduleName": "avm/res/network/ip-group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/ip-group"
+      },
+      {
+        "moduleName": "avm/res/network/load-balancer",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/load-balancer"
+      },
+      {
+        "moduleName": "avm/res/network/load-balancer/backend-address-pool",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/load-balancer/backend-address-pool"
+      },
+      {
+        "moduleName": "avm/res/network/load-balancer/inbound-nat-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/load-balancer/inbound-nat-rule"
+      },
+      {
+        "moduleName": "avm/res/network/local-network-gateway",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/local-network-gateway"
+      },
+      {
+        "moduleName": "avm/res/network/nat-gateway",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/nat-gateway"
+      },
+      {
+        "moduleName": "avm/res/network/network-interface",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-interface"
+      },
+      {
+        "moduleName": "avm/res/network/network-manager",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-manager"
+      },
+      {
+        "moduleName": "avm/res/network/network-manager/connectivity-configuration",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-manager/connectivity-configuration"
+      },
+      {
+        "moduleName": "avm/res/network/network-manager/network-group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-manager/network-group"
+      },
+      {
+        "moduleName": "avm/res/network/network-manager/network-group/static-member",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-manager/network-group/static-member"
+      },
+      {
+        "moduleName": "avm/res/network/network-manager/routing-configuration",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-manager/routing-configuration"
+      },
+      {
+        "moduleName": "avm/res/network/network-manager/routing-configuration/rule-collection",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-manager/routing-configuration/rule-collection"
+      },
+      {
+        "moduleName": "avm/res/network/network-manager/routing-configuration/rule-collection/rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-manager/routing-configuration/rule-collection/rule"
+      },
+      {
+        "moduleName": "avm/res/network/network-manager/scope-connection",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-manager/scope-connection"
+      },
+      {
+        "moduleName": "avm/res/network/network-manager/security-admin-configuration",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-manager/security-admin-configuration"
+      },
+      {
+        "moduleName": "avm/res/network/network-manager/security-admin-configuration/rule-collection",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-manager/security-admin-configuration/rule-collection"
+      },
+      {
+        "moduleName": "avm/res/network/network-manager/security-admin-configuration/rule-collection/rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-manager/security-admin-configuration/rule-collection/rule"
+      },
+      {
+        "moduleName": "avm/res/network/network-security-group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-security-group"
+      },
+      {
+        "moduleName": "avm/res/network/network-security-perimeter",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-security-perimeter"
+      },
+      {
+        "moduleName": "avm/res/network/network-security-perimeter/profile",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-security-perimeter/profile"
+      },
+      {
+        "moduleName": "avm/res/network/network-security-perimeter/profile/access-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-security-perimeter/profile/access-rule"
+      },
+      {
+        "moduleName": "avm/res/network/network-watcher",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-watcher"
+      },
+      {
+        "moduleName": "avm/res/network/network-watcher/connection-monitor",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-watcher/connection-monitor"
+      },
+      {
+        "moduleName": "avm/res/network/network-watcher/flow-log",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/network-watcher/flow-log"
+      },
+      {
+        "moduleName": "avm/res/network/p2s-vpn-gateway",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/p2s-vpn-gateway"
+      },
+      {
+        "moduleName": "avm/res/network/private-dns-zone",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/private-dns-zone"
+      },
+      {
+        "moduleName": "avm/res/network/private-dns-zone/a",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/private-dns-zone/a"
+      },
+      {
+        "moduleName": "avm/res/network/private-dns-zone/aaaa",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/private-dns-zone/aaaa"
+      },
+      {
+        "moduleName": "avm/res/network/private-dns-zone/cname",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/private-dns-zone/cname"
+      },
+      {
+        "moduleName": "avm/res/network/private-dns-zone/mx",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/private-dns-zone/mx"
+      },
+      {
+        "moduleName": "avm/res/network/private-dns-zone/ptr",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/private-dns-zone/ptr"
+      },
+      {
+        "moduleName": "avm/res/network/private-dns-zone/soa",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/private-dns-zone/soa"
+      },
+      {
+        "moduleName": "avm/res/network/private-dns-zone/srv",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/private-dns-zone/srv"
+      },
+      {
+        "moduleName": "avm/res/network/private-dns-zone/txt",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/private-dns-zone/txt"
+      },
+      {
+        "moduleName": "avm/res/network/private-dns-zone/virtual-network-link",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/private-dns-zone/virtual-network-link"
+      },
+      {
+        "moduleName": "avm/res/network/private-endpoint",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/private-endpoint"
+      },
+      {
+        "moduleName": "avm/res/network/private-endpoint/private-dns-zone-group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/private-endpoint/private-dns-zone-group"
+      },
+      {
+        "moduleName": "avm/res/network/private-link-service",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/private-link-service"
+      },
+      {
+        "moduleName": "avm/res/network/public-ip-address",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/public-ip-address"
+      },
+      {
+        "moduleName": "avm/res/network/public-ip-prefix",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/public-ip-prefix"
+      },
+      {
+        "moduleName": "avm/res/network/route-table",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/route-table"
+      },
+      {
+        "moduleName": "avm/res/network/service-endpoint-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/service-endpoint-policy"
+      },
+      {
+        "moduleName": "avm/res/network/trafficmanagerprofile",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/trafficmanagerprofile"
+      },
+      {
+        "moduleName": "avm/res/network/virtual-hub",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/virtual-hub"
+      },
+      {
+        "moduleName": "avm/res/network/virtual-hub/hub-route-table",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/virtual-hub/hub-route-table"
+      },
+      {
+        "moduleName": "avm/res/network/virtual-hub/hub-virtual-network-connection",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/virtual-hub/hub-virtual-network-connection"
+      },
+      {
+        "moduleName": "avm/res/network/virtual-hub/route-map",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/virtual-hub/route-map"
+      },
+      {
+        "moduleName": "avm/res/network/virtual-hub/routing-intent",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/virtual-hub/routing-intent"
+      },
+      {
+        "moduleName": "avm/res/network/virtual-network",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/virtual-network"
+      },
+      {
+        "moduleName": "avm/res/network/virtual-network/subnet",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/virtual-network/subnet"
+      },
+      {
+        "moduleName": "avm/res/network/virtual-network/virtual-network-peering",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/virtual-network/virtual-network-peering"
+      },
+      {
+        "moduleName": "avm/res/network/virtual-network-gateway",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/virtual-network-gateway"
+      },
+      {
+        "moduleName": "avm/res/network/virtual-network-gateway/nat-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/virtual-network-gateway/nat-rule"
+      },
+      {
+        "moduleName": "avm/res/network/virtual-wan",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/virtual-wan"
+      },
+      {
+        "moduleName": "avm/res/network/vpn-gateway",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/vpn-gateway"
+      },
+      {
+        "moduleName": "avm/res/network/vpn-gateway/nat-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/vpn-gateway/nat-rule"
+      },
+      {
+        "moduleName": "avm/res/network/vpn-gateway/vpn-connection",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/vpn-gateway/vpn-connection"
+      },
+      {
+        "moduleName": "avm/res/network/vpn-server-configuration",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/vpn-server-configuration"
+      },
+      {
+        "moduleName": "avm/res/network/vpn-site",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/vpn-site"
+      },
+      {
+        "moduleName": "avm/res/operational-insights/cluster",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/operational-insights/cluster"
+      },
+      {
+        "moduleName": "avm/res/operational-insights/workspace",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/operational-insights/workspace"
+      },
+      {
+        "moduleName": "avm/res/operational-insights/workspace/data-export",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/operational-insights/workspace/data-export"
+      },
+      {
+        "moduleName": "avm/res/operational-insights/workspace/data-source",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/operational-insights/workspace/data-source"
+      },
+      {
+        "moduleName": "avm/res/operational-insights/workspace/linked-service",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/operational-insights/workspace/linked-service"
+      },
+      {
+        "moduleName": "avm/res/operational-insights/workspace/linked-storage-account",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/operational-insights/workspace/linked-storage-account"
+      },
+      {
+        "moduleName": "avm/res/operational-insights/workspace/saved-search",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/operational-insights/workspace/saved-search"
+      },
+      {
+        "moduleName": "avm/res/operational-insights/workspace/storage-insight-config",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/operational-insights/workspace/storage-insight-config"
+      },
+      {
+        "moduleName": "avm/res/operational-insights/workspace/table",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/operational-insights/workspace/table"
+      },
+      {
+        "moduleName": "avm/res/operations-management/solution",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/operations-management/solution"
+      },
+      {
+        "moduleName": "avm/res/portal/dashboard",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/portal/dashboard"
+      },
+      {
+        "moduleName": "avm/res/power-bi-dedicated/capacity",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/power-bi-dedicated/capacity"
+      },
+      {
+        "moduleName": "avm/res/purview/account",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/purview/account"
+      },
+      {
+        "moduleName": "avm/res/recovery-services/vault",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/recovery-services/vault"
+      },
+      {
+        "moduleName": "avm/res/recovery-services/vault/backup-config",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/recovery-services/vault/backup-config"
+      },
+      {
+        "moduleName": "avm/res/recovery-services/vault/backup-fabric/protection-container/protected-item",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/recovery-services/vault/backup-fabric/protection-container/protected-item"
+      },
+      {
+        "moduleName": "avm/res/recovery-services/vault/backup-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/recovery-services/vault/backup-policy"
+      },
+      {
+        "moduleName": "avm/res/recovery-services/vault/replication-alert-setting",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/recovery-services/vault/replication-alert-setting"
+      },
+      {
+        "moduleName": "avm/res/recovery-services/vault/replication-fabric",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/recovery-services/vault/replication-fabric"
+      },
+      {
+        "moduleName": "avm/res/recovery-services/vault/replication-fabric/replication-protection-container",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/recovery-services/vault/replication-fabric/replication-protection-container"
+      },
+      {
+        "moduleName": "avm/res/recovery-services/vault/replication-fabric/replication-protection-container/replication-protection-container-mapping",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/recovery-services/vault/replication-fabric/replication-protection-container/replication-protection-container-mapping"
+      },
+      {
+        "moduleName": "avm/res/recovery-services/vault/replication-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/recovery-services/vault/replication-policy"
+      },
+      {
+        "moduleName": "avm/res/relay/namespace",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/relay/namespace"
+      },
+      {
+        "moduleName": "avm/res/relay/namespace/authorization-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/relay/namespace/authorization-rule"
+      },
+      {
+        "moduleName": "avm/res/relay/namespace/hybrid-connection",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/relay/namespace/hybrid-connection"
+      },
+      {
+        "moduleName": "avm/res/relay/namespace/hybrid-connection/authorization-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/relay/namespace/hybrid-connection/authorization-rule"
+      },
+      {
+        "moduleName": "avm/res/relay/namespace/network-rule-set",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/relay/namespace/network-rule-set"
+      },
+      {
+        "moduleName": "avm/res/relay/namespace/wcf-relay",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/relay/namespace/wcf-relay"
+      },
+      {
+        "moduleName": "avm/res/relay/namespace/wcf-relay/authorization-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/relay/namespace/wcf-relay/authorization-rule"
+      },
+      {
+        "moduleName": "avm/res/resource-graph/query",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/resource-graph/query"
+      },
+      {
+        "moduleName": "avm/res/resources/deployment-script",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/resources/deployment-script"
+      },
+      {
+        "moduleName": "avm/res/resources/resource-group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/resources/resource-group"
+      },
+      {
+        "moduleName": "avm/res/scom/managed-instance",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/scom/managed-instance"
+      },
+      {
+        "moduleName": "avm/res/search/search-service",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/search/search-service"
+      },
+      {
+        "moduleName": "avm/res/search/search-service/shared-private-link-resource",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/search/search-service/shared-private-link-resource"
+      },
+      {
+        "moduleName": "avm/res/security-insights/data-connector",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/security-insights/data-connector"
+      },
+      {
+        "moduleName": "avm/res/security-insights/onboarding-state",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/security-insights/onboarding-state"
+      },
+      {
+        "moduleName": "avm/res/security-insights/setting",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/security-insights/setting"
+      },
+      {
+        "moduleName": "avm/res/service-bus/namespace",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/service-bus/namespace"
+      },
+      {
+        "moduleName": "avm/res/service-bus/namespace/authorization-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/service-bus/namespace/authorization-rule"
+      },
+      {
+        "moduleName": "avm/res/service-bus/namespace/disaster-recovery-config",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/service-bus/namespace/disaster-recovery-config"
+      },
+      {
+        "moduleName": "avm/res/service-bus/namespace/migration-configuration",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/service-bus/namespace/migration-configuration"
+      },
+      {
+        "moduleName": "avm/res/service-bus/namespace/network-rule-set",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/service-bus/namespace/network-rule-set"
+      },
+      {
+        "moduleName": "avm/res/service-bus/namespace/queue",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/service-bus/namespace/queue"
+      },
+      {
+        "moduleName": "avm/res/service-bus/namespace/queue/authorization-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/service-bus/namespace/queue/authorization-rule"
+      },
+      {
+        "moduleName": "avm/res/service-bus/namespace/topic",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/service-bus/namespace/topic"
+      },
+      {
+        "moduleName": "avm/res/service-bus/namespace/topic/authorization-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/service-bus/namespace/topic/authorization-rule"
+      },
+      {
+        "moduleName": "avm/res/service-bus/namespace/topic/subscription",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/service-bus/namespace/topic/subscription"
+      },
+      {
+        "moduleName": "avm/res/service-bus/namespace/topic/subscription/rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/service-bus/namespace/topic/subscription/rule"
+      },
+      {
+        "moduleName": "avm/res/service-fabric/cluster",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/service-fabric/cluster"
+      },
+      {
+        "moduleName": "avm/res/service-fabric/cluster/application-type",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/service-fabric/cluster/application-type"
+      },
+      {
+        "moduleName": "avm/res/service-networking/traffic-controller",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/service-networking/traffic-controller"
+      },
+      {
+        "moduleName": "avm/res/service-networking/traffic-controller/association",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/service-networking/traffic-controller/association"
+      },
+      {
+        "moduleName": "avm/res/service-networking/traffic-controller/frontend",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/service-networking/traffic-controller/frontend"
+      },
+      {
+        "moduleName": "avm/res/service-networking/traffic-controller/security-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/service-networking/traffic-controller/security-policy"
+      },
+      {
+        "moduleName": "avm/res/signal-r-service/signal-r",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/signal-r-service/signal-r"
+      },
+      {
+        "moduleName": "avm/res/signal-r-service/web-pub-sub",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/signal-r-service/web-pub-sub"
+      },
+      {
+        "moduleName": "avm/res/sql/instance-pool",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/instance-pool"
+      },
+      {
+        "moduleName": "avm/res/sql/managed-instance",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/managed-instance"
+      },
+      {
+        "moduleName": "avm/res/sql/managed-instance/database",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/managed-instance/database"
+      },
+      {
+        "moduleName": "avm/res/sql/managed-instance/database/backup-long-term-retention-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/managed-instance/database/backup-long-term-retention-policy"
+      },
+      {
+        "moduleName": "avm/res/sql/managed-instance/database/backup-short-term-retention-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/managed-instance/database/backup-short-term-retention-policy"
+      },
+      {
+        "moduleName": "avm/res/sql/managed-instance/encryption-protector",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/managed-instance/encryption-protector"
+      },
+      {
+        "moduleName": "avm/res/sql/managed-instance/key",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/managed-instance/key"
+      },
+      {
+        "moduleName": "avm/res/sql/managed-instance/security-alert-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/managed-instance/security-alert-policy"
+      },
+      {
+        "moduleName": "avm/res/sql/managed-instance/vulnerability-assessment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/managed-instance/vulnerability-assessment"
+      },
+      {
+        "moduleName": "avm/res/sql/server",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/server"
+      },
+      {
+        "moduleName": "avm/res/sql/server/auditing-setting",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/server/auditing-setting"
+      },
+      {
+        "moduleName": "avm/res/sql/server/database",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/server/database"
+      },
+      {
+        "moduleName": "avm/res/sql/server/database/backup-long-term-retention-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/server/database/backup-long-term-retention-policy"
+      },
+      {
+        "moduleName": "avm/res/sql/server/database/backup-short-term-retention-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/server/database/backup-short-term-retention-policy"
+      },
+      {
+        "moduleName": "avm/res/sql/server/elastic-pool",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/server/elastic-pool"
+      },
+      {
+        "moduleName": "avm/res/sql/server/encryption-protector",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/server/encryption-protector"
+      },
+      {
+        "moduleName": "avm/res/sql/server/failover-group",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/server/failover-group"
+      },
+      {
+        "moduleName": "avm/res/sql/server/firewall-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/server/firewall-rule"
+      },
+      {
+        "moduleName": "avm/res/sql/server/key",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/server/key"
+      },
+      {
+        "moduleName": "avm/res/sql/server/security-alert-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/server/security-alert-policy"
+      },
+      {
+        "moduleName": "avm/res/sql/server/virtual-network-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/server/virtual-network-rule"
+      },
+      {
+        "moduleName": "avm/res/sql/server/vulnerability-assessment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql/server/vulnerability-assessment"
+      },
+      {
+        "moduleName": "avm/res/sql-virtual-machine/sql-virtual-machine",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/sql-virtual-machine/sql-virtual-machine"
+      },
+      {
+        "moduleName": "avm/res/storage/storage-account",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/storage/storage-account"
+      },
+      {
+        "moduleName": "avm/res/storage/storage-account/blob-service",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/storage/storage-account/blob-service"
+      },
+      {
+        "moduleName": "avm/res/storage/storage-account/blob-service/container",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/storage/storage-account/blob-service/container"
+      },
+      {
+        "moduleName": "avm/res/storage/storage-account/blob-service/container/immutability-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/storage/storage-account/blob-service/container/immutability-policy"
+      },
+      {
+        "moduleName": "avm/res/storage/storage-account/file-service",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/storage/storage-account/file-service"
+      },
+      {
+        "moduleName": "avm/res/storage/storage-account/file-service/share",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/storage/storage-account/file-service/share"
+      },
+      {
+        "moduleName": "avm/res/storage/storage-account/local-user",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/storage/storage-account/local-user"
+      },
+      {
+        "moduleName": "avm/res/storage/storage-account/management-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/storage/storage-account/management-policy"
+      },
+      {
+        "moduleName": "avm/res/storage/storage-account/object-replication-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/storage/storage-account/object-replication-policy"
+      },
+      {
+        "moduleName": "avm/res/storage/storage-account/object-replication-policy/policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/storage/storage-account/object-replication-policy/policy"
+      },
+      {
+        "moduleName": "avm/res/storage/storage-account/queue-service",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/storage/storage-account/queue-service"
+      },
+      {
+        "moduleName": "avm/res/storage/storage-account/queue-service/queue",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/storage/storage-account/queue-service/queue"
+      },
+      {
+        "moduleName": "avm/res/storage/storage-account/table-service",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/storage/storage-account/table-service"
+      },
+      {
+        "moduleName": "avm/res/storage/storage-account/table-service/table",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/storage/storage-account/table-service/table"
+      },
+      {
+        "moduleName": "avm/res/stream-analytics/streaming-job",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/stream-analytics/streaming-job"
+      },
+      {
+        "moduleName": "avm/res/synapse/private-link-hub",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/synapse/private-link-hub"
+      },
+      {
+        "moduleName": "avm/res/synapse/workspace",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/synapse/workspace"
+      },
+      {
+        "moduleName": "avm/res/synapse/workspace/administrator",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/synapse/workspace/administrator"
+      },
+      {
+        "moduleName": "avm/res/synapse/workspace/big-data-pool",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/synapse/workspace/big-data-pool"
+      },
+      {
+        "moduleName": "avm/res/synapse/workspace/firewall-rule",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/synapse/workspace/firewall-rule"
+      },
+      {
+        "moduleName": "avm/res/synapse/workspace/integration-runtime",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/synapse/workspace/integration-runtime"
+      },
+      {
+        "moduleName": "avm/res/synapse/workspace/key",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/synapse/workspace/key"
+      },
+      {
+        "moduleName": "avm/res/synapse/workspace/sql-pool",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/synapse/workspace/sql-pool"
+      },
+      {
+        "moduleName": "avm/res/virtual-machine-images/image-template",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/virtual-machine-images/image-template"
+      },
+      {
+        "moduleName": "avm/res/web/connection",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/connection"
+      },
+      {
+        "moduleName": "avm/res/web/hosting-environment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/hosting-environment"
+      },
+      {
+        "moduleName": "avm/res/web/hosting-environment/configuration",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/hosting-environment/configuration"
+      },
+      {
+        "moduleName": "avm/res/web/serverfarm",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/serverfarm"
+      },
+      {
+        "moduleName": "avm/res/web/site",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/site"
+      },
+      {
+        "moduleName": "avm/res/web/site/basic-publishing-credentials-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/site/basic-publishing-credentials-policy"
+      },
+      {
+        "moduleName": "avm/res/web/site/config",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/site/config"
+      },
+      {
+        "moduleName": "avm/res/web/site/extension",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/site/extension"
+      },
+      {
+        "moduleName": "avm/res/web/site/hybrid-connection-namespace/relay",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/site/hybrid-connection-namespace/relay"
+      },
+      {
+        "moduleName": "avm/res/web/site/host-name-binding",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/site/host-name-binding"
+      },
+      {
+        "moduleName": "avm/res/web/site/slot",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/site/slot"
+      },
+      {
+        "moduleName": "avm/res/web/site/slot/basic-publishing-credentials-policy",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/site/slot/basic-publishing-credentials-policy"
+      },
+      {
+        "moduleName": "avm/res/web/site/slot/config",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/site/slot/config"
+      },
+      {
+        "moduleName": "avm/res/web/site/slot/extension",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/site/slot/extension"
+      },
+      {
+        "moduleName": "avm/res/web/site/slot/hybrid-connection-namespace/relay",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/site/slot/hybrid-connection-namespace/relay"
+      },
+      {
+        "moduleName": "avm/res/web/static-site",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/static-site"
+      },
+      {
+        "moduleName": "avm/res/web/static-site/config",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/static-site/config"
+      },
+      {
+        "moduleName": "avm/res/web/static-site/custom-domain",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/static-site/custom-domain"
+      },
+      {
+        "moduleName": "avm/res/web/static-site/linked-backend",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/web/static-site/linked-backend"
+      }
+    ],
+    "BicepPatternModules.csv": [
+      {
+        "moduleName": "avm/ptn/aca-lza/hosting-environment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/aca-lza/hosting-environment"
+      },
+      {
+        "moduleName": "avm/ptn/ai-ml/ai-foundry",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/ai-ml/ai-foundry"
+      },
+      {
+        "moduleName": "avm/ptn/ai-ml/landing-zone",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/ai-ml/landing-zone"
+      },
+      {
+        "moduleName": "avm/ptn/ai-platform/baseline",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/ai-platform/baseline"
+      },
+      {
+        "moduleName": "avm/ptn/alz/ama",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/alz/ama"
+      },
+      {
+        "moduleName": "avm/ptn/alz/empty",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/alz/empty"
+      },
+      {
+        "moduleName": "avm/ptn/app/container-job-toolkit",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/app/container-job-toolkit"
+      },
+      {
+        "moduleName": "avm/ptn/app/cosmos-db-account-container-app",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/app/cosmos-db-account-container-app"
+      },
+      {
+        "moduleName": "avm/ptn/app/function-app",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/app/function-app"
+      },
+      {
+        "moduleName": "avm/ptn/app/iaas-vm-cosmosdb-tier4",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/app/iaas-vm-cosmosdb-tier4"
+      },
+      {
+        "moduleName": "avm/ptn/app/mongodb-cluster-container-app",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/app/mongodb-cluster-container-app"
+      },
+      {
+        "moduleName": "avm/ptn/app/paas-ase-cosmosdb-tier4",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/app/paas-ase-cosmosdb-tier4"
+      },
+      {
+        "moduleName": "avm/ptn/app-service-lza/hosting-environment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/app-service-lza/hosting-environment"
+      },
+      {
+        "moduleName": "avm/ptn/authorization/pim-role-assignment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/authorization/pim-role-assignment"
+      },
+      {
+        "moduleName": "avm/ptn/authorization/policy-assignment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/authorization/policy-assignment"
+      },
+      {
+        "moduleName": "avm/ptn/authorization/policy-exemption",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/authorization/policy-exemption"
+      },
+      {
+        "moduleName": "avm/ptn/authorization/resource-role-assignment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/authorization/resource-role-assignment"
+      },
+      {
+        "moduleName": "avm/ptn/authorization/role-assignment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/authorization/role-assignment"
+      },
+      {
+        "moduleName": "avm/ptn/authorization/role-definition",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/authorization/role-definition"
+      },
+      {
+        "moduleName": "avm/ptn/avd-lza/insights",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/avd-lza/insights"
+      },
+      {
+        "moduleName": "avm/ptn/avd-lza/management-plane",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/avd-lza/management-plane"
+      },
+      {
+        "moduleName": "avm/ptn/avd-lza/networking",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/avd-lza/networking"
+      },
+      {
+        "moduleName": "avm/ptn/avd-lza/session-hosts",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/avd-lza/session-hosts"
+      },
+      {
+        "moduleName": "avm/ptn/azd/acr-container-app",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/azd/acr-container-app"
+      },
+      {
+        "moduleName": "avm/ptn/azd/aks",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/azd/aks"
+      },
+      {
+        "moduleName": "avm/ptn/azd/aks-automatic-cluster",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/azd/aks-automatic-cluster"
+      },
+      {
+        "moduleName": "avm/ptn/azd/apim-api",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/azd/apim-api"
+      },
+      {
+        "moduleName": "avm/ptn/azd/container-apps-stack",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/azd/container-apps-stack"
+      },
+      {
+        "moduleName": "avm/ptn/azd/container-app-upsert",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/azd/container-app-upsert"
+      },
+      {
+        "moduleName": "avm/ptn/azd/insights-dashboard",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/azd/insights-dashboard"
+      },
+      {
+        "moduleName": "avm/ptn/azd/ml-ai-environment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/azd/ml-ai-environment"
+      },
+      {
+        "moduleName": "avm/ptn/azd/ml-hub-dependencies",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/azd/ml-hub-dependencies"
+      },
+      {
+        "moduleName": "avm/ptn/azd/ml-project",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/azd/ml-project"
+      },
+      {
+        "moduleName": "avm/ptn/azd/monitoring",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/azd/monitoring"
+      },
+      {
+        "moduleName": "avm/ptn/data/private-analytical-workspace",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/data/private-analytical-workspace"
+      },
+      {
+        "moduleName": "avm/ptn/deployment-script/create-kv-ssh-key-pair",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/deployment-script/create-kv-ssh-key-pair"
+      },
+      {
+        "moduleName": "avm/ptn/deployment-script/import-image-to-acr",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/deployment-script/import-image-to-acr"
+      },
+      {
+        "moduleName": "avm/ptn/deployment-script/private",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/deployment-script/private"
+      },
+      {
+        "moduleName": "avm/ptn/dev-center/dev-box",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/dev-center/dev-box"
+      },
+      {
+        "moduleName": "avm/ptn/dev-ops/cicd-agents-and-runners",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/dev-ops/cicd-agents-and-runners"
+      },
+      {
+        "moduleName": "avm/ptn/finops-toolkit/finops-hub",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/finops-toolkit/finops-hub"
+      },
+      {
+        "moduleName": "avm/ptn/lz/sub-vending",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/lz/sub-vending"
+      },
+      {
+        "moduleName": "avm/ptn/lza-shared/data-services",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/lza-shared/data-services"
+      },
+      {
+        "moduleName": "avm/ptn/maintenance/azure-update-manager",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/maintenance/azure-update-manager"
+      },
+      {
+        "moduleName": "avm/ptn/mgmt-groups/subscription-placement",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/mgmt-groups/subscription-placement"
+      },
+      {
+        "moduleName": "avm/ptn/monitoring/amba",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/monitoring/amba"
+      },
+      {
+        "moduleName": "avm/ptn/monitoring/amba-alz",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/monitoring/amba-alz"
+      },
+      {
+        "moduleName": "avm/ptn/network/hub-networking",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/network/hub-networking"
+      },
+      {
+        "moduleName": "avm/ptn/network/private-link-private-dns-zones",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/network/private-link-private-dns-zones"
+      },
+      {
+        "moduleName": "avm/ptn/network/virtual-wan",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/network/virtual-wan"
+      },
+      {
+        "moduleName": "avm/ptn/network/vwan-connected-vnets",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/network/vwan-connected-vnets"
+      },
+      {
+        "moduleName": "avm/ptn/openai/e2e-baseline",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/openai/e2e-baseline"
+      },
+      {
+        "moduleName": "avm/ptn/policy-insights/remediation",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/policy-insights/remediation"
+      },
+      {
+        "moduleName": "avm/ptn/sa/build-your-own-copilot",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/sa/build-your-own-copilot"
+      },
+      {
+        "moduleName": "avm/ptn/sa/chat-with-your-data",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/sa/chat-with-your-data"
+      },
+      {
+        "moduleName": "avm/ptn/sa/container-migration",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/sa/container-migration"
+      },
+      {
+        "moduleName": "avm/ptn/sa/content-generation",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/sa/content-generation"
+      },
+      {
+        "moduleName": "avm/ptn/sa/content-processing",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/sa/content-processing"
+      },
+      {
+        "moduleName": "avm/ptn/sa/conversation-knowledge-mining",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/sa/conversation-knowledge-mining"
+      },
+      {
+        "moduleName": "avm/ptn/sa/customer-chatbot",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/sa/customer-chatbot"
+      },
+      {
+        "moduleName": "avm/ptn/sa/document-knowledge-mining",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/sa/document-knowledge-mining"
+      },
+      {
+        "moduleName": "avm/ptn/sa/modernize-your-code",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/sa/modernize-your-code"
+      },
+      {
+        "moduleName": "avm/ptn/sa/multi-agent-custom-automation-engine",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/sa/multi-agent-custom-automation-engine"
+      },
+      {
+        "moduleName": "avm/ptn/security/security-center",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/security/security-center"
+      },
+      {
+        "moduleName": "avm/ptn/security/sentinel",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/security/sentinel"
+      },
+      {
+        "moduleName": "avm/ptn/subscription/service-health-alerts",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/subscription/service-health-alerts"
+      },
+      {
+        "moduleName": "avm/ptn/virtual-machine-images/azure-image-builder",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/ptn/virtual-machine-images/azure-image-builder"
+      }
+    ],
+    "BicepUtilityModules.csv": [
+      {
+        "moduleName": "avm/utl/general/get-environment",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/utl/general/get-environment"
+      },
+      {
+        "moduleName": "avm/utl/types/avm-common-types",
+        "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/utl/types/avm-common-types"
+      }
+    ],
+    "TerraformResourceModules.csv": [
+      {
+        "moduleName": "avm-res-aad-domainservice",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-aad-domainservice"
+      },
+      {
+        "moduleName": "avm-res-alertsmanagement-actionrule",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-alertsmanagement-actionrule"
+      },
+      {
+        "moduleName": "avm-res-analysisservices-server",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-analysisservices-server"
+      },
+      {
+        "moduleName": "avm-res-apimanagement-service",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-apimanagement-service"
+      },
+      {
+        "moduleName": "avm-res-appconfiguration-configurationstore",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-res-appconfiguration-configurationstore"
+      },
+      {
+        "moduleName": "avm-res-app-containerapp",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-app-containerapp"
+      },
+      {
+        "moduleName": "avm-res-app-job",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-app-job"
+      },
+      {
+        "moduleName": "avm-res-app-managedenvironment",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-app-managedenvironment"
+      },
+      {
+        "moduleName": "avm-res-authorization-roleassignment",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-authorization-roleassignment"
+      },
+      {
+        "moduleName": "avm-res-automation-automationaccount",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-automation-automationaccount"
+      },
+      {
+        "moduleName": "avm-res-avs-privatecloud",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-avs-privatecloud"
+      },
+      {
+        "moduleName": "avm-res-azurestackhci-cluster",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-azurestackhci-cluster"
+      },
+      {
+        "moduleName": "avm-res-azurestackhci-logicalnetwork",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-azurestackhci-logicalnetwork"
+      },
+      {
+        "moduleName": "avm-res-azurestackhci-virtualmachineinstance",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-azurestackhci-virtualmachineinstance"
+      },
+      {
+        "moduleName": "avm-res-batch-batchaccount",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-batch-batchaccount"
+      },
+      {
+        "moduleName": "avm-res-botservice-botservice",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-botservice-botservice"
+      },
+      {
+        "moduleName": "avm-res-cache-redis",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-cache-redis"
+      },
+      {
+        "moduleName": "avm-res-cache-redisenterprise",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-cache-redisenterprise"
+      },
+      {
+        "moduleName": "avm-res-cdn-profile",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-cdn-profile"
+      },
+      {
+        "moduleName": "avm-res-certificateregistration-certificateorder",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-certificateregistration-certificateorder"
+      },
+      {
+        "moduleName": "avm-res-cognitiveservices-account",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-cognitiveservices-account"
+      },
+      {
+        "moduleName": "avm-res-communication-emailservice",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-communication-emailservice"
+      },
+      {
+        "moduleName": "avm-res-compute-capacityreservationgroup",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-compute-capacityreservationgroup"
+      },
+      {
+        "moduleName": "avm-res-compute-disk",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-compute-disk"
+      },
+      {
+        "moduleName": "avm-res-compute-diskencryptionset",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-compute-diskencryptionset"
+      },
+      {
+        "moduleName": "avm-res-compute-gallery",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-compute-gallery"
+      },
+      {
+        "moduleName": "avm-res-compute-hostgroup",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-compute-hostgroup"
+      },
+      {
+        "moduleName": "avm-res-compute-image",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-compute-image"
+      },
+      {
+        "moduleName": "avm-res-compute-proximityplacementgroup",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-compute-proximityplacementgroup"
+      },
+      {
+        "moduleName": "avm-res-compute-sshpublickey",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-compute-sshpublickey"
+      },
+      {
+        "moduleName": "avm-res-compute-virtualmachine",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-compute-virtualmachine"
+      },
+      {
+        "moduleName": "avm-res-compute-virtualmachinescaleset",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-compute-virtualmachinescaleset"
+      },
+      {
+        "moduleName": "avm-res-consumption-budget",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-consumption-budget"
+      },
+      {
+        "moduleName": "avm-res-containerinstance-containergroup",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-containerinstance-containergroup"
+      },
+      {
+        "moduleName": "avm-res-containerregistry-registry",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-containerregistry-registry"
+      },
+      {
+        "moduleName": "avm-res-containerservice-fleet",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-containerservice-fleet"
+      },
+      {
+        "moduleName": "avm-res-containerservice-managedcluster",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-containerservice-managedcluster"
+      },
+      {
+        "moduleName": "avm-res-dashboard-grafana",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-dashboard-grafana"
+      },
+      {
+        "moduleName": "avm-res-databricks-accessconnector",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-databricks-accessconnector"
+      },
+      {
+        "moduleName": "avm-res-databricks-workspace",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-databricks-workspace"
+      },
+      {
+        "moduleName": "avm-res-datafactory-factory",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-datafactory-factory"
+      },
+      {
+        "moduleName": "avm-res-dataprotection-backupvault",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-dataprotection-backupvault"
+      },
+      {
+        "moduleName": "avm-res-dataprotection-resourceguard",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-dataprotection-resourceguard"
+      },
+      {
+        "moduleName": "avm-res-dbformysql-flexibleserver",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-dbformysql-flexibleserver"
+      },
+      {
+        "moduleName": "avm-res-dbforpostgresql-flexibleserver",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-dbforpostgresql-flexibleserver"
+      },
+      {
+        "moduleName": "avm-res-desktopvirtualization-applicationgroup",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-desktopvirtualization-applicationgroup"
+      },
+      {
+        "moduleName": "avm-res-desktopvirtualization-hostpool",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-desktopvirtualization-hostpool"
+      },
+      {
+        "moduleName": "avm-res-desktopvirtualization-scalingplan",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-desktopvirtualization-scalingplan"
+      },
+      {
+        "moduleName": "avm-res-desktopvirtualization-workspace",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-desktopvirtualization-workspace"
+      },
+      {
+        "moduleName": "avm-res-devcenter-devcenter",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-devcenter-devcenter"
+      },
+      {
+        "moduleName": "avm-res-deviceregistry-assetendpointprofile",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-deviceregistry-assetendpointprofile"
+      },
+      {
+        "moduleName": "avm-res-devopsinfrastructure-pool",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-devopsinfrastructure-pool"
+      },
+      {
+        "moduleName": "avm-res-devtestlab-lab",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-devtestlab-lab"
+      },
+      {
+        "moduleName": "avm-res-digitaltwins-digitaltwinsinstance",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-digitaltwins-digitaltwinsinstance"
+      },
+      {
+        "moduleName": "avm-res-documentdb-databaseaccount",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-documentdb-databaseaccount"
+      },
+      {
+        "moduleName": "avm-res-documentdb-mongocluster",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-documentdb-mongocluster"
+      },
+      {
+        "moduleName": "avm-res-edge-site",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-edge-site"
+      },
+      {
+        "moduleName": "avm-res-eventgrid-domain",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-eventgrid-domain"
+      },
+      {
+        "moduleName": "avm-res-eventgrid-namespace",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-eventgrid-namespace"
+      },
+      {
+        "moduleName": "avm-res-eventgrid-systemtopic",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-eventgrid-systemtopic"
+      },
+      {
+        "moduleName": "avm-res-eventgrid-topic",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-eventgrid-topic"
+      },
+      {
+        "moduleName": "avm-res-eventhub-namespace",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-eventhub-namespace"
+      },
+      {
+        "moduleName": "avm-res-fabric-capacity",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-res-fabric-capacity"
+      },
+      {
+        "moduleName": "avm-res-features-feature",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-features-feature"
+      },
+      {
+        "moduleName": "avm-res-healthbot-healthbot",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-healthbot-healthbot"
+      },
+      {
+        "moduleName": "avm-res-hybridcompute-machine",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-hybridcompute-machine"
+      },
+      {
+        "moduleName": "avm-res-hybridcontainerservice-provisionedclusterinstance",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-hybridcontainerservice-provisionedclusterinstance"
+      },
+      {
+        "moduleName": "avm-res-insights-actiongroup",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-insights-actiongroup"
+      },
+      {
+        "moduleName": "avm-res-insights-activitylogalert",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-insights-activitylogalert"
+      },
+      {
+        "moduleName": "avm-res-insights-autoscalesetting",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-insights-autoscalesetting"
+      },
+      {
+        "moduleName": "avm-res-insights-component",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-insights-component"
+      },
+      {
+        "moduleName": "avm-res-insights-datacollectionendpoint",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-insights-datacollectionendpoint"
+      },
+      {
+        "moduleName": "avm-res-insights-datacollectionrule",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-insights-datacollectionrule"
+      },
+      {
+        "moduleName": "avm-res-insights-logprofile",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-insights-logprofile"
+      },
+      {
+        "moduleName": "avm-res-insights-metricalert",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-insights-metricalert"
+      },
+      {
+        "moduleName": "avm-res-insights-privatelinkscope",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-insights-privatelinkscope"
+      },
+      {
+        "moduleName": "avm-res-insights-scheduledqueryrule",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-insights-scheduledqueryrule"
+      },
+      {
+        "moduleName": "avm-res-iotoperations-instance",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-iotoperations-instance"
+      },
+      {
+        "moduleName": "avm-res-keyvault-vault",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-keyvault-vault"
+      },
+      {
+        "moduleName": "avm-res-keyvault-managedhsm",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-res-keyvault-managedhsm"
+      },
+      {
+        "moduleName": "avm-res-kusto-cluster",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-kusto-cluster"
+      },
+      {
+        "moduleName": "avm-res-loadtestservice-loadtest",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-loadtestservice-loadtest"
+      },
+      {
+        "moduleName": "avm-res-logic-workflow",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-logic-workflow"
+      },
+      {
+        "moduleName": "avm-res-machinelearningservices-workspace",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-machinelearningservices-workspace"
+      },
+      {
+        "moduleName": "avm-res-maintenance-maintenanceconfiguration",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-maintenance-maintenanceconfiguration"
+      },
+      {
+        "moduleName": "avm-res-managedidentity-userassignedidentity",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-managedidentity-userassignedidentity"
+      },
+      {
+        "moduleName": "avm-res-managedservices-registrationdefinition",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-managedservices-registrationdefinition"
+      },
+      {
+        "moduleName": "avm-res-management-managementgroup",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-management-managementgroup"
+      },
+      {
+        "moduleName": "avm-res-management-servicegroup",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-management-servicegroup"
+      },
+      {
+        "moduleName": "avm-res-mission-approval",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-res-mission-approval"
+      },
+      {
+        "moduleName": "avm-res-mission-community",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-res-mission-community"
+      },
+      {
+        "moduleName": "avm-res-mission-virtualenclave",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-res-mission-virtualenclave"
+      },
+      {
+        "moduleName": "avm-res-mission-enclaveconnection",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-res-mission-enclaveconnection"
+      },
+      {
+        "moduleName": "avm-res-netapp-netappaccount",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-netapp-netappaccount"
+      },
+      {
+        "moduleName": "avm-res-network-applicationgateway",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-applicationgateway"
+      },
+      {
+        "moduleName": "avm-res-network-applicationgatewaywebapplicationfirewallpolicy",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-applicationgatewaywebapplicationfirewallpolicy"
+      },
+      {
+        "moduleName": "avm-res-network-applicationsecuritygroup",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-applicationsecuritygroup"
+      },
+      {
+        "moduleName": "avm-res-network-azurefirewall",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-azurefirewall"
+      },
+      {
+        "moduleName": "avm-res-network-bastionhost",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-bastionhost"
+      },
+      {
+        "moduleName": "avm-res-network-connection",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-connection"
+      },
+      {
+        "moduleName": "avm-res-network-ddosprotectionplan",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-ddosprotectionplan"
+      },
+      {
+        "moduleName": "avm-res-network-dnsforwardingruleset",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-dnsforwardingruleset"
+      },
+      {
+        "moduleName": "avm-res-network-dnsresolver",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-dnsresolver"
+      },
+      {
+        "moduleName": "avm-res-network-dnszone",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-dnszone"
+      },
+      {
+        "moduleName": "avm-res-network-expressroutecircuit",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-expressroutecircuit"
+      },
+      {
+        "moduleName": "avm-res-network-expressrouteport",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-res-network-expressrouteport"
+      },
+      {
+        "moduleName": "avm-res-network-firewallpolicy",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-firewallpolicy"
+      },
+      {
+        "moduleName": "avm-res-network-frontdoorwebapplicationfirewallpolicy",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-frontdoorwebapplicationfirewallpolicy"
+      },
+      {
+        "moduleName": "avm-res-network-ipgroup",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-ipgroup"
+      },
+      {
+        "moduleName": "avm-res-network-loadbalancer",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-loadbalancer"
+      },
+      {
+        "moduleName": "avm-res-network-localnetworkgateway",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-localnetworkgateway"
+      },
+      {
+        "moduleName": "avm-res-network-natgateway",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-natgateway"
+      },
+      {
+        "moduleName": "avm-res-network-networkinterface",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-networkinterface"
+      },
+      {
+        "moduleName": "avm-res-network-networkmanager",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-networkmanager"
+      },
+      {
+        "moduleName": "avm-res-network-networksecuritygroup",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-networksecuritygroup"
+      },
+      {
+        "moduleName": "avm-res-network-networksecurityperimeter",
+        "repoURL": "https://github.com/Azure/terraform-azapi-avm-res-network-networksecurityperimeter"
+      },
+      {
+        "moduleName": "avm-res-network-networkwatcher",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-networkwatcher"
+      },
+      {
+        "moduleName": "avm-res-network-privatednszone",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-privatednszone"
+      },
+      {
+        "moduleName": "avm-res-network-privateendpoint",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-privateendpoint"
+      },
+      {
+        "moduleName": "avm-res-network-privatelinkservice",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-privatelinkservice"
+      },
+      {
+        "moduleName": "avm-res-network-publicipaddress",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-publicipaddress"
+      },
+      {
+        "moduleName": "avm-res-network-publicipprefix",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-publicipprefix"
+      },
+      {
+        "moduleName": "avm-res-network-routetable",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-routetable"
+      },
+      {
+        "moduleName": "avm-res-network-serviceendpointpolicy",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-serviceendpointpolicy"
+      },
+      {
+        "moduleName": "avm-res-network-trafficmanagerprofile",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-trafficmanagerprofile"
+      },
+      {
+        "moduleName": "avm-res-network-virtualnetwork",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-network-virtualnetwork"
+      },
+      {
+        "moduleName": "avm-res-network-virtualnetworkgateway",
+        "repoURL": "https://github.com/Azure/terraform-azapi-avm-res-network-virtualnetworkgateway"
+      },
+      {
+        "moduleName": "avm-res-network-virtualrouter",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-res-network-virtualrouter"
+      },
+      {
+        "moduleName": "avm-res-operationalinsights-workspace",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-operationalinsights-workspace"
+      },
+      {
+        "moduleName": "avm-res-operationsmanagement-solution",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-res-operationsmanagement-solution"
+      },
+      {
+        "moduleName": "avm-res-oracledatabase-cloudexadatainfrastructure",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-oracledatabase-cloudexadatainfrastructure"
+      },
+      {
+        "moduleName": "avm-res-oracledatabase-cloudvmcluster",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-oracledatabase-cloudvmcluster"
+      },
+      {
+        "moduleName": "avm-res-portal-dashboard",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-portal-dashboard"
+      },
+      {
+        "moduleName": "avm-res-powerbidedicated-capacity",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-res-powerbidedicated-capacity"
+      },
+      {
+        "moduleName": "avm-res-purview-account",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-res-purview-account"
+      },
+      {
+        "moduleName": "avm-res-recoveryservices-vault",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-recoveryservices-vault"
+      },
+      {
+        "moduleName": "avm-res-redhatopenshift-openshiftcluster",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-redhatopenshift-openshiftcluster"
+      },
+      {
+        "moduleName": "avm-res-relay-namespace",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-relay-namespace"
+      },
+      {
+        "moduleName": "avm-res-resourcegraph-query",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-resourcegraph-query"
+      },
+      {
+        "moduleName": "avm-res-resources-feature",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-res-resources-feature"
+      },
+      {
+        "moduleName": "avm-res-resources-resourcegroup",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-resources-resourcegroup"
+      },
+      {
+        "moduleName": "avm-res-search-searchservice",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-search-searchservice"
+      },
+      {
+        "moduleName": "avm-res-servicebus-namespace",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-servicebus-namespace"
+      },
+      {
+        "moduleName": "avm-res-servicefabric-cluster",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-res-servicefabric-cluster"
+      },
+      {
+        "moduleName": "avm-res-servicenetworking-trafficcontroller",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-servicenetworking-trafficcontroller"
+      },
+      {
+        "moduleName": "avm-res-signalrservice-signalr",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-res-signalrservice-signalr"
+      },
+      {
+        "moduleName": "avm-res-sql-instancepool",
+        "repoURL": "https://github.com/Azure/terraform-azapi-avm-res-sql-instancepool"
+      },
+      {
+        "moduleName": "avm-res-sql-managedinstance",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-sql-managedinstance"
+      },
+      {
+        "moduleName": "avm-res-sql-server",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-sql-server"
+      },
+      {
+        "moduleName": "avm-res-sqlvirtualmachine-sqlvirtualmachine",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-sqlvirtualmachine-sqlvirtualmachine"
+      },
+      {
+        "moduleName": "avm-res-storage-storageaccount",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-storage-storageaccount"
+      },
+      {
+        "moduleName": "avm-res-synapse-workspace",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-synapse-workspace"
+      },
+      {
+        "moduleName": "avm-res-virtualmachineimages-imagetemplate",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-virtualmachineimages-imagetemplate"
+      },
+      {
+        "moduleName": "avm-res-web-connection",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-web-connection"
+      },
+      {
+        "moduleName": "avm-res-web-hostingenvironment",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-web-hostingenvironment"
+      },
+      {
+        "moduleName": "avm-res-web-serverfarm",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-web-serverfarm"
+      },
+      {
+        "moduleName": "avm-res-web-site",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-web-site"
+      },
+      {
+        "moduleName": "avm-res-web-staticsite",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-res-web-staticsite"
+      }
+    ],
+    "TerraformPatternModules.csv": [
+      {
+        "moduleName": "avm-ptn-aca-lza-hosting-environment",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-aca-lza-hosting-environment"
+      },
+      {
+        "moduleName": "avm-ptn-aiml-ai-foundry",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-aiml-ai-foundry"
+      },
+      {
+        "moduleName": "avm-ptn-aiml-ai-gateway",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-ptn-aiml-ai-gateway"
+      },
+      {
+        "moduleName": "avm-ptn-aiml-landing-zone",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-aiml-landing-zone"
+      },
+      {
+        "moduleName": "avm-ptn-ai-platform-baseline",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-ptn-ai-platform-baseline"
+      },
+      {
+        "moduleName": "avm-ptn-aks-dev",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-aks-dev"
+      },
+      {
+        "moduleName": "avm-ptn-aks-economy",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-aks-economy"
+      },
+      {
+        "moduleName": "avm-ptn-aks-enterprise",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-aks-enterprise"
+      },
+      {
+        "moduleName": "avm-ptn-aks-production",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-aks-production"
+      },
+      {
+        "moduleName": "avm-ptn-alz",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-alz"
+      },
+      {
+        "moduleName": "avm-ptn-alz-application-landing-zone-cicd-bootstrap-azure-devops",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-ptn-alz-application-landing-zone-cicd-bootstrap-azure-devops"
+      },
+      {
+        "moduleName": "avm-ptn-alz-application-landing-zone-cicd-bootstrap-github",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-ptn-alz-application-landing-zone-cicd-bootstrap-github"
+      },
+      {
+        "moduleName": "avm-ptn-alz-application-landing-zone-identity-and-access",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-alz-application-landing-zone-identity-and-access"
+      },
+      {
+        "moduleName": "avm-ptn-alz-connectivity-hub-and-spoke-vnet",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-alz-connectivity-hub-and-spoke-vnet"
+      },
+      {
+        "moduleName": "avm-ptn-alz-connectivity-virtual-wan",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-alz-connectivity-virtual-wan"
+      },
+      {
+        "moduleName": "avm-ptn-alz-identity",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-ptn-alz-identity"
+      },
+      {
+        "moduleName": "avm-ptn-alz-management",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-alz-management"
+      },
+      {
+        "moduleName": "avm-ptn-alz-policy-exemptions",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-ptn-alz-policy-exemptions"
+      },
+      {
+        "moduleName": "avm-ptn-alz-sub-vending",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-ptn-alz-sub-vending"
+      },
+      {
+        "moduleName": "avm-ptn-app-iaas-vm-cosmosdb-tier-four",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-app-iaas-vm-cosmosdb-tier-four"
+      },
+      {
+        "moduleName": "avm-ptn-app-service-landing-zone",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-ptn-app-service-landing-zone"
+      },
+      {
+        "moduleName": "avm-ptn-avd-lza-insights",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-avd-lza-insights"
+      },
+      {
+        "moduleName": "avm-ptn-avd-lza-managementplane",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-avd-lza-managementplane"
+      },
+      {
+        "moduleName": "avm-ptn-avd-lza-sessionhosts",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-avd-lza-sessionhosts"
+      },
+      {
+        "moduleName": "avm-ptn-azureimagebuilder",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-azureimagebuilder"
+      },
+      {
+        "moduleName": "avm-ptn-azure-aws-s2s-vpn",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-ptn-azure-aws-s2s-vpn"
+      },
+      {
+        "moduleName": "avm-ptn-azure-ipam",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-azure-ipam"
+      },
+      {
+        "moduleName": "avm-ptn-azuremonitorwindowsagent",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-azuremonitorwindowsagent"
+      },
+      {
+        "moduleName": "avm-ptn-bcdr-vm-replication",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-ptn-bcdr-vm-replication"
+      },
+      {
+        "moduleName": "avm-ptn-botservice-teamsapp",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-ptn-botservice-teamsapp"
+      },
+      {
+        "moduleName": "avm-ptn-cicd-agents-and-runners",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-cicd-agents-and-runners"
+      },
+      {
+        "moduleName": "avm-ptn-cicd-bootstrap",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-cicd-bootstrap"
+      },
+      {
+        "moduleName": "avm-ptn-cloudshell-vnet",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-cloudshell-vnet"
+      },
+      {
+        "moduleName": "avm-ptn-commercial-marketplace",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-commercial-marketplace"
+      },
+      {
+        "moduleName": "avm-ptn-confidential-compute",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-confidential-compute"
+      },
+      {
+        "moduleName": "avm-ptn-dev-center-dev-box",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-dev-center-dev-box"
+      },
+      {
+        "moduleName": "avm-ptn-ephemeral-credential",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-ptn-ephemeral-credential"
+      },
+      {
+        "moduleName": "avm-ptn-function-app-storage-private-endpoints",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-function-app-storage-private-endpoints"
+      },
+      {
+        "moduleName": "avm-ptn-hci-ad-provisioner",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-hci-ad-provisioner"
+      },
+      {
+        "moduleName": "avm-ptn-hci-server-provisioner",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-hci-server-provisioner"
+      },
+      {
+        "moduleName": "avm-ptn-hubnetworking",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-hubnetworking"
+      },
+      {
+        "moduleName": "avm-ptn-lbvmss",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-lbvmss"
+      },
+      {
+        "moduleName": "avm-ptn-mongodb-atlas-lza",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-mongodb-atlas-lza"
+      },
+      {
+        "moduleName": "avm-ptn-monitoring-amba-alz",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-monitoring-amba-alz"
+      },
+      {
+        "moduleName": "avm-ptn-monitor-private-link-scope",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-ptn-monitor-private-link-scope"
+      },
+      {
+        "moduleName": "avm-ptn-network-private-link-private-dns-zones",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-network-private-link-private-dns-zones"
+      },
+      {
+        "moduleName": "avm-ptn-network-routeserver",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-network-routeserver"
+      },
+      {
+        "moduleName": "avm-ptn-odaa",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-odaa"
+      },
+      {
+        "moduleName": "avm-ptn-odaa-identity",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-odaa-identity"
+      },
+      {
+        "moduleName": "avm-ptn-openai-cognitivesearch",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-openai-cognitivesearch"
+      },
+      {
+        "moduleName": "avm-ptn-openai-e2e-baseline",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-ptn-openai-e2e-baseline"
+      },
+      {
+        "moduleName": "avm-ptn-oracle-iaas",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-ptn-oracle-iaas"
+      },
+      {
+        "moduleName": "avm-ptn-policyassignment",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-policyassignment"
+      },
+      {
+        "moduleName": "avm-ptn-purestorage-cbs-array",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-ptn-purestorage-cbs-array"
+      },
+      {
+        "moduleName": "avm-ptn-sentinel-solutions",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-ptn-sentinel-solutions"
+      },
+      {
+        "moduleName": "avm-ptn-subnets-nsgs-routes",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-subnets-nsgs-routes/"
+      },
+      {
+        "moduleName": "avm-ptn-subscription-service-health-alerts",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-subscription-service-health-alerts"
+      },
+      {
+        "moduleName": "avm-ptn-unified-data-platform",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-ptn-unified-data-platform"
+      },
+      {
+        "moduleName": "avm-ptn-virtualwan",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-virtualwan"
+      },
+      {
+        "moduleName": "avm-ptn-vnetgateway",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-ptn-vnetgateway"
+      }
+    ],
+    "TerraformUtilityModules.csv": [
+      {
+        "moduleName": "avm-utl-interfaces",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-utl-interfaces"
+      },
+      {
+        "moduleName": "avm-utl-naming",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-utl-naming"
+      },
+      {
+        "moduleName": "avm-utl-network-ip-addresses",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-utl-network-ip-addresses"
+      },
+      {
+        "moduleName": "avm-utl-regions",
+        "repoURL": "https://github.com/Azure/terraform-azurerm-avm-utl-regions"
+      },
+      {
+        "moduleName": "avm-utl-roledefinitions",
+        "repoURL": "https://github.com/Azure/terraform-azure-avm-utl-roledefinitions"
+      },
+      {
+        "moduleName": "avm-utl-sku-finder",
+        "repoURL": "https://github.com/Azure/terraform-azapi-avm-utl-sku-finder"
+      }
+    ]
+  },
+  "csvRowRemovals": [],
+  "csvRowRemovalsForced": false,
+  "csvRowRenames": [],
+  "missingOwners": [],
+  "heldBackOutputs": [],
+  "heldBackSourceFiles": []
+}
