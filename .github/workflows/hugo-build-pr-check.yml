@@ -6,6 +6,7 @@ on:
     paths:
       - 'docs/**'
       - '.github/workflows/hugo-build-pr-check.yml'
+      - 'utilities/tests/Test-TerraformRegistryVersions.ps1'
   workflow_dispatch: {}
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -42,6 +43,10 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
+
+      - name: Test Terraform Registry version handling
+        shell: pwsh
+        run: ./utilities/tests/Test-TerraformRegistryVersions.ps1
 
       - name: Setup Pages
         id: pages

@@ -319,22 +319,7 @@
       {{ $repoNameSplit := strings.Split $repoName "-" }}
       {{ $moduleProvider := index $repoNameSplit 1 }}
       {{ $moduleTfRegApiUrl := printf "https://registry.terraform.io/v1/modules/Azure/%s/%s/versions" $item.ModuleName $moduleProvider }}
-      {{ $moduleTfRegApiData := dict }}
-      {{ with resources.GetRemote $moduleTfRegApiUrl }}
-        {{ with .Err }}
-          {{ errorf "%s" . }}
-        {{ else }}
-          {{ $moduleTfRegApiData = . | transform.Unmarshal }}
-        {{ end }}
-      {{ else }}
-        {{ errorf "Unable to get remote resource %q" $moduleTfRegApiUrl }}
-      {{ end }}
-      {{ $moduleVersions := slice }}
-      {{ range $moduleTfRegApiData.modules }}
-        {{ range .versions }}
-          {{ $moduleVersions = $moduleVersions | append .version }}
-        {{ end }}
-      {{ end }}
+      {{ $moduleVersions := partialCached "terraform-registry-versions.html" (dict "url" $moduleTfRegApiUrl "moduleStatus" $item.ModuleStatus) $moduleTfRegApiUrl $item.ModuleStatus }}
       {{ if $moduleVersions }}
           {{ $moduleLatestVersion = index $moduleVersions (sub (len $moduleVersions) 1) }}
       {{ end }}
@@ -366,7 +351,9 @@
           {{ $item.ModuleName }}
         {{- end -}}
 
-        {{- partial "render-terraform-submodules.html" (dict "moduleName" $item.ModuleName "repoURL" $item.RepoURL "moduleStatus" $item.ModuleStatus "useLinks" $useLinks) -}}
+        {{- if ne $moduleLatestVersion "N/A" -}}
+          {{- partial "render-terraform-submodules.html" (dict "moduleName" $item.ModuleName "repoURL" $item.RepoURL "moduleStatus" $item.ModuleStatus "useLinks" $useLinks) -}}
+        {{- end -}}
       </td>
       <td style="text-align: center;"> {{/* link to the source code repo */}}
         {{- if $useLinks -}}

@@ -10,6 +10,8 @@ description: Terraform Module Index pages showing all available, orphaned and pl
 
 The following table shows the number of all available, orphaned and planned **Terraform Modules**.
 
+Orphaned and deprecated modules without a release in the Terraform Registry show `N/A` instead of a version.
+
 {{% moduleStats language="Terraform" moduleType="All" showLanguage=true showClassification=true %}}
 
 {{% expand title="➕ Additional information" %}}

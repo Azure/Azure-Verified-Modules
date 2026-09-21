@@ -1,0 +1,20 @@
+{{- $moduleVersions := slice -}}
+{{- with resources.GetRemote .url -}}
+  {{- with .Err -}}
+    {{- errorf "%s" . -}}
+  {{- else -}}
+    {{- $moduleTfRegApiData := . | transform.Unmarshal -}}
+    {{- range $moduleTfRegApiData.modules -}}
+      {{- range .versions -}}
+        {{- $moduleVersions = $moduleVersions | append .version -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- else -}}
+  {{- if or (eq $.moduleStatus "Orphaned") (eq $.moduleStatus "Deprecated") -}}
+    {{- warnf "No published Terraform Registry module found at %q (%s); displaying N/A" $.url $.moduleStatus -}}
+  {{- else -}}
+    {{- errorf "Unable to get remote resource %q" $.url -}}
+  {{- end -}}
+{{- end -}}
+{{- return $moduleVersions -}}
