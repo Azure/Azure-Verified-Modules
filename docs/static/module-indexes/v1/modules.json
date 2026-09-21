@@ -48,7 +48,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-res-aad-domainservice",
           "modulePath": ".",
           "repository": "Azure/terraform-azurerm-avm-res-aad-domainservice",
@@ -6472,7 +6472,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-res-compute-image",
           "modulePath": ".",
           "repository": "Azure/terraform-azurerm-avm-res-compute-image",
@@ -8483,7 +8483,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-res-dashboard-grafana",
           "modulePath": ".",
           "repository": "Azure/terraform-azurerm-avm-res-dashboard-grafana",
@@ -10564,7 +10564,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-res-digitaltwins-digitaltwinsinstance",
           "modulePath": ".",
           "repository": "Azure/terraform-azurerm-avm-res-digitaltwins-digitaltwinsinstance",
@@ -13391,7 +13391,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-res-healthbot-healthbot",
           "modulePath": ".",
           "repository": "Azure/terraform-azurerm-avm-res-healthbot-healthbot",
@@ -13724,7 +13724,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-res-hybridcompute-machine",
           "modulePath": ".",
           "repository": "Azure/terraform-azurerm-avm-res-hybridcompute-machine",
@@ -16580,7 +16580,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-res-managedservices-registrationdefinition",
           "modulePath": ".",
           "repository": "Azure/terraform-azurerm-avm-res-managedservices-registrationdefinition",
@@ -16650,7 +16650,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-res-management-managementgroup",
           "modulePath": ".",
           "repository": "Azure/terraform-azurerm-avm-res-management-managementgroup",
@@ -22838,7 +22838,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-res-network-virtualrouter",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-res-network-virtualrouter",
@@ -23539,7 +23539,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-res-operationsmanagement-solution",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-res-operationsmanagement-solution",
@@ -23709,7 +23709,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-res-powerbidedicated-capacity",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-res-powerbidedicated-capacity",
@@ -25051,7 +25051,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-res-resources-feature",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-res-resources-feature",
@@ -25882,7 +25882,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-res-servicefabric-cluster",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-res-servicefabric-cluster",
@@ -26168,7 +26168,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-res-signalrservice-signalr",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-res-signalrservice-signalr",
@@ -31225,7 +31225,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-ptn-ai-platform-baseline",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-ptn-ai-platform-baseline",
@@ -31599,7 +31599,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-ptn-alz-application-landing-zone-identity-and-access",
           "modulePath": ".",
           "repository": "Azure/terraform-azurerm-avm-ptn-alz-application-landing-zone-identity-and-access",
@@ -32234,7 +32234,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-ptn-alz-identity",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-ptn-alz-identity",
@@ -32311,7 +32311,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-ptn-alz-policy-exemptions",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-ptn-alz-policy-exemptions",
@@ -33081,7 +33081,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-ptn-avd-lza-sessionhosts",
           "modulePath": ".",
           "repository": "Azure/terraform-azurerm-avm-ptn-avd-lza-sessionhosts",
@@ -33753,7 +33753,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-ptn-azure-aws-s2s-vpn",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-ptn-azure-aws-s2s-vpn",
@@ -33788,7 +33788,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-ptn-azure-ipam",
           "modulePath": ".",
           "repository": "Azure/terraform-azurerm-avm-ptn-azure-ipam",
@@ -33934,7 +33934,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-ptn-botservice-teamsapp",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-ptn-botservice-teamsapp",
@@ -33969,7 +33969,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-ptn-cicd-bootstrap",
           "modulePath": ".",
           "repository": "Azure/terraform-azurerm-avm-ptn-cicd-bootstrap",
@@ -34670,7 +34670,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-ptn-finopstoolkit-finopshub",
           "modulePath": ".",
           "repository": "Azure/terraform-azurerm-avm-ptn-finopstoolkit-finopshub",
@@ -36101,7 +36101,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-ptn-monitor-private-link-scope",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-ptn-monitor-private-link-scope",
@@ -37073,7 +37073,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-ptn-openai-e2e-baseline",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-ptn-openai-e2e-baseline",
@@ -37143,7 +37143,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-ptn-oracle-iaas",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-ptn-oracle-iaas",
@@ -37215,7 +37215,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-ptn-purestorage-cbs-array",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-ptn-purestorage-cbs-array",
@@ -37792,7 +37792,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-ptn-sentinel-solutions",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-ptn-sentinel-solutions",
@@ -38016,7 +38016,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Proposed",
           "moduleName": "avm-ptn-unified-data-platform",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-ptn-unified-data-platform",
