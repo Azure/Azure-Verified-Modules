@@ -537,8 +537,8 @@
     ]
   },
   "counts": {
-    "catalogEntries": 1050,
-    "adoptedEntries": 1050,
+    "catalogEntries": 1048,
+    "adoptedEntries": 1048,
     "legacyRows": {
       "BicepResourceModules.csv": 537,
       "BicepPatternModules.csv": 67,
@@ -551,8 +551,8 @@
       "BicepResourceModules.csv": 552,
       "BicepPatternModules.csv": 67,
       "BicepUtilityModules.csv": 2,
-      "TerraformResourceModules.csv": 288,
-      "TerraformPatternModules.csv": 117,
+      "TerraformResourceModules.csv": 160,
+      "TerraformPatternModules.csv": 66,
       "TerraformUtilityModules.csv": 6
     }
   },
@@ -3892,7 +3892,20 @@
   },
   "csvRowRemovals": [],
   "csvRowRemovalsForced": false,
-  "csvRowRenames": [],
+  "csvRowRenames": [
+    {
+      "sourceFile": "TerraformResourceModules.csv",
+      "moduleName": "avm-res-deviceregistry-assetendpointprofile",
+      "fromRepoURL": "https://github.com/Azure/terraform-azurerm-avm-res-deviceregistry-assetendpointprofile",
+      "toRepoURL": "https://github.com/Azure/terraform-azure-avm-res-deviceregistry-assetendpointprofile"
+    },
+    {
+      "sourceFile": "TerraformResourceModules.csv",
+      "moduleName": "avm-res-insights-privatelinkscope",
+      "fromRepoURL": "https://github.com/Azure/terraform-azurerm-avm-res-insights-privatelinkscope",
+      "toRepoURL": "https://github.com/Azure/terraform-azure-avm-res-insights-privatelinkscope"
+    }
+  ],
   "missingOwners": [],
   "heldBackOutputs": [],
   "heldBackSourceFiles": []
