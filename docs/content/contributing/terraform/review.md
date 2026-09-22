@@ -81,4 +81,5 @@ GitHub Repo Link: <REPLACE WITH THE LINK OF THE MODULE IN GITHUB>"
 13. Once the module owner perform the requested action in the previous step, the module reviewer updates the module proposal by performing the following steps:
 
 - Assign label Status: Module Available :green_circle: to the module proposal.
-- Update the module index excel file and CSV file by creating a PR to update the module index and links the module proposal as an issue that gets closed once the PR is merged which will move the module proposal from "In Review" to "Done" in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project.
+- Verify the module's root `metadata.json`, including all approved owners. Correct metadata through a pull request to the module repository using the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/).
+- Confirm publication to the Terraform Registry. The four-hourly [catalog sync]({{% siteparam base %}}/contributing/module-metadata/#catalog-updates) publishes the module index automatically once the module is published and its metadata is correct. Close the module proposal after the index shows the module as `Available`, which moves it from "In Review" to "Done" in the [AVM - Module Triage](https://github.com/orgs/Azure/projects/529) project.

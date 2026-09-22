@@ -722,11 +722,19 @@ weight = 7
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
+identifier = 'module-metadata'
+parent = 'contributing'
+name = 'Module Metadata'
+pageRef = '/contributing/module-metadata'
+weight = 4
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
 identifier = 'contribution-qna'
 parent = 'contributing'
 name = 'Contribution Q&A'
 pageRef = '/contributing/q-and-a'
-weight = 4
+weight = 5
 params = { alwaysopen = false, collapsibleMenu = true }
 
 
@@ -735,7 +743,7 @@ identifier = 'website-contribution'
 parent = 'contributing'
 name = 'Website'
 pageRef = '/contributing/website'
-weight = 5
+weight = 6
 params = { alwaysopen = false, collapsibleMenu = true }
 
 
@@ -745,7 +753,7 @@ parent = 'contributing'
 pre = '<i class="fa-solid fa-globe"></i> '
 name = 'Code of Conduct'
 url = 'https://opensource.microsoft.com/codeofconduct/'
-weight = 6
+weight = 7
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
@@ -754,7 +762,7 @@ parent = 'contributing'
 pre = '<i class="fa-solid fa-globe"></i> '
 name = 'Module Owner Onboarding'
 url = 'https://aka.ms/AVM/Onboarding'
-weight = 7
+weight = 8
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]

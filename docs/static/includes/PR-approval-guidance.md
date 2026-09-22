@@ -17,3 +17,5 @@
   </tr>
 </table>
 <!-- markdownlint-restore -->
+
+Changes to `metadata.json` require approval from an eligible member of either [`@Azure/azure-verified-modules-engineering-owners`](https://github.com/orgs/Azure/teams/azure-verified-modules-engineering-owners) or [`@Azure/azure-verified-modules-module-owners`](https://github.com/orgs/Azure/teams/azure-verified-modules-module-owners). Either team is sufficient; approval from both is not required. Being listed in the module's `owners` array does not by itself authorize approval. Follow the [metadata review process](https://azure.github.io/Azure-Verified-Modules/contributing/module-metadata/); code changes in the same pull request still need the normal reviews described above.

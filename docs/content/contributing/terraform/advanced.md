@@ -161,7 +161,9 @@ Shell equivalents are rejected. Each PowerShell hook runs in an isolated process
 
 [Repository sync](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/repository-sync) regularly compares each module repository with the shared [managed files](https://github.com/Azure/azure-verified-modules-managed-files) and opens a PR when updates are available. These PRs are normally merged automatically. Module owners will be informed about one-off PRs that require intervention.
 
-These PRs do not change module code, so no new release is needed.
+Sync uses the default branch's root `metadata.json` for the display name and full owner list. Submit changes to those values through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change).
+
+A synchronization update can include module source and managed configuration. Review any requested intervention accordingly; source changes need normal validation and release handling. A metadata-only change does not require a module release.
 
 ---
 

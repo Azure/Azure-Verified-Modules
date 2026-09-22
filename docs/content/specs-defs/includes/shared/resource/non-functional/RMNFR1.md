@@ -23,17 +23,19 @@ Resource modules **MUST** follow the below naming conventions (all lower case).
 
 {{% notice style="important" %}}
 
-As part of the module proposal process, the module's approved name is captured both in the module proposal issue AND the related [module index page]({{% siteparam base %}}/indexes) (backed by the corresponding [CSV file](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes)).
+The module's approved name is captured in the module proposal issue. The related [module index page]({{% siteparam base %}}/indexes) and [CSV file](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) remain published lookup references.
 
-Therefore, **module owners don't need to construct the module's name themselves, instead they need use the name prescribed in the module proposal issue or in the related CSV file, at the time of approval.**
+**Module owners must use the name approved in the module proposal, not construct a new one.** If it differs from the index, confirm the correction with the AVM core team.
+
+Correct descriptive fields through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/). Changing `moduleDisplayName` does not rename the module or change its repository path.
 
 {{% /notice %}}
 
 {{% notice style="note" %}}
 
-We will maintain a set of CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) with the correct singular names for all resource types to enable checks to utilize this list to ensure repos are named correctly. To see the formatted content of these CSV files with additional information, please visit the [AVM Module Indexes]({{% siteparam base %}}/indexes) page.
+The CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) remain available for checks that use the approved singular resource names. To see their formatted content with additional information, visit the [AVM Module Indexes]({{% siteparam base %}}/indexes) page.
 
-This will be updated quarterly, or ad-hoc as new RPs/ Resources are created and highlighted via a check failure.
+Report missing or incorrect resource names to the AVM core team. Index corrections go through catalog generation and reviewed publication.
 
 {{% /notice %}}
 

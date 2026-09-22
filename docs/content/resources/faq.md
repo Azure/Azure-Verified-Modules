@@ -279,7 +279,9 @@ If any of these queries don't return any results, it means that no module in the
 
 ### I want to become the owner of XYZ modules, where can I indicate this, and what are the expected actions from me?
 
-If exists, you can comment on the [Module Proposal issue](https://aka.ms/AVM/ModuleProposals) of the module that you are interested in and the AVM Core Team will do the triage providing information about next steps.
+For a proposed module, comment on its open [Module Proposal issue](https://aka.ms/AVM/ModuleProposals). For an existing module, follow the [ownership-change process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#changing-module-owners), using the orphaned module issue when adopting an orphaned module. Do not reopen a closed module proposal.
+
+The AVM core team confirms eligibility and acceptance of the role. Add, remove, or transfer owners through a pull request to the root `metadata.json` using the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/). Editing metadata does not grant access or review permission; follow [SNFR20]({{% siteparam base %}}/spec/SNFR20) separately.
 
 Having an understanding of roles & responsibilities is useful as well, you can find this information on the [Team Definitions & RACI | Azure Verified Modules]({{% siteparam base %}}/specs/shared/team-definitions/) page.
 
