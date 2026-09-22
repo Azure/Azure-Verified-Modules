@@ -109,7 +109,7 @@ You **MUST** still confirm that the requestor is a Microsoft FTE and that they u
     - Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; label is added to the issue.
       - If applied earlier, remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; label from the issue.
     - Remove the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#E4E669;">Status: In Triage 🔍</mark>&nbsp; to indicate you're done with triaging the issue.
-1. Keep the approved name, description, and owners in the proposal issue. Once the repository and module source exist, record the supported fields through a [metadata pull request]({{% siteparam base %}}/contributing/module-metadata/).
+1. Keep the approved name, description, and owners in the proposal issue, then record the supported fields through a [metadata pull request]({{% siteparam base %}}/contributing/module-metadata/). Metadata may be created before the module source exists; the module stays `Proposed` until it is published.
 5. Use the following text to approve module development
 
 {{% expand title="➕ Final Confirmation for Proposed Module Owners - Bicep" %}}
@@ -138,7 +138,7 @@ Although, it's not directly part of the module proposal triage process, to begin
 
 1. Update any Azure RBAC permissions for test tenants/subscription, if needed.
 2. In case of **Bicep modules** only:
-    - Confirm that every module owner has approved access through the [AVM Module Contributors access package](https://aka.ms/avm/id/access-package/module-contributor), as outlined in [SNFR20]({{% siteparam base %}}/spec/SNFR20#bicep). Per-module GitHub teams, parent-team assignments, and `CODEOWNERS` entries are no longer required.
+    - Confirm that every module owner has approved access through the [AVM Module Contributors access package](https://aka.ms/avm/id/access-package/module-contributor), as outlined in [SNFR20]({{% siteparam base %}}/spec/SNFR20#bicep). Per-module GitHub teams and parent-team assignments are no longer required. `CODEOWNERS` entries are generated from the module's root `metadata.json` and **MUST NOT** be hand-authored.
     - Ensure the [`AVM Module Issue template`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/ISSUE_TEMPLATE/avm_module_issue.yml) file in the [BRM repo](https://aka.ms/BRM) has been updated.
 
 {{% /notice %}}
@@ -149,7 +149,7 @@ Once module is developed and `v0.1.0` has been published to the relevant registr
 
 1. Assign the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#C8E6C9;">Status: Module Available 🟢</mark>&nbsp; label to the issue.
 2. Move the issue into "`Done`" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project.
-1. Confirm that the module metadata and registry publication are correct, then review the [catalog update]({{% siteparam base %}}/contributing/module-metadata/#catalog-updates). Submit any metadata corrections to the module repository.
+1. Confirm that the module metadata and registry publication are correct. The four-hourly [catalog sync]({{% siteparam base %}}/contributing/module-metadata/#catalog-updates) then publishes the module index. Submit any metadata corrections to the module repository.
 4. When all development actions are complete and confirmed
     1. **In case of Bicep modules** - Close the module proposal issue with the following message:
 
@@ -200,7 +200,7 @@ If a module meets the criteria described in the "[Orphaned Modules]({{% sitepara
 1. Submit an "orphaned module" issue by using the "[Orphaned AVM Module 🟡](https://aka.ms/AVM/OrphanedModule)" issue template.
 2. Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp;, and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 🟡</mark>&nbsp; labels are assigned to the issue and it is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project.
 3. Move the issue into the "`Orphaned`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
-1. Include the ownership change in a pull request to the module's root `metadata.json`, linked to the orphaned module issue. Set `"owners": []`, removing all individual and team handles, following the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#orphan-a-module). Do not edit child ownership or set a status field. The catalog calculates `Orphaned` when no owner exists and preserves an existing `Deprecated` status.
+1. Include the ownership change in a pull request to the module's root `metadata.json`, linked to the orphaned module issue. Set `"owners": []`, removing all individual and team handles, following the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#orphan-a-module). Do not edit child ownership or set a status field. A published module with no owners is shown as `Orphaned`; see [how module status is calculated]({{% siteparam base %}}/contributing/module-metadata/#module-status).
 5. Place an information notice as per the below guidelines:
     - **In case of a Bicep module**:
       - Place the information notice - with the text below - in an `ORPHANED.md` file, in the module's root.
@@ -271,7 +271,7 @@ To look for Orphaned Modules:
 
 {{% /expand %}}
 
-1. Once the metadata change is reviewed and merged and all access and notice-removal actions above are complete, close the orphaned module issue with the following message. Track catalog publication separately.
+1. Once the metadata change is reviewed and merged and all access and notice-removal actions above are complete, close the orphaned module issue with the following message. The module index updates automatically at the next four-hourly catalog sync.
 
 {{% expand title="➕ Closing remarks for the New Owner(s) of an Orphaned Module" %}}
 
@@ -324,7 +324,7 @@ When the module owner needs to be changed without the module becoming orphaned, 
 
 {{% /expand %}}
 
-1. Once the metadata change is reviewed and merged and the handover and access requirements above are complete, close the orphaned module issue with the following message. Track catalog publication separately.
+1. Once the metadata change is reviewed and merged and the handover and access requirements above are complete, close the orphaned module issue with the following message. The module index updates automatically at the next four-hourly catalog sync.
 
 {{% expand title="➕ Closing remarks for the New Owner(s) of an Orphaned Module" %}}
 
@@ -360,7 +360,7 @@ If a module meets the criteria described in the "[Deprecated Modules]({{% sitepa
     1. Submit a Pull Request
     1. For the AVM maintainers: Once the PR is merged, run the [.Platform - Publish [moduleIndex.json]](https://github.com/Azure/bicep-registry-modules/actions/workflows/platform.publish-module-index-json.yml) workflow with the `regenIndexFromBRM` flag set. This will de-list the module so that it won't show up in the VS-Code Bicep extension going forward.
 
-Deprecating a module does not require changing `CODEOWNERS` or deleting a GitHub team. The shared `/avm/` entry and Module Contributors team are still required by other modules.
+Deprecating a module does not require editing `CODEOWNERS` or deleting a GitHub team. The file is generated from module metadata, and the fallback `/avm/` entry is still required by other modules.
 
 **Terraform specific steps**
 
@@ -369,9 +369,11 @@ Deprecating a module does not require changing `CODEOWNERS` or deleting a GitHub
 
 **Catalog publication**
 
-The catalog derives `Deprecated` from Bicep's `DEPRECATED.md` or Terraform's repository `archived` flag. Complete the retirement steps, then review the [catalog update]({{% siteparam base %}}/contributing/module-metadata/#catalog-updates).
+The catalog derives `Deprecated` from Bicep's `DEPRECATED.md` or Terraform's repository `archived` flag. Complete the retirement steps; the four-hourly [catalog sync]({{% siteparam base %}}/contributing/module-metadata/#catalog-updates) then publishes the change.
 
 A Bicep marker applies to that module and all its descendants. A root marker therefore covers every child; a child marker leaves its parent and siblings unaffected. Terraform archival applies to all module entries in the repository.
+
+A module deprecated before it was ever published to the registry is removed from the indexes rather than listed as `Deprecated`.
 
 Catalog publication does not perform the required notices, Bicep workflow/issue-template removal and registry-index update, or Terraform repository archival.
 

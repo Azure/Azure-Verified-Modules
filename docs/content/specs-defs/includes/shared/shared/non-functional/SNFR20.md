@@ -47,11 +47,13 @@ Bicep module owners **MUST** continue to work in forks of the [BRM repository](h
 
 #### CODEOWNERS file
 
-The BRM [`CODEOWNERS` file](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) assigns `/avm/` to the shared `@Azure/azure-verified-modules-module-contributors` team.
+The BRM [`CODEOWNERS` file](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) is generated automatically and **MUST NOT** be edited by hand. It assigns `/avm/` to the shared `@Azure/azure-verified-modules-module-owners` team as a fallback, then adds one entry per module path.
+
+Each module entry is built from that module's root `metadata.json`. Every handle in the `owners` array is listed as a code owner, in file order, followed by the fallback team. Both individual handles and `@Azure/team-slug` handles are supported, and there is no limit of two owners. Merging an ownership change through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/) is therefore what updates BRM review routing.
 
 The repository-wide default and the `*avm.core.team.tests.ps1` and `*.e2eignore` overrides remain assigned to `@Azure/azure-verified-modules-tooling-contributors`.
 
-Changes to `metadata.json` require approval from an eligible member of either `@Azure/azure-verified-modules-engineering-owners` or `@Azure/azure-verified-modules-module-owners`. Either team can satisfy [metadata code-owner review]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change); approval from both is not required. Being listed in metadata does not grant review permission.
+Changes to `metadata.json` require approval from an eligible member of either `@Azure/azure-verified-modules-engineering-owners` or `@Azure/azure-verified-modules-module-owners`. A `metadata.json` rule listing both teams is the last rule in the generated file, so it takes precedence over the per-module entries: a metadata change is reviewed by those teams rather than by the module's own owners, while the per-module entries continue to cover the rest of the module path. Either team can satisfy [metadata code-owner review]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change); approval from both is not required. Being listed in metadata does not grant review permission.
 
 For Bicep and Terraform, both metadata code-owner teams must be visible and have repository write access. Access administration and environment approvals remain separate responsibilities.
 

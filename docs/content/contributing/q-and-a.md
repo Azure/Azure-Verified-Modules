@@ -92,7 +92,7 @@ The AVM core team will then triage the request and get back to you with next ste
 
 Submit module details and ownership changes to the module repository's `metadata.json` through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/). Ownership is maintained in the root file and requires approval from either metadata code-owner team.
 
-Catalog generation and reviewed publication carry changes to the indexes. Merging metadata does not immediately update the published index.
+A catalog sync then regenerates the indexes and publishes them automatically every four hours, so a merged metadata change normally appears in the published index within about four hours.
 
 For deprecation, follow the [retirement process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-deprecated). The catalog derives `Deprecated` from Bicep's `DEPRECATED.md` or Terraform's repository `archived` flag.
 

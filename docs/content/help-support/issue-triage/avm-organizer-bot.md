@@ -62,7 +62,7 @@ The following scripts are leveraged by the **[Azure Verified Modules GitHub App]
 
 The following scripts are leveraged by the **[Azure Verified Modules GitHub App](https://github.com/apps/azure-verified-modules)** in the bicep-registry-modules ([BRM](https://aka.ms/BRM)) repository:
 
-Module-specific routing uses the individual owners recorded in the [module indexes]({{% siteparam base %}}/indexes/bicep/), not `ModuleOwnersGHTeam` or membership of the shared Module Contributors team. The `Get-AvmModuleOwnerLogin.ps1` helper resolves `PrimaryModuleOwnerGHHandle` and `SecondaryModuleOwnerGHHandle`, inheriting ownership and orphan status through `ParentModule` for child modules. It normalizes and deduplicates handles and reports missing, duplicate, or invalid ownership metadata rather than treating it as an empty owner list.
+Module-specific routing uses the individual owners recorded in each root module's `metadata.json`, not `ModuleOwnersGHTeam` or membership of the shared Module Contributors team. The generated [module indexes]({{% siteparam base %}}/indexes/bicep/) carry only the first two individual owners, so treat metadata as the source of truth and submit corrections through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/). The `Get-AvmModuleOwnerLogin.ps1` helper resolves `PrimaryModuleOwnerGHHandle` and `SecondaryModuleOwnerGHHandle`, inheriting ownership and orphan status through `ParentModule` for child modules. It normalizes and deduplicates handles and reports missing, duplicate, or invalid ownership metadata rather than treating it as an empty owner list.
 
 ### 1. Set-AvmGitHubIssueOwnerConfig.ps1
 

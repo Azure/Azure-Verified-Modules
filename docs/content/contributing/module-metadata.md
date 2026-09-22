@@ -23,7 +23,24 @@ Every new Bicep or Terraform root module, and every new child module or submodul
 - **Root modules** get the full metadata shape, including the `owners` array.
 - **Child modules and submodules** get the reduced, inherited-owner shape described above; they must not contain `owners`.
 
-Use `avm metadata initialize` from the [`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring) PowerShell module to scaffold the file for either ecosystem. It validates the supplied values against the versioned schema and writes `metadata.json` without overwriting an existing file. Pass `--child-module` when scaffolding a child module or submodule so it produces the reduced, owner-less shape. Validate an existing file with `avm metadata validate`, or inspect one with `avm metadata show`.
+Use `Initialize-AvmModuleMetadata` from the [`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring) PowerShell module to scaffold the file for either ecosystem. It validates the supplied values against the versioned schema and writes `metadata.json` without overwriting an existing file. You must supply the approved values yourself; the command never infers or backfills them.
+
+```pwsh
+$metadata = @{
+    moduleDisplayName = '<approved display name>'
+    moduleDescription = '<approved description>'
+    canonicalType     = '<approved ARM resource type or taxonomy>'
+    owners            = @('<approved handle>')
+}
+
+Initialize-AvmModuleMetadata -Path . -InputObject $metadata -Ecosystem terraform -ModuleType resource -WhatIf
+```
+
+`-Ecosystem` (`bicep` or `terraform`) and `-ModuleType` (`resource`, `pattern`, or `utility`) are required. Add `-ChildModule` to scaffold the reduced, owner-less shape for a child module or submodule, omitting `owners` from the input. `-UpdateSource` applies matching Bicep source literals and is not valid for Terraform. Run with `-WhatIf` first to review the plan, then re-run without it to write the file.
+
+Validate an existing file with `avm metadata validate`, or inspect one with `avm metadata show`.
+
+Approved modules may carry `metadata.json` before their source exists. The catalog treats a metadata-only module as `Proposed` until it is published.
 
 ## Fields you can maintain
 
@@ -32,7 +49,7 @@ The versioned schema referenced by the required `$schema` URI defines the suppor
 | Field | Guidance |
 | --- | --- |
 | `$schema` | Keep the required versioned schema URI. It identifies the module metadata schema. |
-| `moduleDisplayName`, `moduleDescription` | Maintain the module's display name and description. For Bicep, they must match the corresponding literals in `main.bicep`. |
+| `moduleDisplayName`, `moduleDescription` | Maintain the module's curated display name and description. For Bicep, `moduleDescription` must match the `metadata description` literal in `main.bicep`. `moduleDisplayName` is independent of the `metadata name` literal and does not have to match it. |
 | `canonicalType` | The real ARM resource type, or the approved pattern/utility taxonomy. [Helper submodules](#helper-submodules) use `helper`. |
 | `owners` | Root only: a flat array of strings containing every approved owner. Use bare GitHub handles for individuals and qualified handles such as `@Azure/team-name` for approved existing teams. |
 | `telemetryIdPrefix` | Preserve the assigned identifier where required. Do not generate a replacement identifier as part of an ownership or descriptive edit. |
@@ -46,7 +63,9 @@ Module identity and parent relationships come from the repository layout. Changi
 
 Helper submodules use the exact `"canonicalType": "helper"` marker with the required `$schema`, `moduleDisplayName`, and `moduleDescription`. Ownership is inherited from the root. Use this marker only for helper children, not root modules or resource children.
 
-Helper telemetry is optional; any supplied `telemetryIdPrefix` must pass validation. Helpers appear in the JSON catalog, not in CSV outputs.
+Helper telemetry is optional; any supplied `telemetryIdPrefix` must pass validation. Helpers appear in the JSON catalog, not in the CSV indexes.
+
+Terraform submodules are excluded from the CSV indexes entirely, not only helpers. Bicep child modules still have their own CSV rows, and the `ParentModule` column names the family root rather than the immediate parent.
 
 ## Submit and review a change
 
@@ -56,7 +75,9 @@ Helper telemetry is optional; any supplied `telemetryIdPrefix` must pass validat
 1. Validate metadata using the repository's approved tooling and satisfy its required reviews before merging. Approval from an eligible member of **either** team satisfies metadata code-owner review; approval from both teams is **not** required. Being listed in the module's `owners` array does not by itself authorize someone to approve. Any code changes in the same pull request still need their normal code review and tests.
 1. Follow the change through catalog generation and reviewed publication. Do not edit the generated CSV or JSON output to duplicate the metadata change.
 
-**Metadata-only changes must not trigger a module release.** Do not change version files or create a release just to update owners or other metadata. A Bicep name or description correction may also require changing `main.bicep` to keep its literals consistent; that is a source change and must follow normal validation and release rules, not be treated as metadata-only.
+**Metadata-only changes must not trigger a module release.** Do not change version files or create a release just to update owners or other metadata. A Bicep description correction may also require updating the `metadata description` literal in `main.bicep`; that is a source change and must follow normal validation and release rules, not be treated as metadata-only. Display names are independent of source literals and need no source change.
+
+Merging an owners change in [Azure/bicep-registry-modules](https://github.com/Azure/bicep-registry-modules) also changes review routing. The repository's [`CODEOWNERS` file](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) is generated from each root module's `metadata.json`, so every handle in the `owners` array becomes a code owner for that module's path. The generated file ends with a `metadata.json` rule assigned to the two metadata code-owner teams, which is why a metadata change is routed to them rather than to the module's own owners. Do not edit `CODEOWNERS` by hand.
 
 Editing metadata does not grant or revoke repository permissions, create teams, change identities, or provision Azure access. Every incoming owner still needs the separate access approval described in [SNFR20]({{% siteparam base %}}/spec/SNFR20). Do not remove shared access solely because someone stops owning one module.
 
@@ -72,7 +93,7 @@ For a direct transfer, follow [hot swapping module owners]({{% siteparam base %}
 
 Follow [when a module becomes orphaned]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-orphaned), including its tracking issue and required notices.
 
-In the root metadata file, set `"owners": []`, removing all individual and team handles from the array. Keep the remaining metadata intact. The catalog calculates `Orphaned` when no owner exists, while preserving an existing `Deprecated` status.
+In the root metadata file, set `"owners": []`, removing all individual and team handles from the array. Keep the remaining metadata intact. A published module with no owners is shown as `Orphaned`. See [how module status is calculated](#module-status).
 
 ### Adopt an orphaned module
 
@@ -82,18 +103,33 @@ Complete the separate access approval and notice-removal steps before closing th
 
 ## Catalog updates
 
-Catalog generation and reviewed publication carry metadata changes to the [module indexes and CSV downloads]({{% siteparam base %}}/indexes/). Merging metadata does not immediately update those outputs. The AVM core team manages publication using the [catalog tooling](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/module-catalog).
+The catalog sync runs on a four-hourly schedule (01:33, 05:33, 09:33, 13:33, 17:33, and 21:33 UTC). Each scheduled run collects metadata from the module repositories, regenerates the six CSV indexes and `v1/modules.json`, and publishes them to the [module indexes and CSV downloads]({{% siteparam base %}}/indexes/) automatically. A merged metadata change therefore appears in the published index within about four hours, without a separate request to the AVM core team.
 
-CSV owner columns show the first two individuals. Root metadata and the JSON catalog contain the full owner list. Propose corrections in the module's metadata rather than editing generated outputs.
+The generated outputs are not the source of truth. Propose corrections in the module's `metadata.json` rather than editing generated CSV or JSON files; the next scheduled run overwrites them. The AVM core team owns the [catalog tooling](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management/module-catalog) and handles any run that is held back by a safeguard.
+
+CSV owner columns show the first two individuals. Root metadata and the JSON catalog contain the full owner list.
+
+### Module status
+
+The catalog calculates `ModuleStatus` from evidence, not from an authored field. The first matching condition wins:
+
+| Condition | Status |
+| --- | --- |
+| Deprecation evidence, or an existing `Deprecated` status in the CSV | `Deprecated` |
+| Not published in the registry | `Proposed` |
+| Published with no owners | `Orphaned` |
+| Published with at least one owner | `Available` |
+
+A module that is both deprecated and unpublished is omitted from the CSV indexes and `v1/modules.json` altogether, and the run warns that its unused source or repository can be deleted.
 
 ## Related processes
 
-**New proposals:** Follow the [module proposal and approval process]({{% siteparam base %}}/contributing/process/#new-module-proposal--creation). Keep approved details in the proposal issue until the repository and module source exist; do not create placeholder metadata.
+**New proposals:** Follow the [module proposal and approval process]({{% siteparam base %}}/contributing/process/#new-module-proposal--creation). The approved name, description, and owners are agreed in the proposal issue. Once approved, `metadata.json` may be created before the module source exists; the module stays `Proposed` until it is published. Do not create metadata for a module that has not been approved.
 
 **Publication:** Registry publication is required before a module is available. A metadata change does not publish a module.
 
 **Deprecation:** Follow the [deprecation process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-deprecated), including approval, notices, and language-specific retirement steps. The catalog derives deprecation from Bicep's `DEPRECATED.md` or the Terraform repository's `archived` flag, not an authored metadata status.
 
-A Bicep marker applies to its module and descendants, not its parent or siblings. Terraform archival applies to every module entry in that repository. Changing owners does not deprecate or reactivate a module.
+A Bicep marker applies to its module and descendants, not its parent or siblings. Terraform archival applies to every module entry in that repository. Changing owners does not deprecate or reactivate a module. A module that is deprecated before it was ever published is removed from the indexes rather than listed as `Deprecated`.
 
 **Bicep child publishing:** [Telemetry assignment and Microsoft Artifact Registry (MAR) approval]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/child-module-publishing/#prerequisites) remain required. Recording metadata does not grant permission to publish a child module.

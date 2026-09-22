@@ -41,8 +41,8 @@ Gather the following approved values from the module request issue. Repository c
 | Module description | Required approved description, passed as `moduleDescription` |
 | Canonical type | Required approved ARM resource type or pattern/utility taxonomy, passed as `canonicalType`. Resource modules can instead supply both fields in the next row. Do not infer the value from the module name. |
 | Resource provider namespace and resource type | For resource modules only, `resourceProviderNamespace` and `resourceType` together are an alternative to `canonicalType` (e.g. `Microsoft.Network` and `virtualNetworks`). They are not required when `canonicalType` is supplied. |
-| Telemetry ID prefix | Assigned `telemetryIdPrefix`; required for resource and pattern modules. Do not invent an identifier. |
-| Owners | `ownerGitHubHandles`, a PowerShell string array of approved bare usernames or qualified `@organization/team-slug` entries |
+| Telemetry ID prefix | Optional `telemetryIdPrefix`. Supply the assigned identifier if the proposal has one. If you omit it, creation mints one in the fleet format `46d3xtrf.<res\|ptn>.<7 lowercase hex characters>` for resource and pattern modules. Never hand-pick an identifier yourself. |
+| Owners | `ownerGitHubHandles`, a PowerShell string array of approved bare usernames or qualified `@organization/team-slug` entries. `ownerTeam` adds an approved owning team, and the legacy `ownerPrimaryGitHubHandle` and `ownerSecondaryGitHubHandle` parameters are still accepted. |
 | Alternative names | Optional `moduleAlternativeNames`, a comma-separated string; the tooling splits it for JSON metadata |
 
 Record every approved owner. An empty owner array is valid for an unowned module, subject to the proposal and ownership processes. Metadata does not grant access. Later ownership changes use the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change).
@@ -74,7 +74,7 @@ gh auth login -h "github.com" -w -p "https"
 
 ### Run the creation script
 
-Supply the approved `canonicalType` below. For a resource module, you can instead replace that entry with both `resourceProviderNamespace` and `resourceType`; pattern and utility modules require an explicit `canonicalType`. Supply the assigned telemetry prefix for resource and pattern modules. For a utility module that does not use telemetry, omit the `telemetryIdPrefix` entry. Do not derive telemetry identifiers from repository names or replace existing identifiers.
+Supply the approved `canonicalType` below. For a resource module, you can instead replace that entry with both `resourceProviderNamespace` and `resourceType`; pattern and utility modules require an explicit `canonicalType`. Supply the assigned telemetry prefix if the proposal has one; otherwise omit `telemetryIdPrefix` and let creation mint it for resource and pattern modules. Utility modules do not use telemetry. Do not derive telemetry identifiers from repository names or replace existing identifiers.
 
 ```pwsh
 if (!(Test-Path -Path ".\scripts\New-Repository.ps1")) {
@@ -87,16 +87,15 @@ $parameters = @{
     moduleDisplayName = "<approved display name>"
     moduleDescription = "<approved description>"
     canonicalType = "<approved ARM resource type or taxonomy>"
-    telemetryIdPrefix = "<assigned telemetry ID prefix>"
     ownerGitHubHandles = @("<approved individual handle>")
 }
 
 .\scripts\New-Repository.ps1 @parameters -planOnly
 ```
 
-Add optional entries from the table when needed. Keep `ownerGitHubHandles` as an array, such as `@("first-owner", "@Azure/approved-team")`, and `moduleAlternativeNames` as a comma-separated string.
+Add optional entries from the table when needed, including `telemetryIdPrefix` when the proposal already assigns one. Keep `ownerGitHubHandles` as an array, such as `@("first-owner", "@Azure/approved-team")`, and `moduleAlternativeNames` as a comma-separated string.
 
-`-planOnly` and `-WhatIf` validate the inputs and show the plan without making GitHub or filesystem changes. Review the plan and obtain the required approval before running the same command without either switch.
+`-planOnly` and `-WhatIf` validate the inputs and show the plan without making GitHub or filesystem changes. Review the plan, including any minted telemetry identifier, and obtain the required approval before running the same command without either switch.
 
 Creation publishes validated root metadata in the first commit to `main`. If creation fails, stop and follow the recovery guidance in the tooling README before retrying.
 

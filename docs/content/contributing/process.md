@@ -12,7 +12,7 @@ Each AVM module **MUST** have a [Module Proposal](https://aka.ms/AVM/ModulePropo
 {{% /notice %}}
 
 {{% notice style="note" %}}
-Record approved details in the proposal issue. Once the repository and module source exist, maintain those details through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/).
+Record approved details in the proposal issue. Once the module is approved, maintain those details in its `metadata.json` through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/). Metadata may be created before the module source exists.
 {{% /notice %}}
 
 <!-- markdownlint-disable -->
