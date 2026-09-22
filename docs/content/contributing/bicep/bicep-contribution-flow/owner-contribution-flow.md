@@ -51,7 +51,7 @@ If a new module owner cannot be identified then the module will need to be "Orph
 
 ## 3. Adopting an Orphaned Module
 
-Follow the [adoption process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified). Add approved owners to the root `metadata.json` through metadata code-owner review and complete the eligibility, consent, access approval, and notice-removal steps.
+Follow the [adoption process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified). Add approved owners to the root `metadata.json` through metadata code-owner review and complete the eligibility, consent, and access approval steps.
 
 ## 4. GitHub Notification Settings
 

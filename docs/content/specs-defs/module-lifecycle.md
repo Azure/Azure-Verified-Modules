@@ -87,7 +87,7 @@ It is critical to the consumers experience that modules continue to be maintaine
 
 To **orphan a module**, submit an [orphaned module](https://aka.ms/AVM/OrphanedModule) issue in the AVM repository. For the required steps, review the related article: [When a module becomes orphaned]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-orphaned).
 
-Set `"owners": []` in the root `metadata.json` to remove all individual and team handles, following the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/). Complete the issue and required notices; the four-hourly catalog sync then publishes the public index.
+Set `"owners": []` in the root `metadata.json` to remove all individual and team handles, following the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/). Keep the tracking issue open until ownership is confirmed; the four-hourly [catalog sync]({{% siteparam base %}}/contributing/module-metadata/#catalog-updates) publishes the status in the public index.
 
 [When a new owner is identified]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified), follow the related guidance.
 
@@ -96,20 +96,11 @@ Set `"owners": []` in the root `metadata.json` to remove all individual and team
 ### Notification of a Module Becoming Orphaned
 
 {{% notice style="important" %}}
-When a module becomes orphaned, the AVM core team will communicate this through an information notice to be placed as follows.
-
-- In case of a Bicep module, the information notice will be placed in an `ORPHANED.md` file and in the header of the module's `README.md` - both residing in the module's root.
-- In case of a Terraform module, the information notice will be placed in the header of the `README.md` file, in the module's root.
-
-The information notice will include the following statement:
-
-{{< highlight lineNos="false" type="markdown" wrap="true" title="ORPHANED.md" >}}
-{{% include file="/static/includes/orphaned-module-notice.md" %}}
-{{< /highlight >}}
+The tracking issue and generated module index communicate the module's orphaned status. For both Bicep and Terraform, no `ORPHANED.md` file or manual `README.md` notice is required. Orphaning and adoption are metadata-only ownership changes; do not regenerate the README or release a module version for them.
 
 {{% /notice %}}
 
-Also, the AVM core team will amend the issue automation to auto reply stating that the repo is orphaned and only security/bug fixes are being handled until a new module owner is found.
+Issue-routing automation reads module ownership data; no per-module automation change is required when a module becomes orphaned.
 
 ## 4. Deprecated Modules
 

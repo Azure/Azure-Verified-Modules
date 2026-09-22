@@ -73,7 +73,7 @@ Terraform submodules are excluded from the CSV indexes entirely, not only helper
 1. Edit the relevant `metadata.json` on a branch or in your fork of the module repository. Preserve all owners and other values that are not part of the agreed change.
 1. Submit a pull request to that repository, linking the proposal or ownership-tracking issue when the process requires one. Describe the intended changes and request review from either [`@Azure/azure-verified-modules-engineering-owners`](https://github.com/orgs/Azure/teams/azure-verified-modules-engineering-owners) or [`@Azure/azure-verified-modules-module-owners`](https://github.com/orgs/Azure/teams/azure-verified-modules-module-owners).
 1. Validate metadata using the repository's approved tooling and satisfy its required reviews before merging. Approval from an eligible member of **either** team satisfies metadata code-owner review; approval from both teams is **not** required. Being listed in the module's `owners` array does not by itself authorize someone to approve. Any code changes in the same pull request still need their normal code review and tests.
-1. Follow the change through catalog generation and reviewed publication. Do not edit the generated CSV or JSON output to duplicate the metadata change.
+1. The next [scheduled catalog sync](#catalog-updates) publishes the merged metadata change. Do not edit the generated CSV or JSON output or request a separate index update.
 
 **Metadata-only changes must not trigger a module release.** Do not change version files or create a release just to update owners or other metadata. A Bicep description correction may also require updating the `metadata description` literal in `main.bicep`; that is a source change and must follow normal validation and release rules, not be treated as metadata-only. Display names are independent of source literals and need no source change.
 
@@ -91,15 +91,17 @@ For a direct transfer, follow [hot swapping module owners]({{% siteparam base %}
 
 ### Orphan a module
 
-Follow [when a module becomes orphaned]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-orphaned), including its tracking issue and required notices.
+Follow [when a module becomes orphaned]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-orphaned), including its tracking issue and triage steps.
 
-In the root metadata file, set `"owners": []`, removing all individual and team handles from the array. Keep the remaining metadata intact. A published module with no owners is shown as `Orphaned`. See [how module status is calculated](#module-status).
+In the root metadata file, set `"owners": []`, removing all individual and team handles from the array. Keep the remaining metadata intact. A published, non-deprecated module with no owners is shown as `Orphaned`. See [how module status is calculated](#module-status).
+
+No `ORPHANED.md` file, manual `README.md` notice, or README regeneration is required for orphaning or adoption in either language. These are metadata-only ownership changes, not module releases.
 
 ### Adopt an orphaned module
 
 Follow [when a new owner is identified]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified). After eligibility and consent are confirmed, add the approved incoming handles to the root metadata's `owners` array and obtain approval from either metadata code-owner team.
 
-Complete the separate access approval and notice-removal steps before closing the ownership issue. Adding owners does not revive a deprecated module.
+Complete the separate access approval before closing the ownership issue. Adding owners does not revive a deprecated module.
 
 ## Catalog updates
 

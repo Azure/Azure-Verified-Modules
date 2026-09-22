@@ -35,7 +35,7 @@ Correct descriptive fields through the [metadata review process]({{% siteparam b
 
 The CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) remain available for checks that use the approved singular resource names. To see their formatted content with additional information, visit the [AVM Module Indexes]({{% siteparam base %}}/indexes) page.
 
-Report missing or incorrect resource names to the AVM core team. Index corrections go through catalog generation and reviewed publication.
+Report missing or incorrect resource names to the AVM core team. The [scheduled catalog sync]({{% siteparam base %}}/contributing/module-metadata/#catalog-updates) publishes agreed source corrections automatically; no separate index edit or publication request is required.
 
 {{% /notice %}}
 

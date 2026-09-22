@@ -198,30 +198,12 @@ If a module meets the criteria described in the "[Orphaned Modules]({{% sitepara
 #### When a module becomes orphaned
 
 1. Submit an "orphaned module" issue by using the "[Orphaned AVM Module 🟡](https://aka.ms/AVM/OrphanedModule)" issue template.
-2. Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp;, and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 🟡</mark>&nbsp; labels are assigned to the issue and it is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project.
-3. Move the issue into the "`Orphaned`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
-1. Include the ownership change in a pull request to the module's root `metadata.json`, linked to the orphaned module issue. Set `"owners": []`, removing all individual and team handles, following the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#orphan-a-module). Do not edit child ownership or set a status field. A published module with no owners is shown as `Orphaned`; see [how module status is calculated]({{% siteparam base %}}/contributing/module-metadata/#module-status).
-5. Place an information notice as per the below guidelines:
-    - **In case of a Bicep module**:
-      - Place the information notice - with the text below - in an `ORPHANED.md` file, in the module's root.
-      - Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module's `README.md` file, so that the `README.md` file will also contain the same notice in its header.
-      - Make sure the content of the `ORPHANED.md` file is displayed in the `README.md` in its header (right after the title).
-    - **In case of a Terraform module**, place the information notice - with the text below - in the `README.md` file, in the module's root.
-    - Once the information notice is placed, submit a Pull Request.
+1. Make sure the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp;, and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 🟡</mark>&nbsp; labels are assigned to the issue and it is assigned to the "[AVM - Module Triage](https://github.com/orgs/Azure/projects/529)" GitHub project.
+1. Move the issue into the "`Orphaned`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
+1. Submit and merge the ownership change in a pull request to the module's root `metadata.json`, linked to the orphaned module issue. Set `"owners": []`, removing all individual and team handles, following the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#orphan-a-module). Do not edit child ownership or set a status field. A published, non-deprecated module with no owners is shown as `Orphaned`; see [how module status is calculated]({{% siteparam base %}}/contributing/module-metadata/#module-status).
+1. Try to find a new owner using the AVM communities or await a new module owner to comment and propose themselves on the issue.
 
-Include the following text in the information notice:
-
-{{% expand title="➕ Orphaned module notice for module README file" %}}
-
-{{< highlight lineNos="false" type="markdown" wrap="true" title="ORPHANED.md" >}}
-
-{{% include file="/static/includes/orphaned-module-notice.md" %}}
-
-{{< /highlight >}}
-
-{{% /expand %}}
-
-6. Try to find a new owner using the AVM communities or await a new module owner to comment and propose themselves on the issue.
+For both Bicep and Terraform, the root metadata change is the only module-file change required. No `ORPHANED.md` file, manual `README.md` notice, or README regeneration is required. The [scheduled catalog sync]({{% siteparam base %}}/contributing/module-metadata/#catalog-updates) publishes the new status; do not edit generated indexes or create a module release.
 
 #### When a new owner is identified
 
@@ -245,21 +227,13 @@ To look for Orphaned Modules:
 
 {{% /expand %}}
 
-2. Once the new module owner candidate has confirmed they understand and accept their roles and responsibilities as an AVM module owner
+1. Once the new module owner candidate has confirmed they understand and accept their roles and responsibilities as an AVM module owner
     - Assign the issue to the confirmed module owner.
     - Remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 🟡</mark>&nbsp; and the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; labels from the issue.
     - Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#C8E6C9;">Status: Module Available 🟢</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBEF2A;">Status: Owners Identified 🤘</mark>&nbsp; labels to the issue.
-    - Move the issue into the "`Done`" column on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project board.
 1. Submit a pull request adding the approved incoming handles to the `owners` array in the module's root `metadata.json`, linked to the orphaned module issue. Obtain approval from either metadata code-owner team and merge the change through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#adopt-an-orphaned-module).
 1. Ensure every new owner has approved access through the [AVM Module Contributors access package](https://aka.ms/avm/id/access-package/module-contributor). See [SNFR20]({{% siteparam base %}}/spec/SNFR20) for the language-specific access requirements.
-5. Remove the information notice (i.e., the file that states that `⚠️THIS MODULE IS CURRENTLY ORPHANED.⚠️, etc.` ):
-    - In case of a Bicep module:
-      - Delete the `ORPHANED.md` file from the module's root.
-      - Run the [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility with the module path as an input. This re-generates the module's `README.md` file, so that it will no longer contain the orphaned module notice in its header.
-      - Double check the previous steps was successful and the `README.md` file no longer has the information notice in its header (right after the title).
-    - In case of a Terraform module, remove the information notice from the `README.md` file in the module's root.
-    - Once the information notice is removed, submit a Pull Request.
-6. Use the following text to confirm the new ownership of an orphaned module:
+1. Use the following text to confirm the new ownership of an orphaned module:
 
 {{% expand title="➕ Final Confirmation for New Owners of an Orphaned Module" %}}
 
@@ -271,7 +245,7 @@ To look for Orphaned Modules:
 
 {{% /expand %}}
 
-1. Once the metadata change is reviewed and merged and all access and notice-removal actions above are complete, close the orphaned module issue with the following message. The module index updates automatically at the next four-hourly catalog sync.
+1. Once the metadata change is reviewed and merged and all access requirements above are complete, close the orphaned module issue with the following message. Closing the issue moves it to "`Done`" on the [AVM - Modules Triage](https://aka.ms/avm/moduletriage) board. The module index updates automatically at the next four-hourly catalog sync.
 
 {{% expand title="➕ Closing remarks for the New Owner(s) of an Orphaned Module" %}}
 
