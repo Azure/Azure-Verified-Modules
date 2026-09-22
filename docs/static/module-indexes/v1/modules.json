@@ -157,7 +157,7 @@
             "status": "available",
             "currentVersion": "0.13.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 32641,
+            "downloads": 32666,
             "marRegistered": null
           }
         }
@@ -765,7 +765,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 134915,
+            "downloads": 135279,
             "marRegistered": null
           }
         }
@@ -2673,7 +2673,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 425820,
+            "downloads": 427738,
             "marRegistered": null
           }
         }
@@ -2792,7 +2792,7 @@
             "status": "available",
             "currentVersion": "0.2.2",
             "firstPublishedIn": "2025-05",
-            "downloads": 38858,
+            "downloads": 39093,
             "marRegistered": null
           }
         }
@@ -2870,7 +2870,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-03",
-            "downloads": 292727,
+            "downloads": 293554,
             "marRegistered": null
           }
         }
@@ -3037,7 +3037,44 @@
       ]
     },
     "Microsoft.App/managedEnvironments/dotNetComponents": {
-      "bicep": [],
+      "bicep": [
+        {
+          "ecosystem": "bicep",
+          "moduleType": "resource",
+          "moduleStatus": "Proposed",
+          "moduleName": "avm/res/app/managed-environment/dot-net-component",
+          "modulePath": "avm/res/app/managed-environment/dot-net-component",
+          "repository": "Azure/bicep-registry-modules",
+          "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/app/managed-environment/dot-net-component",
+          "parentModule": "avm/res/app/managed-environment",
+          "familyModule": "avm/res/app/managed-environment",
+          "provider": null,
+          "canonicalType": "Microsoft.App/managedEnvironments/dotNetComponents",
+          "providerNamespace": "Microsoft.App",
+          "resourceType": "managedEnvironments/dotNetComponents",
+          "metadataSource": "metadata",
+          "moduleDisplayName": "App Managed Environment - .NET Component",
+          "moduleDescription": "AVM Child Module for App Managed Environment - .NET Component",
+          "alternativeNames": [],
+          "comments": "",
+          "owners": [
+            {
+              "handle": "abhishekaryams",
+              "type": "user",
+              "displayName": "Abhishek Arya"
+            }
+          ],
+          "telemetryIdPrefix": "46d3xbcp.res.app-managedenvironment-dotnetcomp",
+          "publicRegistryReference": "br/public:avm/res/app/managed-environment/dot-net-component:X.Y.Z",
+          "registry": {
+            "status": "not-published",
+            "currentVersion": null,
+            "firstPublishedIn": null,
+            "downloads": null,
+            "marRegistered": false
+          }
+        }
+      ],
       "terraform": [
         {
           "ecosystem": "terraform",
@@ -3432,7 +3469,7 @@
             "status": "available",
             "currentVersion": "0.5.1",
             "firstPublishedIn": "2025-03",
-            "downloads": 143172,
+            "downloads": 143724,
             "marRegistered": null
           }
         }
@@ -3979,7 +4016,7 @@
             "status": "available",
             "currentVersion": "0.3.1",
             "firstPublishedIn": "2024-01",
-            "downloads": 548644,
+            "downloads": 549452,
             "marRegistered": null
           }
         }
@@ -4062,7 +4099,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 78825,
+            "downloads": 78941,
             "marRegistered": null
           }
         }
@@ -4688,7 +4725,7 @@
             "status": "available",
             "currentVersion": "2.0.2",
             "firstPublishedIn": "2024-08",
-            "downloads": 8669,
+            "downloads": 8670,
             "marRegistered": null
           }
         }
@@ -4888,7 +4925,7 @@
             "status": "available",
             "currentVersion": "2.0.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 19615,
+            "downloads": 19616,
             "marRegistered": null
           }
         }
@@ -5134,7 +5171,7 @@
             "status": "available",
             "currentVersion": "2.1.1",
             "firstPublishedIn": "2024-08",
-            "downloads": 15432,
+            "downloads": 15446,
             "marRegistered": null
           }
         }
@@ -5212,7 +5249,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 2544,
+            "downloads": 2551,
             "marRegistered": null
           }
         }
@@ -5284,7 +5321,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2026-01",
-            "downloads": 12245,
+            "downloads": 12267,
             "marRegistered": null
           }
         }
@@ -5371,7 +5408,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-06",
-            "downloads": 368794,
+            "downloads": 370385,
             "marRegistered": null
           }
         }
@@ -5635,7 +5672,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
-            "downloads": 46265,
+            "downloads": 46477,
             "marRegistered": null
           }
         }
@@ -5806,7 +5843,7 @@
             "status": "available",
             "currentVersion": "0.1.9",
             "firstPublishedIn": "2024-07",
-            "downloads": 78691,
+            "downloads": 78865,
             "marRegistered": null
           }
         }
@@ -6320,7 +6357,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-07",
-            "downloads": 911,
+            "downloads": 912,
             "marRegistered": null
           }
         }
@@ -6421,11 +6458,6 @@
           "comments": "",
           "owners": [
             {
-              "handle": "mswantek68",
-              "type": "user",
-              "displayName": "Mike Swantek"
-            },
-            {
               "handle": "chanakanissanka",
               "type": "user",
               "displayName": "Chanaka Nissanka"
@@ -6475,7 +6507,7 @@
             "status": "available",
             "currentVersion": "0.11.1",
             "firstPublishedIn": "2024-02",
-            "downloads": 1026846,
+            "downloads": 1028386,
             "marRegistered": null
           }
         }
@@ -6505,11 +6537,6 @@
           ],
           "comments": "",
           "owners": [
-            {
-              "handle": "mswantek68",
-              "type": "user",
-              "displayName": "Mike Swantek"
-            },
             {
               "handle": "chanakanissanka",
               "type": "user",
@@ -6590,11 +6617,6 @@
           ],
           "comments": "",
           "owners": [
-            {
-              "handle": "mswantek68",
-              "type": "user",
-              "displayName": "Mike Swantek"
-            },
             {
               "handle": "chanakanissanka",
               "type": "user",
@@ -6768,7 +6790,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-06",
-            "downloads": 15270,
+            "downloads": 15298,
             "marRegistered": null
           }
         }
@@ -6935,7 +6957,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/compute/availability-set",
           "modulePath": "avm/res/compute/availability-set",
           "repository": "Azure/bicep-registry-modules",
@@ -6953,13 +6975,7 @@
             "AS"
           ],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.compute-availabilityset",
           "publicRegistryReference": "br/public:avm/res/compute/availability-set:X.Y.Z",
           "registry": {
@@ -7132,7 +7148,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2024-10",
-            "downloads": 44038,
+            "downloads": 44165,
             "marRegistered": null
           }
         }
@@ -7210,7 +7226,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-05",
-            "downloads": 14554,
+            "downloads": 14589,
             "marRegistered": null
           }
         }
@@ -7288,7 +7304,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2024-12",
-            "downloads": 98928,
+            "downloads": 98993,
             "marRegistered": null
           }
         }
@@ -7494,7 +7510,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/compute/proximity-placement-group",
           "modulePath": "avm/res/compute/proximity-placement-group",
           "repository": "Azure/bicep-registry-modules",
@@ -7510,13 +7526,7 @@
           "moduleDescription": "AVM Resource Module for Proximity Placement Group",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "jeetgarg",
-              "type": "user",
-              "displayName": "Jeet Garg"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.compute-proximityplacementgroup",
           "publicRegistryReference": "br/public:avm/res/compute/proximity-placement-group:X.Y.Z",
           "registry": {
@@ -7561,7 +7571,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 7238,
+            "downloads": 7262,
             "marRegistered": null
           }
         }
@@ -7639,7 +7649,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2024-12",
-            "downloads": 5867,
+            "downloads": 5901,
             "marRegistered": null
           }
         }
@@ -7731,7 +7741,7 @@
             "status": "available",
             "currentVersion": "0.10.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 129444,
+            "downloads": 129653,
             "marRegistered": null
           }
         }
@@ -7866,7 +7876,7 @@
             "status": "available",
             "currentVersion": "0.21.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 3601241,
+            "downloads": 3605641,
             "marRegistered": null
           }
         }
@@ -8262,7 +8272,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 16922,
+            "downloads": 16967,
             "marRegistered": null
           }
         }
@@ -8340,7 +8350,7 @@
             "status": "available",
             "currentVersion": "0.8.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 765173,
+            "downloads": 766992,
             "marRegistered": null
           }
         }
@@ -8867,7 +8877,7 @@
             "status": "available",
             "currentVersion": "0.8.3",
             "firstPublishedIn": "2025-10",
-            "downloads": 621008,
+            "downloads": 622280,
             "marRegistered": null
           }
         }
@@ -9157,7 +9167,7 @@
             "status": "available",
             "currentVersion": "0.1.6",
             "firstPublishedIn": "2024-09",
-            "downloads": 104563,
+            "downloads": 104721,
             "marRegistered": null
           }
         }
@@ -9440,7 +9450,7 @@
             "status": "available",
             "currentVersion": "0.2.3",
             "firstPublishedIn": "2024-09",
-            "downloads": 532710,
+            "downloads": 534347,
             "marRegistered": null
           }
         }
@@ -9832,7 +9842,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 94326,
+            "downloads": 94433,
             "marRegistered": null
           }
         }
@@ -10074,7 +10084,7 @@
             "status": "available",
             "currentVersion": "2.0.9",
             "firstPublishedIn": "2025-05",
-            "downloads": 72536,
+            "downloads": 72733,
             "marRegistered": null
           }
         }
@@ -10354,7 +10364,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-03",
-            "downloads": 118809,
+            "downloads": 118881,
             "marRegistered": null
           }
         }
@@ -10431,7 +10441,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2024-07",
-            "downloads": 104789,
+            "downloads": 104918,
             "marRegistered": null
           }
         }
@@ -10543,7 +10553,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 96985,
+            "downloads": 97101,
             "marRegistered": null
           }
         }
@@ -10620,7 +10630,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2024-07",
-            "downloads": 64109,
+            "downloads": 64140,
             "marRegistered": null
           }
         }
@@ -10703,7 +10713,7 @@
             "status": "available",
             "currentVersion": "0.2.2",
             "firstPublishedIn": "2024-07",
-            "downloads": 100404,
+            "downloads": 100540,
             "marRegistered": null
           }
         }
@@ -10731,11 +10741,6 @@
           "alternativeNames": [],
           "comments": "",
           "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            },
             {
               "handle": "lohithgn",
               "type": "user",
@@ -10786,7 +10791,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2024-10",
-            "downloads": 19633,
+            "downloads": 19725,
             "marRegistered": null
           }
         }
@@ -10814,11 +10819,6 @@
           "alternativeNames": [],
           "comments": "",
           "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            },
             {
               "handle": "lohithgn",
               "type": "user",
@@ -10860,11 +10860,6 @@
           "alternativeNames": [],
           "comments": "",
           "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            },
             {
               "handle": "lohithgn",
               "type": "user",
@@ -10944,11 +10939,6 @@
           "comments": "",
           "owners": [
             {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            },
-            {
               "handle": "lohithgn",
               "type": "user",
               "displayName": "Lohith"
@@ -11026,11 +11016,6 @@
           "alternativeNames": [],
           "comments": "",
           "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            },
             {
               "handle": "lohithgn",
               "type": "user",
@@ -11110,11 +11095,6 @@
           "comments": "",
           "owners": [
             {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            },
-            {
               "handle": "lohithgn",
               "type": "user",
               "displayName": "Lohith"
@@ -11193,11 +11173,6 @@
           "comments": "",
           "owners": [
             {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            },
-            {
               "handle": "lohithgn",
               "type": "user",
               "displayName": "Lohith"
@@ -11221,7 +11196,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/dev-center/network-connection",
           "modulePath": "avm/res/dev-center/network-connection",
           "repository": "Azure/bicep-registry-modules",
@@ -11237,13 +11212,7 @@
           "moduleDescription": "AVM Resource Module for Dev Center Network Connection",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.devcenter-networkconnection",
           "publicRegistryReference": "br/public:avm/res/dev-center/network-connection:X.Y.Z",
           "registry": {
@@ -11262,7 +11231,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/dev-center/project",
           "modulePath": "avm/res/dev-center/project",
           "repository": "Azure/bicep-registry-modules",
@@ -11278,13 +11247,7 @@
           "moduleDescription": "AVM Resource Module for Dev Center Project",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.devcenter-project",
           "publicRegistryReference": "br/public:avm/res/dev-center/project:X.Y.Z",
           "registry": {
@@ -11303,7 +11266,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/dev-center/project/catalog",
           "modulePath": "avm/res/dev-center/project/catalog",
           "repository": "Azure/bicep-registry-modules",
@@ -11319,13 +11282,7 @@
           "moduleDescription": "AVM Child Module for Dev Center Project - Catalog",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.devcenter-project-catalog",
           "publicRegistryReference": "br/public:avm/res/dev-center/project/catalog:X.Y.Z",
           "registry": {
@@ -11344,7 +11301,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/dev-center/project/environment-type",
           "modulePath": "avm/res/dev-center/project/environment-type",
           "repository": "Azure/bicep-registry-modules",
@@ -11360,13 +11317,7 @@
           "moduleDescription": "AVM Child Module for Dev Center Project - Environment Type",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.devcenter-project-environmenttype",
           "publicRegistryReference": "br/public:avm/res/dev-center/project/environment-type:X.Y.Z",
           "registry": {
@@ -11385,7 +11336,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/dev-center/project/pool",
           "modulePath": "avm/res/dev-center/project/pool",
           "repository": "Azure/bicep-registry-modules",
@@ -11401,13 +11352,7 @@
           "moduleDescription": "AVM Child Module for Dev Center Project - Pool",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.devcenter-project-pool",
           "publicRegistryReference": "br/public:avm/res/dev-center/project/pool:X.Y.Z",
           "registry": {
@@ -11426,7 +11371,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/dev-center/project/pool/schedule",
           "modulePath": "avm/res/dev-center/project/pool/schedule",
           "repository": "Azure/bicep-registry-modules",
@@ -11442,13 +11387,7 @@
           "moduleDescription": "AVM Child Module for Dev Center Project - Pool - Schedule",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.devcenter-project-poolschedule",
           "publicRegistryReference": "br/public:avm/res/dev-center/project/pool/schedule:X.Y.Z",
           "registry": {
@@ -11539,7 +11478,7 @@
             "status": "available",
             "currentVersion": "0.3.1",
             "firstPublishedIn": "2024-08",
-            "downloads": 193262,
+            "downloads": 193573,
             "marRegistered": null
           }
         }
@@ -11550,7 +11489,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/dev-test-lab/lab",
           "modulePath": "avm/res/dev-test-lab/lab",
           "repository": "Azure/bicep-registry-modules",
@@ -11566,13 +11505,7 @@
           "moduleDescription": "AVM Resource Module for DevTest Lab",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.devtestlab-lab",
           "publicRegistryReference": "br/public:avm/res/dev-test-lab/lab:X.Y.Z",
           "registry": {
@@ -11628,7 +11561,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/dev-test-lab/lab/artifactsource",
           "modulePath": "avm/res/dev-test-lab/lab/artifactsource",
           "repository": "Azure/bicep-registry-modules",
@@ -11644,13 +11577,7 @@
           "moduleDescription": "AVM Child Module for DevTest Lab - Artifactsource",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.devtestlab-lab-artifactsource",
           "publicRegistryReference": "br/public:avm/res/dev-test-lab/lab/artifactsource:X.Y.Z",
           "registry": {
@@ -11669,7 +11596,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/dev-test-lab/lab/cost",
           "modulePath": "avm/res/dev-test-lab/lab/cost",
           "repository": "Azure/bicep-registry-modules",
@@ -11685,13 +11612,7 @@
           "moduleDescription": "AVM Child Module for DevTest Lab - Cost",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.devtestlab-lab-cost",
           "publicRegistryReference": "br/public:avm/res/dev-test-lab/lab/cost:X.Y.Z",
           "registry": {
@@ -11710,7 +11631,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/dev-test-lab/lab/notificationchannel",
           "modulePath": "avm/res/dev-test-lab/lab/notificationchannel",
           "repository": "Azure/bicep-registry-modules",
@@ -11726,13 +11647,7 @@
           "moduleDescription": "AVM Child Module for DevTest Lab - Notificationchannel",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.devtestlab-lab-notificationchannel",
           "publicRegistryReference": "br/public:avm/res/dev-test-lab/lab/notificationchannel:X.Y.Z",
           "registry": {
@@ -11751,7 +11666,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/dev-test-lab/lab/policyset/policy",
           "modulePath": "avm/res/dev-test-lab/lab/policyset/policy",
           "repository": "Azure/bicep-registry-modules",
@@ -11767,13 +11682,7 @@
           "moduleDescription": "AVM Child Module for DevTest Lab - Policyset - Policy",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.devtestlab-lab-policysetpolicy",
           "publicRegistryReference": "br/public:avm/res/dev-test-lab/lab/policyset/policy:X.Y.Z",
           "registry": {
@@ -11792,7 +11701,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/dev-test-lab/lab/schedule",
           "modulePath": "avm/res/dev-test-lab/lab/schedule",
           "repository": "Azure/bicep-registry-modules",
@@ -11808,13 +11717,7 @@
           "moduleDescription": "AVM Child Module for DevTest Lab - Schedule",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.devtestlab-lab-schedule",
           "publicRegistryReference": "br/public:avm/res/dev-test-lab/lab/schedule:X.Y.Z",
           "registry": {
@@ -11833,7 +11736,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/dev-test-lab/lab/secret",
           "modulePath": "avm/res/dev-test-lab/lab/secret",
           "repository": "Azure/bicep-registry-modules",
@@ -11849,13 +11752,7 @@
           "moduleDescription": "AVM Child Module for DevTest Lab - Secret",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.devtestlab-lab-secret",
           "publicRegistryReference": "br/public:avm/res/dev-test-lab/lab/secret:X.Y.Z",
           "registry": {
@@ -11874,7 +11771,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/dev-test-lab/lab/virtualnetwork",
           "modulePath": "avm/res/dev-test-lab/lab/virtualnetwork",
           "repository": "Azure/bicep-registry-modules",
@@ -11890,13 +11787,7 @@
           "moduleDescription": "AVM Child Module for DevTest Lab - Virtualnetwork",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.devtestlab-lab-virtualnetwork",
           "publicRegistryReference": "br/public:avm/res/dev-test-lab/lab/virtualnetwork:X.Y.Z",
           "registry": {
@@ -12218,7 +12109,7 @@
             "status": "available",
             "currentVersion": "0.11.0",
             "firstPublishedIn": "2025-05",
-            "downloads": 450227,
+            "downloads": 450946,
             "marRegistered": null
           }
         }
@@ -12870,7 +12761,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-08",
-            "downloads": 24926,
+            "downloads": 25031,
             "marRegistered": null
           }
         }
@@ -13314,7 +13205,7 @@
             "status": "available",
             "currentVersion": "3.0.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 6507,
+            "downloads": 6508,
             "marRegistered": null
           }
         }
@@ -13625,7 +13516,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-01",
-            "downloads": 824,
+            "downloads": 825,
             "marRegistered": null
           }
         }
@@ -13900,7 +13791,7 @@
             "status": "available",
             "currentVersion": "0.1.2",
             "firstPublishedIn": "2026-02",
-            "downloads": 1469,
+            "downloads": 1470,
             "marRegistered": null
           }
         }
@@ -14643,7 +14534,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2025-12",
-            "downloads": 9336,
+            "downloads": 9349,
             "marRegistered": null
           }
         }
@@ -14804,7 +14695,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 87148,
+            "downloads": 87527,
             "marRegistered": null
           }
         }
@@ -15109,11 +15000,6 @@
           "comments": "",
           "owners": [
             {
-              "handle": "mswantek68",
-              "type": "user",
-              "displayName": "Mike Swantek"
-            },
-            {
               "handle": "cmaneu",
               "type": "user",
               "displayName": "Christopher MANEU"
@@ -15209,7 +15095,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-11",
-            "downloads": 818,
+            "downloads": 833,
             "marRegistered": null
           }
         }
@@ -15896,7 +15782,7 @@
             "status": "available",
             "currentVersion": "2.0.4",
             "firstPublishedIn": "2024-08",
-            "downloads": 16858,
+            "downloads": 16875,
             "marRegistered": null
           }
         }
@@ -16135,7 +16021,7 @@
             "status": "available",
             "currentVersion": "0.1.2",
             "firstPublishedIn": "2024-11",
-            "downloads": 99185,
+            "downloads": 99330,
             "marRegistered": null
           }
         }
@@ -16213,7 +16099,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-05",
-            "downloads": 583446,
+            "downloads": 584625,
             "marRegistered": null
           }
         }
@@ -16332,7 +16218,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 9374,
+            "downloads": 9429,
             "marRegistered": null
           }
         }
@@ -16412,7 +16298,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-04",
-            "downloads": 6999,
+            "downloads": 7117,
             "marRegistered": null
           }
         }
@@ -16583,7 +16469,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/insights/private-link-scope",
           "modulePath": "avm/res/insights/private-link-scope",
           "repository": "Azure/bicep-registry-modules",
@@ -16599,13 +16485,7 @@
           "moduleDescription": "AVM Resource Module for Azure Monitor Private Link Scope",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.insights-privatelinkscope",
           "publicRegistryReference": "br/public:avm/res/insights/private-link-scope:X.Y.Z",
           "registry": {
@@ -16661,7 +16541,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/insights/private-link-scope/scoped-resource",
           "modulePath": "avm/res/insights/private-link-scope/scoped-resource",
           "repository": "Azure/bicep-registry-modules",
@@ -16677,13 +16557,7 @@
           "moduleDescription": "AVM Child Module for Azure Monitor Private Link Scope - Scoped Resource",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.insights-privatelinkscope-scopedres",
           "publicRegistryReference": "br/public:avm/res/insights/private-link-scope/scoped-resource:X.Y.Z",
           "registry": {
@@ -17055,7 +16929,7 @@
             "status": "available",
             "currentVersion": "0.11.0",
             "firstPublishedIn": "2023-09",
-            "downloads": 4285344,
+            "downloads": 4293375,
             "marRegistered": null
           }
         }
@@ -17632,7 +17506,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2024-04",
-            "downloads": 4218,
+            "downloads": 4219,
             "marRegistered": null
           }
         }
@@ -18291,7 +18165,7 @@
             "status": "available",
             "currentVersion": "0.1.2",
             "firstPublishedIn": "2024-06",
-            "downloads": 47531,
+            "downloads": 47567,
             "marRegistered": null
           }
         }
@@ -18419,7 +18293,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 93653,
+            "downloads": 93764,
             "marRegistered": null
           }
         }
@@ -18682,7 +18556,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 32776,
+            "downloads": 32818,
             "marRegistered": null
           }
         }
@@ -18764,7 +18638,7 @@
             "status": "available",
             "currentVersion": "0.5.2",
             "firstPublishedIn": "2024-05",
-            "downloads": 2945879,
+            "downloads": 2949433,
             "marRegistered": null
           }
         }
@@ -19468,7 +19342,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 6172,
+            "downloads": 6185,
             "marRegistered": null
           }
         }
@@ -19977,7 +19851,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-02",
-            "downloads": 175705,
+            "downloads": 176133,
             "marRegistered": null
           }
         }
@@ -20105,7 +19979,7 @@
             "status": "available",
             "currentVersion": "0.5.3",
             "firstPublishedIn": "2024-08",
-            "downloads": 398281,
+            "downloads": 398976,
             "marRegistered": null
           }
         }
@@ -20187,7 +20061,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2025-01",
-            "downloads": 51705,
+            "downloads": 51767,
             "marRegistered": null
           }
         }
@@ -20274,7 +20148,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 556761,
+            "downloads": 557381,
             "marRegistered": null
           }
         }
@@ -20352,7 +20226,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 634535,
+            "downloads": 635376,
             "marRegistered": null
           }
         }
@@ -20430,7 +20304,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2025-01",
-            "downloads": 11718,
+            "downloads": 11730,
             "marRegistered": null
           }
         }
@@ -20513,7 +20387,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2023-11",
-            "downloads": 404875,
+            "downloads": 405310,
             "marRegistered": null
           }
         }
@@ -20788,7 +20662,7 @@
             "status": "available",
             "currentVersion": "0.8.0",
             "firstPublishedIn": "2024-04",
-            "downloads": 548741,
+            "downloads": 549440,
             "marRegistered": null
           }
         }
@@ -20948,7 +20822,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2024-07",
-            "downloads": 192181,
+            "downloads": 192776,
             "marRegistered": null
           }
         }
@@ -21527,7 +21401,7 @@
             "status": "available",
             "currentVersion": "0.3.3",
             "firstPublishedIn": "2024-10",
-            "downloads": 57512,
+            "downloads": 57534,
             "marRegistered": null
           }
         }
@@ -21696,7 +21570,7 @@
             "status": "available",
             "currentVersion": "0.3.4",
             "firstPublishedIn": "2024-05",
-            "downloads": 828733,
+            "downloads": 829634,
             "marRegistered": null
           }
         }
@@ -21857,7 +21731,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2024-10",
-            "downloads": 14790,
+            "downloads": 14807,
             "marRegistered": null
           }
         }
@@ -21903,7 +21777,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/network/ip-group",
           "modulePath": "avm/res/network/ip-group",
           "repository": "Azure/bicep-registry-modules",
@@ -21919,13 +21793,7 @@
           "moduleDescription": "AVM Resource Module for IP Group",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.network-ipgroup",
           "publicRegistryReference": "br/public:avm/res/network/ip-group:X.Y.Z",
           "registry": {
@@ -21970,7 +21838,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-03",
-            "downloads": 37323,
+            "downloads": 37325,
             "marRegistered": null
           }
         }
@@ -22051,7 +21919,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 481851,
+            "downloads": 484199,
             "marRegistered": null
           }
         }
@@ -22217,7 +22085,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 3510,
+            "downloads": 3511,
             "marRegistered": null
           }
         }
@@ -22297,7 +22165,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2023-12",
-            "downloads": 679064,
+            "downloads": 682484,
             "marRegistered": null
           }
         }
@@ -22379,7 +22247,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2024-11",
-            "downloads": 13750,
+            "downloads": 13777,
             "marRegistered": null
           }
         }
@@ -22390,7 +22258,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/network/network-manager",
           "modulePath": "avm/res/network/network-manager",
           "repository": "Azure/bicep-registry-modules",
@@ -22406,13 +22274,7 @@
           "moduleDescription": "AVM Resource Module for Network Manager",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.network-networkmanager",
           "publicRegistryReference": "br/public:avm/res/network/network-manager:X.Y.Z",
           "registry": {
@@ -22457,7 +22319,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-01",
-            "downloads": 10852,
+            "downloads": 10879,
             "marRegistered": null
           }
         }
@@ -22468,7 +22330,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/network/network-manager/connectivity-configuration",
           "modulePath": "avm/res/network/network-manager/connectivity-configuration",
           "repository": "Azure/bicep-registry-modules",
@@ -22484,13 +22346,7 @@
           "moduleDescription": "AVM Child Module for Network Manager - Connectivity Configuration",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.network-nwmgr-connectivityconfig",
           "publicRegistryReference": "br/public:avm/res/network/network-manager/connectivity-configuration:X.Y.Z",
           "registry": {
@@ -22546,7 +22402,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/network/network-manager/network-group",
           "modulePath": "avm/res/network/network-manager/network-group",
           "repository": "Azure/bicep-registry-modules",
@@ -22562,13 +22418,7 @@
           "moduleDescription": "AVM Child Module for Network Manager - Network Group",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.network-nwmgr-networkgroup",
           "publicRegistryReference": "br/public:avm/res/network/network-manager/network-group:X.Y.Z",
           "registry": {
@@ -22624,7 +22474,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/network/network-manager/network-group/static-member",
           "modulePath": "avm/res/network/network-manager/network-group/static-member",
           "repository": "Azure/bicep-registry-modules",
@@ -22640,13 +22490,7 @@
           "moduleDescription": "AVM Child Module for Network Manager - Network Group - Static Member",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.network-nwmgr-nwgrpstaticmember",
           "publicRegistryReference": "br/public:avm/res/network/network-manager/network-group/static-member:X.Y.Z",
           "registry": {
@@ -22665,7 +22509,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/network/network-manager/routing-configuration",
           "modulePath": "avm/res/network/network-manager/routing-configuration",
           "repository": "Azure/bicep-registry-modules",
@@ -22681,13 +22525,7 @@
           "moduleDescription": "AVM Child Module for Network Manager - Routing Configuration",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.network-nwmgr-routingcfg",
           "publicRegistryReference": "br/public:avm/res/network/network-manager/routing-configuration:X.Y.Z",
           "registry": {
@@ -22743,7 +22581,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/network/network-manager/routing-configuration/rule-collection",
           "modulePath": "avm/res/network/network-manager/routing-configuration/rule-collection",
           "repository": "Azure/bicep-registry-modules",
@@ -22759,13 +22597,7 @@
           "moduleDescription": "AVM Child Module for Network Manager - Routing Configuration - Rule Collection",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.network-nwmgr-routingcfgrulecoll",
           "publicRegistryReference": "br/public:avm/res/network/network-manager/routing-configuration/rule-collection:X.Y.Z",
           "registry": {
@@ -22784,7 +22616,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/network/network-manager/routing-configuration/rule-collection/rule",
           "modulePath": "avm/res/network/network-manager/routing-configuration/rule-collection/rule",
           "repository": "Azure/bicep-registry-modules",
@@ -22800,13 +22632,7 @@
           "moduleDescription": "AVM Child Module for Network Manager - Routing Configuration - Rule Collection - Rule",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.network-nwmgr-routingcfgrulecollrule",
           "publicRegistryReference": "br/public:avm/res/network/network-manager/routing-configuration/rule-collection/rule:X.Y.Z",
           "registry": {
@@ -22825,7 +22651,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/network/network-manager/scope-connection",
           "modulePath": "avm/res/network/network-manager/scope-connection",
           "repository": "Azure/bicep-registry-modules",
@@ -22841,13 +22667,7 @@
           "moduleDescription": "AVM Child Module for Network Manager - Scope Connection",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.network-nwmgr-scopeconnection",
           "publicRegistryReference": "br/public:avm/res/network/network-manager/scope-connection:X.Y.Z",
           "registry": {
@@ -22903,7 +22723,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/network/network-manager/security-admin-configuration",
           "modulePath": "avm/res/network/network-manager/security-admin-configuration",
           "repository": "Azure/bicep-registry-modules",
@@ -22919,13 +22739,7 @@
           "moduleDescription": "AVM Child Module for Network Manager - Security Admin Configuration",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.network-nwmgr-secadmcfg",
           "publicRegistryReference": "br/public:avm/res/network/network-manager/security-admin-configuration:X.Y.Z",
           "registry": {
@@ -22981,7 +22795,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/network/network-manager/security-admin-configuration/rule-collection",
           "modulePath": "avm/res/network/network-manager/security-admin-configuration/rule-collection",
           "repository": "Azure/bicep-registry-modules",
@@ -22997,13 +22811,7 @@
           "moduleDescription": "AVM Child Module for Network Manager - Security Admin Configuration - Rule Collection",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.network-nwmgr-secadmcfgrulecoll",
           "publicRegistryReference": "br/public:avm/res/network/network-manager/security-admin-configuration/rule-collection:X.Y.Z",
           "registry": {
@@ -23022,7 +22830,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/network/network-manager/security-admin-configuration/rule-collection/rule",
           "modulePath": "avm/res/network/network-manager/security-admin-configuration/rule-collection/rule",
           "repository": "Azure/bicep-registry-modules",
@@ -23038,13 +22846,7 @@
           "moduleDescription": "AVM Child Module for Network Manager - Security Admin Configuration - Rule Coll - Rule",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.network-nwmgr-secadmcfgrulecollrule",
           "publicRegistryReference": "br/public:avm/res/network/network-manager/security-admin-configuration/rule-collection/rule:X.Y.Z",
           "registry": {
@@ -23063,7 +22865,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/network/network-security-group",
           "modulePath": "avm/res/network/network-security-group",
           "repository": "Azure/bicep-registry-modules",
@@ -23081,13 +22883,7 @@
             "NSG"
           ],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.network-networksecuritygroup",
           "publicRegistryReference": "br/public:avm/res/network/network-security-group:X.Y.Z",
           "registry": {
@@ -23132,7 +22928,7 @@
             "status": "available",
             "currentVersion": "0.5.1",
             "firstPublishedIn": "2024-02",
-            "downloads": 4110039,
+            "downloads": 4115540,
             "marRegistered": null
           }
         }
@@ -23143,7 +22939,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/network/network-security-perimeter",
           "modulePath": "avm/res/network/network-security-perimeter",
           "repository": "Azure/bicep-registry-modules",
@@ -23159,13 +22955,7 @@
           "moduleDescription": "AVM Resource Module for Network Security Perimeter",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "peterbud",
-              "type": "user",
-              "displayName": "Peter Budai"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.network-nwsecurityperimeter",
           "publicRegistryReference": "br/public:avm/res/network/network-security-perimeter:X.Y.Z",
           "registry": {
@@ -23210,7 +23000,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-04",
-            "downloads": 4494,
+            "downloads": 4498,
             "marRegistered": null
           }
         }
@@ -23303,7 +23093,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/network/network-security-perimeter/profile",
           "modulePath": "avm/res/network/network-security-perimeter/profile",
           "repository": "Azure/bicep-registry-modules",
@@ -23319,13 +23109,7 @@
           "moduleDescription": "AVM Child Module for Network Security Perimeter - Profile",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "peterbud",
-              "type": "user",
-              "displayName": "Peter Budai"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.network-nwsecperim-profile",
           "publicRegistryReference": "br/public:avm/res/network/network-security-perimeter/profile:X.Y.Z",
           "registry": {
@@ -23381,7 +23165,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/network/network-security-perimeter/profile/access-rule",
           "modulePath": "avm/res/network/network-security-perimeter/profile/access-rule",
           "repository": "Azure/bicep-registry-modules",
@@ -23397,13 +23181,7 @@
           "moduleDescription": "AVM Child Module for Network Security Perimeter - Profile - Access Rule",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "peterbud",
-              "type": "user",
-              "displayName": "Peter Budai"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.network-nwsecperim-profileaccessrule",
           "publicRegistryReference": "br/public:avm/res/network/network-security-perimeter/profile/access-rule:X.Y.Z",
           "registry": {
@@ -23567,7 +23345,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-07",
-            "downloads": 88718,
+            "downloads": 88865,
             "marRegistered": null
           }
         }
@@ -23768,7 +23546,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-03",
-            "downloads": 1299723,
+            "downloads": 1302051,
             "marRegistered": null
           }
         }
@@ -24548,7 +24326,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 721076,
+            "downloads": 721840,
             "marRegistered": null
           }
         }
@@ -24600,7 +24378,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/network/private-link-service",
           "modulePath": "avm/res/network/private-link-service",
           "repository": "Azure/bicep-registry-modules",
@@ -24616,13 +24394,7 @@
           "moduleDescription": "AVM Resource Module for Private Link Service",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.network-privatelinkservice",
           "publicRegistryReference": "br/public:avm/res/network/private-link-service:X.Y.Z",
           "registry": {
@@ -24754,7 +24526,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2024-02",
-            "downloads": 955943,
+            "downloads": 957263,
             "marRegistered": null
           }
         }
@@ -24834,7 +24606,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 19679,
+            "downloads": 19699,
             "marRegistered": null
           }
         }
@@ -24916,7 +24688,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 1267185,
+            "downloads": 1269320,
             "marRegistered": null
           }
         }
@@ -24970,7 +24742,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/network/service-endpoint-policy",
           "modulePath": "avm/res/network/service-endpoint-policy",
           "repository": "Azure/bicep-registry-modules",
@@ -24986,13 +24758,7 @@
           "moduleDescription": "AVM Resource Module for Service Endpoint Policy",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "jeetgarg",
-              "type": "user",
-              "displayName": "Jeet Garg"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.network-serviceendpointpolicy",
           "publicRegistryReference": "br/public:avm/res/network/service-endpoint-policy:X.Y.Z",
           "registry": {
@@ -25115,7 +24881,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-02",
-            "downloads": 11300,
+            "downloads": 11305,
             "marRegistered": null
           }
         }
@@ -25650,7 +25416,7 @@
             "status": "available",
             "currentVersion": "0.22.2",
             "firstPublishedIn": "2025-07",
-            "downloads": 6673994,
+            "downloads": 6684881,
             "marRegistered": null
           }
         }
@@ -26263,7 +26029,7 @@
             "status": "available",
             "currentVersion": "0.5.1",
             "firstPublishedIn": "2024-02",
-            "downloads": 1266033,
+            "downloads": 1268208,
             "marRegistered": null
           }
         }
@@ -26736,7 +26502,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 9342,
+            "downloads": 9355,
             "marRegistered": null
           }
         }
@@ -26964,7 +26730,7 @@
             "status": "available",
             "currentVersion": "1.3.2",
             "firstPublishedIn": "2025-01",
-            "downloads": 179385,
+            "downloads": 179826,
             "marRegistered": null
           }
         }
@@ -27635,7 +27401,7 @@
             "status": "available",
             "currentVersion": "0.0.2",
             "firstPublishedIn": "2025-10",
-            "downloads": 18575,
+            "downloads": 18593,
             "marRegistered": null
           }
         }
@@ -27754,7 +27520,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-01",
-            "downloads": 1996,
+            "downloads": 2049,
             "marRegistered": null
           }
         }
@@ -28384,7 +28150,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 2985998,
+            "downloads": 2991584,
             "marRegistered": null
           }
         }
@@ -28497,7 +28263,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 191108,
+            "downloads": 191442,
             "marRegistered": null
           }
         }
@@ -28727,7 +28493,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-06",
-            "downloads": 301564,
+            "downloads": 302044,
             "marRegistered": null
           }
         }
@@ -29328,7 +29094,7 @@
             "status": "available",
             "currentVersion": "1.0.1",
             "firstPublishedIn": "2026-06",
-            "downloads": 398,
+            "downloads": 402,
             "marRegistered": null
           }
         }
@@ -29738,7 +29504,7 @@
             "status": "available",
             "currentVersion": "0.3.1",
             "firstPublishedIn": "2026-02",
-            "downloads": 86766,
+            "downloads": 86850,
             "marRegistered": null
           }
         }
@@ -30050,7 +29816,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/sql/server",
           "modulePath": "avm/res/sql/server",
           "repository": "Azure/bicep-registry-modules",
@@ -30066,13 +29832,7 @@
           "moduleDescription": "AVM Resource Module for Azure SQL Server",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "peterbud",
-              "type": "user",
-              "displayName": "Peter Budai"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.sql-server",
           "publicRegistryReference": "br/public:avm/res/sql/server:X.Y.Z",
           "registry": {
@@ -30117,7 +29877,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2024-09",
-            "downloads": 469483,
+            "downloads": 471436,
             "marRegistered": null
           }
         }
@@ -30128,7 +29888,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/sql/server/auditing-setting",
           "modulePath": "avm/res/sql/server/auditing-setting",
           "repository": "Azure/bicep-registry-modules",
@@ -30144,13 +29904,7 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Auditing Setting",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "peterbud",
-              "type": "user",
-              "displayName": "Peter Budai"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.sql-server-auditingsetting",
           "publicRegistryReference": "br/public:avm/res/sql/server/auditing-setting:X.Y.Z",
           "registry": {
@@ -30169,7 +29923,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/sql/server/database",
           "modulePath": "avm/res/sql/server/database",
           "repository": "Azure/bicep-registry-modules",
@@ -30185,13 +29939,7 @@
           "moduleDescription": "AVM Resource Module for Azure SQL Database",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "peterbud",
-              "type": "user",
-              "displayName": "Peter Budai"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.sql-serverdb",
           "publicRegistryReference": "br/public:avm/res/sql/server/database:X.Y.Z",
           "registry": {
@@ -30247,7 +29995,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/sql/server/database/backup-long-term-retention-policy",
           "modulePath": "avm/res/sql/server/database/backup-long-term-retention-policy",
           "repository": "Azure/bicep-registry-modules",
@@ -30263,13 +30011,7 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Database - Backup Long Term Retention Policy",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "peterbud",
-              "type": "user",
-              "displayName": "Peter Budai"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.sql-server-dbbckplongtermretpolicy",
           "publicRegistryReference": "br/public:avm/res/sql/server/database/backup-long-term-retention-policy:X.Y.Z",
           "registry": {
@@ -30288,7 +30030,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/sql/server/database/backup-short-term-retention-policy",
           "modulePath": "avm/res/sql/server/database/backup-short-term-retention-policy",
           "repository": "Azure/bicep-registry-modules",
@@ -30304,13 +30046,7 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Database - Backup Short Term Retention Policy",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "peterbud",
-              "type": "user",
-              "displayName": "Peter Budai"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.sql-server-dbbckpshorttermretpolicy",
           "publicRegistryReference": "br/public:avm/res/sql/server/database/backup-short-term-retention-policy:X.Y.Z",
           "registry": {
@@ -30329,7 +30065,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/sql/server/elastic-pool",
           "modulePath": "avm/res/sql/server/elastic-pool",
           "repository": "Azure/bicep-registry-modules",
@@ -30345,13 +30081,7 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Elastic Pool",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "peterbud",
-              "type": "user",
-              "displayName": "Peter Budai"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.sql-server-elasticpool",
           "publicRegistryReference": "br/public:avm/res/sql/server/elastic-pool:X.Y.Z",
           "registry": {
@@ -30407,7 +30137,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/sql/server/encryption-protector",
           "modulePath": "avm/res/sql/server/encryption-protector",
           "repository": "Azure/bicep-registry-modules",
@@ -30423,13 +30153,7 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Encryption Protector",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "peterbud",
-              "type": "user",
-              "displayName": "Peter Budai"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.sql-server-encryptionprotector",
           "publicRegistryReference": "br/public:avm/res/sql/server/encryption-protector:X.Y.Z",
           "registry": {
@@ -30448,7 +30172,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/sql/server/failover-group",
           "modulePath": "avm/res/sql/server/failover-group",
           "repository": "Azure/bicep-registry-modules",
@@ -30464,13 +30188,7 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Failover Group",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "peterbud",
-              "type": "user",
-              "displayName": "Peter Budai"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.sql-server-failovergroup",
           "publicRegistryReference": "br/public:avm/res/sql/server/failover-group:X.Y.Z",
           "registry": {
@@ -30489,7 +30207,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/sql/server/firewall-rule",
           "modulePath": "avm/res/sql/server/firewall-rule",
           "repository": "Azure/bicep-registry-modules",
@@ -30505,13 +30223,7 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Firewall Rule",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "peterbud",
-              "type": "user",
-              "displayName": "Peter Budai"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.sql-server-firewallrule",
           "publicRegistryReference": "br/public:avm/res/sql/server/firewall-rule:X.Y.Z",
           "registry": {
@@ -30530,7 +30242,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/sql/server/key",
           "modulePath": "avm/res/sql/server/key",
           "repository": "Azure/bicep-registry-modules",
@@ -30546,13 +30258,7 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Key",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "peterbud",
-              "type": "user",
-              "displayName": "Peter Budai"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.sql-server-key",
           "publicRegistryReference": "br/public:avm/res/sql/server/key:X.Y.Z",
           "registry": {
@@ -30571,7 +30277,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/sql/server/security-alert-policy",
           "modulePath": "avm/res/sql/server/security-alert-policy",
           "repository": "Azure/bicep-registry-modules",
@@ -30587,13 +30293,7 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Security Alert Policy",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "peterbud",
-              "type": "user",
-              "displayName": "Peter Budai"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.sql-server-securityalertpolicy",
           "publicRegistryReference": "br/public:avm/res/sql/server/security-alert-policy:X.Y.Z",
           "registry": {
@@ -30612,7 +30312,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/sql/server/virtual-network-rule",
           "modulePath": "avm/res/sql/server/virtual-network-rule",
           "repository": "Azure/bicep-registry-modules",
@@ -30628,13 +30328,7 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Virtual Network Rule",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "peterbud",
-              "type": "user",
-              "displayName": "Peter Budai"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.sql-server-virtualnetworkrule",
           "publicRegistryReference": "br/public:avm/res/sql/server/virtual-network-rule:X.Y.Z",
           "registry": {
@@ -30653,7 +30347,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/sql/server/vulnerability-assessment",
           "modulePath": "avm/res/sql/server/vulnerability-assessment",
           "repository": "Azure/bicep-registry-modules",
@@ -30669,13 +30363,7 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Vulnerability Assessment",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "peterbud",
-              "type": "user",
-              "displayName": "Peter Budai"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.sql-server-vulnerabilityassessment",
           "publicRegistryReference": "br/public:avm/res/sql/server/vulnerability-assessment:X.Y.Z",
           "registry": {
@@ -30763,7 +30451,7 @@
             "status": "available",
             "currentVersion": "0.0.1",
             "firstPublishedIn": "2026-02",
-            "downloads": 21441,
+            "downloads": 21453,
             "marRegistered": null
           }
         }
@@ -30841,7 +30529,7 @@
             "status": "available",
             "currentVersion": "0.10.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 4249094,
+            "downloads": 4257435,
             "marRegistered": null
           }
         }
@@ -31965,7 +31653,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-05",
-            "downloads": 963,
+            "downloads": 966,
             "marRegistered": null
           }
         }
@@ -32222,7 +31910,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
+          "moduleStatus": "Orphaned",
           "moduleName": "avm/res/virtual-machine-images/image-template",
           "modulePath": "avm/res/virtual-machine-images/image-template",
           "repository": "Azure/bicep-registry-modules",
@@ -32238,13 +31926,7 @@
           "moduleDescription": "AVM Resource Module for Virtual Machine Image Template",
           "alternativeNames": [],
           "comments": "",
-          "owners": [
-            {
-              "handle": "ahmadabdalla",
-              "type": "user",
-              "displayName": "Ahmad Abdalla"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.res.virtualmachineimages-imagetemplate",
           "publicRegistryReference": "br/public:avm/res/virtual-machine-images/image-template:X.Y.Z",
           "registry": {
@@ -32422,7 +32104,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-11",
-            "downloads": 4620,
+            "downloads": 4637,
             "marRegistered": null
           }
         }
@@ -32509,7 +32191,7 @@
             "status": "available",
             "currentVersion": "2.0.1",
             "firstPublishedIn": "2024-06",
-            "downloads": 9423,
+            "downloads": 9426,
             "marRegistered": null
           }
         }
@@ -32765,7 +32447,7 @@
             "status": "available",
             "currentVersion": "2.0.8",
             "firstPublishedIn": "2024-08",
-            "downloads": 469952,
+            "downloads": 470792,
             "marRegistered": null
           }
         }
@@ -32858,7 +32540,7 @@
             "status": "available",
             "currentVersion": "0.23.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 672305,
+            "downloads": 673462,
             "marRegistered": null
           }
         },
@@ -33985,9 +33667,9 @@
           "comments": "",
           "owners": [
             {
-              "handle": "ChrisSidebotham",
+              "handle": "maciejporebski",
               "type": "user",
-              "displayName": "ChrisSidebotham-MSFT"
+              "displayName": "Maciej Porebski"
             }
           ],
           "telemetryIdPrefix": "46d3xbcp.res.web-staticsite",
@@ -34034,7 +33716,7 @@
             "status": "available",
             "currentVersion": "0.6.2",
             "firstPublishedIn": "2024-02",
-            "downloads": 92046,
+            "downloads": 92213,
             "marRegistered": null
           }
         }
@@ -34063,9 +33745,9 @@
           "comments": "",
           "owners": [
             {
-              "handle": "ChrisSidebotham",
+              "handle": "maciejporebski",
               "type": "user",
-              "displayName": "ChrisSidebotham-MSFT"
+              "displayName": "Maciej Porebski"
             }
           ],
           "telemetryIdPrefix": "46d3xbcp.res.web-staticsite-config",
@@ -34104,9 +33786,9 @@
           "comments": "",
           "owners": [
             {
-              "handle": "ChrisSidebotham",
+              "handle": "maciejporebski",
               "type": "user",
-              "displayName": "ChrisSidebotham-MSFT"
+              "displayName": "Maciej Porebski"
             }
           ],
           "telemetryIdPrefix": "46d3xbcp.res.web-staticsite-customdomain",
@@ -34145,9 +33827,9 @@
           "comments": "",
           "owners": [
             {
-              "handle": "ChrisSidebotham",
+              "handle": "maciejporebski",
               "type": "user",
-              "displayName": "ChrisSidebotham-MSFT"
+              "displayName": "Maciej Porebski"
             }
           ],
           "telemetryIdPrefix": "46d3xbcp.res.web-staticsite-linkedbackend",
@@ -34244,7 +33926,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-09",
-            "downloads": 3251,
+            "downloads": 3257,
             "marRegistered": null
           }
         }
@@ -34290,7 +33972,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-09",
-            "downloads": 2793,
+            "downloads": 2797,
             "marRegistered": null
           }
         }
@@ -34766,14 +34448,14 @@
           "comments": "",
           "owners": [
             {
-              "handle": "mswantek68",
+              "handle": "mbilalamjad",
               "type": "user",
-              "displayName": "Mike Swantek"
+              "displayName": "Bilal Amjad"
             },
             {
-              "handle": "sethsteenken",
+              "handle": "placerda",
               "type": "user",
-              "displayName": "Seth Steenken"
+              "displayName": "Paulo Lacerda"
             }
           ],
           "telemetryIdPrefix": "46d3xbcp.ptn.aiml-aifoundry",
@@ -34825,7 +34507,7 @@
             "status": "available",
             "currentVersion": "0.11.3",
             "firstPublishedIn": "2025-07",
-            "downloads": 211992,
+            "downloads": 212276,
             "marRegistered": null
           }
         }
@@ -34959,7 +34641,7 @@
             "status": "available",
             "currentVersion": "0.5.2",
             "firstPublishedIn": "2025-09",
-            "downloads": 6535,
+            "downloads": 6551,
             "marRegistered": null
           }
         }
@@ -35245,7 +34927,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 12458,
+            "downloads": 12523,
             "marRegistered": null
           }
         }
@@ -35293,7 +34975,7 @@
             "status": "available",
             "currentVersion": "0.21.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 551341,
+            "downloads": 552029,
             "marRegistered": null
           }
         }
@@ -35468,7 +35150,7 @@
             "status": "available",
             "currentVersion": "0.17.5",
             "firstPublishedIn": "2025-10",
-            "downloads": 310303,
+            "downloads": 310632,
             "marRegistered": null
           }
         }
@@ -35660,7 +35342,7 @@
             "status": "available",
             "currentVersion": "0.17.2",
             "firstPublishedIn": "2025-03",
-            "downloads": 277919,
+            "downloads": 278225,
             "marRegistered": null
           }
         }
@@ -36225,7 +35907,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2023-12",
-            "downloads": 410911,
+            "downloads": 411353,
             "marRegistered": null
           }
         }
@@ -36931,7 +36613,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 6680,
+            "downloads": 6689,
             "marRegistered": null
           }
         }
@@ -37211,7 +36893,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 10578,
+            "downloads": 10594,
             "marRegistered": null
           }
         }
@@ -37290,7 +36972,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-05",
-            "downloads": 8715,
+            "downloads": 8716,
             "marRegistered": null
           }
         }
@@ -37922,7 +37604,7 @@
             "status": "available",
             "currentVersion": "0.1.3",
             "firstPublishedIn": "2026-02",
-            "downloads": 1243,
+            "downloads": 1295,
             "marRegistered": null
           }
         }
@@ -38526,7 +38208,7 @@
             "status": "available",
             "currentVersion": "0.6.2",
             "firstPublishedIn": "2024-08",
-            "downloads": 21875,
+            "downloads": 21888,
             "marRegistered": null
           }
         }
@@ -38690,7 +38372,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2025-11",
-            "downloads": 3768,
+            "downloads": 3791,
             "marRegistered": null
           }
         }
@@ -38853,7 +38535,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 2924,
+            "downloads": 2933,
             "marRegistered": null
           }
         }
@@ -39697,7 +39379,7 @@
             "status": "available",
             "currentVersion": "0.7.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 3826556,
+            "downloads": 3845326,
             "marRegistered": null
           }
         }
@@ -39828,7 +39510,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2025-11",
-            "downloads": 439455,
+            "downloads": 440227,
             "marRegistered": null
           }
         }
@@ -40585,7 +40267,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 70303,
+            "downloads": 70509,
             "marRegistered": null
           }
         }
@@ -40626,7 +40308,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-09",
-            "downloads": 858,
+            "downloads": 957,
             "marRegistered": null
           }
         }
@@ -40669,7 +40351,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2025-03",
-            "downloads": 246848,
+            "downloads": 247251,
             "marRegistered": null
           }
         }
@@ -40710,7 +40392,7 @@
             "status": "available",
             "currentVersion": "0.1.5",
             "firstPublishedIn": "2024-06",
-            "downloads": 12077,
+            "downloads": 12121,
             "marRegistered": null
           }
         }
@@ -40782,7 +40464,7 @@
             "status": "available",
             "currentVersion": "0.13.2",
             "firstPublishedIn": "2024-09",
-            "downloads": 159121,
+            "downloads": 159147,
             "marRegistered": null
           }
         }
@@ -40860,7 +40542,7 @@
             "status": "available",
             "currentVersion": "0.23.2",
             "firstPublishedIn": "2024-06",
-            "downloads": 475424,
+            "downloads": 475977,
             "marRegistered": null
           }
         }
@@ -40939,7 +40621,7 @@
             "status": "available",
             "currentVersion": "0.14.1",
             "firstPublishedIn": "2023-09",
-            "downloads": 275878,
+            "downloads": 275969,
             "marRegistered": null
           }
         }
@@ -41702,7 +41384,7 @@
             "status": "available",
             "currentVersion": "0.12.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 3571763,
+            "downloads": 3581558,
             "marRegistered": null
           }
         }
@@ -41743,7 +41425,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-09",
-            "downloads": 604216,
+            "downloads": 605624,
             "marRegistered": null
           }
         }
@@ -41791,7 +41473,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "pattern",
-          "moduleStatus": "Available",
+          "moduleStatus": "Deprecated",
           "moduleName": "avm/ptn/sa/chat-with-your-data",
           "modulePath": "avm/ptn/sa/chat-with-your-data",
           "repository": "Azure/bicep-registry-modules",
@@ -41809,18 +41491,7 @@
             "Solution Accelerator - Chat with your data (CWYD)"
           ],
           "comments": "",
-          "owners": [
-            {
-              "handle": "aniaroramsft",
-              "type": "user",
-              "displayName": "Anish Arora"
-            },
-            {
-              "handle": "alguadam",
-              "type": "user",
-              "displayName": "Alvaro Guadamillas Herranz"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.ptn.sa-chatwithyourdata",
           "publicRegistryReference": "br/public:avm/ptn/sa/chat-with-your-data:X.Y.Z",
           "registry": {
@@ -41933,7 +41604,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "pattern",
-          "moduleStatus": "Available",
+          "moduleStatus": "Deprecated",
           "moduleName": "avm/ptn/sa/content-processing",
           "modulePath": "avm/ptn/sa/content-processing",
           "repository": "Azure/bicep-registry-modules",
@@ -41951,18 +41622,7 @@
             "Solution Accelerator - Content Processing"
           ],
           "comments": "",
-          "owners": [
-            {
-              "handle": "brittneek",
-              "type": "user",
-              "displayName": null
-            },
-            {
-              "handle": "aniaroramsft",
-              "type": "user",
-              "displayName": "Anish Arora"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.ptn.sa-contentprocessing",
           "publicRegistryReference": "br/public:avm/ptn/sa/content-processing:X.Y.Z",
           "registry": {
@@ -41981,7 +41641,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "pattern",
-          "moduleStatus": "Available",
+          "moduleStatus": "Deprecated",
           "moduleName": "avm/ptn/sa/conversation-knowledge-mining",
           "modulePath": "avm/ptn/sa/conversation-knowledge-mining",
           "repository": "Azure/bicep-registry-modules",
@@ -41999,18 +41659,7 @@
             "Solution Accelerator - Conversation knowledge mining (CKM)"
           ],
           "comments": "",
-          "owners": [
-            {
-              "handle": "alguadam",
-              "type": "user",
-              "displayName": "Alvaro Guadamillas Herranz"
-            },
-            {
-              "handle": "aniaroramsft",
-              "type": "user",
-              "displayName": "Anish Arora"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.ptn.sa-convknowledgemining",
           "publicRegistryReference": "br/public:avm/ptn/sa/conversation-knowledge-mining:X.Y.Z",
           "registry": {
@@ -42077,7 +41726,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "pattern",
-          "moduleStatus": "Available",
+          "moduleStatus": "Deprecated",
           "moduleName": "avm/ptn/sa/document-knowledge-mining",
           "modulePath": "avm/ptn/sa/document-knowledge-mining",
           "repository": "Azure/bicep-registry-modules",
@@ -42095,18 +41744,7 @@
             "Solution Accelerator - Document knowledge mining (DKM)"
           ],
           "comments": "",
-          "owners": [
-            {
-              "handle": "aniaroramsft",
-              "type": "user",
-              "displayName": "Anish Arora"
-            },
-            {
-              "handle": "alguadam",
-              "type": "user",
-              "displayName": "Alvaro Guadamillas Herranz"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.ptn.sa-documentknowledgemining",
           "publicRegistryReference": "br/public:avm/ptn/sa/document-knowledge-mining:X.Y.Z",
           "registry": {
@@ -42125,7 +41763,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "pattern",
-          "moduleStatus": "Available",
+          "moduleStatus": "Deprecated",
           "moduleName": "avm/ptn/sa/modernize-your-code",
           "modulePath": "avm/ptn/sa/modernize-your-code",
           "repository": "Azure/bicep-registry-modules",
@@ -42143,18 +41781,7 @@
             "Solution Accelerator - Modernize your code"
           ],
           "comments": "",
-          "owners": [
-            {
-              "handle": "sethsteenken",
-              "type": "user",
-              "displayName": "Seth Steenken"
-            },
-            {
-              "handle": "aniaroramsft",
-              "type": "user",
-              "displayName": "Anish Arora"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.ptn.sa-modernizeyourcode",
           "publicRegistryReference": "br/public:avm/ptn/sa/modernize-your-code:X.Y.Z",
           "registry": {
@@ -42173,7 +41800,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "pattern",
-          "moduleStatus": "Available",
+          "moduleStatus": "Deprecated",
           "moduleName": "avm/ptn/sa/multi-agent-custom-automation-engine",
           "modulePath": "avm/ptn/sa/multi-agent-custom-automation-engine",
           "repository": "Azure/bicep-registry-modules",
@@ -42191,18 +41818,7 @@
             "Solution Accelerator - Multi Agent Custom Automation Engine"
           ],
           "comments": "",
-          "owners": [
-            {
-              "handle": "alguadam",
-              "type": "user",
-              "displayName": "Alvaro Guadamillas Herranz"
-            },
-            {
-              "handle": "aniaroramsft",
-              "type": "user",
-              "displayName": "Anish Arora"
-            }
-          ],
+          "owners": [],
           "telemetryIdPrefix": "46d3xbcp.ptn.sa-multiagentcustauteng",
           "publicRegistryReference": "br/public:avm/ptn/sa/multi-agent-custom-automation-engine:X.Y.Z",
           "registry": {
@@ -42369,7 +41985,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-12",
-            "downloads": 37876,
+            "downloads": 38108,
             "marRegistered": null
           }
         }
@@ -42648,7 +42264,7 @@
             "status": "available",
             "currentVersion": "0.0.2",
             "firstPublishedIn": "2026-05",
-            "downloads": 34,
+            "downloads": 42,
             "marRegistered": null
           }
         }
@@ -42683,7 +42299,7 @@
             "status": "available",
             "currentVersion": "0.10.3",
             "firstPublishedIn": "2024-02",
-            "downloads": 238941,
+            "downloads": 239098,
             "marRegistered": null
           }
         }
