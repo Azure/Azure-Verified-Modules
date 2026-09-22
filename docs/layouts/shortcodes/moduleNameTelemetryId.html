@@ -1,0 +1,58 @@
+{{/* Renders the "Module name and Telemetry ID prefix" table (Bicep only). */}}
+{{ $useHeaderRow := .Get "header" }}
+{{ $language := .Get "language" }}
+{{ $moduleType := .Get "moduleType" }}
+{{ $useLinks := .Get "useLinks" | default true }}
+{{ $hasModulesAvailable := false }}
+{{ $i := 1 }}
+
+{{ if ne $language "Bicep" }}
+  {{ errorf "The %q shortcode only supports a language parameter of 'Bicep'. See %s" .Name .Position }}
+{{ end }}
+{{ if not (in (slice "resource" "pattern" "utility") $moduleType) }}
+  {{ errorf "The %q shortcode requires a moduleType parameter to bet set to either 'resource', 'pattern' or 'utility'. See %s" .Name .Position }}
+{{ end }}
+
+{{ $maps := partialCached "modules-flatten.html" (dict "ecosystem" "bicep" "moduleType" $moduleType) (printf "modules-flatten-bicep-%s" $moduleType) }}
+
+<table>
+  {{ if $useHeaderRow }}
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Module Name</th>
+      <th>Telemetry ID prefix</th>
+    </tr>
+  </thead>
+  {{ end }}
+  {{ range $item, $maps }}
+  <tr>
+    <td style="text-align: right;"> {{/* row index */}}
+      {{- printf "%02d" $i -}}
+      {{- $i = add $i 1 -}}
+    </td>
+    <td> {{/* module name and link to the repo */}}
+      {{- if $useLinks -}}
+        {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") -}}
+          <a href="{{ $item.RepoURL }}">{{ $item.ModuleName }}</a>
+        {{- else -}}
+          {{ $item.ModuleName }}
+        {{- end -}}
+      {{- else -}}
+        {{ $item.ModuleName }}
+      {{- end -}}
+    </td>
+    <td> {{/* telemetry ID prefix */}}
+      <code style="white-space:normal;">{{ $item.TelemetryIdPrefix }}</code>
+    </td>
+  </tr>
+  {{ $hasModulesAvailable = true }}
+  {{ end }}
+  {{ if not $hasModulesAvailable }}
+  <tr>
+    <td>{{ printf "%02d" $i }}{{ $i = add $i 1 }}</td>
+    <td>❌ None available</td>
+    <td>❌ None available</td>
+  </tr>
+  {{ end }}
+</table>

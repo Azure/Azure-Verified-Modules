@@ -5,21 +5,11 @@ Azure Verified Modules (AVM) - A comprehensive library of standardized, tested A
 ## Summary
 This document contains links to all Azure Verified Modules documentation organized by category, with direct links to the source markdown files in the GitHub repository.
 
-## Bicep AVM Modules
+## Bicep & Terraform AVM Modules
 
-Details on the available Bicep AVM modules can be found in the following CSV files, which contain links to the source of each module, the status of the modules, and the owner/s of the modules:
+Details on all available Bicep and Terraform AVM modules can be found in the combined module catalog JSON file, which contains the source of each module, the status of the modules, and the owner/s of the modules:
 
-- [Bicep Resource Modules](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/BicepResourceModules.csv)
-- [Bicep Pattern Modules](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/BicepPatternModules.csv)
-- [Bicep Utility Modules](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/BicepUtilityModules.csv)
-
-## Terraform AVM Modules
-
-Details on the available Terraform AVM modules can be found in the following CSV files, which contain links to the source of each module, the status of the modules, and the owner/s of the modules:
-
-- [Terraform Resource Modules](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/TerraformResourceModules.csv)
-- [Terraform Pattern Modules](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/TerraformPatternModules.csv)
-- [Terraform Utility Modules](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/TerraformUtilityModules.csv)
+- [Module Catalog](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/v1/modules.json)
 
 
 {{- $baseGithubURL := "https://raw.githubusercontent.com/Azure/Azure-Verified-Modules/refs/heads/main/docs/content" -}}

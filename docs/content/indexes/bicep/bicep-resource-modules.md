@@ -20,9 +20,9 @@ description: Bicep Resource Module Index showing all available, orphaned and pla
 
 This page contains various views of the module index (catalog) for **Bicep Resource Modules**. To see these views, **click on the expandable sections** with the "âž•" sign below.
 
-- {{% icon icon="fa-brands fa-github" %}} To see the **full, unfiltered, unformatted module index** on GitHub, click [here](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/BicepResourceModules.csv).
+- {{% icon icon="fa-brands fa-github" %}} To see the **full, unfiltered, unformatted module catalog** on GitHub, click [here](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/v1/modules.json).
 
-- {{% icon icon="download" %}} To download the source CSV file, click [here]({{% siteparam base %}}/module-indexes/BicepResourceModules.csv).
+- {{% icon icon="download" %}} To download the source catalog JSON file, click [here]({{% siteparam base %}}/module-indexes/v1/modules.json).
 
 {{% /notice %}}
 
@@ -38,7 +38,7 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{% expand title="âž• Published Modules - Module names, status and owners" expanded="true" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" include="Available,Orphaned" %}}
+{{% moduleNameStatusOwners header=true language="Bicep" moduleType="resource" include="Available,Orphaned" %}}
 
 {{% /expand %}}
 
@@ -46,7 +46,7 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{% expand title="âž• Proposed Modules - Module names, status and owners" expanded="false" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" include="Proposed" %}}
+{{% moduleNameStatusOwners header=true language="Bicep" moduleType="resource" include="Proposed" %}}
 
 {{% /expand %}}
 
@@ -54,7 +54,7 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{% expand title="âž• Deprecated Modules - Module names, status and owners" expanded="false" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" include="Deprecated" %}}
+{{% moduleNameStatusOwners header=true language="Bicep" moduleType="resource" include="Deprecated" %}}
 
 {{% /expand %}}
 
@@ -62,7 +62,7 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{% expand title="âž• All Modules - Module names, status and owners" expanded="false" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" include="Available,Orphaned,Proposed,Deprecated" %}}
+{{% moduleNameStatusOwners header=true language="Bicep" moduleType="resource" include="Available,Orphaned,Proposed,Deprecated" %}}
 
 {{% /expand %}}
 
@@ -70,7 +70,7 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{% expand title="âž• Module Publication History - Module names, status and owners" expanded="false" %}}
 
-{{% moduleHistory header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" exclude="Proposed" monthsToShow=9999 %}}
+{{% moduleHistory header=true language="Bicep" moduleType="resource" exclude="Proposed" monthsToShow=9999 %}}
 
 {{% /expand %}}
 
@@ -80,7 +80,7 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 The following table shows which Bicep resource modules have which consistent features and extension resources (interfaces) implemented as defined in the Bicep [Interfaces]({{% siteparam base %}}/specs/bcp/res/interfaces/) specification.
 
-{{% bicepModuleFeaturesAndExtensionResources header=true featureMappingCsv="/static/includes/module-features/bicepFeatures.csv" modulesIndexCsv="/static/module-indexes/BicepResourceModules.csv" %}}
+{{% bicepModuleFeaturesAndExtensionResources header=true featureMappingCsv="/static/includes/module-features/bicepFeatures.csv" %}}
 
 {{% /expand %}}
 
@@ -100,6 +100,6 @@ Module owners obtain access through the [AVM Module Contributors access package]
 
 {{% expand title="âž• All Modules - Module name and Telemetry ID prefix" expanded="false" %}}
 
-{{% moduleNameTelemetryGHTeams header=true csv="/static/module-indexes/BicepResourceModules.csv" language="Bicep" moduleType="resource" %}}
+{{% moduleNameTelemetryId header=true language="Bicep" moduleType="resource" %}}
 
 {{% /expand %}}

@@ -3,18 +3,12 @@
 {{ $language := .Get "language" | default "All" }}
 {{ $moduleType := .Get "moduleType" | default "All" }}
 
-{{ $bicepResFile := readFile "/static/module-indexes/BicepResourceModules.csv" }}
-{{ $bicepResRows := $bicepResFile | transform.Unmarshal (dict "delimiter" ",") }}
-{{ $bicepPtnFile := readFile "/static/module-indexes/BicepPatternModules.csv" }}
-{{ $bicepPtnRows := $bicepPtnFile | transform.Unmarshal (dict "delimiter" ",") }}
-{{ $bicepUtlFile := readFile "/static/module-indexes/BicepUtilityModules.csv" }}
-{{ $bicepUtlRows := $bicepUtlFile | transform.Unmarshal (dict "delimiter" ",") }}
-{{ $tfResFile := readFile "/static/module-indexes/TerraformResourceModules.csv" }}
-{{ $tfResRows := $tfResFile | transform.Unmarshal (dict "delimiter" ",") }}
-{{ $tfPtnFile := readFile "/static/module-indexes/TerraformPatternModules.csv" }}
-{{ $tfPtnRows := $tfPtnFile | transform.Unmarshal (dict "delimiter" ",") }}
-{{ $tfUtlFile := readFile "/static/module-indexes/TerraformUtilityModules.csv" }}
-{{ $tfUtlRows := $tfUtlFile | transform.Unmarshal (dict "delimiter" ",") }}
+{{ $bicepResRows := partialCached "modules-flatten.html" (dict "ecosystem" "bicep" "moduleType" "resource") "modules-flatten-bicep-resource" }}
+{{ $bicepPtnRows := partialCached "modules-flatten.html" (dict "ecosystem" "bicep" "moduleType" "pattern") "modules-flatten-bicep-pattern" }}
+{{ $bicepUtlRows := partialCached "modules-flatten.html" (dict "ecosystem" "bicep" "moduleType" "utility") "modules-flatten-bicep-utility" }}
+{{ $tfResRows := partialCached "modules-flatten.html" (dict "ecosystem" "terraform" "moduleType" "resource") "modules-flatten-terraform-resource" }}
+{{ $tfPtnRows := partialCached "modules-flatten.html" (dict "ecosystem" "terraform" "moduleType" "pattern") "modules-flatten-terraform-pattern" }}
+{{ $tfUtlRows := partialCached "modules-flatten.html" (dict "ecosystem" "terraform" "moduleType" "utility") "modules-flatten-terraform-utility" }}
 
 
 <table>

@@ -1,0 +1,21 @@
+{{/*
+  Renders a list of normalized owners (see normalize-owners.html) as GitHub profile/team links,
+  one per line, with an optional display name/description underneath when available.
+
+  input: slice of { Handle, DisplayName, IsTeam }
+*/}}
+{{- $owners := . -}}
+{{- if $owners -}}
+  {{- range $index, $owner := $owners -}}
+    {{- if gt $index 0 }}<br>{{ end -}}
+    {{- if $owner.IsTeam -}}
+      {{- $teamSlug := strings.TrimPrefix "@Azure/" $owner.Handle -}}
+      <a href="https://github.com/orgs/Azure/teams/{{ $teamSlug }}">{{ $owner.Handle }}</a>
+    {{- else -}}
+      <a href="https://github.com/{{ $owner.Handle }}">{{ $owner.Handle }}</a>
+    {{- end -}}
+    {{- with $owner.DisplayName -}}
+      <br>{{ . }}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

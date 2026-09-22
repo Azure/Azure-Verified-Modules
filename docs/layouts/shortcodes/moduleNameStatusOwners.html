@@ -1,144 +1,28 @@
 {{ $useHeaderRow := .Get "header" }}
-{{ $csv := .Get "csv" }}
-{{ $file := readFile $csv }}
-{{ $rows := $file | transform.Unmarshal (dict "delimiter" ",") }}
-{{ $rows = after 1 $rows }}
 {{ $useLinks := .Get "useLinks" | default true }}
 {{ $language := .Get "language" }}
 {{ $moduleType := .Get "moduleType" }}
 {{ $include := .Get "include" }}
-{{ $ProviderNamespaceColumnId := 0 }}
-{{ $ResourceTypeColumnId := 0 }}
-{{ $ModuleDisplayNameColumnId := 0 }}
-{{ $AlternativeNamesColumnId := 0 }}
-{{ $ModuleNameColumnId := 0 }}
-{{ $ParentModuleColumnId := 0 }}
-{{ $ModuleStatusColumnId := 0 }}
-{{ $RepoURLColumnId := 0 }}
-{{ $PublicRegistryReferenceColumnId := 0 }}
-{{ $TelemetryIdPrefixColumnId := 0 }}
-{{ $PrimaryModuleOwnerGHHandleColumnId := 0 }}
-{{ $PrimaryModuleOwnerDisplayNameColumnId := 0 }}
-{{ $SecondaryModuleOwnerGHHandleColumnId := 0 }}
-{{ $SecondaryModuleOwnerDisplayNameColumnId := 0 }}
-{{ $ModuleOwnersGHTeamColumnId := 0 }}
-{{ $DescriptionColumnId := 0 }}
-{{ $CommentsColumnId := 0 }}
-{{ $FirstPublishedInColumnId := 0 }}
 {{ $hasListableModules := false }}
-{{ $maps := slice }}
 {{ $i := 0 }}
-{{ $moduleLatestVersion := "" }}
 
-{{ if eq $moduleType "resource" }}
-  {{ $ProviderNamespaceColumnId = 0 }}
-  {{ $ResourceTypeColumnId = 1 }}
-  {{ $ModuleDisplayNameColumnId = 2 }}
-  {{ $AlternativeNamesColumnId = 3 }}
-  {{ $ModuleNameColumnId = 4 }}
-  {{ $ParentModuleColumnId = 5 }}
-  {{ $ModuleStatusColumnId = 6 }}
-  {{ $RepoURLColumnId = 7 }}
-  {{ $PublicRegistryReferenceColumnId = 8 }}
-  {{ if eq $language "Bicep" }}
-    {{ $TelemetryIdPrefixColumnId = 9 }}
-    {{ $PrimaryModuleOwnerGHHandleColumnId = 10 }}
-    {{ $PrimaryModuleOwnerDisplayNameColumnId = 11 }}
-    {{ $SecondaryModuleOwnerGHHandleColumnId = 12 }}
-    {{ $SecondaryModuleOwnerDisplayNameColumnId = 13 }}
-    {{ $ModuleOwnersGHTeamColumnId = 14 }}
-    {{ $DescriptionColumnId = 15 }}
-    {{ $CommentsColumnId = 16 }}
-    {{ $FirstPublishedInColumnId = 17 }}
-  {{ else }}
-    {{ $PrimaryModuleOwnerGHHandleColumnId = 9 }}
-    {{ $PrimaryModuleOwnerDisplayNameColumnId = 10 }}
-    {{ $SecondaryModuleOwnerGHHandleColumnId = 11 }}
-    {{ $SecondaryModuleOwnerDisplayNameColumnId = 12 }}
-    {{ $DescriptionColumnId = 13 }}
-    {{ $CommentsColumnId = 14 }}
-    {{ $FirstPublishedInColumnId = 15 }}
-  {{ end }}
-
-  {{ range $row, $rows }}
-    {{ $map := dict
-      "ProviderNamespace" (index $row $ProviderNamespaceColumnId)
-      "ResourceType" (index $row $ResourceTypeColumnId)
-      "ModuleDisplayName" (index $row $ModuleDisplayNameColumnId)
-      "AlternativeNames" (index $row $AlternativeNamesColumnId)
-      "ModuleName" (index $row $ModuleNameColumnId)
-      "ParentModule" (index $row $ParentModuleColumnId)
-      "ModuleStatus" (index $row $ModuleStatusColumnId)
-      "RepoURL" (index $row $RepoURLColumnId)
-      "PublicRegistryReference" (index $row $PublicRegistryReferenceColumnId)
-      "PrimaryModuleOwnerGHHandle" (index $row $PrimaryModuleOwnerGHHandleColumnId)
-      "PrimaryModuleOwnerDisplayName" (index $row $PrimaryModuleOwnerDisplayNameColumnId)
-      "SecondaryModuleOwnerGHHandle" (index $row $SecondaryModuleOwnerGHHandleColumnId)
-      "SecondaryModuleOwnerDisplayName" (index $row $SecondaryModuleOwnerDisplayNameColumnId)
-      "Description" (index $row $DescriptionColumnId)
-      "Comments" (index $row $CommentsColumnId)
-      "FirstPublishedInColumnId" (index $row $FirstPublishedInColumnId)
-    }}
-    {{ $maps = $maps | append $map }}
-  {{ end }}
-
-{{ else if or (eq $moduleType "pattern") (eq $moduleType "utility") }}
-  {{ $ModuleDisplayNameColumnId = 0 }}
-  {{ $AlternativeNamesColumnId = 1 }}
-  {{ $ModuleNameColumnId = 2 }}
-  {{ $ModuleStatusColumnId = 3 }}
-  {{ $RepoURLColumnId = 4 }}
-  {{ $PublicRegistryReferenceColumnId = 5 }}
-  {{ if eq $language "Bicep" }}
-    {{ $TelemetryIdPrefixColumnId = 6 }}
-    {{ $PrimaryModuleOwnerGHHandleColumnId = 7 }}
-    {{ $PrimaryModuleOwnerDisplayNameColumnId = 8 }}
-    {{ $SecondaryModuleOwnerGHHandleColumnId = 9 }}
-    {{ $SecondaryModuleOwnerDisplayNameColumnId = 10 }}
-    {{ $ModuleOwnersGHTeamColumnId = 11 }}
-    {{ $DescriptionColumnId = 12 }}
-    {{ $CommentsColumnId = 13 }}
-    {{ $FirstPublishedInColumnId = 14 }}
-  {{ else }}
-    {{ $PrimaryModuleOwnerGHHandleColumnId = 6 }}
-    {{ $PrimaryModuleOwnerDisplayNameColumnId = 7 }}
-    {{ $SecondaryModuleOwnerGHHandleColumnId = 8 }}
-    {{ $SecondaryModuleOwnerDisplayNameColumnId = 9 }}
-    {{ $DescriptionColumnId = 10 }}
-    {{ $CommentsColumnId = 11 }}
-    {{ $FirstPublishedInColumnId = 12 }}
-  {{ end }}
-
-  {{ range $row, $rows }}
-    {{ $map := dict
-      "ModuleDisplayName" (index $row $ModuleDisplayNameColumnId)
-      "AlternativeNames" (index $row $AlternativeNamesColumnId)
-      "ModuleName" (index $row $ModuleNameColumnId)
-      "ModuleStatus" (index $row $ModuleStatusColumnId)
-      "RepoURL" (index $row $RepoURLColumnId)
-      "PublicRegistryReference" (index $row $PublicRegistryReferenceColumnId)
-      "PrimaryModuleOwnerGHHandle" (index $row $PrimaryModuleOwnerGHHandleColumnId)
-      "PrimaryModuleOwnerDisplayName" (index $row $PrimaryModuleOwnerDisplayNameColumnId)
-      "SecondaryModuleOwnerGHHandle" (index $row $SecondaryModuleOwnerGHHandleColumnId)
-      "SecondaryModuleOwnerDisplayName" (index $row $SecondaryModuleOwnerDisplayNameColumnId)
-      "Description" (index $row $DescriptionColumnId)
-      "Comments" (index $row $CommentsColumnId)
-      "FirstPublishedInColumnId" (index $row $FirstPublishedInColumnId)
-    }}
-    {{ $maps = $maps | append $map }}
-  {{ end }}
-{{ else }}
+{{ if not (in (slice "resource" "pattern" "utility") $moduleType) }}
   {{ errorf "The %q shortcode requires a moduleType parameter to bet set to either 'resource', 'pattern' or 'utility'. See %s" .Name .Position }}
 {{ end }}
+{{ if not (in (slice "Bicep" "Terraform") $language) }}
+  {{ errorf "The %q shortcode requires a language parameter to be set either 'Bicep' or 'Terraform'. See %s" .Name .Position }}
+{{ end }}
 
-{{ $maps = sort $maps "ModuleName" }}
-{{ $i = 1 }}
+{{ $ecosystem := lower $language }}
+{{ $maps := partialCached "modules-flatten.html" (dict "ecosystem" $ecosystem "moduleType" $moduleType) (printf "modules-flatten-%s-%s" $ecosystem $moduleType) }}
 
 {{/* CAF recommended abbreviations lookup (resource modules only). Built once per build via partialCached. */}}
 {{ $cafRows := slice }}
 {{ if eq $moduleType "resource" }}
   {{ $cafRows = partialCached "caf-abbreviation-map.html" . "caf-abbreviation-map" }}
 {{ end }}
+
+{{ $i = 1 }}
 
 {{ if eq $language "Bicep" }}
 <table>
@@ -158,53 +42,11 @@
   {{ end }}
   {{ range $item, $maps }}
   {{ if in $include $item.ModuleStatus }}
-    {{ $moduleLatestVersion = "N/A" }}
-    {{ if and (or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated")) (ne $item.PublicRegistryReference "n/a") }}
-      {{ $moduleMcrUrl := printf "https://mcr.microsoft.com/v2/bicep/%s/tags/list" $item.ModuleName }}
-      {{ $moduleMcrData := dict }}
-      {{ with resources.GetRemote $moduleMcrUrl }}
-        {{ with .Err }}
-          {{ errorf "%s" . }}
-        {{ else }}
-          {{ $moduleMcrData = . | transform.Unmarshal }}
-        {{ end }}
-      {{ else }}
-        {{ errorf "Unable to get remote resource %q" $moduleMcrUrl }}
-      {{ end }}
-      {{ $moduleVersions := $moduleMcrData.tags }}
-      {{ if $moduleVersions }}
-        {{/* Initialize $sortedVersions as an empty slice */}}
-        {{ $sortedVersions := slice }}
-        {{ range $moduleVersions }}
-          {{ $parts := split . "." }}
-          {{ $major := printf "%03d" (index $parts 0 | int) }}
-          {{ $minor := printf "%03d" (index $parts 1 | int) }}
-          {{ $patch := printf "%03d" (index $parts 2 | int) }}
-          {{ $sortableVersion := print $major $minor $patch }}
-          {{ $sortedVersions = $sortedVersions | append (dict "sortableVersion" $sortableVersion "originalVersion" .) }}
-        {{ end }}
-
-        {{/* Sort by the sortableVersion field */}}
-        {{ $sortedVersions = sort $sortedVersions "sortableVersion" }}
-
-        {{/* Extract the original versions in sorted order */}}
-        {{ $originalSortedVersions := slice }}
-        {{ range $sortedVersions }}
-          {{ $originalSortedVersions = $originalSortedVersions | append .originalVersion }}
-        {{ end }}
-
-        {{/* Set $moduleLatestVersion to the first element of $sortedSemVers, which is the latest version */}}
-        {{ $moduleLatestVersion = index $originalSortedVersions (sub (len $originalSortedVersions) 1) }}
-      {{ end }}
-    {{ end }} {{/* end of if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") */}}
     {{ $trimmedModuleStatus := replace $item.ModuleStatus "Module " "" }}
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Deprecated" "Deprecated :red_circle:" }}
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Available" "Available :green_circle:" }}
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Orphaned" "Orphaned :yellow_circle:" }}
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Proposed" "Proposed :white_circle:" }}
-    {{ $trimmedAlternativeNames := replace $item.AlternativeNames "  " " " }}
-    {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames ", " "," }}
-    {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames "," ", " }}
 
   <tr>
     {{- if or (eq $moduleType "pattern") (eq $moduleType "utility") (and (eq $moduleType "resource") (eq $item.ParentModule "n/a")) -}}
@@ -228,10 +70,10 @@
         {{- partial "render-child-modules.html" (dict "maps" $maps "parentName" $item.ModuleName "useLinks" $useLinks "language" $language) -}}
       </td>
       <td> {{/* display name and alternative names  */}}
-        {{- with $trimmedAlternativeNames -}}
+        {{- with $item.AlternativeNames -}}
           <b>{{ $item.ModuleDisplayName }}</b>
           <br>
-          <i>{{ $trimmedAlternativeNames }} </i>
+          <i>{{ . }} </i>
         {{- else -}}
           <b>{{ $item.ModuleDisplayName }} </b>
         {{- end -}}
@@ -245,7 +87,7 @@
       <td> {{/* availability badge and versions  */}}
         {{- if and (or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated")) (ne $item.PublicRegistryReference "n/a") -}}
           <a href="https://mcr.microsoft.com/v2/bicep/{{ $item.ModuleName }}/tags/list">
-            <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $moduleLatestVersion }}-blue"/>
+            <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $item.CurrentVersion }}-blue"/>
           </a>
         {{- else -}}
           <a href="">
@@ -254,25 +96,7 @@
         {{- end -}} {{/* {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") -}} */}}
       </td>
       <td> {{/* module owners */}}
-        {{- if ne $item.PrimaryModuleOwnerGHHandle "" -}}
-          <a href="https://github.com/{{ $item.PrimaryModuleOwnerGHHandle }}">
-            {{ $item.PrimaryModuleOwnerGHHandle }}
-          </a>
-          {{- if and (ne $item.PrimaryModuleOwnerGHHandle "") (ne $item.PrimaryModuleOwnerDisplayName "") -}}
-            <br>
-            {{ $item.PrimaryModuleOwnerDisplayName }}
-          {{- end -}} {{/* {{- if and (ne $item.PrimaryModuleOwnerGHHandle "") (ne $item.PrimaryModuleOwnerDisplayName "") -}} */}}
-        {{- end -}} {{/* {{- if ne $item.PrimaryModuleOwnerGHHandle "" -}} */}}
-        <br>
-        {{- if ne $item.SecondaryModuleOwnerGHHandle "" -}}
-          <a href="https://github.com/{{ $item.SecondaryModuleOwnerGHHandle }}">
-            {{ $item.SecondaryModuleOwnerGHHandle }}
-          </a>
-          {{- if and (ne $item.SecondaryModuleOwnerGHHandle "") (ne $item.SecondaryModuleOwnerDisplayName "") -}}
-            <br>
-            {{ $item.SecondaryModuleOwnerDisplayName }}
-          {{- end -}} {{/* {{- if and (ne $item.SecondaryModuleOwnerGHHandle "") (ne $item.SecondaryModuleOwnerDisplayName "") -}}  */}}
-        {{- end -}} {{/* {{- if ne $item.SecondaryModuleOwnerGHHandle "" -}} */}}
+        {{- partial "render-owners.html" $item.Owners -}}
       </td>
     {{- end -}} {{/* end of if moduleType */}}
   </tr>
@@ -312,41 +136,11 @@
   {{ end }}
   {{ range $item, $maps }}
   {{ if in $include $item.ModuleStatus }}
-  {{ $moduleLatestVersion = "N/A" }}
-    {{ if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") }}
-      {{ $repoURLSplit := strings.Split $item.RepoURL "/" }}
-      {{ $repoName := index $repoURLSplit (sub (len $repoURLSplit) 1) }}
-      {{ $repoNameSplit := strings.Split $repoName "-" }}
-      {{ $moduleProvider := index $repoNameSplit 1 }}
-      {{ $moduleTfRegApiUrl := printf "https://registry.terraform.io/v1/modules/Azure/%s/%s/versions" $item.ModuleName $moduleProvider }}
-      {{ $moduleTfRegApiData := dict }}
-      {{ with resources.GetRemote $moduleTfRegApiUrl }}
-        {{ with .Err }}
-          {{ errorf "%s" . }}
-        {{ else }}
-          {{ $moduleTfRegApiData = . | transform.Unmarshal }}
-        {{ end }}
-      {{ else }}
-        {{ errorf "Unable to get remote resource %q" $moduleTfRegApiUrl }}
-      {{ end }}
-      {{ $moduleVersions := slice }}
-      {{ range $moduleTfRegApiData.modules }}
-        {{ range .versions }}
-          {{ $moduleVersions = $moduleVersions | append .version }}
-        {{ end }}
-      {{ end }}
-      {{ if $moduleVersions }}
-          {{ $moduleLatestVersion = index $moduleVersions (sub (len $moduleVersions) 1) }}
-      {{ end }}
-    {{ end }}
     {{ $trimmedModuleStatus := replace $item.ModuleStatus "Module " "" }}
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Deprecated" "Deprecated :red_circle:" }}
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Available" "Available :green_circle:" }}
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Orphaned" "Orphaned :yellow_circle:" }}
     {{ $trimmedModuleStatus = replace $trimmedModuleStatus "Proposed" "Proposed :white_circle:" }}
-    {{ $trimmedAlternativeNames := replace $item.AlternativeNames "  " " " }}
-    {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames ", " "," }}
-    {{ $trimmedAlternativeNames = replace $trimmedAlternativeNames "," ", " }}
   <tr>
     {{- if or (eq $moduleType "pattern") (eq $moduleType "utility") (and (eq $moduleType "resource") (eq $item.ParentModule "n/a")) -}}
       <td style="text-align: right;"> {{/* row index */}}
@@ -366,7 +160,7 @@
           {{ $item.ModuleName }}
         {{- end -}}
 
-        {{- partial "render-terraform-submodules.html" (dict "moduleName" $item.ModuleName "repoURL" $item.RepoURL "moduleStatus" $item.ModuleStatus "useLinks" $useLinks) -}}
+        {{- partial "render-terraform-submodules.html" (dict "submodules" $item.Submodules "useLinks" $useLinks) -}}
       </td>
       <td style="text-align: center;"> {{/* link to the source code repo */}}
         {{- if $useLinks -}}
@@ -380,10 +174,10 @@
         {{- end -}}
       </td>
       <td> {{/* display name and alternative names  */}}
-        {{- with $trimmedAlternativeNames -}}
+        {{- with $item.AlternativeNames -}}
           <b>{{ $item.ModuleDisplayName }}</b>
           <br>
-          <i>{{ $trimmedAlternativeNames }} </i>
+          <i>{{ . }} </i>
         {{- else -}}
           <b>{{ $item.ModuleDisplayName }} </b>
         {{- end -}}
@@ -397,7 +191,7 @@
       <td> {{/* availability badge and versions  */}}
         {{- if or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned") (eq $item.ModuleStatus "Deprecated") -}}
           {{/* Replace single hyphens with double hyphens for correct badge rendering for pre-releases - e.g., 0.2.0-pre1 */}}
-          {{- $badgeVersion := replace $moduleLatestVersion "-" "--" -}}
+          {{- $badgeVersion := replace $item.CurrentVersion "-" "--" -}}
           <a href="{{ $item.PublicRegistryReference }}">
             <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $badgeVersion }}-purple"/>
           </a>
@@ -408,25 +202,7 @@
         {{- end -}}
       </td>
       <td> {{/* module owners */}}
-        {{- if ne $item.PrimaryModuleOwnerGHHandle "" -}}
-          <a href="https://github.com/{{ $item.PrimaryModuleOwnerGHHandle }}">
-            {{ $item.PrimaryModuleOwnerGHHandle }}
-          </a>
-          {{- if and (ne $item.PrimaryModuleOwnerGHHandle "") (ne $item.PrimaryModuleOwnerDisplayName "") -}}
-            <br>
-            {{ $item.PrimaryModuleOwnerDisplayName }}
-          {{- end -}}
-        {{- end -}}
-        <br>
-        {{- if ne $item.SecondaryModuleOwnerGHHandle "" -}}
-          <a href="https://github.com/{{ $item.SecondaryModuleOwnerGHHandle }}">
-            {{ $item.SecondaryModuleOwnerGHHandle }}
-          </a>
-          {{- if and (ne $item.SecondaryModuleOwnerGHHandle "") (ne $item.SecondaryModuleOwnerDisplayName "") -}}
-            <br>
-            {{ $item.SecondaryModuleOwnerDisplayName }}
-          {{- end -}}
-        {{- end -}}
+        {{- partial "render-owners.html" $item.Owners -}}
       </td>
     {{- end -}}
   </tr>
@@ -448,6 +224,4 @@
   {{ end }}
 </table>
 <br>
-{{ else }}
-  {{ errorf "The %q shortcode requires a language parameter to be set either 'Bicep' or 'Terraform'. See %s" .Name .Position }}
 {{ end }}

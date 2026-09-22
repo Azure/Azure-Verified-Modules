@@ -20,9 +20,9 @@ description: Terraform Utility Module Index showing all available, orphaned and 
 
 This page contains various views of the module index (catalog) for **Terraform Utility Modules**. To see these views, **click on the expandable sections** with the "âž•" sign below.
 
-- {{% icon icon="fa-brands fa-github" %}} To see the **full, unfiltered, unformatted module index** on GitHub, click [here](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/TerraformUtilityModules.csv).
+- {{% icon icon="fa-brands fa-github" %}} To see the **full, unfiltered, unformatted module catalog** on GitHub, click [here](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/v1/modules.json).
 
-- {{% icon icon="download" %}} To download the source CSV file, click [here]({{% siteparam base %}}/module-indexes/TerraformUtilityModules.csv).
+- {{% icon icon="download" %}} To download the source catalog JSON file, click [here]({{% siteparam base %}}/module-indexes/v1/modules.json).
 
 {{% /notice %}}
 
@@ -38,7 +38,7 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{% expand title="âž• Published Modules - Module names, status and owners" expanded="true" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformUtilityModules.csv" language="Terraform" moduleType="utility" include="Available,Orphaned" %}}
+{{% moduleNameStatusOwners header=true language="Terraform" moduleType="utility" include="Available,Orphaned" %}}
 
 {{% /expand %}}
 
@@ -46,7 +46,7 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{% expand title="âž• Proposed Modules - Module names, status and owners" expanded="false" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformUtilityModules.csv" language="Terraform" moduleType="utility" include="Proposed" %}}
+{{% moduleNameStatusOwners header=true language="Terraform" moduleType="utility" include="Proposed" %}}
 
 {{% /expand %}}
 
@@ -54,7 +54,7 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{% expand title="âž• Deprecated Modules - Module names, status and owners" expanded="false" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformUtilityModules.csv" language="Terraform" moduleType="utility" include="Deprecated" %}}
+{{% moduleNameStatusOwners header=true language="Terraform" moduleType="utility" include="Deprecated" %}}
 
 {{% /expand %}}
 
@@ -62,7 +62,7 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{% expand title="âž• All Modules - Module names, status and owners" expanded="false" %}}
 
-{{% moduleNameStatusOwners header=true csv="/static/module-indexes/TerraformUtilityModules.csv" language="Terraform" moduleType="utility" include="Available,Orphaned,Proposed,Deprecated" %}}
+{{% moduleNameStatusOwners header=true language="Terraform" moduleType="utility" include="Available,Orphaned,Proposed,Deprecated" %}}
 
 {{% /expand %}}
 
@@ -70,6 +70,6 @@ Modules listed below that aren't shown with the status of **`Module Available ðŸ
 
 {{% expand title="âž• Module Publication History - Module names, status and owners" expanded="false" %}}
 
-{{% moduleHistory header=true csv="/static/module-indexes/TerraformUtilityModules.csv" language="Terraform" moduleType="utility" exclude="Proposed" monthsToShow=9999 %}}
+{{% moduleHistory header=true language="Terraform" moduleType="utility" exclude="Proposed" monthsToShow=9999 %}}
 
 {{% /expand %}}

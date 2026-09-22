@@ -4,20 +4,14 @@
 {{ $featuresFile := readFile $featureMappingCsv }}
 {{ $featureRows := $featuresFile | transform.Unmarshal }}
 
-{{- /* Load BicepResourceModules.csv to get RepoURLs */ -}}
-{{ $modulesIndexCsv := .Get "modulesIndexCsv" }}
-{{ $modulesIndexFile := readFile $modulesIndexCsv }}
-{{ $moduleIndexRows := $modulesIndexFile | transform.Unmarshal }}
-{{ $modulesHeader := index $moduleIndexRows 0 }}
-{{ $moduleIndexData := after 1 $moduleIndexRows }}
+{{- /* Load the Bicep resource modules catalog to get RepoURLs */ -}}
+{{ $moduleIndexData := partialCached "modules-flatten.html" (dict "ecosystem" "bicep" "moduleType" "resource") "modules-flatten-bicep-resource" }}
 
 {{- /* Create a map of module names to RepoURLs for hyperlinking */ -}}
 {{- /* Key: module name (e.g., "avm/res/storage/storage-account"), Value: RepoURL */ -}}
 {{ $moduleUrlMap := dict }}
 {{ range $moduleIndexData }}
-  {{ $moduleName := index . 4 }}  {{- /* Column 4: ModuleName */ -}}
-  {{ $repoUrl := index . 7 }}     {{- /* Column 7: RepoURL */ -}}
-  {{ $moduleUrlMap = merge $moduleUrlMap (dict $moduleName $repoUrl) }}
+  {{ $moduleUrlMap = merge $moduleUrlMap (dict .ModuleName .RepoURL) }}
 {{ end }}
 
 <table>
