@@ -2,9 +2,10 @@
   Normalizes a raw `owners` array from the module catalog JSON into a list of dicts:
     { Handle, DisplayName, IsTeam }
 
-  Each raw owner is either a plain GitHub username string (current schema), a team handle
-  string in the form "@Azure/team-name", or a structured object with "handle"/"displayName"
-  keys (future schema). DisplayName is "" when not available.
+  Each raw owner is either a plain GitHub username/team-handle string (legacy schema), or a
+  structured object with "handle"/"type"/"displayName" keys (current schema, where "type" is
+  "user" or "team"). When "type" is absent (legacy/plain-string entries), team vs. user is
+  inferred from the "@org/team-slug" handle format. DisplayName is "" when not available.
 */}}
 {{- $rawOwners := . -}}
 {{- $owners := slice -}}
@@ -12,13 +13,22 @@
   {{- $raw := . -}}
   {{- $handle := "" -}}
   {{- $displayName := "" -}}
+  {{- $type := "" -}}
   {{- if reflect.IsMap $raw -}}
     {{- $handle = or (index $raw "handle") (index $raw "Handle") -}}
     {{- $displayName = or (index $raw "displayName") (index $raw "DisplayName") "" -}}
+    {{- $type = or (index $raw "type") (index $raw "Type") "" -}}
   {{- else -}}
     {{- $handle = $raw -}}
   {{- end -}}
-  {{- $isTeam := hasPrefix $handle "@" -}}
+  {{- $isTeam := false -}}
+  {{- if eq $type "team" -}}
+    {{- $isTeam = true -}}
+  {{- else if eq $type "user" -}}
+    {{- $isTeam = false -}}
+  {{- else -}}
+    {{- $isTeam = hasPrefix $handle "@" -}}
+  {{- end -}}
   {{- $owners = $owners | append (dict "Handle" $handle "DisplayName" $displayName "IsTeam" $isTeam) -}}
 {{- end -}}
 {{- return $owners -}}
