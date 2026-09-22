@@ -1,0 +1,4 @@
+{{/* Loads and parses the combined AVM module catalog. Intended to be called via partialCached so the file is only read/unmarshalled once per build. */}}
+{{- $path := "/static/module-indexes/v1/modules.json" -}}
+{{- $file := readFile $path -}}
+{{- return ($file | transform.Unmarshal) -}}

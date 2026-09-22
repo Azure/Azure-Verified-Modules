@@ -1,0 +1,25 @@
+{{/*
+  Renders a list of normalized owners (see normalize-owners.html) as a bulleted list of GitHub
+  profile/team links. Each owner renders as "{DisplayName} ({Handle})" when a display name is
+  available, otherwise just "{Handle}" - in both cases linking to the GitHub user/team page.
+  The bullet list keeps owners visually separated even when a long label wraps onto multiple lines.
+
+  input: slice of { Handle, DisplayName, IsTeam }
+*/}}
+{{- $owners := . -}}
+{{- if $owners -}}
+  <ul class="owners-list" style="margin: 0; padding-left: 1.1em;">
+  {{- range $owner := $owners -}}
+    {{- $url := printf "https://github.com/%s" $owner.Handle -}}
+    {{- if $owner.IsTeam -}}
+      {{- $teamSlug := strings.TrimPrefix "@Azure/" $owner.Handle -}}
+      {{- $url = printf "https://github.com/orgs/Azure/teams/%s" $teamSlug -}}
+    {{- end -}}
+    {{- $label := $owner.Handle -}}
+    {{- with $owner.DisplayName -}}
+      {{- $label = printf "%s (%s)" . $owner.Handle -}}
+    {{- end -}}
+    <li><a href="{{ $url }}">{{ $label }}</a></li>
+  {{- end -}}
+  </ul>
+{{- end -}}

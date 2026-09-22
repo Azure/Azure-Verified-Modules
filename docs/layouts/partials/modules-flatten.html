@@ -1,0 +1,67 @@
+{{/*
+  Flattens the module catalog JSON into a sorted list of rows for one ecosystem + moduleType,
+  replacing the old per-language/type CSV files. Excludes Terraform submodules (entries with
+  parentModule "." - not all of which are tagged canonicalType "helper") from the main row list;
+  each Terraform row instead gets a "Submodules" list built from its sibling submodule entries.
+
+  input:  { ecosystem: "bicep"|"terraform", moduleType: "resource"|"pattern"|"utility" }
+  return: sorted slice of dicts, one per module, with keys matching the old CSV columns
+          (ModuleName, ModuleDisplayName, AlternativeNames, ParentModule, ModuleStatus, RepoURL,
+          PublicRegistryReference, ProviderNamespace, ResourceType, TelemetryIdPrefix, Description,
+          Comments, FirstPublishedIn, CurrentVersion, Provider, Owners, Submodules)
+*/}}
+{{- $ecosystem := .ecosystem -}}
+{{- $moduleType := .moduleType -}}
+{{- $catalog := partialCached "modules-json.html" . "modules-json" -}}
+
+{{- $rawEntries := slice -}}
+{{- range $canonicalType, $group := $catalog.modules -}}
+  {{- range index $group $ecosystem -}}
+    {{- if eq .moduleType $moduleType -}}
+      {{- $rawEntries = $rawEntries | append . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $isSubmodule := false -}}
+{{- $rows := slice -}}
+{{- range $rawEntries -}}
+  {{- $entry := . -}}
+  {{- $isSubmodule = and (eq $ecosystem "terraform") (eq $entry.parentModule ".") -}}
+  {{- if not $isSubmodule -}}
+    {{- $submodules := slice -}}
+    {{- if eq $ecosystem "terraform" -}}
+      {{- $submodulePrefix := print $entry.moduleName "//modules/" -}}
+      {{- range $rawEntries -}}
+        {{- if and (eq .parentModule ".") (hasPrefix .moduleName $submodulePrefix) -}}
+          {{- $submodules = $submodules | append (dict
+            "DisplayName" (strings.TrimPrefix "modules/" .modulePath)
+            "Link" .publicRegistryReference
+          ) -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $rows = $rows | append (dict
+      "ModuleName" $entry.moduleName
+      "ModuleDisplayName" $entry.moduleDisplayName
+      "AlternativeNames" (delimit $entry.alternativeNames ", ")
+      "ParentModule" (default "n/a" $entry.parentModule)
+      "ModuleStatus" $entry.moduleStatus
+      "RepoURL" $entry.repoURL
+      "PublicRegistryReference" $entry.publicRegistryReference
+      "ProviderNamespace" (default "" $entry.providerNamespace)
+      "ResourceType" (default "" $entry.resourceType)
+      "TelemetryIdPrefix" (default "" $entry.telemetryIdPrefix)
+      "Description" $entry.moduleDescription
+      "Comments" $entry.comments
+      "FirstPublishedIn" (default "" $entry.registry.firstPublishedIn)
+      "CurrentVersion" (default "N/A" $entry.registry.currentVersion)
+      "Provider" (default "" $entry.provider)
+      "Owners" (partial "normalize-owners.html" $entry.owners)
+      "Submodules" $submodules
+    ) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $rows = sort $rows "ModuleName" -}}
+{{- return $rows -}}
