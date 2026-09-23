@@ -1,3 +1,5 @@
+This approval guidance applies to **Terraform module repositories**. See the [Terraform review and merge process](https://azure.github.io/Azure-Verified-Modules/contributing/terraform/contribution-flow/#8-review-and-merge-pr).
+
 <!-- markdownlint-disable -->
 <table>
   <tr>
@@ -7,7 +9,7 @@
   </tr>
   <tr>
     <td align="center"><b>Module has a <u>single</u> module owner</b></td>
-    <td align="center">AVM core team or in case of Terraform only, the owner of another module approves the PR</td>
+    <td align="center">An eligible AVM core team member or another Terraform module owner approves the PR</td>
     <td align="center">Module owner approves the PR</td>
   </tr>
   <tr>

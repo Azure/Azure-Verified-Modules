@@ -20,32 +20,6 @@ priority: 11140
 
 ## ID: BCPNFR15 - Category: Contribution/Support - AVM Module Issue template file
 
-Module owners **MUST** add an entry to the `AVM Module Issue template` file in the BRM repository ([here](https://raw.githubusercontent.com/Azure/bicep-registry-modules/refs/heads/main/.github/ISSUE_TEMPLATE/avm_module_issue.yml)). When the module is deprecated, this entry **MUST** be removed from the file.
+The `module-name-dropdown` in the [BRM AVM Module Issue template](https://github.com/Azure/bicep-registry-modules/blob/main/.github/ISSUE_TEMPLATE/avm_module_issue.yml) **MUST** list top-level Bicep modules with `Available` or `Orphaned` status, sorted by module class and name. Proposed, deprecated, and child modules are excluded.
 
-{{% notice style="note" %}}
-
-Through this approach, the AVM core team will allow raising a bug or feature request for a module, only after the module gets merged to the [BRM](https://aka.ms/BRM) repository.
-
-{{% /notice %}}
-
-The module name entry **MUST** be added to the dropdown list with id `module-name-dropdown` as an option, in alphabetical order.
-
-{{% notice style="important" %}}
-
-Module owners **MUST** ensure that the module name is added in alphabetical order, to simplify selecting the right module name when raising an AVM module issue.
-
-{{% /notice %}}
-
-Example - `AVM Module Issue template` module name entry for the Bicep resource module of Azure Virtual Network (`avm/res/network/virtual-network`):
-
-```yaml
-- type: dropdown
-  id: module-name-dropdown
-  attributes:
-    label: Module Name
-    description: Which existing AVM module is this issue related to?
-    options:
-      ...
-      - "avm/res/network/virtual-network"
-      ...
-```
+The [module list sync workflow](https://github.com/Azure/azure-verified-modules-tools/blob/main/.github/workflows/repository-management-module-list-sync.yml) compares the dropdown with the [published module catalog](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/v1/modules.json) and updates it through a verified, auto-merged bot pull request. Module owners maintain [root metadata]({{% siteparam base %}}/contributing/module-metadata/) and the required publication or deprecation evidence instead of editing the dropdown directly.

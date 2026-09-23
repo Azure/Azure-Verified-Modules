@@ -27,11 +27,11 @@ Familiarize yourself with the responsibilities as **Module Owner** outlined in [
 
     Access is managed through the shared `@Azure/azure-verified-modules-module-contributors` team.
 
-1. Maintain every approved handle in the `owners` array in your module's root `metadata.json`. Coordinate changes with the AVM Core Team and follow the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/). In BRM, this array also generates your module's `CODEOWNERS` entry, so it controls who is requested for review on your module's pull requests.
+1. Maintain every approved handle in the `owners` array in your module's root `metadata.json`. Coordinate changes with the AVM Core Team and follow the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/). The [reviewer-routing workflow](https://github.com/Azure/azure-verified-modules-tools/blob/main/.github/workflows/repository-management-pr-reviewer-routing.yml) uses these handles to request reviews; it does not generate per-module `CODEOWNERS` entries.
 1. Ensure your module has been tested before raising a PR. You can do this your own or in another module contributor's environment - if any. Also, once a PR is raised, a GitHub workflow pipeline is required to be run successfully before the PR can be merged. This is to ensure that the module is working as expected and is compliant with the AVM specifications.
 {{% notice style="note" %}}
 
-If you're the **sole owner of the module**, the **AVM core team must review and approve the PR**. To indicate that your PR needs the core team's attention, **apply the** &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; **label on it!**
+For ordinary Bicep code changes, any eligible BRM repository team member may approve and merge under repository rules. If you are the sole owner and author, request another eligible reviewer; you cannot approve your own pull request. Changes to `metadata.json` still require [metadata code-owner review]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change).
 
 {{% /notice %}}
 4. Ensure that the module(s) you own are compliant with the AVM [Bicep specifications]({{% siteparam base %}}/specs/bcp/) and are working as expected.
@@ -134,11 +134,5 @@ This checklist can be used in the development of AVM Bicep Modules.
     {{% /expand %}}
 
 7. Create a PR and reference the status badge of your pipeline run - [see here]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry).
-{{% notice style="note" %}}
-
-If you're the **sole owner of the module**, the **AVM core team must review and approve the PR**. To indicate that your PR needs the core team's attention, **apply the** &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; **label on it!**
-
-{{% /notice %}}
-
 8. After a pull request has been created, it is important to update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue associated with your module, with a link to the pull request you created in BRM and mention the person who helped triage your module or the `@Azure/azure-verified-modules-tooling-contributors` team.
 9. Once your BRM pull request has been approved and merged into main update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue associated with your module, with a **Merged** comment and mention the person who helped triage your module, or the `@Azure/azure-verified-modules-tooling-contributors` team.

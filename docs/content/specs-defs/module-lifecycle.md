@@ -53,7 +53,7 @@ To **propose a new module**, submit a [module proposal](https://aka.ms/AVM/Modul
 
 ## 2. Available modules
 
-Once a module has been fully developed, tested and published in the main branch of the repository and the corresponding public registry (Bicep or Terraform), it is then considered to be "available" and can be used by the community. The module is maintained by the module owner(s). Feature or bug fix requests and related pull requests can be submitted by anyone to the module owner(s) for review.
+Once a module has been fully developed, tested and published in the main branch of the repository and the corresponding public registry (Bicep or Terraform), it is then considered to be "available" and can be used by the community. The module is maintained by the module owner(s). Feature or bug fix requests and related pull requests can be submitted by anyone for review.
 
 {{% notice style="info" %}}
 
@@ -61,13 +61,15 @@ To **publish a new version of an existing module** (i.e., anything that is not b
 
 {{% expand title="➕ Who needs to approve the PR?" %}}
 
-The PR approval logic for existing modules is the following:
+Approval for changes to existing modules depends on the language:
+
+**Bicep:** Module owners are requested for review based on their root `metadata.json`, but ordinary code changes may be approved and merged by any eligible BRM repository team member under repository rules. Authors cannot approve their own changes. Changes to `metadata.json` require [metadata code-owner review]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change); other protected paths follow their `CODEOWNERS` rules.
+
+**Terraform:** Module-owner approval remains required in Terraform module repositories:
 
 {{% include file="/static/includes/PR-approval-guidance.md" %}}
 
-This behavior is assisted by bots, through automatic assignment of the expected reviewer(s) and supporting labels.
-
-In case of Bicep modules, if the PR includes any changes outside of the "modules/" folder, it first needs the module related code changes need to be reviewed and approved as per the above table, and only then does the PR need to be approved by a member of the core team. This way the core team's approval does not act as a bypass from the actual code review perspective.
+Reviewer notifications and triage labels help find reviewers; they do not replace either language's repository rules.
 
 {{% /expand %}}
 

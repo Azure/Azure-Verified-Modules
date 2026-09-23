@@ -557,7 +557,7 @@ To test the numerous diagnostic settings targets (Log Analytics Workspace, Stora
 
 ## 6. Create a Pull Request to the Public Bicep Registry
 
-Finally, once you are satisfied with your contribution and validated it, open a PR for the module owners or core team to review. Make sure you:
+Finally, once you are satisfied with your contribution and validated it, open a pull request for review. Make sure you:
 
 1. Provide a meaningful title in the form of _feat: `<module name>`_ to align with the Semantic PR Check.
 2. Provide a meaningful description.
@@ -578,17 +578,11 @@ If you receive any comments for your pull request, please adhere to the followin
 
 {{% /notice %}}
 
-{{% notice style="note" %}}
-
-If you're the **sole owner of the module**, the **AVM core team must review and approve the PR**. To indicate that your PR needs the core team's attention, **apply the** &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; **label on it!**
-
-{{% /notice %}}
-
 ## 7. Get your pull request approved
 
 To publish a new module or a new version of an existing module, each Pull Request (PR) **MUST** be reviewed and approved before being merged and published in the Public Bicep Registry. **A contributor (the submitter of the PR) cannot approve their own PR.**
 
-This behavior is assisted by policies, bots, through automatic assignment of the expected reviewer(s) and supporting labels.
+The [reviewer-routing workflow](https://github.com/Azure/azure-verified-modules-tools/blob/main/.github/workflows/repository-management-pr-reviewer-routing.yml) requests module owners from root `metadata.json` and applies triage labels when active. Reviewer requests do not set approval requirements.
 
 {{% notice style="important" %}}
 
@@ -603,11 +597,7 @@ When publishing a net new module for the first time ever, the PR **MUST** be rev
 
 ### 7.2. Publishing a new version of an existing module
 
-When publishing a new version of an existing module (i.e., anything that is not being published for the first time ever), the PR approval logic is the following:
-
-{{% include file="/static/includes/PR-approval-guidance.md" %}}
-
-In case of Bicep modules, if the PR includes any changes outside of the "modules/" folder, it first needs the module related code changes need to be reviewed and approved as per the above table, and only then does the PR need to be approved by a member of the core team. This way the core team's approval does not act as a bypass from the actual code review perspective.
+For ordinary code changes in an existing Bicep module, any eligible BRM repository team member may approve and merge under repository rules; a module owner's approval is not mandatory. If you are the sole owner and author, request another eligible reviewer. Changes to `metadata.json` still require [metadata code-owner review]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change). Other protected paths follow their [applicable `CODEOWNERS` rules]({{% siteparam base %}}/spec/SNFR20#codeowners-file).
 
 <!--
 ## Publishing to the Registry
