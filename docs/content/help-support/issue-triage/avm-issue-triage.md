@@ -138,8 +138,7 @@ Although, it's not directly part of the module proposal triage process, to begin
 
 1. Update any Azure RBAC permissions for test tenants/subscription, if needed.
 2. In case of **Bicep modules** only:
-    - Confirm that every module owner has approved access through the [AVM Module Contributors access package](https://aka.ms/avm/id/access-package/module-contributor), as outlined in [SNFR20]({{% siteparam base %}}/spec/SNFR20#bicep). Per-module GitHub teams and parent-team assignments are no longer required. `CODEOWNERS` entries are generated from the module's root `metadata.json` and **MUST NOT** be hand-authored.
-    - Ensure the [`AVM Module Issue template`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/ISSUE_TEMPLATE/avm_module_issue.yml) file in the [BRM repo](https://aka.ms/BRM) has been updated.
+    - Confirm that every module owner has approved access through the [AVM Module Contributors access package](https://aka.ms/avm/id/access-package/module-contributor), as outlined in [SNFR20]({{% siteparam base %}}/spec/SNFR20#bicep). Per-module GitHub teams and parent-team assignments are no longer required. Root `metadata.json` determines reviewer notifications; BRM has no per-module `CODEOWNERS` entries.
 
 {{% /notice %}}
 
@@ -149,7 +148,7 @@ Once module is developed and `v0.1.0` has been published to the relevant registr
 
 1. Assign the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#C8E6C9;">Status: Module Available 🟢</mark>&nbsp; label to the issue.
 2. Move the issue into "`Done`" column in [AVM - Modules Triage](https://aka.ms/avm/moduletriage) GitHub Project.
-1. Confirm that the module metadata and registry publication are correct. The four-hourly [catalog sync]({{% siteparam base %}}/contributing/module-metadata/#catalog-updates) then publishes the module index. Submit any metadata corrections to the module repository.
+1. Confirm that the module metadata and registry publication are correct. The four-hourly [catalog sync]({{% siteparam base %}}/contributing/module-metadata/#catalog-updates) then publishes the module index. Submit any metadata corrections to the module repository. For Bicep, verify that [module list sync](https://github.com/Azure/azure-verified-modules-tools/blob/main/.github/workflows/repository-management-module-list-sync.yml) adds the new top-level module to the issue-template dropdown after catalog publication.
 4. When all development actions are complete and confirmed
     1. **In case of Bicep modules** - Close the module proposal issue with the following message:
 
@@ -356,11 +355,10 @@ If a module meets the criteria described in the "[Deprecated Modules]({{% sitepa
     1. Make sure the content of the `DEPRECATED.md` file is displayed in the `README.md` in its header (right after the title).
     1. Add the the notice `NOTE: This is the last published version and the module has since been deprecated.` to the top-most `### Changes` section of the module's `CHANGELOG.md` file
     1. Remove the module workflow from the [`workflows`](https://github.com/Azure/bicep-registry-modules/tree/main/.github/workflows) folder.
-    1. Make sure the module is removed from the [`avm_module_issue.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/ISSUE_TEMPLATE/avm_module_issue.yml) issue template.
     1. Submit a Pull Request
     1. For the AVM maintainers: Once the PR is merged, run the [.Platform - Publish [moduleIndex.json]](https://github.com/Azure/bicep-registry-modules/actions/workflows/platform.publish-module-index-json.yml) workflow with the `regenIndexFromBRM` flag set. This will de-list the module so that it won't show up in the VS-Code Bicep extension going forward.
 
-Deprecating a module does not require editing `CODEOWNERS` or deleting a GitHub team. The file is generated from module metadata, and the fallback `/avm/` entry is still required by other modules.
+Deprecating a module does not require editing `CODEOWNERS` or deleting a GitHub team. BRM has no per-module code-owner entries; `/avm/` intentionally has no owners, while `metadata.json` remains protected by its own code-owner rule.
 
 **Terraform specific steps**
 
@@ -375,7 +373,7 @@ A Bicep marker applies to that module and all its descendants. A root marker the
 
 A module deprecated before it was ever published to the registry is removed from the indexes rather than listed as `Deprecated`.
 
-Catalog publication does not perform the required notices, Bicep workflow/issue-template removal and registry-index update, or Terraform repository archival.
+Catalog publication does not perform the required notices, Bicep workflow removal and registry-index update, or Terraform repository archival. After a top-level Bicep deprecation is published, verify that [module list sync](https://github.com/Azure/azure-verified-modules-tools/blob/main/.github/workflows/repository-management-module-list-sync.yml) removes it from the issue-template dropdown instead of editing the list by hand.
 
 **Deprecation information notice** (to be place in the module's repository as described above)
 

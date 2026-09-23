@@ -74,17 +74,16 @@ If the issue was opened as a misplaced module proposal, mention the `@Azure/azur
 
 ### Triaging a Module PR
 
-1. If the **PR is submitted by the module owner** and the **module is owned by a single person**, **the AVM core team must review and approve the PR**, (as the module owner can't approve their on PR).
-    - To indicate that the PR needs the core team's attention, apply the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label.
-2. If the **PR is submitted by a contributor** (other than the module owner), or the **module is owned by at least 2 people**, **one of the module owners should review and approve the PR**.
-3. Apply relevant labels
+1. Request knowledgeable review from module owners identified in the root `metadata.json` when available. An eligible BRM repository team member may approve and merge ordinary module code changes; a module owner's approval is not mandatory. If the author is the sole owner, request another eligible reviewer rather than the author.
+1. For `metadata.json` changes, obtain approval from an eligible member of either metadata code-owner team through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change).
+1. Apply relevant labels
     - Categorize the PR using applicable labels, such as:
       - &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#A2EEEF;">Type: Feature Request ➕</mark>&nbsp;
       - &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#D73A4A;color:white;">Type: Bug 🐛</mark>&nbsp;
       - &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FFFF00;">Type: Security Bug 🔒</mark>&nbsp;
     - For module classification (resource/pattern): &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#D3D3D3;">Class: Resource Module 📦</mark>&nbsp; or &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#A9A9A9;">Class: Pattern Module 📦</mark>&nbsp;
-4. If the module is orphaned (has no owner), make sure the related Orphaned module issue (in the AVM repository) is associated to the PR in a comment, so the new owner can easily identify all related issues and PRs when taking ownership.
-5. Remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; label.
+1. If the module is orphaned (has no owner), make sure the related Orphaned module issue (in the AVM repository) is associated to the PR in a comment, so the new owner can easily identify all related issues and PRs when taking ownership.
+1. Remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; label.
 
 {{% notice style="important" title="Give your PR a meaningful title" %}}
 
@@ -96,13 +95,7 @@ If the issue was opened as a misplaced module proposal, mention the `@Azure/azur
 
 {{% notice style="info" title="Who needs to approve the PR?" %}}
 
-The PR approval logic for existing modules is the following:
-
-{{% include file="/static/includes/PR-approval-guidance.md" %}}
-
-This behavior is assisted by bots, through automatic assignment of the expected reviewer(s) and supporting labels.
-
-In case of Bicep modules, if the PR includes any changes outside of the "modules/" folder, it first needs the module related code changes need to be reviewed and approved as per the above table, and only then does the PR need to be approved by a member of the core team. This way the core team's approval does not act as a bypass from the actual code review perspective.
+For ordinary Bicep module code changes, any eligible repository team member may approve and merge under BRM rules. [Reviewer routing](https://github.com/Azure/azure-verified-modules-tools/blob/main/.github/workflows/repository-management-pr-reviewer-routing.yml) requests module owners and applies triage labels, but does not impose a module-owner approval requirement. The [`metadata.json` code-owner rule]({{% siteparam base %}}/spec/SNFR20#codeowners-file) and other protected-path rules still apply.
 
 {{% /notice %}}
 

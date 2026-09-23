@@ -665,7 +665,7 @@ Remove the &nbsp;<mark style="background-image:none;white-space: nowrap;backgrou
 
 ### ITA25
 
-Inform module owners that they need to add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label to their PR if they're the sole owner of their module.
+This legacy Bicep rule prompts a sole module owner to apply the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label for triage visibility. The label does **not** require core-team approval: ordinary Bicep code changes may be approved by any eligible BRM repository team member other than the author. Changes to `metadata.json` still require [metadata code-owner review]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change).
 
 **Trigger criteria:**
 
@@ -673,7 +673,7 @@ Inform module owners that they need to add the &nbsp;<mark style="background-ima
 
 **Action(s):**
 
-- Inform module owners that they need to add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label to their PR if they're the sole owner of their module.
+- Prompt sole module owners to apply the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label for triage visibility.
 
 ---
 

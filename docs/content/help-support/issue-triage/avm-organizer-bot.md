@@ -8,7 +8,7 @@ description: Azure Verified Modules GitHub App for the Azure Verified Modules (A
 
 The **Azure Verified Modules GitHub App** is represented as a [GitHub App](https://github.com/apps/azure-verified-modules). This app automates various repository management tasks across the Azure Verified Modules program's repositories, including issue triage, pull request labeling, team validation, and documentation updates.
 
-The bot operates by authenticating with GitHub using the GitHub App credentials (`TEAM_LINTER_APP_ID` and `TEAM_LINTER_PRIVATE_KEY`) and executing PowerShell scripts through scheduled workflows and/or event-triggered actions. Retain these credentials when retiring the team linter: the active AzAdvertizer issue automation also uses them.
+The AVM repository's team linter and AzAdvertizer workflows use the GitHub App credentials (`TEAM_LINTER_APP_ID` and `TEAM_LINTER_PRIVATE_KEY`). Retain these credentials when retiring the team linter: the active AzAdvertizer issue automation also uses them. Bicep repository maintenance workflows run from the AVM tools repository using separately scoped GitHub App tokens.
 
 {{% notice style="warning" %}}
 The team linter below still validates legacy per-module GitHub teams and requires separate cleanup. Do not recreate those teams to satisfy the automation; module owners must follow [SNFR20]({{% siteparam base %}}/spec/SNFR20) instead. Legacy CSV team columns remain for compatibility with existing shared-repository consumers.
@@ -58,102 +58,19 @@ The following scripts are leveraged by the **[Azure Verified Modules GitHub App]
 
 ---
 
-## BRM Repository Scripts
+## BRM Repository Automation
 
-The following scripts are leveraged by the **[Azure Verified Modules GitHub App](https://github.com/apps/azure-verified-modules)** in the bicep-registry-modules ([BRM](https://aka.ms/BRM)) repository:
+The [AVM tools repository](https://github.com/Azure/azure-verified-modules-tools/tree/main/repository-management) hosts the workflows for [BRM](https://aka.ms/BRM). Owner routing uses the [published module catalog](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/v1/modules.json) and reads a module's root `metadata.json` when the catalog has not yet caught up or the pull request changes that metadata. Child modules inherit root ownership. The CSV indexes show only the first two individual owners and are not the routing source; submit owner changes through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/).
 
-Module-specific routing uses the individual owners recorded in each root module's `metadata.json`, not `ModuleOwnersGHTeam` or membership of the shared Module Contributors team. The generated [module indexes]({{% siteparam base %}}/indexes/bicep/) carry only the first two individual owners, so treat metadata as the source of truth and submit corrections through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/). The `Get-AvmModuleOwnerLogin.ps1` helper resolves `PrimaryModuleOwnerGHHandle` and `SecondaryModuleOwnerGHHandle`, inheriting ownership and orphan status through `ParentModule` for child modules. It normalizes and deduplicates handles and reports missing, duplicate, or invalid ownership metadata rather than treating it as an empty owner list.
+- [Pull request reviewer routing](https://github.com/Azure/azure-verified-modules-tools/blob/main/.github/workflows/repository-management-pr-reviewer-routing.yml) requests the owners of affected modules (excluding the author), applies triage labels, and requests `@Azure/azure-verified-modules-module-owners` for ownerless modules. Review requests and labels do not impose a module-owner approval requirement for ordinary Bicep code changes.
+- [Issue owner routing](https://github.com/Azure/azure-verified-modules-tools/blob/main/.github/workflows/repository-management-issue-owner-routing.yml) labels module issues by class, mentions their owners, and assigns individual owners while respecting manual assignment decisions. For orphaned modules it mentions the tooling contributors team instead of assigning a module owner.
+- [Workflow failure issues](https://github.com/Azure/azure-verified-modules-tools/blob/main/.github/workflows/repository-management-workflow-failure-issues.yml) tracks failed module and shared check/publish runs with issues, mentions the owners, assigns the first individual owner when available, and closes tracking issues when the latest completed run no longer reports failure. Orphaned-module and shared-workflow issues mention the tooling contributors team.
+- [Module list sync](https://github.com/Azure/azure-verified-modules-tools/blob/main/.github/workflows/repository-management-module-list-sync.yml) compares the issue-template dropdown with top-level `Available` and `Orphaned` Bicep entries in the published catalog. When it changes, a verified bot-generated pull request updates the dropdown and is auto-merged rather than opening a drift-report issue.
 
-### 1. Set-AvmGitHubIssueOwnerConfig.ps1
-
-**Purpose**: Automatically assigns issues to appropriate module owners.
-
-**Description**: This script processes GitHub issues in the BRM repository and automatically assigns them to the correct module owners based on the AVM CSV data. It notifies module owners via comments, assigns the issue to them, adds appropriate labels, and assigns issues to the AVM project board. The script handles both individual issue processing (when triggered by issue creation) and batch processing (when run on schedule).
-
-**Key Functionality**:
-- Matches issues to modules based on issue content and labels
-- Retrieves module ownership information from AVM CSV indexes (Resource, Pattern, Utility)
-- Automatically assigns issues to indexed individual module owners
-- Preserves manual assignments and unassignments, and does not remove assignees when ownership cannot be resolved
-- Posts notification comments mentioning the resolved individual owners
-- Adds appropriate labels based on module type and status
-- Assigns issues to GitHub project boards for tracking
-- Handles orphaned modules by assigning to core team
-- Tracks statistics on assignments and updates
-
-**Workflow**: [`platform.set-avm-github-issue-owner-config.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/platform.set-avm-github-issue-owner-config.yml) (runs on issue creation, weekly on Sundays at midnight, and on-demand)
-
-**Source Code**: [`Set-AvmGitHubIssueOwnerConfig.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/platform/Set-AvmGitHubIssueOwnerConfig.ps1)
-
----
-
-### 2. Set-AvmGitHubPrLabels.ps1
-
-**Purpose**: Automatically labels pull requests based on reviewer requirements.
-
-**Description**: This script evaluates non-draft pull requests using their changed files and module index ownership data. It requests individual module owners as reviewers where appropriate and applies labels to distinguish module owner review from core team review. It does not infer module ownership from requested reviewer teams.
-
-**Key Functionality**:
-- Skips draft pull requests
-- Retrieves all changed files through pagination, including the original paths of renamed files
-- Resolves module ownership from indexed primary and secondary owner handles, including parent-module inheritance
-- Adds &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label for tooling or protected-file changes, changes spanning multiple modules, unrecognized modules, orphaned modules, or submissions by a module's sole owner
-- Adds &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0019;color:white;">Needs: Module Owner 📣</mark>&nbsp; label when module owners can review
-- Adds &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F4A460;">Status: Module Orphaned 🟡</mark>&nbsp; label for orphaned modules
-- Requests eligible individual module owners as reviewers, excluding the author and existing reviewers
-
-**Workflow**: [`platform.set-avm-github-pr-labels.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/platform.set-avm-github-pr-labels.yml) (currently disabled; when enabled, runs when PRs are opened or marked ready for review). Index-based routing does not re-enable the workflow; GitHub App authentication for fork-triggered runs must also be addressed before re-enabling it.
-
-**Source Code**: [`Set-AvmGitHubPrLabels.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/platform/Set-AvmGitHubPrLabels.ps1)
-
----
-
-### 3. Set-AvmGitHubIssueForWorkflow.ps1
-
-**Purpose**: Creates and manages issues for failed workflow runs.
-
-**Description**: This script monitors workflow run status and automatically creates GitHub issues when module or platform workflows fail. When a workflow fails, it creates an issue with links to the failed run and assigns it to the appropriate module owners. If the workflow subsequently succeeds, the script automatically closes the issue and adds a comment with the successful run link. This ensures prompt notification and tracking of CI/CD pipeline failures.
-
-**Key Functionality**:
-- Monitors all GitHub workflow runs in the repository
-- Filters out ignored workflows (e.g., PSRule checks, PR title checks)
-- Creates new issues for failed workflow runs with detailed information
-- Links issues to the specific failed workflow run
-- Resolves the affected module from the workflow name, assigns its indexed primary owner, and mentions the resolved individual owners in comments
-- Retains the tooling-team fallback for orphaned modules
-- Automatically closes issues when workflows succeed after previous failures
-- Adds comments to existing issues for repeated failures or successes
-- Assigns workflow failure issues to GitHub project boards
-- Tracks and reports statistics on issues created, closed, and updated
-
-**Workflow**: [`platform.manage-workflow-issue.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/platform.manage-workflow-issue.yml) (runs daily at 5:30 AM and on-demand)
-
-**Source Code**: [`Set-AvmGitHubIssueForWorkflow.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/platform/Set-AvmGitHubIssueForWorkflow.ps1)
-
----
-
-### 4. Sync-AvmModulesList.ps1
-
-**Purpose**: Compares the module list in issue templates with CSV data. If not in sync, it creates an issue to update the template.
-
-**Description**: This script ensures that the module list in the GitHub issue template (`avm_module_issue.yml`) remains synchronized with the AVM CSV data. It compares available and orphaned modules from the CSV indexes (Resource, Pattern, and Utility) against the modules listed in the issue template. When discrepancies are detected (missing modules or unexpected modules), the script creates a GitHub issue detailing the necessary changes to bring the template into alignment with the current module inventory.
-
-**Key Functionality**:
-- Loads module data from AVM CSV indexes for Resources, Patterns, and Utilities
-- Filters for available and orphaned top-level modules
-- Parses the GitHub issue template to extract currently listed modules
-- Identifies missing modules that should be added to the template
-- Identifies unexpected modules that should be removed from the template
-- Creates detailed GitHub issues with lists of required changes
-- Assigns synchronization issues to the AVM project board
-- Ensures issue template stays current as modules are added or deprecated
-
-**Workflow**: [`platform.sync-avm-modules-list.yml`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/platform.sync-avm-modules-list.yml) (runs daily at 4:30 AM and on-demand)
-
-**Source Code**: [`Sync-AvmModulesList.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/platform/Sync-AvmModulesList.ps1)
+These workflows support manual dispatch. Their schedules are enabled separately; the presence of a workflow alone does not mean periodic routing is running.
 
 ---
 
 ## Summary
 
-The AVM Organizer Bot leverages these automation scripts to maintain repository health, ensure proper module ownership and team configurations, keep documentation current, and provide timely notifications about workflow failures and policy changes. The bot operates continuously through scheduled workflows and event-triggered actions, reducing manual overhead for the AVM core team and module owners while ensuring consistent governance across both repositories.
+The AVM repository workflows and the tools-repository workflows support issue triage, reviewer notifications, and module maintenance. Review and merge requirements come from repository rules and the protected metadata [`CODEOWNERS` rule]({{% siteparam base %}}/spec/SNFR20#codeowners-file), not from reviewer requests or triage labels.
