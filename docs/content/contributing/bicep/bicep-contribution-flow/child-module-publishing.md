@@ -35,7 +35,7 @@ For a step-by-step explanation with detailed instructions, refer to the followin
 * **Check prerequisites**: Existing [issue in AVM](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Class%3A%20Child%20Module%20%3Apackage%3A%22%20label%3A%22Language%3A%20Bicep%20%3Amuscle%3A%22), [assigned telemetry ID prefix](#telemetry-id-prefix-assigned), module registered in the [MAR file](https://github.com/microsoft/mcr/blob/main/teams/bicep/bicep.yml).
 * Implement required changes in your fork:
   * **Allowed list**: If not present, add child module to [child-module-publish-allowed-list.json](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/staticValidation/compliance/helper/child-module-publish-allowed-list.json).
-  * **Child module template**: Add `enableTelemetry` parameter and `avmTelemetry` deployment to child `main.bicep` template.
+  * **Child module template**: Ensure the child's `metadata.json` contains its assigned telemetry prefix alongside `main.bicep`, then add the `enableTelemetry` parameter and `avmTelemetry` deployment.
   * **Parent module template**: In the `main.bicep` template of the child module direct parent, add a `enableReferencedModulesTelemetry` variable with a value of `false`, and pass it as the `enableTelemetry` value down to the child module deployment.
   * **Version**: Add the `version.json` file to the child module folder and set version to `0.1`.
   * **Changelog**: Add a new `CHANGELOG.md` file to the child module folder and update the changelog of all its versioned parents with a new patch version, up to the top-level parent.
@@ -110,11 +110,13 @@ Please follow the steps below:
     @description('Optional. Enable/Disable usage telemetry for module.')
     param enableTelemetry bool = true
     ```
-  - Add the `avmTelemetry` deployment, referencing below template. Make sure to replace the `<ReplaceWith-TelemetryIdPrefix>` placeholder with the assigned telemetry ID prefix value that you noted down when checking prerequisites.
+  - Add the `avmTelemetry` deployment, referencing the template below. Ensure the child's `metadata.json` exists alongside `main.bicep` before compiling and contains its assigned `telemetryIdPrefix`. Load only that property instead of hardcoding the prefix.
     ```bicep
+      var telemetryIdPrefix = loadJsonContent('metadata.json', 'telemetryIdPrefix')
+
       #disable-next-line no-deployments-resources
       resource avmTelemetry 'Microsoft.Resources/deployments@2025-04-01' = if (enableTelemetry) {
-        name: '<ReplaceWith-TelemetryIdPrefix>.${replace('-..--..-', '.', '-')}.${substring(uniqueString(deployment().name), 0, 4)}'
+        name: '${telemetryIdPrefix}.${replace('-..--..-', '.', '-')}.${substring(uniqueString(deployment().name), 0, 4)}'
         properties: {
           mode: 'Incremental'
           template: {
