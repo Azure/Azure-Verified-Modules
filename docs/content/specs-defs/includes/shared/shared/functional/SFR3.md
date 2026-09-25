@@ -52,33 +52,18 @@ This specification applies to all AVM module classes (resource, pattern, utility
 {{% notice style="important" %}}
 Published CSV files in the [AVM Central Repo (`Azure/Azure-Verified-Modules`)](https://github.com/Azure/Azure-Verified-Modules/tree/main/docs/static/module-indexes) remain available for consumers and checks that look up assigned telemetry prefixes. To see their formatted content with additional information, visit the [AVM Module Indexes]({{% siteparam base %}}/indexes) page.
 
-Record the assigned prefix in `telemetryIdPrefix` in the module's `metadata.json`, including a child's own file when applicable. Place it alongside the module's `main.bicep` before compiling, and read only that value in Bicep with `loadJsonContent('metadata.json', 'telemetryIdPrefix')` instead of hardcoding it. Preserve existing identifiers. Corrections follow the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/); assignment of a new identifier requires the AVM core team.
+Record the assigned current prefix in `telemetryIdPrefix` in the module's `metadata.json`, including a child's own file when applicable. Place it alongside the module's `main.bicep` before compiling, and read only that value in Bicep with `loadJsonContent('metadata.json', 'telemetryIdPrefix')` instead of hardcoding it. Retain previous identifiers in `alternativeTelemetryIdPrefixes` when assigning a new current prefix. Corrections follow the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/); assignment of a new identifier requires the AVM core team.
 
-Assigned values are also published in the [Resource Module]({{% siteparam base %}}/indexes/bicep/bicep-resource-modules/#module-name-and-telemetry-id-prefix), [Pattern Module]({{% siteparam base %}}/indexes/bicep/bicep-pattern-modules/#module-name-and-telemetry-id-prefix), and [Utility Module]({{% siteparam base %}}/indexes/bicep/bicep-utility-modules/#module-name-and-telemetry-id-prefix) indexes. Ask the AVM core team to resolve any discrepancy with metadata rather than inventing or replacing an identifier.
+Assigned values are also published in the [Resource Module]({{% siteparam base %}}/indexes/bicep/bicep-resource-modules/#module-name-and-telemetry-id-prefix), [Pattern Module]({{% siteparam base %}}/indexes/bicep/bicep-pattern-modules/#module-name-and-telemetry-id-prefix), and [Utility Module]({{% siteparam base %}}/indexes/bicep/bicep-utility-modules/#module-name-and-telemetry-id-prefix) indexes. Ask the AVM core team to resolve any discrepancy with metadata rather than changing an identifier without approval.
 {{% /notice %}}
 
-The ARM deployment name used for the telemetry **MUST** follow the pattern and **MUST** be no longer than 64 characters in length: `46d3xbcp.<res/ptn>.<(short) module name>.<version>.<uniqueness>`
+The Bicep ARM deployment name used for telemetry **MUST** follow `<telemetryIdPrefix>.<version>.<uniqueness>` and **MUST** be no longer than 64 characters, as shown in [BCPFR4]({{% siteparam base %}}/spec/BCPFR4).
 
-- `<res/ptn>` == AVM Resource or Pattern Module
-- `<(short) module name>` == The AVM Module's, possibly shortened, name including the resource provider and the resource type, **without**;
-  - The prefixes: `avm-res-`
-  - The prefixes: `avm-ptn-`
-- `<version>` == The AVM Module's MAJOR.MINOR version (only) with `.` (periods) replaced with `-` (hyphens), to allow simpler splitting of the ARM deployment name
-- `<uniqueness>` == This section of the ARM deployment name is to be used to ensure uniqueness of the deployment name.
-  - This is to cater for the following scenarios:
-    - The module is deployed multiple times to the same:
-      - Location/Region
-      - Scope (Tenant, Management Group,Subscription, Resource Group)
+- `<telemetryIdPrefix>` is the current value in the module's `metadata.json` and **MUST** use `46d3xbcp.<res|ptn|utl>.<seven lowercase hexadecimal characters>` (20 characters).
+- `<version>` is the module version token with periods replaced by hyphens.
+- `<uniqueness>` is a four-character value derived from `uniqueString` and the deployment context.
 
-{{% notice style="note" %}}
-
-Due to the 64-character length limit of Azure deployment names, the `<(short) module name>` segment has a length limit of 36 characters, so if the module name is longer than that, it **MUST** be truncated to 36 characters. If any of the semantic version's segments are longer than 1 character, it further restricts the number of characters that can be used for naming the module.
-
-{{% /notice %}}
-
-An example deployment name for the AVM Virtual Machine Resource Module would be: `46d3xbcp.res.compute-virtualmachine.1-2-3.eum3`
-
-An example deployment name for a shortened module name would be: `46d3xbcp.res.desktopvirtualization-appgroup.1-2-3.eum3`
+Do not truncate an identifier or version to meet the 64-character limit. When replacing a previous prefix, retain it and any earlier prefixes in `alternativeTelemetryIdPrefixes` in the same module's `metadata.json` for historical reporting.
 
 {{% notice style="tip" %}}
 
