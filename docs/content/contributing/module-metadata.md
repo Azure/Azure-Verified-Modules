@@ -52,8 +52,8 @@ The versioned schema referenced by the required `$schema` URI defines the suppor
 | `moduleDisplayName`, `moduleDescription` | Maintain the module's curated display name and description. For Bicep, `moduleDescription` must match the `metadata description` literal in `main.bicep`. `moduleDisplayName` is independent of the `metadata name` literal and does not have to match it. |
 | `canonicalType` | The real ARM resource type, or the approved pattern/utility taxonomy. [Helper submodules](#helper-submodules) use `helper`. |
 | `owners` | Root only: a flat array of strings containing every approved owner. Use bare GitHub handles for individuals and qualified handles such as `@Azure/team-name` for approved existing teams. |
-| `telemetryIdPrefix` | Preserve the assigned identifier where required. New Bicep prefixes use `46d3xbcp.<kind>.<seven lowercase hexadecimal characters>` (20 characters), where `<kind>` is `res`, `ptn`, or `utl`; existing assigned Bicep identifiers remain valid until an approved replacement. Do not generate a replacement as part of an ownership or descriptive edit. |
-| `alternativeTelemetryIdPrefixes` | For Bicep, retain all previously assigned prefixes here if the current prefix changes, in the same root or child `metadata.json`. These historical identifiers are not used in deployment names. |
+| `telemetryIdPrefix` | Current Bicep prefixes must use `46d3xbcp.<kind>.<seven lowercase hexadecimal characters>` (20 characters), where `<kind>` is `res`, `ptn`, or `utl`. Do not generate a replacement as part of an ownership or descriptive edit. |
+| `alternativeTelemetryIdPrefixes` | For Bicep, retain all previously assigned prefixes here when the current prefix changes, in the same root or child `metadata.json`. These historical identifiers are not used in deployment names. |
 | `alternativeNames`, `comments` | Optional root-module aliases and notes. These are public metadata. |
 
 Pattern and utility `canonicalType` values can have one or more segments, such as `naming` for `avm-utl-naming`. Preserve the module's approved mapping. Resource modules and non-helper resource children use their actual ARM resource type.
