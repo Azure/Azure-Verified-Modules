@@ -93,19 +93,21 @@ An example deployment name for a shortened module name would be: `46d3xbcp.res.d
 
 ### Terraform
 
-Instrumented Terraform roots and child modules **MUST** obtain their assigned `46d3xtrf` `telemetryIdPrefix` and `canonicalType` from their own `metadata.json`. The prefix **MUST NOT** be reconstructed from a module source or hardcoded in generated Terraform. Children without a telemetry prefix, including telemetry-free helpers and utilities, **MUST NOT** create a telemetry deployment. The metadata schema limits Terraform prefixes to 59 characters.
+Instrumented Terraform roots and child modules **MUST** obtain their assigned `46d3xtrf` `telemetryIdPrefix` and `canonicalType` from their own `metadata.json`. The prefix **MUST NOT** be reconstructed from a module source or hardcoded in generated Terraform. Terraform prefixes **MUST** be `46d3xtrf.<res|ptn|utl>.<seven lowercase hexadecimal characters>` (20 characters). Children without a telemetry prefix, including telemetry-free helpers and utilities, **MUST NOT** create a telemetry deployment.
 
-[`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring) **MUST** generate and maintain `main.telemetry.tf` rather than requiring module authors to maintain telemetry resources. When `var.enable_telemetry` is true, this file **MUST** create an empty, incremental `Microsoft.Resources/deployments@2025-04-01` deployment using `azapi_resource` at the active subscription scope. The deployment location follows [SFR4]({{% siteparam base %}}/spec/SFR4/). Its name **MUST** be `<telemetryIdPrefix>.<four lowercase hexadecimal characters>` and **MUST NOT** exceed 64 characters. The four-character suffix is derived from the stable ID of a provider-free `terraform_data.telemetry` instance so repeated applies keep the same name while distinct module instances can have distinct names.
+[`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring) **MUST** generate and maintain `main.telemetry.tf` rather than requiring module authors to maintain telemetry resources. When `var.enable_telemetry` is true, this file **MUST** create an empty, incremental `Microsoft.Resources/deployments@2025-04-01` deployment using `azapi_resource` at the active subscription scope. The deployment location follows [SFR4]({{% siteparam base %}}/spec/SFR4/).
 
-The deployment **MUST** carry exactly these four reporting tags:
+The deployment name is the reporting payload. It **MUST** have the form `<telemetryIdPrefix>.<version>.<source>.<instance>` and **MUST NOT** exceed 64 characters:
 
-| Tag | Value |
+| Segment | Value |
 | --- | --- |
-| `avm_module_version` | The installed module version from the Terraform modules manifest entry matching `path.module`, or an empty string when unavailable. |
-| `avm_module_source_type` | The manifest source classified as `terraform-registry`, `opentofu-registry`, `git`, or `other`. Never send a raw module source or local path. |
-| `avm_module_canonical_type` | The module's `canonicalType` from `metadata.json`. |
-| `avm_apply_id` | `plantimestamp()`, changing on every normal plan to force an in-place deployment update on apply. Refresh-only plans do not emit a telemetry write. |
+| `telemetryIdPrefix` | The fixed metadata identifier, which the module catalog maps to its canonical type. |
+| `version` | The installed full version from the Terraform modules manifest entry matching `path.module`, with periods replaced by hyphens. Use `0-0-0` when a version is unavailable. |
+| `source` | One character derived from the manifest source: `t` for Terraform Registry, `o` for OpenTofu Registry, `g` for Git, or `x` for other sources. Never include a raw source path. |
+| `instance` | The first four lowercase hex characters of a hash of the stable provider-free `terraform_data.telemetry` instance ID. |
 
-No tier tag is collected: tier is not part of the module metadata contract. The deployment **MUST** fail the apply if Azure rejects it, unless the consumer disables telemetry with `enable_telemetry = false`. With telemetry enabled, the deployment identity needs `Microsoft.Resources/deployments/read`, `Microsoft.Resources/deployments/write`, and `Microsoft.Resources/deployments/delete` at the active subscription scope. See the [telemetry guidance]({{% siteparam base %}}/help-support/telemetry/) for the opt-out and location override.
+The generated resource **MUST** reject an invalid or overlong version token rather than truncate reporting data. It **MUST NOT** send telemetry tags; Azure deployment events provide the time, subscription, and caller context. An output in the empty template **MUST** change with `plantimestamp()` on every normal plan solely to force an in-place deployment write, including on otherwise no-op applies; this output is not reporting data. Refresh-only operations do not create a telemetry write.
+
+The deployment **MUST** fail the apply if Azure rejects it, unless the consumer disables telemetry with `enable_telemetry = false`. With telemetry enabled, the deployment identity needs `Microsoft.Resources/deployments/read`, `Microsoft.Resources/deployments/write`, and `Microsoft.Resources/deployments/delete` at the active subscription scope. See the [telemetry guidance]({{% siteparam base %}}/help-support/telemetry/) for the opt-out and location override.
 
 The generated configuration **MUST NOT** require the `modtm` provider or add per-resource AzAPI telemetry headers. During the supported migration window, existing `modtm_telemetry.telemetry` and telemetry-only `random_uuid.telemetry` state **MUST** be forgotten with declarative `removed` blocks using `destroy = false`, without destroying either object. Terraform still needs the old providers available for one final initialization when an existing state refers to them; new installations and subsequent plans do not require `modtm`.
