@@ -26,6 +26,8 @@ To comply with specifications outlined in [SFR3]({{% siteparam base %}}/spec/SFR
 
 Before compiling, ensure the module's `metadata.json` exists alongside its `main.bicep` and contains its assigned `telemetryIdPrefix`. The example uses the `jsonPath` argument of [`loadJsonContent`](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-functions-files#loadjsoncontent) to load only that value. Do not load the full metadata object: that embeds unrelated values, including owners and descriptions, in the compiled ARM template. If an assigned prefix is missing or conflicts with the module index, follow the [module metadata guidance]({{% siteparam base %}}/contributing/module-metadata/) rather than hardcoding or inventing one.
 
+New Bicep prefixes use `46d3xbcp.<res|ptn|utl>.<seven lowercase hexadecimal characters>` (20 characters). If an approved replacement is assigned, retain all previous prefixes in `alternativeTelemetryIdPrefixes` in the same `metadata.json`; the deployment uses only the current `telemetryIdPrefix`. Check that the complete deployment name fits within 64 characters without truncation, especially for longer legacy prefixes.
+
 After changing `telemetryIdPrefix`, regenerate `main.json` with [`Set-AVMModule.ps1`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/) without `-SkipBuild`. Consumers deploying the compiled `main.json` do not need `metadata.json`.
 
 {{< highlight lineNos="false" type="bicep" wrap="true" title="sample.telem.bicep" >}}
