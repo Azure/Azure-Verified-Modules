@@ -40,9 +40,8 @@ For cross-references in resource modules, the spec [BCPFR7]({{% siteparam base %
 
 ### Terraform
 
-Every instrumented Terraform root or child module **MUST** declare an optional string input named `telemetry_location`. Its value selects where the subscription-scoped telemetry deployment record is stored; it does not change the location of the module's Azure resources.
+Every Terraform module root **MUST** expose a string input named `location`, except a utility module that deploys no Azure resources. Local child modules that deploy Azure resources **MUST** also expose `location`, whether or not the child reports its own telemetry. `Avm.Authoring` **MUST** generate a required, non-nullable `location` input without a default where one is missing, and preserve an existing authored declaration. Roots with global or scope-based Azure resources still need a location for their subscription-scoped telemetry deployment. Utility modules that deploy no Azure resources **MUST NOT** gain an otherwise unused location input.
 
-- When the module declares `var.location`, `telemetry_location` **MUST** default to `null`. A non-null override takes precedence; otherwise the deployment uses `var.location`. This fallback **MUST** remain safe when both values are null and telemetry is disabled.
-- When the module has no `var.location`, `telemetry_location` **MUST** default to `westus2`. Consumers **MUST** be able to override that default, including for sovereign clouds where `westus2` is unavailable.
+The generated telemetry deployment **MUST** use `var.location` directly. Terraform modules **MUST NOT** expose a separate `telemetry_location` input. Consumers in sovereign clouds must supply a location valid in that cloud.
 
-Local calls to instrumented child modules **MUST** pass through `enable_telemetry` and the parent's resolved telemetry location. Supported example module calls **MUST** expose and forward these controls as well. A parent setting `enable_telemetry = false` must not enable telemetry in a child.
+Local module calls **MUST** pass the parent's `var.location` to children that require `location` when the call has no authored location argument. A call that already supplies a location for an individual resource or region **MUST** retain that value. Instrumented children **MUST** also receive the parent's `enable_telemetry` value so a parent opting out cannot enable child telemetry. Example calls **MUST** expose and forward a missing required location and the opt-out where supported, without replacing authored per-item locations.
