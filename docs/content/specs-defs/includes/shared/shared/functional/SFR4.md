@@ -40,4 +40,9 @@ For cross-references in resource modules, the spec [BCPFR7]({{% siteparam base %
 
 ### Terraform
 
-Currently, no further requirements apply.
+Every instrumented Terraform root or child module **MUST** declare an optional string input named `telemetry_location`. Its value selects where the subscription-scoped telemetry deployment record is stored; it does not change the location of the module's Azure resources.
+
+- When the module declares `var.location`, `telemetry_location` **MUST** default to `null`. A non-null override takes precedence; otherwise the deployment uses `var.location`. This fallback **MUST** remain safe when both values are null and telemetry is disabled.
+- When the module has no `var.location`, `telemetry_location` **MUST** default to `westus2`. Consumers **MUST** be able to override that default, including for sovereign clouds where `westus2` is unavailable.
+
+Local calls to instrumented child modules **MUST** pass through `enable_telemetry` and the parent's resolved telemetry location. Supported example module calls **MUST** expose and forward these controls as well. A parent setting `enable_telemetry = false` must not enable telemetry in a child.
