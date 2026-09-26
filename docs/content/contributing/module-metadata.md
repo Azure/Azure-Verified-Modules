@@ -23,20 +23,7 @@ Every new Bicep or Terraform root module, and every new child module or submodul
 - **Root modules** get the full metadata shape, including the `owners` array.
 - **Child modules and submodules** get the reduced, inherited-owner shape described above; they must not contain `owners`.
 
-Use `Initialize-AvmModuleMetadata` from the [`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring) PowerShell module to scaffold the file for either ecosystem. It validates the supplied values against the versioned schema and writes `metadata.json` without overwriting an existing file. You must supply the approved values yourself; the command never infers or backfills them.
-
-```pwsh
-$metadata = @{
-    moduleDisplayName = '<approved display name>'
-    moduleDescription = '<approved description>'
-    canonicalType     = '<approved ARM resource type or taxonomy>'
-    owners            = @('<approved handle>')
-}
-
-Initialize-AvmModuleMetadata -Path . -InputObject $metadata -Ecosystem terraform -ModuleType resource -WhatIf
-```
-
-`-Ecosystem` (`bicep` or `terraform`) and `-ModuleType` (`resource`, `pattern`, or `utility`) are required. Add `-ChildModule` to scaffold the reduced, owner-less shape for a child module or submodule, omitting `owners` from the input. `-UpdateSource` applies matching Bicep source literals and is not valid for Terraform. Run with `-WhatIf` first to review the plan, then re-run without it to write the file.
+Use `avm init` from the [`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring) PowerShell module for one-time initialization. Specify `-Ecosystem` (`bicep` or `terraform`) and `-ModuleType` (`resource`, `pattern`, or `utility`). In an interactive terminal, the command prompts for missing required metadata fields; enter only approved values. For unattended runs, provide all required fields through `-InputObject`, or initialization fails rather than guessing them. The command supplies the required `$schema` URI, validates the metadata, and does not overwrite an existing file. Terraform initialization creates only `metadata.json`; add Terraform source files separately.
 
 Validate an existing file with `avm metadata validate`, or inspect one with `avm metadata show`.
 
@@ -44,42 +31,20 @@ Approved modules may carry `metadata.json` before their source exists. The catal
 
 ### Create only metadata for an approved Bicep proposal
 
-After the AVM core team approves a Bicep module proposal, you can add its root `metadata.json` before `main.bicep` exists. Run this example from the root of [Azure/bicep-registry-modules](https://github.com/Azure/bicep-registry-modules) in PowerShell 7, replacing the path and metadata placeholders with the approved proposal values. Use `Avm.Authoring` **0.18.2 or later**, which exports both commands below; version 0.18.1 does not include `New-AvmTelemetryIdPrefix`. If needed, manually update a Gallery-installed copy with `Update-Module Avm.Authoring`, or install the module with `Install-Module Avm.Authoring -Scope CurrentUser -MinimumVersion 0.18.2` before running the example. The example does not install or update anything. Neither command prompts for the values, and `Initialize-AvmModuleMetadata` does not generate a telemetry prefix.
+After the AVM core team approves a Bicep module proposal, you can add its root `metadata.json` before `main.bicep` exists. In PowerShell 7, run this example from the root of [Azure/bicep-registry-modules](https://github.com/Azure/bicep-registry-modules), replacing the path with the approved module path. The install step gets the latest `Avm.Authoring` release for your user account, including when an older release is already installed.
 
 ```pwsh
-Get-Command Initialize-AvmModuleMetadata, New-AvmTelemetryIdPrefix -ErrorAction Stop | Out-Null
-
-$repoRoot = (Get-Location).Path
-$knownPrefixes = @(
-    Get-ChildItem -LiteralPath (Join-Path $repoRoot 'avm') -Recurse -Force -File -Filter metadata.json -ErrorAction Stop |
-        ForEach-Object {
-            $existing = Get-Content -LiteralPath $_.FullName -Raw -ErrorAction Stop | ConvertFrom-Json -AsHashtable -ErrorAction Stop
-            @($existing.telemetryIdPrefix) + @($existing.alternativeTelemetryIdPrefixes) |
-                Where-Object { $_ }
-        }
-)
-$prefix = New-AvmTelemetryIdPrefix -Ecosystem bicep -Kind res -KnownPrefix $knownPrefixes
-
-$target = Join-Path $repoRoot 'avm' 'res' '<approved group>' '<approved module>'
-New-Item -ItemType Directory -Path $target -Force | Out-Null
-$metadata = @{
-    '$schema'         = 'https://raw.githubusercontent.com/Azure/azure-verified-modules-tools/main/src/Avm.Authoring/Resources/Schemas/v1/avm-module-metadata.schema.json'
-    moduleDisplayName = '<approved display name>'
-    moduleDescription = '<approved description>'
-    canonicalType     = '<approved ARM resource type>'
-    owners            = @('<approved owner handle>')
-    telemetryIdPrefix = $prefix
-}
-
-Initialize-AvmModuleMetadata -Path $target -InputObject $metadata -Ecosystem bicep -ModuleType resource -WhatIf
-Initialize-AvmModuleMetadata -Path $target -InputObject $metadata -Ecosystem bicep -ModuleType resource
+$modulePath = 'avm/res/<approved group>/<approved module>'
+Install-Module Avm.Authoring -Scope CurrentUser -Force
+Import-Module Avm.Authoring -Force
+avm init -Ecosystem bicep -ModuleType resource -Path $modulePath -Proposed
 ```
 
-`New-AvmTelemetryIdPrefix` uses cryptographically secure random bytes to form `46d3xbcp.res.` plus seven lowercase hexadecimal characters. The inventory includes both current and historical prefixes from every `avm` subtree; the generator retries candidates found in `-KnownPrefix`. It does **not** reserve an identifier globally, so check the prefix against the latest inventory again during review. A module version is not part of the prefix.
+`avm init` prompts for the approved display name, description, ARM resource type (`canonicalType`), and root owners if they are not supplied. It generates the Bicep `telemetryIdPrefix` from cryptographically secure random bytes: `46d3xbcp.res.` followed by seven lowercase hexadecimal characters. It checks for collisions with current and historical identifiers from the [published module catalog](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/v1/modules.json) and local module metadata. If the catalog is unavailable, it warns and continues with the local inventory; check against the latest catalog during review because generation does not reserve the prefix globally.
 
-The target directory must exist before initialization; the example creates it but writes **only `metadata.json`**, because `-UpdateSource` is omitted. `-WhatIf` validates and plans the change before the second invocation writes it. An existing `metadata.json` is never overwritten. Do not add `main.bicep`, `main.json`, or version files solely to record the proposal; once merged, its catalog status stays `Proposed` until publication.
+With `-Proposed`, the command creates the target directory if needed and writes **only `metadata.json`**; it does not create `main.bicep`, `main.json`, or version files. An existing `metadata.json` is never overwritten. Once merged, the module stays `Proposed` in the catalog until publication.
 
-For a pattern or utility module, use `-Kind ptn` or `utl`, the corresponding `-ModuleType pattern` or `utility`, and its approved `canonicalType` taxonomy. For a child module, add `-ChildModule` and omit `owners`; see the [helper submodule rules](#helper-submodules) where applicable.
+For a pattern or utility module, use the corresponding `-ModuleType pattern` or `utility` and its approved `canonicalType` taxonomy. For a child module, add `-ChildModule`; ownership is inherited from its root, so do not supply `owners`. See the [helper submodule rules](#helper-submodules) where applicable.
 
 ## Fields you can maintain
 
@@ -88,7 +53,7 @@ The versioned schema referenced by the required `$schema` URI defines the suppor
 | Field | Guidance |
 | --- | --- |
 | `$schema` | Keep the required versioned schema URI. It identifies the module metadata schema. |
-| `moduleDisplayName`, `moduleDescription` | Maintain the module's curated display name and description. For Bicep, `moduleDescription` must match the `metadata description` literal in `main.bicep`. `moduleDisplayName` is independent of the `metadata name` literal and does not have to match it. |
+| `moduleDisplayName`, `moduleDescription` | Maintain the module's curated display name and description. For Bicep, `moduleDescription` must match the `metadata description` literal once `main.bicep` exists. `moduleDisplayName` is independent of the `metadata name` literal and does not have to match it. |
 | `canonicalType` | The real ARM resource type, or the approved pattern/utility taxonomy. [Helper submodules](#helper-submodules) use `helper`. |
 | `owners` | Root only: a flat array of strings containing every approved owner. Use bare GitHub handles for individuals and qualified handles such as `@Azure/team-name` for approved existing teams. |
 | `telemetryIdPrefix` | Current Bicep prefixes must use `46d3xbcp.<kind>.<seven lowercase hexadecimal characters>` (20 characters), where `<kind>` is `res`, `ptn`, or `utl`. [Generate one for an approved new module](#create-only-metadata-for-an-approved-bicep-proposal); do not generate a replacement as part of an ownership or descriptive edit. |
