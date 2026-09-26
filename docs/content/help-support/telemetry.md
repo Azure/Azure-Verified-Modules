@@ -3,13 +3,13 @@ title: Telemetry
 description: Telemetry description for the Azure Verified Modules (AVM) program
 ---
 
-Microsoft uses the approach detailed in this section to identify the deployments of the AVM Modules. Microsoft collects this information to provide the best experiences with their products and to operate their business. Telemetry data is captured through the built-in mechanisms of the Azure platform; therefore, it never leaves the platform, providing only Microsoft with access. Deployments are identified through a specific GUID (Globally Unique ID), indicating that the code originated from AVM. The data is collected and governed by Microsoft's privacy policies, located at the [Trust Center](https://www.microsoft.com/trust-center).
+Microsoft uses the approach detailed in this section to identify the deployments of the AVM Modules. Microsoft collects this information to provide the best experiences with their products and to operate their business. Telemetry data is captured through the built-in mechanisms of the Azure platform; therefore, it never leaves the platform, providing only Microsoft with access. Deployments are identified by an AVM-specific prefix in their names. The data is collected and governed by Microsoft's privacy policies, located at the [Trust Center](https://www.microsoft.com/trust-center).
 
 Telemetry collected as described here does not provide Microsoft with insights into the resources deployed, their configuration or any customer data stored in or processed by Azure resources deployed by using code from AVM. Microsoft does not track the usage/consumption of individual resources using telemetry described here.
 
 {{% notice style="note" %}}
 
-While telemetry gathered as described here is only accessible by Microsoft. Bicep customers have access to the exact same deployment information on the Azure portal, under the Deployments section of the corresponding scope (Resource Group, Subscription, etc.). Terraform customers can view the information sent in the `main.telemetry.tf` file.
+Telemetry gathered as described here is only accessible by Microsoft. Bicep customers can view the deployment in the Azure portal under Deployments at its corresponding scope (resource group, subscription, etc.). Terraform customers can view the generated deployment at the active subscription scope and inspect the exact values sent in `main.telemetry.tf`.
 
 See [View deployment history with Azure Resource Manager](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-history?tabs=azure-portal) for further information on how.
 
@@ -17,7 +17,9 @@ See [View deployment history with Azure Resource Manager](https://learn.microsof
 
 ## Technical Details
 
-As detailed in [SFR3]({{% siteparam base %}}/spec/SFR3) each AVM module contains a `avmTelemetry` deployment, which creates a deployment such as `46d3xbcp.res.compute-virtualmachine.1-2-3.eum3` (for Bicep) or `46d3xgtf.res.compute-virtualmachine.1-2-3.eum3` (for Terraform).
+As detailed in [SFR3]({{% siteparam base %}}/spec/SFR3), an instrumented Bicep module creates an `avmTelemetry` deployment such as `46d3xbcp.res.compute-virtualmachine.1-2-3.eum3`. An instrumented Terraform module creates an empty, subscription-scoped deployment through the generated `azapi_resource.telemetry`. Its name contains the fixed `46d3xtrf` metadata prefix, the full installed version (or `0-0-0`), a one-letter source type (`t`, `o`, `g`, or `x`), and a stable four-character instance suffix. The name, not resource tags, carries the reporting data. A changing empty-template output causes a deployment write on each normal apply without changing the name; no raw source path or tier is sent.
+
+Terraform's required `location` input selects where the subscription deployment record is stored, including for modules whose Azure resources are global or scope-based. `Avm.Authoring` adds it when missing on roots and on local children that deploy Azure resources; utility modules without Azure resources are exempt. Child and example calls forward `var.location` when no per-resource location is already supplied. There is no separate `telemetry_location` input or `westus2` fallback. Choose a region available in your cloud, including sovereign clouds. With telemetry enabled, the identity needs `Microsoft.Resources/deployments/read`, `Microsoft.Resources/deployments/write`, and `Microsoft.Resources/deployments/delete` at the subscription scope.
 
 ## Opting Out
 
@@ -32,7 +34,7 @@ To opt out you can set the parameters/variables listed below to `false` in the A
 
 ## Telemetry vs Customer Usage Attribution
 
-Though similar in principles, this approach is not to be confused and does not conflict with the usage of CUA IDs that are used to track [Azure customer usage attribution](https://learn.microsoft.com/partner-center/marketplace/azure-partner-customer-usage-attribution) of Azure marketplace solutions (partner solutions). The GUID-based telemetry approach described here can coexist and can be used side-by-side with CUA IDs. If you have any partner or customer scenarios that require the addition of CUA IDs, you can customize the AVM modules by adding the required CUA ID deployment while keeping the built-in telemetry solution.
+Though similar in principles, this approach is not to be confused and does not conflict with the usage of CUA IDs that are used to track [Azure customer usage attribution](https://learn.microsoft.com/partner-center/marketplace/azure-partner-customer-usage-attribution) of Azure marketplace solutions (partner solutions). AVM deployment telemetry can coexist with CUA IDs. If you have any partner or customer scenarios that require the addition of CUA IDs, you can customize the AVM modules by adding the required CUA ID deployment while keeping the built-in telemetry solution.
 
 {{% notice style="tip" %}}
 
