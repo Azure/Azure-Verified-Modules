@@ -44,7 +44,7 @@ Approved modules may carry `metadata.json` before their source exists. The catal
 
 ### Create only metadata for an approved Bicep proposal
 
-After the AVM core team approves a Bicep module proposal, you can add its root `metadata.json` before `main.bicep` exists. Run this example from the root of [Azure/bicep-registry-modules](https://github.com/Azure/bicep-registry-modules) in PowerShell 7, replacing the path and metadata placeholders with the approved proposal values. Use `Avm.Authoring` **0.18.2 or later**, which exports both commands below; version 0.18.1 does not include `New-AvmTelemetryIdPrefix`. Neither command prompts for the values, and `Initialize-AvmModuleMetadata` does not generate a telemetry prefix.
+After the AVM core team approves a Bicep module proposal, you can add its root `metadata.json` before `main.bicep` exists. Run this example from the root of [Azure/bicep-registry-modules](https://github.com/Azure/bicep-registry-modules) in PowerShell 7, replacing the path and metadata placeholders with the approved proposal values. Use `Avm.Authoring` **0.18.2 or later**, which exports both commands below; version 0.18.1 does not include `New-AvmTelemetryIdPrefix`. If needed, manually update a Gallery-installed copy with `Update-Module Avm.Authoring`, or install the module with `Install-Module Avm.Authoring -Scope CurrentUser -MinimumVersion 0.18.2` before running the example. The example does not install or update anything. Neither command prompts for the values, and `Initialize-AvmModuleMetadata` does not generate a telemetry prefix.
 
 ```pwsh
 Get-Command Initialize-AvmModuleMetadata, New-AvmTelemetryIdPrefix -ErrorAction Stop | Out-Null
@@ -75,7 +75,7 @@ Initialize-AvmModuleMetadata -Path $target -InputObject $metadata -Ecosystem bic
 Initialize-AvmModuleMetadata -Path $target -InputObject $metadata -Ecosystem bicep -ModuleType resource
 ```
 
-`New-AvmTelemetryIdPrefix` uses cryptographically secure random bytes to form `46d3xbcp.res.` plus seven lowercase hexadecimal characters. The inventory includes both current and historical prefixes from every `avm` subtree; the generator retries candidates found in `-KnownPrefix`. It does **not** reserve an identifier globally, so check the prefix against the latest inventory again during review. Do not derive it with `take()` or change a module version to assign it.
+`New-AvmTelemetryIdPrefix` uses cryptographically secure random bytes to form `46d3xbcp.res.` plus seven lowercase hexadecimal characters. The inventory includes both current and historical prefixes from every `avm` subtree; the generator retries candidates found in `-KnownPrefix`. It does **not** reserve an identifier globally, so check the prefix against the latest inventory again during review. A module version is not part of the prefix.
 
 The target directory must exist before initialization; the example creates it but writes **only `metadata.json`**, because `-UpdateSource` is omitted. `-WhatIf` validates and plans the change before the second invocation writes it. An existing `metadata.json` is never overwritten. Do not add `main.bicep`, `main.json`, or version files solely to record the proposal; once merged, its catalog status stays `Proposed` until publication.
 
