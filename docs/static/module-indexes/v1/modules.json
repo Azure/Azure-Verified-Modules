@@ -2750,7 +2750,45 @@
           }
         }
       ],
-      "terraform": []
+      "terraform": [
+        {
+          "ecosystem": "terraform",
+          "moduleType": "resource",
+          "moduleStatus": "Proposed",
+          "moduleName": "avm-res-app-agent",
+          "modulePath": ".",
+          "repository": "Azure/terraform-azure-avm-res-app-agent",
+          "repoURL": "https://github.com/Azure/terraform-azure-avm-res-app-agent",
+          "parentModule": null,
+          "familyModule": ".",
+          "provider": "azure",
+          "canonicalType": "Microsoft.App/agents",
+          "providerNamespace": "Microsoft.App",
+          "resourceType": "agents",
+          "metadataSource": "metadata",
+          "moduleDisplayName": "Azure SRE Agent",
+          "moduleDescription": "AVM resource module for Azure SRE Agent.",
+          "alternativeNames": [],
+          "comments": "",
+          "owners": [
+            {
+              "handle": "divyaan23",
+              "type": "user",
+              "displayName": "Divya A N"
+            }
+          ],
+          "telemetryIdPrefix": "46d3xtrf.res.d4a8a94",
+          "alternativeTelemetryIdPrefixes": [],
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-app-agent",
+          "registry": {
+            "status": "not-published",
+            "currentVersion": null,
+            "firstPublishedIn": null,
+            "downloads": null,
+            "marRegistered": null
+          }
+        }
+      ]
     },
     "Microsoft.App/containerApps": {
       "bicep": [
