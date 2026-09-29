@@ -8128,7 +8128,7 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-compute-sshpublickey",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-12",
             "downloads": 6173,
             "marRegistered": null
@@ -39018,7 +39018,7 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-ptn-avd-lza-insights",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.0",
+            "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-07",
             "downloads": 10986,
             "marRegistered": null
@@ -39823,7 +39823,7 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-ptn-azuremonitorwindowsagent",
           "registry": {
             "status": "available",
-            "currentVersion": "2.0.0",
+            "currentVersion": "3.0.0",
             "firstPublishedIn": "2024-08",
             "downloads": 4727,
             "marRegistered": null
