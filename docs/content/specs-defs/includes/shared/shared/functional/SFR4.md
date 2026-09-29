@@ -40,4 +40,8 @@ For cross-references in resource modules, the spec [BCPFR7]({{% siteparam base %
 
 ### Terraform
 
-Currently, no further requirements apply.
+Every Terraform module root **MUST** declare a string input named `location`. The only root exception is a utility module that deploys no Azure resources. Every local child module that deploys Azure resources **MUST** also declare `location`, whether or not it reports its own telemetry; child modules that deploy no Azure resources are exempt. This requirement applies even when the resources themselves are global or scope-based, because the subscription-scoped telemetry deployment needs an Azure region.
+
+The generated telemetry deployment **MUST** use `var.location`. Consumers of modules with a required `location` input must supply a region available in their cloud, including sovereign clouds.
+
+Local module calls **MUST** pass the parent's `var.location` to children that require `location` when the call has no authored location argument. A call that already supplies a location for an individual resource or region **MUST** retain that value. A pattern with optional resource-specific locations can pass the corresponding override to each child when supplied and fall back to the parent's `var.location` when omitted; overrides for different children remain independent. Instrumented children **MUST** also receive the parent's `enable_telemetry` value so a parent opting out cannot enable child telemetry. Example calls **MUST** expose and forward a missing required location and the opt-out where supported, without replacing authored per-item locations.
