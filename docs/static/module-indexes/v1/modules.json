@@ -165,7 +165,7 @@
             "status": "available",
             "currentVersion": "0.13.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 33093,
+            "downloads": 33099,
             "marRegistered": null
           }
         }
@@ -796,7 +796,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 142373,
+            "downloads": 142495,
             "marRegistered": null
           }
         }
@@ -2866,7 +2866,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 450144,
+            "downloads": 450437,
             "marRegistered": null
           }
         }
@@ -2990,7 +2990,7 @@
             "status": "available",
             "currentVersion": "0.2.2",
             "firstPublishedIn": "2025-05",
-            "downloads": 44689,
+            "downloads": 44709,
             "marRegistered": null
           }
         }
@@ -3072,7 +3072,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-03",
-            "downloads": 309085,
+            "downloads": 309295,
             "marRegistered": null
           }
         }
@@ -3696,7 +3696,7 @@
             "status": "available",
             "currentVersion": "0.5.1",
             "firstPublishedIn": "2025-03",
-            "downloads": 149100,
+            "downloads": 149199,
             "marRegistered": null
           }
         }
@@ -4279,7 +4279,7 @@
             "status": "available",
             "currentVersion": "0.3.1",
             "firstPublishedIn": "2024-01",
-            "downloads": 567921,
+            "downloads": 568228,
             "marRegistered": null
           }
         }
@@ -4366,7 +4366,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 80717,
+            "downloads": 80769,
             "marRegistered": null
           }
         }
@@ -4999,7 +4999,7 @@
           "publicRegistryReference": "br/public:avm/res/azure-stack-hci/cluster:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.5.0",
+            "currentVersion": "0.6.0",
             "firstPublishedIn": "2025-02",
             "downloads": null,
             "marRegistered": true
@@ -5219,7 +5219,7 @@
           "publicRegistryReference": "br/public:avm/res/azure-stack-hci/logical-network:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.3.0",
+            "currentVersion": "0.3.1",
             "firstPublishedIn": "2025-03",
             "downloads": null,
             "marRegistered": true
@@ -5519,7 +5519,7 @@
             "status": "available",
             "currentVersion": "2.1.1",
             "firstPublishedIn": "2024-08",
-            "downloads": 15615,
+            "downloads": 15616,
             "marRegistered": null
           }
         }
@@ -5677,7 +5677,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2026-01",
-            "downloads": 12800,
+            "downloads": 12833,
             "marRegistered": null
           }
         }
@@ -5768,7 +5768,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-06",
-            "downloads": 386177,
+            "downloads": 386364,
             "marRegistered": null
           }
         }
@@ -6040,7 +6040,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
-            "downloads": 50236,
+            "downloads": 50307,
             "marRegistered": null
           }
         }
@@ -6221,7 +6221,7 @@
             "status": "available",
             "currentVersion": "0.1.9",
             "firstPublishedIn": "2024-07",
-            "downloads": 81373,
+            "downloads": 81435,
             "marRegistered": null
           }
         }
@@ -6929,7 +6929,7 @@
             "status": "available",
             "currentVersion": "0.11.1",
             "firstPublishedIn": "2024-02",
-            "downloads": 1050857,
+            "downloads": 1051288,
             "marRegistered": null
           }
         }
@@ -7602,7 +7602,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2024-10",
-            "downloads": 45780,
+            "downloads": 45794,
             "marRegistered": null
           }
         }
@@ -7684,7 +7684,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-05",
-            "downloads": 15389,
+            "downloads": 15393,
             "marRegistered": null
           }
         }
@@ -7766,7 +7766,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2024-12",
-            "downloads": 100976,
+            "downloads": 101049,
             "marRegistered": null
           }
         }
@@ -8130,7 +8130,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-12",
-            "downloads": 6193,
+            "downloads": 6196,
             "marRegistered": null
           }
         }
@@ -8226,7 +8226,7 @@
             "status": "available",
             "currentVersion": "0.11.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 132508,
+            "downloads": 132566,
             "marRegistered": null
           }
         }
@@ -8368,7 +8368,7 @@
             "status": "available",
             "currentVersion": "0.21.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 3692200,
+            "downloads": 3694508,
             "marRegistered": null
           }
         }
@@ -8786,7 +8786,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 17219,
+            "downloads": 17223,
             "marRegistered": null
           }
         }
@@ -8868,7 +8868,7 @@
             "status": "available",
             "currentVersion": "0.8.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 794086,
+            "downloads": 794605,
             "marRegistered": null
           }
         }
@@ -9424,7 +9424,7 @@
             "status": "available",
             "currentVersion": "0.8.3",
             "firstPublishedIn": "2025-10",
-            "downloads": 647896,
+            "downloads": 649395,
             "marRegistered": null
           }
         }
@@ -9727,7 +9727,7 @@
             "status": "available",
             "currentVersion": "0.1.6",
             "firstPublishedIn": "2024-09",
-            "downloads": 106811,
+            "downloads": 106875,
             "marRegistered": null
           }
         }
@@ -10029,7 +10029,7 @@
             "status": "available",
             "currentVersion": "0.2.3",
             "firstPublishedIn": "2024-09",
-            "downloads": 558437,
+            "downloads": 558811,
             "marRegistered": null
           }
         }
@@ -10445,7 +10445,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 97280,
+            "downloads": 97316,
             "marRegistered": null
           }
         }
@@ -10703,7 +10703,7 @@
             "status": "available",
             "currentVersion": "2.0.9",
             "firstPublishedIn": "2025-05",
-            "downloads": 76511,
+            "downloads": 76603,
             "marRegistered": null
           }
         }
@@ -10829,7 +10829,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-07",
-            "downloads": 1420,
+            "downloads": 1425,
             "marRegistered": null
           }
         }
@@ -10916,7 +10916,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-09",
-            "downloads": 514,
+            "downloads": 521,
             "marRegistered": null
           }
         }
@@ -10998,7 +10998,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-03",
-            "downloads": 121182,
+            "downloads": 121212,
             "marRegistered": null
           }
         }
@@ -11090,7 +11090,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 107123,
+            "downloads": 107183,
             "marRegistered": null
           }
         }
@@ -11231,7 +11231,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 99540,
+            "downloads": 99580,
             "marRegistered": null
           }
         }
@@ -11323,7 +11323,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 64866,
+            "downloads": 64896,
             "marRegistered": null
           }
         }
@@ -11415,7 +11415,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 102584,
+            "downloads": 102636,
             "marRegistered": null
           }
         }
@@ -11497,7 +11497,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2024-10",
-            "downloads": 20324,
+            "downloads": 20328,
             "marRegistered": null
           }
         }
@@ -12228,7 +12228,7 @@
             "status": "available",
             "currentVersion": "0.3.1",
             "firstPublishedIn": "2024-08",
-            "downloads": 196537,
+            "downloads": 196609,
             "marRegistered": null
           }
         }
@@ -12902,7 +12902,7 @@
             "status": "available",
             "currentVersion": "0.11.0",
             "firstPublishedIn": "2025-05",
-            "downloads": 463769,
+            "downloads": 464046,
             "marRegistered": null
           }
         }
@@ -13600,7 +13600,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-08",
-            "downloads": 26308,
+            "downloads": 26337,
             "marRegistered": null
           }
         }
@@ -14399,7 +14399,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-01",
-            "downloads": 1026,
+            "downloads": 1029,
             "marRegistered": null
           }
         }
@@ -15469,7 +15469,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2025-12",
-            "downloads": 9761,
+            "downloads": 9766,
             "marRegistered": null
           }
         }
@@ -15638,7 +15638,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 92612,
+            "downloads": 92665,
             "marRegistered": null
           }
         }
@@ -16019,7 +16019,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-08",
-            "downloads": 561,
+            "downloads": 564,
             "marRegistered": null
           }
         }
@@ -17041,7 +17041,7 @@
             "status": "available",
             "currentVersion": "0.1.2",
             "firstPublishedIn": "2024-11",
-            "downloads": 101579,
+            "downloads": 101620,
             "marRegistered": null
           }
         }
@@ -17123,7 +17123,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-05",
-            "downloads": 606532,
+            "downloads": 606869,
             "marRegistered": null
           }
         }
@@ -17249,7 +17249,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 10433,
+            "downloads": 10458,
             "marRegistered": null
           }
         }
@@ -17333,7 +17333,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-04",
-            "downloads": 8233,
+            "downloads": 8258,
             "marRegistered": null
           }
         }
@@ -17998,7 +17998,7 @@
             "status": "available",
             "currentVersion": "0.11.0",
             "firstPublishedIn": "2023-09",
-            "downloads": 4425642,
+            "downloads": 4428359,
             "marRegistered": null
           }
         }
@@ -19309,7 +19309,7 @@
             "status": "available",
             "currentVersion": "0.1.2",
             "firstPublishedIn": "2024-06",
-            "downloads": 48498,
+            "downloads": 48520,
             "marRegistered": null
           }
         }
@@ -19444,7 +19444,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 95116,
+            "downloads": 95143,
             "marRegistered": null
           }
         }
@@ -19723,7 +19723,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 33125,
+            "downloads": 33127,
             "marRegistered": null
           }
         }
@@ -19809,7 +19809,7 @@
             "status": "available",
             "currentVersion": "0.5.2",
             "firstPublishedIn": "2024-05",
-            "downloads": 3025003,
+            "downloads": 3026543,
             "marRegistered": null
           }
         }
@@ -20551,7 +20551,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 6444,
+            "downloads": 6449,
             "marRegistered": null
           }
         }
@@ -21087,7 +21087,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-02",
-            "downloads": 181832,
+            "downloads": 181947,
             "marRegistered": null
           }
         }
@@ -21220,7 +21220,7 @@
             "status": "available",
             "currentVersion": "0.5.3",
             "firstPublishedIn": "2024-08",
-            "downloads": 410050,
+            "downloads": 410273,
             "marRegistered": null
           }
         }
@@ -21306,7 +21306,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2025-01",
-            "downloads": 52859,
+            "downloads": 52889,
             "marRegistered": null
           }
         }
@@ -21397,7 +21397,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 570541,
+            "downloads": 570864,
             "marRegistered": null
           }
         }
@@ -21479,7 +21479,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 652411,
+            "downloads": 652866,
             "marRegistered": null
           }
         }
@@ -21648,7 +21648,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2023-11",
-            "downloads": 413963,
+            "downloads": 414216,
             "marRegistered": null
           }
         }
@@ -21938,7 +21938,7 @@
             "status": "available",
             "currentVersion": "0.8.0",
             "firstPublishedIn": "2024-04",
-            "downloads": 561651,
+            "downloads": 561981,
             "marRegistered": null
           }
         }
@@ -22108,7 +22108,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2024-07",
-            "downloads": 202804,
+            "downloads": 203050,
             "marRegistered": null
           }
         }
@@ -22727,7 +22727,7 @@
             "status": "available",
             "currentVersion": "0.3.3",
             "firstPublishedIn": "2024-10",
-            "downloads": 58303,
+            "downloads": 58346,
             "marRegistered": null
           }
         }
@@ -22906,7 +22906,7 @@
             "status": "available",
             "currentVersion": "0.3.4",
             "firstPublishedIn": "2024-05",
-            "downloads": 849507,
+            "downloads": 850132,
             "marRegistered": null
           }
         }
@@ -23075,7 +23075,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2024-10",
-            "downloads": 15027,
+            "downloads": 15031,
             "marRegistered": null
           }
         }
@@ -23189,7 +23189,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-03",
-            "downloads": 38079,
+            "downloads": 38090,
             "marRegistered": null
           }
         }
@@ -23274,7 +23274,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 534616,
+            "downloads": 536162,
             "marRegistered": null
           }
         }
@@ -23534,7 +23534,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2023-12",
-            "downloads": 754993,
+            "downloads": 757118,
             "marRegistered": null
           }
         }
@@ -23696,7 +23696,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-01",
-            "downloads": 11168,
+            "downloads": 11177,
             "marRegistered": null
           }
         }
@@ -24344,7 +24344,7 @@
             "status": "available",
             "currentVersion": "0.5.1",
             "firstPublishedIn": "2024-02",
-            "downloads": 4219598,
+            "downloads": 4222228,
             "marRegistered": null
           }
         }
@@ -24420,7 +24420,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-04",
-            "downloads": 4917,
+            "downloads": 4946,
             "marRegistered": null
           }
         }
@@ -24780,7 +24780,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-07",
-            "downloads": 90372,
+            "downloads": 90422,
             "marRegistered": null
           }
         }
@@ -24994,7 +24994,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-03",
-            "downloads": 1345713,
+            "downloads": 1346756,
             "marRegistered": null
           }
         }
@@ -25814,7 +25814,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 737661,
+            "downloads": 737963,
             "marRegistered": null
           }
         }
@@ -26025,7 +26025,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2024-02",
-            "downloads": 984710,
+            "downloads": 985428,
             "marRegistered": null
           }
         }
@@ -26109,7 +26109,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 20520,
+            "downloads": 20525,
             "marRegistered": null
           }
         }
@@ -26195,7 +26195,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 1309470,
+            "downloads": 1310237,
             "marRegistered": null
           }
         }
@@ -26397,7 +26397,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-02",
-            "downloads": 11671,
+            "downloads": 11688,
             "marRegistered": null
           }
         }
@@ -26961,7 +26961,7 @@
             "status": "available",
             "currentVersion": "0.22.2",
             "firstPublishedIn": "2025-07",
-            "downloads": 6903526,
+            "downloads": 6910026,
             "marRegistered": null
           }
         }
@@ -27609,7 +27609,7 @@
             "status": "available",
             "currentVersion": "0.5.1",
             "firstPublishedIn": "2024-02",
-            "downloads": 1311919,
+            "downloads": 1312756,
             "marRegistered": null
           }
         }
@@ -28112,7 +28112,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 9485,
+            "downloads": 9486,
             "marRegistered": null
           }
         }
@@ -28352,7 +28352,7 @@
             "status": "available",
             "currentVersion": "1.3.2",
             "firstPublishedIn": "2025-01",
-            "downloads": 185034,
+            "downloads": 185170,
             "marRegistered": null
           }
         }
@@ -29056,7 +29056,7 @@
             "status": "available",
             "currentVersion": "0.0.2",
             "firstPublishedIn": "2025-10",
-            "downloads": 18963,
+            "downloads": 18983,
             "marRegistered": null
           }
         }
@@ -29180,7 +29180,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-01",
-            "downloads": 2282,
+            "downloads": 2284,
             "marRegistered": null
           }
         }
@@ -29844,7 +29844,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 3093341,
+            "downloads": 3095921,
             "marRegistered": null
           }
         }
@@ -29964,7 +29964,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 197225,
+            "downloads": 197402,
             "marRegistered": null
           }
         }
@@ -30210,7 +30210,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-06",
-            "downloads": 311146,
+            "downloads": 311379,
             "marRegistered": null
           }
         }
@@ -31286,7 +31286,7 @@
             "status": "available",
             "currentVersion": "0.3.1",
             "firstPublishedIn": "2026-02",
-            "downloads": 88364,
+            "downloads": 88439,
             "marRegistered": null
           }
         }
@@ -31684,7 +31684,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2024-09",
-            "downloads": 492919,
+            "downloads": 493137,
             "marRegistered": null
           }
         }
@@ -32300,7 +32300,7 @@
             "status": "available",
             "currentVersion": "0.0.1",
             "firstPublishedIn": "2026-02",
-            "downloads": 22769,
+            "downloads": 22780,
             "marRegistered": null
           }
         }
@@ -32382,7 +32382,7 @@
             "status": "available",
             "currentVersion": "0.10.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 4387738,
+            "downloads": 4390147,
             "marRegistered": null
           }
         }
@@ -33567,7 +33567,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-05",
-            "downloads": 1092,
+            "downloads": 1104,
             "marRegistered": null
           }
         }
@@ -34136,7 +34136,7 @@
             "status": "available",
             "currentVersion": "2.0.1",
             "firstPublishedIn": "2024-06",
-            "downloads": 9561,
+            "downloads": 9563,
             "marRegistered": null
           }
         }
@@ -34402,7 +34402,7 @@
             "status": "available",
             "currentVersion": "2.0.8",
             "firstPublishedIn": "2024-08",
-            "downloads": 488064,
+            "downloads": 488355,
             "marRegistered": null
           }
         }
@@ -34499,7 +34499,7 @@
             "status": "available",
             "currentVersion": "0.23.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 693560,
+            "downloads": 693876,
             "marRegistered": null
           }
         },
@@ -35723,7 +35723,7 @@
             "status": "available",
             "currentVersion": "0.6.2",
             "firstPublishedIn": "2024-02",
-            "downloads": 95563,
+            "downloads": 95585,
             "marRegistered": null
           }
         }
@@ -35944,7 +35944,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-09",
-            "downloads": 3446,
+            "downloads": 3456,
             "marRegistered": null
           }
         }
@@ -35991,7 +35991,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-09",
-            "downloads": 2923,
+            "downloads": 2929,
             "marRegistered": null
           }
         }
@@ -36543,7 +36543,7 @@
             "status": "available",
             "currentVersion": "0.11.3",
             "firstPublishedIn": "2025-07",
-            "downloads": 217467,
+            "downloads": 217576,
             "marRegistered": null
           }
         }
@@ -36977,7 +36977,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 13164,
+            "downloads": 13171,
             "marRegistered": null
           }
         }
@@ -37026,7 +37026,7 @@
             "status": "available",
             "currentVersion": "0.21.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 564985,
+            "downloads": 565241,
             "marRegistered": null
           }
         }
@@ -37205,7 +37205,7 @@
             "status": "available",
             "currentVersion": "0.17.5",
             "firstPublishedIn": "2025-10",
-            "downloads": 317414,
+            "downloads": 317586,
             "marRegistered": null
           }
         }
@@ -37401,7 +37401,7 @@
             "status": "available",
             "currentVersion": "0.17.2",
             "firstPublishedIn": "2025-03",
-            "downloads": 283716,
+            "downloads": 283842,
             "marRegistered": null
           }
         }
@@ -37978,7 +37978,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2023-12",
-            "downloads": 419579,
+            "downloads": 419771,
             "marRegistered": null
           }
         }
@@ -39020,7 +39020,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 11068,
+            "downloads": 11095,
             "marRegistered": null
           }
         }
@@ -39783,7 +39783,7 @@
             "status": "available",
             "currentVersion": "0.1.3",
             "firstPublishedIn": "2026-02",
-            "downloads": 2114,
+            "downloads": 2166,
             "marRegistered": null
           }
         }
@@ -40414,7 +40414,7 @@
             "status": "available",
             "currentVersion": "0.6.2",
             "firstPublishedIn": "2024-08",
-            "downloads": 22562,
+            "downloads": 22573,
             "marRegistered": null
           }
         }
@@ -40582,7 +40582,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2025-11",
-            "downloads": 4687,
+            "downloads": 4733,
             "marRegistered": null
           }
         }
@@ -41619,7 +41619,7 @@
             "status": "available",
             "currentVersion": "0.7.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 4221274,
+            "downloads": 4230691,
             "marRegistered": null
           }
         }
@@ -41755,7 +41755,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2025-11",
-            "downloads": 466429,
+            "downloads": 467469,
             "marRegistered": null
           }
         }
@@ -42539,7 +42539,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 73215,
+            "downloads": 73255,
             "marRegistered": null
           }
         }
@@ -42581,7 +42581,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-09",
-            "downloads": 3613,
+            "downloads": 3763,
             "marRegistered": null
           }
         }
@@ -42625,7 +42625,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2025-03",
-            "downloads": 255746,
+            "downloads": 255984,
             "marRegistered": null
           }
         }
@@ -42667,7 +42667,7 @@
             "status": "available",
             "currentVersion": "0.1.5",
             "firstPublishedIn": "2024-06",
-            "downloads": 12437,
+            "downloads": 12448,
             "marRegistered": null
           }
         }
@@ -42743,7 +42743,7 @@
             "status": "available",
             "currentVersion": "0.13.2",
             "firstPublishedIn": "2024-09",
-            "downloads": 159552,
+            "downloads": 159562,
             "marRegistered": null
           }
         }
@@ -42825,7 +42825,7 @@
             "status": "available",
             "currentVersion": "0.23.2",
             "firstPublishedIn": "2024-06",
-            "downloads": 486670,
+            "downloads": 486960,
             "marRegistered": null
           }
         }
@@ -42908,7 +42908,7 @@
             "status": "available",
             "currentVersion": "0.14.1",
             "firstPublishedIn": "2023-09",
-            "downloads": 277302,
+            "downloads": 277361,
             "marRegistered": null
           }
         }
@@ -43697,7 +43697,7 @@
             "status": "available",
             "currentVersion": "0.12.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 3694649,
+            "downloads": 3697867,
             "marRegistered": null
           }
         }
@@ -43739,7 +43739,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-09",
-            "downloads": 642855,
+            "downloads": 643992,
             "marRegistered": null
           }
         }
@@ -44337,7 +44337,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-12",
-            "downloads": 41473,
+            "downloads": 41594,
             "marRegistered": null
           }
         }
@@ -44665,7 +44665,7 @@
             "status": "available",
             "currentVersion": "0.10.3",
             "firstPublishedIn": "2024-02",
-            "downloads": 240913,
+            "downloads": 240967,
             "marRegistered": null
           }
         }
