@@ -5370,7 +5370,7 @@
           "publicRegistryReference": "br/public:avm/res/azure-stack-hci/network-interface:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-03",
             "downloads": null,
             "marRegistered": true
@@ -5424,7 +5424,7 @@
           "publicRegistryReference": "br/public:avm/res/azure-stack-hci/virtual-hard-disk:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-03",
             "downloads": null,
             "marRegistered": true
@@ -16521,7 +16521,7 @@
           "publicRegistryReference": "br/public:avm/res/hybrid-compute/machine:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.5.1",
+            "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-06",
             "downloads": null,
             "marRegistered": true
@@ -16607,7 +16607,7 @@
           "publicRegistryReference": "br/public:avm/res/hybrid-compute/machine/extension:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-05",
             "downloads": null,
             "marRegistered": true
