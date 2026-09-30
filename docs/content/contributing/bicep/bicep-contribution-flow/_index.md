@@ -512,7 +512,7 @@ To get started implementing your test in the `main.test.bicep` file, we recommen
 
   {{% notice style="tip" %}}
 
-  📜 [Example of test file](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/helper/src/src.main.test.bicep)
+  📜 [Example of test file](https://github.com/Azure/bicep-registry-modules/blob/main/avm/res/storage/storage-account/tests/e2e/defaults/main.test.bicep)
 
   {{% /notice %}}
 
