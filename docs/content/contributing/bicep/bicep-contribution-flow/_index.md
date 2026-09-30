@@ -423,6 +423,8 @@ Once you enabled the GitHub actions, your workflows will behave as they do in th
 
 To implement your contribution, we kindly ask you to first review the [Bicep specifications]({{% siteparam base %}}/specs/bcp/) and [composition guidelines]({{% siteparam base %}}/contributing/bicep/composition/) in particular to make sure your contribution complies with the repository's design and principles.
 
+For an approved new module, start with the [metadata-only proposed module guide]({{% siteparam base %}}/contributing/module-metadata/#create-only-metadata-for-an-approved-bicep-proposal) if its source is not ready, or [initialize the full module]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/) with `avm init`. Neither command creates the repository workflow described below.
+
 If you're working on a new module, we'd also ask you to create its corresponding workflow file. Each module has its own file, but only differs in very few details, such as its triggers and pipeline variables. As a result, you can either copy & update any other module workflow file (starting with `'avm.[res|ptn|utl].'`) or leverage the following template:
 
 {{% expand title="➕ Module workflow template" %}}
@@ -453,7 +455,7 @@ In forks, workflow validation remains possible through explicit runs (that is, b
 
 {{% notice style="tip" %}}
 
-After any change to a module and before running tests, we highly recommend running the [Set-AVMModule]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files) utility to update all module files that are auto-generated (e.g., the `main.json` & `readme.md` files).
+After editing Bicep source or tests and before running the existing module pipeline, run [`avm pre-commit`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/#update-generated-files-after-editing) on the module directory. It validates, formats, builds, and updates generated `main.json` and `README.md` files for the module and its children. This local command does not replace the registry's current CI tests.
 
 {{% /notice %}}
 
@@ -469,7 +471,7 @@ Once the contribution is implemented and the changes are pushed to your forked r
 
 {{% notice style="tip" %}}
 
-In case your contribution involves changes to a module, you can also optionally leverage the [Validate module locally]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally) utility to validate the updated module from your local host before validating it through its pipeline.
+For local Bicep build and generated-file checks after committing, run [`avm pr-check`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally/#local-build-and-generated-file-checks). For Pester or optional Azure validation and deployment tests, the existing [local-testing script]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally/#pester-and-azure-deployment-tests) remains necessary. Neither replaces the current module pipeline.
 
 {{% /notice %}}
 

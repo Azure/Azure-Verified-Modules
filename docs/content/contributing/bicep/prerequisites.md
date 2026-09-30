@@ -31,22 +31,25 @@ To contribute to this project the following tooling is required:
 
 - [Git](https://git-scm.com/downloads)
 
-  If just installed, don't forget to set both your git username & password
+  If just installed, set your Git name and email:
 
     ```PowerShell
     git config --global user.name "John Doe"
     git config --global user.email "johndoe@example.com"
     ```
 
-- [Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#install-manually)
+- [PowerShell 7.4 or later](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)
+- [`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring)
 
-  {{% notice style="note" %}}
+  ```powershell
+  Install-PSResource Avm.Authoring
+  Import-Module Avm.Authoring
+  avm doctor
+  ```
 
-  Must be manually kept up-to-date.
+  If you already have an older installation, run `avm update` and import the updated module. `Avm.Authoring` downloads and caches its pinned Bicep CLI on demand for authoring commands; no separate Bicep installation is needed for those commands. See [initializing and updating Bicep module files]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/).
 
-  {{% /notice %}}
-
-- [Pester](https://pester.dev/docs/introduction/installation)
+- [Pester](https://pester.dev/docs/introduction/installation) for the existing Bicep Pester and local deployment test scripts. `avm pre-commit` does not run those tests.
 - [Visual Studio Code](https://code.visualstudio.com/download)
   - [Bicep extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
 

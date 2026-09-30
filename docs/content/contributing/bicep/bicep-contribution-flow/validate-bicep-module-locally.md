@@ -3,6 +3,19 @@ title: Validate Module Locally
 description: Validate a Bicep Module Locally for the Azure Verified Modules (AVM) program
 ---
 
+## Local build and generated-file checks
+
+After running [`avm pre-commit`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/#update-generated-files-after-editing), review and commit its changes. From the Bicep registry checkout, check that the module's metadata, Bicep format/lint/build, compiled `main.json`, and README are current:
+
+```powershell
+$modulePath = 'avm/res/<group>/<module>'
+avm pr-check -Ecosystem bicep -Path $modulePath
+```
+
+`avm pr-check` requires a clean Git working tree. For Bicep, it does **not** run Pester, policy or convention checks, deployment validation, or Azure deployments; its unsupported policy and convention steps are skipped. `avm test` only builds Bicep files, and its `unit` and `e2e` tiers are Terraform-only. Keep using the existing module pipeline and the local script below for the tests they provide.
+
+## Pester and Azure deployment tests
+
 Use this script to test a module from your PC locally, without a CI environment. You can use it to run only the static validation (Pester tests), a deployment validation (dryRun) or an actual deployment to Azure. In the latter cases the script also takes care to replace placeholder tokens in the used module test & template files for you.
 
 ## Location
