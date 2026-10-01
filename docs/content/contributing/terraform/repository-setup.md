@@ -91,7 +91,7 @@ Use `-ModuleType pattern` or `-ModuleType utility` for pattern and utility modul
 1. Publishes the first commit to `main`: `metadata.json`, a minimal module scaffold, and the managed files, telemetry, and README added by `avm pre-commit`. `_header.md` starts with the module's display name and description.
 1. Opens a pull request in `microsoft/github-operations` from your fork, requesting the `Azure Verified Modules` and Terraform Cloud GitHub App installations, and prints its link.
 1. Clones the repository into the folder.
-1. Reminds you to tie the repository to the shared AVM JIT rule in [step 4](#4-tie-the-repository-to-the-shared-avm-jit-rule). `avm init` cannot check this portal setting, so it lists the step as `manual` every time it completes.
+1. Reminds you of the two final Open Source Portal steps: tie the repository to the shared AVM JIT rule in [step 4](#4-tie-the-repository-to-the-shared-avm-jit-rule), then, last, leave `jaredholgate` and `jatracey` as the only Direct Owners in [step 5](#5-leave-only-jaredholgate-and-jatracey-as-direct-owners). `avm init` cannot check these portal settings, so it lists both as `manual` every time it completes.
 
 If a stage fails, or you stop the command, fix the reported problem and run the same command again on the same machine. Each stage checks what already exists, so `avm init` continues where it stopped.
 
@@ -107,7 +107,7 @@ Click **Complete Setup** and use the following settings:
 | --- | --- |
 | Classify the repository | Production |
 | Assign a Service tree or Opt-out | Azure Verified Modules / AVM |
-| Direct owners | Add yourself, `jaredholgate`, and `jatracey`. Add `azure-verified-modules-module-owners` as fallback security group. You add yourself temporarily so you can configure JIT in step 4; you will remove yourself afterwards. |
+| Direct owners | Add yourself, `jaredholgate`, and `jatracey`. Add `azure-verified-modules-module-owners` as fallback security group. You add yourself temporarily so you can finish the setup; [step 5](#5-leave-only-jaredholgate-and-jatracey-as-direct-owners) removes you. |
 | Public open source licensed project? | Yes |
 | What type of open source? | Sample code |
 | License | MIT |
@@ -130,7 +130,7 @@ Click **Finish setup + start business review**, then **View repository**, then *
 {{% expand title="➕ If you do NOT see the Complete Setup link" %}}
 
 1. Go to the **Compliance** tab and fill out:
-    - **Direct owners:** Add yourself, `jaredholgate`, and `jatracey`. Add `azure-verified-modules-module-owners` as fallback. You add yourself temporarily so you can configure JIT in step 4; you will remove yourself afterwards.
+    - **Direct owners:** Add yourself, `jaredholgate`, and `jatracey`. Add `azure-verified-modules-module-owners` as fallback. You add yourself temporarily so you can finish the setup; [step 5](#5-leave-only-jaredholgate-and-jatracey-as-direct-owners) removes you.
     - **Classify the repository:** Production
     - **Service tree:** Azure Verified Modules / AVM
 1. Go back to **Overview** and click **Elevate your access** if available.
@@ -160,18 +160,27 @@ The result page shows whether the tie is active or waiting for approval. On a re
 A pending tie must be approved by an owner of the `service-AVM-azure-verified-modules-module-owners` rule (an AVM core team member). Ask the AVM core team to approve it. Once approved, just-in-time elevation for the repository is governed by the shared AVM rule.
 {{% /notice %}}
 
-### Remove yourself as a Direct Owner
+## 5. Leave only jaredholgate and jatracey as Direct Owners
 
-You were added as a Direct Owner so you could configure JIT. Once you have proposed the tie, or emailed the AVM core team, remove your own account so that only `jaredholgate` and `jatracey` remain as Direct Owners.
+{{% notice style="important" %}}
+This is the last step of the setup. Do it once everything else is done: `avm init` has completed and the JIT tie from step 4 is in place. The app installation request can still be waiting for approval.
+{{% /notice %}}
 
-1. On the Open Source Portal, open the repository's **Compliance** tab.
-1. Under **Direct owners**, remove your own account, leaving only `jaredholgate` and `jatracey`.
+When the setup is finished, `jaredholgate` and `jatracey` must be the only individual Direct Owners. Remove everyone else, including yourself and whoever created the repository, and keep `azure-verified-modules-module-owners` as the fallback security group.
+
+1. Elevate to administrator: on the repository's **Just-in-time Access** tab in the Open Source Portal, select **Next**, enter a justification, and select the elevate button.
+1. On the repository overview, under **Direct Owners**, select **Change owners**. The button is only shown while you are elevated.
+1. Remove every individual Direct Owner other than `jaredholgate` and `jatracey`. The first two owner slots are required, and **Save** stays disabled while either is empty. If removing someone empties a required slot, remove `jaredholgate` or `jatracey` from a later slot and add them to the empty required slot instead.
+1. Keep the `azure-verified-modules-module-owners` fallback security group, then select **Save**.
+1. Reload the overview and check that **Individual Direct Owners** lists only `jaredholgate` and `jatracey`.
+
+If you cannot change the Direct Owners, email [avm@microsoft.com](mailto:avm@microsoft.com) with the repository name so the AVM core team can complete this step.
 
 {{% notice style="info" %}}
 Module owners retain day-to-day access through the `azure-verified-modules-module-owners` security group and just-in-time elevation, so you do not need to remain a Direct Owner.
 {{% /notice %}}
 
-## 5. Wait for the GitHub App and repository sync
+## What happens next
 
 The GitHub Apps are installed once the app installation pull request is approved. Running `avm init` again shows whether the request is still pending.
 
