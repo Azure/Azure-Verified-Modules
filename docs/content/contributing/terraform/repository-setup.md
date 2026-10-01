@@ -91,6 +91,7 @@ Use `-ModuleType pattern` or `-ModuleType utility` for pattern and utility modul
 1. Publishes the first commit to `main`: `metadata.json`, a minimal module scaffold, and the managed files, telemetry, and README added by `avm pre-commit`. `_header.md` starts with the module's display name and description.
 1. Opens a pull request in `microsoft/github-operations` from your fork, requesting the `Azure Verified Modules` and Terraform Cloud GitHub App installations, and prints its link.
 1. Clones the repository into the folder.
+1. Reminds you to tie the repository to the shared AVM JIT rule in [step 4](#4-tie-the-repository-to-the-shared-avm-jit-rule). `avm init` cannot check this portal setting, so it lists the step as `manual` every time it completes.
 
 If a stage fails, or you stop the command, fix the reported problem and run the same command again on the same machine. Each stage checks what already exists, so `avm init` continues where it stopped.
 
@@ -146,17 +147,17 @@ Maintain the module's details and full `owners` array through [metadata code-own
 
 New repositories default to **JIT v1**. AVM repositories must use **JIT v2** and be tied to the shared `service-AVM-azure-verified-modules-module-owners` rule, so that just-in-time elevation is governed centrally by the AVM team rather than by a repository-specific rule. Proposing the tie also upgrades the repository to JIT v2.
 
-This is a one-off manual action in the Open Source Portal. You need Direct Owner access to the repository, configured in the previous step. If you do not have permission to propose the tie, skip this step and email [avm@microsoft.com](mailto:avm@microsoft.com) with the repository name so the AVM core team can complete it.
+This is a one-off manual action in the Open Source Portal. Do it after `avm init` has published the first commit, because it changes how you elevate. You need Direct Owner access to the repository, configured in the previous step. If you do not have permission to propose the tie, skip this step and email [avm@microsoft.com](mailto:avm@microsoft.com) with the repository name so the AVM core team can complete it.
 
 1. Open the repository overview on the Open Source Portal: `https://repos.opensource.microsoft.com/orgs/Azure/repos/<repository name>`.
 1. Click **Advanced JIT options**, then select **Propose a new tie**.
 1. Under **Propose tying a new rule to this repository**, enter the Rule ID `service-AVM-azure-verified-modules-module-owners` and click **Review**.
 1. Confirm the details and click **Create tie**.
 
-The tie is created in a **pending approval** state.
+The result page shows whether the tie is active or waiting for approval. On a repository still using JIT v1, a tie proposed by a Direct Owner can become active immediately. Once it is active, the repository overview shows **JIT version: JIT v2** and the shared rule.
 
 {{% notice style="info" %}}
-The pending tie must be approved by an owner of the `service-AVM-azure-verified-modules-module-owners` rule (an AVM core team member). Ask the AVM core team to approve it. Once approved, just-in-time elevation for the repository is governed by the shared AVM rule.
+A pending tie must be approved by an owner of the `service-AVM-azure-verified-modules-module-owners` rule (an AVM core team member). Ask the AVM core team to approve it. Once approved, just-in-time elevation for the repository is governed by the shared AVM rule.
 {{% /notice %}}
 
 ### Remove yourself as a Direct Owner
