@@ -65,6 +65,18 @@ gh auth login --hostname "github.com" --web --git-protocol "https" --scopes "wor
 
 `avm init` needs the `repo`, `read:org`, and `workflow` scopes, and `gh auth login` requests the first two by default. If you are already signed in, run `gh auth refresh --hostname "github.com" --scopes "workflow"` instead. If you set `GH_TOKEN`, that token needs the same scopes.
 
+### Optional: use an AI agent
+
+An AI agent such as GitHub Copilot CLI can guide you through the rest of this page with the [`avm-tf-module-repository-creation` agent skill](https://github.com/Azure/azure-verified-modules-tools/blob/main/.github/skills/avm-tf-module-repository-creation/SKILL.md). The skill collects the approved values from the module request issue, runs `avm init`, tells you what to enter in the Open Source Portal, checks the result, and finishes with [step 5](#5-leave-only-jaredholgate-and-jatracey-as-direct-owners). It asks for your approval before it creates the repository and before it changes anything in the Open Source Portal for you.
+
+Install the skill for your user account with GitHub CLI 2.90.0 or later:
+
+```pwsh
+gh skill install Azure/azure-verified-modules-tools .github/skills/avm-tf-module-repository-creation --scope user
+```
+
+Then ask your agent, for example, to "create the Terraform module repository for avm-res-network-virtualnetwork". The command installs the skill from the latest `Avm.Authoring` release, so it matches the released `avm init`. Run `gh skill update avm-tf-module-repository-creation` to update it later.
+
 ### Run avm init
 
 Run these commands from the folder that should contain the repository's local folder. Replace the placeholders with the approved values.
