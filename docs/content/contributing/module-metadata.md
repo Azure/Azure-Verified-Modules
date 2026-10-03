@@ -23,24 +23,30 @@ Every new Bicep or Terraform root module, and every new child module or submodul
 - **Root modules** get the full metadata shape, including the `owners` array.
 - **Child modules and submodules** get the reduced, inherited-owner shape described above; they must not contain `owners`.
 
-Use `Initialize-AvmModuleMetadata` from the [`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring) PowerShell module to scaffold the file for either ecosystem. It validates the supplied values against the versioned schema and writes `metadata.json` without overwriting an existing file. You must supply the approved values yourself; the command never infers or backfills them.
+Use `avm init` from the [`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring) PowerShell module for one-time initialization. Specify `-Ecosystem` (`bicep` or `terraform`) and `-ModuleType` (`resource`, `pattern`, or `utility`). In an interactive terminal, the command prompts for missing required metadata fields; enter only approved values. For unattended runs, provide all required fields through `-InputObject`, or initialization fails rather than guessing them. The command supplies the required `$schema` URI, validates the metadata, and does not overwrite an existing file. Terraform initialization creates only `metadata.json`; add Terraform source files separately.
 
-```pwsh
-$metadata = @{
-    moduleDisplayName = '<approved display name>'
-    moduleDescription = '<approved description>'
-    canonicalType     = '<approved ARM resource type or taxonomy>'
-    owners            = @('<approved handle>')
-}
-
-Initialize-AvmModuleMetadata -Path . -InputObject $metadata -Ecosystem terraform -ModuleType resource -WhatIf
-```
-
-`-Ecosystem` (`bicep` or `terraform`) and `-ModuleType` (`resource`, `pattern`, or `utility`) are required. Add `-ChildModule` to scaffold the reduced, owner-less shape for a child module or submodule, omitting `owners` from the input. `-UpdateSource` applies matching Bicep source literals and is not valid for Terraform. Run with `-WhatIf` first to review the plan, then re-run without it to write the file.
+For complete Bicep source scaffolding, see [initialize and update Bicep module files]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/). For Terraform, the [owner-only repository setup]({{% siteparam base %}}/contributing/terraform/repository-setup/) already creates root metadata; local `avm init` does not create a GitHub repository.
 
 Validate an existing file with `avm metadata validate`, or inspect one with `avm metadata show`.
 
 Approved modules may carry `metadata.json` before their source exists. The catalog treats a metadata-only module as `Proposed` until it is published.
+
+### Create only metadata for an approved Bicep proposal
+
+After the AVM core team approves a Bicep module proposal, you can add its root `metadata.json` before `main.bicep` exists. In PowerShell 7, run this example from the root of [Azure/bicep-registry-modules](https://github.com/Azure/bicep-registry-modules), replacing the path with the approved module path. The install step gets the latest `Avm.Authoring` release for your user account, including when an older release is already installed.
+
+```pwsh
+$modulePath = 'avm/res/<approved group>/<approved module>'
+Install-Module Avm.Authoring -Scope CurrentUser -Force
+Import-Module Avm.Authoring -Force
+avm init -Ecosystem bicep -ModuleType resource -Path $modulePath -Proposed
+```
+
+`avm init` prompts for the approved display name, description, ARM resource type (`canonicalType`), and root owners if they are not supplied. It generates the Bicep `telemetryIdPrefix` from cryptographically secure random bytes: `46d3xbcp.res.` followed by seven lowercase hexadecimal characters. It checks for collisions with current and historical identifiers from the [published module catalog](https://github.com/Azure/Azure-Verified-Modules/blob/main/docs/static/module-indexes/v1/modules.json) and local module metadata. If the catalog is unavailable, it warns and continues with the local inventory; check against the latest catalog during review because generation does not reserve the prefix globally.
+
+With `-Proposed`, the command creates the target directory if needed and writes **only `metadata.json`**; it does not create `main.bicep`, `main.json`, or version files. An existing `metadata.json` is never overwritten. Once merged, the module stays `Proposed` in the catalog until publication.
+
+For a pattern or utility module, use the corresponding `-ModuleType pattern` or `utility` and its approved `canonicalType` taxonomy. For a child module, add `-ChildModule`; ownership is inherited from its root, so do not supply `owners`. See the [helper submodule rules](#helper-submodules) where applicable.
 
 ## Fields you can maintain
 
@@ -49,10 +55,10 @@ The versioned schema referenced by the required `$schema` URI defines the suppor
 | Field | Guidance |
 | --- | --- |
 | `$schema` | Keep the required versioned schema URI. It identifies the module metadata schema. |
-| `moduleDisplayName`, `moduleDescription` | Maintain the module's curated display name and description. For Bicep, `moduleDescription` must match the `metadata description` literal in `main.bicep`. `moduleDisplayName` is independent of the `metadata name` literal and does not have to match it. |
+| `moduleDisplayName`, `moduleDescription` | Maintain the module's curated display name and description. In Bicep, these values are independent of the `metadata name` and `metadata description` literals in `main.bicep`; neither needs to match its source counterpart. |
 | `canonicalType` | The real ARM resource type, or the approved pattern/utility taxonomy. [Helper submodules](#helper-submodules) use `helper`. |
 | `owners` | Root only: a flat array of strings containing every approved owner. Use bare GitHub handles for individuals and qualified handles such as `@Azure/team-name` for approved existing teams. |
-| `telemetryIdPrefix` | Current Bicep prefixes must use `46d3xbcp.<kind>.<seven lowercase hexadecimal characters>` (20 characters), where `<kind>` is `res`, `ptn`, or `utl`. Do not generate a replacement as part of an ownership or descriptive edit. |
+| `telemetryIdPrefix` | Current Bicep prefixes must use `46d3xbcp.<kind>.<seven lowercase hexadecimal characters>` (20 characters), where `<kind>` is `res`, `ptn`, or `utl`. [Generate one for an approved new module](#create-only-metadata-for-an-approved-bicep-proposal); do not generate a replacement as part of an ownership or descriptive edit. |
 | `alternativeTelemetryIdPrefixes` | For Bicep, retain all previously assigned prefixes here when the current prefix changes, in the same root or child `metadata.json`. These historical identifiers are not used in deployment names. |
 | `alternativeNames`, `comments` | Optional root-module aliases and notes. These are public metadata. |
 
@@ -76,7 +82,7 @@ Terraform submodules are excluded from the CSV indexes entirely, not only helper
 1. Validate metadata using the repository's approved tooling and satisfy its required reviews before merging. Approval from an eligible member of **either** team satisfies metadata code-owner review; approval from both teams is **not** required. Being listed in the module's `owners` array does not by itself authorize someone to approve. Any code changes in the same pull request still need their normal code review and tests.
 1. The next [scheduled catalog sync](#catalog-updates) publishes the merged metadata change. Do not edit the generated CSV or JSON output or request a separate index update.
 
-**Metadata-only changes must not trigger a module release.** Do not change version files or create a release just to update owners or other metadata. A Bicep description correction may also require updating the `metadata description` literal in `main.bicep`; that is a source change and must follow normal validation and release rules, not be treated as metadata-only. Display names are independent of source literals and need no source change.
+**Metadata-only changes must not trigger a module release.** Do not change version files or create a release just to update owners or other metadata. Changing `moduleDescription` does not require changing the Bicep `metadata description` literal: they serve different purposes. If a Bicep source literal itself needs correction, follow normal source validation and release rules rather than treating it as metadata-only.
 
 In [Azure/bicep-registry-modules](https://github.com/Azure/bicep-registry-modules), the root `owners` array controls [reviewer notifications](https://github.com/Azure/azure-verified-modules-tools/blob/main/.github/workflows/repository-management-pr-reviewer-routing.yml), including for child modules. It does not generate per-module [`CODEOWNERS` entries](https://github.com/Azure/bicep-registry-modules/blob/main/.github/CODEOWNERS) or require a module owner's approval for ordinary code changes. An ownerless module is routed to `@Azure/azure-verified-modules-module-owners` for review. The final `metadata.json` rule in `CODEOWNERS` still protects metadata changes with the two metadata code-owner teams; an eligible member of either team can approve.
 

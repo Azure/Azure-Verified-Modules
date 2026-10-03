@@ -39,7 +39,7 @@ For a step-by-step explanation with detailed instructions, refer to the followin
   * **Parent module template**: In the `main.bicep` template of the child module direct parent, add a `enableReferencedModulesTelemetry` variable with a value of `false`, and pass it as the `enableTelemetry` value down to the child module deployment.
   * **Version**: Add the `version.json` file to the child module folder and set version to `0.1`.
   * **Changelog**: Add a new `CHANGELOG.md` file to the child module folder and update the changelog of all its versioned parents with a new patch version, up to the top-level parent.
-  * **Set-AVMModule**: Run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility explicitly on the affected bicep modules, i.e., the child module(s) and all their parent modules up to the top-level module, test your changes and raise a PR.
+  * **Generate module artifacts**: Run [`avm pre-commit`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/#update-generated-files-after-editing) on the top-level parent module. It processes that module and its descendants, updating their compiled templates and READMEs. Test your changes and raise a PR.
 
 ## Prerequisites
 
@@ -204,11 +204,10 @@ Please follow the steps below:
 
     ```
 
-- Run the [Set-AVMModule](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1) utility, calling it explicitly on all affected modules.
+- Run [`avm pre-commit`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/#update-generated-files-after-editing) on the top-level parent module to process the entire module family:
   ```powershell
-  foreach ($modulePath in $affectedModulePaths) {
-    Set-AVMModule -ModuleFolderPath $modulePath
-  }
+  $topLevelModulePath = 'avm/res/storage/storage-account'
+  avm pre-commit -Ecosystem bicep -Path $topLevelModulePath
   ```
 
 - Test your changes via the top-level module pipeline, raise a PR and attach a status badge proving successful validation.
