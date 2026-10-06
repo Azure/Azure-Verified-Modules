@@ -165,7 +165,7 @@
             "status": "available",
             "currentVersion": "0.13.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 33288,
+            "downloads": 33519,
             "marRegistered": null
           }
         }
@@ -755,7 +755,7 @@
           "publicRegistryReference": "br/public:avm/res/api-management/service:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.14.4",
+            "currentVersion": "0.15.0",
             "firstPublishedIn": "2023-12",
             "downloads": null,
             "marRegistered": true
@@ -796,7 +796,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 146641,
+            "downloads": 150718,
             "marRegistered": null
           }
         }
@@ -2866,7 +2866,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 472793,
+            "downloads": 488184,
             "marRegistered": null
           }
         }
@@ -2990,7 +2990,7 @@
             "status": "available",
             "currentVersion": "0.2.2",
             "firstPublishedIn": "2025-05",
-            "downloads": 50773,
+            "downloads": 54549,
             "marRegistered": null
           }
         }
@@ -3072,7 +3072,7 @@
             "status": "available",
             "currentVersion": "0.5.1",
             "firstPublishedIn": "2024-03",
-            "downloads": 320822,
+            "downloads": 329266,
             "marRegistered": null
           }
         }
@@ -3696,7 +3696,7 @@
             "status": "available",
             "currentVersion": "0.5.1",
             "firstPublishedIn": "2025-03",
-            "downloads": 151925,
+            "downloads": 153866,
             "marRegistered": null
           }
         }
@@ -4279,7 +4279,7 @@
             "status": "available",
             "currentVersion": "0.3.1",
             "firstPublishedIn": "2024-01",
-            "downloads": 576234,
+            "downloads": 582485,
             "marRegistered": null
           }
         }
@@ -4366,7 +4366,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 81423,
+            "downloads": 81943,
             "marRegistered": null
           }
         }
@@ -5040,7 +5040,7 @@
             "status": "available",
             "currentVersion": "2.0.2",
             "firstPublishedIn": "2024-08",
-            "downloads": 8737,
+            "downloads": 8775,
             "marRegistered": null
           }
         }
@@ -5260,7 +5260,7 @@
             "status": "available",
             "currentVersion": "2.0.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 19744,
+            "downloads": 19812,
             "marRegistered": null
           }
         }
@@ -5478,7 +5478,7 @@
           "publicRegistryReference": "br/public:avm/res/azure-stack-hci/virtual-machine-instance:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.2",
+            "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-07",
             "downloads": null,
             "marRegistered": true
@@ -5519,7 +5519,7 @@
             "status": "available",
             "currentVersion": "2.1.1",
             "firstPublishedIn": "2024-08",
-            "downloads": 15676,
+            "downloads": 15731,
             "marRegistered": null
           }
         }
@@ -5601,7 +5601,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 2659,
+            "downloads": 2724,
             "marRegistered": null
           }
         }
@@ -5677,7 +5677,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2026-01",
-            "downloads": 13191,
+            "downloads": 13380,
             "marRegistered": null
           }
         }
@@ -5768,7 +5768,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-06",
-            "downloads": 393621,
+            "downloads": 399726,
             "marRegistered": null
           }
         }
@@ -6040,7 +6040,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
-            "downloads": 52505,
+            "downloads": 53925,
             "marRegistered": null
           }
         }
@@ -6221,7 +6221,7 @@
             "status": "available",
             "currentVersion": "0.1.9",
             "firstPublishedIn": "2024-07",
-            "downloads": 82791,
+            "downloads": 83902,
             "marRegistered": null
           }
         }
@@ -6769,7 +6769,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-07",
-            "downloads": 1007,
+            "downloads": 1046,
             "marRegistered": null
           }
         }
@@ -6929,7 +6929,7 @@
             "status": "available",
             "currentVersion": "0.11.1",
             "firstPublishedIn": "2024-02",
-            "downloads": 1067368,
+            "downloads": 1077300,
             "marRegistered": null
           }
         }
@@ -7227,7 +7227,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-06",
-            "downloads": 16358,
+            "downloads": 16663,
             "marRegistered": null
           }
         }
@@ -7473,7 +7473,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-08",
-            "downloads": 426,
+            "downloads": 452,
             "marRegistered": null
           }
         }
@@ -7602,7 +7602,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2024-10",
-            "downloads": 46202,
+            "downloads": 46812,
             "marRegistered": null
           }
         }
@@ -7684,7 +7684,7 @@
             "status": "available",
             "currentVersion": "0.4.1",
             "firstPublishedIn": "2024-05",
-            "downloads": 15842,
+            "downloads": 16403,
             "marRegistered": null
           }
         }
@@ -7766,7 +7766,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2024-12",
-            "downloads": 102056,
+            "downloads": 102742,
             "marRegistered": null
           }
         }
@@ -7896,7 +7896,7 @@
             "status": "available",
             "currentVersion": "0.1.3",
             "firstPublishedIn": "2024-08",
-            "downloads": 2166,
+            "downloads": 2193,
             "marRegistered": null
           }
         }
@@ -8048,7 +8048,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 7610,
+            "downloads": 7754,
             "marRegistered": null
           }
         }
@@ -8130,7 +8130,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-12",
-            "downloads": 6417,
+            "downloads": 6658,
             "marRegistered": null
           }
         }
@@ -8226,7 +8226,7 @@
             "status": "available",
             "currentVersion": "0.11.1",
             "firstPublishedIn": "2024-02",
-            "downloads": 135185,
+            "downloads": 137754,
             "marRegistered": null
           }
         }
@@ -8368,7 +8368,7 @@
             "status": "available",
             "currentVersion": "0.21.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 3733671,
+            "downloads": 3776488,
             "marRegistered": null
           }
         }
@@ -8786,7 +8786,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 17355,
+            "downloads": 17436,
             "marRegistered": null
           }
         }
@@ -8868,7 +8868,7 @@
             "status": "available",
             "currentVersion": "0.8.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 809944,
+            "downloads": 821124,
             "marRegistered": null
           }
         }
@@ -9424,7 +9424,7 @@
             "status": "available",
             "currentVersion": "0.8.3",
             "firstPublishedIn": "2025-10",
-            "downloads": 663271,
+            "downloads": 675553,
             "marRegistered": null
           }
         }
@@ -9727,7 +9727,7 @@
             "status": "available",
             "currentVersion": "0.1.7",
             "firstPublishedIn": "2024-09",
-            "downloads": 107875,
+            "downloads": 108642,
             "marRegistered": null
           }
         }
@@ -9782,11 +9782,11 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Available",
-          "moduleName": "avm/res/db-for-my-sql/flexible-server/advanced-threat-protection",
-          "modulePath": "avm/res/db-for-my-sql/flexible-server/advanced-threat-protection",
+          "moduleStatus": "Proposed",
+          "moduleName": "avm/res/db-for-my-sql/flexible-server/advanced-threat-protection-setting",
+          "modulePath": "avm/res/db-for-my-sql/flexible-server/advanced-threat-protection-setting",
           "repository": "Azure/bicep-registry-modules",
-          "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/db-for-my-sql/flexible-server/advanced-threat-protection",
+          "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/db-for-my-sql/flexible-server/advanced-threat-protection-setting",
           "parentModule": "avm/res/db-for-my-sql/flexible-server",
           "familyModule": "avm/res/db-for-my-sql/flexible-server",
           "provider": null,
@@ -9809,13 +9809,13 @@
           "alternativeTelemetryIdPrefixes": [
             "46d3xbcp.res.dbformysql-flexisrv-advdthreatprot"
           ],
-          "publicRegistryReference": "br/public:avm/res/db-for-my-sql/flexible-server/advanced-threat-protection:X.Y.Z",
+          "publicRegistryReference": "br/public:avm/res/db-for-my-sql/flexible-server/advanced-threat-protection-setting:X.Y.Z",
           "registry": {
-            "status": "available",
-            "currentVersion": "0.1.0",
-            "firstPublishedIn": "2026-05",
+            "status": "not-published",
+            "currentVersion": null,
+            "firstPublishedIn": null,
             "downloads": null,
-            "marRegistered": true
+            "marRegistered": false
           }
         }
       ],
@@ -10029,7 +10029,7 @@
             "status": "available",
             "currentVersion": "0.2.3",
             "firstPublishedIn": "2024-09",
-            "downloads": 574565,
+            "downloads": 588133,
             "marRegistered": null
           }
         }
@@ -10445,7 +10445,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 99612,
+            "downloads": 100916,
             "marRegistered": null
           }
         }
@@ -10703,7 +10703,7 @@
             "status": "available",
             "currentVersion": "2.0.9",
             "firstPublishedIn": "2025-05",
-            "downloads": 77740,
+            "downloads": 78590,
             "marRegistered": null
           }
         }
@@ -10829,7 +10829,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-07",
-            "downloads": 1491,
+            "downloads": 1545,
             "marRegistered": null
           }
         }
@@ -10914,9 +10914,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-databricks-accessconnector",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-09",
-            "downloads": 1222,
+            "downloads": 1408,
             "marRegistered": null
           }
         }
@@ -10998,7 +10998,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-03",
-            "downloads": 122389,
+            "downloads": 123250,
             "marRegistered": null
           }
         }
@@ -11085,7 +11085,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 108266,
+            "downloads": 108959,
             "marRegistered": null
           }
         }
@@ -11221,7 +11221,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 100726,
+            "downloads": 101406,
             "marRegistered": null
           }
         }
@@ -11308,7 +11308,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 65398,
+            "downloads": 65717,
             "marRegistered": null
           }
         }
@@ -11395,7 +11395,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 103644,
+            "downloads": 104312,
             "marRegistered": null
           }
         }
@@ -11477,7 +11477,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2024-10",
-            "downloads": 20637,
+            "downloads": 20817,
             "marRegistered": null
           }
         }
@@ -12208,7 +12208,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-08",
-            "downloads": 198763,
+            "downloads": 200231,
             "marRegistered": null
           }
         }
@@ -12485,7 +12485,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Deprecated",
           "moduleName": "avm/res/dev-test-lab/lab/secret",
           "modulePath": "avm/res/dev-test-lab/lab/secret",
           "repository": "Azure/bicep-registry-modules",
@@ -12633,7 +12633,7 @@
           "publicRegistryReference": "br/public:avm/res/devices/iot-hub:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.3.0",
+            "currentVersion": "0.4.0",
             "firstPublishedIn": "2026-03",
             "downloads": null,
             "marRegistered": true
@@ -12648,10 +12648,10 @@
           "ecosystem": "bicep",
           "moduleType": "resource",
           "moduleStatus": "Proposed",
-          "moduleName": "avm/res/devices/iot-hub/consumergroup",
-          "modulePath": "avm/res/devices/iot-hub/consumergroup",
+          "moduleName": "avm/res/devices/iot-hub/event-hub-endpoint/consumergroup",
+          "modulePath": "avm/res/devices/iot-hub/event-hub-endpoint/consumergroup",
           "repository": "Azure/bicep-registry-modules",
-          "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/devices/iot-hub/consumergroup",
+          "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/devices/iot-hub/event-hub-endpoint/consumergroup",
           "parentModule": "avm/res/devices/iot-hub",
           "familyModule": "avm/res/devices/iot-hub",
           "provider": null,
@@ -12674,7 +12674,7 @@
           "alternativeTelemetryIdPrefixes": [
             "46d3xbcp.res.iot-hub-consumer-group"
           ],
-          "publicRegistryReference": "br/public:avm/res/devices/iot-hub/consumergroup:X.Y.Z",
+          "publicRegistryReference": "br/public:avm/res/devices/iot-hub/event-hub-endpoint/consumergroup:X.Y.Z",
           "registry": {
             "status": "not-published",
             "currentVersion": null,
@@ -12882,7 +12882,7 @@
             "status": "available",
             "currentVersion": "0.11.0",
             "firstPublishedIn": "2025-05",
-            "downloads": 470731,
+            "downloads": 475031,
             "marRegistered": null
           }
         }
@@ -13580,7 +13580,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-08",
-            "downloads": 26855,
+            "downloads": 27373,
             "marRegistered": null
           }
         }
@@ -14049,7 +14049,7 @@
             "status": "available",
             "currentVersion": "3.0.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 6577,
+            "downloads": 6615,
             "marRegistered": null
           }
         }
@@ -14379,7 +14379,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-01",
-            "downloads": 1192,
+            "downloads": 1399,
             "marRegistered": null
           }
         }
@@ -14667,7 +14667,7 @@
             "status": "available",
             "currentVersion": "0.1.2",
             "firstPublishedIn": "2026-02",
-            "downloads": 1522,
+            "downloads": 1565,
             "marRegistered": null
           }
         }
@@ -15449,7 +15449,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2025-12",
-            "downloads": 10025,
+            "downloads": 10392,
             "marRegistered": null
           }
         }
@@ -15616,9 +15616,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventhub-namespace",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2025-04",
-            "downloads": 95644,
+            "downloads": 98804,
             "marRegistered": null
           }
         }
@@ -15997,9 +15997,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-fabric-capacity",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-08",
-            "downloads": 1076,
+            "downloads": 1139,
             "marRegistered": null
           }
         }
@@ -16041,7 +16041,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-11",
-            "downloads": 1201,
+            "downloads": 1330,
             "marRegistered": null
           }
         }
@@ -16770,7 +16770,7 @@
             "status": "available",
             "currentVersion": "2.0.4",
             "firstPublishedIn": "2024-08",
-            "downloads": 17036,
+            "downloads": 17079,
             "marRegistered": null
           }
         }
@@ -17021,7 +17021,7 @@
             "status": "available",
             "currentVersion": "0.1.2",
             "firstPublishedIn": "2024-11",
-            "downloads": 104073,
+            "downloads": 106631,
             "marRegistered": null
           }
         }
@@ -17103,7 +17103,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-05",
-            "downloads": 616548,
+            "downloads": 624353,
             "marRegistered": null
           }
         }
@@ -17229,7 +17229,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 10930,
+            "downloads": 11442,
             "marRegistered": null
           }
         }
@@ -17313,7 +17313,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-04",
-            "downloads": 8849,
+            "downloads": 9140,
             "marRegistered": null
           }
         }
@@ -17890,9 +17890,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-keyvault-managedhsm",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-07",
-            "downloads": 485,
+            "downloads": 590,
             "marRegistered": null
           }
         }
@@ -17978,7 +17978,7 @@
             "status": "available",
             "currentVersion": "0.11.0",
             "firstPublishedIn": "2023-09",
-            "downloads": 4490770,
+            "downloads": 4547356,
             "marRegistered": null
           }
         }
@@ -18589,7 +18589,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-04",
-            "downloads": 4275,
+            "downloads": 4313,
             "marRegistered": null
           }
         }
@@ -19289,7 +19289,7 @@
             "status": "available",
             "currentVersion": "0.1.2",
             "firstPublishedIn": "2024-06",
-            "downloads": 48874,
+            "downloads": 49310,
             "marRegistered": null
           }
         }
@@ -19424,7 +19424,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 95847,
+            "downloads": 96427,
             "marRegistered": null
           }
         }
@@ -19703,7 +19703,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 33255,
+            "downloads": 33391,
             "marRegistered": null
           }
         }
@@ -19789,7 +19789,7 @@
             "status": "available",
             "currentVersion": "0.5.3",
             "firstPublishedIn": "2024-05",
-            "downloads": 3068428,
+            "downloads": 3107221,
             "marRegistered": null
           }
         }
@@ -20073,7 +20073,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-10",
-            "downloads": 281,
+            "downloads": 306,
             "marRegistered": null
           }
         }
@@ -20531,7 +20531,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 6557,
+            "downloads": 6708,
             "marRegistered": null
           }
         }
@@ -21067,7 +21067,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-02",
-            "downloads": 184198,
+            "downloads": 186455,
             "marRegistered": null
           }
         }
@@ -21200,7 +21200,7 @@
             "status": "available",
             "currentVersion": "0.5.3",
             "firstPublishedIn": "2024-08",
-            "downloads": 415777,
+            "downloads": 419806,
             "marRegistered": null
           }
         }
@@ -21286,7 +21286,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2025-01",
-            "downloads": 53633,
+            "downloads": 54152,
             "marRegistered": null
           }
         }
@@ -21377,7 +21377,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 577872,
+            "downloads": 583504,
             "marRegistered": null
           }
         }
@@ -21459,7 +21459,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 661109,
+            "downloads": 667370,
             "marRegistered": null
           }
         }
@@ -21541,7 +21541,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2025-01",
-            "downloads": 12084,
+            "downloads": 12291,
             "marRegistered": null
           }
         }
@@ -21628,7 +21628,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2023-11",
-            "downloads": 419072,
+            "downloads": 422904,
             "marRegistered": null
           }
         }
@@ -21918,7 +21918,7 @@
             "status": "available",
             "currentVersion": "0.8.0",
             "firstPublishedIn": "2024-04",
-            "downloads": 569981,
+            "downloads": 577039,
             "marRegistered": null
           }
         }
@@ -22088,7 +22088,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2024-07",
-            "downloads": 209533,
+            "downloads": 216234,
             "marRegistered": null
           }
         }
@@ -22707,7 +22707,7 @@
             "status": "available",
             "currentVersion": "0.3.3",
             "firstPublishedIn": "2024-10",
-            "downloads": 58750,
+            "downloads": 59183,
             "marRegistered": null
           }
         }
@@ -22886,7 +22886,7 @@
             "status": "available",
             "currentVersion": "0.3.4",
             "firstPublishedIn": "2024-05",
-            "downloads": 860036,
+            "downloads": 867486,
             "marRegistered": null
           }
         }
@@ -23055,7 +23055,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2024-10",
-            "downloads": 15196,
+            "downloads": 15340,
             "marRegistered": null
           }
         }
@@ -23169,7 +23169,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-03",
-            "downloads": 38346,
+            "downloads": 38616,
             "marRegistered": null
           }
         }
@@ -23254,7 +23254,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 557232,
+            "downloads": 580176,
             "marRegistered": null
           }
         }
@@ -23430,7 +23430,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 3624,
+            "downloads": 3691,
             "marRegistered": null
           }
         }
@@ -23514,7 +23514,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2023-12",
-            "downloads": 790560,
+            "downloads": 825821,
             "marRegistered": null
           }
         }
@@ -23600,7 +23600,7 @@
             "status": "available",
             "currentVersion": "0.1.2",
             "firstPublishedIn": "2024-11",
-            "downloads": 14193,
+            "downloads": 14345,
             "marRegistered": null
           }
         }
@@ -23676,7 +23676,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-01",
-            "downloads": 11279,
+            "downloads": 11408,
             "marRegistered": null
           }
         }
@@ -24257,7 +24257,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Available",
           "moduleName": "avm/res/network/network-security-group",
           "modulePath": "avm/res/network/network-security-group",
           "repository": "Azure/bicep-registry-modules",
@@ -24275,7 +24275,13 @@
             "NSG"
           ],
           "comments": "",
-          "owners": [],
+          "owners": [
+            {
+              "handle": "arjenhuitema",
+              "type": "user",
+              "displayName": "Arjen Huitema"
+            }
+          ],
           "telemetryIdPrefix": "46d3xbcp.res.dd6a433",
           "alternativeTelemetryIdPrefixes": [
             "46d3xbcp.res.network-networksecuritygroup"
@@ -24324,7 +24330,7 @@
             "status": "available",
             "currentVersion": "0.5.2",
             "firstPublishedIn": "2024-02",
-            "downloads": 4273918,
+            "downloads": 4325910,
             "marRegistered": null
           }
         }
@@ -24400,7 +24406,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-04",
-            "downloads": 5141,
+            "downloads": 5215,
             "marRegistered": null
           }
         }
@@ -24760,7 +24766,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-07",
-            "downloads": 91246,
+            "downloads": 91811,
             "marRegistered": null
           }
         }
@@ -24974,7 +24980,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-03",
-            "downloads": 1374817,
+            "downloads": 1395737,
             "marRegistered": null
           }
         }
@@ -25794,7 +25800,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 745397,
+            "downloads": 751377,
             "marRegistered": null
           }
         }
@@ -26005,7 +26011,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2024-02",
-            "downloads": 998289,
+            "downloads": 1007733,
             "marRegistered": null
           }
         }
@@ -26089,7 +26095,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 20834,
+            "downloads": 21311,
             "marRegistered": null
           }
         }
@@ -26175,7 +26181,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 1330745,
+            "downloads": 1346714,
             "marRegistered": null
           }
         }
@@ -26377,7 +26383,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-02",
-            "downloads": 11918,
+            "downloads": 12008,
             "marRegistered": null
           }
         }
@@ -26941,7 +26947,7 @@
             "status": "available",
             "currentVersion": "0.22.2",
             "firstPublishedIn": "2025-07",
-            "downloads": 7013066,
+            "downloads": 7107316,
             "marRegistered": null
           }
         }
@@ -27589,7 +27595,7 @@
             "status": "available",
             "currentVersion": "0.5.1",
             "firstPublishedIn": "2024-02",
-            "downloads": 1334428,
+            "downloads": 1352646,
             "marRegistered": null
           }
         }
@@ -28092,7 +28098,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 9588,
+            "downloads": 9655,
             "marRegistered": null
           }
         }
@@ -28332,7 +28338,7 @@
             "status": "available",
             "currentVersion": "1.3.2",
             "firstPublishedIn": "2025-01",
-            "downloads": 188119,
+            "downloads": 189932,
             "marRegistered": null
           }
         }
@@ -29036,7 +29042,7 @@
             "status": "available",
             "currentVersion": "0.0.2",
             "firstPublishedIn": "2025-10",
-            "downloads": 19142,
+            "downloads": 19272,
             "marRegistered": null
           }
         }
@@ -29160,7 +29166,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-01",
-            "downloads": 2707,
+            "downloads": 3319,
             "marRegistered": null
           }
         }
@@ -29658,7 +29664,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 1088,
+            "downloads": 1116,
             "marRegistered": null
           }
         }
@@ -29824,7 +29830,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 3145279,
+            "downloads": 3188293,
             "marRegistered": null
           }
         }
@@ -29944,7 +29950,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 202237,
+            "downloads": 205233,
             "marRegistered": null
           }
         }
@@ -30190,7 +30196,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-06",
-            "downloads": 316237,
+            "downloads": 319886,
             "marRegistered": null
           }
         }
@@ -30832,7 +30838,7 @@
             "status": "available",
             "currentVersion": "1.0.1",
             "firstPublishedIn": "2026-06",
-            "downloads": 665,
+            "downloads": 753,
             "marRegistered": null
           }
         }
@@ -31256,7 +31262,7 @@
           "publicRegistryReference": "br/public:avm/res/sql/managed-instance:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.5.0",
+            "currentVersion": "0.5.1",
             "firstPublishedIn": "2024-04",
             "downloads": null,
             "marRegistered": true
@@ -31304,7 +31310,7 @@
             "status": "available",
             "currentVersion": "0.3.1",
             "firstPublishedIn": "2026-02",
-            "downloads": 89281,
+            "downloads": 89834,
             "marRegistered": null
           }
         }
@@ -31637,7 +31643,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Available",
           "moduleName": "avm/res/sql/server",
           "modulePath": "avm/res/sql/server",
           "repository": "Azure/bicep-registry-modules",
@@ -31653,7 +31659,13 @@
           "moduleDescription": "AVM Resource Module for Azure SQL Server",
           "alternativeNames": [],
           "comments": "",
-          "owners": [],
+          "owners": [
+            {
+              "handle": "arjenhuitema",
+              "type": "user",
+              "displayName": "Arjen Huitema"
+            }
+          ],
           "telemetryIdPrefix": "46d3xbcp.res.31e070f",
           "alternativeTelemetryIdPrefixes": [
             "46d3xbcp.res.sql-server"
@@ -31702,7 +31714,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2024-09",
-            "downloads": 505425,
+            "downloads": 514100,
             "marRegistered": null
           }
         }
@@ -31713,7 +31725,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Available",
           "moduleName": "avm/res/sql/server/auditing-setting",
           "modulePath": "avm/res/sql/server/auditing-setting",
           "repository": "Azure/bicep-registry-modules",
@@ -31729,7 +31741,13 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Auditing Setting",
           "alternativeNames": [],
           "comments": "",
-          "owners": [],
+          "owners": [
+            {
+              "handle": "arjenhuitema",
+              "type": "user",
+              "displayName": "Arjen Huitema"
+            }
+          ],
           "telemetryIdPrefix": "46d3xbcp.res.21c74d4",
           "alternativeTelemetryIdPrefixes": [
             "46d3xbcp.res.sql-server-auditingsetting"
@@ -31751,7 +31769,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Available",
           "moduleName": "avm/res/sql/server/database",
           "modulePath": "avm/res/sql/server/database",
           "repository": "Azure/bicep-registry-modules",
@@ -31767,7 +31785,13 @@
           "moduleDescription": "AVM Resource Module for Azure SQL Database",
           "alternativeNames": [],
           "comments": "",
-          "owners": [],
+          "owners": [
+            {
+              "handle": "arjenhuitema",
+              "type": "user",
+              "displayName": "Arjen Huitema"
+            }
+          ],
           "telemetryIdPrefix": "46d3xbcp.res.3254c50",
           "alternativeTelemetryIdPrefixes": [
             "46d3xbcp.res.sql-serverdb"
@@ -31827,7 +31851,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Available",
           "moduleName": "avm/res/sql/server/database/backup-long-term-retention-policy",
           "modulePath": "avm/res/sql/server/database/backup-long-term-retention-policy",
           "repository": "Azure/bicep-registry-modules",
@@ -31843,7 +31867,13 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Database - Backup Long Term Retention Policy",
           "alternativeNames": [],
           "comments": "",
-          "owners": [],
+          "owners": [
+            {
+              "handle": "arjenhuitema",
+              "type": "user",
+              "displayName": "Arjen Huitema"
+            }
+          ],
           "telemetryIdPrefix": "46d3xbcp.res.55b299c",
           "alternativeTelemetryIdPrefixes": [
             "46d3xbcp.res.sql-server-dbbckplongtermretpolicy"
@@ -31865,7 +31895,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Available",
           "moduleName": "avm/res/sql/server/database/backup-short-term-retention-policy",
           "modulePath": "avm/res/sql/server/database/backup-short-term-retention-policy",
           "repository": "Azure/bicep-registry-modules",
@@ -31881,7 +31911,13 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Database - Backup Short Term Retention Policy",
           "alternativeNames": [],
           "comments": "",
-          "owners": [],
+          "owners": [
+            {
+              "handle": "arjenhuitema",
+              "type": "user",
+              "displayName": "Arjen Huitema"
+            }
+          ],
           "telemetryIdPrefix": "46d3xbcp.res.b99866e",
           "alternativeTelemetryIdPrefixes": [
             "46d3xbcp.res.sql-server-dbbckpshorttermretpolicy"
@@ -31903,7 +31939,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Available",
           "moduleName": "avm/res/sql/server/elastic-pool",
           "modulePath": "avm/res/sql/server/elastic-pool",
           "repository": "Azure/bicep-registry-modules",
@@ -31919,7 +31955,13 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Elastic Pool",
           "alternativeNames": [],
           "comments": "",
-          "owners": [],
+          "owners": [
+            {
+              "handle": "arjenhuitema",
+              "type": "user",
+              "displayName": "Arjen Huitema"
+            }
+          ],
           "telemetryIdPrefix": "46d3xbcp.res.3f3ea8c",
           "alternativeTelemetryIdPrefixes": [
             "46d3xbcp.res.sql-server-elasticpool"
@@ -31979,7 +32021,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Available",
           "moduleName": "avm/res/sql/server/encryption-protector",
           "modulePath": "avm/res/sql/server/encryption-protector",
           "repository": "Azure/bicep-registry-modules",
@@ -31995,7 +32037,13 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Encryption Protector",
           "alternativeNames": [],
           "comments": "",
-          "owners": [],
+          "owners": [
+            {
+              "handle": "arjenhuitema",
+              "type": "user",
+              "displayName": "Arjen Huitema"
+            }
+          ],
           "telemetryIdPrefix": "46d3xbcp.res.7fa5222",
           "alternativeTelemetryIdPrefixes": [
             "46d3xbcp.res.sql-server-encryptionprotector"
@@ -32017,7 +32065,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Available",
           "moduleName": "avm/res/sql/server/failover-group",
           "modulePath": "avm/res/sql/server/failover-group",
           "repository": "Azure/bicep-registry-modules",
@@ -32033,7 +32081,13 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Failover Group",
           "alternativeNames": [],
           "comments": "",
-          "owners": [],
+          "owners": [
+            {
+              "handle": "arjenhuitema",
+              "type": "user",
+              "displayName": "Arjen Huitema"
+            }
+          ],
           "telemetryIdPrefix": "46d3xbcp.res.87c6eca",
           "alternativeTelemetryIdPrefixes": [
             "46d3xbcp.res.sql-server-failovergroup"
@@ -32055,7 +32109,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Available",
           "moduleName": "avm/res/sql/server/firewall-rule",
           "modulePath": "avm/res/sql/server/firewall-rule",
           "repository": "Azure/bicep-registry-modules",
@@ -32071,7 +32125,13 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Firewall Rule",
           "alternativeNames": [],
           "comments": "",
-          "owners": [],
+          "owners": [
+            {
+              "handle": "arjenhuitema",
+              "type": "user",
+              "displayName": "Arjen Huitema"
+            }
+          ],
           "telemetryIdPrefix": "46d3xbcp.res.f391d10",
           "alternativeTelemetryIdPrefixes": [
             "46d3xbcp.res.sql-server-firewallrule"
@@ -32093,7 +32153,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Available",
           "moduleName": "avm/res/sql/server/key",
           "modulePath": "avm/res/sql/server/key",
           "repository": "Azure/bicep-registry-modules",
@@ -32109,7 +32169,13 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Key",
           "alternativeNames": [],
           "comments": "",
-          "owners": [],
+          "owners": [
+            {
+              "handle": "arjenhuitema",
+              "type": "user",
+              "displayName": "Arjen Huitema"
+            }
+          ],
           "telemetryIdPrefix": "46d3xbcp.res.a9991c5",
           "alternativeTelemetryIdPrefixes": [
             "46d3xbcp.res.sql-server-key"
@@ -32131,7 +32197,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Available",
           "moduleName": "avm/res/sql/server/security-alert-policy",
           "modulePath": "avm/res/sql/server/security-alert-policy",
           "repository": "Azure/bicep-registry-modules",
@@ -32147,7 +32213,13 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Security Alert Policy",
           "alternativeNames": [],
           "comments": "",
-          "owners": [],
+          "owners": [
+            {
+              "handle": "arjenhuitema",
+              "type": "user",
+              "displayName": "Arjen Huitema"
+            }
+          ],
           "telemetryIdPrefix": "46d3xbcp.res.63d577a",
           "alternativeTelemetryIdPrefixes": [
             "46d3xbcp.res.sql-server-securityalertpolicy"
@@ -32169,7 +32241,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Available",
           "moduleName": "avm/res/sql/server/virtual-network-rule",
           "modulePath": "avm/res/sql/server/virtual-network-rule",
           "repository": "Azure/bicep-registry-modules",
@@ -32185,7 +32257,13 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Virtual Network Rule",
           "alternativeNames": [],
           "comments": "",
-          "owners": [],
+          "owners": [
+            {
+              "handle": "arjenhuitema",
+              "type": "user",
+              "displayName": "Arjen Huitema"
+            }
+          ],
           "telemetryIdPrefix": "46d3xbcp.res.2ad5c9f",
           "alternativeTelemetryIdPrefixes": [
             "46d3xbcp.res.sql-server-virtualnetworkrule"
@@ -32207,7 +32285,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Available",
           "moduleName": "avm/res/sql/server/vulnerability-assessment",
           "modulePath": "avm/res/sql/server/vulnerability-assessment",
           "repository": "Azure/bicep-registry-modules",
@@ -32223,7 +32301,13 @@
           "moduleDescription": "AVM Child Module for Azure SQL Server - Vulnerability Assessment",
           "alternativeNames": [],
           "comments": "",
-          "owners": [],
+          "owners": [
+            {
+              "handle": "arjenhuitema",
+              "type": "user",
+              "displayName": "Arjen Huitema"
+            }
+          ],
           "telemetryIdPrefix": "46d3xbcp.res.6d8c193",
           "alternativeTelemetryIdPrefixes": [
             "46d3xbcp.res.sql-server-vulnerabilityassessment"
@@ -32318,7 +32402,7 @@
             "status": "available",
             "currentVersion": "0.0.1",
             "firstPublishedIn": "2026-02",
-            "downloads": 23402,
+            "downloads": 23869,
             "marRegistered": null
           }
         }
@@ -32400,7 +32484,7 @@
             "status": "available",
             "currentVersion": "0.10.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 4457505,
+            "downloads": 4521104,
             "marRegistered": null
           }
         }
@@ -33585,7 +33669,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-05",
-            "downloads": 1213,
+            "downloads": 1351,
             "marRegistered": null
           }
         }
@@ -33925,7 +34009,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-05",
-            "downloads": 52,
+            "downloads": 66,
             "marRegistered": null
           }
         }
@@ -34063,7 +34147,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-11",
-            "downloads": 4847,
+            "downloads": 4965,
             "marRegistered": null
           }
         }
@@ -34154,7 +34238,7 @@
             "status": "available",
             "currentVersion": "2.0.1",
             "firstPublishedIn": "2024-06",
-            "downloads": 9629,
+            "downloads": 9682,
             "marRegistered": null
           }
         }
@@ -34420,7 +34504,7 @@
             "status": "available",
             "currentVersion": "2.0.8",
             "firstPublishedIn": "2024-08",
-            "downloads": 496275,
+            "downloads": 502653,
             "marRegistered": null
           }
         }
@@ -34517,7 +34601,7 @@
             "status": "available",
             "currentVersion": "0.23.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 703140,
+            "downloads": 711394,
             "marRegistered": null
           }
         },
@@ -35741,7 +35825,7 @@
             "status": "available",
             "currentVersion": "0.6.2",
             "firstPublishedIn": "2024-02",
-            "downloads": 96908,
+            "downloads": 97706,
             "marRegistered": null
           }
         }
@@ -35962,7 +36046,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-09",
-            "downloads": 3543,
+            "downloads": 3619,
             "marRegistered": null
           }
         }
@@ -36009,7 +36093,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-09",
-            "downloads": 2990,
+            "downloads": 3051,
             "marRegistered": null
           }
         }
@@ -36091,7 +36175,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-02",
-            "downloads": 102,
+            "downloads": 109,
             "marRegistered": null
           }
         }
@@ -36561,7 +36645,7 @@
             "status": "available",
             "currentVersion": "0.11.3",
             "firstPublishedIn": "2025-07",
-            "downloads": 221694,
+            "downloads": 224287,
             "marRegistered": null
           }
         }
@@ -36700,7 +36784,7 @@
             "status": "available",
             "currentVersion": "0.5.3",
             "firstPublishedIn": "2025-09",
-            "downloads": 7418,
+            "downloads": 7520,
             "marRegistered": null
           }
         }
@@ -36869,7 +36953,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 2056,
+            "downloads": 2068,
             "marRegistered": null
           }
         }
@@ -36911,7 +36995,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 1394,
+            "downloads": 1405,
             "marRegistered": null
           }
         }
@@ -36953,7 +37037,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 1389,
+            "downloads": 1402,
             "marRegistered": null
           }
         }
@@ -36995,7 +37079,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 13358,
+            "downloads": 13535,
             "marRegistered": null
           }
         }
@@ -37042,9 +37126,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-ptn-alz",
           "registry": {
             "status": "available",
-            "currentVersion": "0.21.0",
+            "currentVersion": "0.22.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 572201,
+            "downloads": 577558,
             "marRegistered": null
           }
         }
@@ -37091,7 +37175,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-07",
-            "downloads": 46,
+            "downloads": 56,
             "marRegistered": null
           }
         }
@@ -37138,7 +37222,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-07",
-            "downloads": 25,
+            "downloads": 35,
             "marRegistered": null
           }
         }
@@ -37223,7 +37307,7 @@
             "status": "available",
             "currentVersion": "0.17.7",
             "firstPublishedIn": "2025-10",
-            "downloads": 321070,
+            "downloads": 324380,
             "marRegistered": null
           }
         }
@@ -37419,7 +37503,7 @@
             "status": "available",
             "currentVersion": "0.18.0",
             "firstPublishedIn": "2025-03",
-            "downloads": 286934,
+            "downloads": 289510,
             "marRegistered": null
           }
         }
@@ -38045,7 +38129,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2023-12",
-            "downloads": 424413,
+            "downloads": 428304,
             "marRegistered": null
           }
         }
@@ -38360,7 +38444,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-03",
-            "downloads": 24,
+            "downloads": 32,
             "marRegistered": null
           }
         }
@@ -38790,7 +38874,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 6941,
+            "downloads": 6988,
             "marRegistered": null
           }
         }
@@ -39082,7 +39166,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 11477,
+            "downloads": 11599,
             "marRegistered": null
           }
         }
@@ -39160,7 +39244,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-05",
-            "downloads": 8991,
+            "downloads": 9022,
             "marRegistered": null
           }
         }
@@ -39840,7 +39924,7 @@
             "status": "available",
             "currentVersion": "0.1.3",
             "firstPublishedIn": "2026-02",
-            "downloads": 2504,
+            "downloads": 2722,
             "marRegistered": null
           }
         }
@@ -39882,7 +39966,7 @@
             "status": "available",
             "currentVersion": "3.0.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 4729,
+            "downloads": 4742,
             "marRegistered": null
           }
         }
@@ -40080,7 +40164,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-03",
-            "downloads": 33,
+            "downloads": 41,
             "marRegistered": null
           }
         }
@@ -40471,7 +40555,7 @@
             "status": "available",
             "currentVersion": "0.6.2",
             "firstPublishedIn": "2024-08",
-            "downloads": 22801,
+            "downloads": 23093,
             "marRegistered": null
           }
         }
@@ -40639,7 +40723,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2025-11",
-            "downloads": 5187,
+            "downloads": 5389,
             "marRegistered": null
           }
         }
@@ -40681,7 +40765,7 @@
             "status": "available",
             "currentVersion": "0.1.3",
             "firstPublishedIn": "2026-09",
-            "downloads": 14,
+            "downloads": 24,
             "marRegistered": null
           }
         }
@@ -40808,7 +40892,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 3270,
+            "downloads": 3302,
             "marRegistered": null
           }
         }
@@ -40894,7 +40978,7 @@
             "status": "available",
             "currentVersion": "1.0.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 5248,
+            "downloads": 5261,
             "marRegistered": null
           }
         }
@@ -40936,7 +41020,7 @@
             "status": "available",
             "currentVersion": "1.0.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 5173,
+            "downloads": 5185,
             "marRegistered": null
           }
         }
@@ -41676,7 +41760,7 @@
             "status": "available",
             "currentVersion": "0.7.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 4432483,
+            "downloads": 4619956,
             "marRegistered": null
           }
         }
@@ -41812,7 +41896,7 @@
             "status": "available",
             "currentVersion": "0.3.3",
             "firstPublishedIn": "2025-11",
-            "downloads": 475638,
+            "downloads": 482419,
             "marRegistered": null
           }
         }
@@ -42596,7 +42680,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 74477,
+            "downloads": 75272,
             "marRegistered": null
           }
         }
@@ -42638,7 +42722,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-09",
-            "downloads": 8786,
+            "downloads": 14054,
             "marRegistered": null
           }
         }
@@ -42682,7 +42766,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2025-03",
-            "downloads": 260694,
+            "downloads": 264574,
             "marRegistered": null
           }
         }
@@ -42724,7 +42808,7 @@
             "status": "available",
             "currentVersion": "0.1.5",
             "firstPublishedIn": "2024-06",
-            "downloads": 12558,
+            "downloads": 12709,
             "marRegistered": null
           }
         }
@@ -42800,7 +42884,7 @@
             "status": "available",
             "currentVersion": "0.13.2",
             "firstPublishedIn": "2024-09",
-            "downloads": 159768,
+            "downloads": 159974,
             "marRegistered": null
           }
         }
@@ -42882,7 +42966,7 @@
             "status": "available",
             "currentVersion": "0.23.2",
             "firstPublishedIn": "2024-06",
-            "downloads": 492994,
+            "downloads": 497799,
             "marRegistered": null
           }
         }
@@ -42965,7 +43049,7 @@
             "status": "available",
             "currentVersion": "0.14.1",
             "firstPublishedIn": "2023-09",
-            "downloads": 278185,
+            "downloads": 278772,
             "marRegistered": null
           }
         }
@@ -43344,7 +43428,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 887,
+            "downloads": 899,
             "marRegistered": null
           }
         }
@@ -43754,7 +43838,7 @@
             "status": "available",
             "currentVersion": "0.12.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 3762227,
+            "downloads": 3815732,
             "marRegistered": null
           }
         }
@@ -43796,7 +43880,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-09",
-            "downloads": 657813,
+            "downloads": 669266,
             "marRegistered": null
           }
         }
@@ -44394,7 +44478,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-12",
-            "downloads": 42744,
+            "downloads": 43339,
             "marRegistered": null
           }
         }
@@ -44686,7 +44770,7 @@
             "status": "available",
             "currentVersion": "0.0.2",
             "firstPublishedIn": "2026-05",
-            "downloads": 206,
+            "downloads": 226,
             "marRegistered": null
           }
         }
@@ -44722,7 +44806,7 @@
             "status": "available",
             "currentVersion": "0.10.3",
             "firstPublishedIn": "2024-02",
-            "downloads": 241890,
+            "downloads": 243175,
             "marRegistered": null
           }
         }
