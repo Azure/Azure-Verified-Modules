@@ -3871,7 +3871,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Proposed",
+          "moduleStatus": "Available",
           "moduleName": "avm/res/authorization/policy-assignment",
           "modulePath": "avm/res/authorization/policy-assignment",
           "repository": "Azure/bicep-registry-modules",
@@ -4052,7 +4052,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Proposed",
+          "moduleStatus": "Available",
           "moduleName": "avm/res/authorization/role-assignment",
           "modulePath": "avm/res/authorization/role-assignment",
           "repository": "Azure/bicep-registry-modules",
@@ -13885,7 +13885,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Proposed",
+          "moduleStatus": "Available",
           "moduleName": "avm/res/edge/site",
           "modulePath": "avm/res/edge/site",
           "repository": "Azure/bicep-registry-modules",
