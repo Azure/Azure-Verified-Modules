@@ -7894,7 +7894,7 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-compute-hostgroup",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.3",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-08",
             "downloads": 2195,
             "marRegistered": null
