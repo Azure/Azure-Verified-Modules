@@ -5675,7 +5675,7 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-botservice-botservice",
           "registry": {
             "status": "available",
-            "currentVersion": "0.5.0",
+            "currentVersion": "0.6.0",
             "firstPublishedIn": "2026-01",
             "downloads": 13560,
             "marRegistered": null
