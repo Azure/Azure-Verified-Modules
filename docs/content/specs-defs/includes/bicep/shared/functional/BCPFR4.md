@@ -28,7 +28,7 @@ Before compiling, ensure the module's `metadata.json` exists alongside its `main
 
 The current Bicep `telemetryIdPrefix` **MUST** use `46d3xbcp.<res|ptn|utl>.<seven lowercase hexadecimal characters>` (20 characters). When replacing a previously assigned identifier, retain it and any earlier prefixes in `alternativeTelemetryIdPrefixes` in the same `metadata.json`; the deployment uses only the current prefix. Check that the complete deployment name fits within 64 characters without truncation.
 
-After changing `telemetryIdPrefix`, regenerate `main.json` with [`Set-AVMModule.ps1`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/) without `-SkipBuild`. Consumers deploying the compiled `main.json` do not need `metadata.json`.
+After changing `telemetryIdPrefix`, regenerate `main.json` with [`avm pre-commit`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/#update-generated-files-after-editing) on the module directory. Consumers deploying the compiled `main.json` do not need `metadata.json`.
 
 {{< highlight lineNos="false" type="bicep" wrap="true" title="sample.telem.bicep" >}}
 {{% include file="/static/includes/sample.telem.bicep" %}}

@@ -28,7 +28,7 @@ sql
   └─ database [child-module/resource]
 ```
 
-In this folder, we recommend to place the child resource-template alongside a ReadMe & compiled JSON (to be generated via the default [Set-AVMModule]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files) utility) and optionally further nest additional folders for its child resources.
+In this folder, we recommend placing the child resource template with its `metadata.json`. [Initialize a new child with `avm init -ChildModule`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/#initialize-a-new-module-once), then run `avm pre-commit` on the top-level module to generate `README.md` and compiled `main.json` for it and its children. You may nest further child-resource folders.
 
 There are several reasons to structure a module in this way. For example:
 
