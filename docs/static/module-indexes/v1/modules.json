@@ -44646,7 +44646,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Available",
           "moduleName": "avm-ptn-unified-data-platform",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-ptn-unified-data-platform",
@@ -44662,7 +44662,18 @@
           "moduleDescription": "AVM Pattern Module for Unified Data Management Application Landing Zone",
           "alternativeNames": [],
           "comments": "",
-          "owners": [],
+          "owners": [
+            {
+              "handle": "benvbr",
+              "type": "user",
+              "displayName": "Benjamin Van Brussel"
+            },
+            {
+              "handle": "bramcal",
+              "type": "user",
+              "displayName": null
+            }
+          ],
           "telemetryIdPrefix": "46d3xtrf.ptn.65a55f4",
           "alternativeTelemetryIdPrefixes": [],
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-ptn-unified-data-platform",
@@ -44682,7 +44693,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Available",
           "moduleName": "avm-ptn-unified-data-platform//modules/data-management-landing-zone",
           "modulePath": "modules/data-management-landing-zone",
           "repository": "Azure/terraform-azure-avm-ptn-unified-data-platform",
@@ -44698,7 +44709,18 @@
           "moduleDescription": "Deploys the data management landing zone resource group and a Microsoft Fabric capacity with its locks and role assignments.",
           "alternativeNames": [],
           "comments": "",
-          "owners": [],
+          "owners": [
+            {
+              "handle": "benvbr",
+              "type": "user",
+              "displayName": "Benjamin Van Brussel"
+            },
+            {
+              "handle": "bramcal",
+              "type": "user",
+              "displayName": null
+            }
+          ],
           "telemetryIdPrefix": "46d3xtrf.ptn.unassigned-dmlz",
           "alternativeTelemetryIdPrefixes": [],
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-ptn-unified-data-platform/azure/0.1.0/submodules/data-management-landing-zone",
@@ -44718,7 +44740,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Available",
           "moduleName": "avm-ptn-unified-data-platform//modules/databricks-data-landing-zone",
           "modulePath": "modules/databricks-data-landing-zone",
           "repository": "Azure/terraform-azure-avm-ptn-unified-data-platform",
@@ -44734,7 +44756,18 @@
           "moduleDescription": "Deploys a VNet-injected Azure Databricks workspace, diagnostics, and a managed-identity Access Connector for OneLake federation.",
           "alternativeNames": [],
           "comments": "",
-          "owners": [],
+          "owners": [
+            {
+              "handle": "benvbr",
+              "type": "user",
+              "displayName": "Benjamin Van Brussel"
+            },
+            {
+              "handle": "bramcal",
+              "type": "user",
+              "displayName": null
+            }
+          ],
           "telemetryIdPrefix": "46d3xtrf.ptn.unassigned-databricks-dlz",
           "alternativeTelemetryIdPrefixes": [],
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-ptn-unified-data-platform/azure/0.1.0/submodules/databricks-data-landing-zone",
@@ -44754,7 +44787,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Orphaned",
+          "moduleStatus": "Available",
           "moduleName": "avm-ptn-unified-data-platform//modules/fabric-data-landing-zone",
           "modulePath": "modules/fabric-data-landing-zone",
           "repository": "Azure/terraform-azure-avm-ptn-unified-data-platform",
@@ -44770,7 +44803,18 @@
           "moduleDescription": "Deploys a Microsoft Fabric domain and workspaces with identities, role assignments, network policies, workspace-level private link, and optional customer-managed-key encryption.",
           "alternativeNames": [],
           "comments": "",
-          "owners": [],
+          "owners": [
+            {
+              "handle": "benvbr",
+              "type": "user",
+              "displayName": "Benjamin Van Brussel"
+            },
+            {
+              "handle": "bramcal",
+              "type": "user",
+              "displayName": null
+            }
+          ],
           "telemetryIdPrefix": "46d3xtrf.ptn.unassigned-fabric-dlz",
           "alternativeTelemetryIdPrefixes": [],
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-ptn-unified-data-platform/azure/0.1.0/submodules/fabric-data-landing-zone",
