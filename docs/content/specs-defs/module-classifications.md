@@ -16,6 +16,7 @@ AVM defines two module classifications, **Resource Modules** and **Pattern Modul
 | **Utility Module**<br>(draft,<br>see below) | Implements a function or routine that can be flexibly reused in resource or pattern modules - e.g., a function that retrieves the endpoint of an API or portal of a given environment. <br><br>It MUST NOT deploy any Azure resources other than deployment scripts. | People who want to leverage commonly used functions/routines/helpers in their module, instead of re-implementing them locally. |
 <!-- markdownlint-enable -->
 
+Module classes describe what a module deploys. To learn who owns modules, see [Module Ownership Tiers]({{% siteparam base %}}/specs/shared/module-ownership-tiers/).
 {{% notice style="important" title="PREVIEW" %}}
 
 The concept of **Utility Modules** will be introduced gradually, through some initial examples. The definition above is subject to change as additional details are worked out.

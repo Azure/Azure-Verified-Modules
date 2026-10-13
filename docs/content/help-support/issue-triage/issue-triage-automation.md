@@ -8,7 +8,7 @@ This page details the automation that is in place to help with the triage of iss
 
 {{% notice style="note" %}}
 
-**Some of these automation rules are currently disabled or reduced.** A number of the comment-based automations — the recurring "chase" scheduled searches, and the per-issue/PR triage comment previously posted by [ITA06](#ita06) — have been disabled, or had their commenting removed, to avoid notification fatigue for everyone involved. In their current form they are too noisy, are largely filtered out and ignored by most, and are not having the desired impact. The AVM team plans to **refine and re-enable** these automations in the near future.
+**Some of these automation rules are currently disabled or reduced.** A number of the comment-based automations — the recurring "chase" scheduled searches, and the per-issue/PR triage comment previously posted by [ITA06](#ita06) — have been disabled, or had their commenting removed, to avoid notification fatigue for everyone involved. In their current form they are too noisy, are largely filtered out and ignored by most, and are not having the desired impact.
 
 {{% /notice %}}
 
@@ -19,199 +19,6 @@ This section details all automation rules that are based on a schedule.
 {{% notice style="note" %}}
 When calculating the number of business days in the issue/triage automation, the built-in logic considers Monday-Friday as business days. The logic doesn't consider any holidays.
 {{% /notice %}}
-
-### ITA01BCP.1 & ITA01BCP.2
-
-{{% notice style="warning" %}}
-
-This rule is currently disabled in the BRM repository.
-
-{{% /notice %}}
-
-If a bug/feature/request/general question that has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; is not responded to after 3 business days, then the issue will be marked with the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; label and the AVM Core team will be mentioned in a comment on the issue to reach out to the module owner.
-
-**Schedule:**
-
-- Triggered every Monday-Friday, at 12:00.
-
-**Trigger criteria:**
-
-- Is an open issue.
-- Had no activity in the last 3 business days.
-- Has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>&nbsp; labels added.
-- Does not have the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; label added.
-
-**Action(s):**
-
-- Add a reply, mentioning the `Azure/azure-verified-modules-tooling-contributors` team.
-- Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; label.
-
-{{% notice style="tip" %}}
-
-- To prevent further actions to take effect, the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; label must be removed, once this issue has been responded to.
-- To avoid this rule being (re)triggered, the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; must be removed as part of the triage process (when the issue is first responded to).
-{{% /notice %}}
-
----
-
-### ITA01TF.1 & ITA01TF.2
-
-{{% notice style="warning" %}}
-
-This rule is currently disabled in the Terraform repositories.
-
-{{% /notice %}}
-
-If a bug/feature/request/general question that has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; label added is not responded to after 3 business days, then the issue will be marked with the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; label and the AVM Core team will be mentioned in a comment on the issue to reach out to the module owner.
-
-**Schedule:**
-
-- Triggered every Monday-Friday, at 12:00.
-
-**Trigger criteria:**
-
-- Is an open issue.
-- Had no activity in the last 3 business days.
-- Has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; label added.
-
-**Action(s):**
-
-- Add a reply, mentioning the `Azure/azure-verified-modules-tooling-contributors` team.
-- Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; label.
-
-{{% notice style="tip" %}}
-
-- To prevent further actions to take effect, the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; label must be removed, once this issue has been responded to.
-- To avoid this rule being (re)triggered, the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; must be removed as part of the triage process (when the issue is first responded to).
-{{% /notice %}}
-
----
-
-### ITA02BCP.1 & ITA02BCP.2
-
-{{% notice style="warning" %}}
-
-This rule is currently disabled in the BRM repository.
-
-{{% /notice %}}
-
-If after an additional 3 business days there's still no update to the issue that has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp;, the AVM core team will be mentioned on the issue and a further comment stating module owner is unresponsive will be added. The &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label will also be added.
-
-**Schedule:**
-
-- Triggered every Monday-Friday, at 12:00.
-
-**Trigger criteria:**
-
-- Is an open issue.
-- Had no activity in the last 3 business days.
-- Has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>&nbsp; labels added.
-- Does not have the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label added.
-
-**Action(s):**
-
-- Add a reply, mentioning the `Azure/azure-verified-modules-tooling-contributors` team.
-- Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label.
-
-{{% notice style="tip" %}}
-
-- To avoid this rule being (re)triggered, the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; labels must be removed when the issue is first responded to!
-- Remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label once the issue has been responded to.
-{{% /notice %}}
-
----
-
-### ITA02TF.1 & ITA02TF.2
-
-{{% notice style="warning" %}}
-
-This rule is currently disabled in the Terraform repositories.
-
-{{% /notice %}}
-
-If after an additional 3 business days there's still no update to the issue that has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; label added, the AVM core team will be mentioned on the issue and a further comment stating module owner is unresponsive will be added. The &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label will also be added.
-
-**Schedule:**
-
-- Triggered every Monday-Friday, at 12:00.
-
-**Trigger criteria:**
-
-- Is an open issue.
-- Had no activity in the last 3 business days.
-- Has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; label added.
-
-**Action(s):**
-
-- Add a reply, mentioning the `Azure/azure-verified-modules-tooling-contributors` team.
-- Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label.
-
-{{% notice style="tip" %}}
-
-- To avoid this rule being (re)triggered, the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; labels must be removed when the issue is first responded to!
-- Remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label once the issue has been responded to.
-{{% /notice %}}
-
----
-
-### ITA03BCP
-
-{{% notice style="warning" %}}
-
-This rule is currently disabled in the BRM repository.
-
-{{% /notice %}}
-
-If there's still no response after 5 days (total from start of issue being raised) on an issue that has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FFFF00;">Type: Security Bug 🔒</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp;, the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label will be added.
-
-**Schedule:**
-
-- Triggered every Monday-Friday, at 12:00.
-
-**Trigger criteria:**
-
-- Is an open issue.
-- Had no activity in the last 5 business days.
-- Has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FFFF00;">Type: Security Bug 🔒</mark>&nbsp;, the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp;,  and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#F0FFFF;">Type: AVM 🅰️ ✌️ ⓜ️</mark>&nbsp; labels added.
-
-**Action(s):**
-
-- Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label.
-
-{{% notice style="tip" %}}
-
-- To avoid this rule being (re)triggered, the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; labels must be removed when the issue is first responded to!
-- Remove the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label once the issue has been responded to.
-{{% /notice %}}
-
----
-
-### ITA03TF
-
-{{% notice style="warning" %}}
-
-This rule is currently disabled in the Terraform repositories.
-
-{{% /notice %}}
-
-If there's still no response after 5 days (total from start of issue being raised) on an issue that has the labels of &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FFFF00;">Type: Security Bug 🔒</mark>&nbsp; and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp;, the Terraform PG GitHub Team will be mentioned on the issue to assist. The &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label will also be added.
-
-**Schedule:**
-
-- Triggered every Monday-Friday, at 12:00.
-
-**Trigger criteria:**
-
-- Is an open issue.
-- Had no activity in the last 5 business days.
-- Has the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FBCA04;">Needs: Triage 🔍</mark>&nbsp;, the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FFFF00;">Type: Security Bug 🔒</mark>&nbsp;, and &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#850000;color:white;">Status: Response Overdue 🚩</mark>&nbsp; labels added.
-
-**Action(s):**
-
-- Add a reply, mentioning the `Azure/terraform-avm` team.
-- Add the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#FF0000;color:white;">Needs: Immediate Attention ‼️</mark>&nbsp; label.
-
----
 
 ### ITA04
 
@@ -326,7 +133,7 @@ When a new issue or PR of any type is created add the &nbsp;<mark style="backgro
 
 {{% notice style="warning" %}}
 
-The comment (reply) previously posted by this rule has been **removed** to reduce notification fatigue; the rule now only applies the label. See the note at the top of this page — the AVM team plans to refine and re-enable these automations in the near future.
+The comment (reply) previously posted by this rule has been **removed** to reduce notification fatigue; the rule now only applies the label. See the note at the top of this page.
 
 {{% /notice %}}
 
@@ -699,19 +506,13 @@ The below table details which repositories the above rules are applied to.
 
 | ID                          | AVM Core repository | BRM repository | TF repositories |
 |-----------------------------|:-------------------:|:--------------:|:---------------:|
-| [ITA01BCP1-2](#ita01bcp1--ita01bcp2) |                     |       [✔️]       |                 |
-| [ITA01TF1-2](#ita01tf1--ita01tf2)   |                     |                |       [✔️]        |
-| [ITA02BCP1-2](#ita02bcp1--ita02bcp2) |                     |       [✔️]       |                 |
-| [ITA02TF1-2](#ita02tf1--ita02tf2)   |                     |                |       [✔️]        |
-| [ITA03BCP](#ita03bcp)       |                     |       [✔️]       |                 |
-| [ITA03TF](#ita03tf)         |                     |                |       [✔️]        |
 | [ITA04](#ita04)             |         [✔️]          |       [✔️]       |       [✔️]        |
 | [ITA05](#ita05)             |         [✔️]          |       [✔️]       |                 |
 | [ITA24](#ita24)             |          [✔️]         |                |                 |
 
 {{% notice style="warning" %}}
 
-A check mark in brackets (e.g., [✔️]) indicates that the rule exists in that repository but is currently **disabled**. The following schedule-based rules are currently disabled: ITA01BCP, ITA01TF, ITA02BCP, ITA02TF, ITA03BCP, ITA03TF, and ITA04 (in all the repositories they apply to), ITA05 (in the AVM Core and BRM repositories), and ITA24 (in the AVM Core repository).
+A check mark in brackets (e.g., [✔️]) indicates that the rule exists in that repository but is currently **disabled**. The following schedule-based rules are currently disabled: ITA04 (in all the repositories it applies to), ITA05 (in the AVM Core and BRM repositories), and ITA24 (in the AVM Core repository).
 
 {{% /notice %}}
 

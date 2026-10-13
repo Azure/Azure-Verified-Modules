@@ -38,7 +38,7 @@ Azure Verified Modules (AVM) is an initiative to consolidate and set the standar
 
 Modules will then align to these standards, across languages (Bicep, Terraform etc.) and will then be classified as AVMs and available from their respective language specific registries.
 
-AVM is a common code base, a toolkit for our Customers, our Partners, and Microsoft. It's an official, Microsoft driven initiative, with a devolved ownership approach to develop modules, leveraging internal & external communities.
+AVM is a common code base, a toolkit for our Customers, our Partners, and Microsoft. It's an open-source initiative owned by the Azure Deployments team within Azure engineering, with a devolved ownership approach to develop modules, leveraging internal & external communities.
 
 Azure Verified Modules enable and accelerate consistent solution development and delivery of cloud-native or migrated applications and their supporting infrastructure by codifying Microsoft guidance (WAF), with best practice configurations.
 
@@ -73,7 +73,7 @@ AVM improves code quality and provides a unified customer experience.
 </table>
 
 {{% notice style="important" %}}
-AVM is owned, developed & supported by Microsoft, you may raise a GitHub issue on this repository or the module's repository directly to get support or log feature requests.
+AVM is owned by Azure engineering and supported by Microsoft, you may raise a GitHub issue on this repository or the module's repository directly to get support or log feature requests.
 
 You can also log a support ticket and if the issue is not related to the Azure platform, you will be redirected to submit a GitHub issue for the module owner(s) or the AVM team.
 
