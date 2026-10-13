@@ -7,7 +7,7 @@ description: 'Azure Verified Modules - The Microsoft IaC Module Strategy'
 
 {{% notice style="tip" title="New content: AI-Assisted IaC Solution Development" icon="lightbulb" %}}
 
-**New [articles]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/) available on specification-driven development with AVM modules!** Learn how to use **GitHub Copilot** and **Spec Kit** to accelerate the development of Azure infrastructure solutions with AVM. **See** [**end-to-end examples**]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit/avm-example/) **for both Bicep and Terraform**.
+**New [articles]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev/) available on specification-driven development with AVM modules!** Learn how to use **GitHub Copilot** and **Spec Kit** to accelerate the development of Azure infrastructure solutions with AVM. **See** [**end-to-end examples**]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev/spec-kit/avm-example/) **for both Bicep and Terraform**.
 
 {{% /notice %}}
 

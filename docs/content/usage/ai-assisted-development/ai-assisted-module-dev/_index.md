@@ -3,17 +3,13 @@ draft: false
 title: AI-Assisted Module Development
 linktitle: AI-Assisted Module Dev
 description: Using GitHub Copilot and related AI features to develop and maintain Azure Verified Modules (AVM).
+aliases:
+  - /experimental/ai-assisted-module-dev/
 ---
-
-{{% notice style="warning" title="Experimental Content" icon="flask" %}}
-
-The content in this section represents **experimental exploration** of emerging technologies and innovative approaches. To learn more about our experimental content and its implications, please refer to the [Experimental Section Overview]({{% siteparam base %}}/experimental).
-
-{{% /notice %}}
 
 {{% notice style="info" title="For Module Owners" icon="user-gear" %}}
 
-This section covers **module development and maintenance scenarios** and is primarily relevant for **AVM module owners**. If you are an end user looking to leverage AVM to develop complex solutions using AI, see [AI-Assisted IaC Solution Development]({{% siteparam base %}}/experimental/ai-assisted-sol-dev).
+This section covers **module development and maintenance scenarios** and is primarily relevant for **AVM module owners**. If you are an end user looking to leverage AVM to develop complex solutions using AI, see [AI-Assisted IaC Solution Development]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev).
 
 {{% /notice %}}
 

@@ -4,13 +4,9 @@ linktitle: AVM Example
 type: default
 weight: 1
 description: Advanced guidance for developing solutions using Azure Verified Modules (AVM), leveraging GitHub Copilot.
+aliases:
+  - /experimental/ai-assisted-sol-dev/spec-kit/avm-example/
 ---
-
-{{% notice style="warning" title="Experimental Content" icon="flask" %}}
-
-The content in this section represents **experimental exploration** of emerging technologies and innovative approaches. To learn more about our experimental content and its implications, please refer to the [Experimental Section Overview]({{% siteparam base %}}/experimental).
-
-{{% /notice %}}
 
 ## Prerequisites
 
@@ -120,7 +116,7 @@ In your project folder, you should now see the following files and folders creat
 
 ## Making it real
 
-Spec Kit follows a structured workflow that guides you through each phase of solution development, from establishing foundational principles to implementing the final code. To learn more about Spec Kit, see the [Spec Kit overview]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit) section.
+Spec Kit follows a structured workflow that guides you through each phase of solution development, from establishing foundational principles to implementing the final code. To learn more about Spec Kit, see the [Spec Kit overview]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev/spec-kit) section.
 
 ```mermaid
 flowchart LR
@@ -173,7 +169,7 @@ Spec Kit uses `/speckit.constitution` to generate the `constitution.md` file. Th
 
 {{% notice style="info" %}}
 
-To learn more about what the constitution should include, see the [Constitution chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#1-constitution) in the Spec Kit article.
+To learn more about what the constitution should include, see the [Constitution chapter]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev/spec-kit#1-constitution) in the Spec Kit article.
 
 {{% /notice %}}
 
@@ -303,7 +299,7 @@ Spec Kit uses `/speckit.specify` to generate the `spec.md` file. Specifications 
 
 {{% notice style="info" %}}
 
-To learn more about what the specification should include, see the [Specification chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#2-specify) in the Spec Kit article.
+To learn more about what the specification should include, see the [Specification chapter]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev/spec-kit#2-specify) in the Spec Kit article.
 
 {{% /notice %}}
 
@@ -434,7 +430,7 @@ Spec Kit uses `/speckit.clarify` to generate adjust information captured in `spe
 
 {{% notice style="info" %}}
 
-To learn more about the clarify step, see the [Clarify chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#3-clarify-optional) in the Spec Kit article.
+To learn more about the clarify step, see the [Clarify chapter]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev/spec-kit#3-clarify-optional) in the Spec Kit article.
 
 {{% /notice %}}
 
@@ -568,7 +564,7 @@ Spec Kit uses `/speckit.plan` to generate the `plan.md` file. The plan can be ev
 
 {{% notice style="info" %}}
 
-To learn more about what the plan should include, see the [Plan chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#4-plan) in the Spec Kit article.
+To learn more about what the plan should include, see the [Plan chapter]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev/spec-kit#4-plan) in the Spec Kit article.
 
 Click through the tabs to see the details!
 
@@ -708,7 +704,7 @@ Spec Kit uses `/speckit.checklist` to validate the requirements. The prompt does
 
 {{% notice style="info" %}}
 
-To learn more about the checklist step, see the [Checklist chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#5-checklist-optional) in the Spec Kit article.
+To learn more about the checklist step, see the [Checklist chapter]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev/spec-kit#5-checklist-optional) in the Spec Kit article.
 
 {{% /notice %}}
 
@@ -804,7 +800,7 @@ Spec Kit uses `/speckit.tasks` to generate the `tasks.md` file. The prompt doesn
 
 {{% notice style="info" %}}
 
-To learn more about what the tasks should include, see the [Tasks chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#6-tasks) in the Spec Kit article.
+To learn more about what the tasks should include, see the [Tasks chapter]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev/spec-kit#6-tasks) in the Spec Kit article.
 
 {{% /notice %}}
 
@@ -885,7 +881,7 @@ Spec Kit uses `/speckit.analyze` to generate an analysis report. The prompt does
 
 {{% notice style="info" %}}
 
-To learn more about the analyze step, see the [Analyze chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#7-analyze-optional) in the Spec Kit article.
+To learn more about the analyze step, see the [Analyze chapter]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev/spec-kit#7-analyze-optional) in the Spec Kit article.
 
 {{% /notice %}}
 
@@ -967,7 +963,7 @@ Spec Kit uses `/speckit.implement` to generate the solution template file along 
 
 {{% notice style="info" %}}
 
-To learn more about the implement step, see the [Implement chapter]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit#8-implement) in the Spec Kit article.
+To learn more about the implement step, see the [Implement chapter]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev/spec-kit#8-implement) in the Spec Kit article.
 
 {{% /notice %}}
 
@@ -1124,4 +1120,4 @@ From here, you can ask Copilot to help you with the deployment and further enhan
 
 {{< /tabs >}}
 
-For more information on Spec Kit and the underlying methodology, see the [Spec Kit overview]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit) or explore the [Specification-Driven Development]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/sdd) concepts.
+For more information on Spec Kit and the underlying methodology, see the [Spec Kit overview]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev/spec-kit) or explore the [Specification-Driven Development]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev/sdd) concepts.
