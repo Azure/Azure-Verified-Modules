@@ -1,71 +1,47 @@
 ---
-title: Generate Bicep Module Files
+title: Initialize and Update Bicep Module Files
 linktitle: Update Module Files
-description: Generate Bicep Module Files for the Azure Verified Modules (AVM) program
+description: Initialize and update Bicep module files with Avm.Authoring
 ---
 
-As per the module design structure ([BCPNFR23]({{% siteparam base %}}/spec/BCPNFR23)), every module in the AVM library requires
+Use [`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring) for local Bicep authoring. Install and import it as described in the [Bicep prerequisites]({{% siteparam base %}}/contributing/bicep/prerequisites/). Run the commands below from the root of your [Bicep registry](https://github.com/Azure/bicep-registry-modules) checkout, replacing paths and metadata values with approved ones.
 
-- a up-to-date ReadMe markdown (`readme.md`) file documenting the set of deployable resource types, input and output parameters and a set of relevant template references from the official Azure Resource Reference documentation
-- an up-to-date compiled template (`main.json`) file
+## Initialize a new module once
 
-The `Set-AVMModule` utility aims to simplify contributing to the AVM library, as it supports
+For an approved resource module, set its target directory and run:
 
-- idempotently generating the AVM folder structure for a module (including any child resource)
-- generating the module's ReadMe file from scratch or updating it
-- compiling/building the module template
-
-To ease maintenance, you can run the utility with a `Recurse` flag from the root of your folder to update all files automatically.
-
-## Location
-
-You can find the script under [`utilities/tools/Set-AVMModule.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Set-AVMModule.ps1)
-
-## How it works
-
-Using the provided template path, the script
-
-1. validates the module's folder structure
-    - To do so, it searches for any required folder path / file missing and adds them. For several files, it will also provide some default content to get you started. The sources files for this action can be found [here](https://github.com/Azure/bicep-registry-modules/tree/main/utilities/tools/helper/src)
-1. compiles its bicep template
-1. updates the readme (recursively, specified)
-    1. If the intended readMe file does not yet exist in the expected path, it is generated with a skeleton (with e.g., a generated header name)
-    1. The script then goes through all sections defined as `SectionsToRefresh` (by default all) and refreshes the sections' content (for example, for the `Parameters`) based on the values in the ARM/JSON Template. It detects sections by their header and always regenerates the full section.
-    1. Once all are refreshed, the current ReadMe file is overwritten. **Note:** The script can be invoked combining the `WhatIf` and `Verbose` switches to just receive an console-output of the updated content.
-
-## How to use it
-
-For details on how to use the function, please refer to the script's local documentation.
-
-{{% notice style="note" %}}
-
-The script must be loaded ('_dot-sourced_') before the function can be invoked.
-
-```PowerShell
-. 'C:/dev/Set-AVMModule.ps1'
-Set-AVMModule (...)
+```powershell
+$modulePath = 'avm/res/<approved group>/<approved module>'
+avm init -Ecosystem bicep -ModuleType resource -Path $modulePath
 ```
 
-{{% /notice %}}
+In an interactive terminal, `avm init` prompts for missing approved display name, description, resource type, and owners. For unattended use, supply the required values with `-InputObject`; it will not guess missing values. It creates the module and provider directories if necessary, generates and validates `metadata.json` with a unique telemetry prefix for this resource module, and scaffolds `main.bicep`, `version.json`, `CHANGELOG.md`, and root `tests/e2e` Bicep files. It does not create a repository workflow or overwrite existing files. Use `-ModuleType pattern` or `utility` for an approved module of that kind; a utility that deploys no resources does not need telemetry.
 
-{{% notice style="tip" %}}
+To add a child module, run `avm init` with `-ChildModule` and the approved child path. Children inherit root ownership, so their metadata omits `owners`. Full initialization also creates any missing ancestors; see the [metadata rules]({{% siteparam base %}}/contributing/module-metadata/) for child modules.
 
-For modules that require the generation of files on multiple-levels (for example, a module with child modules such as the 'Key Vault' module with its 'Secret' child module) it is highly recommended to make use of the `-Recurse` parameter.
+If you only need to record an approved proposal **before** authoring `main.bicep`, use [`avm init -Proposed`]({{% siteparam base %}}/contributing/module-metadata/#create-only-metadata-for-an-approved-bicep-proposal) instead. Later, run full `avm init` on the same path to scaffold the remaining files; it preserves the existing metadata.
 
-This parameter will ensure that the script not only generates the files for the provided module folder path, but also all its nested module folder paths.
+## Update generated files after editing
 
-{{% /notice %}}
+After implementing `main.bicep` and the end-to-end tests, run the repeatable local workflow:
 
-{{% notice style="tip" %}}
+```powershell
+avm pre-commit -Ecosystem bicep -Path $modulePath
+```
 
-While readme files are **always** generated from scratch, you can add custom content is specific places that the script will preserve:
+`avm pre-commit` validates metadata, formats and lints Bicep, checks that it builds, compiles each `main.bicep` into `main.json`, and generates `README.md`. It processes the root and its child modules without a `-Recurse` switch. Review and commit the generated changes. Run it again after later source or test changes; unlike `avm init`, it is intended to be repeatable. Do not run it on a metadata-only proposed module before its source exists.
 
-- The module's description in the `main.bicep` file's metadata
-- The description of parameters & outputs
-- A section with the header `## Notes`
+To regenerate only the README from Bicep source and end-to-end examples, run:
 
-If the utility finds a section with the heading `## Notes`, it temporarily saves this content when it regenerates the readme file and then re-inserts (i.e. appends) the section toward the end of the readme file. This section **may** contain images, which must be stored in a subfolder `/src` in the root directory of the module.
+```powershell
+avm docs -Ecosystem bicep -Path $modulePath
+```
 
-Both for the text & images, please make sure to only add what provides tangible value as the content must be manually maintained and should not run stale. Further, for images, please make sure to only store them with an appropriate resolution & size to keep their impact on the repository's size manageable.
+This checkout's `bicepconfig.json` references its tracked, versioned README template. `avm docs` does not scaffold source files or compile `main.json`; use `avm pre-commit` for those tasks. For a module with an existing hand-written `## Notes` section in `README.md` but no `README.notes.md`, first extract the Notes once:
 
-{{% /notice %}}
+```powershell
+avm docs export-notes -Path $modulePath
+avm pre-commit -Ecosystem bicep -Path $modulePath
+```
+
+Run `avm docs export-notes` separately for each existing child README with authored Notes, using that child's path, before running `avm pre-commit` on the root. Commit the resulting `README.notes.md` files alongside regenerated READMEs. Keep authored Notes in the sidecar thereafter; the generator **does not** copy them from an existing README. Existing images referenced by Notes belong in the module's `src` directory. Source descriptions and parameter decorators supply the other generated README text; edit those rather than hand-editing generated sections.

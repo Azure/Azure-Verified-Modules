@@ -44,7 +44,7 @@ Usage examples for Bicep modules **MUST** be provided in the following formats:
 
 {{% notice style="note" %}}
 
-The above formats are currently automatically taken & generated from the `tests/e2e` tests. It is enough to run the `Set-ModuleReadMe` or `Set-AVMModule` functions (from the `utilities` folder) to update the usage examples in the readme(s).
+The above formats are generated from the `tests/e2e` tests. Run [`avm docs`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/#update-generated-files-after-editing), or `avm pre-commit` to update the usage examples in the generated `README.md`.
 
 {{% /notice %}}
 
