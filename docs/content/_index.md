@@ -5,7 +5,7 @@ type: home
 description: 'Azure Verified Modules - The Microsoft IaC Module Strategy'
 ---
 
-{{% notice style="tip" title="Latest Announcements" icon="lightbulb"  %}}
+{{% notice style="note" title="Latest Announcements" icon="lightbulb" %}}
 
 1. **Azure Verified Modules (AVM) is now owned by Azure engineering, read more about the news [here.](https://techcommunity.microsoft.com/blog/azuretoolsblog/azure-verified-modules-avm-is-now-owned-by-azure-engineering/4563822)**
 
@@ -20,6 +20,13 @@ description: 'Azure Verified Modules - The Microsoft IaC Module Strategy'
 <div style="width:70%; margin: 0 auto;">
 {{< youtube id="JbIMrJKW5N0" title="An introduction to Azure Verified Modules (AVM)" >}}
 </div>
+
+
+{{% notice style="tip" %}}
+
+For a more detailed intro check out the [Azure Infra Summit 2026 Session on AVM](https://www.youtube.com/watch?v=QBqRAMVTmwE)
+
+{{% /notice %}}
 
 ## Value Proposition
 
