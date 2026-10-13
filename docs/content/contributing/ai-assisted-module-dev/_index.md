@@ -9,7 +9,7 @@ aliases:
 
 {{% notice style="info" title="For Module Owners" icon="user-gear" %}}
 
-This section covers **module development and maintenance scenarios** and is primarily relevant for **AVM module owners**. If you are an end user looking to leverage AVM to develop complex solutions using AI, see [AI-Assisted IaC Solution Development]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev).
+This section covers **module development and maintenance scenarios** and is primarily relevant for **AVM module owners**. If you are an end user looking to leverage AVM to develop complex solutions using AI, see [AI-Assisted IaC Solution Development]({{% siteparam base %}}/usage/ai-assisted-sol-dev).
 
 {{% /notice %}}
 

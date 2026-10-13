@@ -16,4 +16,4 @@ This section describes usage guidance.
 - [Solution Development]({{% siteparam base %}}/usage/solution-development/)
   - [Bicep]({{% siteparam base %}}/usage/solution-development/bicep/)
   - [Terraform]({{% siteparam base %}}/usage/solution-development/terraform/)
-- [AI-Assisted Development]({{% siteparam base %}}/usage/ai-assisted-development/)
+- [AI-Assisted IaC Solution Development]({{% siteparam base %}}/usage/ai-assisted-sol-dev/)

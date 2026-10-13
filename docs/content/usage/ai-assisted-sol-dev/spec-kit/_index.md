@@ -5,11 +5,12 @@ linktitle: Spec Kit
 description: Guidance for the Azure Verified Modules (AVM) program on how Spec Kit can be used to accelerate solution development using AVM modules.
 aliases:
   - /experimental/ai-assisted-sol-dev/spec-kit/
+  - /usage/ai-assisted-development/ai-assisted-sol-dev/spec-kit/
 ---
 
 ## Overview
 
-**Spec Kit** is a reference implementation of [Specification-Driven Development (SDD)]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev/sdd) principles, developed by members of the open-source community, including engineers from Microsoft and Anthropic. It provides a structured, AI-native workflow for translating project requirements into specifications, plans, executable tasks and implemented code - demonstrating how SDD concepts can be operationalized.
+**Spec Kit** is a reference implementation of [Specification-Driven Development (SDD)]({{% siteparam base %}}/usage/ai-assisted-sol-dev/sdd) principles, developed by members of the open-source community, including engineers from Microsoft and Anthropic. It provides a structured, AI-native workflow for translating project requirements into specifications, plans, executable tasks and implemented code - demonstrating how SDD concepts can be operationalized.
 
 **For detailed information (installation instructions, usage guidelines, etc.) visit the official repository**: [https://github.com/github/spec-kit](https://github.com/github/spec-kit)
 
@@ -299,4 +300,4 @@ Key takeaways:
 
 When combined with Azure Verified Modules, Spec Kit helps ensure that your infrastructure-as-code solutions are not only functional but also secure, maintainable, and aligned with Azure best practices.
 
-For hands-on examples of using Spec Kit with AVM, see the [AVM Example]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev/spec-kit/avm-example/) guide.
+For hands-on examples of using Spec Kit with AVM, see the [AVM Example]({{% siteparam base %}}/usage/ai-assisted-sol-dev/spec-kit/avm-example/) guide.

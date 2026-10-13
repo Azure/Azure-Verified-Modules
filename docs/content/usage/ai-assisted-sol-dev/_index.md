@@ -4,12 +4,15 @@ title: AI-Assisted IaC Solution Development
 linktitle: AI-Assisted IaC Solution Development
 description: Guidance for the Azure Verified Modules (AVM) program on how AI assisted deployment can be used to accelerate solution development using AVM modules.
 aliases:
+  - /experimental/
   - /experimental/ai-assisted-sol-dev/
+  - /usage/ai-assisted-development/
+  - /usage/ai-assisted-development/ai-assisted-sol-dev/
 ---
 
 {{% notice style="info" title="For End Users" icon="users" %}}
 
-This section covers **solution development scenarios** and is primarily relevant for **end users** aiming to develop complex solutions based on AVM modules using AI. If you are a module owner looking for content on maintaining and developing AVM modules with AI assistance, see [AI-Assisted Module Development]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-module-dev).
+This section covers **solution development scenarios** and is primarily relevant for **end users** aiming to develop complex solutions based on AVM modules using AI. If you are a module owner looking for content on maintaining and developing AVM modules with AI assistance, see [AI-Assisted Module Development]({{% siteparam base %}}/contributing/ai-assisted-module-dev).
 
 {{% /notice %}}
 

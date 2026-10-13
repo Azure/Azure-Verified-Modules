@@ -5,6 +5,7 @@ linktitle: Specification-Driven Development (SDD)
 description: Guidance for the Azure Verified Modules (AVM) program on how Specification-Driven Development (SDD) can be used to accelerate solution development using AVM modules.
 aliases:
   - /experimental/ai-assisted-sol-dev/sdd/
+  - /usage/ai-assisted-development/ai-assisted-sol-dev/sdd/
 ---
 
 ## Overview

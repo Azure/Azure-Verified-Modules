@@ -5,19 +5,15 @@ type: home
 description: 'Azure Verified Modules - The Microsoft IaC Module Strategy'
 ---
 
-{{% notice style="tip" title="New content: AI-Assisted IaC Solution Development" icon="lightbulb" %}}
+{{% notice style="tip" title="Latest Announcements" icon="lightbulb"  %}}
 
-**New [articles]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev/) available on specification-driven development with AVM modules!** Learn how to use **GitHub Copilot** and **Spec Kit** to accelerate the development of Azure infrastructure solutions with AVM. **See** [**end-to-end examples**]({{% siteparam base %}}/usage/ai-assisted-development/ai-assisted-sol-dev/spec-kit/avm-example/) **for both Bicep and Terraform**.
+1. **Azure Verified Modules (AVM) is now owned by Azure engineering, read more about the news [here.](https://techcommunity.microsoft.com/blog/azuretoolsblog/azure-verified-modules-avm-is-now-owned-by-azure-engineering/4563822)**
+
+2. **The next AVM community call will be hosted on Monday 26th October 2026 @ 16:00 UK | 12:00 EDT | 09:00 PDT | 21:30 IST | 03:00 AEDT**
+    - YouTube Live Link: [aka.ms/AVM/CommunityCall](https://aka.ms/AVM/CommunityCall)
+    - GitHub Issue Link for topics: [AVM Community Call - October 2026 · Issue #3079 · Azure/Azure-Verified-Modules](https://github.com/Azure/Azure-Verified-Modules/issues/3079)
 
 {{% /notice %}}
-
-<!-- {{% notice style="important" %}}
-
-The AVM team hosted our last external community call on **December 3rd, 2025**! 🥳
-
-To **watch the recording** and download the slides, see the [Community Calls page]({{% siteparam base %}}/resources/community/#3rd-december-2025)!
-
-{{% /notice %}} -->
 
 ## Introduction
 
