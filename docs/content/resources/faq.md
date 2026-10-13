@@ -341,11 +341,21 @@ However, a module does not need to be at version `1.0.0` to be considered produc
 
 ---
 
-### Why did the AVM team change the support statements and targets in June 2025?
+### Why did the AVM team remove day-based support targets?
 
-The AVM team has updated the support statements and targets to better align with the current state of the AVM initiative and to ensure that module owners can provide meaningful responses and resolutions to issues raised by consumers. The changes were made to improve clarity, set realistic expectations, and enhance the overall support experience for AVM modules and their consumers.
+AVM moved into the Azure Deployments team within Azure engineering in October 2026. This move added dedicated engineers who maintain modules and improve the shared tooling, automation, and framework.
 
-More information about the changes can be found in the blog post, [Tech Community: Azure Verified Modules: Support Statement & Target Response Times Update](https://techcommunity.microsoft.com/blog/azuretoolsblog/azure-verified-modules-support-statement--target-response-times-update/4421489), we published on this topic.
+AVM removed targets that it could not meet consistently. It now follows the support model used by Azure CLI, Azure PowerShell, Bicep, AzAPI, and the AzureRM Terraform provider.
+
+For more information, read [Azure Verified Modules (AVM) is now owned by Azure engineering](https://techcommunity.microsoft.com/blog/azuretoolsblog/azure-verified-modules-avm-is-now-owned-by-azure-engineering/4563822).
+
+---
+
+### What are AVM module ownership tiers?
+
+AVM plans to classify modules by owner in early 2027. Tier 1 modules are owned by the AVM Core Team. Tier 2 modules are owned by any Microsoft FTE or team. A Tier 3 for vetted external owners is an idea, not a commitment.
+
+Every module in every tier is built to the same AVM specifications and passes the same CI checks. See [Module Ownership Tiers]({{% siteparam base %}}/specs/shared/module-ownership-tiers/) for details.
 
 ## Technical questions
 

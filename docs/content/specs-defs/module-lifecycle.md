@@ -4,7 +4,9 @@ url: /specs/shared/module-lifecycle/
 description: Module Lifecycle description for the Azure Verified Modules (AVM) program
 ---
 
-This section outlines the different stages of a module's lifecycle:
+This section outlines the different stages of a module's lifecycle. For who owns modules, see [Module Ownership Tiers]({{% siteparam base %}}/specs/shared/module-ownership-tiers/).
+
+The stages are:
 
 {{< mermaid zoom="false">}}
 flowchart LR
@@ -77,7 +79,7 @@ Reviewer notifications and triage labels help find reviewers; they do not replac
 
 ## 3. Orphaned Modules
 
-It is critical to the consumers experience that modules continue to be maintained. In the case where a module owner cannot continue in their role or do not respond to issues as per the defined timescale in the [Module Support page]({{% siteparam base %}}/help-support/module-support/) , the following process will apply:
+It is critical to the consumer experience that modules continue to be maintained. If a module owner cannot continue in their role or becomes inactive, the following process applies:
 
 1. The module owner is responsible for finding a replacement owner and providing a handover.
 2. If no replacement can be found or the module owner leaves Microsoft without giving warning to the AVM core team, the AVM core team will provide essential maintenance (critical bug and security fixes), as per the [Module Support page]({{% siteparam base %}}/help-support/module-support/)

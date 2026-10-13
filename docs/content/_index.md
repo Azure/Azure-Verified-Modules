@@ -5,25 +5,28 @@ type: home
 description: 'Azure Verified Modules - The Microsoft IaC Module Strategy'
 ---
 
-{{% notice style="tip" title="New content: AI-Assisted IaC Solution Development" icon="lightbulb" %}}
+{{% notice style="note" title="Latest Announcements" icon="lightbulb" %}}
 
-**New [articles]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/) available on specification-driven development with AVM modules!** Learn how to use **GitHub Copilot** and **Spec Kit** to accelerate the development of Azure infrastructure solutions with AVM. **See** [**end-to-end examples**]({{% siteparam base %}}/experimental/ai-assisted-sol-dev/spec-kit/avm-example/) **for both Bicep and Terraform**.
+1. **Azure Verified Modules (AVM) is now owned by Azure engineering, read more about the news [here.](https://techcommunity.microsoft.com/blog/azuretoolsblog/azure-verified-modules-avm-is-now-owned-by-azure-engineering/4563822)**
+
+2. **The next AVM community call will be hosted on Monday 26th October 2026 @ 16:00 UK | 12:00 EDT | 09:00 PDT | 21:30 IST | 03:00 AEDT**
+    - YouTube Live Link: [aka.ms/AVM/CommunityCall](https://aka.ms/AVM/CommunityCall)
+    - GitHub Issue Link for topics: [AVM Community Call - October 2026 · Issue #3079 · Azure/Azure-Verified-Modules](https://github.com/Azure/Azure-Verified-Modules/issues/3079)
 
 {{% /notice %}}
-
-<!-- {{% notice style="important" %}}
-
-The AVM team hosted our last external community call on **December 3rd, 2025**! 🥳
-
-To **watch the recording** and download the slides, see the [Community Calls page]({{% siteparam base %}}/resources/community/#3rd-december-2025)!
-
-{{% /notice %}} -->
 
 ## Introduction
 
 <div style="width:70%; margin: 0 auto;">
 {{< youtube id="JbIMrJKW5N0" title="An introduction to Azure Verified Modules (AVM)" >}}
 </div>
+
+
+{{% notice style="tip" %}}
+
+For a more detailed intro check out the [Azure Infra Summit 2026 Session on AVM](https://www.youtube.com/watch?v=QBqRAMVTmwE)
+
+{{% /notice %}}
 
 ## Value Proposition
 
@@ -35,7 +38,7 @@ Azure Verified Modules (AVM) is an initiative to consolidate and set the standar
 
 Modules will then align to these standards, across languages (Bicep, Terraform etc.) and will then be classified as AVMs and available from their respective language specific registries.
 
-AVM is a common code base, a toolkit for our Customers, our Partners, and Microsoft. It's an official, Microsoft driven initiative, with a devolved ownership approach to develop modules, leveraging internal & external communities.
+AVM is a common code base, a toolkit for our Customers, our Partners, and Microsoft. It's an open-source initiative owned by the Azure Deployments team within Azure engineering, with a devolved ownership approach to develop modules, leveraging internal & external communities.
 
 Azure Verified Modules enable and accelerate consistent solution development and delivery of cloud-native or migrated applications and their supporting infrastructure by codifying Microsoft guidance (WAF), with best practice configurations.
 
@@ -70,7 +73,7 @@ AVM improves code quality and provides a unified customer experience.
 </table>
 
 {{% notice style="important" %}}
-AVM is owned, developed & supported by Microsoft, you may raise a GitHub issue on this repository or the module's repository directly to get support or log feature requests.
+AVM is owned by Azure engineering and supported by Microsoft, you may raise a GitHub issue on this repository or the module's repository directly to get support or log feature requests.
 
 You can also log a support ticket and if the issue is not related to the Azure platform, you will be redirected to submit a GitHub issue for the module owner(s) or the AVM team.
 

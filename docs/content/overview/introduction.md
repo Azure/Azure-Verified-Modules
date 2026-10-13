@@ -24,7 +24,7 @@ Our mission is to deliver a comprehensive Azure Verified Modules library in mult
 
 ### Definition of "Verified" Summary
 
-- The modules are supported by Microsoft, across it's many internal organizations, as described in [Module Support]({{% siteparam base %}}/help-support/module-support/)
+- The modules are supported by Microsoft, as described in [Module Support]({{% siteparam base %}}/help-support/module-support/)
 - Modules are aligned to clear specifications that enforces consistency between all AVM modules. *See the 'Specifications & Definitions' section in the menu*
 - Modules will continue to stay up-to-date with product/service roadmaps owned by the module owners and contributors
 - Modules will align to WAF high priority recommendations. *See ['What does AVM mean by "WAF Aligned"?']({{% siteparam base %}}/faq/#what-does-avm-mean-by-waf-aligned)*
@@ -43,7 +43,7 @@ We also know, from our customers, that well defined support statements from Micr
 
 ## How will we create, support and enforce Azure Verified Modules?
 
-Azure Verified Modules will achieve this, and its mission statement, by implementing and enforcing the following; driven by the AVM Core Team:
+Azure Verified Modules is owned by the Azure Deployments team within Azure engineering. The AVM Core Team and distributed module owners achieve the mission by:
 
 1. Publishing AVM modules to their respective public registries for consumption
     - For Bicep this will be the [Bicep Public Module Registry](https://aka.ms/BRM)
@@ -53,5 +53,4 @@ Azure Verified Modules will achieve this, and its mission statement, by implemen
 3. Creating easy to follow AVM module contribution and publishing guidance for each IaC language (today Bicep and Terraform)
 4. Enforcing tests for each AVM module is compliant with the AVM specifications, where possible, via Unit and Integration tests
 5. Enforcing End-to-End Deployment tests of each AVM module
-6. Providing, and backing, a long-term support statement, regardless of the AVM module's ownership status
-    - Backed by the AVM Core Team, Microsoft CSS and Azure PGs
+6. Providing a long-term support statement, backed by dedicated AVM engineering resources
