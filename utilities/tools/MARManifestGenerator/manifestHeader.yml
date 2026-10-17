@@ -1,0 +1,330 @@
+version: 2.0
+subscriptionId: 22ec7257-9128-45a4-9751-69ef4f22a75b
+resourceGroup: bicep-public-registry-rg
+registry: biceppublic
+onboardingNotification: brmmcronboarding
+dependencyNotification: brmmcrdependency
+
+ownership:
+  securityGroups:
+    - groupName: redmond\bicepmcr
+      permissions:
+        - read
+        - write
+
+repos:
+  - name: public/bicep/samples/hello-world
+    displayName: Hello World
+    description: A "Hello World" sample Bicep registry module
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/samples/hello-world/README.md
+
+  - name: public/bicep/samples/array-loop
+    displayName: Array loop
+    description: A sample Bicep registry module demonstrating array iterations
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/samples/array-loop/README.md
+
+  - name: public/bicep/ai/bing-resource
+    displayName: Bing Resource
+    description: Deploys Azure Bing resource
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/ai/bing-resource/README.md
+
+  - name: public/bicep/ai/cognitiveservices
+    displayName: Cognitive Services
+    description: Deploys CognitiveServices and optionally available integrations
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/ai/cognitiveservices/README.md
+
+  - name: public/bicep/apim/product
+    displayName: API Management product
+    description: An API Management product for grouping and controlling access to APIs
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/apim/product/README.md
+
+  - name: public/bicep/app/app-configuration
+    displayName: Azure App Configuration
+    description: Bicep module for simplified deployment Azure App Configuration resources
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/app/app-configuration/README.md
+
+  - name: public/bicep/app/dapr-containerapp
+    displayName: Dapr container app
+    description: A dapr optimised container app
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/app/dapr-containerapp/README.md
+
+  - name: public/bicep/app/dapr-containerapps-environment
+    displayName: Container Apps Environment for DAPR
+    description: Provides an optimised Container App Environment for DAPR applications
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/app/dapr-containerapps-environment/README.md
+
+  - name: public/bicep/authorization/resource-scope-role-assignment
+    displayName: Resource scoped role assignment
+    description: Create an Azure Authorization Role Assignment at the scope of a resource
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/authorization/resource-scope-role-assignment/README.md
+
+  - name: public/bicep/azure-gaming/game-dev-vm
+    displayName: Azure Game Developer VM
+    description: Bicep Module to simplify deployment of the Azure Game Developer VM
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/azure-gaming/game-dev-vm/README.md
+
+  - name: public/bicep/azure-gaming/game-dev-vmss
+    displayName: Azure Game Developer VMSS
+    description: Bicep Module to simplify deployment of the Azure Game Developer VMSS
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/azure-gaming/game-dev-vmss/README.md
+
+  - name: public/bicep/azure-gaming/unreal-cloud-ddc
+    displayName: Unreal Cloud DDC
+    description: Bicep module for simplified deployment of Unreal Cloud DDC
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/azure-gaming/unreal-cloud-ddc/README.md
+
+  - name: public/bicep/compute/availability-set
+    displayName: Availability Set
+    description: Deploys Microsoft.Compute Availability Sets and optionally available children or extensions
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/compute/availability-set/README.md
+
+  - name: public/bicep/compute/container-registry
+    displayName: Bicep Container Registry Module
+    description: Bicep module to deploy Container Registry and optionally available integrations
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/compute/container-registry/README.md
+
+  - name: public/bicep/compute/custom-image-vmss
+    displayName: Azure VMSS with Custom Image
+    description: Create an Azure VMSS Cluster with a Custom Image to simplify creation of Marketplace Applications
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/compute/custom-image-vmss/README.md
+
+  - name: public/bicep/compute/event-hub
+    displayName: Azure Event-Hub
+    description: Deploys Microsoft.data event clusters, event namespace, and event hub
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/compute/event-hub/README.md
+
+  - name: public/bicep/compute/function-app
+    displayName: Azure Function App
+    description: Bicep module to create Azure Function App
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/compute/function-app/README.md
+
+  - name: public/bicep/cost/resourcegroup-scheduled-action
+    displayName: Cost Management scheduled action for resource groups
+    description: Creates a scheduled action to notify recipients about the latest costs
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/cost/resourcegroup-scheduled-action/README.md
+
+  - name: public/bicep/cost/subscription-scheduled-action
+    displayName: Cost Management scheduled action for subscriptions
+    description: Creates a scheduled action to notify recipients about the latest costs
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/cost/subscription-scheduled-action/README.md
+
+  - name: public/bicep/deployment-scripts/aks-run-command
+    displayName: AKS Run Command Script
+    description: A Deployment Script that allows you to run a command on a Kubernetes cluster.
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/deployment-scripts/aks-run-command/README.md
+
+  - name: public/bicep/deployment-scripts/aks-run-helm
+    displayName: AKS Run Helm Script
+    description: An Azure CLI Deployment Script that allows you to run a Helm command at a Kubernetes cluster.
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/deployment-scripts/aks-run-helm/README.md
+
+  - name: public/bicep/deployment-scripts/build-acr
+    displayName: ACR Image Build
+    description: Builds a container image inside ACR from source code.
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/deployment-scripts/build-acr/README.md
+
+  - name: public/bicep/deployment-scripts/create-kv-certificate
+    displayName: AKV Certs in AGW
+    description: A Deployment Script that creates Key Vault self-signed certificates.
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/deployment-scripts/create-kv-certificate/README.md
+
+  - name: public/bicep/deployment-scripts/create-kv-sshkeypair
+    displayName: SSH Key Pair Creation
+    description: Creates SSH Key Pair Stores them in KeyVault as Secrets
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/deployment-scripts/create-kv-sshkeypair/README.md
+
+  - name: public/bicep/deployment-scripts/import-acr
+    displayName: ACR Image Import
+    description: A Deployment Script that imports public container images to an Azure Container Registry
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/deployment-scripts/import-acr/README.md
+
+  - name: public/bicep/deployment-scripts/wait
+    displayName: Wait
+    description: A Deployment Script that introduces a delay to the deployment process
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/deployment-scripts/wait/README.md
+
+  - name: public/bicep/lz/sub-vending
+    displayName: Bicep Landing Zone (Subscription) Vending Module
+    description: Bicep module to accelerate deployment of landing zones (aka Subscriptions) within an Azure AD Tenant
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/lz/sub-vending/README.md
+
+  - name: public/bicep/identity/user-assigned-identity
+    displayName: Azure Managed Identity
+    description: Bicep module to deploy Azure managed identities
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/identity/user-assigned-identity/README.md
+
+  - name: public/bicep/network/virtual-network
+    displayName: Virtual Networks
+    description: Deploys Microsoft.Network Virtual Networks and optionally available children or extensions
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.pngdeploy Azure managed identities.
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/network/virtual-network/README.md
+
+  - name: public/bicep/network/traffic-manager
+    displayName: Traffic Manager
+    description: Bicep module for creating a Azure Traffic Manager Profile with endpoints and monitor configurations
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/network/traffic-manager/README.md
+
+  - name: public/bicep/network/nat-gateway
+    displayName: NAT Gateway
+    description: A Bicep module for simplified deployment for NAT gateways and available configuration options
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/network/nat-gateway/README.md
+
+  - name: public/bicep/network/dns-zone
+    displayName: DNS Zone
+    description: Azure DNS is a hosting service for DNS domains that provides name resolution
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/network/dns-zone/README.md
+
+  - name: public/bicep/network/public-ip-address
+    displayName: Public IP Address
+    description: Bicep Module for creating Public IP Address
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/network/public-ip-address/README.md
+
+  - name: public/bicep/network/public-ip-prefix
+    displayName: Public IP Prefix
+    description: Bicep Module for creating Public IP Prefix
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/network/public-ip-prefix/README.md
+
+  - name: public/bicep/network/private-dns-zone
+    displayName: Private DNS Zone
+    description: A bicep module for simplified deployment for Private DNS Zones
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/network/private-dns-zone/README.md
+
+  - name: public/bicep/observability/grafana
+    displayName: Azure Managed Grafana
+    description: Bicep Module for creating Azure Managed Grafana
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/observability/grafana/README.md
+
+  - name: public/bicep/search/search-service
+    displayName: Azure Search Service
+    description: Bicep module for simplified deployment of Azure Cognitive Search
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/search/search-service/README.md
+
+  - name: public/bicep/security/keyvault
+    displayName: Key Vault
+    description: Bicep module for simplified deployment of KeyVault
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/security/keyvault/README.md
+
+  - name: public/bicep/storage/cosmos-db
+    displayName: Cosmos DB
+    description: Bicep module for simplified deployment of Cosmos DB
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/storage/cosmos-db/README.md
+
+  - name: public/bicep/storage/data-explorer
+    displayName: Azure Data Explorer
+    description: Bicep module to create a Kusto Cluster with the specified number of nodes and version
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/storage/data-explorer/README.md
+
+  - name: public/bicep/storage/storage-account
+    displayName: Storage Account Vault
+    description: Bicep module for simplified deployment of Storage Accounts
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/storage/storage-account/README.md
+
+  - name: public/bicep/storage/log-analytics-workspace
+    displayName: Log Analytics Workspace
+    description: Deploys Log Analytics workspace and optionally available integrations
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/storage/log-analytics-workspace/README.md
+
+  - name: public/bicep/storage/postgresql-single-server
+    displayName: PostgreSQL Single Server
+    description: Deploys Postgresql Single Server and optionally available integrations.
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/storage/postgresql-single-server/README.md
+
+  - name: public/bicep/storage/redis-cache
+    displayName: Azure Cache for Redis
+    description: deploys Azure Cache for Redis(Microsoft.Cache/redis) and optionally available integrations
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/storage/redis-cache/README.md
+
+  - name: public/bicep/storage/mysql-single-server
+    displayName: MySQL Single Server
+    description: Deploys MySQL Single Server and optionally available integrations.
+    logoUrl: https://raw.githubusercontent.com/Azure/bicep/main/src/vscode-bicep/icons/bicep-logo-256.png
+    supportLink: https://github.com/Azure/bicep-registry-modules/issues
+    documentationLink: https://github.com/Azure/bicep-registry-modules/blob/main/modules/storage/mysql-single-server/README.md
+
