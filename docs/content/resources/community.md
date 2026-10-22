@@ -18,19 +18,13 @@ Let's make each community call a celebration of connection and collaboration!
 
 ## Upcoming Events
 
-Stay tuned, to be announced! 👂
+### 26th October 2026
 
-<!-- {{% notice style="note" %}}
+**The next AVM community call will be hosted on Monday 26th October 2026 @ 16:00 UK | 12:00 EDT | 09:00 PDT | 21:30 IST | 03:00 AEDT (Tuesday 27th October)**
 
-This occurrence is optimized for EMEA/APJ time zones!
-
-{{% /notice %}} -->
-
-
-<!-- #### Call to action
-
-- [Register](https://aka.ms/AVM/CommunityCall) for this event
-- Lave a comment on this [GitHub Issue for the Q&A section](https://github.com/Azure/Azure-Verified-Modules/issues/2429) -->
+- YouTube Live Link: [aka.ms/AVM/CommunityCall](https://aka.ms/AVM/CommunityCall)
+- GitHub Issue Link for topics: [AVM Community Call - October 2026 · Issue #3079 · Azure/Azure-Verified-Modules](https://github.com/Azure/Azure-Verified-Modules/issues/3079)
+- Add to your calendar: [Download the calendar invite (.ics)]({{% siteparam base %}}/community/avm-oct26-community-call.ics)
 
 ## Previous Events
 
