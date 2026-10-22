@@ -8,6 +8,14 @@
 {{- end -}}
 {{- $strict := default false (.Get "strict") -}}
 {{- $daysShown := int (default 0 (.Get "daysShown")) -}}
+{{- $monthsShown := int (default 0 (.Get "monthsShown")) -}}
+{{- $cutoff := now.AddDate 0 0 (int (mul -1 $daysShown)) -}}
+{{- $period := printf "%d days" $daysShown -}}
+{{- if gt $monthsShown 0 -}}
+  {{- $cutoff = now.AddDate 0 (int (mul -1 $monthsShown)) 0 -}}
+  {{- $period = printf "%d months" $monthsShown -}}
+{{- end -}}
+{{- $showAll := and (eq $daysShown 0) (eq $monthsShown 0) -}}
 {{- $allFiles := slice -}}
 {{- $baseURL := $.Site.BaseURL -}}
 {{- $commitURLPrefix := add "https://github.com/Azure" .Site.Params.base "/commit/" -}}
@@ -54,7 +62,7 @@
     {{- if $addPageToList -}}
       {{- $lastModifiedDate := $page.Params.lastmod -}}
       {{ $timeFormat := "2006-01-02 15:04:05" }}
-      {{- if or (eq $daysShown 0) ($lastModifiedDate.After (now.AddDate 0 0 (int (mul -1 $daysShown ))).UTC) -}}
+      {{- if or $showAll ($lastModifiedDate.After $cutoff.UTC) -}}
         {{- $titleParts := split $page.Params.title " - " -}}
         {{- $id := index $titleParts 0 -}}
         {{- $url := $page.Params.url -}}
@@ -75,12 +83,12 @@
   {{- $sortedSpecs = first $take $sortedSpecs -}}
 {{- end -}}
 
-{{ if eq $daysShown 0 }}See specification history...{{ else }}See what specifications changed in the last {{ $daysShown }} days{{ end }}...
+{{ if $showAll }}See specification history...{{ else }}See what specifications changed in the last {{ $period }}{{ end }}...
 <br>
 <br>
 
 <details>
-  {{/*  <summary>{{ if eq $daysShown 0 }}See specification history...{{ else }}See what specifications changed in the last {{ $daysShown }} days{{ end }}...</summary>  */}}
+  {{/*  <summary>{{ if $showAll }}See specification history...{{ else }}See what specifications changed in the last {{ $period }}{{ end }}...</summary>  */}}
   <table>
     <thead>
       <tr>
@@ -109,5 +117,5 @@
   </table>
 </details>
 {{ else }}
-  <p>No specifications were changed in the last {{ $daysShown }} days.</p>
+  <p>No specifications were changed in the last {{ $period }}.</p>
 {{ end -}}
