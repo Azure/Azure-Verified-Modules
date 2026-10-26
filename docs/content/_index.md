@@ -9,10 +9,11 @@ description: 'Azure Verified Modules - The Microsoft IaC Module Strategy'
 
 1. **Azure Verified Modules (AVM) is now owned by Azure engineering, read more about the news [here.](https://techcommunity.microsoft.com/blog/azuretoolsblog/azure-verified-modules-avm-is-now-owned-by-azure-engineering/4563822)**
 
-2. **The next AVM community call will be hosted on Monday 26th October 2026 @ 16:00 UK | 12:00 EDT | 09:00 PDT | 21:30 IST | 03:00 AEDT (Tuesday 27th October)**
-    - YouTube Live Link: [aka.ms/AVM/CommunityCall](https://aka.ms/AVM/CommunityCall)
-    - GitHub Issue Link for topics: [AVM Community Call - October 2026 · Issue #3079 · Azure/Azure-Verified-Modules](https://github.com/Azure/Azure-Verified-Modules/issues/3079)
-    - Add to your calendar: [Download the calendar invite (.ics)]({{% siteparam base %}}/community/avm-oct26-community-call.ics)
+2. **The AVM community call took place on Monday 26th October 2026.**
+    - Watch the [recording on YouTube](https://www.youtube.com/watch?v=KzdwhiJuug8).
+    - View the [October 2026 community call slides]({{% siteparam base %}}/community/avm-community-call-oct26.pdf).
+
+3. **The next AVM community call is planned for February or March 2027. The date will be announced as soon as it is confirmed.**
 
 {{% /notice %}}
 
