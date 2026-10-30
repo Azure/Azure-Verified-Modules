@@ -47,7 +47,7 @@ Without this variable a consumer has no way to reach the argument, because `life
 `ignore_body_changes` is a [write-only argument](https://developer.hashicorp.com/terraform/language/resources/ephemeral#write-only-arguments). As a result:
 
 - The module's `Azure/azapi` constraint in `required_providers` **MUST** allow v2.12.0 or later, which is the release that introduces the argument (see [TFFR3]({{% siteparam base %}}/spec/TFFR3)).
-- A consumer supplying a **non-empty** value **MUST** be running Terraform 1.11 or later. Modules **MUST NOT** raise their `required_version` floor for this reason alone (see [TFNFR25]({{% siteparam base %}}/spec/TFNFR25)); instead they **MUST** emit `null` when the list is empty so that consumers on earlier Terraform versions who do not use the feature are unaffected. See [Applying the variable](#applying-the-variable).
+- Terraform 1.11 or later is required for write-only arguments. All AVM Terraform modules **MUST** declare a `required_version` minimum of at least 1.11.0, per [TFNFR25]({{% siteparam base %}}/spec/TFNFR25), whether or not a consumer supplies a non-empty `ignore_body_changes` value.
 
 {{% notice style="important" %}}
 
@@ -65,13 +65,62 @@ The `ignore_body_changes` variable **MUST**:
 
 - Be a single `object({...})` (not a `map(list(string))`) so typos at call sites error at plan time and the full override surface is visible in the variable declaration.
 - Default the variable itself to `{}` and be `nullable = false`, per [TFNFR20]({{% siteparam base %}}/spec/TFNFR20) and [TFNFR21]({{% siteparam base %}}/spec/TFNFR21).
-- Declare one `optional(list(string), [])` field for every AzAPI resource the module itself declares, keyed by the snake_case form of the ARM resource type with the `Microsoft.` prefix dropped — the identical key used in `resource_types` (for example `Microsoft.Example/widgets` → `example_widgets`).
+- Declare one `optional(list(string), [])` field for every AzAPI resource the module itself declares, keyed by the snake_case form of the ARM resource type with the `Microsoft.` prefix dropped — the identical key used in `resource_types` (for example `Microsoft.Example/widgets` → `example_widgets`). A documented resource-specific default **MAY** replace `[]` as described below.
 - Declare one nested `optional(object({...}), {})` field for every submodule the module instantiates that directly declares a supported AzAPI resource, keyed by that submodule's primary ARM resource type. The shape of the nested object **MUST** match that submodule's own `ignore_body_changes` variable exactly, and the parent **MUST** cascade the slot through unchanged.
 - Document every field in the variable's `description`, including what `ignore_body_changes` does, that paths use dot notation, and that changes take effect only after an apply.
 
-Module owners **MAY** ship module-level defaults where the resource is known to be mutated outside Terraform. To do so, supply the default inside the `optional(list(string), [...])` wrapper. Consumers **MUST** still be able to override any individual field, and a module-level default **MUST NOT** be used to work around a bug that belongs in the module body.
+Module owners **MAY** supply non-empty defaults for any resource field, including resource fields nested under submodule slots, where a specific edge case requires them because the resource is known to be mutated outside Terraform. To do so, supply the default inside the `optional(list(string), [...])` wrapper, and document the paths and why they are ignored by default. Consumers **MUST** still be able to override any individual field, and a resource-specific default **MUST NOT** be used to work around a bug that belongs in the module body.
+
+The top-level `default = {}` does **not** prevent resource-specific defaults from taking effect. Terraform fills omitted fields with their `optional(...)` defaults, including fields inside nested objects. Consumers can replace a field's default list or supply `[]` to disable it; lists are replaced, not merged. Omitting the variable or supplying `{}` retains the authored defaults rather than disabling them.
 
 Modules **MAY** additionally expose per-item overrides on the collection variable that drives a `for_each` submodule, for cases where individual instances need different paths. Where they do, the per-item value **MUST** take precedence over the shared slot.
+
+### Resource-specific defaults and consumer overrides
+
+For a widget whose capacity is managed by an external autoscaler, an author can default that resource's field to `["properties.capacity"]` while keeping the variable's top-level default empty:
+
+```terraform
+variable "ignore_body_changes" {
+  type = object({
+    example_widgets = optional(list(string), ["properties.capacity"])
+
+    example_widgets_parts = optional(object({
+      example_widgets_parts = optional(list(string), ["properties.capacity"])
+    }), {})
+  })
+  default     = {}
+  nullable    = false
+  description = <<-DESCRIPTION
+  Body paths to ignore, in dot notation. Changes take effect only after an apply.
+  - example_widgets: Defaults to properties.capacity because an external autoscaler manages widget capacity.
+  - example_widgets_parts.example_widgets_parts: Defaults to properties.capacity because an external autoscaler manages part capacity.
+  DESCRIPTION
+}
+```
+
+The child module declares the same nested shape and resource-field default in its own variable. The parent passes the nested slot through unchanged, as shown in the root-and-child example below.
+
+Omitting `ignore_body_changes`, or setting it to `{}`, uses both authored capacity defaults. A consumer can replace only the widget's list while retaining the part default:
+
+```terraform
+ignore_body_changes = {
+  example_widgets = ["properties.capacity", "properties.sku.name"]
+}
+```
+
+To disable the defaults for both resources, the consumer explicitly supplies an empty list for each field:
+
+```terraform
+ignore_body_changes = {
+  example_widgets = []
+
+  example_widgets_parts = {
+    example_widgets_parts = []
+  }
+}
+```
+
+Setting only `example_widgets = []` disables the widget default but leaves the part default in effect. Setting the nested slot to `{}` also retains its resource-field default.
 
 ### Path syntax
 
