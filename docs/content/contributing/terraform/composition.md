@@ -22,7 +22,6 @@ This repo will be created by the Module Owners and the AVM Core team collaborati
 ## Directory and File Structure
 
 Below is the directory and file structure expected for each AVM Terraform repository/module.
-See the [Terraform AVM template repository](https://github.com/Azure/terraform-azurerm-avm-template). The `azurerm` segment in this legacy repository name is not a provider choice; modules created from the template **MUST** use AzAPI.
 
 - `tests/` - (for unit tests and integration tests using Terraform test)
   - `unit/` - (.tftest.hcl files for required unit testing with Terraform test)
