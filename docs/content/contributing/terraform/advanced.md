@@ -89,7 +89,7 @@ CI normally uses a centrally managed identity and test subscription. To deploy e
 
     The customized subject uses immutable owner and repository IDs and the exact execution environment. Its trailing wildcard is necessary to keep the subject comparand within Azure's 128-character limit; the separate `job_workflow_ref` clause restricts the reusable workflow to the exact Tools repository and path, wildcarding only its ref. Both immutable ID claims are also checked separately. Do not broaden the repository, environment, or workflow path. The calling workflow must still pin the reusable workflow to a full commit SHA; wildcarding the credential's ref does not relax that requirement. If authentication fails with `AADSTS700213`, compare the presented claims with this expression.
 
-1. **Add repository Actions variables** (**Settings** > **Secrets and variables** > **Actions** > **Variables** > **New repository variable**). These IDs are non-secret configuration. Module owners can manage repository variables; environment-scoped configuration is managed by the AVM core team.
+1. **Add repository Actions variables** (**Settings** > **Secrets and variables** > **Actions** > **Variables** > **New repository variable**). These IDs are non-secret configuration. Module owners can manage repository variables.
 
     - `ARM_CLIENT_ID_OVERRIDE` - client ID of the managed identity.
     - `ARM_TENANT_ID_OVERRIDE` - tenant ID of the target Azure environment.
@@ -100,7 +100,7 @@ CI normally uses a centrally managed identity and test subscription. To deploy e
     Do not change the repository defaults `ARM_CLIENT_ID`, `ARM_TENANT_ID`, or `TEST_SUBSCRIPTION_IDS`; these are managed by repository synchronization. Leave the shared subscription selection configured, because that job still runs before the overrides are applied. There is no `TEST_SUBSCRIPTION_IDS_OVERRIDE`.
 
 {{% notice style="tip" %}}
-The workflow merges variables first, then secrets, so a same-named override secret (including an environment secret) masks the variable. If your variables do not take effect, check for conflicting repository override secrets and ask the AVM core team to check for conflicting environment-scoped overrides.
+The workflow merges repository variables first, then repository secrets, so a same-named override secret masks the variable. If your variables do not take effect, check for conflicting repository override secrets.
 {{% /notice %}}
 
 ---
@@ -109,7 +109,7 @@ The workflow merges variables first, then secrets, so a same-named override secr
 
 Example discovery runs in the approval-protected `examples-test` environment; example execution runs in `examples-test-execution`. If execution needs additional variables or secrets:
 
-- Add them as repository Actions variables or secrets, or ask the AVM core team about environment-scoped configuration for `examples-test-execution`.
+- Add them as repository Actions variables or secrets.
 - Use `TF_VAR_` for Terraform input variables. Other non-protected names are also forwarded to execution and example hooks. Secrets take precedence over same-named variables. Avoid protected runner and GitHub environment names.
 
 ---
