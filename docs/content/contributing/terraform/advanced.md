@@ -20,7 +20,9 @@ The [offline sync utility](https://github.com/Azure/Azure-Verified-Modules/tree/
 
 ## Using a custom Azure test subscription
 
-By default, CI runs against a centrally managed Azure subscription. If your module needs a different environment (quota limits, tenant-level deployments, dedicated tenant), you can override the defaults.
+CI normally uses a centrally managed identity and test subscription pool. You can override the identity, tenant, and subscription for **end-to-end execution only**. PR checks, including the Conftest Terraform plan, and integration tests continue to use the central identity and selected test subscription.
+
+The subscription override must belong to the published **General** test pool. An arbitrary external or dedicated subscription is not currently supported by this workflow; contact the AVM core team if the pool cannot meet your test requirements.
 
 **Understand the environments first.** The managed workflow runs jobs across several GitHub Environments:
 
@@ -28,59 +30,89 @@ By default, CI runs against a centrally managed Azure subscription. If your modu
 | --- | --- | --- |
 | `pr-check` | `avm pr-check` (incl. `check policy` → `terraform plan`) | Yes |
 | `integration-test` | `avm test integration` | Yes |
-| `examples-test` | `avm test e2e` (one leg per example) | Yes |
-| `no-approval` | subscription selection, unit tests, example discovery | No |
+| `examples-test` | Approval-protected example discovery | No |
+| `examples-test-execution` | `avm test e2e` (one leg per example) | Yes |
+| `no-approval` | Subscription selection | No |
+| None | Unit tests | No |
 
 **Steps**
 
-1. Create a user-assigned managed identity in your target Azure environment.
+1. Use a user-assigned managed identity with the appropriate Azure permissions on the selected General pool subscription and any required management-group scope. Arrange those permissions with the AVM core team; do not grant production permissions for tests.
 
-1. **Create one federated credential per Azure-authenticated environment** (`pr-check`, `integration-test`, and `examples-test`). The managed identity's federated credentials require an exact subject match, so a single credential cannot cover multiple environments. Use the **Other issuer** (custom) option rather than the "GitHub Actions deploying Azure resources" wizard, because the wizard emits `repo:ORG/REPO:environment:NAME`, which does **not** match what these workflows present.
-
-    - **Issuer:** `https://token.actions.githubusercontent.com`
-    - **Audience:** `api://AzureADTokenExchange`
-    - **Subject** (one credential each, substituting the environment name):
-
-      ```text
-      repository_owner_id:<OWNER_ID>:repository_id:<REPO_ID>:environment:pr-check:job_workflow_ref:Azure/azure-verified-modules-tools/.github/workflows/terraform-module.yml@refs/heads/main
-      repository_owner_id:<OWNER_ID>:repository_id:<REPO_ID>:environment:integration-test:job_workflow_ref:Azure/azure-verified-modules-tools/.github/workflows/terraform-module.yml@refs/heads/main
-      repository_owner_id:<OWNER_ID>:repository_id:<REPO_ID>:environment:examples-test:job_workflow_ref:Azure/azure-verified-modules-tools/.github/workflows/terraform-module.yml@refs/heads/main
-      ```
-
-    {{% notice style="note" %}}
-The repository's centrally managed OIDC configuration includes immutable owner/repository **IDs** and a `job_workflow_ref` segment identifying the *reusable* workflow. If authentication fails with `AADSTS700213`, compare the subject in the error message with the federated credential for that environment.
-    {{% /notice %}}
-
-    Find your IDs with:
+1. Create a **flexible federated identity credential** for `examples-test-execution` on that identity. The following PowerShell 7 example uses [Azure CLI `az rest`](https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-flexible-federated-identity-credentials#azure-cli-azure-powershell-and-terraform-providers) with the [managed identity preview API](https://learn.microsoft.com/en-us/azure/templates/microsoft.managedidentity/2025-01-31-preview/userassignedidentities/federatedidentitycredentials). It requires GitHub CLI access to the module repository, Azure CLI already authenticated to the identity's tenant, and permission to write and read its federated identity credentials. Replace the placeholders and choose a new credential name: PUT replaces a credential with the same name.
 
     ```powershell
-    gh api 'repos/<ORG>/<REPO>' --jq '{repository_id: .id, repository_owner_id: .owner.id}'
+    $moduleOwner = '<MODULE_OWNER>'
+    $moduleRepo = '<MODULE_REPOSITORY>'
+    $identitySubscriptionId = '<IDENTITY_SUBSCRIPTION_ID>'
+    $identityResourceGroup = '<IDENTITY_RESOURCE_GROUP>'
+    $identityName = '<USER_ASSIGNED_IDENTITY_NAME>'
+    $credentialName = 'avm-examples-test-execution'
+
+    $repository = gh api "repos/$moduleOwner/$moduleRepo" `
+      --jq '{id: .id, owner: {id: .owner.id}}' | ConvertFrom-Json
+    if ($LASTEXITCODE -ne 0 -or -not $repository.id -or -not $repository.owner.id) {
+      throw 'Could not retrieve the module repository and owner IDs.'
+    }
+
+    $subjectPattern = "repository_owner_id:$($repository.owner.id):repository_id:$($repository.id):environment:examples-test-execution:*"
+    $workflowPattern = 'Azure/azure-verified-modules-tools/.github/workflows/terraform-module.yml@*'
+    $expression = "claims['sub'] matches '$subjectPattern' and claims['job_workflow_ref'] matches '$workflowPattern' and claims['repository_id'] eq '$($repository.id)' and claims['repository_owner_id'] eq '$($repository.owner.id)'"
+    $body = @{
+      properties = @{
+        issuer = 'https://token.actions.githubusercontent.com'
+        audiences = @('api://AzureADTokenExchange')
+        claimsMatchingExpression = @{ languageVersion = 1; value = $expression }
+      }
+    } | ConvertTo-Json -Depth 5
+    $bodyPath = Join-Path (Get-Location).Path 'avm-e2e-federation.json'
+    if (Test-Path -LiteralPath $bodyPath) { throw 'Choose a clean working directory; the JSON file already exists.' }
+    [System.IO.File]::WriteAllText(
+      $bodyPath,
+      $body,
+      [System.Text.UTF8Encoding]::new($false)
+    )
+
+    $rg = [uri]::EscapeDataString($identityResourceGroup)
+    $identity = [uri]::EscapeDataString($identityName)
+    $credential = [uri]::EscapeDataString($credentialName)
+    $uri = "https://management.azure.com/subscriptions/$identitySubscriptionId/resourceGroups/$rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/$identity/federatedIdentityCredentials/$($credential)?api-version=2025-01-31-preview"
+    az rest --method put `
+      --url $uri `
+      --headers 'Content-Type=application/json' `
+      --body '@avm-e2e-federation.json'
+    if ($LASTEXITCODE -ne 0) { throw 'Credential creation failed.' }
+    az rest --method get `
+      --url $uri
+    if ($LASTEXITCODE -ne 0) { throw 'Credential readback failed.' }
     ```
 
-1. Assign appropriate Azure roles to the managed identity on the target subscription (and at management-group scope for pattern modules that assign policy or create role assignments).
+    Verify the returned issuer, audience, language version, and expression before using the identity. The JSON file contains configuration, not credentials; remove it when finished. The body omits `subject` because it is mutually exclusive with `claimsMatchingExpression`.
+
+    The customized subject uses immutable owner and repository IDs and the exact execution environment. Its trailing wildcard is necessary to keep the subject comparand within Azure's 128-character limit; the separate `job_workflow_ref` clause restricts the reusable workflow to the exact Tools repository and path, wildcarding only its ref. Both immutable ID claims are also checked separately. Do not broaden the repository, environment, or workflow path. The calling workflow must still pin the reusable workflow to a full commit SHA; wildcarding the credential's ref does not relax that requirement. If authentication fails with `AADSTS700213`, compare the presented claims with this expression.
 
 1. **Add repository Actions variables** (**Settings** > **Secrets and variables** > **Actions** > **Variables** > **New repository variable**). These IDs are non-secret configuration. Module owners can manage repository variables; environment-scoped configuration is managed by the AVM core team.
 
     - `ARM_CLIENT_ID_OVERRIDE` - client ID of the managed identity.
     - `ARM_TENANT_ID_OVERRIDE` - tenant ID of the target Azure environment.
-    - `ARM_SUBSCRIPTION_ID_OVERRIDE` - ID of the target Azure subscription.
+    - `ARM_SUBSCRIPTION_ID_OVERRIDE` - ID of the chosen General pool subscription.
 
-    Set all three values for the same target Azure environment. The workflow maps nonempty overrides to the corresponding `ARM_*` variables in each Azure-authenticated job. `ARM_SUBSCRIPTION_ID_OVERRIDE` takes precedence over the centrally selected subscription, so all example legs use your subscription instead of distributing deployments across the shared pool.
+    Set all three values consistently. During end-to-end execution, nonempty overrides map to the corresponding `ARM_*` variables; the subscription override takes precedence over the centrally selected subscription. PR checks and integration tests do not use these overrides.
 
     Do not change the repository defaults `ARM_CLIENT_ID`, `ARM_TENANT_ID`, or `TEST_SUBSCRIPTION_IDS`; these are managed by repository synchronization. Leave the shared subscription selection configured, because that job still runs before the overrides are applied. There is no `TEST_SUBSCRIPTION_IDS_OVERRIDE`.
 
 {{% notice style="tip" %}}
-`ARM_*_OVERRIDE` remains supported. The workflow merges variables first, then secrets, so a same-named override secret (including an environment secret) masks the variable. If your variables do not take effect, check for conflicting repository override secrets and ask the AVM core team to check for conflicting environment-scoped overrides.
+The workflow merges variables first, then secrets, so a same-named override secret (including an environment secret) masks the variable. If your variables do not take effect, check for conflicting repository override secrets and ask the AVM core team to check for conflicting environment-scoped overrides.
 {{% /notice %}}
 
 ---
 
 ## Custom variables and secrets for end-to-end tests
 
-The `test` environment in each module repository has approvals and secrets configured for e2e tests. If you need additional variables or secrets:
+Example discovery runs in the approval-protected `examples-test` environment; example execution runs in `examples-test-execution`. If execution needs additional variables or secrets:
 
-- Add them to the `test` environment in your repository settings.
-- They **must** be prefixed with `TF_VAR_` — other prefixes will be ignored.
+- Add them as repository Actions variables or secrets, or ask the AVM core team about environment-scoped configuration for `examples-test-execution`.
+- Use `TF_VAR_` for Terraform input variables. Other non-protected names are also forwarded to execution and example hooks. Secrets take precedence over same-named variables. Avoid protected runner and GitHub environment names.
 
 ---
 
