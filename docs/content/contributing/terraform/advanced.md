@@ -20,9 +20,7 @@ The [offline sync utility](https://github.com/Azure/Azure-Verified-Modules/tree/
 
 ## Using a custom Azure test subscription
 
-CI normally uses a centrally managed identity and test subscription pool. You can override the identity, tenant, and subscription for **end-to-end execution only**. PR checks, including the Conftest Terraform plan, and integration tests continue to use the central identity and selected test subscription.
-
-The subscription override must belong to the published **General** test pool. An arbitrary external or dedicated subscription is not currently supported by this workflow; contact the AVM core team if the pool cannot meet your test requirements.
+CI normally uses a centrally managed identity and test subscription. To deploy examples in your own Azure tenant and subscription, you can configure a test identity and override the identity, tenant, and subscription for **end-to-end execution only**. These overrides are independent of AVM's test subscriptions. PR checks, including the Conftest Terraform plan, and integration tests continue to use the central identity and selected test subscription.
 
 **Understand the environments first.** The managed workflow runs jobs across several GitHub Environments:
 
@@ -37,7 +35,7 @@ The subscription override must belong to the published **General** test pool. An
 
 **Steps**
 
-1. Use a user-assigned managed identity with the appropriate Azure permissions on the selected General pool subscription and any required management-group scope. Arrange those permissions with the AVM core team; do not grant production permissions for tests.
+1. Use a user-assigned managed identity in your target tenant with the appropriate Azure permissions on your test subscription and any required management-group scope. Use a dedicated test environment rather than granting production permissions.
 
 1. Create a **flexible federated identity credential** for `examples-test-execution` on that identity. The following PowerShell 7 example uses [Azure CLI `az rest`](https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-flexible-federated-identity-credentials#azure-cli-azure-powershell-and-terraform-providers) with the [managed identity preview API](https://learn.microsoft.com/en-us/azure/templates/microsoft.managedidentity/2025-01-31-preview/userassignedidentities/federatedidentitycredentials). It requires GitHub CLI access to the module repository, Azure CLI already authenticated to the identity's tenant, and permission to write and read its federated identity credentials. Replace the placeholders and choose a new credential name: PUT replaces a credential with the same name.
 
@@ -95,7 +93,7 @@ The subscription override must belong to the published **General** test pool. An
 
     - `ARM_CLIENT_ID_OVERRIDE` - client ID of the managed identity.
     - `ARM_TENANT_ID_OVERRIDE` - tenant ID of the target Azure environment.
-    - `ARM_SUBSCRIPTION_ID_OVERRIDE` - ID of the chosen General pool subscription.
+    - `ARM_SUBSCRIPTION_ID_OVERRIDE` - ID of your target test subscription. This can differ from the subscription containing the managed identity.
 
     Set all three values consistently. During end-to-end execution, nonempty overrides map to the corresponding `ARM_*` variables; the subscription override takes precedence over the centrally selected subscription. PR checks and integration tests do not use these overrides.
 
