@@ -89,11 +89,35 @@ CI normally uses a centrally managed identity and test subscription. To deploy e
 
     The customized subject uses immutable owner and repository IDs and the exact execution environment. Its trailing wildcard is necessary to keep the subject comparand within Azure's 128-character limit; the separate `job_workflow_ref` clause restricts the reusable workflow to the exact Tools repository and path, wildcarding only its ref. Both immutable ID claims are also checked separately. Do not broaden the repository, environment, or workflow path. The calling workflow must still pin the reusable workflow to a full commit SHA; wildcarding the credential's ref does not relax that requirement. If authentication fails with `AADSTS700213`, compare the presented claims with this expression.
 
-1. **Add repository Actions variables** (**Settings** > **Secrets and variables** > **Actions** > **Variables** > **New repository variable**). These IDs are non-secret configuration. Module owners can manage repository variables.
+1. **Add repository Actions variables** (**Settings** > **Secrets and variables** > **Actions** > **Variables** > **New repository variable**). Variables are recommended because these IDs are non-secret configuration. Repository secrets are also supported.
 
     - `ARM_CLIENT_ID_OVERRIDE` - client ID of the managed identity.
     - `ARM_TENANT_ID_OVERRIDE` - tenant ID of the target Azure environment.
     - `ARM_SUBSCRIPTION_ID_OVERRIDE` - ID of your target test subscription. This can differ from the subscription containing the managed identity.
+
+    Alternatively, use this PowerShell script with GitHub CLI access to manage Actions variables in the module repository. Replace the placeholders; existing variables with these names will be updated.
+
+    ```powershell
+    $moduleRepository = '<MODULE_OWNER>/<MODULE_REPOSITORY>'
+    $overrides = [ordered]@{
+      ARM_CLIENT_ID_OVERRIDE = '<MANAGED_IDENTITY_CLIENT_ID>'
+      ARM_TENANT_ID_OVERRIDE = '<TARGET_TENANT_ID>'
+      ARM_SUBSCRIPTION_ID_OVERRIDE = '<TARGET_TEST_SUBSCRIPTION_ID>'
+    }
+
+    foreach ($override in $overrides.GetEnumerator()) {
+      gh variable set $override.Key `
+        --repo $moduleRepository `
+        --body $override.Value
+      if ($LASTEXITCODE -ne 0) {
+        throw "Failed to set repository variable '$($override.Key)'."
+      }
+    }
+
+    gh variable list `
+      --repo $moduleRepository
+    if ($LASTEXITCODE -ne 0) { throw 'Could not list repository variables.' }
+    ```
 
     Set all three values consistently. During end-to-end execution, nonempty overrides map to the corresponding `ARM_*` variables; the subscription override takes precedence over the centrally selected subscription. PR checks and integration tests do not use these overrides.
 
