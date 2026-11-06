@@ -37,7 +37,9 @@ CI normally uses a centrally managed identity and test subscription. To deploy e
 
 1. Use a user-assigned managed identity in your target tenant with the appropriate Azure permissions on your test subscription and any required management-group scope. Use a dedicated test environment rather than granting production permissions.
 
-1. Create a **flexible federated identity credential** for `examples-test-execution` on that identity. The following PowerShell 7 example uses [Azure CLI `az rest`](https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-flexible-federated-identity-credentials#azure-cli-azure-powershell-and-terraform-providers) with the [managed identity preview API](https://learn.microsoft.com/en-us/azure/templates/microsoft.managedidentity/2025-01-31-preview/userassignedidentities/federatedidentitycredentials). It requires GitHub CLI access to the module repository, Azure CLI already authenticated to the identity's tenant, and permission to write and read its federated identity credentials. Replace the placeholders and choose a new credential name: PUT replaces a credential with the same name.
+1. Run this PowerShell 7 script to create a **flexible federated identity credential** for `examples-test-execution` and set all three repository override variables. It reads the identity's client and tenant IDs automatically. Variables are recommended because these IDs are non-secret configuration; repository secrets are also supported.
+
+    The script uses [Azure CLI `az rest`](https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-flexible-federated-identity-credentials#azure-cli-azure-powershell-and-terraform-providers) with the [managed identity preview API](https://learn.microsoft.com/en-us/azure/templates/microsoft.managedidentity/2025-01-31-preview/userassignedidentities/federatedidentitycredentials). It requires GitHub CLI access to manage Actions variables in the module repository, Azure CLI already authenticated to the identity's tenant, and permission to read the identity and write and read its federated identity credentials. Replace the placeholders and choose a new credential name: PUT replaces a credential with the same name, and existing override variables will be updated. The target test subscription can differ from the subscription containing the identity.
 
     ```powershell
     $moduleOwner = '<MODULE_OWNER>'
@@ -45,12 +47,23 @@ CI normally uses a centrally managed identity and test subscription. To deploy e
     $identitySubscriptionId = '<IDENTITY_SUBSCRIPTION_ID>'
     $identityResourceGroup = '<IDENTITY_RESOURCE_GROUP>'
     $identityName = '<USER_ASSIGNED_IDENTITY_NAME>'
+    $testSubscriptionId = '<TARGET_TEST_SUBSCRIPTION_ID>'
     $credentialName = 'avm-examples-test-execution'
+    $moduleRepository = "$moduleOwner/$moduleRepo"
 
-    $repository = gh api "repos/$moduleOwner/$moduleRepo" `
+    $repository = gh api "repos/$moduleRepository" `
       --jq '{id: .id, owner: {id: .owner.id}}' | ConvertFrom-Json
     if ($LASTEXITCODE -ne 0 -or -not $repository.id -or -not $repository.owner.id) {
       throw 'Could not retrieve the module repository and owner IDs.'
+    }
+
+    $managedIdentity = az identity show `
+      --subscription $identitySubscriptionId `
+      --resource-group $identityResourceGroup `
+      --name $identityName `
+      --output json | ConvertFrom-Json
+    if ($LASTEXITCODE -ne 0 -or -not $managedIdentity.clientId -or -not $managedIdentity.tenantId) {
+      throw 'Could not retrieve the managed identity client and tenant IDs.'
     }
 
     $subjectPattern = "repository_owner_id:$($repository.owner.id):repository_id:$($repository.id):environment:examples-test-execution:*"
@@ -83,28 +96,12 @@ CI normally uses a centrally managed identity and test subscription. To deploy e
     az rest --method get `
       --url $uri
     if ($LASTEXITCODE -ne 0) { throw 'Credential readback failed.' }
-    ```
 
-    Verify the returned issuer, audience, language version, and expression before using the identity. The JSON file contains configuration, not credentials; remove it when finished. The body omits `subject` because it is mutually exclusive with `claimsMatchingExpression`.
-
-    The customized subject uses immutable owner and repository IDs and the exact execution environment. Its trailing wildcard is necessary to keep the subject comparand within Azure's 128-character limit; the separate `job_workflow_ref` clause restricts the reusable workflow to the exact Tools repository and path, wildcarding only its ref. Both immutable ID claims are also checked separately. Do not broaden the repository, environment, or workflow path. The calling workflow must still pin the reusable workflow to a full commit SHA; wildcarding the credential's ref does not relax that requirement. If authentication fails with `AADSTS700213`, compare the presented claims with this expression.
-
-1. **Add repository Actions variables** (**Settings** > **Secrets and variables** > **Actions** > **Variables** > **New repository variable**). Variables are recommended because these IDs are non-secret configuration. Repository secrets are also supported.
-
-    - `ARM_CLIENT_ID_OVERRIDE` - client ID of the managed identity.
-    - `ARM_TENANT_ID_OVERRIDE` - tenant ID of the target Azure environment.
-    - `ARM_SUBSCRIPTION_ID_OVERRIDE` - ID of your target test subscription. This can differ from the subscription containing the managed identity.
-
-    Alternatively, use this PowerShell script with GitHub CLI access to manage Actions variables in the module repository. Replace the placeholders; existing variables with these names will be updated.
-
-    ```powershell
-    $moduleRepository = '<MODULE_OWNER>/<MODULE_REPOSITORY>'
     $overrides = [ordered]@{
-      ARM_CLIENT_ID_OVERRIDE = '<MANAGED_IDENTITY_CLIENT_ID>'
-      ARM_TENANT_ID_OVERRIDE = '<TARGET_TENANT_ID>'
-      ARM_SUBSCRIPTION_ID_OVERRIDE = '<TARGET_TEST_SUBSCRIPTION_ID>'
+      ARM_CLIENT_ID_OVERRIDE = $managedIdentity.clientId
+      ARM_TENANT_ID_OVERRIDE = $managedIdentity.tenantId
+      ARM_SUBSCRIPTION_ID_OVERRIDE = $testSubscriptionId
     }
-
     foreach ($override in $overrides.GetEnumerator()) {
       gh variable set $override.Key `
         --repo $moduleRepository `
@@ -118,6 +115,16 @@ CI normally uses a centrally managed identity and test subscription. To deploy e
       --repo $moduleRepository
     if ($LASTEXITCODE -ne 0) { throw 'Could not list repository variables.' }
     ```
+
+    Verify the returned issuer, audience, language version, and expression before using the identity. The JSON file contains configuration, not credentials; remove it when finished. The body omits `subject` because it is mutually exclusive with `claimsMatchingExpression`.
+
+    The customized subject uses immutable owner and repository IDs and the exact execution environment. Its trailing wildcard is necessary to keep the subject comparand within Azure's 128-character limit; the separate `job_workflow_ref` clause restricts the reusable workflow to the exact Tools repository and path, wildcarding only its ref. Both immutable ID claims are also checked separately. Do not broaden the repository, environment, or workflow path. The calling workflow must still pin the reusable workflow to a full commit SHA; wildcarding the credential's ref does not relax that requirement. If authentication fails with `AADSTS700213`, compare the presented claims with this expression.
+
+    The script sets these repository Actions variables. You can also manage them under **Settings** > **Secrets and variables** > **Actions** > **Variables**:
+
+    - `ARM_CLIENT_ID_OVERRIDE` - client ID of the managed identity.
+    - `ARM_TENANT_ID_OVERRIDE` - tenant ID of the target Azure environment.
+    - `ARM_SUBSCRIPTION_ID_OVERRIDE` - ID of your target test subscription. This can differ from the subscription containing the managed identity.
 
     Set all three values consistently. During end-to-end execution, nonempty overrides map to the corresponding `ARM_*` variables; the subscription override takes precedence over the centrally selected subscription. PR checks and integration tests do not use these overrides.
 
