@@ -23,7 +23,7 @@ Every new Bicep or Terraform root module, and every new child module or submodul
 - **Root modules** get the full metadata shape, including the `owners` array.
 - **Child modules and submodules** get the reduced, inherited-owner shape described above; they must not contain `owners`.
 
-Use `Initialize-AvmModuleMetadata` from the [`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring) PowerShell module to scaffold the file for either ecosystem. It validates the supplied values against the versioned schema and writes `metadata.json` without overwriting an existing file. You must supply the approved values yourself; the command never infers or backfills them.
+Use `Initialize-AvmModuleMetadata` from the [`Avm.Authoring`](https://github.com/Azure/azure-verified-modules-tools#install) PowerShell module to scaffold the file for either ecosystem. Follow the linked installation instructions to upgrade PSResourceGet and register MAR first; it is not registered by default. It validates the supplied values against the versioned schema and writes `metadata.json` without overwriting an existing file. You must supply the approved values yourself; the command never infers or backfills them.
 
 ```pwsh
 $metadata = @{

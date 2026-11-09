@@ -53,7 +53,7 @@ Prerequisites:
 - [PowerShell 7.4 or later](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)
 - [Git](https://git-scm.com/downloads)
 - [GitHub CLI](https://cli.github.com)
-- The latest [`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring) module, installed as described in the [Terraform prerequisites]({{% siteparam base %}}/contributing/terraform/prerequisites/#required-tooling). Run `avm update` to upgrade an existing installation.
+- The latest [`Avm.Authoring`](https://github.com/Azure/azure-verified-modules-tools#install) module, installed from MAR as described in the [Terraform prerequisites]({{% siteparam base %}}/contributing/terraform/prerequisites/#required-tooling), including one-time registry registration. To update from MAR, repeat the install command with `-Reinstall`, then start a new PowerShell session.
 - AVM core team approval to create the repository.
 - A configured Git commit identity (`git config --global user.name` and `git config --global user.email`).
 
