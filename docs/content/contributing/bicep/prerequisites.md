@@ -39,15 +39,33 @@ To contribute to this project the following tooling is required:
     ```
 
 - [PowerShell 7.4 or later](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)
-- [`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring)
+- [`Avm.Authoring`](https://github.com/Azure/azure-verified-modules-tools#install) from Microsoft Artifact Registry (MAR)
+
+  MAR is not registered by default. Use `Microsoft.PowerShell.PSResourceGet` 1.2.0 or later. If needed, upgrade it, then start a new PowerShell session:
 
   ```powershell
-  Install-PSResource Avm.Authoring
+  Install-PSResource -Name Microsoft.PowerShell.PSResourceGet `
+      -Version 1.2.0 `
+      -Repository PSGallery `
+      -Scope CurrentUser
+  ```
+
+  Register MAR once, then install the module:
+
+  ```powershell
+  Import-Module Microsoft.PowerShell.PSResourceGet -MinimumVersion 1.2.0
+  Register-PSResourceRepository -Name MAR `
+      -Uri 'https://mcr.microsoft.com' `
+      -ApiVersion ContainerRegistry `
+      -Trusted
+  Install-PSResource -Name avm.authoring `
+      -Repository MAR `
+      -Scope CurrentUser
   Import-Module Avm.Authoring
   avm doctor
   ```
 
-  If you already have an older installation, run `avm update` and import the updated module. `Avm.Authoring` downloads and caches its pinned Bicep CLI on demand for authoring commands; no separate Bicep installation is needed for those commands. See [initializing and updating Bicep module files]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/).
+  Use lowercase `avm.authoring` for the registry lookup; no Azure sign-in is needed. To update from MAR, repeat `Install-PSResource` with `-Reinstall`, then start a new PowerShell session. `avm update` still uses PowerShell Gallery. `Avm.Authoring` downloads and caches its pinned Bicep CLI on demand for authoring commands; no separate Bicep installation is needed for those commands. See [initializing and updating Bicep module files]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/).
 
 - [Pester](https://pester.dev/docs/introduction/installation) for the existing Bicep Pester and local deployment test scripts. `avm pre-commit` does not run those tests.
 - [Visual Studio Code](https://code.visualstudio.com/download)

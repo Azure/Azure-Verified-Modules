@@ -125,7 +125,7 @@ The interface schema files under `static/includes/interfaces/tf/` are the canoni
 
 To meet the requirements of [SFR3]({{% siteparam base %}}/spec/SFR3) & [SFR4]({{% siteparam base %}}/spec/SFR4), we use the [modtm](https://registry.terraform.io/providers/Azure/modtm/latest) telemetry provider. This lightweight telemetry provider sends telemetry data to Azure Application Insights via a HTTP POST front end service.
 
-The `modtm` telemetry provider is included in all Terraform modules and enabled by default through `main.telemetry.tf`, which is generated and maintained by [`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring). You do not need to change this configuration.
+The `modtm` telemetry provider is included in all Terraform modules and enabled by default through `main.telemetry.tf`, which is generated and maintained by [`Avm.Authoring`](https://github.com/Azure/azure-verified-modules-tools#install). You do not need to change this configuration.
 
 Make sure that the `modtm` provider is listed under the `required_providers` section in the module's `terraform.tf` file using the following entry. This is also validated by the linter.
 

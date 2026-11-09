@@ -4,7 +4,7 @@ linktitle: Update Module Files
 description: Initialize and update Bicep module files with Avm.Authoring
 ---
 
-Use [`Avm.Authoring`](https://www.powershellgallery.com/packages/Avm.Authoring) for local Bicep authoring. Install and import it as described in the [Bicep prerequisites]({{% siteparam base %}}/contributing/bicep/prerequisites/). Run the commands below from the root of your [Bicep registry](https://github.com/Azure/bicep-registry-modules) checkout, replacing paths and metadata values with approved ones.
+Use [`Avm.Authoring`](https://github.com/Azure/azure-verified-modules-tools#install) for local Bicep authoring. Install and import it as described in the [Bicep prerequisites]({{% siteparam base %}}/contributing/bicep/prerequisites/). Run the commands below from the root of your [Bicep registry](https://github.com/Azure/bicep-registry-modules) checkout, replacing paths and metadata values with approved ones.
 
 ## Initialize a new module once
 
