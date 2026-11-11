@@ -17557,7 +17557,7 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault",
           "registry": {
             "status": "available",
-            "currentVersion": "0.13.0",
+            "currentVersion": "0.13.1",
             "firstPublishedIn": "2023-09",
             "downloads": 5288130
           }
@@ -17677,10 +17677,10 @@
           "owners": [],
           "telemetryIdPrefix": "46d3xtrf.res.e3fd8de",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/0.13.0/submodules/key",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/0.13.1/submodules/key",
           "registry": {
             "status": "available",
-            "currentVersion": "0.13.0",
+            "currentVersion": "0.13.1",
             "firstPublishedIn": "2024-06",
             "downloads": null
           }
@@ -17755,10 +17755,10 @@
           "owners": [],
           "telemetryIdPrefix": "46d3xtrf.res.ed4b32b",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/0.13.0/submodules/secret",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/0.13.1/submodules/secret",
           "registry": {
             "status": "available",
-            "currentVersion": "0.13.0",
+            "currentVersion": "0.13.1",
             "firstPublishedIn": "2024-06",
             "downloads": null
           }
