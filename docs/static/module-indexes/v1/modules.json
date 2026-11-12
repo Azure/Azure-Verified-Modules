@@ -10667,7 +10667,7 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-databricks-accessconnector",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.1",
+            "currentVersion": "0.3.0",
             "firstPublishedIn": "2026-09",
             "downloads": 3096
           }
@@ -15630,7 +15630,7 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-fabric-capacity",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.1",
+            "currentVersion": "0.3.0",
             "firstPublishedIn": "2026-08",
             "downloads": 2529
           }
@@ -16384,7 +16384,7 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-hybridcontainerservice-provisionedclusterinstance",
           "registry": {
             "status": "available",
-            "currentVersion": "2.0.4",
+            "currentVersion": "2.0.5",
             "firstPublishedIn": "2024-08",
             "downloads": 18025
           }
