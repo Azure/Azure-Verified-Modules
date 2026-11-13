@@ -20775,7 +20775,7 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-applicationsecuritygroup",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.0",
+            "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-01",
             "downloads": 62143
           }
