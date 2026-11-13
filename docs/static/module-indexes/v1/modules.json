@@ -31012,7 +31012,7 @@
           "publicRegistryReference": "br/public:avm/res/sql/server:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.22.1",
+            "currentVersion": "0.23.0",
             "firstPublishedIn": "2023-11",
             "downloads": null
           }
@@ -36210,7 +36210,7 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-ptn-aks-economy",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-11",
             "downloads": 1498
           }
@@ -39094,7 +39094,7 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-ptn-azuremonitorwindowsagent",
           "registry": {
             "status": "available",
-            "currentVersion": "3.0.0",
+            "currentVersion": "3.1.0",
             "firstPublishedIn": "2024-08",
             "downloads": 4854
           }
