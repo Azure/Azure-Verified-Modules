@@ -56,7 +56,7 @@ The [Bicep reviewer-routing workflow](https://github.com/Azure/azure-verified-mo
 For Bicep and Terraform, both metadata code-owner teams must be visible and have repository write access. Access administration and environment approvals remain separate responsibilities.
 
 {{% notice style="tip" %}}
-For the full onboarding process and ownership handover steps, see the [Bicep Owner Contribution Flow]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/owner-contribution-flow/).
+For onboarding and ownership handover, see [Bicep module owner responsibilities]({{% siteparam base %}}/contributing/bicep/advanced/#module-owner-responsibilities).
 {{% /notice %}}
 
 ### Terraform

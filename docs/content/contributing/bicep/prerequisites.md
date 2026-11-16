@@ -1,13 +1,14 @@
 ---
-title: Bicep Contribution Prerequisites
+title: Prerequisites
 linktitle: Prerequisites
 description: Bicep Contribution Prerequisites for the Azure Verified Modules (AVM) program
+weight: 1
 ---
 
 
 ## GitHub Account Link and Access
 
-You need to have a personal GitHub account which is [linked](https://aka.ms/LinkYourGitHubAccount) to your Microsoft corporate identity. Once the link step is complete you must join the [Azure](https://repos.opensource.microsoft.com/orgs/Azure) organization.
+You need a GitHub account. Microsoft FTEs must use a personal GitHub account [linked](https://aka.ms/LinkYourGitHubAccount) to their Microsoft corporate identity and join the [Azure](https://repos.opensource.microsoft.com/orgs/Azure) organization. External contributors can use a fork without joining the organization.
 
 ## Recommended Learning
 
@@ -63,7 +64,7 @@ To contribute to this project the following tooling is required:
   avm doctor
   ```
 
-  To update from MAR, repeat `Install-PSResource -Name avm.authoring -Repository MAR -Scope CurrentUser -Reinstall` and start a new PowerShell session. `avm update` uses PowerShell Gallery, not MAR. The module downloads and caches its pinned Bicep CLI on demand; no separate Bicep installation is needed for those commands. See [initializing and updating Bicep module files]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/).
+  To update from MAR, repeat `Install-PSResource -Name avm.authoring -Repository MAR -Scope CurrentUser -Reinstall` and start a new PowerShell session. `avm update` uses PowerShell Gallery, not MAR. The module downloads and caches its pinned Bicep CLI on demand; no separate Bicep installation is needed for those commands. See [initializing and updating Bicep module files]({{% siteparam base %}}/contributing/bicep/contribution-flow/).
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
   - [Bicep extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)

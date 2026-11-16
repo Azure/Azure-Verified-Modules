@@ -384,7 +384,7 @@ Entra objects - May come as new modules if/when the Graph provider will be relea
 
 AVM uses shared PR checks for Bicep and Terraform to validate module conventions and run applicable tests. Credentialed end-to-end deployment tests run when requested or applicable, not on every PR.
 
-For Bicep, an upstream PR can request deployment tests with the `PR: Run E2E Tests` label. An external fork PR uses the [release-branch handoff]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#running-e2e-for-external-contributions) when E2E testing is needed. See the [Terraform CI guidance]({{% siteparam base %}}/contributing/terraform/contribution-flow/#7-approve-and-monitor-ci-tests) for its test tiers and fork handoff.
+For Bicep, an upstream PR can request deployment tests with the `PR: Run E2E Tests` label. An external fork PR uses the [release-branch handoff]({{% siteparam base %}}/contributing/bicep/contribution-flow/#running-e2e-for-external-contributions) when E2E testing is needed. See the [Terraform CI guidance]({{% siteparam base %}}/contributing/terraform/contribution-flow/#7-approve-and-monitor-ci-tests) for its test tiers and fork handoff.
 
 ---
 
@@ -446,7 +446,7 @@ Resource modules are multi-purpose; therefore, they contain a lot of dynamic exp
 You can reference Bicep child modules that have been explicitly published to the public bicep registry.
 
 Today, publishing child-modules separately from their parents does not happen by default, and follows an on-demand process. Only child modules explicitly allowed for publishing can be referenced from the registy.
-The process is currently in a pilot phase, and documented [here]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/child-module-publishing).
+The process is currently in a pilot phase, and documented [here]({{% siteparam base %}}/contributing/bicep/child-module-publishing).
 
 If not directly, you can still reference child modules via their parents. You can reference e.g. a `avm/res/key-vault/vault/key` through its parent `avm/res/key-vault/vault`'s `keys` parameter. Alternatively, you can grab the module folder locally, although this is a workaround and not recommended.
 

@@ -156,7 +156,7 @@ There is also a [PowerShell script]({{% siteparam base %}}/spec/SNFR23) that the
 
 For Bicep, both Resource and Pattern, AVM Modules will be homed in the Azure/bicep-registry-modules repository and live within an avm directory that will be located at the root of the repository.
 
-Microsoft FTE module owners create a branch in the upstream Azure/bicep-registry-modules repository; they must not fork it. External contributors without write access may contribute from a fork and open a PR to upstream `main`. See the [Bicep contribution flow]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/), including its conditional [release-branch handoff for external E2E testing]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#running-e2e-for-external-contributions). The [directory and file structure]({{% siteparam base %}}/contributing/bicep/#directory-and-file-structure) is documented separately.
+Microsoft FTE module owners create a branch in the upstream Azure/bicep-registry-modules repository; they must not fork it. External contributors without write access may contribute from a fork and open a PR to upstream `main`. See the [Bicep contribution flow]({{% siteparam base %}}/contributing/bicep/contribution-flow/), including its conditional [release-branch handoff for external E2E testing]({{% siteparam base %}}/contributing/bicep/contribution-flow/#running-e2e-for-external-contributions). The [directory and file structure]({{% siteparam base %}}/contributing/bicep/#directory-and-file-structure) is documented separately.
 
 #### Terraform
 

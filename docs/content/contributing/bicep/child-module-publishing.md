@@ -1,6 +1,9 @@
 ---
 title: Child Module Publishing
 description: How to set up a child module for publishing so that it can be directly referenced from the public bicep registry
+weight: 6
+aliases:
+  - /contributing/bicep/bicep-contribution-flow/child-module-publishing/
 ---
 
 Child resources are resources that exist only within the scope of another resource. For example, a virtual network subnet cannot exist without a virtual network. The subnet is a child resource of the virtual network.
@@ -39,7 +42,7 @@ For a step-by-step explanation with detailed instructions, refer to the followin
   * **Parent module template**: In the `main.bicep` template of the child module direct parent, add a `enableReferencedModulesTelemetry` variable with a value of `false`, and pass it as the `enableTelemetry` value down to the child module deployment.
   * **Version**: Add the `version.json` file to the child module folder and set version to `0.1`.
   * **Changelog**: Add a new `CHANGELOG.md` file to the child module folder and update the changelog of all its versioned parents with a new patch version, up to the top-level parent.
-  * **Generate module artifacts**: Run [`avm pre-commit`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/#update-generated-files-after-editing) on the top-level parent module. It processes that module and its descendants, updating their compiled templates and READMEs. Test your changes and raise a PR.
+  * **Generate module artifacts**: Run [`avm pre-commit`]({{% siteparam base %}}/contributing/bicep/contribution-flow/#update-generated-files-after-editing) on the top-level parent module. It processes that module and its descendants, updating their compiled templates and READMEs. Test your changes and raise a PR.
 
 ## Prerequisites
 
@@ -196,13 +199,13 @@ Please follow the steps below:
 
     ```
 
-- Run [`avm pre-commit`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/#update-generated-files-after-editing) on the top-level parent module to process the entire module family:
+- Run [`avm pre-commit`]({{% siteparam base %}}/contributing/bicep/contribution-flow/#update-generated-files-after-editing) on the top-level parent module to process the entire module family:
   ```powershell
   $topLevelModulePath = 'avm/res/storage/storage-account'
   avm pre-commit -Ecosystem bicep -Path $topLevelModulePath
   ```
 
-- Raise a PR and verify the shared checks. FTEs can request deployment tests with the `PR: Run E2E Tests` label. For an external fork PR, follow the [release-branch handoff]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#running-e2e-for-external-contributions) only when E2E testing is needed.
+- Raise a PR and verify the shared checks. FTEs can request deployment tests with the `PR: Run E2E Tests` label. For an external fork PR, follow the [release-branch handoff]({{% siteparam base %}}/contributing/bicep/contribution-flow/#running-e2e-for-external-contributions) only when E2E testing is needed.
 
 {{% notice style="note" %}}
 

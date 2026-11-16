@@ -28,14 +28,14 @@ sql
   └─ database [child-module/resource]
 ```
 
-In this folder, we recommend placing the child resource template with its `metadata.json`. [Initialize a new child with `avm init -ChildModule`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/#initialize-a-new-module-once), then run `avm pre-commit` on the top-level module to generate `README.md` and compiled `main.json` for it and its children. You may nest further child-resource folders.
+In this folder, we recommend placing the child resource template with its `metadata.json`. [Initialize a new child with `avm init -ChildModule`]({{% siteparam base %}}/contributing/bicep/contribution-flow/#initialize-a-new-module-once), then run `avm pre-commit` on the top-level module to generate `README.md` and compiled `main.json` for it and its children. You may nest further child-resource folders.
 
 There are several reasons to structure a module in this way. For example:
 
 - It allows a separation of concerns where each module can focus on its own properties and logic, while delegating most of a child-resource's logic to its separate child module
 - It's consistent with the provider namespace structure and makes modules easier to understand not only because they're more aligned with set structure, but also are aligned with one another
 - As each module is its own 'deployment', it reduces limitations around nested loops
-- It enables module owners to publish child-modules as separate modules to the public registry, allowing consumers to make use of them directly [Ref [child module publishing guidelines]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/child-module-publishing) for details].
+- It enables module owners to publish child-modules as separate modules to the public registry, allowing consumers to make use of them directly [Ref [child module publishing guidelines]({{% siteparam base %}}/contributing/bicep/child-module-publishing) for details].
 
 {{% notice style="note" %}}
 
