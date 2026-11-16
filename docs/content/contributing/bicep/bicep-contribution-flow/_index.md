@@ -514,17 +514,15 @@ Microsoft FTEs run deployment tests from their upstream PR by adding the `PR: Ru
 
 ### Running E2E for external contributions
 
-External fork PRs do not run credentialed E2E tests through the label. If E2E testing is needed, an FTE must first review the source code and workflow changes for security, then run the shared `Avm.Authoring` command using the GitHub CLI (`gh`). Ensure `gh` is authenticated as an authorized FTE with access to the upstream repository. The command is implemented but not yet released; once available, run it with the fork PR's reviewed head commit:
+External fork PRs do not run credentialed E2E tests through the label. If E2E testing is needed, an FTE must first review the source code and workflow changes for security, then run the shared `Avm.Authoring` command using the GitHub CLI (`gh`). Ensure `gh` is authenticated as an authorized FTE with access to the upstream repository. The command is implemented but not yet released; once available, run it for the fork PR:
 
 ```powershell
-$reviewedSha = '<full reviewed PR head commit SHA>'
 avm release-branch `
   --repository Azure/bicep-registry-modules `
-  --pull-request 123 `
-  --reviewed-head-commit $reviewedSha
+  --pull-request 123
 ```
 
-The `--reviewed-head-commit` value pins the handoff to the exact PR revision reviewed. The command creates a release branch from `main`, retargets and merges the fork PR into that branch, then opens a follow-up PR from the release branch to `main`. It labels the Bicep follow-up PR with `PR: Run E2E Tests`. The FTE's invocation runs the handoff; no separate confirmation prompt is required. Use `--whatif` to preview without making changes. The command stops rather than bypassing repository protections.
+The command cannot verify which commit was reviewed. It creates a release branch from `main`, retargets and merges the fork PR into that branch, then opens a follow-up PR from the release branch to `main`. It labels the Bicep follow-up PR with `PR: Run E2E Tests`. The FTE's invocation runs the handoff; no separate confirmation prompt is required. Use `--whatif` to preview without making changes. The command stops rather than bypassing repository protections.
 
 If tests fail, ask the contributor to update the original PR and repeat the handoff with the new changes.
 

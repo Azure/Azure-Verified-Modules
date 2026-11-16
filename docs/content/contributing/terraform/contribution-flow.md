@@ -364,17 +364,15 @@ Go back to step 3 — fix the issue, run `avm pre-commit` again, push your chang
 
 ### Running e2e for external contributions
 
-When an external contribution from a fork needs CI e2e testing, an FTE must first review the source code and workflow changes for security, then run the shared `Avm.Authoring` command using the GitHub CLI (`gh`). Ensure `gh` is authenticated as an authorized FTE with access to the upstream repository. The command is implemented but not yet released; once available, run it with the fork PR's reviewed head commit:
+When an external contribution from a fork needs CI e2e testing, an FTE must first review the source code and workflow changes for security, then run the shared `Avm.Authoring` command using the GitHub CLI (`gh`). Ensure `gh` is authenticated as an authorized FTE with access to the upstream repository. The command is implemented but not yet released; once available, run it for the fork PR:
 
 ```powershell
-$reviewedSha = '<full reviewed PR head commit SHA>'
 avm release-branch `
   --repository <owner>/<terraform-module-repository> `
-  --pull-request 123 `
-  --reviewed-head-commit $reviewedSha
+  --pull-request 123
 ```
 
-The `--reviewed-head-commit` value pins the handoff to the exact PR revision reviewed. The command creates a release branch from `main`, retargets and merges the fork PR into that branch, then opens a follow-up PR from the release branch to `main`. Terraform does not add the Bicep-specific `PR: Run E2E Tests` label. The FTE's invocation runs the handoff; no separate confirmation prompt is required. Use `--whatif` to preview without making changes. The command stops rather than bypassing repository protections. The follow-up PR still goes through the repository's normal review and CI approval gates.
+The command cannot verify which commit was reviewed. It creates a release branch from `main`, retargets and merges the fork PR into that branch, then opens a follow-up PR from the release branch to `main`. Terraform does not add the Bicep-specific `PR: Run E2E Tests` label. The FTE's invocation runs the handoff; no separate confirmation prompt is required. Use `--whatif` to preview without making changes. The command stops rather than bypassing repository protections. The follow-up PR still goes through the repository's normal review and CI approval gates.
 
 If tests fail, ask the contributor to update the original PR and repeat the handoff with the new changes.
 
