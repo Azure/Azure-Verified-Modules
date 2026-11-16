@@ -25,7 +25,7 @@ Every new Bicep or Terraform root module, and every new child module or submodul
 
 Use `avm init` from the [`Avm.Authoring`](https://github.com/Azure/azure-verified-modules-tools#install) PowerShell module for one-time initialization. Follow the linked instructions to register MAR and install the module. Specify `-Ecosystem` (`bicep` or `terraform`) and `-ModuleType` (`resource`, `pattern`, or `utility`). In an interactive terminal, the command prompts for missing required metadata fields; enter only approved values. For unattended runs, provide all required fields through `-InputObject`, or initialization fails rather than guessing them. The command supplies the required `$schema` URI, validates the metadata, and does not overwrite an existing file. Terraform initialization creates only `metadata.json`; add Terraform source files separately.
 
-For complete Bicep source scaffolding, see [initialize and update Bicep module files]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/). For Terraform, the [owner-only repository setup]({{% siteparam base %}}/contributing/terraform/repository-setup/) already creates root metadata; local `avm init` does not create a GitHub repository.
+For complete Bicep source scaffolding, see [initialize and update Bicep module files]({{% siteparam base %}}/contributing/bicep/contribution-flow/). For Terraform, the [owner-only repository setup]({{% siteparam base %}}/contributing/terraform/repository-setup/) already creates root metadata; local `avm init` does not create a GitHub repository.
 
 For an explicit metadata-only plan, `Initialize-AvmModuleMetadata` is also available:
 
@@ -156,4 +156,4 @@ A module that is both deprecated and unpublished is omitted from the CSV indexes
 
 A Bicep marker applies to its module and descendants, not its parent or siblings. Terraform archival applies to every module entry in that repository. Changing owners does not deprecate or reactivate a module. A module that is deprecated before it was ever published is removed from the indexes rather than listed as `Deprecated`.
 
-**Bicep child publishing:** [Telemetry assignment and Microsoft Artifact Registry (MAR) approval]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/child-module-publishing/#prerequisites) remain required. Recording metadata does not grant permission to publish a child module.
+**Bicep child publishing:** [Telemetry assignment and Microsoft Artifact Registry (MAR) approval]({{% siteparam base %}}/contributing/bicep/child-module-publishing/#prerequisites) remain required. Recording metadata does not grant permission to publish a child module.

@@ -570,68 +570,36 @@ weight = 1
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
+identifier = 'bicep-contribution-flow'
+parent = 'bicep-module-contribution'
+name = 'Contribution Flow'
+pageRef = '/contributing/bicep/contribution-flow'
+weight = 2
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
 identifier = 'bicep-contribution-composition'
 parent = 'bicep-module-contribution'
 name = 'Composition'
 pageRef = '/contributing/bicep/composition'
-weight = 2
-params = { alwaysopen = false, collapsibleMenu = false }
-
-[[menu.defined]]
-identifier = 'bicep-contribution-flow'
-parent = 'bicep-module-contribution'
-name = 'Contribution Flow'
-pageRef = '/contributing/bicep/bicep-contribution-flow'
 weight = 3
-params = { alwaysopen = true, collapsibleMenu = true }
+params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
-identifier = 'bicep-owner-contribution-flow'
-parent = 'bicep-contribution-flow'
-name = 'Owner Contribution Flow'
-pageRef = '/contributing/bicep/bicep-contribution-flow/owner-contribution-flow'
-weight = 1
-params = { alwaysopen = true, collapsibleMenu = true }
-
-[[menu.defined]]
-identifier = 'update-module-files'
-parent = 'bicep-contribution-flow'
-name = 'Update Module Files'
-pageRef = '/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files'
-weight = 2
-params = { alwaysopen = true, collapsibleMenu = true }
+identifier = 'bicep-advanced'
+parent = 'bicep-module-contribution'
+name = 'Advanced Topics & FAQ'
+pageRef = '/contributing/bicep/advanced'
+weight = 5
+params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
 identifier = 'child-module-publishing'
-parent = 'bicep-contribution-flow'
+parent = 'bicep-module-contribution'
 name = 'Child Module Publishing'
-pageRef = '/contributing/bicep/bicep-contribution-flow/child-module-publishing'
-weight = 3
-params = { alwaysopen = true, collapsibleMenu = true }
-
-[[menu.defined]]
-identifier = 'validate-module-locally'
-parent = 'bicep-contribution-flow'
-name = 'Validate Module Locally'
-pageRef = '/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally'
-weight = 4
-params = { alwaysopen = true, collapsibleMenu = true }
-
-[[menu.defined]]
-identifier = 'enable-disable-workflows'
-parent = 'bicep-contribution-flow'
-name = 'Enable or Disable Workflows'
-pageRef = '/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows'
-weight = 5
-params = { alwaysopen = true, collapsibleMenu = true }
-
-[[menu.defined]]
-identifier = 'custom-ci-secrets'
-parent = 'bicep-contribution-flow'
-name = 'Custom CI Parameters'
-pageRef = '/contributing/bicep/bicep-contribution-flow/custom-ci-secrets'
+pageRef = '/contributing/bicep/child-module-publishing'
 weight = 6
-params = { alwaysopen = true, collapsibleMenu = true }
+params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
 identifier = 'terraform-module-contribution'

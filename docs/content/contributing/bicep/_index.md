@@ -16,5 +16,7 @@ Therefore, this contribution guide **MUST** be used in conjunction with the [Bic
 This section lists AVM's Bicep-specific contribution guidance.
 
 - [Prerequisites]({{% siteparam base %}}/contributing/bicep/prerequisites/)
+- [Bicep contribution flow]({{% siteparam base %}}/contributing/bicep/contribution-flow/)
 - [Composition]({{% siteparam base %}}/contributing/bicep/composition/)
-- [Bicep contribution flow]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/)
+- [Advanced Topics & FAQ]({{% siteparam base %}}/contributing/bicep/advanced/)
+- [Child module publishing]({{% siteparam base %}}/contributing/bicep/child-module-publishing/)

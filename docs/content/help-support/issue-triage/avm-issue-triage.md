@@ -326,7 +326,7 @@ If a module meets the criteria described in the "[Deprecated Modules]({{% sitepa
 
 4. Update the module and connected files as per the below guidelines:
     1. Place the information notice - with the text below - in an `DEPRECATED.md` file, in the module's root.
-    1. Run [`avm docs -Ecosystem bicep -Path <module path>`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/#update-generated-files-after-editing) from the Bicep registry checkout. This regenerates only `README.md` and puts the `DEPRECATED.md` notice in its header without compiling `main.json`.
+    1. Run [`avm docs -Ecosystem bicep -Path <module path>`]({{% siteparam base %}}/contributing/bicep/contribution-flow/#update-generated-files-after-editing) from the Bicep registry checkout. This regenerates only `README.md` and puts the `DEPRECATED.md` notice in its header without compiling `main.json`.
     1. Make sure the content of the `DEPRECATED.md` file is displayed in the `README.md` in its header (right after the title).
     1. Add the the notice `NOTE: This is the last published version and the module has since been deprecated.` to the top-most `### Changes` section of the module's `CHANGELOG.md` file
     1. Remove the module workflow from the [`workflows`](https://github.com/Azure/bicep-registry-modules/tree/main/.github/workflows) folder.

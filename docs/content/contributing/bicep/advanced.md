@@ -1,21 +1,26 @@
 ---
-title: Custom CI Parameters
-description: Custom CI parameters from GitHub Actions secrets and variables for Azure Verified Modules (AVM) Bicep tests
+title: Advanced Topics & FAQ
+linktitle: Advanced
+description: Advanced guidance for AVM Bicep module owners and contributors.
+weight: 5
+aliases:
+  - /contributing/bicep/bicep-contribution-flow/custom-ci-secrets/
+  - /contributing/bicep/bicep-contribution-flow/owner-contribution-flow/
 ---
+
+## Custom CI parameters
 
 Use GitHub Actions secrets or variables to supply environment-specific inputs to your `main.test.bicep` end-to-end tests, such as tenant-specific object IDs or credentials. This avoids hardcoding values specific to your local or centrally managed test environment. Never commit private values to test files.
 
-These are additional template inputs, not Azure login credentials. Continue using OIDC with the `avm-validation` environment and its `VALIDATE_CLIENT_ID`, `VALIDATE_TENANT_ID`, and `VALIDATE_SUBSCRIPTION_ID` secrets, as described in [Authentication secrets]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#authentication-secrets).
+These are additional template inputs, not Azure login credentials. Upstream CI uses OIDC with the `avm-validation` environment and its `VALIDATE_CLIENT_ID`, `VALIDATE_TENANT_ID`, and `VALIDATE_SUBSCRIPTION_ID` secrets.
 
 {{% notice style="important" title="Forks and upstream validation" %}}
 
-Configure values separately in your fork: upstream repository and environment secrets are not inherited. This feature does not bypass GitHub's restrictions on secret availability for workflows triggered by contributions from forks.
-
-When adding a required input, ask the maintainers to configure the corresponding GitHub secret or variable in the upstream environment before merging your contribution. Share the parameter name and purpose, never its private value.
+Fork PRs cannot access upstream secrets or run credentialed E2E tests directly. When adding a required input, ask maintainers to configure the corresponding GitHub secret or variable in the upstream environment before merging your contribution. Share the parameter name and purpose, never its private value. Use the [release-branch handoff]({{% siteparam base %}}/contributing/bicep/contribution-flow/#running-e2e-for-external-contributions) when E2E testing is needed.
 
 {{% /notice %}}
 
-## Setup
+### Setup
 
 Declare the parameters in your `main.test.bicep` file and reference them as normal Bicep parameters. Keep an empty default for these string inputs so PSRule scans have a value for every parameter.
 
@@ -30,7 +35,7 @@ param mySecret string = ''
 param deploymentLabel string = ''
 ```
 
-Add the corresponding values under **Settings > Secrets and variables > Actions** in your repository, or under **Settings > Environments > avm-validation** for environment-scoped values:
+An authorized maintainer can add the corresponding values under **Settings > Secrets and variables > Actions** in the upstream repository, or under **Settings > Environments > avm-validation** for environment-scoped values:
 
 | GitHub Actions name | Store as | Template parameter | Value |
 | - | - | - | - |
@@ -61,7 +66,7 @@ Use GitHub secrets for private values, and variables only for clearly non-sensit
 
 {{% /notice %}}
 
-## How it works
+### How it works
 
 Workflows use the resolved GitHub `secrets` and `vars` contexts. Both repository-scoped and environment-scoped values are supported; GitHub applies its own scope precedence within each context. Use the same GitHub spelling across scopes when overriding an input so GitHub can apply that scope precedence to the override.
 
@@ -79,7 +84,7 @@ A configured empty winning value, including a `CI_` value, still wins and does n
 
 The CI passes the resolved values through the PowerShell `AdditionalParameters` object to the applicable `Test-Az*Deployment` and `New-Az*Deployment` cmdlets. This is runtime deployment parameter injection, not source token substitution or a `.bicepparam` file mechanism.
 
-## Legacy Key Vault fallback
+### Legacy Key Vault fallback
 
 {{% notice style="warning" title="CI Key Vault support is deprecated" %}}
 
@@ -89,18 +94,18 @@ The CI passes the resolved values through the PowerShell `AdditionalParameters` 
 
 Existing setups can retain the `CI_KEY_VAULT_NAME` repository variable, the vault, and its `CI-`-prefixed secrets. The legacy `CI-` suffix is matched literally and case-insensitively, unchanged by the GitHub naming rules. The CI identity still needs permission to list and read secrets, for example through the `Key Vault Secrets User` role. Matching Key Vault secrets are used only when no GitHub secret or variable supplies that parameter; keep the corresponding Bicep parameters secure.
 
-### Migrate existing inputs
+#### Migrate existing inputs
 
 1. Inventory the `CI-` secrets used by your test parameters and identify every workflow that depends on the vault. Prefer the [preview-only migration helper](#preview-with-the-migration-helper) for this inventory.
 1. Map each source name to a readable GitHub `CI_` name, or a `CI__` name for literal underscores or a reserved-name conflict. For example, Key Vault secret `CI-mySecret` becomes GitHub secret `CI_MY_SECRET`, supplying `mySecret`.
 1. Copy each value privately to the intended repository or environment scope. Default to a GitHub secret; choose a variable only after confirming the value is non-sensitive. Coordinate corresponding upstream inputs with the maintainers.
 1. Confirm that all dependent workflows use the migrated inputs before removing `CI_KEY_VAULT_NAME`. Do not delete the vault or its secrets as part of this change without checking for other consumers.
 
-#### Preview with the migration helper
+##### Preview with the migration helper
 
-{{% notice style="warning" title="Support is not released yet" %}}
+{{% notice style="warning" title="Check workflow availability" %}}
 
-The GitHub CI parameter support and migration helper are part of [Azure/bicep-registry-modules#7339](https://github.com/Azure/bicep-registry-modules/pull/7339). Wait until the implementation is available in your checkout and dependent workflows before applying a migration.
+The GitHub CI parameter support and migration helper were introduced in [Azure/bicep-registry-modules#7339](https://github.com/Azure/bicep-registry-modules/pull/7339). Verify the implementation is available in your checkout and dependent workflows before applying a migration.
 
 {{% /notice %}}
 
@@ -121,3 +126,45 @@ Without `-Apply`, the helper lists names and metadata only: it does not read sec
 Review the preview and obtain explicit operator approval before adding `-Apply` to copy values. When selecting an existing destination entry of the same kind for a parameter, the helper also prefers `CI_` over `CI__`. It skips the winning entry by default and reuses and overwrites only that entry when `-Overwrite` is explicitly specified. Any losing `CI__` alias is left unchanged, not deleted. Ambiguity within the winning prefix and opposite-kind matches for the same parameter are blocked.
 
 The helper never deletes entries and sends version-pinned values through standard input, not command arguments or files. Complete the workflow confirmation above before removing `CI_KEY_VAULT_NAME`.
+
+## Generated READMEs and Notes
+
+To regenerate only the README from Bicep source and E2E examples, run:
+
+```powershell
+avm docs `
+  -Ecosystem bicep `
+  -Path $modulePath
+```
+
+`avm docs` does not scaffold source files or compile `main.json`; use `avm pre-commit` for those tasks. For an existing hand-written `## Notes` section without a `README.notes.md` sidecar, extract the Notes before regenerating:
+
+```powershell
+avm docs export-notes -Path $modulePath
+avm pre-commit `
+  -Ecosystem bicep `
+  -Path $modulePath
+```
+
+Run `avm docs export-notes` separately for each child README with authored Notes, using that child's path. Commit the sidecars alongside regenerated READMEs. The generator does not copy Notes from existing READMEs; keep authored Notes in the sidecar and their images in the module's `src` directory. Edit source descriptions and parameter decorators rather than generated README sections.
+
+<span id="1-owner-activities-and-responsibilities"></span>
+
+## Module owner responsibilities
+
+Follow the [module owner responsibilities]({{% siteparam base %}}/help-support/issue-triage/brm-issue-triage/#module-owner-responsibilities), [team definitions]({{% siteparam base %}}/specs/shared/team-definitions/#module-owners), and [Bicep specifications]({{% siteparam base %}}/specs/bcp/). Only Microsoft FTEs may be module owners. Each primary, secondary, and additional owner needs the [AVM Module Contributors access package](https://aka.ms/avm/id/access-package/module-contributor), managed through the shared `@Azure/azure-verified-modules-module-contributors` team.
+
+Maintain approved handles in the root `metadata.json` `owners` array through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/). Reviewer routing uses those handles; it does not generate per-module `CODEOWNERS` entries. Monitor module issues and PRs, ensure compliance and timely reviews, and verify testing and publication.
+
+<span id="2-module-handover-activities"></span>
+<span id="3-adopting-an-orphaned-module"></span>
+
+### Handover and adoption
+
+For a handover, follow [hot-swapping module owners]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#hot-swapping-module-owners): update root metadata in one change, obtain metadata code-owner approval, and ensure incoming owners have approved access. Do not remove shared access solely because one module changes owners. If no replacement is available, follow the [orphaning process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-module-becomes-orphaned); to adopt an orphaned module, follow the [adoption process]({{% siteparam base %}}/help-support/issue-triage/avm-issue-triage/#when-a-new-owner-is-identified).
+
+<span id="4-github-notification-settings"></span>
+
+### Notifications
+
+Configure [GitHub notifications](https://github.com/settings/notifications) to receive team mentions and watched activity, and monitor [bicep-registry-modules](https://github.com/Azure/bicep-registry-modules) for issues and PRs affecting your modules. Microsoft FTEs can also consult the [internal maintenance guidance](https://dev.azure.com/CSUSolEng/Azure%20Verified%20Modules/_wiki/wikis/AVM%20Internal%20Wiki/472/Module-maintenance-tasks).
