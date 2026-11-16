@@ -50,6 +50,8 @@ Below is the directory and file structure expected for each AVM Terraform reposi
 
 See [Lifecycle hooks]({{% siteparam base %}}/contributing/terraform/contribution-flow/#lifecycle-hooks) for hook execution, environment, and migration guidance.
 
+For a new direct submodule, [initialize its local metadata with `avm init -ChildModule`]({{% siteparam base %}}/contributing/terraform/contribution-flow/#initialize-local-metadata-for-a-new-module), then add its Terraform source files yourself. The owner-only repository creation process already creates root metadata.
+
 Nested Terraform module and example roots are prohibited. `Avm.Authoring` convention validation enforces the one-layer `modules/*` and `examples/*` structure; see [TFRMNFR1]({{% siteparam base %}}/spec/TFRMNFR1).
 
 ## Code Styling

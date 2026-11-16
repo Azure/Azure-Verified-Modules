@@ -20,13 +20,14 @@ Before jumping on implementing your contribution, please review the AVM Module s
 
 Each Bicep AVM module of the [`Azure/bicep-registry-modules`](https://github.com/Azure/bicep-registry-modules) (BRM) repository must be implemented as per the structure described in [BCPNFR23]({{% siteparam base %}}/spec/BCPNFR23).
 
-For new modules, the files can be created automatically, once the parent folder exists. This example shows how to create a res module `res/compute/virtual-machine`.
+For an approved new module, run `avm init` from the root of the Bicep registry checkout. It creates the missing module and provider directories, metadata, Bicep source, version and changelog files, and root end-to-end test templates without overwriting existing files. For example, replace the path below with the approved resource module path:
 
 ```powershell
-Set-Location -Path ".\avm\"
-New-Item -ItemType Directory -Path ".\res\compute\virtual-machine"
-Set-AVMModule -ModuleFolderPath .\res\compute\virtual-machine
+$modulePath = 'avm/res/compute/<approved-module>'
+avm init -Ecosystem bicep -ModuleType resource -Path $modulePath
 ```
+
+Once you have implemented the source and tests, run `avm pre-commit -Ecosystem bicep -Path $modulePath` to build `main.json` and generate the README. See [initializing and updating module files]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/) for the full local workflow. To register an approved proposal **without** creating `main.bicep`, follow the [metadata-only proposal guide]({{% siteparam base %}}/contributing/module-metadata/#create-only-metadata-for-an-approved-bicep-proposal) instead.
 
 ## Code Styling
 

@@ -46,4 +46,4 @@ param location string = resourceGroup().location
 param customerManagedKey customerManagedKeyType
 ```
 
-It is planned that these examples are automatically added to the module readme's parameter descriptions when running either the `Set-ModuleReadMe` or `Set-AVMModule` scripts (available in the utilities folder).
+These examples appear in the generated `README.md` parameter descriptions when running [`avm docs`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/#update-generated-files-after-editing) or `avm pre-commit`.

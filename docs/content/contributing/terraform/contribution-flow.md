@@ -177,6 +177,22 @@ If the module repository does not exist yet, check the [Terraform Resource Modul
 
 Before writing code, review the [Terraform specifications]({{% siteparam base %}}/specs/tf/) and [composition guidelines]({{% siteparam base %}}/contributing/terraform/composition/) to ensure your contribution complies with AVM's design principles. For a new module, confirm first that every control-plane resource and supported data-plane operation uses AzAPI. Any AzureRM block must satisfy and document the unsupported data-plane exception in [TFFR3]({{% siteparam base %}}/spec/TFFR3).
 
+### Initialize local metadata for a new module
+
+The [owner-only repository creation process]({{% siteparam base %}}/contributing/terraform/repository-setup/) creates the remote GitHub repository and its root `metadata.json`. `avm init` is a separate, **local-only** command; it does not create a repository. If you start with an approved local module whose root metadata is missing, run this from its repository root:
+
+```powershell
+avm init -Ecosystem terraform -ModuleType resource -Path .
+```
+
+For a new direct child under `modules/`, specify its approved path and inherit ownership from the root:
+
+```powershell
+avm init -Ecosystem terraform -ModuleType resource -Path './modules/<child-module>' -ChildModule
+```
+
+Use the approved `-ModuleType` for pattern or utility modules instead. The command prompts for missing required metadata in an interactive terminal (or accepts `-InputObject` for automation), creates the target directory if needed, and writes **only `metadata.json`**. It never overwrites an existing metadata file or creates Terraform source files, examples, or tests; add those yourself according to the [composition guidelines]({{% siteparam base %}}/contributing/terraform/composition/). If the repository creation script already supplied the root metadata, leave it in place. See the [metadata guide]({{% siteparam base %}}/contributing/module-metadata/) for required fields and child ownership.
+
 Once you've made your changes, stage, commit, and push them:
 
 ```powershell
@@ -348,14 +364,17 @@ Go back to step 3 — fix the issue, run `avm pre-commit` again, push your chang
 
 ### Running e2e for external contributions
 
-When approving a PR from an external contributor:
+When an external contribution from a fork needs CI e2e testing, an FTE must review the source code, dependencies and workflow changes for security at the exact current PR head immediately before the handoff. Review the new head again if it changes. Ensure the GitHub CLI (`gh`) is authenticated as an authorized FTE with access to the upstream repository, then run the shared `Avm.Authoring` command:
 
-1. **Review the code for security** — check for any malicious code or changes to workflow files before running tests. If found, close the PR and report the contributor.
-2. Create a release branch from `main` (e.g. `release/<description>`).
-3. Change the PR's base branch to the release branch and merge it.
-4. Create a new PR from the release branch to `main` — this triggers the validation and test jobs.
-5. Approve the run and wait for results.
-6. If tests fail, send back to the contributor to fix and repeat from step 3.
+```powershell
+avm release-branch `
+  --repository <owner>/<terraform-module-repository> `
+  --pull-request 123
+```
+
+The command cannot verify which commit was reviewed. It captures the current head and stops if it changes during the handoff. It creates a release branch from `main`, retargets and merges the fork PR into that branch, then opens a follow-up PR from the release branch to `main`. Terraform does not add the Bicep-specific `PR: Run E2E Tests` label. Restrict write access to the release branch and review any later changes before E2E testing or merging the follow-up PR. The FTE's invocation runs the handoff; no separate confirmation prompt is required. Use `--whatif` to preview without making changes. The command stops rather than bypassing repository protections. The follow-up PR still goes through the repository's normal review and CI approval gates.
+
+If the handoff itself fails, inspect the fork PR and release branch before recovering manually; do not blindly rerun it. If E2E tests fail after a successful handoff, the original fork PR has been merged. Open a new fork PR containing the original changes and fixes, review its current head, and perform a new handoff if E2E testing is still needed. Inspect the existing follow-up PR and release branch before proceeding.
 
 ### Running e2e for your own contributions
 

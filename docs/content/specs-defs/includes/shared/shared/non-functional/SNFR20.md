@@ -43,7 +43,7 @@ Your GitHub account **MUST** be [linked](https://repos.opensource.microsoft.com/
 
 Once approved, access is granted through the [`azure-verified-modules-module-contributors`](https://aka.ms/avm/id/groups/module-contributors) Entra group and the corresponding [`@Azure/azure-verified-modules-module-contributors`](https://github.com/orgs/Azure/teams/azure-verified-modules-module-contributors) GitHub team. This shared access does not replace individual module ownership and review responsibilities. Adding a handle to metadata does not grant this access.
 
-Bicep module owners **MUST** continue to work in forks of the [BRM repository](https://aka.ms/BRM).
+Microsoft FTE Bicep module owners **MUST** create branches in the upstream [BRM repository](https://aka.ms/BRM) and **MUST NOT** work in forks. External contributors without upstream write access **MUST** work in a fork and submit a pull request to the upstream repository.
 
 #### CODEOWNERS file
 

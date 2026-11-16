@@ -31,22 +31,40 @@ To contribute to this project the following tooling is required:
 
 - [Git](https://git-scm.com/downloads)
 
-  If just installed, don't forget to set both your git username & password
+  If just installed, set your Git name and email:
 
     ```PowerShell
     git config --global user.name "John Doe"
     git config --global user.email "johndoe@example.com"
     ```
 
-- [Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#install-manually)
+- [PowerShell 7.4 or later](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)
+- [`Avm.Authoring`](https://github.com/Azure/azure-verified-modules-tools), installed from Microsoft Artifact Registry (MAR). PowerShell 7.4 or later and `Microsoft.PowerShell.PSResourceGet` 1.2.0 or later are required. If needed, install the latter from PowerShell Gallery and restart PowerShell:
 
-  {{% notice style="note" %}}
+  ```powershell
+  Install-PSResource -Name Microsoft.PowerShell.PSResourceGet `
+    -Version 1.2.0 `
+    -Repository PSGallery `
+    -Scope CurrentUser
+  ```
 
-  Must be manually kept up-to-date.
+  Register MAR once, then install the module:
 
-  {{% /notice %}}
+  ```powershell
+  Import-Module Microsoft.PowerShell.PSResourceGet -MinimumVersion 1.2.0
+  Register-PSResourceRepository -Name MAR `
+    -Uri 'https://mcr.microsoft.com' `
+    -ApiVersion ContainerRegistry `
+    -Trusted
+  Install-PSResource -Name avm.authoring `
+    -Repository MAR `
+    -Scope CurrentUser
+  Import-Module Avm.Authoring
+  avm doctor
+  ```
 
-- [Pester](https://pester.dev/docs/introduction/installation)
+  To update from MAR, repeat `Install-PSResource -Name avm.authoring -Repository MAR -Scope CurrentUser -Reinstall` and start a new PowerShell session. `avm update` uses PowerShell Gallery, not MAR. The module downloads and caches its pinned Bicep CLI on demand; no separate Bicep installation is needed for those commands. See [initializing and updating Bicep module files]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/).
+
 - [Visual Studio Code](https://code.visualstudio.com/download)
   - [Bicep extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
 

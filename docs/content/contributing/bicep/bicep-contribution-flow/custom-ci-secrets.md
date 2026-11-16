@@ -3,9 +3,9 @@ title: Custom CI Parameters
 description: Custom CI parameters from GitHub Actions secrets and variables for Azure Verified Modules (AVM) Bicep tests
 ---
 
-Use GitHub Actions secrets or variables to supply environment-specific inputs to your `main.test.bicep` end-to-end tests, such as tenant-specific object IDs or credentials. This avoids hardcoding values that differ between your fork and the upstream AVM test environment. Never commit private values to test files.
+Use GitHub Actions secrets or variables to supply environment-specific inputs to your `main.test.bicep` end-to-end tests, such as tenant-specific object IDs or credentials. This avoids hardcoding values specific to your local or centrally managed test environment. Never commit private values to test files.
 
-These are additional template inputs, not Azure login credentials. Continue using OIDC with the `avm-validation` environment and its `VALIDATE_CLIENT_ID`, `VALIDATE_TENANT_ID`, and `VALIDATE_SUBSCRIPTION_ID` secrets, as described in [Authentication secrets]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#312-authentication-secrets).
+These are additional template inputs, not Azure login credentials. Continue using OIDC with the `avm-validation` environment and its `VALIDATE_CLIENT_ID`, `VALIDATE_TENANT_ID`, and `VALIDATE_SUBSCRIPTION_ID` secrets, as described in [Authentication secrets]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#authentication-secrets).
 
 {{% notice style="important" title="Forks and upstream validation" %}}
 

@@ -27,7 +27,7 @@ Skills encode complex, multi-step domain workflows into structured instructions 
 
 
 **Source**: [`.github/skills/avm-child-module-publishing/SKILL.md`](https://github.com/Azure/bicep-registry-modules/blob/main/.github/skills/avm-child-module-publishing/SKILL.md)
-**Description**: Guides the end-to-end workflow for publishing a Bicep child module to the AVM public registry. Covers prerequisite verification, allowed-list registration, telemetry instrumentation, version file creation, changelog updates, parent module updates, and final validation. This skill implements the official [Child Module Publishing]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/child-module-publishing/) workflow.
+**Description**: Guides the end-to-end workflow for publishing a Bicep child module to the AVM public registry. Covers prerequisite verification, telemetry instrumentation, version file creation, changelog updates, parent module updates, and final validation. This skill implements the official [Child Module Publishing]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/child-module-publishing/) workflow.
 
 **Example prompt:**
 
