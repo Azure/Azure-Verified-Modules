@@ -514,7 +514,7 @@ Microsoft FTEs run deployment tests from their upstream PR by adding the `PR: Ru
 
 ### Running E2E for external contributions
 
-External fork PRs do not run credentialed E2E tests through the label. If E2E testing is needed, an FTE must first review the source code and workflow changes for security, then run the shared `Avm.Authoring` command using the GitHub CLI (`gh`). Ensure `gh` is authenticated as an authorized FTE with access to the upstream repository. The command is implemented but not yet released; once available, run it for the fork PR:
+External fork PRs do not run credentialed E2E tests through the label. If E2E testing is needed, an FTE must review the source code, dependencies and workflow changes for security at the exact current PR head immediately before the handoff. Review the new head again if it changes. Ensure the GitHub CLI (`gh`) is authenticated as an authorized FTE with access to the upstream repository, then run the shared `Avm.Authoring` command:
 
 ```powershell
 avm release-branch `
@@ -522,9 +522,9 @@ avm release-branch `
   --pull-request 123
 ```
 
-The command cannot verify which commit was reviewed. It creates a release branch from `main`, retargets and merges the fork PR into that branch, then opens a follow-up PR from the release branch to `main`. It labels the Bicep follow-up PR with `PR: Run E2E Tests`. The FTE's invocation runs the handoff; no separate confirmation prompt is required. Use `--whatif` to preview without making changes. The command stops rather than bypassing repository protections.
+The command cannot verify which commit was reviewed. It captures the current head and stops if it changes during the handoff. It creates a release branch from `main`, retargets and merges the fork PR into that branch, then opens a follow-up PR from the release branch to `main`. It labels the Bicep follow-up PR with `PR: Run E2E Tests`. Restrict write access to the release branch and review any later changes before E2E testing or merging the follow-up PR. The FTE's invocation runs the handoff; no separate confirmation prompt is required. Use `--whatif` to preview without making changes. The command stops rather than bypassing repository protections.
 
-If tests fail, ask the contributor to update the original PR and repeat the handoff with the new changes.
+If the handoff itself fails, inspect the fork PR and release branch before recovering manually; do not blindly rerun it. If E2E tests fail after a successful handoff, the original fork PR has been merged. Open a new fork PR containing the original changes and fixes, review its current head, and perform a new handoff if E2E testing is still needed. Inspect the existing follow-up PR and release branch before proceeding.
 
 ## 8. Review and merge PR
 
@@ -550,8 +550,6 @@ For ordinary code changes in an existing Bicep module, any eligible BRM reposito
 ## 9. Module release
 
 The shared [module release workflow](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/release.yml) is designed to run on pushes to `main` and can also be started manually. It discovers pending module releases, requires the relevant changelog entry, and requests approval through the `publish-approval` environment before creating scoped release tags. The tags identify the exact source revision; the separate registry publishing process consumes them. A successful tag-creation job alone does not prove that the version is available in the public registry.
-
-The `main` push trigger must be enabled for automatic releases; until then, the workflow is manual only.
 
 <!--
 ## Publishing to the Registry

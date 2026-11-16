@@ -34,6 +34,7 @@ For a step-by-step explanation with detailed instructions, refer to the followin
 
 * **Check prerequisites**: Existing [issue in AVM](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Class%3A%20Child%20Module%20%3Apackage%3A%22%20label%3A%22Language%3A%20Bicep%20%3Amuscle%3A%22), [assigned telemetry ID prefix](#telemetry-id-prefix-assigned), module registered in the [MAR file](https://github.com/microsoft/mcr/blob/main/teams/bicep/bicep.yml).
 * Implement the required changes in a branch. Microsoft FTEs must use the upstream repository; external contributors may work in a fork:
+  * **Allowed list**: Add the child module path to `allowed-child-modules` in the [publishing allowed list](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/staticValidation/compliance/helper/child-module-publish-allowed-list.json) if it is not already present.
   * **Child module template**: Ensure the child's `metadata.json` contains its assigned telemetry prefix alongside `main.bicep`, then add the `enableTelemetry` parameter and `avmTelemetry` deployment.
   * **Parent module template**: In the `main.bicep` template of the child module direct parent, add a `enableReferencedModulesTelemetry` variable with a value of `false`, and pass it as the `enableTelemetry` value down to the child module deployment.
   * **Version**: Add the `version.json` file to the child module folder and set version to `0.1`.
@@ -102,6 +103,7 @@ Publishing a child module does not change the folder hierarchy of the parent and
 
 Please follow the steps below:
 
+- Add the child module path to the `allowed-child-modules` array in the [publishing allowed list](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/staticValidation/compliance/helper/child-module-publish-allowed-list.json), keeping alphabetical order. Validation requires a child module with a `version.json` file to be listed.
 - Update the child module `main.bicep` template to support telemetry, as per [SFR4]({{% siteparam base %}}/spec/SFR4), [SFR3]({{% siteparam base %}}/spec/SFR3) and [BCPFR4]({{% siteparam base %}}/spec/BCPFR4)
   - Add the `enableTelemetry` parameter with a default value of `true`. Place it as the **last `param` declaration**, immediately before the first `var` declaration.
     ```bicep
