@@ -364,7 +364,7 @@ Go back to step 3 — fix the issue, run `avm pre-commit` again, push your chang
 
 ### Running e2e for external contributions
 
-When an external contribution from a fork needs CI e2e testing, an FTE must first review the source code and workflow changes for security, then run the shared `Avm.Authoring` command using the GitHub CLI (`gh`). The command is implemented but not yet released; once available, run it with the fork PR's reviewed head commit:
+When an external contribution from a fork needs CI e2e testing, an FTE must first review the source code and workflow changes for security, then run the shared `Avm.Authoring` command using the GitHub CLI (`gh`). Ensure `gh` is authenticated as an authorized FTE with access to the upstream repository. The command is implemented but not yet released; once available, run it with the fork PR's reviewed head commit:
 
 ```powershell
 $reviewedSha = '<full reviewed PR head commit SHA>'

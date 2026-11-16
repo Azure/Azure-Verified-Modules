@@ -514,7 +514,7 @@ Microsoft FTEs run deployment tests from their upstream PR by adding the `PR: Ru
 
 ### Running E2E for external contributions
 
-External fork PRs do not run credentialed E2E tests through the label. If E2E testing is needed, an FTE must first review the source code and workflow changes for security, then run the shared `Avm.Authoring` command using the GitHub CLI (`gh`). The command is implemented but not yet released; once available, run it with the fork PR's reviewed head commit:
+External fork PRs do not run credentialed E2E tests through the label. If E2E testing is needed, an FTE must first review the source code and workflow changes for security, then run the shared `Avm.Authoring` command using the GitHub CLI (`gh`). Ensure `gh` is authenticated as an authorized FTE with access to the upstream repository. The command is implemented but not yet released; once available, run it with the fork PR's reviewed head commit:
 
 ```powershell
 $reviewedSha = '<full reviewed PR head commit SHA>'
