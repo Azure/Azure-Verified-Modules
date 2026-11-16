@@ -222,7 +222,7 @@
   "avm/res/databricks/workspace",
   "avm/res/db-for-my-sql/flexible-server",
   "avm/res/db-for-my-sql/flexible-server/administrator",
-  "avm/res/db-for-my-sql/flexible-server/advanced-threat-protection",
+  "avm/res/db-for-my-sql/flexible-server/advanced-threat-protection-setting",
   "avm/res/db-for-my-sql/flexible-server/configuration",
   "avm/res/db-for-my-sql/flexible-server/database",
   "avm/res/db-for-my-sql/flexible-server/firewall-rule",
