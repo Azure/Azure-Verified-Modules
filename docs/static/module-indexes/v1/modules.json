@@ -162,7 +162,7 @@
             "status": "available",
             "currentVersion": "0.13.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 36221
+            "downloads": 36224
           }
         }
       ]
@@ -778,7 +778,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 196604
+            "downloads": 197149
           }
         }
       ]
@@ -2765,7 +2765,7 @@
           "publicRegistryReference": "br/public:avm/res/app/container-app:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.23.0",
+            "currentVersion": "0.23.1",
             "firstPublishedIn": "2024-01",
             "downloads": null
           }
@@ -2805,7 +2805,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 723558
+            "downloads": 726420
           }
         }
       ]
@@ -2926,7 +2926,7 @@
             "status": "available",
             "currentVersion": "0.2.2",
             "firstPublishedIn": "2025-05",
-            "downloads": 103853
+            "downloads": 104527
           }
         }
       ]
@@ -2966,7 +2966,7 @@
           "publicRegistryReference": "br/public:avm/res/app/managed-environment:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.16.0",
+            "currentVersion": "0.17.0",
             "firstPublishedIn": "2023-12",
             "downloads": null
           }
@@ -3006,7 +3006,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-03",
-            "downloads": 439982
+            "downloads": 441617
           }
         }
       ]
@@ -3046,7 +3046,7 @@
           "publicRegistryReference": "br/public:avm/res/app/managed-environment/certificate:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -3575,7 +3575,7 @@
           "publicRegistryReference": "br/public:avm/res/app-configuration/configuration-store:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.10.1",
+            "currentVersion": "0.10.2",
             "firstPublishedIn": "2024-03",
             "downloads": null
           }
@@ -3615,7 +3615,7 @@
             "status": "available",
             "currentVersion": "0.5.1",
             "firstPublishedIn": "2025-03",
-            "downloads": 177810
+            "downloads": 178205
           }
         }
       ]
@@ -3735,7 +3735,7 @@
           "publicRegistryReference": "br/public:avm/res/app-configuration/configuration-store/replica:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-04",
             "downloads": null
           }
@@ -4110,44 +4110,6 @@
             "firstPublishedIn": "2025-06",
             "downloads": null
           }
-        },
-        {
-          "ecosystem": "bicep",
-          "moduleType": "resource",
-          "moduleStatus": "Available",
-          "moduleName": "avm/res/data-protection/backup-vault/backup-instance",
-          "modulePath": "avm/res/data-protection/backup-vault/backup-instance",
-          "repository": "Azure/bicep-registry-modules",
-          "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/data-protection/backup-vault/backup-instance",
-          "parentModule": "avm/res/data-protection/backup-vault",
-          "familyModule": "avm/res/data-protection/backup-vault",
-          "provider": null,
-          "canonicalType": "Microsoft.Authorization/roleAssignments",
-          "providerNamespace": "Microsoft.Authorization",
-          "resourceType": "roleAssignments",
-          "metadataSource": "metadata",
-          "moduleDisplayName": "Data Protection Backup Vault - Backup Instance",
-          "moduleDescription": "AVM Child Module for Data Protection Backup Vault - Backup Instance",
-          "alternativeNames": [],
-          "comments": "",
-          "owners": [
-            {
-              "handle": "abhishekaryams",
-              "type": "user",
-              "displayName": "Abhishek Arya"
-            }
-          ],
-          "telemetryIdPrefix": "46d3xbcp.res.a38eed2",
-          "alternativeTelemetryIdPrefixes": [
-            "46d3xbcp.res.dataprot-backupvault-backupinst"
-          ],
-          "publicRegistryReference": "br/public:avm/res/data-protection/backup-vault/backup-instance:X.Y.Z",
-          "registry": {
-            "status": "available",
-            "currentVersion": "0.1.1",
-            "firstPublishedIn": "2026-04",
-            "downloads": null
-          }
         }
       ],
       "terraform": [
@@ -4184,7 +4146,7 @@
             "status": "available",
             "currentVersion": "0.3.1",
             "firstPublishedIn": "2024-01",
-            "downloads": 702654
+            "downloads": 703813
           }
         }
       ]
@@ -4224,7 +4186,7 @@
           "publicRegistryReference": "br/public:avm/res/automation/automation-account:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.19.3",
+            "currentVersion": "0.19.4",
             "firstPublishedIn": "2023-12",
             "downloads": null
           }
@@ -4269,7 +4231,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 91134
+            "downloads": 91254
           }
         }
       ]
@@ -4352,7 +4314,7 @@
           "publicRegistryReference": "br/public:avm/res/automation/automation-account/hybrid-runbook-worker-group:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -4928,7 +4890,7 @@
             "status": "available",
             "currentVersion": "2.0.2",
             "firstPublishedIn": "2024-08",
-            "downloads": 9254
+            "downloads": 9257
           }
         }
       ]
@@ -5144,7 +5106,7 @@
             "status": "available",
             "currentVersion": "2.0.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 21106
+            "downloads": 21122
           }
         }
       ]
@@ -5398,7 +5360,7 @@
             "status": "available",
             "currentVersion": "2.1.1",
             "firstPublishedIn": "2024-08",
-            "downloads": 17008
+            "downloads": 17045
           }
         }
       ]
@@ -5438,7 +5400,7 @@
           "publicRegistryReference": "br/public:avm/res/batch/batch-account:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.12.0",
+            "currentVersion": "0.12.1",
             "firstPublishedIn": "2023-11",
             "downloads": null
           }
@@ -5478,7 +5440,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 3328
+            "downloads": 3334
           }
         }
       ]
@@ -5552,7 +5514,7 @@
             "status": "available",
             "currentVersion": "0.7.0",
             "firstPublishedIn": "2026-01",
-            "downloads": 17459
+            "downloads": 17484
           }
         }
       ]
@@ -5597,7 +5559,7 @@
           "publicRegistryReference": "br/public:avm/res/cache/redis:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.18.0",
+            "currentVersion": "0.18.1",
             "firstPublishedIn": "2024-01",
             "downloads": null
           }
@@ -5641,7 +5603,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-06",
-            "downloads": 516279
+            "downloads": 517708
           }
         }
       ]
@@ -5867,7 +5829,7 @@
           "publicRegistryReference": "br/public:avm/res/cache/redis-enterprise:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.5.1",
+            "currentVersion": "0.5.2",
             "firstPublishedIn": "2025-02",
             "downloads": null
           }
@@ -5907,7 +5869,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
-            "downloads": 80552
+            "downloads": 80893
           }
         }
       ]
@@ -6084,7 +6046,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 103434
+            "downloads": 103661
           }
         }
       ]
@@ -6620,7 +6582,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-07",
-            "downloads": 3038
+            "downloads": 3043
           }
         }
       ]
@@ -6736,7 +6698,7 @@
           "publicRegistryReference": "br/public:avm/res/cognitive-services/account:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.19.1",
+            "currentVersion": "0.19.2",
             "firstPublishedIn": "2023-11",
             "downloads": null
           }
@@ -6776,7 +6738,7 @@
             "status": "available",
             "currentVersion": "0.12.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 1168850
+            "downloads": 1169925
           }
         }
       ]
@@ -7067,7 +7029,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-06",
-            "downloads": 20899
+            "downloads": 20951
           }
         }
       ]
@@ -7307,7 +7269,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-08",
-            "downloads": 947
+            "downloads": 953
           }
         }
       ]
@@ -7393,7 +7355,7 @@
           "publicRegistryReference": "br/public:avm/res/compute/disk-encryption-set:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.6.1",
+            "currentVersion": "0.6.2",
             "firstPublishedIn": "2024-01",
             "downloads": null
           }
@@ -7433,7 +7395,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2024-10",
-            "downloads": 52671
+            "downloads": 52714
           }
         }
       ]
@@ -7513,7 +7475,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-05",
-            "downloads": 27432
+            "downloads": 27506
           }
         }
       ]
@@ -7593,7 +7555,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-12",
-            "downloads": 114340
+            "downloads": 114455
           }
         }
       ]
@@ -7720,7 +7682,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 2315
+            "downloads": 2317
           }
         }
       ]
@@ -7868,7 +7830,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 10152
+            "downloads": 10191
           }
         }
       ]
@@ -7948,7 +7910,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-12",
-            "downloads": 8636
+            "downloads": 8646
           }
         }
       ]
@@ -7995,7 +7957,7 @@
           "publicRegistryReference": "br/public:avm/res/compute/virtual-machine-scale-set:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.11.1",
+            "currentVersion": "0.11.2",
             "firstPublishedIn": "2024-03",
             "downloads": null
           }
@@ -8040,9 +8002,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-compute-virtualmachinescaleset",
           "registry": {
             "status": "available",
-            "currentVersion": "0.11.2",
+            "currentVersion": "0.11.3",
             "firstPublishedIn": "2024-02",
-            "downloads": 165293
+            "downloads": 165436
           }
         }
       ]
@@ -8139,7 +8101,7 @@
           "publicRegistryReference": "br/public:avm/res/compute/virtual-machine:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.22.3",
+            "currentVersion": "0.22.4",
             "firstPublishedIn": "2024-01",
             "downloads": null
           }
@@ -8181,7 +8143,7 @@
             "status": "available",
             "currentVersion": "0.22.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 4223424
+            "downloads": 4226937
           }
         }
       ]
@@ -8589,7 +8551,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 19323
+            "downloads": 19332
           }
         }
       ]
@@ -8629,7 +8591,7 @@
           "publicRegistryReference": "br/public:avm/res/container-registry/registry:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.13.1",
+            "currentVersion": "0.13.2",
             "firstPublishedIn": "2024-01",
             "downloads": null
           }
@@ -8669,7 +8631,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 1010707
+            "downloads": 1013033
           }
         }
       ]
@@ -8709,7 +8671,7 @@
           "publicRegistryReference": "br/public:avm/res/container-registry/registry/cache-rule:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-03",
             "downloads": null
           }
@@ -8789,7 +8751,7 @@
           "publicRegistryReference": "br/public:avm/res/container-registry/registry/credential-set:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-03",
             "downloads": null
           }
@@ -8869,7 +8831,7 @@
           "publicRegistryReference": "br/public:avm/res/container-registry/registry/replication:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.1.2",
             "firstPublishedIn": "2026-03",
             "downloads": null
           }
@@ -8912,7 +8874,7 @@
           "publicRegistryReference": "br/public:avm/res/container-registry/registry/scope-map:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-03",
             "downloads": null
           }
@@ -8992,7 +8954,7 @@
           "publicRegistryReference": "br/public:avm/res/container-registry/registry/task:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-03",
             "downloads": null
           }
@@ -9035,7 +8997,7 @@
           "publicRegistryReference": "br/public:avm/res/container-registry/registry/token:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-03",
             "downloads": null
           }
@@ -9078,7 +9040,7 @@
           "publicRegistryReference": "br/public:avm/res/container-registry/registry/webhook:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-03",
             "downloads": null
           }
@@ -9167,7 +9129,7 @@
           "publicRegistryReference": "br/public:avm/res/container-service/managed-cluster:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.14.0",
+            "currentVersion": "0.14.1",
             "firstPublishedIn": "2024-01",
             "downloads": null
           }
@@ -9212,7 +9174,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2025-10",
-            "downloads": 871468
+            "downloads": 873843
           }
         }
       ]
@@ -9468,7 +9430,7 @@
           "publicRegistryReference": "br/public:avm/res/db-for-my-sql/flexible-server:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.11.1",
+            "currentVersion": "0.11.2",
             "firstPublishedIn": "2024-01",
             "downloads": null
           }
@@ -9508,7 +9470,7 @@
             "status": "available",
             "currentVersion": "0.1.9",
             "firstPublishedIn": "2024-09",
-            "downloads": 121744
+            "downloads": 121827
           }
         }
       ]
@@ -9763,7 +9725,7 @@
           "publicRegistryReference": "br/public:avm/res/db-for-postgre-sql/flexible-server:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.16.1",
+            "currentVersion": "0.16.2",
             "firstPublishedIn": "2023-11",
             "downloads": null
           }
@@ -9803,7 +9765,7 @@
             "status": "available",
             "currentVersion": "0.2.3",
             "firstPublishedIn": "2024-09",
-            "downloads": 789965
+            "downloads": 793016
           }
         }
       ]
@@ -10209,7 +10171,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 119152
+            "downloads": 119295
           }
         }
       ]
@@ -10421,7 +10383,7 @@
           "publicRegistryReference": "br/public:avm/res/data-protection/backup-vault:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.13.3",
+            "currentVersion": "0.13.4",
             "firstPublishedIn": "2024-01",
             "downloads": null
           }
@@ -10461,10 +10423,53 @@
             "status": "available",
             "currentVersion": "2.1.0",
             "firstPublishedIn": "2025-05",
-            "downloads": 94153
+            "downloads": 94462
           }
         }
       ]
+    },
+    "Microsoft.DataProtection/backupVaults/backupInstances": {
+      "bicep": [
+        {
+          "ecosystem": "bicep",
+          "moduleType": "resource",
+          "moduleStatus": "Available",
+          "moduleName": "avm/res/data-protection/backup-vault/backup-instance",
+          "modulePath": "avm/res/data-protection/backup-vault/backup-instance",
+          "repository": "Azure/bicep-registry-modules",
+          "repoURL": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/data-protection/backup-vault/backup-instance",
+          "parentModule": "avm/res/data-protection/backup-vault",
+          "familyModule": "avm/res/data-protection/backup-vault",
+          "provider": null,
+          "canonicalType": "Microsoft.DataProtection/backupVaults/backupInstances",
+          "providerNamespace": "Microsoft.DataProtection",
+          "resourceType": "backupVaults/backupInstances",
+          "metadataSource": "metadata",
+          "moduleDisplayName": "Data Protection Backup Vault - Backup Instance",
+          "moduleDescription": "AVM Child Module for Data Protection Backup Vault - Backup Instance",
+          "alternativeNames": [],
+          "comments": "",
+          "owners": [
+            {
+              "handle": "abhishekaryams",
+              "type": "user",
+              "displayName": "Abhishek Arya"
+            }
+          ],
+          "telemetryIdPrefix": "46d3xbcp.res.a38eed2",
+          "alternativeTelemetryIdPrefixes": [
+            "46d3xbcp.res.dataprot-backupvault-backupinst"
+          ],
+          "publicRegistryReference": "br/public:avm/res/data-protection/backup-vault/backup-instance:X.Y.Z",
+          "registry": {
+            "status": "available",
+            "currentVersion": "0.1.2",
+            "firstPublishedIn": "2026-04",
+            "downloads": null
+          }
+        }
+      ],
+      "terraform": []
     },
     "Microsoft.DataProtection/backupVaults/backupPolicies": {
       "bicep": [
@@ -10584,7 +10589,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-07",
-            "downloads": 1962
+            "downloads": 1965
           }
         }
       ]
@@ -10669,7 +10674,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2026-09",
-            "downloads": 3415
+            "downloads": 3461
           }
         }
       ]
@@ -10709,7 +10714,7 @@
           "publicRegistryReference": "br/public:avm/res/databricks/workspace:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.12.0",
+            "currentVersion": "0.12.1",
             "firstPublishedIn": "2024-01",
             "downloads": null
           }
@@ -10749,7 +10754,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-03",
-            "downloads": 136393
+            "downloads": 136517
           }
         }
       ]
@@ -10834,7 +10839,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 118987
+            "downloads": 119142
           }
         }
       ]
@@ -10967,7 +10972,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 111495
+            "downloads": 111598
           }
         }
       ]
@@ -11052,7 +11057,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 71065
+            "downloads": 71154
           }
         }
       ]
@@ -11137,7 +11142,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 114208
+            "downloads": 114356
           }
         }
       ]
@@ -11177,7 +11182,7 @@
           "publicRegistryReference": "br/public:avm/res/dev-center/devcenter:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.0",
+            "currentVersion": "0.2.1",
             "firstPublishedIn": "2025-06",
             "downloads": null
           }
@@ -11217,7 +11222,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 25109
+            "downloads": 25175
           }
         }
       ]
@@ -11540,7 +11545,7 @@
           "publicRegistryReference": "br/public:avm/res/dev-center/devcenter/gallery:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -11694,7 +11699,7 @@
           "publicRegistryReference": "br/public:avm/res/dev-center/project:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.2",
+            "currentVersion": "0.1.3",
             "firstPublishedIn": "2025-06",
             "downloads": null
           }
@@ -11805,7 +11810,7 @@
           "publicRegistryReference": "br/public:avm/res/dev-center/project/pool:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -11930,7 +11935,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-08",
-            "downloads": 230329
+            "downloads": 230819
           }
         }
       ]
@@ -11964,7 +11969,7 @@
           "publicRegistryReference": "br/public:avm/res/dev-test-lab/lab:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.5.1",
+            "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-02",
             "downloads": null
           }
@@ -12547,7 +12552,7 @@
           "publicRegistryReference": "br/public:avm/res/document-db/database-account:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.21.1",
+            "currentVersion": "0.21.2",
             "firstPublishedIn": "2023-12",
             "downloads": null
           }
@@ -12587,7 +12592,7 @@
             "status": "available",
             "currentVersion": "0.12.0",
             "firstPublishedIn": "2025-05",
-            "downloads": 547059
+            "downloads": 547970
           }
         }
       ]
@@ -12627,7 +12632,7 @@
           "publicRegistryReference": "br/public:avm/res/document-db/database-account/cassandra-keyspace:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.1.2",
             "firstPublishedIn": "2026-07",
             "downloads": null
           }
@@ -12713,7 +12718,7 @@
           "publicRegistryReference": "br/public:avm/res/document-db/database-account/cassandra-keyspace/view:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.1.2",
             "firstPublishedIn": "2026-07",
             "downloads": null
           }
@@ -12799,7 +12804,7 @@
           "publicRegistryReference": "br/public:avm/res/document-db/database-account/cassandra-role-definition:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.1.2",
             "firstPublishedIn": "2026-07",
             "downloads": null
           }
@@ -12842,7 +12847,7 @@
           "publicRegistryReference": "br/public:avm/res/document-db/database-account/gremlin-database:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.1.2",
             "firstPublishedIn": "2026-07",
             "downloads": null
           }
@@ -12928,7 +12933,7 @@
           "publicRegistryReference": "br/public:avm/res/document-db/database-account/mongodb-database:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.1.2",
             "firstPublishedIn": "2026-07",
             "downloads": null
           }
@@ -13014,7 +13019,7 @@
           "publicRegistryReference": "br/public:avm/res/document-db/database-account/sql-database:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.1",
+            "currentVersion": "0.2.2",
             "firstPublishedIn": "2026-07",
             "downloads": null
           }
@@ -13143,7 +13148,7 @@
           "publicRegistryReference": "br/public:avm/res/document-db/database-account/sql-role-definition:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.2",
+            "currentVersion": "0.2.3",
             "firstPublishedIn": "2025-09",
             "downloads": null
           }
@@ -13269,7 +13274,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2025-08",
-            "downloads": 34524
+            "downloads": 34566
           }
         }
       ]
@@ -13727,7 +13732,7 @@
             "status": "available",
             "currentVersion": "3.1.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 6874
+            "downloads": 6876
           }
         }
       ]
@@ -13817,7 +13822,7 @@
           "publicRegistryReference": "br/public:avm/res/elastic-san/elastic-san:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.5.1",
+            "currentVersion": "0.5.2",
             "firstPublishedIn": "2024-12",
             "downloads": null
           }
@@ -13867,7 +13872,7 @@
           "publicRegistryReference": "br/public:avm/res/elastic-san/elastic-san/volume-group:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -13967,7 +13972,7 @@
           "publicRegistryReference": "br/public:avm/res/elastic-san/elastic-san/volume-group/volume:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -14050,7 +14055,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-01",
-            "downloads": 2132
+            "downloads": 2135
           }
         }
       ]
@@ -14331,7 +14336,7 @@
             "status": "available",
             "currentVersion": "0.1.2",
             "firstPublishedIn": "2026-02",
-            "downloads": 2680
+            "downloads": 2684
           }
         }
       ]
@@ -15094,7 +15099,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-12",
-            "downloads": 13679
+            "downloads": 13705
           }
         }
       ]
@@ -15219,7 +15224,7 @@
           "publicRegistryReference": "br/public:avm/res/event-hub/namespace:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.15.2",
+            "currentVersion": "0.15.3",
             "firstPublishedIn": "2024-03",
             "downloads": null
           }
@@ -15259,7 +15264,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2025-04",
-            "downloads": 158247
+            "downloads": 159448
           }
         }
       ]
@@ -15400,7 +15405,7 @@
           "publicRegistryReference": "br/public:avm/res/event-hub/namespace/eventhub:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.3",
+            "currentVersion": "0.2.4",
             "firstPublishedIn": "2025-09",
             "downloads": null
           }
@@ -15632,7 +15637,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2026-08",
-            "downloads": 2804
+            "downloads": 2826
           }
         }
       ]
@@ -15673,7 +15678,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-11",
-            "downloads": 2476
+            "downloads": 2484
           }
         }
       ]
@@ -16386,7 +16391,7 @@
             "status": "available",
             "currentVersion": "2.0.5",
             "firstPublishedIn": "2024-08",
-            "downloads": 18089
+            "downloads": 18111
           }
         }
       ]
@@ -16471,7 +16476,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-10",
-            "downloads": 6796
+            "downloads": 7018
           }
         }
       ]
@@ -16551,7 +16556,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-10",
-            "downloads": 1992
+            "downloads": 2160
           }
         }
       ]
@@ -16631,7 +16636,7 @@
             "status": "available",
             "currentVersion": "0.1.2",
             "firstPublishedIn": "2024-11",
-            "downloads": 122754
+            "downloads": 122816
           }
         }
       ]
@@ -16711,7 +16716,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-05",
-            "downloads": 758751
+            "downloads": 760994
           }
         }
       ]
@@ -16834,7 +16839,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 19946
+            "downloads": 20215
           }
         }
       ]
@@ -16916,7 +16921,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-04",
-            "downloads": 17948
+            "downloads": 18262
           }
         }
       ]
@@ -17481,7 +17486,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-07",
-            "downloads": 2731
+            "downloads": 2760
           }
         }
       ]
@@ -17523,7 +17528,7 @@
           "publicRegistryReference": "br/public:avm/res/key-vault/vault:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.14.2",
+            "currentVersion": "0.14.3",
             "firstPublishedIn": "2023-11",
             "downloads": null
           }
@@ -17559,7 +17564,7 @@
             "status": "available",
             "currentVersion": "0.13.1",
             "firstPublishedIn": "2023-09",
-            "downloads": 5400063
+            "downloads": 5412675
           }
         }
       ]
@@ -17646,7 +17651,7 @@
           "publicRegistryReference": "br/public:avm/res/key-vault/vault/key:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.1.2",
             "firstPublishedIn": "2025-08",
             "downloads": null
           }
@@ -17724,7 +17729,7 @@
           "publicRegistryReference": "br/public:avm/res/key-vault/vault/secret:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.1.2",
             "firstPublishedIn": "2025-08",
             "downloads": null
           }
@@ -18110,7 +18115,7 @@
           "publicRegistryReference": "br/public:avm/res/kusto/cluster:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.11.0",
+            "currentVersion": "0.11.1",
             "firstPublishedIn": "2024-06",
             "downloads": null
           }
@@ -18144,7 +18149,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-04",
-            "downloads": 4537
+            "downloads": 4538
           }
         }
       ]
@@ -18486,7 +18491,7 @@
           "publicRegistryReference": "br/public:avm/res/logic/integration-account:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.0",
+            "currentVersion": "0.2.1",
             "firstPublishedIn": "2026-01",
             "downloads": null
           }
@@ -18529,7 +18534,7 @@
           "publicRegistryReference": "br/public:avm/res/logic/integration-account/agreement:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -18572,7 +18577,7 @@
           "publicRegistryReference": "br/public:avm/res/logic/integration-account/assembly:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -18615,7 +18620,7 @@
           "publicRegistryReference": "br/public:avm/res/logic/integration-account/certificate:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -18658,7 +18663,7 @@
           "publicRegistryReference": "br/public:avm/res/logic/integration-account/map:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -18701,7 +18706,7 @@
           "publicRegistryReference": "br/public:avm/res/logic/integration-account/partner:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -18744,7 +18749,7 @@
           "publicRegistryReference": "br/public:avm/res/logic/integration-account/schema:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -18827,7 +18832,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-06",
-            "downloads": 53616
+            "downloads": 53768
           }
         }
       ]
@@ -18917,7 +18922,7 @@
           "publicRegistryReference": "br/public:avm/res/machine-learning-services/workspace:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.14.1",
+            "currentVersion": "0.14.2",
             "firstPublishedIn": "2024-02",
             "downloads": null
           }
@@ -18959,7 +18964,7 @@
             "status": "available",
             "currentVersion": "0.9.1",
             "firstPublishedIn": "2024-08",
-            "downloads": 107317
+            "downloads": 107382
           }
         }
       ]
@@ -19232,7 +19237,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 35734
+            "downloads": 35736
           }
         }
       ]
@@ -19316,7 +19321,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-05",
-            "downloads": 3681793
+            "downloads": 3688905
           }
         }
       ]
@@ -19593,7 +19598,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-10",
-            "downloads": 347
+            "downloads": 349
           }
         }
       ]
@@ -20000,7 +20005,7 @@
           "publicRegistryReference": "br/public:avm/res/net-app/net-app-account:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.12.4",
+            "currentVersion": "0.12.5",
             "firstPublishedIn": "2024-01",
             "downloads": null
           }
@@ -20040,7 +20045,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 8222
+            "downloads": 8227
           }
         }
       ]
@@ -20080,7 +20085,7 @@
           "publicRegistryReference": "br/public:avm/res/net-app/net-app-account/backup-policy:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -20160,7 +20165,7 @@
           "publicRegistryReference": "br/public:avm/res/net-app/net-app-account/backup-vault:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -20283,7 +20288,7 @@
           "publicRegistryReference": "br/public:avm/res/net-app/net-app-account/capacity-pool:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.2",
+            "currentVersion": "0.1.3",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -20443,7 +20448,7 @@
           "publicRegistryReference": "br/public:avm/res/net-app/net-app-account/snapshot-policy:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -20563,7 +20568,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-02",
-            "downloads": 219564
+            "downloads": 220147
           }
         }
       ]
@@ -20693,7 +20698,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 489925
+            "downloads": 491215
           }
         }
       ]
@@ -20777,7 +20782,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 62852
+            "downloads": 63028
           }
         }
       ]
@@ -20861,7 +20866,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 717235
+            "downloads": 718097
           }
         }
       ]
@@ -20941,7 +20946,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 763091
+            "downloads": 764261
           }
         }
       ]
@@ -21021,7 +21026,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 14521
+            "downloads": 14601
           }
         }
       ]
@@ -21106,7 +21111,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2023-11",
-            "downloads": 475564
+            "downloads": 476144
           }
         }
       ]
@@ -21389,7 +21394,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-04",
-            "downloads": 661478
+            "downloads": 662292
           }
         }
       ]
@@ -21555,7 +21560,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2024-07",
-            "downloads": 280429
+            "downloads": 281054
           }
         }
       ]
@@ -22160,7 +22165,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 65451
+            "downloads": 65484
           }
         }
       ]
@@ -22330,7 +22335,7 @@
             "status": "available",
             "currentVersion": "0.3.4",
             "firstPublishedIn": "2024-05",
-            "downloads": 1036920
+            "downloads": 1038206
           }
         }
       ]
@@ -22490,7 +22495,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2024-10",
-            "downloads": 18839
+            "downloads": 18880
           }
         }
       ]
@@ -22601,7 +22606,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-03",
-            "downloads": 45376
+            "downloads": 45441
           }
         }
       ]
@@ -22684,7 +22689,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 816220
+            "downloads": 817061
           }
         }
       ]
@@ -22930,7 +22935,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 4697
+            "downloads": 4754
           }
         }
       ]
@@ -23012,7 +23017,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2023-12",
-            "downloads": 1228382
+            "downloads": 1230920
           }
         }
       ]
@@ -23096,7 +23101,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 20109
+            "downloads": 20186
           }
         }
       ]
@@ -23170,7 +23175,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-01",
-            "downloads": 14753
+            "downloads": 14796
           }
         }
       ]
@@ -23807,7 +23812,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 4949568
+            "downloads": 4955153
           }
         }
       ]
@@ -23881,7 +23886,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-04",
-            "downloads": 6671
+            "downloads": 6677
           }
         }
       ]
@@ -24232,7 +24237,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-07",
-            "downloads": 101311
+            "downloads": 101518
           }
         }
       ]
@@ -24441,7 +24446,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-03",
-            "downloads": 1686010
+            "downloads": 1689761
           }
         }
       ]
@@ -25201,7 +25206,7 @@
           "publicRegistryReference": "br/public:avm/res/network/private-endpoint:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.12.1",
+            "currentVersion": "0.12.2",
             "firstPublishedIn": "2023-11",
             "downloads": null
           }
@@ -25241,7 +25246,7 @@
             "status": "available",
             "currentVersion": "0.3.1",
             "firstPublishedIn": "2024-09",
-            "downloads": 860192
+            "downloads": 862249
           }
         }
       ]
@@ -25484,7 +25489,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 1182882
+            "downloads": 1185175
           }
         }
       ]
@@ -25566,7 +25571,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 25723
+            "downloads": 25763
           }
         }
       ]
@@ -25650,7 +25655,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 1613255
+            "downloads": 1616616
           }
         }
       ]
@@ -25847,7 +25852,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-02",
-            "downloads": 14483
+            "downloads": 14502
           }
         }
       ]
@@ -26398,7 +26403,7 @@
             "status": "available",
             "currentVersion": "0.23.0",
             "firstPublishedIn": "2025-07",
-            "downloads": 8500649
+            "downloads": 8515035
           }
         }
       ]
@@ -26907,7 +26912,7 @@
           "publicRegistryReference": "br/public:avm/res/operational-insights/cluster:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2025-11",
             "downloads": null
           }
@@ -26991,7 +26996,7 @@
           "publicRegistryReference": "br/public:avm/res/operational-insights/workspace:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.16.1",
+            "currentVersion": "0.16.2",
             "firstPublishedIn": "2023-11",
             "downloads": null
           }
@@ -27031,7 +27036,7 @@
             "status": "available",
             "currentVersion": "0.5.1",
             "firstPublishedIn": "2024-02",
-            "downloads": 1640117
+            "downloads": 1644074
           }
         }
       ]
@@ -27522,7 +27527,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 10952
+            "downloads": 10961
           }
         }
       ]
@@ -27716,7 +27721,7 @@
           "publicRegistryReference": "br/public:avm/res/recovery-services/vault:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.13.2",
+            "currentVersion": "0.14.0",
             "firstPublishedIn": "2024-03",
             "downloads": null
           }
@@ -27756,7 +27761,7 @@
             "status": "available",
             "currentVersion": "1.4.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 222067
+            "downloads": 222595
           }
         }
       ]
@@ -27796,7 +27801,7 @@
           "publicRegistryReference": "br/public:avm/res/recovery-services/vault/backup-fabric/protection-container/protected-item:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -28224,7 +28229,7 @@
           "publicRegistryReference": "br/public:avm/res/recovery-services/vault/replication-fabric:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -28267,7 +28272,7 @@
           "publicRegistryReference": "br/public:avm/res/recovery-services/vault/replication-fabric/replication-protection-container:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -28351,7 +28356,7 @@
           "publicRegistryReference": "br/public:avm/res/recovery-services/vault/replication-fabric/replication-protection-container/replication-protection-container-mapping:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -28443,7 +28448,7 @@
             "status": "available",
             "currentVersion": "0.0.3",
             "firstPublishedIn": "2025-10",
-            "downloads": 22106
+            "downloads": 22132
           }
         }
       ]
@@ -28564,7 +28569,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-01",
-            "downloads": 6487
+            "downloads": 6493
           }
         }
       ]
@@ -29050,7 +29055,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 1203
+            "downloads": 1205
           }
         }
       ]
@@ -29212,7 +29217,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 3853283
+            "downloads": 3861859
           }
         }
       ]
@@ -29289,7 +29294,7 @@
           "publicRegistryReference": "br/public:avm/res/search/search-service:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.13.0",
+            "currentVersion": "0.13.1",
             "firstPublishedIn": "2023-11",
             "downloads": null
           }
@@ -29329,7 +29334,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 243981
+            "downloads": 244383
           }
         }
       ]
@@ -29369,7 +29374,7 @@
           "publicRegistryReference": "br/public:avm/res/search/search-service/shared-private-link-resource:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -29529,7 +29534,7 @@
           "publicRegistryReference": "br/public:avm/res/service-bus/namespace:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.17.1",
+            "currentVersion": "0.17.2",
             "firstPublishedIn": "2023-12",
             "downloads": null
           }
@@ -29569,7 +29574,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-06",
-            "downloads": 385357
+            "downloads": 386188
           }
         }
       ]
@@ -29781,7 +29786,7 @@
           "publicRegistryReference": "br/public:avm/res/service-bus/namespace/queue:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.1.2",
             "firstPublishedIn": "2026-01",
             "downloads": null
           }
@@ -29867,7 +29872,7 @@
           "publicRegistryReference": "br/public:avm/res/service-bus/namespace/topic:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.1.2",
             "firstPublishedIn": "2026-01",
             "downloads": null
           }
@@ -29953,7 +29958,7 @@
           "publicRegistryReference": "br/public:avm/res/service-bus/namespace/topic/subscription:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -30196,7 +30201,7 @@
             "status": "available",
             "currentVersion": "1.1.0",
             "firstPublishedIn": "2026-06",
-            "downloads": 2961
+            "downloads": 2986
           }
         }
       ]
@@ -30479,7 +30484,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-10",
-            "downloads": 117
+            "downloads": 121
           }
         }
       ]
@@ -30657,7 +30662,7 @@
             "status": "available",
             "currentVersion": "0.3.1",
             "firstPublishedIn": "2026-02",
-            "downloads": 99768
+            "downloads": 99814
           }
         }
       ]
@@ -31012,7 +31017,7 @@
           "publicRegistryReference": "br/public:avm/res/sql/server:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.23.0",
+            "currentVersion": "0.23.1",
             "firstPublishedIn": "2023-11",
             "downloads": null
           }
@@ -31052,7 +31057,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2024-09",
-            "downloads": 654425
+            "downloads": 656964
           }
         }
       ]
@@ -31092,7 +31097,7 @@
           "publicRegistryReference": "br/public:avm/res/sql/server/auditing-setting:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-06",
             "downloads": null
           }
@@ -31135,7 +31140,7 @@
           "publicRegistryReference": "br/public:avm/res/sql/server/database:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.3.1",
+            "currentVersion": "0.3.2",
             "firstPublishedIn": "2025-09",
             "downloads": null
           }
@@ -31639,7 +31644,7 @@
           "publicRegistryReference": "br/public:avm/res/sql/server/vulnerability-assessment:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-06",
             "downloads": null
           }
@@ -31724,7 +31729,7 @@
             "status": "available",
             "currentVersion": "0.0.1",
             "firstPublishedIn": "2026-02",
-            "downloads": 31412
+            "downloads": 31511
           }
         }
       ]
@@ -31764,7 +31769,7 @@
           "publicRegistryReference": "br/public:avm/res/storage/storage-account:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.33.1",
+            "currentVersion": "0.33.2",
             "firstPublishedIn": "2024-01",
             "downloads": null
           }
@@ -31804,7 +31809,7 @@
             "status": "available",
             "currentVersion": "0.11.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 5596303
+            "downloads": 5609600
           }
         }
       ]
@@ -31844,7 +31849,7 @@
           "publicRegistryReference": "br/public:avm/res/storage/storage-account/blob-service:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.0",
+            "currentVersion": "0.2.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -31960,7 +31965,7 @@
           "publicRegistryReference": "br/public:avm/res/storage/storage-account/blob-service/container:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.3.4",
+            "currentVersion": "0.3.5",
             "firstPublishedIn": "2025-06",
             "downloads": null
           }
@@ -32119,7 +32124,7 @@
           "publicRegistryReference": "br/public:avm/res/storage/storage-account/file-service:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.0",
+            "currentVersion": "0.2.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -32439,7 +32444,7 @@
           "publicRegistryReference": "br/public:avm/res/storage/storage-account/object-replication-policy:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -32477,7 +32482,7 @@
           "publicRegistryReference": "br/public:avm/res/storage/storage-account/object-replication-policy/policy:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -32520,7 +32525,7 @@
           "publicRegistryReference": "br/public:avm/res/storage/storage-account/queue-service:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.0",
+            "currentVersion": "0.2.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -32680,7 +32685,7 @@
           "publicRegistryReference": "br/public:avm/res/storage/storage-account/table-service:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.0",
+            "currentVersion": "0.2.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -32920,7 +32925,7 @@
           "publicRegistryReference": "br/public:avm/res/synapse/workspace:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.15.0",
+            "currentVersion": "0.16.0",
             "firstPublishedIn": "2024-02",
             "downloads": null
           }
@@ -32960,7 +32965,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-05",
-            "downloads": 1788
+            "downloads": 1793
           }
         }
       ]
@@ -33172,7 +33177,7 @@
           "publicRegistryReference": "br/public:avm/res/synapse/workspace/key:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -33292,7 +33297,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-05",
-            "downloads": 207
+            "downloads": 210
           }
         }
       ]
@@ -33427,7 +33432,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-11",
-            "downloads": 6042
+            "downloads": 6054
           }
         }
       ]
@@ -33474,7 +33479,7 @@
           "publicRegistryReference": "br/public:avm/res/web/hosting-environment:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.5.0",
+            "currentVersion": "0.5.1",
             "firstPublishedIn": "2024-03",
             "downloads": null
           }
@@ -33516,7 +33521,7 @@
             "status": "available",
             "currentVersion": "2.0.1",
             "firstPublishedIn": "2024-06",
-            "downloads": 12737
+            "downloads": 12748
           }
         }
       ]
@@ -33731,7 +33736,7 @@
           "publicRegistryReference": "br/public:avm/res/web/serverfarm:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.7.0",
+            "currentVersion": "0.7.1",
             "firstPublishedIn": "2023-12",
             "downloads": null
           }
@@ -33776,7 +33781,7 @@
             "status": "available",
             "currentVersion": "2.0.8",
             "firstPublishedIn": "2024-08",
-            "downloads": 617535
+            "downloads": 619380
           }
         }
       ]
@@ -33871,7 +33876,7 @@
             "status": "available",
             "currentVersion": "0.24.1",
             "firstPublishedIn": "2024-02",
-            "downloads": 848385
+            "downloads": 850493
           }
         },
         {
@@ -35069,7 +35074,7 @@
             "status": "available",
             "currentVersion": "0.6.2",
             "firstPublishedIn": "2024-02",
-            "downloads": 114497
+            "downloads": 114747
           }
         }
       ]
@@ -35285,7 +35290,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 4853
+            "downloads": 4861
           }
         }
       ]
@@ -35331,7 +35336,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 3706
+            "downloads": 3712
           }
         }
       ]
@@ -35371,7 +35376,7 @@
           "publicRegistryReference": "br/public:avm/ptn/aca-lza/hosting-environment:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.6.3",
+            "currentVersion": "0.7.0",
             "firstPublishedIn": "2024-08",
             "downloads": null
           }
@@ -35411,7 +35416,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-02",
-            "downloads": 150
+            "downloads": 152
           }
         }
       ]
@@ -35825,7 +35830,7 @@
           "publicRegistryReference": "br/public:avm/ptn/ai-ml/ai-foundry:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.7.0",
+            "currentVersion": "0.7.1",
             "firstPublishedIn": "2025-07",
             "downloads": null
           }
@@ -35870,7 +35875,7 @@
             "status": "available",
             "currentVersion": "0.14.0",
             "firstPublishedIn": "2025-07",
-            "downloads": 253501
+            "downloads": 253818
           }
         }
       ]
@@ -36006,7 +36011,7 @@
             "status": "available",
             "currentVersion": "0.5.3",
             "firstPublishedIn": "2025-09",
-            "downloads": 8516
+            "downloads": 8535
           }
         }
       ]
@@ -36171,7 +36176,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 2169
+            "downloads": 2171
           }
         }
       ]
@@ -36212,7 +36217,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 1511
+            "downloads": 1513
           }
         }
       ]
@@ -36253,7 +36258,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 1496
+            "downloads": 1498
           }
         }
       ]
@@ -36294,7 +36299,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 14675
+            "downloads": 14764
           }
         }
       ]
@@ -36342,7 +36347,7 @@
             "status": "available",
             "currentVersion": "0.22.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 654138
+            "downloads": 654863
           }
         }
       ]
@@ -36388,7 +36393,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-07",
-            "downloads": 103
+            "downloads": 105
           }
         }
       ]
@@ -36434,7 +36439,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-07",
-            "downloads": 159
+            "downloads": 161
           }
         }
       ]
@@ -36517,7 +36522,7 @@
             "status": "available",
             "currentVersion": "0.18.1",
             "firstPublishedIn": "2025-10",
-            "downloads": 368895
+            "downloads": 369423
           }
         }
       ]
@@ -36709,7 +36714,7 @@
             "status": "available",
             "currentVersion": "0.18.2",
             "firstPublishedIn": "2025-03",
-            "downloads": 327348
+            "downloads": 327731
           }
         }
       ]
@@ -37322,7 +37327,7 @@
             "status": "available",
             "currentVersion": "0.10.0",
             "firstPublishedIn": "2023-12",
-            "downloads": 481650
+            "downloads": 482180
           }
         }
       ]
@@ -37610,7 +37615,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-03",
-            "downloads": 74
+            "downloads": 76
           }
         }
       ]
@@ -37990,7 +37995,7 @@
           "publicRegistryReference": "br/public:avm/ptn/authorization/policy-assignment:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.5.3",
+            "currentVersion": "0.5.4",
             "firstPublishedIn": "2024-04",
             "downloads": null
           }
@@ -38030,7 +38035,7 @@
             "status": "available",
             "currentVersion": "0.2.2",
             "firstPublishedIn": "2024-09",
-            "downloads": 13363
+            "downloads": 13458
           }
         }
       ]
@@ -38315,7 +38320,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 13604
+            "downloads": 13620
           }
         }
       ]
@@ -38391,7 +38396,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-05",
-            "downloads": 9477
+            "downloads": 9481
           }
         }
       ]
@@ -39055,7 +39060,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
-            "downloads": 6354
+            "downloads": 6360
           }
         }
       ]
@@ -39096,7 +39101,7 @@
             "status": "available",
             "currentVersion": "3.1.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 4865
+            "downloads": 4867
           }
         }
       ]
@@ -39289,7 +39294,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-03",
-            "downloads": 91
+            "downloads": 93
           }
         }
       ]
@@ -39375,7 +39380,7 @@
           "publicRegistryReference": "br/public:avm/ptn/data/private-analytical-workspace:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.2",
+            "currentVersion": "0.1.3",
             "firstPublishedIn": "2024-11",
             "downloads": null
           }
@@ -39671,7 +39676,7 @@
             "status": "available",
             "currentVersion": "0.6.2",
             "firstPublishedIn": "2024-08",
-            "downloads": 29688
+            "downloads": 29853
           }
         }
       ]
@@ -39835,7 +39840,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-11",
-            "downloads": 8052
+            "downloads": 8103
           }
         }
       ]
@@ -39876,7 +39881,7 @@
             "status": "available",
             "currentVersion": "0.1.3",
             "firstPublishedIn": "2026-09",
-            "downloads": 77
+            "downloads": 79
           }
         }
       ]
@@ -39921,7 +39926,7 @@
           "publicRegistryReference": "br/public:avm/ptn/finops-toolkit/finops-hub:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.1.2",
             "firstPublishedIn": "2024-05",
             "downloads": null
           }
@@ -40000,7 +40005,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 3779
+            "downloads": 3784
           }
         }
       ]
@@ -40084,7 +40089,7 @@
             "status": "available",
             "currentVersion": "1.1.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 5373
+            "downloads": 5375
           }
         }
       ]
@@ -40125,7 +40130,7 @@
             "status": "available",
             "currentVersion": "1.1.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 5304
+            "downloads": 5306
           }
         }
       ]
@@ -40461,10 +40466,10 @@
           ],
           "telemetryIdPrefix": null,
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-compute-virtualmachinescaleset/azurerm/0.11.2/submodules/sku_selector",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-compute-virtualmachinescaleset/azurerm/0.11.3/submodules/sku_selector",
           "registry": {
             "status": "available",
-            "currentVersion": "0.11.2",
+            "currentVersion": "0.11.3",
             "firstPublishedIn": "2024-04",
             "downloads": null
           }
@@ -40800,10 +40805,10 @@
           ],
           "telemetryIdPrefix": null,
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-utl-regions/azurerm/0.13.2/submodules/cached-data",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-utl-regions/azurerm/0.14.0/submodules/cached-data",
           "registry": {
             "status": "available",
-            "currentVersion": "0.13.2",
+            "currentVersion": "0.14.0",
             "firstPublishedIn": "2025-05",
             "downloads": null
           }
@@ -40846,7 +40851,7 @@
             "status": "available",
             "currentVersion": "0.10.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 7485007
+            "downloads": 7517330
           }
         }
       ]
@@ -40974,7 +40979,7 @@
             "status": "available",
             "currentVersion": "0.3.4",
             "firstPublishedIn": "2025-11",
-            "downloads": 607526
+            "downloads": 609044
           }
         }
       ]
@@ -41837,7 +41842,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 88380
+            "downloads": 88487
           }
         }
       ]
@@ -41878,7 +41883,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2026-09",
-            "downloads": 185261
+            "downloads": 187969
           }
         }
       ]
@@ -41921,7 +41926,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-03",
-            "downloads": 316477
+            "downloads": 317036
           }
         }
       ]
@@ -41962,7 +41967,7 @@
             "status": "available",
             "currentVersion": "0.1.5",
             "firstPublishedIn": "2024-06",
-            "downloads": 13676
+            "downloads": 13683
           }
         }
       ]
@@ -42036,7 +42041,7 @@
             "status": "available",
             "currentVersion": "0.13.2",
             "firstPublishedIn": "2024-09",
-            "downloads": 162615
+            "downloads": 162630
           }
         }
       ]
@@ -42116,7 +42121,7 @@
             "status": "available",
             "currentVersion": "0.23.3",
             "firstPublishedIn": "2024-06",
-            "downloads": 562642
+            "downloads": 563379
           }
         }
       ]
@@ -42197,7 +42202,7 @@
             "status": "available",
             "currentVersion": "0.14.1",
             "firstPublishedIn": "2023-09",
-            "downloads": 287942
+            "downloads": 287986
           }
         }
       ]
@@ -42566,7 +42571,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 1001
+            "downloads": 1003
           }
         }
       ]
@@ -42918,9 +42923,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-utl-regions",
           "registry": {
             "status": "available",
-            "currentVersion": "0.13.2",
+            "currentVersion": "0.14.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 4616314
+            "downloads": 4628341
           }
         }
       ]
@@ -42961,7 +42966,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2025-09",
-            "downloads": 849841
+            "downloads": 852255
           }
         }
       ]
@@ -43540,7 +43545,7 @@
             "status": "available",
             "currentVersion": "0.4.2",
             "firstPublishedIn": "2024-12",
-            "downloads": 55895
+            "downloads": 55920
           }
         }
       ]
@@ -43624,7 +43629,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-10",
-            "downloads": 60
+            "downloads": 62
           }
         }
       ]
@@ -43756,7 +43761,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-10",
-            "downloads": 49
+            "downloads": 51
           }
         }
       ]
@@ -43974,7 +43979,7 @@
             "status": "available",
             "currentVersion": "0.0.3",
             "firstPublishedIn": "2026-05",
-            "downloads": 538
+            "downloads": 540
           }
         }
       ]
@@ -44009,7 +44014,7 @@
             "status": "available",
             "currentVersion": "0.10.3",
             "firstPublishedIn": "2024-02",
-            "downloads": 261285
+            "downloads": 261402
           }
         }
       ]
