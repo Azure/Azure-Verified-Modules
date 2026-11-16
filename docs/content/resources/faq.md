@@ -384,7 +384,7 @@ Entra objects - May come as new modules if/when the Graph provider will be relea
 
 AVM utilizes a number of validation pipelines for both Bicep and Terraform. These pipelines are run on every PR and ensure that the code is compliant with the AVM specifications and that the module is working as expected.
 
-For example, in case of Bicep, as part of the [PR process]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry), we're asking contributors to provide a workflow status badge as a proof of successful validation using our testing pipelines.
+For example, in case of Bicep, as part of the [PR process]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#6-raise-or-update-pr), we're asking contributors to provide a workflow status badge as a proof of successful validation using our testing pipelines.
 
 The validation includes 2 main stages run in sequence:
 

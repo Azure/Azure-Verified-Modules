@@ -33,7 +33,7 @@ Use this section for a fast overview on how to publish a child module.
 For a step-by-step explanation with detailed instructions, refer to the following sections.
 
 * **Check prerequisites**: Existing [issue in AVM](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Class%3A%20Child%20Module%20%3Apackage%3A%22%20label%3A%22Language%3A%20Bicep%20%3Amuscle%3A%22), [assigned telemetry ID prefix](#telemetry-id-prefix-assigned), module registered in the [MAR file](https://github.com/microsoft/mcr/blob/main/teams/bicep/bicep.yml).
-* Implement required changes in your fork:
+* Implement the required changes in a branch. Microsoft FTEs must use the upstream repository; external contributors may work in a fork:
   * **Child module template**: Ensure the child's `metadata.json` contains its assigned telemetry prefix alongside `main.bicep`, then add the `enableTelemetry` parameter and `avmTelemetry` deployment.
   * **Parent module template**: In the `main.bicep` template of the child module direct parent, add a `enableReferencedModulesTelemetry` variable with a value of `false`, and pass it as the `enableTelemetry` value down to the child module deployment.
   * **Version**: Add the `version.json` file to the child module folder and set version to `0.1`.
@@ -200,7 +200,7 @@ Please follow the steps below:
   avm pre-commit -Ecosystem bicep -Path $topLevelModulePath
   ```
 
-- Raise a PR and verify the shared checks. Request deployment tests with the `PR: Run E2E Tests` label when needed; for a fork PR, coordinate an authorized test run with a maintainer.
+- Raise a PR and verify the shared checks. FTEs can request deployment tests with the `PR: Run E2E Tests` label. For an external fork PR, follow the [release-branch handoff]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#running-e2e-for-external-contributions) only when E2E testing is needed.
 
 {{% notice style="note" %}}
 

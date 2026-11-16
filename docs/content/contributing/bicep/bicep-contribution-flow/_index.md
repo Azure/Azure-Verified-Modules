@@ -28,32 +28,34 @@ config:
 ---
 
 flowchart TD
-  A("1 - Fork the module source repository")
-    click A "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#1-fork-the-module-source-repository"
-  B(2 - Configure a deployment identity if running tests in your fork)
-    click B "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#2-configure-a-deployment-identity-in-azure"
-  C("3 - Configure CI environment for module tests")
-    click C "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#3-configure-your-ci-environment"
-  D("4 - Implementing your contribution<br>(Refer to Gitflow Diagram below)")
-    click D "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution"
-  E(5 - Create or update tests)
-    click E "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests"
-  F(6 - Create a pull request to the upstream repository)
-    click F "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry"
-  G(7 - Get your pull request approved)
-    click G "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#7-get-your-pull-request-approved"
+  A("1 - Fork [optional for external contributors]")
+    click A "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#1-fork-optional"
+  B(2 - Branch)
+    click B "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#2-branch"
+  C(3 - Implement your code change)
+    click C "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#3-implement-your-code-change"
+  D(4 - Run avm pre-commit)
+    click D "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#4-run-avm-pre-commit"
+  E(5 - Run checks and tests)
+    click E "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#5-run-checks-and-tests-locally"
+  F(6 - Raise or update PR)
+    click F "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#6-raise-or-update-pr"
+  G(7 - Approve and monitor CI tests)
+    click G "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#7-approve-and-monitor-ci-tests"
   A --> B
   B --> C
   C --> D
   D --> E
   E --> F
   F --> G
+  G --> H(8 - Review and merge PR)
+  H --> I(9 - Module release)
 
 {{< /mermaid >}}
 
-## GitFlow for contributors
+## Working with branches and forks
 
-The GitFlow process outlined here introduces a central anchor branch. This branch should be treated as if it were a protected branch. It serves to synchronize the forked repository with the original upstream repository. The use of the anchor branch is designed to give contributors the flexibility to work on several modules simultaneous.
+Microsoft FTEs must work in the upstream repository and create a branch; do not fork. External contributors without write access can use a fork and an anchor branch to synchronize it with upstream `main`.
 
 {{< mermaid zoom="true" >}}
 ---
@@ -65,7 +67,7 @@ config:
 ---
 
 gitGraph LR:
-  commit id:"Fork Repo"
+  commit id:"External fork"
   branch anchor
   checkout anchor
   commit id:"Sync Upstream/main" type: HIGHLIGHT
@@ -80,27 +82,29 @@ gitGraph LR:
 
 {{% notice style="tip" %}}
 
-When implementing the GitFlow process as described, it is advisable to configure the local clone with a remote for the upstream repository. This will enable the Git CLI and local IDE to merge changes directly from the upstream repository. Using GitHub Desktop, this is configured automatically when cloning the forked repository via the application.
+When using a fork, configure an `upstream` remote so you can sync with the upstream repository. This is not needed for FTEs working directly in the upstream repository.
 
 {{% /notice %}}
 
-Configure Azure and your fork's CI environment only if you intend to run deployment tests there. For upstream pull requests, the shared PR check runs against the changes; coordinate deployment testing with a maintainer when needed.
+The shared PR check runs against every contribution. FTEs can request deployment tests directly from their PR. An external fork PR does not run deployment tests through the label; follow the release-branch handoff only when that PR needs E2E testing.
 
-## 1. Fork the module source repository
+## 1. Fork [optional]
+
+This step is for external contributors who do not have write access to the upstream repository. Microsoft FTEs must not fork; go directly to [step 2](#2-branch) and create a branch in the upstream `Azure/bicep-registry-modules` repository.
 
 {{% notice style="note" %}}
 
-Each time in the following sections we refer to 'your xyz', it is an indicator that you have to change something in your own environment.
+The GitHub environment and credential setup below is optional and only applies if you choose to run tests in your own fork. It is not required for upstream PR checks or for an FTE to run E2E tests from their PR.
 
 {{% /notice %}}
 
 Bicep AVM Modules (Resource, Pattern and Utility modules) are located in the `/avm` directory of the [`Azure/bicep-registry-modules`](https://aka.ms/BRM) repository, as per [SNFR19]({{% siteparam base %}}/spec/SNFR19).
 
-Module owners are expected to fork the [`Azure/bicep-registry-modules`](https://aka.ms/BRM) repository and work on a branch from within their fork, before creating a Pull Request (PR) back into the [`Azure/bicep-registry-modules`](https://aka.ms/BRM) repository's upstream `main` branch.
+External contributors without write access may fork the [`Azure/bicep-registry-modules`](https://aka.ms/BRM) repository and create a branch in that fork before opening a PR to upstream `main`.
 
 To do so, simply navigate to the [Public Bicep Registry](https://aka.ms/BRM) repository, select the `'Fork'` button to the top right of the UI, select where the fork should be created (i.e., the owning organization) and finally click 'Create fork'.
 
-### 1.1 Create a GitHub environment
+### 1.1 Optional: Configure your fork for local test runs
 
 Create the `avm-validation` environment in your fork.
 
@@ -118,7 +122,7 @@ Please ref the following link for additional details: [Creating an environment](
 
 {{% /expand %}}
 
-## 2. Configure a deployment identity in Azure
+### 1.2 Optional: Configure a deployment identity in Azure
 
 AVM tests its modules via deployments in an Azure subscription. To do so, it requires a deployment identity with access to it.
 
@@ -204,17 +208,17 @@ Additional references:
 
 {{% /expand %}}
 
-## 3. Configure your CI environment
+### 1.3 Optional: Configure CI in your fork
 
 To configure the forked CI environment you have to perform several steps:
 
-- [3.1 Set up secrets](#31-set-up-secrets)
-- [3.2 Enable actions](#32-enable-actions)
-- [3.3 Set Read/Write Workflow permissions](#33-set-readwrite-workflow-permissions)
+- [1.3.1 Set up secrets](#131-set-up-secrets)
+- [1.3.2 Enable actions](#132-enable-actions)
+- [1.3.3 Set Read/Write Workflow permissions](#133-set-readwrite-workflow-permissions)
 
-### 3.1. Set up secrets
+### 1.3.1 Set up secrets
 
-#### 3.1.1 Shared repository secrets
+#### Shared repository secrets
 
 To use the _Continuous Integration_ environment's workflows you should set up the following repository secrets:
 
@@ -255,15 +259,15 @@ The deployment test receives the configured prefix as a parameter. Test template
 
 {{% /expand %}}
 
-#### 3.1.2 Authentication secrets
+#### Authentication secrets
 
 In addition to shared repository secrets detailed above, additional GitHub secrets are required to allow the deploying identity to authenticate to Azure.
 
-Expand and follow the option corresponding to the deployment identity setup chosen at [Step 2](#2-configure-a-deployment-identity-in-azure) and use the information you gathered during that step.
+Expand and follow the option corresponding to the deployment identity setup you configured in step 1.2.
 
 {{% expand title="➕ Option 1 [Recommended]: Authenticate via OIDC" %}}
 
-Create the following environment secrets in the `avm-validation` GitHub environment created at [Step 1](#1-fork-the-module-source-repository)
+Create the following environment secrets in the `avm-validation` GitHub environment created in step 1.1.
 
 | Secret Name | Example | Description |
 | - | - | - |
@@ -312,19 +316,19 @@ This secret represent the service connection to Azure, and its value is a compre
 {"clientId": "<client_id>", "clientSecret": "<client_secret>", "subscriptionId": "<subscriptionId>", "tenantId": "<tenant_id>" }
 ```
 
-**Make sure you create this object as one continuous string as shown above** - using the information you collected during [Step 2](#2-configure-a-deployment-identity-in-azure). Failing to format the secret as above, causes GitHub to consider each line of the JSON object as a separate secret string. See the [deployment credentials format](https://github.com/Azure/login#configure-deployment-credentials) for more information.
+**Make sure you create this object as one continuous string as shown above** - using the information you collected in step 1.2. Failing to format the secret as above, causes GitHub to consider each line of the JSON object as a separate secret string. See the [deployment credentials format](https://github.com/Azure/login#configure-deployment-credentials) for more information.
 
 {{% /notice %}}
 
 {{% /expand %}}
 
-#### 3.1.3 Custom CI parameters
+#### Custom CI parameters
 
 For test-specific template inputs, create GitHub Actions secrets or variables at repository scope or in the `avm-validation` environment. Prefer readable `CI_` names such as `CI_MY_SECRET` for `mySecret`; underscores after the prefix are ignored. Use `CI__` to preserve literal underscores in parameter names. Use secrets for private values and variables only for clearly non-sensitive configuration. These inputs are separate from the OIDC authentication secrets above.
 
 See [Custom CI parameters]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/custom-ci-secrets) for parameter naming, secure handling, precedence, and migration from the deprecated `CI_KEY_VAULT_NAME` Key Vault fallback.
 
-### 3.2. Enable actions
+### 1.3.2 Enable actions
 
 Finally, 'GitHub Actions' are disabled by default and hence, must be enabled first.
 
@@ -336,7 +340,7 @@ To do so, perform the following steps:
 
     ![EnableActions]({{% siteparam base %}}/images/bicep-ci/actionsEnable.png?width=35vw "Enable Actions")
 
-### 3.3. Set Read/Write Workflow permissions
+### 1.3.3 Set Read/Write Workflow permissions
 
 To let the workflow engine publish their results into your repository, you have to enable the read / write access for the GitHub actions.
 
@@ -354,32 +358,34 @@ Deployment tests can create Azure resources and incur costs. Use only an authori
 
 {{% /notice %}}
 
-## 4. Implement your contribution
+## 2. Branch
+
+Create a branch from the latest upstream `main`. Microsoft FTEs must use the upstream `Azure/bicep-registry-modules` repository and must not fork it. External contributors without write access can create the branch in their fork; first synchronize the fork's `main` with upstream.
+
+## 3. Implement your code change
 
 To implement your contribution, we kindly ask you to first review the [Bicep specifications]({{% siteparam base %}}/specs/bcp/) and [composition guidelines]({{% siteparam base %}}/contributing/bicep/composition/) in particular to make sure your contribution complies with the repository's design and principles.
 
 For an approved new module, start with the [metadata-only proposed module guide]({{% siteparam base %}}/contributing/module-metadata/#create-only-metadata-for-an-approved-bicep-proposal) if its source is not ready, or [initialize the full module]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/) with `avm init`. The shared workflow discovers affected modules.
 
 
-{{% notice style="tip" %}}
+## 4. Run `avm pre-commit`
 
 After editing Bicep source or tests, run [`avm pre-commit`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/#update-generated-files-after-editing) on the module directory. It validates, formats, builds, and updates generated `main.json` and `README.md` files for the module and its children. This local command does not replace PR checks.
 
-{{% /notice %}}
-
-## 5. Create/Update and run tests
+## 5. Run checks and tests locally
 
 Before opening a Pull Request to the Bicep Public Registry, ensure your module is ready for publishing, by validating that it meets all the Testing Specifications as per [SNFR1]({{% siteparam base %}}/spec/SNFR1), [SNFR2]({{% siteparam base %}}/spec/SNFR2), [SNFR3]({{% siteparam base %}}/spec/SNFR3), [SNFR4]({{% siteparam base %}}/spec/SNFR4), [SNFR5]({{% siteparam base %}}/spec/SNFR5), [SNFR6]({{% siteparam base %}}/spec/SNFR6), [SNFR7]({{% siteparam base %}}/spec/SNFR7).
 
 For example, to meet [SNFR2]({{% siteparam base %}}/spec/SNFR2), ensure the updated module is deployable against a testing Azure subscription and compliant with the intended configuration.
 
-Depending on the type of contribution you implemented (for example, a new resource module feature) we would kindly ask you to also update the `e2e` test run by the pipeline. For a new parameter this could mean to either add its usage to an existing test file, or to add an entirely new test as per [BCPRMNFR1]({{% siteparam base %}}/spec/BCPRMNFR1).
+Depending on the type of contribution (for example, a new resource module feature), update the end-to-end tests. A new parameter may require adding its usage to an existing test or adding a new test, as described in [BCPRMNFR1]({{% siteparam base %}}/spec/BCPRMNFR1).
 
-Run the applicable local checks before opening the PR. Deployment tests run in an authorized test environment; see [PR checks](#6-create-a-pull-request-to-the-public-bicep-registry).
+Run the applicable local checks before opening the PR. See the [local validation guide]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally/) for `avm test unit`, `avm pr-check`, and optional local E2E commands. Local checks do not replace PR checks.
 
 {{% notice style="tip" %}}
 
-Use [`Avm.Authoring` for local checks and tests]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally/). Local checks do not replace the PR checks.
+Use an authorized test subscription for local E2E tests; the command can create, update and remove Azure resources.
 
 {{% /notice %}}
 
@@ -465,15 +471,30 @@ To test the numerous diagnostic settings targets (Log Analytics Workspace, Stora
 
 {{% /expand %}}
 
-## 6. Create a Pull Request to the Public Bicep Registry
+## 6. Raise or update PR
 
 Finally, once you are satisfied with your contribution and validated it, open a pull request for review. Make sure you:
 
 1. Provide a meaningful title in the form of _feat: `<module name>`_ to align with the Semantic PR Check.
 2. Provide a meaningful description.
 3. Follow instructions you find in the PR template.
-1. Review the shared PR check results on the PR. Checks run when the PR is opened, reopened or updated.
-1. When end-to-end deployment tests are needed for a same-repository PR, add the `PR: Run E2E Tests` label. Adding the label starts a check run, and the label enables deployment tests on subsequent updates. Fork PRs do not receive deployment tests through this label; coordinate an authorized run with a maintainer.
+{{< tabs groupid="persona" >}}
+
+{{% tab title="Microsoft FTE" %}}
+
+Create a PR from your branch to `main` in the upstream `Azure/bicep-registry-modules` repository.
+
+{{% /tab %}}
+
+{{% tab title="External contributor" %}}
+
+Create a PR from your fork's branch to `main` in the upstream `Azure/bicep-registry-modules` repository.
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+Shared PR checks run when the PR is opened, reopened or updated. The `PR: Run E2E Tests` label requests deployment tests for a same-repository PR. An external fork PR cannot run deployment tests through this label; use the release-branch handoff only when E2E testing is needed. See [CI guidance](#7-approve-and-monitor-ci-tests).
 
 {{% notice style="note" %}}
 
@@ -483,7 +504,31 @@ If you receive any comments for your pull request, please adhere to the followin
 
 {{% /notice %}}
 
-## 7. Get your pull request approved
+## 7. Approve and monitor CI tests
+
+The shared PR check runs validation and applicable unit tests on the PR. Review the job results on the PR and address failures on the same branch.
+
+### Running E2E for your own contributions
+
+Microsoft FTEs run deployment tests from their upstream PR by adding the `PR: Run E2E Tests` label. The label starts a check run and enables deployment tests on subsequent updates.
+
+### Running E2E for external contributions
+
+External fork PRs do not run credentialed E2E tests through the label. If E2E testing is needed, an FTE must first review the source code and workflow changes for security, then run the shared `Avm.Authoring` command using the GitHub CLI (`gh`). The command is implemented but not yet released; once available, run it with the fork PR's reviewed head commit:
+
+```powershell
+$reviewedSha = '<full reviewed PR head commit SHA>'
+avm fork-pr e2e-handoff `
+  --repository Azure/bicep-registry-modules `
+  --pull-request 123 `
+  --reviewed-head-commit $reviewedSha
+```
+
+The `--reviewed-head-commit` value pins the handoff to the exact PR revision reviewed. The command creates a release branch from `main`, retargets and merges the fork PR into that branch, then opens a follow-up PR from the release branch to `main`. It labels the Bicep follow-up PR with `PR: Run E2E Tests`. The FTE's invocation runs the handoff; no separate confirmation prompt is required. Use `--whatif` to preview without making changes. The command stops rather than bypassing repository protections.
+
+If tests fail, ask the contributor to update the original PR and repeat the handoff with the new changes.
+
+## 8. Review and merge PR
 
 To publish a new module or a new version of an existing module, each Pull Request (PR) **MUST** be reviewed and approved before being merged and published in the Public Bicep Registry. **A contributor (the submitter of the PR) cannot approve their own PR.**
 
@@ -492,19 +537,19 @@ The [reviewer-routing workflow](https://github.com/Azure/azure-verified-modules-
 {{% notice style="important" %}}
 
 As part of the PR review process, the submitter (contributor) **MUST** address any comments raised by the reviewers and request a new review - and repeat this process until the PR is approved.
-Once the PR is merged, the module owner **MUST** verify that the [release workflow](#8-module-release) and subsequent registry publication completed successfully.
+Once the PR is merged, the module owner **MUST** verify that the [release workflow](#9-module-release) and subsequent registry publication completed successfully.
 
 {{% /notice %}}
 
-### 7.1. Publishing a new module
+### 8.1. Publishing a new module
 
 When publishing a net new module for the first time ever, the PR **MUST** be reviewed and approved by a member of the core team.
 
-### 7.2. Publishing a new version of an existing module
+### 8.2. Publishing a new version of an existing module
 
 For ordinary code changes in an existing Bicep module, any eligible BRM repository team member may approve and merge under repository rules; a module owner's approval is not mandatory. If you are the sole owner and author, request another eligible reviewer. Changes to `metadata.json` still require [metadata code-owner review]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change). Other protected paths follow their [applicable `CODEOWNERS` rules]({{% siteparam base %}}/spec/SNFR20#codeowners-file).
 
-## 8. Module release
+## 9. Module release
 
 The shared [module release workflow](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/release.yml) is designed to run on pushes to `main` and can also be started manually. It discovers pending module releases, requires the relevant changelog entry, and requests approval through the `publish-approval` environment before creating scoped release tags. The tags identify the exact source revision; the separate registry publishing process consumes them. A successful tag-creation job alone does not prove that the version is available in the public registry.
 

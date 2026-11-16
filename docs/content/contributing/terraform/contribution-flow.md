@@ -364,14 +364,19 @@ Go back to step 3 — fix the issue, run `avm pre-commit` again, push your chang
 
 ### Running e2e for external contributions
 
-When approving a PR from an external contributor:
+When an external contribution from a fork needs CI e2e testing, an FTE must first review the source code and workflow changes for security, then run the shared `Avm.Authoring` command using the GitHub CLI (`gh`). The command is implemented but not yet released; once available, run it with the fork PR's reviewed head commit:
 
-1. **Review the code for security** — check for any malicious code or changes to workflow files before running tests. If found, close the PR and report the contributor.
-2. Create a release branch from `main` (e.g. `release/<description>`).
-3. Change the PR's base branch to the release branch and merge it.
-4. Create a new PR from the release branch to `main` — this triggers the validation and test jobs.
-5. Approve the run and wait for results.
-6. If tests fail, send back to the contributor to fix and repeat from step 3.
+```powershell
+$reviewedSha = '<full reviewed PR head commit SHA>'
+avm fork-pr e2e-handoff `
+  --repository <owner>/<terraform-module-repository> `
+  --pull-request 123 `
+  --reviewed-head-commit $reviewedSha
+```
+
+The `--reviewed-head-commit` value pins the handoff to the exact PR revision reviewed. The command creates a release branch from `main`, retargets and merges the fork PR into that branch, then opens a follow-up PR from the release branch to `main`. Terraform does not add the Bicep-specific `PR: Run E2E Tests` label. The FTE's invocation runs the handoff; no separate confirmation prompt is required. Use `--whatif` to preview without making changes. The command stops rather than bypassing repository protections. The follow-up PR still goes through the repository's normal review and CI approval gates.
+
+If tests fail, ask the contributor to update the original PR and repeat the handoff with the new changes.
 
 ### Running e2e for your own contributions
 
