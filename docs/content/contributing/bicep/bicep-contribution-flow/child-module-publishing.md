@@ -34,7 +34,6 @@ For a step-by-step explanation with detailed instructions, refer to the followin
 
 * **Check prerequisites**: Existing [issue in AVM](https://github.com/Azure/Azure-Verified-Modules/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Class%3A%20Child%20Module%20%3Apackage%3A%22%20label%3A%22Language%3A%20Bicep%20%3Amuscle%3A%22), [assigned telemetry ID prefix](#telemetry-id-prefix-assigned), module registered in the [MAR file](https://github.com/microsoft/mcr/blob/main/teams/bicep/bicep.yml).
 * Implement required changes in your fork:
-  * **Allowed list**: If not present, add child module to [child-module-publish-allowed-list.json](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/staticValidation/compliance/helper/child-module-publish-allowed-list.json).
   * **Child module template**: Ensure the child's `metadata.json` contains its assigned telemetry prefix alongside `main.bicep`, then add the `enableTelemetry` parameter and `avmTelemetry` deployment.
   * **Parent module template**: In the `main.bicep` template of the child module direct parent, add a `enableReferencedModulesTelemetry` variable with a value of `false`, and pass it as the `enableTelemetry` value down to the child module deployment.
   * **Version**: Add the `version.json` file to the child module folder and set version to `0.1`.
@@ -103,7 +102,6 @@ Publishing a child module does not change the folder hierarchy of the parent and
 
 Please follow the steps below:
 
-- Make sure the child module name is listed in the publishing allowed list [child-module-publish-allowed-list.json](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/staticValidation/compliance/helper/child-module-publish-allowed-list.json). If not, add it to the file, keeping an alphabetical order. This step is relevant until the process is in a pilot phase.
 - Update the child module `main.bicep` template to support telemetry, as per [SFR4]({{% siteparam base %}}/spec/SFR4), [SFR3]({{% siteparam base %}}/spec/SFR3) and [BCPFR4]({{% siteparam base %}}/spec/BCPFR4)
   - Add the `enableTelemetry` parameter with a default value of `true`. Place it as the **last `param` declaration**, immediately before the first `var` declaration.
     ```bicep
@@ -165,14 +163,6 @@ Please follow the steps below:
     - `avm/res/storage/storage-account/blob-service`
     - `avm/res/storage/storage-account`
 
-  {{% notice style="tip" title="Retrieve affected module paths programmatically" icon="lightbulb" %}}
-  To retrieve affected module paths programmatically you can leverage the [Get-ParentFolderPathList](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/pipelines/sharedScripts/Get-ParentFolderPathList.ps1) utility using the `'OnlyModules'` option
-  ```powershell
-  $affectedModulePathList = Get-ParentFolderPathList -Path '<path/to/avm/child-module>' -Filter 'OnlyModules'
-  ```
-
-  {{% /notice %}}
-
 - Update Changelogs
   - Add a new `CHANGELOG.md` file to the child module folder, with the following sample content. Make sure to replace the `<avm/res/path/to/child-module>` placeholder with the name of the child module.
     ```markdown
@@ -210,7 +200,7 @@ Please follow the steps below:
   avm pre-commit -Ecosystem bicep -Path $topLevelModulePath
   ```
 
-- Test your changes via the top-level module pipeline, raise a PR and attach a status badge proving successful validation.
+- Raise a PR and verify the shared checks. Request deployment tests with the `PR: Run E2E Tests` label when needed; for a fork PR, coordinate an authorized test run with a maintainer.
 
 {{% notice style="note" %}}
 

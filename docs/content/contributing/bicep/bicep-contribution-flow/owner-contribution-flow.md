@@ -28,7 +28,7 @@ Familiarize yourself with the responsibilities as **Module Owner** outlined in [
     Access is managed through the shared `@Azure/azure-verified-modules-module-contributors` team.
 
 1. Maintain every approved handle in the `owners` array in your module's root `metadata.json`. Coordinate changes with the AVM Core Team and follow the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/). The [reviewer-routing workflow](https://github.com/Azure/azure-verified-modules-tools/blob/main/.github/workflows/repository-management-pr-reviewer-routing.yml) uses these handles to request reviews; it does not generate per-module `CODEOWNERS` entries.
-1. Ensure your module has been tested before raising a PR. You can do this your own or in another module contributor's environment - if any. Also, once a PR is raised, a GitHub workflow pipeline is required to be run successfully before the PR can be merged. This is to ensure that the module is working as expected and is compliant with the AVM specifications.
+1. Ensure your module has been tested and the PR checks pass before merging. Add the `PR: Run E2E Tests` label when deployment tests are needed for a same-repository PR; coordinate an authorized run with a maintainer for a fork PR.
 {{% notice style="note" %}}
 
 For ordinary Bicep code changes, any eligible BRM repository team member may approve and merge under repository rules. If you are the sole owner and author, request another eligible reviewer; you cannot approve your own pull request. Changes to `metadata.json` still require [metadata code-owner review]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change).
@@ -108,31 +108,9 @@ For a full list of GitHub notification types, see [Filtering Email Notifications
 This checklist can be used in the development of AVM Bicep Modules.
 
 1. Before beginning any work a new module a valid [Issue: New AVM Module Proposal](https://github.com/Azure/Azure-Verified-Modules/issues/new?assignees=&labels=Type%3A+New+Module+Proposal+%3Abulb%3A%2CNeeds%3A+Triage+%3Amag%3A&projects=Azure%2F529&template=module_proposal.yml&title=%5BModule+Proposal%5D%3A+%60MODULE_NAME_BETWEEN_BACKTICKS%60) needs to be created. Instructions for creating the module proposal are outlined in the issue template. Pay particular attention to the questions and associated links to fill out the proposal accurately. Please do not start work on your proposed module until you receive a notification that your proposal has been accepted.
-2. Fork the bicep-registry-modules [BRM](https://github.com/Azure/bicep-registry-modules) repository. If you use an existing fork, ensure it's up to date with origin/BRM.
-
-    - Ensure all workflows are [disabled by default]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/) once you forked the BRM repo, to prevent any accidental deployments into your Azure test environment resulted by an automated deployment.
-
-3. Create a new branch from your forked repository to develop your module.
-4. If you're working on a new module you have to create its corresponding workflow file (see [here]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution)).
-
-    - In order to run your e2e tests in your fork, this workflow file has to be put into the `main` branch first, so it can be run against your feature branch (GitHub Workflows can only be run on feature branches when they are already present in the main branch).
-    - Since all workflows are disabled by default you have to enable your module's specific GitHub [workflow]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/) to run your e2e tests.
-
-5. [Implement your contribution]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution).
-6. [Create, update, and run tests]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests).
-
-    - In addition to testing your module via GitHub pipeline, you can also [test-locally]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally/). The following helper script facilitates local testing.
-
-    {{% expand title="➕ Local Test Helper Script" %}}
-
-{{< highlight lineNos="false" type="powershell" wrap="true" title="" >}}
-
-{{% include file="/static/scripts/sample-localtest-helper.ps1" %}}
-
-{{< /highlight >}}
-
-    {{% /expand %}}
-
-7. Create a PR and reference the status badge of your pipeline run - [see here]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry).
-8. After a pull request has been created, it is important to update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue associated with your module, with a link to the pull request you created in BRM and mention the person who helped triage your module or the `@Azure/azure-verified-modules-tooling-contributors` team.
-9. Once your BRM pull request has been approved and merged into main update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue associated with your module, with a **Merged** comment and mention the person who helped triage your module, or the `@Azure/azure-verified-modules-tooling-contributors` team.
+1. Fork the [BRM repository](https://github.com/Azure/bicep-registry-modules). If you use an existing fork, ensure it is up to date with upstream.
+1. Create a new branch and [implement your contribution]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution).
+1. [Create, update and run tests]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests), including [local checks with Avm.Authoring]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally/).
+1. Create a PR and verify its shared checks. Request end-to-end testing as described in the [PR guidance]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry).
+1. Update the [AVM module proposal](https://aka.ms/AVM/ModuleProposals) issue with a link to the PR and mention the person who helped triage your module or the `@Azure/azure-verified-modules-tooling-contributors` team.
+1. Once your PR has been approved and merged, update the proposal issue with a **Merged** comment and mention the person who helped triage your module or the tooling contributors team. Verify the [module release]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#8-module-release).

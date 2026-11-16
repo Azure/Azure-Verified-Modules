@@ -3,61 +3,22 @@ title: Validate Module Locally
 description: Validate a Bicep Module Locally for the Azure Verified Modules (AVM) program
 ---
 
-## Local build and generated-file checks
-
-After running [`avm pre-commit`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/#update-generated-files-after-editing), review and commit its changes. From the Bicep registry checkout, check that the module's metadata, Bicep format/lint/build, compiled `main.json`, and README are current:
+Install `Avm.Authoring` from MAR as described in the [prerequisites]({{% siteparam base %}}/contributing/bicep/prerequisites/). From the root of your Bicep registry checkout, set the module path and run:
 
 ```powershell
 $modulePath = 'avm/res/<group>/<module>'
-avm pr-check -Ecosystem bicep -Path $modulePath
+avm pre-commit -Ecosystem bicep -Path $modulePath
+avm test unit -Ecosystem bicep -Path $modulePath -Recurse
 ```
 
-`avm pr-check` requires a clean Git working tree. For Bicep, it does **not** run Pester, policy or convention checks, deployment validation, or Azure deployments; its unsupported policy and convention steps are skipped. `avm test` only builds Bicep files, and its `unit` and `e2e` tiers are Terraform-only. Keep using the existing module pipeline and the local script below for the tests they provide.
+`avm pre-commit` updates generated files. Review and commit those changes, then run `avm pr-check -Ecosystem bicep -Path $modulePath` with a clean working tree. `avm test unit` runs authored Pester tests; a missing suite is reported as skipped, not passed.
 
-## Pester and Azure deployment tests
+To list deployment examples without accessing Azure:
 
-Use this script to test a module from your PC locally, without a CI environment. You can use it to run only the static validation (Pester tests), a deployment validation (dryRun) or an actual deployment to Azure. In the latter cases the script also takes care to replace placeholder tokens in the used module test & template files for you.
-
-## Location
-
-You can find the script under [`utilities/tools/Test-ModuleLocally.ps1`](https://github.com/Azure/bicep-registry-modules/blob/main/utilities/tools/Test-ModuleLocally.ps1)
-
-## How it works
-
-If the switch for Pester tests (`-PesterTest`) is provided the script will
-
-1. Invoke the module test for the provided template file path and run all tests for it.
-
-If the switch for either the validation test (`-ValidationTest`) or deployment test (`-DeploymentTest`) is provided alongside a HashTable for the token replacement (`-ValidateOrDeployParameters`), the script will
-
-1. Either fetch all module test files of the module's `tests` folder (default) or you can specify a single module test file by leveraging the `-ModuleTestFilePath` parameter instead.
-1. Create a dictionary to replace all tokens in these module test files with actual values. This dictionary will consist
-    - of the subscriptionID & managementGroupID of the provided `ValidateOrDeployParameters` object,
-    - add all key-value pairs of the `-AdditionalTokens` object to it,
-    - and optionally also add all key-value pairs specified in the `settings.yml`, under the 'local tokens settings'.
-1. If the `-ValidationTest` parameter was set, it runs a deployment validation using the `Test-TemplateDeployment` script.
-1. If the `-DeploymentTest` parameter was set, it runs a deployment using the `New-TemplateDeployment` script (with no retries).
-1. As a final step, it rolls the module test files back to their original state if either the `-ValidationTest` or `-DeploymentTest` parameters were provided.
-
-## How to use it
-
-For details on how to use the function, please refer to the script's local documentation.
-
-{{% notice style="note" %}}
-
-The script must be loaded ('_dot-sourced_') before the function can be invoked.
-
-```PowerShell
-. 'C:/dev/Test-ModuleLocally.ps1'
-Test-ModuleLocally (...)
+```powershell
+avm test e2e -Ecosystem bicep -Path $modulePath -Recurse -List
 ```
 
-{{% /notice %}}
+To run deployment tests locally, use `avm test e2e` with an explicitly authorized test subscription and the inputs required by your module. The command can create, update and remove Azure resources. Azure PowerShell and Azure CLI must already be signed in to the same account, tenant, cloud and selected subscription. See the [command reference](https://github.com/Azure/azure-verified-modules-tools/blob/main/docs/reference/Invoke-AvmTestE2e.md) for required inputs, test selection and cleanup.
 
-{{% notice style="important" %}}
-
-**Important**: As the script emulates the testing logic of the CI environment, also tokens such as `#_namePrefix_#` are replaced by the script. However, in addition to the CI environment, it also reverses the token replacement to recover the files' original state. As such, ensure that you use a `namePrefix` value that is unlikely to overlap with any string value in module folder you want to test.
-
-For example, do not use `avm`, as the reverse token replacement would incorrectly replace the deployment name `avmTelemetry` found in each module to `#_namePrefix_#Telemetry`.
-
-{{% /notice %}}
+Local checks do not replace the [pull request checks]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry). Request end-to-end testing with the `PR: Run E2E Tests` label when needed.

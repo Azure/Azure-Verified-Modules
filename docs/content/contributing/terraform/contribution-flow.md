@@ -16,14 +16,13 @@ This guide **MUST** be used in conjunction with the [Terraform specifications]({
 
 ## Prerequisites
 
-Install [PowerShell 7.4 or later](https://learn.microsoft.com/powershell/scripting/install/installing-powershell), start `pwsh`, and install the `Avm.Authoring` module:
+Install [PowerShell 7.4 or later](https://learn.microsoft.com/powershell/scripting/install/installing-powershell), start `pwsh`, and [install `Avm.Authoring` from MAR]({{% siteparam base %}}/contributing/bicep/prerequisites/):
 
 ```powershell
-Install-PSResource Avm.Authoring
 Import-Module Avm.Authoring
 ```
 
-`Install-Module Avm.Authoring -Scope CurrentUser` is also supported for environments that use PowerShellGet v2. Run `avm` with no arguments to list the supported verbs, then verify the installed version and diagnose your local environment:
+Run `avm` with no arguments to list the supported verbs, then verify the installed version and diagnose your local environment:
 
 ```powershell
 avm
@@ -31,7 +30,7 @@ avm version
 avm doctor
 ```
 
-Run `avm update` whenever a newer `Avm.Authoring` release is available. `Avm.Authoring` downloads, verifies, and caches Terraform, TFLint, terraform-docs, Conftest, and mapotf on demand. Docker or Podman is not required. You can inspect or manage the tool cache:
+Update `Avm.Authoring` from MAR as described in the installation instructions. `Avm.Authoring` downloads, verifies, and caches Terraform, TFLint, terraform-docs, Conftest, and mapotf on demand. Docker or Podman is not required. You can inspect or manage the tool cache:
 
 ```powershell
 avm tool list

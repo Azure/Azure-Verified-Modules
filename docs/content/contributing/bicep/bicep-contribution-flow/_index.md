@@ -30,13 +30,13 @@ config:
 flowchart TD
   A("1 - Fork the module source repository")
     click A "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#1-fork-the-module-source-repository"
-  B(2 - Configure a deployment identity in Azure)
+  B(2 - Configure a deployment identity if running tests in your fork)
     click B "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#2-configure-a-deployment-identity-in-azure"
   C("3 - Configure CI environment for module tests")
     click C "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#3-configure-your-ci-environment"
   D("4 - Implementing your contribution<br>(Refer to Gitflow Diagram below)")
     click D "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#4-implement-your-contribution"
-  E(5 - Workflow test completed successfully?)
+  E(5 - Create or update tests)
     click E "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#5-createupdate-and-run-tests"
   F(6 - Create a pull request to the upstream repository)
     click F "{{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/#6-create-a-pull-request-to-the-public-bicep-registry"
@@ -46,8 +46,7 @@ flowchart TD
   B --> C
   C --> D
   D --> E
-  E -->|yes|F
-  E -->|no|D
+  E --> F
   F --> G
 
 {{< /mermaid >}}
@@ -70,12 +69,7 @@ gitGraph LR:
   branch anchor
   checkout anchor
   commit id:"Sync Upstream/main" type: HIGHLIGHT
-  branch avm-type-provider-resource-workflow
-  checkout avm-type-provider-resource-workflow
-  commit id:"Add Workflow File for Resource/Pattern"
   branch avm-type-provider-resource
-  checkout main
-  merge avm-type-provider-resource-workflow id: "merge workflow for GitHub Actions Testing" type: HIGHLIGHT
   checkout avm-type-provider-resource
   commit id:"Init"
   commit id:"Patch 1"
@@ -90,63 +84,10 @@ When implementing the GitFlow process as described, it is advisable to configure
 
 {{% /notice %}}
 
-## PowerShell Helper Script To Setup Fork & CI Test Environment
-
-{{% notice style="caution" title="Now defaults to OIDC setup" %}}
-
-The PowerShell Helper Script has recently added support for the OIDC setup and configuration as documented in detail on this page. This is now the default for the script.
-
-The easiest way to get yourself set back up, is to delete your fork repository, including the local clone of it that you have and start over with the script. This will ensure you have the correct setup for the OIDC authentication method for the AVM CI.
-
-{{% /notice %}}
-
-{{% notice style="important" %}}
-
-{{% /notice %}}
-
-To simplify the setup of the fork, clone and configuration of the required GitHub Environments, Secrets, User-Assigned Managed Identity (UAMI), Federated Credentials and RBAC assignments in your Azure environment for the CI framework to function correctly in your fork, we have created a PowerShell script that you can use to do steps [1](#1-fork-the-module-source-repository), [2](#2-configure-a-deployment-identity-in-azure) & [3](#3-configure-your-ci-environment) below.
-
-The script performs the following steps:
-
-1. Forks the `Azure/bicep-registry-modules` to your GitHub Account.
-2. Clones the repo locally to your machine, based on the location you specify in the parameter: `-GitHubRepositoryPathForCloneOfForkedRepository`.
-3. Prompts you and takes you directly to the place where you can enable GitHub Actions Workflows on your forked repo.
-4. Disables all AVM module workflows, as per [Enable or Disable Workflows]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/).
-5. Creates an User-Assigned Managed Identity (UAMI) and federated credentials for OIDC with your forked GitHub repo and grants it the RBAC roles of `Owner` at Management Group level, if specified in the `-GitHubSecret_ARM_MGMTGROUP_ID` parameter, and at Azure Subscription level if you provide it via the `-GitHubSecret_ARM_SUBSCRIPTION_ID` parameter.
-6. Creates the required GitHub Environments & required Secrets in your forked repo as per [step 3](#3-configure-your-ci-environment), based on the input provided in parameters and the values from resources the script creates and configures for OIDC. Also set the workflow permissions to `Read and write permissions` as per step 3.3.
-
-### Pre-requisites
-
-1. You must have the [Azure PowerShell Modules](https://learn.microsoft.com/powershell/azure/install-azure-powershell) installed and you need to be logged with the context set to the desired Tenant. You must have permissions to create an SPN and grant RBAC over the specified Subscription and Management Group, if provided.
-2. You must have the [GitHub CLI](https://github.com/cli/cli#installation) installed and need to be authenticated with the GitHub user account you wish to use to fork, clone and work with on AVM.
-
-{{% expand title="➕ New-AVMBicepBRMForkSetup.ps1 - PowerShell Helper Script" %}}
-
-The `New-AVMBicepBRMForkSetup.ps1` can be downloaded from <a href="{{% siteparam base %}}/scripts/New-AVMBicepBRMForkSetup.ps1" download>here</a>.
-
-Once downloaded, you can run the script by running the below - **Please change all the parameter values in the below script usage example to your own values (see the parameter documentation in the script itself)!**:
-
-```powershell
-.\<PATH-TO-SCRIPT-DOWNLOAD-LOCATION>\New-AVMBicepBRMForkSetup.ps1 -GitHubRepositoryPathForCloneOfForkedRepository "<pathToCreateForkedRepoIn>" -GitHubSecret_ARM_MGMTGROUP_ID "<managementGroupId>" -GitHubSecret_ARM_SUBSCRIPTION_ID "<subscriptionId>" -GitHubSecret_ARM_TENANT_ID "<tenantId>" -GitHubSecret_TOKEN_NAMEPREFIX "<unique3to5AlphanumericStringForAVMDeploymentNames>" -UAMIRsgLocation "<Azure Region/Location of your choice such as 'uksouth'>"
-```
-
-For more examples, see the below script's parameters section.
-
-{{< highlight lineNos="false" type="powershell" wrap="true" title="" >}}
-
-{{% include file="/static/scripts/New-AVMBicepBRMForkSetup.ps1" %}}
-
-{{< /highlight >}}
-
-{{% /expand %}}
+Configure Azure and your fork's CI environment only if you intend to run deployment tests there. For upstream pull requests, the shared PR check runs against the changes; coordinate deployment testing with a maintainer when needed.
 
 ## 1. Fork the module source repository
 
-{{% notice style="tip" %}}
-
-Checkout the [PowerShell Helper Script](#powershell-helper-script-to-setup-fork--ci-test-environment) that can do this step automatically for you! 👍
-
-{{% /notice %}}
 {{% notice style="note" %}}
 
 Each time in the following sections we refer to 'your xyz', it is an indicator that you have to change something in your own environment.
@@ -265,12 +206,6 @@ Additional references:
 
 ## 3. Configure your CI environment
 
-{{% notice style="tip" %}}
-
-Checkout the [PowerShell Helper Script](#powershell-helper-script-to-setup-fork--ci-test-environment) that can do this step automatically for you! 👍
-
-{{% /notice %}}
-
 To configure the forked CI environment you have to perform several steps:
 
 - [3.1 Set up secrets](#31-set-up-secrets)
@@ -296,7 +231,7 @@ To lower the barrier to entry and allow users to easily define their own naming 
 
 This prefix is **only** used by the CI environment you validate your modules in, and doesn't affect the naming of any resources you deploy as part of any solutions (applications/workloads) based on the modules.
 
-Each workflow in AVM deploying resources uses a logic that automatically replaces "tokens" (i.e., placeholders) in any module test file. These tokens are, for example, included in the resources names (e.g. `'name: kvlt-${namePrefix}'`). Tokens are stored as repository secrets to facilitate maintenance.
+The deployment test receives the configured prefix as a parameter. Test templates can use it in resource names (for example, `'name: kvlt-${namePrefix}'`); CI does not replace text in the test source.
 
 {{% /notice %}}
 
@@ -415,7 +350,7 @@ To let the workflow engine publish their results into your repository, you have 
 
 {{% notice style="tip" %}}
 
-Once you enabled the GitHub actions, your workflows will behave as they do in the upstream repository. This includes a scheduled trigger to continuously check that all modules are working and compliant with the latest tests. However, testing all modules can incur substantial costs with the target subscription. Therefore, we recommend **disabling all workflows of modules you are not working on**. To make this as easy as possible, we created a workflow that disables/enables workflows based on a selected toggle & naming pattern. For more information on how to use this workflow, please refer to the corresponding [documentation]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows).
+Deployment tests can create Azure resources and incur costs. Use only an authorized test subscription, and see [GitHub Actions in Forks]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/enable-or-disable-workflows/) for fork-specific behavior.
 
 {{% /notice %}}
 
@@ -423,39 +358,12 @@ Once you enabled the GitHub actions, your workflows will behave as they do in th
 
 To implement your contribution, we kindly ask you to first review the [Bicep specifications]({{% siteparam base %}}/specs/bcp/) and [composition guidelines]({{% siteparam base %}}/contributing/bicep/composition/) in particular to make sure your contribution complies with the repository's design and principles.
 
-For an approved new module, start with the [metadata-only proposed module guide]({{% siteparam base %}}/contributing/module-metadata/#create-only-metadata-for-an-approved-bicep-proposal) if its source is not ready, or [initialize the full module]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/) with `avm init`. Neither command creates the repository workflow described below.
-
-If you're working on a new module, we'd also ask you to create its corresponding workflow file. Each module has its own file, but only differs in very few details, such as its triggers and pipeline variables. As a result, you can either copy & update any other module workflow file (starting with `'avm.[res|ptn|utl].'`) or leverage the following template:
-
-{{% expand title="➕ Module workflow template" %}}
-
-  {{< highlight lineNos="false" type="yaml" wrap="true" title="" >}}
-
-  {{% include file="/static/includes/avm.workflow.template.yml" %}}
-
-  {{< /highlight >}}
-
-{{% /expand %}}
-
-{{% notice style="note" %}}
-
-The workflow is configured to be triggered by changes in the `main` branch of Upstream (i.e., `Azure/bicep-registry-modules`) that could affect the module or its validation. Changes limited to `README.md` or `metadata.json` files, including child-module metadata, do not trigger the workflow or a release. To publish a metadata change, including a `telemetryIdPrefix` change, include it with a normal source or version release change.
-
-In a fork, the workflow is stopped immediately after being triggered due to the condition:
-```yml
-# Only run if not canceled and not in a fork, unless triggered by a workflow_dispatch event
-if: ${{ !cancelled() && !(github.repository != 'Azure/bicep-registry-modules' && github.event_name != 'workflow_dispatch') }}
-```
-This condition prevents accidentally triggering a large amount of module workflows, e.g., when merging upstream changes into your fork.
-
-In forks, workflow validation remains possible through explicit runs (that is, by using the  `workflow_dispatch`  event).
-
-{{% /notice %}}
+For an approved new module, start with the [metadata-only proposed module guide]({{% siteparam base %}}/contributing/module-metadata/#create-only-metadata-for-an-approved-bicep-proposal) if its source is not ready, or [initialize the full module]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/) with `avm init`. The shared workflow discovers affected modules.
 
 
 {{% notice style="tip" %}}
 
-After editing Bicep source or tests and before running the existing module pipeline, run [`avm pre-commit`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/#update-generated-files-after-editing) on the module directory. It validates, formats, builds, and updates generated `main.json` and `README.md` files for the module and its children. This local command does not replace the registry's current CI tests.
+After editing Bicep source or tests, run [`avm pre-commit`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/#update-generated-files-after-editing) on the module directory. It validates, formats, builds, and updates generated `main.json` and `README.md` files for the module and its children. This local command does not replace PR checks.
 
 {{% /notice %}}
 
@@ -467,11 +375,11 @@ For example, to meet [SNFR2]({{% siteparam base %}}/spec/SNFR2), ensure the upda
 
 Depending on the type of contribution you implemented (for example, a new resource module feature) we would kindly ask you to also update the `e2e` test run by the pipeline. For a new parameter this could mean to either add its usage to an existing test file, or to add an entirely new test as per [BCPRMNFR1]({{% siteparam base %}}/spec/BCPRMNFR1).
 
-Once the contribution is implemented and the changes are pushed to your forked repository, we kindly ask you to validate your updates in your own cloud environment before requesting to merge them to the main repo. Test your code leveraging the forked AVM CI environment you configured before
+Run the applicable local checks before opening the PR. Deployment tests run in an authorized test environment; see [PR checks](#6-create-a-pull-request-to-the-public-bicep-registry).
 
 {{% notice style="tip" %}}
 
-For local Bicep build and generated-file checks after committing, run [`avm pr-check`]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally/#local-build-and-generated-file-checks). For Pester or optional Azure validation and deployment tests, the existing [local-testing script]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally/#pester-and-azure-deployment-tests) remains necessary. Neither replaces the current module pipeline.
+Use [`Avm.Authoring` for local checks and tests]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/validate-bicep-module-locally/). Local checks do not replace the PR checks.
 
 {{% /notice %}}
 
@@ -564,13 +472,8 @@ Finally, once you are satisfied with your contribution and validated it, open a 
 1. Provide a meaningful title in the form of _feat: `<module name>`_ to align with the Semantic PR Check.
 2. Provide a meaningful description.
 3. Follow instructions you find in the PR template.
-4. If applicable (i.e., a module is created/updated), please reference the badge status of your pipeline run. This badge will show the reviewer that the code changes were successfully validated & tested in your environment. To create a badge, first select the three dots (`...`) at the top right of the pipeline, and then chose the `Create status badge` option.
-
-    ![BadgeDropdown]({{% siteparam base %}}/images/contribution/badgeDropdown.png?height=200px "Badge dropdown")
-
-5. In the opening pop-up, you first need to select your branch and then click on the `Copy status badge Markdown`
-
-    ![StatusBadge]({{% siteparam base %}}/images/contribution/pipelineBadge.png?height=400px "Status Badge")
+1. Review the shared PR check results on the PR. Checks run when the PR is opened, reopened or updated.
+1. When end-to-end deployment tests are needed for a same-repository PR, add the `PR: Run E2E Tests` label. Adding the label starts a check run, and the label enables deployment tests on subsequent updates. Fork PRs do not receive deployment tests through this label; coordinate an authorized run with a maintainer.
 
 {{% notice style="note" %}}
 
@@ -589,7 +492,7 @@ The [reviewer-routing workflow](https://github.com/Azure/azure-verified-modules-
 {{% notice style="important" %}}
 
 As part of the PR review process, the submitter (contributor) **MUST** address any comments raised by the reviewers and request a new review - and repeat this process until the PR is approved.
-Once the PR is merged, the module owner **MUST** ensure that the related GitHub Actions workflow has successfully published the new version of the module.
+Once the PR is merged, the module owner **MUST** verify that the [release workflow](#8-module-release) and subsequent registry publication completed successfully.
 
 {{% /notice %}}
 
@@ -600,6 +503,12 @@ When publishing a net new module for the first time ever, the PR **MUST** be rev
 ### 7.2. Publishing a new version of an existing module
 
 For ordinary code changes in an existing Bicep module, any eligible BRM repository team member may approve and merge under repository rules; a module owner's approval is not mandatory. If you are the sole owner and author, request another eligible reviewer. Changes to `metadata.json` still require [metadata code-owner review]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change). Other protected paths follow their [applicable `CODEOWNERS` rules]({{% siteparam base %}}/spec/SNFR20#codeowners-file).
+
+## 8. Module release
+
+The shared [module release workflow](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/release.yml) is designed to run on pushes to `main` and can also be started manually. It discovers pending module releases, requires the relevant changelog entry, and requests approval through the `publish-approval` environment before creating scoped release tags. The tags identify the exact source revision; the separate registry publishing process consumes them. A successful tag-creation job alone does not prove that the version is available in the public registry.
+
+The `main` push trigger must be enabled for automatic releases; until then, the workflow is manual only.
 
 <!--
 ## Publishing to the Registry
