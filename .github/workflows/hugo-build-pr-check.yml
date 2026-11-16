@@ -28,14 +28,25 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.136.5
+      DART_SASS_VERSION: 1.108.2
     steps:
       - name: Install Hugo CLI
         run: |
           wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
           && sudo dpkg -i ${{ runner.temp }}/hugo.deb
 
-      - name: Install Dart Sass Embedded
-        run: sudo snap install dart-sass-embedded
+      - name: Install Dart Sass
+        shell: pwsh
+        run: |
+          $version = $env:DART_SASS_VERSION
+          $archive = Join-Path $env:RUNNER_TEMP "dart-sass-$version-linux-x64.tar.gz"
+          Invoke-WebRequest -Uri "https://github.com/sass/dart-sass/releases/download/$version/dart-sass-$version-linux-x64.tar.gz" -OutFile $archive
+          tar -xzf $archive -C $env:RUNNER_TEMP
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $sassPath = Join-Path $env:RUNNER_TEMP 'dart-sass'
+          & (Join-Path $sassPath 'sass') --version
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $sassPath | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
