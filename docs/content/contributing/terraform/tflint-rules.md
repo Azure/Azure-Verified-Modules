@@ -155,6 +155,8 @@ Validates the [diagnostic-settings interface]({{% siteparam base %}}/specs/tf/in
 
 Validates the [AzAPI `ignore_body_changes` interface]({{% siteparam base %}}/spec/TFFR8), including its per-resource and per-submodule applicability.
 
+The rule permits non-empty defaults inside any resource field's `optional(list(string), [...])` wrapper, including nested resource fields. It still requires the variable's top-level `default = {}` and `nullable = false`. The empty top-level object does not suppress those field defaults; consumers can override each list or supply `[]` to disable it. See [resource-specific defaults and consumer overrides]({{% siteparam base %}}/spec/TFFR8/#resource-specific-defaults-and-consumer-overrides) for examples.
+
 ### avm_interface_location
 
 Validates the standard [location interface]({{% siteparam base %}}/specs/tf/interfaces/#location).

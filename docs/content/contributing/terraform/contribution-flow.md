@@ -16,9 +16,12 @@ This guide **MUST** be used in conjunction with the [Terraform specifications]({
 
 ## Prerequisites
 
-Install [PowerShell 7.4 or later](https://learn.microsoft.com/powershell/scripting/install/installing-powershell), start `pwsh`, and [install `Avm.Authoring` from MAR]({{% siteparam base %}}/contributing/bicep/prerequisites/):
+Install [PowerShell 7.4 or later](https://learn.microsoft.com/powershell/scripting/install/installing-powershell), start `pwsh`, and follow the [prerequisites]({{% siteparam base %}}/contributing/terraform/prerequisites/) to upgrade PSResourceGet and register Microsoft Artifact Registry (MAR). Then install the `Avm.Authoring` module:
 
 ```powershell
+Install-PSResource -Name avm.authoring `
+    -Repository MAR `
+    -Scope CurrentUser
 Import-Module Avm.Authoring
 ```
 
@@ -30,7 +33,7 @@ avm version
 avm doctor
 ```
 
-Update `Avm.Authoring` from MAR as described in the installation instructions. `Avm.Authoring` downloads, verifies, and caches Terraform, TFLint, terraform-docs, Conftest, and mapotf on demand. Docker or Podman is not required. You can inspect or manage the tool cache:
+To update from MAR, repeat the install command with `-Reinstall`, then start a new PowerShell session; `avm update` still uses PowerShell Gallery. `Avm.Authoring` downloads, verifies, and caches Terraform, TFLint, terraform-docs, Conftest, and mapotf on demand. Docker or Podman is not required. You can inspect or manage the tool cache:
 
 ```powershell
 avm tool list

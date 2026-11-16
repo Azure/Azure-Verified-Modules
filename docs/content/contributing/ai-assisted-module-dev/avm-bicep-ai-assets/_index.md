@@ -3,13 +3,9 @@ draft: false
 title: AVM Bicep AI Assets
 linktitle: AVM Bicep AI Assets
 description: Catalog of GitHub Copilot custom instructions, agents, prompts, and skills available in the BRM repository for AI-assisted AVM module development.
+aliases:
+  - /experimental/ai-assisted-module-dev/avm-bicep-ai-assets/
 ---
-
-{{% notice style="warning" title="Experimental Content" icon="flask" %}}
-
-The content in this section represents **experimental exploration** of emerging technologies and innovative approaches. To learn more about our experimental content and its implications, please refer to the [Experimental Section Overview]({{% siteparam base %}}/experimental).
-
-{{% /notice %}}
 
 This page provides a catalog of all AI-assisted development assets available in the [Bicep Registry Modules (BRM)](https://github.com/Azure/bicep-registry-modules) repository. Each asset is linked to its source file for full details.
 

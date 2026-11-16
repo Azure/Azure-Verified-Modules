@@ -39,14 +39,33 @@ Until your access request is approved, you can continue to contribute by using J
   ```
 
 - [PowerShell 7.4 or later](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)
-- [`Avm.Authoring`](https://github.com/Azure/azure-verified-modules-tools), installed from Microsoft Artifact Registry (MAR). PowerShell 7.4 or later and `Microsoft.PowerShell.PSResourceGet` 1.2.0 or later are required. Follow the [MAR installation instructions]({{% siteparam base %}}/contributing/bicep/prerequisites/) to register MAR, install the module, and update it.
+- [`Avm.Authoring`](https://github.com/Azure/azure-verified-modules-tools#install) from Microsoft Artifact Registry (MAR)
+
+  MAR is not registered by default. Use `Microsoft.PowerShell.PSResourceGet` 1.2.0 or later. If needed, upgrade it, then start a new PowerShell session:
 
   ```powershell
+  Install-PSResource -Name Microsoft.PowerShell.PSResourceGet `
+      -Version 1.2.0 `
+      -Repository PSGallery `
+      -Scope CurrentUser
+  ```
+
+  Register MAR once, then install the module:
+
+  ```powershell
+  Import-Module Microsoft.PowerShell.PSResourceGet -MinimumVersion 1.2.0
+  Register-PSResourceRepository -Name MAR `
+      -Uri 'https://mcr.microsoft.com' `
+      -ApiVersion ContainerRegistry `
+      -Trusted
+  Install-PSResource -Name avm.authoring `
+      -Repository MAR `
+      -Scope CurrentUser
   Import-Module Avm.Authoring
   avm doctor
   ```
 
-  The module downloads, verifies, and caches its managed tools, including Terraform, on demand. Run `avm doctor --install` to preload every supported tool. Docker and Podman are not required.
+  Use lowercase `avm.authoring` for the registry lookup; no Azure sign-in is needed. To update from MAR, repeat `Install-PSResource` with `-Reinstall`, then start a new PowerShell session. `avm update` still uses PowerShell Gallery. The module downloads, verifies, and caches its managed tools, including Terraform, on demand. Run `avm doctor --install` to preload every supported tool. Docker and Podman are not required.
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 - [Visual Studio Code](https://code.visualstudio.com/download)
   - [HashiCorp Terraform extension](https://marketplace.visualstudio.com/items?itemName=hashicorp.terraform)

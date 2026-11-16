@@ -34,4 +34,4 @@ This requirement is intentional and is driven by the following factors:
 
 ## What changed recently?
 
-{{< specsHistory folder="content/specs-defs/includes" recursive=true tags="Language-Terraform" daysShown=30 >}}
+{{< specsHistory folder="content/specs-defs/includes" recursive=true tags="Language-Terraform" monthsShown=12 >}}

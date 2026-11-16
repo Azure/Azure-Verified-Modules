@@ -15,7 +15,7 @@ This section documents all the specifications for Azure Verified Modules (AVM) a
 
 ## What changed recently?
 
-{{< specsHistory folder="content/specs-defs/includes" recursive=true daysShown=30 >}}
+{{< specsHistory folder="content/specs-defs/includes" recursive=true monthsShown=12 >}}
 
 ## How to navigate the specifications?
 

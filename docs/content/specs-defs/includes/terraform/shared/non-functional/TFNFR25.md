@@ -25,7 +25,7 @@ The `terraform.tf` file **MUST** only contain one `terraform` block.
 
 The first line of the `terraform` block **MUST** define a `required_version` property for the Terraform CLI. The standard Terraform TFLint plugin validates the requirement; MAPOTF keeps it first.
 
-The `required_version` property **MUST** include a constraint on the minimum version of the Terraform CLI. Previous releases of the Terraform CLI can have unexpected behavior.
+All AVM Terraform modules **MUST** require Terraform CLI 1.11.0 or later. The `required_version` property **MUST** include a minimum version constraint of at least 1.11.0. This baseline supports write-only arguments such as [TFFR8's `ignore_body_changes`]({{% siteparam base %}}/spec/TFFR8) and applies whether or not a module or consumer uses that feature. A module **MAY** require a later minimum version when needed.
 
 The `required_version` property **MUST** include a constraint on the maximum major version of the Terraform CLI. Major version releases of the Terraform CLI can introduce breaking changes and **MUST** be tested.
 
@@ -37,7 +37,7 @@ Example `terraform.tf` file:
 
 ```terraform
 terraform {
-  required_version = "~> 1.6"
+  required_version = ">= 1.11.0, < 2.0.0"
   required_providers {
     azapi = {
       source  = "Azure/azapi"

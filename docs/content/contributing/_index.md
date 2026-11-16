@@ -12,6 +12,7 @@ This section lists all contribution guidance available to module owners and cont
 - [Terraform Contribution Guide]({{% siteparam base %}}/contributing/terraform/)
 - [Module Metadata]({{% siteparam base %}}/contributing/module-metadata/) - maintaining module details and ownership
 - [Proposed Bicep Modules]({{% siteparam base %}}/contributing/module-metadata/#create-only-metadata-for-an-approved-bicep-proposal) - create metadata before module source
+- [AI-Assisted Module Development]({{% siteparam base %}}/contributing/ai-assisted-module-dev/) - using GitHub Copilot to develop and maintain AVM modules
 - [Contribution Q&A]({{% siteparam base %}}/contributing/q-and-a/)
 - [Website Contribution Guide]({{% siteparam base %}}/contributing/website/)
 - [Code of Conduct](https://opensource.microsoft.com/codeofconduct/)

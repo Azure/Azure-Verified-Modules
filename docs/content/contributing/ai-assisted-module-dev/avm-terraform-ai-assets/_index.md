@@ -3,6 +3,8 @@ draft: false
 title: AVM Terraform AI Assets
 linktitle: AVM Terraform AI Assets
 description: Catalog of GitHub Copilot custom instructions, agents, prompts, and skills for AI-assisted AVM Terraform module development.
+aliases:
+  - /experimental/ai-assisted-module-dev/avm-terraform-ai-assets/
 ---
 
 {{% notice style="orange" title="Coming Soon" icon="hourglass-half" %}}

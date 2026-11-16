@@ -74,7 +74,7 @@ You can propose a new module [here](https://aka.ms/AVM/ModuleProposal).
 
 ### How long will it take for someone to respond and a module to be created/updated and published?
 
-While there are SLAs defined for providing [support]({{% siteparam base %}}/help-support/module-support/) for existing modules, there are currently no SLAs in place for the creation of new modules. The AVM core team is a small team and is currently working on automating the module creation process to make it as easy as possible for module owners to create and publish modules on their own.
+AVM does not provide fixed response or delivery targets for existing modules or new module proposals. The AVM Core Team improves the automation that module owners use to create and publish modules.
 
 Beside of providing program level governance, the [AVM core team]({{% siteparam base %}}/specs/shared/team-definitions/#avm-core-team) is mainly responsible for defining the module specifications, providing tooling (such as test frameworks and pipelines), guidance and support to module owners, as well as facilitating the creation of new modules by maintaining the module catalog and identifying volunteers for owning the modules. However, modules will be created and maintained by a broader community of [module owners]({{% siteparam base %}}/specs/shared/team-definitions/#module-owners).
 
@@ -194,6 +194,6 @@ You should use GitHub issues to propose changes or improvements for specific mod
 
 ---
 
-### How will the support SLAs be automatically enforced?
+### How is module support triage automated?
 
-All issues created in a module repo will be automatically be picked up and tracked by the GitHub Policy Service. This service will take the necessary steps when escalation is needed as per the SLAs defined in the [Module Support]({{% siteparam base %}}/help-support/module-support/) chapter.
+The GitHub Policy Service tracks issues created in module repositories. It applies triage and escalation workflows that support the [Module Support]({{% siteparam base %}}/help-support/module-support/) statement.

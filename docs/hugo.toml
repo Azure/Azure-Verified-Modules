@@ -242,27 +242,19 @@ params = { alwaysopen = true, collapsibleMenu = true }
   #   weight = 3
   #   params = { alwaysopen = false, collapsibleMenu = true }
 
-[[menu.defined]]
-identifier = 'experimental'
-parent = 'home'
-name = 'Experimental'
-pageRef = '/experimental'
-weight = 4
-params = { alwaysopen = true, collapsibleMenu = true }
-
   [[menu.defined]]
     identifier = 'ai-assisted-iac'
-    parent = 'experimental'
+    parent = 'usage'
     name = 'AI-Assisted Solution Dev'
-    pageRef = '/experimental/ai-assisted-sol-dev'
-    weight = 1
+    pageRef = '/usage/ai-assisted-sol-dev'
+    weight = 3
     params = { alwaysopen = false, collapsibleMenu = true }
 
   [[menu.defined]]
     identifier = 'sdd'
     parent = 'ai-assisted-iac'
     name = 'Spec-Driven Development'
-    pageRef = '/experimental/ai-assisted-sol-dev/sdd'
+    pageRef = '/usage/ai-assisted-sol-dev/sdd'
     weight = 1
     params = { alwaysopen = false, collapsibleMenu = true }
 
@@ -270,7 +262,7 @@ params = { alwaysopen = true, collapsibleMenu = true }
     identifier = 'spec-kit'
     parent = 'ai-assisted-iac'
     name = 'Spec Kit'
-    pageRef = '/experimental/ai-assisted-sol-dev/spec-kit'
+    pageRef = '/usage/ai-assisted-sol-dev/spec-kit'
     weight = 2
     params = { alwaysopen = false, collapsibleMenu = true }
 
@@ -278,33 +270,9 @@ params = { alwaysopen = true, collapsibleMenu = true }
     identifier = 'spec-kit-example'
     parent = 'spec-kit'
     name = 'AVM Example'
-    pageRef = '/experimental/ai-assisted-sol-dev/spec-kit/avm-example'
+    pageRef = '/usage/ai-assisted-sol-dev/spec-kit/avm-example'
     weight = 1
     params = { alwaysopen = false, collapsibleMenu = true }
-
-  [[menu.defined]]
-    identifier = 'ai-assisted-module-dev'
-    parent = 'experimental'
-    name = 'AI-Assisted Module Dev'
-    pageRef = '/experimental/ai-assisted-module-dev'
-    weight = 2
-    params = { alwaysopen = false, collapsibleMenu = true }
-
-  [[menu.defined]]
-    identifier = 'ai-assisted-module-dev-bicep-assets'
-    parent = 'ai-assisted-module-dev'
-    name = 'AVM Bicep AI Assets'
-    pageRef = '/experimental/ai-assisted-module-dev/avm-bicep-ai-assets'
-    weight = 1
-    params = { alwaysopen = false, collapsibleMenu = true }
-
-  # [[menu.defined]]
-  #   identifier = 'ai-assisted-module-dev-terraform-assets'
-  #   parent = 'ai-assisted-module-dev'
-  #   name = 'AVM Terraform AI Assets'
-  #   pageRef = '/experimental/ai-assisted-module-dev/avm-terraform-ai-assets'
-  #   weight = 2
-  #   params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
 identifier = 'specs-defs'
@@ -339,11 +307,19 @@ weight = 3
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
+identifier = 'module-ownership-tiers'
+parent = 'specs-defs'
+name = 'Module Ownership Tiers'
+pageRef = '/specs-defs/module-ownership-tiers'
+weight = 4
+params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
 identifier = 'module-specs'
 parent = 'specs-defs'
 name = 'Module Specifications'
 pageRef = '/specs-defs/specs'
-weight = 4
+weight = 5
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
@@ -748,12 +724,36 @@ params = { alwaysopen = false, collapsibleMenu = true }
 
 
 [[menu.defined]]
+identifier = 'ai-assisted-module-dev'
+parent = 'contributing'
+name = 'AI-Assisted Module Dev'
+pageRef = '/contributing/ai-assisted-module-dev'
+weight = 7
+params = { alwaysopen = false, collapsibleMenu = true }
+
+  [[menu.defined]]
+    identifier = 'ai-assisted-module-dev-bicep-assets'
+    parent = 'ai-assisted-module-dev'
+    name = 'AVM Bicep AI Assets'
+    pageRef = '/contributing/ai-assisted-module-dev/avm-bicep-ai-assets'
+    weight = 1
+    params = { alwaysopen = false, collapsibleMenu = true }
+
+  # [[menu.defined]]
+  #   identifier = 'ai-assisted-module-dev-terraform-assets'
+  #   parent = 'ai-assisted-module-dev'
+  #   name = 'AVM Terraform AI Assets'
+  #   pageRef = '/contributing/ai-assisted-module-dev/avm-terraform-ai-assets'
+  #   weight = 2
+  #   params = { alwaysopen = false, collapsibleMenu = true }
+
+[[menu.defined]]
 identifier = 'code-of-conduct'
 parent = 'contributing'
 pre = '<i class="fa-solid fa-globe"></i> '
 name = 'Code of Conduct'
 url = 'https://opensource.microsoft.com/codeofconduct/'
-weight = 7
+weight = 8
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]
@@ -762,7 +762,7 @@ parent = 'contributing'
 pre = '<i class="fa-solid fa-globe"></i> '
 name = 'Module Owner Onboarding'
 url = 'https://aka.ms/AVM/Onboarding'
-weight = 8
+weight = 9
 params = { alwaysopen = false, collapsibleMenu = true }
 
 [[menu.defined]]

@@ -18,9 +18,11 @@ Individuals can be members of multiple teams, at once, that are defined below.
 
 GitHub Team: [`@Azure/avm-core-team`](https://github.com/orgs/Azure/teams/avm-core-team)
 
+The AVM core team is part of the Azure Deployments team within Microsoft's Azure engineering organization.
+
 The AVM core team are responsible for:
 
-1. **Managing the AVM Solution**: Leading and managing AVM from a technical standpoint, ensuring the maintenance and growth of the Public Bicep Registry's repository and the Terraform Registry. Governing the lifecycle and support SLAs for all AVM modules, as well as providing overall governance and overseeing/facilitating the contribution process.
+1. **Managing the AVM Solution**: Leading and managing AVM from a technical standpoint, ensuring the maintenance and growth of the Public Bicep Registry's repository and the Terraform Registry. Governing the lifecycle and support model for all AVM modules, as well as providing overall governance and overseeing/facilitating the contribution process.
 2. **Testing and quality enforcement**: Developing, operating and enforcing the test framework and related tooling with all its quality gates. Providing initial reviews for all modules, making sure all standards are met.
 3. **Documentation**: Defining and refining principles, contribution and consumption guidelines, specifications and procedures related to AVM modules, maintaining and publishing all related documentation on the program's public website.
 4. **Community Engagement**: Organizing internal and external events, such as hackathons, office hours, community calls and training events for current and future module owners and contributors. Presenting in live events both publicly and internally; publishing blog posts and videos on YouTube, etc.
@@ -57,6 +59,8 @@ Module owners are responsible for:
 Ideally there **SHOULD** be at least 2 module owners per module. Every approved owner **MUST** be recorded in the root `metadata.json` file's `owners` array through the [metadata review process]({{% siteparam base %}}/contributing/module-metadata/).
 
 Each owner **MUST** also obtain access through the [AVM Module Contributors access package]({{% siteparam base %}}/spec/SNFR20). Recording ownership in metadata does not grant access.
+
+AVM plans to introduce module ownership tiers in early 2027. See [Module Ownership Tiers]({{% siteparam base %}}/specs/shared/module-ownership-tiers/).
 
 ### Module Contributors
 

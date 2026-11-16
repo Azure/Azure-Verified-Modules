@@ -23,9 +23,25 @@ Every new Bicep or Terraform root module, and every new child module or submodul
 - **Root modules** get the full metadata shape, including the `owners` array.
 - **Child modules and submodules** get the reduced, inherited-owner shape described above; they must not contain `owners`.
 
-Use `avm init` from the [`Avm.Authoring`](https://github.com/Azure/azure-verified-modules-tools) PowerShell module for one-time initialization. Specify `-Ecosystem` (`bicep` or `terraform`) and `-ModuleType` (`resource`, `pattern`, or `utility`). In an interactive terminal, the command prompts for missing required metadata fields; enter only approved values. For unattended runs, provide all required fields through `-InputObject`, or initialization fails rather than guessing them. The command supplies the required `$schema` URI, validates the metadata, and does not overwrite an existing file. Terraform initialization creates only `metadata.json`; add Terraform source files separately.
+Use `avm init` from the [`Avm.Authoring`](https://github.com/Azure/azure-verified-modules-tools#install) PowerShell module for one-time initialization. Follow the linked instructions to register MAR and install the module. Specify `-Ecosystem` (`bicep` or `terraform`) and `-ModuleType` (`resource`, `pattern`, or `utility`). In an interactive terminal, the command prompts for missing required metadata fields; enter only approved values. For unattended runs, provide all required fields through `-InputObject`, or initialization fails rather than guessing them. The command supplies the required `$schema` URI, validates the metadata, and does not overwrite an existing file. Terraform initialization creates only `metadata.json`; add Terraform source files separately.
 
 For complete Bicep source scaffolding, see [initialize and update Bicep module files]({{% siteparam base %}}/contributing/bicep/bicep-contribution-flow/generate-bicep-module-files/). For Terraform, the [owner-only repository setup]({{% siteparam base %}}/contributing/terraform/repository-setup/) already creates root metadata; local `avm init` does not create a GitHub repository.
+
+For an explicit metadata-only plan, `Initialize-AvmModuleMetadata` is also available:
+
+```powershell
+$metadata = @{
+    moduleDisplayName = '<approved display name>'
+    moduleDescription = '<approved description>'
+    canonicalType     = '<approved ARM resource type or taxonomy>'
+    owners            = @('<approved handle>')
+}
+
+Initialize-AvmModuleMetadata -Path . -InputObject $metadata `
+    -Ecosystem terraform -ModuleType resource -WhatIf
+```
+
+Run with `-WhatIf` first, then without it to write the file. Add `-ChildModule` and omit `owners` for a child or submodule. `-UpdateSource` applies matching Bicep source literals and is not valid for Terraform.
 
 Validate an existing file with `avm metadata validate`, or inspect one with `avm metadata show`.
 
