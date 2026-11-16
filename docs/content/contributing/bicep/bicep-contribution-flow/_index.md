@@ -518,7 +518,7 @@ External fork PRs do not run credentialed E2E tests through the label. If E2E te
 
 ```powershell
 $reviewedSha = '<full reviewed PR head commit SHA>'
-avm fork-pr e2e-handoff `
+avm release-branch `
   --repository Azure/bicep-registry-modules `
   --pull-request 123 `
   --reviewed-head-commit $reviewedSha

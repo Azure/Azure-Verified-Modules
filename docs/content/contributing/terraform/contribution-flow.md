@@ -368,7 +368,7 @@ When an external contribution from a fork needs CI e2e testing, an FTE must firs
 
 ```powershell
 $reviewedSha = '<full reviewed PR head commit SHA>'
-avm fork-pr e2e-handoff `
+avm release-branch `
   --repository <owner>/<terraform-module-repository> `
   --pull-request 123 `
   --reviewed-head-commit $reviewedSha
