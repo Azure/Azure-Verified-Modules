@@ -16,7 +16,7 @@ These are additional template inputs, not Azure login credentials. Upstream CI u
 
 {{% notice style="important" title="Forks and upstream validation" %}}
 
-Fork PRs cannot access upstream secrets or run credentialed E2E tests directly. When adding a required input, ask maintainers to configure the corresponding GitHub secret or variable in the upstream environment before merging your contribution. Share the parameter name and purpose, never its private value. Use the [release-branch handoff]({{% siteparam base %}}/contributing/bicep/contribution-flow/#running-e2e-for-external-contributions) when E2E testing is needed.
+Fork PRs cannot access upstream secrets or run credentialed E2E tests directly. When adding a required input, ask maintainers to configure the corresponding GitHub secret or variable in the upstream environment before merging your contribution. Share the parameter name and purpose, never its private value. An authorized FTE must perform the [release-branch handoff]({{% siteparam base %}}/contributing/bicep/contribution-flow/#running-e2e-for-external-contributions) for authenticated validation.
 
 {{% /notice %}}
 

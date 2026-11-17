@@ -43,7 +43,7 @@ avm doctor --install
 ```
 
 {{% notice style="warning" %}}
-The local `Avm.Authoring` migration and the centrally managed CI workflow rollout are separate changes. Do not pre-emptively rename required checks. After the updated workflow has run on a pull request, update branch protection to use the exact check names reported by that workflow. Per-example checks are derived from the repository's example folders.
+The local `Avm.Authoring` migration and the centrally managed CI workflow rollout are separate changes. The CI guidance below applies after the updated workflow is rolled out. Do not pre-emptively rename required checks; use the exact `Report check status` context reported by the updated workflow.
 {{% /notice %}}
 
 ## Overview
@@ -304,7 +304,7 @@ This tier requires real Azure credentials. Azure CLI authentication is sufficien
 avm test e2e --example <name>
 ```
 
-An example containing `.e2eignore` is excluded. Apply failures caused by transient region, SKU capacity, or quota errors are destroyed and retried up to two times by default; use `-MaxRetry 0` to disable retries.
+An example containing `.e2eignore` is excluded locally. In CI, existing required `default` and `waf-aligned` examples cannot be ignored to bypass checks. Apply failures caused by transient region, SKU capacity, or quota errors are destroyed and retried up to two times by default; use `-MaxRetry 0` to disable retries.
 
 Local e2e testing is especially useful for external contributors, since only module owners can approve credentialed CI e2e runs.
 
@@ -313,7 +313,7 @@ Local e2e testing is especially useful for external contributors, since only mod
 ## 6. Raise or Update PR
 
 {{% notice style="tip" %}}
-**Raise your PR early** — don't wait until everything is perfect. An early PR lets you run validation and test tiers in CI and get feedback sooner. You can continue pushing commits to the same branch.
+**Raise your PR early** — don't wait until everything is perfect. An early PR lets you get validation and test feedback sooner. You can continue pushing commits to the same branch; fork contributions require the handoff below for authenticated e2e testing.
 {{% /notice %}}
 
 {{< tabs groupid="persona" >}}
@@ -342,10 +342,10 @@ Local e2e testing is especially useful for external contributors, since only mod
 ## 7. Approve and monitor CI tests
 
 {{% notice style="note" %}}
-Credentialed CI jobs require approval from a module owner. Unit tests do not require Azure credentials, but external contributors should still run `avm pr-check` and all applicable test tiers locally before this step.
+Coordinate credentialed CI runs with a module owner. Unit tests do not require Azure credentials, but external contributors should still run `avm pr-check` and all applicable test tiers locally before this step.
 {{% /notice %}}
 
-Once a PR is created, CI workflows are triggered automatically. A centrally managed Azure test subscription is provided for credentialed jobs, so contributors do not configure CI credentials themselves.
+PR validation and applicable unit and integration tests run automatically. Automatic PR e2e tests require a label on a same-repository PR. A centrally managed Azure test subscription is provided for credentialed jobs, so contributors do not configure CI credentials themselves.
 
 ### What CI runs
 
@@ -354,17 +354,22 @@ The centrally managed workflow keeps validation and test tiers in separate jobs 
 - **PR validation** — runs the equivalent of `avm pr-check`: managed-file and generated-file drift checks, Terraform formatting, mapotf transformations, TFLint, Conftest policy checks, AVM convention checks, `terraform validate`, and documentation checks.
 - **Unit tests** — runs `avm test unit`.
 - **Integration tests** — runs `avm test integration` when the repository has integration tests.
-- **End-to-end tests** — discovers runnable examples and tests each example independently with the equivalent of `avm test e2e --example <name>`.
+- **End-to-end tests** — when selected by a label, tests each selected example independently with the equivalent of `avm test e2e --example <name>`.
 
-Each e2e job deploys the example, checks idempotency with `terraform plan`, and destroys the resources. Examples containing `.e2eignore` are excluded.
+An authorized maintainer must apply at least one of these labels to a same-repository PR:
+
+- `PR: Run E2E Tests` runs the required `default` and `waf-aligned` examples.
+- `PR: Run Optional E2E Tests` runs the required examples and all optional examples.
+
+Each e2e job deploys the example, checks idempotency with `terraform plan`, and destroys the resources. Optional examples containing `.e2eignore` are excluded; existing required examples cannot be ignored to bypass checks. Missing required examples produce a warning. Every selected example must pass the single `Report check status` merge gate. Manual dispatch is a separate operator path; merge queues are not supported.
 
 ### If tests fail
 
-Go back to step 3 — fix the issue, run `avm pre-commit` again, push your changes, and the CI tests will re-run automatically on the same PR.
+Go back to step 3 — fix the issue, run `avm pre-commit` again, and push your changes. Applicable CI tests re-run on the same PR; automatic e2e execution requires a label to remain on it. For a fork, follow the handoff recovery guidance below.
 
 ### Running e2e for external contributions
 
-When an external contribution from a fork needs CI e2e testing, an FTE must review the source code, dependencies and workflow changes for security at the exact current PR head immediately before the handoff. Review the new head again if it changes. Ensure the GitHub CLI (`gh`) is authenticated as an authorized FTE with access to the upstream repository, then run the shared `Avm.Authoring` command:
+Fork PRs cannot access upstream credentials; a label does not grant them access. An authorized FTE must perform this handoff so the same-repository follow-up PR can run authenticated e2e tests and satisfy the merge gate. Immediately before the handoff, the FTE must review the source code, dependencies and workflow changes for security at the exact current PR head. Review the new head again if it changes. Ensure the GitHub CLI (`gh`) is authenticated as an authorized FTE with access to the upstream repository, then run the shared `Avm.Authoring` command:
 
 ```powershell
 avm release-branch `
@@ -372,13 +377,13 @@ avm release-branch `
   --pull-request 123
 ```
 
-The command cannot verify which commit was reviewed. It captures the current head and stops if it changes during the handoff. It creates a release branch from `main`, retargets and merges the fork PR into that branch, then opens a follow-up PR from the release branch to `main`. Terraform does not add the Bicep-specific `PR: Run E2E Tests` label. Restrict write access to the release branch and review any later changes before E2E testing or merging the follow-up PR. The FTE's invocation runs the handoff; no separate confirmation prompt is required. Use `--whatif` to preview without making changes. The command stops rather than bypassing repository protections. The follow-up PR still goes through the repository's normal review and CI approval gates.
+The command cannot verify which commit was reviewed. It captures the current head and stops if it changes during the handoff. It creates a release branch from `main`, retargets and merges the fork PR into that branch, then opens a follow-up PR from the release branch to `main`. An authorized maintainer must apply one of the e2e labels to that follow-up PR. Restrict write access to the release branch and review any later changes before E2E testing or merging the follow-up PR. The FTE's invocation runs the handoff; no separate confirmation prompt is required. Use `--whatif` to preview without making changes. The command stops rather than bypassing repository protections. The follow-up PR still goes through the repository's normal review and CI gates.
 
-If the handoff itself fails, inspect the fork PR and release branch before recovering manually; do not blindly rerun it. If E2E tests fail after a successful handoff, the original fork PR has been merged. Open a new fork PR containing the original changes and fixes, review its current head, and perform a new handoff if E2E testing is still needed. Inspect the existing follow-up PR and release branch before proceeding.
+If the handoff itself fails, inspect the fork PR and release branch before recovering manually; do not blindly rerun it. If E2E tests fail after a successful handoff, the original fork PR has been merged. Open a new fork PR containing the original changes and fixes, review its current head, and perform a new handoff. Inspect the existing follow-up PR and release branch before proceeding.
 
 ### Running e2e for your own contributions
 
-For your own PRs, the tests trigger automatically — approve the run and wait for results.
+For your own same-repository PRs, apply the appropriate label and monitor the selected tests and `Report check status` gate.
 
 ---
 
