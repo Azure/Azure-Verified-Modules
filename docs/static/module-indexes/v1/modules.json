@@ -162,7 +162,7 @@
             "status": "available",
             "currentVersion": "0.13.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 36224
+            "downloads": 36258
           }
         }
       ]
@@ -778,7 +778,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 197149
+            "downloads": 197559
           }
         }
       ]
@@ -2805,7 +2805,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 726420
+            "downloads": 727525
           }
         }
       ]
@@ -2926,7 +2926,7 @@
             "status": "available",
             "currentVersion": "0.2.2",
             "firstPublishedIn": "2025-05",
-            "downloads": 104527
+            "downloads": 104755
           }
         }
       ]
@@ -3006,7 +3006,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-03",
-            "downloads": 441617
+            "downloads": 442806
           }
         }
       ]
@@ -3615,7 +3615,7 @@
             "status": "available",
             "currentVersion": "0.5.1",
             "firstPublishedIn": "2025-03",
-            "downloads": 178205
+            "downloads": 178419
           }
         }
       ]
@@ -4146,7 +4146,7 @@
             "status": "available",
             "currentVersion": "0.3.1",
             "firstPublishedIn": "2024-01",
-            "downloads": 703813
+            "downloads": 704520
           }
         }
       ]
@@ -4231,7 +4231,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 91254
+            "downloads": 91311
           }
         }
       ]
@@ -4890,7 +4890,7 @@
             "status": "available",
             "currentVersion": "2.0.2",
             "firstPublishedIn": "2024-08",
-            "downloads": 9257
+            "downloads": 9260
           }
         }
       ]
@@ -5106,7 +5106,7 @@
             "status": "available",
             "currentVersion": "2.0.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 21122
+            "downloads": 21125
           }
         }
       ]
@@ -5360,7 +5360,7 @@
             "status": "available",
             "currentVersion": "2.1.1",
             "firstPublishedIn": "2024-08",
-            "downloads": 17045
+            "downloads": 17053
           }
         }
       ]
@@ -5440,7 +5440,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 3334
+            "downloads": 3337
           }
         }
       ]
@@ -5514,7 +5514,7 @@
             "status": "available",
             "currentVersion": "0.7.0",
             "firstPublishedIn": "2026-01",
-            "downloads": 17484
+            "downloads": 17494
           }
         }
       ]
@@ -5603,7 +5603,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-06",
-            "downloads": 517708
+            "downloads": 518386
           }
         }
       ]
@@ -5869,7 +5869,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
-            "downloads": 80893
+            "downloads": 81125
           }
         }
       ]
@@ -6046,7 +6046,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 103661
+            "downloads": 103848
           }
         }
       ]
@@ -6582,7 +6582,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-07",
-            "downloads": 3043
+            "downloads": 3058
           }
         }
       ]
@@ -6738,7 +6738,7 @@
             "status": "available",
             "currentVersion": "0.12.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 1169925
+            "downloads": 1170370
           }
         }
       ]
@@ -7029,7 +7029,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-06",
-            "downloads": 20951
+            "downloads": 20969
           }
         }
       ]
@@ -7269,7 +7269,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-08",
-            "downloads": 953
+            "downloads": 959
           }
         }
       ]
@@ -7393,9 +7393,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-compute-diskencryptionset",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 52714
+            "downloads": 52766
           }
         }
       ]
@@ -7475,7 +7475,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-05",
-            "downloads": 27506
+            "downloads": 27546
           }
         }
       ]
@@ -7555,7 +7555,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-12",
-            "downloads": 114455
+            "downloads": 114560
           }
         }
       ]
@@ -7682,7 +7682,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 2317
+            "downloads": 2320
           }
         }
       ]
@@ -7830,7 +7830,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 10191
+            "downloads": 10195
           }
         }
       ]
@@ -7910,7 +7910,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-12",
-            "downloads": 8646
+            "downloads": 8650
           }
         }
       ]
@@ -8004,7 +8004,7 @@
             "status": "available",
             "currentVersion": "0.11.3",
             "firstPublishedIn": "2024-02",
-            "downloads": 165436
+            "downloads": 165679
           }
         }
       ]
@@ -8143,7 +8143,7 @@
             "status": "available",
             "currentVersion": "0.22.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 4226937
+            "downloads": 4229062
           }
         }
       ]
@@ -8551,7 +8551,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 19332
+            "downloads": 19336
           }
         }
       ]
@@ -8631,7 +8631,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 1013033
+            "downloads": 1014474
           }
         }
       ]
@@ -9174,7 +9174,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2025-10",
-            "downloads": 873843
+            "downloads": 875607
           }
         }
       ]
@@ -9470,7 +9470,7 @@
             "status": "available",
             "currentVersion": "0.1.9",
             "firstPublishedIn": "2024-09",
-            "downloads": 121827
+            "downloads": 121913
           }
         }
       ]
@@ -9765,7 +9765,7 @@
             "status": "available",
             "currentVersion": "0.2.3",
             "firstPublishedIn": "2024-09",
-            "downloads": 793016
+            "downloads": 794859
           }
         }
       ]
@@ -10171,7 +10171,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 119295
+            "downloads": 119396
           }
         }
       ]
@@ -10423,7 +10423,7 @@
             "status": "available",
             "currentVersion": "2.1.0",
             "firstPublishedIn": "2025-05",
-            "downloads": 94462
+            "downloads": 94524
           }
         }
       ]
@@ -10589,7 +10589,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-07",
-            "downloads": 1965
+            "downloads": 1971
           }
         }
       ]
@@ -10674,7 +10674,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2026-09",
-            "downloads": 3461
+            "downloads": 3471
           }
         }
       ]
@@ -10754,7 +10754,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-03",
-            "downloads": 136517
+            "downloads": 136608
           }
         }
       ]
@@ -10839,7 +10839,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 119142
+            "downloads": 119232
           }
         }
       ]
@@ -10972,7 +10972,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 111598
+            "downloads": 111649
           }
         }
       ]
@@ -11057,7 +11057,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 71154
+            "downloads": 71205
           }
         }
       ]
@@ -11140,9 +11140,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-desktopvirtualization-workspace",
           "registry": {
             "status": "available",
-            "currentVersion": "0.3.0",
+            "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 114356
+            "downloads": 114436
           }
         }
       ]
@@ -11222,7 +11222,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 25175
+            "downloads": 25206
           }
         }
       ]
@@ -11935,7 +11935,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-08",
-            "downloads": 230819
+            "downloads": 231084
           }
         }
       ]
@@ -12592,7 +12592,7 @@
             "status": "available",
             "currentVersion": "0.12.0",
             "firstPublishedIn": "2025-05",
-            "downloads": 547970
+            "downloads": 548495
           }
         }
       ]
@@ -13274,7 +13274,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2025-08",
-            "downloads": 34566
+            "downloads": 34599
           }
         }
       ]
@@ -13732,7 +13732,7 @@
             "status": "available",
             "currentVersion": "3.1.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 6876
+            "downloads": 6881
           }
         }
       ]
@@ -14055,7 +14055,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-01",
-            "downloads": 2135
+            "downloads": 2138
           }
         }
       ]
@@ -14336,7 +14336,7 @@
             "status": "available",
             "currentVersion": "0.1.2",
             "firstPublishedIn": "2026-02",
-            "downloads": 2684
+            "downloads": 2693
           }
         }
       ]
@@ -15099,7 +15099,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-12",
-            "downloads": 13705
+            "downloads": 13731
           }
         }
       ]
@@ -15264,7 +15264,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2025-04",
-            "downloads": 159448
+            "downloads": 159835
           }
         }
       ]
@@ -15637,7 +15637,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2026-08",
-            "downloads": 2826
+            "downloads": 2837
           }
         }
       ]
@@ -15678,7 +15678,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-11",
-            "downloads": 2484
+            "downloads": 2487
           }
         }
       ]
@@ -16391,7 +16391,7 @@
             "status": "available",
             "currentVersion": "2.0.5",
             "firstPublishedIn": "2024-08",
-            "downloads": 18111
+            "downloads": 18115
           }
         }
       ]
@@ -16476,7 +16476,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-10",
-            "downloads": 7018
+            "downloads": 7228
           }
         }
       ]
@@ -16556,7 +16556,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-10",
-            "downloads": 2160
+            "downloads": 2247
           }
         }
       ]
@@ -16636,7 +16636,7 @@
             "status": "available",
             "currentVersion": "0.1.2",
             "firstPublishedIn": "2024-11",
-            "downloads": 122816
+            "downloads": 122924
           }
         }
       ]
@@ -16716,7 +16716,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-05",
-            "downloads": 760994
+            "downloads": 762373
           }
         }
       ]
@@ -16839,7 +16839,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 20215
+            "downloads": 20641
           }
         }
       ]
@@ -16921,7 +16921,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-04",
-            "downloads": 18262
+            "downloads": 18708
           }
         }
       ]
@@ -17486,7 +17486,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-07",
-            "downloads": 2760
+            "downloads": 2822
           }
         }
       ]
@@ -17564,7 +17564,7 @@
             "status": "available",
             "currentVersion": "0.13.1",
             "firstPublishedIn": "2023-09",
-            "downloads": 5412675
+            "downloads": 5419361
           }
         }
       ]
@@ -18149,7 +18149,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-04",
-            "downloads": 4538
+            "downloads": 4540
           }
         }
       ]
@@ -18832,7 +18832,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-06",
-            "downloads": 53768
+            "downloads": 53780
           }
         }
       ]
@@ -18964,7 +18964,7 @@
             "status": "available",
             "currentVersion": "0.9.1",
             "firstPublishedIn": "2024-08",
-            "downloads": 107382
+            "downloads": 107409
           }
         }
       ]
@@ -19237,7 +19237,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 35736
+            "downloads": 35740
           }
         }
       ]
@@ -19321,7 +19321,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-05",
-            "downloads": 3688905
+            "downloads": 3692838
           }
         }
       ]
@@ -19598,7 +19598,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-10",
-            "downloads": 349
+            "downloads": 352
           }
         }
       ]
@@ -20045,7 +20045,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 8227
+            "downloads": 8234
           }
         }
       ]
@@ -20568,7 +20568,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-02",
-            "downloads": 220147
+            "downloads": 220438
           }
         }
       ]
@@ -20698,7 +20698,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 491215
+            "downloads": 491872
           }
         }
       ]
@@ -20782,7 +20782,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 63028
+            "downloads": 63084
           }
         }
       ]
@@ -20866,7 +20866,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 718097
+            "downloads": 718608
           }
         }
       ]
@@ -20946,7 +20946,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 764261
+            "downloads": 764873
           }
         }
       ]
@@ -21026,7 +21026,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 14601
+            "downloads": 14625
           }
         }
       ]
@@ -21111,7 +21111,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2023-11",
-            "downloads": 476144
+            "downloads": 476403
           }
         }
       ]
@@ -21394,7 +21394,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-04",
-            "downloads": 662292
+            "downloads": 662735
           }
         }
       ]
@@ -21560,7 +21560,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2024-07",
-            "downloads": 281054
+            "downloads": 281528
           }
         }
       ]
@@ -22165,7 +22165,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 65484
+            "downloads": 65504
           }
         }
       ]
@@ -22335,7 +22335,7 @@
             "status": "available",
             "currentVersion": "0.3.4",
             "firstPublishedIn": "2024-05",
-            "downloads": 1038206
+            "downloads": 1038827
           }
         }
       ]
@@ -22495,7 +22495,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2024-10",
-            "downloads": 18880
+            "downloads": 18895
           }
         }
       ]
@@ -22606,7 +22606,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-03",
-            "downloads": 45441
+            "downloads": 45466
           }
         }
       ]
@@ -22689,7 +22689,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 817061
+            "downloads": 817634
           }
         }
       ]
@@ -22935,7 +22935,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 4754
+            "downloads": 4771
           }
         }
       ]
@@ -23017,7 +23017,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2023-12",
-            "downloads": 1230920
+            "downloads": 1233368
           }
         }
       ]
@@ -23101,7 +23101,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 20186
+            "downloads": 20227
           }
         }
       ]
@@ -23175,7 +23175,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-01",
-            "downloads": 14796
+            "downloads": 14821
           }
         }
       ]
@@ -23810,9 +23810,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-networksecuritygroup",
           "registry": {
             "status": "available",
-            "currentVersion": "0.6.0",
+            "currentVersion": "0.7.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 4955153
+            "downloads": 4959255
           }
         }
       ]
@@ -23886,7 +23886,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-04",
-            "downloads": 6677
+            "downloads": 6686
           }
         }
       ]
@@ -24237,7 +24237,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-07",
-            "downloads": 101518
+            "downloads": 101691
           }
         }
       ]
@@ -24446,7 +24446,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-03",
-            "downloads": 1689761
+            "downloads": 1691515
           }
         }
       ]
@@ -25246,7 +25246,7 @@
             "status": "available",
             "currentVersion": "0.3.1",
             "firstPublishedIn": "2024-09",
-            "downloads": 862249
+            "downloads": 862956
           }
         }
       ]
@@ -25489,7 +25489,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 1185175
+            "downloads": 1186510
           }
         }
       ]
@@ -25571,7 +25571,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 25763
+            "downloads": 25771
           }
         }
       ]
@@ -25653,9 +25653,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-routetable",
           "registry": {
             "status": "available",
-            "currentVersion": "0.6.0",
+            "currentVersion": "0.7.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 1616616
+            "downloads": 1618023
           }
         }
       ]
@@ -25693,10 +25693,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.b0e5842",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-routetable/azurerm/0.6.0/submodules/route",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-routetable/azurerm/0.7.0/submodules/route",
           "registry": {
             "status": "available",
-            "currentVersion": "0.6.0",
+            "currentVersion": "0.7.0",
             "firstPublishedIn": "2026-01",
             "downloads": null
           }
@@ -25852,7 +25852,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-02",
-            "downloads": 14502
+            "downloads": 14521
           }
         }
       ]
@@ -26403,7 +26403,7 @@
             "status": "available",
             "currentVersion": "0.23.0",
             "firstPublishedIn": "2025-07",
-            "downloads": 8515035
+            "downloads": 8523462
           }
         }
       ]
@@ -26951,10 +26951,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.600a18b",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-operationalinsights-workspace/azurerm/0.5.1/submodules/query_packs",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-operationalinsights-workspace/azurerm/0.6.0/submodules/query_packs",
           "registry": {
             "status": "available",
-            "currentVersion": "0.5.1",
+            "currentVersion": "0.6.0",
             "firstPublishedIn": "2025-12",
             "downloads": null
           }
@@ -27034,9 +27034,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-operationalinsights-workspace",
           "registry": {
             "status": "available",
-            "currentVersion": "0.5.1",
+            "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 1644074
+            "downloads": 1645935
           }
         }
       ]
@@ -27442,10 +27442,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.705823a",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-operationalinsights-workspace/azurerm/0.5.1/submodules/log_analytics_solution",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-operationalinsights-workspace/azurerm/0.6.0/submodules/log_analytics_solution",
           "registry": {
             "status": "available",
-            "currentVersion": "0.5.1",
+            "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-06",
             "downloads": null
           }
@@ -27527,7 +27527,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 10961
+            "downloads": 11007
           }
         }
       ]
@@ -27761,7 +27761,7 @@
             "status": "available",
             "currentVersion": "1.4.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 222595
+            "downloads": 222708
           }
         }
       ]
@@ -28448,7 +28448,7 @@
             "status": "available",
             "currentVersion": "0.0.3",
             "firstPublishedIn": "2025-10",
-            "downloads": 22132
+            "downloads": 22159
           }
         }
       ]
@@ -28569,7 +28569,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-01",
-            "downloads": 6493
+            "downloads": 6525
           }
         }
       ]
@@ -29055,7 +29055,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 1205
+            "downloads": 1208
           }
         }
       ]
@@ -29217,7 +29217,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 3861859
+            "downloads": 3866659
           }
         }
       ]
@@ -29334,7 +29334,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 244383
+            "downloads": 244600
           }
         }
       ]
@@ -29574,7 +29574,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-06",
-            "downloads": 386188
+            "downloads": 386593
           }
         }
       ]
@@ -30201,7 +30201,7 @@
             "status": "available",
             "currentVersion": "1.1.0",
             "firstPublishedIn": "2026-06",
-            "downloads": 2986
+            "downloads": 2989
           }
         }
       ]
@@ -30484,7 +30484,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-10",
-            "downloads": 121
+            "downloads": 124
           }
         }
       ]
@@ -30662,7 +30662,7 @@
             "status": "available",
             "currentVersion": "0.3.1",
             "firstPublishedIn": "2026-02",
-            "downloads": 99814
+            "downloads": 99862
           }
         }
       ]
@@ -31057,7 +31057,7 @@
             "status": "available",
             "currentVersion": "0.2.1",
             "firstPublishedIn": "2024-09",
-            "downloads": 656964
+            "downloads": 657914
           }
         }
       ]
@@ -31729,7 +31729,7 @@
             "status": "available",
             "currentVersion": "0.0.1",
             "firstPublishedIn": "2026-02",
-            "downloads": 31511
+            "downloads": 31544
           }
         }
       ]
@@ -31809,7 +31809,7 @@
             "status": "available",
             "currentVersion": "0.11.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 5609600
+            "downloads": 5616092
           }
         }
       ]
@@ -32965,7 +32965,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-05",
-            "downloads": 1793
+            "downloads": 1801
           }
         }
       ]
@@ -33297,7 +33297,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-05",
-            "downloads": 210
+            "downloads": 213
           }
         }
       ]
@@ -33432,7 +33432,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-11",
-            "downloads": 6054
+            "downloads": 6061
           }
         }
       ]
@@ -33521,7 +33521,7 @@
             "status": "available",
             "currentVersion": "2.0.1",
             "firstPublishedIn": "2024-06",
-            "downloads": 12748
+            "downloads": 12765
           }
         }
       ]
@@ -33781,7 +33781,7 @@
             "status": "available",
             "currentVersion": "2.0.8",
             "firstPublishedIn": "2024-08",
-            "downloads": 619380
+            "downloads": 620158
           }
         }
       ]
@@ -33876,7 +33876,7 @@
             "status": "available",
             "currentVersion": "0.24.1",
             "firstPublishedIn": "2024-02",
-            "downloads": 850493
+            "downloads": 851345
           }
         },
         {
@@ -35074,7 +35074,7 @@
             "status": "available",
             "currentVersion": "0.6.2",
             "firstPublishedIn": "2024-02",
-            "downloads": 114747
+            "downloads": 114820
           }
         }
       ]
@@ -35290,7 +35290,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 4861
+            "downloads": 4870
           }
         }
       ]
@@ -35336,7 +35336,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 3712
+            "downloads": 3717
           }
         }
       ]
@@ -35416,7 +35416,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-02",
-            "downloads": 152
+            "downloads": 155
           }
         }
       ]
@@ -35875,7 +35875,7 @@
             "status": "available",
             "currentVersion": "0.14.0",
             "firstPublishedIn": "2025-07",
-            "downloads": 253818
+            "downloads": 254082
           }
         }
       ]
@@ -36011,7 +36011,7 @@
             "status": "available",
             "currentVersion": "0.5.3",
             "firstPublishedIn": "2025-09",
-            "downloads": 8535
+            "downloads": 8538
           }
         }
       ]
@@ -36176,7 +36176,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 2171
+            "downloads": 2174
           }
         }
       ]
@@ -36217,7 +36217,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 1513
+            "downloads": 1516
           }
         }
       ]
@@ -36258,7 +36258,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 1498
+            "downloads": 1501
           }
         }
       ]
@@ -36299,7 +36299,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 14764
+            "downloads": 14787
           }
         }
       ]
@@ -36347,7 +36347,7 @@
             "status": "available",
             "currentVersion": "0.22.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 654863
+            "downloads": 655281
           }
         }
       ]
@@ -36393,7 +36393,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-07",
-            "downloads": 105
+            "downloads": 108
           }
         }
       ]
@@ -36439,7 +36439,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-07",
-            "downloads": 161
+            "downloads": 164
           }
         }
       ]
@@ -36522,7 +36522,7 @@
             "status": "available",
             "currentVersion": "0.18.1",
             "firstPublishedIn": "2025-10",
-            "downloads": 369423
+            "downloads": 369624
           }
         }
       ]
@@ -36714,7 +36714,7 @@
             "status": "available",
             "currentVersion": "0.18.2",
             "firstPublishedIn": "2025-03",
-            "downloads": 327731
+            "downloads": 327969
           }
         }
       ]
@@ -37327,7 +37327,7 @@
             "status": "available",
             "currentVersion": "0.10.0",
             "firstPublishedIn": "2023-12",
-            "downloads": 482180
+            "downloads": 482465
           }
         }
       ]
@@ -37615,7 +37615,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-03",
-            "downloads": 76
+            "downloads": 79
           }
         }
       ]
@@ -38035,7 +38035,7 @@
             "status": "available",
             "currentVersion": "0.2.2",
             "firstPublishedIn": "2024-09",
-            "downloads": 13458
+            "downloads": 13536
           }
         }
       ]
@@ -38320,7 +38320,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 13620
+            "downloads": 13639
           }
         }
       ]
@@ -38396,7 +38396,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-05",
-            "downloads": 9481
+            "downloads": 9485
           }
         }
       ]
@@ -39060,7 +39060,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
-            "downloads": 6360
+            "downloads": 6365
           }
         }
       ]
@@ -39101,7 +39101,7 @@
             "status": "available",
             "currentVersion": "3.1.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 4867
+            "downloads": 4870
           }
         }
       ]
@@ -39294,7 +39294,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-03",
-            "downloads": 93
+            "downloads": 96
           }
         }
       ]
@@ -39676,7 +39676,7 @@
             "status": "available",
             "currentVersion": "0.6.2",
             "firstPublishedIn": "2024-08",
-            "downloads": 29853
+            "downloads": 29889
           }
         }
       ]
@@ -39840,7 +39840,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-11",
-            "downloads": 8103
+            "downloads": 8116
           }
         }
       ]
@@ -39881,7 +39881,7 @@
             "status": "available",
             "currentVersion": "0.1.3",
             "firstPublishedIn": "2026-09",
-            "downloads": 79
+            "downloads": 82
           }
         }
       ]
@@ -40005,7 +40005,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 3784
+            "downloads": 3790
           }
         }
       ]
@@ -40089,7 +40089,7 @@
             "status": "available",
             "currentVersion": "1.1.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 5375
+            "downloads": 5378
           }
         }
       ]
@@ -40130,7 +40130,7 @@
             "status": "available",
             "currentVersion": "1.1.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 5306
+            "downloads": 5309
           }
         }
       ]
@@ -40851,7 +40851,7 @@
             "status": "available",
             "currentVersion": "0.10.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 7517330
+            "downloads": 7539646
           }
         }
       ]
@@ -40979,7 +40979,7 @@
             "status": "available",
             "currentVersion": "0.3.4",
             "firstPublishedIn": "2025-11",
-            "downloads": 609044
+            "downloads": 610128
           }
         }
       ]
@@ -41842,7 +41842,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 88487
+            "downloads": 88583
           }
         }
       ]
@@ -41883,7 +41883,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2026-09",
-            "downloads": 187969
+            "downloads": 190302
           }
         }
       ]
@@ -41926,7 +41926,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-03",
-            "downloads": 317036
+            "downloads": 317281
           }
         }
       ]
@@ -41967,7 +41967,7 @@
             "status": "available",
             "currentVersion": "0.1.5",
             "firstPublishedIn": "2024-06",
-            "downloads": 13683
+            "downloads": 13698
           }
         }
       ]
@@ -42041,7 +42041,7 @@
             "status": "available",
             "currentVersion": "0.13.2",
             "firstPublishedIn": "2024-09",
-            "downloads": 162630
+            "downloads": 162632
           }
         }
       ]
@@ -42121,7 +42121,7 @@
             "status": "available",
             "currentVersion": "0.23.3",
             "firstPublishedIn": "2024-06",
-            "downloads": 563379
+            "downloads": 563718
           }
         }
       ]
@@ -42202,7 +42202,7 @@
             "status": "available",
             "currentVersion": "0.14.1",
             "firstPublishedIn": "2023-09",
-            "downloads": 287986
+            "downloads": 288052
           }
         }
       ]
@@ -42571,7 +42571,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 1003
+            "downloads": 1006
           }
         }
       ]
@@ -42925,7 +42925,7 @@
             "status": "available",
             "currentVersion": "0.14.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 4628341
+            "downloads": 4635311
           }
         }
       ]
@@ -42966,7 +42966,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2025-09",
-            "downloads": 852255
+            "downloads": 853876
           }
         }
       ]
@@ -43545,7 +43545,7 @@
             "status": "available",
             "currentVersion": "0.4.2",
             "firstPublishedIn": "2024-12",
-            "downloads": 55920
+            "downloads": 55991
           }
         }
       ]
@@ -43629,7 +43629,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-10",
-            "downloads": 62
+            "downloads": 66
           }
         }
       ]
@@ -43761,7 +43761,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-10",
-            "downloads": 51
+            "downloads": 54
           }
         }
       ]
@@ -43979,7 +43979,7 @@
             "status": "available",
             "currentVersion": "0.0.3",
             "firstPublishedIn": "2026-05",
-            "downloads": 540
+            "downloads": 543
           }
         }
       ]
@@ -44014,7 +44014,7 @@
             "status": "available",
             "currentVersion": "0.10.3",
             "firstPublishedIn": "2024-02",
-            "downloads": 261402
+            "downloads": 261499
           }
         }
       ]
