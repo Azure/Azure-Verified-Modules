@@ -21,7 +21,7 @@ priority: 20030
 
 ## ID: TFFR3 - Category: Providers - Permitted Versions
 
-The AVM provider rules are documented in [avm_provider_azapi_version_constraint]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_provider_azapi_version_constraint), [avm_provider_azurerm_disallowed]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_provider_azurerm_disallowed), and [avm_provider_azurerm_version_constraint]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_provider_azurerm_version_constraint).
+The AVM provider rules are documented in [avm_provider_azapi_version_constraint]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_provider_azapi_version_constraint), [avm_provider_azurerm_disallowed]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_provider_azurerm_disallowed), [avm_provider_azurerm_version_constraint]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_provider_azurerm_version_constraint), and [avm_provider_modtm_disallowed]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_provider_modtm_disallowed).
 
 {{% notice style="important" %}}
 
@@ -38,6 +38,8 @@ Authors **MUST** only use the following Azure providers, and versions, in their 
 
 Pattern modules **MAY** also use other Microsoft-maintained providers when required by the pattern. Examples include `integrations/github`, `microsoft/azuredevops`, `microsoft/fabric`, and `microsoft/msgraph`. Each provider **MUST** be declared with minimum and maximum major version constraints as required by [TFNFR26]({{% siteparam base %}}/spec/TFNFR26).
 
+The `Azure/modtm` provider is prohibited for every AVM Terraform module, regardless of classification. Authors **MUST NOT** declare it in `required_providers` or use `modtm_*` resource, data source, or ephemeral blocks. This is enforced by [avm_provider_modtm_disallowed]({{% siteparam base %}}/contributing/terraform/tflint-rules/#avm_provider_modtm_disallowed).
+
 Resource and utility modules **MUST NOT** use these additional providers. Except for the narrow AzureRM exception below, third-party providers **MUST NOT** be used by any AVM Terraform module, regardless of module classification.
 
 {{% notice style="note" %}}
@@ -46,7 +48,7 @@ The AzAPI floor is `2.12` because [TFFR8]({{% siteparam base %}}/spec/TFFR8) req
 
 {{% /notice %}}
 
-This prohibition applies to every Terraform configuration shipped with the module, including:
+The `Azure/modtm` prohibition and the other provider restrictions in this section apply to every Terraform configuration shipped with the module, including:
 
 - The root module and all submodules.
 - Every configuration under `examples/`, including examples executed as end-to-end tests.
