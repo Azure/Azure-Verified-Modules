@@ -360,7 +360,7 @@ The centrally managed workflow keeps validation and test tiers in separate jobs 
 
 An authorized maintainer must apply at least one of these labels to a same-repository PR:
 
-- `PR: Run Required E2E Tests` runs the required `default` and `waf-aligned` examples.
+- `PR: Run Required E2E Tests` runs each present `default` and `defaults` baseline example, plus `waf-aligned`; the baseline warning appears only when neither spelling exists.
 - `PR: Run All E2E Tests` runs the required examples and all optional examples.
 
 Each e2e job deploys the example, checks idempotency with `terraform plan`, and destroys the resources. Optional examples containing `.e2eignore` are excluded; existing required examples cannot be ignored to bypass checks. Missing required examples produce a warning. Every selected example must pass the single `Report check status` merge gate. Manual dispatch is a separate operator path; merge queues are not supported.
