@@ -347,6 +347,8 @@ Coordinate credentialed CI runs with a module owner. Unit tests do not require A
 
 PR validation and applicable unit and integration tests run automatically. Automatic PR e2e tests require a label on a same-repository PR. A centrally managed Azure test subscription is provided for credentialed jobs, so contributors do not configure CI credentials themselves.
 
+Open a PR early and use these checks while iterating. When the contribution is ready for deployment tests, request an e2e label; delaying those tests avoids unnecessary cloud costs and runtime.
+
 ### What CI runs
 
 The centrally managed workflow keeps validation and test tiers in separate jobs so a failure produces an actionable signal:
@@ -358,8 +360,8 @@ The centrally managed workflow keeps validation and test tiers in separate jobs 
 
 An authorized maintainer must apply at least one of these labels to a same-repository PR:
 
-- `PR: Run E2E Tests` runs the required `default` and `waf-aligned` examples.
-- `PR: Run Optional E2E Tests` runs the required examples and all optional examples.
+- `PR: Run Required E2E Tests` runs the required `default` and `waf-aligned` examples.
+- `PR: Run All E2E Tests` runs the required examples and all optional examples.
 
 Each e2e job deploys the example, checks idempotency with `terraform plan`, and destroys the resources. Optional examples containing `.e2eignore` are excluded; existing required examples cannot be ignored to bypass checks. Missing required examples produce a warning. Every selected example must pass the single `Report check status` merge gate. Manual dispatch is a separate operator path; merge queues are not supported.
 

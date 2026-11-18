@@ -268,10 +268,12 @@ Create the PR from your upstream branch to `main`.
 
 After the updated workflow is rolled out, PR validation and applicable unit and integration tests run automatically. Review their results and update your branch if checks fail. No fork workflow setup is required. If a test needs environment-specific inputs, coordinate [custom CI parameters]({{% siteparam base %}}/contributing/bicep/advanced/#custom-ci-parameters) with maintainers.
 
+Open a PR early and use these checks while iterating. When the contribution is ready for deployment tests, request an e2e label; delaying those tests avoids unnecessary cloud costs and runtime.
+
 An authorized maintainer must apply at least one of these labels to a same-repository PR to run its automatic e2e tests:
 
-- `PR: Run E2E Tests` runs the required `defaults` and `waf-aligned` scenarios.
-- `PR: Run Optional E2E Tests` runs the required scenarios and all optional scenarios.
+- `PR: Run Required E2E Tests` runs the required `defaults` and `waf-aligned` scenarios.
+- `PR: Run All E2E Tests` runs the required scenarios and all optional scenarios.
 
 Every selected scenario must pass the single `Report check status` merge gate. Missing required scenarios produce a warning, but existing required scenarios cannot be ignored to bypass checks. This applies to every module type. Manual dispatch is a separate operator path; merge queues are not supported.
 
@@ -301,7 +303,7 @@ avm release-branch `
   --pull-request 123
 ```
 
-The command cannot verify which commit was reviewed. It captures the current head and stops if it changes during the handoff. It creates a release branch from `main`, retargets and merges the fork PR into that branch, opens a follow-up PR to `main`, and labels it `PR: Run E2E Tests`. An authorized maintainer may instead use `PR: Run Optional E2E Tests` to include optional scenarios. Restrict write access to the release branch and review any later changes before E2E testing or merging the follow-up PR. Use `--whatif` to preview; the command does not bypass repository protections.
+The command cannot verify which commit was reviewed. It captures the current head and stops if it changes during the handoff. It creates a release branch from `main`, retargets and merges the fork PR into that branch, opens a follow-up PR to `main`, and labels it `PR: Run Required E2E Tests`. An authorized maintainer may instead use `PR: Run All E2E Tests` to include optional scenarios. Restrict write access to the release branch and review any later changes before E2E testing or merging the follow-up PR. Use `--whatif` to preview; the command does not bypass repository protections.
 
 If the handoff fails, inspect the fork PR and release branch before recovering manually; do not blindly rerun it. If E2E tests fail after a successful handoff, the original fork PR has been merged. Open a new fork PR containing the original changes and fixes, review its current head, and perform a new handoff. Inspect the existing follow-up PR and release branch before proceeding.
 
