@@ -205,7 +205,7 @@ Please follow the steps below:
   avm pre-commit -Ecosystem bicep -Path $topLevelModulePath
   ```
 
-- Raise a PR and verify the shared checks. FTEs can request deployment tests with the `PR: Run E2E Tests` label. For an external fork PR, follow the [release-branch handoff]({{% siteparam base %}}/contributing/bicep/contribution-flow/#running-e2e-for-external-contributions) only when E2E testing is needed.
+- Raise a PR and verify the shared checks. An authorized maintainer must apply an [E2E label]({{% siteparam base %}}/contributing/bicep/contribution-flow/#7-approve-and-monitor-ci-tests) to run deployment tests. For an external fork PR, an authorized FTE must perform the [release-branch handoff]({{% siteparam base %}}/contributing/bicep/contribution-flow/#running-e2e-for-external-contributions).
 
 {{% notice style="note" %}}
 

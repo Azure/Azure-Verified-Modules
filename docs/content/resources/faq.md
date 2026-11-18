@@ -384,7 +384,7 @@ Entra objects - May come as new modules if/when the Graph provider will be relea
 
 AVM uses shared PR checks for Bicep and Terraform to validate module conventions and run applicable tests. Credentialed end-to-end deployment tests run when requested or applicable, not on every PR.
 
-For Bicep, an upstream PR can request deployment tests with the `PR: Run E2E Tests` label. An external fork PR uses the [release-branch handoff]({{% siteparam base %}}/contributing/bicep/contribution-flow/#running-e2e-for-external-contributions) when E2E testing is needed. See the [Terraform CI guidance]({{% siteparam base %}}/contributing/terraform/contribution-flow/#7-approve-and-monitor-ci-tests) for its test tiers and fork handoff.
+After the updated workflows are rolled out, an authorized maintainer applies `PR: Run Required E2E Tests` or `PR: Run All E2E Tests` to a same-repository PR. Fork contributions require a maintainer-operated release-branch handoff for authenticated validation. See the [Bicep CI guidance]({{% siteparam base %}}/contributing/bicep/contribution-flow/#7-approve-and-monitor-ci-tests) and [Terraform CI guidance]({{% siteparam base %}}/contributing/terraform/contribution-flow/#7-approve-and-monitor-ci-tests).
 
 ---
 
