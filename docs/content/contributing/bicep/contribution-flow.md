@@ -272,7 +272,7 @@ Open a PR early and use these checks while iterating. When the contribution is r
 
 An authorized maintainer must apply at least one of these labels to a same-repository PR to run its automatic e2e tests:
 
-- `PR: Run Required E2E Tests` runs the required `defaults` and `waf-aligned` scenarios.
+- `PR: Run Required E2E Tests` runs each present `default` and `defaults` baseline scenario, plus `waf-aligned`; the baseline warning appears only when neither spelling exists.
 - `PR: Run All E2E Tests` runs the required scenarios and all optional scenarios.
 
 Every selected scenario must pass the single `Report check status` merge gate. Missing required scenarios produce a warning, but existing required scenarios cannot be ignored to bypass checks. This applies to every module type. Manual dispatch is a separate operator path; merge queues are not supported.
