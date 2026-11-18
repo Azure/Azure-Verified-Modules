@@ -162,7 +162,7 @@
             "status": "available",
             "currentVersion": "0.13.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 36280
+            "downloads": 36329
           }
         }
       ]
@@ -778,7 +778,7 @@
             "status": "available",
             "currentVersion": "0.10.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 198222
+            "downloads": 199141
           }
         }
       ]
@@ -2695,7 +2695,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Proposed",
+          "moduleStatus": "Available",
           "moduleName": "avm-res-app-agent",
           "modulePath": ".",
           "repository": "Azure/terraform-azure-avm-res-app-agent",
@@ -2722,10 +2722,10 @@
           "alternativeTelemetryIdPrefixes": [],
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-app-agent",
           "registry": {
-            "status": "not-published",
-            "currentVersion": null,
-            "firstPublishedIn": null,
-            "downloads": null
+            "status": "available",
+            "currentVersion": "0.1.0",
+            "firstPublishedIn": "2026-11",
+            "downloads": 0
           }
         }
       ]
@@ -2803,9 +2803,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-app-containerapp",
           "registry": {
             "status": "available",
-            "currentVersion": "0.9.0",
+            "currentVersion": "0.10.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 730191
+            "downloads": 733432
           }
         }
       ]
@@ -2855,7 +2855,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Proposed",
+          "moduleStatus": "Available",
           "moduleName": "avm-res-app-containerapp//modules/auth-config",
           "modulePath": "modules/auth-config",
           "repository": "Azure/terraform-azurerm-avm-res-app-containerapp",
@@ -2880,11 +2880,11 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.fb2418e",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-app-containerapp/submodules/auth-config",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-app-containerapp/azurerm/0.10.0/submodules/auth-config",
           "registry": {
-            "status": "not-published",
-            "currentVersion": null,
-            "firstPublishedIn": null,
+            "status": "available",
+            "currentVersion": "0.10.0",
+            "firstPublishedIn": "2026-11",
             "downloads": null
           }
         }
@@ -2926,7 +2926,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-05",
-            "downloads": 105455
+            "downloads": 106197
           }
         }
       ]
@@ -3006,7 +3006,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-03",
-            "downloads": 445265
+            "downloads": 447647
           }
         }
       ]
@@ -3615,7 +3615,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2025-03",
-            "downloads": 178823
+            "downloads": 179446
           }
         }
       ]
@@ -4146,7 +4146,7 @@
             "status": "available",
             "currentVersion": "0.3.1",
             "firstPublishedIn": "2024-01",
-            "downloads": 707214
+            "downloads": 710800
           }
         }
       ]
@@ -4231,7 +4231,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 91536
+            "downloads": 91677
           }
         }
       ]
@@ -4890,7 +4890,7 @@
             "status": "available",
             "currentVersion": "2.0.2",
             "firstPublishedIn": "2024-08",
-            "downloads": 9286
+            "downloads": 9291
           }
         }
       ]
@@ -5106,7 +5106,7 @@
             "status": "available",
             "currentVersion": "2.0.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 21128
+            "downloads": 21133
           }
         }
       ]
@@ -5360,7 +5360,7 @@
             "status": "available",
             "currentVersion": "2.1.1",
             "firstPublishedIn": "2024-08",
-            "downloads": 17078
+            "downloads": 17100
           }
         }
       ]
@@ -5438,9 +5438,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-batch-batchaccount",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.0",
+            "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 3343
+            "downloads": 3360
           }
         }
       ]
@@ -5514,7 +5514,7 @@
             "status": "available",
             "currentVersion": "0.7.0",
             "firstPublishedIn": "2026-01",
-            "downloads": 17624
+            "downloads": 17678
           }
         }
       ]
@@ -5603,7 +5603,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-06",
-            "downloads": 520082
+            "downloads": 521558
           }
         }
       ]
@@ -5869,7 +5869,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2026-02",
-            "downloads": 81653
+            "downloads": 82284
           }
         }
       ]
@@ -6046,7 +6046,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 104161
+            "downloads": 104563
           }
         }
       ]
@@ -6582,7 +6582,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-07",
-            "downloads": 3229
+            "downloads": 3328
           }
         }
       ]
@@ -6738,7 +6738,7 @@
             "status": "available",
             "currentVersion": "0.13.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 1171329
+            "downloads": 1172794
           }
         }
       ]
@@ -7027,9 +7027,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-communication-emailservice",
           "registry": {
             "status": "available",
-            "currentVersion": "0.3.0",
+            "currentVersion": "0.4.0",
             "firstPublishedIn": "2025-06",
-            "downloads": 20987
+            "downloads": 21035
           }
         }
       ]
@@ -7104,10 +7104,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.280c458",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-communication-emailservice/azurerm/0.3.0/submodules/domain",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-communication-emailservice/azurerm/0.4.0/submodules/domain",
           "registry": {
             "status": "available",
-            "currentVersion": "0.3.0",
+            "currentVersion": "0.4.0",
             "firstPublishedIn": "2026-09",
             "downloads": null
           }
@@ -7184,10 +7184,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.4f8858d",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-communication-emailservice/azurerm/0.3.0/submodules/domain-sender-username",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-communication-emailservice/azurerm/0.4.0/submodules/domain-sender-username",
           "registry": {
             "status": "available",
-            "currentVersion": "0.3.0",
+            "currentVersion": "0.4.0",
             "firstPublishedIn": "2026-09",
             "downloads": null
           }
@@ -7269,7 +7269,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-08",
-            "downloads": 962
+            "downloads": 966
           }
         }
       ]
@@ -7395,7 +7395,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 52977
+            "downloads": 53293
           }
         }
       ]
@@ -7475,7 +7475,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-05",
-            "downloads": 27592
+            "downloads": 27837
           }
         }
       ]
@@ -7555,7 +7555,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-12",
-            "downloads": 114783
+            "downloads": 114952
           }
         }
       ]
@@ -7682,7 +7682,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 2323
+            "downloads": 2327
           }
         }
       ]
@@ -7830,7 +7830,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 10238
+            "downloads": 10299
           }
         }
       ]
@@ -7910,7 +7910,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-12",
-            "downloads": 8658
+            "downloads": 8691
           }
         }
       ]
@@ -8004,7 +8004,7 @@
             "status": "available",
             "currentVersion": "0.11.3",
             "firstPublishedIn": "2024-02",
-            "downloads": 165869
+            "downloads": 166246
           }
         }
       ]
@@ -8143,7 +8143,7 @@
             "status": "available",
             "currentVersion": "0.22.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 4233650
+            "downloads": 4239460
           }
         }
       ]
@@ -8551,7 +8551,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 19342
+            "downloads": 19372
           }
         }
       ]
@@ -8631,7 +8631,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 1017034
+            "downloads": 1021074
           }
         }
       ]
@@ -9174,7 +9174,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2025-10",
-            "downloads": 879453
+            "downloads": 883023
           }
         }
       ]
@@ -9470,7 +9470,7 @@
             "status": "available",
             "currentVersion": "0.1.9",
             "firstPublishedIn": "2024-09",
-            "downloads": 122142
+            "downloads": 122244
           }
         }
       ]
@@ -9763,9 +9763,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-dbforpostgresql-flexibleserver",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.3",
+            "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 797585
+            "downloads": 801179
           }
         }
       ]
@@ -9969,10 +9969,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.bab1114",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-dbforpostgresql-flexibleserver/azurerm/0.2.3/submodules/database",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-dbforpostgresql-flexibleserver/azurerm/0.3.0/submodules/database",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.3",
+            "currentVersion": "0.3.0",
             "firstPublishedIn": "2026-04",
             "downloads": null
           }
@@ -10171,7 +10171,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 119624
+            "downloads": 120100
           }
         }
       ]
@@ -10423,7 +10423,7 @@
             "status": "available",
             "currentVersion": "2.1.0",
             "firstPublishedIn": "2025-05",
-            "downloads": 94814
+            "downloads": 94996
           }
         }
       ]
@@ -10587,9 +10587,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-dataprotection-resourceguard",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-07",
-            "downloads": 1989
+            "downloads": 2004
           }
         }
       ]
@@ -10674,7 +10674,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2026-09",
-            "downloads": 3516
+            "downloads": 3553
           }
         }
       ]
@@ -10754,7 +10754,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-03",
-            "downloads": 136812
+            "downloads": 137174
           }
         }
       ]
@@ -10839,7 +10839,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 119480
+            "downloads": 119823
           }
         }
       ]
@@ -10972,7 +10972,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 111930
+            "downloads": 112207
           }
         }
       ]
@@ -11057,7 +11057,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 71322
+            "downloads": 71464
           }
         }
       ]
@@ -11142,7 +11142,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 114695
+            "downloads": 115034
           }
         }
       ]
@@ -11222,7 +11222,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 25251
+            "downloads": 25363
           }
         }
       ]
@@ -11935,7 +11935,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-08",
-            "downloads": 231520
+            "downloads": 232413
           }
         }
       ]
@@ -12590,9 +12590,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-documentdb-databaseaccount",
           "registry": {
             "status": "available",
-            "currentVersion": "0.12.0",
+            "currentVersion": "0.13.0",
             "firstPublishedIn": "2025-05",
-            "downloads": 549857
+            "downloads": 551307
           }
         }
       ]
@@ -13274,7 +13274,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2025-08",
-            "downloads": 34739
+            "downloads": 34849
           }
         }
       ]
@@ -13732,7 +13732,7 @@
             "status": "available",
             "currentVersion": "3.1.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 6894
+            "downloads": 6900
           }
         }
       ]
@@ -14053,9 +14053,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-domain",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-01",
-            "downloads": 2140
+            "downloads": 2162
           }
         }
       ]
@@ -14130,10 +14130,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.0e48202",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-domain/azurerm/0.1.0/submodules/domain_event_subscription",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-domain/azurerm/0.2.0/submodules/domain_event_subscription",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-01",
             "downloads": null
           }
@@ -14210,10 +14210,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.3a8754d",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-domain/azurerm/0.1.0/submodules/domain_topic",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-domain/azurerm/0.2.0/submodules/domain_topic",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-01",
             "downloads": null
           }
@@ -14251,10 +14251,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.aa8e3e9",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-domain/azurerm/0.1.0/submodules/domain_topic_event_subscription",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-domain/azurerm/0.2.0/submodules/domain_topic_event_subscription",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-01",
             "downloads": null
           }
@@ -14334,9 +14334,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-namespace",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.2",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
-            "downloads": 2708
+            "downloads": 2733
           }
         }
       ]
@@ -14411,10 +14411,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.65a2df5",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-namespace/azurerm/0.1.2/submodules/ca_certificate",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-namespace/azurerm/0.2.0/submodules/ca_certificate",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.2",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
             "downloads": null
           }
@@ -14491,10 +14491,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.b1c215e",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-namespace/azurerm/0.1.2/submodules/client_group",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-namespace/azurerm/0.2.0/submodules/client_group",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.2",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
             "downloads": null
           }
@@ -14571,10 +14571,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.968f8b6",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-namespace/azurerm/0.1.2/submodules/client",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-namespace/azurerm/0.2.0/submodules/client",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.2",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
             "downloads": null
           }
@@ -14651,10 +14651,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.07ec0da",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-namespace/azurerm/0.1.2/submodules/permission_binding",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-namespace/azurerm/0.2.0/submodules/permission_binding",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.2",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
             "downloads": null
           }
@@ -14731,10 +14731,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.6abc976",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-namespace/azurerm/0.1.2/submodules/topic_space",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-namespace/azurerm/0.2.0/submodules/topic_space",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.2",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
             "downloads": null
           }
@@ -14811,10 +14811,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.5c97d1c",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-namespace/azurerm/0.1.2/submodules/namespace_topic",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-namespace/azurerm/0.2.0/submodules/namespace_topic",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.2",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
             "downloads": null
           }
@@ -14891,10 +14891,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.85d34fe",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-namespace/azurerm/0.1.2/submodules/topic_event_subscription",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventgrid-namespace/azurerm/0.2.0/submodules/topic_event_subscription",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.2",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
             "downloads": null
           }
@@ -15099,7 +15099,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-12",
-            "downloads": 13785
+            "downloads": 13878
           }
         }
       ]
@@ -15262,9 +15262,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-eventhub-namespace",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 160785
+            "downloads": 161854
           }
         }
       ]
@@ -15637,7 +15637,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2026-08",
-            "downloads": 2871
+            "downloads": 2906
           }
         }
       ]
@@ -15678,7 +15678,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-11",
-            "downloads": 2495
+            "downloads": 2514
           }
         }
       ]
@@ -16391,7 +16391,7 @@
             "status": "available",
             "currentVersion": "2.0.5",
             "firstPublishedIn": "2024-08",
-            "downloads": 18118
+            "downloads": 18123
           }
         }
       ]
@@ -16476,7 +16476,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-10",
-            "downloads": 7643
+            "downloads": 7936
           }
         }
       ]
@@ -16556,7 +16556,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-10",
-            "downloads": 2566
+            "downloads": 2766
           }
         }
       ]
@@ -16636,7 +16636,7 @@
             "status": "available",
             "currentVersion": "0.1.2",
             "firstPublishedIn": "2024-11",
-            "downloads": 123138
+            "downloads": 123284
           }
         }
       ]
@@ -16716,7 +16716,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-05",
-            "downloads": 765200
+            "downloads": 768423
           }
         }
       ]
@@ -16837,9 +16837,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-insights-datacollectionendpoint",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.0",
+            "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 21535
+            "downloads": 21715
           }
         }
       ]
@@ -16919,9 +16919,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-insights-datacollectionrule",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-04",
-            "downloads": 19659
+            "downloads": 19950
           }
         }
       ]
@@ -17486,7 +17486,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-07",
-            "downloads": 2851
+            "downloads": 2862
           }
         }
       ]
@@ -17564,7 +17564,7 @@
             "status": "available",
             "currentVersion": "0.13.1",
             "firstPublishedIn": "2023-09",
-            "downloads": 5432356
+            "downloads": 5450037
           }
         }
       ]
@@ -18149,7 +18149,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-04",
-            "downloads": 4542
+            "downloads": 4547
           }
         }
       ]
@@ -18832,7 +18832,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-06",
-            "downloads": 53867
+            "downloads": 53914
           }
         }
       ]
@@ -18964,7 +18964,7 @@
             "status": "available",
             "currentVersion": "0.9.1",
             "firstPublishedIn": "2024-08",
-            "downloads": 107541
+            "downloads": 107657
           }
         }
       ]
@@ -19237,7 +19237,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 35759
+            "downloads": 35801
           }
         }
       ]
@@ -19321,7 +19321,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-05",
-            "downloads": 3700655
+            "downloads": 3712361
           }
         }
       ]
@@ -19598,7 +19598,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-10",
-            "downloads": 354
+            "downloads": 358
           }
         }
       ]
@@ -20045,7 +20045,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 8247
+            "downloads": 8264
           }
         }
       ]
@@ -20568,7 +20568,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-02",
-            "downloads": 220950
+            "downloads": 221606
           }
         }
       ]
@@ -20698,7 +20698,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 493097
+            "downloads": 494531
           }
         }
       ]
@@ -20782,7 +20782,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 63369
+            "downloads": 63556
           }
         }
       ]
@@ -20866,7 +20866,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 719776
+            "downloads": 721587
           }
         }
       ]
@@ -20946,7 +20946,7 @@
             "status": "available",
             "currentVersion": "0.10.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 766118
+            "downloads": 768105
           }
         }
       ]
@@ -21026,7 +21026,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 14680
+            "downloads": 14711
           }
         }
       ]
@@ -21111,7 +21111,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2023-11",
-            "downloads": 477204
+            "downloads": 478476
           }
         }
       ]
@@ -21394,7 +21394,7 @@
             "status": "available",
             "currentVersion": "0.9.0",
             "firstPublishedIn": "2024-04",
-            "downloads": 663927
+            "downloads": 665710
           }
         }
       ]
@@ -21558,9 +21558,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-dnszone",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.1",
+            "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 282299
+            "downloads": 283189
           }
         }
       ]
@@ -22165,7 +22165,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 65569
+            "downloads": 65624
           }
         }
       ]
@@ -22333,9 +22333,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-firewallpolicy",
           "registry": {
             "status": "available",
-            "currentVersion": "0.3.4",
+            "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-05",
-            "downloads": 1040682
+            "downloads": 1042996
           }
         }
       ]
@@ -22410,10 +22410,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.e081755",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-firewallpolicy/azurerm/0.3.4/submodules/rule_collection_groups",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-firewallpolicy/azurerm/0.4.0/submodules/rule_collection_groups",
           "registry": {
             "status": "available",
-            "currentVersion": "0.3.4",
+            "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-05",
             "downloads": null
           }
@@ -22495,7 +22495,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2024-10",
-            "downloads": 18932
+            "downloads": 18956
           }
         }
       ]
@@ -22606,7 +22606,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-03",
-            "downloads": 45568
+            "downloads": 45724
           }
         }
       ]
@@ -22689,7 +22689,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 818832
+            "downloads": 820182
           }
         }
       ]
@@ -22933,9 +22933,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-localnetworkgateway",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.0",
+            "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 4787
+            "downloads": 4809
           }
         }
       ]
@@ -23017,7 +23017,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2023-12",
-            "downloads": 1237762
+            "downloads": 1242742
           }
         }
       ]
@@ -23101,7 +23101,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 20250
+            "downloads": 20427
           }
         }
       ]
@@ -23175,7 +23175,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-01",
-            "downloads": 14958
+            "downloads": 15171
           }
         }
       ]
@@ -23812,7 +23812,7 @@
             "status": "available",
             "currentVersion": "0.7.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 4966514
+            "downloads": 4975731
           }
         }
       ]
@@ -23884,9 +23884,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-networksecurityperimeter",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-04",
-            "downloads": 6771
+            "downloads": 6819
           }
         }
       ]
@@ -23897,7 +23897,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Proposed",
+          "moduleStatus": "Available",
           "moduleName": "avm-res-network-networksecurityperimeter//modules/link_reference",
           "modulePath": "modules/link_reference",
           "repository": "Azure/terraform-azapi-avm-res-network-networksecurityperimeter",
@@ -23922,11 +23922,11 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.af5ae8b",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-networksecurityperimeter/submodules/link_reference",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-networksecurityperimeter/azapi/0.2.0/submodules/link_reference",
           "registry": {
-            "status": "not-published",
-            "currentVersion": null,
-            "firstPublishedIn": null,
+            "status": "available",
+            "currentVersion": "0.2.0",
+            "firstPublishedIn": "2026-11",
             "downloads": null
           }
         }
@@ -23938,7 +23938,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Proposed",
+          "moduleStatus": "Available",
           "moduleName": "avm-res-network-networksecurityperimeter//modules/link",
           "modulePath": "modules/link",
           "repository": "Azure/terraform-azapi-avm-res-network-networksecurityperimeter",
@@ -23963,11 +23963,11 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.21b064c",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-networksecurityperimeter/submodules/link",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-networksecurityperimeter/azapi/0.2.0/submodules/link",
           "registry": {
-            "status": "not-published",
-            "currentVersion": null,
-            "firstPublishedIn": null,
+            "status": "available",
+            "currentVersion": "0.2.0",
+            "firstPublishedIn": "2026-11",
             "downloads": null
           }
         }
@@ -24012,7 +24012,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Proposed",
+          "moduleStatus": "Available",
           "moduleName": "avm-res-network-networksecurityperimeter//modules/profile",
           "modulePath": "modules/profile",
           "repository": "Azure/terraform-azapi-avm-res-network-networksecurityperimeter",
@@ -24037,11 +24037,11 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.6dce31e",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-networksecurityperimeter/submodules/profile",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-networksecurityperimeter/azapi/0.2.0/submodules/profile",
           "registry": {
-            "status": "not-published",
-            "currentVersion": null,
-            "firstPublishedIn": null,
+            "status": "available",
+            "currentVersion": "0.2.0",
+            "firstPublishedIn": "2026-11",
             "downloads": null
           }
         }
@@ -24086,7 +24086,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Proposed",
+          "moduleStatus": "Available",
           "moduleName": "avm-res-network-networksecurityperimeter//modules/access_rule",
           "modulePath": "modules/access_rule",
           "repository": "Azure/terraform-azapi-avm-res-network-networksecurityperimeter",
@@ -24111,11 +24111,11 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.87c1406",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-networksecurityperimeter/submodules/access_rule",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-networksecurityperimeter/azapi/0.2.0/submodules/access_rule",
           "registry": {
-            "status": "not-published",
-            "currentVersion": null,
-            "firstPublishedIn": null,
+            "status": "available",
+            "currentVersion": "0.2.0",
+            "firstPublishedIn": "2026-11",
             "downloads": null
           }
         }
@@ -24127,7 +24127,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Proposed",
+          "moduleStatus": "Available",
           "moduleName": "avm-res-network-networksecurityperimeter//modules/resource_association",
           "modulePath": "modules/resource_association",
           "repository": "Azure/terraform-azapi-avm-res-network-networksecurityperimeter",
@@ -24152,11 +24152,11 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.14810af",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-networksecurityperimeter/submodules/resource_association",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-networksecurityperimeter/azapi/0.2.0/submodules/resource_association",
           "registry": {
-            "status": "not-published",
-            "currentVersion": null,
-            "firstPublishedIn": null,
+            "status": "available",
+            "currentVersion": "0.2.0",
+            "firstPublishedIn": "2026-11",
             "downloads": null
           }
         }
@@ -24237,7 +24237,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-07",
-            "downloads": 101872
+            "downloads": 102288
           }
         }
       ]
@@ -24446,7 +24446,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-03",
-            "downloads": 1695758
+            "downloads": 1701500
           }
         }
       ]
@@ -25246,7 +25246,7 @@
             "status": "available",
             "currentVersion": "0.3.1",
             "firstPublishedIn": "2024-09",
-            "downloads": 863950
+            "downloads": 866214
           }
         }
       ]
@@ -25489,7 +25489,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 1189351
+            "downloads": 1193341
           }
         }
       ]
@@ -25571,7 +25571,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 25966
+            "downloads": 26181
           }
         }
       ]
@@ -25655,7 +25655,7 @@
             "status": "available",
             "currentVersion": "0.7.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 1621948
+            "downloads": 1627204
           }
         }
       ]
@@ -25850,9 +25850,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-trafficmanagerprofile",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
-            "downloads": 14605
+            "downloads": 14630
           }
         }
       ]
@@ -25888,10 +25888,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.e9b429a",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-trafficmanagerprofile/azurerm/0.1.1/submodules/azure_endpoint",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-trafficmanagerprofile/azurerm/0.2.0/submodules/azure_endpoint",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
             "downloads": null
           }
@@ -25929,10 +25929,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.6630768",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-trafficmanagerprofile/azurerm/0.1.1/submodules/external_endpoint",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-trafficmanagerprofile/azurerm/0.2.0/submodules/external_endpoint",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
             "downloads": null
           }
@@ -25970,10 +25970,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.df79486",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-trafficmanagerprofile/azurerm/0.1.1/submodules/nested_endpoint",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-network-trafficmanagerprofile/azurerm/0.2.0/submodules/nested_endpoint",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.1",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
             "downloads": null
           }
@@ -26403,7 +26403,7 @@
             "status": "available",
             "currentVersion": "0.23.0",
             "firstPublishedIn": "2025-07",
-            "downloads": 8544502
+            "downloads": 8572709
           }
         }
       ]
@@ -27036,7 +27036,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 1649648
+            "downloads": 1655152
           }
         }
       ]
@@ -27525,9 +27525,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-portal-dashboard",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.0",
+            "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 11010
+            "downloads": 11045
           }
         }
       ]
@@ -27761,7 +27761,7 @@
             "status": "available",
             "currentVersion": "1.4.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 223486
+            "downloads": 224504
           }
         }
       ]
@@ -28448,7 +28448,7 @@
             "status": "available",
             "currentVersion": "0.0.3",
             "firstPublishedIn": "2025-10",
-            "downloads": 22216
+            "downloads": 22238
           }
         }
       ]
@@ -28569,7 +28569,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-01",
-            "downloads": 6545
+            "downloads": 6571
           }
         }
       ]
@@ -29053,9 +29053,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-resourcegraph-query",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 1211
+            "downloads": 1222
           }
         }
       ]
@@ -29217,7 +29217,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 3876415
+            "downloads": 3892569
           }
         }
       ]
@@ -29334,7 +29334,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 245101
+            "downloads": 245711
           }
         }
       ]
@@ -29574,7 +29574,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-06",
-            "downloads": 387602
+            "downloads": 389078
           }
         }
       ]
@@ -30201,7 +30201,7 @@
             "status": "available",
             "currentVersion": "1.1.0",
             "firstPublishedIn": "2026-06",
-            "downloads": 3019
+            "downloads": 3033
           }
         }
       ]
@@ -30484,7 +30484,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-10",
-            "downloads": 126
+            "downloads": 136
           }
         }
       ]
@@ -30660,9 +30660,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-sql-managedinstance",
           "registry": {
             "status": "available",
-            "currentVersion": "0.3.1",
+            "currentVersion": "0.3.2",
             "firstPublishedIn": "2026-02",
-            "downloads": 100034
+            "downloads": 100212
           }
         }
       ]
@@ -31055,9 +31055,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-sql-server",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.1",
+            "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 660435
+            "downloads": 663325
           }
         }
       ]
@@ -31175,10 +31175,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.0d47b49",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-sql-server/azurerm/0.2.1/submodules/database",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-sql-server/azurerm/0.3.0/submodules/database",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.1",
+            "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-09",
             "downloads": null
           }
@@ -31341,10 +31341,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.c87fe46",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-sql-server/azurerm/0.2.1/submodules/elasticpool",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-sql-server/azurerm/0.3.0/submodules/elasticpool",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.1",
+            "currentVersion": "0.3.0",
             "firstPublishedIn": "2024-09",
             "downloads": null
           }
@@ -31727,9 +31727,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-sqlvirtualmachine-sqlvirtualmachine",
           "registry": {
             "status": "available",
-            "currentVersion": "0.0.1",
+            "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-02",
-            "downloads": 31647
+            "downloads": 31837
           }
         }
       ]
@@ -31809,7 +31809,7 @@
             "status": "available",
             "currentVersion": "0.11.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 5630613
+            "downloads": 5649474
           }
         }
       ]
@@ -32965,7 +32965,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-05",
-            "downloads": 1807
+            "downloads": 1818
           }
         }
       ]
@@ -33297,7 +33297,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-05",
-            "downloads": 215
+            "downloads": 219
           }
         }
       ]
@@ -33432,7 +33432,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2025-11",
-            "downloads": 6069
+            "downloads": 6097
           }
         }
       ]
@@ -33521,7 +33521,7 @@
             "status": "available",
             "currentVersion": "2.1.0",
             "firstPublishedIn": "2024-06",
-            "downloads": 12796
+            "downloads": 12847
           }
         }
       ]
@@ -33781,7 +33781,7 @@
             "status": "available",
             "currentVersion": "2.1.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 622037
+            "downloads": 624841
           }
         }
       ]
@@ -33876,7 +33876,7 @@
             "status": "available",
             "currentVersion": "0.25.0",
             "firstPublishedIn": "2024-02",
-            "downloads": 853520
+            "downloads": 856802
           }
         },
         {
@@ -35074,7 +35074,7 @@
             "status": "available",
             "currentVersion": "0.6.2",
             "firstPublishedIn": "2024-02",
-            "downloads": 115097
+            "downloads": 115357
           }
         }
       ]
@@ -35290,7 +35290,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 4894
+            "downloads": 4916
           }
         }
       ]
@@ -35336,7 +35336,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-09",
-            "downloads": 3731
+            "downloads": 3741
           }
         }
       ]
@@ -35416,7 +35416,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-02",
-            "downloads": 157
+            "downloads": 161
           }
         }
       ]
@@ -35875,7 +35875,7 @@
             "status": "available",
             "currentVersion": "0.14.0",
             "firstPublishedIn": "2025-07",
-            "downloads": 254527
+            "downloads": 255198
           }
         }
       ]
@@ -36011,7 +36011,7 @@
             "status": "available",
             "currentVersion": "0.5.3",
             "firstPublishedIn": "2025-09",
-            "downloads": 8553
+            "downloads": 8570
           }
         }
       ]
@@ -36176,7 +36176,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 2177
+            "downloads": 2181
           }
         }
       ]
@@ -36217,7 +36217,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 1519
+            "downloads": 1524
           }
         }
       ]
@@ -36258,7 +36258,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2024-11",
-            "downloads": 1505
+            "downloads": 1509
           }
         }
       ]
@@ -36299,7 +36299,7 @@
             "status": "available",
             "currentVersion": "0.6.0",
             "firstPublishedIn": "2025-01",
-            "downloads": 14806
+            "downloads": 14832
           }
         }
       ]
@@ -36345,9 +36345,9 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-ptn-alz",
           "registry": {
             "status": "available",
-            "currentVersion": "0.22.0",
+            "currentVersion": "0.23.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 656160
+            "downloads": 657512
           }
         }
       ]
@@ -36393,7 +36393,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-07",
-            "downloads": 114
+            "downloads": 118
           }
         }
       ]
@@ -36439,7 +36439,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-07",
-            "downloads": 166
+            "downloads": 170
           }
         }
       ]
@@ -36522,7 +36522,7 @@
             "status": "available",
             "currentVersion": "0.18.2",
             "firstPublishedIn": "2025-10",
-            "downloads": 370365
+            "downloads": 371447
           }
         }
       ]
@@ -36714,7 +36714,7 @@
             "status": "available",
             "currentVersion": "0.18.2",
             "firstPublishedIn": "2025-03",
-            "downloads": 328360
+            "downloads": 329114
           }
         }
       ]
@@ -37327,7 +37327,7 @@
             "status": "available",
             "currentVersion": "0.10.0",
             "firstPublishedIn": "2023-12",
-            "downloads": 483057
+            "downloads": 484001
           }
         }
       ]
@@ -37615,7 +37615,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-03",
-            "downloads": 81
+            "downloads": 85
           }
         }
       ]
@@ -37766,7 +37766,7 @@
             {
               "handle": "bwateratmsft",
               "type": "user",
-              "displayName": "Brandon Waterloo [MSFT]"
+              "displayName": "Brandon Waterloo"
             }
           ],
           "telemetryIdPrefix": "46d3xbcp.ptn.4f5e5ce",
@@ -38035,7 +38035,7 @@
             "status": "available",
             "currentVersion": "0.2.2",
             "firstPublishedIn": "2024-09",
-            "downloads": 13647
+            "downloads": 13696
           }
         }
       ]
@@ -38320,7 +38320,7 @@
             "status": "available",
             "currentVersion": "0.5.0",
             "firstPublishedIn": "2024-07",
-            "downloads": 13664
+            "downloads": 13703
           }
         }
       ]
@@ -38396,7 +38396,7 @@
             "status": "available",
             "currentVersion": "0.3.2",
             "firstPublishedIn": "2024-05",
-            "downloads": 9500
+            "downloads": 9530
           }
         }
       ]
@@ -39060,7 +39060,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-02",
-            "downloads": 6385
+            "downloads": 6400
           }
         }
       ]
@@ -39101,7 +39101,7 @@
             "status": "available",
             "currentVersion": "3.1.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 4873
+            "downloads": 4885
           }
         }
       ]
@@ -39294,7 +39294,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-03",
-            "downloads": 98
+            "downloads": 102
           }
         }
       ]
@@ -39676,7 +39676,7 @@
             "status": "available",
             "currentVersion": "0.6.2",
             "firstPublishedIn": "2024-08",
-            "downloads": 29980
+            "downloads": 30101
           }
         }
       ]
@@ -39840,7 +39840,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-11",
-            "downloads": 8139
+            "downloads": 8149
           }
         }
       ]
@@ -39881,7 +39881,7 @@
             "status": "available",
             "currentVersion": "0.1.3",
             "firstPublishedIn": "2026-09",
-            "downloads": 84
+            "downloads": 88
           }
         }
       ]
@@ -40005,7 +40005,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 3794
+            "downloads": 3807
           }
         }
       ]
@@ -40089,7 +40089,7 @@
             "status": "available",
             "currentVersion": "1.1.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 5381
+            "downloads": 5390
           }
         }
       ]
@@ -40130,7 +40130,7 @@
             "status": "available",
             "currentVersion": "1.1.0",
             "firstPublishedIn": "2024-08",
-            "downloads": 5312
+            "downloads": 5324
           }
         }
       ]
@@ -40559,7 +40559,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "resource",
-          "moduleStatus": "Proposed",
+          "moduleStatus": "Available",
           "moduleName": "avm-res-dataprotection-resourceguard//modules/recovery_services_vault_association",
           "modulePath": "modules/recovery_services_vault_association",
           "repository": "Azure/terraform-azurerm-avm-res-dataprotection-resourceguard",
@@ -40584,11 +40584,11 @@
           ],
           "telemetryIdPrefix": null,
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-dataprotection-resourceguard/submodules/recovery_services_vault_association",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-dataprotection-resourceguard/azurerm/0.2.0/submodules/recovery_services_vault_association",
           "registry": {
-            "status": "not-published",
-            "currentVersion": null,
-            "firstPublishedIn": null,
+            "status": "available",
+            "currentVersion": "0.2.0",
+            "firstPublishedIn": "2026-11",
             "downloads": null
           }
         },
@@ -40851,7 +40851,7 @@
             "status": "available",
             "currentVersion": "0.10.1",
             "firstPublishedIn": "2025-01",
-            "downloads": 7586219
+            "downloads": 7647979
           }
         }
       ]
@@ -40979,7 +40979,7 @@
             "status": "available",
             "currentVersion": "0.3.4",
             "firstPublishedIn": "2025-11",
-            "downloads": 613985
+            "downloads": 618820
           }
         }
       ]
@@ -41842,7 +41842,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2025-04",
-            "downloads": 88740
+            "downloads": 89005
           }
         }
       ]
@@ -41883,7 +41883,7 @@
             "status": "available",
             "currentVersion": "0.3.0",
             "firstPublishedIn": "2026-09",
-            "downloads": 194190
+            "downloads": 199334
           }
         }
       ]
@@ -41926,7 +41926,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2025-03",
-            "downloads": 318078
+            "downloads": 319301
           }
         }
       ]
@@ -41967,7 +41967,7 @@
             "status": "available",
             "currentVersion": "0.1.5",
             "firstPublishedIn": "2024-06",
-            "downloads": 13710
+            "downloads": 13739
           }
         }
       ]
@@ -42041,7 +42041,7 @@
             "status": "available",
             "currentVersion": "0.13.2",
             "firstPublishedIn": "2024-09",
-            "downloads": 162656
+            "downloads": 162693
           }
         }
       ]
@@ -42121,7 +42121,7 @@
             "status": "available",
             "currentVersion": "0.23.3",
             "firstPublishedIn": "2024-06",
-            "downloads": 564695
+            "downloads": 566136
           }
         }
       ]
@@ -42202,7 +42202,7 @@
             "status": "available",
             "currentVersion": "0.14.1",
             "firstPublishedIn": "2023-09",
-            "downloads": 288270
+            "downloads": 288428
           }
         }
       ]
@@ -42571,7 +42571,7 @@
             "status": "available",
             "currentVersion": "0.2.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 1009
+            "downloads": 1013
           }
         }
       ]
@@ -42925,7 +42925,7 @@
             "status": "available",
             "currentVersion": "0.14.0",
             "firstPublishedIn": "2024-10",
-            "downloads": 4647732
+            "downloads": 4664598
           }
         }
       ]
@@ -42966,7 +42966,7 @@
             "status": "available",
             "currentVersion": "0.4.0",
             "firstPublishedIn": "2025-09",
-            "downloads": 858540
+            "downloads": 864851
           }
         }
       ]
@@ -43545,7 +43545,7 @@
             "status": "available",
             "currentVersion": "0.4.2",
             "firstPublishedIn": "2024-12",
-            "downloads": 56104
+            "downloads": 56180
           }
         }
       ]
@@ -43629,7 +43629,7 @@
             "status": "available",
             "currentVersion": "0.1.0",
             "firstPublishedIn": "2026-10",
-            "downloads": 68
+            "downloads": 72
           }
         }
       ]
@@ -43761,7 +43761,7 @@
             "status": "available",
             "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-10",
-            "downloads": 56
+            "downloads": 60
           }
         }
       ]
@@ -43979,7 +43979,7 @@
             "status": "available",
             "currentVersion": "0.0.3",
             "firstPublishedIn": "2026-05",
-            "downloads": 545
+            "downloads": 549
           }
         }
       ]
@@ -44014,7 +44014,7 @@
             "status": "available",
             "currentVersion": "0.10.3",
             "firstPublishedIn": "2024-02",
-            "downloads": 261627
+            "downloads": 261815
           }
         }
       ]
