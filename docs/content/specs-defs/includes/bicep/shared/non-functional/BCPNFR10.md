@@ -21,4 +21,6 @@ priority: 11100
 
 ## ID: BCPNFR10 - Category: Testing - Test Bicep File Naming
 
-Module owners **MUST** name their test `.bicep` files in the `/tests/e2e/<defaults/waf-aligned/max/etc.>` directories: `main.test.bicep` as the test framework (CI) relies upon this name.
+Module owners **MUST** name their test `.bicep` files in the `/tests/e2e/<scenario>/` directories: `main.test.bicep` as the test framework (CI) relies upon this name.
+
+Required scenario names are `defaults` for all module classes and `waf-aligned` for resource modules. Optional pattern or utility `waf-aligned` scenarios, and any additional scenarios, use the same file name convention.

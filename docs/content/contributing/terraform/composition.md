@@ -29,8 +29,8 @@ Below is the directory and file structure expected for each AVM Terraform reposi
   - `integration/` - (optional .tftest.hcl files for integration testing with Terraform test)
     - `setup.ps1` - (optional setup hook)
 - `modules/` - (for sub-modules only if used; each submodule root **MUST** be a direct `modules/<name>/` child)
-- `examples/` - (all examples must deploy successfully without requiring input and use AzAPI for supporting control-plane resources; AzureRM may appear only when exercising the module's documented unsupported data-plane exception - these are customer facing and run as end-to-end tests)
-  - `<at least one folder>` - (at least one example that uses the variable defaults minimum/required parameters/variables only)
+- `examples/` - (all examples must deploy successfully without interactive input and use AzAPI for supporting control-plane resources; AzureRM may appear only when exercising the module's documented unsupported data-plane exception - these are customer facing and run as end-to-end tests)
+  - `<at least one required folder>` - (at least one executable defaults example that uses required inputs and module defaults)
     - `pre.ps1` - (optional setup hook)
     - `post.ps1` - (optional cleanup hook)
     - `tflint-pre.ps1` - (optional setup hook for TFLint)
@@ -53,6 +53,18 @@ See [Lifecycle hooks]({{% siteparam base %}}/contributing/terraform/contribution
 For a new direct submodule, [initialize its local metadata with `avm init -ChildModule`]({{% siteparam base %}}/contributing/terraform/contribution-flow/#initialize-local-metadata-for-a-new-module), then add its Terraform source files yourself. The owner-only repository creation process already creates root metadata.
 
 Nested Terraform module and example roots are prohibited. `Avm.Authoring` convention validation enforces the one-layer `modules/*` and `examples/*` structure; see [TFRMNFR1]({{% siteparam base %}}/spec/TFRMNFR1).
+
+### Required examples
+
+Every Terraform module class requires a direct `examples/defaults/` example. Resource modules also require direct `examples/waf-aligned/`. For pattern and utility modules, `examples/waf-aligned/` is optional.
+
+The exact normative baseline names are `examples/defaults/` and `examples/waf-aligned/`. `examples/default/` is a legacy singular spelling retained only for migration compatibility in existing tooling and repositories. New modules must use `examples/defaults/`.
+
+Both required scenarios must deploy successfully without interactive input and must clean up resources and dependencies. Required examples must not contain `.e2eignore`. Optional examples may contain it with a documented reason.
+
+Examples must exercise required and applicable conditional module inputs while relying on module defaults for other inputs. Test-harness resources, deployment scope, and telemetry controls such as `enable_telemetry` and `location` must be explicit and separate from the module scenario. Terraform submodules have no separate required example trees; parent examples must cover submodule behavior.
+
+WAF folder names do not prove semantic WAF alignment. See [SFR2]({{% siteparam base %}}/spec/SFR2) and [SNFR2]({{% siteparam base %}}/spec/SNFR2).
 
 ## Code Styling
 

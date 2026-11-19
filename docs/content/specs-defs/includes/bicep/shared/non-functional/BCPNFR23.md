@@ -36,6 +36,8 @@ Each Bicep AVM module that lives within the [`Azure/bicep-registry-modules`](htt
 - `/README.md` (auto generated AVM Module documentation)
 - `/CHANGELOG.md` (manually maintained changelog file with one entry per published version)
 
+Every module class requires an executable `defaults` test. Resource modules also require `waf-aligned`; pattern and utility modules may add `waf-aligned`, but it is optional. Each required test must run without user input and must not be ignored or replaced by a placeholder.
+
 ### Directory and File Structure Example
 
 ```txt

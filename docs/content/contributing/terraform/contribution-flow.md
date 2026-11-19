@@ -304,7 +304,7 @@ This tier requires real Azure credentials. Azure CLI authentication is sufficien
 avm test e2e --example <name>
 ```
 
-An example containing `.e2eignore` is excluded locally. In CI, existing required `default` and `waf-aligned` examples cannot be ignored to bypass checks. Apply failures caused by transient region, SKU capacity, or quota errors are destroyed and retried up to two times by default; use `-MaxRetry 0` to disable retries.
+An example containing `.e2eignore` is excluded locally. Existing required examples cannot be ignored to bypass checks. The required set is `examples/defaults/` for every module class and `examples/waf-aligned/` for resource modules; `examples/waf-aligned/` is optional for pattern and utility modules. The legacy `examples/default/` spelling remains migration-compatible, but new modules must use `examples/defaults/`. Apply failures caused by transient region, SKU capacity, or quota errors are destroyed and retried up to two times by default; use `-MaxRetry 0` to disable retries.
 
 Local e2e testing is especially useful for external contributors, since only module owners can approve credentialed CI e2e runs.
 
@@ -360,10 +360,14 @@ The centrally managed workflow keeps validation and test tiers in separate jobs 
 
 An authorized maintainer must apply at least one of these labels to a same-repository PR:
 
-- `PR: Run Required E2E Tests` runs each present `default` and `defaults` baseline example, plus `waf-aligned`; the baseline warning appears only when neither spelling exists.
-- `PR: Run All E2E Tests` runs the required examples and all optional examples.
+- `PR: Run Required E2E Tests` runs the applicable required examples for the module class. Resource modules require both `defaults` and `waf-aligned`; pattern and utility modules require `defaults` only. The legacy `default` spelling is accepted only for migration compatibility.
+- `PR: Run All E2E Tests` runs the applicable required examples and all optional examples.
 
-Each e2e job deploys the example, checks idempotency with `terraform plan`, and destroys the resources. Optional examples containing `.e2eignore` are excluded; existing required examples cannot be ignored to bypass checks. Missing required examples produce a warning. Every selected example must pass the single `Report check status` merge gate. Manual dispatch is a separate operator path; merge queues are not supported.
+Each e2e job deploys the example, checks idempotency with `terraform plan`, and destroys the resources. Optional examples containing `.e2eignore` are excluded; existing required examples cannot be ignored to bypass checks. Missing required examples produce a warning, and that warning is distinct from the existing e2e merge gate.
+
+The current workflow executes present `default`/`defaults` baseline examples and `waf-aligned`. Updated class-aware behavior that makes WAF optional for pattern and utility modules depends on the Tools workflow rollout. Until it is available, do not infer that a workflow label or warning proves this policy is already implemented.
+
+Every selected example must pass the single `Report check status` merge gate. Manual dispatch is a separate operator path; merge queues are not supported.
 
 ### If tests fail
 
