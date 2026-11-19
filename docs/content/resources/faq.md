@@ -159,6 +159,8 @@ For security recommendations we will also utilize the following frameworks and r
 
 Not quite, but they'll certainly be on the right path. By default, modules will only have to set defaults for input parameters/variables to values that align to high impact/priority recommendations, as detailed above.
 
+For examples, resource modules require executable `defaults` and `waf-aligned` scenarios, while pattern and utility modules require only `defaults`. A WAF-named scenario is not proof of semantic WAF compliance. These class requirements apply during the pre-v1 lifecycle.
+
 To understand this further you first must understand that some of the "WAF Aligned" recommendations, from the sources above are more than just setting a string or boolean value to something particular to meet the recommendation; some will require additional resources to be created and exist and then linked together to help satisfy the recommendation.
 
 In these scenarios the AVM modules will not enforce the additional resources to be deployed and configured, but will provide sufficient flexibility via their input parameters/variables to be able to support the configuration, if so desired by the module consumer.

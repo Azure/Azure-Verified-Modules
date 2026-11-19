@@ -90,6 +90,10 @@ The AVM framework continues to evolve, and several elements, such as Continuous 
 
 All module **MUST** be published as a `0.x.y` minor version (e.g., `0.1.0`, `0.1.1`, `0.2.0`, etc.) until the AVM team provides guidance that publishing v1.0.0 is allowed.
 
+The example and test policies remain applicable while modules are pre-v1. Resource modules require executable `defaults` and `waf-aligned` scenarios; pattern and utility modules require executable `defaults` only. Required scenarios must not be placeholders or ignored. A folder named `waf-aligned` does not prove semantic WAF compliance.
+
+The Terraform composition check is advisory before v1 and may report warnings rather than block publishing or merging. It does not change the existing normative requirements or add a release gate; any enforcement behavior depends on the Tools rollout.
+
 However, it is important to note that this **DOES NOT** mean that the modules cannot be consumed and utilized. They **CAN** be leveraged in all types of environments (dev, test, prod etc.). Consumers can treat them just like any other IaC module and raise issues or feature requests against them as they learn from the usage of the module. Consumers should also read the release notes for each version, if considering updating to a more recent version of a module to see if there are any considerations or breaking changes etc.
 
 {{% /notice %}}

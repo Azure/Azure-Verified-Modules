@@ -28,6 +28,22 @@ Each test **MUST** run and complete without user inputs successfully, for automa
 
 Each test **MUST** also destroy/clean-up its resources and test dependencies following a run.
 
+### Required examples by module class
+
+| Module class | Bicep | Terraform |
+| --- | --- | --- |
+| Resource | Execute `defaults` and `waf-aligned` in `/tests/e2e/` | Execute `examples/defaults` and `examples/waf-aligned` |
+| Pattern | Execute `defaults` in `/tests/e2e/`; `waf-aligned` is optional | Execute `examples/defaults`; `examples/waf-aligned` is optional |
+| Utility | Execute `defaults` in `/tests/e2e/`; `waf-aligned` is optional | Execute `examples/defaults`; `examples/waf-aligned` is optional |
+
+Required examples must contain a real executable scenario. They must not be placeholders, documentation-only scaffolds, or ignored with `.e2eignore`.
+
+The defaults scenario relies on required and applicable conditional module inputs plus module defaults. It should not supply optional module inputs merely to change the scenario. Test-harness prerequisites, deployment scopes, dependency resources, and telemetry controls must be separate and explicit. Required location or telemetry inputs may be supplied by the harness, but must not be presented as evidence of a WAF-aligned module setting.
+
+For Terraform, submodules have no separate required example directory. Exercise submodule behavior through parent-module examples under direct `examples/<name>/` roots.
+
+The name `waf-aligned` is naming compatibility, not proof of semantic compliance. A resource module must implement the applicable WAF recommendations; optional pattern or utility WAF examples must not be inferred to satisfy such a claim.
+
 {{% notice style="tip" %}}
 
 To see a directory and file structure for a module, see the language specific contribution guide.
@@ -122,13 +138,15 @@ The test is skipped, as only one instance of this service can be deployed to a s
 ```
 
 {{% notice style="note" %}}
-For resource modules, the 'defaults' and 'waf-aligned' tests can't be skipped.
+Required examples cannot be skipped. This is `defaults` for every module class and, for resource modules, `waf-aligned` in addition. Optional WAF or additional examples may be skipped under the language-specific rules below.
 {{% /notice %}}
 
   {{% /tab %}}
   {{% tab title="Terraform" %}}
 
 The deployment of a test can be skipped by adding a `.e2eignore` file into a test folder (e.g. /examples/\<testname\>).
+
+Required examples cannot contain `.e2eignore`. Optional examples may be skipped with a reason in the marker file.
 
   {{% /tab %}}
 {{% /tabs %}}

@@ -5,7 +5,6 @@ url: /spec/BCPRMNFR1
 type: default
 tags: [
   Class-Resource, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
-  Class-Utility, # MULTIPLE VALUES: this can be "Class-Resource" AND/OR "Class-Pattern" AND/OR "Class-Utility"
   Type-NonFunctional, # SINGLE VALUE: this can be "Type-Functional" OR "Type-NonFunctional"
   Category-Testing, # SINGLE VALUE: this can be "Category-Testing" OR "Category-Telemetry" OR "Category-Contribution/Support" OR "Category-Documentation" OR "Category-CodeStyle" OR "Category-Naming/Composition" OR "Category-Inputs/Outputs" OR "Category-Release/Publishing"
   Language-Bicep, # MULTIPLE VALUES: this can be "Language-Bicep" AND/OR "Language-Terraform"
@@ -20,7 +19,11 @@ priority: 13010
 
 ## ID: BCPRMNFR1 - Category: Testing - Expected Test Directories
 
-Module owners **MUST** create the `defaults`, `waf-aligned` folders within their `/tests/e2e/` directory in their resource module source code and **SHOULD** create a `max` folder also. Module owners **CAN** create additional folders as required. Each folder will be used as described for various test cases.
+Resource module owners **MUST** create executable `defaults` and `waf-aligned` folders within `/tests/e2e/` and **SHOULD** create a `max` folder. Module owners **CAN** create additional folders as required.
+
+Pattern and utility modules require only the defaults test case; they may add `waf-aligned`, but it is optional. Shared test applicability and skip rules are defined in [SNFR2]({{% siteparam base %}}/spec/SNFR2).
+
+Each test instance must run through the normal test command without user input. Test-harness resources and inputs, such as an existing test scope or prerequisite resources, must be separated from module-specific scenario inputs. Telemetry controls must be explicit test inputs and must not be used to make a defaults or WAF scenario appear different from a normal module deployment.
 
 {{% notice style="note" %}}
 
@@ -35,11 +38,9 @@ If a module can deploy varying styles of the same resource, e.g., VMs can be Lin
 
 ### Defaults tests (**MUST**)
 
-The `defaults` folder contains a test instance that deploys the module with the minimum set of required parameters.
+The `defaults` folder contains an executable test instance that deploys the module with the minimum set of module inputs.
 
-This includes input parameters of type `Required` plus input parameters of type `Conditional` marked as required for WAF compliance.
-
-This instance has heavy reliance on the default values for other input parameters. Parameters of type `Optional` **SHOULD NOT** be used.
+This includes input parameters of type `Required` plus any `Conditional` inputs that are required for the module to deploy. This instance relies on module defaults for all other inputs; parameters of type `Optional` **SHOULD NOT** be supplied unless needed to represent the test harness or separate deployment prerequisite.
 
 ### WAF aligned tests (**MUST**)
 
@@ -48,6 +49,8 @@ The `waf-aligned` folder contains a test instance that deploys the module in ali
 This includes input parameters of type `Required`, parameters of type `Conditional` marked as required for WAF compliance, and parameters of type `Optional` useful for WAF compliance.
 
 Parameters and dependencies which are not needed for WAF compliance, **SHOULD NOT** be included.
+
+A folder named `waf-aligned` does not by itself prove semantic WAF compliance. The scenario must actually set or arrange the applicable high-priority recommendations identified by [SFR2]({{% siteparam base %}}/spec/SFR2).
 
 ### Max tests (**SHOULD**)
 

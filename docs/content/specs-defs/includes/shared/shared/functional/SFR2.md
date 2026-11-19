@@ -33,6 +33,12 @@ They **SHOULD NOT** align to these recommendations when it requires an external 
 
 Alignment **SHOULD** prioritize best-practices and security over cost optimization, but **MUST** allow for these to be overridden by a module consumer easily, if desired.
 
+### Module class applicability
+
+Resource modules require executable `defaults` and `waf-aligned` examples. Pattern and utility modules require only a `defaults` example; a WAF-aligned example is optional for these classes.
+
+The SFR2 default-setting requirement and the example-folder naming convention are separate. A folder or scenario named `waf-aligned` does not prove that all applicable WAF recommendations have been implemented or that the scenario is semantically compliant. Module owners must document and implement the applicable recommendations; owners must not claim complete WAF compliance solely from a folder name.
+
 {{% notice style="tip" %}}
 
 Read the FAQ of [What does AVM mean by "WAF Aligned"?]({{% siteparam base %}}/faq/#what-does-avm-mean-by-waf-aligned) for more detailed information and examples.
