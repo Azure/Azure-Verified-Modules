@@ -24,7 +24,7 @@ var formattedUserAssignedIdentities = reduce(
   (cur, next) => union(cur, next)
 ) // Converts the flat array to an object like { '${id1}': {}, '${id2}': {} }
 
-var identity = !empty(managedIdentities) || !empty(formattedUserAssignedIdentities) 
+var identity = !empty(managedIdentities) || !empty(formattedUserAssignedIdentities)
   ? {
       type: (managedIdentities.?systemAssigned ?? false)
         ? (!empty(formattedUserAssignedIdentities) ? 'SystemAssigned, UserAssigned' : 'SystemAssigned')
@@ -32,7 +32,7 @@ var identity = !empty(managedIdentities) || !empty(formattedUserAssignedIdentiti
       userAssignedIdentities: !empty(formattedUserAssignedIdentities) ? formattedUserAssignedIdentities : null
     }
   : null
-  
+
 var isHSMManagedCMK = (split(customerManagedKey.?keyVaultResourceId ?? '', '/')[?7] ?? '') =~ 'managedHSMs'
 
 var hsmVaultUri = 'https://${last(split(customerManagedKey.?keyVaultResourceId ?? '', '/'))}${replace(environment().suffixes.keyvaultDns, '.vault.', '.managedhsm.')}/'
