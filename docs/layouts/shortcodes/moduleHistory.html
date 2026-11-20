@@ -84,7 +84,7 @@
     </td>
     <td> {{/* availability badge and versions  */}}
       {{- if and (or (eq $item.ModuleStatus "Available") (eq $item.ModuleStatus "Orphaned")) (ne $item.PublicRegistryReference "n/a") -}}
-        <a href="https://mcr.microsoft.com/v2/bicep/{{ $item.ModuleName }}/tags/list">
+        <a href="https://mcr.microsoft.com/en-us/artifact/mar/bicep/{{ $item.ModuleName }}/">
           <image src="https://img.shields.io/badge/{{ emojify $trimmedModuleStatus }}-{{ $item.CurrentVersion }}-blue"/>
         </a>
       {{- else -}}
