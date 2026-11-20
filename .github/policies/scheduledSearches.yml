@@ -6,7 +6,7 @@ disabled: false
 
 configuration:
   resourceManagementConfiguration:
-    scheduledSearches:
+    scheduledSearches: []
       # - description: "ITA04 - Label issues and PRs that have been marked as requiring author feedback but have not had any activity for 4 days."
       #   frequencies:
       #     - hourly:
