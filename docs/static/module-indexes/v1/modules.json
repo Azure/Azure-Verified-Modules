@@ -18922,7 +18922,7 @@
           "publicRegistryReference": "br/public:avm/res/machine-learning-services/workspace:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.14.2",
+            "currentVersion": "0.15.0",
             "firstPublishedIn": "2024-02",
             "downloads": null
           }
@@ -19011,7 +19011,7 @@
           "publicRegistryReference": "br/public:avm/res/machine-learning-services/workspace/compute:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -19061,7 +19061,7 @@
           "publicRegistryReference": "br/public:avm/res/machine-learning-services/workspace/connection:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.2.0",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
@@ -19111,7 +19111,7 @@
           "publicRegistryReference": "br/public:avm/res/machine-learning-services/workspace/datastore:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.1.0",
+            "currentVersion": "0.1.1",
             "firstPublishedIn": "2026-05",
             "downloads": null
           }
