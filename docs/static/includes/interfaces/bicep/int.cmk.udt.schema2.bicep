@@ -24,7 +24,7 @@ var formattedUserAssignedIdentities = reduce(
   (cur, next) => union(cur, next)
 ) // Converts the flat array to an object like { '${id1}': {}, '${id2}': {} }
 
-var identity = !empty(managedIdentities) || !empty(formattedUserAssignedIdentities) 
+var identity = !empty(managedIdentities) || !empty(formattedUserAssignedIdentities)
   ? {
       type: (managedIdentities.?systemAssigned ?? false)
         ? (!empty(formattedUserAssignedIdentities) ? 'SystemAssigned, UserAssigned' : 'SystemAssigned')
@@ -32,8 +32,10 @@ var identity = !empty(managedIdentities) || !empty(formattedUserAssignedIdentiti
       userAssignedIdentities: !empty(formattedUserAssignedIdentities) ? formattedUserAssignedIdentities : null
     }
   : null
-  
-var isHSMManagedCMK = split(customerManagedKey.?keyVaultResourceId ?? '', '/')[?7] == 'managedHSMs'
+
+var isHSMManagedCMK = (split(customerManagedKey.?keyVaultResourceId ?? '', '/')[?7] ?? '') =~ 'managedHSMs'
+
+var hsmVaultUri = 'https://${last(split(customerManagedKey.?keyVaultResourceId ?? '', '/'))}${replace(environment().suffixes.keyvaultDns, '.vault.', '.managedhsm.')}/'
 
 // ============= //
 //   Resources   //
@@ -69,7 +71,7 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
           keyVaultProperties: {
             keyVaultUri: !isHSMManagedCMK
                 ? cMKKeyVault!.properties.vaultUri
-                : 'https://${last(split((customerManagedKey!.keyVaultResourceId), '/'))}.managedhsm.azure.net/'
+                : hsmVaultUri
             keyName: customerManagedKey!.keyName
             keyVersion: !empty(customerManagedKey!.?keyVersion)
                 ? customerManagedKey!.keyVersion!
@@ -81,11 +83,11 @@ resource >singularMainResourceType< '>providerNamespace</>resourceType<@>apiVers
             keyIdentifier: !empty(customerManagedKey!.?keyVersion)
               ? (!isHSMManagedCMK
                 ? '${cMKKeyVault::cMKKey!.properties.keyUri}/${customerManagedKey!.keyVersion!}'
-                : 'https://${last(split((customerManagedKey!.keyVaultResourceId), '/'))}.managedhsm.azure.net/keys/${customerManagedKey!.keyName}/${customerManagedKey!.keyVersion!}')
+                : '${hsmVaultUri}keys/${customerManagedKey!.keyName}/${customerManagedKey!.keyVersion!}')
               : (customerManagedKey!.?autoRotationEnabled ?? true)
                 ? (!isHSMManagedCMK
                   ? cMKKeyVault::cMKKey!.properties.keyUri
-                  : 'https://${last(split((customerManagedKey!.keyVaultResourceId), '/'))}.managedhsm.azure.net/keys/${customerManagedKey!.keyName}')
+                  : '${hsmVaultUri}keys/${customerManagedKey!.keyName}')
                 : (!isHSMManagedCMK
                   ? cMKKeyVault::cMKKey!.properties.keyUriWithVersion
                   : fail('Managed HSM CMK encryption requires either specifying the \'keyVersion\' or omitting the \'autoRotationEnabled\' property. Setting \'autoRotationEnabled\' to false without a \'keyVersion\' is not allowed.'))
