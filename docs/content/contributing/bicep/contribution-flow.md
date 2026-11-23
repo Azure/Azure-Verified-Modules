@@ -161,7 +161,7 @@ Run the AVM commands in steps 4–5 from the module directory. AVM infers the ec
 
 ### Update generated files after editing
 
-Before regenerating an existing README with hand-written Notes, [export its Notes]({{% siteparam base %}}/contributing/bicep/advanced/#generated-readmes-and-notes) if it has no `README.notes.md` sidecar. Do the same for each affected child README; the generator does not copy Notes from existing READMEs.
+Before regenerating an existing README with hand-written Notes, [copy its Notes into a `README.notes.md` sidecar]({{% siteparam base %}}/contributing/bicep/advanced/#generated-readmes-and-notes) if it has no sidecar. Do the same for each affected child README; the generator does not copy Notes from existing READMEs.
 
 ```powershell
 avm pre-commit

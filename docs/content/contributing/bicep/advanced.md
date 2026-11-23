@@ -135,14 +135,13 @@ From the module directory, regenerate only the README from Bicep source and E2E 
 avm docs
 ```
 
-`avm docs` does not scaffold source files or compile `main.json`; use `avm pre-commit` for those tasks. For an existing hand-written `## Notes` section without a `README.notes.md` sidecar, extract the Notes from each affected module before regenerating:
+`avm docs` does not scaffold source files or compile `main.json`; use `avm pre-commit` for those tasks. If an existing README has a hand-written `## Notes` section without a `README.notes.md` sidecar, copy the Notes into that sidecar before regenerating. Repeat for each affected child README; the generator does not copy Notes from existing READMEs.
 
 ```powershell
-avm docs export-notes
 avm pre-commit
 ```
 
-Run `avm docs export-notes` separately from each child module directory with authored Notes. Commit the sidecars alongside regenerated READMEs. The generator does not copy Notes from existing READMEs; keep authored Notes in the sidecar and their images in the module's `src` directory. Edit source descriptions and parameter decorators rather than generated README sections.
+Commit the sidecars alongside regenerated READMEs and keep their images in the module's `src` directory. Edit source descriptions and parameter decorators rather than generated README sections.
 
 <span id="1-owner-activities-and-responsibilities"></span>
 
