@@ -207,8 +207,10 @@ To run deployment tests locally, sign in to Azure PowerShell and Azure CLI with 
 
 The runner appends a unique run ID to the resource group prefix to isolate each test's resources and cleanup scope. The default prefix is `avmtest`; set `-ResourceGroupPrefix` only when you need a custom prefix.
 
+Resource locations are selected automatically from eligible regions. The deployment metadata location is also selected automatically and remains fixed across regional retries; set `-Location` only to override it.
+
 ```powershell
-avm test e2e -Location '<location>' -Recurse
+avm test e2e -Recurse
 ```
 
 Deployment tests can create, update, and remove Azure resources, incur costs, and register required providers or features. Additional inputs depend on the test and deployment scope; see the [e2e command reference](https://github.com/Azure/azure-verified-modules-tools/blob/main/docs/reference/Invoke-AvmTestE2e.md).
