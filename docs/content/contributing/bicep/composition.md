@@ -28,7 +28,7 @@ $modulePath = 'avm/res/compute/<approved-module>'
 avm init -Ecosystem bicep -ModuleType resource -Path $modulePath
 ```
 
-Once you have implemented the source and tests, run `avm pre-commit -Ecosystem bicep -Path $modulePath` to build `main.json` and generate the README. See [initializing and updating module files]({{% siteparam base %}}/contributing/bicep/contribution-flow/) for the full local workflow. To register an approved proposal **without** creating `main.bicep`, follow the [metadata-only proposal guide]({{% siteparam base %}}/contributing/module-metadata/#create-only-metadata-for-an-approved-bicep-proposal) instead.
+Once you have implemented the source and tests, run `avm pre-commit` from the module directory to build `main.json` and generate the README. See [initializing and updating module files]({{% siteparam base %}}/contributing/bicep/contribution-flow/) for the full local workflow. To register an approved proposal **without** creating `main.bicep`, follow the [metadata-only proposal guide]({{% siteparam base %}}/contributing/module-metadata/#create-only-metadata-for-an-approved-bicep-proposal) instead.
 
 ## Code Styling
 

@@ -129,24 +129,20 @@ The helper never deletes entries and sends version-pinned values through standar
 
 ## Generated READMEs and Notes
 
-To regenerate only the README from Bicep source and E2E examples, run:
+From the module directory, regenerate only the README from Bicep source and E2E examples:
 
 ```powershell
-avm docs `
-  -Ecosystem bicep `
-  -Path $modulePath
+avm docs
 ```
 
-`avm docs` does not scaffold source files or compile `main.json`; use `avm pre-commit` for those tasks. For an existing hand-written `## Notes` section without a `README.notes.md` sidecar, extract the Notes before regenerating:
+`avm docs` does not scaffold source files or compile `main.json`; use `avm pre-commit` for those tasks. For an existing hand-written `## Notes` section without a `README.notes.md` sidecar, extract the Notes from each affected module before regenerating:
 
 ```powershell
-avm docs export-notes -Path $modulePath
-avm pre-commit `
-  -Ecosystem bicep `
-  -Path $modulePath
+avm docs export-notes
+avm pre-commit
 ```
 
-Run `avm docs export-notes` separately for each child README with authored Notes, using that child's path. Commit the sidecars alongside regenerated READMEs. The generator does not copy Notes from existing READMEs; keep authored Notes in the sidecar and their images in the module's `src` directory. Edit source descriptions and parameter decorators rather than generated README sections.
+Run `avm docs export-notes` separately from each child module directory with authored Notes. Commit the sidecars alongside regenerated READMEs. The generator does not copy Notes from existing READMEs; keep authored Notes in the sidecar and their images in the module's `src` directory. Edit source descriptions and parameter decorators rather than generated README sections.
 
 <span id="1-owner-activities-and-responsibilities"></span>
 

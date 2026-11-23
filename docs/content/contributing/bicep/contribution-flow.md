@@ -157,17 +157,14 @@ Children inherit root ownership; see the [metadata rules]({{% siteparam base %}}
 
 ## 4. Run avm pre-commit
 
+Run the AVM commands in steps 4–5 from the module directory. AVM infers the ecosystem and module path from the current location; use explicit targeting options only to work on a different module.
+
 ### Update generated files after editing
 
 Before regenerating an existing README with hand-written Notes, [export its Notes]({{% siteparam base %}}/contributing/bicep/advanced/#generated-readmes-and-notes) if it has no `README.notes.md` sidecar. Do the same for each affected child README; the generator does not copy Notes from existing READMEs.
 
-From the repository root, set the module path and run:
-
 ```powershell
-$modulePath = 'avm/res/<provider>/<module>'
-avm pre-commit `
-  -Ecosystem bicep `
-  -Path $modulePath
+avm pre-commit
 ```
 
 This validates metadata, formats and checks Bicep, compiles `main.json`, and generates `README.md` for the module and its children. Review and commit the changes, and rerun after subsequent edits. Do not run it on a metadata-only proposal before its source exists. See [Advanced Topics & FAQ]({{% siteparam base %}}/contributing/bicep/advanced/#generated-readmes-and-notes) for `avm docs` and existing Notes sections.
@@ -179,9 +176,7 @@ This validates metadata, formats and checks Bicep, compiles `main.json`, and gen
 After committing generated changes, run the PR checks with a clean working tree:
 
 ```powershell
-avm pr-check `
-  -Ecosystem bicep `
-  -Path $modulePath
+avm pr-check
 ```
 
 `avm pr-check` validates the module and checks generated-file drift; it does not replace the shared PR checks or run deployment tests.
@@ -193,53 +188,23 @@ The following test tiers are optional local checks and run separately from `avm 
 Run authored Pester unit tests, including child modules:
 
 ```powershell
-avm test unit `
-  -Ecosystem bicep `
-  -Path $modulePath `
-  -Recurse
+avm test unit -Recurse
 ```
 
 A missing unit suite is reported as skipped, not passed.
-
-### Integration testing
-
-The optional integration tier uses Azure CLI to validate and preview deployments without deploying resources. Use an authorized test subscription and, for resource-group-scope tests, an existing test resource group:
-
-```powershell
-avm test integration `
-  -Ecosystem bicep `
-  -Path $modulePath `
-  -SubscriptionId '<test-subscription-id>' `
-  -ResourceGroupName '<test-resource-group>' `
-  -Location '<location>' `
-  -Recurse
-```
-
-See the [integration command reference](https://github.com/Azure/azure-verified-modules-tools/blob/main/docs/reference/Invoke-AvmTestIntegration.md) for other deployment scopes and inputs.
 
 ### Local e2e testing
 
 To list available deployment tests without Azure access:
 
 ```powershell
-avm test e2e `
-  -Ecosystem bicep `
-  -Path $modulePath `
-  -Recurse `
-  -List
+avm test e2e -Recurse -List
 ```
 
-To run deployment tests locally, sign in to Azure PowerShell and Azure CLI with the same account, tenant, cloud, and selected test subscription. Use an explicitly authorized test subscription:
+To run deployment tests locally, sign in to Azure PowerShell and Azure CLI with the same account, tenant, cloud, and subscription. The command uses Azure CLI to deploy and validate Bicep templates and checks that its identity matches the Azure PowerShell context. The subscription and tenant default to the active Azure PowerShell context; pass `-SubscriptionId` and `-TenantId` only when selecting a different target.
 
 ```powershell
-avm test e2e `
-  -Ecosystem bicep `
-  -Path $modulePath `
-  -SubscriptionId '<test-subscription-id>' `
-  -TenantId '<test-tenant-id>' `
-  -Location '<location>' `
-  -ResourceGroupPrefix 'avmtest' `
-  -Recurse
+avm test e2e -Location '<location>' -ResourceGroupPrefix 'avmtest' -Recurse
 ```
 
 Deployment tests can create, update, and remove Azure resources, incur costs, and register required providers or features. Additional inputs depend on the test and deployment scope; see the [e2e command reference](https://github.com/Azure/azure-verified-modules-tools/blob/main/docs/reference/Invoke-AvmTestE2e.md).

@@ -201,8 +201,8 @@ Please follow the steps below:
 
 - Run [`avm pre-commit`]({{% siteparam base %}}/contributing/bicep/contribution-flow/#update-generated-files-after-editing) on the top-level parent module to process the entire module family:
   ```powershell
-  $topLevelModulePath = 'avm/res/storage/storage-account'
-  avm pre-commit -Ecosystem bicep -Path $topLevelModulePath
+  cd avm/res/storage/storage-account
+  avm pre-commit
   ```
 
 - Raise a PR and verify the shared checks. An authorized maintainer must apply an [E2E label]({{% siteparam base %}}/contributing/bicep/contribution-flow/#7-approve-and-monitor-ci-tests) to run deployment tests. For an external fork PR, an authorized FTE must perform the [release-branch handoff]({{% siteparam base %}}/contributing/bicep/contribution-flow/#running-e2e-for-external-contributions).
