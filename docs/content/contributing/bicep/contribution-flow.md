@@ -161,13 +161,15 @@ Run the AVM commands in steps 4–5 from the module directory. AVM infers the ec
 
 ### Update generated files after editing
 
-Before regenerating an existing README with hand-written Notes, [copy its Notes into a `README.notes.md` sidecar]({{% siteparam base %}}/contributing/bicep/advanced/#generated-readmes-and-notes) if it has no sidecar. Do the same for each affected child README; the generator does not copy Notes from existing READMEs.
+#### Add custom Notes to generated READMEs
+
+Create a `README.notes.md` file in the module directory for custom Notes. Put only the note text in the sidecar, without a heading; the generator adds the heading. For child modules, create a separate sidecar in each child module directory. Commit each sidecar with the module changes and keep any referenced images in the module's `src` directory.
 
 ```powershell
 avm pre-commit
 ```
 
-This validates metadata, formats and checks Bicep, compiles `main.json`, and generates `README.md` for the module and its children. Review and commit the changes, and rerun after subsequent edits. Do not run it on a metadata-only proposal before its source exists. See [Advanced Topics & FAQ]({{% siteparam base %}}/contributing/bicep/advanced/#generated-readmes-and-notes) for `avm docs` and existing Notes sections.
+This validates metadata, formats and checks Bicep, compiles `main.json`, and generates `README.md` for the module and its children. Review and commit the changes, and rerun after subsequent edits. Do not run it on a metadata-only proposal before its source exists.
 
 <span id="5-run-checks-and-tests-locally"></span>
 
