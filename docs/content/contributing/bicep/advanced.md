@@ -127,27 +127,6 @@ Review the preview and obtain explicit operator approval before adding `-Apply` 
 
 The helper never deletes entries and sends version-pinned values through standard input, not command arguments or files. Complete the workflow confirmation above before removing `CI_KEY_VAULT_NAME`.
 
-## Generated READMEs and Notes
-
-To regenerate only the README from Bicep source and E2E examples, run:
-
-```powershell
-avm docs `
-  -Ecosystem bicep `
-  -Path $modulePath
-```
-
-`avm docs` does not scaffold source files or compile `main.json`; use `avm pre-commit` for those tasks. For an existing hand-written `## Notes` section without a `README.notes.md` sidecar, extract the Notes before regenerating:
-
-```powershell
-avm docs export-notes -Path $modulePath
-avm pre-commit `
-  -Ecosystem bicep `
-  -Path $modulePath
-```
-
-Run `avm docs export-notes` separately for each child README with authored Notes, using that child's path. Commit the sidecars alongside regenerated READMEs. The generator does not copy Notes from existing READMEs; keep authored Notes in the sidecar and their images in the module's `src` directory. Edit source descriptions and parameter decorators rather than generated README sections.
-
 <span id="1-owner-activities-and-responsibilities"></span>
 
 ## Module owner responsibilities
