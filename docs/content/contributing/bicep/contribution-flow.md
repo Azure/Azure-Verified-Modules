@@ -215,6 +215,161 @@ avm test e2e -Recurse
 
 Deployment tests can create, update, and remove Azure resources, incur costs, and register required providers or features. Additional inputs depend on the test and deployment scope; see the [e2e command reference](https://github.com/Azure/azure-verified-modules-tools/blob/main/docs/reference/Invoke-AvmTestE2e.md).
 
+### Run e2e tests in your fork
+
+Prefer the local commands above. For long-running tests, external contributors can instead manually run the PR check workflow in their fork against an authorized Azure test subscription. This is separate from the upstream PR checks and does not satisfy the upstream merge gate.
+
+{{% expand title="Set up and run the fork workflow" expanded="false" %}}
+
+1. Synchronize your fork with upstream `main`, enable GitHub Actions in the fork, and push the branch to test. Ensure the PR check workflow is present on the fork's default branch.
+1. Sign in to `gh` and `az`, then select your authorized Azure test subscription before running the PowerShell script below:
+
+    ```powershell
+    az account set --subscription '<test-subscription-name-or-id>'
+    ```
+
+    Replace the script placeholders with your fork, an existing branch, a new identity name, and an Azure region. You need repository administration and permission to create a resource group, a user-assigned managed identity (UAMI), its federated credential, and a subscription role assignment.
+
+    The script creates or reuses a resource group named `<identity-name>-rg`, an `avm-validation` environment restricted to the specified branch, a UAMI with [GitHub OIDC federation](https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-azure), and a `Contributor` assignment on the entire test subscription. It writes the three `ARM_*_OVERRIDE` repository variables. Contributor can modify and delete resources throughout that subscription. Use a dedicated test subscription, review the script, and confirm the target before it makes changes. Some tests need additional permissions or scopes.
+
+    The script refuses to overwrite an existing identity, override variable, or override secret. It reuses an existing `avm-validation` environment only when its branch policy allows exactly the specified branch; it does not change existing protection rules. Do not run setup concurrently. If a command fails after making changes, inspect the fork and Azure resources before cleaning up or rerunning.
+
+    ```powershell
+    $repository = '<owner>/<fork>'
+    $branch = '<branch-to-test>'
+    $identityName = '<new-identity-name>'
+    $location = '<azure-region>'
+
+    function Invoke-Gh {
+        & gh @args
+        if ($LASTEXITCODE -ne 0) { throw "GitHub CLI failed with exit code $LASTEXITCODE." }
+    }
+
+    function Invoke-Az {
+        & az @args
+        if ($LASTEXITCODE -ne 0) { throw "Azure CLI failed with exit code $LASTEXITCODE." }
+    }
+
+    function Assert-EnvironmentBranch {
+        $environment = Invoke-Gh api "repos/$repository/environments/avm-validation" | ConvertFrom-Json
+        if (-not $environment.deployment_branch_policy.custom_branch_policies) {
+            throw 'Configure avm-validation to allow only the selected branch before running this script.'
+        }
+        $policies = @(Invoke-Gh api --paginate `
+            "repos/$repository/environments/avm-validation/deployment-branch-policies?per_page=100" `
+            --jq '.branch_policies[] | [.name, .type] | @tsv')
+        if ($policies.Count -ne 1 -or $policies[0] -cne "$branch`tbranch") {
+            throw 'avm-validation must allow exactly the selected branch and no other branches or tags.'
+        }
+    }
+
+    $ErrorActionPreference = 'Stop'
+    if (@($repository, $branch, $identityName, $location |
+            Where-Object { [string]::IsNullOrWhiteSpace($_) }).Count -or
+        $repository -notmatch '^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$' -or
+        $branch -match '[*?\[\]]' -or $branch -match '[<>]' -or
+        $identityName -match '[<>]' -or
+        $location -match '[<>]') {
+        throw 'Replace all placeholders and use a literal branch name.'
+    }
+    & git check-ref-format --branch $branch | Out-Null
+    if ($LASTEXITCODE -ne 0) { throw 'Invalid branch name.' }
+
+    $repo = Invoke-Gh api "repos/$repository" | ConvertFrom-Json
+    if (-not $repo.fork -or $repo.parent.full_name -ne 'Azure/bicep-registry-modules') {
+        throw 'The repository must be a fork of Azure/bicep-registry-modules.'
+    }
+    $encodedBranch = [uri]::EscapeDataString($branch)
+    Invoke-Gh api "repos/$repository/branches/$encodedBranch" | Out-Null
+    $actions = Invoke-Gh api "repos/$repository/actions/permissions" | ConvertFrom-Json
+    if (-not $actions.enabled) { throw 'Enable GitHub Actions in the fork before running this script.' }
+    $workflow = Invoke-Gh api "repos/$repository/actions/workflows/pr-check.yml" | ConvertFrom-Json
+    if ($workflow.state -notin @('active', 'disabled_manually', 'disabled_inactivity')) {
+        throw "Unexpected PR check workflow state: $($workflow.state)"
+    }
+    $oidc = Invoke-Gh api "repos/$repository/actions/oidc/customization/sub" | ConvertFrom-Json
+    if (-not $oidc.use_default -or -not $oidc.sub_claim_prefix) {
+        throw 'This script requires the default GitHub OIDC subject. Configure customized subjects separately.'
+    }
+    $subject = "$($oidc.sub_claim_prefix):environment:avm-validation"
+    $account = Invoke-Az account show --output json | ConvertFrom-Json
+    $subscriptionId = $account.id
+    [void][guid]::Parse($subscriptionId)
+    $resourceGroup = "$identityName-rg"
+    $cloud = Invoke-Az cloud show --query name --output tsv
+    if ($cloud -ne 'AzureCloud') { throw 'This workflow setup supports the Azure public cloud only.' }
+    $resourceGroupExists = Invoke-Az group exists --subscription $subscriptionId --name $resourceGroup --output tsv
+    if ($resourceGroupExists -notin @('true', 'false')) { throw 'Unexpected resource group status.' }
+    if ($resourceGroupExists -eq 'true') {
+        $identities = @(Invoke-Az identity list --subscription $subscriptionId `
+            --resource-group $resourceGroup --output json | ConvertFrom-Json)
+        if ($identities.name -contains $identityName) { throw 'The identity already exists.' }
+    }
+
+    $names = @('ARM_CLIENT_ID_OVERRIDE', 'ARM_TENANT_ID_OVERRIDE', 'ARM_SUBSCRIPTION_ID_OVERRIDE')
+    $existing = @(
+        Invoke-Gh variable list --repo $repository --json name --jq '.[].name'
+        Invoke-Gh secret list --repo $repository --json name --jq '.[].name'
+    )
+    $environments = @(Invoke-Gh api --paginate "repos/$repository/environments?per_page=100" `
+        --jq '.environments[].name')
+    $environmentExists = $environments -contains 'avm-validation'
+    if ($environmentExists) {
+        Assert-EnvironmentBranch
+        $existing += @(
+            Invoke-Gh variable list --repo $repository --env avm-validation --json name --jq '.[].name'
+            Invoke-Gh secret list --repo $repository --env avm-validation --json name --jq '.[].name'
+        )
+    }
+    if (@($names | Where-Object { $existing -contains $_ }).Count) {
+        throw 'An override variable or secret already exists; review it before proceeding.'
+    }
+
+    Write-Host "Fork: $repository; branch: $branch; test subscription: $($account.id)"
+    Write-Host "Create or reuse resource group $resourceGroup, create UAMI $identityName, and grant subscription-wide Contributor."
+    if ((Read-Host 'Type CREATE to confirm this is an authorized test subscription') -cne 'CREATE') {
+        throw 'Cancelled; no changes made.'
+    }
+    if ($workflow.state -ne 'active') {
+        Invoke-Gh workflow enable pr-check.yml --repo $repository
+    }
+    if (-not $environmentExists) {
+        Invoke-Gh api --method PUT "repos/$repository/environments/avm-validation" `
+            -F 'deployment_branch_policy[protected_branches]=false' `
+            -F 'deployment_branch_policy[custom_branch_policies]=true' | Out-Null
+        Invoke-Gh api --method POST `
+            "repos/$repository/environments/avm-validation/deployment-branch-policies" `
+            -f "name=$branch" -f 'type=branch' | Out-Null
+        Assert-EnvironmentBranch
+    }
+    if ($resourceGroupExists -eq 'false') {
+        Invoke-Az group create --subscription $subscriptionId --name $resourceGroup `
+            --location $location --output none
+    }
+    $identity = Invoke-Az identity create --subscription $subscriptionId `
+        --resource-group $resourceGroup --name $identityName --location $location `
+        --output json | ConvertFrom-Json
+    Invoke-Az identity federated-credential create --subscription $subscriptionId `
+        --resource-group $resourceGroup --identity-name $identityName --name 'github-avm-validation' `
+        --issuer 'https://token.actions.githubusercontent.com' --subject $subject `
+        --audiences 'api://AzureADTokenExchange' --output none
+    Invoke-Az role assignment create --subscription $subscriptionId `
+        --assignee-object-id $identity.principalId --assignee-principal-type ServicePrincipal `
+        --role Contributor --scope "/subscriptions/$($account.id)" --output none
+    Invoke-Gh variable set ARM_CLIENT_ID_OVERRIDE --repo $repository --body $identity.clientId
+    Invoke-Gh variable set ARM_TENANT_ID_OVERRIDE --repo $repository --body $account.tenantId
+    Invoke-Gh variable set ARM_SUBSCRIPTION_ID_OVERRIDE --repo $repository --body $account.id
+    Write-Host 'Setup complete. Run the workflow from the selected branch.'
+    ```
+
+    The IDs are not credentials. The workflow also accepts repository secrets with the same names, which take precedence over variables. Overrides apply only to manual runs in a fork, not upstream PR runs. Do not pass credentials as workflow inputs.
+
+1. In the fork, open **Actions > .Module - PR Check > Run workflow**. Select the pushed branch, enter the module path in `modulePaths`, leave `authoringSource` as `gallery` and `authoringRef` empty, and enable `runE2E`. Run the workflow and inspect the checks and cleanup results. `runE2E` selects required and optional scenarios.
+
+Use only a test subscription and identity you are authorized to use. Tests can create, update, and remove resources and incur costs. For test-specific inputs and fork secret limitations, see [custom CI parameters]({{% siteparam base %}}/contributing/bicep/advanced/#custom-ci-parameters).
+
+{{% /expand %}}
+
 ## 6. Raise or Update PR
 
 Push your branch and open a PR targeting upstream `main`. Follow the PR template and provide a meaningful title and description. For a new module, link the PR on its proposal issue and notify its triager or `@Azure/azure-verified-modules-tooling-contributors`; after merge, update the issue with a **Merged** comment and notify them again.
@@ -237,7 +392,7 @@ Create the PR from your upstream branch to `main`.
 
 ## 7. Approve and monitor CI tests
 
-After the updated workflow is rolled out, PR validation and applicable unit and integration tests run automatically. Review their results and update your branch if checks fail. No fork workflow setup is required. If a test needs environment-specific inputs, coordinate [custom CI parameters]({{% siteparam base %}}/contributing/bicep/advanced/#custom-ci-parameters) with maintainers.
+PR validation and applicable unit and integration tests run automatically. Review their results and update your branch if checks fail. No fork workflow setup is required for these upstream checks. If a test needs environment-specific inputs, coordinate [custom CI parameters]({{% siteparam base %}}/contributing/bicep/advanced/#custom-ci-parameters) with maintainers.
 
 Open a PR early and use these checks while iterating. When the contribution is ready for deployment tests, request an e2e label; delaying those tests avoids unnecessary cloud costs and runtime.
 

@@ -5,6 +5,7 @@ on:
   pull_request:
     paths:
       - 'docs/**'
+      - 'utilities/tests/Test-ForkWorkflowSetup.ps1'
       - '.github/workflows/hugo-build-pr-check.yml'
   workflow_dispatch: {}
 
@@ -53,6 +54,10 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
+
+      - name: Test fork workflow setup instructions
+        shell: pwsh
+        run: ./utilities/tests/Test-ForkWorkflowSetup.ps1
 
       - name: Setup Pages
         id: pages
