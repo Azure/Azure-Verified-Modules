@@ -39305,7 +39305,7 @@
         {
           "ecosystem": "terraform",
           "moduleType": "pattern",
-          "moduleStatus": "Proposed",
+          "moduleStatus": "Available",
           "moduleName": "avm-ptn-confidential-compute",
           "modulePath": ".",
           "repository": "Azure/terraform-azurerm-avm-ptn-confidential-compute",
@@ -39332,10 +39332,10 @@
           "alternativeTelemetryIdPrefixes": [],
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-ptn-confidential-compute",
           "registry": {
-            "status": "not-published",
-            "currentVersion": null,
-            "firstPublishedIn": null,
-            "downloads": null
+            "status": "available",
+            "currentVersion": "0.1.0",
+            "firstPublishedIn": "2026-11",
+            "downloads": 0
           }
         }
       ]
