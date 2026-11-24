@@ -1,13 +1,11 @@
 $ErrorActionPreference = 'Stop'
 $doc = Get-Content -Raw (Join-Path $PSScriptRoot '..\..\docs\content\contributing\bicep\contribution-flow.md')
-$match = [regex]::Match($doc, '(?s)### Run e2e tests in your fork.*?    ```powershell\r?\n(.*?)\r?\n    ```')
+$match = [regex]::Match($doc, '(?s)### Run e2e tests in your fork.*?    ```powershell\r?\n(    \$repository = .*?)\r?\n    ```')
 if (-not $match.Success) { throw 'Documented setup script not found.' }
 $script = [regex]::Replace($match.Groups[1].Value, '(?m)^    ', '')
 foreach ($replacement in @{
     '<owner>/<fork>' = 'tester/fork'
     '<branch-to-test>' = 'feature/test'
-    '<test-subscription-guid>' = '11111111-1111-1111-1111-111111111111'
-    '<existing-identity-resource-group>' = 'test-rg'
     '<new-identity-name>' = 'test-identity'
     '<azure-region>' = 'eastus'
 }.GetEnumerator()) {
@@ -78,9 +76,21 @@ function script:az {
     $script:LASTEXITCODE = 0
     $line = $args -join ' '
     switch -Regex ($line) {
-        '^account show' { return '{"id":"11111111-1111-1111-1111-111111111111","tenantId":"22222222-2222-2222-2222-222222222222"}' }
+        '^account show --output json$' {
+            if ($script:scenario -eq 'account-error') { $script:LASTEXITCODE = 1; return }
+            return '{"id":"11111111-1111-1111-1111-111111111111","tenantId":"22222222-2222-2222-2222-222222222222"}'
+        }
         '^cloud show' { return 'AzureCloud' }
-        '^group show' { return }
+        '^group exists' {
+            if ($script:scenario -eq 'invalid-group-status') { return 'unknown' }
+            if ($script:scenario -in @('existing-group', 'identity-conflict')) { return 'true' }
+            return 'false'
+        }
+        '^group create' {
+            $script:mutations.Add("az $line")
+            if ($script:scenario -eq 'group-error') { $script:LASTEXITCODE = 1 }
+            return
+        }
         '^identity list' {
             if ($script:scenario -eq 'identity-conflict') { return '[{"name":"test-identity"}]' }
             return '[]'
@@ -98,23 +108,27 @@ function script:az {
     }
 }
 
-foreach ($scenario in @('new', 'existing-safe', 'workflow-disabled', 'not-fork', 'custom-oidc', 'secret-conflict', 'env-secret-conflict', 'identity-conflict', 'existing-unsafe', 'github-error', 'cancel', 'created-unsafe', 'azure-error')) {
+foreach ($scenario in @('new', 'existing-safe', 'existing-group', 'workflow-disabled', 'not-fork', 'custom-oidc', 'secret-conflict', 'env-secret-conflict', 'identity-conflict', 'invalid-group-status', 'existing-unsafe', 'github-error', 'account-error', 'cancel', 'created-unsafe', 'group-error', 'azure-error')) {
     $script:scenario = $scenario
     $script:mutations = [System.Collections.Generic.List[string]]::new()
     $failed = $false
-    try { & ([scriptblock]::Create($script)) | Out-Null } catch { $failed = $true }
-    if ($scenario -in @('new', 'existing-safe', 'workflow-disabled')) {
-        if ($failed) { throw "$scenario unexpectedly failed." }
+    try { & ([scriptblock]::Create($script)) | Out-Null } catch { $failed = $true; $failure = $_ }
+    if ($scenario -in @('new', 'existing-safe', 'existing-group', 'workflow-disabled')) {
+        if ($failed) { throw "$scenario unexpectedly failed: $failure" }
         if (@($script:mutations | Where-Object { $_ -match '^gh variable set ' }).Count -ne 3) { throw "$scenario did not set all three variables." }
         if (-not ($script:mutations -match '--subject repo:tester@12/fork@34:environment:avm-validation')) { throw "$scenario used an incorrect OIDC subject." }
         if (-not ($script:mutations -match '--role Contributor --scope /subscriptions/11111111-1111-1111-1111-111111111111')) { throw "$scenario used an incorrect role scope." }
+        if (-not ($script:mutations -match '^az identity create --subscription 11111111-1111-1111-1111-111111111111 --resource-group test-identity-rg ')) { throw "$scenario used an incorrect identity scope." }
+        if ($scenario -eq 'existing-group' -and ($script:mutations -match '^az group create')) { throw 'Existing resource group was modified.' }
+        if ($scenario -ne 'existing-group' -and -not ($script:mutations -match '^az group create --subscription 11111111-1111-1111-1111-111111111111 --name test-identity-rg ')) { throw "$scenario did not create the resource group." }
         if ($scenario -eq 'workflow-disabled' -and -not ($script:mutations -match '^gh workflow enable')) { throw 'Disabled workflow was not enabled.' }
     } elseif (-not $failed) {
         throw "$scenario unexpectedly succeeded."
     } elseif ($scenario -eq 'created-unsafe') {
         if (@($script:mutations | Where-Object { $_ -match '^az ' }).Count) { throw 'Unsafe environment reached Azure mutation.' }
-    } elseif ($scenario -eq 'azure-error') {
-        if (@($script:mutations | Where-Object { $_ -match '^(gh variable set|az role assignment)' }).Count) { throw 'Azure failure did not stop subsequent mutations.' }
+    } elseif ($scenario -in @('group-error', 'azure-error')) {
+        if (@($script:mutations | Where-Object { $_ -match '^(gh variable set|az role assignment|az identity federated-credential)' }).Count) { throw 'Azure failure did not stop subsequent mutations.' }
+        if ($scenario -eq 'group-error' -and ($script:mutations -match '^az identity create')) { throw 'Group creation failure did not stop identity creation.' }
     } elseif ($script:mutations.Count) {
         throw "$scenario mutated resources before failing."
     }

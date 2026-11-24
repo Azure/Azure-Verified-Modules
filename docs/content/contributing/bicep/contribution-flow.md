@@ -222,17 +222,21 @@ Prefer the local commands above. For long-running tests, external contributors c
 {{% expand title="Set up and run the fork workflow" expanded="false" %}}
 
 1. Synchronize your fork with upstream `main`, enable GitHub Actions in the fork, and push the branch to test. Ensure the PR check workflow is present on the fork's default branch.
-1. Sign in to `gh` and `az` before running the PowerShell script below. Replace every placeholder with your fork, an existing branch and resource group, and an authorized Azure test subscription. You need repository administration and permission to create a user-assigned managed identity (UAMI), its federated credential, and a subscription role assignment.
+1. Sign in to `gh` and `az`, then select your authorized Azure test subscription before running the PowerShell script below:
 
-    The script creates an `avm-validation` environment restricted to the specified branch, a UAMI with [GitHub OIDC federation](https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-azure), and a `Contributor` assignment on the entire test subscription. It writes the three `ARM_*_OVERRIDE` repository variables. Contributor can modify and delete resources throughout that subscription. Use a dedicated test subscription, review the script, and confirm the target before it makes changes. Some tests need additional permissions or scopes.
+    ```powershell
+    az account set --subscription '<test-subscription-name-or-id>'
+    ```
+
+    Replace the script placeholders with your fork, an existing branch, a new identity name, and an Azure region. You need repository administration and permission to create a resource group, a user-assigned managed identity (UAMI), its federated credential, and a subscription role assignment.
+
+    The script creates or reuses a resource group named `<identity-name>-rg`, an `avm-validation` environment restricted to the specified branch, a UAMI with [GitHub OIDC federation](https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-azure), and a `Contributor` assignment on the entire test subscription. It writes the three `ARM_*_OVERRIDE` repository variables. Contributor can modify and delete resources throughout that subscription. Use a dedicated test subscription, review the script, and confirm the target before it makes changes. Some tests need additional permissions or scopes.
 
     The script refuses to overwrite an existing identity, override variable, or override secret. It reuses an existing `avm-validation` environment only when its branch policy allows exactly the specified branch; it does not change existing protection rules. Do not run setup concurrently. If a command fails after making changes, inspect the fork and Azure resources before cleaning up or rerunning.
 
     ```powershell
     $repository = '<owner>/<fork>'
     $branch = '<branch-to-test>'
-    $subscriptionId = '<test-subscription-guid>'
-    $resourceGroup = '<existing-identity-resource-group>'
     $identityName = '<new-identity-name>'
     $location = '<azure-region>'
 
@@ -260,15 +264,14 @@ Prefer the local commands above. For long-running tests, external contributors c
     }
 
     $ErrorActionPreference = 'Stop'
-    if (@($repository, $branch, $subscriptionId, $resourceGroup, $identityName, $location |
+    if (@($repository, $branch, $identityName, $location |
             Where-Object { [string]::IsNullOrWhiteSpace($_) }).Count -or
         $repository -notmatch '^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$' -or
         $branch -match '[*?\[\]]' -or $branch -match '[<>]' -or
-        $resourceGroup -match '[<>]' -or $identityName -match '[<>]' -or
+        $identityName -match '[<>]' -or
         $location -match '[<>]') {
         throw 'Replace all placeholders and use a literal branch name.'
     }
-    [void][guid]::Parse($subscriptionId)
     & git check-ref-format --branch $branch | Out-Null
     if ($LASTEXITCODE -ne 0) { throw 'Invalid branch name.' }
 
@@ -289,13 +292,19 @@ Prefer the local commands above. For long-running tests, external contributors c
         throw 'This script requires the default GitHub OIDC subject. Configure customized subjects separately.'
     }
     $subject = "$($oidc.sub_claim_prefix):environment:avm-validation"
-    $account = Invoke-Az account show --subscription $subscriptionId --output json | ConvertFrom-Json
+    $account = Invoke-Az account show --output json | ConvertFrom-Json
+    $subscriptionId = $account.id
+    [void][guid]::Parse($subscriptionId)
+    $resourceGroup = "$identityName-rg"
     $cloud = Invoke-Az cloud show --query name --output tsv
     if ($cloud -ne 'AzureCloud') { throw 'This workflow setup supports the Azure public cloud only.' }
-    Invoke-Az group show --subscription $subscriptionId --name $resourceGroup --output none
-    $identities = @(Invoke-Az identity list --subscription $subscriptionId `
-        --resource-group $resourceGroup --output json | ConvertFrom-Json)
-    if ($identities.name -contains $identityName) { throw 'The identity already exists.' }
+    $resourceGroupExists = Invoke-Az group exists --subscription $subscriptionId --name $resourceGroup --output tsv
+    if ($resourceGroupExists -notin @('true', 'false')) { throw 'Unexpected resource group status.' }
+    if ($resourceGroupExists -eq 'true') {
+        $identities = @(Invoke-Az identity list --subscription $subscriptionId `
+            --resource-group $resourceGroup --output json | ConvertFrom-Json)
+        if ($identities.name -contains $identityName) { throw 'The identity already exists.' }
+    }
 
     $names = @('ARM_CLIENT_ID_OVERRIDE', 'ARM_TENANT_ID_OVERRIDE', 'ARM_SUBSCRIPTION_ID_OVERRIDE')
     $existing = @(
@@ -317,7 +326,7 @@ Prefer the local commands above. For long-running tests, external contributors c
     }
 
     Write-Host "Fork: $repository; branch: $branch; test subscription: $($account.id)"
-    Write-Host "Create UAMI $identityName in $resourceGroup and grant subscription-wide Contributor."
+    Write-Host "Create or reuse resource group $resourceGroup, create UAMI $identityName, and grant subscription-wide Contributor."
     if ((Read-Host 'Type CREATE to confirm this is an authorized test subscription') -cne 'CREATE') {
         throw 'Cancelled; no changes made.'
     }
@@ -332,6 +341,10 @@ Prefer the local commands above. For long-running tests, external contributors c
             "repos/$repository/environments/avm-validation/deployment-branch-policies" `
             -f "name=$branch" -f 'type=branch' | Out-Null
         Assert-EnvironmentBranch
+    }
+    if ($resourceGroupExists -eq 'false') {
+        Invoke-Az group create --subscription $subscriptionId --name $resourceGroup `
+            --location $location --output none
     }
     $identity = Invoke-Az identity create --subscription $subscriptionId `
         --resource-group $resourceGroup --name $identityName --location $location `
