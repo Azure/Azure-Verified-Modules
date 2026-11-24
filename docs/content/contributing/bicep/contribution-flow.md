@@ -223,13 +223,13 @@ Prefer the local commands above. For long-running tests, external contributors c
 1. Create an `avm-validation` environment in the fork and restrict it to trusted branches. Set up an Azure identity with [GitHub OIDC federation](https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-azure) for that fork and environment. Use the correct subject format for your repository, including immutable IDs where applicable. Grant the identity the permissions needed to deploy, validate, and clean up the selected tests in the test subscription and any other required scope.
 1. Under the fork's **Settings > Secrets and variables > Actions**, add these repository variables or secrets:
 
-   | Name | Value |
-   | - | - |
-   | `ARM_CLIENT_ID_OVERRIDE` | Azure identity client ID |
-   | `ARM_TENANT_ID_OVERRIDE` | Test tenant ID |
-   | `ARM_SUBSCRIPTION_ID_OVERRIDE` | Test subscription ID |
+    | Name | Value |
+    | - | - |
+    | `ARM_CLIENT_ID_OVERRIDE` | Azure identity client ID |
+    | `ARM_TENANT_ID_OVERRIDE` | Test tenant ID |
+    | `ARM_SUBSCRIPTION_ID_OVERRIDE` | Test subscription ID |
 
-   The IDs are not credentials; use variables unless your policy requires secrets. For the same name, a secret takes precedence over a variable. Set these at repository scope so both test selection and deployment can read them. Overrides apply only to manual runs in a fork, not upstream PR runs. Do not pass credentials as workflow inputs.
+    The IDs are not credentials; use variables unless your policy requires secrets. For the same name, a secret takes precedence over a variable. Set these at repository scope so both test selection and deployment can read them. Overrides apply only to manual runs in a fork, not upstream PR runs. Do not pass credentials as workflow inputs.
 
 1. In the fork, open **Actions > .Module - PR Check > Run workflow**. Select the pushed branch, enter the module path in `modulePaths`, leave `authoringSource` as `gallery` and `authoringRef` empty, and enable `runE2E`. Run the workflow and inspect the checks and cleanup results. `runE2E` selects required and optional scenarios.
 
