@@ -215,6 +215,26 @@ avm test e2e -Recurse
 
 Deployment tests can create, update, and remove Azure resources, incur costs, and register required providers or features. Additional inputs depend on the test and deployment scope; see the [e2e command reference](https://github.com/Azure/azure-verified-modules-tools/blob/main/docs/reference/Invoke-AvmTestE2e.md).
 
+### Run e2e tests in your fork
+
+Prefer the local commands above. For long-running tests, external contributors can instead manually run the PR check workflow in their fork against an authorized Azure test subscription. This is separate from the upstream PR checks and does not satisfy the upstream merge gate.
+
+1. Synchronize your fork with upstream `main`, enable GitHub Actions in the fork, and push the branch to test. Ensure the PR check workflow is present on the fork's default branch.
+1. Create an `avm-validation` environment in the fork and restrict it to trusted branches. Set up an Azure identity with [GitHub OIDC federation](https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-azure) for that fork and environment. Use the correct subject format for your repository, including immutable IDs where applicable. Grant the identity the permissions needed to deploy, validate, and clean up the selected tests in the test subscription and any other required scope.
+1. Under the fork's **Settings > Secrets and variables > Actions**, add these repository variables or secrets:
+
+   | Name | Value |
+   | - | - |
+   | `ARM_CLIENT_ID_OVERRIDE` | Azure identity client ID |
+   | `ARM_TENANT_ID_OVERRIDE` | Test tenant ID |
+   | `ARM_SUBSCRIPTION_ID_OVERRIDE` | Test subscription ID |
+
+   The IDs are not credentials; use variables unless your policy requires secrets. For the same name, a secret takes precedence over a variable. Set these at repository scope so both test selection and deployment can read them. Overrides apply only to manual runs in a fork, not upstream PR runs. Do not pass credentials as workflow inputs.
+
+1. In the fork, open **Actions > .Module - PR Check > Run workflow**. Select the pushed branch, enter the module path in `modulePaths`, leave `authoringSource` as `gallery` and `authoringRef` empty, and enable `runE2E`. Run the workflow and inspect the checks and cleanup results. `runE2E` selects required and optional scenarios.
+
+Use only a test subscription and identity you are authorized to use. Tests can create, update, and remove resources and incur costs. For test-specific inputs and fork secret limitations, see [custom CI parameters]({{% siteparam base %}}/contributing/bicep/advanced/#custom-ci-parameters).
+
 ## 6. Raise or Update PR
 
 Push your branch and open a PR targeting upstream `main`. Follow the PR template and provide a meaningful title and description. For a new module, link the PR on its proposal issue and notify its triager or `@Azure/azure-verified-modules-tooling-contributors`; after merge, update the issue with a **Merged** comment and notify them again.
@@ -237,7 +257,7 @@ Create the PR from your upstream branch to `main`.
 
 ## 7. Approve and monitor CI tests
 
-After the updated workflow is rolled out, PR validation and applicable unit and integration tests run automatically. Review their results and update your branch if checks fail. No fork workflow setup is required. If a test needs environment-specific inputs, coordinate [custom CI parameters]({{% siteparam base %}}/contributing/bicep/advanced/#custom-ci-parameters) with maintainers.
+PR validation and applicable unit and integration tests run automatically. Review their results and update your branch if checks fail. No fork workflow setup is required for these upstream checks. If a test needs environment-specific inputs, coordinate [custom CI parameters]({{% siteparam base %}}/contributing/bicep/advanced/#custom-ci-parameters) with maintainers.
 
 Open a PR early and use these checks while iterating. When the contribution is ready for deployment tests, request an e2e label; delaying those tests avoids unnecessary cloud costs and runtime.
 
