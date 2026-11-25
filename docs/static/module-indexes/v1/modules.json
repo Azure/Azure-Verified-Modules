@@ -7267,7 +7267,7 @@
           "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-compute-capacityreservationgroup",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.0",
+            "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-08",
             "downloads": 989
           }
@@ -7305,10 +7305,10 @@
           ],
           "telemetryIdPrefix": "46d3xtrf.res.0250a43",
           "alternativeTelemetryIdPrefixes": [],
-          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-compute-capacityreservationgroup/azurerm/0.2.0/submodules/capacity_reservation",
+          "publicRegistryReference": "https://registry.terraform.io/modules/Azure/avm-res-compute-capacityreservationgroup/azurerm/0.3.0/submodules/capacity_reservation",
           "registry": {
             "status": "available",
-            "currentVersion": "0.2.0",
+            "currentVersion": "0.3.0",
             "firstPublishedIn": "2025-08",
             "downloads": null
           }
