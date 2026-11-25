@@ -230,9 +230,9 @@ Prefer the local commands above. For long-running tests, external contributors c
 
     Replace the script placeholders with your fork, a new identity name, and an Azure region. You need repository administration and permission to create a resource group, a user-assigned managed identity (UAMI), its federated credential, and a subscription role assignment.
 
-    The script creates or reuses a resource group named `<identity-name>-rg`, an `avm-validation` environment with no branch restriction, a UAMI with [GitHub OIDC federation](https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-azure), and a `Contributor` assignment on the entire test subscription. Any branch in the fork can use this environment, so only run workflow code you trust. It writes the three `ARM_*_OVERRIDE` repository variables. Contributor can modify and delete resources throughout that subscription. Use a dedicated test subscription, review the script, and confirm the target before it makes changes. Some tests need additional permissions or scopes.
+    The script creates or reuses a resource group named `<identity-name>-rg`, an `avm-validation` environment, a UAMI with [GitHub OIDC federation](https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-azure), and a `Contributor` assignment on the entire test subscription. The environment gives manually dispatched workflows in your fork access to Azure, so only run workflow code you trust. It writes the three `ARM_*_OVERRIDE` repository variables. Contributor can modify and delete resources throughout that subscription. Use a dedicated test subscription, review the script, and confirm the target before it makes changes. Some tests need additional permissions or scopes.
 
-    The script refuses to overwrite an existing identity, override variable, or override secret. It removes any branch restriction from an existing `avm-validation` environment but leaves its other protection settings unchanged. Do not run setup concurrently. If a command fails after making changes, inspect the fork and Azure resources before cleaning up or rerunning.
+    The script refuses to overwrite an existing identity, override variable, or override secret. It preserves other protection settings on an existing `avm-validation` environment. Do not run setup concurrently. If a command fails after making changes, inspect the fork and Azure resources before cleaning up or rerunning.
 
     ```powershell
     $repository = '<owner>/<fork>'
@@ -332,12 +332,12 @@ Prefer the local commands above. For long-running tests, external contributors c
     Invoke-Gh variable set ARM_CLIENT_ID_OVERRIDE --repo $repository --body $identity.clientId
     Invoke-Gh variable set ARM_TENANT_ID_OVERRIDE --repo $repository --body $account.tenantId
     Invoke-Gh variable set ARM_SUBSCRIPTION_ID_OVERRIDE --repo $repository --body $account.id
-    Write-Host 'Setup complete. Run the workflow from the branch containing the changes to test.'
+    Write-Host 'Setup complete. Run the workflow for the changes you want to test.'
     ```
 
     The IDs are not credentials. The workflow also accepts repository secrets with the same names, which take precedence over variables. Overrides apply only to manual runs in a fork, not upstream PR runs. Do not pass credentials as workflow inputs.
 
-1. In the fork, open **Actions > .Module - PR Check > Run workflow**. Select the branch containing the changes to test, enter the module path in `modulePaths`, leave `authoringSource` as `gallery` and `authoringRef` empty, and enable `runE2E`. Run the workflow and inspect the checks and cleanup results. `runE2E` selects required and optional scenarios.
+1. In the fork, open **Actions > .Module - PR Check > Run workflow**. Select the version containing the changes to test, enter the module path in `modulePaths`, leave `authoringSource` as `gallery` and `authoringRef` empty, and enable `runE2E`. Run the workflow and inspect the checks and cleanup results. `runE2E` selects required and optional scenarios.
 
 Use only a test subscription and identity you are authorized to use. Tests can create, update, and remove resources and incur costs. For test-specific inputs and fork secret limitations, see [custom CI parameters]({{% siteparam base %}}/contributing/bicep/advanced/#custom-ci-parameters).
 
