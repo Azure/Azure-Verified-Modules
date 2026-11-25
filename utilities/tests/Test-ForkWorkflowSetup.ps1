@@ -5,7 +5,6 @@ if (-not $match.Success) { throw 'Documented setup script not found.' }
 $script = [regex]::Replace($match.Groups[1].Value, '(?m)^    ', '')
 foreach ($replacement in @{
     '<owner>/<fork>' = 'tester/fork'
-    '<branch-to-test>' = 'feature/test'
     '<new-identity-name>' = 'test-identity'
     '<azure-region>' = 'eastus'
 }.GetEnumerator()) {
@@ -16,11 +15,6 @@ $errors = $null
 [void][System.Management.Automation.Language.Parser]::ParseInput($script, [ref]$tokens, [ref]$errors)
 if ($errors.Count) { throw ($errors | Out-String) }
 
-function script:git {
-    $script:LASTEXITCODE = 0
-    'feature/test'
-}
-
 function script:Read-Host {
     if ($script:scenario -eq 'cancel') { return 'NO' }
     'CREATE'
@@ -29,8 +23,11 @@ function script:Read-Host {
 function script:gh {
     $script:LASTEXITCODE = 0
     $line = $args -join ' '
-    if ($line -match '--method (PUT|POST)' -or $line -match '^(variable set|workflow enable)') {
+    if ($line -match '--method (PUT|POST|DELETE)' -or $line -match '^(variable set|workflow enable)') {
         $script:mutations.Add("gh $line")
+        if ($script:scenario -eq 'environment-error' -and $line -match 'environments/avm-validation') {
+            $script:LASTEXITCODE = 1
+        }
         return
     }
     switch -Regex ($line) {
@@ -39,7 +36,6 @@ function script:gh {
             if ($script:scenario -eq 'not-fork') { return '{"fork":false}' }
             return '{"fork":true,"parent":{"full_name":"Azure/bicep-registry-modules"}}'
         }
-        'branches/' { return '{}' }
         'actions/permissions' { return '{"enabled":true}' }
         'actions/workflows/pr-check.yml' {
             if ($script:scenario -eq 'workflow-disabled') { return '{"state":"disabled_manually"}' }
@@ -52,13 +48,6 @@ function script:gh {
         'environments\?per_page' {
             if ($script:scenario -in @('existing-safe', 'existing-unsafe', 'env-secret-conflict')) { return 'avm-validation' }
             return
-        }
-        'deployment-branch-policies' {
-            if ($script:scenario -in @('existing-unsafe', 'created-unsafe')) { return "other`tbranch" }
-            return "feature/test`tbranch"
-        }
-        'environments/avm-validation$' {
-            return '{"deployment_branch_policy":{"custom_branch_policies":true}}'
         }
         '^secret list' {
             if ($script:scenario -eq 'secret-conflict' -or
@@ -108,15 +97,16 @@ function script:az {
     }
 }
 
-foreach ($scenario in @('new', 'existing-safe', 'existing-group', 'workflow-disabled', 'not-fork', 'custom-oidc', 'secret-conflict', 'env-secret-conflict', 'identity-conflict', 'invalid-group-status', 'existing-unsafe', 'github-error', 'account-error', 'cancel', 'created-unsafe', 'group-error', 'azure-error')) {
+foreach ($scenario in @('new', 'existing-safe', 'existing-group', 'workflow-disabled', 'not-fork', 'custom-oidc', 'secret-conflict', 'env-secret-conflict', 'identity-conflict', 'invalid-group-status', 'existing-unsafe', 'github-error', 'account-error', 'cancel', 'environment-error', 'group-error', 'azure-error')) {
     $script:scenario = $scenario
     $script:mutations = [System.Collections.Generic.List[string]]::new()
     $failed = $false
     try { & ([scriptblock]::Create($script)) | Out-Null } catch { $failed = $true; $failure = $_ }
-    if ($scenario -in @('new', 'existing-safe', 'existing-group', 'workflow-disabled')) {
+    if ($scenario -in @('new', 'existing-safe', 'existing-group', 'existing-unsafe', 'workflow-disabled')) {
         if ($failed) { throw "$scenario unexpectedly failed: $failure" }
         if (@($script:mutations | Where-Object { $_ -match '^gh variable set ' }).Count -ne 3) { throw "$scenario did not set all three variables." }
         if (-not ($script:mutations -match '--subject repo:tester@12/fork@34:environment:avm-validation')) { throw "$scenario used an incorrect OIDC subject." }
+        if (-not ($script:mutations -match 'environments/avm-validation -F deployment_branch_policy=null')) { throw "$scenario did not allow all branches in the environment." }
         if (-not ($script:mutations -match '--role Contributor --scope /subscriptions/11111111-1111-1111-1111-111111111111')) { throw "$scenario used an incorrect role scope." }
         if (-not ($script:mutations -match '^az identity create --subscription 11111111-1111-1111-1111-111111111111 --resource-group test-identity-rg ')) { throw "$scenario used an incorrect identity scope." }
         if ($scenario -eq 'existing-group' -and ($script:mutations -match '^az group create')) { throw 'Existing resource group was modified.' }
@@ -124,8 +114,8 @@ foreach ($scenario in @('new', 'existing-safe', 'existing-group', 'workflow-disa
         if ($scenario -eq 'workflow-disabled' -and -not ($script:mutations -match '^gh workflow enable')) { throw 'Disabled workflow was not enabled.' }
     } elseif (-not $failed) {
         throw "$scenario unexpectedly succeeded."
-    } elseif ($scenario -eq 'created-unsafe') {
-        if (@($script:mutations | Where-Object { $_ -match '^az ' }).Count) { throw 'Unsafe environment reached Azure mutation.' }
+    } elseif ($scenario -eq 'environment-error') {
+        if (@($script:mutations | Where-Object { $_ -match '^az ' }).Count) { throw 'Environment update failure reached Azure mutation.' }
     } elseif ($scenario -in @('group-error', 'azure-error')) {
         if (@($script:mutations | Where-Object { $_ -match '^(gh variable set|az role assignment|az identity federated-credential)' }).Count) { throw 'Azure failure did not stop subsequent mutations.' }
         if ($scenario -eq 'group-error' -and ($script:mutations -match '^az identity create')) { throw 'Group creation failure did not stop identity creation.' }

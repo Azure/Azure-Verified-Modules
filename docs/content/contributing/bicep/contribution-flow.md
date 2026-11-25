@@ -221,22 +221,21 @@ Prefer the local commands above. For long-running tests, external contributors c
 
 {{% expand title="Set up and run the fork workflow" expanded="false" %}}
 
-1. Synchronize your fork with upstream `main`, enable GitHub Actions in the fork, and push the branch to test. Ensure the PR check workflow is present on the fork's default branch.
+1. Synchronize your fork with upstream `main`, enable GitHub Actions in the fork, and push the changes to test. Ensure the PR check workflow is present on the fork's default branch.
 1. Sign in to `gh` and `az`, then select your authorized Azure test subscription before running the PowerShell script below:
 
     ```powershell
     az account set --subscription '<test-subscription-name-or-id>'
     ```
 
-    Replace the script placeholders with your fork, an existing branch, a new identity name, and an Azure region. You need repository administration and permission to create a resource group, a user-assigned managed identity (UAMI), its federated credential, and a subscription role assignment.
+    Replace the script placeholders with your fork, a new identity name, and an Azure region. You need repository administration and permission to create a resource group, a user-assigned managed identity (UAMI), its federated credential, and a subscription role assignment.
 
-    The script creates or reuses a resource group named `<identity-name>-rg`, an `avm-validation` environment restricted to the specified branch, a UAMI with [GitHub OIDC federation](https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-azure), and a `Contributor` assignment on the entire test subscription. It writes the three `ARM_*_OVERRIDE` repository variables. Contributor can modify and delete resources throughout that subscription. Use a dedicated test subscription, review the script, and confirm the target before it makes changes. Some tests need additional permissions or scopes.
+    The script creates or reuses a resource group named `<identity-name>-rg`, an `avm-validation` environment with no branch restriction, a UAMI with [GitHub OIDC federation](https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-azure), and a `Contributor` assignment on the entire test subscription. Any branch in the fork can use this environment, so only run workflow code you trust. It writes the three `ARM_*_OVERRIDE` repository variables. Contributor can modify and delete resources throughout that subscription. Use a dedicated test subscription, review the script, and confirm the target before it makes changes. Some tests need additional permissions or scopes.
 
-    The script refuses to overwrite an existing identity, override variable, or override secret. It reuses an existing `avm-validation` environment only when its branch policy allows exactly the specified branch; it does not change existing protection rules. Do not run setup concurrently. If a command fails after making changes, inspect the fork and Azure resources before cleaning up or rerunning.
+    The script refuses to overwrite an existing identity, override variable, or override secret. It removes any branch restriction from an existing `avm-validation` environment but leaves its other protection settings unchanged. Do not run setup concurrently. If a command fails after making changes, inspect the fork and Azure resources before cleaning up or rerunning.
 
     ```powershell
     $repository = '<owner>/<fork>'
-    $branch = '<branch-to-test>'
     $identityName = '<new-identity-name>'
     $location = '<azure-region>'
 
@@ -250,37 +249,19 @@ Prefer the local commands above. For long-running tests, external contributors c
         if ($LASTEXITCODE -ne 0) { throw "Azure CLI failed with exit code $LASTEXITCODE." }
     }
 
-    function Assert-EnvironmentBranch {
-        $environment = Invoke-Gh api "repos/$repository/environments/avm-validation" | ConvertFrom-Json
-        if (-not $environment.deployment_branch_policy.custom_branch_policies) {
-            throw 'Configure avm-validation to allow only the selected branch before running this script.'
-        }
-        $policies = @(Invoke-Gh api --paginate `
-            "repos/$repository/environments/avm-validation/deployment-branch-policies?per_page=100" `
-            --jq '.branch_policies[] | [.name, .type] | @tsv')
-        if ($policies.Count -ne 1 -or $policies[0] -cne "$branch`tbranch") {
-            throw 'avm-validation must allow exactly the selected branch and no other branches or tags.'
-        }
-    }
-
     $ErrorActionPreference = 'Stop'
-    if (@($repository, $branch, $identityName, $location |
+    if (@($repository, $identityName, $location |
             Where-Object { [string]::IsNullOrWhiteSpace($_) }).Count -or
         $repository -notmatch '^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$' -or
-        $branch -match '[*?\[\]]' -or $branch -match '[<>]' -or
         $identityName -match '[<>]' -or
         $location -match '[<>]') {
-        throw 'Replace all placeholders and use a literal branch name.'
+        throw 'Replace all placeholders with literal values.'
     }
-    & git check-ref-format --branch $branch | Out-Null
-    if ($LASTEXITCODE -ne 0) { throw 'Invalid branch name.' }
 
     $repo = Invoke-Gh api "repos/$repository" | ConvertFrom-Json
     if (-not $repo.fork -or $repo.parent.full_name -ne 'Azure/bicep-registry-modules') {
         throw 'The repository must be a fork of Azure/bicep-registry-modules.'
     }
-    $encodedBranch = [uri]::EscapeDataString($branch)
-    Invoke-Gh api "repos/$repository/branches/$encodedBranch" | Out-Null
     $actions = Invoke-Gh api "repos/$repository/actions/permissions" | ConvertFrom-Json
     if (-not $actions.enabled) { throw 'Enable GitHub Actions in the fork before running this script.' }
     $workflow = Invoke-Gh api "repos/$repository/actions/workflows/pr-check.yml" | ConvertFrom-Json
@@ -315,7 +296,6 @@ Prefer the local commands above. For long-running tests, external contributors c
         --jq '.environments[].name')
     $environmentExists = $environments -contains 'avm-validation'
     if ($environmentExists) {
-        Assert-EnvironmentBranch
         $existing += @(
             Invoke-Gh variable list --repo $repository --env avm-validation --json name --jq '.[].name'
             Invoke-Gh secret list --repo $repository --env avm-validation --json name --jq '.[].name'
@@ -325,7 +305,7 @@ Prefer the local commands above. For long-running tests, external contributors c
         throw 'An override variable or secret already exists; review it before proceeding.'
     }
 
-    Write-Host "Fork: $repository; branch: $branch; test subscription: $($account.id)"
+    Write-Host "Fork: $repository; test subscription: $($account.id)"
     Write-Host "Create or reuse resource group $resourceGroup, create UAMI $identityName, and grant subscription-wide Contributor."
     if ((Read-Host 'Type CREATE to confirm this is an authorized test subscription') -cne 'CREATE') {
         throw 'Cancelled; no changes made.'
@@ -333,15 +313,8 @@ Prefer the local commands above. For long-running tests, external contributors c
     if ($workflow.state -ne 'active') {
         Invoke-Gh workflow enable pr-check.yml --repo $repository
     }
-    if (-not $environmentExists) {
-        Invoke-Gh api --method PUT "repos/$repository/environments/avm-validation" `
-            -F 'deployment_branch_policy[protected_branches]=false' `
-            -F 'deployment_branch_policy[custom_branch_policies]=true' | Out-Null
-        Invoke-Gh api --method POST `
-            "repos/$repository/environments/avm-validation/deployment-branch-policies" `
-            -f "name=$branch" -f 'type=branch' | Out-Null
-        Assert-EnvironmentBranch
-    }
+    Invoke-Gh api --method PUT "repos/$repository/environments/avm-validation" `
+        -F 'deployment_branch_policy=null' | Out-Null
     if ($resourceGroupExists -eq 'false') {
         Invoke-Az group create --subscription $subscriptionId --name $resourceGroup `
             --location $location --output none
@@ -359,12 +332,12 @@ Prefer the local commands above. For long-running tests, external contributors c
     Invoke-Gh variable set ARM_CLIENT_ID_OVERRIDE --repo $repository --body $identity.clientId
     Invoke-Gh variable set ARM_TENANT_ID_OVERRIDE --repo $repository --body $account.tenantId
     Invoke-Gh variable set ARM_SUBSCRIPTION_ID_OVERRIDE --repo $repository --body $account.id
-    Write-Host 'Setup complete. Run the workflow from the selected branch.'
+    Write-Host 'Setup complete. Run the workflow from the branch containing the changes to test.'
     ```
 
     The IDs are not credentials. The workflow also accepts repository secrets with the same names, which take precedence over variables. Overrides apply only to manual runs in a fork, not upstream PR runs. Do not pass credentials as workflow inputs.
 
-1. In the fork, open **Actions > .Module - PR Check > Run workflow**. Select the pushed branch, enter the module path in `modulePaths`, leave `authoringSource` as `gallery` and `authoringRef` empty, and enable `runE2E`. Run the workflow and inspect the checks and cleanup results. `runE2E` selects required and optional scenarios.
+1. In the fork, open **Actions > .Module - PR Check > Run workflow**. Select the branch containing the changes to test, enter the module path in `modulePaths`, leave `authoringSource` as `gallery` and `authoringRef` empty, and enable `runE2E`. Run the workflow and inspect the checks and cleanup results. `runE2E` selects required and optional scenarios.
 
 Use only a test subscription and identity you are authorized to use. Tests can create, update, and remove resources and incur costs. For test-specific inputs and fork secret limitations, see [custom CI parameters]({{% siteparam base %}}/contributing/bicep/advanced/#custom-ci-parameters).
 
