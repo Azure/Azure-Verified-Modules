@@ -10,7 +10,7 @@ env:
   pipelinePrincipalGitUserEmail: "AVM@noreply.github.com"
   branch_name_prefix: "update-module-features-table_"
   pr_title: "Update module features table (automated)"
-  pr_body: "This is an automated ``pull_request`` containing updates to the module status badges table that is stored at ``docs/content/indexes/bicep/_index.md``, as well as the module features CSV stored at ``docs/static/module-features/bicepFeatures.csv``.\nPlease review the ``files changed`` tab to review changes."
+  pr_body: "This is an automated ``pull_request`` containing updates to the module features CSV stored at ``docs/static/module-features/bicepFeatures.csv``.\nPlease review the ``files changed`` tab to review changes."
 
 permissions:
   id-token: write
@@ -73,22 +73,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
 
-      - name: "Update module status table"
-        shell: pwsh
-        run: |
-          # Load used functions
-          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'tools' 'platform' 'Set-BicepModuleStatusBadgesTable.ps1')
-
-          $functionInput = @{
-            MarkdownFilePath    = Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepBadges.md'
-            ModulesRepoRootPath = Join-Path $env:GITHUB_WORKSPACE 'bicep-registry-modules'
-          }
-
-          Write-Verbose "Invoke task with" -Verbose
-          Write-Verbose ($functionInput | ConvertTo-Json | Out-String) -Verbose
-
-          Set-BicepModuleStatusBadgesTable @functionInput -Verbose
-
       - name: "Update module features csv"
         shell: pwsh
         run: |
@@ -120,7 +104,6 @@ jobs:
         shell: pwsh
         run: |
           Write-Verbose "Pushing changes to origin..." -Verbose
-          git add (Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepBadges.md')
           git add (Join-Path $env:GITHUB_WORKSPACE 'docs' 'static' 'includes' 'module-features' 'bicepFeatures.csv')
           git commit -m '${{ env.pr_title }}'
           git push origin ${{ env.branch_name }}
