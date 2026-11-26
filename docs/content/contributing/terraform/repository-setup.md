@@ -48,7 +48,7 @@ Record every approved owner. An empty owner array is valid for an unowned module
 
 ## 3. Create the repository
 
-The `New-Repository.ps1` script in this owner-only process creates the remote GitHub repository and its root metadata. The separate `avm init -Ecosystem terraform` command [initializes local metadata]({{% siteparam base %}}/contributing/terraform/contribution-flow/#initialize-local-metadata-for-a-new-module) but cannot replace repository creation, access setup, or policy configuration.
+`avm init -Ecosystem terraform` creates the GitHub repository, its root metadata and its first commit. You still complete the Open Source Portal, JIT and Direct Owner steps on this page.
 
 Prerequisites:
 

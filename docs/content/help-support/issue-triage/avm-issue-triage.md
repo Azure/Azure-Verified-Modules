@@ -329,9 +329,7 @@ If a module meets the criteria described in the "[Deprecated Modules]({{% sitepa
     1. Run [`avm docs`]({{% siteparam base %}}/contributing/bicep/contribution-flow/#update-generated-files-after-editing) from the module directory. This regenerates only `README.md` and puts the `DEPRECATED.md` notice in its header without compiling `main.json`.
     1. Make sure the content of the `DEPRECATED.md` file is displayed in the `README.md` in its header (right after the title).
     1. Add the the notice `NOTE: This is the last published version and the module has since been deprecated.` to the top-most `### Changes` section of the module's `CHANGELOG.md` file
-    1. Remove the module workflow from the [`workflows`](https://github.com/Azure/bicep-registry-modules/tree/main/.github/workflows) folder.
-    1. Submit a Pull Request
-    1. For the AVM maintainers: Once the PR is merged, run the [.Platform - Publish [moduleIndex.json]](https://github.com/Azure/bicep-registry-modules/actions/workflows/platform.publish-module-index-json.yml) workflow with the `regenIndexFromBRM` flag set. This will de-list the module so that it won't show up in the VS-Code Bicep extension going forward.
+    1. Submit a Pull Request. No workflow changes are needed; the shared [PR check](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/pr-check.yml) and [release](https://github.com/Azure/bicep-registry-modules/blob/main/.github/workflows/release.yml) workflows have no per-module files, and this change does not create a module release.
 
 Deprecating a module does not require editing `CODEOWNERS` or deleting a GitHub team. BRM has no per-module code-owner entries; `/avm/` intentionally has no owners, while `metadata.json` remains protected by its own code-owner rule.
 
@@ -348,7 +346,7 @@ A Bicep marker applies to that module and all its descendants. A root marker the
 
 A module deprecated before it was ever published to the registry is removed from the indexes rather than listed as `Deprecated`.
 
-Catalog publication does not perform the required notices, Bicep workflow removal and registry-index update, or Terraform repository archival. After a top-level Bicep deprecation is published, verify that [module list sync](https://github.com/Azure/azure-verified-modules-tools/blob/main/.github/workflows/repository-management-module-list-sync.yml) removes it from the issue-template dropdown instead of editing the list by hand.
+Catalog publication does not perform the required notices or Terraform repository archival. After a top-level Bicep deprecation is published, verify that [module list sync](https://github.com/Azure/azure-verified-modules-tools/blob/main/.github/workflows/repository-management-module-list-sync.yml) removes it from the issue-template dropdown instead of editing the list by hand.
 
 **Deprecation information notice** (to be place in the module's repository as described above)
 

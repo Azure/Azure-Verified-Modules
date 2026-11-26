@@ -179,11 +179,7 @@ Before writing code, review the [Terraform specifications]({{% siteparam base %}
 
 ### Initialize local metadata for a new module
 
-The [owner-only repository creation process]({{% siteparam base %}}/contributing/terraform/repository-setup/) creates the remote GitHub repository and its root `metadata.json`. `avm init` is a separate, **local-only** command; it does not create a repository. If you start with an approved local module whose root metadata is missing, run this from its repository root:
-
-```powershell
-avm init -Ecosystem terraform -ModuleType resource -Path .
-```
+For a root module, `avm init` creates and sets up the GitHub repository, including its root `metadata.json`. Only module owners run it, through the [owner-only repository creation process]({{% siteparam base %}}/contributing/terraform/repository-setup/).
 
 For a new direct child under `modules/`, specify its approved path and inherit ownership from the root:
 
@@ -191,7 +187,7 @@ For a new direct child under `modules/`, specify its approved path and inherit o
 avm init -Ecosystem terraform -ModuleType resource -Path './modules/<child-module>' -ChildModule
 ```
 
-Use the approved `-ModuleType` for pattern or utility modules instead. The command prompts for missing required metadata in an interactive terminal (or accepts `-InputObject` for automation), creates the target directory if needed, and writes **only `metadata.json`**. It never overwrites an existing metadata file or creates Terraform source files, examples, or tests; add those yourself according to the [composition guidelines]({{% siteparam base %}}/contributing/terraform/composition/). If the repository creation script already supplied the root metadata, leave it in place. See the [metadata guide]({{% siteparam base %}}/contributing/module-metadata/) for required fields and child ownership.
+Use the approved `-ModuleType` for pattern or utility modules instead. With `-ChildModule`, the command is local-only. It prompts for missing required metadata in an interactive terminal (or accepts `-InputObject` for automation), creates the target directory if needed, and writes **only `metadata.json`**. It never overwrites an existing metadata file or creates Terraform source files, examples, or tests; add those yourself according to the [composition guidelines]({{% siteparam base %}}/contributing/terraform/composition/). See the [metadata guide]({{% siteparam base %}}/contributing/module-metadata/) for required fields and child ownership.
 
 Once you've made your changes, stage, commit, and push them:
 
