@@ -470,20 +470,6 @@ Remove the &nbsp;<mark style="background-image:none;white-space: nowrap;backgrou
 
 ---
 
-### ITA25
-
-This legacy Bicep rule prompts a sole module owner to apply the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label for triage visibility. The label does **not** require core-team approval: ordinary Bicep code changes may be approved by any eligible BRM repository team member other than the author. Changes to `metadata.json` still require [metadata code-owner review]({{% siteparam base %}}/contributing/module-metadata/#submit-and-review-a-change).
-
-**Trigger criteria:**
-
-- A PR is opened.
-
-**Action(s):**
-
-- Prompt sole module owners to apply the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label for triage visibility.
-
----
-
 ### ITA26
 
 Add a label for the AVM Core Team to query called &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#136A41;color:white;">Status: Ready For Repository Creation 📝</mark>&nbsp; when a module owner adds a comment to the issue to tell them.
@@ -537,5 +523,4 @@ A check mark in brackets (e.g., [✔️]) indicates that the rule exists in that
 | [ITA21](#ita21)             |                     |       ✔️       |        ✔️       |
 | [ITA22](#ita22)             |                     |       ✔️       |        ✔️       |
 | [ITA23](#ita23)             |          ✔️         |                |        ✔️       |
-| [ITA25](#ita25)             |                    |        ✔️        |               |
 | [ITA26](#ita26)             |              ✔️      |                 |              |

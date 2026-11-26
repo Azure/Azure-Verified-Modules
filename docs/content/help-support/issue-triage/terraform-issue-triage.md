@@ -74,7 +74,7 @@ Changes to `metadata.json` require approval from an eligible member of either `@
 
 1. If the **PR is submitted by the module owner** and the **module is owned by a single person**, **another Terraform module owner must review and approve the PR** (the module owner cannot approve their own PR).
     - **First port of call:** find a friendly module owner from the [`azure-verified-modules-module-contributors`](https://aka.ms/avm/id/groups/module-contributors) Entra group and request a review.
-    - **If no owner is available**, assign the `@Azure/azure-verified-modules-engineering-owners` GitHub team as a reviewer and apply the &nbsp;<mark style="background-image:none;white-space: nowrap;background-color:#DB4503;color:white;">Needs: Core Team 🧞</mark>&nbsp; label so the AVM core team picks it up during triage.
+    - **If no owner is available**, assign the `@Azure/azure-verified-modules-engineering-owners` GitHub team as a reviewer.
 2. If the **PR is submitted by a contributor** (other than the module owner), or the **module is owned by at least 2 people**, **one of the module owners should review and approve the PR**.
 3. Apply relevant labels
     - Categorize the PR using applicable labels, such as:
