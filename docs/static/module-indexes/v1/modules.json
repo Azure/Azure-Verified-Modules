@@ -31733,7 +31733,7 @@
         {
           "ecosystem": "bicep",
           "moduleType": "resource",
-          "moduleStatus": "Proposed",
+          "moduleStatus": "Available",
           "moduleName": "avm/res/sql-virtual-machine/sql-virtual-machine",
           "modulePath": "avm/res/sql-virtual-machine/sql-virtual-machine",
           "repository": "Azure/bicep-registry-modules",
@@ -31751,9 +31751,9 @@
           "comments": "",
           "owners": [
             {
-              "handle": "peterbud",
+              "handle": "arjenhuitema",
               "type": "user",
-              "displayName": "Peter Budai"
+              "displayName": "Arjen Huitema"
             }
           ],
           "telemetryIdPrefix": "46d3xbcp.res.56a27ae",
@@ -31762,9 +31762,9 @@
           ],
           "publicRegistryReference": "br/public:avm/res/sql-virtual-machine/sql-virtual-machine:X.Y.Z",
           "registry": {
-            "status": "not-published",
-            "currentVersion": null,
-            "firstPublishedIn": null,
+            "status": "available",
+            "currentVersion": "0.1.0",
+            "firstPublishedIn": "2026-11",
             "downloads": null
           }
         }
