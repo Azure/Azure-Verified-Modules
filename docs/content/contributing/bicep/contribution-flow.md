@@ -17,7 +17,9 @@ This guide covers the end-to-end contribution flow for AVM Bicep modules. Whethe
 If you are a more visual learner, you can watch the AVM Bicep Contribution Walkthrough Video below for a step-by-step guide.
 
 <div style="width:70%; margin: 0 auto;">
-{{< youtube id="x7lzX6T7TA0" title="AVM Bicep Contribution Walkthrough Video (Updated November 2026)" >}}
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+<iframe src="https://www.youtube-nocookie.com/embed/x7lzX6T7TA0" title="AVM Bicep Contribution Walkthrough Video (Updated November 2026)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 </div>
 
 *[AVM Bicep Contribution Walkthrough Video (Updated November 2026)](https://www.youtube.com/watch?v=x7lzX6T7TA0)*
