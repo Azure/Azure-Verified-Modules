@@ -12,6 +12,18 @@ aliases:
 
 This guide covers the end-to-end contribution flow for AVM Bicep modules. Whether you are a **module owner** or an **external contributor**, the core workflow is the same; the key differences are called out using tabs below.
 
+{{% notice style="tip" title="Video Walkthrough Available" icon="lightbulb" %}}
+
+If you are a more visual learner, you can watch the AVM Bicep Contribution Walkthrough Video below for a step-by-step guide.
+
+<div style="width:70%; margin: 0 auto;">
+{{< youtube id="x7lzX6T7TA0" title="AVM Bicep Contribution Walkthrough Video (Updated November 2026)" >}}
+</div>
+
+*[AVM Bicep Contribution Walkthrough Video (Updated November 2026)](https://www.youtube.com/watch?v=x7lzX6T7TA0)*
+
+{{% /notice %}}
+
 ## Prerequisites
 
 Follow the [Bicep prerequisites]({{% siteparam base %}}/contributing/bicep/prerequisites/) to install Git, PowerShell, and `Avm.Authoring`. Review the [Bicep specifications]({{% siteparam base %}}/specs/bcp/) and [composition guidance]({{% siteparam base %}}/contributing/bicep/composition/).

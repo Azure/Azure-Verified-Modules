@@ -4,7 +4,6 @@ linktitle: Bicep Modules
 description: Bicep Contribution Guidance for the Azure Verified Modules (AVM) program
 ---
 
-
 {{% notice style="important" %}}
 While this page describes and summarizes important aspects of contributing to AVM, it may not reference *All* of the shared and language specific requirements.
 
