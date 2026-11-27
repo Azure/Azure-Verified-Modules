@@ -14,7 +14,8 @@ env:
   pipelinePrincipalGitUserEmail: "AVM@noreply.github.com"
   branch_name_prefix: "update-mar-file_"
   pr_title: "Update mirrored MAR file (automated)"
-  pr_body: "This is an automated ``pull_request`` containing updates to the mirrored MAR file stored at ``docs/static/module-indexes/BicepMARModules.json``.\nPlease review the ``files changed`` tab to review changes."
+  pr_review_team: "Azure/azure-verified-modules-engineering-owners"
+  pr_body: "This is an automated ``pull_request`` containing updates to the mirrored MAR file stored at ``docs/static/module-indexes/BicepMARModules.json``.\nPlease review the ``files changed`` tab to review changes.\n\n@Azure/azure-verified-modules-engineering-owners"
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -134,6 +135,7 @@ jobs:
             CHECK_PULL_REQUEST_URL=$(gh pr create \
             --title "${{ env.pr_title }}" \
             --body "${{ env.pr_body }}" \
+            --reviewer "${{ env.pr_review_team }}" \
             --base "${{ github.ref }}" \
             --head "${{ env.branch_name }}")
             echo "Created new PR: $CHECK_PULL_REQUEST_URL"
