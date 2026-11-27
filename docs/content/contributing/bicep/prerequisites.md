@@ -24,6 +24,10 @@ Before you start contributing to the AVM, it is **highly recommended** that you 
 
 - [Introduction to version control with Git](https://learn.microsoft.com/learn/paths/intro-to-vc-git/)
 
+### AVM
+
+- [AVM Bicep Contribution Walkthrough Video (Updated November 2026)](https://www.youtube.com/watch?v=x7lzX6T7TA0)
+
 ## Tooling
 
 ### Required Tooling

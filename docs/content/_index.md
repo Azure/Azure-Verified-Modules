@@ -7,13 +7,20 @@ description: 'Azure Verified Modules - The Microsoft IaC Module Strategy'
 
 {{% notice style="note" title="Latest Announcements" icon="lightbulb" %}}
 
-1. **Azure Verified Modules (AVM) is now owned by Azure engineering, read more about the news [here.](https://techcommunity.microsoft.com/blog/azuretoolsblog/azure-verified-modules-avm-is-now-owned-by-azure-engineering/4563822)**
+### November 2026
 
-2. **The AVM community call took place on Monday 26th October 2026.**
+- **[AVM Bicep Contribution Walkthrough Video (Updated November 2026)](https://www.youtube.com/watch?v=x7lzX6T7TA0) is now available.**
+    - The AVM Bicep contribution process and tooling has had some significant updates, so make sure you check the latest guidance out in the [AVM Bicep Contribution Flow documentation page]({{% siteparam base %}}/contributing/bicep/contribution-flow/).
+
+### October 2026
+
+- **Azure Verified Modules (AVM) is now owned by Azure engineering, read more about the news [here.](https://techcommunity.microsoft.com/blog/azuretoolsblog/azure-verified-modules-avm-is-now-owned-by-azure-engineering/4563822)**
+
+- **The AVM community call took place on Monday 26th October 2026.**
     - Watch the [recording on YouTube](https://www.youtube.com/watch?v=KzdwhiJuug8).
     - View the [October 2026 community call slides]({{% siteparam base %}}/community/avm-community-call-oct26.pdf).
 
-3. **The next AVM community call is planned for February or March 2027. The date will be announced as soon as it is confirmed.**
+- **The next AVM community call is planned for February or March 2027. The date will be announced as soon as it is confirmed.**
 
 {{% /notice %}}
 
