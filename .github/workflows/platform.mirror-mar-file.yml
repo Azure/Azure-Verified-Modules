@@ -41,7 +41,7 @@ jobs:
           fetch-depth: 0
 
       # create a token
-      - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+      - uses: actions/create-github-app-token@f418cff399f7aef4c2f0ad47e25ca7a6abbdd6fc # v3.4.0
         name: Create App Token for MAR Repository
         id: mcr-app-token
         with:
@@ -50,7 +50,7 @@ jobs:
           app-id: ${{ vars.MAR_REPO_ACCESS_APPID }}
           private-key: ${{ secrets.MAR_REPO_ACCESS_APP_PRIVATEKEY }}
 
-      - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+      - uses: actions/create-github-app-token@f418cff399f7aef4c2f0ad47e25ca7a6abbdd6fc # v3.4.0
         name: Create App Token for AVM Repository (used for PR creation)
         id: avm-app-token
         with:
