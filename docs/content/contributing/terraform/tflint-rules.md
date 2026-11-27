@@ -38,7 +38,8 @@ To disable a rule, use the exact HCL shown in the **Disable** column. The config
 | [avm_provider_azapi_version_constraint](#avm_provider_azapi_version_constraint) | The AzAPI provider constraint meets AVM requirements. | Module scopes | `rule "avm_provider_azapi_version_constraint" { enabled = false }` |
 | [avm_provider_azurerm_disallowed](#avm_provider_azurerm_disallowed) | AzureRM is not used as a module foundation. | Module scopes | `rule "avm_provider_azurerm_disallowed" { enabled = false }` |
 | [avm_provider_azurerm_version_constraint](#avm_provider_azurerm_version_constraint) | An approved AzureRM exception has the required constraint. | Module scopes | `rule "avm_provider_azurerm_version_constraint" { enabled = false }` |
-| [avm_provider_modtm_version_constraint](#avm_provider_modtm_version_constraint) | The ModTM provider constraint meets AVM requirements. | Module scopes | `rule "avm_provider_modtm_version_constraint" { enabled = false }` |
+| [avm_provider_modtm_disallowed](#avm_provider_modtm_disallowed) | The ModTM provider and `modtm_*` resource, data, and ephemeral blocks are prohibited. | Module scopes | `rule "avm_provider_modtm_disallowed" { enabled = false }` |
+| [avm_provider_modtm_version_constraint](#avm_provider_modtm_version_constraint) | Existing ModTM declarations meet the required constraint; this does not permit use under TFFR3. | Module scopes | `rule "avm_provider_modtm_version_constraint" { enabled = false }` |
 | [avm_terraform_module_source_required](#avm_terraform_module_source_required) | AVM module references use the required source format. | Module scopes | `rule "avm_terraform_module_source_required" { enabled = false }` |
 | [avm_terraform_ignore_changes_unquoted_references](#avm_terraform_ignore_changes_unquoted_references) | `ignore_changes` uses AVM-compliant references. | All module scopes | `rule "avm_terraform_ignore_changes_unquoted_references" { enabled = false }` |
 | [avm_output_resource_id_required](#avm_output_resource_id_required) | Resource modules expose their required outputs. | Root module | `rule "avm_output_resource_id_required" { enabled = false }` |
@@ -193,9 +194,13 @@ Applies the AzureRM-foundation prohibition in [TFFR3]({{% siteparam base %}}/spe
 
 Validates the AzureRM constraint when the narrow [TFFR3]({{% siteparam base %}}/spec/TFFR3) exception is used.
 
+### avm_provider_modtm_disallowed
+
+Applies the ModTM provider prohibition in [TFFR3]({{% siteparam base %}}/spec/TFFR3).
+
 ### avm_provider_modtm_version_constraint
 
-Validates the ModTM provider constraint when that provider is used.
+Validates the required constraint for existing ModTM declarations; this rule does not permit provider use under [TFFR3]({{% siteparam base %}}/spec/TFFR3).
 
 ### avm_terraform_module_source_required
 
