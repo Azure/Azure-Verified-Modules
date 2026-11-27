@@ -17604,7 +17604,7 @@
           "publicRegistryReference": "br/public:avm/res/key-vault/vault:X.Y.Z",
           "registry": {
             "status": "available",
-            "currentVersion": "0.14.4",
+            "currentVersion": "0.15.0",
             "firstPublishedIn": "2023-11",
             "downloads": null
           }
